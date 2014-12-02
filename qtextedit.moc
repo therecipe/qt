@@ -1,0 +1,313 @@
+/****************************************************************************
+** Meta object code from reading C++ file 'qtextedit.cpp'
+**
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.4.0)
+**
+** WARNING! All changes made in this file will be lost!
+*****************************************************************************/
+
+#include <QtCore/qbytearray.h>
+#include <QtCore/qmetatype.h>
+#if !defined(Q_MOC_OUTPUT_REVISION)
+#error "The header file 'qtextedit.cpp' doesn't include <QObject>."
+#elif Q_MOC_OUTPUT_REVISION != 67
+#error "This file was generated using the moc from 5.4.0. It"
+#error "cannot be used with the include files from this version of Qt."
+#error "(The moc has changed too much.)"
+#endif
+
+QT_BEGIN_MOC_NAMESPACE
+struct qt_meta_stringdata_MyQTextEdit_t {
+    QByteArrayData data[18];
+    char stringdata[203];
+};
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_MyQTextEdit_t, stringdata) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
+static const qt_meta_stringdata_MyQTextEdit_t qt_meta_stringdata_MyQTextEdit = {
+    {
+QT_MOC_LITERAL(0, 0, 11), // "MyQTextEdit"
+QT_MOC_LITERAL(1, 12, 10), // "Slot_Clear"
+QT_MOC_LITERAL(2, 23, 0), // ""
+QT_MOC_LITERAL(3, 24, 9), // "Slot_Copy"
+QT_MOC_LITERAL(4, 34, 8), // "Slot_Cut"
+QT_MOC_LITERAL(5, 43, 10), // "Slot_Paste"
+QT_MOC_LITERAL(6, 54, 9), // "Slot_Redo"
+QT_MOC_LITERAL(7, 64, 14), // "Slot_SelectAll"
+QT_MOC_LITERAL(8, 79, 18), // "Slot_SetFontItalic"
+QT_MOC_LITERAL(9, 98, 6), // "italic"
+QT_MOC_LITERAL(10, 105, 21), // "Slot_SetFontUnderline"
+QT_MOC_LITERAL(11, 127, 9), // "underline"
+QT_MOC_LITERAL(12, 137, 18), // "Slot_SetFontWeight"
+QT_MOC_LITERAL(13, 156, 6), // "weight"
+QT_MOC_LITERAL(14, 163, 9), // "Slot_Undo"
+QT_MOC_LITERAL(15, 173, 11), // "Slot_ZoomIn"
+QT_MOC_LITERAL(16, 185, 4), // "rang"
+QT_MOC_LITERAL(17, 190, 12) // "Slot_ZoomOut"
+
+    },
+    "MyQTextEdit\0Slot_Clear\0\0Slot_Copy\0"
+    "Slot_Cut\0Slot_Paste\0Slot_Redo\0"
+    "Slot_SelectAll\0Slot_SetFontItalic\0"
+    "italic\0Slot_SetFontUnderline\0underline\0"
+    "Slot_SetFontWeight\0weight\0Slot_Undo\0"
+    "Slot_ZoomIn\0rang\0Slot_ZoomOut"
+};
+#undef QT_MOC_LITERAL
+
+static const uint qt_meta_data_MyQTextEdit[] = {
+
+ // content:
+       7,       // revision
+       0,       // classname
+       0,    0, // classinfo
+      12,   14, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+      12,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    0,   74,    2, 0x06 /* Public */,
+       3,    0,   75,    2, 0x06 /* Public */,
+       4,    0,   76,    2, 0x06 /* Public */,
+       5,    0,   77,    2, 0x06 /* Public */,
+       6,    0,   78,    2, 0x06 /* Public */,
+       7,    0,   79,    2, 0x06 /* Public */,
+       8,    1,   80,    2, 0x06 /* Public */,
+      10,    1,   83,    2, 0x06 /* Public */,
+      12,    1,   86,    2, 0x06 /* Public */,
+      14,    0,   89,    2, 0x06 /* Public */,
+      15,    1,   90,    2, 0x06 /* Public */,
+      17,    1,   93,    2, 0x06 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,    9,
+    QMetaType::Void, QMetaType::Bool,   11,
+    QMetaType::Void, QMetaType::Int,   13,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   16,
+    QMetaType::Void, QMetaType::Int,   16,
+
+       0        // eod
+};
+
+void MyQTextEdit::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        MyQTextEdit *_t = static_cast<MyQTextEdit *>(_o);
+        switch (_id) {
+        case 0: _t->Slot_Clear(); break;
+        case 1: _t->Slot_Copy(); break;
+        case 2: _t->Slot_Cut(); break;
+        case 3: _t->Slot_Paste(); break;
+        case 4: _t->Slot_Redo(); break;
+        case 5: _t->Slot_SelectAll(); break;
+        case 6: _t->Slot_SetFontItalic((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 7: _t->Slot_SetFontUnderline((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 8: _t->Slot_SetFontWeight((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 9: _t->Slot_Undo(); break;
+        case 10: _t->Slot_ZoomIn((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 11: _t->Slot_ZoomOut((*reinterpret_cast< int(*)>(_a[1]))); break;
+        default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        void **func = reinterpret_cast<void **>(_a[1]);
+        {
+            typedef void (MyQTextEdit::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MyQTextEdit::Slot_Clear)) {
+                *result = 0;
+            }
+        }
+        {
+            typedef void (MyQTextEdit::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MyQTextEdit::Slot_Copy)) {
+                *result = 1;
+            }
+        }
+        {
+            typedef void (MyQTextEdit::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MyQTextEdit::Slot_Cut)) {
+                *result = 2;
+            }
+        }
+        {
+            typedef void (MyQTextEdit::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MyQTextEdit::Slot_Paste)) {
+                *result = 3;
+            }
+        }
+        {
+            typedef void (MyQTextEdit::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MyQTextEdit::Slot_Redo)) {
+                *result = 4;
+            }
+        }
+        {
+            typedef void (MyQTextEdit::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MyQTextEdit::Slot_SelectAll)) {
+                *result = 5;
+            }
+        }
+        {
+            typedef void (MyQTextEdit::*_t)(bool );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MyQTextEdit::Slot_SetFontItalic)) {
+                *result = 6;
+            }
+        }
+        {
+            typedef void (MyQTextEdit::*_t)(bool );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MyQTextEdit::Slot_SetFontUnderline)) {
+                *result = 7;
+            }
+        }
+        {
+            typedef void (MyQTextEdit::*_t)(int );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MyQTextEdit::Slot_SetFontWeight)) {
+                *result = 8;
+            }
+        }
+        {
+            typedef void (MyQTextEdit::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MyQTextEdit::Slot_Undo)) {
+                *result = 9;
+            }
+        }
+        {
+            typedef void (MyQTextEdit::*_t)(int );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MyQTextEdit::Slot_ZoomIn)) {
+                *result = 10;
+            }
+        }
+        {
+            typedef void (MyQTextEdit::*_t)(int );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MyQTextEdit::Slot_ZoomOut)) {
+                *result = 11;
+            }
+        }
+    }
+}
+
+const QMetaObject MyQTextEdit::staticMetaObject = {
+    { &QTextEdit::staticMetaObject, qt_meta_stringdata_MyQTextEdit.data,
+      qt_meta_data_MyQTextEdit,  qt_static_metacall, 0, 0}
+};
+
+
+const QMetaObject *MyQTextEdit::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *MyQTextEdit::qt_metacast(const char *_clname)
+{
+    if (!_clname) return 0;
+    if (!strcmp(_clname, qt_meta_stringdata_MyQTextEdit.stringdata))
+        return static_cast<void*>(const_cast< MyQTextEdit*>(this));
+    return QTextEdit::qt_metacast(_clname);
+}
+
+int MyQTextEdit::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QTextEdit::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 12)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 12;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 12)
+            *reinterpret_cast<int*>(_a[0]) = -1;
+        _id -= 12;
+    }
+    return _id;
+}
+
+// SIGNAL 0
+void MyQTextEdit::Slot_Clear()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, 0);
+}
+
+// SIGNAL 1
+void MyQTextEdit::Slot_Copy()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, 0);
+}
+
+// SIGNAL 2
+void MyQTextEdit::Slot_Cut()
+{
+    QMetaObject::activate(this, &staticMetaObject, 2, 0);
+}
+
+// SIGNAL 3
+void MyQTextEdit::Slot_Paste()
+{
+    QMetaObject::activate(this, &staticMetaObject, 3, 0);
+}
+
+// SIGNAL 4
+void MyQTextEdit::Slot_Redo()
+{
+    QMetaObject::activate(this, &staticMetaObject, 4, 0);
+}
+
+// SIGNAL 5
+void MyQTextEdit::Slot_SelectAll()
+{
+    QMetaObject::activate(this, &staticMetaObject, 5, 0);
+}
+
+// SIGNAL 6
+void MyQTextEdit::Slot_SetFontItalic(bool _t1)
+{
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 6, _a);
+}
+
+// SIGNAL 7
+void MyQTextEdit::Slot_SetFontUnderline(bool _t1)
+{
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 7, _a);
+}
+
+// SIGNAL 8
+void MyQTextEdit::Slot_SetFontWeight(int _t1)
+{
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 8, _a);
+}
+
+// SIGNAL 9
+void MyQTextEdit::Slot_Undo()
+{
+    QMetaObject::activate(this, &staticMetaObject, 9, 0);
+}
+
+// SIGNAL 10
+void MyQTextEdit::Slot_ZoomIn(int _t1)
+{
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 10, _a);
+}
+
+// SIGNAL 11
+void MyQTextEdit::Slot_ZoomOut(int _t1)
+{
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 11, _a);
+}
+QT_END_MOC_NAMESPACE
