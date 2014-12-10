@@ -5,11 +5,11 @@
 1. Install Go >= 1.4 (x86)
 > https://golang.org/dl/
 
-2. Install Qt 5.4.0-Beta
-> https://download.qt-project.org/development_releases/qt/5.4/5.4.0-beta/qt-opensource-windows-x86-mingw482_opengl-5.4.0-beta.exe
+2. Install Qt 5.4.0
+> https://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-windows-x86-mingw491_opengl-5.4.0.exe
 
 3. Add the directory that contains "gcc" to your PATH
-> C:\Qt\Qt5.4.0\Tools\mingw482_32\bin
+> C:\Qt\Qt5.4.0\Tools\mingw491_32\bin
 
 4. Download the qt binding
 > go get -d github.com/therecipe/qt
@@ -28,8 +28,8 @@
 1. Install Go >= 1.4
 > https://golang.org/dl/
 
-2. Install Qt 5.4.0-Beta 
-> https://download.qt-project.org/development_releases/qt/5.4/5.4.0-beta/qt-opensource-mac-x64-clang-5.4.0-beta.dmg
+2. Install Qt 5.4.0
+> https://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-mac-x64-clang-5.4.0.dmg
 
 3. Install Xcode >= 6.1
 
@@ -50,11 +50,11 @@
 1. Install Go >= 1.4 (x86/x64)
 > https://golang.org/dl/
 
-2. Install Qt 5.4.0-Beta 
+2. Install Qt 5.4.0 
 
-  >(x86) https://download.qt-project.org/development_releases/qt/5.4/5.4.0-beta/qt-opensource-linux-x86-5.4.0-beta.run
+  >(x86) https://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-linux-x86-5.4.0.run
   
-  >(x64) https://download.qt-project.org/development_releases/qt/5.4/5.4.0-beta/qt-opensource-linux-x64-5.4.0-beta.run
+  >(x64) https://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-linux-x64-5.4.0.run
   
 3. Install "g++"
 > sudo apt-get install build-essential
