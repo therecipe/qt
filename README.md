@@ -72,4 +72,4 @@
 > go install github.com/therecipe/qt
 
 8. Test the example (edit the file if necessary)
-> example/linux/deploy_linux.sh
+> example/linux/deploy_linux_*.sh

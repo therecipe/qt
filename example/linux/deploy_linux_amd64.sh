@@ -1,6 +1,6 @@
 export PATH=$PATH:/usr/local/go/bin
 
-go build -o example
+go build -o example ../
 
 cp /usr/local/Qt5.4.0/5.4/gcc_64/lib/libQt5Core.so.5.4.0 ./libQt5Core.so.5
 cp /usr/local/Qt5.4.0/5.4/gcc_64/lib/libQt5Gui.so.5.4.0 ./libQt5Gui.so.5

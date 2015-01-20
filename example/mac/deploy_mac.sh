@@ -1,4 +1,4 @@
-go build -o example
+go build -o example ../
 
 mkdir example.app
 mkdir example.app/Contents
