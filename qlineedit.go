@@ -12,24 +12,24 @@ type QLineEdit interface {
 	Alignment() AlignmentFlag
 	Backspace()
 	CreateStandardContextMenu() QMenu
-	CursorBackward_Bool_Int(mark bool, steps int)
-	CursorForward_Bool_Int(mark bool, steps int)
+	CursorBackward(mark bool, steps int)
+	CursorForward(mark bool, steps int)
 	CursorMoveStyle() CursorMoveStyle
 	CursorPosition() int
-	CursorWordBackward_Bool(mark bool)
-	CursorWordForward_Bool(mark bool)
+	CursorWordBackward(mark bool)
+	CursorWordForward(mark bool)
 	Del()
 	Deselect()
 	DisplayText() string
 	DragEnabled() bool
 	EchoMode() EchoMode
-	End_Bool(mark bool)
+	End(mark bool)
 	HasAcceptableInput() bool
 	HasFrame() bool
 	HasSelectedText() bool
-	Home_Bool(mark bool)
+	Home(mark bool)
 	InputMask() string
-	Insert_String(newText string)
+	Insert(newText string)
 	IsClearButtonEnabled() bool
 	IsModified() bool
 	IsReadOnly() bool
@@ -39,21 +39,21 @@ type QLineEdit interface {
 	PlaceholderText() string
 	SelectedText() string
 	SelectionStart() int
-	SetAlignment_AlignmentFlag(flag AlignmentFlag)
-	SetClearButtonEnabled_Bool(enable bool)
-	SetCursorMoveStyle_CursorMoveStyle(style CursorMoveStyle)
-	SetCursorPosition_Int(cursorPosition int)
-	SetDragEnabled_Bool(dragEnabled bool)
-	SetEchoMode_EchoMode(Ec EchoMode)
-	SetFrame_Bool(frame bool)
-	SetInputMask_String(inputMask string)
-	SetMaxLength_Int(maxLength int)
-	SetModified_Bool(modified bool)
-	SetPlaceholderText_String(placeholderText string)
-	SetReadOnly_Bool(readOnly bool)
-	SetSelection_Int_Int(start int, length int)
-	SetTextMargins_Int_Int_Int_Int(left int, top int, right int, bottom int)
-	SetValidator_QValidator(v QValidator)
+	SetAlignment(flag AlignmentFlag)
+	SetClearButtonEnabled(enable bool)
+	SetCursorMoveStyle(style CursorMoveStyle)
+	SetCursorPosition(cursorPosition int)
+	SetDragEnabled(dragEnabled bool)
+	SetEchoMode(Ec EchoMode)
+	SetFrame(frame bool)
+	SetInputMask(inputMask string)
+	SetMaxLength(maxLength int)
+	SetModified(modified bool)
+	SetPlaceholderText(placeholderText string)
+	SetReadOnly(readOnly bool)
+	SetSelection(start int, length int)
+	SetTextMargins(left int, top int, right int, bottom int)
+	SetValidator(v QValidator)
 	Text() string
 	ConnectSlotClear()
 	DisconnectSlotClear()
@@ -75,7 +75,7 @@ type QLineEdit interface {
 	SlotSelectAll()
 	ConnectSlotSetText()
 	DisconnectSlotSetText()
-	SlotSetText_String(text string)
+	SlotSetText(text string)
 	ConnectSlotUndo()
 	DisconnectSlotUndo()
 	SlotUndo()
@@ -125,25 +125,25 @@ var (
 	PASSWORDECHOONEDIT = EchoMode(C.QLineEdit_PasswordEchoOnEdit())
 )
 
-func NewQLineEdit_QWidget(parent QWidget) QLineEdit {
-	var parentPtr C.QtObjectPtr = nil
+func NewQLineEdit1(parent QWidget) QLineEdit {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qlineedit = new(qlineedit)
 	qlineedit.SetPointer(C.QLineEdit_New_QWidget(parentPtr))
-	qlineedit.SetObjectName_String("QLineEdit_" + randomIdentifier())
+	qlineedit.SetObjectName("QLineEdit_" + randomIdentifier())
 	return qlineedit
 }
 
-func NewQLineEdit_String_QWidget(contents string, parent QWidget) QLineEdit {
-	var parentPtr C.QtObjectPtr = nil
+func NewQLineEdit2(contents string, parent QWidget) QLineEdit {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qlineedit = new(qlineedit)
 	qlineedit.SetPointer(C.QLineEdit_New_String_QWidget(C.CString(contents), parentPtr))
-	qlineedit.SetObjectName_String("QLineEdit_" + randomIdentifier())
+	qlineedit.SetObjectName("QLineEdit_" + randomIdentifier())
 	return qlineedit
 }
 
@@ -158,9 +158,8 @@ func (p *qlineedit) Destroy() {
 func (p *qlineedit) Alignment() AlignmentFlag {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return AlignmentFlag(C.QLineEdit_Alignment(p.Pointer()))
 	}
+	return AlignmentFlag(C.QLineEdit_Alignment(p.Pointer()))
 }
 
 func (p *qlineedit) Backspace() {
@@ -176,19 +175,19 @@ func (p *qlineedit) CreateStandardContextMenu() QMenu {
 		var qmenu = new(qmenu)
 		qmenu.SetPointer(C.QLineEdit_CreateStandardContextMenu(p.Pointer()))
 		if qmenu.ObjectName() == "" {
-			qmenu.SetObjectName_String("QMenu_" + randomIdentifier())
+			qmenu.SetObjectName("QMenu_" + randomIdentifier())
 		}
 		return qmenu
 	}
 }
 
-func (p *qlineedit) CursorBackward_Bool_Int(mark bool, steps int) {
+func (p *qlineedit) CursorBackward(mark bool, steps int) {
 	if p.Pointer() != nil {
 		C.QLineEdit_CursorBackward_Bool_Int(p.Pointer(), goBoolToCInt(mark), C.int(steps))
 	}
 }
 
-func (p *qlineedit) CursorForward_Bool_Int(mark bool, steps int) {
+func (p *qlineedit) CursorForward(mark bool, steps int) {
 	if p.Pointer() != nil {
 		C.QLineEdit_CursorForward_Bool_Int(p.Pointer(), goBoolToCInt(mark), C.int(steps))
 	}
@@ -197,26 +196,24 @@ func (p *qlineedit) CursorForward_Bool_Int(mark bool, steps int) {
 func (p *qlineedit) CursorMoveStyle() CursorMoveStyle {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return CursorMoveStyle(C.QLineEdit_CursorMoveStyle(p.Pointer()))
 	}
+	return CursorMoveStyle(C.QLineEdit_CursorMoveStyle(p.Pointer()))
 }
 
 func (p *qlineedit) CursorPosition() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QLineEdit_CursorPosition(p.Pointer()))
 	}
+	return int(C.QLineEdit_CursorPosition(p.Pointer()))
 }
 
-func (p *qlineedit) CursorWordBackward_Bool(mark bool) {
+func (p *qlineedit) CursorWordBackward(mark bool) {
 	if p.Pointer() != nil {
 		C.QLineEdit_CursorWordBackward_Bool(p.Pointer(), goBoolToCInt(mark))
 	}
 }
 
-func (p *qlineedit) CursorWordForward_Bool(mark bool) {
+func (p *qlineedit) CursorWordForward(mark bool) {
 	if p.Pointer() != nil {
 		C.QLineEdit_CursorWordForward_Bool(p.Pointer(), goBoolToCInt(mark))
 	}
@@ -237,28 +234,25 @@ func (p *qlineedit) Deselect() {
 func (p *qlineedit) DisplayText() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QLineEdit_DisplayText(p.Pointer()))
 	}
+	return C.GoString(C.QLineEdit_DisplayText(p.Pointer()))
 }
 
 func (p *qlineedit) DragEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QLineEdit_DragEnabled(p.Pointer()) != 0
 	}
+	return C.QLineEdit_DragEnabled(p.Pointer()) != 0
 }
 
 func (p *qlineedit) EchoMode() EchoMode {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return EchoMode(C.QLineEdit_EchoMode(p.Pointer()))
 	}
+	return EchoMode(C.QLineEdit_EchoMode(p.Pointer()))
 }
 
-func (p *qlineedit) End_Bool(mark bool) {
+func (p *qlineedit) End(mark bool) {
 	if p.Pointer() != nil {
 		C.QLineEdit_End_Bool(p.Pointer(), goBoolToCInt(mark))
 	}
@@ -267,28 +261,25 @@ func (p *qlineedit) End_Bool(mark bool) {
 func (p *qlineedit) HasAcceptableInput() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QLineEdit_HasAcceptableInput(p.Pointer()) != 0
 	}
+	return C.QLineEdit_HasAcceptableInput(p.Pointer()) != 0
 }
 
 func (p *qlineedit) HasFrame() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QLineEdit_HasFrame(p.Pointer()) != 0
 	}
+	return C.QLineEdit_HasFrame(p.Pointer()) != 0
 }
 
 func (p *qlineedit) HasSelectedText() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QLineEdit_HasSelectedText(p.Pointer()) != 0
 	}
+	return C.QLineEdit_HasSelectedText(p.Pointer()) != 0
 }
 
-func (p *qlineedit) Home_Bool(mark bool) {
+func (p *qlineedit) Home(mark bool) {
 	if p.Pointer() != nil {
 		C.QLineEdit_Home_Bool(p.Pointer(), goBoolToCInt(mark))
 	}
@@ -297,12 +288,11 @@ func (p *qlineedit) Home_Bool(mark bool) {
 func (p *qlineedit) InputMask() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QLineEdit_InputMask(p.Pointer()))
 	}
+	return C.GoString(C.QLineEdit_InputMask(p.Pointer()))
 }
 
-func (p *qlineedit) Insert_String(newText string) {
+func (p *qlineedit) Insert(newText string) {
 	if p.Pointer() != nil {
 		C.QLineEdit_Insert_String(p.Pointer(), C.CString(newText))
 	}
@@ -311,163 +301,153 @@ func (p *qlineedit) Insert_String(newText string) {
 func (p *qlineedit) IsClearButtonEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QLineEdit_IsClearButtonEnabled(p.Pointer()) != 0
 	}
+	return C.QLineEdit_IsClearButtonEnabled(p.Pointer()) != 0
 }
 
 func (p *qlineedit) IsModified() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QLineEdit_IsModified(p.Pointer()) != 0
 	}
+	return C.QLineEdit_IsModified(p.Pointer()) != 0
 }
 
 func (p *qlineedit) IsReadOnly() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QLineEdit_IsReadOnly(p.Pointer()) != 0
 	}
+	return C.QLineEdit_IsReadOnly(p.Pointer()) != 0
 }
 
 func (p *qlineedit) IsRedoAvailable() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QLineEdit_IsRedoAvailable(p.Pointer()) != 0
 	}
+	return C.QLineEdit_IsRedoAvailable(p.Pointer()) != 0
 }
 
 func (p *qlineedit) IsUndoAvailable() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QLineEdit_IsUndoAvailable(p.Pointer()) != 0
 	}
+	return C.QLineEdit_IsUndoAvailable(p.Pointer()) != 0
 }
 
 func (p *qlineedit) MaxLength() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QLineEdit_MaxLength(p.Pointer()))
 	}
+	return int(C.QLineEdit_MaxLength(p.Pointer()))
 }
 
 func (p *qlineedit) PlaceholderText() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QLineEdit_PlaceholderText(p.Pointer()))
 	}
+	return C.GoString(C.QLineEdit_PlaceholderText(p.Pointer()))
 }
 
 func (p *qlineedit) SelectedText() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QLineEdit_SelectedText(p.Pointer()))
 	}
+	return C.GoString(C.QLineEdit_SelectedText(p.Pointer()))
 }
 
 func (p *qlineedit) SelectionStart() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QLineEdit_SelectionStart(p.Pointer()))
 	}
+	return int(C.QLineEdit_SelectionStart(p.Pointer()))
 }
 
-func (p *qlineedit) SetAlignment_AlignmentFlag(flag AlignmentFlag) {
+func (p *qlineedit) SetAlignment(flag AlignmentFlag) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetAlignment_AlignmentFlag(p.Pointer(), C.int(flag))
 	}
 }
 
-func (p *qlineedit) SetClearButtonEnabled_Bool(enable bool) {
+func (p *qlineedit) SetClearButtonEnabled(enable bool) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetClearButtonEnabled_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
 }
 
-func (p *qlineedit) SetCursorMoveStyle_CursorMoveStyle(style CursorMoveStyle) {
+func (p *qlineedit) SetCursorMoveStyle(style CursorMoveStyle) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetCursorMoveStyle_CursorMoveStyle(p.Pointer(), C.int(style))
 	}
 }
 
-func (p *qlineedit) SetCursorPosition_Int(cursorPosition int) {
+func (p *qlineedit) SetCursorPosition(cursorPosition int) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetCursorPosition_Int(p.Pointer(), C.int(cursorPosition))
 	}
 }
 
-func (p *qlineedit) SetDragEnabled_Bool(dragEnabled bool) {
+func (p *qlineedit) SetDragEnabled(dragEnabled bool) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetDragEnabled_Bool(p.Pointer(), goBoolToCInt(dragEnabled))
 	}
 }
 
-func (p *qlineedit) SetEchoMode_EchoMode(Ec EchoMode) {
+func (p *qlineedit) SetEchoMode(Ec EchoMode) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetEchoMode_EchoMode(p.Pointer(), C.int(Ec))
 	}
 }
 
-func (p *qlineedit) SetFrame_Bool(frame bool) {
+func (p *qlineedit) SetFrame(frame bool) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetFrame_Bool(p.Pointer(), goBoolToCInt(frame))
 	}
 }
 
-func (p *qlineedit) SetInputMask_String(inputMask string) {
+func (p *qlineedit) SetInputMask(inputMask string) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetInputMask_String(p.Pointer(), C.CString(inputMask))
 	}
 }
 
-func (p *qlineedit) SetMaxLength_Int(maxLength int) {
+func (p *qlineedit) SetMaxLength(maxLength int) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetMaxLength_Int(p.Pointer(), C.int(maxLength))
 	}
 }
 
-func (p *qlineedit) SetModified_Bool(modified bool) {
+func (p *qlineedit) SetModified(modified bool) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetModified_Bool(p.Pointer(), goBoolToCInt(modified))
 	}
 }
 
-func (p *qlineedit) SetPlaceholderText_String(placeholderText string) {
+func (p *qlineedit) SetPlaceholderText(placeholderText string) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetPlaceholderText_String(p.Pointer(), C.CString(placeholderText))
 	}
 }
 
-func (p *qlineedit) SetReadOnly_Bool(readOnly bool) {
+func (p *qlineedit) SetReadOnly(readOnly bool) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetReadOnly_Bool(p.Pointer(), goBoolToCInt(readOnly))
 	}
 }
 
-func (p *qlineedit) SetSelection_Int_Int(start int, length int) {
+func (p *qlineedit) SetSelection(start int, length int) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetSelection_Int_Int(p.Pointer(), C.int(start), C.int(length))
 	}
 }
 
-func (p *qlineedit) SetTextMargins_Int_Int_Int_Int(left int, top int, right int, bottom int) {
+func (p *qlineedit) SetTextMargins(left int, top int, right int, bottom int) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetTextMargins_Int_Int_Int_Int(p.Pointer(), C.int(left), C.int(top), C.int(right), C.int(bottom))
 	}
 }
 
-func (p *qlineedit) SetValidator_QValidator(v QValidator) {
-	if p.Pointer() == nil {
-	} else {
-		var vPtr C.QtObjectPtr = nil
+func (p *qlineedit) SetValidator(v QValidator) {
+	if p.Pointer() != nil {
+		var vPtr C.QtObjectPtr
 		if v != nil {
 			vPtr = v.Pointer()
 		}
@@ -478,9 +458,8 @@ func (p *qlineedit) SetValidator_QValidator(v QValidator) {
 func (p *qlineedit) Text() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QLineEdit_Text(p.Pointer()))
 	}
+	return C.GoString(C.QLineEdit_Text(p.Pointer()))
 }
 
 func (p *qlineedit) ConnectSlotClear() {
@@ -575,7 +554,7 @@ func (p *qlineedit) DisconnectSlotSetText() {
 	C.QLineEdit_DisconnectSlotSetText(p.Pointer())
 }
 
-func (p *qlineedit) SlotSetText_String(text string) {
+func (p *qlineedit) SlotSetText(text string) {
 	if p.Pointer() != nil {
 		C.QLineEdit_SetText_String(p.Pointer(), C.CString(text))
 	}

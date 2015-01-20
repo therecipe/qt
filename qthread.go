@@ -9,13 +9,13 @@ type qthread struct {
 
 type QThread interface {
 	QObject
-	Exit_Int(returnCode int)
+	Exit(returnCode int)
 	IsFinished() bool
 	IsInterruptionRequested() bool
 	IsRunning() bool
 	Priority() Priority
 	RequestInterruption()
-	SetPriority_Priority(priority Priority)
+	SetPriority(priority Priority)
 	ConnectSlotQuit()
 	DisconnectSlotQuit()
 	SlotQuit()
@@ -52,14 +52,14 @@ var (
 	INHERITPRIORITY      = Priority(C.QThread_InheritPriority())
 )
 
-func NewQThread_QObject(parent QObject) QThread {
-	var parentPtr C.QtObjectPtr = nil
+func NewQThread(parent QObject) QThread {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qthread = new(qthread)
 	qthread.SetPointer(C.QThread_New_QObject(parentPtr))
-	qthread.SetObjectName_String("QThread_" + randomIdentifier())
+	qthread.SetObjectName("QThread_" + randomIdentifier())
 	return qthread
 }
 
@@ -71,7 +71,7 @@ func (p *qthread) Destroy() {
 	}
 }
 
-func (p *qthread) Exit_Int(returnCode int) {
+func (p *qthread) Exit(returnCode int) {
 	if p.Pointer() != nil {
 		C.QThread_Exit_Int(p.Pointer(), C.int(returnCode))
 	}
@@ -80,33 +80,29 @@ func (p *qthread) Exit_Int(returnCode int) {
 func (p *qthread) IsFinished() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QThread_IsFinished(p.Pointer()) != 0
 	}
+	return C.QThread_IsFinished(p.Pointer()) != 0
 }
 
 func (p *qthread) IsInterruptionRequested() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QThread_IsInterruptionRequested(p.Pointer()) != 0
 	}
+	return C.QThread_IsInterruptionRequested(p.Pointer()) != 0
 }
 
 func (p *qthread) IsRunning() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QThread_IsRunning(p.Pointer()) != 0
 	}
+	return C.QThread_IsRunning(p.Pointer()) != 0
 }
 
 func (p *qthread) Priority() Priority {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return Priority(C.QThread_Priority(p.Pointer()))
 	}
+	return Priority(C.QThread_Priority(p.Pointer()))
 }
 
 func (p *qthread) RequestInterruption() {
@@ -115,7 +111,7 @@ func (p *qthread) RequestInterruption() {
 	}
 }
 
-func (p *qthread) SetPriority_Priority(priority Priority) {
+func (p *qthread) SetPriority(priority Priority) {
 	if p.Pointer() != nil {
 		C.QThread_SetPriority_Priority(p.Pointer(), C.int(priority))
 	}
@@ -181,7 +177,7 @@ func QThread_CurrentThread() QThread {
 	var qthread = new(qthread)
 	qthread.SetPointer(C.QThread_CurrentThread())
 	if qthread.ObjectName() == "" {
-		qthread.SetObjectName_String("QThread_" + randomIdentifier())
+		qthread.SetObjectName("QThread_" + randomIdentifier())
 	}
 	return qthread
 }

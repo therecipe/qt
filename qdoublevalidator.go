@@ -11,8 +11,8 @@ type QDoubleValidator interface {
 	QValidator
 	Decimals() int
 	Notation() Notation
-	SetDecimals_Int(in int)
-	SetNotation_Notation(No Notation)
+	SetDecimals(in int)
+	SetNotation(No Notation)
 }
 
 func (p *qdoublevalidator) Pointer() (ptr C.QtObjectPtr) {
@@ -31,14 +31,14 @@ var (
 	SCIENTIFICNOTATION = Notation(C.QDoubleValidator_ScientificNotation())
 )
 
-func NewQDoubleValidator_QObject(parent QObject) QDoubleValidator {
-	var parentPtr C.QtObjectPtr = nil
+func NewQDoubleValidator(parent QObject) QDoubleValidator {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qdoublevalidator = new(qdoublevalidator)
 	qdoublevalidator.SetPointer(C.QDoubleValidator_New_QObject(parentPtr))
-	qdoublevalidator.SetObjectName_String("QDoubleValidator_" + randomIdentifier())
+	qdoublevalidator.SetObjectName("QDoubleValidator_" + randomIdentifier())
 	return qdoublevalidator
 }
 
@@ -53,26 +53,24 @@ func (p *qdoublevalidator) Destroy() {
 func (p *qdoublevalidator) Decimals() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QDoubleValidator_Decimals(p.Pointer()))
 	}
+	return int(C.QDoubleValidator_Decimals(p.Pointer()))
 }
 
 func (p *qdoublevalidator) Notation() Notation {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return Notation(C.QDoubleValidator_Notation(p.Pointer()))
 	}
+	return Notation(C.QDoubleValidator_Notation(p.Pointer()))
 }
 
-func (p *qdoublevalidator) SetDecimals_Int(in int) {
+func (p *qdoublevalidator) SetDecimals(in int) {
 	if p.Pointer() != nil {
 		C.QDoubleValidator_SetDecimals_Int(p.Pointer(), C.int(in))
 	}
 }
 
-func (p *qdoublevalidator) SetNotation_Notation(No Notation) {
+func (p *qdoublevalidator) SetNotation(No Notation) {
 	if p.Pointer() != nil {
 		C.QDoubleValidator_SetNotation_Notation(p.Pointer(), C.int(No))
 	}

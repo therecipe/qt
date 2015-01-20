@@ -17,15 +17,15 @@ type QListWidgetItem interface {
 	IsHidden() bool
 	IsSelected() bool
 	ListWidget() QListWidget
-	SetCheckState_CheckState(state CheckState)
-	SetFlags_ItemFlag(flags ItemFlag)
-	SetHidden_Bool(hide bool)
-	SetSelected_Bool(selected bool)
-	SetStatusTip_String(statusTip string)
-	SetText_String(text string)
-	SetTextAlignment_Int(alignment int)
-	SetToolTip_String(toolTip string)
-	SetWhatsThis_String(whatsThis string)
+	SetCheckState(state CheckState)
+	SetFlags(flags ItemFlag)
+	SetHidden(hide bool)
+	SetSelected(selected bool)
+	SetStatusTip(statusTip string)
+	SetText(text string)
+	SetTextAlignment(alignment int)
+	SetToolTip(toolTip string)
+	SetWhatsThis(whatsThis string)
 	StatusTip() string
 	Text() string
 	TextAlignment() int
@@ -42,8 +42,8 @@ func (p *qlistwidgetitem) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQListWidgetItem_QListWidget_Int(parent QListWidget, typ int) QListWidgetItem {
-	var parentPtr C.QtObjectPtr = nil
+func NewQListWidgetItem1(parent QListWidget, typ int) QListWidgetItem {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
@@ -52,8 +52,8 @@ func NewQListWidgetItem_QListWidget_Int(parent QListWidget, typ int) QListWidget
 	return qlistwidgetitem
 }
 
-func NewQListWidgetItem_String_QListWidget_Int(text string, parent QListWidget, typ int) QListWidgetItem {
-	var parentPtr C.QtObjectPtr = nil
+func NewQListWidgetItem2(text string, parent QListWidget, typ int) QListWidgetItem {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
@@ -72,9 +72,8 @@ func (p *qlistwidgetitem) Destroy() {
 func (p *qlistwidgetitem) CheckState() CheckState {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return CheckState(C.QListWidgetItem_CheckState(p.Pointer()))
 	}
+	return CheckState(C.QListWidgetItem_CheckState(p.Pointer()))
 }
 
 func (p *qlistwidgetitem) Clone() QListWidgetItem {
@@ -90,25 +89,22 @@ func (p *qlistwidgetitem) Clone() QListWidgetItem {
 func (p *qlistwidgetitem) Flags() ItemFlag {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ItemFlag(C.QListWidgetItem_Flags(p.Pointer()))
 	}
+	return ItemFlag(C.QListWidgetItem_Flags(p.Pointer()))
 }
 
 func (p *qlistwidgetitem) IsHidden() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QListWidgetItem_IsHidden(p.Pointer()) != 0
 	}
+	return C.QListWidgetItem_IsHidden(p.Pointer()) != 0
 }
 
 func (p *qlistwidgetitem) IsSelected() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QListWidgetItem_IsSelected(p.Pointer()) != 0
 	}
+	return C.QListWidgetItem_IsSelected(p.Pointer()) != 0
 }
 
 func (p *qlistwidgetitem) ListWidget() QListWidget {
@@ -118,61 +114,61 @@ func (p *qlistwidgetitem) ListWidget() QListWidget {
 		var qlistwidget = new(qlistwidget)
 		qlistwidget.SetPointer(C.QListWidgetItem_ListWidget(p.Pointer()))
 		if qlistwidget.ObjectName() == "" {
-			qlistwidget.SetObjectName_String("QListWidget_" + randomIdentifier())
+			qlistwidget.SetObjectName("QListWidget_" + randomIdentifier())
 		}
 		return qlistwidget
 	}
 }
 
-func (p *qlistwidgetitem) SetCheckState_CheckState(state CheckState) {
+func (p *qlistwidgetitem) SetCheckState(state CheckState) {
 	if p.Pointer() != nil {
 		C.QListWidgetItem_SetCheckState_CheckState(p.Pointer(), C.int(state))
 	}
 }
 
-func (p *qlistwidgetitem) SetFlags_ItemFlag(flags ItemFlag) {
+func (p *qlistwidgetitem) SetFlags(flags ItemFlag) {
 	if p.Pointer() != nil {
 		C.QListWidgetItem_SetFlags_ItemFlag(p.Pointer(), C.int(flags))
 	}
 }
 
-func (p *qlistwidgetitem) SetHidden_Bool(hide bool) {
+func (p *qlistwidgetitem) SetHidden(hide bool) {
 	if p.Pointer() != nil {
 		C.QListWidgetItem_SetHidden_Bool(p.Pointer(), goBoolToCInt(hide))
 	}
 }
 
-func (p *qlistwidgetitem) SetSelected_Bool(selected bool) {
+func (p *qlistwidgetitem) SetSelected(selected bool) {
 	if p.Pointer() != nil {
 		C.QListWidgetItem_SetSelected_Bool(p.Pointer(), goBoolToCInt(selected))
 	}
 }
 
-func (p *qlistwidgetitem) SetStatusTip_String(statusTip string) {
+func (p *qlistwidgetitem) SetStatusTip(statusTip string) {
 	if p.Pointer() != nil {
 		C.QListWidgetItem_SetStatusTip_String(p.Pointer(), C.CString(statusTip))
 	}
 }
 
-func (p *qlistwidgetitem) SetText_String(text string) {
+func (p *qlistwidgetitem) SetText(text string) {
 	if p.Pointer() != nil {
 		C.QListWidgetItem_SetText_String(p.Pointer(), C.CString(text))
 	}
 }
 
-func (p *qlistwidgetitem) SetTextAlignment_Int(alignment int) {
+func (p *qlistwidgetitem) SetTextAlignment(alignment int) {
 	if p.Pointer() != nil {
 		C.QListWidgetItem_SetTextAlignment_Int(p.Pointer(), C.int(alignment))
 	}
 }
 
-func (p *qlistwidgetitem) SetToolTip_String(toolTip string) {
+func (p *qlistwidgetitem) SetToolTip(toolTip string) {
 	if p.Pointer() != nil {
 		C.QListWidgetItem_SetToolTip_String(p.Pointer(), C.CString(toolTip))
 	}
 }
 
-func (p *qlistwidgetitem) SetWhatsThis_String(whatsThis string) {
+func (p *qlistwidgetitem) SetWhatsThis(whatsThis string) {
 	if p.Pointer() != nil {
 		C.QListWidgetItem_SetWhatsThis_String(p.Pointer(), C.CString(whatsThis))
 	}
@@ -181,47 +177,41 @@ func (p *qlistwidgetitem) SetWhatsThis_String(whatsThis string) {
 func (p *qlistwidgetitem) StatusTip() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QListWidgetItem_StatusTip(p.Pointer()))
 	}
+	return C.GoString(C.QListWidgetItem_StatusTip(p.Pointer()))
 }
 
 func (p *qlistwidgetitem) Text() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QListWidgetItem_Text(p.Pointer()))
 	}
+	return C.GoString(C.QListWidgetItem_Text(p.Pointer()))
 }
 
 func (p *qlistwidgetitem) TextAlignment() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QListWidgetItem_TextAlignment(p.Pointer()))
 	}
+	return int(C.QListWidgetItem_TextAlignment(p.Pointer()))
 }
 
 func (p *qlistwidgetitem) ToolTip() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QListWidgetItem_ToolTip(p.Pointer()))
 	}
+	return C.GoString(C.QListWidgetItem_ToolTip(p.Pointer()))
 }
 
 func (p *qlistwidgetitem) Type() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QListWidgetItem_Type(p.Pointer()))
 	}
+	return int(C.QListWidgetItem_Type(p.Pointer()))
 }
 
 func (p *qlistwidgetitem) WhatsThis() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QListWidgetItem_WhatsThis(p.Pointer()))
 	}
+	return C.GoString(C.QListWidgetItem_WhatsThis(p.Pointer()))
 }

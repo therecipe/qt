@@ -19,19 +19,19 @@ type QAction interface {
 	IsVisible() bool
 	Menu() QMenu
 	ParentWidget() QWidget
-	SetAutoRepeat_Bool(autoRepeat bool)
-	SetCheckable_Bool(checkable bool)
-	SetIconText_String(text string)
-	SetIconVisibleInMenu_Bool(visible bool)
-	SetMenu_QMenu(menu QMenu)
-	SetSeparator_Bool(bo bool)
-	SetShortcutContext_ShortcutContext(context ShortcutContext)
-	SetStatusTip_String(statusTip string)
-	SetText_String(text string)
-	SetToolTip_String(tip string)
-	SetWhatsThis_String(what string)
+	SetAutoRepeat(autoRepeat bool)
+	SetCheckable(checkable bool)
+	SetIconText(text string)
+	SetIconVisibleInMenu(visible bool)
+	SetMenu(menu QMenu)
+	SetSeparator(bo bool)
+	SetShortcutContext(context ShortcutContext)
+	SetStatusTip(statusTip string)
+	SetText(text string)
+	SetToolTip(tip string)
+	SetWhatsThis(what string)
 	ShortcutContext() ShortcutContext
-	ShowStatusText_QWidget(widget QWidget) bool
+	ShowStatusText(widget QWidget) bool
 	StatusTip() string
 	Text() string
 	ToolTip() string
@@ -41,16 +41,16 @@ type QAction interface {
 	SlotHover()
 	ConnectSlotSetChecked()
 	DisconnectSlotSetChecked()
-	SlotSetChecked_Bool(bo bool)
+	SlotSetChecked(bo bool)
 	ConnectSlotSetDisabled()
 	DisconnectSlotSetDisabled()
-	SlotSetDisabled_Bool(bo bool)
+	SlotSetDisabled(bo bool)
 	ConnectSlotSetEnabled()
 	DisconnectSlotSetEnabled()
-	SlotSetEnabled_Bool(bo bool)
+	SlotSetEnabled(bo bool)
 	ConnectSlotSetVisible()
 	DisconnectSlotSetVisible()
-	SlotSetVisible_Bool(bo bool)
+	SlotSetVisible(bo bool)
 	ConnectSlotToggle()
 	DisconnectSlotToggle()
 	SlotToggle()
@@ -79,25 +79,25 @@ func (p *qaction) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQAction_QObject(parent QObject) QAction {
-	var parentPtr C.QtObjectPtr = nil
+func NewQAction1(parent QObject) QAction {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qaction = new(qaction)
 	qaction.SetPointer(C.QAction_New_QObject(parentPtr))
-	qaction.SetObjectName_String("QAction_" + randomIdentifier())
+	qaction.SetObjectName("QAction_" + randomIdentifier())
 	return qaction
 }
 
-func NewQAction_String_QObject(text string, parent QObject) QAction {
-	var parentPtr C.QtObjectPtr = nil
+func NewQAction2(text string, parent QObject) QAction {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qaction = new(qaction)
 	qaction.SetPointer(C.QAction_New_String_QObject(C.CString(text), parentPtr))
-	qaction.SetObjectName_String("QAction_" + randomIdentifier())
+	qaction.SetObjectName("QAction_" + randomIdentifier())
 	return qaction
 }
 
@@ -112,65 +112,57 @@ func (p *qaction) Destroy() {
 func (p *qaction) AutoRepeat() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAction_AutoRepeat(p.Pointer()) != 0
 	}
+	return C.QAction_AutoRepeat(p.Pointer()) != 0
 }
 
 func (p *qaction) IconText() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QAction_IconText(p.Pointer()))
 	}
+	return C.GoString(C.QAction_IconText(p.Pointer()))
 }
 
 func (p *qaction) IsCheckable() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAction_IsCheckable(p.Pointer()) != 0
 	}
+	return C.QAction_IsCheckable(p.Pointer()) != 0
 }
 
 func (p *qaction) IsChecked() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAction_IsChecked(p.Pointer()) != 0
 	}
+	return C.QAction_IsChecked(p.Pointer()) != 0
 }
 
 func (p *qaction) IsEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAction_IsEnabled(p.Pointer()) != 0
 	}
+	return C.QAction_IsEnabled(p.Pointer()) != 0
 }
 
 func (p *qaction) IsIconVisibleInMenu() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAction_IsIconVisibleInMenu(p.Pointer()) != 0
 	}
+	return C.QAction_IsIconVisibleInMenu(p.Pointer()) != 0
 }
 
 func (p *qaction) IsSeparator() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAction_IsSeparator(p.Pointer()) != 0
 	}
+	return C.QAction_IsSeparator(p.Pointer()) != 0
 }
 
 func (p *qaction) IsVisible() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAction_IsVisible(p.Pointer()) != 0
 	}
+	return C.QAction_IsVisible(p.Pointer()) != 0
 }
 
 func (p *qaction) Menu() QMenu {
@@ -180,7 +172,7 @@ func (p *qaction) Menu() QMenu {
 		var qmenu = new(qmenu)
 		qmenu.SetPointer(C.QAction_Menu(p.Pointer()))
 		if qmenu.ObjectName() == "" {
-			qmenu.SetObjectName_String("QMenu_" + randomIdentifier())
+			qmenu.SetObjectName("QMenu_" + randomIdentifier())
 		}
 		return qmenu
 	}
@@ -193,40 +185,39 @@ func (p *qaction) ParentWidget() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QAction_ParentWidget(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
 }
 
-func (p *qaction) SetAutoRepeat_Bool(autoRepeat bool) {
+func (p *qaction) SetAutoRepeat(autoRepeat bool) {
 	if p.Pointer() != nil {
 		C.QAction_SetAutoRepeat_Bool(p.Pointer(), goBoolToCInt(autoRepeat))
 	}
 }
 
-func (p *qaction) SetCheckable_Bool(checkable bool) {
+func (p *qaction) SetCheckable(checkable bool) {
 	if p.Pointer() != nil {
 		C.QAction_SetCheckable_Bool(p.Pointer(), goBoolToCInt(checkable))
 	}
 }
 
-func (p *qaction) SetIconText_String(text string) {
+func (p *qaction) SetIconText(text string) {
 	if p.Pointer() != nil {
 		C.QAction_SetIconText_String(p.Pointer(), C.CString(text))
 	}
 }
 
-func (p *qaction) SetIconVisibleInMenu_Bool(visible bool) {
+func (p *qaction) SetIconVisibleInMenu(visible bool) {
 	if p.Pointer() != nil {
 		C.QAction_SetIconVisibleInMenu_Bool(p.Pointer(), goBoolToCInt(visible))
 	}
 }
 
-func (p *qaction) SetMenu_QMenu(menu QMenu) {
-	if p.Pointer() == nil {
-	} else {
-		var menuPtr C.QtObjectPtr = nil
+func (p *qaction) SetMenu(menu QMenu) {
+	if p.Pointer() != nil {
+		var menuPtr C.QtObjectPtr
 		if menu != nil {
 			menuPtr = menu.Pointer()
 		}
@@ -234,37 +225,37 @@ func (p *qaction) SetMenu_QMenu(menu QMenu) {
 	}
 }
 
-func (p *qaction) SetSeparator_Bool(bo bool) {
+func (p *qaction) SetSeparator(bo bool) {
 	if p.Pointer() != nil {
 		C.QAction_SetSeparator_Bool(p.Pointer(), goBoolToCInt(bo))
 	}
 }
 
-func (p *qaction) SetShortcutContext_ShortcutContext(context ShortcutContext) {
+func (p *qaction) SetShortcutContext(context ShortcutContext) {
 	if p.Pointer() != nil {
 		C.QAction_SetShortcutContext_ShortcutContext(p.Pointer(), C.int(context))
 	}
 }
 
-func (p *qaction) SetStatusTip_String(statusTip string) {
+func (p *qaction) SetStatusTip(statusTip string) {
 	if p.Pointer() != nil {
 		C.QAction_SetStatusTip_String(p.Pointer(), C.CString(statusTip))
 	}
 }
 
-func (p *qaction) SetText_String(text string) {
+func (p *qaction) SetText(text string) {
 	if p.Pointer() != nil {
 		C.QAction_SetText_String(p.Pointer(), C.CString(text))
 	}
 }
 
-func (p *qaction) SetToolTip_String(tip string) {
+func (p *qaction) SetToolTip(tip string) {
 	if p.Pointer() != nil {
 		C.QAction_SetToolTip_String(p.Pointer(), C.CString(tip))
 	}
 }
 
-func (p *qaction) SetWhatsThis_String(what string) {
+func (p *qaction) SetWhatsThis(what string) {
 	if p.Pointer() != nil {
 		C.QAction_SetWhatsThis_String(p.Pointer(), C.CString(what))
 	}
@@ -273,16 +264,15 @@ func (p *qaction) SetWhatsThis_String(what string) {
 func (p *qaction) ShortcutContext() ShortcutContext {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ShortcutContext(C.QAction_ShortcutContext(p.Pointer()))
 	}
+	return ShortcutContext(C.QAction_ShortcutContext(p.Pointer()))
 }
 
-func (p *qaction) ShowStatusText_QWidget(widget QWidget) bool {
+func (p *qaction) ShowStatusText(widget QWidget) bool {
 	if p.Pointer() == nil {
 		return false
 	} else {
-		var widgetPtr C.QtObjectPtr = nil
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -293,33 +283,29 @@ func (p *qaction) ShowStatusText_QWidget(widget QWidget) bool {
 func (p *qaction) StatusTip() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QAction_StatusTip(p.Pointer()))
 	}
+	return C.GoString(C.QAction_StatusTip(p.Pointer()))
 }
 
 func (p *qaction) Text() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QAction_Text(p.Pointer()))
 	}
+	return C.GoString(C.QAction_Text(p.Pointer()))
 }
 
 func (p *qaction) ToolTip() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QAction_ToolTip(p.Pointer()))
 	}
+	return C.GoString(C.QAction_ToolTip(p.Pointer()))
 }
 
 func (p *qaction) WhatsThis() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QAction_WhatsThis(p.Pointer()))
 	}
+	return C.GoString(C.QAction_WhatsThis(p.Pointer()))
 }
 
 func (p *qaction) ConnectSlotHover() {
@@ -344,7 +330,7 @@ func (p *qaction) DisconnectSlotSetChecked() {
 	C.QAction_DisconnectSlotSetChecked(p.Pointer())
 }
 
-func (p *qaction) SlotSetChecked_Bool(bo bool) {
+func (p *qaction) SlotSetChecked(bo bool) {
 	if p.Pointer() != nil {
 		C.QAction_SetChecked_Bool(p.Pointer(), goBoolToCInt(bo))
 	}
@@ -358,7 +344,7 @@ func (p *qaction) DisconnectSlotSetDisabled() {
 	C.QAction_DisconnectSlotSetDisabled(p.Pointer())
 }
 
-func (p *qaction) SlotSetDisabled_Bool(bo bool) {
+func (p *qaction) SlotSetDisabled(bo bool) {
 	if p.Pointer() != nil {
 		C.QAction_SetDisabled_Bool(p.Pointer(), goBoolToCInt(bo))
 	}
@@ -372,7 +358,7 @@ func (p *qaction) DisconnectSlotSetEnabled() {
 	C.QAction_DisconnectSlotSetEnabled(p.Pointer())
 }
 
-func (p *qaction) SlotSetEnabled_Bool(bo bool) {
+func (p *qaction) SlotSetEnabled(bo bool) {
 	if p.Pointer() != nil {
 		C.QAction_SetEnabled_Bool(p.Pointer(), goBoolToCInt(bo))
 	}
@@ -386,7 +372,7 @@ func (p *qaction) DisconnectSlotSetVisible() {
 	C.QAction_DisconnectSlotSetVisible(p.Pointer())
 }
 
-func (p *qaction) SlotSetVisible_Bool(bo bool) {
+func (p *qaction) SlotSetVisible(bo bool) {
 	if p.Pointer() != nil {
 		C.QAction_SetVisible_Bool(p.Pointer(), goBoolToCInt(bo))
 	}

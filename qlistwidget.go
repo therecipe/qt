@@ -9,28 +9,28 @@ type qlistwidget struct {
 
 type QListWidget interface {
 	QListView
-	AddItem_String(label string)
-	AddItem_QListWidgetItem(item QListWidgetItem)
-	ClosePersistentEditor_QListWidgetItem(item QListWidgetItem)
+	AddItem1(label string)
+	AddItem2(item QListWidgetItem)
+	ClosePersistentEditor(item QListWidgetItem)
 	Count() int
 	CurrentItem() QListWidgetItem
 	CurrentRow() int
-	EditItem_QListWidgetItem(item QListWidgetItem)
-	InsertItem_Int_QListWidgetItem(row int, item QListWidgetItem)
-	InsertItem_Int_String(row int, label string)
+	EditItem(item QListWidgetItem)
+	InsertItem1(row int, item QListWidgetItem)
+	InsertItem2(row int, label string)
 	IsSortingEnabled() bool
-	Item_Int(row int) QListWidgetItem
-	ItemAt_Int_Int(x int, y int) QListWidgetItem
-	ItemWidget_QListWidgetItem(item QListWidgetItem) QWidget
-	OpenPersistentEditor_QListWidgetItem(item QListWidgetItem)
-	RemoveItemWidget_QListWidgetItem(item QListWidgetItem)
-	Row_QListWidgetItem(item QListWidgetItem) int
-	SetCurrentItem_QListWidgetItem(item QListWidgetItem)
-	SetCurrentRow_Int(row int)
-	SetItemWidget_QListWidgetItem_QWidget(item QListWidgetItem, widget QWidget)
-	SetSortingEnabled_Bool(enable bool)
-	SortItems_SortOrder(order SortOrder)
-	TakeItem_Int(row int) QListWidgetItem
+	Item(row int) QListWidgetItem
+	ItemAt(x int, y int) QListWidgetItem
+	ItemWidget(item QListWidgetItem) QWidget
+	OpenPersistentEditor(item QListWidgetItem)
+	RemoveItemWidget(item QListWidgetItem)
+	Row(item QListWidgetItem) int
+	SetCurrentItem(item QListWidgetItem)
+	SetCurrentRow(row int)
+	SetItemWidget(item QListWidgetItem, widget QWidget)
+	SetSortingEnabled(enable bool)
+	SortItems(order SortOrder)
+	TakeItem(row int) QListWidgetItem
 	ConnectSlotClear()
 	DisconnectSlotClear()
 	SlotClear()
@@ -74,14 +74,14 @@ func (p *qlistwidget) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQListWidget_QWidget(parent QWidget) QListWidget {
-	var parentPtr C.QtObjectPtr = nil
+func NewQListWidget(parent QWidget) QListWidget {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qlistwidget = new(qlistwidget)
 	qlistwidget.SetPointer(C.QListWidget_New_QWidget(parentPtr))
-	qlistwidget.SetObjectName_String("QListWidget_" + randomIdentifier())
+	qlistwidget.SetObjectName("QListWidget_" + randomIdentifier())
 	return qlistwidget
 }
 
@@ -93,16 +93,15 @@ func (p *qlistwidget) Destroy() {
 	}
 }
 
-func (p *qlistwidget) AddItem_String(label string) {
+func (p *qlistwidget) AddItem1(label string) {
 	if p.Pointer() != nil {
 		C.QListWidget_AddItem_String(p.Pointer(), C.CString(label))
 	}
 }
 
-func (p *qlistwidget) AddItem_QListWidgetItem(item QListWidgetItem) {
-	if p.Pointer() == nil {
-	} else {
-		var itemPtr C.QtObjectPtr = nil
+func (p *qlistwidget) AddItem2(item QListWidgetItem) {
+	if p.Pointer() != nil {
+		var itemPtr C.QtObjectPtr
 		if item != nil {
 			itemPtr = item.Pointer()
 		}
@@ -110,10 +109,9 @@ func (p *qlistwidget) AddItem_QListWidgetItem(item QListWidgetItem) {
 	}
 }
 
-func (p *qlistwidget) ClosePersistentEditor_QListWidgetItem(item QListWidgetItem) {
-	if p.Pointer() == nil {
-	} else {
-		var itemPtr C.QtObjectPtr = nil
+func (p *qlistwidget) ClosePersistentEditor(item QListWidgetItem) {
+	if p.Pointer() != nil {
+		var itemPtr C.QtObjectPtr
 		if item != nil {
 			itemPtr = item.Pointer()
 		}
@@ -124,9 +122,8 @@ func (p *qlistwidget) ClosePersistentEditor_QListWidgetItem(item QListWidgetItem
 func (p *qlistwidget) Count() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QListWidget_Count(p.Pointer()))
 	}
+	return int(C.QListWidget_Count(p.Pointer()))
 }
 
 func (p *qlistwidget) CurrentItem() QListWidgetItem {
@@ -142,15 +139,13 @@ func (p *qlistwidget) CurrentItem() QListWidgetItem {
 func (p *qlistwidget) CurrentRow() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QListWidget_CurrentRow(p.Pointer()))
 	}
+	return int(C.QListWidget_CurrentRow(p.Pointer()))
 }
 
-func (p *qlistwidget) EditItem_QListWidgetItem(item QListWidgetItem) {
-	if p.Pointer() == nil {
-	} else {
-		var itemPtr C.QtObjectPtr = nil
+func (p *qlistwidget) EditItem(item QListWidgetItem) {
+	if p.Pointer() != nil {
+		var itemPtr C.QtObjectPtr
 		if item != nil {
 			itemPtr = item.Pointer()
 		}
@@ -158,10 +153,9 @@ func (p *qlistwidget) EditItem_QListWidgetItem(item QListWidgetItem) {
 	}
 }
 
-func (p *qlistwidget) InsertItem_Int_QListWidgetItem(row int, item QListWidgetItem) {
-	if p.Pointer() == nil {
-	} else {
-		var itemPtr C.QtObjectPtr = nil
+func (p *qlistwidget) InsertItem1(row int, item QListWidgetItem) {
+	if p.Pointer() != nil {
+		var itemPtr C.QtObjectPtr
 		if item != nil {
 			itemPtr = item.Pointer()
 		}
@@ -169,7 +163,7 @@ func (p *qlistwidget) InsertItem_Int_QListWidgetItem(row int, item QListWidgetIt
 	}
 }
 
-func (p *qlistwidget) InsertItem_Int_String(row int, label string) {
+func (p *qlistwidget) InsertItem2(row int, label string) {
 	if p.Pointer() != nil {
 		C.QListWidget_InsertItem_Int_String(p.Pointer(), C.int(row), C.CString(label))
 	}
@@ -178,12 +172,11 @@ func (p *qlistwidget) InsertItem_Int_String(row int, label string) {
 func (p *qlistwidget) IsSortingEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QListWidget_IsSortingEnabled(p.Pointer()) != 0
 	}
+	return C.QListWidget_IsSortingEnabled(p.Pointer()) != 0
 }
 
-func (p *qlistwidget) Item_Int(row int) QListWidgetItem {
+func (p *qlistwidget) Item(row int) QListWidgetItem {
 	if p.Pointer() == nil {
 		return nil
 	} else {
@@ -193,7 +186,7 @@ func (p *qlistwidget) Item_Int(row int) QListWidgetItem {
 	}
 }
 
-func (p *qlistwidget) ItemAt_Int_Int(x int, y int) QListWidgetItem {
+func (p *qlistwidget) ItemAt(x int, y int) QListWidgetItem {
 	if p.Pointer() == nil {
 		return nil
 	} else {
@@ -203,27 +196,26 @@ func (p *qlistwidget) ItemAt_Int_Int(x int, y int) QListWidgetItem {
 	}
 }
 
-func (p *qlistwidget) ItemWidget_QListWidgetItem(item QListWidgetItem) QWidget {
+func (p *qlistwidget) ItemWidget(item QListWidgetItem) QWidget {
 	if p.Pointer() == nil {
 		return nil
 	} else {
-		var itemPtr C.QtObjectPtr = nil
+		var itemPtr C.QtObjectPtr
 		if item != nil {
 			itemPtr = item.Pointer()
 		}
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QListWidget_ItemWidget_QListWidgetItem(p.Pointer(), itemPtr))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
 }
 
-func (p *qlistwidget) OpenPersistentEditor_QListWidgetItem(item QListWidgetItem) {
-	if p.Pointer() == nil {
-	} else {
-		var itemPtr C.QtObjectPtr = nil
+func (p *qlistwidget) OpenPersistentEditor(item QListWidgetItem) {
+	if p.Pointer() != nil {
+		var itemPtr C.QtObjectPtr
 		if item != nil {
 			itemPtr = item.Pointer()
 		}
@@ -231,10 +223,9 @@ func (p *qlistwidget) OpenPersistentEditor_QListWidgetItem(item QListWidgetItem)
 	}
 }
 
-func (p *qlistwidget) RemoveItemWidget_QListWidgetItem(item QListWidgetItem) {
-	if p.Pointer() == nil {
-	} else {
-		var itemPtr C.QtObjectPtr = nil
+func (p *qlistwidget) RemoveItemWidget(item QListWidgetItem) {
+	if p.Pointer() != nil {
+		var itemPtr C.QtObjectPtr
 		if item != nil {
 			itemPtr = item.Pointer()
 		}
@@ -242,11 +233,11 @@ func (p *qlistwidget) RemoveItemWidget_QListWidgetItem(item QListWidgetItem) {
 	}
 }
 
-func (p *qlistwidget) Row_QListWidgetItem(item QListWidgetItem) int {
+func (p *qlistwidget) Row(item QListWidgetItem) int {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var itemPtr C.QtObjectPtr = nil
+		var itemPtr C.QtObjectPtr
 		if item != nil {
 			itemPtr = item.Pointer()
 		}
@@ -254,10 +245,9 @@ func (p *qlistwidget) Row_QListWidgetItem(item QListWidgetItem) int {
 	}
 }
 
-func (p *qlistwidget) SetCurrentItem_QListWidgetItem(item QListWidgetItem) {
-	if p.Pointer() == nil {
-	} else {
-		var itemPtr C.QtObjectPtr = nil
+func (p *qlistwidget) SetCurrentItem(item QListWidgetItem) {
+	if p.Pointer() != nil {
+		var itemPtr C.QtObjectPtr
 		if item != nil {
 			itemPtr = item.Pointer()
 		}
@@ -265,20 +255,19 @@ func (p *qlistwidget) SetCurrentItem_QListWidgetItem(item QListWidgetItem) {
 	}
 }
 
-func (p *qlistwidget) SetCurrentRow_Int(row int) {
+func (p *qlistwidget) SetCurrentRow(row int) {
 	if p.Pointer() != nil {
 		C.QListWidget_SetCurrentRow_Int(p.Pointer(), C.int(row))
 	}
 }
 
-func (p *qlistwidget) SetItemWidget_QListWidgetItem_QWidget(item QListWidgetItem, widget QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var itemPtr C.QtObjectPtr = nil
+func (p *qlistwidget) SetItemWidget(item QListWidgetItem, widget QWidget) {
+	if p.Pointer() != nil {
+		var itemPtr C.QtObjectPtr
 		if item != nil {
 			itemPtr = item.Pointer()
 		}
-		var widgetPtr C.QtObjectPtr = nil
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -286,19 +275,19 @@ func (p *qlistwidget) SetItemWidget_QListWidgetItem_QWidget(item QListWidgetItem
 	}
 }
 
-func (p *qlistwidget) SetSortingEnabled_Bool(enable bool) {
+func (p *qlistwidget) SetSortingEnabled(enable bool) {
 	if p.Pointer() != nil {
 		C.QListWidget_SetSortingEnabled_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
 }
 
-func (p *qlistwidget) SortItems_SortOrder(order SortOrder) {
+func (p *qlistwidget) SortItems(order SortOrder) {
 	if p.Pointer() != nil {
 		C.QListWidget_SortItems_SortOrder(p.Pointer(), C.int(order))
 	}
 }
 
-func (p *qlistwidget) TakeItem_Int(row int) QListWidgetItem {
+func (p *qlistwidget) TakeItem(row int) QListWidgetItem {
 	if p.Pointer() == nil {
 		return nil
 	} else {

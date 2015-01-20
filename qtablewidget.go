@@ -9,19 +9,19 @@ type qtablewidget struct {
 
 type QTableWidget interface {
 	QTableView
-	CellWidget_Int_Int(row int, column int) QWidget
+	CellWidget(row int, column int) QWidget
 	ColumnCount() int
 	CurrentColumn() int
 	CurrentRow() int
-	RemoveCellWidget_Int_Int(row int, column int)
+	RemoveCellWidget(row int, column int)
 	RowCount() int
-	SetCellWidget_Int_Int_QWidget(row int, column int, widget QWidget)
-	SetColumnCount_Int(columns int)
-	SetCurrentCell_Int_Int(row int, column int)
-	SetRowCount_Int(rows int)
-	SortItems_Int_SortOrder(column int, order SortOrder)
-	VisualColumn_Int(logicalColumn int) int
-	VisualRow_Int(logicalRow int) int
+	SetCellWidget(row int, column int, widget QWidget)
+	SetColumnCount(columns int)
+	SetCurrentCell(row int, column int)
+	SetRowCount(rows int)
+	SortItems(column int, order SortOrder)
+	VisualColumn(logicalColumn int) int
+	VisualRow(logicalRow int) int
 	ConnectSlotClear()
 	DisconnectSlotClear()
 	SlotClear()
@@ -30,16 +30,16 @@ type QTableWidget interface {
 	SlotClearContents()
 	ConnectSlotInsertColumn()
 	DisconnectSlotInsertColumn()
-	SlotInsertColumn_Int(column int)
+	SlotInsertColumn(column int)
 	ConnectSlotInsertRow()
 	DisconnectSlotInsertRow()
-	SlotInsertRow_Int(row int)
+	SlotInsertRow(row int)
 	ConnectSlotRemoveColumn()
 	DisconnectSlotRemoveColumn()
-	SlotRemoveColumn_Int(column int)
+	SlotRemoveColumn(column int)
 	ConnectSlotRemoveRow()
 	DisconnectSlotRemoveRow()
-	SlotRemoveRow_Int(row int)
+	SlotRemoveRow(row int)
 	ConnectSignalCellActivated(f func())
 	DisconnectSignalCellActivated()
 	SignalCellActivated() func()
@@ -74,14 +74,14 @@ func (p *qtablewidget) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQTableWidget_Int_Int_QWidget(rows int, columns int, parent QWidget) QTableWidget {
-	var parentPtr C.QtObjectPtr = nil
+func NewQTableWidget(rows int, columns int, parent QWidget) QTableWidget {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qtablewidget = new(qtablewidget)
 	qtablewidget.SetPointer(C.QTableWidget_New_Int_Int_QWidget(C.int(rows), C.int(columns), parentPtr))
-	qtablewidget.SetObjectName_String("QTableWidget_" + randomIdentifier())
+	qtablewidget.SetObjectName("QTableWidget_" + randomIdentifier())
 	return qtablewidget
 }
 
@@ -93,14 +93,14 @@ func (p *qtablewidget) Destroy() {
 	}
 }
 
-func (p *qtablewidget) CellWidget_Int_Int(row int, column int) QWidget {
+func (p *qtablewidget) CellWidget(row int, column int) QWidget {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QTableWidget_CellWidget_Int_Int(p.Pointer(), C.int(row), C.int(column)))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -109,28 +109,25 @@ func (p *qtablewidget) CellWidget_Int_Int(row int, column int) QWidget {
 func (p *qtablewidget) ColumnCount() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTableWidget_ColumnCount(p.Pointer()))
 	}
+	return int(C.QTableWidget_ColumnCount(p.Pointer()))
 }
 
 func (p *qtablewidget) CurrentColumn() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTableWidget_CurrentColumn(p.Pointer()))
 	}
+	return int(C.QTableWidget_CurrentColumn(p.Pointer()))
 }
 
 func (p *qtablewidget) CurrentRow() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTableWidget_CurrentRow(p.Pointer()))
 	}
+	return int(C.QTableWidget_CurrentRow(p.Pointer()))
 }
 
-func (p *qtablewidget) RemoveCellWidget_Int_Int(row int, column int) {
+func (p *qtablewidget) RemoveCellWidget(row int, column int) {
 	if p.Pointer() != nil {
 		C.QTableWidget_RemoveCellWidget_Int_Int(p.Pointer(), C.int(row), C.int(column))
 	}
@@ -139,15 +136,13 @@ func (p *qtablewidget) RemoveCellWidget_Int_Int(row int, column int) {
 func (p *qtablewidget) RowCount() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTableWidget_RowCount(p.Pointer()))
 	}
+	return int(C.QTableWidget_RowCount(p.Pointer()))
 }
 
-func (p *qtablewidget) SetCellWidget_Int_Int_QWidget(row int, column int, widget QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qtablewidget) SetCellWidget(row int, column int, widget QWidget) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -155,44 +150,42 @@ func (p *qtablewidget) SetCellWidget_Int_Int_QWidget(row int, column int, widget
 	}
 }
 
-func (p *qtablewidget) SetColumnCount_Int(columns int) {
+func (p *qtablewidget) SetColumnCount(columns int) {
 	if p.Pointer() != nil {
 		C.QTableWidget_SetColumnCount_Int(p.Pointer(), C.int(columns))
 	}
 }
 
-func (p *qtablewidget) SetCurrentCell_Int_Int(row int, column int) {
+func (p *qtablewidget) SetCurrentCell(row int, column int) {
 	if p.Pointer() != nil {
 		C.QTableWidget_SetCurrentCell_Int_Int(p.Pointer(), C.int(row), C.int(column))
 	}
 }
 
-func (p *qtablewidget) SetRowCount_Int(rows int) {
+func (p *qtablewidget) SetRowCount(rows int) {
 	if p.Pointer() != nil {
 		C.QTableWidget_SetRowCount_Int(p.Pointer(), C.int(rows))
 	}
 }
 
-func (p *qtablewidget) SortItems_Int_SortOrder(column int, order SortOrder) {
+func (p *qtablewidget) SortItems(column int, order SortOrder) {
 	if p.Pointer() != nil {
 		C.QTableWidget_SortItems_Int_SortOrder(p.Pointer(), C.int(column), C.int(order))
 	}
 }
 
-func (p *qtablewidget) VisualColumn_Int(logicalColumn int) int {
+func (p *qtablewidget) VisualColumn(logicalColumn int) int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTableWidget_VisualColumn_Int(p.Pointer(), C.int(logicalColumn)))
 	}
+	return int(C.QTableWidget_VisualColumn_Int(p.Pointer(), C.int(logicalColumn)))
 }
 
-func (p *qtablewidget) VisualRow_Int(logicalRow int) int {
+func (p *qtablewidget) VisualRow(logicalRow int) int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTableWidget_VisualRow_Int(p.Pointer(), C.int(logicalRow)))
 	}
+	return int(C.QTableWidget_VisualRow_Int(p.Pointer(), C.int(logicalRow)))
 }
 
 func (p *qtablewidget) ConnectSlotClear() {
@@ -231,7 +224,7 @@ func (p *qtablewidget) DisconnectSlotInsertColumn() {
 	C.QTableWidget_DisconnectSlotInsertColumn(p.Pointer())
 }
 
-func (p *qtablewidget) SlotInsertColumn_Int(column int) {
+func (p *qtablewidget) SlotInsertColumn(column int) {
 	if p.Pointer() != nil {
 		C.QTableWidget_InsertColumn_Int(p.Pointer(), C.int(column))
 	}
@@ -245,7 +238,7 @@ func (p *qtablewidget) DisconnectSlotInsertRow() {
 	C.QTableWidget_DisconnectSlotInsertRow(p.Pointer())
 }
 
-func (p *qtablewidget) SlotInsertRow_Int(row int) {
+func (p *qtablewidget) SlotInsertRow(row int) {
 	if p.Pointer() != nil {
 		C.QTableWidget_InsertRow_Int(p.Pointer(), C.int(row))
 	}
@@ -259,7 +252,7 @@ func (p *qtablewidget) DisconnectSlotRemoveColumn() {
 	C.QTableWidget_DisconnectSlotRemoveColumn(p.Pointer())
 }
 
-func (p *qtablewidget) SlotRemoveColumn_Int(column int) {
+func (p *qtablewidget) SlotRemoveColumn(column int) {
 	if p.Pointer() != nil {
 		C.QTableWidget_RemoveColumn_Int(p.Pointer(), C.int(column))
 	}
@@ -273,7 +266,7 @@ func (p *qtablewidget) DisconnectSlotRemoveRow() {
 	C.QTableWidget_DisconnectSlotRemoveRow(p.Pointer())
 }
 
-func (p *qtablewidget) SlotRemoveRow_Int(row int) {
+func (p *qtablewidget) SlotRemoveRow(row int) {
 	if p.Pointer() != nil {
 		C.QTableWidget_RemoveRow_Int(p.Pointer(), C.int(row))
 	}

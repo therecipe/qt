@@ -19,21 +19,21 @@ func (p *qhboxlayout) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQHBoxLayout() QHBoxLayout {
+func NewQHBoxLayout1() QHBoxLayout {
 	var qhboxlayout = new(qhboxlayout)
 	qhboxlayout.SetPointer(C.QHBoxLayout_New())
-	qhboxlayout.SetObjectName_String("QHBoxLayout_" + randomIdentifier())
+	qhboxlayout.SetObjectName("QHBoxLayout_" + randomIdentifier())
 	return qhboxlayout
 }
 
-func NewQHBoxLayout_QWidget(parent QWidget) QHBoxLayout {
-	var parentPtr C.QtObjectPtr = nil
+func NewQHBoxLayout2(parent QWidget) QHBoxLayout {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qhboxlayout = new(qhboxlayout)
 	qhboxlayout.SetPointer(C.QHBoxLayout_New_QWidget(parentPtr))
-	qhboxlayout.SetObjectName_String("QHBoxLayout_" + randomIdentifier())
+	qhboxlayout.SetObjectName("QHBoxLayout_" + randomIdentifier())
 	return qhboxlayout
 }
 

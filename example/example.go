@@ -5,54 +5,54 @@ package main
 import "github.com/therecipe/qt"
 
 func main() {
-	qt.NewQApplication_Int_String(0, "")
+	qt.NewQApplication(0, "")
 
 	var (
-		echoGroup    = qt.NewQGroupBox_String_QWidget("Echo", nil)
-		echoLabel    = qt.NewQLabel_String_QWidget_WindowType("Mode", nil, 0)
-		echoComboBox = qt.NewQComboBox_QWidget(nil)
-		echoLineEdit = qt.NewQLineEdit_QWidget(nil)
+		echoGroup    = qt.NewQGroupBox2("Echo", nil)
+		echoLabel    = qt.NewQLabel2("Mode", nil, 0)
+		echoComboBox = qt.NewQComboBox(nil)
+		echoLineEdit = qt.NewQLineEdit1(nil)
 	)
-	echoComboBox.AddItems_QStringList([]string{"Normal", "Password", "PasswordEchoOnEdit", "No Echo"})
-	echoLineEdit.SetPlaceholderText_String("Placeholder Text")
+	echoComboBox.AddItems([]string{"Normal", "Password", "PasswordEchoOnEdit", "No Echo"})
+	echoLineEdit.SetPlaceholderText("Placeholder Text")
 
 	var (
-		validatorGroup    = qt.NewQGroupBox_String_QWidget("Validator", nil)
-		validatorLabel    = qt.NewQLabel_String_QWidget_WindowType("Type:", nil, 0)
-		validatorComboBox = qt.NewQComboBox_QWidget(nil)
-		validatorLineEdit = qt.NewQLineEdit_QWidget(nil)
+		validatorGroup    = qt.NewQGroupBox2("Validator", nil)
+		validatorLabel    = qt.NewQLabel2("Type:", nil, 0)
+		validatorComboBox = qt.NewQComboBox(nil)
+		validatorLineEdit = qt.NewQLineEdit1(nil)
 	)
-	validatorComboBox.AddItems_QStringList([]string{"No validator", "Integer validator", "Double validator"})
-	validatorLineEdit.SetPlaceholderText_String("Placeholder Text")
+	validatorComboBox.AddItems([]string{"No validator", "Integer validator", "Double validator"})
+	validatorLineEdit.SetPlaceholderText("Placeholder Text")
 	validatorLineEdit.ConnectSlotClear()
 
 	var (
-		alignmentGroup    = qt.NewQGroupBox_String_QWidget("Alignment", nil)
-		alignmentLabel    = qt.NewQLabel_String_QWidget_WindowType("Type:", nil, 0)
-		alignmentComboBox = qt.NewQComboBox_QWidget(nil)
-		alignmentLineEdit = qt.NewQLineEdit_QWidget(nil)
+		alignmentGroup    = qt.NewQGroupBox2("Alignment", nil)
+		alignmentLabel    = qt.NewQLabel2("Type:", nil, 0)
+		alignmentComboBox = qt.NewQComboBox(nil)
+		alignmentLineEdit = qt.NewQLineEdit1(nil)
 	)
-	alignmentComboBox.AddItems_QStringList([]string{"Left", "Centered", "Right"})
-	alignmentLineEdit.SetPlaceholderText_String("Placeholder Text")
+	alignmentComboBox.AddItems([]string{"Left", "Centered", "Right"})
+	alignmentLineEdit.SetPlaceholderText("Placeholder Text")
 
 	var (
-		inputMaskGroup    = qt.NewQGroupBox_String_QWidget("Input mask", nil)
-		inputMaskLabel    = qt.NewQLabel_String_QWidget_WindowType("Type:", nil, 0)
-		inputMaskComboBox = qt.NewQComboBox_QWidget(nil)
-		inputMaskLineEdit = qt.NewQLineEdit_QWidget(nil)
+		inputMaskGroup    = qt.NewQGroupBox2("Input mask", nil)
+		inputMaskLabel    = qt.NewQLabel2("Type:", nil, 0)
+		inputMaskComboBox = qt.NewQComboBox(nil)
+		inputMaskLineEdit = qt.NewQLineEdit1(nil)
 	)
-	inputMaskComboBox.AddItems_QStringList([]string{"No mask", "Phone number", "ISO date", "License key"})
-	inputMaskLineEdit.SetPlaceholderText_String("Placeholder Text")
+	inputMaskComboBox.AddItems([]string{"No mask", "Phone number", "ISO date", "License key"})
+	inputMaskLineEdit.SetPlaceholderText("Placeholder Text")
 	inputMaskLineEdit.ConnectSlotSetText()
 
 	var (
-		accessGroup    = qt.NewQGroupBox_String_QWidget("Access", nil)
-		accessLabel    = qt.NewQLabel_String_QWidget_WindowType("Read-only:", nil, 0)
-		accessComboBox = qt.NewQComboBox_QWidget(nil)
-		accessLineEdit = qt.NewQLineEdit_QWidget(nil)
+		accessGroup    = qt.NewQGroupBox2("Access", nil)
+		accessLabel    = qt.NewQLabel2("Read-only:", nil, 0)
+		accessComboBox = qt.NewQComboBox(nil)
+		accessLineEdit = qt.NewQLineEdit1(nil)
 	)
-	accessComboBox.AddItems_QStringList([]string{"False", "True"})
-	accessLineEdit.SetPlaceholderText_String("Placeholder Text")
+	accessComboBox.AddItems([]string{"False", "True"})
+	accessLineEdit.SetPlaceholderText("Placeholder Text")
 
 	echoComboBox.ConnectSignalCurrentTextChanged(func() { echoChanged(echoLineEdit, echoComboBox.CurrentIndex()) })
 	validatorComboBox.ConnectSignalCurrentTextChanged(func() { validatorChanged(validatorLineEdit, validatorComboBox.CurrentIndex()) })
@@ -60,49 +60,49 @@ func main() {
 	inputMaskComboBox.ConnectSignalCurrentTextChanged(func() { inputMaskChanged(inputMaskLineEdit, inputMaskComboBox.CurrentIndex()) })
 	accessComboBox.ConnectSignalCurrentTextChanged(func() { accessChanged(accessLineEdit, accessComboBox.CurrentIndex()) })
 
-	var echoLayout = qt.NewQGridLayout()
-	echoLayout.AddWidget_QWidget_Int_Int_AlignmentFlag(echoLabel, 0, 0, 0)
-	echoLayout.AddWidget_QWidget_Int_Int_AlignmentFlag(echoComboBox, 0, 1, 0)
-	echoLayout.AddWidget_QWidget_Int_Int_Int_Int_AlignmentFlag(echoLineEdit, 1, 0, 1, 2, 0)
-	echoGroup.SetLayout_QLayout(echoLayout)
+	var echoLayout = qt.NewQGridLayout2()
+	echoLayout.AddWidget1(echoLabel, 0, 0, 0)
+	echoLayout.AddWidget1(echoComboBox, 0, 1, 0)
+	echoLayout.AddWidget2(echoLineEdit, 1, 0, 1, 2, 0)
+	echoGroup.SetLayout(echoLayout)
 
-	var validatorLayout = qt.NewQGridLayout()
-	validatorLayout.AddWidget_QWidget_Int_Int_AlignmentFlag(validatorLabel, 0, 0, 0)
-	validatorLayout.AddWidget_QWidget_Int_Int_AlignmentFlag(validatorComboBox, 0, 1, 0)
-	validatorLayout.AddWidget_QWidget_Int_Int_Int_Int_AlignmentFlag(validatorLineEdit, 1, 0, 1, 2, 0)
-	validatorGroup.SetLayout_QLayout(validatorLayout)
+	var validatorLayout = qt.NewQGridLayout2()
+	validatorLayout.AddWidget1(validatorLabel, 0, 0, 0)
+	validatorLayout.AddWidget1(validatorComboBox, 0, 1, 0)
+	validatorLayout.AddWidget2(validatorLineEdit, 1, 0, 1, 2, 0)
+	validatorGroup.SetLayout(validatorLayout)
 
-	var alignmentLayout = qt.NewQGridLayout()
-	alignmentLayout.AddWidget_QWidget_Int_Int_AlignmentFlag(alignmentLabel, 0, 0, 0)
-	alignmentLayout.AddWidget_QWidget_Int_Int_AlignmentFlag(alignmentComboBox, 0, 1, 0)
-	alignmentLayout.AddWidget_QWidget_Int_Int_Int_Int_AlignmentFlag(alignmentLineEdit, 1, 0, 1, 2, 0)
-	alignmentGroup.SetLayout_QLayout(alignmentLayout)
+	var alignmentLayout = qt.NewQGridLayout2()
+	alignmentLayout.AddWidget1(alignmentLabel, 0, 0, 0)
+	alignmentLayout.AddWidget1(alignmentComboBox, 0, 1, 0)
+	alignmentLayout.AddWidget2(alignmentLineEdit, 1, 0, 1, 2, 0)
+	alignmentGroup.SetLayout(alignmentLayout)
 
-	var inputMaskLayout = qt.NewQGridLayout()
-	inputMaskLayout.AddWidget_QWidget_Int_Int_AlignmentFlag(inputMaskLabel, 0, 0, 0)
-	inputMaskLayout.AddWidget_QWidget_Int_Int_AlignmentFlag(inputMaskComboBox, 0, 1, 0)
-	inputMaskLayout.AddWidget_QWidget_Int_Int_Int_Int_AlignmentFlag(inputMaskLineEdit, 1, 0, 1, 2, 0)
-	inputMaskGroup.SetLayout_QLayout(inputMaskLayout)
+	var inputMaskLayout = qt.NewQGridLayout2()
+	inputMaskLayout.AddWidget1(inputMaskLabel, 0, 0, 0)
+	inputMaskLayout.AddWidget1(inputMaskComboBox, 0, 1, 0)
+	inputMaskLayout.AddWidget2(inputMaskLineEdit, 1, 0, 1, 2, 0)
+	inputMaskGroup.SetLayout(inputMaskLayout)
 
-	var accessLayout = qt.NewQGridLayout()
-	accessLayout.AddWidget_QWidget_Int_Int_AlignmentFlag(accessLabel, 0, 0, 0)
-	accessLayout.AddWidget_QWidget_Int_Int_AlignmentFlag(accessComboBox, 0, 1, 0)
-	accessLayout.AddWidget_QWidget_Int_Int_Int_Int_AlignmentFlag(accessLineEdit, 1, 0, 1, 2, 0)
-	accessGroup.SetLayout_QLayout(accessLayout)
+	var accessLayout = qt.NewQGridLayout2()
+	accessLayout.AddWidget1(accessLabel, 0, 0, 0)
+	accessLayout.AddWidget1(accessComboBox, 0, 1, 0)
+	accessLayout.AddWidget2(accessLineEdit, 1, 0, 1, 2, 0)
+	accessGroup.SetLayout(accessLayout)
 
-	var layout = qt.NewQGridLayout()
-	layout.AddWidget_QWidget_Int_Int_AlignmentFlag(echoGroup, 0, 0, 0)
-	layout.AddWidget_QWidget_Int_Int_AlignmentFlag(validatorGroup, 1, 0, 0)
-	layout.AddWidget_QWidget_Int_Int_AlignmentFlag(alignmentGroup, 2, 0, 0)
-	layout.AddWidget_QWidget_Int_Int_AlignmentFlag(inputMaskGroup, 0, 1, 0)
-	layout.AddWidget_QWidget_Int_Int_AlignmentFlag(accessGroup, 1, 1, 0)
+	var layout = qt.NewQGridLayout2()
+	layout.AddWidget1(echoGroup, 0, 0, 0)
+	layout.AddWidget1(validatorGroup, 1, 0, 0)
+	layout.AddWidget1(alignmentGroup, 2, 0, 0)
+	layout.AddWidget1(inputMaskGroup, 0, 1, 0)
+	layout.AddWidget1(accessGroup, 1, 1, 0)
 
-	var window = qt.NewQMainWindow_QWidget_WindowType(nil, 0)
+	var window = qt.NewQMainWindow(nil, 0)
 	window.Layout().Destroy()
-	window.SetLayout_QLayout(layout)
+	window.SetLayout(layout)
 
 	window.ConnectSlotSetWindowTitle()
-	window.SlotSetWindowTitle_String("Line Edits")
+	window.SlotSetWindowTitle("Line Edits")
 
 	window.ConnectSlotShow()
 	window.SlotShow()
@@ -113,24 +113,24 @@ func main() {
 func echoChanged(echoLineEdit qt.QLineEdit, index int) {
 	switch index {
 	case 0:
-		echoLineEdit.SetEchoMode_EchoMode(qt.NORMAL)
+		echoLineEdit.SetEchoMode(qt.NORMAL)
 	case 1:
-		echoLineEdit.SetEchoMode_EchoMode(qt.PASSWORD)
+		echoLineEdit.SetEchoMode(qt.PASSWORD)
 	case 2:
-		echoLineEdit.SetEchoMode_EchoMode(qt.PASSWORDECHOONEDIT)
+		echoLineEdit.SetEchoMode(qt.PASSWORDECHOONEDIT)
 	case 3:
-		echoLineEdit.SetEchoMode_EchoMode(qt.NOECHO)
+		echoLineEdit.SetEchoMode(qt.NOECHO)
 	}
 }
 
 func validatorChanged(validatorLineEdit qt.QLineEdit, index int) {
 	switch index {
 	case 0:
-		validatorLineEdit.SetValidator_QValidator(nil)
+		validatorLineEdit.SetValidator(nil)
 	case 1:
-		validatorLineEdit.SetValidator_QValidator(qt.NewQIntValidator_QObject(nil))
+		validatorLineEdit.SetValidator(qt.NewQIntValidator1(nil))
 	case 2:
-		validatorLineEdit.SetValidator_QValidator(qt.NewQDoubleValidator_QObject(nil))
+		validatorLineEdit.SetValidator(qt.NewQDoubleValidator(nil))
 	}
 
 	go validatorLineEdit.SlotClear()
@@ -139,34 +139,34 @@ func validatorChanged(validatorLineEdit qt.QLineEdit, index int) {
 func alignmentChanged(alignmentLineEdit qt.QLineEdit, index int) {
 	switch index {
 	case 0:
-		alignmentLineEdit.SetAlignment_AlignmentFlag(qt.ALIGNLEFT)
+		alignmentLineEdit.SetAlignment(qt.ALIGNLEFT)
 	case 1:
-		alignmentLineEdit.SetAlignment_AlignmentFlag(qt.ALIGNCENTER)
+		alignmentLineEdit.SetAlignment(qt.ALIGNCENTER)
 	case 2:
-		alignmentLineEdit.SetAlignment_AlignmentFlag(qt.ALIGNRIGHT)
+		alignmentLineEdit.SetAlignment(qt.ALIGNRIGHT)
 	}
 }
 
 func inputMaskChanged(inputMaskLineEdit qt.QLineEdit, index int) {
 	switch index {
 	case 0:
-		inputMaskLineEdit.SetInputMask_String("")
+		inputMaskLineEdit.SetInputMask("")
 	case 1:
-		inputMaskLineEdit.SetInputMask_String("+99 99 99 99 99;_")
+		inputMaskLineEdit.SetInputMask("+99 99 99 99 99;_")
 	case 2:
-		inputMaskLineEdit.SetInputMask_String("0000-00-00")
-		inputMaskLineEdit.SlotSetText_String("00000000")
-		inputMaskLineEdit.SetCursorPosition_Int(0)
+		inputMaskLineEdit.SetInputMask("0000-00-00")
+		inputMaskLineEdit.SlotSetText("00000000")
+		inputMaskLineEdit.SetCursorPosition(0)
 	case 3:
-		inputMaskLineEdit.SetInputMask_String(">AAAAA-AAAAA-AAAAA-AAAAA-AAAAA;#")
+		inputMaskLineEdit.SetInputMask(">AAAAA-AAAAA-AAAAA-AAAAA-AAAAA;#")
 	}
 }
 
 func accessChanged(accessLineEdit qt.QLineEdit, index int) {
 	switch index {
 	case 0:
-		accessLineEdit.SetReadOnly_Bool(false)
+		accessLineEdit.SetReadOnly(false)
 	case 1:
-		accessLineEdit.SetReadOnly_Bool(true)
+		accessLineEdit.SetReadOnly(true)
 	}
 }

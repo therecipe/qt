@@ -11,31 +11,31 @@ type qcombobox struct {
 
 type QComboBox interface {
 	QWidget
-	AddItems_QStringList(texts []string)
+	AddItems(texts []string)
 	Count() int
 	CurrentIndex() int
 	CurrentText() string
 	DuplicatesEnabled() bool
 	HasFrame() bool
 	HidePopup()
-	InsertSeparator_Int(index int)
+	InsertSeparator(index int)
 	IsEditable() bool
-	ItemText_Int(index int) string
+	ItemText(index int) string
 	LineEdit() QLineEdit
 	MaxCount() int
 	MaxVisibleItems() int
 	MinimumContentsLength() int
 	ModelColumn() int
-	RemoveItem_Int(index int)
-	SetDuplicatesEnabled_Bool(enable bool)
-	SetEditable_Bool(editable bool)
-	SetFrame_Bool(frame bool)
-	SetItemText_Int_String(index int, text string)
-	SetLineEdit_QLineEdit(edit QLineEdit)
-	SetMaxCount_Int(max int)
-	SetMaxVisibleItems_Int(maxItems int)
-	SetMinimumContentsLength_Int(characters int)
-	SetModelColumn_Int(visibleColumn int)
+	RemoveItem(index int)
+	SetDuplicatesEnabled(enable bool)
+	SetEditable(editable bool)
+	SetFrame(frame bool)
+	SetItemText(index int, text string)
+	SetLineEdit(edit QLineEdit)
+	SetMaxCount(max int)
+	SetMaxVisibleItems(maxItems int)
+	SetMinimumContentsLength(characters int)
+	SetModelColumn(visibleColumn int)
 	ShowPopup()
 	ConnectSlotClear()
 	DisconnectSlotClear()
@@ -45,7 +45,7 @@ type QComboBox interface {
 	SlotClearEditText()
 	ConnectSlotSetCurrentIndex()
 	DisconnectSlotSetCurrentIndex()
-	SlotSetCurrentIndex_Int(index int)
+	SlotSetCurrentIndex(index int)
 	ConnectSignalCurrentTextChanged(f func())
 	DisconnectSignalCurrentTextChanged()
 	SignalCurrentTextChanged() func()
@@ -62,14 +62,14 @@ func (p *qcombobox) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQComboBox_QWidget(parent QWidget) QComboBox {
-	var parentPtr C.QtObjectPtr = nil
+func NewQComboBox(parent QWidget) QComboBox {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qcombobox = new(qcombobox)
 	qcombobox.SetPointer(C.QComboBox_New_QWidget(parentPtr))
-	qcombobox.SetObjectName_String("QComboBox_" + randomIdentifier())
+	qcombobox.SetObjectName("QComboBox_" + randomIdentifier())
 	return qcombobox
 }
 
@@ -81,7 +81,7 @@ func (p *qcombobox) Destroy() {
 	}
 }
 
-func (p *qcombobox) AddItems_QStringList(texts []string) {
+func (p *qcombobox) AddItems(texts []string) {
 	if p.Pointer() != nil {
 		C.QComboBox_AddItems_QStringList(p.Pointer(), C.CString(strings.Join(texts, "|")))
 	}
@@ -90,41 +90,36 @@ func (p *qcombobox) AddItems_QStringList(texts []string) {
 func (p *qcombobox) Count() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QComboBox_Count(p.Pointer()))
 	}
+	return int(C.QComboBox_Count(p.Pointer()))
 }
 
 func (p *qcombobox) CurrentIndex() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QComboBox_CurrentIndex(p.Pointer()))
 	}
+	return int(C.QComboBox_CurrentIndex(p.Pointer()))
 }
 
 func (p *qcombobox) CurrentText() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QComboBox_CurrentText(p.Pointer()))
 	}
+	return C.GoString(C.QComboBox_CurrentText(p.Pointer()))
 }
 
 func (p *qcombobox) DuplicatesEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QComboBox_DuplicatesEnabled(p.Pointer()) != 0
 	}
+	return C.QComboBox_DuplicatesEnabled(p.Pointer()) != 0
 }
 
 func (p *qcombobox) HasFrame() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QComboBox_HasFrame(p.Pointer()) != 0
 	}
+	return C.QComboBox_HasFrame(p.Pointer()) != 0
 }
 
 func (p *qcombobox) HidePopup() {
@@ -133,7 +128,7 @@ func (p *qcombobox) HidePopup() {
 	}
 }
 
-func (p *qcombobox) InsertSeparator_Int(index int) {
+func (p *qcombobox) InsertSeparator(index int) {
 	if p.Pointer() != nil {
 		C.QComboBox_InsertSeparator_Int(p.Pointer(), C.int(index))
 	}
@@ -142,17 +137,15 @@ func (p *qcombobox) InsertSeparator_Int(index int) {
 func (p *qcombobox) IsEditable() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QComboBox_IsEditable(p.Pointer()) != 0
 	}
+	return C.QComboBox_IsEditable(p.Pointer()) != 0
 }
 
-func (p *qcombobox) ItemText_Int(index int) string {
+func (p *qcombobox) ItemText(index int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QComboBox_ItemText_Int(p.Pointer(), C.int(index)))
 	}
+	return C.GoString(C.QComboBox_ItemText_Int(p.Pointer(), C.int(index)))
 }
 
 func (p *qcombobox) LineEdit() QLineEdit {
@@ -162,7 +155,7 @@ func (p *qcombobox) LineEdit() QLineEdit {
 		var qlineedit = new(qlineedit)
 		qlineedit.SetPointer(C.QComboBox_LineEdit(p.Pointer()))
 		if qlineedit.ObjectName() == "" {
-			qlineedit.SetObjectName_String("QLineEdit_" + randomIdentifier())
+			qlineedit.SetObjectName("QLineEdit_" + randomIdentifier())
 		}
 		return qlineedit
 	}
@@ -171,69 +164,64 @@ func (p *qcombobox) LineEdit() QLineEdit {
 func (p *qcombobox) MaxCount() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QComboBox_MaxCount(p.Pointer()))
 	}
+	return int(C.QComboBox_MaxCount(p.Pointer()))
 }
 
 func (p *qcombobox) MaxVisibleItems() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QComboBox_MaxVisibleItems(p.Pointer()))
 	}
+	return int(C.QComboBox_MaxVisibleItems(p.Pointer()))
 }
 
 func (p *qcombobox) MinimumContentsLength() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QComboBox_MinimumContentsLength(p.Pointer()))
 	}
+	return int(C.QComboBox_MinimumContentsLength(p.Pointer()))
 }
 
 func (p *qcombobox) ModelColumn() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QComboBox_ModelColumn(p.Pointer()))
 	}
+	return int(C.QComboBox_ModelColumn(p.Pointer()))
 }
 
-func (p *qcombobox) RemoveItem_Int(index int) {
+func (p *qcombobox) RemoveItem(index int) {
 	if p.Pointer() != nil {
 		C.QComboBox_RemoveItem_Int(p.Pointer(), C.int(index))
 	}
 }
 
-func (p *qcombobox) SetDuplicatesEnabled_Bool(enable bool) {
+func (p *qcombobox) SetDuplicatesEnabled(enable bool) {
 	if p.Pointer() != nil {
 		C.QComboBox_SetDuplicatesEnabled_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
 }
 
-func (p *qcombobox) SetEditable_Bool(editable bool) {
+func (p *qcombobox) SetEditable(editable bool) {
 	if p.Pointer() != nil {
 		C.QComboBox_SetEditable_Bool(p.Pointer(), goBoolToCInt(editable))
 	}
 }
 
-func (p *qcombobox) SetFrame_Bool(frame bool) {
+func (p *qcombobox) SetFrame(frame bool) {
 	if p.Pointer() != nil {
 		C.QComboBox_SetFrame_Bool(p.Pointer(), goBoolToCInt(frame))
 	}
 }
 
-func (p *qcombobox) SetItemText_Int_String(index int, text string) {
+func (p *qcombobox) SetItemText(index int, text string) {
 	if p.Pointer() != nil {
 		C.QComboBox_SetItemText_Int_String(p.Pointer(), C.int(index), C.CString(text))
 	}
 }
 
-func (p *qcombobox) SetLineEdit_QLineEdit(edit QLineEdit) {
-	if p.Pointer() == nil {
-	} else {
-		var editPtr C.QtObjectPtr = nil
+func (p *qcombobox) SetLineEdit(edit QLineEdit) {
+	if p.Pointer() != nil {
+		var editPtr C.QtObjectPtr
 		if edit != nil {
 			editPtr = edit.Pointer()
 		}
@@ -241,25 +229,25 @@ func (p *qcombobox) SetLineEdit_QLineEdit(edit QLineEdit) {
 	}
 }
 
-func (p *qcombobox) SetMaxCount_Int(max int) {
+func (p *qcombobox) SetMaxCount(max int) {
 	if p.Pointer() != nil {
 		C.QComboBox_SetMaxCount_Int(p.Pointer(), C.int(max))
 	}
 }
 
-func (p *qcombobox) SetMaxVisibleItems_Int(maxItems int) {
+func (p *qcombobox) SetMaxVisibleItems(maxItems int) {
 	if p.Pointer() != nil {
 		C.QComboBox_SetMaxVisibleItems_Int(p.Pointer(), C.int(maxItems))
 	}
 }
 
-func (p *qcombobox) SetMinimumContentsLength_Int(characters int) {
+func (p *qcombobox) SetMinimumContentsLength(characters int) {
 	if p.Pointer() != nil {
 		C.QComboBox_SetMinimumContentsLength_Int(p.Pointer(), C.int(characters))
 	}
 }
 
-func (p *qcombobox) SetModelColumn_Int(visibleColumn int) {
+func (p *qcombobox) SetModelColumn(visibleColumn int) {
 	if p.Pointer() != nil {
 		C.QComboBox_SetModelColumn_Int(p.Pointer(), C.int(visibleColumn))
 	}
@@ -307,7 +295,7 @@ func (p *qcombobox) DisconnectSlotSetCurrentIndex() {
 	C.QComboBox_DisconnectSlotSetCurrentIndex(p.Pointer())
 }
 
-func (p *qcombobox) SlotSetCurrentIndex_Int(index int) {
+func (p *qcombobox) SlotSetCurrentIndex(index int) {
 	if p.Pointer() != nil {
 		C.QComboBox_SetCurrentIndex_Int(p.Pointer(), C.int(index))
 	}

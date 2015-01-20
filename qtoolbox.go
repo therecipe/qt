@@ -9,23 +9,23 @@ type qtoolbox struct {
 
 type QToolBox interface {
 	QFrame
-	AddItem_QWidget_String(w QWidget, text string) int
+	AddItem(w QWidget, text string) int
 	Count() int
 	CurrentIndex() int
 	CurrentWidget() QWidget
-	IndexOf_QWidget(widget QWidget) int
-	InsertItem_Int_QWidget_String(index int, widget QWidget, text string) int
-	IsItemEnabled_Int(index int) bool
-	ItemText_Int(index int) string
-	ItemToolTip_Int(index int) string
-	RemoveItem_Int(index int)
-	SetItemEnabled_Int_Bool(index int, enabled bool)
-	SetItemText_Int_String(index int, text string)
-	SetItemToolTip_Int_String(index int, toolTip string)
-	Widget_Int(index int) QWidget
+	IndexOf(widget QWidget) int
+	InsertItem(index int, widget QWidget, text string) int
+	IsItemEnabled(index int) bool
+	ItemText(index int) string
+	ItemToolTip(index int) string
+	RemoveItem(index int)
+	SetItemEnabled(index int, enabled bool)
+	SetItemText(index int, text string)
+	SetItemToolTip(index int, toolTip string)
+	Widget(index int) QWidget
 	ConnectSlotSetCurrentIndex()
 	DisconnectSlotSetCurrentIndex()
-	SlotSetCurrentIndex_Int(index int)
+	SlotSetCurrentIndex(index int)
 	ConnectSignalCurrentChanged(f func())
 	DisconnectSignalCurrentChanged()
 	SignalCurrentChanged() func()
@@ -39,14 +39,14 @@ func (p *qtoolbox) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQToolBox_QWidget_WindowType(parent QWidget, f WindowType) QToolBox {
-	var parentPtr C.QtObjectPtr = nil
+func NewQToolBox(parent QWidget, f WindowType) QToolBox {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qtoolbox = new(qtoolbox)
 	qtoolbox.SetPointer(C.QToolBox_New_QWidget_WindowType(parentPtr, C.int(f)))
-	qtoolbox.SetObjectName_String("QToolBox_" + randomIdentifier())
+	qtoolbox.SetObjectName("QToolBox_" + randomIdentifier())
 	return qtoolbox
 }
 
@@ -58,11 +58,11 @@ func (p *qtoolbox) Destroy() {
 	}
 }
 
-func (p *qtoolbox) AddItem_QWidget_String(w QWidget, text string) int {
+func (p *qtoolbox) AddItem(w QWidget, text string) int {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var wPtr C.QtObjectPtr = nil
+		var wPtr C.QtObjectPtr
 		if w != nil {
 			wPtr = w.Pointer()
 		}
@@ -73,17 +73,15 @@ func (p *qtoolbox) AddItem_QWidget_String(w QWidget, text string) int {
 func (p *qtoolbox) Count() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QToolBox_Count(p.Pointer()))
 	}
+	return int(C.QToolBox_Count(p.Pointer()))
 }
 
 func (p *qtoolbox) CurrentIndex() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QToolBox_CurrentIndex(p.Pointer()))
 	}
+	return int(C.QToolBox_CurrentIndex(p.Pointer()))
 }
 
 func (p *qtoolbox) CurrentWidget() QWidget {
@@ -93,17 +91,17 @@ func (p *qtoolbox) CurrentWidget() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QToolBox_CurrentWidget(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
 }
 
-func (p *qtoolbox) IndexOf_QWidget(widget QWidget) int {
+func (p *qtoolbox) IndexOf(widget QWidget) int {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var widgetPtr C.QtObjectPtr = nil
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -111,11 +109,11 @@ func (p *qtoolbox) IndexOf_QWidget(widget QWidget) int {
 	}
 }
 
-func (p *qtoolbox) InsertItem_Int_QWidget_String(index int, widget QWidget, text string) int {
+func (p *qtoolbox) InsertItem(index int, widget QWidget, text string) int {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var widgetPtr C.QtObjectPtr = nil
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -123,62 +121,59 @@ func (p *qtoolbox) InsertItem_Int_QWidget_String(index int, widget QWidget, text
 	}
 }
 
-func (p *qtoolbox) IsItemEnabled_Int(index int) bool {
+func (p *qtoolbox) IsItemEnabled(index int) bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QToolBox_IsItemEnabled_Int(p.Pointer(), C.int(index)) != 0
 	}
+	return C.QToolBox_IsItemEnabled_Int(p.Pointer(), C.int(index)) != 0
 }
 
-func (p *qtoolbox) ItemText_Int(index int) string {
+func (p *qtoolbox) ItemText(index int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QToolBox_ItemText_Int(p.Pointer(), C.int(index)))
 	}
+	return C.GoString(C.QToolBox_ItemText_Int(p.Pointer(), C.int(index)))
 }
 
-func (p *qtoolbox) ItemToolTip_Int(index int) string {
+func (p *qtoolbox) ItemToolTip(index int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QToolBox_ItemToolTip_Int(p.Pointer(), C.int(index)))
 	}
+	return C.GoString(C.QToolBox_ItemToolTip_Int(p.Pointer(), C.int(index)))
 }
 
-func (p *qtoolbox) RemoveItem_Int(index int) {
+func (p *qtoolbox) RemoveItem(index int) {
 	if p.Pointer() != nil {
 		C.QToolBox_RemoveItem_Int(p.Pointer(), C.int(index))
 	}
 }
 
-func (p *qtoolbox) SetItemEnabled_Int_Bool(index int, enabled bool) {
+func (p *qtoolbox) SetItemEnabled(index int, enabled bool) {
 	if p.Pointer() != nil {
 		C.QToolBox_SetItemEnabled_Int_Bool(p.Pointer(), C.int(index), goBoolToCInt(enabled))
 	}
 }
 
-func (p *qtoolbox) SetItemText_Int_String(index int, text string) {
+func (p *qtoolbox) SetItemText(index int, text string) {
 	if p.Pointer() != nil {
 		C.QToolBox_SetItemText_Int_String(p.Pointer(), C.int(index), C.CString(text))
 	}
 }
 
-func (p *qtoolbox) SetItemToolTip_Int_String(index int, toolTip string) {
+func (p *qtoolbox) SetItemToolTip(index int, toolTip string) {
 	if p.Pointer() != nil {
 		C.QToolBox_SetItemToolTip_Int_String(p.Pointer(), C.int(index), C.CString(toolTip))
 	}
 }
 
-func (p *qtoolbox) Widget_Int(index int) QWidget {
+func (p *qtoolbox) Widget(index int) QWidget {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QToolBox_Widget_Int(p.Pointer(), C.int(index)))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -192,7 +187,7 @@ func (p *qtoolbox) DisconnectSlotSetCurrentIndex() {
 	C.QToolBox_DisconnectSlotSetCurrentIndex(p.Pointer())
 }
 
-func (p *qtoolbox) SlotSetCurrentIndex_Int(index int) {
+func (p *qtoolbox) SlotSetCurrentIndex(index int) {
 	if p.Pointer() != nil {
 		C.QToolBox_SetCurrentIndex_Int(p.Pointer(), C.int(index))
 	}

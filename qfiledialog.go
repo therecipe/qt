@@ -15,29 +15,29 @@ type QFileDialog interface {
 	DefaultSuffix() string
 	FileMode() FileMode
 	History() []string
-	LabelText_DialogLabel(label DialogLabel) string
+	LabelText(label DialogLabel) string
 	MimeTypeFilters() []string
 	NameFilters() []string
-	Open_QObject_String(receiver QObject, member string)
+	Open(receiver QObject, member string)
 	Options() Option
-	SelectFile_String(filename string)
-	SelectMimeTypeFilter_String(filter string)
-	SelectNameFilter_String(filter string)
+	SelectFile(filename string)
+	SelectMimeTypeFilter(filter string)
+	SelectNameFilter(filter string)
 	SelectedFiles() []string
 	SelectedNameFilter() string
-	SetAcceptMode_AcceptMode(mode AcceptMode)
-	SetDefaultSuffix_String(suffix string)
-	SetDirectory_String(directory string)
-	SetFileMode_FileMode(mode FileMode)
-	SetHistory_QStringList(paths []string)
-	SetLabelText_DialogLabel_String(label DialogLabel, text string)
-	SetMimeTypeFilters_QStringList(filters []string)
-	SetNameFilter_String(filter string)
-	SetNameFilters_QStringList(filters []string)
-	SetOption_Option_Bool(option Option, on bool)
-	SetOptions_Option(options Option)
-	SetViewMode_ViewMode(mode ViewMode)
-	TestOption_Option(option Option) bool
+	SetAcceptMode(mode AcceptMode)
+	SetDefaultSuffix(suffix string)
+	SetDirectory(directory string)
+	SetFileMode(mode FileMode)
+	SetHistory(paths []string)
+	SetLabelText(label DialogLabel, text string)
+	SetMimeTypeFilters(filters []string)
+	SetNameFilter(filter string)
+	SetNameFilters(filters []string)
+	SetOption(option Option, on bool)
+	SetOptions(options Option)
+	SetViewMode(mode ViewMode)
+	TestOption(option Option) bool
 	ViewMode() ViewMode
 	ConnectSignalCurrentChanged(f func())
 	DisconnectSignalCurrentChanged()
@@ -116,14 +116,14 @@ var (
 	LIST   = ViewMode(C.QFileDialog_List())
 )
 
-func NewQFileDialog_QWidget_String_String_String(parent QWidget, caption string, directory string, filter string) QFileDialog {
-	var parentPtr C.QtObjectPtr = nil
+func NewQFileDialog(parent QWidget, caption string, directory string, filter string) QFileDialog {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qfiledialog = new(qfiledialog)
 	qfiledialog.SetPointer(C.QFileDialog_New_QWidget_String_String_String(parentPtr, C.CString(caption), C.CString(directory), C.CString(filter)))
-	qfiledialog.SetObjectName_String("QFileDialog_" + randomIdentifier())
+	qfiledialog.SetObjectName("QFileDialog_" + randomIdentifier())
 	return qfiledialog
 }
 
@@ -138,63 +138,55 @@ func (p *qfiledialog) Destroy() {
 func (p *qfiledialog) AcceptMode() AcceptMode {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return AcceptMode(C.QFileDialog_AcceptMode(p.Pointer()))
 	}
+	return AcceptMode(C.QFileDialog_AcceptMode(p.Pointer()))
 }
 
 func (p *qfiledialog) DefaultSuffix() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QFileDialog_DefaultSuffix(p.Pointer()))
 	}
+	return C.GoString(C.QFileDialog_DefaultSuffix(p.Pointer()))
 }
 
 func (p *qfiledialog) FileMode() FileMode {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return FileMode(C.QFileDialog_FileMode(p.Pointer()))
 	}
+	return FileMode(C.QFileDialog_FileMode(p.Pointer()))
 }
 
 func (p *qfiledialog) History() []string {
 	if p.Pointer() == nil {
 		return []string{""}
-	} else {
-		return strings.Split(C.GoString(C.QFileDialog_History(p.Pointer())), "|")
 	}
+	return strings.Split(C.GoString(C.QFileDialog_History(p.Pointer())), "|")
 }
 
-func (p *qfiledialog) LabelText_DialogLabel(label DialogLabel) string {
+func (p *qfiledialog) LabelText(label DialogLabel) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QFileDialog_LabelText_DialogLabel(p.Pointer(), C.int(label)))
 	}
+	return C.GoString(C.QFileDialog_LabelText_DialogLabel(p.Pointer(), C.int(label)))
 }
 
 func (p *qfiledialog) MimeTypeFilters() []string {
 	if p.Pointer() == nil {
 		return []string{""}
-	} else {
-		return strings.Split(C.GoString(C.QFileDialog_MimeTypeFilters(p.Pointer())), "|")
 	}
+	return strings.Split(C.GoString(C.QFileDialog_MimeTypeFilters(p.Pointer())), "|")
 }
 
 func (p *qfiledialog) NameFilters() []string {
 	if p.Pointer() == nil {
 		return []string{""}
-	} else {
-		return strings.Split(C.GoString(C.QFileDialog_NameFilters(p.Pointer())), "|")
 	}
+	return strings.Split(C.GoString(C.QFileDialog_NameFilters(p.Pointer())), "|")
 }
 
-func (p *qfiledialog) Open_QObject_String(receiver QObject, member string) {
-	if p.Pointer() == nil {
-	} else {
-		var receiverPtr C.QtObjectPtr = nil
+func (p *qfiledialog) Open(receiver QObject, member string) {
+	if p.Pointer() != nil {
+		var receiverPtr C.QtObjectPtr
 		if receiver != nil {
 			receiverPtr = receiver.Pointer()
 		}
@@ -205,24 +197,23 @@ func (p *qfiledialog) Open_QObject_String(receiver QObject, member string) {
 func (p *qfiledialog) Options() Option {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return Option(C.QFileDialog_Options(p.Pointer()))
 	}
+	return Option(C.QFileDialog_Options(p.Pointer()))
 }
 
-func (p *qfiledialog) SelectFile_String(filename string) {
+func (p *qfiledialog) SelectFile(filename string) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SelectFile_String(p.Pointer(), C.CString(filename))
 	}
 }
 
-func (p *qfiledialog) SelectMimeTypeFilter_String(filter string) {
+func (p *qfiledialog) SelectMimeTypeFilter(filter string) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SelectMimeTypeFilter_String(p.Pointer(), C.CString(filter))
 	}
 }
 
-func (p *qfiledialog) SelectNameFilter_String(filter string) {
+func (p *qfiledialog) SelectNameFilter(filter string) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SelectNameFilter_String(p.Pointer(), C.CString(filter))
 	}
@@ -231,105 +222,101 @@ func (p *qfiledialog) SelectNameFilter_String(filter string) {
 func (p *qfiledialog) SelectedFiles() []string {
 	if p.Pointer() == nil {
 		return []string{""}
-	} else {
-		return strings.Split(C.GoString(C.QFileDialog_SelectedFiles(p.Pointer())), "|")
 	}
+	return strings.Split(C.GoString(C.QFileDialog_SelectedFiles(p.Pointer())), "|")
 }
 
 func (p *qfiledialog) SelectedNameFilter() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QFileDialog_SelectedNameFilter(p.Pointer()))
 	}
+	return C.GoString(C.QFileDialog_SelectedNameFilter(p.Pointer()))
 }
 
-func (p *qfiledialog) SetAcceptMode_AcceptMode(mode AcceptMode) {
+func (p *qfiledialog) SetAcceptMode(mode AcceptMode) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SetAcceptMode_AcceptMode(p.Pointer(), C.int(mode))
 	}
 }
 
-func (p *qfiledialog) SetDefaultSuffix_String(suffix string) {
+func (p *qfiledialog) SetDefaultSuffix(suffix string) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SetDefaultSuffix_String(p.Pointer(), C.CString(suffix))
 	}
 }
 
-func (p *qfiledialog) SetDirectory_String(directory string) {
+func (p *qfiledialog) SetDirectory(directory string) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SetDirectory_String(p.Pointer(), C.CString(directory))
 	}
 }
 
-func (p *qfiledialog) SetFileMode_FileMode(mode FileMode) {
+func (p *qfiledialog) SetFileMode(mode FileMode) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SetFileMode_FileMode(p.Pointer(), C.int(mode))
 	}
 }
 
-func (p *qfiledialog) SetHistory_QStringList(paths []string) {
+func (p *qfiledialog) SetHistory(paths []string) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SetHistory_QStringList(p.Pointer(), C.CString(strings.Join(paths, "|")))
 	}
 }
 
-func (p *qfiledialog) SetLabelText_DialogLabel_String(label DialogLabel, text string) {
+func (p *qfiledialog) SetLabelText(label DialogLabel, text string) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SetLabelText_DialogLabel_String(p.Pointer(), C.int(label), C.CString(text))
 	}
 }
 
-func (p *qfiledialog) SetMimeTypeFilters_QStringList(filters []string) {
+func (p *qfiledialog) SetMimeTypeFilters(filters []string) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SetMimeTypeFilters_QStringList(p.Pointer(), C.CString(strings.Join(filters, "|")))
 	}
 }
 
-func (p *qfiledialog) SetNameFilter_String(filter string) {
+func (p *qfiledialog) SetNameFilter(filter string) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SetNameFilter_String(p.Pointer(), C.CString(filter))
 	}
 }
 
-func (p *qfiledialog) SetNameFilters_QStringList(filters []string) {
+func (p *qfiledialog) SetNameFilters(filters []string) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SetNameFilters_QStringList(p.Pointer(), C.CString(strings.Join(filters, "|")))
 	}
 }
 
-func (p *qfiledialog) SetOption_Option_Bool(option Option, on bool) {
+func (p *qfiledialog) SetOption(option Option, on bool) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SetOption_Option_Bool(p.Pointer(), C.int(option), goBoolToCInt(on))
 	}
 }
 
-func (p *qfiledialog) SetOptions_Option(options Option) {
+func (p *qfiledialog) SetOptions(options Option) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SetOptions_Option(p.Pointer(), C.int(options))
 	}
 }
 
-func (p *qfiledialog) SetViewMode_ViewMode(mode ViewMode) {
+func (p *qfiledialog) SetViewMode(mode ViewMode) {
 	if p.Pointer() != nil {
 		C.QFileDialog_SetViewMode_ViewMode(p.Pointer(), C.int(mode))
 	}
 }
 
-func (p *qfiledialog) TestOption_Option(option Option) bool {
+func (p *qfiledialog) TestOption(option Option) bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QFileDialog_TestOption_Option(p.Pointer(), C.int(option)) != 0
 	}
+	return C.QFileDialog_TestOption_Option(p.Pointer(), C.int(option)) != 0
 }
 
 func (p *qfiledialog) ViewMode() ViewMode {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ViewMode(C.QFileDialog_ViewMode(p.Pointer()))
 	}
+	return ViewMode(C.QFileDialog_ViewMode(p.Pointer()))
 }
 
 func (p *qfiledialog) ConnectSignalCurrentChanged(f func()) {
@@ -402,32 +389,32 @@ func (p *qfiledialog) SignalFilterSelected() func() {
 	return getSignal(p.ObjectName(), "filterSelected")
 }
 
-func QFileDialog_GetExistingDirectory_QWidget_String_String_Option(parent QWidget, caption string, dir string, options Option) string {
-	var parentPtr C.QtObjectPtr = nil
+func QFileDialog_GetExistingDirectory(parent QWidget, caption string, dir string, options Option) string {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	return C.GoString(C.QFileDialog_GetExistingDirectory_QWidget_String_String_Option(parentPtr, C.CString(caption), C.CString(dir), C.int(options)))
 }
 
-func QFileDialog_GetOpenFileName_QWidget_String_String_String_String_Option(parent QWidget, caption string, dir string, filter string, selectedFilter string, options Option) string {
-	var parentPtr C.QtObjectPtr = nil
+func QFileDialog_GetOpenFileName(parent QWidget, caption string, dir string, filter string, selectedFilter string, options Option) string {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	return C.GoString(C.QFileDialog_GetOpenFileName_QWidget_String_String_String_String_Option(parentPtr, C.CString(caption), C.CString(dir), C.CString(filter), C.CString(selectedFilter), C.int(options)))
 }
 
-func QFileDialog_GetOpenFileNames_QWidget_String_String_String_String_Option(parent QWidget, caption string, dir string, filter string, selectedFilter string, options Option) []string {
-	var parentPtr C.QtObjectPtr = nil
+func QFileDialog_GetOpenFileNames(parent QWidget, caption string, dir string, filter string, selectedFilter string, options Option) []string {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	return strings.Split(C.GoString(C.QFileDialog_GetOpenFileNames_QWidget_String_String_String_String_Option(parentPtr, C.CString(caption), C.CString(dir), C.CString(filter), C.CString(selectedFilter), C.int(options))), "|")
 }
 
-func QFileDialog_GetSaveFileName_QWidget_String_String_String_String_Option(parent QWidget, caption string, dir string, filter string, selectedFilter string, options Option) string {
-	var parentPtr C.QtObjectPtr = nil
+func QFileDialog_GetSaveFileName(parent QWidget, caption string, dir string, filter string, selectedFilter string, options Option) string {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}

@@ -13,7 +13,6 @@ int QLayout_SetMinAndMaxSize();
 int QLayout_SetNoConstraint();
 //Public Functions
 int QLayout_Activate(QtObjectPtr ptr);
-void QLayout_AddItem_QLayoutItem(QtObjectPtr ptr, QtObjectPtr item);
 void QLayout_AddWidget_QWidget(QtObjectPtr ptr, QtObjectPtr w);
 int QLayout_Count(QtObjectPtr ptr);
 int QLayout_IndexOf_QWidget(QtObjectPtr ptr, QtObjectPtr widget);

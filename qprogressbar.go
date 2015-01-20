@@ -17,10 +17,10 @@ type QProgressBar interface {
 	Minimum() int
 	Orientation() Orientation
 	ResetFormat()
-	SetAlignment_AlignmentFlag(alignment AlignmentFlag)
-	SetFormat_String(format string)
-	SetInvertedAppearance_Bool(invert bool)
-	SetTextVisible_Bool(visible bool)
+	SetAlignment(alignment AlignmentFlag)
+	SetFormat(format string)
+	SetInvertedAppearance(invert bool)
+	SetTextVisible(visible bool)
 	Text() string
 	Value() int
 	ConnectSlotReset()
@@ -28,19 +28,19 @@ type QProgressBar interface {
 	SlotReset()
 	ConnectSlotSetMaximum()
 	DisconnectSlotSetMaximum()
-	SlotSetMaximum_Int(maximum int)
+	SlotSetMaximum(maximum int)
 	ConnectSlotSetMinimum()
 	DisconnectSlotSetMinimum()
-	SlotSetMinimum_Int(minimum int)
+	SlotSetMinimum(minimum int)
 	ConnectSlotSetOrientation()
 	DisconnectSlotSetOrientation()
-	SlotSetOrientation_Orientation(orientation Orientation)
+	SlotSetOrientation(orientation Orientation)
 	ConnectSlotSetRange()
 	DisconnectSlotSetRange()
-	SlotSetRange_Int_Int(minimum int, maximum int)
+	SlotSetRange(minimum int, maximum int)
 	ConnectSlotSetValue()
 	DisconnectSlotSetValue()
-	SlotSetValue_Int(value int)
+	SlotSetValue(value int)
 	ConnectSignalValueChanged(f func())
 	DisconnectSignalValueChanged()
 	SignalValueChanged() func()
@@ -54,14 +54,14 @@ func (p *qprogressbar) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQProgressBar_QWidget(parent QWidget) QProgressBar {
-	var parentPtr C.QtObjectPtr = nil
+func NewQProgressBar(parent QWidget) QProgressBar {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qprogressbar = new(qprogressbar)
 	qprogressbar.SetPointer(C.QProgressBar_New_QWidget(parentPtr))
-	qprogressbar.SetObjectName_String("QProgressBar_" + randomIdentifier())
+	qprogressbar.SetObjectName("QProgressBar_" + randomIdentifier())
 	return qprogressbar
 }
 
@@ -76,57 +76,50 @@ func (p *qprogressbar) Destroy() {
 func (p *qprogressbar) Alignment() AlignmentFlag {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return AlignmentFlag(C.QProgressBar_Alignment(p.Pointer()))
 	}
+	return AlignmentFlag(C.QProgressBar_Alignment(p.Pointer()))
 }
 
 func (p *qprogressbar) Format() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QProgressBar_Format(p.Pointer()))
 	}
+	return C.GoString(C.QProgressBar_Format(p.Pointer()))
 }
 
 func (p *qprogressbar) InvertedAppearance() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QProgressBar_InvertedAppearance(p.Pointer()) != 0
 	}
+	return C.QProgressBar_InvertedAppearance(p.Pointer()) != 0
 }
 
 func (p *qprogressbar) IsTextVisible() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QProgressBar_IsTextVisible(p.Pointer()) != 0
 	}
+	return C.QProgressBar_IsTextVisible(p.Pointer()) != 0
 }
 
 func (p *qprogressbar) Maximum() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QProgressBar_Maximum(p.Pointer()))
 	}
+	return int(C.QProgressBar_Maximum(p.Pointer()))
 }
 
 func (p *qprogressbar) Minimum() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QProgressBar_Minimum(p.Pointer()))
 	}
+	return int(C.QProgressBar_Minimum(p.Pointer()))
 }
 
 func (p *qprogressbar) Orientation() Orientation {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return Orientation(C.QProgressBar_Orientation(p.Pointer()))
 	}
+	return Orientation(C.QProgressBar_Orientation(p.Pointer()))
 }
 
 func (p *qprogressbar) ResetFormat() {
@@ -135,25 +128,25 @@ func (p *qprogressbar) ResetFormat() {
 	}
 }
 
-func (p *qprogressbar) SetAlignment_AlignmentFlag(alignment AlignmentFlag) {
+func (p *qprogressbar) SetAlignment(alignment AlignmentFlag) {
 	if p.Pointer() != nil {
 		C.QProgressBar_SetAlignment_AlignmentFlag(p.Pointer(), C.int(alignment))
 	}
 }
 
-func (p *qprogressbar) SetFormat_String(format string) {
+func (p *qprogressbar) SetFormat(format string) {
 	if p.Pointer() != nil {
 		C.QProgressBar_SetFormat_String(p.Pointer(), C.CString(format))
 	}
 }
 
-func (p *qprogressbar) SetInvertedAppearance_Bool(invert bool) {
+func (p *qprogressbar) SetInvertedAppearance(invert bool) {
 	if p.Pointer() != nil {
 		C.QProgressBar_SetInvertedAppearance_Bool(p.Pointer(), goBoolToCInt(invert))
 	}
 }
 
-func (p *qprogressbar) SetTextVisible_Bool(visible bool) {
+func (p *qprogressbar) SetTextVisible(visible bool) {
 	if p.Pointer() != nil {
 		C.QProgressBar_SetTextVisible_Bool(p.Pointer(), goBoolToCInt(visible))
 	}
@@ -162,17 +155,15 @@ func (p *qprogressbar) SetTextVisible_Bool(visible bool) {
 func (p *qprogressbar) Text() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QProgressBar_Text(p.Pointer()))
 	}
+	return C.GoString(C.QProgressBar_Text(p.Pointer()))
 }
 
 func (p *qprogressbar) Value() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QProgressBar_Value(p.Pointer()))
 	}
+	return int(C.QProgressBar_Value(p.Pointer()))
 }
 
 func (p *qprogressbar) ConnectSlotReset() {
@@ -197,7 +188,7 @@ func (p *qprogressbar) DisconnectSlotSetMaximum() {
 	C.QProgressBar_DisconnectSlotSetMaximum(p.Pointer())
 }
 
-func (p *qprogressbar) SlotSetMaximum_Int(maximum int) {
+func (p *qprogressbar) SlotSetMaximum(maximum int) {
 	if p.Pointer() != nil {
 		C.QProgressBar_SetMaximum_Int(p.Pointer(), C.int(maximum))
 	}
@@ -211,7 +202,7 @@ func (p *qprogressbar) DisconnectSlotSetMinimum() {
 	C.QProgressBar_DisconnectSlotSetMinimum(p.Pointer())
 }
 
-func (p *qprogressbar) SlotSetMinimum_Int(minimum int) {
+func (p *qprogressbar) SlotSetMinimum(minimum int) {
 	if p.Pointer() != nil {
 		C.QProgressBar_SetMinimum_Int(p.Pointer(), C.int(minimum))
 	}
@@ -225,7 +216,7 @@ func (p *qprogressbar) DisconnectSlotSetOrientation() {
 	C.QProgressBar_DisconnectSlotSetOrientation(p.Pointer())
 }
 
-func (p *qprogressbar) SlotSetOrientation_Orientation(orientation Orientation) {
+func (p *qprogressbar) SlotSetOrientation(orientation Orientation) {
 	if p.Pointer() != nil {
 		C.QProgressBar_SetOrientation_Orientation(p.Pointer(), C.int(orientation))
 	}
@@ -239,7 +230,7 @@ func (p *qprogressbar) DisconnectSlotSetRange() {
 	C.QProgressBar_DisconnectSlotSetRange(p.Pointer())
 }
 
-func (p *qprogressbar) SlotSetRange_Int_Int(minimum int, maximum int) {
+func (p *qprogressbar) SlotSetRange(minimum int, maximum int) {
 	if p.Pointer() != nil {
 		C.QProgressBar_SetRange_Int_Int(p.Pointer(), C.int(minimum), C.int(maximum))
 	}
@@ -253,7 +244,7 @@ func (p *qprogressbar) DisconnectSlotSetValue() {
 	C.QProgressBar_DisconnectSlotSetValue(p.Pointer())
 }
 
-func (p *qprogressbar) SlotSetValue_Int(value int) {
+func (p *qprogressbar) SlotSetValue(value int) {
 	if p.Pointer() != nil {
 		C.QProgressBar_SetValue_Int(p.Pointer(), C.int(value))
 	}

@@ -9,7 +9,7 @@ type qslider struct {
 
 type QSlider interface {
 	QAbstractSlider
-	SetTickInterval_Int(ti int)
+	SetTickInterval(ti int)
 	TickInterval() int
 }
 
@@ -21,25 +21,25 @@ func (p *qslider) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQSlider_QWidget(parent QWidget) QSlider {
-	var parentPtr C.QtObjectPtr = nil
+func NewQSlider1(parent QWidget) QSlider {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qslider = new(qslider)
 	qslider.SetPointer(C.QSlider_New_QWidget(parentPtr))
-	qslider.SetObjectName_String("QSlider_" + randomIdentifier())
+	qslider.SetObjectName("QSlider_" + randomIdentifier())
 	return qslider
 }
 
-func NewQSlider_Orientation_QWidget(orientation Orientation, parent QWidget) QSlider {
-	var parentPtr C.QtObjectPtr = nil
+func NewQSlider2(orientation Orientation, parent QWidget) QSlider {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qslider = new(qslider)
 	qslider.SetPointer(C.QSlider_New_Orientation_QWidget(C.int(orientation), parentPtr))
-	qslider.SetObjectName_String("QSlider_" + randomIdentifier())
+	qslider.SetObjectName("QSlider_" + randomIdentifier())
 	return qslider
 }
 
@@ -51,7 +51,7 @@ func (p *qslider) Destroy() {
 	}
 }
 
-func (p *qslider) SetTickInterval_Int(ti int) {
+func (p *qslider) SetTickInterval(ti int) {
 	if p.Pointer() != nil {
 		C.QSlider_SetTickInterval_Int(p.Pointer(), C.int(ti))
 	}
@@ -60,7 +60,6 @@ func (p *qslider) SetTickInterval_Int(ti int) {
 func (p *qslider) TickInterval() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QSlider_TickInterval(p.Pointer()))
 	}
+	return int(C.QSlider_TickInterval(p.Pointer()))
 }

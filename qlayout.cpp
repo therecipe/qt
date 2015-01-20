@@ -17,11 +17,6 @@ int QLayout_Activate(QtObjectPtr ptr)
 	return ((QLayout*)(ptr))->activate();
 }
 
-void QLayout_AddItem_QLayoutItem(QtObjectPtr ptr, QtObjectPtr item)
-{
-	((QLayout*)(ptr))->addItem(((QLayoutItem*)(item)));
-}
-
 void QLayout_AddWidget_QWidget(QtObjectPtr ptr, QtObjectPtr w)
 {
 	((QLayout*)(ptr))->addWidget(((QWidget*)(w)));

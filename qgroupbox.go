@@ -13,14 +13,14 @@ type QGroupBox interface {
 	IsCheckable() bool
 	IsChecked() bool
 	IsFlat() bool
-	SetAlignment_Int(alignment int)
-	SetCheckable_Bool(checkable bool)
-	SetFlat_Bool(flat bool)
-	SetTitle_String(title string)
+	SetAlignment(alignment int)
+	SetCheckable(checkable bool)
+	SetFlat(flat bool)
+	SetTitle(title string)
 	Title() string
 	ConnectSlotSetChecked()
 	DisconnectSlotSetChecked()
-	SlotSetChecked_Bool(checked bool)
+	SlotSetChecked(checked bool)
 	ConnectSignalClicked(f func())
 	DisconnectSignalClicked()
 	SignalClicked() func()
@@ -37,25 +37,25 @@ func (p *qgroupbox) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQGroupBox_QWidget(parent QWidget) QGroupBox {
-	var parentPtr C.QtObjectPtr = nil
+func NewQGroupBox1(parent QWidget) QGroupBox {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qgroupbox = new(qgroupbox)
 	qgroupbox.SetPointer(C.QGroupBox_New_QWidget(parentPtr))
-	qgroupbox.SetObjectName_String("QGroupBox_" + randomIdentifier())
+	qgroupbox.SetObjectName("QGroupBox_" + randomIdentifier())
 	return qgroupbox
 }
 
-func NewQGroupBox_String_QWidget(title string, parent QWidget) QGroupBox {
-	var parentPtr C.QtObjectPtr = nil
+func NewQGroupBox2(title string, parent QWidget) QGroupBox {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qgroupbox = new(qgroupbox)
 	qgroupbox.SetPointer(C.QGroupBox_New_String_QWidget(C.CString(title), parentPtr))
-	qgroupbox.SetObjectName_String("QGroupBox_" + randomIdentifier())
+	qgroupbox.SetObjectName("QGroupBox_" + randomIdentifier())
 	return qgroupbox
 }
 
@@ -70,54 +70,50 @@ func (p *qgroupbox) Destroy() {
 func (p *qgroupbox) Alignment() AlignmentFlag {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return AlignmentFlag(C.QGroupBox_Alignment(p.Pointer()))
 	}
+	return AlignmentFlag(C.QGroupBox_Alignment(p.Pointer()))
 }
 
 func (p *qgroupbox) IsCheckable() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QGroupBox_IsCheckable(p.Pointer()) != 0
 	}
+	return C.QGroupBox_IsCheckable(p.Pointer()) != 0
 }
 
 func (p *qgroupbox) IsChecked() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QGroupBox_IsChecked(p.Pointer()) != 0
 	}
+	return C.QGroupBox_IsChecked(p.Pointer()) != 0
 }
 
 func (p *qgroupbox) IsFlat() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QGroupBox_IsFlat(p.Pointer()) != 0
 	}
+	return C.QGroupBox_IsFlat(p.Pointer()) != 0
 }
 
-func (p *qgroupbox) SetAlignment_Int(alignment int) {
+func (p *qgroupbox) SetAlignment(alignment int) {
 	if p.Pointer() != nil {
 		C.QGroupBox_SetAlignment_Int(p.Pointer(), C.int(alignment))
 	}
 }
 
-func (p *qgroupbox) SetCheckable_Bool(checkable bool) {
+func (p *qgroupbox) SetCheckable(checkable bool) {
 	if p.Pointer() != nil {
 		C.QGroupBox_SetCheckable_Bool(p.Pointer(), goBoolToCInt(checkable))
 	}
 }
 
-func (p *qgroupbox) SetFlat_Bool(flat bool) {
+func (p *qgroupbox) SetFlat(flat bool) {
 	if p.Pointer() != nil {
 		C.QGroupBox_SetFlat_Bool(p.Pointer(), goBoolToCInt(flat))
 	}
 }
 
-func (p *qgroupbox) SetTitle_String(title string) {
+func (p *qgroupbox) SetTitle(title string) {
 	if p.Pointer() != nil {
 		C.QGroupBox_SetTitle_String(p.Pointer(), C.CString(title))
 	}
@@ -126,9 +122,8 @@ func (p *qgroupbox) SetTitle_String(title string) {
 func (p *qgroupbox) Title() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QGroupBox_Title(p.Pointer()))
 	}
+	return C.GoString(C.QGroupBox_Title(p.Pointer()))
 }
 
 func (p *qgroupbox) ConnectSlotSetChecked() {
@@ -139,7 +134,7 @@ func (p *qgroupbox) DisconnectSlotSetChecked() {
 	C.QGroupBox_DisconnectSlotSetChecked(p.Pointer())
 }
 
-func (p *qgroupbox) SlotSetChecked_Bool(checked bool) {
+func (p *qgroupbox) SlotSetChecked(checked bool) {
 	if p.Pointer() != nil {
 		C.QGroupBox_SetChecked_Bool(p.Pointer(), goBoolToCInt(checked))
 	}

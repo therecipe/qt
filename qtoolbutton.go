@@ -12,9 +12,9 @@ type QToolButton interface {
 	ArrowType() ArrowType
 	AutoRaise() bool
 	Menu() QMenu
-	SetArrowType_ArrowType(typ ArrowType)
-	SetAutoRaise_Bool(enable bool)
-	SetMenu_QMenu(menu QMenu)
+	SetArrowType(typ ArrowType)
+	SetAutoRaise(enable bool)
+	SetMenu(menu QMenu)
 	ToolButtonStyle() ToolButtonStyle
 	ConnectSlotShowMenu()
 	DisconnectSlotShowMenu()
@@ -32,14 +32,14 @@ func (p *qtoolbutton) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQToolButton_QWidget(parent QWidget) QToolButton {
-	var parentPtr C.QtObjectPtr = nil
+func NewQToolButton(parent QWidget) QToolButton {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qtoolbutton = new(qtoolbutton)
 	qtoolbutton.SetPointer(C.QToolButton_New_QWidget(parentPtr))
-	qtoolbutton.SetObjectName_String("QToolButton_" + randomIdentifier())
+	qtoolbutton.SetObjectName("QToolButton_" + randomIdentifier())
 	return qtoolbutton
 }
 
@@ -54,17 +54,15 @@ func (p *qtoolbutton) Destroy() {
 func (p *qtoolbutton) ArrowType() ArrowType {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ArrowType(C.QToolButton_ArrowType(p.Pointer()))
 	}
+	return ArrowType(C.QToolButton_ArrowType(p.Pointer()))
 }
 
 func (p *qtoolbutton) AutoRaise() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QToolButton_AutoRaise(p.Pointer()) != 0
 	}
+	return C.QToolButton_AutoRaise(p.Pointer()) != 0
 }
 
 func (p *qtoolbutton) Menu() QMenu {
@@ -74,28 +72,27 @@ func (p *qtoolbutton) Menu() QMenu {
 		var qmenu = new(qmenu)
 		qmenu.SetPointer(C.QToolButton_Menu(p.Pointer()))
 		if qmenu.ObjectName() == "" {
-			qmenu.SetObjectName_String("QMenu_" + randomIdentifier())
+			qmenu.SetObjectName("QMenu_" + randomIdentifier())
 		}
 		return qmenu
 	}
 }
 
-func (p *qtoolbutton) SetArrowType_ArrowType(typ ArrowType) {
+func (p *qtoolbutton) SetArrowType(typ ArrowType) {
 	if p.Pointer() != nil {
 		C.QToolButton_SetArrowType_ArrowType(p.Pointer(), C.int(typ))
 	}
 }
 
-func (p *qtoolbutton) SetAutoRaise_Bool(enable bool) {
+func (p *qtoolbutton) SetAutoRaise(enable bool) {
 	if p.Pointer() != nil {
 		C.QToolButton_SetAutoRaise_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
 }
 
-func (p *qtoolbutton) SetMenu_QMenu(menu QMenu) {
-	if p.Pointer() == nil {
-	} else {
-		var menuPtr C.QtObjectPtr = nil
+func (p *qtoolbutton) SetMenu(menu QMenu) {
+	if p.Pointer() != nil {
+		var menuPtr C.QtObjectPtr
 		if menu != nil {
 			menuPtr = menu.Pointer()
 		}
@@ -106,9 +103,8 @@ func (p *qtoolbutton) SetMenu_QMenu(menu QMenu) {
 func (p *qtoolbutton) ToolButtonStyle() ToolButtonStyle {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ToolButtonStyle(C.QToolButton_ToolButtonStyle(p.Pointer()))
 	}
+	return ToolButtonStyle(C.QToolButton_ToolButtonStyle(p.Pointer()))
 }
 
 func (p *qtoolbutton) ConnectSlotShowMenu() {

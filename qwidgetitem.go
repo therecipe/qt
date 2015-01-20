@@ -19,8 +19,8 @@ func (p *qwidgetitem) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQWidgetItem_QWidget(widget QWidget) QWidgetItem {
-	var widgetPtr C.QtObjectPtr = nil
+func NewQWidgetItem(widget QWidget) QWidgetItem {
+	var widgetPtr C.QtObjectPtr
 	if widget != nil {
 		widgetPtr = widget.Pointer()
 	}

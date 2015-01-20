@@ -18,17 +18,17 @@ type QAbstractSpinBox interface {
 	IsGroupSeparatorShown() bool
 	IsReadOnly() bool
 	KeyboardTracking() bool
-	SetAccelerated_Bool(on bool)
-	SetAlignment_AlignmentFlag(flag AlignmentFlag)
-	SetButtonSymbols_ButtonSymbols(bs ButtonSymbols)
-	SetFrame_Bool(frame bool)
-	SetGroupSeparatorShown_Bool(shown bool)
-	SetKeyboardTracking_Bool(kt bool)
-	SetReadOnly_Bool(r bool)
-	SetSpecialValueText_String(txt string)
-	SetWrapping_Bool(w bool)
+	SetAccelerated(on bool)
+	SetAlignment(flag AlignmentFlag)
+	SetButtonSymbols(bs ButtonSymbols)
+	SetFrame(frame bool)
+	SetGroupSeparatorShown(shown bool)
+	SetKeyboardTracking(kt bool)
+	SetReadOnly(r bool)
+	SetSpecialValueText(txt string)
+	SetWrapping(w bool)
 	SpecialValueText() string
-	StepBy_Int(steps int)
+	StepBy(steps int)
 	Text() string
 	Wrapping() bool
 	ConnectSlotClear()
@@ -82,14 +82,14 @@ var (
 	STEPDOWNENABLED = StepEnabledFlag(C.QAbstractSpinBox_StepDownEnabled())
 )
 
-func NewQAbstractSpinBox_QWidget(parent QWidget) QAbstractSpinBox {
-	var parentPtr C.QtObjectPtr = nil
+func NewQAbstractSpinBox(parent QWidget) QAbstractSpinBox {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qabstractspinbox = new(qabstractspinbox)
 	qabstractspinbox.SetPointer(C.QAbstractSpinBox_New_QWidget(parentPtr))
-	qabstractspinbox.SetObjectName_String("QAbstractSpinBox_" + randomIdentifier())
+	qabstractspinbox.SetObjectName("QAbstractSpinBox_" + randomIdentifier())
 	return qabstractspinbox
 }
 
@@ -104,33 +104,29 @@ func (p *qabstractspinbox) Destroy() {
 func (p *qabstractspinbox) Alignment() AlignmentFlag {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return AlignmentFlag(C.QAbstractSpinBox_Alignment(p.Pointer()))
 	}
+	return AlignmentFlag(C.QAbstractSpinBox_Alignment(p.Pointer()))
 }
 
 func (p *qabstractspinbox) ButtonSymbols() ButtonSymbols {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ButtonSymbols(C.QAbstractSpinBox_ButtonSymbols(p.Pointer()))
 	}
+	return ButtonSymbols(C.QAbstractSpinBox_ButtonSymbols(p.Pointer()))
 }
 
 func (p *qabstractspinbox) HasAcceptableInput() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractSpinBox_HasAcceptableInput(p.Pointer()) != 0
 	}
+	return C.QAbstractSpinBox_HasAcceptableInput(p.Pointer()) != 0
 }
 
 func (p *qabstractspinbox) HasFrame() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractSpinBox_HasFrame(p.Pointer()) != 0
 	}
+	return C.QAbstractSpinBox_HasFrame(p.Pointer()) != 0
 }
 
 func (p *qabstractspinbox) InterpretText() {
@@ -142,84 +138,80 @@ func (p *qabstractspinbox) InterpretText() {
 func (p *qabstractspinbox) IsAccelerated() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractSpinBox_IsAccelerated(p.Pointer()) != 0
 	}
+	return C.QAbstractSpinBox_IsAccelerated(p.Pointer()) != 0
 }
 
 func (p *qabstractspinbox) IsGroupSeparatorShown() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractSpinBox_IsGroupSeparatorShown(p.Pointer()) != 0
 	}
+	return C.QAbstractSpinBox_IsGroupSeparatorShown(p.Pointer()) != 0
 }
 
 func (p *qabstractspinbox) IsReadOnly() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractSpinBox_IsReadOnly(p.Pointer()) != 0
 	}
+	return C.QAbstractSpinBox_IsReadOnly(p.Pointer()) != 0
 }
 
 func (p *qabstractspinbox) KeyboardTracking() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractSpinBox_KeyboardTracking(p.Pointer()) != 0
 	}
+	return C.QAbstractSpinBox_KeyboardTracking(p.Pointer()) != 0
 }
 
-func (p *qabstractspinbox) SetAccelerated_Bool(on bool) {
+func (p *qabstractspinbox) SetAccelerated(on bool) {
 	if p.Pointer() != nil {
 		C.QAbstractSpinBox_SetAccelerated_Bool(p.Pointer(), goBoolToCInt(on))
 	}
 }
 
-func (p *qabstractspinbox) SetAlignment_AlignmentFlag(flag AlignmentFlag) {
+func (p *qabstractspinbox) SetAlignment(flag AlignmentFlag) {
 	if p.Pointer() != nil {
 		C.QAbstractSpinBox_SetAlignment_AlignmentFlag(p.Pointer(), C.int(flag))
 	}
 }
 
-func (p *qabstractspinbox) SetButtonSymbols_ButtonSymbols(bs ButtonSymbols) {
+func (p *qabstractspinbox) SetButtonSymbols(bs ButtonSymbols) {
 	if p.Pointer() != nil {
 		C.QAbstractSpinBox_SetButtonSymbols_ButtonSymbols(p.Pointer(), C.int(bs))
 	}
 }
 
-func (p *qabstractspinbox) SetFrame_Bool(frame bool) {
+func (p *qabstractspinbox) SetFrame(frame bool) {
 	if p.Pointer() != nil {
 		C.QAbstractSpinBox_SetFrame_Bool(p.Pointer(), goBoolToCInt(frame))
 	}
 }
 
-func (p *qabstractspinbox) SetGroupSeparatorShown_Bool(shown bool) {
+func (p *qabstractspinbox) SetGroupSeparatorShown(shown bool) {
 	if p.Pointer() != nil {
 		C.QAbstractSpinBox_SetGroupSeparatorShown_Bool(p.Pointer(), goBoolToCInt(shown))
 	}
 }
 
-func (p *qabstractspinbox) SetKeyboardTracking_Bool(kt bool) {
+func (p *qabstractspinbox) SetKeyboardTracking(kt bool) {
 	if p.Pointer() != nil {
 		C.QAbstractSpinBox_SetKeyboardTracking_Bool(p.Pointer(), goBoolToCInt(kt))
 	}
 }
 
-func (p *qabstractspinbox) SetReadOnly_Bool(r bool) {
+func (p *qabstractspinbox) SetReadOnly(r bool) {
 	if p.Pointer() != nil {
 		C.QAbstractSpinBox_SetReadOnly_Bool(p.Pointer(), goBoolToCInt(r))
 	}
 }
 
-func (p *qabstractspinbox) SetSpecialValueText_String(txt string) {
+func (p *qabstractspinbox) SetSpecialValueText(txt string) {
 	if p.Pointer() != nil {
 		C.QAbstractSpinBox_SetSpecialValueText_String(p.Pointer(), C.CString(txt))
 	}
 }
 
-func (p *qabstractspinbox) SetWrapping_Bool(w bool) {
+func (p *qabstractspinbox) SetWrapping(w bool) {
 	if p.Pointer() != nil {
 		C.QAbstractSpinBox_SetWrapping_Bool(p.Pointer(), goBoolToCInt(w))
 	}
@@ -228,12 +220,11 @@ func (p *qabstractspinbox) SetWrapping_Bool(w bool) {
 func (p *qabstractspinbox) SpecialValueText() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QAbstractSpinBox_SpecialValueText(p.Pointer()))
 	}
+	return C.GoString(C.QAbstractSpinBox_SpecialValueText(p.Pointer()))
 }
 
-func (p *qabstractspinbox) StepBy_Int(steps int) {
+func (p *qabstractspinbox) StepBy(steps int) {
 	if p.Pointer() != nil {
 		C.QAbstractSpinBox_StepBy_Int(p.Pointer(), C.int(steps))
 	}
@@ -242,17 +233,15 @@ func (p *qabstractspinbox) StepBy_Int(steps int) {
 func (p *qabstractspinbox) Text() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QAbstractSpinBox_Text(p.Pointer()))
 	}
+	return C.GoString(C.QAbstractSpinBox_Text(p.Pointer()))
 }
 
 func (p *qabstractspinbox) Wrapping() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractSpinBox_Wrapping(p.Pointer()) != 0
 	}
+	return C.QAbstractSpinBox_Wrapping(p.Pointer()) != 0
 }
 
 func (p *qabstractspinbox) ConnectSlotClear() {

@@ -10,30 +10,30 @@ type qmenu struct {
 type QMenu interface {
 	QWidget
 	ActiveAction() QAction
-	AddAction_String(text string) QAction
-	AddAction_QAction(action QAction)
-	AddMenu_QMenu(menu QMenu) QAction
-	AddMenu_String(title string) QMenu
-	AddSection_String(text string) QAction
+	AddAction1(text string) QAction
+	AddAction2(action QAction)
+	AddMenu1(menu QMenu) QAction
+	AddMenu2(title string) QMenu
+	AddSection(text string) QAction
 	AddSeparator() QAction
 	Clear()
 	DefaultAction() QAction
 	Exec() QAction
 	HideTearOffMenu()
-	InsertMenu_QAction_QMenu(before QAction, menu QMenu) QAction
-	InsertSection_QAction_String(before QAction, text string) QAction
-	InsertSeparator_QAction(before QAction) QAction
+	InsertMenu(before QAction, menu QMenu) QAction
+	InsertSection(before QAction, text string) QAction
+	InsertSeparator(before QAction) QAction
 	IsEmpty() bool
 	IsTearOffEnabled() bool
 	IsTearOffMenuVisible() bool
 	MenuAction() QAction
 	SeparatorsCollapsible() bool
-	SetActiveAction_QAction(act QAction)
-	SetDefaultAction_QAction(act QAction)
-	SetSeparatorsCollapsible_Bool(collapse bool)
-	SetTearOffEnabled_Bool(tearOffEnabled bool)
-	SetTitle_String(title string)
-	SetToolTipsVisible_Bool(visible bool)
+	SetActiveAction(act QAction)
+	SetDefaultAction(act QAction)
+	SetSeparatorsCollapsible(collapse bool)
+	SetTearOffEnabled(tearOffEnabled bool)
+	SetTitle(title string)
+	SetToolTipsVisible(visible bool)
 	Title() string
 	ToolTipsVisible() bool
 	ConnectSignalAboutToHide(f func())
@@ -58,25 +58,25 @@ func (p *qmenu) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQMenu_QWidget(parent QWidget) QMenu {
-	var parentPtr C.QtObjectPtr = nil
+func NewQMenu1(parent QWidget) QMenu {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qmenu = new(qmenu)
 	qmenu.SetPointer(C.QMenu_New_QWidget(parentPtr))
-	qmenu.SetObjectName_String("QMenu_" + randomIdentifier())
+	qmenu.SetObjectName("QMenu_" + randomIdentifier())
 	return qmenu
 }
 
-func NewQMenu_String_QWidget(title string, parent QWidget) QMenu {
-	var parentPtr C.QtObjectPtr = nil
+func NewQMenu2(title string, parent QWidget) QMenu {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qmenu = new(qmenu)
 	qmenu.SetPointer(C.QMenu_New_String_QWidget(C.CString(title), parentPtr))
-	qmenu.SetObjectName_String("QMenu_" + randomIdentifier())
+	qmenu.SetObjectName("QMenu_" + randomIdentifier())
 	return qmenu
 }
 
@@ -95,29 +95,28 @@ func (p *qmenu) ActiveAction() QAction {
 		var qaction = new(qaction)
 		qaction.SetPointer(C.QMenu_ActiveAction(p.Pointer()))
 		if qaction.ObjectName() == "" {
-			qaction.SetObjectName_String("QAction_" + randomIdentifier())
+			qaction.SetObjectName("QAction_" + randomIdentifier())
 		}
 		return qaction
 	}
 }
 
-func (p *qmenu) AddAction_String(text string) QAction {
+func (p *qmenu) AddAction1(text string) QAction {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qaction = new(qaction)
 		qaction.SetPointer(C.QMenu_AddAction_String(p.Pointer(), C.CString(text)))
 		if qaction.ObjectName() == "" {
-			qaction.SetObjectName_String("QAction_" + randomIdentifier())
+			qaction.SetObjectName("QAction_" + randomIdentifier())
 		}
 		return qaction
 	}
 }
 
-func (p *qmenu) AddAction_QAction(action QAction) {
-	if p.Pointer() == nil {
-	} else {
-		var actionPtr C.QtObjectPtr = nil
+func (p *qmenu) AddAction2(action QAction) {
+	if p.Pointer() != nil {
+		var actionPtr C.QtObjectPtr
 		if action != nil {
 			actionPtr = action.Pointer()
 		}
@@ -125,44 +124,44 @@ func (p *qmenu) AddAction_QAction(action QAction) {
 	}
 }
 
-func (p *qmenu) AddMenu_QMenu(menu QMenu) QAction {
+func (p *qmenu) AddMenu1(menu QMenu) QAction {
 	if p.Pointer() == nil {
 		return nil
 	} else {
-		var menuPtr C.QtObjectPtr = nil
+		var menuPtr C.QtObjectPtr
 		if menu != nil {
 			menuPtr = menu.Pointer()
 		}
 		var qaction = new(qaction)
 		qaction.SetPointer(C.QMenu_AddMenu_QMenu(p.Pointer(), menuPtr))
 		if qaction.ObjectName() == "" {
-			qaction.SetObjectName_String("QAction_" + randomIdentifier())
+			qaction.SetObjectName("QAction_" + randomIdentifier())
 		}
 		return qaction
 	}
 }
 
-func (p *qmenu) AddMenu_String(title string) QMenu {
+func (p *qmenu) AddMenu2(title string) QMenu {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qmenu = new(qmenu)
 		qmenu.SetPointer(C.QMenu_AddMenu_String(p.Pointer(), C.CString(title)))
 		if qmenu.ObjectName() == "" {
-			qmenu.SetObjectName_String("QMenu_" + randomIdentifier())
+			qmenu.SetObjectName("QMenu_" + randomIdentifier())
 		}
 		return qmenu
 	}
 }
 
-func (p *qmenu) AddSection_String(text string) QAction {
+func (p *qmenu) AddSection(text string) QAction {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qaction = new(qaction)
 		qaction.SetPointer(C.QMenu_AddSection_String(p.Pointer(), C.CString(text)))
 		if qaction.ObjectName() == "" {
-			qaction.SetObjectName_String("QAction_" + randomIdentifier())
+			qaction.SetObjectName("QAction_" + randomIdentifier())
 		}
 		return qaction
 	}
@@ -175,7 +174,7 @@ func (p *qmenu) AddSeparator() QAction {
 		var qaction = new(qaction)
 		qaction.SetPointer(C.QMenu_AddSeparator(p.Pointer()))
 		if qaction.ObjectName() == "" {
-			qaction.SetObjectName_String("QAction_" + randomIdentifier())
+			qaction.SetObjectName("QAction_" + randomIdentifier())
 		}
 		return qaction
 	}
@@ -194,7 +193,7 @@ func (p *qmenu) DefaultAction() QAction {
 		var qaction = new(qaction)
 		qaction.SetPointer(C.QMenu_DefaultAction(p.Pointer()))
 		if qaction.ObjectName() == "" {
-			qaction.SetObjectName_String("QAction_" + randomIdentifier())
+			qaction.SetObjectName("QAction_" + randomIdentifier())
 		}
 		return qaction
 	}
@@ -207,7 +206,7 @@ func (p *qmenu) Exec() QAction {
 		var qaction = new(qaction)
 		qaction.SetPointer(C.QMenu_Exec(p.Pointer()))
 		if qaction.ObjectName() == "" {
-			qaction.SetObjectName_String("QAction_" + randomIdentifier())
+			qaction.SetObjectName("QAction_" + randomIdentifier())
 		}
 		return qaction
 	}
@@ -219,56 +218,56 @@ func (p *qmenu) HideTearOffMenu() {
 	}
 }
 
-func (p *qmenu) InsertMenu_QAction_QMenu(before QAction, menu QMenu) QAction {
+func (p *qmenu) InsertMenu(before QAction, menu QMenu) QAction {
 	if p.Pointer() == nil {
 		return nil
 	} else {
-		var beforePtr C.QtObjectPtr = nil
+		var beforePtr C.QtObjectPtr
 		if before != nil {
 			beforePtr = before.Pointer()
 		}
-		var menuPtr C.QtObjectPtr = nil
+		var menuPtr C.QtObjectPtr
 		if menu != nil {
 			menuPtr = menu.Pointer()
 		}
 		var qaction = new(qaction)
 		qaction.SetPointer(C.QMenu_InsertMenu_QAction_QMenu(p.Pointer(), beforePtr, menuPtr))
 		if qaction.ObjectName() == "" {
-			qaction.SetObjectName_String("QAction_" + randomIdentifier())
+			qaction.SetObjectName("QAction_" + randomIdentifier())
 		}
 		return qaction
 	}
 }
 
-func (p *qmenu) InsertSection_QAction_String(before QAction, text string) QAction {
+func (p *qmenu) InsertSection(before QAction, text string) QAction {
 	if p.Pointer() == nil {
 		return nil
 	} else {
-		var beforePtr C.QtObjectPtr = nil
+		var beforePtr C.QtObjectPtr
 		if before != nil {
 			beforePtr = before.Pointer()
 		}
 		var qaction = new(qaction)
 		qaction.SetPointer(C.QMenu_InsertSection_QAction_String(p.Pointer(), beforePtr, C.CString(text)))
 		if qaction.ObjectName() == "" {
-			qaction.SetObjectName_String("QAction_" + randomIdentifier())
+			qaction.SetObjectName("QAction_" + randomIdentifier())
 		}
 		return qaction
 	}
 }
 
-func (p *qmenu) InsertSeparator_QAction(before QAction) QAction {
+func (p *qmenu) InsertSeparator(before QAction) QAction {
 	if p.Pointer() == nil {
 		return nil
 	} else {
-		var beforePtr C.QtObjectPtr = nil
+		var beforePtr C.QtObjectPtr
 		if before != nil {
 			beforePtr = before.Pointer()
 		}
 		var qaction = new(qaction)
 		qaction.SetPointer(C.QMenu_InsertSeparator_QAction(p.Pointer(), beforePtr))
 		if qaction.ObjectName() == "" {
-			qaction.SetObjectName_String("QAction_" + randomIdentifier())
+			qaction.SetObjectName("QAction_" + randomIdentifier())
 		}
 		return qaction
 	}
@@ -277,25 +276,22 @@ func (p *qmenu) InsertSeparator_QAction(before QAction) QAction {
 func (p *qmenu) IsEmpty() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QMenu_IsEmpty(p.Pointer()) != 0
 	}
+	return C.QMenu_IsEmpty(p.Pointer()) != 0
 }
 
 func (p *qmenu) IsTearOffEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QMenu_IsTearOffEnabled(p.Pointer()) != 0
 	}
+	return C.QMenu_IsTearOffEnabled(p.Pointer()) != 0
 }
 
 func (p *qmenu) IsTearOffMenuVisible() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QMenu_IsTearOffMenuVisible(p.Pointer()) != 0
 	}
+	return C.QMenu_IsTearOffMenuVisible(p.Pointer()) != 0
 }
 
 func (p *qmenu) MenuAction() QAction {
@@ -305,7 +301,7 @@ func (p *qmenu) MenuAction() QAction {
 		var qaction = new(qaction)
 		qaction.SetPointer(C.QMenu_MenuAction(p.Pointer()))
 		if qaction.ObjectName() == "" {
-			qaction.SetObjectName_String("QAction_" + randomIdentifier())
+			qaction.SetObjectName("QAction_" + randomIdentifier())
 		}
 		return qaction
 	}
@@ -314,15 +310,13 @@ func (p *qmenu) MenuAction() QAction {
 func (p *qmenu) SeparatorsCollapsible() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QMenu_SeparatorsCollapsible(p.Pointer()) != 0
 	}
+	return C.QMenu_SeparatorsCollapsible(p.Pointer()) != 0
 }
 
-func (p *qmenu) SetActiveAction_QAction(act QAction) {
-	if p.Pointer() == nil {
-	} else {
-		var actPtr C.QtObjectPtr = nil
+func (p *qmenu) SetActiveAction(act QAction) {
+	if p.Pointer() != nil {
+		var actPtr C.QtObjectPtr
 		if act != nil {
 			actPtr = act.Pointer()
 		}
@@ -330,10 +324,9 @@ func (p *qmenu) SetActiveAction_QAction(act QAction) {
 	}
 }
 
-func (p *qmenu) SetDefaultAction_QAction(act QAction) {
-	if p.Pointer() == nil {
-	} else {
-		var actPtr C.QtObjectPtr = nil
+func (p *qmenu) SetDefaultAction(act QAction) {
+	if p.Pointer() != nil {
+		var actPtr C.QtObjectPtr
 		if act != nil {
 			actPtr = act.Pointer()
 		}
@@ -341,25 +334,25 @@ func (p *qmenu) SetDefaultAction_QAction(act QAction) {
 	}
 }
 
-func (p *qmenu) SetSeparatorsCollapsible_Bool(collapse bool) {
+func (p *qmenu) SetSeparatorsCollapsible(collapse bool) {
 	if p.Pointer() != nil {
 		C.QMenu_SetSeparatorsCollapsible_Bool(p.Pointer(), goBoolToCInt(collapse))
 	}
 }
 
-func (p *qmenu) SetTearOffEnabled_Bool(tearOffEnabled bool) {
+func (p *qmenu) SetTearOffEnabled(tearOffEnabled bool) {
 	if p.Pointer() != nil {
 		C.QMenu_SetTearOffEnabled_Bool(p.Pointer(), goBoolToCInt(tearOffEnabled))
 	}
 }
 
-func (p *qmenu) SetTitle_String(title string) {
+func (p *qmenu) SetTitle(title string) {
 	if p.Pointer() != nil {
 		C.QMenu_SetTitle_String(p.Pointer(), C.CString(title))
 	}
 }
 
-func (p *qmenu) SetToolTipsVisible_Bool(visible bool) {
+func (p *qmenu) SetToolTipsVisible(visible bool) {
 	if p.Pointer() != nil {
 		C.QMenu_SetToolTipsVisible_Bool(p.Pointer(), goBoolToCInt(visible))
 	}
@@ -368,17 +361,15 @@ func (p *qmenu) SetToolTipsVisible_Bool(visible bool) {
 func (p *qmenu) Title() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QMenu_Title(p.Pointer()))
 	}
+	return C.GoString(C.QMenu_Title(p.Pointer()))
 }
 
 func (p *qmenu) ToolTipsVisible() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QMenu_ToolTipsVisible(p.Pointer()) != 0
 	}
+	return C.QMenu_ToolTipsVisible(p.Pointer()) != 0
 }
 
 func (p *qmenu) ConnectSignalAboutToHide(f func()) {

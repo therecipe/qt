@@ -11,15 +11,15 @@ type QDialog interface {
 	QWidget
 	IsSizeGripEnabled() bool
 	Result() int
-	SetModal_Bool(modal bool)
-	SetResult_Int(i int)
-	SetSizeGripEnabled_Bool(sizeGripEnabled bool)
+	SetModal(modal bool)
+	SetResult(i int)
+	SetSizeGripEnabled(sizeGripEnabled bool)
 	ConnectSlotAccept()
 	DisconnectSlotAccept()
 	SlotAccept()
 	ConnectSlotDone()
 	DisconnectSlotDone()
-	SlotDone_Int(r int)
+	SlotDone(r int)
 	ConnectSlotExec()
 	DisconnectSlotExec()
 	SlotExec()
@@ -48,14 +48,14 @@ func (p *qdialog) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQDialog_QWidget_WindowType(parent QWidget, f WindowType) QDialog {
-	var parentPtr C.QtObjectPtr = nil
+func NewQDialog(parent QWidget, f WindowType) QDialog {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qdialog = new(qdialog)
 	qdialog.SetPointer(C.QDialog_New_QWidget_WindowType(parentPtr, C.int(f)))
-	qdialog.SetObjectName_String("QDialog_" + randomIdentifier())
+	qdialog.SetObjectName("QDialog_" + randomIdentifier())
 	return qdialog
 }
 
@@ -70,32 +70,30 @@ func (p *qdialog) Destroy() {
 func (p *qdialog) IsSizeGripEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QDialog_IsSizeGripEnabled(p.Pointer()) != 0
 	}
+	return C.QDialog_IsSizeGripEnabled(p.Pointer()) != 0
 }
 
 func (p *qdialog) Result() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QDialog_Result(p.Pointer()))
 	}
+	return int(C.QDialog_Result(p.Pointer()))
 }
 
-func (p *qdialog) SetModal_Bool(modal bool) {
+func (p *qdialog) SetModal(modal bool) {
 	if p.Pointer() != nil {
 		C.QDialog_SetModal_Bool(p.Pointer(), goBoolToCInt(modal))
 	}
 }
 
-func (p *qdialog) SetResult_Int(i int) {
+func (p *qdialog) SetResult(i int) {
 	if p.Pointer() != nil {
 		C.QDialog_SetResult_Int(p.Pointer(), C.int(i))
 	}
 }
 
-func (p *qdialog) SetSizeGripEnabled_Bool(sizeGripEnabled bool) {
+func (p *qdialog) SetSizeGripEnabled(sizeGripEnabled bool) {
 	if p.Pointer() != nil {
 		C.QDialog_SetSizeGripEnabled_Bool(p.Pointer(), goBoolToCInt(sizeGripEnabled))
 	}
@@ -123,7 +121,7 @@ func (p *qdialog) DisconnectSlotDone() {
 	C.QDialog_DisconnectSlotDone(p.Pointer())
 }
 
-func (p *qdialog) SlotDone_Int(r int) {
+func (p *qdialog) SlotDone(r int) {
 	if p.Pointer() != nil {
 		C.QDialog_Done_Int(p.Pointer(), C.int(r))
 	}

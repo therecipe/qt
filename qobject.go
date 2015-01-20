@@ -11,24 +11,24 @@ type QObject interface {
 	Pointer() (ptr C.QtObjectPtr)
 	SetPointer(ptr C.QtObjectPtr)
 	Destroy()
-	BlockSignals_Bool(block bool) bool
-	Disconnect_String_QObject_String(signal string, receiver QObject, method string) bool
-	Disconnect_QObject_String(receiver QObject, method string) bool
+	BlockSignals(block bool) bool
+	Disconnect1(signal string, receiver QObject, method string) bool
+	Disconnect2(receiver QObject, method string) bool
 	DumpObjectInfo()
 	DumpObjectTree()
-	Inherits_String(className string) bool
-	InstallEventFilter_QObject(filterObj QObject)
+	Inherits(className string) bool
+	InstallEventFilter(filterObj QObject)
 	IsWidgetType() bool
 	IsWindowType() bool
-	KillTimer_Int(id int)
-	MoveToThread_QThread(targetThread QThread)
+	KillTimer(id int)
+	MoveToThread(targetThread QThread)
 	ObjectName() string
 	Parent() QObject
-	RemoveEventFilter_QObject(obj QObject)
-	SetObjectName_String(name string)
-	SetParent_QObject(parent QObject)
+	RemoveEventFilter(obj QObject)
+	SetObjectName(name string)
+	SetParent(parent QObject)
 	SignalsBlocked() bool
-	StartTimer_Int_TimerType(interval int, timerType TimerType) int
+	StartTimer(interval int, timerType TimerType) int
 	Thread() QThread
 	ConnectSlotDeleteLater()
 	DisconnectSlotDeleteLater()
@@ -49,14 +49,14 @@ func (p *qobject) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQObject_QObject(parent QObject) QObject {
-	var parentPtr C.QtObjectPtr = nil
+func NewQObject(parent QObject) QObject {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qobject = new(qobject)
 	qobject.SetPointer(C.QObject_New_QObject(parentPtr))
-	qobject.SetObjectName_String("QObject_" + randomIdentifier())
+	qobject.SetObjectName("QObject_" + randomIdentifier())
 	return qobject
 }
 
@@ -68,19 +68,18 @@ func (p *qobject) Destroy() {
 	}
 }
 
-func (p *qobject) BlockSignals_Bool(block bool) bool {
+func (p *qobject) BlockSignals(block bool) bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QObject_BlockSignals_Bool(p.Pointer(), goBoolToCInt(block)) != 0
 	}
+	return C.QObject_BlockSignals_Bool(p.Pointer(), goBoolToCInt(block)) != 0
 }
 
-func (p *qobject) Disconnect_String_QObject_String(signal string, receiver QObject, method string) bool {
+func (p *qobject) Disconnect1(signal string, receiver QObject, method string) bool {
 	if p.Pointer() == nil {
 		return false
 	} else {
-		var receiverPtr C.QtObjectPtr = nil
+		var receiverPtr C.QtObjectPtr
 		if receiver != nil {
 			receiverPtr = receiver.Pointer()
 		}
@@ -88,11 +87,11 @@ func (p *qobject) Disconnect_String_QObject_String(signal string, receiver QObje
 	}
 }
 
-func (p *qobject) Disconnect_QObject_String(receiver QObject, method string) bool {
+func (p *qobject) Disconnect2(receiver QObject, method string) bool {
 	if p.Pointer() == nil {
 		return false
 	} else {
-		var receiverPtr C.QtObjectPtr = nil
+		var receiverPtr C.QtObjectPtr
 		if receiver != nil {
 			receiverPtr = receiver.Pointer()
 		}
@@ -112,18 +111,16 @@ func (p *qobject) DumpObjectTree() {
 	}
 }
 
-func (p *qobject) Inherits_String(className string) bool {
+func (p *qobject) Inherits(className string) bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QObject_Inherits_String(p.Pointer(), C.CString(className)) != 0
 	}
+	return C.QObject_Inherits_String(p.Pointer(), C.CString(className)) != 0
 }
 
-func (p *qobject) InstallEventFilter_QObject(filterObj QObject) {
-	if p.Pointer() == nil {
-	} else {
-		var filterObjPtr C.QtObjectPtr = nil
+func (p *qobject) InstallEventFilter(filterObj QObject) {
+	if p.Pointer() != nil {
+		var filterObjPtr C.QtObjectPtr
 		if filterObj != nil {
 			filterObjPtr = filterObj.Pointer()
 		}
@@ -134,29 +131,26 @@ func (p *qobject) InstallEventFilter_QObject(filterObj QObject) {
 func (p *qobject) IsWidgetType() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QObject_IsWidgetType(p.Pointer()) != 0
 	}
+	return C.QObject_IsWidgetType(p.Pointer()) != 0
 }
 
 func (p *qobject) IsWindowType() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QObject_IsWindowType(p.Pointer()) != 0
 	}
+	return C.QObject_IsWindowType(p.Pointer()) != 0
 }
 
-func (p *qobject) KillTimer_Int(id int) {
+func (p *qobject) KillTimer(id int) {
 	if p.Pointer() != nil {
 		C.QObject_KillTimer_Int(p.Pointer(), C.int(id))
 	}
 }
 
-func (p *qobject) MoveToThread_QThread(targetThread QThread) {
-	if p.Pointer() == nil {
-	} else {
-		var targetThreadPtr C.QtObjectPtr = nil
+func (p *qobject) MoveToThread(targetThread QThread) {
+	if p.Pointer() != nil {
+		var targetThreadPtr C.QtObjectPtr
 		if targetThread != nil {
 			targetThreadPtr = targetThread.Pointer()
 		}
@@ -167,9 +161,8 @@ func (p *qobject) MoveToThread_QThread(targetThread QThread) {
 func (p *qobject) ObjectName() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QObject_ObjectName(p.Pointer()))
 	}
+	return C.GoString(C.QObject_ObjectName(p.Pointer()))
 }
 
 func (p *qobject) Parent() QObject {
@@ -179,16 +172,15 @@ func (p *qobject) Parent() QObject {
 		var qobject = new(qobject)
 		qobject.SetPointer(C.QObject_Parent(p.Pointer()))
 		if qobject.ObjectName() == "" {
-			qobject.SetObjectName_String("QObject_" + randomIdentifier())
+			qobject.SetObjectName("QObject_" + randomIdentifier())
 		}
 		return qobject
 	}
 }
 
-func (p *qobject) RemoveEventFilter_QObject(obj QObject) {
-	if p.Pointer() == nil {
-	} else {
-		var objPtr C.QtObjectPtr = nil
+func (p *qobject) RemoveEventFilter(obj QObject) {
+	if p.Pointer() != nil {
+		var objPtr C.QtObjectPtr
 		if obj != nil {
 			objPtr = obj.Pointer()
 		}
@@ -196,16 +188,15 @@ func (p *qobject) RemoveEventFilter_QObject(obj QObject) {
 	}
 }
 
-func (p *qobject) SetObjectName_String(name string) {
+func (p *qobject) SetObjectName(name string) {
 	if p.Pointer() != nil {
 		C.QObject_SetObjectName_String(p.Pointer(), C.CString(name))
 	}
 }
 
-func (p *qobject) SetParent_QObject(parent QObject) {
-	if p.Pointer() == nil {
-	} else {
-		var parentPtr C.QtObjectPtr = nil
+func (p *qobject) SetParent(parent QObject) {
+	if p.Pointer() != nil {
+		var parentPtr C.QtObjectPtr
 		if parent != nil {
 			parentPtr = parent.Pointer()
 		}
@@ -216,17 +207,15 @@ func (p *qobject) SetParent_QObject(parent QObject) {
 func (p *qobject) SignalsBlocked() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QObject_SignalsBlocked(p.Pointer()) != 0
 	}
+	return C.QObject_SignalsBlocked(p.Pointer()) != 0
 }
 
-func (p *qobject) StartTimer_Int_TimerType(interval int, timerType TimerType) int {
+func (p *qobject) StartTimer(interval int, timerType TimerType) int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QObject_StartTimer_Int_TimerType(p.Pointer(), C.int(interval), C.int(timerType)))
 	}
+	return int(C.QObject_StartTimer_Int_TimerType(p.Pointer(), C.int(interval), C.int(timerType)))
 }
 
 func (p *qobject) Thread() QThread {
@@ -236,7 +225,7 @@ func (p *qobject) Thread() QThread {
 		var qthread = new(qthread)
 		qthread.SetPointer(C.QObject_Thread(p.Pointer()))
 		if qthread.ObjectName() == "" {
-			qthread.SetObjectName_String("QThread_" + randomIdentifier())
+			qthread.SetObjectName("QThread_" + randomIdentifier())
 		}
 		return qthread
 	}
@@ -285,19 +274,19 @@ func (p *qobject) SignalObjectNameChanged() func() {
 	return getSignal(p.ObjectName(), "objectNameChanged")
 }
 
-func QObject_Disconnect_QObject_String_QObject_String(sender QObject, signal string, receiver QObject, method string) bool {
-	var senderPtr C.QtObjectPtr = nil
+func QObject_Disconnect3(sender QObject, signal string, receiver QObject, method string) bool {
+	var senderPtr C.QtObjectPtr
 	if sender != nil {
 		senderPtr = sender.Pointer()
 	}
-	var receiverPtr C.QtObjectPtr = nil
+	var receiverPtr C.QtObjectPtr
 	if receiver != nil {
 		receiverPtr = receiver.Pointer()
 	}
 	return C.QObject_Disconnect_QObject_String_QObject_String(senderPtr, C.CString(signal), receiverPtr, C.CString(method)) != 0
 }
 
-func QObject_Tr_String_String_Int(sourceText string, disambiguation string, n int) string {
+func QObject_Tr(sourceText string, disambiguation string, n int) string {
 	return C.GoString(C.QObject_Tr_String_String_Int(C.CString(sourceText), C.CString(disambiguation), C.int(n)))
 }
 

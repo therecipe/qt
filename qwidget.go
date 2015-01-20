@@ -15,7 +15,7 @@ type QWidget interface {
 	ActivateWindow()
 	AdjustSize()
 	AutoFillBackground() bool
-	ChildAt_Int_Int(x int, y int) QWidget
+	ChildAt(x int, y int) QWidget
 	ClearFocus()
 	ClearMask()
 	ContextMenuPolicy() ContextMenuPolicy
@@ -29,19 +29,19 @@ type QWidget interface {
 	HasHeightForWidth() bool
 	HasMouseTracking() bool
 	Height() int
-	HeightForWidth_Int(w int) int
+	HeightForWidth(w int) int
 	InputMethodHints() InputMethodHint
 	IsActiveWindow() bool
-	IsAncestorOf_QWidget(child QWidget) bool
+	IsAncestorOf(child QWidget) bool
 	IsEnabled() bool
-	IsEnabledTo_QWidget(ancestor QWidget) bool
+	IsEnabledTo(ancestor QWidget) bool
 	IsFullScreen() bool
 	IsHidden() bool
 	IsMaximized() bool
 	IsMinimized() bool
 	IsModal() bool
 	IsVisible() bool
-	IsVisibleTo_QWidget(ancestor QWidget) bool
+	IsVisibleTo(ancestor QWidget) bool
 	IsWindow() bool
 	IsWindowModified() bool
 	Layout() QLayout
@@ -50,68 +50,68 @@ type QWidget interface {
 	MaximumWidth() int
 	MinimumHeight() int
 	MinimumWidth() int
-	Move_Int_Int(x int, y int)
+	Move(x int, y int)
 	NativeParentWidget() QWidget
 	NextInFocusChain() QWidget
-	OverrideWindowFlags_WindowType(flags WindowType)
+	OverrideWindowFlags(flags WindowType)
 	ParentWidget() QWidget
 	PreviousInFocusChain() QWidget
 	ReleaseKeyboard()
 	ReleaseMouse()
-	ReleaseShortcut_Int(id int)
-	Repaint_Int_Int_Int_Int(x int, y int, w int, h int)
-	Resize_Int_Int(w int, h int)
-	Scroll_Int_Int(dx int, dy int)
-	SetAcceptDrops_Bool(on bool)
-	SetAccessibleDescription_String(description string)
-	SetAccessibleName_String(name string)
-	SetAttribute_WidgetAttribute_Bool(attribute WidgetAttribute, on bool)
-	SetAutoFillBackground_Bool(enabled bool)
-	SetBaseSize_Int_Int(basew int, baseh int)
-	SetContentsMargins_Int_Int_Int_Int(left int, top int, right int, bottom int)
-	SetContextMenuPolicy_ContextMenuPolicy(policy ContextMenuPolicy)
-	SetFixedHeight_Int(h int)
-	SetFixedSize_Int_Int(w int, h int)
-	SetFixedWidth_Int(w int)
-	SetFocus_FocusReason(reason FocusReason)
-	SetFocusPolicy_FocusPolicy(policy FocusPolicy)
-	SetFocusProxy_QWidget(w QWidget)
-	SetGeometry_Int_Int_Int_Int(x int, y int, w int, h int)
-	SetLayout_QLayout(layout QLayout)
-	SetLayoutDirection_LayoutDirection(direction LayoutDirection)
-	SetMaximumHeight_Int(maxh int)
-	SetMaximumSize_Int_Int(maxw int, maxh int)
-	SetMaximumWidth_Int(maxw int)
-	SetMinimumHeight_Int(minh int)
-	SetMinimumSize_Int_Int(minw int, minh int)
-	SetMinimumWidth_Int(minw int)
-	SetMouseTracking_Bool(enable bool)
-	SetShortcutAutoRepeat_Int_Bool(id int, enable bool)
-	SetShortcutEnabled_Int_Bool(id int, enable bool)
-	SetSizeIncrement_Int_Int(w int, h int)
-	SetStatusTip_String(statusTip string)
-	SetToolTip_String(toolTip string)
-	SetToolTipDuration_Int(msec int)
-	SetUpdatesEnabled_Bool(enable bool)
-	SetWhatsThis_String(whatsThis string)
-	SetWindowFilePath_String(filePath string)
-	SetWindowFlags_WindowType(typ WindowType)
-	SetWindowIconText_String(iconText string)
-	SetWindowModality_WindowModality(windowModality WindowModality)
-	SetWindowRole_String(role string)
-	SetWindowState_WindowState(windowState WindowState)
-	StackUnder_QWidget(w QWidget)
+	ReleaseShortcut(id int)
+	Repaint(x int, y int, w int, h int)
+	Resize(w int, h int)
+	Scroll(dx int, dy int)
+	SetAcceptDrops(on bool)
+	SetAccessibleDescription(description string)
+	SetAccessibleName(name string)
+	SetAttribute(attribute WidgetAttribute, on bool)
+	SetAutoFillBackground(enabled bool)
+	SetBaseSize(basew int, baseh int)
+	SetContentsMargins(left int, top int, right int, bottom int)
+	SetContextMenuPolicy(policy ContextMenuPolicy)
+	SetFixedHeight(h int)
+	SetFixedSize(w int, h int)
+	SetFixedWidth(w int)
+	SetFocus(reason FocusReason)
+	SetFocusPolicy(policy FocusPolicy)
+	SetFocusProxy(w QWidget)
+	SetGeometry(x int, y int, w int, h int)
+	SetLayout(layout QLayout)
+	SetLayoutDirection(direction LayoutDirection)
+	SetMaximumHeight(maxh int)
+	SetMaximumSize(maxw int, maxh int)
+	SetMaximumWidth(maxw int)
+	SetMinimumHeight(minh int)
+	SetMinimumSize(minw int, minh int)
+	SetMinimumWidth(minw int)
+	SetMouseTracking(enable bool)
+	SetShortcutAutoRepeat(id int, enable bool)
+	SetShortcutEnabled(id int, enable bool)
+	SetSizeIncrement(w int, h int)
+	SetStatusTip(statusTip string)
+	SetToolTip(toolTip string)
+	SetToolTipDuration(msec int)
+	SetUpdatesEnabled(enable bool)
+	SetWhatsThis(whatsThis string)
+	SetWindowFilePath(filePath string)
+	SetWindowFlags(typ WindowType)
+	SetWindowIconText(iconText string)
+	SetWindowModality(windowModality WindowModality)
+	SetWindowRole(role string)
+	SetWindowState(windowState WindowState)
+	StackUnder(w QWidget)
 	StatusTip() string
 	StyleSheet() string
-	TestAttribute_WidgetAttribute(attribute WidgetAttribute) bool
+	TestAttribute(attribute WidgetAttribute) bool
 	ToolTip() string
 	ToolTipDuration() int
 	UnderMouse() bool
-	UngrabGesture_GestureType(gesture GestureType)
+	UngrabGesture(gesture GestureType)
 	UnsetCursor()
 	UnsetLayoutDirection()
 	UnsetLocale()
-	Update_Int_Int_Int_Int(x int, y int, w int, h int)
+	Update(x int, y int, w int, h int)
 	UpdateGeometry()
 	UpdatesEnabled() bool
 	Width() int
@@ -140,22 +140,22 @@ type QWidget interface {
 	SlotRaise()
 	ConnectSlotSetDisabled()
 	DisconnectSlotSetDisabled()
-	SlotSetDisabled_Bool(disable bool)
+	SlotSetDisabled(disable bool)
 	ConnectSlotSetEnabled()
 	DisconnectSlotSetEnabled()
-	SlotSetEnabled_Bool(enabled bool)
+	SlotSetEnabled(enabled bool)
 	ConnectSlotSetHidden()
 	DisconnectSlotSetHidden()
-	SlotSetHidden_Bool(hidden bool)
+	SlotSetHidden(hidden bool)
 	ConnectSlotSetStyleSheet()
 	DisconnectSlotSetStyleSheet()
-	SlotSetStyleSheet_String(styleSheet string)
+	SlotSetStyleSheet(styleSheet string)
 	ConnectSlotSetWindowModified()
 	DisconnectSlotSetWindowModified()
-	SlotSetWindowModified_Bool(modified bool)
+	SlotSetWindowModified(modified bool)
 	ConnectSlotSetWindowTitle()
 	DisconnectSlotSetWindowTitle()
-	SlotSetWindowTitle_String(windowTitle string)
+	SlotSetWindowTitle(windowTitle string)
 	ConnectSlotShow()
 	DisconnectSlotShow()
 	SlotShow()
@@ -187,14 +187,14 @@ func (p *qwidget) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQWidget_QWidget_WindowType(parent QWidget, f WindowType) QWidget {
-	var parentPtr C.QtObjectPtr = nil
+func NewQWidget(parent QWidget, f WindowType) QWidget {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qwidget = new(qwidget)
 	qwidget.SetPointer(C.QWidget_New_QWidget_WindowType(parentPtr, C.int(f)))
-	qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+	qwidget.SetObjectName("QWidget_" + randomIdentifier())
 	return qwidget
 }
 
@@ -209,25 +209,22 @@ func (p *qwidget) Destroy() {
 func (p *qwidget) AcceptDrops() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_AcceptDrops(p.Pointer()) != 0
 	}
+	return C.QWidget_AcceptDrops(p.Pointer()) != 0
 }
 
 func (p *qwidget) AccessibleDescription() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QWidget_AccessibleDescription(p.Pointer()))
 	}
+	return C.GoString(C.QWidget_AccessibleDescription(p.Pointer()))
 }
 
 func (p *qwidget) AccessibleName() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QWidget_AccessibleName(p.Pointer()))
 	}
+	return C.GoString(C.QWidget_AccessibleName(p.Pointer()))
 }
 
 func (p *qwidget) ActivateWindow() {
@@ -245,19 +242,18 @@ func (p *qwidget) AdjustSize() {
 func (p *qwidget) AutoFillBackground() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_AutoFillBackground(p.Pointer()) != 0
 	}
+	return C.QWidget_AutoFillBackground(p.Pointer()) != 0
 }
 
-func (p *qwidget) ChildAt_Int_Int(x int, y int) QWidget {
+func (p *qwidget) ChildAt(x int, y int) QWidget {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QWidget_ChildAt_Int_Int(p.Pointer(), C.int(x), C.int(y)))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -278,9 +274,8 @@ func (p *qwidget) ClearMask() {
 func (p *qwidget) ContextMenuPolicy() ContextMenuPolicy {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ContextMenuPolicy(C.QWidget_ContextMenuPolicy(p.Pointer()))
 	}
+	return ContextMenuPolicy(C.QWidget_ContextMenuPolicy(p.Pointer()))
 }
 
 func (p *qwidget) EnsurePolished() {
@@ -292,9 +287,8 @@ func (p *qwidget) EnsurePolished() {
 func (p *qwidget) FocusPolicy() FocusPolicy {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return FocusPolicy(C.QWidget_FocusPolicy(p.Pointer()))
 	}
+	return FocusPolicy(C.QWidget_FocusPolicy(p.Pointer()))
 }
 
 func (p *qwidget) FocusProxy() QWidget {
@@ -304,7 +298,7 @@ func (p *qwidget) FocusProxy() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QWidget_FocusProxy(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -317,7 +311,7 @@ func (p *qwidget) FocusWidget() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QWidget_FocusWidget(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -338,64 +332,57 @@ func (p *qwidget) GrabMouse() {
 func (p *qwidget) HasFocus() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_HasFocus(p.Pointer()) != 0
 	}
+	return C.QWidget_HasFocus(p.Pointer()) != 0
 }
 
 func (p *qwidget) HasHeightForWidth() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_HasHeightForWidth(p.Pointer()) != 0
 	}
+	return C.QWidget_HasHeightForWidth(p.Pointer()) != 0
 }
 
 func (p *qwidget) HasMouseTracking() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_HasMouseTracking(p.Pointer()) != 0
 	}
+	return C.QWidget_HasMouseTracking(p.Pointer()) != 0
 }
 
 func (p *qwidget) Height() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QWidget_Height(p.Pointer()))
 	}
+	return int(C.QWidget_Height(p.Pointer()))
 }
 
-func (p *qwidget) HeightForWidth_Int(w int) int {
+func (p *qwidget) HeightForWidth(w int) int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QWidget_HeightForWidth_Int(p.Pointer(), C.int(w)))
 	}
+	return int(C.QWidget_HeightForWidth_Int(p.Pointer(), C.int(w)))
 }
 
 func (p *qwidget) InputMethodHints() InputMethodHint {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return InputMethodHint(C.QWidget_InputMethodHints(p.Pointer()))
 	}
+	return InputMethodHint(C.QWidget_InputMethodHints(p.Pointer()))
 }
 
 func (p *qwidget) IsActiveWindow() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_IsActiveWindow(p.Pointer()) != 0
 	}
+	return C.QWidget_IsActiveWindow(p.Pointer()) != 0
 }
 
-func (p *qwidget) IsAncestorOf_QWidget(child QWidget) bool {
+func (p *qwidget) IsAncestorOf(child QWidget) bool {
 	if p.Pointer() == nil {
 		return false
 	} else {
-		var childPtr C.QtObjectPtr = nil
+		var childPtr C.QtObjectPtr
 		if child != nil {
 			childPtr = child.Pointer()
 		}
@@ -406,16 +393,15 @@ func (p *qwidget) IsAncestorOf_QWidget(child QWidget) bool {
 func (p *qwidget) IsEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_IsEnabled(p.Pointer()) != 0
 	}
+	return C.QWidget_IsEnabled(p.Pointer()) != 0
 }
 
-func (p *qwidget) IsEnabledTo_QWidget(ancestor QWidget) bool {
+func (p *qwidget) IsEnabledTo(ancestor QWidget) bool {
 	if p.Pointer() == nil {
 		return false
 	} else {
-		var ancestorPtr C.QtObjectPtr = nil
+		var ancestorPtr C.QtObjectPtr
 		if ancestor != nil {
 			ancestorPtr = ancestor.Pointer()
 		}
@@ -426,56 +412,50 @@ func (p *qwidget) IsEnabledTo_QWidget(ancestor QWidget) bool {
 func (p *qwidget) IsFullScreen() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_IsFullScreen(p.Pointer()) != 0
 	}
+	return C.QWidget_IsFullScreen(p.Pointer()) != 0
 }
 
 func (p *qwidget) IsHidden() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_IsHidden(p.Pointer()) != 0
 	}
+	return C.QWidget_IsHidden(p.Pointer()) != 0
 }
 
 func (p *qwidget) IsMaximized() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_IsMaximized(p.Pointer()) != 0
 	}
+	return C.QWidget_IsMaximized(p.Pointer()) != 0
 }
 
 func (p *qwidget) IsMinimized() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_IsMinimized(p.Pointer()) != 0
 	}
+	return C.QWidget_IsMinimized(p.Pointer()) != 0
 }
 
 func (p *qwidget) IsModal() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_IsModal(p.Pointer()) != 0
 	}
+	return C.QWidget_IsModal(p.Pointer()) != 0
 }
 
 func (p *qwidget) IsVisible() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_IsVisible(p.Pointer()) != 0
 	}
+	return C.QWidget_IsVisible(p.Pointer()) != 0
 }
 
-func (p *qwidget) IsVisibleTo_QWidget(ancestor QWidget) bool {
+func (p *qwidget) IsVisibleTo(ancestor QWidget) bool {
 	if p.Pointer() == nil {
 		return false
 	} else {
-		var ancestorPtr C.QtObjectPtr = nil
+		var ancestorPtr C.QtObjectPtr
 		if ancestor != nil {
 			ancestorPtr = ancestor.Pointer()
 		}
@@ -486,17 +466,15 @@ func (p *qwidget) IsVisibleTo_QWidget(ancestor QWidget) bool {
 func (p *qwidget) IsWindow() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_IsWindow(p.Pointer()) != 0
 	}
+	return C.QWidget_IsWindow(p.Pointer()) != 0
 }
 
 func (p *qwidget) IsWindowModified() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_IsWindowModified(p.Pointer()) != 0
 	}
+	return C.QWidget_IsWindowModified(p.Pointer()) != 0
 }
 
 func (p *qwidget) Layout() QLayout {
@@ -506,7 +484,7 @@ func (p *qwidget) Layout() QLayout {
 		var qlayout = new(qlayout)
 		qlayout.SetPointer(C.QWidget_Layout(p.Pointer()))
 		if qlayout.ObjectName() == "" {
-			qlayout.SetObjectName_String("QLayout_" + randomIdentifier())
+			qlayout.SetObjectName("QLayout_" + randomIdentifier())
 		}
 		return qlayout
 	}
@@ -515,44 +493,39 @@ func (p *qwidget) Layout() QLayout {
 func (p *qwidget) LayoutDirection() LayoutDirection {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return LayoutDirection(C.QWidget_LayoutDirection(p.Pointer()))
 	}
+	return LayoutDirection(C.QWidget_LayoutDirection(p.Pointer()))
 }
 
 func (p *qwidget) MaximumHeight() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QWidget_MaximumHeight(p.Pointer()))
 	}
+	return int(C.QWidget_MaximumHeight(p.Pointer()))
 }
 
 func (p *qwidget) MaximumWidth() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QWidget_MaximumWidth(p.Pointer()))
 	}
+	return int(C.QWidget_MaximumWidth(p.Pointer()))
 }
 
 func (p *qwidget) MinimumHeight() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QWidget_MinimumHeight(p.Pointer()))
 	}
+	return int(C.QWidget_MinimumHeight(p.Pointer()))
 }
 
 func (p *qwidget) MinimumWidth() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QWidget_MinimumWidth(p.Pointer()))
 	}
+	return int(C.QWidget_MinimumWidth(p.Pointer()))
 }
 
-func (p *qwidget) Move_Int_Int(x int, y int) {
+func (p *qwidget) Move(x int, y int) {
 	if p.Pointer() != nil {
 		C.QWidget_Move_Int_Int(p.Pointer(), C.int(x), C.int(y))
 	}
@@ -565,7 +538,7 @@ func (p *qwidget) NativeParentWidget() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QWidget_NativeParentWidget(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -578,13 +551,13 @@ func (p *qwidget) NextInFocusChain() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QWidget_NextInFocusChain(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
 }
 
-func (p *qwidget) OverrideWindowFlags_WindowType(flags WindowType) {
+func (p *qwidget) OverrideWindowFlags(flags WindowType) {
 	if p.Pointer() != nil {
 		C.QWidget_OverrideWindowFlags_WindowType(p.Pointer(), C.int(flags))
 	}
@@ -597,7 +570,7 @@ func (p *qwidget) ParentWidget() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QWidget_ParentWidget(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -610,7 +583,7 @@ func (p *qwidget) PreviousInFocusChain() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QWidget_PreviousInFocusChain(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -628,112 +601,111 @@ func (p *qwidget) ReleaseMouse() {
 	}
 }
 
-func (p *qwidget) ReleaseShortcut_Int(id int) {
+func (p *qwidget) ReleaseShortcut(id int) {
 	if p.Pointer() != nil {
 		C.QWidget_ReleaseShortcut_Int(p.Pointer(), C.int(id))
 	}
 }
 
-func (p *qwidget) Repaint_Int_Int_Int_Int(x int, y int, w int, h int) {
+func (p *qwidget) Repaint(x int, y int, w int, h int) {
 	if p.Pointer() != nil {
 		C.QWidget_Repaint_Int_Int_Int_Int(p.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h))
 	}
 }
 
-func (p *qwidget) Resize_Int_Int(w int, h int) {
+func (p *qwidget) Resize(w int, h int) {
 	if p.Pointer() != nil {
 		C.QWidget_Resize_Int_Int(p.Pointer(), C.int(w), C.int(h))
 	}
 }
 
-func (p *qwidget) Scroll_Int_Int(dx int, dy int) {
+func (p *qwidget) Scroll(dx int, dy int) {
 	if p.Pointer() != nil {
 		C.QWidget_Scroll_Int_Int(p.Pointer(), C.int(dx), C.int(dy))
 	}
 }
 
-func (p *qwidget) SetAcceptDrops_Bool(on bool) {
+func (p *qwidget) SetAcceptDrops(on bool) {
 	if p.Pointer() != nil {
 		C.QWidget_SetAcceptDrops_Bool(p.Pointer(), goBoolToCInt(on))
 	}
 }
 
-func (p *qwidget) SetAccessibleDescription_String(description string) {
+func (p *qwidget) SetAccessibleDescription(description string) {
 	if p.Pointer() != nil {
 		C.QWidget_SetAccessibleDescription_String(p.Pointer(), C.CString(description))
 	}
 }
 
-func (p *qwidget) SetAccessibleName_String(name string) {
+func (p *qwidget) SetAccessibleName(name string) {
 	if p.Pointer() != nil {
 		C.QWidget_SetAccessibleName_String(p.Pointer(), C.CString(name))
 	}
 }
 
-func (p *qwidget) SetAttribute_WidgetAttribute_Bool(attribute WidgetAttribute, on bool) {
+func (p *qwidget) SetAttribute(attribute WidgetAttribute, on bool) {
 	if p.Pointer() != nil {
 		C.QWidget_SetAttribute_WidgetAttribute_Bool(p.Pointer(), C.int(attribute), goBoolToCInt(on))
 	}
 }
 
-func (p *qwidget) SetAutoFillBackground_Bool(enabled bool) {
+func (p *qwidget) SetAutoFillBackground(enabled bool) {
 	if p.Pointer() != nil {
 		C.QWidget_SetAutoFillBackground_Bool(p.Pointer(), goBoolToCInt(enabled))
 	}
 }
 
-func (p *qwidget) SetBaseSize_Int_Int(basew int, baseh int) {
+func (p *qwidget) SetBaseSize(basew int, baseh int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetBaseSize_Int_Int(p.Pointer(), C.int(basew), C.int(baseh))
 	}
 }
 
-func (p *qwidget) SetContentsMargins_Int_Int_Int_Int(left int, top int, right int, bottom int) {
+func (p *qwidget) SetContentsMargins(left int, top int, right int, bottom int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetContentsMargins_Int_Int_Int_Int(p.Pointer(), C.int(left), C.int(top), C.int(right), C.int(bottom))
 	}
 }
 
-func (p *qwidget) SetContextMenuPolicy_ContextMenuPolicy(policy ContextMenuPolicy) {
+func (p *qwidget) SetContextMenuPolicy(policy ContextMenuPolicy) {
 	if p.Pointer() != nil {
 		C.QWidget_SetContextMenuPolicy_ContextMenuPolicy(p.Pointer(), C.int(policy))
 	}
 }
 
-func (p *qwidget) SetFixedHeight_Int(h int) {
+func (p *qwidget) SetFixedHeight(h int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetFixedHeight_Int(p.Pointer(), C.int(h))
 	}
 }
 
-func (p *qwidget) SetFixedSize_Int_Int(w int, h int) {
+func (p *qwidget) SetFixedSize(w int, h int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetFixedSize_Int_Int(p.Pointer(), C.int(w), C.int(h))
 	}
 }
 
-func (p *qwidget) SetFixedWidth_Int(w int) {
+func (p *qwidget) SetFixedWidth(w int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetFixedWidth_Int(p.Pointer(), C.int(w))
 	}
 }
 
-func (p *qwidget) SetFocus_FocusReason(reason FocusReason) {
+func (p *qwidget) SetFocus(reason FocusReason) {
 	if p.Pointer() != nil {
 		C.QWidget_SetFocus_FocusReason(p.Pointer(), C.int(reason))
 	}
 }
 
-func (p *qwidget) SetFocusPolicy_FocusPolicy(policy FocusPolicy) {
+func (p *qwidget) SetFocusPolicy(policy FocusPolicy) {
 	if p.Pointer() != nil {
 		C.QWidget_SetFocusPolicy_FocusPolicy(p.Pointer(), C.int(policy))
 	}
 }
 
-func (p *qwidget) SetFocusProxy_QWidget(w QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var wPtr C.QtObjectPtr = nil
+func (p *qwidget) SetFocusProxy(w QWidget) {
+	if p.Pointer() != nil {
+		var wPtr C.QtObjectPtr
 		if w != nil {
 			wPtr = w.Pointer()
 		}
@@ -741,16 +713,15 @@ func (p *qwidget) SetFocusProxy_QWidget(w QWidget) {
 	}
 }
 
-func (p *qwidget) SetGeometry_Int_Int_Int_Int(x int, y int, w int, h int) {
+func (p *qwidget) SetGeometry(x int, y int, w int, h int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetGeometry_Int_Int_Int_Int(p.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h))
 	}
 }
 
-func (p *qwidget) SetLayout_QLayout(layout QLayout) {
-	if p.Pointer() == nil {
-	} else {
-		var layoutPtr C.QtObjectPtr = nil
+func (p *qwidget) SetLayout(layout QLayout) {
+	if p.Pointer() != nil {
+		var layoutPtr C.QtObjectPtr
 		if layout != nil {
 			layoutPtr = layout.Pointer()
 		}
@@ -758,142 +729,141 @@ func (p *qwidget) SetLayout_QLayout(layout QLayout) {
 	}
 }
 
-func (p *qwidget) SetLayoutDirection_LayoutDirection(direction LayoutDirection) {
+func (p *qwidget) SetLayoutDirection(direction LayoutDirection) {
 	if p.Pointer() != nil {
 		C.QWidget_SetLayoutDirection_LayoutDirection(p.Pointer(), C.int(direction))
 	}
 }
 
-func (p *qwidget) SetMaximumHeight_Int(maxh int) {
+func (p *qwidget) SetMaximumHeight(maxh int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetMaximumHeight_Int(p.Pointer(), C.int(maxh))
 	}
 }
 
-func (p *qwidget) SetMaximumSize_Int_Int(maxw int, maxh int) {
+func (p *qwidget) SetMaximumSize(maxw int, maxh int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetMaximumSize_Int_Int(p.Pointer(), C.int(maxw), C.int(maxh))
 	}
 }
 
-func (p *qwidget) SetMaximumWidth_Int(maxw int) {
+func (p *qwidget) SetMaximumWidth(maxw int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetMaximumWidth_Int(p.Pointer(), C.int(maxw))
 	}
 }
 
-func (p *qwidget) SetMinimumHeight_Int(minh int) {
+func (p *qwidget) SetMinimumHeight(minh int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetMinimumHeight_Int(p.Pointer(), C.int(minh))
 	}
 }
 
-func (p *qwidget) SetMinimumSize_Int_Int(minw int, minh int) {
+func (p *qwidget) SetMinimumSize(minw int, minh int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetMinimumSize_Int_Int(p.Pointer(), C.int(minw), C.int(minh))
 	}
 }
 
-func (p *qwidget) SetMinimumWidth_Int(minw int) {
+func (p *qwidget) SetMinimumWidth(minw int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetMinimumWidth_Int(p.Pointer(), C.int(minw))
 	}
 }
 
-func (p *qwidget) SetMouseTracking_Bool(enable bool) {
+func (p *qwidget) SetMouseTracking(enable bool) {
 	if p.Pointer() != nil {
 		C.QWidget_SetMouseTracking_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
 }
 
-func (p *qwidget) SetShortcutAutoRepeat_Int_Bool(id int, enable bool) {
+func (p *qwidget) SetShortcutAutoRepeat(id int, enable bool) {
 	if p.Pointer() != nil {
 		C.QWidget_SetShortcutAutoRepeat_Int_Bool(p.Pointer(), C.int(id), goBoolToCInt(enable))
 	}
 }
 
-func (p *qwidget) SetShortcutEnabled_Int_Bool(id int, enable bool) {
+func (p *qwidget) SetShortcutEnabled(id int, enable bool) {
 	if p.Pointer() != nil {
 		C.QWidget_SetShortcutEnabled_Int_Bool(p.Pointer(), C.int(id), goBoolToCInt(enable))
 	}
 }
 
-func (p *qwidget) SetSizeIncrement_Int_Int(w int, h int) {
+func (p *qwidget) SetSizeIncrement(w int, h int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetSizeIncrement_Int_Int(p.Pointer(), C.int(w), C.int(h))
 	}
 }
 
-func (p *qwidget) SetStatusTip_String(statusTip string) {
+func (p *qwidget) SetStatusTip(statusTip string) {
 	if p.Pointer() != nil {
 		C.QWidget_SetStatusTip_String(p.Pointer(), C.CString(statusTip))
 	}
 }
 
-func (p *qwidget) SetToolTip_String(toolTip string) {
+func (p *qwidget) SetToolTip(toolTip string) {
 	if p.Pointer() != nil {
 		C.QWidget_SetToolTip_String(p.Pointer(), C.CString(toolTip))
 	}
 }
 
-func (p *qwidget) SetToolTipDuration_Int(msec int) {
+func (p *qwidget) SetToolTipDuration(msec int) {
 	if p.Pointer() != nil {
 		C.QWidget_SetToolTipDuration_Int(p.Pointer(), C.int(msec))
 	}
 }
 
-func (p *qwidget) SetUpdatesEnabled_Bool(enable bool) {
+func (p *qwidget) SetUpdatesEnabled(enable bool) {
 	if p.Pointer() != nil {
 		C.QWidget_SetUpdatesEnabled_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
 }
 
-func (p *qwidget) SetWhatsThis_String(whatsThis string) {
+func (p *qwidget) SetWhatsThis(whatsThis string) {
 	if p.Pointer() != nil {
 		C.QWidget_SetWhatsThis_String(p.Pointer(), C.CString(whatsThis))
 	}
 }
 
-func (p *qwidget) SetWindowFilePath_String(filePath string) {
+func (p *qwidget) SetWindowFilePath(filePath string) {
 	if p.Pointer() != nil {
 		C.QWidget_SetWindowFilePath_String(p.Pointer(), C.CString(filePath))
 	}
 }
 
-func (p *qwidget) SetWindowFlags_WindowType(typ WindowType) {
+func (p *qwidget) SetWindowFlags(typ WindowType) {
 	if p.Pointer() != nil {
 		C.QWidget_SetWindowFlags_WindowType(p.Pointer(), C.int(typ))
 	}
 }
 
-func (p *qwidget) SetWindowIconText_String(iconText string) {
+func (p *qwidget) SetWindowIconText(iconText string) {
 	if p.Pointer() != nil {
 		C.QWidget_SetWindowIconText_String(p.Pointer(), C.CString(iconText))
 	}
 }
 
-func (p *qwidget) SetWindowModality_WindowModality(windowModality WindowModality) {
+func (p *qwidget) SetWindowModality(windowModality WindowModality) {
 	if p.Pointer() != nil {
 		C.QWidget_SetWindowModality_WindowModality(p.Pointer(), C.int(windowModality))
 	}
 }
 
-func (p *qwidget) SetWindowRole_String(role string) {
+func (p *qwidget) SetWindowRole(role string) {
 	if p.Pointer() != nil {
 		C.QWidget_SetWindowRole_String(p.Pointer(), C.CString(role))
 	}
 }
 
-func (p *qwidget) SetWindowState_WindowState(windowState WindowState) {
+func (p *qwidget) SetWindowState(windowState WindowState) {
 	if p.Pointer() != nil {
 		C.QWidget_SetWindowState_WindowState(p.Pointer(), C.int(windowState))
 	}
 }
 
-func (p *qwidget) StackUnder_QWidget(w QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var wPtr C.QtObjectPtr = nil
+func (p *qwidget) StackUnder(w QWidget) {
+	if p.Pointer() != nil {
+		var wPtr C.QtObjectPtr
 		if w != nil {
 			wPtr = w.Pointer()
 		}
@@ -904,52 +874,46 @@ func (p *qwidget) StackUnder_QWidget(w QWidget) {
 func (p *qwidget) StatusTip() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QWidget_StatusTip(p.Pointer()))
 	}
+	return C.GoString(C.QWidget_StatusTip(p.Pointer()))
 }
 
 func (p *qwidget) StyleSheet() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QWidget_StyleSheet(p.Pointer()))
 	}
+	return C.GoString(C.QWidget_StyleSheet(p.Pointer()))
 }
 
-func (p *qwidget) TestAttribute_WidgetAttribute(attribute WidgetAttribute) bool {
+func (p *qwidget) TestAttribute(attribute WidgetAttribute) bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_TestAttribute_WidgetAttribute(p.Pointer(), C.int(attribute)) != 0
 	}
+	return C.QWidget_TestAttribute_WidgetAttribute(p.Pointer(), C.int(attribute)) != 0
 }
 
 func (p *qwidget) ToolTip() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QWidget_ToolTip(p.Pointer()))
 	}
+	return C.GoString(C.QWidget_ToolTip(p.Pointer()))
 }
 
 func (p *qwidget) ToolTipDuration() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QWidget_ToolTipDuration(p.Pointer()))
 	}
+	return int(C.QWidget_ToolTipDuration(p.Pointer()))
 }
 
 func (p *qwidget) UnderMouse() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_UnderMouse(p.Pointer()) != 0
 	}
+	return C.QWidget_UnderMouse(p.Pointer()) != 0
 }
 
-func (p *qwidget) UngrabGesture_GestureType(gesture GestureType) {
+func (p *qwidget) UngrabGesture(gesture GestureType) {
 	if p.Pointer() != nil {
 		C.QWidget_UngrabGesture_GestureType(p.Pointer(), C.int(gesture))
 	}
@@ -973,7 +937,7 @@ func (p *qwidget) UnsetLocale() {
 	}
 }
 
-func (p *qwidget) Update_Int_Int_Int_Int(x int, y int, w int, h int) {
+func (p *qwidget) Update(x int, y int, w int, h int) {
 	if p.Pointer() != nil {
 		C.QWidget_Update_Int_Int_Int_Int(p.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h))
 	}
@@ -988,17 +952,15 @@ func (p *qwidget) UpdateGeometry() {
 func (p *qwidget) UpdatesEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QWidget_UpdatesEnabled(p.Pointer()) != 0
 	}
+	return C.QWidget_UpdatesEnabled(p.Pointer()) != 0
 }
 
 func (p *qwidget) Width() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QWidget_Width(p.Pointer()))
 	}
+	return int(C.QWidget_Width(p.Pointer()))
 }
 
 func (p *qwidget) Window() QWidget {
@@ -1008,7 +970,7 @@ func (p *qwidget) Window() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QWidget_Window(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -1017,81 +979,71 @@ func (p *qwidget) Window() QWidget {
 func (p *qwidget) WindowFilePath() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QWidget_WindowFilePath(p.Pointer()))
 	}
+	return C.GoString(C.QWidget_WindowFilePath(p.Pointer()))
 }
 
 func (p *qwidget) WindowFlags() WindowType {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return WindowType(C.QWidget_WindowFlags(p.Pointer()))
 	}
+	return WindowType(C.QWidget_WindowFlags(p.Pointer()))
 }
 
 func (p *qwidget) WindowIconText() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QWidget_WindowIconText(p.Pointer()))
 	}
+	return C.GoString(C.QWidget_WindowIconText(p.Pointer()))
 }
 
 func (p *qwidget) WindowModality() WindowModality {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return WindowModality(C.QWidget_WindowModality(p.Pointer()))
 	}
+	return WindowModality(C.QWidget_WindowModality(p.Pointer()))
 }
 
 func (p *qwidget) WindowRole() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QWidget_WindowRole(p.Pointer()))
 	}
+	return C.GoString(C.QWidget_WindowRole(p.Pointer()))
 }
 
 func (p *qwidget) WindowState() WindowState {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return WindowState(C.QWidget_WindowState(p.Pointer()))
 	}
+	return WindowState(C.QWidget_WindowState(p.Pointer()))
 }
 
 func (p *qwidget) WindowTitle() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QWidget_WindowTitle(p.Pointer()))
 	}
+	return C.GoString(C.QWidget_WindowTitle(p.Pointer()))
 }
 
 func (p *qwidget) WindowType() WindowType {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return WindowType(C.QWidget_WindowType(p.Pointer()))
 	}
+	return WindowType(C.QWidget_WindowType(p.Pointer()))
 }
 
 func (p *qwidget) X() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QWidget_X(p.Pointer()))
 	}
+	return int(C.QWidget_X(p.Pointer()))
 }
 
 func (p *qwidget) Y() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QWidget_Y(p.Pointer()))
 	}
+	return int(C.QWidget_Y(p.Pointer()))
 }
 
 func (p *qwidget) ConnectSlotClose() {
@@ -1158,7 +1110,7 @@ func (p *qwidget) DisconnectSlotSetDisabled() {
 	C.QWidget_DisconnectSlotSetDisabled(p.Pointer())
 }
 
-func (p *qwidget) SlotSetDisabled_Bool(disable bool) {
+func (p *qwidget) SlotSetDisabled(disable bool) {
 	if p.Pointer() != nil {
 		C.QWidget_SetDisabled_Bool(p.Pointer(), goBoolToCInt(disable))
 	}
@@ -1172,7 +1124,7 @@ func (p *qwidget) DisconnectSlotSetEnabled() {
 	C.QWidget_DisconnectSlotSetEnabled(p.Pointer())
 }
 
-func (p *qwidget) SlotSetEnabled_Bool(enabled bool) {
+func (p *qwidget) SlotSetEnabled(enabled bool) {
 	if p.Pointer() != nil {
 		C.QWidget_SetEnabled_Bool(p.Pointer(), goBoolToCInt(enabled))
 	}
@@ -1186,7 +1138,7 @@ func (p *qwidget) DisconnectSlotSetHidden() {
 	C.QWidget_DisconnectSlotSetHidden(p.Pointer())
 }
 
-func (p *qwidget) SlotSetHidden_Bool(hidden bool) {
+func (p *qwidget) SlotSetHidden(hidden bool) {
 	if p.Pointer() != nil {
 		C.QWidget_SetHidden_Bool(p.Pointer(), goBoolToCInt(hidden))
 	}
@@ -1200,7 +1152,7 @@ func (p *qwidget) DisconnectSlotSetStyleSheet() {
 	C.QWidget_DisconnectSlotSetStyleSheet(p.Pointer())
 }
 
-func (p *qwidget) SlotSetStyleSheet_String(styleSheet string) {
+func (p *qwidget) SlotSetStyleSheet(styleSheet string) {
 	if p.Pointer() != nil {
 		C.QWidget_SetStyleSheet_String(p.Pointer(), C.CString(styleSheet))
 	}
@@ -1214,7 +1166,7 @@ func (p *qwidget) DisconnectSlotSetWindowModified() {
 	C.QWidget_DisconnectSlotSetWindowModified(p.Pointer())
 }
 
-func (p *qwidget) SlotSetWindowModified_Bool(modified bool) {
+func (p *qwidget) SlotSetWindowModified(modified bool) {
 	if p.Pointer() != nil {
 		C.QWidget_SetWindowModified_Bool(p.Pointer(), goBoolToCInt(modified))
 	}
@@ -1228,7 +1180,7 @@ func (p *qwidget) DisconnectSlotSetWindowTitle() {
 	C.QWidget_DisconnectSlotSetWindowTitle(p.Pointer())
 }
 
-func (p *qwidget) SlotSetWindowTitle_String(windowTitle string) {
+func (p *qwidget) SlotSetWindowTitle(windowTitle string) {
 	if p.Pointer() != nil {
 		C.QWidget_SetWindowTitle_String(p.Pointer(), C.CString(windowTitle))
 	}
@@ -1336,7 +1288,7 @@ func QWidget_KeyboardGrabber() QWidget {
 	var qwidget = new(qwidget)
 	qwidget.SetPointer(C.QWidget_KeyboardGrabber())
 	if qwidget.ObjectName() == "" {
-		qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+		qwidget.SetObjectName("QWidget_" + randomIdentifier())
 	}
 	return qwidget
 }
@@ -1345,17 +1297,17 @@ func QWidget_MouseGrabber() QWidget {
 	var qwidget = new(qwidget)
 	qwidget.SetPointer(C.QWidget_MouseGrabber())
 	if qwidget.ObjectName() == "" {
-		qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+		qwidget.SetObjectName("QWidget_" + randomIdentifier())
 	}
 	return qwidget
 }
 
-func QWidget_SetTabOrder_QWidget_QWidget(first QWidget, second QWidget) {
-	var firstPtr C.QtObjectPtr = nil
+func QWidget_SetTabOrder(first QWidget, second QWidget) {
+	var firstPtr C.QtObjectPtr
 	if first != nil {
 		firstPtr = first.Pointer()
 	}
-	var secondPtr C.QtObjectPtr = nil
+	var secondPtr C.QtObjectPtr
 	if second != nil {
 		secondPtr = second.Pointer()
 	}

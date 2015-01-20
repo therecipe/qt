@@ -9,42 +9,42 @@ type qmainwindow struct {
 
 type QMainWindow interface {
 	QWidget
-	AddToolBar_ToolBarArea_QToolBar(area ToolBarArea, toolbar QToolBar)
-	AddToolBar_QToolBar(toolbar QToolBar)
-	AddToolBar_String(title string) QToolBar
-	AddToolBarBreak_ToolBarArea(area ToolBarArea)
+	AddToolBar1(area ToolBarArea, toolbar QToolBar)
+	AddToolBar2(toolbar QToolBar)
+	AddToolBar3(title string) QToolBar
+	AddToolBarBreak(area ToolBarArea)
 	CentralWidget() QWidget
-	Corner_Corner(corner Corner) DockWidgetArea
+	Corner(corner Corner) DockWidgetArea
 	CreatePopupMenu() QMenu
 	DocumentMode() bool
-	InsertToolBar_QToolBar_QToolBar(before QToolBar, toolbar QToolBar)
-	InsertToolBarBreak_QToolBar(before QToolBar)
+	InsertToolBar(before QToolBar, toolbar QToolBar)
+	InsertToolBarBreak(before QToolBar)
 	IsAnimated() bool
 	IsDockNestingEnabled() bool
 	MenuBar() QMenuBar
 	MenuWidget() QWidget
-	RemoveToolBar_QToolBar(toolbar QToolBar)
-	RemoveToolBarBreak_QToolBar(before QToolBar)
-	SetCentralWidget_QWidget(widget QWidget)
-	SetCorner_Corner_DockWidgetArea(corner Corner, area DockWidgetArea)
-	SetDocumentMode_Bool(enabled bool)
-	SetMenuBar_QMenuBar(menuBar QMenuBar)
-	SetMenuWidget_QWidget(menuBar QWidget)
-	SetStatusBar_QStatusBar(statusbar QStatusBar)
-	SetToolButtonStyle_ToolButtonStyle(toolButtonStyle ToolButtonStyle)
-	SetUnifiedTitleAndToolBarOnMac_Bool(set bool)
+	RemoveToolBar(toolbar QToolBar)
+	RemoveToolBarBreak(before QToolBar)
+	SetCentralWidget(widget QWidget)
+	SetCorner(corner Corner, area DockWidgetArea)
+	SetDocumentMode(enabled bool)
+	SetMenuBar(menuBar QMenuBar)
+	SetMenuWidget(menuBar QWidget)
+	SetStatusBar(statusbar QStatusBar)
+	SetToolButtonStyle(toolButtonStyle ToolButtonStyle)
+	SetUnifiedTitleAndToolBarOnMac(set bool)
 	StatusBar() QStatusBar
 	TakeCentralWidget() QWidget
-	ToolBarArea_QToolBar(toolbar QToolBar) ToolBarArea
-	ToolBarBreak_QToolBar(toolbar QToolBar) bool
+	ToolBarArea(toolbar QToolBar) ToolBarArea
+	ToolBarBreak(toolbar QToolBar) bool
 	ToolButtonStyle() ToolButtonStyle
 	UnifiedTitleAndToolBarOnMac() bool
 	ConnectSlotSetAnimated()
 	DisconnectSlotSetAnimated()
-	SlotSetAnimated_Bool(enabled bool)
+	SlotSetAnimated(enabled bool)
 	ConnectSlotSetDockNestingEnabled()
 	DisconnectSlotSetDockNestingEnabled()
-	SlotSetDockNestingEnabled_Bool(enabled bool)
+	SlotSetDockNestingEnabled(enabled bool)
 	ConnectSignalToolButtonStyleChanged(f func())
 	DisconnectSignalToolButtonStyleChanged()
 	SignalToolButtonStyleChanged() func()
@@ -58,14 +58,14 @@ func (p *qmainwindow) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQMainWindow_QWidget_WindowType(parent QWidget, flags WindowType) QMainWindow {
-	var parentPtr C.QtObjectPtr = nil
+func NewQMainWindow(parent QWidget, flags WindowType) QMainWindow {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qmainwindow = new(qmainwindow)
 	qmainwindow.SetPointer(C.QMainWindow_New_QWidget_WindowType(parentPtr, C.int(flags)))
-	qmainwindow.SetObjectName_String("QMainWindow_" + randomIdentifier())
+	qmainwindow.SetObjectName("QMainWindow_" + randomIdentifier())
 	return qmainwindow
 }
 
@@ -77,10 +77,9 @@ func (p *qmainwindow) Destroy() {
 	}
 }
 
-func (p *qmainwindow) AddToolBar_ToolBarArea_QToolBar(area ToolBarArea, toolbar QToolBar) {
-	if p.Pointer() == nil {
-	} else {
-		var toolbarPtr C.QtObjectPtr = nil
+func (p *qmainwindow) AddToolBar1(area ToolBarArea, toolbar QToolBar) {
+	if p.Pointer() != nil {
+		var toolbarPtr C.QtObjectPtr
 		if toolbar != nil {
 			toolbarPtr = toolbar.Pointer()
 		}
@@ -88,10 +87,9 @@ func (p *qmainwindow) AddToolBar_ToolBarArea_QToolBar(area ToolBarArea, toolbar 
 	}
 }
 
-func (p *qmainwindow) AddToolBar_QToolBar(toolbar QToolBar) {
-	if p.Pointer() == nil {
-	} else {
-		var toolbarPtr C.QtObjectPtr = nil
+func (p *qmainwindow) AddToolBar2(toolbar QToolBar) {
+	if p.Pointer() != nil {
+		var toolbarPtr C.QtObjectPtr
 		if toolbar != nil {
 			toolbarPtr = toolbar.Pointer()
 		}
@@ -99,20 +97,20 @@ func (p *qmainwindow) AddToolBar_QToolBar(toolbar QToolBar) {
 	}
 }
 
-func (p *qmainwindow) AddToolBar_String(title string) QToolBar {
+func (p *qmainwindow) AddToolBar3(title string) QToolBar {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qtoolbar = new(qtoolbar)
 		qtoolbar.SetPointer(C.QMainWindow_AddToolBar_String(p.Pointer(), C.CString(title)))
 		if qtoolbar.ObjectName() == "" {
-			qtoolbar.SetObjectName_String("QToolBar_" + randomIdentifier())
+			qtoolbar.SetObjectName("QToolBar_" + randomIdentifier())
 		}
 		return qtoolbar
 	}
 }
 
-func (p *qmainwindow) AddToolBarBreak_ToolBarArea(area ToolBarArea) {
+func (p *qmainwindow) AddToolBarBreak(area ToolBarArea) {
 	if p.Pointer() != nil {
 		C.QMainWindow_AddToolBarBreak_ToolBarArea(p.Pointer(), C.int(area))
 	}
@@ -125,18 +123,17 @@ func (p *qmainwindow) CentralWidget() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QMainWindow_CentralWidget(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
 }
 
-func (p *qmainwindow) Corner_Corner(corner Corner) DockWidgetArea {
+func (p *qmainwindow) Corner(corner Corner) DockWidgetArea {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return DockWidgetArea(C.QMainWindow_Corner_Corner(p.Pointer(), C.int(corner)))
 	}
+	return DockWidgetArea(C.QMainWindow_Corner_Corner(p.Pointer(), C.int(corner)))
 }
 
 func (p *qmainwindow) CreatePopupMenu() QMenu {
@@ -146,7 +143,7 @@ func (p *qmainwindow) CreatePopupMenu() QMenu {
 		var qmenu = new(qmenu)
 		qmenu.SetPointer(C.QMainWindow_CreatePopupMenu(p.Pointer()))
 		if qmenu.ObjectName() == "" {
-			qmenu.SetObjectName_String("QMenu_" + randomIdentifier())
+			qmenu.SetObjectName("QMenu_" + randomIdentifier())
 		}
 		return qmenu
 	}
@@ -155,19 +152,17 @@ func (p *qmainwindow) CreatePopupMenu() QMenu {
 func (p *qmainwindow) DocumentMode() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QMainWindow_DocumentMode(p.Pointer()) != 0
 	}
+	return C.QMainWindow_DocumentMode(p.Pointer()) != 0
 }
 
-func (p *qmainwindow) InsertToolBar_QToolBar_QToolBar(before QToolBar, toolbar QToolBar) {
-	if p.Pointer() == nil {
-	} else {
-		var beforePtr C.QtObjectPtr = nil
+func (p *qmainwindow) InsertToolBar(before QToolBar, toolbar QToolBar) {
+	if p.Pointer() != nil {
+		var beforePtr C.QtObjectPtr
 		if before != nil {
 			beforePtr = before.Pointer()
 		}
-		var toolbarPtr C.QtObjectPtr = nil
+		var toolbarPtr C.QtObjectPtr
 		if toolbar != nil {
 			toolbarPtr = toolbar.Pointer()
 		}
@@ -175,10 +170,9 @@ func (p *qmainwindow) InsertToolBar_QToolBar_QToolBar(before QToolBar, toolbar Q
 	}
 }
 
-func (p *qmainwindow) InsertToolBarBreak_QToolBar(before QToolBar) {
-	if p.Pointer() == nil {
-	} else {
-		var beforePtr C.QtObjectPtr = nil
+func (p *qmainwindow) InsertToolBarBreak(before QToolBar) {
+	if p.Pointer() != nil {
+		var beforePtr C.QtObjectPtr
 		if before != nil {
 			beforePtr = before.Pointer()
 		}
@@ -189,17 +183,15 @@ func (p *qmainwindow) InsertToolBarBreak_QToolBar(before QToolBar) {
 func (p *qmainwindow) IsAnimated() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QMainWindow_IsAnimated(p.Pointer()) != 0
 	}
+	return C.QMainWindow_IsAnimated(p.Pointer()) != 0
 }
 
 func (p *qmainwindow) IsDockNestingEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QMainWindow_IsDockNestingEnabled(p.Pointer()) != 0
 	}
+	return C.QMainWindow_IsDockNestingEnabled(p.Pointer()) != 0
 }
 
 func (p *qmainwindow) MenuBar() QMenuBar {
@@ -209,7 +201,7 @@ func (p *qmainwindow) MenuBar() QMenuBar {
 		var qmenubar = new(qmenubar)
 		qmenubar.SetPointer(C.QMainWindow_MenuBar(p.Pointer()))
 		if qmenubar.ObjectName() == "" {
-			qmenubar.SetObjectName_String("QMenuBar_" + randomIdentifier())
+			qmenubar.SetObjectName("QMenuBar_" + randomIdentifier())
 		}
 		return qmenubar
 	}
@@ -222,16 +214,15 @@ func (p *qmainwindow) MenuWidget() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QMainWindow_MenuWidget(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
 }
 
-func (p *qmainwindow) RemoveToolBar_QToolBar(toolbar QToolBar) {
-	if p.Pointer() == nil {
-	} else {
-		var toolbarPtr C.QtObjectPtr = nil
+func (p *qmainwindow) RemoveToolBar(toolbar QToolBar) {
+	if p.Pointer() != nil {
+		var toolbarPtr C.QtObjectPtr
 		if toolbar != nil {
 			toolbarPtr = toolbar.Pointer()
 		}
@@ -239,10 +230,9 @@ func (p *qmainwindow) RemoveToolBar_QToolBar(toolbar QToolBar) {
 	}
 }
 
-func (p *qmainwindow) RemoveToolBarBreak_QToolBar(before QToolBar) {
-	if p.Pointer() == nil {
-	} else {
-		var beforePtr C.QtObjectPtr = nil
+func (p *qmainwindow) RemoveToolBarBreak(before QToolBar) {
+	if p.Pointer() != nil {
+		var beforePtr C.QtObjectPtr
 		if before != nil {
 			beforePtr = before.Pointer()
 		}
@@ -250,10 +240,9 @@ func (p *qmainwindow) RemoveToolBarBreak_QToolBar(before QToolBar) {
 	}
 }
 
-func (p *qmainwindow) SetCentralWidget_QWidget(widget QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qmainwindow) SetCentralWidget(widget QWidget) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -261,22 +250,21 @@ func (p *qmainwindow) SetCentralWidget_QWidget(widget QWidget) {
 	}
 }
 
-func (p *qmainwindow) SetCorner_Corner_DockWidgetArea(corner Corner, area DockWidgetArea) {
+func (p *qmainwindow) SetCorner(corner Corner, area DockWidgetArea) {
 	if p.Pointer() != nil {
 		C.QMainWindow_SetCorner_Corner_DockWidgetArea(p.Pointer(), C.int(corner), C.int(area))
 	}
 }
 
-func (p *qmainwindow) SetDocumentMode_Bool(enabled bool) {
+func (p *qmainwindow) SetDocumentMode(enabled bool) {
 	if p.Pointer() != nil {
 		C.QMainWindow_SetDocumentMode_Bool(p.Pointer(), goBoolToCInt(enabled))
 	}
 }
 
-func (p *qmainwindow) SetMenuBar_QMenuBar(menuBar QMenuBar) {
-	if p.Pointer() == nil {
-	} else {
-		var menuBarPtr C.QtObjectPtr = nil
+func (p *qmainwindow) SetMenuBar(menuBar QMenuBar) {
+	if p.Pointer() != nil {
+		var menuBarPtr C.QtObjectPtr
 		if menuBar != nil {
 			menuBarPtr = menuBar.Pointer()
 		}
@@ -284,10 +272,9 @@ func (p *qmainwindow) SetMenuBar_QMenuBar(menuBar QMenuBar) {
 	}
 }
 
-func (p *qmainwindow) SetMenuWidget_QWidget(menuBar QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var menuBarPtr C.QtObjectPtr = nil
+func (p *qmainwindow) SetMenuWidget(menuBar QWidget) {
+	if p.Pointer() != nil {
+		var menuBarPtr C.QtObjectPtr
 		if menuBar != nil {
 			menuBarPtr = menuBar.Pointer()
 		}
@@ -295,10 +282,9 @@ func (p *qmainwindow) SetMenuWidget_QWidget(menuBar QWidget) {
 	}
 }
 
-func (p *qmainwindow) SetStatusBar_QStatusBar(statusbar QStatusBar) {
-	if p.Pointer() == nil {
-	} else {
-		var statusbarPtr C.QtObjectPtr = nil
+func (p *qmainwindow) SetStatusBar(statusbar QStatusBar) {
+	if p.Pointer() != nil {
+		var statusbarPtr C.QtObjectPtr
 		if statusbar != nil {
 			statusbarPtr = statusbar.Pointer()
 		}
@@ -306,13 +292,13 @@ func (p *qmainwindow) SetStatusBar_QStatusBar(statusbar QStatusBar) {
 	}
 }
 
-func (p *qmainwindow) SetToolButtonStyle_ToolButtonStyle(toolButtonStyle ToolButtonStyle) {
+func (p *qmainwindow) SetToolButtonStyle(toolButtonStyle ToolButtonStyle) {
 	if p.Pointer() != nil {
 		C.QMainWindow_SetToolButtonStyle_ToolButtonStyle(p.Pointer(), C.int(toolButtonStyle))
 	}
 }
 
-func (p *qmainwindow) SetUnifiedTitleAndToolBarOnMac_Bool(set bool) {
+func (p *qmainwindow) SetUnifiedTitleAndToolBarOnMac(set bool) {
 	if p.Pointer() != nil {
 		C.QMainWindow_SetUnifiedTitleAndToolBarOnMac_Bool(p.Pointer(), goBoolToCInt(set))
 	}
@@ -325,7 +311,7 @@ func (p *qmainwindow) StatusBar() QStatusBar {
 		var qstatusbar = new(qstatusbar)
 		qstatusbar.SetPointer(C.QMainWindow_StatusBar(p.Pointer()))
 		if qstatusbar.ObjectName() == "" {
-			qstatusbar.SetObjectName_String("QStatusBar_" + randomIdentifier())
+			qstatusbar.SetObjectName("QStatusBar_" + randomIdentifier())
 		}
 		return qstatusbar
 	}
@@ -338,17 +324,17 @@ func (p *qmainwindow) TakeCentralWidget() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QMainWindow_TakeCentralWidget(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
 }
 
-func (p *qmainwindow) ToolBarArea_QToolBar(toolbar QToolBar) ToolBarArea {
+func (p *qmainwindow) ToolBarArea(toolbar QToolBar) ToolBarArea {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var toolbarPtr C.QtObjectPtr = nil
+		var toolbarPtr C.QtObjectPtr
 		if toolbar != nil {
 			toolbarPtr = toolbar.Pointer()
 		}
@@ -356,11 +342,11 @@ func (p *qmainwindow) ToolBarArea_QToolBar(toolbar QToolBar) ToolBarArea {
 	}
 }
 
-func (p *qmainwindow) ToolBarBreak_QToolBar(toolbar QToolBar) bool {
+func (p *qmainwindow) ToolBarBreak(toolbar QToolBar) bool {
 	if p.Pointer() == nil {
 		return false
 	} else {
-		var toolbarPtr C.QtObjectPtr = nil
+		var toolbarPtr C.QtObjectPtr
 		if toolbar != nil {
 			toolbarPtr = toolbar.Pointer()
 		}
@@ -371,17 +357,15 @@ func (p *qmainwindow) ToolBarBreak_QToolBar(toolbar QToolBar) bool {
 func (p *qmainwindow) ToolButtonStyle() ToolButtonStyle {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ToolButtonStyle(C.QMainWindow_ToolButtonStyle(p.Pointer()))
 	}
+	return ToolButtonStyle(C.QMainWindow_ToolButtonStyle(p.Pointer()))
 }
 
 func (p *qmainwindow) UnifiedTitleAndToolBarOnMac() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QMainWindow_UnifiedTitleAndToolBarOnMac(p.Pointer()) != 0
 	}
+	return C.QMainWindow_UnifiedTitleAndToolBarOnMac(p.Pointer()) != 0
 }
 
 func (p *qmainwindow) ConnectSlotSetAnimated() {
@@ -392,7 +376,7 @@ func (p *qmainwindow) DisconnectSlotSetAnimated() {
 	C.QMainWindow_DisconnectSlotSetAnimated(p.Pointer())
 }
 
-func (p *qmainwindow) SlotSetAnimated_Bool(enabled bool) {
+func (p *qmainwindow) SlotSetAnimated(enabled bool) {
 	if p.Pointer() != nil {
 		C.QMainWindow_SetAnimated_Bool(p.Pointer(), goBoolToCInt(enabled))
 	}
@@ -406,7 +390,7 @@ func (p *qmainwindow) DisconnectSlotSetDockNestingEnabled() {
 	C.QMainWindow_DisconnectSlotSetDockNestingEnabled(p.Pointer())
 }
 
-func (p *qmainwindow) SlotSetDockNestingEnabled_Bool(enabled bool) {
+func (p *qmainwindow) SlotSetDockNestingEnabled(enabled bool) {
 	if p.Pointer() != nil {
 		C.QMainWindow_SetDockNestingEnabled_Bool(p.Pointer(), goBoolToCInt(enabled))
 	}

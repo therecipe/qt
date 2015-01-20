@@ -9,14 +9,14 @@ type qabstractscrollarea struct {
 
 type QAbstractScrollArea interface {
 	QFrame
-	AddScrollBarWidget_QWidget_AlignmentFlag(widget QWidget, alignment AlignmentFlag)
+	AddScrollBarWidget(widget QWidget, alignment AlignmentFlag)
 	CornerWidget() QWidget
 	HorizontalScrollBarPolicy() ScrollBarPolicy
-	SetCornerWidget_QWidget(widget QWidget)
-	SetHorizontalScrollBarPolicy_ScrollBarPolicy(ScrollBarPolicy ScrollBarPolicy)
-	SetVerticalScrollBarPolicy_ScrollBarPolicy(ScrollBarPolicy ScrollBarPolicy)
-	SetViewport_QWidget(widget QWidget)
-	SetupViewport_QWidget(viewport QWidget)
+	SetCornerWidget(widget QWidget)
+	SetHorizontalScrollBarPolicy(ScrollBarPolicy ScrollBarPolicy)
+	SetVerticalScrollBarPolicy(ScrollBarPolicy ScrollBarPolicy)
+	SetViewport(widget QWidget)
+	SetupViewport(viewport QWidget)
 	VerticalScrollBarPolicy() ScrollBarPolicy
 	Viewport() QWidget
 }
@@ -29,14 +29,14 @@ func (p *qabstractscrollarea) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQAbstractScrollArea_QWidget(parent QWidget) QAbstractScrollArea {
-	var parentPtr C.QtObjectPtr = nil
+func NewQAbstractScrollArea(parent QWidget) QAbstractScrollArea {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qabstractscrollarea = new(qabstractscrollarea)
 	qabstractscrollarea.SetPointer(C.QAbstractScrollArea_New_QWidget(parentPtr))
-	qabstractscrollarea.SetObjectName_String("QAbstractScrollArea_" + randomIdentifier())
+	qabstractscrollarea.SetObjectName("QAbstractScrollArea_" + randomIdentifier())
 	return qabstractscrollarea
 }
 
@@ -48,10 +48,9 @@ func (p *qabstractscrollarea) Destroy() {
 	}
 }
 
-func (p *qabstractscrollarea) AddScrollBarWidget_QWidget_AlignmentFlag(widget QWidget, alignment AlignmentFlag) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qabstractscrollarea) AddScrollBarWidget(widget QWidget, alignment AlignmentFlag) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -66,7 +65,7 @@ func (p *qabstractscrollarea) CornerWidget() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QAbstractScrollArea_CornerWidget(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -75,15 +74,13 @@ func (p *qabstractscrollarea) CornerWidget() QWidget {
 func (p *qabstractscrollarea) HorizontalScrollBarPolicy() ScrollBarPolicy {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ScrollBarPolicy(C.QAbstractScrollArea_HorizontalScrollBarPolicy(p.Pointer()))
 	}
+	return ScrollBarPolicy(C.QAbstractScrollArea_HorizontalScrollBarPolicy(p.Pointer()))
 }
 
-func (p *qabstractscrollarea) SetCornerWidget_QWidget(widget QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qabstractscrollarea) SetCornerWidget(widget QWidget) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -91,22 +88,21 @@ func (p *qabstractscrollarea) SetCornerWidget_QWidget(widget QWidget) {
 	}
 }
 
-func (p *qabstractscrollarea) SetHorizontalScrollBarPolicy_ScrollBarPolicy(ScrollBarPolicy ScrollBarPolicy) {
+func (p *qabstractscrollarea) SetHorizontalScrollBarPolicy(ScrollBarPolicy ScrollBarPolicy) {
 	if p.Pointer() != nil {
 		C.QAbstractScrollArea_SetHorizontalScrollBarPolicy_ScrollBarPolicy(p.Pointer(), C.int(ScrollBarPolicy))
 	}
 }
 
-func (p *qabstractscrollarea) SetVerticalScrollBarPolicy_ScrollBarPolicy(ScrollBarPolicy ScrollBarPolicy) {
+func (p *qabstractscrollarea) SetVerticalScrollBarPolicy(ScrollBarPolicy ScrollBarPolicy) {
 	if p.Pointer() != nil {
 		C.QAbstractScrollArea_SetVerticalScrollBarPolicy_ScrollBarPolicy(p.Pointer(), C.int(ScrollBarPolicy))
 	}
 }
 
-func (p *qabstractscrollarea) SetViewport_QWidget(widget QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qabstractscrollarea) SetViewport(widget QWidget) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -114,10 +110,9 @@ func (p *qabstractscrollarea) SetViewport_QWidget(widget QWidget) {
 	}
 }
 
-func (p *qabstractscrollarea) SetupViewport_QWidget(viewport QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var viewportPtr C.QtObjectPtr = nil
+func (p *qabstractscrollarea) SetupViewport(viewport QWidget) {
+	if p.Pointer() != nil {
+		var viewportPtr C.QtObjectPtr
 		if viewport != nil {
 			viewportPtr = viewport.Pointer()
 		}
@@ -128,9 +123,8 @@ func (p *qabstractscrollarea) SetupViewport_QWidget(viewport QWidget) {
 func (p *qabstractscrollarea) VerticalScrollBarPolicy() ScrollBarPolicy {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ScrollBarPolicy(C.QAbstractScrollArea_VerticalScrollBarPolicy(p.Pointer()))
 	}
+	return ScrollBarPolicy(C.QAbstractScrollArea_VerticalScrollBarPolicy(p.Pointer()))
 }
 
 func (p *qabstractscrollarea) Viewport() QWidget {
@@ -140,7 +134,7 @@ func (p *qabstractscrollarea) Viewport() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QAbstractScrollArea_Viewport(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}

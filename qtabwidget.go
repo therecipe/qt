@@ -9,39 +9,39 @@ type qtabwidget struct {
 
 type QTabWidget interface {
 	QWidget
-	AddTab_QWidget_String(page QWidget, label string) int
+	AddTab(page QWidget, label string) int
 	Clear()
-	CornerWidget_Corner(corner Corner) QWidget
+	CornerWidget(corner Corner) QWidget
 	Count() int
 	CurrentIndex() int
 	CurrentWidget() QWidget
 	DocumentMode() bool
 	ElideMode() TextElideMode
-	IndexOf_QWidget(w QWidget) int
-	InsertTab_Int_QWidget_String(index int, page QWidget, label string) int
+	IndexOf(w QWidget) int
+	InsertTab(index int, page QWidget, label string) int
 	IsMovable() bool
-	IsTabEnabled_Int(index int) bool
-	RemoveTab_Int(index int)
-	SetCornerWidget_QWidget_Corner(widget QWidget, corner Corner)
-	SetDocumentMode_Bool(set bool)
-	SetElideMode_TextElideMode(TextElideMode TextElideMode)
-	SetMovable_Bool(movable bool)
-	SetTabEnabled_Int_Bool(index int, enable bool)
-	SetTabText_Int_String(index int, label string)
-	SetTabToolTip_Int_String(index int, tip string)
-	SetTabWhatsThis_Int_String(index int, text string)
-	SetTabsClosable_Bool(closeable bool)
-	SetUsesScrollButtons_Bool(useButtons bool)
+	IsTabEnabled(index int) bool
+	RemoveTab(index int)
+	SetCornerWidget(widget QWidget, corner Corner)
+	SetDocumentMode(set bool)
+	SetElideMode(TextElideMode TextElideMode)
+	SetMovable(movable bool)
+	SetTabEnabled(index int, enable bool)
+	SetTabText(index int, label string)
+	SetTabToolTip(index int, tip string)
+	SetTabWhatsThis(index int, text string)
+	SetTabsClosable(closeable bool)
+	SetUsesScrollButtons(useButtons bool)
 	TabBar() QTabBar
-	TabText_Int(index int) string
-	TabToolTip_Int(index int) string
-	TabWhatsThis_Int(index int) string
+	TabText(index int) string
+	TabToolTip(index int) string
+	TabWhatsThis(index int) string
 	TabsClosable() bool
 	UsesScrollButtons() bool
-	Widget_Int(index int) QWidget
+	Widget(index int) QWidget
 	ConnectSlotSetCurrentIndex()
 	DisconnectSlotSetCurrentIndex()
-	SlotSetCurrentIndex_Int(index int)
+	SlotSetCurrentIndex(index int)
 	ConnectSignalCurrentChanged(f func())
 	DisconnectSignalCurrentChanged()
 	SignalCurrentChanged() func()
@@ -64,14 +64,14 @@ func (p *qtabwidget) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQTabWidget_QWidget(parent QWidget) QTabWidget {
-	var parentPtr C.QtObjectPtr = nil
+func NewQTabWidget(parent QWidget) QTabWidget {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qtabwidget = new(qtabwidget)
 	qtabwidget.SetPointer(C.QTabWidget_New_QWidget(parentPtr))
-	qtabwidget.SetObjectName_String("QTabWidget_" + randomIdentifier())
+	qtabwidget.SetObjectName("QTabWidget_" + randomIdentifier())
 	return qtabwidget
 }
 
@@ -83,11 +83,11 @@ func (p *qtabwidget) Destroy() {
 	}
 }
 
-func (p *qtabwidget) AddTab_QWidget_String(page QWidget, label string) int {
+func (p *qtabwidget) AddTab(page QWidget, label string) int {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var pagePtr C.QtObjectPtr = nil
+		var pagePtr C.QtObjectPtr
 		if page != nil {
 			pagePtr = page.Pointer()
 		}
@@ -101,14 +101,14 @@ func (p *qtabwidget) Clear() {
 	}
 }
 
-func (p *qtabwidget) CornerWidget_Corner(corner Corner) QWidget {
+func (p *qtabwidget) CornerWidget(corner Corner) QWidget {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QTabWidget_CornerWidget_Corner(p.Pointer(), C.int(corner)))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -117,17 +117,15 @@ func (p *qtabwidget) CornerWidget_Corner(corner Corner) QWidget {
 func (p *qtabwidget) Count() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTabWidget_Count(p.Pointer()))
 	}
+	return int(C.QTabWidget_Count(p.Pointer()))
 }
 
 func (p *qtabwidget) CurrentIndex() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTabWidget_CurrentIndex(p.Pointer()))
 	}
+	return int(C.QTabWidget_CurrentIndex(p.Pointer()))
 }
 
 func (p *qtabwidget) CurrentWidget() QWidget {
@@ -137,7 +135,7 @@ func (p *qtabwidget) CurrentWidget() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QTabWidget_CurrentWidget(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -146,24 +144,22 @@ func (p *qtabwidget) CurrentWidget() QWidget {
 func (p *qtabwidget) DocumentMode() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTabWidget_DocumentMode(p.Pointer()) != 0
 	}
+	return C.QTabWidget_DocumentMode(p.Pointer()) != 0
 }
 
 func (p *qtabwidget) ElideMode() TextElideMode {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return TextElideMode(C.QTabWidget_ElideMode(p.Pointer()))
 	}
+	return TextElideMode(C.QTabWidget_ElideMode(p.Pointer()))
 }
 
-func (p *qtabwidget) IndexOf_QWidget(w QWidget) int {
+func (p *qtabwidget) IndexOf(w QWidget) int {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var wPtr C.QtObjectPtr = nil
+		var wPtr C.QtObjectPtr
 		if w != nil {
 			wPtr = w.Pointer()
 		}
@@ -171,11 +167,11 @@ func (p *qtabwidget) IndexOf_QWidget(w QWidget) int {
 	}
 }
 
-func (p *qtabwidget) InsertTab_Int_QWidget_String(index int, page QWidget, label string) int {
+func (p *qtabwidget) InsertTab(index int, page QWidget, label string) int {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var pagePtr C.QtObjectPtr = nil
+		var pagePtr C.QtObjectPtr
 		if page != nil {
 			pagePtr = page.Pointer()
 		}
@@ -186,29 +182,26 @@ func (p *qtabwidget) InsertTab_Int_QWidget_String(index int, page QWidget, label
 func (p *qtabwidget) IsMovable() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTabWidget_IsMovable(p.Pointer()) != 0
 	}
+	return C.QTabWidget_IsMovable(p.Pointer()) != 0
 }
 
-func (p *qtabwidget) IsTabEnabled_Int(index int) bool {
+func (p *qtabwidget) IsTabEnabled(index int) bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTabWidget_IsTabEnabled_Int(p.Pointer(), C.int(index)) != 0
 	}
+	return C.QTabWidget_IsTabEnabled_Int(p.Pointer(), C.int(index)) != 0
 }
 
-func (p *qtabwidget) RemoveTab_Int(index int) {
+func (p *qtabwidget) RemoveTab(index int) {
 	if p.Pointer() != nil {
 		C.QTabWidget_RemoveTab_Int(p.Pointer(), C.int(index))
 	}
 }
 
-func (p *qtabwidget) SetCornerWidget_QWidget_Corner(widget QWidget, corner Corner) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qtabwidget) SetCornerWidget(widget QWidget, corner Corner) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -216,55 +209,55 @@ func (p *qtabwidget) SetCornerWidget_QWidget_Corner(widget QWidget, corner Corne
 	}
 }
 
-func (p *qtabwidget) SetDocumentMode_Bool(set bool) {
+func (p *qtabwidget) SetDocumentMode(set bool) {
 	if p.Pointer() != nil {
 		C.QTabWidget_SetDocumentMode_Bool(p.Pointer(), goBoolToCInt(set))
 	}
 }
 
-func (p *qtabwidget) SetElideMode_TextElideMode(TextElideMode TextElideMode) {
+func (p *qtabwidget) SetElideMode(TextElideMode TextElideMode) {
 	if p.Pointer() != nil {
 		C.QTabWidget_SetElideMode_TextElideMode(p.Pointer(), C.int(TextElideMode))
 	}
 }
 
-func (p *qtabwidget) SetMovable_Bool(movable bool) {
+func (p *qtabwidget) SetMovable(movable bool) {
 	if p.Pointer() != nil {
 		C.QTabWidget_SetMovable_Bool(p.Pointer(), goBoolToCInt(movable))
 	}
 }
 
-func (p *qtabwidget) SetTabEnabled_Int_Bool(index int, enable bool) {
+func (p *qtabwidget) SetTabEnabled(index int, enable bool) {
 	if p.Pointer() != nil {
 		C.QTabWidget_SetTabEnabled_Int_Bool(p.Pointer(), C.int(index), goBoolToCInt(enable))
 	}
 }
 
-func (p *qtabwidget) SetTabText_Int_String(index int, label string) {
+func (p *qtabwidget) SetTabText(index int, label string) {
 	if p.Pointer() != nil {
 		C.QTabWidget_SetTabText_Int_String(p.Pointer(), C.int(index), C.CString(label))
 	}
 }
 
-func (p *qtabwidget) SetTabToolTip_Int_String(index int, tip string) {
+func (p *qtabwidget) SetTabToolTip(index int, tip string) {
 	if p.Pointer() != nil {
 		C.QTabWidget_SetTabToolTip_Int_String(p.Pointer(), C.int(index), C.CString(tip))
 	}
 }
 
-func (p *qtabwidget) SetTabWhatsThis_Int_String(index int, text string) {
+func (p *qtabwidget) SetTabWhatsThis(index int, text string) {
 	if p.Pointer() != nil {
 		C.QTabWidget_SetTabWhatsThis_Int_String(p.Pointer(), C.int(index), C.CString(text))
 	}
 }
 
-func (p *qtabwidget) SetTabsClosable_Bool(closeable bool) {
+func (p *qtabwidget) SetTabsClosable(closeable bool) {
 	if p.Pointer() != nil {
 		C.QTabWidget_SetTabsClosable_Bool(p.Pointer(), goBoolToCInt(closeable))
 	}
 }
 
-func (p *qtabwidget) SetUsesScrollButtons_Bool(useButtons bool) {
+func (p *qtabwidget) SetUsesScrollButtons(useButtons bool) {
 	if p.Pointer() != nil {
 		C.QTabWidget_SetUsesScrollButtons_Bool(p.Pointer(), goBoolToCInt(useButtons))
 	}
@@ -277,60 +270,55 @@ func (p *qtabwidget) TabBar() QTabBar {
 		var qtabbar = new(qtabbar)
 		qtabbar.SetPointer(C.QTabWidget_TabBar(p.Pointer()))
 		if qtabbar.ObjectName() == "" {
-			qtabbar.SetObjectName_String("QTabBar_" + randomIdentifier())
+			qtabbar.SetObjectName("QTabBar_" + randomIdentifier())
 		}
 		return qtabbar
 	}
 }
 
-func (p *qtabwidget) TabText_Int(index int) string {
+func (p *qtabwidget) TabText(index int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTabWidget_TabText_Int(p.Pointer(), C.int(index)))
 	}
+	return C.GoString(C.QTabWidget_TabText_Int(p.Pointer(), C.int(index)))
 }
 
-func (p *qtabwidget) TabToolTip_Int(index int) string {
+func (p *qtabwidget) TabToolTip(index int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTabWidget_TabToolTip_Int(p.Pointer(), C.int(index)))
 	}
+	return C.GoString(C.QTabWidget_TabToolTip_Int(p.Pointer(), C.int(index)))
 }
 
-func (p *qtabwidget) TabWhatsThis_Int(index int) string {
+func (p *qtabwidget) TabWhatsThis(index int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTabWidget_TabWhatsThis_Int(p.Pointer(), C.int(index)))
 	}
+	return C.GoString(C.QTabWidget_TabWhatsThis_Int(p.Pointer(), C.int(index)))
 }
 
 func (p *qtabwidget) TabsClosable() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTabWidget_TabsClosable(p.Pointer()) != 0
 	}
+	return C.QTabWidget_TabsClosable(p.Pointer()) != 0
 }
 
 func (p *qtabwidget) UsesScrollButtons() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTabWidget_UsesScrollButtons(p.Pointer()) != 0
 	}
+	return C.QTabWidget_UsesScrollButtons(p.Pointer()) != 0
 }
 
-func (p *qtabwidget) Widget_Int(index int) QWidget {
+func (p *qtabwidget) Widget(index int) QWidget {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QTabWidget_Widget_Int(p.Pointer(), C.int(index)))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -344,7 +332,7 @@ func (p *qtabwidget) DisconnectSlotSetCurrentIndex() {
 	C.QTabWidget_DisconnectSlotSetCurrentIndex(p.Pointer())
 }
 
-func (p *qtabwidget) SlotSetCurrentIndex_Int(index int) {
+func (p *qtabwidget) SlotSetCurrentIndex(index int) {
 	if p.Pointer() != nil {
 		C.QTabWidget_SetCurrentIndex_Int(p.Pointer(), C.int(index))
 	}

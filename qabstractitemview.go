@@ -15,21 +15,21 @@ type QAbstractItemView interface {
 	DragDropOverwriteMode() bool
 	DragEnabled() bool
 	HasAutoScroll() bool
-	KeyboardSearch_String(search string)
+	KeyboardSearch(search string)
 	SelectionMode() SelectionMode
-	SetAlternatingRowColors_Bool(enable bool)
-	SetAutoScroll_Bool(enable bool)
-	SetAutoScrollMargin_Int(margin int)
-	SetDefaultDropAction_DropAction(dropAction DropAction)
-	SetDragDropOverwriteMode_Bool(overwrite bool)
-	SetDragEnabled_Bool(enable bool)
-	SetDropIndicatorShown_Bool(enable bool)
-	SetSelectionMode_SelectionMode(mode SelectionMode)
-	SetTabKeyNavigation_Bool(enable bool)
-	SetTextElideMode_TextElideMode(mode TextElideMode)
+	SetAlternatingRowColors(enable bool)
+	SetAutoScroll(enable bool)
+	SetAutoScrollMargin(margin int)
+	SetDefaultDropAction(dropAction DropAction)
+	SetDragDropOverwriteMode(overwrite bool)
+	SetDragEnabled(enable bool)
+	SetDropIndicatorShown(enable bool)
+	SetSelectionMode(mode SelectionMode)
+	SetTabKeyNavigation(enable bool)
+	SetTextElideMode(mode TextElideMode)
 	ShowDropIndicator() bool
-	SizeHintForColumn_Int(column int) int
-	SizeHintForRow_Int(row int) int
+	SizeHintForColumn(column int) int
+	SizeHintForRow(row int) int
 	TabKeyNavigation() bool
 	TextElideMode() TextElideMode
 	ConnectSlotClearSelection()
@@ -148,52 +148,46 @@ func (p *qabstractitemview) Destroy() {
 func (p *qabstractitemview) AlternatingRowColors() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractItemView_AlternatingRowColors(p.Pointer()) != 0
 	}
+	return C.QAbstractItemView_AlternatingRowColors(p.Pointer()) != 0
 }
 
 func (p *qabstractitemview) AutoScrollMargin() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QAbstractItemView_AutoScrollMargin(p.Pointer()))
 	}
+	return int(C.QAbstractItemView_AutoScrollMargin(p.Pointer()))
 }
 
 func (p *qabstractitemview) DefaultDropAction() DropAction {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return DropAction(C.QAbstractItemView_DefaultDropAction(p.Pointer()))
 	}
+	return DropAction(C.QAbstractItemView_DefaultDropAction(p.Pointer()))
 }
 
 func (p *qabstractitemview) DragDropOverwriteMode() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractItemView_DragDropOverwriteMode(p.Pointer()) != 0
 	}
+	return C.QAbstractItemView_DragDropOverwriteMode(p.Pointer()) != 0
 }
 
 func (p *qabstractitemview) DragEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractItemView_DragEnabled(p.Pointer()) != 0
 	}
+	return C.QAbstractItemView_DragEnabled(p.Pointer()) != 0
 }
 
 func (p *qabstractitemview) HasAutoScroll() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractItemView_HasAutoScroll(p.Pointer()) != 0
 	}
+	return C.QAbstractItemView_HasAutoScroll(p.Pointer()) != 0
 }
 
-func (p *qabstractitemview) KeyboardSearch_String(search string) {
+func (p *qabstractitemview) KeyboardSearch(search string) {
 	if p.Pointer() != nil {
 		C.QAbstractItemView_KeyboardSearch_String(p.Pointer(), C.CString(search))
 	}
@@ -202,66 +196,65 @@ func (p *qabstractitemview) KeyboardSearch_String(search string) {
 func (p *qabstractitemview) SelectionMode() SelectionMode {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return SelectionMode(C.QAbstractItemView_SelectionMode(p.Pointer()))
 	}
+	return SelectionMode(C.QAbstractItemView_SelectionMode(p.Pointer()))
 }
 
-func (p *qabstractitemview) SetAlternatingRowColors_Bool(enable bool) {
+func (p *qabstractitemview) SetAlternatingRowColors(enable bool) {
 	if p.Pointer() != nil {
 		C.QAbstractItemView_SetAlternatingRowColors_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
 }
 
-func (p *qabstractitemview) SetAutoScroll_Bool(enable bool) {
+func (p *qabstractitemview) SetAutoScroll(enable bool) {
 	if p.Pointer() != nil {
 		C.QAbstractItemView_SetAutoScroll_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
 }
 
-func (p *qabstractitemview) SetAutoScrollMargin_Int(margin int) {
+func (p *qabstractitemview) SetAutoScrollMargin(margin int) {
 	if p.Pointer() != nil {
 		C.QAbstractItemView_SetAutoScrollMargin_Int(p.Pointer(), C.int(margin))
 	}
 }
 
-func (p *qabstractitemview) SetDefaultDropAction_DropAction(dropAction DropAction) {
+func (p *qabstractitemview) SetDefaultDropAction(dropAction DropAction) {
 	if p.Pointer() != nil {
 		C.QAbstractItemView_SetDefaultDropAction_DropAction(p.Pointer(), C.int(dropAction))
 	}
 }
 
-func (p *qabstractitemview) SetDragDropOverwriteMode_Bool(overwrite bool) {
+func (p *qabstractitemview) SetDragDropOverwriteMode(overwrite bool) {
 	if p.Pointer() != nil {
 		C.QAbstractItemView_SetDragDropOverwriteMode_Bool(p.Pointer(), goBoolToCInt(overwrite))
 	}
 }
 
-func (p *qabstractitemview) SetDragEnabled_Bool(enable bool) {
+func (p *qabstractitemview) SetDragEnabled(enable bool) {
 	if p.Pointer() != nil {
 		C.QAbstractItemView_SetDragEnabled_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
 }
 
-func (p *qabstractitemview) SetDropIndicatorShown_Bool(enable bool) {
+func (p *qabstractitemview) SetDropIndicatorShown(enable bool) {
 	if p.Pointer() != nil {
 		C.QAbstractItemView_SetDropIndicatorShown_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
 }
 
-func (p *qabstractitemview) SetSelectionMode_SelectionMode(mode SelectionMode) {
+func (p *qabstractitemview) SetSelectionMode(mode SelectionMode) {
 	if p.Pointer() != nil {
 		C.QAbstractItemView_SetSelectionMode_SelectionMode(p.Pointer(), C.int(mode))
 	}
 }
 
-func (p *qabstractitemview) SetTabKeyNavigation_Bool(enable bool) {
+func (p *qabstractitemview) SetTabKeyNavigation(enable bool) {
 	if p.Pointer() != nil {
 		C.QAbstractItemView_SetTabKeyNavigation_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
 }
 
-func (p *qabstractitemview) SetTextElideMode_TextElideMode(mode TextElideMode) {
+func (p *qabstractitemview) SetTextElideMode(mode TextElideMode) {
 	if p.Pointer() != nil {
 		C.QAbstractItemView_SetTextElideMode_TextElideMode(p.Pointer(), C.int(mode))
 	}
@@ -270,41 +263,36 @@ func (p *qabstractitemview) SetTextElideMode_TextElideMode(mode TextElideMode) {
 func (p *qabstractitemview) ShowDropIndicator() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractItemView_ShowDropIndicator(p.Pointer()) != 0
 	}
+	return C.QAbstractItemView_ShowDropIndicator(p.Pointer()) != 0
 }
 
-func (p *qabstractitemview) SizeHintForColumn_Int(column int) int {
+func (p *qabstractitemview) SizeHintForColumn(column int) int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QAbstractItemView_SizeHintForColumn_Int(p.Pointer(), C.int(column)))
 	}
+	return int(C.QAbstractItemView_SizeHintForColumn_Int(p.Pointer(), C.int(column)))
 }
 
-func (p *qabstractitemview) SizeHintForRow_Int(row int) int {
+func (p *qabstractitemview) SizeHintForRow(row int) int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QAbstractItemView_SizeHintForRow_Int(p.Pointer(), C.int(row)))
 	}
+	return int(C.QAbstractItemView_SizeHintForRow_Int(p.Pointer(), C.int(row)))
 }
 
 func (p *qabstractitemview) TabKeyNavigation() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractItemView_TabKeyNavigation(p.Pointer()) != 0
 	}
+	return C.QAbstractItemView_TabKeyNavigation(p.Pointer()) != 0
 }
 
 func (p *qabstractitemview) TextElideMode() TextElideMode {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return TextElideMode(C.QAbstractItemView_TextElideMode(p.Pointer()))
 	}
+	return TextElideMode(C.QAbstractItemView_TextElideMode(p.Pointer()))
 }
 
 func (p *qabstractitemview) ConnectSlotClearSelection() {

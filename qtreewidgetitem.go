@@ -11,45 +11,45 @@ type QTreeWidgetItem interface {
 	Pointer() (ptr C.QtObjectPtr)
 	SetPointer(ptr C.QtObjectPtr)
 	Destroy()
-	AddChild_QTreeWidgetItem(child QTreeWidgetItem)
-	CheckState_Int(column int) CheckState
-	Child_Int(index int) QTreeWidgetItem
+	AddChild(child QTreeWidgetItem)
+	CheckState(column int) CheckState
+	Child(index int) QTreeWidgetItem
 	ChildCount() int
 	Clone() QTreeWidgetItem
 	ColumnCount() int
 	Flags() ItemFlag
-	IndexOfChild_QTreeWidgetItem(child QTreeWidgetItem) int
-	InsertChild_Int_QTreeWidgetItem(index int, child QTreeWidgetItem)
+	IndexOfChild(child QTreeWidgetItem) int
+	InsertChild(index int, child QTreeWidgetItem)
 	IsDisabled() bool
 	IsExpanded() bool
 	IsFirstColumnSpanned() bool
 	IsHidden() bool
 	IsSelected() bool
 	Parent() QTreeWidgetItem
-	RemoveChild_QTreeWidgetItem(child QTreeWidgetItem)
-	SetBackground_Int_QBrush(column int, brush QBrush)
-	SetCheckState_Int_CheckState(column int, state CheckState)
-	SetDisabled_Bool(disabled bool)
-	SetExpanded_Bool(expand bool)
-	SetFirstColumnSpanned_Bool(span bool)
-	SetFlags_ItemFlag(flags ItemFlag)
-	SetForeground_Int_QBrush(column int, brush QBrush)
-	SetHidden_Bool(hide bool)
-	SetSelected_Bool(selected bool)
-	SetStatusTip_Int_String(column int, statusTip string)
-	SetText_Int_String(column int, text string)
-	SetTextAlignment_Int_Int(column int, alignment int)
-	SetToolTip_Int_String(column int, toolTip string)
-	SetWhatsThis_Int_String(column int, whatsThis string)
-	SortChildren_Int_SortOrder(column int, order SortOrder)
-	StatusTip_Int(column int) string
-	TakeChild_Int(index int) QTreeWidgetItem
-	Text_Int(column int) string
-	TextAlignment_Int(column int) int
-	ToolTip_Int(column int) string
+	RemoveChild(child QTreeWidgetItem)
+	SetBackground(column int, brush QBrush)
+	SetCheckState(column int, state CheckState)
+	SetDisabled(disabled bool)
+	SetExpanded(expand bool)
+	SetFirstColumnSpanned(span bool)
+	SetFlags(flags ItemFlag)
+	SetForeground(column int, brush QBrush)
+	SetHidden(hide bool)
+	SetSelected(selected bool)
+	SetStatusTip(column int, statusTip string)
+	SetText(column int, text string)
+	SetTextAlignment(column int, alignment int)
+	SetToolTip(column int, toolTip string)
+	SetWhatsThis(column int, whatsThis string)
+	SortChildren(column int, order SortOrder)
+	StatusTip(column int) string
+	TakeChild(index int) QTreeWidgetItem
+	Text(column int) string
+	TextAlignment(column int) int
+	ToolTip(column int) string
 	TreeWidget() QTreeWidget
 	Type() int
-	WhatsThis_Int(column int) string
+	WhatsThis(column int) string
 }
 
 func (p *qtreewidgetitem) Pointer() (ptr C.QtObjectPtr) {
@@ -60,14 +60,14 @@ func (p *qtreewidgetitem) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQTreeWidgetItem_Int(typ int) QTreeWidgetItem {
+func NewQTreeWidgetItem1(typ int) QTreeWidgetItem {
 	var qtreewidgetitem = new(qtreewidgetitem)
 	qtreewidgetitem.SetPointer(C.QTreeWidgetItem_New_Int(C.int(typ)))
 	return qtreewidgetitem
 }
 
-func NewQTreeWidgetItem_QTreeWidget_Int(parent QTreeWidget, typ int) QTreeWidgetItem {
-	var parentPtr C.QtObjectPtr = nil
+func NewQTreeWidgetItem2(parent QTreeWidget, typ int) QTreeWidgetItem {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
@@ -76,12 +76,12 @@ func NewQTreeWidgetItem_QTreeWidget_Int(parent QTreeWidget, typ int) QTreeWidget
 	return qtreewidgetitem
 }
 
-func NewQTreeWidgetItem_QTreeWidget_QTreeWidgetItem_Int(parent QTreeWidget, preceding QTreeWidgetItem, typ int) QTreeWidgetItem {
-	var parentPtr C.QtObjectPtr = nil
+func NewQTreeWidgetItem3(parent QTreeWidget, preceding QTreeWidgetItem, typ int) QTreeWidgetItem {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
-	var precedingPtr C.QtObjectPtr = nil
+	var precedingPtr C.QtObjectPtr
 	if preceding != nil {
 		precedingPtr = preceding.Pointer()
 	}
@@ -90,8 +90,8 @@ func NewQTreeWidgetItem_QTreeWidget_QTreeWidgetItem_Int(parent QTreeWidget, prec
 	return qtreewidgetitem
 }
 
-func NewQTreeWidgetItem_QTreeWidgetItem_Int(parent QTreeWidgetItem, typ int) QTreeWidgetItem {
-	var parentPtr C.QtObjectPtr = nil
+func NewQTreeWidgetItem4(parent QTreeWidgetItem, typ int) QTreeWidgetItem {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
@@ -100,12 +100,12 @@ func NewQTreeWidgetItem_QTreeWidgetItem_Int(parent QTreeWidgetItem, typ int) QTr
 	return qtreewidgetitem
 }
 
-func NewQTreeWidgetItem_QTreeWidgetItem_QTreeWidgetItem_Int(parent QTreeWidgetItem, preceding QTreeWidgetItem, typ int) QTreeWidgetItem {
-	var parentPtr C.QtObjectPtr = nil
+func NewQTreeWidgetItem5(parent QTreeWidgetItem, preceding QTreeWidgetItem, typ int) QTreeWidgetItem {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
-	var precedingPtr C.QtObjectPtr = nil
+	var precedingPtr C.QtObjectPtr
 	if preceding != nil {
 		precedingPtr = preceding.Pointer()
 	}
@@ -114,8 +114,8 @@ func NewQTreeWidgetItem_QTreeWidgetItem_QTreeWidgetItem_Int(parent QTreeWidgetIt
 	return qtreewidgetitem
 }
 
-func NewQTreeWidgetItem_QTreeWidgetItem(other QTreeWidgetItem) QTreeWidgetItem {
-	var otherPtr C.QtObjectPtr = nil
+func NewQTreeWidgetItem6(other QTreeWidgetItem) QTreeWidgetItem {
+	var otherPtr C.QtObjectPtr
 	if other != nil {
 		otherPtr = other.Pointer()
 	}
@@ -131,10 +131,9 @@ func (p *qtreewidgetitem) Destroy() {
 	}
 }
 
-func (p *qtreewidgetitem) AddChild_QTreeWidgetItem(child QTreeWidgetItem) {
-	if p.Pointer() == nil {
-	} else {
-		var childPtr C.QtObjectPtr = nil
+func (p *qtreewidgetitem) AddChild(child QTreeWidgetItem) {
+	if p.Pointer() != nil {
+		var childPtr C.QtObjectPtr
 		if child != nil {
 			childPtr = child.Pointer()
 		}
@@ -142,15 +141,14 @@ func (p *qtreewidgetitem) AddChild_QTreeWidgetItem(child QTreeWidgetItem) {
 	}
 }
 
-func (p *qtreewidgetitem) CheckState_Int(column int) CheckState {
+func (p *qtreewidgetitem) CheckState(column int) CheckState {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return CheckState(C.QTreeWidgetItem_CheckState_Int(p.Pointer(), C.int(column)))
 	}
+	return CheckState(C.QTreeWidgetItem_CheckState_Int(p.Pointer(), C.int(column)))
 }
 
-func (p *qtreewidgetitem) Child_Int(index int) QTreeWidgetItem {
+func (p *qtreewidgetitem) Child(index int) QTreeWidgetItem {
 	if p.Pointer() == nil {
 		return nil
 	} else {
@@ -163,9 +161,8 @@ func (p *qtreewidgetitem) Child_Int(index int) QTreeWidgetItem {
 func (p *qtreewidgetitem) ChildCount() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTreeWidgetItem_ChildCount(p.Pointer()))
 	}
+	return int(C.QTreeWidgetItem_ChildCount(p.Pointer()))
 }
 
 func (p *qtreewidgetitem) Clone() QTreeWidgetItem {
@@ -181,24 +178,22 @@ func (p *qtreewidgetitem) Clone() QTreeWidgetItem {
 func (p *qtreewidgetitem) ColumnCount() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTreeWidgetItem_ColumnCount(p.Pointer()))
 	}
+	return int(C.QTreeWidgetItem_ColumnCount(p.Pointer()))
 }
 
 func (p *qtreewidgetitem) Flags() ItemFlag {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ItemFlag(C.QTreeWidgetItem_Flags(p.Pointer()))
 	}
+	return ItemFlag(C.QTreeWidgetItem_Flags(p.Pointer()))
 }
 
-func (p *qtreewidgetitem) IndexOfChild_QTreeWidgetItem(child QTreeWidgetItem) int {
+func (p *qtreewidgetitem) IndexOfChild(child QTreeWidgetItem) int {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var childPtr C.QtObjectPtr = nil
+		var childPtr C.QtObjectPtr
 		if child != nil {
 			childPtr = child.Pointer()
 		}
@@ -206,10 +201,9 @@ func (p *qtreewidgetitem) IndexOfChild_QTreeWidgetItem(child QTreeWidgetItem) in
 	}
 }
 
-func (p *qtreewidgetitem) InsertChild_Int_QTreeWidgetItem(index int, child QTreeWidgetItem) {
-	if p.Pointer() == nil {
-	} else {
-		var childPtr C.QtObjectPtr = nil
+func (p *qtreewidgetitem) InsertChild(index int, child QTreeWidgetItem) {
+	if p.Pointer() != nil {
+		var childPtr C.QtObjectPtr
 		if child != nil {
 			childPtr = child.Pointer()
 		}
@@ -220,41 +214,36 @@ func (p *qtreewidgetitem) InsertChild_Int_QTreeWidgetItem(index int, child QTree
 func (p *qtreewidgetitem) IsDisabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTreeWidgetItem_IsDisabled(p.Pointer()) != 0
 	}
+	return C.QTreeWidgetItem_IsDisabled(p.Pointer()) != 0
 }
 
 func (p *qtreewidgetitem) IsExpanded() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTreeWidgetItem_IsExpanded(p.Pointer()) != 0
 	}
+	return C.QTreeWidgetItem_IsExpanded(p.Pointer()) != 0
 }
 
 func (p *qtreewidgetitem) IsFirstColumnSpanned() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTreeWidgetItem_IsFirstColumnSpanned(p.Pointer()) != 0
 	}
+	return C.QTreeWidgetItem_IsFirstColumnSpanned(p.Pointer()) != 0
 }
 
 func (p *qtreewidgetitem) IsHidden() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTreeWidgetItem_IsHidden(p.Pointer()) != 0
 	}
+	return C.QTreeWidgetItem_IsHidden(p.Pointer()) != 0
 }
 
 func (p *qtreewidgetitem) IsSelected() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTreeWidgetItem_IsSelected(p.Pointer()) != 0
 	}
+	return C.QTreeWidgetItem_IsSelected(p.Pointer()) != 0
 }
 
 func (p *qtreewidgetitem) Parent() QTreeWidgetItem {
@@ -267,10 +256,9 @@ func (p *qtreewidgetitem) Parent() QTreeWidgetItem {
 	}
 }
 
-func (p *qtreewidgetitem) RemoveChild_QTreeWidgetItem(child QTreeWidgetItem) {
-	if p.Pointer() == nil {
-	} else {
-		var childPtr C.QtObjectPtr = nil
+func (p *qtreewidgetitem) RemoveChild(child QTreeWidgetItem) {
+	if p.Pointer() != nil {
+		var childPtr C.QtObjectPtr
 		if child != nil {
 			childPtr = child.Pointer()
 		}
@@ -278,10 +266,9 @@ func (p *qtreewidgetitem) RemoveChild_QTreeWidgetItem(child QTreeWidgetItem) {
 	}
 }
 
-func (p *qtreewidgetitem) SetBackground_Int_QBrush(column int, brush QBrush) {
-	if p.Pointer() == nil {
-	} else {
-		var brushPtr C.QtObjectPtr = nil
+func (p *qtreewidgetitem) SetBackground(column int, brush QBrush) {
+	if p.Pointer() != nil {
+		var brushPtr C.QtObjectPtr
 		if brush != nil {
 			brushPtr = brush.Pointer()
 		}
@@ -289,40 +276,39 @@ func (p *qtreewidgetitem) SetBackground_Int_QBrush(column int, brush QBrush) {
 	}
 }
 
-func (p *qtreewidgetitem) SetCheckState_Int_CheckState(column int, state CheckState) {
+func (p *qtreewidgetitem) SetCheckState(column int, state CheckState) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SetCheckState_Int_CheckState(p.Pointer(), C.int(column), C.int(state))
 	}
 }
 
-func (p *qtreewidgetitem) SetDisabled_Bool(disabled bool) {
+func (p *qtreewidgetitem) SetDisabled(disabled bool) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SetDisabled_Bool(p.Pointer(), goBoolToCInt(disabled))
 	}
 }
 
-func (p *qtreewidgetitem) SetExpanded_Bool(expand bool) {
+func (p *qtreewidgetitem) SetExpanded(expand bool) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SetExpanded_Bool(p.Pointer(), goBoolToCInt(expand))
 	}
 }
 
-func (p *qtreewidgetitem) SetFirstColumnSpanned_Bool(span bool) {
+func (p *qtreewidgetitem) SetFirstColumnSpanned(span bool) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SetFirstColumnSpanned_Bool(p.Pointer(), goBoolToCInt(span))
 	}
 }
 
-func (p *qtreewidgetitem) SetFlags_ItemFlag(flags ItemFlag) {
+func (p *qtreewidgetitem) SetFlags(flags ItemFlag) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SetFlags_ItemFlag(p.Pointer(), C.int(flags))
 	}
 }
 
-func (p *qtreewidgetitem) SetForeground_Int_QBrush(column int, brush QBrush) {
-	if p.Pointer() == nil {
-	} else {
-		var brushPtr C.QtObjectPtr = nil
+func (p *qtreewidgetitem) SetForeground(column int, brush QBrush) {
+	if p.Pointer() != nil {
+		var brushPtr C.QtObjectPtr
 		if brush != nil {
 			brushPtr = brush.Pointer()
 		}
@@ -330,63 +316,62 @@ func (p *qtreewidgetitem) SetForeground_Int_QBrush(column int, brush QBrush) {
 	}
 }
 
-func (p *qtreewidgetitem) SetHidden_Bool(hide bool) {
+func (p *qtreewidgetitem) SetHidden(hide bool) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SetHidden_Bool(p.Pointer(), goBoolToCInt(hide))
 	}
 }
 
-func (p *qtreewidgetitem) SetSelected_Bool(selected bool) {
+func (p *qtreewidgetitem) SetSelected(selected bool) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SetSelected_Bool(p.Pointer(), goBoolToCInt(selected))
 	}
 }
 
-func (p *qtreewidgetitem) SetStatusTip_Int_String(column int, statusTip string) {
+func (p *qtreewidgetitem) SetStatusTip(column int, statusTip string) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SetStatusTip_Int_String(p.Pointer(), C.int(column), C.CString(statusTip))
 	}
 }
 
-func (p *qtreewidgetitem) SetText_Int_String(column int, text string) {
+func (p *qtreewidgetitem) SetText(column int, text string) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SetText_Int_String(p.Pointer(), C.int(column), C.CString(text))
 	}
 }
 
-func (p *qtreewidgetitem) SetTextAlignment_Int_Int(column int, alignment int) {
+func (p *qtreewidgetitem) SetTextAlignment(column int, alignment int) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SetTextAlignment_Int_Int(p.Pointer(), C.int(column), C.int(alignment))
 	}
 }
 
-func (p *qtreewidgetitem) SetToolTip_Int_String(column int, toolTip string) {
+func (p *qtreewidgetitem) SetToolTip(column int, toolTip string) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SetToolTip_Int_String(p.Pointer(), C.int(column), C.CString(toolTip))
 	}
 }
 
-func (p *qtreewidgetitem) SetWhatsThis_Int_String(column int, whatsThis string) {
+func (p *qtreewidgetitem) SetWhatsThis(column int, whatsThis string) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SetWhatsThis_Int_String(p.Pointer(), C.int(column), C.CString(whatsThis))
 	}
 }
 
-func (p *qtreewidgetitem) SortChildren_Int_SortOrder(column int, order SortOrder) {
+func (p *qtreewidgetitem) SortChildren(column int, order SortOrder) {
 	if p.Pointer() != nil {
 		C.QTreeWidgetItem_SortChildren_Int_SortOrder(p.Pointer(), C.int(column), C.int(order))
 	}
 }
 
-func (p *qtreewidgetitem) StatusTip_Int(column int) string {
+func (p *qtreewidgetitem) StatusTip(column int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTreeWidgetItem_StatusTip_Int(p.Pointer(), C.int(column)))
 	}
+	return C.GoString(C.QTreeWidgetItem_StatusTip_Int(p.Pointer(), C.int(column)))
 }
 
-func (p *qtreewidgetitem) TakeChild_Int(index int) QTreeWidgetItem {
+func (p *qtreewidgetitem) TakeChild(index int) QTreeWidgetItem {
 	if p.Pointer() == nil {
 		return nil
 	} else {
@@ -396,28 +381,25 @@ func (p *qtreewidgetitem) TakeChild_Int(index int) QTreeWidgetItem {
 	}
 }
 
-func (p *qtreewidgetitem) Text_Int(column int) string {
+func (p *qtreewidgetitem) Text(column int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTreeWidgetItem_Text_Int(p.Pointer(), C.int(column)))
 	}
+	return C.GoString(C.QTreeWidgetItem_Text_Int(p.Pointer(), C.int(column)))
 }
 
-func (p *qtreewidgetitem) TextAlignment_Int(column int) int {
+func (p *qtreewidgetitem) TextAlignment(column int) int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTreeWidgetItem_TextAlignment_Int(p.Pointer(), C.int(column)))
 	}
+	return int(C.QTreeWidgetItem_TextAlignment_Int(p.Pointer(), C.int(column)))
 }
 
-func (p *qtreewidgetitem) ToolTip_Int(column int) string {
+func (p *qtreewidgetitem) ToolTip(column int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTreeWidgetItem_ToolTip_Int(p.Pointer(), C.int(column)))
 	}
+	return C.GoString(C.QTreeWidgetItem_ToolTip_Int(p.Pointer(), C.int(column)))
 }
 
 func (p *qtreewidgetitem) TreeWidget() QTreeWidget {
@@ -427,7 +409,7 @@ func (p *qtreewidgetitem) TreeWidget() QTreeWidget {
 		var qtreewidget = new(qtreewidget)
 		qtreewidget.SetPointer(C.QTreeWidgetItem_TreeWidget(p.Pointer()))
 		if qtreewidget.ObjectName() == "" {
-			qtreewidget.SetObjectName_String("QTreeWidget_" + randomIdentifier())
+			qtreewidget.SetObjectName("QTreeWidget_" + randomIdentifier())
 		}
 		return qtreewidget
 	}
@@ -436,15 +418,13 @@ func (p *qtreewidgetitem) TreeWidget() QTreeWidget {
 func (p *qtreewidgetitem) Type() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTreeWidgetItem_Type(p.Pointer()))
 	}
+	return int(C.QTreeWidgetItem_Type(p.Pointer()))
 }
 
-func (p *qtreewidgetitem) WhatsThis_Int(column int) string {
+func (p *qtreewidgetitem) WhatsThis(column int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTreeWidgetItem_WhatsThis_Int(p.Pointer(), C.int(column)))
 	}
+	return C.GoString(C.QTreeWidgetItem_WhatsThis_Int(p.Pointer(), C.int(column)))
 }

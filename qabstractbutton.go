@@ -16,23 +16,23 @@ type QAbstractButton interface {
 	IsCheckable() bool
 	IsChecked() bool
 	IsDown() bool
-	SetAutoExclusive_Bool(autoExclusive bool)
-	SetAutoRepeat_Bool(autoRepeat bool)
-	SetAutoRepeatDelay_Int(autoRepeatDelay int)
-	SetAutoRepeatInterval_Int(autoRepeatInterval int)
-	SetCheckable_Bool(checkable bool)
-	SetDown_Bool(down bool)
-	SetText_String(text string)
+	SetAutoExclusive(autoExclusive bool)
+	SetAutoRepeat(autoRepeat bool)
+	SetAutoRepeatDelay(autoRepeatDelay int)
+	SetAutoRepeatInterval(autoRepeatInterval int)
+	SetCheckable(checkable bool)
+	SetDown(down bool)
+	SetText(text string)
 	Text() string
 	ConnectSlotAnimateClick()
 	DisconnectSlotAnimateClick()
-	SlotAnimateClick_Int(msec int)
+	SlotAnimateClick(msec int)
 	ConnectSlotClick()
 	DisconnectSlotClick()
 	SlotClick()
 	ConnectSlotSetChecked()
 	DisconnectSlotSetChecked()
-	SlotSetChecked_Bool(checked bool)
+	SlotSetChecked(checked bool)
 	ConnectSlotToggle()
 	DisconnectSlotToggle()
 	SlotToggle()
@@ -69,96 +69,89 @@ func (p *qabstractbutton) Destroy() {
 func (p *qabstractbutton) AutoExclusive() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractButton_AutoExclusive(p.Pointer()) != 0
 	}
+	return C.QAbstractButton_AutoExclusive(p.Pointer()) != 0
 }
 
 func (p *qabstractbutton) AutoRepeat() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractButton_AutoRepeat(p.Pointer()) != 0
 	}
+	return C.QAbstractButton_AutoRepeat(p.Pointer()) != 0
 }
 
 func (p *qabstractbutton) AutoRepeatDelay() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QAbstractButton_AutoRepeatDelay(p.Pointer()))
 	}
+	return int(C.QAbstractButton_AutoRepeatDelay(p.Pointer()))
 }
 
 func (p *qabstractbutton) AutoRepeatInterval() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QAbstractButton_AutoRepeatInterval(p.Pointer()))
 	}
+	return int(C.QAbstractButton_AutoRepeatInterval(p.Pointer()))
 }
 
 func (p *qabstractbutton) IsCheckable() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractButton_IsCheckable(p.Pointer()) != 0
 	}
+	return C.QAbstractButton_IsCheckable(p.Pointer()) != 0
 }
 
 func (p *qabstractbutton) IsChecked() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractButton_IsChecked(p.Pointer()) != 0
 	}
+	return C.QAbstractButton_IsChecked(p.Pointer()) != 0
 }
 
 func (p *qabstractbutton) IsDown() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractButton_IsDown(p.Pointer()) != 0
 	}
+	return C.QAbstractButton_IsDown(p.Pointer()) != 0
 }
 
-func (p *qabstractbutton) SetAutoExclusive_Bool(autoExclusive bool) {
+func (p *qabstractbutton) SetAutoExclusive(autoExclusive bool) {
 	if p.Pointer() != nil {
 		C.QAbstractButton_SetAutoExclusive_Bool(p.Pointer(), goBoolToCInt(autoExclusive))
 	}
 }
 
-func (p *qabstractbutton) SetAutoRepeat_Bool(autoRepeat bool) {
+func (p *qabstractbutton) SetAutoRepeat(autoRepeat bool) {
 	if p.Pointer() != nil {
 		C.QAbstractButton_SetAutoRepeat_Bool(p.Pointer(), goBoolToCInt(autoRepeat))
 	}
 }
 
-func (p *qabstractbutton) SetAutoRepeatDelay_Int(autoRepeatDelay int) {
+func (p *qabstractbutton) SetAutoRepeatDelay(autoRepeatDelay int) {
 	if p.Pointer() != nil {
 		C.QAbstractButton_SetAutoRepeatDelay_Int(p.Pointer(), C.int(autoRepeatDelay))
 	}
 }
 
-func (p *qabstractbutton) SetAutoRepeatInterval_Int(autoRepeatInterval int) {
+func (p *qabstractbutton) SetAutoRepeatInterval(autoRepeatInterval int) {
 	if p.Pointer() != nil {
 		C.QAbstractButton_SetAutoRepeatInterval_Int(p.Pointer(), C.int(autoRepeatInterval))
 	}
 }
 
-func (p *qabstractbutton) SetCheckable_Bool(checkable bool) {
+func (p *qabstractbutton) SetCheckable(checkable bool) {
 	if p.Pointer() != nil {
 		C.QAbstractButton_SetCheckable_Bool(p.Pointer(), goBoolToCInt(checkable))
 	}
 }
 
-func (p *qabstractbutton) SetDown_Bool(down bool) {
+func (p *qabstractbutton) SetDown(down bool) {
 	if p.Pointer() != nil {
 		C.QAbstractButton_SetDown_Bool(p.Pointer(), goBoolToCInt(down))
 	}
 }
 
-func (p *qabstractbutton) SetText_String(text string) {
+func (p *qabstractbutton) SetText(text string) {
 	if p.Pointer() != nil {
 		C.QAbstractButton_SetText_String(p.Pointer(), C.CString(text))
 	}
@@ -167,9 +160,8 @@ func (p *qabstractbutton) SetText_String(text string) {
 func (p *qabstractbutton) Text() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QAbstractButton_Text(p.Pointer()))
 	}
+	return C.GoString(C.QAbstractButton_Text(p.Pointer()))
 }
 
 func (p *qabstractbutton) ConnectSlotAnimateClick() {
@@ -180,7 +172,7 @@ func (p *qabstractbutton) DisconnectSlotAnimateClick() {
 	C.QAbstractButton_DisconnectSlotAnimateClick(p.Pointer())
 }
 
-func (p *qabstractbutton) SlotAnimateClick_Int(msec int) {
+func (p *qabstractbutton) SlotAnimateClick(msec int) {
 	if p.Pointer() != nil {
 		C.QAbstractButton_AnimateClick_Int(p.Pointer(), C.int(msec))
 	}
@@ -208,7 +200,7 @@ func (p *qabstractbutton) DisconnectSlotSetChecked() {
 	C.QAbstractButton_DisconnectSlotSetChecked(p.Pointer())
 }
 
-func (p *qabstractbutton) SlotSetChecked_Bool(checked bool) {
+func (p *qabstractbutton) SlotSetChecked(checked bool) {
 	if p.Pointer() != nil {
 		C.QAbstractButton_SetChecked_Bool(p.Pointer(), goBoolToCInt(checked))
 	}

@@ -9,37 +9,37 @@ type qtabbar struct {
 
 type QTabBar interface {
 	QWidget
-	AddTab_String(text string) int
+	AddTab(text string) int
 	Count() int
 	CurrentIndex() int
 	DocumentMode() bool
 	DrawBase() bool
 	ElideMode() TextElideMode
 	Expanding() bool
-	InsertTab_Int_String(index int, text string) int
+	InsertTab(index int, text string) int
 	IsMovable() bool
-	IsTabEnabled_Int(index int) bool
-	MoveTab_Int_Int(from int, to int)
-	RemoveTab_Int(index int)
-	SetDocumentMode_Bool(set bool)
-	SetDrawBase_Bool(drawTheBase bool)
-	SetElideMode_TextElideMode(TextElideMode TextElideMode)
-	SetExpanding_Bool(enabled bool)
-	SetMovable_Bool(movable bool)
-	SetTabEnabled_Int_Bool(index int, enabled bool)
-	SetTabText_Int_String(index int, text string)
-	SetTabToolTip_Int_String(index int, tip string)
-	SetTabWhatsThis_Int_String(index int, text string)
-	SetTabsClosable_Bool(closable bool)
-	SetUsesScrollButtons_Bool(useButtons bool)
-	TabText_Int(index int) string
-	TabToolTip_Int(index int) string
-	TabWhatsThis_Int(index int) string
+	IsTabEnabled(index int) bool
+	MoveTab(from int, to int)
+	RemoveTab(index int)
+	SetDocumentMode(set bool)
+	SetDrawBase(drawTheBase bool)
+	SetElideMode(TextElideMode TextElideMode)
+	SetExpanding(enabled bool)
+	SetMovable(movable bool)
+	SetTabEnabled(index int, enabled bool)
+	SetTabText(index int, text string)
+	SetTabToolTip(index int, tip string)
+	SetTabWhatsThis(index int, text string)
+	SetTabsClosable(closable bool)
+	SetUsesScrollButtons(useButtons bool)
+	TabText(index int) string
+	TabToolTip(index int) string
+	TabWhatsThis(index int) string
 	TabsClosable() bool
 	UsesScrollButtons() bool
 	ConnectSlotSetCurrentIndex()
 	DisconnectSlotSetCurrentIndex()
-	SlotSetCurrentIndex_Int(index int)
+	SlotSetCurrentIndex(index int)
 	ConnectSignalCurrentChanged(f func())
 	DisconnectSignalCurrentChanged()
 	SignalCurrentChanged() func()
@@ -65,14 +65,14 @@ func (p *qtabbar) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQTabBar_QWidget(parent QWidget) QTabBar {
-	var parentPtr C.QtObjectPtr = nil
+func NewQTabBar(parent QWidget) QTabBar {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qtabbar = new(qtabbar)
 	qtabbar.SetPointer(C.QTabBar_New_QWidget(parentPtr))
-	qtabbar.SetObjectName_String("QTabBar_" + randomIdentifier())
+	qtabbar.SetObjectName("QTabBar_" + randomIdentifier())
 	return qtabbar
 }
 
@@ -84,202 +84,187 @@ func (p *qtabbar) Destroy() {
 	}
 }
 
-func (p *qtabbar) AddTab_String(text string) int {
+func (p *qtabbar) AddTab(text string) int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTabBar_AddTab_String(p.Pointer(), C.CString(text)))
 	}
+	return int(C.QTabBar_AddTab_String(p.Pointer(), C.CString(text)))
 }
 
 func (p *qtabbar) Count() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTabBar_Count(p.Pointer()))
 	}
+	return int(C.QTabBar_Count(p.Pointer()))
 }
 
 func (p *qtabbar) CurrentIndex() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTabBar_CurrentIndex(p.Pointer()))
 	}
+	return int(C.QTabBar_CurrentIndex(p.Pointer()))
 }
 
 func (p *qtabbar) DocumentMode() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTabBar_DocumentMode(p.Pointer()) != 0
 	}
+	return C.QTabBar_DocumentMode(p.Pointer()) != 0
 }
 
 func (p *qtabbar) DrawBase() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTabBar_DrawBase(p.Pointer()) != 0
 	}
+	return C.QTabBar_DrawBase(p.Pointer()) != 0
 }
 
 func (p *qtabbar) ElideMode() TextElideMode {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return TextElideMode(C.QTabBar_ElideMode(p.Pointer()))
 	}
+	return TextElideMode(C.QTabBar_ElideMode(p.Pointer()))
 }
 
 func (p *qtabbar) Expanding() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTabBar_Expanding(p.Pointer()) != 0
 	}
+	return C.QTabBar_Expanding(p.Pointer()) != 0
 }
 
-func (p *qtabbar) InsertTab_Int_String(index int, text string) int {
+func (p *qtabbar) InsertTab(index int, text string) int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTabBar_InsertTab_Int_String(p.Pointer(), C.int(index), C.CString(text)))
 	}
+	return int(C.QTabBar_InsertTab_Int_String(p.Pointer(), C.int(index), C.CString(text)))
 }
 
 func (p *qtabbar) IsMovable() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTabBar_IsMovable(p.Pointer()) != 0
 	}
+	return C.QTabBar_IsMovable(p.Pointer()) != 0
 }
 
-func (p *qtabbar) IsTabEnabled_Int(index int) bool {
+func (p *qtabbar) IsTabEnabled(index int) bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTabBar_IsTabEnabled_Int(p.Pointer(), C.int(index)) != 0
 	}
+	return C.QTabBar_IsTabEnabled_Int(p.Pointer(), C.int(index)) != 0
 }
 
-func (p *qtabbar) MoveTab_Int_Int(from int, to int) {
+func (p *qtabbar) MoveTab(from int, to int) {
 	if p.Pointer() != nil {
 		C.QTabBar_MoveTab_Int_Int(p.Pointer(), C.int(from), C.int(to))
 	}
 }
 
-func (p *qtabbar) RemoveTab_Int(index int) {
+func (p *qtabbar) RemoveTab(index int) {
 	if p.Pointer() != nil {
 		C.QTabBar_RemoveTab_Int(p.Pointer(), C.int(index))
 	}
 }
 
-func (p *qtabbar) SetDocumentMode_Bool(set bool) {
+func (p *qtabbar) SetDocumentMode(set bool) {
 	if p.Pointer() != nil {
 		C.QTabBar_SetDocumentMode_Bool(p.Pointer(), goBoolToCInt(set))
 	}
 }
 
-func (p *qtabbar) SetDrawBase_Bool(drawTheBase bool) {
+func (p *qtabbar) SetDrawBase(drawTheBase bool) {
 	if p.Pointer() != nil {
 		C.QTabBar_SetDrawBase_Bool(p.Pointer(), goBoolToCInt(drawTheBase))
 	}
 }
 
-func (p *qtabbar) SetElideMode_TextElideMode(TextElideMode TextElideMode) {
+func (p *qtabbar) SetElideMode(TextElideMode TextElideMode) {
 	if p.Pointer() != nil {
 		C.QTabBar_SetElideMode_TextElideMode(p.Pointer(), C.int(TextElideMode))
 	}
 }
 
-func (p *qtabbar) SetExpanding_Bool(enabled bool) {
+func (p *qtabbar) SetExpanding(enabled bool) {
 	if p.Pointer() != nil {
 		C.QTabBar_SetExpanding_Bool(p.Pointer(), goBoolToCInt(enabled))
 	}
 }
 
-func (p *qtabbar) SetMovable_Bool(movable bool) {
+func (p *qtabbar) SetMovable(movable bool) {
 	if p.Pointer() != nil {
 		C.QTabBar_SetMovable_Bool(p.Pointer(), goBoolToCInt(movable))
 	}
 }
 
-func (p *qtabbar) SetTabEnabled_Int_Bool(index int, enabled bool) {
+func (p *qtabbar) SetTabEnabled(index int, enabled bool) {
 	if p.Pointer() != nil {
 		C.QTabBar_SetTabEnabled_Int_Bool(p.Pointer(), C.int(index), goBoolToCInt(enabled))
 	}
 }
 
-func (p *qtabbar) SetTabText_Int_String(index int, text string) {
+func (p *qtabbar) SetTabText(index int, text string) {
 	if p.Pointer() != nil {
 		C.QTabBar_SetTabText_Int_String(p.Pointer(), C.int(index), C.CString(text))
 	}
 }
 
-func (p *qtabbar) SetTabToolTip_Int_String(index int, tip string) {
+func (p *qtabbar) SetTabToolTip(index int, tip string) {
 	if p.Pointer() != nil {
 		C.QTabBar_SetTabToolTip_Int_String(p.Pointer(), C.int(index), C.CString(tip))
 	}
 }
 
-func (p *qtabbar) SetTabWhatsThis_Int_String(index int, text string) {
+func (p *qtabbar) SetTabWhatsThis(index int, text string) {
 	if p.Pointer() != nil {
 		C.QTabBar_SetTabWhatsThis_Int_String(p.Pointer(), C.int(index), C.CString(text))
 	}
 }
 
-func (p *qtabbar) SetTabsClosable_Bool(closable bool) {
+func (p *qtabbar) SetTabsClosable(closable bool) {
 	if p.Pointer() != nil {
 		C.QTabBar_SetTabsClosable_Bool(p.Pointer(), goBoolToCInt(closable))
 	}
 }
 
-func (p *qtabbar) SetUsesScrollButtons_Bool(useButtons bool) {
+func (p *qtabbar) SetUsesScrollButtons(useButtons bool) {
 	if p.Pointer() != nil {
 		C.QTabBar_SetUsesScrollButtons_Bool(p.Pointer(), goBoolToCInt(useButtons))
 	}
 }
 
-func (p *qtabbar) TabText_Int(index int) string {
+func (p *qtabbar) TabText(index int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTabBar_TabText_Int(p.Pointer(), C.int(index)))
 	}
+	return C.GoString(C.QTabBar_TabText_Int(p.Pointer(), C.int(index)))
 }
 
-func (p *qtabbar) TabToolTip_Int(index int) string {
+func (p *qtabbar) TabToolTip(index int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTabBar_TabToolTip_Int(p.Pointer(), C.int(index)))
 	}
+	return C.GoString(C.QTabBar_TabToolTip_Int(p.Pointer(), C.int(index)))
 }
 
-func (p *qtabbar) TabWhatsThis_Int(index int) string {
+func (p *qtabbar) TabWhatsThis(index int) string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTabBar_TabWhatsThis_Int(p.Pointer(), C.int(index)))
 	}
+	return C.GoString(C.QTabBar_TabWhatsThis_Int(p.Pointer(), C.int(index)))
 }
 
 func (p *qtabbar) TabsClosable() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTabBar_TabsClosable(p.Pointer()) != 0
 	}
+	return C.QTabBar_TabsClosable(p.Pointer()) != 0
 }
 
 func (p *qtabbar) UsesScrollButtons() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTabBar_UsesScrollButtons(p.Pointer()) != 0
 	}
+	return C.QTabBar_UsesScrollButtons(p.Pointer()) != 0
 }
 
 func (p *qtabbar) ConnectSlotSetCurrentIndex() {
@@ -290,7 +275,7 @@ func (p *qtabbar) DisconnectSlotSetCurrentIndex() {
 	C.QTabBar_DisconnectSlotSetCurrentIndex(p.Pointer())
 }
 
-func (p *qtabbar) SlotSetCurrentIndex_Int(index int) {
+func (p *qtabbar) SlotSetCurrentIndex(index int) {
 	if p.Pointer() != nil {
 		C.QTabBar_SetCurrentIndex_Int(p.Pointer(), C.int(index))
 	}

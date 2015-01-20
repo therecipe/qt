@@ -35,10 +35,10 @@ func (p *qguiapplication) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQGuiApplication_Int_String(argc int, argv string) QGuiApplication {
+func NewQGuiApplication(argc int, argv string) QGuiApplication {
 	var qguiapplication = new(qguiapplication)
 	qguiapplication.SetPointer(C.QGuiApplication_New_Int_String(C.int(argc), C.CString(argv)))
-	qguiapplication.SetObjectName_String("QGuiApplication_" + randomIdentifier())
+	qguiapplication.SetObjectName("QGuiApplication_" + randomIdentifier())
 	return qguiapplication
 }
 
@@ -53,33 +53,29 @@ func (p *qguiapplication) Destroy() {
 func (p *qguiapplication) IsSavingSession() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QGuiApplication_IsSavingSession(p.Pointer()) != 0
 	}
+	return C.QGuiApplication_IsSavingSession(p.Pointer()) != 0
 }
 
 func (p *qguiapplication) IsSessionRestored() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QGuiApplication_IsSessionRestored(p.Pointer()) != 0
 	}
+	return C.QGuiApplication_IsSessionRestored(p.Pointer()) != 0
 }
 
 func (p *qguiapplication) SessionId() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QGuiApplication_SessionId(p.Pointer()))
 	}
+	return C.GoString(C.QGuiApplication_SessionId(p.Pointer()))
 }
 
 func (p *qguiapplication) SessionKey() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QGuiApplication_SessionKey(p.Pointer()))
 	}
+	return C.GoString(C.QGuiApplication_SessionKey(p.Pointer()))
 }
 
 func (p *qguiapplication) ConnectSignalApplicationStateChanged(f func()) {
@@ -154,7 +150,7 @@ func QGuiApplication_FocusObject() QObject {
 	var qobject = new(qobject)
 	qobject.SetPointer(C.QGuiApplication_FocusObject())
 	if qobject.ObjectName() == "" {
-		qobject.SetObjectName_String("QObject_" + randomIdentifier())
+		qobject.SetObjectName("QObject_" + randomIdentifier())
 	}
 	return qobject
 }
@@ -191,19 +187,19 @@ func QGuiApplication_QuitOnLastWindowClosed() bool {
 	return C.QGuiApplication_QuitOnLastWindowClosed() != 0
 }
 
-func QGuiApplication_SetApplicationDisplayName_String(name string) {
+func QGuiApplication_SetApplicationDisplayName(name string) {
 	C.QGuiApplication_SetApplicationDisplayName_String(C.CString(name))
 }
 
-func QGuiApplication_SetDesktopSettingsAware_Bool(on bool) {
+func QGuiApplication_SetDesktopSettingsAware(on bool) {
 	C.QGuiApplication_SetDesktopSettingsAware_Bool(goBoolToCInt(on))
 }
 
-func QGuiApplication_SetLayoutDirection_LayoutDirection(direction LayoutDirection) {
+func QGuiApplication_SetLayoutDirection(direction LayoutDirection) {
 	C.QGuiApplication_SetLayoutDirection_LayoutDirection(C.int(direction))
 }
 
-func QGuiApplication_SetQuitOnLastWindowClosed_Bool(quit bool) {
+func QGuiApplication_SetQuitOnLastWindowClosed(quit bool) {
 	C.QGuiApplication_SetQuitOnLastWindowClosed_Bool(goBoolToCInt(quit))
 }
 

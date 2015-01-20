@@ -60,11 +60,11 @@ var (
 	LOCALEAWARE = SortFlag(C.QDir_LocaleAware())
 )
 
-func QDir_AddSearchPath_String_String(prefix string, path string) {
+func QDir_AddSearchPath(prefix string, path string) {
 	C.QDir_AddSearchPath_String_String(C.CString(prefix), C.CString(path))
 }
 
-func QDir_CleanPath_String(path string) string {
+func QDir_CleanPath(path string) string {
 	return C.GoString(C.QDir_CleanPath_String(C.CString(path)))
 }
 
@@ -72,7 +72,7 @@ func QDir_CurrentPath() string {
 	return C.GoString(C.QDir_CurrentPath())
 }
 
-func QDir_FromNativeSeparators_String(pathName string) string {
+func QDir_FromNativeSeparators(pathName string) string {
 	return C.GoString(C.QDir_FromNativeSeparators_String(C.CString(pathName)))
 }
 
@@ -80,19 +80,19 @@ func QDir_HomePath() string {
 	return C.GoString(C.QDir_HomePath())
 }
 
-func QDir_IsAbsolutePath_String(path string) bool {
+func QDir_IsAbsolutePath(path string) bool {
 	return C.QDir_IsAbsolutePath_String(C.CString(path)) != 0
 }
 
-func QDir_IsRelativePath_String(path string) bool {
+func QDir_IsRelativePath(path string) bool {
 	return C.QDir_IsRelativePath_String(C.CString(path)) != 0
 }
 
-func QDir_Match_String_String(filter string, fileName string) bool {
+func QDir_Match1(filter string, fileName string) bool {
 	return C.QDir_Match_String_String(C.CString(filter), C.CString(fileName)) != 0
 }
 
-func QDir_Match_QStringList_String(filters []string, fileName string) bool {
+func QDir_Match2(filters []string, fileName string) bool {
 	return C.QDir_Match_QStringList_String(C.CString(strings.Join(filters, "|")),
 		C.CString(fileName)) != 0
 }
@@ -101,15 +101,15 @@ func QDir_RootPath() string {
 	return C.GoString(C.QDir_RootPath())
 }
 
-func QDir_SearchPaths_String(prefix string) []string {
+func QDir_SearchPaths(prefix string) []string {
 	return strings.Split(C.GoString(C.QDir_SearchPaths_String(C.CString(prefix))), "|")
 }
 
-func QDir_SetCurrent_String(path string) bool {
+func QDir_SetCurrent(path string) bool {
 	return C.QDir_SetCurrent_String(C.CString(path)) != 0
 }
 
-func QDir_SetSearchPaths_String_QStringList(prefix string, searchPaths []string) {
+func QDir_SetSearchPaths(prefix string, searchPaths []string) {
 	C.QDir_SetSearchPaths_String_QStringList(C.CString(prefix), C.CString(strings.Join(searchPaths, "|")))
 }
 
@@ -117,6 +117,6 @@ func QDir_TempPath() string {
 	return C.GoString(C.QDir_TempPath())
 }
 
-func QDir_ToNativeSeparators_String(pathName string) string {
+func QDir_ToNativeSeparators(pathName string) string {
 	return C.GoString(C.QDir_ToNativeSeparators_String(C.CString(pathName)))
 }

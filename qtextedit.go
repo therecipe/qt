@@ -25,17 +25,17 @@ type QTextEdit interface {
 	LineWrapColumnOrWidth() int
 	OverwriteMode() bool
 	PlaceholderText() string
-	SetAcceptRichText_Bool(accept bool)
-	SetCursorWidth_Int(width int)
-	SetDocumentTitle_String(title string)
-	SetLineWrapColumnOrWidth_Int(w int)
-	SetOverwriteMode_Bool(overwrite bool)
-	SetPlaceholderText_String(placeholderText string)
-	SetReadOnly_Bool(ro bool)
-	SetTabChangesFocus_Bool(b bool)
-	SetTabStopWidth_Int(width int)
-	SetTextInteractionFlags_TextInteractionFlag(flags TextInteractionFlag)
-	SetUndoRedoEnabled_Bool(enable bool)
+	SetAcceptRichText(accept bool)
+	SetCursorWidth(width int)
+	SetDocumentTitle(title string)
+	SetLineWrapColumnOrWidth(w int)
+	SetOverwriteMode(overwrite bool)
+	SetPlaceholderText(placeholderText string)
+	SetReadOnly(ro bool)
+	SetTabChangesFocus(b bool)
+	SetTabStopWidth(width int)
+	SetTextInteractionFlags(flags TextInteractionFlag)
+	SetUndoRedoEnabled(enable bool)
 	TabChangesFocus() bool
 	TabStopWidth() int
 	TextInteractionFlags() TextInteractionFlag
@@ -61,22 +61,22 @@ type QTextEdit interface {
 	SlotSelectAll()
 	ConnectSlotSetFontItalic()
 	DisconnectSlotSetFontItalic()
-	SlotSetFontItalic_Bool(italic bool)
+	SlotSetFontItalic(italic bool)
 	ConnectSlotSetFontUnderline()
 	DisconnectSlotSetFontUnderline()
-	SlotSetFontUnderline_Bool(underline bool)
+	SlotSetFontUnderline(underline bool)
 	ConnectSlotSetFontWeight()
 	DisconnectSlotSetFontWeight()
-	SlotSetFontWeight_Int(weight int)
+	SlotSetFontWeight(weight int)
 	ConnectSlotUndo()
 	DisconnectSlotUndo()
 	SlotUndo()
 	ConnectSlotZoomIn()
 	DisconnectSlotZoomIn()
-	SlotZoomIn_Int(rang int)
+	SlotZoomIn(rang int)
 	ConnectSlotZoomOut()
 	DisconnectSlotZoomOut()
-	SlotZoomOut_Int(rang int)
+	SlotZoomOut(rang int)
 	ConnectSignalCopyAvailable(f func())
 	DisconnectSignalCopyAvailable()
 	SignalCopyAvailable() func()
@@ -105,25 +105,25 @@ func (p *qtextedit) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQTextEdit_QWidget(parent QWidget) QTextEdit {
-	var parentPtr C.QtObjectPtr = nil
+func NewQTextEdit1(parent QWidget) QTextEdit {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qtextedit = new(qtextedit)
 	qtextedit.SetPointer(C.QTextEdit_New_QWidget(parentPtr))
-	qtextedit.SetObjectName_String("QTextEdit_" + randomIdentifier())
+	qtextedit.SetObjectName("QTextEdit_" + randomIdentifier())
 	return qtextedit
 }
 
-func NewQTextEdit_String_QWidget(text string, parent QWidget) QTextEdit {
-	var parentPtr C.QtObjectPtr = nil
+func NewQTextEdit2(text string, parent QWidget) QTextEdit {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qtextedit = new(qtextedit)
 	qtextedit.SetPointer(C.QTextEdit_New_String_QWidget(C.CString(text), parentPtr))
-	qtextedit.SetObjectName_String("QTextEdit_" + randomIdentifier())
+	qtextedit.SetObjectName("QTextEdit_" + randomIdentifier())
 	return qtextedit
 }
 
@@ -138,25 +138,22 @@ func (p *qtextedit) Destroy() {
 func (p *qtextedit) AcceptRichText() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTextEdit_AcceptRichText(p.Pointer()) != 0
 	}
+	return C.QTextEdit_AcceptRichText(p.Pointer()) != 0
 }
 
 func (p *qtextedit) Alignment() AlignmentFlag {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return AlignmentFlag(C.QTextEdit_Alignment(p.Pointer()))
 	}
+	return AlignmentFlag(C.QTextEdit_Alignment(p.Pointer()))
 }
 
 func (p *qtextedit) CanPaste() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTextEdit_CanPaste(p.Pointer()) != 0
 	}
+	return C.QTextEdit_CanPaste(p.Pointer()) != 0
 }
 
 func (p *qtextedit) CreateStandardContextMenu() QMenu {
@@ -166,7 +163,7 @@ func (p *qtextedit) CreateStandardContextMenu() QMenu {
 		var qmenu = new(qmenu)
 		qmenu.SetPointer(C.QTextEdit_CreateStandardContextMenu(p.Pointer()))
 		if qmenu.ObjectName() == "" {
-			qmenu.SetObjectName_String("QMenu_" + randomIdentifier())
+			qmenu.SetObjectName("QMenu_" + randomIdentifier())
 		}
 		return qmenu
 	}
@@ -175,17 +172,15 @@ func (p *qtextedit) CreateStandardContextMenu() QMenu {
 func (p *qtextedit) CursorWidth() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTextEdit_CursorWidth(p.Pointer()))
 	}
+	return int(C.QTextEdit_CursorWidth(p.Pointer()))
 }
 
 func (p *qtextedit) DocumentTitle() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTextEdit_DocumentTitle(p.Pointer()))
 	}
+	return C.GoString(C.QTextEdit_DocumentTitle(p.Pointer()))
 }
 
 func (p *qtextedit) EnsureCursorVisible() {
@@ -197,136 +192,127 @@ func (p *qtextedit) EnsureCursorVisible() {
 func (p *qtextedit) FontFamily() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTextEdit_FontFamily(p.Pointer()))
 	}
+	return C.GoString(C.QTextEdit_FontFamily(p.Pointer()))
 }
 
 func (p *qtextedit) FontItalic() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTextEdit_FontItalic(p.Pointer()) != 0
 	}
+	return C.QTextEdit_FontItalic(p.Pointer()) != 0
 }
 
 func (p *qtextedit) FontUnderline() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTextEdit_FontUnderline(p.Pointer()) != 0
 	}
+	return C.QTextEdit_FontUnderline(p.Pointer()) != 0
 }
 
 func (p *qtextedit) FontWeight() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTextEdit_FontWeight(p.Pointer()))
 	}
+	return int(C.QTextEdit_FontWeight(p.Pointer()))
 }
 
 func (p *qtextedit) IsReadOnly() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTextEdit_IsReadOnly(p.Pointer()) != 0
 	}
+	return C.QTextEdit_IsReadOnly(p.Pointer()) != 0
 }
 
 func (p *qtextedit) IsUndoRedoEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTextEdit_IsUndoRedoEnabled(p.Pointer()) != 0
 	}
+	return C.QTextEdit_IsUndoRedoEnabled(p.Pointer()) != 0
 }
 
 func (p *qtextedit) LineWrapColumnOrWidth() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTextEdit_LineWrapColumnOrWidth(p.Pointer()))
 	}
+	return int(C.QTextEdit_LineWrapColumnOrWidth(p.Pointer()))
 }
 
 func (p *qtextedit) OverwriteMode() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTextEdit_OverwriteMode(p.Pointer()) != 0
 	}
+	return C.QTextEdit_OverwriteMode(p.Pointer()) != 0
 }
 
 func (p *qtextedit) PlaceholderText() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTextEdit_PlaceholderText(p.Pointer()))
 	}
+	return C.GoString(C.QTextEdit_PlaceholderText(p.Pointer()))
 }
 
-func (p *qtextedit) SetAcceptRichText_Bool(accept bool) {
+func (p *qtextedit) SetAcceptRichText(accept bool) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetAcceptRichText_Bool(p.Pointer(), goBoolToCInt(accept))
 	}
 }
 
-func (p *qtextedit) SetCursorWidth_Int(width int) {
+func (p *qtextedit) SetCursorWidth(width int) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetCursorWidth_Int(p.Pointer(), C.int(width))
 	}
 }
 
-func (p *qtextedit) SetDocumentTitle_String(title string) {
+func (p *qtextedit) SetDocumentTitle(title string) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetDocumentTitle_String(p.Pointer(), C.CString(title))
 	}
 }
 
-func (p *qtextedit) SetLineWrapColumnOrWidth_Int(w int) {
+func (p *qtextedit) SetLineWrapColumnOrWidth(w int) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetLineWrapColumnOrWidth_Int(p.Pointer(), C.int(w))
 	}
 }
 
-func (p *qtextedit) SetOverwriteMode_Bool(overwrite bool) {
+func (p *qtextedit) SetOverwriteMode(overwrite bool) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetOverwriteMode_Bool(p.Pointer(), goBoolToCInt(overwrite))
 	}
 }
 
-func (p *qtextedit) SetPlaceholderText_String(placeholderText string) {
+func (p *qtextedit) SetPlaceholderText(placeholderText string) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetPlaceholderText_String(p.Pointer(), C.CString(placeholderText))
 	}
 }
 
-func (p *qtextedit) SetReadOnly_Bool(ro bool) {
+func (p *qtextedit) SetReadOnly(ro bool) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetReadOnly_Bool(p.Pointer(), goBoolToCInt(ro))
 	}
 }
 
-func (p *qtextedit) SetTabChangesFocus_Bool(b bool) {
+func (p *qtextedit) SetTabChangesFocus(b bool) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetTabChangesFocus_Bool(p.Pointer(), goBoolToCInt(b))
 	}
 }
 
-func (p *qtextedit) SetTabStopWidth_Int(width int) {
+func (p *qtextedit) SetTabStopWidth(width int) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetTabStopWidth_Int(p.Pointer(), C.int(width))
 	}
 }
 
-func (p *qtextedit) SetTextInteractionFlags_TextInteractionFlag(flags TextInteractionFlag) {
+func (p *qtextedit) SetTextInteractionFlags(flags TextInteractionFlag) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetTextInteractionFlags_TextInteractionFlag(p.Pointer(), C.int(flags))
 	}
 }
 
-func (p *qtextedit) SetUndoRedoEnabled_Bool(enable bool) {
+func (p *qtextedit) SetUndoRedoEnabled(enable bool) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetUndoRedoEnabled_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
@@ -335,41 +321,36 @@ func (p *qtextedit) SetUndoRedoEnabled_Bool(enable bool) {
 func (p *qtextedit) TabChangesFocus() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QTextEdit_TabChangesFocus(p.Pointer()) != 0
 	}
+	return C.QTextEdit_TabChangesFocus(p.Pointer()) != 0
 }
 
 func (p *qtextedit) TabStopWidth() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QTextEdit_TabStopWidth(p.Pointer()))
 	}
+	return int(C.QTextEdit_TabStopWidth(p.Pointer()))
 }
 
 func (p *qtextedit) TextInteractionFlags() TextInteractionFlag {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return TextInteractionFlag(C.QTextEdit_TextInteractionFlags(p.Pointer()))
 	}
+	return TextInteractionFlag(C.QTextEdit_TextInteractionFlags(p.Pointer()))
 }
 
 func (p *qtextedit) ToHtml() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTextEdit_ToHtml(p.Pointer()))
 	}
+	return C.GoString(C.QTextEdit_ToHtml(p.Pointer()))
 }
 
 func (p *qtextedit) ToPlainText() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QTextEdit_ToPlainText(p.Pointer()))
 	}
+	return C.GoString(C.QTextEdit_ToPlainText(p.Pointer()))
 }
 
 func (p *qtextedit) ConnectSlotClear() {
@@ -464,7 +445,7 @@ func (p *qtextedit) DisconnectSlotSetFontItalic() {
 	C.QTextEdit_DisconnectSlotSetFontItalic(p.Pointer())
 }
 
-func (p *qtextedit) SlotSetFontItalic_Bool(italic bool) {
+func (p *qtextedit) SlotSetFontItalic(italic bool) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetFontItalic_Bool(p.Pointer(), goBoolToCInt(italic))
 	}
@@ -478,7 +459,7 @@ func (p *qtextedit) DisconnectSlotSetFontUnderline() {
 	C.QTextEdit_DisconnectSlotSetFontUnderline(p.Pointer())
 }
 
-func (p *qtextedit) SlotSetFontUnderline_Bool(underline bool) {
+func (p *qtextedit) SlotSetFontUnderline(underline bool) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetFontUnderline_Bool(p.Pointer(), goBoolToCInt(underline))
 	}
@@ -492,7 +473,7 @@ func (p *qtextedit) DisconnectSlotSetFontWeight() {
 	C.QTextEdit_DisconnectSlotSetFontWeight(p.Pointer())
 }
 
-func (p *qtextedit) SlotSetFontWeight_Int(weight int) {
+func (p *qtextedit) SlotSetFontWeight(weight int) {
 	if p.Pointer() != nil {
 		C.QTextEdit_SetFontWeight_Int(p.Pointer(), C.int(weight))
 	}
@@ -520,7 +501,7 @@ func (p *qtextedit) DisconnectSlotZoomIn() {
 	C.QTextEdit_DisconnectSlotZoomIn(p.Pointer())
 }
 
-func (p *qtextedit) SlotZoomIn_Int(rang int) {
+func (p *qtextedit) SlotZoomIn(rang int) {
 	if p.Pointer() != nil {
 		C.QTextEdit_ZoomIn_Int(p.Pointer(), C.int(rang))
 	}
@@ -534,7 +515,7 @@ func (p *qtextedit) DisconnectSlotZoomOut() {
 	C.QTextEdit_DisconnectSlotZoomOut(p.Pointer())
 }
 
-func (p *qtextedit) SlotZoomOut_Int(rang int) {
+func (p *qtextedit) SlotZoomOut(rang int) {
 	if p.Pointer() != nil {
 		C.QTextEdit_ZoomOut_Int(p.Pointer(), C.int(rang))
 	}

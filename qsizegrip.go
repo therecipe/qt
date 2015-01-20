@@ -19,14 +19,14 @@ func (p *qsizegrip) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQSizeGrip_QWidget(parent QWidget) QSizeGrip {
-	var parentPtr C.QtObjectPtr = nil
+func NewQSizeGrip(parent QWidget) QSizeGrip {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qsizegrip = new(qsizegrip)
 	qsizegrip.SetPointer(C.QSizeGrip_New_QWidget(parentPtr))
-	qsizegrip.SetObjectName_String("QSizeGrip_" + randomIdentifier())
+	qsizegrip.SetObjectName("QSizeGrip_" + randomIdentifier())
 	return qsizegrip
 }
 

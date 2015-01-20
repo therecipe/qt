@@ -15,11 +15,11 @@ type QProgressDialog interface {
 	Maximum() int
 	Minimum() int
 	MinimumDuration() int
-	SetAutoClose_Bool(close bool)
-	SetAutoReset_Bool(reset bool)
-	SetBar_QProgressBar(bar QProgressBar)
-	SetCancelButton_QPushButton(cancelButton QPushButton)
-	SetLabel_QLabel(label QLabel)
+	SetAutoClose(close bool)
+	SetAutoReset(reset bool)
+	SetBar(bar QProgressBar)
+	SetCancelButton(cancelButton QPushButton)
+	SetLabel(label QLabel)
 	Value() int
 	WasCanceled() bool
 	ConnectSlotCancel()
@@ -30,19 +30,19 @@ type QProgressDialog interface {
 	SlotReset()
 	ConnectSlotSetMaximum()
 	DisconnectSlotSetMaximum()
-	SlotSetMaximum_Int(maximum int)
+	SlotSetMaximum(maximum int)
 	ConnectSlotSetMinimum()
 	DisconnectSlotSetMinimum()
-	SlotSetMinimum_Int(minimum int)
+	SlotSetMinimum(minimum int)
 	ConnectSlotSetMinimumDuration()
 	DisconnectSlotSetMinimumDuration()
-	SlotSetMinimumDuration_Int(ms int)
+	SlotSetMinimumDuration(ms int)
 	ConnectSlotSetRange()
 	DisconnectSlotSetRange()
-	SlotSetRange_Int_Int(minimum int, maximum int)
+	SlotSetRange(minimum int, maximum int)
 	ConnectSlotSetValue()
 	DisconnectSlotSetValue()
-	SlotSetValue_Int(progress int)
+	SlotSetValue(progress int)
 	ConnectSignalCanceled(f func())
 	DisconnectSignalCanceled()
 	SignalCanceled() func()
@@ -56,25 +56,25 @@ func (p *qprogressdialog) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQProgressDialog_QWidget_WindowType(parent QWidget, f WindowType) QProgressDialog {
-	var parentPtr C.QtObjectPtr = nil
+func NewQProgressDialog1(parent QWidget, f WindowType) QProgressDialog {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qprogressdialog = new(qprogressdialog)
 	qprogressdialog.SetPointer(C.QProgressDialog_New_QWidget_WindowType(parentPtr, C.int(f)))
-	qprogressdialog.SetObjectName_String("QProgressDialog_" + randomIdentifier())
+	qprogressdialog.SetObjectName("QProgressDialog_" + randomIdentifier())
 	return qprogressdialog
 }
 
-func NewQProgressDialog_String_String_Int_Int_QWidget_WindowType(labelText string, cancelButtonText string, minimum int, maximum int, parent QWidget, f WindowType) QProgressDialog {
-	var parentPtr C.QtObjectPtr = nil
+func NewQProgressDialog2(labelText string, cancelButtonText string, minimum int, maximum int, parent QWidget, f WindowType) QProgressDialog {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qprogressdialog = new(qprogressdialog)
 	qprogressdialog.SetPointer(C.QProgressDialog_New_String_String_Int_Int_QWidget_WindowType(C.CString(labelText), C.CString(cancelButtonText), C.int(minimum), C.int(maximum), parentPtr, C.int(f)))
-	qprogressdialog.SetObjectName_String("QProgressDialog_" + randomIdentifier())
+	qprogressdialog.SetObjectName("QProgressDialog_" + randomIdentifier())
 	return qprogressdialog
 }
 
@@ -89,67 +89,60 @@ func (p *qprogressdialog) Destroy() {
 func (p *qprogressdialog) AutoClose() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QProgressDialog_AutoClose(p.Pointer()) != 0
 	}
+	return C.QProgressDialog_AutoClose(p.Pointer()) != 0
 }
 
 func (p *qprogressdialog) AutoReset() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QProgressDialog_AutoReset(p.Pointer()) != 0
 	}
+	return C.QProgressDialog_AutoReset(p.Pointer()) != 0
 }
 
 func (p *qprogressdialog) LabelText() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QProgressDialog_LabelText(p.Pointer()))
 	}
+	return C.GoString(C.QProgressDialog_LabelText(p.Pointer()))
 }
 
 func (p *qprogressdialog) Maximum() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QProgressDialog_Maximum(p.Pointer()))
 	}
+	return int(C.QProgressDialog_Maximum(p.Pointer()))
 }
 
 func (p *qprogressdialog) Minimum() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QProgressDialog_Minimum(p.Pointer()))
 	}
+	return int(C.QProgressDialog_Minimum(p.Pointer()))
 }
 
 func (p *qprogressdialog) MinimumDuration() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QProgressDialog_MinimumDuration(p.Pointer()))
 	}
+	return int(C.QProgressDialog_MinimumDuration(p.Pointer()))
 }
 
-func (p *qprogressdialog) SetAutoClose_Bool(close bool) {
+func (p *qprogressdialog) SetAutoClose(close bool) {
 	if p.Pointer() != nil {
 		C.QProgressDialog_SetAutoClose_Bool(p.Pointer(), goBoolToCInt(close))
 	}
 }
 
-func (p *qprogressdialog) SetAutoReset_Bool(reset bool) {
+func (p *qprogressdialog) SetAutoReset(reset bool) {
 	if p.Pointer() != nil {
 		C.QProgressDialog_SetAutoReset_Bool(p.Pointer(), goBoolToCInt(reset))
 	}
 }
 
-func (p *qprogressdialog) SetBar_QProgressBar(bar QProgressBar) {
-	if p.Pointer() == nil {
-	} else {
-		var barPtr C.QtObjectPtr = nil
+func (p *qprogressdialog) SetBar(bar QProgressBar) {
+	if p.Pointer() != nil {
+		var barPtr C.QtObjectPtr
 		if bar != nil {
 			barPtr = bar.Pointer()
 		}
@@ -157,10 +150,9 @@ func (p *qprogressdialog) SetBar_QProgressBar(bar QProgressBar) {
 	}
 }
 
-func (p *qprogressdialog) SetCancelButton_QPushButton(cancelButton QPushButton) {
-	if p.Pointer() == nil {
-	} else {
-		var cancelButtonPtr C.QtObjectPtr = nil
+func (p *qprogressdialog) SetCancelButton(cancelButton QPushButton) {
+	if p.Pointer() != nil {
+		var cancelButtonPtr C.QtObjectPtr
 		if cancelButton != nil {
 			cancelButtonPtr = cancelButton.Pointer()
 		}
@@ -168,10 +160,9 @@ func (p *qprogressdialog) SetCancelButton_QPushButton(cancelButton QPushButton) 
 	}
 }
 
-func (p *qprogressdialog) SetLabel_QLabel(label QLabel) {
-	if p.Pointer() == nil {
-	} else {
-		var labelPtr C.QtObjectPtr = nil
+func (p *qprogressdialog) SetLabel(label QLabel) {
+	if p.Pointer() != nil {
+		var labelPtr C.QtObjectPtr
 		if label != nil {
 			labelPtr = label.Pointer()
 		}
@@ -182,17 +173,15 @@ func (p *qprogressdialog) SetLabel_QLabel(label QLabel) {
 func (p *qprogressdialog) Value() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QProgressDialog_Value(p.Pointer()))
 	}
+	return int(C.QProgressDialog_Value(p.Pointer()))
 }
 
 func (p *qprogressdialog) WasCanceled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QProgressDialog_WasCanceled(p.Pointer()) != 0
 	}
+	return C.QProgressDialog_WasCanceled(p.Pointer()) != 0
 }
 
 func (p *qprogressdialog) ConnectSlotCancel() {
@@ -231,7 +220,7 @@ func (p *qprogressdialog) DisconnectSlotSetMaximum() {
 	C.QProgressDialog_DisconnectSlotSetMaximum(p.Pointer())
 }
 
-func (p *qprogressdialog) SlotSetMaximum_Int(maximum int) {
+func (p *qprogressdialog) SlotSetMaximum(maximum int) {
 	if p.Pointer() != nil {
 		C.QProgressDialog_SetMaximum_Int(p.Pointer(), C.int(maximum))
 	}
@@ -245,7 +234,7 @@ func (p *qprogressdialog) DisconnectSlotSetMinimum() {
 	C.QProgressDialog_DisconnectSlotSetMinimum(p.Pointer())
 }
 
-func (p *qprogressdialog) SlotSetMinimum_Int(minimum int) {
+func (p *qprogressdialog) SlotSetMinimum(minimum int) {
 	if p.Pointer() != nil {
 		C.QProgressDialog_SetMinimum_Int(p.Pointer(), C.int(minimum))
 	}
@@ -259,7 +248,7 @@ func (p *qprogressdialog) DisconnectSlotSetMinimumDuration() {
 	C.QProgressDialog_DisconnectSlotSetMinimumDuration(p.Pointer())
 }
 
-func (p *qprogressdialog) SlotSetMinimumDuration_Int(ms int) {
+func (p *qprogressdialog) SlotSetMinimumDuration(ms int) {
 	if p.Pointer() != nil {
 		C.QProgressDialog_SetMinimumDuration_Int(p.Pointer(), C.int(ms))
 	}
@@ -273,7 +262,7 @@ func (p *qprogressdialog) DisconnectSlotSetRange() {
 	C.QProgressDialog_DisconnectSlotSetRange(p.Pointer())
 }
 
-func (p *qprogressdialog) SlotSetRange_Int_Int(minimum int, maximum int) {
+func (p *qprogressdialog) SlotSetRange(minimum int, maximum int) {
 	if p.Pointer() != nil {
 		C.QProgressDialog_SetRange_Int_Int(p.Pointer(), C.int(minimum), C.int(maximum))
 	}
@@ -287,7 +276,7 @@ func (p *qprogressdialog) DisconnectSlotSetValue() {
 	C.QProgressDialog_DisconnectSlotSetValue(p.Pointer())
 }
 
-func (p *qprogressdialog) SlotSetValue_Int(progress int) {
+func (p *qprogressdialog) SlotSetValue(progress int) {
 	if p.Pointer() != nil {
 		C.QProgressDialog_SetValue_Int(p.Pointer(), C.int(progress))
 	}

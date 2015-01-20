@@ -10,23 +10,22 @@ type qlayout struct {
 type QLayout interface {
 	QObject
 	Activate() bool
-	AddItem_QLayoutItem(item QLayoutItem)
-	AddWidget_QWidget(w QWidget)
+	AddWidget(w QWidget)
 	Count() int
-	IndexOf_QWidget(widget QWidget) int
+	IndexOf(widget QWidget) int
 	IsEnabled() bool
 	MenuBar() QWidget
 	ParentWidget() QWidget
-	RemoveItem_QLayoutItem(item QLayoutItem)
-	RemoveWidget_QWidget(widget QWidget)
-	SetAlignment_QWidget_AlignmentFlag(w QWidget, alignment AlignmentFlag) bool
-	SetAlignment_AlignmentFlag(alignment AlignmentFlag)
-	SetAlignment_QLayout_AlignmentFlag(l QLayout, alignment AlignmentFlag) bool
-	SetContentsMargins_Int_Int_Int_Int(left int, top int, right int, bottom int)
-	SetEnabled_Bool(enable bool)
-	SetMenuBar_QWidget(widget QWidget)
-	SetSizeConstraint_SizeConstraint(Si SizeConstraint)
-	SetSpacing_Int(spacing int)
+	RemoveItem(item QLayoutItem)
+	RemoveWidget(widget QWidget)
+	SetAlignment1(w QWidget, alignment AlignmentFlag) bool
+	SetAlignment2(alignment AlignmentFlag)
+	SetAlignment3(l QLayout, alignment AlignmentFlag) bool
+	SetContentsMargins(left int, top int, right int, bottom int)
+	SetEnabled(enable bool)
+	SetMenuBar(widget QWidget)
+	SetSizeConstraint(Si SizeConstraint)
+	SetSpacing(spacing int)
 	SizeConstraint() SizeConstraint
 	Spacing() int
 	Update()
@@ -55,26 +54,13 @@ var (
 func (p *qlayout) Activate() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QLayout_Activate(p.Pointer()) != 0
 	}
+	return C.QLayout_Activate(p.Pointer()) != 0
 }
 
-func (p *qlayout) AddItem_QLayoutItem(item QLayoutItem) {
-	if p.Pointer() == nil {
-	} else {
-		var itemPtr C.QtObjectPtr = nil
-		if item != nil {
-			itemPtr = item.Pointer()
-		}
-		C.QLayout_AddItem_QLayoutItem(p.Pointer(), itemPtr)
-	}
-}
-
-func (p *qlayout) AddWidget_QWidget(w QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var wPtr C.QtObjectPtr = nil
+func (p *qlayout) AddWidget(w QWidget) {
+	if p.Pointer() != nil {
+		var wPtr C.QtObjectPtr
 		if w != nil {
 			wPtr = w.Pointer()
 		}
@@ -85,16 +71,15 @@ func (p *qlayout) AddWidget_QWidget(w QWidget) {
 func (p *qlayout) Count() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QLayout_Count(p.Pointer()))
 	}
+	return int(C.QLayout_Count(p.Pointer()))
 }
 
-func (p *qlayout) IndexOf_QWidget(widget QWidget) int {
+func (p *qlayout) IndexOf(widget QWidget) int {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var widgetPtr C.QtObjectPtr = nil
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -105,9 +90,8 @@ func (p *qlayout) IndexOf_QWidget(widget QWidget) int {
 func (p *qlayout) IsEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QLayout_IsEnabled(p.Pointer()) != 0
 	}
+	return C.QLayout_IsEnabled(p.Pointer()) != 0
 }
 
 func (p *qlayout) MenuBar() QWidget {
@@ -117,7 +101,7 @@ func (p *qlayout) MenuBar() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QLayout_MenuBar(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -130,16 +114,15 @@ func (p *qlayout) ParentWidget() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QLayout_ParentWidget(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
 }
 
-func (p *qlayout) RemoveItem_QLayoutItem(item QLayoutItem) {
-	if p.Pointer() == nil {
-	} else {
-		var itemPtr C.QtObjectPtr = nil
+func (p *qlayout) RemoveItem(item QLayoutItem) {
+	if p.Pointer() != nil {
+		var itemPtr C.QtObjectPtr
 		if item != nil {
 			itemPtr = item.Pointer()
 		}
@@ -147,10 +130,9 @@ func (p *qlayout) RemoveItem_QLayoutItem(item QLayoutItem) {
 	}
 }
 
-func (p *qlayout) RemoveWidget_QWidget(widget QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qlayout) RemoveWidget(widget QWidget) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -158,11 +140,11 @@ func (p *qlayout) RemoveWidget_QWidget(widget QWidget) {
 	}
 }
 
-func (p *qlayout) SetAlignment_QWidget_AlignmentFlag(w QWidget, alignment AlignmentFlag) bool {
+func (p *qlayout) SetAlignment1(w QWidget, alignment AlignmentFlag) bool {
 	if p.Pointer() == nil {
 		return false
 	} else {
-		var wPtr C.QtObjectPtr = nil
+		var wPtr C.QtObjectPtr
 		if w != nil {
 			wPtr = w.Pointer()
 		}
@@ -170,17 +152,17 @@ func (p *qlayout) SetAlignment_QWidget_AlignmentFlag(w QWidget, alignment Alignm
 	}
 }
 
-func (p *qlayout) SetAlignment_AlignmentFlag(alignment AlignmentFlag) {
+func (p *qlayout) SetAlignment2(alignment AlignmentFlag) {
 	if p.Pointer() != nil {
 		C.QLayout_SetAlignment_AlignmentFlag(p.Pointer(), C.int(alignment))
 	}
 }
 
-func (p *qlayout) SetAlignment_QLayout_AlignmentFlag(l QLayout, alignment AlignmentFlag) bool {
+func (p *qlayout) SetAlignment3(l QLayout, alignment AlignmentFlag) bool {
 	if p.Pointer() == nil {
 		return false
 	} else {
-		var lPtr C.QtObjectPtr = nil
+		var lPtr C.QtObjectPtr
 		if l != nil {
 			lPtr = l.Pointer()
 		}
@@ -188,22 +170,21 @@ func (p *qlayout) SetAlignment_QLayout_AlignmentFlag(l QLayout, alignment Alignm
 	}
 }
 
-func (p *qlayout) SetContentsMargins_Int_Int_Int_Int(left int, top int, right int, bottom int) {
+func (p *qlayout) SetContentsMargins(left int, top int, right int, bottom int) {
 	if p.Pointer() != nil {
 		C.QLayout_SetContentsMargins_Int_Int_Int_Int(p.Pointer(), C.int(left), C.int(top), C.int(right), C.int(bottom))
 	}
 }
 
-func (p *qlayout) SetEnabled_Bool(enable bool) {
+func (p *qlayout) SetEnabled(enable bool) {
 	if p.Pointer() != nil {
 		C.QLayout_SetEnabled_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
 }
 
-func (p *qlayout) SetMenuBar_QWidget(widget QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qlayout) SetMenuBar(widget QWidget) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -211,13 +192,13 @@ func (p *qlayout) SetMenuBar_QWidget(widget QWidget) {
 	}
 }
 
-func (p *qlayout) SetSizeConstraint_SizeConstraint(Si SizeConstraint) {
+func (p *qlayout) SetSizeConstraint(Si SizeConstraint) {
 	if p.Pointer() != nil {
 		C.QLayout_SetSizeConstraint_SizeConstraint(p.Pointer(), C.int(Si))
 	}
 }
 
-func (p *qlayout) SetSpacing_Int(spacing int) {
+func (p *qlayout) SetSpacing(spacing int) {
 	if p.Pointer() != nil {
 		C.QLayout_SetSpacing_Int(p.Pointer(), C.int(spacing))
 	}
@@ -226,17 +207,15 @@ func (p *qlayout) SetSpacing_Int(spacing int) {
 func (p *qlayout) SizeConstraint() SizeConstraint {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return SizeConstraint(C.QLayout_SizeConstraint(p.Pointer()))
 	}
+	return SizeConstraint(C.QLayout_SizeConstraint(p.Pointer()))
 }
 
 func (p *qlayout) Spacing() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QLayout_Spacing(p.Pointer()))
 	}
+	return int(C.QLayout_Spacing(p.Pointer()))
 }
 
 func (p *qlayout) Update() {

@@ -9,19 +9,19 @@ type qdialogbuttonbox struct {
 
 type QDialogButtonBox interface {
 	QWidget
-	AddButton_QAbstractButton_ButtonRole(button QAbstractButton, role ButtonRole)
-	AddButton_String_ButtonRole(text string, role ButtonRole) QPushButton
-	AddButton_StandardButton(button StandardButton) QPushButton
-	Button_StandardButton(which StandardButton) QPushButton
-	ButtonRole_QAbstractButton(button QAbstractButton) ButtonRole
+	AddButton1(button QAbstractButton, role ButtonRole)
+	AddButton2(text string, role ButtonRole) QPushButton
+	AddButton3(button StandardButton) QPushButton
+	Button(which StandardButton) QPushButton
+	ButtonRole(button QAbstractButton) ButtonRole
 	CenterButtons() bool
 	Clear()
 	Orientation() Orientation
-	RemoveButton_QAbstractButton(button QAbstractButton)
-	SetCenterButtons_Bool(center bool)
-	SetOrientation_Orientation(orientation Orientation)
-	SetStandardButtons_StandardButton(buttons StandardButton)
-	StandardButton_QAbstractButton(button QAbstractButton) StandardButton
+	RemoveButton(button QAbstractButton)
+	SetCenterButtons(center bool)
+	SetOrientation(orientation Orientation)
+	SetStandardButtons(buttons StandardButton)
+	StandardButton(button QAbstractButton) StandardButton
 	StandardButtons() StandardButton
 	ConnectSignalAccepted(f func())
 	DisconnectSignalAccepted()
@@ -92,47 +92,47 @@ var (
 	IGNORE          = StandardButton(C.QDialogButtonBox_Ignore())
 )
 
-func NewQDialogButtonBox_QWidget(parent QWidget) QDialogButtonBox {
-	var parentPtr C.QtObjectPtr = nil
+func NewQDialogButtonBox1(parent QWidget) QDialogButtonBox {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qdialogbuttonbox = new(qdialogbuttonbox)
 	qdialogbuttonbox.SetPointer(C.QDialogButtonBox_New_QWidget(parentPtr))
-	qdialogbuttonbox.SetObjectName_String("QDialogButtonBox_" + randomIdentifier())
+	qdialogbuttonbox.SetObjectName("QDialogButtonBox_" + randomIdentifier())
 	return qdialogbuttonbox
 }
 
-func NewQDialogButtonBox_Orientation_QWidget(orientation Orientation, parent QWidget) QDialogButtonBox {
-	var parentPtr C.QtObjectPtr = nil
+func NewQDialogButtonBox2(orientation Orientation, parent QWidget) QDialogButtonBox {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qdialogbuttonbox = new(qdialogbuttonbox)
 	qdialogbuttonbox.SetPointer(C.QDialogButtonBox_New_Orientation_QWidget(C.int(orientation), parentPtr))
-	qdialogbuttonbox.SetObjectName_String("QDialogButtonBox_" + randomIdentifier())
+	qdialogbuttonbox.SetObjectName("QDialogButtonBox_" + randomIdentifier())
 	return qdialogbuttonbox
 }
 
-func NewQDialogButtonBox_StandardButton_QWidget(buttons StandardButton, parent QWidget) QDialogButtonBox {
-	var parentPtr C.QtObjectPtr = nil
+func NewQDialogButtonBox3(buttons StandardButton, parent QWidget) QDialogButtonBox {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qdialogbuttonbox = new(qdialogbuttonbox)
 	qdialogbuttonbox.SetPointer(C.QDialogButtonBox_New_StandardButton_QWidget(C.int(buttons), parentPtr))
-	qdialogbuttonbox.SetObjectName_String("QDialogButtonBox_" + randomIdentifier())
+	qdialogbuttonbox.SetObjectName("QDialogButtonBox_" + randomIdentifier())
 	return qdialogbuttonbox
 }
 
-func NewQDialogButtonBox_StandardButton_Orientation_QWidget(buttons StandardButton, orientation Orientation, parent QWidget) QDialogButtonBox {
-	var parentPtr C.QtObjectPtr = nil
+func NewQDialogButtonBox4(buttons StandardButton, orientation Orientation, parent QWidget) QDialogButtonBox {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qdialogbuttonbox = new(qdialogbuttonbox)
 	qdialogbuttonbox.SetPointer(C.QDialogButtonBox_New_StandardButton_Orientation_QWidget(C.int(buttons), C.int(orientation), parentPtr))
-	qdialogbuttonbox.SetObjectName_String("QDialogButtonBox_" + randomIdentifier())
+	qdialogbuttonbox.SetObjectName("QDialogButtonBox_" + randomIdentifier())
 	return qdialogbuttonbox
 }
 
@@ -144,10 +144,9 @@ func (p *qdialogbuttonbox) Destroy() {
 	}
 }
 
-func (p *qdialogbuttonbox) AddButton_QAbstractButton_ButtonRole(button QAbstractButton, role ButtonRole) {
-	if p.Pointer() == nil {
-	} else {
-		var buttonPtr C.QtObjectPtr = nil
+func (p *qdialogbuttonbox) AddButton1(button QAbstractButton, role ButtonRole) {
+	if p.Pointer() != nil {
+		var buttonPtr C.QtObjectPtr
 		if button != nil {
 			buttonPtr = button.Pointer()
 		}
@@ -155,50 +154,50 @@ func (p *qdialogbuttonbox) AddButton_QAbstractButton_ButtonRole(button QAbstract
 	}
 }
 
-func (p *qdialogbuttonbox) AddButton_String_ButtonRole(text string, role ButtonRole) QPushButton {
+func (p *qdialogbuttonbox) AddButton2(text string, role ButtonRole) QPushButton {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qpushbutton = new(qpushbutton)
 		qpushbutton.SetPointer(C.QDialogButtonBox_AddButton_String_ButtonRole(p.Pointer(), C.CString(text), C.int(role)))
 		if qpushbutton.ObjectName() == "" {
-			qpushbutton.SetObjectName_String("QPushButton_" + randomIdentifier())
+			qpushbutton.SetObjectName("QPushButton_" + randomIdentifier())
 		}
 		return qpushbutton
 	}
 }
 
-func (p *qdialogbuttonbox) AddButton_StandardButton(button StandardButton) QPushButton {
+func (p *qdialogbuttonbox) AddButton3(button StandardButton) QPushButton {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qpushbutton = new(qpushbutton)
 		qpushbutton.SetPointer(C.QDialogButtonBox_AddButton_StandardButton(p.Pointer(), C.int(button)))
 		if qpushbutton.ObjectName() == "" {
-			qpushbutton.SetObjectName_String("QPushButton_" + randomIdentifier())
+			qpushbutton.SetObjectName("QPushButton_" + randomIdentifier())
 		}
 		return qpushbutton
 	}
 }
 
-func (p *qdialogbuttonbox) Button_StandardButton(which StandardButton) QPushButton {
+func (p *qdialogbuttonbox) Button(which StandardButton) QPushButton {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qpushbutton = new(qpushbutton)
 		qpushbutton.SetPointer(C.QDialogButtonBox_Button_StandardButton(p.Pointer(), C.int(which)))
 		if qpushbutton.ObjectName() == "" {
-			qpushbutton.SetObjectName_String("QPushButton_" + randomIdentifier())
+			qpushbutton.SetObjectName("QPushButton_" + randomIdentifier())
 		}
 		return qpushbutton
 	}
 }
 
-func (p *qdialogbuttonbox) ButtonRole_QAbstractButton(button QAbstractButton) ButtonRole {
+func (p *qdialogbuttonbox) ButtonRole(button QAbstractButton) ButtonRole {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var buttonPtr C.QtObjectPtr = nil
+		var buttonPtr C.QtObjectPtr
 		if button != nil {
 			buttonPtr = button.Pointer()
 		}
@@ -209,9 +208,8 @@ func (p *qdialogbuttonbox) ButtonRole_QAbstractButton(button QAbstractButton) Bu
 func (p *qdialogbuttonbox) CenterButtons() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QDialogButtonBox_CenterButtons(p.Pointer()) != 0
 	}
+	return C.QDialogButtonBox_CenterButtons(p.Pointer()) != 0
 }
 
 func (p *qdialogbuttonbox) Clear() {
@@ -223,15 +221,13 @@ func (p *qdialogbuttonbox) Clear() {
 func (p *qdialogbuttonbox) Orientation() Orientation {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return Orientation(C.QDialogButtonBox_Orientation(p.Pointer()))
 	}
+	return Orientation(C.QDialogButtonBox_Orientation(p.Pointer()))
 }
 
-func (p *qdialogbuttonbox) RemoveButton_QAbstractButton(button QAbstractButton) {
-	if p.Pointer() == nil {
-	} else {
-		var buttonPtr C.QtObjectPtr = nil
+func (p *qdialogbuttonbox) RemoveButton(button QAbstractButton) {
+	if p.Pointer() != nil {
+		var buttonPtr C.QtObjectPtr
 		if button != nil {
 			buttonPtr = button.Pointer()
 		}
@@ -239,29 +235,29 @@ func (p *qdialogbuttonbox) RemoveButton_QAbstractButton(button QAbstractButton) 
 	}
 }
 
-func (p *qdialogbuttonbox) SetCenterButtons_Bool(center bool) {
+func (p *qdialogbuttonbox) SetCenterButtons(center bool) {
 	if p.Pointer() != nil {
 		C.QDialogButtonBox_SetCenterButtons_Bool(p.Pointer(), goBoolToCInt(center))
 	}
 }
 
-func (p *qdialogbuttonbox) SetOrientation_Orientation(orientation Orientation) {
+func (p *qdialogbuttonbox) SetOrientation(orientation Orientation) {
 	if p.Pointer() != nil {
 		C.QDialogButtonBox_SetOrientation_Orientation(p.Pointer(), C.int(orientation))
 	}
 }
 
-func (p *qdialogbuttonbox) SetStandardButtons_StandardButton(buttons StandardButton) {
+func (p *qdialogbuttonbox) SetStandardButtons(buttons StandardButton) {
 	if p.Pointer() != nil {
 		C.QDialogButtonBox_SetStandardButtons_StandardButton(p.Pointer(), C.int(buttons))
 	}
 }
 
-func (p *qdialogbuttonbox) StandardButton_QAbstractButton(button QAbstractButton) StandardButton {
+func (p *qdialogbuttonbox) StandardButton(button QAbstractButton) StandardButton {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var buttonPtr C.QtObjectPtr = nil
+		var buttonPtr C.QtObjectPtr
 		if button != nil {
 			buttonPtr = button.Pointer()
 		}
@@ -272,9 +268,8 @@ func (p *qdialogbuttonbox) StandardButton_QAbstractButton(button QAbstractButton
 func (p *qdialogbuttonbox) StandardButtons() StandardButton {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return StandardButton(C.QDialogButtonBox_StandardButtons(p.Pointer()))
 	}
+	return StandardButton(C.QDialogButtonBox_StandardButtons(p.Pointer()))
 }
 
 func (p *qdialogbuttonbox) ConnectSignalAccepted(f func()) {

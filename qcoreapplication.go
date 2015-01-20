@@ -19,10 +19,10 @@ func (p *qcoreapplication) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQCoreApplication_Int_String(argc int, argv string) QCoreApplication {
+func NewQCoreApplication(argc int, argv string) QCoreApplication {
 	var qcoreapplication = new(qcoreapplication)
 	qcoreapplication.SetPointer(C.QCoreApplication_New_Int_String(C.int(argc), C.CString(argv)))
-	qcoreapplication.SetObjectName_String("QCoreApplication_" + randomIdentifier())
+	qcoreapplication.SetObjectName("QCoreApplication_" + randomIdentifier())
 	return qcoreapplication
 }
 
@@ -34,7 +34,7 @@ func (p *qcoreapplication) Destroy() {
 	}
 }
 
-func QCoreApplication_AddLibraryPath_String(path string) {
+func QCoreApplication_AddLibraryPath(path string) {
 	C.QCoreApplication_AddLibraryPath_String(C.CString(path))
 }
 
@@ -62,7 +62,7 @@ func QCoreApplication_Exec() int {
 	return int(C.QCoreApplication_Exec())
 }
 
-func QCoreApplication_Exit_Int(returnCode int) {
+func QCoreApplication_Exit(returnCode int) {
 	C.QCoreApplication_Exit_Int(C.int(returnCode))
 }
 
@@ -70,7 +70,7 @@ func QCoreApplication_Instance() QCoreApplication {
 	var qcoreapplication = new(qcoreapplication)
 	qcoreapplication.SetPointer(C.QCoreApplication_Instance())
 	if qcoreapplication.ObjectName() == "" {
-		qcoreapplication.SetObjectName_String("QCoreApplication_" + randomIdentifier())
+		qcoreapplication.SetObjectName("QCoreApplication_" + randomIdentifier())
 	}
 	return qcoreapplication
 }
@@ -91,51 +91,51 @@ func QCoreApplication_OrganizationName() string {
 	return C.GoString(C.QCoreApplication_OrganizationName())
 }
 
-func QCoreApplication_RemoveLibraryPath_String(path string) {
+func QCoreApplication_RemoveLibraryPath(path string) {
 	C.QCoreApplication_RemoveLibraryPath_String(C.CString(path))
 }
 
-func QCoreApplication_RemovePostedEvents_QObject_Int(receiver QObject, eventType int) {
-	var receiverPtr C.QtObjectPtr = nil
+func QCoreApplication_RemovePostedEvents(receiver QObject, eventType int) {
+	var receiverPtr C.QtObjectPtr
 	if receiver != nil {
 		receiverPtr = receiver.Pointer()
 	}
 	C.QCoreApplication_RemovePostedEvents_QObject_Int(receiverPtr, C.int(eventType))
 }
 
-func QCoreApplication_SendPostedEvents_QObject_Int(receiver QObject, event_type int) {
-	var receiverPtr C.QtObjectPtr = nil
+func QCoreApplication_SendPostedEvents(receiver QObject, event_type int) {
+	var receiverPtr C.QtObjectPtr
 	if receiver != nil {
 		receiverPtr = receiver.Pointer()
 	}
 	C.QCoreApplication_SendPostedEvents_QObject_Int(receiverPtr, C.int(event_type))
 }
 
-func QCoreApplication_SetApplicationName_String(application string) {
+func QCoreApplication_SetApplicationName(application string) {
 	C.QCoreApplication_SetApplicationName_String(C.CString(application))
 }
 
-func QCoreApplication_SetApplicationVersion_String(version string) {
+func QCoreApplication_SetApplicationVersion(version string) {
 	C.QCoreApplication_SetApplicationVersion_String(C.CString(version))
 }
 
-func QCoreApplication_SetAttribute_ApplicationAttribute_Bool(attribute ApplicationAttribute, on bool) {
+func QCoreApplication_SetAttribute(attribute ApplicationAttribute, on bool) {
 	C.QCoreApplication_SetAttribute_ApplicationAttribute_Bool(C.int(attribute), goBoolToCInt(on))
 }
 
-func QCoreApplication_SetOrganizationDomain_String(orgDomain string) {
+func QCoreApplication_SetOrganizationDomain(orgDomain string) {
 	C.QCoreApplication_SetOrganizationDomain_String(C.CString(orgDomain))
 }
 
-func QCoreApplication_SetOrganizationName_String(orgName string) {
+func QCoreApplication_SetOrganizationName(orgName string) {
 	C.QCoreApplication_SetOrganizationName_String(C.CString(orgName))
 }
 
-func QCoreApplication_SetQuitLockEnabled_Bool(enabled bool) {
+func QCoreApplication_SetQuitLockEnabled(enabled bool) {
 	C.QCoreApplication_SetQuitLockEnabled_Bool(goBoolToCInt(enabled))
 }
 
-func QCoreApplication_SetSetuidAllowed_Bool(allow bool) {
+func QCoreApplication_SetSetuidAllowed(allow bool) {
 	C.QCoreApplication_SetSetuidAllowed_Bool(goBoolToCInt(allow))
 }
 
@@ -143,10 +143,10 @@ func QCoreApplication_StartingUp() bool {
 	return C.QCoreApplication_StartingUp() != 0
 }
 
-func QCoreApplication_TestAttribute_ApplicationAttribute(attribute ApplicationAttribute) bool {
+func QCoreApplication_TestAttribute(attribute ApplicationAttribute) bool {
 	return C.QCoreApplication_TestAttribute_ApplicationAttribute(C.int(attribute)) != 0
 }
 
-func QCoreApplication_Translate_String_String_String_Int(context string, sourceText string, disambiguation string, n int) string {
+func QCoreApplication_Translate(context string, sourceText string, disambiguation string, n int) string {
 	return C.GoString(C.QCoreApplication_Translate_String_String_String_Int(C.CString(context), C.CString(sourceText), C.CString(disambiguation), C.int(n)))
 }

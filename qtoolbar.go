@@ -11,15 +11,15 @@ type QToolBar interface {
 	QWidget
 	AllowedAreas() ToolBarArea
 	Clear()
-	IsAreaAllowed_ToolBarArea(area ToolBarArea) bool
+	IsAreaAllowed(area ToolBarArea) bool
 	IsFloatable() bool
 	IsFloating() bool
 	IsMovable() bool
 	Orientation() Orientation
-	SetAllowedAreas_ToolBarArea(areas ToolBarArea)
-	SetFloatable_Bool(floatable bool)
-	SetMovable_Bool(movable bool)
-	SetOrientation_Orientation(orientation Orientation)
+	SetAllowedAreas(areas ToolBarArea)
+	SetFloatable(floatable bool)
+	SetMovable(movable bool)
+	SetOrientation(orientation Orientation)
 	ToolButtonStyle() ToolButtonStyle
 	ConnectSignalActionTriggered(f func())
 	DisconnectSignalActionTriggered()
@@ -52,25 +52,25 @@ func (p *qtoolbar) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQToolBar_String_QWidget(title string, parent QWidget) QToolBar {
-	var parentPtr C.QtObjectPtr = nil
+func NewQToolBar1(title string, parent QWidget) QToolBar {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qtoolbar = new(qtoolbar)
 	qtoolbar.SetPointer(C.QToolBar_New_String_QWidget(C.CString(title), parentPtr))
-	qtoolbar.SetObjectName_String("QToolBar_" + randomIdentifier())
+	qtoolbar.SetObjectName("QToolBar_" + randomIdentifier())
 	return qtoolbar
 }
 
-func NewQToolBar_QWidget(parent QWidget) QToolBar {
-	var parentPtr C.QtObjectPtr = nil
+func NewQToolBar2(parent QWidget) QToolBar {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qtoolbar = new(qtoolbar)
 	qtoolbar.SetPointer(C.QToolBar_New_QWidget(parentPtr))
-	qtoolbar.SetObjectName_String("QToolBar_" + randomIdentifier())
+	qtoolbar.SetObjectName("QToolBar_" + randomIdentifier())
 	return qtoolbar
 }
 
@@ -85,9 +85,8 @@ func (p *qtoolbar) Destroy() {
 func (p *qtoolbar) AllowedAreas() ToolBarArea {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ToolBarArea(C.QToolBar_AllowedAreas(p.Pointer()))
 	}
+	return ToolBarArea(C.QToolBar_AllowedAreas(p.Pointer()))
 }
 
 func (p *qtoolbar) Clear() {
@@ -96,65 +95,60 @@ func (p *qtoolbar) Clear() {
 	}
 }
 
-func (p *qtoolbar) IsAreaAllowed_ToolBarArea(area ToolBarArea) bool {
+func (p *qtoolbar) IsAreaAllowed(area ToolBarArea) bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QToolBar_IsAreaAllowed_ToolBarArea(p.Pointer(), C.int(area)) != 0
 	}
+	return C.QToolBar_IsAreaAllowed_ToolBarArea(p.Pointer(), C.int(area)) != 0
 }
 
 func (p *qtoolbar) IsFloatable() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QToolBar_IsFloatable(p.Pointer()) != 0
 	}
+	return C.QToolBar_IsFloatable(p.Pointer()) != 0
 }
 
 func (p *qtoolbar) IsFloating() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QToolBar_IsFloating(p.Pointer()) != 0
 	}
+	return C.QToolBar_IsFloating(p.Pointer()) != 0
 }
 
 func (p *qtoolbar) IsMovable() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QToolBar_IsMovable(p.Pointer()) != 0
 	}
+	return C.QToolBar_IsMovable(p.Pointer()) != 0
 }
 
 func (p *qtoolbar) Orientation() Orientation {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return Orientation(C.QToolBar_Orientation(p.Pointer()))
 	}
+	return Orientation(C.QToolBar_Orientation(p.Pointer()))
 }
 
-func (p *qtoolbar) SetAllowedAreas_ToolBarArea(areas ToolBarArea) {
+func (p *qtoolbar) SetAllowedAreas(areas ToolBarArea) {
 	if p.Pointer() != nil {
 		C.QToolBar_SetAllowedAreas_ToolBarArea(p.Pointer(), C.int(areas))
 	}
 }
 
-func (p *qtoolbar) SetFloatable_Bool(floatable bool) {
+func (p *qtoolbar) SetFloatable(floatable bool) {
 	if p.Pointer() != nil {
 		C.QToolBar_SetFloatable_Bool(p.Pointer(), goBoolToCInt(floatable))
 	}
 }
 
-func (p *qtoolbar) SetMovable_Bool(movable bool) {
+func (p *qtoolbar) SetMovable(movable bool) {
 	if p.Pointer() != nil {
 		C.QToolBar_SetMovable_Bool(p.Pointer(), goBoolToCInt(movable))
 	}
 }
 
-func (p *qtoolbar) SetOrientation_Orientation(orientation Orientation) {
+func (p *qtoolbar) SetOrientation(orientation Orientation) {
 	if p.Pointer() != nil {
 		C.QToolBar_SetOrientation_Orientation(p.Pointer(), C.int(orientation))
 	}
@@ -163,9 +157,8 @@ func (p *qtoolbar) SetOrientation_Orientation(orientation Orientation) {
 func (p *qtoolbar) ToolButtonStyle() ToolButtonStyle {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return ToolButtonStyle(C.QToolBar_ToolButtonStyle(p.Pointer()))
 	}
+	return ToolButtonStyle(C.QToolBar_ToolButtonStyle(p.Pointer()))
 }
 
 func (p *qtoolbar) ConnectSignalActionTriggered(f func()) {

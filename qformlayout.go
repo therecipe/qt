@@ -9,27 +9,27 @@ type qformlayout struct {
 
 type QFormLayout interface {
 	QLayout
-	AddRow_QWidget_QWidget(label QWidget, field QWidget)
-	AddRow_QWidget_QLayout(label QWidget, field QLayout)
-	AddRow_String_QWidget(labelText string, field QWidget)
-	AddRow_String_QLayout(labelText string, field QLayout)
-	AddRow_QWidget(widget QWidget)
-	AddRow_QLayout(layout QLayout)
+	AddRow1(label QWidget, field QWidget)
+	AddRow2(label QWidget, field QLayout)
+	AddRow3(labelText string, field QWidget)
+	AddRow4(labelText string, field QLayout)
+	AddRow5(widget QWidget)
+	AddRow6(layout QLayout)
 	FormAlignment() AlignmentFlag
 	HorizontalSpacing() int
-	InsertRow_Int_QWidget_QWidget(row int, label QWidget, field QWidget)
-	InsertRow_Int_QWidget_QLayout(row int, label QWidget, field QLayout)
-	InsertRow_Int_String_QWidget(row int, labelText string, field QWidget)
-	InsertRow_Int_String_QLayout(row int, labelText string, field QLayout)
-	InsertRow_Int_QWidget(row int, widget QWidget)
-	InsertRow_Int_QLayout(row int, layout QLayout)
+	InsertRow1(row int, label QWidget, field QWidget)
+	InsertRow2(row int, label QWidget, field QLayout)
+	InsertRow3(row int, labelText string, field QWidget)
+	InsertRow4(row int, labelText string, field QLayout)
+	InsertRow5(row int, widget QWidget)
+	InsertRow6(row int, layout QLayout)
 	LabelAlignment() AlignmentFlag
-	LabelForField_QWidget(field QWidget) QWidget
+	LabelForField(field QWidget) QWidget
 	RowCount() int
-	SetFormAlignment_AlignmentFlag(alignment AlignmentFlag)
-	SetHorizontalSpacing_Int(spacing int)
-	SetLabelAlignment_AlignmentFlag(alignment AlignmentFlag)
-	SetVerticalSpacing_Int(spacing int)
+	SetFormAlignment(alignment AlignmentFlag)
+	SetHorizontalSpacing(spacing int)
+	SetLabelAlignment(alignment AlignmentFlag)
+	SetVerticalSpacing(spacing int)
 	VerticalSpacing() int
 }
 
@@ -41,14 +41,14 @@ func (p *qformlayout) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQFormLayout_QWidget(parent QWidget) QFormLayout {
-	var parentPtr C.QtObjectPtr = nil
+func NewQFormLayout(parent QWidget) QFormLayout {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qformlayout = new(qformlayout)
 	qformlayout.SetPointer(C.QFormLayout_New_QWidget(parentPtr))
-	qformlayout.SetObjectName_String("QFormLayout_" + randomIdentifier())
+	qformlayout.SetObjectName("QFormLayout_" + randomIdentifier())
 	return qformlayout
 }
 
@@ -60,14 +60,13 @@ func (p *qformlayout) Destroy() {
 	}
 }
 
-func (p *qformlayout) AddRow_QWidget_QWidget(label QWidget, field QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var labelPtr C.QtObjectPtr = nil
+func (p *qformlayout) AddRow1(label QWidget, field QWidget) {
+	if p.Pointer() != nil {
+		var labelPtr C.QtObjectPtr
 		if label != nil {
 			labelPtr = label.Pointer()
 		}
-		var fieldPtr C.QtObjectPtr = nil
+		var fieldPtr C.QtObjectPtr
 		if field != nil {
 			fieldPtr = field.Pointer()
 		}
@@ -75,14 +74,13 @@ func (p *qformlayout) AddRow_QWidget_QWidget(label QWidget, field QWidget) {
 	}
 }
 
-func (p *qformlayout) AddRow_QWidget_QLayout(label QWidget, field QLayout) {
-	if p.Pointer() == nil {
-	} else {
-		var labelPtr C.QtObjectPtr = nil
+func (p *qformlayout) AddRow2(label QWidget, field QLayout) {
+	if p.Pointer() != nil {
+		var labelPtr C.QtObjectPtr
 		if label != nil {
 			labelPtr = label.Pointer()
 		}
-		var fieldPtr C.QtObjectPtr = nil
+		var fieldPtr C.QtObjectPtr
 		if field != nil {
 			fieldPtr = field.Pointer()
 		}
@@ -90,10 +88,9 @@ func (p *qformlayout) AddRow_QWidget_QLayout(label QWidget, field QLayout) {
 	}
 }
 
-func (p *qformlayout) AddRow_String_QWidget(labelText string, field QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var fieldPtr C.QtObjectPtr = nil
+func (p *qformlayout) AddRow3(labelText string, field QWidget) {
+	if p.Pointer() != nil {
+		var fieldPtr C.QtObjectPtr
 		if field != nil {
 			fieldPtr = field.Pointer()
 		}
@@ -101,10 +98,9 @@ func (p *qformlayout) AddRow_String_QWidget(labelText string, field QWidget) {
 	}
 }
 
-func (p *qformlayout) AddRow_String_QLayout(labelText string, field QLayout) {
-	if p.Pointer() == nil {
-	} else {
-		var fieldPtr C.QtObjectPtr = nil
+func (p *qformlayout) AddRow4(labelText string, field QLayout) {
+	if p.Pointer() != nil {
+		var fieldPtr C.QtObjectPtr
 		if field != nil {
 			fieldPtr = field.Pointer()
 		}
@@ -112,10 +108,9 @@ func (p *qformlayout) AddRow_String_QLayout(labelText string, field QLayout) {
 	}
 }
 
-func (p *qformlayout) AddRow_QWidget(widget QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qformlayout) AddRow5(widget QWidget) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -123,10 +118,9 @@ func (p *qformlayout) AddRow_QWidget(widget QWidget) {
 	}
 }
 
-func (p *qformlayout) AddRow_QLayout(layout QLayout) {
-	if p.Pointer() == nil {
-	} else {
-		var layoutPtr C.QtObjectPtr = nil
+func (p *qformlayout) AddRow6(layout QLayout) {
+	if p.Pointer() != nil {
+		var layoutPtr C.QtObjectPtr
 		if layout != nil {
 			layoutPtr = layout.Pointer()
 		}
@@ -137,27 +131,24 @@ func (p *qformlayout) AddRow_QLayout(layout QLayout) {
 func (p *qformlayout) FormAlignment() AlignmentFlag {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return AlignmentFlag(C.QFormLayout_FormAlignment(p.Pointer()))
 	}
+	return AlignmentFlag(C.QFormLayout_FormAlignment(p.Pointer()))
 }
 
 func (p *qformlayout) HorizontalSpacing() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QFormLayout_HorizontalSpacing(p.Pointer()))
 	}
+	return int(C.QFormLayout_HorizontalSpacing(p.Pointer()))
 }
 
-func (p *qformlayout) InsertRow_Int_QWidget_QWidget(row int, label QWidget, field QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var labelPtr C.QtObjectPtr = nil
+func (p *qformlayout) InsertRow1(row int, label QWidget, field QWidget) {
+	if p.Pointer() != nil {
+		var labelPtr C.QtObjectPtr
 		if label != nil {
 			labelPtr = label.Pointer()
 		}
-		var fieldPtr C.QtObjectPtr = nil
+		var fieldPtr C.QtObjectPtr
 		if field != nil {
 			fieldPtr = field.Pointer()
 		}
@@ -165,14 +156,13 @@ func (p *qformlayout) InsertRow_Int_QWidget_QWidget(row int, label QWidget, fiel
 	}
 }
 
-func (p *qformlayout) InsertRow_Int_QWidget_QLayout(row int, label QWidget, field QLayout) {
-	if p.Pointer() == nil {
-	} else {
-		var labelPtr C.QtObjectPtr = nil
+func (p *qformlayout) InsertRow2(row int, label QWidget, field QLayout) {
+	if p.Pointer() != nil {
+		var labelPtr C.QtObjectPtr
 		if label != nil {
 			labelPtr = label.Pointer()
 		}
-		var fieldPtr C.QtObjectPtr = nil
+		var fieldPtr C.QtObjectPtr
 		if field != nil {
 			fieldPtr = field.Pointer()
 		}
@@ -180,10 +170,9 @@ func (p *qformlayout) InsertRow_Int_QWidget_QLayout(row int, label QWidget, fiel
 	}
 }
 
-func (p *qformlayout) InsertRow_Int_String_QWidget(row int, labelText string, field QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var fieldPtr C.QtObjectPtr = nil
+func (p *qformlayout) InsertRow3(row int, labelText string, field QWidget) {
+	if p.Pointer() != nil {
+		var fieldPtr C.QtObjectPtr
 		if field != nil {
 			fieldPtr = field.Pointer()
 		}
@@ -191,10 +180,9 @@ func (p *qformlayout) InsertRow_Int_String_QWidget(row int, labelText string, fi
 	}
 }
 
-func (p *qformlayout) InsertRow_Int_String_QLayout(row int, labelText string, field QLayout) {
-	if p.Pointer() == nil {
-	} else {
-		var fieldPtr C.QtObjectPtr = nil
+func (p *qformlayout) InsertRow4(row int, labelText string, field QLayout) {
+	if p.Pointer() != nil {
+		var fieldPtr C.QtObjectPtr
 		if field != nil {
 			fieldPtr = field.Pointer()
 		}
@@ -202,10 +190,9 @@ func (p *qformlayout) InsertRow_Int_String_QLayout(row int, labelText string, fi
 	}
 }
 
-func (p *qformlayout) InsertRow_Int_QWidget(row int, widget QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qformlayout) InsertRow5(row int, widget QWidget) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -213,10 +200,9 @@ func (p *qformlayout) InsertRow_Int_QWidget(row int, widget QWidget) {
 	}
 }
 
-func (p *qformlayout) InsertRow_Int_QLayout(row int, layout QLayout) {
-	if p.Pointer() == nil {
-	} else {
-		var layoutPtr C.QtObjectPtr = nil
+func (p *qformlayout) InsertRow6(row int, layout QLayout) {
+	if p.Pointer() != nil {
+		var layoutPtr C.QtObjectPtr
 		if layout != nil {
 			layoutPtr = layout.Pointer()
 		}
@@ -227,23 +213,22 @@ func (p *qformlayout) InsertRow_Int_QLayout(row int, layout QLayout) {
 func (p *qformlayout) LabelAlignment() AlignmentFlag {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return AlignmentFlag(C.QFormLayout_LabelAlignment(p.Pointer()))
 	}
+	return AlignmentFlag(C.QFormLayout_LabelAlignment(p.Pointer()))
 }
 
-func (p *qformlayout) LabelForField_QWidget(field QWidget) QWidget {
+func (p *qformlayout) LabelForField(field QWidget) QWidget {
 	if p.Pointer() == nil {
 		return nil
 	} else {
-		var fieldPtr C.QtObjectPtr = nil
+		var fieldPtr C.QtObjectPtr
 		if field != nil {
 			fieldPtr = field.Pointer()
 		}
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QFormLayout_LabelForField_QWidget(p.Pointer(), fieldPtr))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -252,30 +237,29 @@ func (p *qformlayout) LabelForField_QWidget(field QWidget) QWidget {
 func (p *qformlayout) RowCount() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QFormLayout_RowCount(p.Pointer()))
 	}
+	return int(C.QFormLayout_RowCount(p.Pointer()))
 }
 
-func (p *qformlayout) SetFormAlignment_AlignmentFlag(alignment AlignmentFlag) {
+func (p *qformlayout) SetFormAlignment(alignment AlignmentFlag) {
 	if p.Pointer() != nil {
 		C.QFormLayout_SetFormAlignment_AlignmentFlag(p.Pointer(), C.int(alignment))
 	}
 }
 
-func (p *qformlayout) SetHorizontalSpacing_Int(spacing int) {
+func (p *qformlayout) SetHorizontalSpacing(spacing int) {
 	if p.Pointer() != nil {
 		C.QFormLayout_SetHorizontalSpacing_Int(p.Pointer(), C.int(spacing))
 	}
 }
 
-func (p *qformlayout) SetLabelAlignment_AlignmentFlag(alignment AlignmentFlag) {
+func (p *qformlayout) SetLabelAlignment(alignment AlignmentFlag) {
 	if p.Pointer() != nil {
 		C.QFormLayout_SetLabelAlignment_AlignmentFlag(p.Pointer(), C.int(alignment))
 	}
 }
 
-func (p *qformlayout) SetVerticalSpacing_Int(spacing int) {
+func (p *qformlayout) SetVerticalSpacing(spacing int) {
 	if p.Pointer() != nil {
 		C.QFormLayout_SetVerticalSpacing_Int(p.Pointer(), C.int(spacing))
 	}
@@ -284,7 +268,6 @@ func (p *qformlayout) SetVerticalSpacing_Int(spacing int) {
 func (p *qformlayout) VerticalSpacing() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QFormLayout_VerticalSpacing(p.Pointer()))
 	}
+	return int(C.QFormLayout_VerticalSpacing(p.Pointer()))
 }

@@ -23,10 +23,10 @@ func (p *qapplication) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQApplication_Int_String(argc int, argv string) QApplication {
+func NewQApplication(argc int, argv string) QApplication {
 	var qapplication = new(qapplication)
 	qapplication.SetPointer(C.QApplication_New_Int_String(C.int(argc), C.CString(argv)))
-	qapplication.SetObjectName_String("QApplication_" + randomIdentifier())
+	qapplication.SetObjectName("QApplication_" + randomIdentifier())
 	return qapplication
 }
 
@@ -41,9 +41,8 @@ func (p *qapplication) Destroy() {
 func (p *qapplication) StyleSheet() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QApplication_StyleSheet(p.Pointer()))
 	}
+	return C.GoString(C.QApplication_StyleSheet(p.Pointer()))
 }
 
 func (p *qapplication) ConnectSlotAutoSipEnabled() {
@@ -64,7 +63,7 @@ func QApplication_ActiveModalWidget() QWidget {
 	var qwidget = new(qwidget)
 	qwidget.SetPointer(C.QApplication_ActiveModalWidget())
 	if qwidget.ObjectName() == "" {
-		qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+		qwidget.SetObjectName("QWidget_" + randomIdentifier())
 	}
 	return qwidget
 }
@@ -73,7 +72,7 @@ func QApplication_ActivePopupWidget() QWidget {
 	var qwidget = new(qwidget)
 	qwidget.SetPointer(C.QApplication_ActivePopupWidget())
 	if qwidget.ObjectName() == "" {
-		qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+		qwidget.SetObjectName("QWidget_" + randomIdentifier())
 	}
 	return qwidget
 }
@@ -82,13 +81,13 @@ func QApplication_ActiveWindow() QWidget {
 	var qwidget = new(qwidget)
 	qwidget.SetPointer(C.QApplication_ActiveWindow())
 	if qwidget.ObjectName() == "" {
-		qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+		qwidget.SetObjectName("QWidget_" + randomIdentifier())
 	}
 	return qwidget
 }
 
-func QApplication_Alert_QWidget_Int(widget QWidget, msec int) {
-	var widgetPtr C.QtObjectPtr = nil
+func QApplication_Alert(widget QWidget, msec int) {
+	var widgetPtr C.QtObjectPtr
 	if widget != nil {
 		widgetPtr = widget.Pointer()
 	}
@@ -115,12 +114,12 @@ func QApplication_FocusWidget() QWidget {
 	var qwidget = new(qwidget)
 	qwidget.SetPointer(C.QApplication_FocusWidget())
 	if qwidget.ObjectName() == "" {
-		qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+		qwidget.SetObjectName("QWidget_" + randomIdentifier())
 	}
 	return qwidget
 }
 
-func QApplication_IsEffectEnabled_UIEffect(effect UIEffect) bool {
+func QApplication_IsEffectEnabled(effect UIEffect) bool {
 	return C.QApplication_IsEffectEnabled_UIEffect(C.int(effect)) != 0
 }
 
@@ -128,43 +127,43 @@ func QApplication_KeyboardInputInterval() int {
 	return int(C.QApplication_KeyboardInputInterval())
 }
 
-func QApplication_SetActiveWindow_QWidget(active QWidget) {
-	var activePtr C.QtObjectPtr = nil
+func QApplication_SetActiveWindow(active QWidget) {
+	var activePtr C.QtObjectPtr
 	if active != nil {
 		activePtr = active.Pointer()
 	}
 	C.QApplication_SetActiveWindow_QWidget(activePtr)
 }
 
-func QApplication_SetColorSpec_Int(spec int) {
+func QApplication_SetColorSpec(spec int) {
 	C.QApplication_SetColorSpec_Int(C.int(spec))
 }
 
-func QApplication_SetCursorFlashTime_Int(flashTime int) {
+func QApplication_SetCursorFlashTime(flashTime int) {
 	C.QApplication_SetCursorFlashTime_Int(C.int(flashTime))
 }
 
-func QApplication_SetDoubleClickInterval_Int(doubleClickInterval int) {
+func QApplication_SetDoubleClickInterval(doubleClickInterval int) {
 	C.QApplication_SetDoubleClickInterval_Int(C.int(doubleClickInterval))
 }
 
-func QApplication_SetEffectEnabled_UIEffect_Bool(effect UIEffect, enable bool) {
+func QApplication_SetEffectEnabled(effect UIEffect, enable bool) {
 	C.QApplication_SetEffectEnabled_UIEffect_Bool(C.int(effect), goBoolToCInt(enable))
 }
 
-func QApplication_SetKeyboardInputInterval_Int(keyboardInputInterval int) {
+func QApplication_SetKeyboardInputInterval(keyboardInputInterval int) {
 	C.QApplication_SetKeyboardInputInterval_Int(C.int(keyboardInputInterval))
 }
 
-func QApplication_SetStartDragDistance_Int(l int) {
+func QApplication_SetStartDragDistance(l int) {
 	C.QApplication_SetStartDragDistance_Int(C.int(l))
 }
 
-func QApplication_SetStartDragTime_Int(ms int) {
+func QApplication_SetStartDragTime(ms int) {
 	C.QApplication_SetStartDragTime_Int(C.int(ms))
 }
 
-func QApplication_SetWheelScrollLines_Int(wheelScrollLines int) {
+func QApplication_SetWheelScrollLines(wheelScrollLines int) {
 	C.QApplication_SetWheelScrollLines_Int(C.int(wheelScrollLines))
 }
 
@@ -176,11 +175,11 @@ func QApplication_StartDragTime() int {
 	return int(C.QApplication_StartDragTime())
 }
 
-func QApplication_TopLevelAt_Int_Int(x int, y int) QWidget {
+func QApplication_TopLevelAt(x int, y int) QWidget {
 	var qwidget = new(qwidget)
 	qwidget.SetPointer(C.QApplication_TopLevelAt_Int_Int(C.int(x), C.int(y)))
 	if qwidget.ObjectName() == "" {
-		qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+		qwidget.SetObjectName("QWidget_" + randomIdentifier())
 	}
 	return qwidget
 }
@@ -189,11 +188,11 @@ func QApplication_WheelScrollLines() int {
 	return int(C.QApplication_WheelScrollLines())
 }
 
-func QApplication_WidgetAt_Int_Int(x int, y int) QWidget {
+func QApplication_WidgetAt(x int, y int) QWidget {
 	var qwidget = new(qwidget)
 	qwidget.SetPointer(C.QApplication_WidgetAt_Int_Int(C.int(x), C.int(y)))
 	if qwidget.ObjectName() == "" {
-		qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+		qwidget.SetObjectName("QWidget_" + randomIdentifier())
 	}
 	return qwidget
 }

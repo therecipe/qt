@@ -16,9 +16,9 @@ type QSize interface {
 	IsValid() bool
 	Rheight() int
 	Rwidth() int
-	Scale_Int_Int_AspectRatioMode(width int, height int, mode AspectRatioMode)
-	SetHeight_Int(height int)
-	SetWidth_Int(width int)
+	Scale(width int, height int, mode AspectRatioMode)
+	SetHeight(height int)
+	SetWidth(width int)
 	Transpose()
 	Width() int
 }
@@ -34,64 +34,58 @@ func (p *qsize) SetPointer(ptr C.QtObjectPtr) {
 func (p *qsize) Height() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QSize_Height(p.Pointer()))
 	}
+	return int(C.QSize_Height(p.Pointer()))
 }
 
 func (p *qsize) IsEmpty() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QSize_IsEmpty(p.Pointer()) != 0
 	}
+	return C.QSize_IsEmpty(p.Pointer()) != 0
 }
 
 func (p *qsize) IsNull() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QSize_IsNull(p.Pointer()) != 0
 	}
+	return C.QSize_IsNull(p.Pointer()) != 0
 }
 
 func (p *qsize) IsValid() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QSize_IsValid(p.Pointer()) != 0
 	}
+	return C.QSize_IsValid(p.Pointer()) != 0
 }
 
 func (p *qsize) Rheight() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QSize_Rheight(p.Pointer()))
 	}
+	return int(C.QSize_Rheight(p.Pointer()))
 }
 
 func (p *qsize) Rwidth() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QSize_Rwidth(p.Pointer()))
 	}
+	return int(C.QSize_Rwidth(p.Pointer()))
 }
 
-func (p *qsize) Scale_Int_Int_AspectRatioMode(width int, height int, mode AspectRatioMode) {
+func (p *qsize) Scale(width int, height int, mode AspectRatioMode) {
 	if p.Pointer() != nil {
 		C.QSize_Scale_Int_Int_AspectRatioMode(p.Pointer(), C.int(width), C.int(height), C.int(mode))
 	}
 }
 
-func (p *qsize) SetHeight_Int(height int) {
+func (p *qsize) SetHeight(height int) {
 	if p.Pointer() != nil {
 		C.QSize_SetHeight_Int(p.Pointer(), C.int(height))
 	}
 }
 
-func (p *qsize) SetWidth_Int(width int) {
+func (p *qsize) SetWidth(width int) {
 	if p.Pointer() != nil {
 		C.QSize_SetWidth_Int(p.Pointer(), C.int(width))
 	}
@@ -106,7 +100,6 @@ func (p *qsize) Transpose() {
 func (p *qsize) Width() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QSize_Width(p.Pointer()))
 	}
+	return int(C.QSize_Width(p.Pointer()))
 }

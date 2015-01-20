@@ -17,27 +17,27 @@ type QAbstractSlider interface {
 	Minimum() int
 	Orientation() Orientation
 	PageStep() int
-	SetInvertedAppearance_Bool(invertedAppearance bool)
-	SetInvertedControls_Bool(invertedControls bool)
-	SetMaximum_Int(maximum int)
-	SetMinimum_Int(minimum int)
-	SetPageStep_Int(pageStep int)
-	SetSingleStep_Int(singleStep int)
-	SetSliderDown_Bool(sliderDown bool)
-	SetSliderPosition_Int(sliderPosition int)
-	SetTracking_Bool(enable bool)
+	SetInvertedAppearance(invertedAppearance bool)
+	SetInvertedControls(invertedControls bool)
+	SetMaximum(maximum int)
+	SetMinimum(minimum int)
+	SetPageStep(pageStep int)
+	SetSingleStep(singleStep int)
+	SetSliderDown(sliderDown bool)
+	SetSliderPosition(sliderPosition int)
+	SetTracking(enable bool)
 	SingleStep() int
 	SliderPosition() int
 	Value() int
 	ConnectSlotSetOrientation()
 	DisconnectSlotSetOrientation()
-	SlotSetOrientation_Orientation(orientation Orientation)
+	SlotSetOrientation(orientation Orientation)
 	ConnectSlotSetRange()
 	DisconnectSlotSetRange()
-	SlotSetRange_Int_Int(min int, max int)
+	SlotSetRange(min int, max int)
 	ConnectSlotSetValue()
 	DisconnectSlotSetValue()
-	SlotSetValue_Int(value int)
+	SlotSetValue(value int)
 	ConnectSignalActionTriggered(f func())
 	DisconnectSignalActionTriggered()
 	SignalActionTriggered() func()
@@ -66,14 +66,14 @@ func (p *qabstractslider) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQAbstractSlider_QWidget(parent QWidget) QAbstractSlider {
-	var parentPtr C.QtObjectPtr = nil
+func NewQAbstractSlider(parent QWidget) QAbstractSlider {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qabstractslider = new(qabstractslider)
 	qabstractslider.SetPointer(C.QAbstractSlider_New_QWidget(parentPtr))
-	qabstractslider.SetObjectName_String("QAbstractSlider_" + randomIdentifier())
+	qabstractslider.SetObjectName("QAbstractSlider_" + randomIdentifier())
 	return qabstractslider
 }
 
@@ -88,116 +88,108 @@ func (p *qabstractslider) Destroy() {
 func (p *qabstractslider) HasTracking() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractSlider_HasTracking(p.Pointer()) != 0
 	}
+	return C.QAbstractSlider_HasTracking(p.Pointer()) != 0
 }
 
 func (p *qabstractslider) InvertedAppearance() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractSlider_InvertedAppearance(p.Pointer()) != 0
 	}
+	return C.QAbstractSlider_InvertedAppearance(p.Pointer()) != 0
 }
 
 func (p *qabstractslider) InvertedControls() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractSlider_InvertedControls(p.Pointer()) != 0
 	}
+	return C.QAbstractSlider_InvertedControls(p.Pointer()) != 0
 }
 
 func (p *qabstractslider) IsSliderDown() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QAbstractSlider_IsSliderDown(p.Pointer()) != 0
 	}
+	return C.QAbstractSlider_IsSliderDown(p.Pointer()) != 0
 }
 
 func (p *qabstractslider) Maximum() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QAbstractSlider_Maximum(p.Pointer()))
 	}
+	return int(C.QAbstractSlider_Maximum(p.Pointer()))
 }
 
 func (p *qabstractslider) Minimum() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QAbstractSlider_Minimum(p.Pointer()))
 	}
+	return int(C.QAbstractSlider_Minimum(p.Pointer()))
 }
 
 func (p *qabstractslider) Orientation() Orientation {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return Orientation(C.QAbstractSlider_Orientation(p.Pointer()))
 	}
+	return Orientation(C.QAbstractSlider_Orientation(p.Pointer()))
 }
 
 func (p *qabstractslider) PageStep() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QAbstractSlider_PageStep(p.Pointer()))
 	}
+	return int(C.QAbstractSlider_PageStep(p.Pointer()))
 }
 
-func (p *qabstractslider) SetInvertedAppearance_Bool(invertedAppearance bool) {
+func (p *qabstractslider) SetInvertedAppearance(invertedAppearance bool) {
 	if p.Pointer() != nil {
 		C.QAbstractSlider_SetInvertedAppearance_Bool(p.Pointer(), goBoolToCInt(invertedAppearance))
 	}
 }
 
-func (p *qabstractslider) SetInvertedControls_Bool(invertedControls bool) {
+func (p *qabstractslider) SetInvertedControls(invertedControls bool) {
 	if p.Pointer() != nil {
 		C.QAbstractSlider_SetInvertedControls_Bool(p.Pointer(), goBoolToCInt(invertedControls))
 	}
 }
 
-func (p *qabstractslider) SetMaximum_Int(maximum int) {
+func (p *qabstractslider) SetMaximum(maximum int) {
 	if p.Pointer() != nil {
 		C.QAbstractSlider_SetMaximum_Int(p.Pointer(), C.int(maximum))
 	}
 }
 
-func (p *qabstractslider) SetMinimum_Int(minimum int) {
+func (p *qabstractslider) SetMinimum(minimum int) {
 	if p.Pointer() != nil {
 		C.QAbstractSlider_SetMinimum_Int(p.Pointer(), C.int(minimum))
 	}
 }
 
-func (p *qabstractslider) SetPageStep_Int(pageStep int) {
+func (p *qabstractslider) SetPageStep(pageStep int) {
 	if p.Pointer() != nil {
 		C.QAbstractSlider_SetPageStep_Int(p.Pointer(), C.int(pageStep))
 	}
 }
 
-func (p *qabstractslider) SetSingleStep_Int(singleStep int) {
+func (p *qabstractslider) SetSingleStep(singleStep int) {
 	if p.Pointer() != nil {
 		C.QAbstractSlider_SetSingleStep_Int(p.Pointer(), C.int(singleStep))
 	}
 }
 
-func (p *qabstractslider) SetSliderDown_Bool(sliderDown bool) {
+func (p *qabstractslider) SetSliderDown(sliderDown bool) {
 	if p.Pointer() != nil {
 		C.QAbstractSlider_SetSliderDown_Bool(p.Pointer(), goBoolToCInt(sliderDown))
 	}
 }
 
-func (p *qabstractslider) SetSliderPosition_Int(sliderPosition int) {
+func (p *qabstractslider) SetSliderPosition(sliderPosition int) {
 	if p.Pointer() != nil {
 		C.QAbstractSlider_SetSliderPosition_Int(p.Pointer(), C.int(sliderPosition))
 	}
 }
 
-func (p *qabstractslider) SetTracking_Bool(enable bool) {
+func (p *qabstractslider) SetTracking(enable bool) {
 	if p.Pointer() != nil {
 		C.QAbstractSlider_SetTracking_Bool(p.Pointer(), goBoolToCInt(enable))
 	}
@@ -206,25 +198,22 @@ func (p *qabstractslider) SetTracking_Bool(enable bool) {
 func (p *qabstractslider) SingleStep() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QAbstractSlider_SingleStep(p.Pointer()))
 	}
+	return int(C.QAbstractSlider_SingleStep(p.Pointer()))
 }
 
 func (p *qabstractslider) SliderPosition() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QAbstractSlider_SliderPosition(p.Pointer()))
 	}
+	return int(C.QAbstractSlider_SliderPosition(p.Pointer()))
 }
 
 func (p *qabstractslider) Value() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QAbstractSlider_Value(p.Pointer()))
 	}
+	return int(C.QAbstractSlider_Value(p.Pointer()))
 }
 
 func (p *qabstractslider) ConnectSlotSetOrientation() {
@@ -235,7 +224,7 @@ func (p *qabstractslider) DisconnectSlotSetOrientation() {
 	C.QAbstractSlider_DisconnectSlotSetOrientation(p.Pointer())
 }
 
-func (p *qabstractslider) SlotSetOrientation_Orientation(orientation Orientation) {
+func (p *qabstractslider) SlotSetOrientation(orientation Orientation) {
 	if p.Pointer() != nil {
 		C.QAbstractSlider_SetOrientation_Orientation(p.Pointer(), C.int(orientation))
 	}
@@ -249,7 +238,7 @@ func (p *qabstractslider) DisconnectSlotSetRange() {
 	C.QAbstractSlider_DisconnectSlotSetRange(p.Pointer())
 }
 
-func (p *qabstractslider) SlotSetRange_Int_Int(min int, max int) {
+func (p *qabstractslider) SlotSetRange(min int, max int) {
 	if p.Pointer() != nil {
 		C.QAbstractSlider_SetRange_Int_Int(p.Pointer(), C.int(min), C.int(max))
 	}
@@ -263,7 +252,7 @@ func (p *qabstractslider) DisconnectSlotSetValue() {
 	C.QAbstractSlider_DisconnectSlotSetValue(p.Pointer())
 }
 
-func (p *qabstractslider) SlotSetValue_Int(value int) {
+func (p *qabstractslider) SlotSetValue(value int) {
 	if p.Pointer() != nil {
 		C.QAbstractSlider_SetValue_Int(p.Pointer(), C.int(value))
 	}

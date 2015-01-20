@@ -9,14 +9,14 @@ type qstatusbar struct {
 
 type QStatusBar interface {
 	QWidget
-	AddPermanentWidget_QWidget_Int(widget QWidget, stretch int)
-	AddWidget_QWidget_Int(widget QWidget, stretch int)
+	AddPermanentWidget(widget QWidget, stretch int)
+	AddWidget(widget QWidget, stretch int)
 	CurrentMessage() string
-	InsertPermanentWidget_Int_QWidget_Int(index int, widget QWidget, stretch int) int
-	InsertWidget_Int_QWidget_Int(index int, widget QWidget, stretch int) int
+	InsertPermanentWidget(index int, widget QWidget, stretch int) int
+	InsertWidget(index int, widget QWidget, stretch int) int
 	IsSizeGripEnabled() bool
-	RemoveWidget_QWidget(widget QWidget)
-	SetSizeGripEnabled_Bool(enabled bool)
+	RemoveWidget(widget QWidget)
+	SetSizeGripEnabled(enabled bool)
 	ConnectSlotClearMessage()
 	DisconnectSlotClearMessage()
 	SlotClearMessage()
@@ -33,14 +33,14 @@ func (p *qstatusbar) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQStatusBar_QWidget(parent QWidget) QStatusBar {
-	var parentPtr C.QtObjectPtr = nil
+func NewQStatusBar(parent QWidget) QStatusBar {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qstatusbar = new(qstatusbar)
 	qstatusbar.SetPointer(C.QStatusBar_New_QWidget(parentPtr))
-	qstatusbar.SetObjectName_String("QStatusBar_" + randomIdentifier())
+	qstatusbar.SetObjectName("QStatusBar_" + randomIdentifier())
 	return qstatusbar
 }
 
@@ -52,10 +52,9 @@ func (p *qstatusbar) Destroy() {
 	}
 }
 
-func (p *qstatusbar) AddPermanentWidget_QWidget_Int(widget QWidget, stretch int) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qstatusbar) AddPermanentWidget(widget QWidget, stretch int) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -63,10 +62,9 @@ func (p *qstatusbar) AddPermanentWidget_QWidget_Int(widget QWidget, stretch int)
 	}
 }
 
-func (p *qstatusbar) AddWidget_QWidget_Int(widget QWidget, stretch int) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qstatusbar) AddWidget(widget QWidget, stretch int) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -77,16 +75,15 @@ func (p *qstatusbar) AddWidget_QWidget_Int(widget QWidget, stretch int) {
 func (p *qstatusbar) CurrentMessage() string {
 	if p.Pointer() == nil {
 		return ""
-	} else {
-		return C.GoString(C.QStatusBar_CurrentMessage(p.Pointer()))
 	}
+	return C.GoString(C.QStatusBar_CurrentMessage(p.Pointer()))
 }
 
-func (p *qstatusbar) InsertPermanentWidget_Int_QWidget_Int(index int, widget QWidget, stretch int) int {
+func (p *qstatusbar) InsertPermanentWidget(index int, widget QWidget, stretch int) int {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var widgetPtr C.QtObjectPtr = nil
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -94,11 +91,11 @@ func (p *qstatusbar) InsertPermanentWidget_Int_QWidget_Int(index int, widget QWi
 	}
 }
 
-func (p *qstatusbar) InsertWidget_Int_QWidget_Int(index int, widget QWidget, stretch int) int {
+func (p *qstatusbar) InsertWidget(index int, widget QWidget, stretch int) int {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var widgetPtr C.QtObjectPtr = nil
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -109,15 +106,13 @@ func (p *qstatusbar) InsertWidget_Int_QWidget_Int(index int, widget QWidget, str
 func (p *qstatusbar) IsSizeGripEnabled() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QStatusBar_IsSizeGripEnabled(p.Pointer()) != 0
 	}
+	return C.QStatusBar_IsSizeGripEnabled(p.Pointer()) != 0
 }
 
-func (p *qstatusbar) RemoveWidget_QWidget(widget QWidget) {
-	if p.Pointer() == nil {
-	} else {
-		var widgetPtr C.QtObjectPtr = nil
+func (p *qstatusbar) RemoveWidget(widget QWidget) {
+	if p.Pointer() != nil {
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -125,7 +120,7 @@ func (p *qstatusbar) RemoveWidget_QWidget(widget QWidget) {
 	}
 }
 
-func (p *qstatusbar) SetSizeGripEnabled_Bool(enabled bool) {
+func (p *qstatusbar) SetSizeGripEnabled(enabled bool) {
 	if p.Pointer() != nil {
 		C.QStatusBar_SetSizeGripEnabled_Bool(p.Pointer(), goBoolToCInt(enabled))
 	}

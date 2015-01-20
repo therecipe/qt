@@ -11,11 +11,11 @@ type QStackedLayout interface {
 	QLayout
 	CurrentIndex() int
 	CurrentWidget() QWidget
-	InsertWidget_Int_QWidget(index int, widget QWidget) int
-	Widget_Int(index int) QWidget
+	InsertWidget(index int, widget QWidget) int
+	Widget(index int) QWidget
 	ConnectSlotSetCurrentIndex()
 	DisconnectSlotSetCurrentIndex()
-	SlotSetCurrentIndex_Int(index int)
+	SlotSetCurrentIndex(index int)
 	ConnectSignalCurrentChanged(f func())
 	DisconnectSignalCurrentChanged()
 	SignalCurrentChanged() func()
@@ -32,32 +32,32 @@ func (p *qstackedlayout) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQStackedLayout() QStackedLayout {
+func NewQStackedLayout1() QStackedLayout {
 	var qstackedlayout = new(qstackedlayout)
 	qstackedlayout.SetPointer(C.QStackedLayout_New())
-	qstackedlayout.SetObjectName_String("QStackedLayout_" + randomIdentifier())
+	qstackedlayout.SetObjectName("QStackedLayout_" + randomIdentifier())
 	return qstackedlayout
 }
 
-func NewQStackedLayout_QWidget(parent QWidget) QStackedLayout {
-	var parentPtr C.QtObjectPtr = nil
+func NewQStackedLayout2(parent QWidget) QStackedLayout {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qstackedlayout = new(qstackedlayout)
 	qstackedlayout.SetPointer(C.QStackedLayout_New_QWidget(parentPtr))
-	qstackedlayout.SetObjectName_String("QStackedLayout_" + randomIdentifier())
+	qstackedlayout.SetObjectName("QStackedLayout_" + randomIdentifier())
 	return qstackedlayout
 }
 
-func NewQStackedLayout_QLayout(parentLayout QLayout) QStackedLayout {
-	var parentLayoutPtr C.QtObjectPtr = nil
+func NewQStackedLayout3(parentLayout QLayout) QStackedLayout {
+	var parentLayoutPtr C.QtObjectPtr
 	if parentLayout != nil {
 		parentLayoutPtr = parentLayout.Pointer()
 	}
 	var qstackedlayout = new(qstackedlayout)
 	qstackedlayout.SetPointer(C.QStackedLayout_New_QLayout(parentLayoutPtr))
-	qstackedlayout.SetObjectName_String("QStackedLayout_" + randomIdentifier())
+	qstackedlayout.SetObjectName("QStackedLayout_" + randomIdentifier())
 	return qstackedlayout
 }
 
@@ -72,9 +72,8 @@ func (p *qstackedlayout) Destroy() {
 func (p *qstackedlayout) CurrentIndex() int {
 	if p.Pointer() == nil {
 		return 0
-	} else {
-		return int(C.QStackedLayout_CurrentIndex(p.Pointer()))
 	}
+	return int(C.QStackedLayout_CurrentIndex(p.Pointer()))
 }
 
 func (p *qstackedlayout) CurrentWidget() QWidget {
@@ -84,17 +83,17 @@ func (p *qstackedlayout) CurrentWidget() QWidget {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QStackedLayout_CurrentWidget(p.Pointer()))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
 }
 
-func (p *qstackedlayout) InsertWidget_Int_QWidget(index int, widget QWidget) int {
+func (p *qstackedlayout) InsertWidget(index int, widget QWidget) int {
 	if p.Pointer() == nil {
 		return 0
 	} else {
-		var widgetPtr C.QtObjectPtr = nil
+		var widgetPtr C.QtObjectPtr
 		if widget != nil {
 			widgetPtr = widget.Pointer()
 		}
@@ -102,14 +101,14 @@ func (p *qstackedlayout) InsertWidget_Int_QWidget(index int, widget QWidget) int
 	}
 }
 
-func (p *qstackedlayout) Widget_Int(index int) QWidget {
+func (p *qstackedlayout) Widget(index int) QWidget {
 	if p.Pointer() == nil {
 		return nil
 	} else {
 		var qwidget = new(qwidget)
 		qwidget.SetPointer(C.QStackedLayout_Widget_Int(p.Pointer(), C.int(index)))
 		if qwidget.ObjectName() == "" {
-			qwidget.SetObjectName_String("QWidget_" + randomIdentifier())
+			qwidget.SetObjectName("QWidget_" + randomIdentifier())
 		}
 		return qwidget
 	}
@@ -123,7 +122,7 @@ func (p *qstackedlayout) DisconnectSlotSetCurrentIndex() {
 	C.QStackedLayout_DisconnectSlotSetCurrentIndex(p.Pointer())
 }
 
-func (p *qstackedlayout) SlotSetCurrentIndex_Int(index int) {
+func (p *qstackedlayout) SlotSetCurrentIndex(index int) {
 	if p.Pointer() != nil {
 		C.QStackedLayout_SetCurrentIndex_Int(p.Pointer(), C.int(index))
 	}

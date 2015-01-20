@@ -13,10 +13,10 @@ type QPushButton interface {
 	IsDefault() bool
 	IsFlat() bool
 	Menu() QMenu
-	SetAutoDefault_Bool(autoDefault bool)
-	SetDefault_Bool(defaul bool)
-	SetFlat_Bool(flat bool)
-	SetMenu_QMenu(menu QMenu)
+	SetAutoDefault(autoDefault bool)
+	SetDefault(defaul bool)
+	SetFlat(flat bool)
+	SetMenu(menu QMenu)
 	ConnectSlotShowMenu()
 	DisconnectSlotShowMenu()
 	SlotShowMenu()
@@ -30,25 +30,25 @@ func (p *qpushbutton) SetPointer(ptr C.QtObjectPtr) {
 	p.ptr = ptr
 }
 
-func NewQPushButton_QWidget(parent QWidget) QPushButton {
-	var parentPtr C.QtObjectPtr = nil
+func NewQPushButton1(parent QWidget) QPushButton {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qpushbutton = new(qpushbutton)
 	qpushbutton.SetPointer(C.QPushButton_New_QWidget(parentPtr))
-	qpushbutton.SetObjectName_String("QPushButton_" + randomIdentifier())
+	qpushbutton.SetObjectName("QPushButton_" + randomIdentifier())
 	return qpushbutton
 }
 
-func NewQPushButton_String_QWidget(text string, parent QWidget) QPushButton {
-	var parentPtr C.QtObjectPtr = nil
+func NewQPushButton2(text string, parent QWidget) QPushButton {
+	var parentPtr C.QtObjectPtr
 	if parent != nil {
 		parentPtr = parent.Pointer()
 	}
 	var qpushbutton = new(qpushbutton)
 	qpushbutton.SetPointer(C.QPushButton_New_String_QWidget(C.CString(text), parentPtr))
-	qpushbutton.SetObjectName_String("QPushButton_" + randomIdentifier())
+	qpushbutton.SetObjectName("QPushButton_" + randomIdentifier())
 	return qpushbutton
 }
 
@@ -63,25 +63,22 @@ func (p *qpushbutton) Destroy() {
 func (p *qpushbutton) AutoDefault() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QPushButton_AutoDefault(p.Pointer()) != 0
 	}
+	return C.QPushButton_AutoDefault(p.Pointer()) != 0
 }
 
 func (p *qpushbutton) IsDefault() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QPushButton_IsDefault(p.Pointer()) != 0
 	}
+	return C.QPushButton_IsDefault(p.Pointer()) != 0
 }
 
 func (p *qpushbutton) IsFlat() bool {
 	if p.Pointer() == nil {
 		return false
-	} else {
-		return C.QPushButton_IsFlat(p.Pointer()) != 0
 	}
+	return C.QPushButton_IsFlat(p.Pointer()) != 0
 }
 
 func (p *qpushbutton) Menu() QMenu {
@@ -91,34 +88,33 @@ func (p *qpushbutton) Menu() QMenu {
 		var qmenu = new(qmenu)
 		qmenu.SetPointer(C.QPushButton_Menu(p.Pointer()))
 		if qmenu.ObjectName() == "" {
-			qmenu.SetObjectName_String("QMenu_" + randomIdentifier())
+			qmenu.SetObjectName("QMenu_" + randomIdentifier())
 		}
 		return qmenu
 	}
 }
 
-func (p *qpushbutton) SetAutoDefault_Bool(autoDefault bool) {
+func (p *qpushbutton) SetAutoDefault(autoDefault bool) {
 	if p.Pointer() != nil {
 		C.QPushButton_SetAutoDefault_Bool(p.Pointer(), goBoolToCInt(autoDefault))
 	}
 }
 
-func (p *qpushbutton) SetDefault_Bool(defaul bool) {
+func (p *qpushbutton) SetDefault(defaul bool) {
 	if p.Pointer() != nil {
 		C.QPushButton_SetDefault_Bool(p.Pointer(), goBoolToCInt(defaul))
 	}
 }
 
-func (p *qpushbutton) SetFlat_Bool(flat bool) {
+func (p *qpushbutton) SetFlat(flat bool) {
 	if p.Pointer() != nil {
 		C.QPushButton_SetFlat_Bool(p.Pointer(), goBoolToCInt(flat))
 	}
 }
 
-func (p *qpushbutton) SetMenu_QMenu(menu QMenu) {
-	if p.Pointer() == nil {
-	} else {
-		var menuPtr C.QtObjectPtr = nil
+func (p *qpushbutton) SetMenu(menu QMenu) {
+	if p.Pointer() != nil {
+		var menuPtr C.QtObjectPtr
 		if menu != nil {
 			menuPtr = menu.Pointer()
 		}
