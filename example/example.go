@@ -1,4 +1,4 @@
-//original: http://qt-project.org/doc/qt-5/qtwidgets-widgets-lineedits-example.html
+//original: http://doc.qt.io/qt-5/qtwidgets-widgets-lineedits-example.html
 
 package main
 
