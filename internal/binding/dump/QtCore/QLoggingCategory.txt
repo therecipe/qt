@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QLoggingCategory QLoggingCategory::QLoggingCategory commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non constructor false false   [0xc8203850a0] }
+&{QLoggingCategory QLoggingCategory::QLoggingCategory commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non constructor false true 2  [0xc820385240 0xc8203852c0] }
+&{categoryName QLoggingCategory::categoryName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non plain false false  const char * [] }
+&{defaultCategory QLoggingCategory::defaultCategory commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non plain true false  QLoggingCategory * [] }
+&{installFilter QLoggingCategory::installFilter commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non plain true false  CategoryFilter [0xc820385780] }
+&{isCriticalEnabled QLoggingCategory::isCriticalEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non plain false false  bool [] }
+&{isDebugEnabled QLoggingCategory::isDebugEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non plain false false  bool [] }
+&{isEnabled QLoggingCategory::isEnabled commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non plain false false  bool [0xc820385c40] }
+&{isInfoEnabled QLoggingCategory::isInfoEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non plain false false  bool [] }
+&{isWarningEnabled QLoggingCategory::isWarningEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non plain false false  bool [] }
+&{operator() QLoggingCategory::operator() commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non plain false false  QLoggingCategory & [] }
+&{operator() QLoggingCategory::operator() commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non plain false true 2 const QLoggingCategory & [] }
+&{setEnabled QLoggingCategory::setEnabled commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non plain false false  void [0xc82036c3a0 0xc82036c460] }
+&{setFilterRules QLoggingCategory::setFilterRules commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non plain true false  void [0xc82036c660] }
+&{~QLoggingCategory QLoggingCategory::~QLoggingCategory commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qloggingcategory.h non destructor false false   [] }
+########################################			ENUMS			########################################

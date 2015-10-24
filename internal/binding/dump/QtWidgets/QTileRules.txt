@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{QTileRules QTileRules::QTileRules commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qdrawutil.h non constructor false false   [0xc821d31ec0 0xc821d31f40] }
+&{QTileRules QTileRules::QTileRules commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qdrawutil.h non constructor false true 2  [0xc822658280] }
+########################################			ENUMS			########################################

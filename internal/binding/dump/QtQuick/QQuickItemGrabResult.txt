@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{image QQuickItemGrabResult::image commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitemgrabresult.cpp non plain false false  QImage [] }
+&{url QQuickItemGrabResult::url commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitemgrabresult.cpp non plain false false  QUrl [] }
+&{ready QQuickItemGrabResult::ready commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitemgrabresult.h non signal false false  void [] }
+&{saveToFile QQuickItemGrabResult::saveToFile commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitemgrabresult.h non plain false false  bool [0xc821b94a60] }
+########################################			ENUMS			########################################

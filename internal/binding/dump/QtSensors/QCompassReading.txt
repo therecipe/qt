@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{azimuth QCompassReading::azimuth commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.cpp non plain false false  qreal [] }
+&{calibrationLevel QCompassReading::calibrationLevel commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.cpp non plain false false  qreal [] }
+&{setAzimuth QCompassReading::setAzimuth commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.h non plain false false  void [0xc822ec3a80] }
+&{setCalibrationLevel QCompassReading::setCalibrationLevel commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.h non plain false false  void [0xc822ec3d60] }
+########################################			ENUMS			########################################

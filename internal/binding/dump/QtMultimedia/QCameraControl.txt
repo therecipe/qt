@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QCameraControl QCameraControl::QCameraControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h non constructor false false   [0xc8226aa660] }
+&{canChangeProperty QCameraControl::canChangeProperty commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h pure plain false false  bool [0xc8226aa820 0xc8226aa8e0] }
+&{captureMode QCameraControl::captureMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h pure plain false false  QCamera::CaptureModes [] }
+&{captureModeChanged QCameraControl::captureModeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h non signal false false  void [0xc8226aac40] }
+&{error QCameraControl::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h non signal false false  void [0xc8226aaea0 0xc8226aaf60] }
+&{isCaptureModeSupported QCameraControl::isCaptureModeSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h pure plain false false  bool [0xc8226ab180] }
+&{setCaptureMode QCameraControl::setCaptureMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h pure plain false false  void [0xc8226ab3e0] }
+&{setState QCameraControl::setState commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h pure plain false false  void [0xc8226ab640] }
+&{state QCameraControl::state commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h pure plain false false  QCamera::State [] }
+&{stateChanged QCameraControl::stateChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h non signal false false  void [0xc8226ab9e0] }
+&{status QCameraControl::status commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h pure plain false false  QCamera::Status [] }
+&{statusChanged QCameraControl::statusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h non signal false false  void [0xc8226abd40] }
+&{~QCameraControl QCameraControl::~QCameraControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{PropertyChangeType QCameraControl::PropertyChangeType commendable public  [0xc8226aa120 0xc8226aa1c0 0xc8226aa2a0 0xc8226aa360 0xc8226aa420]}

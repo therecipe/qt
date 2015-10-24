@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{calculateRoute QGeoRoutingManager::calculateRoute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  QGeoRouteReply * [0xc8229d9a40] }
+&{error QGeoRoutingManager::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non signal false false  void [0xc8229d9da0 0xc8229d9e80 0xc8229d9fe0] }
+&{finished QGeoRoutingManager::finished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non signal false false  void [0xc8229f6280] }
+&{locale QGeoRoutingManager::locale commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  QLocale [] }
+&{managerName QGeoRoutingManager::managerName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  QString [] }
+&{managerVersion QGeoRoutingManager::managerVersion commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  int [] }
+&{measurementSystem QGeoRoutingManager::measurementSystem commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  QLocale::MeasurementSystem [] }
+&{setLocale QGeoRoutingManager::setLocale commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  void [0xc8229f6c20] }
+&{setMeasurementSystem QGeoRoutingManager::setMeasurementSystem commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  void [0xc8229f6f40] }
+&{supportedFeatureTypes QGeoRoutingManager::supportedFeatureTypes commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  QGeoRouteRequest::FeatureTypes [] }
+&{supportedFeatureWeights QGeoRoutingManager::supportedFeatureWeights commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  QGeoRouteRequest::FeatureWeights [] }
+&{supportedManeuverDetails QGeoRoutingManager::supportedManeuverDetails commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  QGeoRouteRequest::ManeuverDetails [] }
+&{supportedRouteOptimizations QGeoRoutingManager::supportedRouteOptimizations commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  QGeoRouteRequest::RouteOptimizations [] }
+&{supportedSegmentDetails QGeoRoutingManager::supportedSegmentDetails commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  QGeoRouteRequest::SegmentDetails [] }
+&{supportedTravelModes QGeoRoutingManager::supportedTravelModes commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  QGeoRouteRequest::TravelModes [] }
+&{updateRoute QGeoRoutingManager::updateRoute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non plain false false  QGeoRouteReply * [0xc8229f7dc0 0xc8229f7f20] }
+&{~QGeoRoutingManager QGeoRoutingManager::~QGeoRoutingManager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutingmanager.h non destructor false false   [] }
+########################################			ENUMS			########################################

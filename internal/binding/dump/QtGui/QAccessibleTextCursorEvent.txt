@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QAccessibleTextCursorEvent QAccessibleTextCursorEvent::QAccessibleTextCursorEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  [0xc820c632a0 0xc820c63400] }
+&{QAccessibleTextCursorEvent QAccessibleTextCursorEvent::QAccessibleTextCursorEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   [0xc820c636a0 0xc820c63780] }
+&{cursorPosition QAccessibleTextCursorEvent::cursorPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int [] }
+&{setCursorPosition QAccessibleTextCursorEvent::setCursorPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  void [0xc820c63a80] }
+########################################			ENUMS			########################################

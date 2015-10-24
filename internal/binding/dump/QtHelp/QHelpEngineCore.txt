@@ -1,0 +1,37 @@
+########################################			FUNCTIONS			########################################
+&{autoSaveFilter QHelpEngineCore::autoSaveFilter commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.cpp non plain false false  bool [] }
+&{collectionFile QHelpEngineCore::collectionFile commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.cpp non plain false false  QString [] }
+&{currentFilter QHelpEngineCore::currentFilter commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.cpp non plain false false  QString [] }
+&{setAutoSaveFilter QHelpEngineCore::setAutoSaveFilter commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.cpp non plain false false  void [0xc8222f9360] }
+&{setCollectionFile QHelpEngineCore::setCollectionFile commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.cpp non plain false false  void [0xc8222f9560] }
+&{setCurrentFilter QHelpEngineCore::setCurrentFilter commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.cpp non plain false false  void [0xc8222f96e0] }
+&{QHelpEngineCore QHelpEngineCore::QHelpEngineCore commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non constructor false false   [0xc8222f98a0 0xc8222f9920] }
+&{addCustomFilter QHelpEngineCore::addCustomFilter commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  bool [0xc8222f9e00 0xc8222f9ea0] }
+&{copyCollectionFile QHelpEngineCore::copyCollectionFile commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  bool [0xc8223560a0] }
+&{currentFilterChanged QHelpEngineCore::currentFilterChanged commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non signal false false  void [0xc822356260] }
+&{customFilters QHelpEngineCore::customFilters commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  QStringList [] }
+&{customValue QHelpEngineCore::customValue commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  QVariant [0xc822356520 0xc8223565a0] }
+&{documentationFileName QHelpEngineCore::documentationFileName commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  QString [0xc822356760] }
+&{error QHelpEngineCore::error commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  QString [] }
+&{fileData QHelpEngineCore::fileData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  QByteArray [0xc822356a60] }
+&{files QHelpEngineCore::files commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  QList<QUrl> [0xc822356c60 0xc822356d00 0xc822356dc0] }
+&{filterAttributeSets QHelpEngineCore::filterAttributeSets commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  QList<QStringList> [0xc822356fe0] }
+&{filterAttributes QHelpEngineCore::filterAttributes commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  QStringList [] }
+&{filterAttributes QHelpEngineCore::filterAttributes commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false true 2 QStringList [0xc8223571c0] }
+&{findFile QHelpEngineCore::findFile commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  QUrl [0xc8223573a0] }
+&{linksForIdentifier QHelpEngineCore::linksForIdentifier commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  QMap<QString, QUrl> [0xc8223575c0] }
+&{metaData QHelpEngineCore::metaData commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain true false  QVariant [0xc8223577c0 0xc822357880] }
+&{namespaceName QHelpEngineCore::namespaceName commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain true false  QString [0xc822357a60] }
+&{readersAboutToBeInvalidated QHelpEngineCore::readersAboutToBeInvalidated commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non signal false false  void [] }
+&{registerDocumentation QHelpEngineCore::registerDocumentation commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  bool [0xc822357d60] }
+&{registeredDocumentations QHelpEngineCore::registeredDocumentations commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  QStringList [] }
+&{removeCustomFilter QHelpEngineCore::removeCustomFilter commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  bool [0xc822378040] }
+&{removeCustomValue QHelpEngineCore::removeCustomValue commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  bool [0xc822378200] }
+&{setCustomValue QHelpEngineCore::setCustomValue commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  bool [0xc8223783c0 0xc822378440] }
+&{setupData QHelpEngineCore::setupData commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  bool [] }
+&{setupFinished QHelpEngineCore::setupFinished commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non signal false false  void [] }
+&{setupStarted QHelpEngineCore::setupStarted commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non signal false false  void [] }
+&{unregisterDocumentation QHelpEngineCore::unregisterDocumentation commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non plain false false  bool [0xc822378920] }
+&{warning QHelpEngineCore::warning commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h non signal false false  void [0xc822378b20] }
+&{~QHelpEngineCore QHelpEngineCore::~QHelpEngineCore commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpenginecore.h impure destructor false false   [] }
+########################################			ENUMS			########################################

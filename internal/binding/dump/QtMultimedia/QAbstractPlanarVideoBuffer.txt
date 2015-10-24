@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{QAbstractPlanarVideoBuffer QAbstractPlanarVideoBuffer::QAbstractPlanarVideoBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h non constructor false false   [0xc820e1d2e0] }
+&{map QAbstractPlanarVideoBuffer::map commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h pure plain false false  int [0xc820e1d880 0xc820e1d9a0 0xc820e1db20 0xc820e1dd00] }
+&{~QAbstractPlanarVideoBuffer QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h impure destructor false false   [] }
+########################################			ENUMS			########################################

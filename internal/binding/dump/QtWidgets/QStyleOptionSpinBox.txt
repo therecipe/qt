@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QStyleOptionSpinBox QStyleOptionSpinBox::QStyleOptionSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
+&{QStyleOptionSpinBox QStyleOptionSpinBox::QStyleOptionSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8213f0240] }
+########################################			ENUMS			########################################
+&{StyleOptionType QStyleOptionSpinBox::StyleOptionType commendable public  [0xc821413a00]}
+&{StyleOptionVersion QStyleOptionSpinBox::StyleOptionVersion commendable public  [0xc821413d40]}

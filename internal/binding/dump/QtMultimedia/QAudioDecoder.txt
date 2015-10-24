@@ -1,0 +1,31 @@
+########################################			FUNCTIONS			########################################
+&{errorString QAudioDecoder::errorString commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.cpp non plain false false  QString [] }
+&{state QAudioDecoder::state commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.cpp non plain false false  State [] }
+&{QAudioDecoder QAudioDecoder::QAudioDecoder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non constructor false false   [0xc8222c8be0] }
+&{audioFormat QAudioDecoder::audioFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non plain false false  QAudioFormat [] }
+&{bufferAvailable QAudioDecoder::bufferAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non plain false false  bool [] }
+&{bufferAvailableChanged QAudioDecoder::bufferAvailableChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non signal false false  void [0xc8222c9aa0] }
+&{bufferReady QAudioDecoder::bufferReady commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non signal false false  void [] }
+&{duration QAudioDecoder::duration commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non plain false false  qint64 [] }
+&{durationChanged QAudioDecoder::durationChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non signal false false  void [0xc8222da340] }
+&{error QAudioDecoder::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non signal false true 2 void [0xc8222da720] }
+&{error QAudioDecoder::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non plain false false  Error [] }
+&{finished QAudioDecoder::finished commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non signal false false  void [] }
+&{formatChanged QAudioDecoder::formatChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non signal false false  void [0xc8222daec0] }
+&{hasSupport QAudioDecoder::hasSupport commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non plain true false  QMultimedia::SupportEstimate [0xc8222db360 0xc8222db4e0] }
+&{position QAudioDecoder::position commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non plain false false  qint64 [] }
+&{positionChanged QAudioDecoder::positionChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non signal false false  void [0xc8222dbb00] }
+&{read QAudioDecoder::read commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non plain false false  QAudioBuffer [] }
+&{setAudioFormat QAudioDecoder::setAudioFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non plain false false  void [0xc8222dbf60] }
+&{setSourceDevice QAudioDecoder::setSourceDevice commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non plain false false  void [0xc8222ec240] }
+&{setSourceFilename QAudioDecoder::setSourceFilename commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non plain false false  void [0xc8222ec4e0] }
+&{sourceChanged QAudioDecoder::sourceChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non signal false false  void [] }
+&{sourceDevice QAudioDecoder::sourceDevice commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non plain false false  QIODevice * [] }
+&{sourceFilename QAudioDecoder::sourceFilename commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non plain false false  QString [] }
+&{start QAudioDecoder::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non slot false false  void [] }
+&{stateChanged QAudioDecoder::stateChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non signal false false  void [0xc8222ecd60] }
+&{stop QAudioDecoder::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non slot false false  void [] }
+&{~QAudioDecoder QAudioDecoder::~QAudioDecoder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodecoder.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Error QAudioDecoder::Error commendable public  [0xc8222b5da0 0xc8222b5ee0 0xc8222c8000 0xc8222c8100 0xc8222c8380]}
+&{State QAudioDecoder::State commendable public  [0xc8222c86e0 0xc8222c8860]}

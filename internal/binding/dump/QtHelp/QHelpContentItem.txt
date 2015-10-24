@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{child QHelpContentItem::child commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  QHelpContentItem * [0xc822c53400] }
+&{childCount QHelpContentItem::childCount commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  int [] }
+&{childPosition QHelpContentItem::childPosition commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  int [0xc822c53720] }
+&{parent QHelpContentItem::parent commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  QHelpContentItem * [] }
+&{row QHelpContentItem::row commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  int [] }
+&{title QHelpContentItem::title commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  QString [] }
+&{url QHelpContentItem::url commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  QUrl [] }
+&{~QHelpContentItem QHelpContentItem::~QHelpContentItem commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non destructor false false   [] }
+########################################			ENUMS			########################################

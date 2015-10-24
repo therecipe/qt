@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QNmeaPositionInfoSource QNmeaPositionInfoSource::QNmeaPositionInfoSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h non constructor false false   [0xc822e817e0 0xc822e818e0] }
+&{device QNmeaPositionInfoSource::device commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h non plain false false  QIODevice * [] }
+&{error QNmeaPositionInfoSource::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h impure plain false false  Error [] }
+&{lastKnownPosition QNmeaPositionInfoSource::lastKnownPosition commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h impure plain false false  QGeoPositionInfo [0xc822e5e000] }
+&{minimumUpdateInterval QNmeaPositionInfoSource::minimumUpdateInterval commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h impure plain false false  int [] }
+&{parsePosInfoFromNmeaData QNmeaPositionInfoSource::parsePosInfoFromNmeaData commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h impure plain false false  bool [0xc822e5e4e0 0xc822e5e5e0 0xc822e5e6c0 0xc822e5e800] }
+&{requestUpdate QNmeaPositionInfoSource::requestUpdate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h impure slot false false  void [0xc822e5eac0] }
+&{setDevice QNmeaPositionInfoSource::setDevice commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h non plain false false  void [0xc822e5ede0] }
+&{setUpdateInterval QNmeaPositionInfoSource::setUpdateInterval commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h impure plain false false  void [0xc822e5f200] }
+&{setUserEquivalentRangeError QNmeaPositionInfoSource::setUserEquivalentRangeError commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h non plain false false  void [0xc822e5f580] }
+&{startUpdates QNmeaPositionInfoSource::startUpdates commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h impure slot false false  void [] }
+&{stopUpdates QNmeaPositionInfoSource::stopUpdates commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h impure slot false false  void [] }
+&{supportedPositioningMethods QNmeaPositionInfoSource::supportedPositioningMethods commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h impure plain false false  PositioningMethods [] }
+&{updateMode QNmeaPositionInfoSource::updateMode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h non plain false false  UpdateMode [] }
+&{userEquivalentRangeError QNmeaPositionInfoSource::userEquivalentRangeError commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h non plain false false  double [] }
+&{~QNmeaPositionInfoSource QNmeaPositionInfoSource::~QNmeaPositionInfoSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qnmeapositioninfosource.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{UpdateMode QNmeaPositionInfoSource::UpdateMode commendable public  [0xc822e81340 0xc822e81480]}

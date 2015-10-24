@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QDBusSignature QDBusSignature::QDBusSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false false   [] }
+&{QDBusSignature QDBusSignature::QDBusSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 3  [0xc82174cb20] }
+&{QDBusSignature QDBusSignature::QDBusSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 4  [0xc82174cce0] }
+&{QDBusSignature QDBusSignature::QDBusSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 2  [0xc82174cec0] }
+&{setSignature QDBusSignature::setSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  void [0xc82174d0a0] }
+&{signature QDBusSignature::signature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  QString [] }
+########################################			ENUMS			########################################

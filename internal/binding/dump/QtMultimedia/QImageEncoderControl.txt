@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QImageEncoderControl QImageEncoderControl::QImageEncoderControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qimageencodercontrol.h non constructor false false   [0xc821be08e0] }
+&{imageCodecDescription QImageEncoderControl::imageCodecDescription commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qimageencodercontrol.h pure plain false false  QString [0xc821be0c80] }
+&{imageSettings QImageEncoderControl::imageSettings commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qimageencodercontrol.h pure plain false false  QImageEncoderSettings [] }
+&{setImageSettings QImageEncoderControl::setImageSettings commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qimageencodercontrol.h pure plain false false  void [0xc821be1140] }
+&{supportedImageCodecs QImageEncoderControl::supportedImageCodecs commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qimageencodercontrol.h pure plain false false  QStringList [] }
+&{supportedResolutions QImageEncoderControl::supportedResolutions commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qimageencodercontrol.h pure plain false false  QList<QSize> [0xc821be1760 0xc821be1940] }
+&{~QImageEncoderControl QImageEncoderControl::~QImageEncoderControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qimageencodercontrol.h impure destructor false false   [] }
+########################################			ENUMS			########################################

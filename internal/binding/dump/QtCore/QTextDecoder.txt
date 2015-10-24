@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{toUnicode QTextDecoder::toUnicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.cpp non plain false false  QString [0xc820153d40 0xc820153dc0] }
+&{QTextDecoder QTextDecoder::QTextDecoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non constructor false false   [0xc820153fa0] }
+&{QTextDecoder QTextDecoder::QTextDecoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non constructor false true 2  [0xc8201621c0 0xc8201622a0] }
+&{toUnicode QTextDecoder::toUnicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false true 3 QString [0xc8201625e0] }
+&{toUnicode QTextDecoder::toUnicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false true 2 void [0xc8201627e0 0xc820162860 0xc8201628e0] }
+&{~QTextDecoder QTextDecoder::~QTextDecoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non destructor false false   [] }
+########################################			ENUMS			########################################

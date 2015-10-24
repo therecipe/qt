@@ -1,0 +1,25 @@
+########################################			FUNCTIONS			########################################
+&{isAlternativeFrequenciesEnabled QRadioData::isAlternativeFrequenciesEnabled commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.cpp non plain false false  bool [] }
+&{programType QRadioData::programType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.cpp non plain false false  ProgramType [] }
+&{programTypeName QRadioData::programTypeName commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.cpp non plain false false  QString [] }
+&{radioText QRadioData::radioText commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.cpp non plain false false  QString [] }
+&{setAlternativeFrequenciesEnabled QRadioData::setAlternativeFrequenciesEnabled commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.cpp non slot false false  void [0xc8226d48c0] }
+&{stationId QRadioData::stationId commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.cpp non plain false false  QString [] }
+&{stationName QRadioData::stationName commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.cpp non plain false false  QString [] }
+&{QRadioData QRadioData::QRadioData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h non constructor false false   [0xc821873e20 0xc821873f20] }
+&{alternativeFrequenciesEnabledChanged QRadioData::alternativeFrequenciesEnabledChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h non signal false false  void [0xc821858380] }
+&{availability QRadioData::availability commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h non plain false false  QMultimedia::AvailabilityStatus [] }
+&{error QRadioData::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h non signal false true 2 void [0xc821858760] }
+&{error QRadioData::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h non plain false false  Error [] }
+&{errorString QRadioData::errorString commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h non plain false false  QString [] }
+&{mediaObject QRadioData::mediaObject commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h impure plain false false  QMediaObject * [] }
+&{programTypeChanged QRadioData::programTypeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h non signal false false  void [0xc821858e60] }
+&{programTypeNameChanged QRadioData::programTypeNameChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h non signal false false  void [0xc821859120] }
+&{radioTextChanged QRadioData::radioTextChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h non signal false false  void [0xc8218593a0] }
+&{setMediaObject QRadioData::setMediaObject commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h impure plain false false  bool [0xc8218595a0] }
+&{stationIdChanged QRadioData::stationIdChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h non signal false false  void [0xc821859800] }
+&{stationNameChanged QRadioData::stationNameChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h non signal false false  void [0xc821859ac0] }
+&{~QRadioData QRadioData::~QRadioData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiodata.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Error QRadioData::Error commendable public  [0xc8226d4e20 0xc8226d4ea0 0xc8226d4f20 0xc8226d4fa0]}
+&{ProgramType QRadioData::ProgramType commendable public  [0xc8226d5160 0xc8226d51e0 0xc8226d5260 0xc8226d52e0 0xc8226d5380 0xc8226d5460 0xc8226d5500 0xc8226d5580 0xc8226d5640 0xc8226d5720 0xc8226d57c0 0xc8226d5840 0xc8226d58e0 0xc8226d59c0 0xc8226d5a60 0xc8226d5b00 0xc8226d5ba0 0xc8226d5c40 0xc8226d5d20 0xc8226d5e20 0xc8226d5ec0 0xc8226d5f40 0xc8226d5fc0 0xc821872040 0xc8218720e0 0xc821872220 0xc8218722e0 0xc821872480 0xc821872580 0xc8218726a0 0xc8218727c0 0xc821872900 0xc821872a20 0xc821872b20 0xc821872c20 0xc821872d00 0xc821872dc0 0xc821872ee0 0xc821872fe0 0xc8218730e0 0xc8218731c0 0xc821873260 0xc821873500 0xc8218735e0 0xc8218736e0 0xc8218737c0 0xc8218738c0 0xc821873a60]}

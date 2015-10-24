@@ -1,0 +1,22 @@
+########################################			FUNCTIONS			########################################
+&{DTDHandler QXmlReader::DTDHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QXmlDTDHandler * [] }
+&{contentHandler QXmlReader::contentHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QXmlContentHandler * [] }
+&{declHandler QXmlReader::declHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QXmlDeclHandler * [] }
+&{entityResolver QXmlReader::entityResolver commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QXmlEntityResolver * [] }
+&{errorHandler QXmlReader::errorHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QXmlErrorHandler * [] }
+&{feature QXmlReader::feature commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8226d6300 0xc8226d63c0] }
+&{hasFeature QXmlReader::hasFeature commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8226d6600] }
+&{hasProperty QXmlReader::hasProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8226d6840] }
+&{lexicalHandler QXmlReader::lexicalHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QXmlLexicalHandler * [] }
+&{parse QXmlReader::parse commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8226d6f20] }
+&{property QXmlReader::property commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  void * [0xc8226d71c0 0xc8226d7260] }
+&{setContentHandler QXmlReader::setContentHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  void [0xc8226d7500] }
+&{setDTDHandler QXmlReader::setDTDHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  void [0xc8226d7780] }
+&{setDeclHandler QXmlReader::setDeclHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  void [0xc8226d79e0] }
+&{setEntityResolver QXmlReader::setEntityResolver commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  void [0xc8226d7d00] }
+&{setErrorHandler QXmlReader::setErrorHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  void [0xc8226d7fc0] }
+&{setFeature QXmlReader::setFeature commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  void [0xc8227dc220 0xc8227dc2a0] }
+&{setLexicalHandler QXmlReader::setLexicalHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  void [0xc8227dc5a0] }
+&{setProperty QXmlReader::setProperty commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  void [0xc8227dc820 0xc8227dc8c0] }
+&{~QXmlReader QXmlReader::~QXmlReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   [] }
+########################################			ENUMS			########################################

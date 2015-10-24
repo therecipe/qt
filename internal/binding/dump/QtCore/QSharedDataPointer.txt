@@ -1,0 +1,25 @@
+########################################			FUNCTIONS			########################################
+&{detach QSharedDataPointer::detach commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.cpp non plain false false  void [] }
+&{QSharedDataPointer QSharedDataPointer::QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false false   [] }
+&{QSharedDataPointer QSharedDataPointer::QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false true 4  [0xc820b8ebe0] }
+&{QSharedDataPointer QSharedDataPointer::QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false true 2  [0xc820b8edc0] }
+&{QSharedDataPointer QSharedDataPointer::QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false true 3  [0xc820b8efe0] }
+&{constData QSharedDataPointer::constData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  const T * [] }
+&{data QSharedDataPointer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  T * [] }
+&{data QSharedDataPointer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 2 const T * [] }
+&{operator T * QSharedDataPointer::operator T * commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false   [] }
+&{operator const T * QSharedDataPointer::operator const T * commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false   [] }
+&{operator! QSharedDataPointer::operator! commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  bool [] }
+&{operator!= QSharedDataPointer::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  bool [0xc820b8f920] }
+&{operator* QSharedDataPointer::operator* commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  T & [] }
+&{operator* QSharedDataPointer::operator* commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 2 const T & [] }
+&{operator-> QSharedDataPointer::operator-> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  T * [] }
+&{operator-> QSharedDataPointer::operator-> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 2 const T * [] }
+&{operator= QSharedDataPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 2 QSharedDataPointer & [0xc820b8fec0] }
+&{operator= QSharedDataPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 3 QSharedDataPointer<T> & [0xc820b7e1a0] }
+&{operator= QSharedDataPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  QSharedDataPointer<T> & [0xc820b7e440] }
+&{operator== QSharedDataPointer::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  bool [0xc820b7e700] }
+&{swap QSharedDataPointer::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  void [0xc820b7e960] }
+&{~QSharedDataPointer QSharedDataPointer::~QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non destructor false false   [] }
+&{clone QSharedDataPointer::clone commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezoneprivate.cpp non plain false false  T * [] }
+########################################			ENUMS			########################################

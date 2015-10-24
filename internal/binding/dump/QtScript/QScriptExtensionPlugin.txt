@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QScriptExtensionPlugin QScriptExtensionPlugin::QScriptExtensionPlugin commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h non constructor false false   [0xc821bc6ee0] }
+&{initialize QScriptExtensionPlugin::initialize commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h pure plain false false  void [0xc821bc7040 0xc821bc70c0] }
+&{keys QScriptExtensionPlugin::keys commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h pure plain false false  QStringList [] }
+&{setupPackage QScriptExtensionPlugin::setupPackage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h non plain false false  QScriptValue [0xc821bc7380 0xc821bc7400] }
+&{~QScriptExtensionPlugin QScriptExtensionPlugin::~QScriptExtensionPlugin commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h non destructor false false   [] }
+########################################			ENUMS			########################################

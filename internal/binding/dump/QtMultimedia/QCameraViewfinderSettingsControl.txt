@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QCameraViewfinderSettingsControl QCameraViewfinderSettingsControl::QCameraViewfinderSettingsControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraviewfindersettingscontrol.h non constructor false false   [0xc821c3ebe0] }
+&{isViewfinderParameterSupported QCameraViewfinderSettingsControl::isViewfinderParameterSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraviewfindersettingscontrol.h pure plain false false  bool [0xc821c3f1a0] }
+&{setViewfinderParameter QCameraViewfinderSettingsControl::setViewfinderParameter commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraviewfindersettingscontrol.h pure plain false false  void [0xc821c3f820 0xc821c3fa40] }
+&{viewfinderParameter QCameraViewfinderSettingsControl::viewfinderParameter commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraviewfindersettingscontrol.h pure plain false false  QVariant [0xc821c3ffc0] }
+&{~QCameraViewfinderSettingsControl QCameraViewfinderSettingsControl::~QCameraViewfinderSettingsControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraviewfindersettingscontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ViewfinderParameter QCameraViewfinderSettingsControl::ViewfinderParameter commendable public  [0xc821c6be80 0xc821c6bfe0 0xc821c3e160 0xc821c3e320 0xc821c3e460 0xc821c3e640]}

@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QFinalState QFinalState::QFinalState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qfinalstate.h non constructor false false   [0xc8200e0820] }
+&{event QFinalState::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qfinalstate.h impure plain false false  bool [0xc8200e0bc0] }
+&{onEntry QFinalState::onEntry commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qfinalstate.h impure plain false false  void [0xc8200e0fe0] }
+&{onExit QFinalState::onExit commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qfinalstate.h impure plain false false  void [0xc8200e1360] }
+&{~QFinalState QFinalState::~QFinalState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qfinalstate.h non destructor false false   [] }
+########################################			ENUMS			########################################

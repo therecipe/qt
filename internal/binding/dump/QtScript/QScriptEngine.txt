@@ -1,0 +1,56 @@
+########################################			FUNCTIONS			########################################
+&{QScriptEngine QScriptEngine::QScriptEngine commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non constructor false false   [] }
+&{QScriptEngine QScriptEngine::QScriptEngine commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non constructor false true 2  [0xc822ce1b20] }
+&{abortEvaluation QScriptEngine::abortEvaluation commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  void [0xc822cf1ec0] }
+&{agent QScriptEngine::agent commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptEngineAgent * [] }
+&{availableExtensions QScriptEngine::availableExtensions commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QStringList [] }
+&{checkSyntax QScriptEngine::checkSyntax commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain true false  QScriptSyntaxCheckResult [0xc8222aa620] }
+&{clearExceptions QScriptEngine::clearExceptions commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  void [] }
+&{collectGarbage QScriptEngine::collectGarbage commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  void [] }
+&{currentContext QScriptEngine::currentContext commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptContext * [] }
+&{defaultPrototype QScriptEngine::defaultPrototype commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [0xc8222aac20] }
+&{evaluate QScriptEngine::evaluate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false true 2 QScriptValue [0xc8222aaec0] }
+&{evaluate QScriptEngine::evaluate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [0xc8222ab180 0xc8222ab240 0xc8222ab2c0] }
+&{fromScriptValue QScriptEngine::fromScriptValue commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  T [0xc8222ab540] }
+&{globalObject QScriptEngine::globalObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [] }
+&{hasUncaughtException QScriptEngine::hasUncaughtException commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  bool [] }
+&{importExtension QScriptEngine::importExtension commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [0xc8222aba40] }
+&{importedExtensions QScriptEngine::importedExtensions commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QStringList [] }
+&{installTranslatorFunctions QScriptEngine::installTranslatorFunctions commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  void [0xc8222abda0] }
+&{isEvaluating QScriptEngine::isEvaluating commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  bool [] }
+&{newArray QScriptEngine::newArray commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [0xc8222b4280] }
+&{newDate QScriptEngine::newDate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false true 2 QScriptValue [0xc8222b45e0] }
+&{newDate QScriptEngine::newDate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [0xc8222b4920] }
+&{newFunction QScriptEngine::newFunction commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false true 2 QScriptValue [0xc8222b4c80 0xc8222b4e20 0xc8222b4f20] }
+&{newFunction QScriptEngine::newFunction commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [0xc8222b51a0 0xc8222b52a0] }
+&{newObject QScriptEngine::newObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [] }
+&{newObject QScriptEngine::newObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false true 2 QScriptValue [0xc8222b5700 0xc8222b57e0] }
+&{newQMetaObject QScriptEngine::newQMetaObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [0xc8222b5ae0 0xc8222b5c00] }
+&{newQObject QScriptEngine::newQObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [0xc8222b5e80 0xc8222b5f00 0xc8222b5fe0] }
+&{newQObject QScriptEngine::newQObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false true 2 QScriptValue [0xc8222c8240 0xc8222c8360 0xc8222c8400 0xc8222c84c0] }
+&{newRegExp QScriptEngine::newRegExp commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [0xc8222c8740] }
+&{newRegExp QScriptEngine::newRegExp commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false true 2 QScriptValue [0xc8222c8960 0xc8222c8a00] }
+&{newVariant QScriptEngine::newVariant commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false true 2 QScriptValue [0xc8222c8c60 0xc8222c8d60] }
+&{newVariant QScriptEngine::newVariant commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [0xc8222c8fa0] }
+&{nullValue QScriptEngine::nullValue commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [] }
+&{popContext QScriptEngine::popContext commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  void [] }
+&{processEventsInterval QScriptEngine::processEventsInterval commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  int [] }
+&{pushContext QScriptEngine::pushContext commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptContext * [] }
+&{reportAdditionalMemoryCost QScriptEngine::reportAdditionalMemoryCost commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  void [0xc8222c96c0] }
+&{scriptValueFromQMetaObject QScriptEngine::scriptValueFromQMetaObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [] }
+&{setAgent QScriptEngine::setAgent commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  void [0xc8222c9a20] }
+&{setDefaultPrototype QScriptEngine::setDefaultPrototype commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  void [0xc8222c9ca0 0xc8222c9d60] }
+&{setGlobalObject QScriptEngine::setGlobalObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  void [0xc8222c9fe0] }
+&{setProcessEventsInterval QScriptEngine::setProcessEventsInterval commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  void [0xc8222da260] }
+&{signalHandlerException QScriptEngine::signalHandlerException commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non signal false false  void [0xc8222da4c0] }
+&{toObject QScriptEngine::toObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [0xc8222da760] }
+&{toScriptValue QScriptEngine::toScriptValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [0xc8222da9e0] }
+&{toStringHandle QScriptEngine::toStringHandle commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptString [0xc8222dac40] }
+&{uncaughtException QScriptEngine::uncaughtException commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [] }
+&{uncaughtExceptionBacktrace QScriptEngine::uncaughtExceptionBacktrace commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QStringList [] }
+&{uncaughtExceptionLineNumber QScriptEngine::uncaughtExceptionLineNumber commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  int [] }
+&{undefinedValue QScriptEngine::undefinedValue commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptValue [] }
+&{~QScriptEngine QScriptEngine::~QScriptEngine commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{QObjectWrapOption QScriptEngine::QObjectWrapOption commendable public QScriptEngine::QObjectWrapOptions [0xc822ce07e0 0xc822ce0900 0xc822ce09e0 0xc822ce0b60 0xc822ce0c60 0xc822ce0dc0 0xc822ce0ea0 0xc822ce0f60 0xc822ce10a0]}
+&{ValueOwnership QScriptEngine::ValueOwnership commendable public  [0xc822ce1300 0xc822ce13c0 0xc822ce1480]}

@@ -1,0 +1,50 @@
+########################################			FUNCTIONS			########################################
+&{QQuaternion QQuaternion::QQuaternion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non constructor false false   [] }
+&{QQuaternion QQuaternion::QQuaternion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non constructor false true 5  [0xc8202c3740] }
+&{QQuaternion QQuaternion::QQuaternion commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non constructor false true 4  [0xc8202c3ba0 0xc8202c3d40] }
+&{QQuaternion QQuaternion::QQuaternion commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non constructor false true 3  [0xc8202b2180 0xc8202b22a0 0xc8202b2340 0xc8202b2420] }
+&{conjugated QQuaternion::conjugated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  QQuaternion [] }
+&{dotProduct QQuaternion::dotProduct commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain true false  float [0xc8202b2d40 0xc8202b2e80] }
+&{fromAxes QQuaternion::fromAxes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain true false  QQuaternion [0xc8202b3340 0xc8202b3520 0xc8202b3700] }
+&{fromAxisAndAngle QQuaternion::fromAxisAndAngle commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain true false  QQuaternion [0xc8202b39e0 0xc8202b3ac0] }
+&{fromAxisAndAngle QQuaternion::fromAxisAndAngle commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain true true 2 QQuaternion [0xc8202b3d80 0xc8202b3e80 0xc8202b3f60 0xc82029a060] }
+&{fromDirection QQuaternion::fromDirection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain true false  QQuaternion [0xc82029a380 0xc82029a4c0] }
+&{fromEulerAngles QQuaternion::fromEulerAngles commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain true true 2 QQuaternion [0xc82029a940] }
+&{fromEulerAngles QQuaternion::fromEulerAngles commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain true false  QQuaternion [0xc82029ada0 0xc82029ae60 0xc82029af60] }
+&{fromRotationMatrix QQuaternion::fromRotationMatrix commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain true false  QQuaternion [0xc82029b360] }
+&{getAxes QQuaternion::getAxes commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  void [0xc82029b7c0 0xc82029b8a0 0xc82029b980] }
+&{getAxisAndAngle QQuaternion::getAxisAndAngle commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false true 2 void [0xc82029bd20 0xc82029be20] }
+&{getAxisAndAngle QQuaternion::getAxisAndAngle commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  void [0xc82027a1e0 0xc82027a2c0 0xc82027a3a0 0xc82027a4a0] }
+&{getEulerAngles QQuaternion::getEulerAngles commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  void [0xc82027a780 0xc82027a860 0xc82027a980] }
+&{inverted QQuaternion::inverted commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  QQuaternion [] }
+&{isIdentity QQuaternion::isIdentity commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  bool [] }
+&{isNull QQuaternion::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  bool [] }
+&{length QQuaternion::length commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  float [] }
+&{lengthSquared QQuaternion::lengthSquared commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  float [] }
+&{nlerp QQuaternion::nlerp commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain true false  QQuaternion [0xc82027b3a0 0xc82027b520 0xc82027b600] }
+&{normalize QQuaternion::normalize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  void [] }
+&{normalized QQuaternion::normalized commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  QQuaternion [] }
+&{operator QVariant QQuaternion::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false   [] }
+&{operator*= QQuaternion::operator*= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false true 2 QQuaternion & [0xc82027bd00] }
+&{operator*= QQuaternion::operator*= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  QQuaternion & [0xc82027bfa0] }
+&{operator+= QQuaternion::operator+= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  QQuaternion & [0xc8202742e0] }
+&{operator-= QQuaternion::operator-= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  QQuaternion & [0xc820274700] }
+&{operator/= QQuaternion::operator/= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  QQuaternion & [0xc820274be0] }
+&{rotatedVector QQuaternion::rotatedVector commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  QVector3D [0xc820274fc0] }
+&{rotationTo QQuaternion::rotationTo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain true false  QQuaternion [0xc820275420 0xc820275620] }
+&{scalar QQuaternion::scalar commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  float [] }
+&{setScalar QQuaternion::setScalar commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  void [0xc820275d60] }
+&{setVector QQuaternion::setVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  void [0xc82026a240] }
+&{setVector QQuaternion::setVector commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false true 2 void [0xc82026a740 0xc82026a860 0xc82026a940] }
+&{setX QQuaternion::setX commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  void [0xc82026ada0] }
+&{setY QQuaternion::setY commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  void [0xc82026b1e0] }
+&{setZ QQuaternion::setZ commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  void [0xc82026b620] }
+&{slerp QQuaternion::slerp commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain true false  QQuaternion [0xc82026ba60 0xc82026bc60 0xc82026be80] }
+&{toEulerAngles QQuaternion::toEulerAngles commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  QVector3D [] }
+&{toRotationMatrix QQuaternion::toRotationMatrix commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  QMatrix3x3 [] }
+&{toVector4D QQuaternion::toVector4D commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  QVector4D [] }
+&{vector QQuaternion::vector commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  QVector3D [] }
+&{x QQuaternion::x commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  float [] }
+&{y QQuaternion::y commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  float [] }
+&{z QQuaternion::z commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qquaternion.h non plain false false  float [] }
+########################################			ENUMS			########################################

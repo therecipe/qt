@@ -1,0 +1,41 @@
+########################################			FUNCTIONS			########################################
+&{newProxyWidget QGraphicsProxyWidget::newProxyWidget commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.cpp non slot false false  QGraphicsProxyWidget * [0xc821eb8780] }
+&{QGraphicsProxyWidget QGraphicsProxyWidget::QGraphicsProxyWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h non constructor false false   [0xc821eb89c0 0xc821eb8a60] }
+&{contextMenuEvent QGraphicsProxyWidget::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc821eb8e40] }
+&{createProxyForChildWidget QGraphicsProxyWidget::createProxyForChildWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h non plain false false  QGraphicsProxyWidget * [0xc821eb9160] }
+&{dragEnterEvent QGraphicsProxyWidget::dragEnterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc821eb9340] }
+&{dragLeaveEvent QGraphicsProxyWidget::dragLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc821eb9580] }
+&{dragMoveEvent QGraphicsProxyWidget::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc821eb97c0] }
+&{dropEvent QGraphicsProxyWidget::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc821eb9aa0] }
+&{event QGraphicsProxyWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  bool [0xc821eb9d80] }
+&{eventFilter QGraphicsProxyWidget::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  bool [0xc821eb9f40 0xc821eb9fc0] }
+&{focusInEvent QGraphicsProxyWidget::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc8220b01a0] }
+&{focusNextPrevChild QGraphicsProxyWidget::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  bool [0xc8220b03c0] }
+&{focusOutEvent QGraphicsProxyWidget::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc8220b05a0] }
+&{grabMouseEvent QGraphicsProxyWidget::grabMouseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc8220b0740] }
+&{hideEvent QGraphicsProxyWidget::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc8220b0980] }
+&{hoverEnterEvent QGraphicsProxyWidget::hoverEnterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc8220b0ba0] }
+&{hoverLeaveEvent QGraphicsProxyWidget::hoverLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc8220b0de0] }
+&{hoverMoveEvent QGraphicsProxyWidget::hoverMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc8220b1020] }
+&{inputMethodEvent QGraphicsProxyWidget::inputMethodEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc8220b1220] }
+&{inputMethodQuery QGraphicsProxyWidget::inputMethodQuery commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  QVariant [0xc8220b1440] }
+&{itemChange QGraphicsProxyWidget::itemChange commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  QVariant [0xc8220b1680 0xc8220b1740] }
+&{keyPressEvent QGraphicsProxyWidget::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc8220b18a0] }
+&{keyReleaseEvent QGraphicsProxyWidget::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc8220b1a80] }
+&{mouseDoubleClickEvent QGraphicsProxyWidget::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc8220b1cc0] }
+&{mouseMoveEvent QGraphicsProxyWidget::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc8220b1ee0] }
+&{mousePressEvent QGraphicsProxyWidget::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc82273a120] }
+&{mouseReleaseEvent QGraphicsProxyWidget::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc82273a3c0] }
+&{paint QGraphicsProxyWidget::paint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc82273a680 0xc82273a760 0xc82273a840] }
+&{resizeEvent QGraphicsProxyWidget::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc82273aa40] }
+&{setGeometry QGraphicsProxyWidget::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc82273ac40] }
+&{setWidget QGraphicsProxyWidget::setWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h non plain false false  void [0xc82273aea0] }
+&{showEvent QGraphicsProxyWidget::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc82273b120] }
+&{sizeHint QGraphicsProxyWidget::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  QSizeF [0xc82273b320 0xc82273b3e0] }
+&{subWidgetRect QGraphicsProxyWidget::subWidgetRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h non plain false false  QRectF [0xc82273b5a0] }
+&{type QGraphicsProxyWidget::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  int [] }
+&{ungrabMouseEvent QGraphicsProxyWidget::ungrabMouseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc82273b8a0] }
+&{wheelEvent QGraphicsProxyWidget::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h impure plain false false  void [0xc82273bae0] }
+&{widget QGraphicsProxyWidget::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h non plain false false  QWidget * [] }
+&{~QGraphicsProxyWidget QGraphicsProxyWidget::~QGraphicsProxyWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsproxywidget.h non destructor false false   [] }
+########################################			ENUMS			########################################

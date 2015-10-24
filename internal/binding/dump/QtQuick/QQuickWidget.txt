@@ -1,0 +1,41 @@
+########################################			FUNCTIONS			########################################
+&{focusInEvent QQuickWidget::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.cpp impure plain false false  void [0xc821a458c0] }
+&{focusOutEvent QQuickWidget::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.cpp impure plain false false  void [0xc821a45c20] }
+&{resizeMode QQuickWidget::resizeMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.cpp non plain false false  ResizeMode [] }
+&{setResizeMode QQuickWidget::setResizeMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.cpp non plain false false  void [0xc821a42160] }
+&{status QQuickWidget::status commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.cpp non plain false false  Status [] }
+&{QQuickWidget QQuickWidget::QQuickWidget commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non constructor false true 2  [0xc821a42c40 0xc821a42d00] }
+&{QQuickWidget QQuickWidget::QQuickWidget commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non constructor false false   [0xc821a42f60] }
+&{QQuickWidget QQuickWidget::QQuickWidget commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non constructor false true 3  [0xc821a431a0 0xc821a43240] }
+&{dragEnterEvent QQuickWidget::dragEnterEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc821a43520] }
+&{dragLeaveEvent QQuickWidget::dragLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc821a437a0] }
+&{dragMoveEvent QQuickWidget::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc821a43a00] }
+&{dropEvent QQuickWidget::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc821a43c40] }
+&{engine QQuickWidget::engine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non plain false false  QQmlEngine * [] }
+&{errors QQuickWidget::errors commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non plain false false  QList<QQmlError> [] }
+&{event QQuickWidget::event commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  bool [0xc821a1e240] }
+&{format QQuickWidget::format commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non plain false false  QSurfaceFormat [] }
+&{grabFramebuffer QQuickWidget::grabFramebuffer commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non plain false false  QImage [] }
+&{hideEvent QQuickWidget::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc821a1ece0] }
+&{initialSize QQuickWidget::initialSize commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non plain false false  QSize [] }
+&{keyPressEvent QQuickWidget::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc821a1f3e0] }
+&{keyReleaseEvent QQuickWidget::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc821a1f860] }
+&{mouseDoubleClickEvent QQuickWidget::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc821a1fc80] }
+&{mouseMoveEvent QQuickWidget::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc821a0e0e0] }
+&{mousePressEvent QQuickWidget::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc821a0e580] }
+&{mouseReleaseEvent QQuickWidget::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc821a0eac0] }
+&{quickWindow QQuickWidget::quickWindow commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non plain false false  QQuickWindow * [] }
+&{rootContext QQuickWidget::rootContext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non plain false false  QQmlContext * [] }
+&{rootObject QQuickWidget::rootObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non plain false false  QQuickItem * [] }
+&{sceneGraphError QQuickWidget::sceneGraphError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non signal false false  void [0xc821a0fb20 0xc821a0fd60] }
+&{setClearColor QQuickWidget::setClearColor commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non plain false false  void [0xc821a0a120] }
+&{setFormat QQuickWidget::setFormat commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non plain false false  void [0xc821a0b080] }
+&{setSource QQuickWidget::setSource commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non slot false false  void [0xc821a0b3a0] }
+&{showEvent QQuickWidget::showEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc821a0b680] }
+&{statusChanged QQuickWidget::statusChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non signal false false  void [0xc821a0b940] }
+&{source QQuickWidget::source commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h non plain false false  QUrl [] }
+&{wheelEvent QQuickWidget::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure plain false false  void [0xc8219fc440] }
+&{~QQuickWidget QQuickWidget::~QQuickWidget commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quickwidgets/qquickwidget.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{ResizeMode QQuickWidget::ResizeMode commendable public  [0xc821a42540 0xc821a42640]}
+&{Status QQuickWidget::Status commendable public  [0xc821a42880 0xc821a42900 0xc821a42980 0xc821a42a00]}

@@ -1,0 +1,34 @@
+########################################			FUNCTIONS			########################################
+&{QBrush QBrush::QBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non constructor false true 4  [0xc8224eb8a0 0xc8224eb920] }
+&{operator= QBrush::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non plain false false  QBrush & [0xc8224ebdc0] }
+&{operator== QBrush::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non plain false false  bool [0xc8224ebfa0] }
+&{setColor QBrush::setColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non plain false false  void [0xc822500100] }
+&{texture QBrush::texture commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non plain false false  QPixmap [] }
+&{QBrush QBrush::QBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false false   [] }
+&{QBrush QBrush::QBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 2  [0xc822500440] }
+&{QBrush QBrush::QBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 6  [0xc8225005a0 0xc822500620] }
+&{QBrush QBrush::QBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 9  [0xc8225007a0] }
+&{QBrush QBrush::QBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 3  [0xc822500900 0xc822500980] }
+&{QBrush QBrush::QBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 5  [0xc822500ae0 0xc822500b60] }
+&{QBrush QBrush::QBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 10  [0xc822500ce0] }
+&{QBrush QBrush::QBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 8  [0xc822500ea0] }
+&{QBrush QBrush::QBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 7  [0xc822501020] }
+&{color QBrush::color commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  const QColor & [] }
+&{gradient QBrush::gradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  const QGradient * [] }
+&{isOpaque QBrush::isOpaque commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  bool [] }
+&{matrix QBrush::matrix commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  const QMatrix & [] }
+&{operator QVariant QBrush::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false   [] }
+&{operator!= QBrush::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  bool [0xc822501980] }
+&{operator= QBrush::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false true 2 QBrush & [0xc822501b40] }
+&{setColor QBrush::setColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false true 2 void [0xc822501ca0] }
+&{setMatrix QBrush::setMatrix commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc822501e60] }
+&{setStyle QBrush::setStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc822501fc0] }
+&{setTexture QBrush::setTexture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc822518180] }
+&{setTextureImage QBrush::setTextureImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc822518340] }
+&{setTransform QBrush::setTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc822518520] }
+&{style QBrush::style commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  Qt::BrushStyle [] }
+&{swap QBrush::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc822518780] }
+&{textureImage QBrush::textureImage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  QImage [] }
+&{transform QBrush::transform commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  QTransform [] }
+&{~QBrush QBrush::~QBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non destructor false false   [] }
+########################################			ENUMS			########################################

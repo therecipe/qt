@@ -1,0 +1,42 @@
+########################################			FUNCTIONS			########################################
+&{geometry QGraphicsLayoutItem::geometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.cpp non plain false false  QRectF [] }
+&{setGeometry QGraphicsLayoutItem::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.cpp impure plain false false  void [0xc8220dfd80] }
+&{QGraphicsLayoutItem QGraphicsLayoutItem::QGraphicsLayoutItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non constructor false false   [0xc8220dffc0 0xc8220ec0c0] }
+&{contentsRect QGraphicsLayoutItem::contentsRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  QRectF [] }
+&{effectiveSizeHint QGraphicsLayoutItem::effectiveSizeHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  QSizeF [0xc8220ec3e0 0xc8220ec480] }
+&{getContentsMargins QGraphicsLayoutItem::getContentsMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h impure plain false false  void [0xc8220ecbe0 0xc8220ecc80 0xc8220ecd20 0xc8220ecda0] }
+&{graphicsItem QGraphicsLayoutItem::graphicsItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  QGraphicsItem * [] }
+&{isLayout QGraphicsLayoutItem::isLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  bool [] }
+&{maximumHeight QGraphicsLayoutItem::maximumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  qreal [] }
+&{maximumSize QGraphicsLayoutItem::maximumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  QSizeF [] }
+&{maximumWidth QGraphicsLayoutItem::maximumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  qreal [] }
+&{minimumHeight QGraphicsLayoutItem::minimumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  qreal [] }
+&{minimumSize QGraphicsLayoutItem::minimumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  QSizeF [] }
+&{minimumWidth QGraphicsLayoutItem::minimumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  qreal [] }
+&{ownedByLayout QGraphicsLayoutItem::ownedByLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  bool [] }
+&{parentLayoutItem QGraphicsLayoutItem::parentLayoutItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  QGraphicsLayoutItem * [] }
+&{preferredHeight QGraphicsLayoutItem::preferredHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  qreal [] }
+&{preferredSize QGraphicsLayoutItem::preferredSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  QSizeF [] }
+&{preferredWidth QGraphicsLayoutItem::preferredWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  qreal [] }
+&{setGraphicsItem QGraphicsLayoutItem::setGraphicsItem commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc8220edbc0] }
+&{setMaximumHeight QGraphicsLayoutItem::setMaximumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc8220edd60] }
+&{setMaximumSize QGraphicsLayoutItem::setMaximumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc8220edf20] }
+&{setMaximumSize QGraphicsLayoutItem::setMaximumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false true 2 void [0xc821d5e100 0xc821d5e1a0] }
+&{setMaximumWidth QGraphicsLayoutItem::setMaximumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc821d5e360] }
+&{setMinimumHeight QGraphicsLayoutItem::setMinimumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc821d5e540] }
+&{setMinimumSize QGraphicsLayoutItem::setMinimumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc821d5e720] }
+&{setMinimumSize QGraphicsLayoutItem::setMinimumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false true 2 void [0xc821d5e8c0 0xc821d5e980] }
+&{setMinimumWidth QGraphicsLayoutItem::setMinimumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc821d5eb20] }
+&{setOwnedByLayout QGraphicsLayoutItem::setOwnedByLayout commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc821d5ed00] }
+&{setParentLayoutItem QGraphicsLayoutItem::setParentLayoutItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc821d5ef60] }
+&{setPreferredHeight QGraphicsLayoutItem::setPreferredHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc821d5f220] }
+&{setPreferredSize QGraphicsLayoutItem::setPreferredSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc821d5f3e0] }
+&{setPreferredSize QGraphicsLayoutItem::setPreferredSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false true 2 void [0xc821d5f5e0 0xc821d5f660] }
+&{setPreferredWidth QGraphicsLayoutItem::setPreferredWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc821d5f8a0] }
+&{setSizePolicy QGraphicsLayoutItem::setSizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false true 2 void [0xc821d5fac0 0xc821d5fbc0 0xc821d5fd20] }
+&{setSizePolicy QGraphicsLayoutItem::setSizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  void [0xc821d5ff80] }
+&{sizeHint QGraphicsLayoutItem::sizeHint commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h pure plain false false  QSizeF [0xc8227c0220 0xc8227c02a0] }
+&{sizePolicy QGraphicsLayoutItem::sizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h non plain false false  QSizePolicy [] }
+&{updateGeometry QGraphicsLayoutItem::updateGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h impure plain false false  void [] }
+&{~QGraphicsLayoutItem QGraphicsLayoutItem::~QGraphicsLayoutItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayoutitem.h impure destructor false false   [] }
+########################################			ENUMS			########################################

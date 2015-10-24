@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QSslPreSharedKeyAuthenticator QSslPreSharedKeyAuthenticator::QSslPreSharedKeyAuthenticator commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non constructor false false   [] }
+&{QSslPreSharedKeyAuthenticator QSslPreSharedKeyAuthenticator::QSslPreSharedKeyAuthenticator commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non constructor false true 2  [0xc822fc1100] }
+&{identity QSslPreSharedKeyAuthenticator::identity commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non plain false false  QByteArray [] }
+&{identityHint QSslPreSharedKeyAuthenticator::identityHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non plain false false  QByteArray [] }
+&{maximumIdentityLength QSslPreSharedKeyAuthenticator::maximumIdentityLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non plain false false  int [] }
+&{maximumPreSharedKeyLength QSslPreSharedKeyAuthenticator::maximumPreSharedKeyLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non plain false false  int [] }
+&{operator= QSslPreSharedKeyAuthenticator::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non plain false true 2 QSslPreSharedKeyAuthenticator & [0xc822fc1940] }
+&{operator= QSslPreSharedKeyAuthenticator::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non plain false false  QSslPreSharedKeyAuthenticator & [0xc822fc1c00] }
+&{preSharedKey QSslPreSharedKeyAuthenticator::preSharedKey commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non plain false false  QByteArray [] }
+&{setIdentity QSslPreSharedKeyAuthenticator::setIdentity commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non plain false false  void [0xc822fc1fc0] }
+&{setPreSharedKey QSslPreSharedKeyAuthenticator::setPreSharedKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non plain false false  void [0xc822fb22a0] }
+&{swap QSslPreSharedKeyAuthenticator::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non plain false false  void [0xc822fb25a0] }
+&{~QSslPreSharedKeyAuthenticator QSslPreSharedKeyAuthenticator::~QSslPreSharedKeyAuthenticator commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslpresharedkeyauthenticator.h non destructor false false   [] }
+########################################			ENUMS			########################################

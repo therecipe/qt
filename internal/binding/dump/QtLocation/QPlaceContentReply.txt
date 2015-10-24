@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceContentReply QPlaceContentReply::QPlaceContentReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h non constructor false false   [0xc82214fb40] }
+&{content QPlaceContentReply::content commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h non plain false false  QPlaceContent::Collection [] }
+&{nextPageRequest QPlaceContentReply::nextPageRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h non plain false false  QPlaceContentRequest [] }
+&{previousPageRequest QPlaceContentReply::previousPageRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h non plain false false  QPlaceContentRequest [] }
+&{request QPlaceContentReply::request commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h non plain false false  QPlaceContentRequest [] }
+&{setContent QPlaceContentReply::setContent commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h non plain false false  void [0xc822164820] }
+&{setNextPageRequest QPlaceContentReply::setNextPageRequest commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h non plain false false  void [0xc822164ae0] }
+&{setPreviousPageRequest QPlaceContentReply::setPreviousPageRequest commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h non plain false false  void [0xc822164f00] }
+&{setRequest QPlaceContentReply::setRequest commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h non plain false false  void [0xc822165200] }
+&{setTotalCount QPlaceContentReply::setTotalCount commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h non plain false false  void [0xc822165460] }
+&{totalCount QPlaceContentReply::totalCount commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h non plain false false  int [] }
+&{type QPlaceContentReply::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h impure plain false false  QPlaceReply::Type [] }
+&{~QPlaceContentReply QPlaceContentReply::~QPlaceContentReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentreply.h impure destructor false false   [] }
+########################################			ENUMS			########################################

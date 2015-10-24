@@ -9,27 +9,22 @@ import (
 	"strings"
 )
 
-var signalTable = make(map[string]func())
+var signalTable = make(map[string]interface{})
 
 func init() { runtime.LockOSThread() }
 
-func connectSignal(name string, signal string, function func()) {
+func ConnectSignal(name string, signal string, function interface{}) {
 	signalTable[name+":"+signal] = function
 }
 
-func getSignal(name string, signal string) func() {
+func GetSignal(name string, signal string) interface{} {
 	if signal == "destroyed" {
 		defer disconnectAllSignals(name)
 	}
-
-	var signalFunction = signalTable[name+":"+signal]
-	if signalFunction == nil {
-		return func() {}
-	}
-	return signalFunction
+	return signalTable[name+":"+signal]
 }
 
-func disconnectSignal(name string, signal string) {
+func DisconnectSignal(name string, signal string) {
 	delete(signalTable, name+":"+signal)
 }
 
@@ -41,7 +36,7 @@ func disconnectAllSignals(name string) {
 	}
 }
 
-func randomIdentifier() string {
+func RandomIdentifier() string {
 	var (
 		length = 15
 		b      = make([]byte, length)
@@ -58,9 +53,9 @@ func DumpSignalTable() {
 	fmt.Println("************ DUMP-SIGNALTABLE ************")
 }
 
-func goBoolToCInt(b bool) C.int {
+func GoBoolToInt(b bool) int {
 	if b {
-		return C.int(1)
+		return 1
 	}
-	return C.int(0)
+	return 0
 }

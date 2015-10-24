@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{comment QXmlLexicalHandler::comment commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc822bc9460] }
+&{endCDATA QXmlLexicalHandler::endCDATA commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [] }
+&{endDTD QXmlLexicalHandler::endDTD commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [] }
+&{endEntity QXmlLexicalHandler::endEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc822bc98e0] }
+&{errorString QXmlLexicalHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString [] }
+&{startCDATA QXmlLexicalHandler::startCDATA commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [] }
+&{startDTD QXmlLexicalHandler::startDTD commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc822bc9cc0 0xc822bc9d40 0xc822bc9dc0] }
+&{startEntity QXmlLexicalHandler::startEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc822bc9fa0] }
+&{~QXmlLexicalHandler QXmlLexicalHandler::~QXmlLexicalHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   [] }
+########################################			ENUMS			########################################

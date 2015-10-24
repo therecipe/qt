@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{isEnabled QGraphicsEffect::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non plain false false  bool [] }
+&{setEnabled QGraphicsEffect::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non slot false false  void [0xc822f91200] }
+&{QGraphicsEffect QGraphicsEffect::QGraphicsEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non constructor false false   [0xc822f7e900] }
+&{boundingRect QGraphicsEffect::boundingRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  QRectF [] }
+&{boundingRectFor QGraphicsEffect::boundingRectFor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure plain false false  QRectF [0xc822f7efc0] }
+&{draw QGraphicsEffect::draw commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h pure plain false false  void [0xc822f7f500] }
+&{drawSource QGraphicsEffect::drawSource commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  void [0xc822f7fa00] }
+&{enabledChanged QGraphicsEffect::enabledChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non signal false false  void [0xc822f7ff40] }
+&{sourceBoundingRect QGraphicsEffect::sourceBoundingRect commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  QRectF [0xc822f6ed20] }
+&{sourceChanged QGraphicsEffect::sourceChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure plain false false  void [0xc822f6f0a0] }
+&{sourceIsPixmap QGraphicsEffect::sourceIsPixmap commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  bool [] }
+&{sourcePixmap QGraphicsEffect::sourcePixmap commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  QPixmap [0xc822f6f780 0xc822f6f900 0xc822f6f9c0] }
+&{update QGraphicsEffect::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non slot false false  void [] }
+&{updateBoundingRect QGraphicsEffect::updateBoundingRect commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  void [] }
+&{~QGraphicsEffect QGraphicsEffect::~QGraphicsEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{ChangeFlag QGraphicsEffect::ChangeFlag commendable public QGraphicsEffect::ChangeFlags [0xc822f917e0 0xc822f918c0 0xc822f91a20 0xc822f91c00]}
+&{PixmapPadMode QGraphicsEffect::PixmapPadMode commendable public  [0xc822f91f00 0xc822f7e040 0xc822f7e240]}

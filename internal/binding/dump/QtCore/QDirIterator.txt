@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QDirIterator QDirIterator::QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non constructor false false   [0xc82039a680 0xc82039a700] }
+&{QDirIterator QDirIterator::QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non constructor false true 2  [0xc82039a8c0 0xc82039a940] }
+&{QDirIterator QDirIterator::QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non constructor false true 3  [0xc82039ab00 0xc82039ab80 0xc82039ac00] }
+&{QDirIterator QDirIterator::QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non constructor false true 4  [0xc82039adc0 0xc82039ae60 0xc82039af20 0xc82039afa0] }
+&{fileInfo QDirIterator::fileInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non plain false false  QFileInfo [] }
+&{fileName QDirIterator::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non plain false false  QString [] }
+&{filePath QDirIterator::filePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non plain false false  QString [] }
+&{hasNext QDirIterator::hasNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non plain false false  bool [] }
+&{next QDirIterator::next commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non plain false false  QString [] }
+&{path QDirIterator::path commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non plain false false  QString [] }
+&{~QDirIterator QDirIterator::~QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{IteratorFlag QDirIterator::IteratorFlag commendable public QDirIterator::IteratorFlags [0xc82039a2e0 0xc82039a360 0xc82039a3e0]}

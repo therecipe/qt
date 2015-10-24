@@ -1,0 +1,45 @@
+########################################			FUNCTIONS			########################################
+&{QVideoFrame QVideoFrame::QVideoFrame commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non constructor false false   [] }
+&{QVideoFrame QVideoFrame::QVideoFrame commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non constructor false true 2  [0xc820f81900 0xc820f81b00 0xc820f81ca0] }
+&{QVideoFrame QVideoFrame::QVideoFrame commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non constructor false true 4  [0xc820f2e200] }
+&{QVideoFrame QVideoFrame::QVideoFrame commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non constructor false true 5  [0xc820f2e780] }
+&{QVideoFrame QVideoFrame::QVideoFrame commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non constructor false true 3  [0xc820f2ede0 0xc820f2eec0 0xc820f2efa0 0xc820f2f180] }
+&{availableMetaData QVideoFrame::availableMetaData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  QVariantMap [] }
+&{bits QVideoFrame::bits commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  uchar * [] }
+&{bits QVideoFrame::bits commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false true 2 uchar * [0xc820f2fdc0] }
+&{bits QVideoFrame::bits commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false true 3 const uchar * [] }
+&{bits QVideoFrame::bits commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false true 4 const uchar * [0xc820f0a620] }
+&{bytesPerLine QVideoFrame::bytesPerLine commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  int [] }
+&{bytesPerLine QVideoFrame::bytesPerLine commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false true 2 int [0xc820f0ae40] }
+&{endTime QVideoFrame::endTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  qint64 [] }
+&{fieldType QVideoFrame::fieldType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  FieldType [] }
+&{handle QVideoFrame::handle commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  QVariant [] }
+&{handleType QVideoFrame::handleType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  QAbstractVideoBuffer::HandleType [] }
+&{height QVideoFrame::height commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  int [] }
+&{imageFormatFromPixelFormat QVideoFrame::imageFormatFromPixelFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain true false  QImage::Format [0xc820efc380] }
+&{isMapped QVideoFrame::isMapped commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  bool [] }
+&{isReadable QVideoFrame::isReadable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  bool [] }
+&{isValid QVideoFrame::isValid commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  bool [] }
+&{isWritable QVideoFrame::isWritable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  bool [] }
+&{map QVideoFrame::map commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  bool [0xc820efd340] }
+&{mapMode QVideoFrame::mapMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  QAbstractVideoBuffer::MapMode [] }
+&{mappedBytes QVideoFrame::mappedBytes commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  int [] }
+&{metaData QVideoFrame::metaData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  QVariant [0xc820efdf60] }
+&{operator!= QVideoFrame::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  bool [0xc8227082e0] }
+&{operator= QVideoFrame::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  QVideoFrame & [0xc822708720] }
+&{operator== QVideoFrame::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  bool [0xc822708ae0] }
+&{pixelFormat QVideoFrame::pixelFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  PixelFormat [] }
+&{pixelFormatFromImageFormat QVideoFrame::pixelFormatFromImageFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain true false  PixelFormat [0xc8227090c0] }
+&{planeCount QVideoFrame::planeCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  int [] }
+&{setEndTime QVideoFrame::setEndTime commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  void [0xc822709600] }
+&{setFieldType QVideoFrame::setFieldType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  void [0xc822709a20] }
+&{setMetaData QVideoFrame::setMetaData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  void [0xc822709d20 0xc822709dc0] }
+&{setStartTime QVideoFrame::setStartTime commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  void [0xc826b3a180] }
+&{size QVideoFrame::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  QSize [] }
+&{startTime QVideoFrame::startTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  qint64 [] }
+&{unmap QVideoFrame::unmap commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  void [] }
+&{width QVideoFrame::width commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non plain false false  int [] }
+&{~QVideoFrame QVideoFrame::~QVideoFrame commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoframe.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{FieldType QVideoFrame::FieldType commendable public  [0xc820fb32a0 0xc820fb33c0 0xc820fb3540 0xc820fb36a0]}
+&{PixelFormat QVideoFrame::PixelFormat commendable public  [0xc820fb3a60 0xc820fb3b40 0xc820fb3d00 0xc820fb3f00 0xc820f960a0 0xc820f961c0 0xc820f96380 0xc820f965a0 0xc820f96860 0xc820f96b00 0xc820f96c60 0xc820f96e20 0xc820f96fc0 0xc820f97180 0xc820f97240 0xc820f97500 0xc820f976a0 0xc820f97980 0xc820f97a60 0xc820f97c20 0xc820f97e20 0xc820f97fa0 0xc820f800c0 0xc820f80220 0xc820f80380 0xc820f80500 0xc820f805a0 0xc820f80780 0xc820f808e0 0xc820f80aa0 0xc820f80b80 0xc820f80c80 0xc820f80f40 0xc820f810e0]}

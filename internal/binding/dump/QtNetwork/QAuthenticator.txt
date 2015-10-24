@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QAuthenticator QAuthenticator::QAuthenticator commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non constructor false false   [] }
+&{QAuthenticator QAuthenticator::QAuthenticator commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non constructor false true 2  [0xc8233385c0] }
+&{isNull QAuthenticator::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non plain false false  bool [] }
+&{operator!= QAuthenticator::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non plain false false  bool [0xc823338a40] }
+&{operator= QAuthenticator::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non plain false false  QAuthenticator & [0xc823338c80] }
+&{operator== QAuthenticator::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non plain false false  bool [0xc823338f00] }
+&{option QAuthenticator::option commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non plain false false  QVariant [0xc8233391a0] }
+&{options QAuthenticator::options commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non plain false false  QVariantHash [] }
+&{password QAuthenticator::password commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non plain false false  QString [] }
+&{realm QAuthenticator::realm commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non plain false false  QString [] }
+&{setOption QAuthenticator::setOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non plain false false  void [0xc823339780 0xc823339860] }
+&{setPassword QAuthenticator::setPassword commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non plain false false  void [0xc823339aa0] }
+&{setUser QAuthenticator::setUser commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non plain false false  void [0xc823339ee0] }
+&{user QAuthenticator::user commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non plain false false  QString [] }
+&{~QAuthenticator QAuthenticator::~QAuthenticator commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qauthenticator.h non destructor false false   [] }
+########################################			ENUMS			########################################

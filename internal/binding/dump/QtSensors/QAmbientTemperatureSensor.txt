@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{reading QAmbientTemperatureSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambienttemperaturesensor.cpp non plain false false  QAmbientTemperatureReading * [] }
+&{QAmbientTemperatureSensor QAmbientTemperatureSensor::QAmbientTemperatureSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambienttemperaturesensor.h non constructor false false   [0xc822ec7ce0] }
+&{~QAmbientTemperatureSensor QAmbientTemperatureSensor::~QAmbientTemperatureSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambienttemperaturesensor.h non destructor false false   [] }
+########################################			ENUMS			########################################

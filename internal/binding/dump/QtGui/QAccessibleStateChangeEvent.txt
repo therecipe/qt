@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{QAccessibleStateChangeEvent QAccessibleStateChangeEvent::QAccessibleStateChangeEvent commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  [0xc820ca16a0 0xc820ca17c0] }
+&{QAccessibleStateChangeEvent QAccessibleStateChangeEvent::QAccessibleStateChangeEvent commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   [0xc820ca19e0 0xc820ca1a80] }
+&{changedStates QAccessibleStateChangeEvent::changedStates commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QAccessible::State [] }
+########################################			ENUMS			########################################

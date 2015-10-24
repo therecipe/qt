@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{hasZ QRotationSensor::hasZ commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  bool [] }
+&{reading QRotationSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  QRotationReading * [] }
+&{QRotationSensor QRotationSensor::QRotationSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non constructor false false   [0xc822e153a0] }
+&{hasZChanged QRotationSensor::hasZChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non signal false false  void [0xc822e15740] }
+&{setHasZ QRotationSensor::setHasZ commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non plain false false  void [0xc822e15ae0] }
+&{~QRotationSensor QRotationSensor::~QRotationSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h impure destructor false false   [] }
+########################################			ENUMS			########################################

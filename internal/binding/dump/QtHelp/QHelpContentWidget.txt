@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{indexOf QHelpContentWidget::indexOf commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  QModelIndex [0xc822cb01a0] }
+&{linkActivated QHelpContentWidget::linkActivated commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non signal false false  void [0xc822cb0320] }
+########################################			ENUMS			########################################

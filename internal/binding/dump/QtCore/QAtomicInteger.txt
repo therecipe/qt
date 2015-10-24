@@ -1,0 +1,58 @@
+########################################			FUNCTIONS			########################################
+&{QAtomicInteger QAtomicInteger::QAtomicInteger commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non constructor false false   [0xc820437660] }
+&{QAtomicInteger QAtomicInteger::QAtomicInteger commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non constructor false true 2  [0xc820437820] }
+&{deref QAtomicInteger::deref commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  bool [] }
+&{fetchAndAddAcquire QAtomicInteger::fetchAndAddAcquire commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc820437ae0] }
+&{fetchAndAddOrdered QAtomicInteger::fetchAndAddOrdered commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc820437ca0] }
+&{fetchAndAddRelaxed QAtomicInteger::fetchAndAddRelaxed commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc820437e40] }
+&{fetchAndAddRelease QAtomicInteger::fetchAndAddRelease commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc820437fe0] }
+&{fetchAndAndAcquire QAtomicInteger::fetchAndAndAcquire commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d6180] }
+&{fetchAndAndOrdered QAtomicInteger::fetchAndAndOrdered commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d6340] }
+&{fetchAndAndRelaxed QAtomicInteger::fetchAndAndRelaxed commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d64e0] }
+&{fetchAndAndRelease QAtomicInteger::fetchAndAndRelease commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d6680] }
+&{fetchAndOrAcquire QAtomicInteger::fetchAndOrAcquire commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d6840] }
+&{fetchAndOrOrdered QAtomicInteger::fetchAndOrOrdered commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d6a00] }
+&{fetchAndOrRelaxed QAtomicInteger::fetchAndOrRelaxed commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d6bc0] }
+&{fetchAndOrRelease QAtomicInteger::fetchAndOrRelease commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d6d80] }
+&{fetchAndStoreAcquire QAtomicInteger::fetchAndStoreAcquire commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d6f20] }
+&{fetchAndStoreOrdered QAtomicInteger::fetchAndStoreOrdered commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d70e0] }
+&{fetchAndStoreRelaxed QAtomicInteger::fetchAndStoreRelaxed commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d7280] }
+&{fetchAndStoreRelease QAtomicInteger::fetchAndStoreRelease commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d7420] }
+&{fetchAndSubAcquire QAtomicInteger::fetchAndSubAcquire commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d75c0] }
+&{fetchAndSubOrdered QAtomicInteger::fetchAndSubOrdered commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d7760] }
+&{fetchAndSubRelaxed QAtomicInteger::fetchAndSubRelaxed commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d7900] }
+&{fetchAndSubRelease QAtomicInteger::fetchAndSubRelease commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d7aa0] }
+&{fetchAndXorAcquire QAtomicInteger::fetchAndXorAcquire commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d7c40] }
+&{fetchAndXorOrdered QAtomicInteger::fetchAndXorOrdered commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d7de0] }
+&{fetchAndXorRelaxed QAtomicInteger::fetchAndXorRelaxed commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8204d7f80] }
+&{fetchAndXorRelease QAtomicInteger::fetchAndXorRelease commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8205ba120] }
+&{isFetchAndAddNative QAtomicInteger::isFetchAndAddNative commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{isFetchAndAddWaitFree QAtomicInteger::isFetchAndAddWaitFree commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{isFetchAndStoreNative QAtomicInteger::isFetchAndStoreNative commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{isFetchAndStoreWaitFree QAtomicInteger::isFetchAndStoreWaitFree commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{isReferenceCountingNative QAtomicInteger::isReferenceCountingNative commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{isReferenceCountingWaitFree QAtomicInteger::isReferenceCountingWaitFree commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{isTestAndSetNative QAtomicInteger::isTestAndSetNative commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{isTestAndSetWaitFree QAtomicInteger::isTestAndSetWaitFree commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{load QAtomicInteger::load commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [] }
+&{loadAcquire QAtomicInteger::loadAcquire commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [] }
+&{operator T QAtomicInteger::operator T commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false   [] }
+&{operator&= QAtomicInteger::operator&= commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8205bacc0] }
+&{operator++ QAtomicInteger::operator++ commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [] }
+&{operator++ QAtomicInteger::operator++ commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false true 2 T [0xc8205baf40] }
+&{operator+= QAtomicInteger::operator+= commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8205bb100] }
+&{operator-- QAtomicInteger::operator-- commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [] }
+&{operator-- QAtomicInteger::operator-- commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false true 2 T [0xc8205bb3c0] }
+&{operator-= QAtomicInteger::operator-= commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8205bb5a0] }
+&{operator= QAtomicInteger::operator= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false true 2 QAtomicInteger & [0xc8205bb740] }
+&{operator= QAtomicInteger::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  QAtomicInteger & [0xc8205bb920] }
+&{operator^= QAtomicInteger::operator^= commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8205bbb20] }
+&{operator|= QAtomicInteger::operator|= commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T [0xc8205bbce0] }
+&{ref QAtomicInteger::ref commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  bool [] }
+&{store QAtomicInteger::store commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  void [0xc8205bbfa0] }
+&{storeRelease QAtomicInteger::storeRelease commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  void [0xc820530180] }
+&{testAndSetAcquire QAtomicInteger::testAndSetAcquire commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  bool [0xc820530320 0xc8205303a0] }
+&{testAndSetOrdered QAtomicInteger::testAndSetOrdered commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  bool [0xc820530540 0xc8205305c0] }
+&{testAndSetRelaxed QAtomicInteger::testAndSetRelaxed commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  bool [0xc820530760 0xc8205307e0] }
+&{testAndSetRelease QAtomicInteger::testAndSetRelease commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  bool [0xc820530980 0xc820530a00] }
+########################################			ENUMS			########################################

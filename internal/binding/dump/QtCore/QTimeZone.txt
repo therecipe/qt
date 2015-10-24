@@ -1,0 +1,44 @@
+########################################			FUNCTIONS			########################################
+&{QTimeZone QTimeZone::QTimeZone commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non constructor false false   [] }
+&{QTimeZone QTimeZone::QTimeZone commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non constructor false true 2  [0xc82068c700] }
+&{QTimeZone QTimeZone::QTimeZone commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non constructor false true 4  [0xc82068cb20 0xc82068cca0 0xc82068cd60 0xc82068cf20 0xc82068d0a0 0xc82068d1c0] }
+&{QTimeZone QTimeZone::QTimeZone commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non constructor false true 5  [0xc82068d620] }
+&{QTimeZone QTimeZone::QTimeZone commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non constructor false true 3  [0xc82068db60] }
+&{abbreviation QTimeZone::abbreviation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  QString [0xc820670780] }
+&{availableTimeZoneIds QTimeZone::availableTimeZoneIds commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain true false  QList<QByteArray> [] }
+&{availableTimeZoneIds QTimeZone::availableTimeZoneIds commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain true true 2 QList<QByteArray> [0xc820671140] }
+&{availableTimeZoneIds QTimeZone::availableTimeZoneIds commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain true true 3 QList<QByteArray> [0xc820671600] }
+&{comment QTimeZone::comment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  QString [] }
+&{country QTimeZone::country commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  QLocale::Country [] }
+&{daylightTimeOffset QTimeZone::daylightTimeOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  int [0xc82065a180] }
+&{displayName QTimeZone::displayName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false true 2 QString [0xc82065a740 0xc82065aa00 0xc82065ac20] }
+&{displayName QTimeZone::displayName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  QString [0xc82065b160 0xc82065b440 0xc82065b600] }
+&{hasDaylightTime QTimeZone::hasDaylightTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  bool [] }
+&{hasTransitions QTimeZone::hasTransitions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  bool [] }
+&{ianaIdToWindowsId QTimeZone::ianaIdToWindowsId commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain true false  QByteArray [0xc8208e4060] }
+&{id QTimeZone::id commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  QByteArray [] }
+&{isDaylightTime QTimeZone::isDaylightTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  bool [0xc8208e4540] }
+&{isTimeZoneIdAvailable QTimeZone::isTimeZoneIdAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain true false  bool [0xc8208e49a0] }
+&{isValid QTimeZone::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  bool [] }
+&{nextTransition QTimeZone::nextTransition commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  OffsetData [0xc8208e4ea0] }
+&{offsetData QTimeZone::offsetData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  OffsetData [0xc8208e5220] }
+&{offsetFromUtc QTimeZone::offsetFromUtc commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  int [0xc8208e5560] }
+&{operator!= QTimeZone::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  bool [0xc8208e58c0] }
+&{operator= QTimeZone::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false true 2 QTimeZone & [0xc8208e5c00] }
+&{operator= QTimeZone::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  QTimeZone & [0xc8208e5e60] }
+&{operator== QTimeZone::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  bool [0xc8206422c0] }
+&{previousTransition QTimeZone::previousTransition commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  OffsetData [0xc820642720] }
+&{standardTimeOffset QTimeZone::standardTimeOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  int [0xc820642dc0] }
+&{swap QTimeZone::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  void [0xc8206433c0] }
+&{systemTimeZone QTimeZone::systemTimeZone commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain true false  QTimeZone [] }
+&{systemTimeZoneId QTimeZone::systemTimeZoneId commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain true false  QByteArray [] }
+&{transitions QTimeZone::transitions commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain false false  OffsetDataList [0xc820643d20 0xc820643f20] }
+&{utc QTimeZone::utc commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain true false  QTimeZone [] }
+&{windowsIdToDefaultIanaId QTimeZone::windowsIdToDefaultIanaId commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain true false  QByteArray [0xc8206306c0] }
+&{windowsIdToDefaultIanaId QTimeZone::windowsIdToDefaultIanaId commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain true true 2 QByteArray [0xc820630b80 0xc820630d60] }
+&{windowsIdToIanaIds QTimeZone::windowsIdToIanaIds commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain true false  QList<QByteArray> [0xc8206313e0] }
+&{windowsIdToIanaIds QTimeZone::windowsIdToIanaIds commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non plain true true 2 QList<QByteArray> [0xc820631ba0 0xc820631d20] }
+&{~QTimeZone QTimeZone::~QTimeZone commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezone.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{NameType QTimeZone::NameType commendable public  [0xc8206a7440 0xc8206a7500 0xc8206a7620 0xc8206a7760]}
+&{TimeType QTimeZone::TimeType commendable public  [0xc8206a7bc0 0xc8206a7ce0 0xc8206a7d80]}

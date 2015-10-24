@@ -1,0 +1,65 @@
+########################################			FUNCTIONS			########################################
+&{currentDateTime QDateTime::currentDateTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain true false  QDateTime [] }
+&{currentDateTimeUtc QDateTime::currentDateTimeUtc commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain true false  QDateTime [] }
+&{currentMSecsSinceEpoch QDateTime::currentMSecsSinceEpoch commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain true false  qint64 [] }
+&{fromString QDateTime::fromString commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain true false  QDateTime [0xc8206bcbe0 0xc8206bcc60] }
+&{fromString QDateTime::fromString commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain true true 2 QDateTime [0xc8206bce80 0xc8206bcf00] }
+&{setTime_t QDateTime::setTime_t commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain false false  void [0xc8206bd140] }
+&{toOffsetFromUtc QDateTime::toOffsetFromUtc commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain false false  QDateTime [0xc8206bd320] }
+&{toString QDateTime::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain false true 2 QString [0xc8206bd520] }
+&{toTimeSpec QDateTime::toTimeSpec commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain false false  QDateTime [0xc8206bd740] }
+&{QDateTime QDateTime::QDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non constructor false false   [] }
+&{QDateTime QDateTime::QDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non constructor false true 2  [0xc8206bda80] }
+&{QDateTime QDateTime::QDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non constructor false true 3  [0xc8206bdca0 0xc8206bdd60 0xc8206bdde0] }
+&{QDateTime QDateTime::QDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non constructor false true 4  [0xc8206a6000 0xc8206a60a0 0xc8206a6120 0xc8206a61c0] }
+&{QDateTime QDateTime::QDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non constructor false true 5  [0xc8206a63c0 0xc8206a6460 0xc8206a6520] }
+&{QDateTime QDateTime::QDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non constructor false true 6  [0xc8206a67a0] }
+&{addDays QDateTime::addDays commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDateTime [0xc8206a6a60] }
+&{addMSecs QDateTime::addMSecs commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDateTime [0xc8206a6ca0] }
+&{addMonths QDateTime::addMonths commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDateTime [0xc8206a6ee0] }
+&{addSecs QDateTime::addSecs commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDateTime [0xc8206a7120] }
+&{addYears QDateTime::addYears commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDateTime [0xc8206a7380] }
+&{date QDateTime::date commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDate [] }
+&{daysTo QDateTime::daysTo commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  qint64 [0xc8206a76a0] }
+&{fromMSecsSinceEpoch QDateTime::fromMSecsSinceEpoch commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true false  QDateTime [0xc8206a7920] }
+&{fromMSecsSinceEpoch QDateTime::fromMSecsSinceEpoch commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true true 2 QDateTime [0xc8206a7ba0 0xc8206a7c20 0xc8206a7ca0] }
+&{fromMSecsSinceEpoch QDateTime::fromMSecsSinceEpoch commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true true 3 QDateTime [0xc8206a7ea0 0xc8206a7f40] }
+&{fromTime_t QDateTime::fromTime_t commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true false  QDateTime [0xc82068c1e0] }
+&{fromTime_t QDateTime::fromTime_t commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true true 2 QDateTime [0xc82068c3e0 0xc82068c4a0 0xc82068c520] }
+&{fromTime_t QDateTime::fromTime_t commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true true 3 QDateTime [0xc82068c760 0xc82068c860] }
+&{isDaylightTime QDateTime::isDaylightTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [] }
+&{isNull QDateTime::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [] }
+&{isValid QDateTime::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [] }
+&{msecsTo QDateTime::msecsTo commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  qint64 [0xc82068ce80] }
+&{offsetFromUtc QDateTime::offsetFromUtc commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{operator!= QDateTime::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc82068d280] }
+&{operator< QDateTime::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc82068d4c0] }
+&{operator<= QDateTime::operator<= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc82068d760] }
+&{operator= QDateTime::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDateTime & [0xc82068d9c0] }
+&{operator== QDateTime::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc82068dca0] }
+&{operator> QDateTime::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc82068df20] }
+&{operator>= QDateTime::operator>= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc8206702a0] }
+&{secsTo QDateTime::secsTo commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  qint64 [0xc820670580] }
+&{setDate QDateTime::setDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  void [0xc820670820] }
+&{setMSecsSinceEpoch QDateTime::setMSecsSinceEpoch commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  void [0xc820670a60] }
+&{setOffsetFromUtc QDateTime::setOffsetFromUtc commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  void [0xc820670ca0] }
+&{setTime QDateTime::setTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  void [0xc820670f00] }
+&{setTimeSpec QDateTime::setTimeSpec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  void [0xc8206710e0] }
+&{setTimeZone QDateTime::setTimeZone commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  void [0xc820671340] }
+&{swap QDateTime::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  void [0xc8206717c0] }
+&{time QDateTime::time commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QTime [] }
+&{timeSpec QDateTime::timeSpec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  Qt::TimeSpec [] }
+&{timeZone QDateTime::timeZone commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QTimeZone [] }
+&{timeZoneAbbreviation QDateTime::timeZoneAbbreviation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QString [] }
+&{toLocalTime QDateTime::toLocalTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDateTime [] }
+&{toMSecsSinceEpoch QDateTime::toMSecsSinceEpoch commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  qint64 [] }
+&{toString QDateTime::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QString [0xc82065a380] }
+&{toTimeZone QDateTime::toTimeZone commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDateTime [0xc82065a660] }
+&{toTime_t QDateTime::toTime_t commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  uint [] }
+&{toUTC QDateTime::toUTC commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDateTime [] }
+&{~QDateTime QDateTime::~QDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non destructor false false   [] }
+&{fromCFDate QDateTime::fromCFDate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime_mac.mm non plain true false  QDateTime [0xc82065af60] }
+&{fromNSDate QDateTime::fromNSDate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime_mac.mm non plain true false  QDateTime [0xc82065b2c0] }
+&{toCFDate QDateTime::toCFDate commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime_mac.mm non plain false false  CFDateRef [] }
+&{toNSDate QDateTime::toNSDate commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime_mac.mm non plain false false  NSDate * [] }
+########################################			ENUMS			########################################

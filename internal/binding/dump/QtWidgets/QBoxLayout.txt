@@ -1,0 +1,38 @@
+########################################			FUNCTIONS			########################################
+&{direction QBoxLayout::direction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.cpp non plain false false  Direction [] }
+&{QBoxLayout QBoxLayout::QBoxLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non constructor false false   [0xc822bd9ee0 0xc822bd9fa0] }
+&{addItem QBoxLayout::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  void [0xc822be4200] }
+&{addLayout QBoxLayout::addLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822be4460 0xc822be4520] }
+&{addSpacerItem QBoxLayout::addSpacerItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822be47a0] }
+&{addSpacing QBoxLayout::addSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822be4a20] }
+&{addStretch QBoxLayout::addStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822be4ca0] }
+&{addStrut QBoxLayout::addStrut commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822be4f20] }
+&{addWidget QBoxLayout::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822be51a0 0xc822be5240 0xc822be5300] }
+&{count QBoxLayout::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  int [] }
+&{expandingDirections QBoxLayout::expandingDirections commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  Qt::Orientations [] }
+&{hasHeightForWidth QBoxLayout::hasHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  bool [] }
+&{heightForWidth QBoxLayout::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  int [0xc822be5a00] }
+&{insertItem QBoxLayout::insertItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822be5c40 0xc822be5d00] }
+&{insertLayout QBoxLayout::insertLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822be5f40 0xc822bec000 0xc822bec0a0] }
+&{insertSpacerItem QBoxLayout::insertSpacerItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822bec300 0xc822bec3a0] }
+&{insertSpacing QBoxLayout::insertSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822bec5e0 0xc822bec680] }
+&{insertStretch QBoxLayout::insertStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822bec880 0xc822bec920] }
+&{insertWidget QBoxLayout::insertWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822becb40 0xc822becbe0 0xc822beccc0 0xc822becd40] }
+&{invalidate QBoxLayout::invalidate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  void [] }
+&{itemAt QBoxLayout::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  QLayoutItem * [0xc822bed0c0] }
+&{maximumSize QBoxLayout::maximumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  QSize [] }
+&{minimumHeightForWidth QBoxLayout::minimumHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  int [0xc822bed400] }
+&{minimumSize QBoxLayout::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  QSize [] }
+&{setDirection QBoxLayout::setDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822bed6c0] }
+&{setGeometry QBoxLayout::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  void [0xc822bed8a0] }
+&{setSpacing QBoxLayout::setSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822beda80] }
+&{setStretch QBoxLayout::setStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  void [0xc822bedca0 0xc822bedd20] }
+&{setStretchFactor QBoxLayout::setStretchFactor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false true 2 bool [0xc822bedf40 0xc822bedfc0] }
+&{setStretchFactor QBoxLayout::setStretchFactor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  bool [0xc822c00200 0xc822c00280] }
+&{sizeHint QBoxLayout::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  QSize [] }
+&{spacing QBoxLayout::spacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  int [] }
+&{stretch QBoxLayout::stretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non plain false false  int [0xc822c00740] }
+&{takeAt QBoxLayout::takeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h impure plain false false  QLayoutItem * [0xc822c009a0] }
+&{~QBoxLayout QBoxLayout::~QBoxLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Direction QBoxLayout::Direction commendable public  [0xc822bd9920 0xc822bd99c0 0xc822bd9a60 0xc822bd9b20 0xc822bd9be0 0xc822bd9ca0]}

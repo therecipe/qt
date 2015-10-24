@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{QScriptSyntaxCheckResult QScriptSyntaxCheckResult::QScriptSyntaxCheckResult commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non constructor false false   [0xc8222db900] }
+&{errorColumnNumber QScriptSyntaxCheckResult::errorColumnNumber commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  int [] }
+&{errorLineNumber QScriptSyntaxCheckResult::errorLineNumber commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  int [] }
+&{errorMessage QScriptSyntaxCheckResult::errorMessage commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QString [] }
+&{operator= QScriptSyntaxCheckResult::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  QScriptSyntaxCheckResult & [0xc8222fc1a0] }
+&{state QScriptSyntaxCheckResult::state commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non plain false false  State [] }
+&{~QScriptSyntaxCheckResult QScriptSyntaxCheckResult::~QScriptSyntaxCheckResult commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengine.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{State QScriptSyntaxCheckResult::State commendable public  [0xc8222db540 0xc8222db5e0 0xc8222db6a0]}

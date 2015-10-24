@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QOpenGLDebugMessage QOpenGLDebugMessage::QOpenGLDebugMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non constructor false false   [] }
+&{QOpenGLDebugMessage QOpenGLDebugMessage::QOpenGLDebugMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non constructor false true 2  [0xc820153740] }
+&{createApplicationMessage QOpenGLDebugMessage::createApplicationMessage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain true false  QOpenGLDebugMessage [0xc820153b80 0xc820153ce0 0xc820153e20 0xc820153ec0] }
+&{createThirdPartyMessage QOpenGLDebugMessage::createThirdPartyMessage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain true false  QOpenGLDebugMessage [0xc82013c2e0 0xc82013c360 0xc82013c480 0xc82013c6a0] }
+&{id QOpenGLDebugMessage::id commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  GLuint [] }
+&{message QOpenGLDebugMessage::message commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  QString [] }
+&{operator!= QOpenGLDebugMessage::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  bool [0xc82013cc40] }
+&{operator= QOpenGLDebugMessage::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false true 2 QOpenGLDebugMessage & [0xc82013cf20] }
+&{operator= QOpenGLDebugMessage::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  QOpenGLDebugMessage & [0xc82013d280] }
+&{operator== QOpenGLDebugMessage::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  bool [0xc82013d520] }
+&{severity QOpenGLDebugMessage::severity commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  Severity [] }
+&{source QOpenGLDebugMessage::source commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  Source [] }
+&{swap QOpenGLDebugMessage::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  void [0xc82013da40] }
+&{type QOpenGLDebugMessage::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  Type [] }
+&{~QOpenGLDebugMessage QOpenGLDebugMessage::~QOpenGLDebugMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Severity QOpenGLDebugMessage::Severity commendable public QOpenGLDebugMessage::Severities [0xc8205bac80 0xc8205bad40 0xc8205badc0 0xc8205bae60 0xc8205baf80 0xc8205bb060 0xc8205bb180]}
+&{Source QOpenGLDebugMessage::Source commendable public QOpenGLDebugMessage::Sources [0xc8205bb400 0xc8205bb480 0xc8205bb540 0xc8205bb660 0xc8205bb7a0 0xc8205bb860 0xc8205bb9a0 0xc8205bba40 0xc8205bbb60]}
+&{Type QOpenGLDebugMessage::Type commendable public QOpenGLDebugMessage::Types [0xc8205bbea0 0xc8205bbf40 0xc820152100 0xc8201522a0 0xc820152580 0xc8201526a0 0xc820152760 0xc8201528e0 0xc820152a20 0xc820152aa0 0xc820152ba0 0xc820152cc0]}

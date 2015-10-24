@@ -1,0 +1,64 @@
+########################################			FUNCTIONS			########################################
+&{columnCount QTreeWidget::columnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.cpp non plain false false  int [] }
+&{setColumnCount QTreeWidget::setColumnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.cpp non plain false false  void [0xc821d65580] }
+&{topLevelItemCount QTreeWidget::topLevelItemCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.cpp non plain false false  int [] }
+&{QTreeWidget QTreeWidget::QTreeWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non constructor false false   [0xc821d65980] }
+&{addTopLevelItem QTreeWidget::addTopLevelItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc821d65e40] }
+&{addTopLevelItems QTreeWidget::addTopLevelItems commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc822500080] }
+&{clear QTreeWidget::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non slot false false  void [] }
+&{closePersistentEditor QTreeWidget::closePersistentEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc8225003c0 0xc8225004c0] }
+&{collapseItem QTreeWidget::collapseItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non slot false false  void [0xc822500700] }
+&{currentColumn QTreeWidget::currentColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  int [] }
+&{currentItem QTreeWidget::currentItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QTreeWidgetItem * [] }
+&{currentItemChanged QTreeWidget::currentItemChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non signal false false  void [0xc822500ca0 0xc822500de0] }
+&{dropEvent QTreeWidget::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h impure plain false false  void [0xc822501060] }
+&{dropMimeData QTreeWidget::dropMimeData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h impure plain false false  bool [0xc822501240 0xc822501320 0xc8225013c0 0xc822501480] }
+&{editItem QTreeWidget::editItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc822501660 0xc822501720] }
+&{event QTreeWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h impure plain false false  bool [0xc8225019c0] }
+&{expandItem QTreeWidget::expandItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non slot false false  void [0xc822501c00] }
+&{findItems QTreeWidget::findItems commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QList<QTreeWidgetItem *> [0xc822501f00 0xc822501f80 0xc821d76060] }
+&{headerItem QTreeWidget::headerItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QTreeWidgetItem * [] }
+&{indexFromItem QTreeWidget::indexFromItem commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QModelIndex [0xc821d76560 0xc821d76640] }
+&{indexOfTopLevelItem QTreeWidget::indexOfTopLevelItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  int [0xc821d76980] }
+&{insertTopLevelItem QTreeWidget::insertTopLevelItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc821d76ce0 0xc821d76e20] }
+&{insertTopLevelItems QTreeWidget::insertTopLevelItems commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc821d77140 0xc821d77240] }
+&{invisibleRootItem QTreeWidget::invisibleRootItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QTreeWidgetItem * [] }
+&{isFirstItemColumnSpanned QTreeWidget::isFirstItemColumnSpanned commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  bool [0xc821d777c0] }
+&{itemAbove QTreeWidget::itemAbove commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QTreeWidgetItem * [0xc821d802a0] }
+&{itemActivated QTreeWidget::itemActivated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non signal false false  void [0xc821d805a0 0xc821d806a0] }
+&{itemAt QTreeWidget::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QTreeWidgetItem * [0xc821d80940] }
+&{itemAt QTreeWidget::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false true 2 QTreeWidgetItem * [0xc821d80be0 0xc821d80ca0] }
+&{itemBelow QTreeWidget::itemBelow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QTreeWidgetItem * [0xc821d80f80] }
+&{itemChanged QTreeWidget::itemChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non signal false false  void [0xc821d81200 0xc821d812e0] }
+&{itemClicked QTreeWidget::itemClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non signal false false  void [0xc821d81520 0xc821d81600] }
+&{itemCollapsed QTreeWidget::itemCollapsed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non signal false false  void [0xc821d81840] }
+&{itemDoubleClicked QTreeWidget::itemDoubleClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non signal false false  void [0xc821d81b20 0xc821d81be0] }
+&{itemEntered QTreeWidget::itemEntered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non signal false false  void [0xc821d81e40 0xc821d81f60] }
+&{itemExpanded QTreeWidget::itemExpanded commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non signal false false  void [0xc821d8c180] }
+&{itemFromIndex QTreeWidget::itemFromIndex commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QTreeWidgetItem * [0xc821d8c4a0] }
+&{itemPressed QTreeWidget::itemPressed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non signal false false  void [0xc821d8c740 0xc821d8c820] }
+&{itemSelectionChanged QTreeWidget::itemSelectionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non signal false false  void [] }
+&{itemWidget QTreeWidget::itemWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QWidget * [0xc821d8cb80 0xc821d8cc40] }
+&{mimeData QTreeWidget::mimeData commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h impure plain false false  QMimeData * [0xc821d8d220] }
+&{mimeTypes QTreeWidget::mimeTypes commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h impure plain false false  QStringList [] }
+&{openPersistentEditor QTreeWidget::openPersistentEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc821d8d5c0 0xc821d8d6e0] }
+&{removeItemWidget QTreeWidget::removeItemWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc821d8d900 0xc821d8da00] }
+&{scrollToItem QTreeWidget::scrollToItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non slot false false  void [0xc821d8dc40 0xc821d8dd80] }
+&{selectedItems QTreeWidget::selectedItems commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QList<QTreeWidgetItem *> [] }
+&{setCurrentItem QTreeWidget::setCurrentItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc821d9a1c0] }
+&{setCurrentItem QTreeWidget::setCurrentItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false true 2 void [0xc821d9a440 0xc821d9a540] }
+&{setCurrentItem QTreeWidget::setCurrentItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false true 3 void [0xc821d9a740 0xc821d9a840 0xc821d9a8c0] }
+&{setFirstItemColumnSpanned QTreeWidget::setFirstItemColumnSpanned commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc821d9ab00 0xc821d9abc0] }
+&{setHeaderItem QTreeWidget::setHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc821d9ae20] }
+&{setHeaderLabel QTreeWidget::setHeaderLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc821d9b0a0] }
+&{setHeaderLabels QTreeWidget::setHeaderLabels commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc821d9b2c0] }
+&{setItemWidget QTreeWidget::setItemWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc821d9be80 0xc821d9bf60 0xc821d9bfe0] }
+&{setSelectionModel QTreeWidget::setSelectionModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h impure plain false false  void [0xc8223e4540] }
+&{sortColumn QTreeWidget::sortColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  int [] }
+&{sortItems QTreeWidget::sortItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  void [0xc8223e4920 0xc8223e49a0] }
+&{supportedDropActions QTreeWidget::supportedDropActions commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h impure plain false false  Qt::DropActions [] }
+&{takeTopLevelItem QTreeWidget::takeTopLevelItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QTreeWidgetItem * [0xc8223e4ce0] }
+&{topLevelItem QTreeWidget::topLevelItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QTreeWidgetItem * [0xc8223e4f60] }
+&{visualItemRect QTreeWidget::visualItemRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non plain false false  QRect [0xc8223e51e0] }
+&{~QTreeWidget QTreeWidget::~QTreeWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreewidget.h non destructor false false   [] }
+########################################			ENUMS			########################################

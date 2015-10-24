@@ -1,0 +1,30 @@
+########################################			FUNCTIONS			########################################
+&{QNetworkProxyQuery QNetworkProxyQuery::QNetworkProxyQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non constructor false false   [] }
+&{QNetworkProxyQuery QNetworkProxyQuery::QNetworkProxyQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non constructor false true 7  [0xc823203140 0xc8232032a0 0xc823203340 0xc8232033c0 0xc8232034e0] }
+&{QNetworkProxyQuery QNetworkProxyQuery::QNetworkProxyQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non constructor false true 6  [0xc823203740 0xc823203860 0xc8232038e0] }
+&{QNetworkProxyQuery QNetworkProxyQuery::QNetworkProxyQuery commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non constructor false true 8  [0xc823203b40 0xc823203c80 0xc823203d40 0xc823203de0] }
+&{QNetworkProxyQuery QNetworkProxyQuery::QNetworkProxyQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non constructor false true 5  [0xc8231f4020] }
+&{QNetworkProxyQuery QNetworkProxyQuery::QNetworkProxyQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non constructor false true 3  [0xc8231f42c0 0xc8231f4340 0xc8231f43e0 0xc8231f4460] }
+&{QNetworkProxyQuery QNetworkProxyQuery::QNetworkProxyQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non constructor false true 2  [0xc8231f4660 0xc8231f4740] }
+&{QNetworkProxyQuery QNetworkProxyQuery::QNetworkProxyQuery commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non constructor false true 4  [0xc8231f4900 0xc8231f49a0 0xc8231f4a60] }
+&{localPort QNetworkProxyQuery::localPort commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  int [] }
+&{networkConfiguration QNetworkProxyQuery::networkConfiguration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QNetworkConfiguration [] }
+&{operator!= QNetworkProxyQuery::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  bool [0xc8231f4ec0] }
+&{operator= QNetworkProxyQuery::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QNetworkProxyQuery & [0xc8231f51c0] }
+&{operator== QNetworkProxyQuery::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  bool [0xc8231f5440] }
+&{peerHostName QNetworkProxyQuery::peerHostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QString [] }
+&{peerPort QNetworkProxyQuery::peerPort commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  int [] }
+&{protocolTag QNetworkProxyQuery::protocolTag commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QString [] }
+&{queryType QNetworkProxyQuery::queryType commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QueryType [] }
+&{setLocalPort QNetworkProxyQuery::setLocalPort commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc8231f5bc0] }
+&{setNetworkConfiguration QNetworkProxyQuery::setNetworkConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc8231f5e00] }
+&{setPeerHostName QNetworkProxyQuery::setPeerHostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc8231de040] }
+&{setPeerPort QNetworkProxyQuery::setPeerPort commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc8231de200] }
+&{setProtocolTag QNetworkProxyQuery::setProtocolTag commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc8231de340] }
+&{setQueryType QNetworkProxyQuery::setQueryType commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc8231de520] }
+&{setUrl QNetworkProxyQuery::setUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc8231de740] }
+&{swap QNetworkProxyQuery::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc8231de9a0] }
+&{url QNetworkProxyQuery::url commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QUrl [] }
+&{~QNetworkProxyQuery QNetworkProxyQuery::~QNetworkProxyQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{QueryType QNetworkProxyQuery::QueryType commendable public  [0xc823202bc0 0xc823202c60 0xc823202ce0 0xc823202d80]}

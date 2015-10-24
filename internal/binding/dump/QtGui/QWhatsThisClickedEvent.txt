@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{QWhatsThisClickedEvent QWhatsThisClickedEvent::QWhatsThisClickedEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc8207f9200] }
+&{href QWhatsThisClickedEvent::href commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QString [] }
+########################################			ENUMS			########################################

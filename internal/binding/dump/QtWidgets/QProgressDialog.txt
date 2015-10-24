@@ -1,0 +1,35 @@
+########################################			FUNCTIONS			########################################
+&{autoClose QProgressDialog::autoClose commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non plain false false  bool [] }
+&{autoReset QProgressDialog::autoReset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non plain false false  bool [] }
+&{labelText QProgressDialog::labelText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non plain false false  QString [] }
+&{maximum QProgressDialog::maximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non plain false false  int [] }
+&{minimum QProgressDialog::minimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non plain false false  int [] }
+&{minimumDuration QProgressDialog::minimumDuration commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non plain false false  int [] }
+&{setAutoClose QProgressDialog::setAutoClose commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non plain false false  void [0xc8218b3900] }
+&{setAutoReset QProgressDialog::setAutoReset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non plain false false  void [0xc8218b3bc0] }
+&{setLabelText QProgressDialog::setLabelText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non slot false false  void [0xc8218b3e80] }
+&{setMaximum QProgressDialog::setMaximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non slot false false  void [0xc821540240] }
+&{setMinimum QProgressDialog::setMinimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non slot false false  void [0xc821540660] }
+&{setMinimumDuration QProgressDialog::setMinimumDuration commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non slot false false  void [0xc821540b80] }
+&{setValue QProgressDialog::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non slot false false  void [0xc821541060] }
+&{value QProgressDialog::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non plain false false  int [] }
+&{wasCanceled QProgressDialog::wasCanceled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.cpp non plain false false  bool [] }
+&{QProgressDialog QProgressDialog::QProgressDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non constructor false false   [0xc821541a00 0xc821541b60] }
+&{QProgressDialog QProgressDialog::QProgressDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non constructor false true 2  [0xc821541e80 0xc821541fc0 0xc8214c4120 0xc8214c41e0 0xc8214c4320 0xc8214c44c0] }
+&{cancel QProgressDialog::cancel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non slot false false  void [] }
+&{canceled QProgressDialog::canceled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non signal false false  void [] }
+&{changeEvent QProgressDialog::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h impure plain false false  void [0xc8214c5220] }
+&{closeEvent QProgressDialog::closeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h impure plain false false  void [0xc8214c5720] }
+&{forceShow QProgressDialog::forceShow commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non slot false false  void [] }
+&{open QProgressDialog::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non plain false false  void [0xc8214c5e00 0xc8214c5f20] }
+&{reset QProgressDialog::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non slot false false  void [] }
+&{resizeEvent QProgressDialog::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h impure plain false false  void [0xc821400400] }
+&{setBar QProgressDialog::setBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non plain false false  void [0xc8214007e0] }
+&{setCancelButton QProgressDialog::setCancelButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non plain false false  void [0xc821400b00] }
+&{setCancelButtonText QProgressDialog::setCancelButtonText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non slot false false  void [0xc821400e20] }
+&{setLabel QProgressDialog::setLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non plain false false  void [0xc8214011a0] }
+&{setRange QProgressDialog::setRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non slot false false  void [0xc821401520 0xc821401640] }
+&{showEvent QProgressDialog::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h impure plain false false  void [0xc8214019c0] }
+&{sizeHint QProgressDialog::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h impure plain false false  QSize [] }
+&{~QProgressDialog QProgressDialog::~QProgressDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qprogressdialog.h non destructor false false   [] }
+########################################			ENUMS			########################################

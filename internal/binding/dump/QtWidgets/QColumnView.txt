@@ -1,0 +1,31 @@
+########################################			FUNCTIONS			########################################
+&{resizeGripsVisible QColumnView::resizeGripsVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.cpp non plain false false  bool [] }
+&{setResizeGripsVisible QColumnView::setResizeGripsVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.cpp non plain false false  void [0xc8227dcae0] }
+&{QColumnView QColumnView::QColumnView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h non constructor false false   [0xc8227dce80] }
+&{columnWidths QColumnView::columnWidths commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h non plain false false  QList<int> [] }
+&{createColumn QColumnView::createColumn commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  QAbstractItemView * [0xc8227dde40] }
+&{currentChanged QColumnView::currentChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  void [0xc8227ea1e0 0xc8227ea360] }
+&{horizontalOffset QColumnView::horizontalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  int [] }
+&{indexAt QColumnView::indexAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  QModelIndex [0xc8227ea960] }
+&{initializeColumn QColumnView::initializeColumn commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h non plain false false  void [0xc8227ead00] }
+&{isIndexHidden QColumnView::isIndexHidden commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  bool [0xc8227eb120] }
+&{moveCursor QColumnView::moveCursor commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  QModelIndex [0xc8227eb520 0xc8227eb620] }
+&{previewWidget QColumnView::previewWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h non plain false false  QWidget * [] }
+&{resizeEvent QColumnView::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  void [0xc8227ebb20] }
+&{rowsInserted QColumnView::rowsInserted commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  void [0xc8227ebf20 0xc8227f6060 0xc8227f6120] }
+&{scrollContentsBy QColumnView::scrollContentsBy commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  void [0xc8227f6360 0xc8227f6400] }
+&{scrollTo QColumnView::scrollTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  void [0xc8227f6660 0xc8227f6760] }
+&{selectAll QColumnView::selectAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  void [] }
+&{setColumnWidths QColumnView::setColumnWidths commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h non plain false false  void [0xc8227f6b00] }
+&{setModel QColumnView::setModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  void [0xc8227f6dc0] }
+&{setPreviewWidget QColumnView::setPreviewWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h non plain false false  void [0xc8227f7000] }
+&{setRootIndex QColumnView::setRootIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  void [0xc8227f7280] }
+&{setSelection QColumnView::setSelection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  void [0xc8227f7500 0xc8227f7580] }
+&{setSelectionModel QColumnView::setSelectionModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  void [0xc8227f7860] }
+&{sizeHint QColumnView::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  QSize [] }
+&{updatePreviewWidget QColumnView::updatePreviewWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h non signal false false  void [0xc8227f7d00] }
+&{verticalOffset QColumnView::verticalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  int [] }
+&{visualRect QColumnView::visualRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  QRect [0xc822806120] }
+&{visualRegionForSelection QColumnView::visualRegionForSelection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h impure plain false false  QRegion [0xc8228063e0] }
+&{~QColumnView QColumnView::~QColumnView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qcolumnview.h non destructor false false   [] }
+########################################			ENUMS			########################################

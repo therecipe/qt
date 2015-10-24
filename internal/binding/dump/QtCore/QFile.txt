@@ -1,0 +1,33 @@
+########################################			FUNCTIONS			########################################
+&{QFile QFile::QFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non constructor false true 3  [0xc82039bbe0] }
+&{QFile QFile::QFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non constructor false false   [0xc82039bd40] }
+&{QFile QFile::QFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non constructor false true 4  [0xc82039bea0 0xc82039bf20] }
+&{copy QFile::copy commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool [0xc8203ae300 0xc8203ae380] }
+&{copy QFile::copy commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  bool [0xc8203ae4c0] }
+&{decodeName QFile::decodeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true false  QString [0xc8203ae6a0] }
+&{decodeName QFile::decodeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 QString [0xc8203ae8c0] }
+&{encodeName QFile::encodeName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true false  QByteArray [0xc8203aea80] }
+&{exists QFile::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true false  bool [0xc8203aebe0] }
+&{exists QFile::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false true 2 bool [] }
+&{fileName QFile::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  QString [] }
+&{link QFile::link commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool [0xc8203aee80 0xc8203aef00] }
+&{link QFile::link commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  bool [0xc8203af040] }
+&{open QFile::open commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false true 2 bool [0xc8203af1a0 0xc8203af220 0xc8203af2a0] }
+&{open QFile::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  bool [0xc8203af420] }
+&{open QFile::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false true 3 bool [0xc8203af580 0xc8203af600 0xc8203af680] }
+&{permissions QFile::permissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 Permissions [0xc8203af840] }
+&{permissions QFile::permissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  Permissions [] }
+&{remove QFile::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  bool [] }
+&{remove QFile::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool [0xc8203afd20] }
+&{rename QFile::rename commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  bool [0xc8203afe80] }
+&{rename QFile::rename commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool [0xc8203affe0 0xc8203c6060] }
+&{resize QFile::resize commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool [0xc8203c61c0 0xc8203c6240] }
+&{resize QFile::resize commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  bool [0xc8203c63c0] }
+&{setFileName QFile::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  void [0xc8203c6980] }
+&{setPermissions QFile::setPermissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  bool [0xc8203c6b40] }
+&{setPermissions QFile::setPermissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool [0xc8203c6d20 0xc8203c6da0] }
+&{size QFile::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  qint64 [] }
+&{symLinkTarget QFile::symLinkTarget commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true false  QString [0xc8203c6fe0] }
+&{symLinkTarget QFile::symLinkTarget commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false true 2 QString [] }
+&{~QFile QFile::~QFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non destructor false false   [] }
+########################################			ENUMS			########################################

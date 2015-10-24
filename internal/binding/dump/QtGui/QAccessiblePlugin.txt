@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{QAccessiblePlugin QAccessiblePlugin::QAccessiblePlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleplugin.h non constructor false false   [0xc820c17200] }
+&{create QAccessiblePlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleplugin.h pure plain false false  QAccessibleInterface * [0xc820c17500 0xc820c175a0] }
+&{~QAccessiblePlugin QAccessiblePlugin::~QAccessiblePlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleplugin.h non destructor false false   [] }
+########################################			ENUMS			########################################

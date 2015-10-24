@@ -1,0 +1,30 @@
+########################################			FUNCTIONS			########################################
+&{enumerator QMetaProperty::enumerator commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  QMetaEnum [] }
+&{hasNotifySignal QMetaProperty::hasNotifySignal commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
+&{isConstant QMetaProperty::isConstant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
+&{isDesignable QMetaProperty::isDesignable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [0xc82059a640] }
+&{isEnumType QMetaProperty::isEnumType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
+&{isFinal QMetaProperty::isFinal commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
+&{isFlagType QMetaProperty::isFlagType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
+&{isReadable QMetaProperty::isReadable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
+&{isResettable QMetaProperty::isResettable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
+&{isScriptable QMetaProperty::isScriptable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [0xc82059b100] }
+&{isStored QMetaProperty::isStored commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [0xc82059b340] }
+&{isUser QMetaProperty::isUser commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [0xc82059b580] }
+&{isValid QMetaProperty::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
+&{isWritable QMetaProperty::isWritable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
+&{name QMetaProperty::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * [] }
+&{notifySignal QMetaProperty::notifySignal commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  QMetaMethod [] }
+&{notifySignalIndex QMetaProperty::notifySignalIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [] }
+&{propertyIndex QMetaProperty::propertyIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [] }
+&{read QMetaProperty::read commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  QVariant [0xc820586020] }
+&{readOnGadget QMetaProperty::readOnGadget commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  QVariant [0xc820586200] }
+&{reset QMetaProperty::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [0xc820586560] }
+&{resetOnGadget QMetaProperty::resetOnGadget commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [0xc820586780] }
+&{revision QMetaProperty::revision commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [] }
+&{type QMetaProperty::type commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  QVariant::Type [] }
+&{typeName QMetaProperty::typeName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * [] }
+&{userType QMetaProperty::userType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [] }
+&{write QMetaProperty::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [0xc820586ea0 0xc820586f20] }
+&{writeOnGadget QMetaProperty::writeOnGadget commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [0xc8205871a0 0xc820587220] }
+########################################			ENUMS			########################################

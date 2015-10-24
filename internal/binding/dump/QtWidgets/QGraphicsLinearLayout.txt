@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{QGraphicsLinearLayout QGraphicsLinearLayout::QGraphicsLinearLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non constructor false false   [0xc8227c0d20] }
+&{QGraphicsLinearLayout QGraphicsLinearLayout::QGraphicsLinearLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non constructor false true 2  [0xc8227c0fa0 0xc8227c1060] }
+&{addItem QGraphicsLinearLayout::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  void [0xc8227c1360] }
+&{addStretch QGraphicsLinearLayout::addStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  void [0xc8227c1560] }
+&{alignment QGraphicsLinearLayout::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  Qt::Alignment [0xc8227c17e0] }
+&{count QGraphicsLinearLayout::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h impure plain false false  int [] }
+&{insertItem QGraphicsLinearLayout::insertItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  void [0xc8227c1e40 0xc8227c1f00] }
+&{insertStretch QGraphicsLinearLayout::insertStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  void [0xc8220c8100 0xc8220c81a0] }
+&{invalidate QGraphicsLinearLayout::invalidate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h impure plain false false  void [] }
+&{itemAt QGraphicsLinearLayout::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h impure plain false false  QGraphicsLayoutItem * [0xc8220c8560] }
+&{itemSpacing QGraphicsLinearLayout::itemSpacing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  qreal [0xc8220c8720] }
+&{orientation QGraphicsLinearLayout::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  Qt::Orientation [] }
+&{removeAt QGraphicsLinearLayout::removeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h impure plain false false  void [0xc8220c8a40] }
+&{removeItem QGraphicsLinearLayout::removeItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  void [0xc8220c8c40] }
+&{setAlignment QGraphicsLinearLayout::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  void [0xc8220c8ea0 0xc8220c8fa0] }
+&{setGeometry QGraphicsLinearLayout::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h impure plain false false  void [0xc8220c9160] }
+&{setItemSpacing QGraphicsLinearLayout::setItemSpacing commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  void [0xc8220c9360 0xc8220c93e0] }
+&{setOrientation QGraphicsLinearLayout::setOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  void [0xc8220c95e0] }
+&{setSpacing QGraphicsLinearLayout::setSpacing commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  void [0xc8220c97a0] }
+&{setStretchFactor QGraphicsLinearLayout::setStretchFactor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  void [0xc8220c99a0 0xc8220c9aa0] }
+&{sizeHint QGraphicsLinearLayout::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h impure plain false false  QSizeF [0xc8220c9ce0 0xc8220c9d60] }
+&{spacing QGraphicsLinearLayout::spacing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  qreal [] }
+&{stretchFactor QGraphicsLinearLayout::stretchFactor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h non plain false false  int [0xc821eb80a0] }
+&{~QGraphicsLinearLayout QGraphicsLinearLayout::~QGraphicsLinearLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslinearlayout.h impure destructor false false   [] }
+########################################			ENUMS			########################################

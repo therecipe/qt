@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QXmlStreamAttributes QXmlStreamAttributes::QXmlStreamAttributes commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false false   [] }
+&{append QXmlStreamAttributes::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8204bf700 0xc8204bf7e0 0xc8204bf8a0] }
+&{append QXmlStreamAttributes::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 2 void [0xc8204bfba0 0xc8204bfc40] }
+&{hasAttribute QXmlStreamAttributes::hasAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 2 bool [0xc8204bfe40] }
+&{hasAttribute QXmlStreamAttributes::hasAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 3 bool [0xc8204a8040 0xc8204a80e0] }
+&{hasAttribute QXmlStreamAttributes::hasAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [0xc8204a8280] }
+&{value QXmlStreamAttributes::value commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 3 QStringRef [0xc8204a85a0 0xc8204a8660] }
+&{value QXmlStreamAttributes::value commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 5 QStringRef [0xc8204a88e0] }
+&{value QXmlStreamAttributes::value commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 2 QStringRef [0xc8204a8b80 0xc8204a8c20] }
+&{value QXmlStreamAttributes::value commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [0xc8204a8e00 0xc8204a8e80] }
+&{value QXmlStreamAttributes::value commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 4 QStringRef [0xc8204a9040] }
+########################################			ENUMS			########################################

@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{isDoubleTap QTapReading::isDoubleTap commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.cpp non plain false false  bool [] }
+&{tapDirection QTapReading::tapDirection commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.cpp non plain false false  TapDirection [] }
+&{setDoubleTap QTapReading::setDoubleTap commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.h non plain false false  void [0xc822d6f1a0] }
+&{setTapDirection QTapReading::setTapDirection commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.h non plain false false  void [0xc822d6f4a0] }
+########################################			ENUMS			########################################
+&{TapDirection QTapReading::TapDirection commendable public  [0xc822d6e1e0 0xc822d6e2a0 0xc822d6e340 0xc822d6e420 0xc822d6e560 0xc822d6e600 0xc822d6e6e0 0xc822d6e7a0 0xc822d6e8c0 0xc822d6e960 0xc822d6ea60 0xc822d6eb20 0xc822d6eba0]}

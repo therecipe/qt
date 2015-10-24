@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QGraphicsObject QGraphicsObject::QGraphicsObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non constructor false false   [0xc8219bbce0] }
+&{enabledChanged QGraphicsObject::enabledChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void [] }
+&{event QGraphicsObject::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h impure plain false false  bool [0xc8217b6540] }
+&{grabGesture QGraphicsObject::grabGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non plain false false  void [0xc8217b6740 0xc8217b6820] }
+&{opacityChanged QGraphicsObject::opacityChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void [] }
+&{parentChanged QGraphicsObject::parentChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void [] }
+&{rotationChanged QGraphicsObject::rotationChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void [] }
+&{scaleChanged QGraphicsObject::scaleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void [] }
+&{ungrabGesture QGraphicsObject::ungrabGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non plain false false  void [0xc8217b7120] }
+&{updateMicroFocus QGraphicsObject::updateMicroFocus commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non slot false false  void [] }
+&{visibleChanged QGraphicsObject::visibleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void [] }
+&{xChanged QGraphicsObject::xChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void [] }
+&{yChanged QGraphicsObject::yChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void [] }
+&{zChanged QGraphicsObject::zChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void [] }
+&{~QGraphicsObject QGraphicsObject::~QGraphicsObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non destructor false false   [] }
+########################################			ENUMS			########################################

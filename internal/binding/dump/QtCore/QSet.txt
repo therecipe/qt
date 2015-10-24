@@ -1,0 +1,54 @@
+########################################			FUNCTIONS			########################################
+&{QSet QSet::QSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non constructor false false   [] }
+&{QSet QSet::QSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non constructor false true 4  [0xc820be4e20] }
+&{QSet QSet::QSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non constructor false true 3  [0xc820be4f80] }
+&{QSet QSet::QSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non constructor false true 2  [0xc820be50e0] }
+&{begin QSet::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false true 2 iterator [] }
+&{begin QSet::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const_iterator [] }
+&{capacity QSet::capacity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  int [] }
+&{cbegin QSet::cbegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const_iterator [] }
+&{cend QSet::cend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const_iterator [] }
+&{clear QSet::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  void [] }
+&{constBegin QSet::constBegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const_iterator [] }
+&{constEnd QSet::constEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const_iterator [] }
+&{constFind QSet::constFind commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const_iterator [0xc820be5880] }
+&{contains QSet::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false true 2 bool [0xc820be5a40] }
+&{contains QSet::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool [0xc820be5c00] }
+&{count QSet::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  int [] }
+&{empty QSet::empty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool [] }
+&{end QSet::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false true 2 iterator [] }
+&{end QSet::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const_iterator [] }
+&{erase QSet::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  iterator [0xc820bc8140] }
+&{find QSet::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false true 2 iterator [0xc820bc8340] }
+&{find QSet::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const_iterator [0xc820bc84c0] }
+&{fromList QSet::fromList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain true false  QSet<T> [0xc820bc8660] }
+&{insert QSet::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  iterator [0xc820bc8840] }
+&{intersect QSet::intersect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> & [0xc820bc8a00] }
+&{isEmpty QSet::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool [] }
+&{operator!= QSet::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool [0xc820bc8fc0] }
+&{operator& QSet::operator& commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> [0xc820bc91a0] }
+&{operator&= QSet::operator&= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> & [0xc820bc93a0] }
+&{operator&= QSet::operator&= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false true 2 QSet<T> & [0xc820bc95c0] }
+&{operator+ QSet::operator+ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> [0xc820bc9760] }
+&{operator+= QSet::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> & [0xc820bc9920] }
+&{operator+= QSet::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false true 2 QSet<T> & [0xc820bc9b60] }
+&{operator- QSet::operator- commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> [0xc820bc9d40] }
+&{operator-= QSet::operator-= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> & [0xc820bc9f60] }
+&{operator-= QSet::operator-= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false true 2 QSet<T> & [0xc820bc0120] }
+&{operator<< QSet::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> & [0xc820bc02a0] }
+&{operator= QSet::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false true 2 QSet<T> & [0xc820bc0400] }
+&{operator= QSet::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> & [0xc820bc05c0] }
+&{operator== QSet::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool [0xc820bc07c0] }
+&{operator| QSet::operator| commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> [0xc820bc09a0] }
+&{operator|= QSet::operator|= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> & [0xc820bc0ba0] }
+&{operator|= QSet::operator|= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false true 2 QSet<T> & [0xc820bc0d80] }
+&{remove QSet::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool [0xc820bc0f60] }
+&{reserve QSet::reserve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  void [0xc820bc1160] }
+&{size QSet::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  int [] }
+&{squeeze QSet::squeeze commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  void [] }
+&{subtract QSet::subtract commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> & [0xc820bc16e0] }
+&{swap QSet::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  void [0xc820bc18c0] }
+&{toList QSet::toList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QList<T> [] }
+&{unite QSet::unite commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QSet<T> & [0xc820bc1b00] }
+&{values QSet::values commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QList<T> [] }
+########################################			ENUMS			########################################

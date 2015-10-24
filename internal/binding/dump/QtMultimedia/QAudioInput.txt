@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{QAudioInput QAudioInput::QAudioInput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non constructor false true 2  [0xc822337c40 0xc822337dc0 0xc822337f40] }
+&{QAudioInput QAudioInput::QAudioInput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non constructor false false   [0xc822348200 0xc822348360] }
+&{bufferSize QAudioInput::bufferSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  int [] }
+&{bytesReady QAudioInput::bytesReady commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  int [] }
+&{elapsedUSecs QAudioInput::elapsedUSecs commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  qint64 [] }
+&{error QAudioInput::error commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  QAudio::Error [] }
+&{format QAudioInput::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  QAudioFormat [] }
+&{notify QAudioInput::notify commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non signal false false  void [] }
+&{notifyInterval QAudioInput::notifyInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  int [] }
+&{periodSize QAudioInput::periodSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  int [] }
+&{processedUSecs QAudioInput::processedUSecs commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  qint64 [] }
+&{reset QAudioInput::reset commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void [] }
+&{resume QAudioInput::resume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void [] }
+&{setBufferSize QAudioInput::setBufferSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void [0xc8223496a0] }
+&{setNotifyInterval QAudioInput::setNotifyInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void [0xc8223499e0] }
+&{setVolume QAudioInput::setVolume commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void [0xc822349c80] }
+&{start QAudioInput::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false true 2 QIODevice * [] }
+&{start QAudioInput::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void [0xc82235a140] }
+&{state QAudioInput::state commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  QAudio::State [] }
+&{stateChanged QAudioInput::stateChanged commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non signal false false  void [0xc82235a580] }
+&{stop QAudioInput::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void [] }
+&{suspend QAudioInput::suspend commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void [] }
+&{volume QAudioInput::volume commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  qreal [] }
+&{~QAudioInput QAudioInput::~QAudioInput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,52 @@
+########################################			FUNCTIONS			########################################
+&{QDataStream QDataStream::QDataStream commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.cpp non constructor false true 3  [0xc8202b3be0 0xc8202b3c80] }
+&{atEnd QDataStream::atEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.cpp non plain false false  bool [] }
+&{QDataStream QDataStream::QDataStream commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non constructor false false   [] }
+&{QDataStream QDataStream::QDataStream commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non constructor false true 2  [0xc8202c36a0] }
+&{QDataStream QDataStream::QDataStream commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non constructor false true 4  [0xc8202c38c0] }
+&{byteOrder QDataStream::byteOrder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  ByteOrder [] }
+&{device QDataStream::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  QIODevice * [] }
+&{floatingPointPrecision QDataStream::floatingPointPrecision commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  FloatingPointPrecision [] }
+&{operator<< QDataStream::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 2 QDataStream & [0xc8202c3e00] }
+&{operator<< QDataStream::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 12 QDataStream & [0xc8202c3fa0] }
+&{operator<< QDataStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 11 QDataStream & [0xc8202d0140] }
+&{operator<< QDataStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 10 QDataStream & [0xc8202d02e0] }
+&{operator<< QDataStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 5 QDataStream & [0xc8202d0480] }
+&{operator<< QDataStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 6 QDataStream & [0xc8202d0620] }
+&{operator<< QDataStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 8 QDataStream & [0xc8202d07c0] }
+&{operator<< QDataStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  QDataStream & [0xc8202d0980] }
+&{operator<< QDataStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 4 QDataStream & [0xc8202d0b40] }
+&{operator<< QDataStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 9 QDataStream & [0xc8202d0ce0] }
+&{operator<< QDataStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 7 QDataStream & [0xc8202d0e80] }
+&{operator<< QDataStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 3 QDataStream & [0xc8202d1020] }
+&{operator>> QDataStream::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 2 QDataStream & [0xc8202d11c0] }
+&{operator>> QDataStream::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 12 QDataStream & [0xc8202d1360] }
+&{operator>> QDataStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 11 QDataStream & [0xc8202d1500] }
+&{operator>> QDataStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 10 QDataStream & [0xc8202d16a0] }
+&{operator>> QDataStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 5 QDataStream & [0xc8202d1840] }
+&{operator>> QDataStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 7 QDataStream & [0xc8202d19e0] }
+&{operator>> QDataStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 9 QDataStream & [0xc8202d1b80] }
+&{operator>> QDataStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  QDataStream & [0xc8202d1d40] }
+&{operator>> QDataStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 4 QDataStream & [0xc8202d1ee0] }
+&{operator>> QDataStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 6 QDataStream & [0xc8202ec080] }
+&{operator>> QDataStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 8 QDataStream & [0xc8202ec220] }
+&{operator>> QDataStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false true 3 QDataStream & [0xc8202ec3c0] }
+&{readBytes QDataStream::readBytes commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  QDataStream & [0xc8202ec5a0 0xc8202ec620] }
+&{readRawData QDataStream::readRawData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  int [0xc8202ec7e0 0xc8202ec860] }
+&{resetStatus QDataStream::resetStatus commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  void [] }
+&{setByteOrder QDataStream::setByteOrder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  void [0xc8202ecb40] }
+&{setDevice QDataStream::setDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  void [0xc8202ecd20] }
+&{setFloatingPointPrecision QDataStream::setFloatingPointPrecision commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  void [0xc8202ecee0] }
+&{setStatus QDataStream::setStatus commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  void [0xc8202ed100] }
+&{setVersion QDataStream::setVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  void [0xc8202ed2e0] }
+&{skipRawData QDataStream::skipRawData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  int [0xc8202ed4c0] }
+&{status QDataStream::status commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  Status [] }
+&{version QDataStream::version commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  int [] }
+&{writeBytes QDataStream::writeBytes commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  QDataStream & [0xc8202ed960 0xc8202ed9e0] }
+&{writeRawData QDataStream::writeRawData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non plain false false  int [0xc8202edba0 0xc8202edc20] }
+&{~QDataStream QDataStream::~QDataStream commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdatastream.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ByteOrder QDataStream::ByteOrder commendable public  [0xc8202b3fe0 0xc8202c20c0]}
+&{FloatingPointPrecision QDataStream::FloatingPointPrecision commendable public  [0xc8202c22a0 0xc8202c2320]}
+&{Status QDataStream::Status commendable public  [0xc8202c24e0 0xc8202c2560 0xc8202c25e0 0xc8202c2660]}
+&{Version QDataStream::Version commendable public  [0xc8202c2820 0xc8202c28a0 0xc8202c2920 0xc8202c29a0 0xc8202c2a40 0xc8202c2ac0 0xc8202c2b40 0xc8202c2bc0 0xc8202c2c60 0xc8202c2ce0 0xc8202c2d60 0xc8202c2de0 0xc8202c2e60 0xc8202c2ee0 0xc8202c2f60 0xc8202c2fe0 0xc8202c3080 0xc8202c3100 0xc8202c3180 0xc8202c3200 0xc8202c3280 0xc8202c3300 0xc8202c33a0]}

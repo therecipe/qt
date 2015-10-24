@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QSemaphore QSemaphore::QSemaphore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non constructor false false   [0xc820717aa0] }
+&{acquire QSemaphore::acquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false false  void [0xc820717c80] }
+&{available QSemaphore::available commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false false  int [] }
+&{release QSemaphore::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false false  void [0xc820717f60] }
+&{tryAcquire QSemaphore::tryAcquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false false  bool [0xc82072c160] }
+&{tryAcquire QSemaphore::tryAcquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false true 2 bool [0xc82072c320 0xc82072c3a0] }
+&{~QSemaphore QSemaphore::~QSemaphore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non destructor false false   [] }
+########################################			ENUMS			########################################

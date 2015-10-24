@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QStylePainter QStylePainter::QStylePainter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylepainter.h non constructor false false   [] }
+&{QStylePainter QStylePainter::QStylePainter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylepainter.h non constructor false true 3  [0xc821391e60 0xc821391f40] }
+&{QStylePainter QStylePainter::QStylePainter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylepainter.h non constructor false true 2  [0xc82137c280] }
+&{begin QStylePainter::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylepainter.h non plain false true 2 bool [0xc82137c5a0 0xc82137c6c0] }
+&{begin QStylePainter::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylepainter.h non plain false false  bool [0xc82137caa0] }
+&{drawComplexControl QStylePainter::drawComplexControl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylepainter.h non plain false false  void [0xc82137cd60 0xc82137cfa0] }
+&{drawControl QStylePainter::drawControl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylepainter.h non plain false false  void [0xc82137d340 0xc82137d4e0] }
+&{drawItemPixmap QStylePainter::drawItemPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylepainter.h non plain false false  void [0xc82137d8a0 0xc82137d960 0xc82137da20] }
+&{drawItemText QStylePainter::drawItemText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylepainter.h non plain false false  void [0xc82137de00 0xc82137dee0 0xc82137dfe0 0xc82136e080 0xc82136e1c0 0xc82136e300] }
+&{drawPrimitive QStylePainter::drawPrimitive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylepainter.h non plain false false  void [0xc82136e6e0 0xc82136e900] }
+&{style QStylePainter::style commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylepainter.h non plain false false  QStyle * [] }
+########################################			ENUMS			########################################

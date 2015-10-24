@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{createIndex QHelpIndexModel::createIndex commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non plain false false  void [0xc822379900] }
+&{filter QHelpIndexModel::filter commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non plain false false  QModelIndex [0xc822379ae0 0xc822379b60] }
+&{indexCreated QHelpIndexModel::indexCreated commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non signal false false  void [] }
+&{indexCreationStarted QHelpIndexModel::indexCreationStarted commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non signal false false  void [] }
+&{isCreatingIndex QHelpIndexModel::isCreatingIndex commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non plain false false  bool [] }
+&{linksForKeyword QHelpIndexModel::linksForKeyword commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non plain false false  QMap<QString, QUrl> [0xc8223a00a0] }
+########################################			ENUMS			########################################

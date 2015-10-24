@@ -1,0 +1,27 @@
+########################################			FUNCTIONS			########################################
+&{QAtomicPointer QAtomicPointer::QAtomicPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non constructor false false   [0xc820530f20] }
+&{QAtomicPointer QAtomicPointer::QAtomicPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non constructor false true 2  [0xc8205310e0] }
+&{fetchAndAddAcquire QAtomicPointer::fetchAndAddAcquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T * [0xc8205312c0] }
+&{fetchAndAddOrdered QAtomicPointer::fetchAndAddOrdered commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T * [0xc820531460] }
+&{fetchAndAddRelaxed QAtomicPointer::fetchAndAddRelaxed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T * [0xc820531620] }
+&{fetchAndAddRelease QAtomicPointer::fetchAndAddRelease commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T * [0xc8205317c0] }
+&{fetchAndStoreAcquire QAtomicPointer::fetchAndStoreAcquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T * [0xc820531960] }
+&{fetchAndStoreOrdered QAtomicPointer::fetchAndStoreOrdered commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T * [0xc820531b00] }
+&{fetchAndStoreRelaxed QAtomicPointer::fetchAndStoreRelaxed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T * [0xc820531cc0] }
+&{fetchAndStoreRelease QAtomicPointer::fetchAndStoreRelease commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T * [0xc820531e60] }
+&{isFetchAndAddNative QAtomicPointer::isFetchAndAddNative commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{isFetchAndAddWaitFree QAtomicPointer::isFetchAndAddWaitFree commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{isFetchAndStoreNative QAtomicPointer::isFetchAndStoreNative commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{isFetchAndStoreWaitFree QAtomicPointer::isFetchAndStoreWaitFree commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{isTestAndSetNative QAtomicPointer::isTestAndSetNative commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{isTestAndSetWaitFree QAtomicPointer::isTestAndSetWaitFree commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain true false  bool [] }
+&{load QAtomicPointer::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T * [] }
+&{loadAcquire QAtomicPointer::loadAcquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  T * [] }
+&{operator= QAtomicPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  QAtomicPointer<T> & [0xc8206a67e0] }
+&{store QAtomicPointer::store commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  void [0xc8206a6a00] }
+&{storeRelease QAtomicPointer::storeRelease commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  void [0xc8206a6be0] }
+&{testAndSetAcquire QAtomicPointer::testAndSetAcquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  bool [0xc8206a6d80 0xc8206a6e00] }
+&{testAndSetOrdered QAtomicPointer::testAndSetOrdered commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  bool [0xc8206a6fa0 0xc8206a7020] }
+&{testAndSetRelaxed QAtomicPointer::testAndSetRelaxed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  bool [0xc8206a71c0 0xc8206a7240] }
+&{testAndSetRelease QAtomicPointer::testAndSetRelease commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non plain false false  bool [0xc8206a73e0 0xc8206a7460] }
+########################################			ENUMS			########################################

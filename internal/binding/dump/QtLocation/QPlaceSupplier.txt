@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceSupplier QPlaceSupplier::QPlaceSupplier commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non constructor false false   [] }
+&{QPlaceSupplier QPlaceSupplier::QPlaceSupplier commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non constructor false true 2  [0xc822648c00] }
+&{icon QPlaceSupplier::icon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non plain false false  QPlaceIcon [] }
+&{isEmpty QPlaceSupplier::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non plain false false  bool [] }
+&{name QPlaceSupplier::name commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non plain false false  QString [] }
+&{operator!= QPlaceSupplier::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non plain false false  bool [0xc822649640] }
+&{operator= QPlaceSupplier::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non plain false false  QPlaceSupplier & [0xc822649a40] }
+&{operator== QPlaceSupplier::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non plain false false  bool [0xc822649ec0] }
+&{setIcon QPlaceSupplier::setIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non plain false false  void [0xc821d302e0] }
+&{setName QPlaceSupplier::setName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non plain false false  void [0xc821d30620] }
+&{setSupplierId QPlaceSupplier::setSupplierId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non plain false false  void [0xc821d30920] }
+&{setUrl QPlaceSupplier::setUrl commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non plain false false  void [0xc821d30cc0] }
+&{supplierId QPlaceSupplier::supplierId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non plain false false  QString [] }
+&{url QPlaceSupplier::url commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non plain false false  QUrl [] }
+&{~QPlaceSupplier QPlaceSupplier::~QPlaceSupplier commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesupplier.h non destructor false false   [] }
+########################################			ENUMS			########################################

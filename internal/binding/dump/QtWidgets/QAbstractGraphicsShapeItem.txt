@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{QAbstractGraphicsShapeItem QAbstractGraphicsShapeItem::QAbstractGraphicsShapeItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non constructor false false   [0xc822ea3fe0] }
+&{brush QAbstractGraphicsShapeItem::brush commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non plain false false  QBrush [] }
+&{isObscuredBy QAbstractGraphicsShapeItem::isObscuredBy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h impure plain false false  bool [0xc822e947e0] }
+&{opaqueArea QAbstractGraphicsShapeItem::opaqueArea commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h impure plain false false  QPainterPath [] }
+&{pen QAbstractGraphicsShapeItem::pen commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non plain false false  QPen [] }
+&{setBrush QAbstractGraphicsShapeItem::setBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non plain false false  void [0xc822e94e60] }
+&{setPen QAbstractGraphicsShapeItem::setPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non plain false false  void [0xc822e95120] }
+&{~QAbstractGraphicsShapeItem QAbstractGraphicsShapeItem::~QAbstractGraphicsShapeItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non destructor false false   [] }
+########################################			ENUMS			########################################

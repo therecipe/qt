@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QPaintDevice QPaintDevice::QPaintDevice commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.cpp non constructor false false   [] }
+&{metric QPaintDevice::metric commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.cpp impure plain false false  int [0xc822c16be0] }
+&{~QPaintDevice QPaintDevice::~QPaintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.cpp impure destructor false false   [] }
+&{colorCount QPaintDevice::colorCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int [] }
+&{depth QPaintDevice::depth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int [] }
+&{devicePixelRatio QPaintDevice::devicePixelRatio commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int [] }
+&{height QPaintDevice::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int [] }
+&{heightMM QPaintDevice::heightMM commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int [] }
+&{logicalDpiX QPaintDevice::logicalDpiX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int [] }
+&{logicalDpiY QPaintDevice::logicalDpiY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int [] }
+&{paintEngine QPaintDevice::paintEngine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h pure plain false false  QPaintEngine * [] }
+&{paintingActive QPaintDevice::paintingActive commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  bool [] }
+&{physicalDpiX QPaintDevice::physicalDpiX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int [] }
+&{physicalDpiY QPaintDevice::physicalDpiY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int [] }
+&{width QPaintDevice::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int [] }
+&{widthMM QPaintDevice::widthMM commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int [] }
+########################################			ENUMS			########################################
+&{PaintDeviceMetric QPaintDevice::PaintDeviceMetric commendable public  [0xc822c16f20 0xc822c16fa0 0xc822c17020 0xc822c170a0 0xc822c17140 0xc822c171c0 0xc822c17240 0xc822c172c0 0xc822c17360 0xc822c173e0 0xc822c17480]}

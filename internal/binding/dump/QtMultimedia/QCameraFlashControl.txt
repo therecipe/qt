@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QCameraFlashControl QCameraFlashControl::QCameraFlashControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraflashcontrol.h non constructor false false   [0xc821cee220] }
+&{flashMode QCameraFlashControl::flashMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraflashcontrol.h pure plain false false  QCameraExposure::FlashModes [] }
+&{flashReady QCameraFlashControl::flashReady commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraflashcontrol.h non signal false false  void [0xc821cee5e0] }
+&{isFlashModeSupported QCameraFlashControl::isFlashModeSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraflashcontrol.h pure plain false false  bool [0xc821cee800] }
+&{isFlashReady QCameraFlashControl::isFlashReady commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraflashcontrol.h pure plain false false  bool [] }
+&{setFlashMode QCameraFlashControl::setFlashMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraflashcontrol.h pure plain false false  void [0xc821ceea80] }
+&{~QCameraFlashControl QCameraFlashControl::~QCameraFlashControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraflashcontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################

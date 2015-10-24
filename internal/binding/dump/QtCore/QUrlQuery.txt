@@ -1,0 +1,30 @@
+########################################			FUNCTIONS			########################################
+&{QUrlQuery QUrlQuery::QUrlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non constructor false false   [] }
+&{QUrlQuery QUrlQuery::QUrlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non constructor false true 3  [0xc8201b7520] }
+&{QUrlQuery QUrlQuery::QUrlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non constructor false true 2  [0xc8201b77a0] }
+&{QUrlQuery QUrlQuery::QUrlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non constructor false true 4  [0xc8201b7a20] }
+&{addQueryItem QUrlQuery::addQueryItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  void [0xc8201b7ce0 0xc8201b7d80] }
+&{allQueryItemValues QUrlQuery::allQueryItemValues commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  QStringList [0xc8201ae020 0xc8201ae140] }
+&{clear QUrlQuery::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  void [] }
+&{defaultQueryPairDelimiter QUrlQuery::defaultQueryPairDelimiter commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain true false  QChar [] }
+&{defaultQueryValueDelimiter QUrlQuery::defaultQueryValueDelimiter commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain true false  QChar [] }
+&{hasQueryItem QUrlQuery::hasQueryItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  bool [0xc8201ae800] }
+&{isEmpty QUrlQuery::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  bool [] }
+&{operator!= QUrlQuery::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  bool [0xc8201aed00] }
+&{operator= QUrlQuery::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false true 2 QUrlQuery & [0xc8201aefa0] }
+&{operator= QUrlQuery::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  QUrlQuery & [0xc8201af200] }
+&{operator== QUrlQuery::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  bool [0xc8201af500] }
+&{query QUrlQuery::query commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  QString [0xc8201af780] }
+&{queryItemValue QUrlQuery::queryItemValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  QString [0xc8201af9e0 0xc8201afae0] }
+&{queryItems QUrlQuery::queryItems commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  QList<QPair<QString, QString> > [0xc8201afe20] }
+&{queryPairDelimiter QUrlQuery::queryPairDelimiter commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  QChar [] }
+&{queryValueDelimiter QUrlQuery::queryValueDelimiter commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  QChar [] }
+&{removeAllQueryItems QUrlQuery::removeAllQueryItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  void [0xc8201a4380] }
+&{removeQueryItem QUrlQuery::removeQueryItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  void [0xc8201a4580] }
+&{setQuery QUrlQuery::setQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  void [0xc8201a4780] }
+&{setQueryDelimiters QUrlQuery::setQueryDelimiters commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  void [0xc8201a4a20 0xc8201a4aa0] }
+&{setQueryItems QUrlQuery::setQueryItems commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  void [0xc8201a4d00] }
+&{swap QUrlQuery::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  void [0xc8201a4ec0] }
+&{toString QUrlQuery::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non plain false false  QString [0xc8201a5120] }
+&{~QUrlQuery QUrlQuery::~QUrlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.h non destructor false false   [] }
+########################################			ENUMS			########################################

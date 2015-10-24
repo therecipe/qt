@@ -1,0 +1,22 @@
+########################################			FUNCTIONS			########################################
+&{QQmlExpression QQmlExpression::QQmlExpression commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non constructor false false   [] }
+&{QQmlExpression QQmlExpression::QQmlExpression commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non constructor false true 2  [0xc82191e340 0xc82191e460 0xc82191e540 0xc82191e620] }
+&{QQmlExpression QQmlExpression::QQmlExpression commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non constructor false true 3  [0xc82191e980 0xc82191ea80 0xc82191eba0 0xc82191ed00] }
+&{clearError QQmlExpression::clearError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  void [] }
+&{columnNumber QQmlExpression::columnNumber commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  int [] }
+&{context QQmlExpression::context commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  QQmlContext * [] }
+&{engine QQmlExpression::engine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  QQmlEngine * [] }
+&{error QQmlExpression::error commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  QQmlError [] }
+&{evaluate QQmlExpression::evaluate commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  QVariant [0xc82182a180] }
+&{expression QQmlExpression::expression commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  QString [] }
+&{hasError QQmlExpression::hasError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  bool [] }
+&{lineNumber QQmlExpression::lineNumber commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  int [] }
+&{notifyOnValueChanged QQmlExpression::notifyOnValueChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  bool [] }
+&{scopeObject QQmlExpression::scopeObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  QObject * [] }
+&{setExpression QQmlExpression::setExpression commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  void [0xc82182ad60] }
+&{setNotifyOnValueChanged QQmlExpression::setNotifyOnValueChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  void [0xc82182afc0] }
+&{setSourceLocation QQmlExpression::setSourceLocation commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  void [0xc82182b280 0xc82182b320 0xc82182b3a0] }
+&{sourceFile QQmlExpression::sourceFile commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non plain false false  QString [] }
+&{valueChanged QQmlExpression::valueChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h non signal false false  void [] }
+&{~QQmlExpression QQmlExpression::~QQmlExpression commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlexpression.h impure destructor false false   [] }
+########################################			ENUMS			########################################

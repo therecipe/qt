@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QCryptographicHash QCryptographicHash::QCryptographicHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non constructor false false   [0xc8207001a0] }
+&{addData QCryptographicHash::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false true 2 bool [0xc8207003e0] }
+&{addData QCryptographicHash::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false true 3 void [0xc820700640] }
+&{addData QCryptographicHash::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false false  void [0xc8207008a0 0xc820700940] }
+&{hash QCryptographicHash::hash commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain true false  QByteArray [0xc820700ba0 0xc820700c60] }
+&{reset QCryptographicHash::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false false  void [] }
+&{result QCryptographicHash::result commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false false  QByteArray [] }
+&{~QCryptographicHash QCryptographicHash::~QCryptographicHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Algorithm QCryptographicHash::Algorithm commendable public  [0xc820717880 0xc820717900 0xc8207179a0 0xc820717a40 0xc820717b20 0xc820717ba0 0xc820717c40 0xc820717d00 0xc820717da0 0xc820717e40 0xc820717ec0]}

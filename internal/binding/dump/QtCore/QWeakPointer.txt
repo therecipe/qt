@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QWeakPointer QWeakPointer::QWeakPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non constructor false false   [] }
+&{QWeakPointer QWeakPointer::QWeakPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non constructor false true 3  [0xc820b56560] }
+&{QWeakPointer QWeakPointer::QWeakPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non constructor false true 2  [0xc820b56820] }
+&{clear QWeakPointer::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  void [] }
+&{data QWeakPointer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  T * [] }
+&{isNull QWeakPointer::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  bool [] }
+&{lock QWeakPointer::lock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  QSharedPointer<T> [] }
+&{operator bool QWeakPointer::operator bool commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false   [] }
+&{operator! QWeakPointer::operator! commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  bool [] }
+&{operator= QWeakPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false true 2 QWeakPointer<T> [0xc820b57360] }
+&{operator= QWeakPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  QWeakPointer<T> [0xc820b575c0] }
+&{swap QWeakPointer::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  void [0xc820b578a0] }
+&{toStrongRef QWeakPointer::toStrongRef commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  QSharedPointer<T> [] }
+&{~QWeakPointer QWeakPointer::~QWeakPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non destructor false false   [] }
+########################################			ENUMS			########################################

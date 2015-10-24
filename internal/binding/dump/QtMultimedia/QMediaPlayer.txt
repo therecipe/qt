@@ -1,0 +1,56 @@
+########################################			FUNCTIONS			########################################
+&{bufferStatus QMediaPlayer::bufferStatus commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  int [] }
+&{currentMedia QMediaPlayer::currentMedia commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  QMediaContent [] }
+&{duration QMediaPlayer::duration commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  qint64 [] }
+&{errorString QMediaPlayer::errorString commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  QString [] }
+&{isAudioAvailable QMediaPlayer::isAudioAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  bool [] }
+&{isMuted QMediaPlayer::isMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  bool [] }
+&{isSeekable QMediaPlayer::isSeekable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  bool [] }
+&{isVideoAvailable QMediaPlayer::isVideoAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  bool [] }
+&{media QMediaPlayer::media commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  QMediaContent [] }
+&{mediaStatus QMediaPlayer::mediaStatus commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  MediaStatus [] }
+&{playbackRate QMediaPlayer::playbackRate commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  qreal [] }
+&{playlist QMediaPlayer::playlist commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  QMediaPlaylist * [] }
+&{position QMediaPlayer::position commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  qint64 [] }
+&{setMuted QMediaPlayer::setMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non slot false false  void [0xc821a1e900] }
+&{setPlaybackRate QMediaPlayer::setPlaybackRate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non slot false false  void [0xc821a1ecc0] }
+&{setPlaylist QMediaPlayer::setPlaylist commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non slot false false  void [0xc821a1f0c0] }
+&{setPosition QMediaPlayer::setPosition commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non slot false false  void [0xc821a1f440] }
+&{setVideoOutput QMediaPlayer::setVideoOutput commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false true 2 void [0xc821a1f820] }
+&{setVideoOutput QMediaPlayer::setVideoOutput commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  void [0xc821a1fc00] }
+&{setVolume QMediaPlayer::setVolume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non slot false false  void [0xc821a0e040] }
+&{state QMediaPlayer::state commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  State [] }
+&{volume QMediaPlayer::volume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.cpp non plain false false  int [] }
+&{QMediaPlayer QMediaPlayer::QMediaPlayer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non constructor false false   [0xc821a0aa00 0xc821a0aa80] }
+&{audioAvailableChanged QMediaPlayer::audioAvailableChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc821a0ae20] }
+&{availability QMediaPlayer::availability commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h impure plain false false  QMultimedia::AvailabilityStatus [] }
+&{bufferStatusChanged QMediaPlayer::bufferStatusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc821a0b300] }
+&{currentMediaChanged QMediaPlayer::currentMediaChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc821a0b4e0] }
+&{currentNetworkConfiguration QMediaPlayer::currentNetworkConfiguration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non plain false false  QNetworkConfiguration [] }
+&{durationChanged QMediaPlayer::durationChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc821a0b820] }
+&{error QMediaPlayer::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false true 2 void [0xc821a0ba00] }
+&{error QMediaPlayer::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non plain false false  Error [] }
+&{hasSupport QMediaPlayer::hasSupport commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non plain true false  QMultimedia::SupportEstimate [0xc821a0bd80 0xc821a0be20 0xc821a0bf20] }
+&{mediaChanged QMediaPlayer::mediaChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc8219fc340] }
+&{mediaStatusChanged QMediaPlayer::mediaStatusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc8219fc800] }
+&{mediaStream QMediaPlayer::mediaStream commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non plain false false  const QIODevice * [] }
+&{mutedChanged QMediaPlayer::mutedChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc8219fcea0] }
+&{networkConfigurationChanged QMediaPlayer::networkConfigurationChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc8219fd260] }
+&{pause QMediaPlayer::pause commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non slot false false  void [] }
+&{play QMediaPlayer::play commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non slot false false  void [] }
+&{playbackRateChanged QMediaPlayer::playbackRateChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc8219fd940] }
+&{positionChanged QMediaPlayer::positionChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc8219fdce0] }
+&{seekableChanged QMediaPlayer::seekableChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc8219f2020] }
+&{setMedia QMediaPlayer::setMedia commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non slot false false  void [0xc8219f2280 0xc8219f2340] }
+&{setNetworkConfigurations QMediaPlayer::setNetworkConfigurations commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non slot false false  void [0xc8219f2520] }
+&{setVideoOutput QMediaPlayer::setVideoOutput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non plain false true 3 void [0xc8219f26e0] }
+&{stateChanged QMediaPlayer::stateChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc8219f2920] }
+&{stop QMediaPlayer::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non slot false false  void [] }
+&{videoAvailableChanged QMediaPlayer::videoAvailableChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc8219f3080] }
+&{volumeChanged QMediaPlayer::volumeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non signal false false  void [0xc8219f3300] }
+&{~QMediaPlayer QMediaPlayer::~QMediaPlayer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplayer.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Error QMediaPlayer::Error commendable public  [0xc821a0ea40 0xc821a0eb20 0xc821a0ecc0 0xc821a0ee40 0xc821a0efa0 0xc821a0f200 0xc821a0f460]}
+&{Flag QMediaPlayer::Flag commendable public QMediaPlayer::Flags [0xc821a0f9e0 0xc821a0fb40 0xc821a0fc80]}
+&{MediaStatus QMediaPlayer::MediaStatus commendable public  [0xc821a0a040 0xc821a0a100 0xc821a0a180 0xc821a0a200 0xc821a0a2a0 0xc821a0a320 0xc821a0a3a0 0xc821a0a420 0xc821a0a4c0]}
+&{State QMediaPlayer::State commendable public  [0xc821a0a680 0xc821a0a700 0xc821a0a780]}

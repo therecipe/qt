@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QUdpSocket QUdpSocket::QUdpSocket commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h non constructor false false   [0xc8230f7b20] }
+&{hasPendingDatagrams QUdpSocket::hasPendingDatagrams commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h non plain false false  bool [] }
+&{joinMulticastGroup QUdpSocket::joinMulticastGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h non plain false false  bool [0xc8230f7fa0] }
+&{joinMulticastGroup QUdpSocket::joinMulticastGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h non plain false true 2 bool [0xc8230e82c0 0xc8230e8420] }
+&{leaveMulticastGroup QUdpSocket::leaveMulticastGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h non plain false false  bool [0xc8230e8740] }
+&{leaveMulticastGroup QUdpSocket::leaveMulticastGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h non plain false true 2 bool [0xc8230e8a40 0xc8230e8b40] }
+&{multicastInterface QUdpSocket::multicastInterface commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h non plain false false  QNetworkInterface [] }
+&{pendingDatagramSize QUdpSocket::pendingDatagramSize commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h non plain false false  qint64 [] }
+&{readDatagram QUdpSocket::readDatagram commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h non plain false false  qint64 [0xc8230e9180 0xc8230e9200 0xc8230e92c0 0xc8230e9340] }
+&{setMulticastInterface QUdpSocket::setMulticastInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h non plain false false  void [0xc8230e95a0] }
+&{writeDatagram QUdpSocket::writeDatagram commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h non plain false true 2 qint64 [0xc8230e9880 0xc8230e9980 0xc8230e9aa0] }
+&{writeDatagram QUdpSocket::writeDatagram commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h non plain false false  qint64 [0xc8230e9d20 0xc8230e9da0 0xc8230e9e80 0xc8230e9f80] }
+&{~QUdpSocket QUdpSocket::~QUdpSocket commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qudpsocket.h impure destructor false false   [] }
+########################################			ENUMS			########################################

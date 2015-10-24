@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QDrag QDrag::QDrag commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non constructor false false   [0xc82091db60] }
+&{actionChanged QDrag::actionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non signal false false  void [0xc82091dd80] }
+&{defaultAction QDrag::defaultAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  Qt::DropAction [] }
+&{dragCursor QDrag::dragCursor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QPixmap [0xc820908020] }
+&{exec QDrag::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  Qt::DropAction [0xc8209081a0] }
+&{exec QDrag::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false true 2 Qt::DropAction [0xc820908300 0xc8209083a0] }
+&{hotSpot QDrag::hotSpot commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QPoint [] }
+&{mimeData QDrag::mimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QMimeData * [] }
+&{pixmap QDrag::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QPixmap [] }
+&{setDragCursor QDrag::setDragCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  void [0xc820908800 0xc820908880] }
+&{setHotSpot QDrag::setHotSpot commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  void [0xc820908a40] }
+&{setMimeData QDrag::setMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  void [0xc820908c60] }
+&{setPixmap QDrag::setPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  void [0xc820908e20] }
+&{source QDrag::source commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QObject * [] }
+&{supportedActions QDrag::supportedActions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  Qt::DropActions [] }
+&{target QDrag::target commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QObject * [] }
+&{targetChanged QDrag::targetChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non signal false false  void [0xc8209094a0] }
+&{~QDrag QDrag::~QDrag commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non destructor false false   [] }
+########################################			ENUMS			########################################

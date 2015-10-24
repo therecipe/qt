@@ -1,0 +1,247 @@
+package templater
+
+import (
+	"runtime"
+	"strings"
+
+	"github.com/therecipe/qt/internal/binding/parser"
+)
+
+func isSupportedFunction(c *parser.Class, f *parser.Function) bool {
+	return f.Access == "public" && f.Status != "obsolete" && isNotAbstractConstructor(c, f) && isNotAtomic(f) && !isBlocked(f) && !(f.Meta == "signal" && f.Overload)
+}
+
+func isNotAbstractConstructor(c *parser.Class, f *parser.Function) bool {
+	return !(hasPureVirtualFunctions(c.Name) && f.Meta == "constructor")
+}
+
+func hasPureVirtualFunctions(c string) bool {
+
+	if parser.AbstractMap[c] {
+		return true
+	}
+
+	if b := parser.ClassMap[c].Bases; b != "" && !strings.Contains(b, ",") {
+		if parser.AbstractMap[b] {
+			for _, fBase := range parser.ClassMap[b].Functions {
+				if fBase.Virtual == "pure" {
+					if !classHasRealFunction(c, fBase.Name) {
+						return true
+					}
+				}
+			}
+		} else {
+			return hasPureVirtualFunctions(b)
+		}
+	}
+
+	return false
+}
+
+func classHasRealFunction(c string, n string) bool {
+	if c != "" && c != "Qt" {
+		for _, f := range parser.ClassMap[c].Functions {
+			if f.Name == n {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func isBlocked(f *parser.Function) bool {
+	for _, n := range []string{"QPlaceProposedSearchResult", "evaluateTo", "detected", "isRecordType", "replace", "insert", "remove", "find", "changedStates", "state", "requestTexture", "draw", "setTabPositions", "setExtraSelections", "disconnect", "QJsonObject", "QJsonArray", "QAccessibleStateChangeEvent", "hitTest", "setupUi", "setEditFocus", "toUnicode", "registerConverter", "registerEqualsComparator", "registerComparators", "hasRegisteredConverterFunction", "hasRegisteredComparators", "setNavigationMode", "navigationMode", "setNativeArguments", "setAlphaChannel", "setDefaultAction", "unregisterEventNotifier", "QXmlStreamWriter", "hasEditFocus", "QVariant", "QTextStream", "QStringRef", "QSignalBlocker", "defaultAction", "canConvert", "queryItemValue", "hasQueryItem", "hasEncodedQueryItem", "hasLocalData", "registerEventNotifier", "registerTimer", "setYMD", "nativeArguments"} {
+		if f.Name == n {
+			return true
+		}
+	}
+
+	for _, blockedAndroid := range []string{"setAsDockMenu"} {
+		if f.Name == blockedAndroid {
+			return true
+		}
+	}
+	return false
+}
+
+func isObjectSubClass(b string) bool {
+	return parser.ClassMap[b].IsQObjectSubClass()
+}
+
+func isNotTemplate(c *parser.Class) bool {
+	return !strings.Contains(c.Brief, "emplate")
+}
+
+func isNotAtomic(f *parser.Function) bool {
+	return !strings.Contains(f.Fullname, "tomic")
+}
+
+func isSupportedClass(c *parser.Class) bool {
+	return c.Access == "public" && c.Status != "obsolete" && isNotTemplate(c) && !isBlockedClass(c) && isSupportedFile(c)
+}
+
+func isBlockedClass(c *parser.Class) bool {
+	for _, n := range []string{"QPlaceContentRequest", "QPlaceContentReply", "QPlaceContent", "QPlaceContactDetail", "QPlaceCategory", "QPlaceAttribute", "QPlace", "QGeoCodingManagerEngine", "QGeoCodingManager", "QHash", "QGenericMatrix", "QContiguousCache", "QStringList", "QCache", "QUrl", "QString", "QItemEditorCreator", "QIODevice", "QImageIOPlugin", "QImageIOHandler", "QIconEnginePlugin", "QGraphicsTransform", "QGraphicsObject", "QGraphicsLayoutItem", "QGraphicsLayout", "QGraphicsItem", "QGraphicsEffect", "QGestureRecognizer", "QGenericPlugin", "QDebug", "QAnimationGroup", "QAccessiblePlugin", "QAccessibleObject", "QOpenGLFunctions_ES2", "Qt", "QSharedDataPointer", "QScopedValueRollback", "QScopedArrayPointer", "QQueue", "QMultiMap", "QWinEventNotifier", "QWeakPointer", "QVarLengthArray", "QThreadStorage", "QSharedPointer", "QScopedPointer", "QMutableHashIterator", "QMultiHash", "QMapIterator", "QListIterator", "QLinkedListIterator", "QHashIterator", "QGlobalStatic", "QFutureWatcher", "QFutureSynchronizer", "QFutureIterator", "QFuture", "QEnableSharedFromThis", "QExplicitlySharedDataPointer", "QFlags"} {
+		if c.Name == n || strings.Contains(c.Name, "Iterator") {
+			return true
+		}
+	}
+	if strings.Contains(c.Name, "QPlace") {
+		return true
+	}
+
+	return false
+}
+
+func isSupportedEnum(e *parser.Enum) bool {
+	return e.Access == "public" && e.Status != "obsolete"
+}
+
+func needsCppValueGlue(v *parser.Value) bool {
+	return strings.ContainsAny(v.Value, "()<>~+") || v.Value == ""
+}
+
+func isSupportedFile(c *parser.Class) bool {
+	switch c.Name {
+	case
+		"QStandardItemEditorCreator",
+		"QSupportedWritingSystems",
+		"QRasterPaintEngine",
+		"QPlatformSystemTrayIcon",
+		"QPlatformGraphicsBuffer",
+		"QAbstractOpenGLFunctions",
+		"QQmlListProperty",
+		"QQuickWidget",
+		"QSGSimpleMaterialShader",
+		"QSqlRelationalDelegate",
+		"QDBusPendingReply",
+		"QDBusReply",
+		"QDBus",
+		"QGeoLocation",
+		"QGeoCodeReply",
+		"QGeoCodingManager",
+		"QGeoCodingManagerEngine":
+		return false
+	}
+
+	if strings.Contains(c.Name, "QPlace") {
+		return false
+	}
+
+	if _, exists := parser.SubnamespaceMap[c.Name]; exists {
+		return false
+	}
+
+	return true
+}
+
+func ShouldBuild(module string) bool {
+	return true //Build[module]
+}
+
+var Build = map[string]bool{
+	"Core":              false,
+	"Gui":               false,
+	"Network":           false,
+	"Sql":               false,
+	"Xml":               false,
+	"DBus":              false,
+	"Nfc":               false,
+	"Script":            false,
+	"Sensors":           false,
+	"Positioning":       false,
+	"Widgets":           false,
+	"MacExtras":         false,
+	"Qml":               false,
+	"WebSockets":        false,
+	"XmlPatterns":       false,
+	"Bluetooth":         false,
+	"WebChannel":        false,
+	"Svg":               false,
+	"Multimedia":        false,
+	"Quick":             false,
+	"Help":              false,
+	"Location":          true,
+	"ScriptTools":       true,
+	"MultimediaWidgets": true,
+}
+
+var Libs = []string{
+	"Core",
+	"Gui",
+	"Network",
+	"Sql",
+	"Xml",
+	"DBus",
+	"Nfc",
+	"Script",
+	"Sensors",
+	"Positioning",
+	"Widgets",
+	"MacExtras",
+	"Qml",
+	"WebSockets",
+	"XmlPatterns",
+	"Bluetooth",
+	"WebChannel",
+	"Svg",
+	"Multimedia",
+	"Quick",
+	"Help",
+	"Location",
+	"ScriptTools",
+	"MultimediaWidgets",
+}
+
+func GetLibs() []string {
+	for i := len(Libs) - 1; i >= 0; i-- {
+		switch {
+		case
+			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
+			runtime.GOOS != "windows" && Libs[i] == "WinExtras",
+			runtime.GOOS != "android" && Libs[i] == "AndroidExtras":
+			{
+				Libs = append(Libs[:i], Libs[i+1:]...)
+			}
+		}
+	}
+
+	return Libs
+}
+
+var LibDeps = map[string][]string{
+	"Core":              []string{},
+	"Gui":               []string{"Core"},
+	"Network":           []string{"Core"},
+	"Sql":               []string{"Core"},
+	"Xml":               []string{"Core"},
+	"DBus":              []string{"Core"},
+	"Nfc":               []string{"Core"},
+	"Script":            []string{"Core"},
+	"Sensors":           []string{"Core"},
+	"Positioning":       []string{"Core"},
+	"Widgets":           []string{"Core", "Gui"},
+	"MacExtras":         []string{"Core", "Gui"},
+	"Qml":               []string{"Core", "Network"},
+	"WebSockets":        []string{"Core", "Network"},
+	"XmlPatterns":       []string{"Core", "Network"},
+	"Bluetooth":         []string{"Core", "Concurrent"},
+	"WebChannel":        []string{"Core", "Network", "Qml"},
+	"Svg":               []string{"Core", "Gui", "Widgets"},
+	"Multimedia":        []string{"Core", "Gui", "Network"},
+	"Quick":             []string{"Core", "Gui", "Network", "Qml"},
+	"Help":              []string{"Core", "Gui", "Network", "Sql", "CLucene", "Widgets"},
+	"Location":          []string{"Core", "Gui", "Network", "Positioning", "Qml", "Quick"},
+	"ScriptTools":       []string{"Core", "Gui", "Script", "Widgets"},
+	"MultimediaWidgets": []string{"Core", "Gui", "Network", "Widgets", "OpenGL", "Multimedia"},
+
+	/*
+		CLucene
+		Designer
+		OpenGL
+		Concurrent
+		WinExtras
+		UiTools
+		AndroidExtras
+	*/
+}

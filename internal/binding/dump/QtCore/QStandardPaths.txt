@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{setTestModeEnabled QStandardPaths::setTestModeEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstandardpaths.cpp non plain true false  void [0xc820291ec0] }
+&{findExecutable QStandardPaths::findExecutable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstandardpaths.h non plain true false  QString [0xc82027b400 0xc82027b4a0] }
+&{locate QStandardPaths::locate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstandardpaths.h non plain true false  QString [0xc82027b6a0 0xc82027b720 0xc82027b7a0] }
+&{locateAll QStandardPaths::locateAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstandardpaths.h non plain true false  QStringList [0xc82027b960 0xc82027b9e0 0xc82027ba60] }
+&{displayName QStandardPaths::displayName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstandardpaths_mac.mm non plain true false  QString [0xc82027bd40] }
+&{standardLocations QStandardPaths::standardLocations commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstandardpaths_winrt.cpp non plain true false  QStringList [0xc82027bf00] }
+&{writableLocation QStandardPaths::writableLocation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstandardpaths_winrt.cpp non plain true false  QString [0xc820274120] }
+########################################			ENUMS			########################################
+&{LocateOption QStandardPaths::LocateOption commendable public QStandardPaths::LocateOptions [0xc82027a1c0 0xc82027a280]}
+&{StandardLocation QStandardPaths::StandardLocation commendable public  [0xc82027a460 0xc82027a500 0xc82027a5c0 0xc82027a660 0xc82027a740 0xc82027a7c0 0xc82027a840 0xc82027a8c0 0xc82027a960 0xc82027a9e0 0xc82027aa60 0xc82027ab00 0xc82027abc0 0xc82027ac40 0xc82027acc0 0xc82027ad60 0xc82027ae60 0xc82027af20 0xc82027afc0 0xc82027b0a0]}

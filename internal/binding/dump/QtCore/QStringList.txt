@@ -1,0 +1,30 @@
+########################################			FUNCTIONS			########################################
+&{QStringList QStringList::QStringList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non constructor false false   [] }
+&{QStringList QStringList::QStringList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non constructor false true 5  [0xc8207808e0] }
+&{QStringList QStringList::QStringList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non constructor false true 3  [0xc820780c80] }
+&{QStringList QStringList::QStringList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non constructor false true 2  [0xc820780fa0] }
+&{QStringList QStringList::QStringList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non constructor false true 4  [0xc8207812e0] }
+&{contains QStringList::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false false  bool [0xc8207815c0 0xc820781780] }
+&{filter QStringList::filter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false true 2 QStringList [0xc820781ae0] }
+&{filter QStringList::filter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false true 3 QStringList [0xc820781e40] }
+&{filter QStringList::filter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false false  QStringList [0xc8207681e0 0xc8207683e0] }
+&{indexOf QStringList::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false true 2 int [0xc820768700 0xc8207687c0] }
+&{indexOf QStringList::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false false  int [0xc820768a40 0xc820768ae0] }
+&{indexOf QStringList::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false true 3 int [0xc820768ea0 0xc820769000] }
+&{join QStringList::join commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false true 2 QString [0xc8207692e0] }
+&{join QStringList::join commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false false  QString [0xc820769580] }
+&{lastIndexOf QStringList::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false true 2 int [0xc8207697e0 0xc8207698c0] }
+&{lastIndexOf QStringList::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false false  int [0xc820769bc0 0xc820769cc0] }
+&{lastIndexOf QStringList::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false true 3 int [0xc8207580c0 0xc8207582e0] }
+&{operator+ QStringList::operator+ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false false  QStringList [0xc820758720] }
+&{operator<< QStringList::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false true 3 QStringList & [0xc820758b60] }
+&{operator<< QStringList::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false false  QStringList & [0xc820758e60] }
+&{operator<< QStringList::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false true 2 QStringList & [0xc8207591a0] }
+&{operator= QStringList::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false true 2 QStringList & [0xc8207596a0] }
+&{operator= QStringList::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false false  QStringList & [0xc820759ba0] }
+&{removeDuplicates QStringList::removeDuplicates commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false false  int [] }
+&{replaceInStrings QStringList::replaceInStrings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false true 2 QStringList & [0xc8209f2220 0xc8209f2320] }
+&{replaceInStrings QStringList::replaceInStrings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false true 3 QStringList & [0xc8209f25a0 0xc8209f2660] }
+&{replaceInStrings QStringList::replaceInStrings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false false  QStringList & [0xc8209f2900 0xc8209f29c0 0xc8209f2b80] }
+&{sort QStringList::sort commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringlist.h non plain false false  void [0xc8209f2f60] }
+########################################			ENUMS			########################################

@@ -1,75 +1,65 @@
-#Qt binding for Go
+#Qt binding for Go (Windows / Mac OS X / Linux / Android)
 
-##Windows (x86):
+##Windows (x86)
+(currently not working) -> https://support.microsoft.com/kb/830473
 
-1. Install Go >= 1.4 (x86)
-> https://golang.org/dl/
+1. Install Go >= 1.5.1
+> https://storage.googleapis.com/golang/go1.5.1.windows-386.msi
 
-2. Install Qt 5.4.0
-> https://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-windows-x86-mingw491_opengl-5.4.0.exe
+2. Install Qt 5.5.1 ("C:\Qt\Qt5.5.1")
+> https://download.qt.io/official_releases/qt/5.5/5.5.1/qt-opensource-windows-x86-android-5.5.1.exe
 
 3. Add the directory that contains "gcc" to your PATH
-> C:\Qt\Qt5.4.0\Tools\mingw491_32\bin
+> C:\Qt\Qt5.5.1\Tools\mingw492_32\bin
 
 4. Download the qt binding
-> go get -d github.com/therecipe/qt
+> go get github.com/therecipe/qt
 
-5. Setup your build environment (edit the file if necessary)
-> cgo_windows_386.go
+5. Generate, install and test
+> github.com/therecipe/qt/internal/binding/make.sh
 
-6. Install the qt binding (failed ? -> go back to 5)
-> go install github.com/therecipe/qt
+##Mac OS X (x64)
 
-7. Test the example (edit the file if necessary)
-> example/windows/deploy_windows.bat
+1. Install Go >= 1.5.1
+> https://storage.googleapis.com/golang/go1.5.1.darwin-amd64.pkg
 
-##Mac OS X (x64):
+2. Install Qt 5.5.1 ("/usr/local/Qt5.5.1")
+> https://download.qt.io/official_releases/qt/5.5/5.5.1/qt-opensource-mac-x64-android-5.5.1.dmg
 
-1. Install Go >= 1.4
-> https://golang.org/dl/
-
-2. Install Qt 5.4.0
-> https://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-mac-x64-clang-5.4.0.dmg
-
-3. Install Xcode >= 6.1
+3. Install Xcode >= 7.0.1
 
 4. Download the qt binding
-> go get -d github.com/therecipe/qt
+> go get github.com/therecipe/qt
 
-5. Setup your build environment (edit the file if necessary)
-> cgo_darwin_amd64.go
+5. Generate, install and test
+> github.com/therecipe/qt/internal/binding/make.sh
 
-6. Install the qt binding (failed ? -> go back to 5)
-> go install github.com/therecipe/qt
+##Linux (x86/x64)
 
-7. Test the example (edit the file if necessary)
-> example/mac/deploy_mac.sh
+1. Install Go >= 1.5.1
 
-##Linux (x86/x64):
+  >(x86) https://storage.googleapis.com/golang/go1.5.1.linux-386.tar.gz
 
-1. Install Go >= 1.4 (x86/x64)
-> https://golang.org/dl/
+  >(x64) https://storage.googleapis.com/golang/go1.5.1.linux-amd64.tar.gz
 
-2. Install Qt 5.4.0 
+2. Install Qt 5.5.1 ("/usr/local/Qt5.5.1")
 
-  >(x86) https://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-linux-x86-5.4.0.run
-  
-  >(x64) https://download.qt-project.org/official_releases/qt/5.4/5.4.0/qt-opensource-linux-x64-5.4.0.run
-  
+  >(x86) https://download.qt.io/official_releases/qt/5.5/5.5.1/qt-opensource-linux-x86-android-5.5.1.run
+
+  >(x64) https://download.qt.io/official_releases/qt/5.5/5.5.1/qt-opensource-linux-x64-android-5.5.1.run
+
 3. Install "g++"
-> sudo apt-get install build-essential
+> sudo apt-get install g++
 
-4. Install OpenGL libraries
+4. Install OpenGL dependencies
 > sudo apt-get install mesa-common-dev
 
 5. Download the qt binding
-> go get -d github.com/therecipe/qt
+> go get github.com/therecipe/qt
 
-6. Setup your build environment (edit the file if necessary)
-> cgo_linux_*.go
+6. Generate, install and test
+> github.com/therecipe/qt/internal/binding/make.bat
 
-7. Install the qt binding (failed ? -> go back to 6)
-> go install github.com/therecipe/qt
+##Android (armv7)
 
-8. Test the example (edit the file if necessary)
-> example/linux/deploy_linux_*.sh
+TBA

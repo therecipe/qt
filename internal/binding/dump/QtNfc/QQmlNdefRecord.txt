@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{typeNameFormat QQmlNdefRecord::typeNameFormat commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.cpp non plain false false  TypeNameFormat [] }
+&{QQmlNdefRecord QQmlNdefRecord::QQmlNdefRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non constructor false false   [0xc8229013c0] }
+&{QQmlNdefRecord QQmlNdefRecord::QQmlNdefRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non constructor false true 2  [0xc8229015e0 0xc822901700] }
+&{record QQmlNdefRecord::record commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  QNdefRecord [] }
+&{recordChanged QQmlNdefRecord::recordChanged commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non signal false false  void [] }
+&{setRecord QQmlNdefRecord::setRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  void [0xc822901cc0] }
+&{setType QQmlNdefRecord::setType commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  void [0xc822901f80] }
+&{setTypeNameFormat QQmlNdefRecord::setTypeNameFormat commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  void [0xc822912360] }
+&{type QQmlNdefRecord::type commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  QString [] }
+&{typeChanged QQmlNdefRecord::typeChanged commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non signal false false  void [] }
+&{typeNameFormatChanged QQmlNdefRecord::typeNameFormatChanged commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non signal false false  void [] }
+########################################			ENUMS			########################################
+&{TypeNameFormat QQmlNdefRecord::TypeNameFormat commendable public  [0xc822900b60 0xc822900cc0 0xc822900de0 0xc822900ec0 0xc822900fe0 0xc822901100]}

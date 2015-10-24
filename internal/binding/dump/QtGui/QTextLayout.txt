@@ -1,0 +1,44 @@
+########################################			FUNCTIONS			########################################
+&{drawCursor QTextLayout::drawCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.cpp non plain false true 2 void [0xc821309fe0 0xc8213d2260 0xc8213d2400] }
+&{drawCursor QTextLayout::drawCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.cpp non plain false false  void [0xc8213d2960 0xc8213d2a20 0xc8213d2be0 0xc8213d2c80] }
+&{QTextLayout QTextLayout::QTextLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non constructor false false   [] }
+&{QTextLayout QTextLayout::QTextLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non constructor false true 2  [0xc8213d3ea0] }
+&{QTextLayout QTextLayout::QTextLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non constructor false true 3  [0xc821470240 0xc821470300 0xc821470460] }
+&{additionalFormats QTextLayout::additionalFormats commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QList<FormatRange> [] }
+&{beginLayout QTextLayout::beginLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [] }
+&{boundingRect QTextLayout::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QRectF [] }
+&{cacheEnabled QTextLayout::cacheEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  bool [] }
+&{clearAdditionalFormats QTextLayout::clearAdditionalFormats commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [] }
+&{clearLayout QTextLayout::clearLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [] }
+&{createLine QTextLayout::createLine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QTextLine [] }
+&{cursorMoveStyle QTextLayout::cursorMoveStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  Qt::CursorMoveStyle [] }
+&{draw QTextLayout::draw commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc82154ef60 0xc82154f0e0 0xc82154f2e0 0xc82154f560] }
+&{endLayout QTextLayout::endLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [] }
+&{font QTextLayout::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QFont [] }
+&{glyphRuns QTextLayout::glyphRuns commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QList<QGlyphRun> [0xc821614160 0xc821614360] }
+&{isValidCursorPosition QTextLayout::isValidCursorPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  bool [0xc8216146e0] }
+&{leftCursorPosition QTextLayout::leftCursorPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int [0xc821614ce0] }
+&{lineAt QTextLayout::lineAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QTextLine [0xc821615240] }
+&{lineCount QTextLayout::lineCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int [] }
+&{lineForTextPosition QTextLayout::lineForTextPosition commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QTextLine [0xc821615aa0] }
+&{maximumWidth QTextLayout::maximumWidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
+&{minimumWidth QTextLayout::minimumWidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
+&{nextCursorPosition QTextLayout::nextCursorPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int [0xc8216be4e0 0xc8216be680] }
+&{position QTextLayout::position commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QPointF [] }
+&{preeditAreaPosition QTextLayout::preeditAreaPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int [] }
+&{preeditAreaText QTextLayout::preeditAreaText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QString [] }
+&{previousCursorPosition QTextLayout::previousCursorPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int [0xc8216bf3c0 0xc8216bf540] }
+&{rightCursorPosition QTextLayout::rightCursorPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int [0xc8216bfbe0] }
+&{setAdditionalFormats QTextLayout::setAdditionalFormats commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc821764140] }
+&{setCacheEnabled QTextLayout::setCacheEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc8217646a0] }
+&{setCursorMoveStyle QTextLayout::setCursorMoveStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc821764da0] }
+&{setFont QTextLayout::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc821765440] }
+&{setPosition QTextLayout::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc821765b40] }
+&{setPreeditArea QTextLayout::setPreeditArea commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc8217e2060 0xc8217e21a0] }
+&{setText QTextLayout::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc8217e2c60] }
+&{setTextOption QTextLayout::setTextOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc8217e32c0] }
+&{text QTextLayout::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QString [] }
+&{textOption QTextLayout::textOption commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  const QTextOption & [] }
+&{~QTextLayout QTextLayout::~QTextLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{CursorMode QTextLayout::CursorMode commendable public  [0xc8213d3700 0xc8213d3820]}

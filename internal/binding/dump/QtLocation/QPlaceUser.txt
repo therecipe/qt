@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceUser QPlaceUser::QPlaceUser commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non constructor false false   [] }
+&{QPlaceUser QPlaceUser::QPlaceUser commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non constructor false true 2  [0xc821d31880] }
+&{name QPlaceUser::name commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  QString [] }
+&{operator!= QPlaceUser::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  bool [0xc821d31d20] }
+&{operator= QPlaceUser::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  QPlaceUser & [0xc822658200] }
+&{operator== QPlaceUser::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  bool [0xc8226585c0] }
+&{setName QPlaceUser::setName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  void [0xc822658900] }
+&{setUserId QPlaceUser::setUserId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  void [0xc822658c20] }
+&{userId QPlaceUser::userId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  QString [] }
+&{~QPlaceUser QPlaceUser::~QPlaceUser commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non destructor false false   [] }
+########################################			ENUMS			########################################

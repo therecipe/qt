@@ -1,0 +1,22 @@
+########################################			FUNCTIONS			########################################
+&{QAudioDeviceInfo QAudioDeviceInfo::QAudioDeviceInfo commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non constructor false false   [] }
+&{QAudioDeviceInfo QAudioDeviceInfo::QAudioDeviceInfo commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non constructor false true 2  [0xc8222fc1e0] }
+&{availableDevices QAudioDeviceInfo::availableDevices commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain true false  QList<QAudioDeviceInfo> [0xc8222fd0e0] }
+&{defaultInputDevice QAudioDeviceInfo::defaultInputDevice commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain true false  QAudioDeviceInfo [] }
+&{defaultOutputDevice QAudioDeviceInfo::defaultOutputDevice commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain true false  QAudioDeviceInfo [] }
+&{deviceName QAudioDeviceInfo::deviceName commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  QString [] }
+&{isFormatSupported QAudioDeviceInfo::isFormatSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  bool [0xc8222fd860] }
+&{isNull QAudioDeviceInfo::isNull commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  bool [] }
+&{nearestFormat QAudioDeviceInfo::nearestFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  QAudioFormat [0xc8222fde00] }
+&{operator!= QAudioDeviceInfo::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  bool [0xc822310140] }
+&{operator= QAudioDeviceInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  QAudioDeviceInfo & [0xc8223104c0] }
+&{operator== QAudioDeviceInfo::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  bool [0xc822310800] }
+&{preferredFormat QAudioDeviceInfo::preferredFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  QAudioFormat [] }
+&{supportedByteOrders QAudioDeviceInfo::supportedByteOrders commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  QList<QAudioFormat::Endian> [] }
+&{supportedChannelCounts QAudioDeviceInfo::supportedChannelCounts commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  QList<int> [] }
+&{supportedCodecs QAudioDeviceInfo::supportedCodecs commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  QStringList [] }
+&{supportedSampleRates QAudioDeviceInfo::supportedSampleRates commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  QList<int> [] }
+&{supportedSampleSizes QAudioDeviceInfo::supportedSampleSizes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  QList<int> [] }
+&{supportedSampleTypes QAudioDeviceInfo::supportedSampleTypes commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non plain false false  QList<QAudioFormat::SampleType> [] }
+&{~QAudioDeviceInfo QAudioDeviceInfo::~QAudioDeviceInfo commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiodeviceinfo.h non destructor false false   [] }
+########################################			ENUMS			########################################

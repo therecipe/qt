@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{QNearFieldTarget QNearFieldTarget::QNearFieldTarget commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h non constructor false false   [0xc822a995e0] }
+&{accessMethods QNearFieldTarget::accessMethods commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h pure plain false false  AccessMethods [] }
+&{disconnected QNearFieldTarget::disconnected commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h non signal false false  void [] }
+&{error QNearFieldTarget::error commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h non signal false false  void [0xc822a99aa0 0xc822a99b60] }
+&{handleResponse QNearFieldTarget::handleResponse commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h impure plain false false  bool [0xc822a99dc0 0xc822a99e80] }
+&{hasNdefMessage QNearFieldTarget::hasNdefMessage commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h impure plain false false  bool [] }
+&{isProcessingCommand QNearFieldTarget::isProcessingCommand commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h non plain false false  bool [] }
+&{ndefMessageRead QNearFieldTarget::ndefMessageRead commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h non signal false false  void [0xc8228ec380] }
+&{ndefMessagesWritten QNearFieldTarget::ndefMessagesWritten commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h non signal false false  void [] }
+&{readNdefMessages QNearFieldTarget::readNdefMessages commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h impure plain false false  RequestId [] }
+&{requestCompleted QNearFieldTarget::requestCompleted commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h non signal false false  void [0xc8228ec820] }
+&{requestResponse QNearFieldTarget::requestResponse commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h non plain false false  QVariant [0xc8228ec9e0] }
+&{sendCommand QNearFieldTarget::sendCommand commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h impure plain false false  RequestId [0xc8228ecca0] }
+&{sendCommands QNearFieldTarget::sendCommands commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h impure plain false false  RequestId [0xc8228ecf80] }
+&{setResponseForRequest QNearFieldTarget::setResponseForRequest commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h non plain false false  void [0xc8228ed240 0xc8228ed2c0 0xc8228ed3c0] }
+&{type QNearFieldTarget::type commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h pure plain false false  Type [] }
+&{uid QNearFieldTarget::uid commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h pure plain false false  QByteArray [] }
+&{url QNearFieldTarget::url commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h impure plain false false  QUrl [] }
+&{waitForRequestCompleted QNearFieldTarget::waitForRequestCompleted commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h impure plain false false  bool [0xc8228edb00 0xc8228edbe0] }
+&{writeNdefMessages QNearFieldTarget::writeNdefMessages commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h impure plain false false  RequestId [0xc8228ede80] }
+&{~QNearFieldTarget QNearFieldTarget::~QNearFieldTarget commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldtarget.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{AccessMethod QNearFieldTarget::AccessMethod commendable public QNearFieldTarget::AccessMethods [0xc822a98160 0xc822a98220 0xc822a98300 0xc822a983c0]}
+&{Error QNearFieldTarget::Error commendable public  [0xc822a98620 0xc822a986e0 0xc822a987a0 0xc822a98840 0xc822a98980 0xc822a98a40 0xc822a98b60 0xc822a98c60 0xc822a98d00]}
+&{Type QNearFieldTarget::Type commendable public  [0xc822a98f80 0xc822a99000 0xc822a990c0 0xc822a99160 0xc822a99220 0xc822a992a0]}

@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QTextTableCell QTextTableCell::QTextTableCell commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non constructor false false   [] }
+&{QTextTableCell QTextTableCell::QTextTableCell commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non constructor false true 2  [0xc821e843e0] }
+&{begin QTextTableCell::begin commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  QTextFrame::iterator [] }
+&{column QTextTableCell::column commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  int [] }
+&{columnSpan QTextTableCell::columnSpan commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  int [] }
+&{end QTextTableCell::end commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  QTextFrame::iterator [] }
+&{firstCursorPosition QTextTableCell::firstCursorPosition commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  QTextCursor [] }
+&{format QTextTableCell::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  QTextCharFormat [] }
+&{isValid QTextTableCell::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  bool [] }
+&{lastCursorPosition QTextTableCell::lastCursorPosition commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  QTextCursor [] }
+&{operator!= QTextTableCell::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  bool [0xc821e85680] }
+&{operator= QTextTableCell::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  QTextTableCell & [0xc821e85940] }
+&{operator== QTextTableCell::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  bool [0xc821e85ba0] }
+&{row QTextTableCell::row commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  int [] }
+&{rowSpan QTextTableCell::rowSpan commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  int [] }
+&{setFormat QTextTableCell::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  void [0xc820d04100] }
+&{tableCellFormatIndex QTextTableCell::tableCellFormatIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  int [] }
+&{~QTextTableCell QTextTableCell::~QTextTableCell commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non destructor false false   [] }
+########################################			ENUMS			########################################

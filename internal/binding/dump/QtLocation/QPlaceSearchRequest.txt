@@ -1,0 +1,27 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceSearchRequest QPlaceSearchRequest::QPlaceSearchRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non constructor false false   [] }
+&{QPlaceSearchRequest QPlaceSearchRequest::QPlaceSearchRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non constructor false true 2  [0xc8225f80c0] }
+&{categories QPlaceSearchRequest::categories commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  QList<QPlaceCategory> [] }
+&{clear QPlaceSearchRequest::clear commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  void [] }
+&{limit QPlaceSearchRequest::limit commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  int [] }
+&{operator!= QPlaceSearchRequest::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  bool [0xc8225f8ea0] }
+&{operator= QPlaceSearchRequest::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  QPlaceSearchRequest & [0xc8225f9420] }
+&{operator== QPlaceSearchRequest::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  bool [0xc8225f99c0] }
+&{recommendationId QPlaceSearchRequest::recommendationId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  QString [] }
+&{relevanceHint QPlaceSearchRequest::relevanceHint commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  RelevanceHint [] }
+&{searchArea QPlaceSearchRequest::searchArea commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  QGeoShape [] }
+&{searchContext QPlaceSearchRequest::searchContext commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  QVariant [] }
+&{searchTerm QPlaceSearchRequest::searchTerm commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  QString [] }
+&{setCategories QPlaceSearchRequest::setCategories commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  void [0xc8226066e0] }
+&{setCategory QPlaceSearchRequest::setCategory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  void [0xc822606cc0] }
+&{setLimit QPlaceSearchRequest::setLimit commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  void [0xc822607240] }
+&{setRecommendationId QPlaceSearchRequest::setRecommendationId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  void [0xc8226075a0] }
+&{setRelevanceHint QPlaceSearchRequest::setRelevanceHint commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  void [0xc822607860] }
+&{setSearchArea QPlaceSearchRequest::setSearchArea commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  void [0xc822607be0] }
+&{setSearchContext QPlaceSearchRequest::setSearchContext commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  void [0xc822607f00] }
+&{setSearchTerm QPlaceSearchRequest::setSearchTerm commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  void [0xc822616240] }
+&{setVisibilityScope QPlaceSearchRequest::setVisibilityScope commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  void [0xc822616600] }
+&{visibilityScope QPlaceSearchRequest::visibilityScope commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non plain false false  QLocation::VisibilityScope [] }
+&{~QPlaceSearchRequest QPlaceSearchRequest::~QPlaceSearchRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchrequest.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{RelevanceHint QPlaceSearchRequest::RelevanceHint commendable public  [0xc8225eb8a0 0xc8225eb940 0xc8225ebaa0]}

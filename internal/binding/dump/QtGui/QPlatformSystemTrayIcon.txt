@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{activated QPlatformSystemTrayIcon::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformsystemtrayicon.h non signal false false  void [0xc820671ac0] }
+&{cleanup QPlatformSystemTrayIcon::cleanup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformsystemtrayicon.h pure plain false false  void [] }
+&{createMenu QPlatformSystemTrayIcon::createMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformsystemtrayicon.h impure plain false false  QPlatformMenu * [] }
+&{geometry QPlatformSystemTrayIcon::geometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformsystemtrayicon.h pure plain false false  QRect [] }
+&{init QPlatformSystemTrayIcon::init commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformsystemtrayicon.h pure plain false false  void [] }
+&{isSystemTrayAvailable QPlatformSystemTrayIcon::isSystemTrayAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformsystemtrayicon.h pure plain false false  bool [] }
+&{messageClicked QPlatformSystemTrayIcon::messageClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformsystemtrayicon.h non signal false false  void [] }
+&{showMessage QPlatformSystemTrayIcon::showMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformsystemtrayicon.h pure plain false false  void [0xc82065a760 0xc82065a880 0xc82065a960 0xc82065aa80 0xc82065abe0] }
+&{supportsMessages QPlatformSystemTrayIcon::supportsMessages commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformsystemtrayicon.h pure plain false false  bool [] }
+&{updateIcon QPlatformSystemTrayIcon::updateIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformsystemtrayicon.h pure plain false false  void [0xc82065b0c0] }
+&{updateMenu QPlatformSystemTrayIcon::updateMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformsystemtrayicon.h pure plain false false  void [0xc82065b400] }
+&{updateToolTip QPlatformSystemTrayIcon::updateToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformsystemtrayicon.h pure plain false false  void [0xc82065b6c0] }
+########################################			ENUMS			########################################
+&{ActivationReason QPlatformSystemTrayIcon::ActivationReason commendable public  [0xc820670dc0 0xc820670e60 0xc820670f80 0xc820671040 0xc8206711c0]}
+&{MessageIcon QPlatformSystemTrayIcon::MessageIcon commendable public  [0xc820671460 0xc820671500 0xc8206715a0 0xc820671640]}

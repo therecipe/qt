@@ -1,0 +1,42 @@
+########################################			FUNCTIONS			########################################
+&{QQmlProperty QQmlProperty::QQmlProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non constructor false false   [] }
+&{QQmlProperty QQmlProperty::QQmlProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non constructor false true 2  [0xc821d83d20] }
+&{QQmlProperty QQmlProperty::QQmlProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non constructor false true 3  [0xc821398160 0xc8213983e0] }
+&{QQmlProperty QQmlProperty::QQmlProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non constructor false true 4  [0xc821398840 0xc821398900] }
+&{QQmlProperty QQmlProperty::QQmlProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non constructor false true 5  [0xc821398c60 0xc821398d20] }
+&{QQmlProperty QQmlProperty::QQmlProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non constructor false true 6  [0xc821399160 0xc821399300 0xc821399440] }
+&{QQmlProperty QQmlProperty::QQmlProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non constructor false true 7  [0xc8213998e0 0xc821399a00 0xc821399b60] }
+&{QQmlProperty QQmlProperty::QQmlProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non constructor false true 8  [0xc821399fc0] }
+&{connectNotifySignal QQmlProperty::connectNotifySignal commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  bool [0xc821eda500 0xc821eda5c0] }
+&{connectNotifySignal QQmlProperty::connectNotifySignal commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false true 2 bool [0xc821eda9e0 0xc821edaae0] }
+&{hasNotifySignal QQmlProperty::hasNotifySignal commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  bool [] }
+&{index QQmlProperty::index commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  int [] }
+&{isDesignable QQmlProperty::isDesignable commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  bool [] }
+&{isProperty QQmlProperty::isProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  bool [] }
+&{isResettable QQmlProperty::isResettable commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  bool [] }
+&{isSignalProperty QQmlProperty::isSignalProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  bool [] }
+&{isValid QQmlProperty::isValid commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  bool [] }
+&{isWritable QQmlProperty::isWritable commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  bool [] }
+&{method QQmlProperty::method commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  QMetaMethod [] }
+&{name QQmlProperty::name commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  QString [] }
+&{needsNotifySignal QQmlProperty::needsNotifySignal commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  bool [] }
+&{object QQmlProperty::object commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  QObject * [] }
+&{operator= QQmlProperty::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  QQmlProperty & [0xc822400960] }
+&{operator== QQmlProperty::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  bool [0xc822400ec0] }
+&{property QQmlProperty::property commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  QMetaProperty [] }
+&{propertyType QQmlProperty::propertyType commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  int [] }
+&{propertyTypeCategory QQmlProperty::propertyTypeCategory commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  PropertyTypeCategory [] }
+&{propertyTypeName QQmlProperty::propertyTypeName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  const char * [] }
+&{read QQmlProperty::read commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain true true 2 QVariant [0xc822401d20 0xc822401e00] }
+&{read QQmlProperty::read commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain true true 3 QVariant [0xc821d70220 0xc821d70360 0xc821d70460] }
+&{read QQmlProperty::read commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain true true 4 QVariant [0xc821d707e0 0xc821d708e0 0xc821d70980] }
+&{read QQmlProperty::read commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  QVariant [] }
+&{reset QQmlProperty::reset commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  bool [] }
+&{type QQmlProperty::type commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  Type [] }
+&{write QQmlProperty::write commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain true true 2 bool [0xc821d71260 0xc821d71360 0xc821d71440] }
+&{write QQmlProperty::write commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain true true 3 bool [0xc821d717a0 0xc821d718e0 0xc821d71a20 0xc821d71aa0] }
+&{write QQmlProperty::write commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain true true 4 bool [0xc821d71ce0 0xc821d71e20 0xc821d71ec0 0xc821d71f80] }
+&{write QQmlProperty::write commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlproperty.h non plain false false  bool [0xc821ece300] }
+########################################			ENUMS			########################################
+&{PropertyTypeCategory QQmlProperty::PropertyTypeCategory commendable public  [0xc821d82e80 0xc821d82f00 0xc821d82fc0 0xc821d83060]}
+&{Type QQmlProperty::Type commendable public  [0xc821d83360 0xc821d834a0 0xc821d83680]}

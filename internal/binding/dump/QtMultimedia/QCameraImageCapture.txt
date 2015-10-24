@@ -1,0 +1,36 @@
+########################################			FUNCTIONS			########################################
+&{isReadyForCapture QCameraImageCapture::isReadyForCapture commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.cpp non plain false false  bool [] }
+&{QCameraImageCapture QCameraImageCapture::QCameraImageCapture commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non constructor false false   [0xc8221fec40 0xc8221fecc0] }
+&{availability QCameraImageCapture::availability commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  QMultimedia::AvailabilityStatus [] }
+&{bufferFormat QCameraImageCapture::bufferFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  QVideoFrame::PixelFormat [] }
+&{bufferFormatChanged QCameraImageCapture::bufferFormatChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non signal false false  void [0xc8221ff200] }
+&{cancelCapture QCameraImageCapture::cancelCapture commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non slot false false  void [] }
+&{capture QCameraImageCapture::capture commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non slot false false  int [0xc8221ff4e0] }
+&{captureDestination QCameraImageCapture::captureDestination commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  CaptureDestinations [] }
+&{captureDestinationChanged QCameraImageCapture::captureDestinationChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non signal false false  void [0xc8221ff800] }
+&{encodingSettings QCameraImageCapture::encodingSettings commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  QImageEncoderSettings [] }
+&{error QCameraImageCapture::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non signal false true 2 void [0xc8221ffac0 0xc8221ffb60 0xc8221ffc20] }
+&{error QCameraImageCapture::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  Error [] }
+&{errorString QCameraImageCapture::errorString commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  QString [] }
+&{imageAvailable QCameraImageCapture::imageAvailable commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non signal false false  void [0xc8225c2020 0xc8225c20c0] }
+&{imageCaptured QCameraImageCapture::imageCaptured commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non signal false false  void [0xc8225c2260 0xc8225c22e0] }
+&{imageCodecDescription QCameraImageCapture::imageCodecDescription commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  QString [0xc8225c24c0] }
+&{imageExposed QCameraImageCapture::imageExposed commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non signal false false  void [0xc8225c2640] }
+&{imageMetadataAvailable QCameraImageCapture::imageMetadataAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non signal false false  void [0xc8225c2800 0xc8225c2880 0xc8225c2900] }
+&{imageSaved QCameraImageCapture::imageSaved commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non signal false false  void [0xc8225c2b00 0xc8225c2b80] }
+&{isAvailable QCameraImageCapture::isAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  bool [] }
+&{isCaptureDestinationSupported QCameraImageCapture::isCaptureDestinationSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  bool [0xc8225c2ec0] }
+&{mediaObject QCameraImageCapture::mediaObject commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h impure plain false false  QMediaObject * [] }
+&{readyForCaptureChanged QCameraImageCapture::readyForCaptureChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non signal false false  void [0xc8225c3200] }
+&{setBufferFormat QCameraImageCapture::setBufferFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  void [0xc8225c33a0] }
+&{setCaptureDestination QCameraImageCapture::setCaptureDestination commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  void [0xc8225c3660] }
+&{setEncodingSettings QCameraImageCapture::setEncodingSettings commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  void [0xc8225c38a0] }
+&{setMediaObject QCameraImageCapture::setMediaObject commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h impure plain false false  bool [0xc8225c3aa0] }
+&{supportedBufferFormats QCameraImageCapture::supportedBufferFormats commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  QList<QVideoFrame::PixelFormat> [] }
+&{supportedImageCodecs QCameraImageCapture::supportedImageCodecs commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  QStringList [] }
+&{supportedResolutions QCameraImageCapture::supportedResolutions commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non plain false false  QList<QSize> [0xc8225c3fa0 0xc8225ca0c0] }
+&{~QCameraImageCapture QCameraImageCapture::~QCameraImageCapture commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimagecapture.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{CaptureDestination QCameraImageCapture::CaptureDestination commendable public QCameraImageCapture::CaptureDestinations [0xc8221fe120 0xc8221fe1a0]}
+&{DriveMode QCameraImageCapture::DriveMode commendable public  [0xc8221fe440]}
+&{Error QCameraImageCapture::Error commendable public  [0xc8221fe6a0 0xc8221fe760 0xc8221fe7e0 0xc8221fe860 0xc8221fe920 0xc8221fe9e0]}

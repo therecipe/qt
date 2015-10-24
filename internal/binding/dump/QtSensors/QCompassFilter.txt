@@ -1,0 +1,3 @@
+########################################			FUNCTIONS			########################################
+&{filter QCompassFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.h pure plain false false  bool [0xc822ec2f80] }
+########################################			ENUMS			########################################

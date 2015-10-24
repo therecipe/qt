@@ -1,0 +1,37 @@
+########################################			FUNCTIONS			########################################
+&{open QLocalSocket::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.cpp impure plain false false  bool [0xc82314b160] }
+&{QLocalSocket QLocalSocket::QLocalSocket commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.h non constructor false false   [0xc82313e700] }
+&{connectToServer QLocalSocket::connectToServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.h non plain false true 2 void [0xc82313eac0 0xc82313eb40] }
+&{connected QLocalSocket::connected commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.h non signal false false  void [] }
+&{disconnected QLocalSocket::disconnected commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.h non signal false false  void [] }
+&{error QLocalSocket::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.h non signal false true 2 void [0xc82313ef60] }
+&{fullServerName QLocalSocket::fullServerName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.h non plain false false  QString [] }
+&{isSequential QLocalSocket::isSequential commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.h impure plain false false  bool [] }
+&{serverName QLocalSocket::serverName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.h non plain false false  QString [] }
+&{setServerName QLocalSocket::setServerName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.h non plain false false  void [0xc82313f540] }
+&{state QLocalSocket::state commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.h non plain false false  LocalSocketState [] }
+&{stateChanged QLocalSocket::stateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.h non signal false false  void [0xc82313f940] }
+&{~QLocalSocket QLocalSocket::~QLocalSocket commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket.h non destructor false false   [] }
+&{abort QLocalSocket::abort commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp non plain false false  void [] }
+&{bytesAvailable QLocalSocket::bytesAvailable commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp impure plain false false  qint64 [] }
+&{bytesToWrite QLocalSocket::bytesToWrite commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp impure plain false false  qint64 [] }
+&{canReadLine QLocalSocket::canReadLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp impure plain false false  bool [] }
+&{close QLocalSocket::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp impure plain false false  void [] }
+&{connectToServer QLocalSocket::connectToServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp non plain false false  void [0xc82312a3c0] }
+&{disconnectFromServer QLocalSocket::disconnectFromServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp non plain false false  void [] }
+&{error QLocalSocket::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp non plain false false  LocalSocketError [] }
+&{flush QLocalSocket::flush commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp non plain false false  bool [] }
+&{isValid QLocalSocket::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp non plain false false  bool [] }
+&{readBufferSize QLocalSocket::readBufferSize commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp non plain false false  qint64 [] }
+&{readData QLocalSocket::readData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp impure plain false false  qint64 [0xc82312ac40 0xc82312ad00] }
+&{setReadBufferSize QLocalSocket::setReadBufferSize commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp non plain false false  void [0xc82312afc0] }
+&{setSocketDescriptor QLocalSocket::setSocketDescriptor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp non plain false false  bool [0xc82312b200 0xc82312b2a0 0xc82312b320] }
+&{socketDescriptor QLocalSocket::socketDescriptor commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp non plain false false  qintptr [] }
+&{waitForBytesWritten QLocalSocket::waitForBytesWritten commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp impure plain false false  bool [0xc82312b6c0] }
+&{waitForConnected QLocalSocket::waitForConnected commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp non plain false false  bool [0xc82312b940] }
+&{waitForDisconnected QLocalSocket::waitForDisconnected commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp non plain false false  bool [0xc82312bb60] }
+&{waitForReadyRead QLocalSocket::waitForReadyRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp impure plain false false  bool [0xc82312bdc0] }
+&{writeData QLocalSocket::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalsocket_win.cpp impure plain false false  qint64 [0xc82312bfe0 0xc82310c080] }
+########################################			ENUMS			########################################
+&{LocalSocketError QLocalSocket::LocalSocketError commendable public  [0xc82314b420 0xc82314b500 0xc82314b5a0 0xc82314b6c0 0xc82314b820 0xc82314b940 0xc82314ba60 0xc82314bb40 0xc82314bc80 0xc82314bda0 0xc82314bea0]}
+&{LocalSocketState QLocalSocket::LocalSocketState commendable public  [0xc82313e140 0xc82313e220 0xc82313e340 0xc82313e440]}

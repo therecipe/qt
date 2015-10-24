@@ -1,0 +1,34 @@
+########################################			FUNCTIONS			########################################
+&{QVideoSurfaceFormat QVideoSurfaceFormat::QVideoSurfaceFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non constructor false false   [] }
+&{QVideoSurfaceFormat QVideoSurfaceFormat::QVideoSurfaceFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non constructor false true 2  [0xc82183e6a0 0xc82183e8e0 0xc82183ea60] }
+&{QVideoSurfaceFormat QVideoSurfaceFormat::QVideoSurfaceFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non constructor false true 3  [0xc82183efa0] }
+&{frameHeight QVideoSurfaceFormat::frameHeight commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  int [] }
+&{frameRate QVideoSurfaceFormat::frameRate commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  qreal [] }
+&{frameSize QVideoSurfaceFormat::frameSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  QSize [] }
+&{frameWidth QVideoSurfaceFormat::frameWidth commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  int [] }
+&{handleType QVideoSurfaceFormat::handleType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  QAbstractVideoBuffer::HandleType [] }
+&{isValid QVideoSurfaceFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  bool [] }
+&{operator!= QVideoSurfaceFormat::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  bool [0xc8219243e0] }
+&{operator= QVideoSurfaceFormat::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  QVideoSurfaceFormat & [0xc821924a20] }
+&{operator== QVideoSurfaceFormat::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  bool [0xc821925000] }
+&{pixelAspectRatio QVideoSurfaceFormat::pixelAspectRatio commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  QSize [] }
+&{pixelFormat QVideoSurfaceFormat::pixelFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  QVideoFrame::PixelFormat [] }
+&{property QVideoSurfaceFormat::property commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  QVariant [0xc821925a00] }
+&{propertyNames QVideoSurfaceFormat::propertyNames commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  QList<QByteArray> [] }
+&{scanLineDirection QVideoSurfaceFormat::scanLineDirection commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  Direction [] }
+&{setFrameRate QVideoSurfaceFormat::setFrameRate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  void [0xc821a0a160] }
+&{setFrameSize QVideoSurfaceFormat::setFrameSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  void [0xc821a0a340] }
+&{setFrameSize QVideoSurfaceFormat::setFrameSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false true 2 void [0xc821a0a500 0xc821a0a580] }
+&{setPixelAspectRatio QVideoSurfaceFormat::setPixelAspectRatio commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  void [0xc821a0a7e0] }
+&{setPixelAspectRatio QVideoSurfaceFormat::setPixelAspectRatio commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false true 2 void [0xc821a0a9c0 0xc821a0aaa0] }
+&{setProperty QVideoSurfaceFormat::setProperty commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  void [0xc821a0acc0 0xc821a0ad40] }
+&{setScanLineDirection QVideoSurfaceFormat::setScanLineDirection commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  void [0xc821a0af60] }
+&{setViewport QVideoSurfaceFormat::setViewport commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  void [0xc821a0b1c0] }
+&{setYCbCrColorSpace QVideoSurfaceFormat::setYCbCrColorSpace commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  void [0xc821a0b3e0] }
+&{sizeHint QVideoSurfaceFormat::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  QSize [] }
+&{viewport QVideoSurfaceFormat::viewport commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  QRect [] }
+&{yCbCrColorSpace QVideoSurfaceFormat::yCbCrColorSpace commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non plain false false  YCbCrColorSpace [] }
+&{~QVideoSurfaceFormat QVideoSurfaceFormat::~QVideoSurfaceFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideosurfaceformat.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Direction QVideoSurfaceFormat::Direction commendable public  [0xc826b2b4a0 0xc826b2b600]}
+&{YCbCrColorSpace QVideoSurfaceFormat::YCbCrColorSpace commendable public  [0xc826b2b940 0xc826b2ba60 0xc826b2bb60 0xc826b2bce0 0xc826b2be60 0xc82183e000]}

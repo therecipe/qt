@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceContentRequest QPlaceContentRequest::QPlaceContentRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non constructor false false   [] }
+&{QPlaceContentRequest QPlaceContentRequest::QPlaceContentRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non constructor false true 2  [0xc82217c500] }
+&{clear QPlaceContentRequest::clear commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non plain false false  void [] }
+&{contentContext QPlaceContentRequest::contentContext commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non plain false false  QVariant [] }
+&{contentType QPlaceContentRequest::contentType commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non plain false false  QPlaceContent::Type [] }
+&{limit QPlaceContentRequest::limit commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non plain false false  int [] }
+&{operator!= QPlaceContentRequest::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non plain false false  bool [0xc82217ce80] }
+&{operator= QPlaceContentRequest::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non plain false false  QPlaceContentRequest & [0xc82217d340] }
+&{operator== QPlaceContentRequest::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non plain false false  bool [0xc82217d740] }
+&{placeId QPlaceContentRequest::placeId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non plain false false  QString [] }
+&{setContentContext QPlaceContentRequest::setContentContext commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non plain false false  void [0xc82217dc20] }
+&{setContentType QPlaceContentRequest::setContentType commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non plain false false  void [0xc82217dec0] }
+&{setLimit QPlaceContentRequest::setLimit commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non plain false false  void [0xc822194260] }
+&{setPlaceId QPlaceContentRequest::setPlaceId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non plain false false  void [0xc822194540] }
+&{~QPlaceContentRequest QPlaceContentRequest::~QPlaceContentRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontentrequest.h non destructor false false   [] }
+########################################			ENUMS			########################################

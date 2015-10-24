@@ -1,0 +1,70 @@
+########################################			FUNCTIONS			########################################
+&{gridStyle QTableView::gridStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.cpp non plain false false  Qt::PenStyle [] }
+&{isCornerButtonEnabled QTableView::isCornerButtonEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.cpp non plain false false  bool [] }
+&{isSortingEnabled QTableView::isSortingEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.cpp non plain false false  bool [] }
+&{moveCursor QTableView::moveCursor commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.cpp impure plain false false  QModelIndex [0xc8224710a0 0xc8224711a0] }
+&{setCornerButtonEnabled QTableView::setCornerButtonEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.cpp non plain false false  void [0xc8224714a0] }
+&{setGridStyle QTableView::setGridStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.cpp non plain false false  void [0xc8224716e0] }
+&{setSelection QTableView::setSelection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.cpp impure plain false false  void [0xc822471960 0xc8224719e0] }
+&{setShowGrid QTableView::setShowGrid commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.cpp non slot false false  void [0xc822471ca0] }
+&{setSpan QTableView::setSpan commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.cpp non plain false false  void [0xc822471ec0 0xc822471f40 0xc822471fc0 0xc821e60060] }
+&{setWordWrap QTableView::setWordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.cpp non plain false false  void [0xc821e602c0] }
+&{showGrid QTableView::showGrid commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.cpp non plain false false  bool [] }
+&{wordWrap QTableView::wordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.cpp non plain false false  bool [] }
+&{QTableView QTableView::QTableView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non constructor false false   [0xc821e607e0] }
+&{clearSpans QTableView::clearSpans commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  void [] }
+&{columnAt QTableView::columnAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  int [0xc821e613c0] }
+&{columnCountChanged QTableView::columnCountChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc821e61620 0xc821e616a0] }
+&{columnMoved QTableView::columnMoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc821e618c0 0xc821e61960 0xc821e61a00] }
+&{columnResized QTableView::columnResized commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc821e61be0 0xc821e61c60 0xc821e61d00] }
+&{columnSpan QTableView::columnSpan commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  int [0xc821e61f20 0xc821e61fc0] }
+&{columnViewportPosition QTableView::columnViewportPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  int [0xc821e6c1c0] }
+&{columnWidth QTableView::columnWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  int [0xc821e6c3c0] }
+&{currentChanged QTableView::currentChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  void [0xc821e6c600 0xc821e6c6e0] }
+&{hideColumn QTableView::hideColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc821e6cac0] }
+&{hideRow QTableView::hideRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc821e6cd00] }
+&{horizontalHeader QTableView::horizontalHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  QHeaderView * [] }
+&{horizontalOffset QTableView::horizontalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  int [] }
+&{indexAt QTableView::indexAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  QModelIndex [0xc821e6d340] }
+&{isColumnHidden QTableView::isColumnHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  bool [0xc821e6d5c0] }
+&{isIndexHidden QTableView::isIndexHidden commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  bool [0xc821e6d7e0] }
+&{isRowHidden QTableView::isRowHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  bool [0xc821e6da80] }
+&{paintEvent QTableView::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  void [0xc821e6dcc0] }
+&{resizeColumnToContents QTableView::resizeColumnToContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc821e6dec0] }
+&{resizeColumnsToContents QTableView::resizeColumnsToContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [] }
+&{resizeRowToContents QTableView::resizeRowToContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc822414280] }
+&{resizeRowsToContents QTableView::resizeRowsToContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [] }
+&{rowAt QTableView::rowAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  int [0xc8224146a0] }
+&{rowCountChanged QTableView::rowCountChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc8224148e0 0xc822414980] }
+&{rowHeight QTableView::rowHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  int [0xc822414be0] }
+&{rowMoved QTableView::rowMoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc822414e40 0xc822414ee0 0xc822414f60] }
+&{rowResized QTableView::rowResized commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc8224151c0 0xc822415260 0xc822415300] }
+&{rowSpan QTableView::rowSpan commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  int [0xc822415520 0xc822415600] }
+&{rowViewportPosition QTableView::rowViewportPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  int [0xc8224158a0] }
+&{selectColumn QTableView::selectColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc822488120] }
+&{selectRow QTableView::selectRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc8224883a0] }
+&{selectedIndexes QTableView::selectedIndexes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  QModelIndexList [] }
+&{selectionChanged QTableView::selectionChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  void [0xc822488660 0xc822488760] }
+&{setColumnHidden QTableView::setColumnHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  void [0xc822488a00 0xc822488aa0] }
+&{setColumnWidth QTableView::setColumnWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  void [0xc822488c60 0xc822488ce0] }
+&{setHorizontalHeader QTableView::setHorizontalHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  void [0xc822488ee0] }
+&{setModel QTableView::setModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  void [0xc822489120] }
+&{setRootIndex QTableView::setRootIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  void [0xc8224893a0] }
+&{setRowHeight QTableView::setRowHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  void [0xc8224895a0 0xc822489620] }
+&{setRowHidden QTableView::setRowHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  void [0xc822489840 0xc8224898e0] }
+&{setSelectionModel QTableView::setSelectionModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  void [0xc822489b40] }
+&{setSortingEnabled QTableView::setSortingEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  void [0xc822489da0] }
+&{setVerticalHeader QTableView::setVerticalHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  void [0xc82249a040] }
+&{showColumn QTableView::showColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc82249a2a0] }
+&{showRow QTableView::showRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non slot false false  void [0xc82249a4c0] }
+&{sizeHintForColumn QTableView::sizeHintForColumn commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  int [0xc82249a6c0] }
+&{sizeHintForRow QTableView::sizeHintForRow commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  int [0xc82249a8e0] }
+&{sortByColumn QTableView::sortByColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  void [0xc82249ad00 0xc82249ad80] }
+&{timerEvent QTableView::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  void [0xc82249af40] }
+&{updateGeometries QTableView::updateGeometries commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  void [] }
+&{verticalHeader QTableView::verticalHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non plain false false  QHeaderView * [] }
+&{verticalOffset QTableView::verticalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  int [] }
+&{viewOptions QTableView::viewOptions commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  QStyleOptionViewItem [] }
+&{viewportSizeHint QTableView::viewportSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h impure plain false false  QSize [] }
+&{~QTableView QTableView::~QTableView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtableview.h non destructor false false   [] }
+########################################			ENUMS			########################################

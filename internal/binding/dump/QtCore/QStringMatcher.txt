@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QStringMatcher QStringMatcher::QStringMatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringmatcher.cpp non constructor false true 3  [0xc8209f3480 0xc8209f3540 0xc8209f3620] }
+&{pattern QStringMatcher::pattern commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringmatcher.cpp non plain false false  QString [] }
+&{QStringMatcher QStringMatcher::QStringMatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringmatcher.h non constructor false false   [] }
+&{QStringMatcher QStringMatcher::QStringMatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringmatcher.h non constructor false true 2  [0xc8209f3ec0 0xc820740000] }
+&{QStringMatcher QStringMatcher::QStringMatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringmatcher.h non constructor false true 4  [0xc820740540] }
+&{caseSensitivity QStringMatcher::caseSensitivity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringmatcher.h non plain false false  Qt::CaseSensitivity [] }
+&{indexIn QStringMatcher::indexIn commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringmatcher.h non plain false true 2 int [0xc820740d00 0xc820740d80 0xc820740f00] }
+&{indexIn QStringMatcher::indexIn commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringmatcher.h non plain false false  int [0xc8207412c0 0xc8207413c0] }
+&{operator= QStringMatcher::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringmatcher.h non plain false false  QStringMatcher & [0xc820741840] }
+&{setCaseSensitivity QStringMatcher::setCaseSensitivity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringmatcher.h non plain false false  void [0xc820741d20] }
+&{setPattern QStringMatcher::setPattern commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringmatcher.h non plain false false  void [0xc82072c1e0] }
+&{~QStringMatcher QStringMatcher::~QStringMatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstringmatcher.h non destructor false false   [] }
+########################################			ENUMS			########################################

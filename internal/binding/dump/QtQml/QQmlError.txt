@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QQmlError QQmlError::QQmlError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non constructor false false   [] }
+&{QQmlError QQmlError::QQmlError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non constructor false true 2  [0xc822d41460] }
+&{column QQmlError::column commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  int [] }
+&{description QQmlError::description commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  QString [] }
+&{isValid QQmlError::isValid commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  bool [] }
+&{line QQmlError::line commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  int [] }
+&{object QQmlError::object commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  QObject * [] }
+&{operator= QQmlError::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  QQmlError & [0xc821ac8440] }
+&{setColumn QQmlError::setColumn commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void [0xc821ac8860] }
+&{setDescription QQmlError::setDescription commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void [0xc821ac8cc0] }
+&{setLine QQmlError::setLine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void [0xc821ac9140] }
+&{setObject QQmlError::setObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void [0xc821ac95e0] }
+&{setUrl QQmlError::setUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void [0xc821ac9980] }
+&{toString QQmlError::toString commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  QString [] }
+&{url QQmlError::url commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  QUrl [] }
+########################################			ENUMS			########################################

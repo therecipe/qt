@@ -1,0 +1,21 @@
+########################################			FUNCTIONS			########################################
+&{QBluetoothServer QBluetoothServer::QBluetoothServer commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver.h non constructor false false   [0xc822dd92a0 0xc822dd9480] }
+&{error QBluetoothServer::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver.h non signal false true 2 void [0xc822dd9920] }
+&{newConnection QBluetoothServer::newConnection commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver.h non signal false false  void [] }
+&{error QBluetoothServer::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_osx.mm non plain false false  Error [] }
+&{isListening QBluetoothServer::isListening commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_osx.mm non plain false false  bool [] }
+&{listen QBluetoothServer::listen commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_osx.mm non plain false true 2 QBluetoothServiceInfo [0xc822e2e760 0xc822e2e8c0] }
+&{maxPendingConnections QBluetoothServer::maxPendingConnections commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_osx.mm non plain false false  int [] }
+&{serverType QBluetoothServer::serverType commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_osx.mm non plain false false  QBluetoothServiceInfo::Protocol [] }
+&{~QBluetoothServer QBluetoothServer::~QBluetoothServer commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_osx.mm non destructor false false   [] }
+&{close QBluetoothServer::close commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_qnx.cpp non plain false false  void [] }
+&{hasPendingConnections QBluetoothServer::hasPendingConnections commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_qnx.cpp non plain false false  bool [] }
+&{listen QBluetoothServer::listen commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_qnx.cpp non plain false false  bool [0xc822e2ff60 0xc822eb40a0] }
+&{nextPendingConnection QBluetoothServer::nextPendingConnection commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_qnx.cpp non plain false false  QBluetoothSocket * [] }
+&{securityFlags QBluetoothServer::securityFlags commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_qnx.cpp non plain false false  QBluetooth::SecurityFlags [] }
+&{serverAddress QBluetoothServer::serverAddress commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_qnx.cpp non plain false false  QBluetoothAddress [] }
+&{serverPort QBluetoothServer::serverPort commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_qnx.cpp non plain false false  quint16 [] }
+&{setMaxPendingConnections QBluetoothServer::setMaxPendingConnections commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_qnx.cpp non plain false false  void [0xc822eb5400] }
+&{setSecurityFlags QBluetoothServer::setSecurityFlags commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothserver_qnx.cpp non plain false false  void [0xc822eb5b80] }
+########################################			ENUMS			########################################
+&{Error QBluetoothServer::Error commendable public  [0xc822dd8540 0xc822dd8720 0xc822dd8820 0xc822dd8940 0xc822dd8be0 0xc822dd8e20]}

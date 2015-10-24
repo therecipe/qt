@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QStyleOptionFocusRect QStyleOptionFocusRect::QStyleOptionFocusRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
+&{QStyleOptionFocusRect QStyleOptionFocusRect::QStyleOptionFocusRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8214a3780] }
+########################################			ENUMS			########################################
+&{StyleOptionType QStyleOptionFocusRect::StyleOptionType commendable public  [0xc8214a2ca0]}
+&{StyleOptionVersion QStyleOptionFocusRect::StyleOptionVersion commendable public  [0xc8214a3020]}

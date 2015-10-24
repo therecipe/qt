@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QCameraImageProcessingControl QCameraImageProcessingControl::QCameraImageProcessingControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraimageprocessingcontrol.h non constructor false false   [0xc821cb2f00] }
+&{isParameterSupported QCameraImageProcessingControl::isParameterSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraimageprocessingcontrol.h pure plain false false  bool [0xc821cb32e0] }
+&{isParameterValueSupported QCameraImageProcessingControl::isParameterValueSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraimageprocessingcontrol.h pure plain false false  bool [0xc821cb36c0 0xc821cb3820] }
+&{parameter QCameraImageProcessingControl::parameter commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraimageprocessingcontrol.h pure plain false false  QVariant [0xc821cb3ac0] }
+&{setParameter QCameraImageProcessingControl::setParameter commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraimageprocessingcontrol.h pure plain false false  void [0xc821cb3ec0 0xc821c900e0] }
+&{~QCameraImageProcessingControl QCameraImageProcessingControl::~QCameraImageProcessingControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraimageprocessingcontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ProcessingParameter QCameraImageProcessingControl::ProcessingParameter commendable public  [0xc821cc78c0 0xc821cc7a40 0xc821cc7bc0 0xc821cc7c60 0xc821cc7e20 0xc821cc7ea0 0xc821cc7f60 0xc821cb20e0 0xc821cb22a0 0xc821cb2480 0xc821cb26a0 0xc821cb27c0 0xc821cb29c0 0xc821cb2ae0]}

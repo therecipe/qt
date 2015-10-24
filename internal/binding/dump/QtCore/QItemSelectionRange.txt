@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{intersected QItemSelectionRange::intersected commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.cpp non plain false false  QItemSelectionRange [0xc8204a92c0] }
+&{intersects QItemSelectionRange::intersects commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.cpp non plain false false  bool [0xc8204a94e0] }
+&{QItemSelectionRange QItemSelectionRange::QItemSelectionRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non constructor false false   [] }
+&{QItemSelectionRange QItemSelectionRange::QItemSelectionRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non constructor false true 2  [0xc8204a9800] }
+&{QItemSelectionRange QItemSelectionRange::QItemSelectionRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non constructor false true 4  [0xc8204a9a40] }
+&{QItemSelectionRange QItemSelectionRange::QItemSelectionRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non constructor false true 3  [0xc8204a9c60 0xc8204a9d40] }
+&{bottom QItemSelectionRange::bottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  int [] }
+&{bottomRight QItemSelectionRange::bottomRight commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  const QPersistentModelIndex & [] }
+&{contains QItemSelectionRange::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  bool [0xc8204be1e0] }
+&{contains QItemSelectionRange::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false true 2 bool [0xc8204be3e0 0xc8204be460 0xc8204be500] }
+&{height QItemSelectionRange::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  int [] }
+&{indexes QItemSelectionRange::indexes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  QModelIndexList [] }
+&{isEmpty QItemSelectionRange::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  bool [] }
+&{isValid QItemSelectionRange::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  bool [] }
+&{left QItemSelectionRange::left commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  int [] }
+&{model QItemSelectionRange::model commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  const QAbstractItemModel * [] }
+&{operator!= QItemSelectionRange::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  bool [0xc8204bf0a0] }
+&{operator< QItemSelectionRange::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  bool [0xc8204bf2c0] }
+&{operator== QItemSelectionRange::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  bool [0xc8204bf4e0] }
+&{parent QItemSelectionRange::parent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  QModelIndex [] }
+&{right QItemSelectionRange::right commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  int [] }
+&{top QItemSelectionRange::top commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  int [] }
+&{topLeft QItemSelectionRange::topLeft commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  const QPersistentModelIndex & [] }
+&{width QItemSelectionRange::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  int [] }
+########################################			ENUMS			########################################

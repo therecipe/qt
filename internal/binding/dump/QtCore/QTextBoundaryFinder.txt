@@ -1,0 +1,21 @@
+########################################			FUNCTIONS			########################################
+&{QTextBoundaryFinder QTextBoundaryFinder::QTextBoundaryFinder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non constructor false false   [] }
+&{QTextBoundaryFinder QTextBoundaryFinder::QTextBoundaryFinder commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non constructor false true 4  [0xc82072dd40 0xc82072de20 0xc82072dfc0 0xc8207160e0 0xc8207162c0] }
+&{QTextBoundaryFinder QTextBoundaryFinder::QTextBoundaryFinder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non constructor false true 3  [0xc8207166a0 0xc820716860] }
+&{QTextBoundaryFinder QTextBoundaryFinder::QTextBoundaryFinder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non constructor false true 2  [0xc820716ca0] }
+&{boundaryReasons QTextBoundaryFinder::boundaryReasons commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non plain false false  BoundaryReasons [] }
+&{isAtBoundary QTextBoundaryFinder::isAtBoundary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non plain false false  bool [] }
+&{isValid QTextBoundaryFinder::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non plain false false  bool [] }
+&{operator= QTextBoundaryFinder::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non plain false false  QTextBoundaryFinder & [0xc820717860] }
+&{position QTextBoundaryFinder::position commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non plain false false  int [] }
+&{setPosition QTextBoundaryFinder::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non plain false false  void [0xc8207000e0] }
+&{string QTextBoundaryFinder::string commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non plain false false  QString [] }
+&{toEnd QTextBoundaryFinder::toEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non plain false false  void [] }
+&{toNextBoundary QTextBoundaryFinder::toNextBoundary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non plain false false  int [] }
+&{toPreviousBoundary QTextBoundaryFinder::toPreviousBoundary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non plain false false  int [] }
+&{toStart QTextBoundaryFinder::toStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non plain false false  void [] }
+&{type QTextBoundaryFinder::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non plain false false  BoundaryType [] }
+&{~QTextBoundaryFinder QTextBoundaryFinder::~QTextBoundaryFinder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtextboundaryfinder.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{BoundaryReason QTextBoundaryFinder::BoundaryReason commendable public QTextBoundaryFinder::BoundaryReasons [0xc82072c9a0 0xc82072cb00 0xc82072cc20 0xc82072ccc0 0xc82072ce00 0xc82072cf00]}
+&{BoundaryType QTextBoundaryFinder::BoundaryType commendable public  [0xc82072d1e0 0xc82072d320 0xc82072d400 0xc82072d540]}

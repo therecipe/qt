@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{currentContextGroup QOpenGLContextGroup::currentContextGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  QOpenGLContextGroup * [] }
+&{shares QOpenGLContextGroup::shares commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QList<QOpenGLContext *> [] }
+########################################			ENUMS			########################################

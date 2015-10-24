@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{horizontalDirection QSwipeGesture::horizontalDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  SwipeDirection [] }
+&{setSwipeAngle QSwipeGesture::setSwipeAngle commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822ce00c0] }
+&{swipeAngle QSwipeGesture::swipeAngle commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal [] }
+&{verticalDirection QSwipeGesture::verticalDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  SwipeDirection [] }
+&{~QSwipeGesture QSwipeGesture::~QSwipeGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{SwipeDirection QSwipeGesture::SwipeDirection commendable public  [0xc822ce0640 0xc822ce0720 0xc822ce0860 0xc822ce0920 0xc822ce0a20]}

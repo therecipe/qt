@@ -1,0 +1,117 @@
+########################################			FUNCTIONS			########################################
+&{alignment QGraphicsView::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  Qt::Alignment [] }
+&{backgroundBrush QGraphicsView::backgroundBrush commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  QBrush [] }
+&{cacheMode QGraphicsView::cacheMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  CacheMode [] }
+&{dragMode QGraphicsView::dragMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  DragMode [] }
+&{foregroundBrush QGraphicsView::foregroundBrush commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  QBrush [] }
+&{isInteractive QGraphicsView::isInteractive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  bool [] }
+&{optimizationFlags QGraphicsView::optimizationFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  OptimizationFlags [] }
+&{renderHints QGraphicsView::renderHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  QPainter::RenderHints [] }
+&{resizeAnchor QGraphicsView::resizeAnchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  ViewportAnchor [] }
+&{rubberBandSelectionMode QGraphicsView::rubberBandSelectionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  Qt::ItemSelectionMode [] }
+&{sceneRect QGraphicsView::sceneRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  QRectF [] }
+&{setAlignment QGraphicsView::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82276e8a0] }
+&{setBackgroundBrush QGraphicsView::setBackgroundBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82276eb00] }
+&{setCacheMode QGraphicsView::setCacheMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82276ed80] }
+&{setDragMode QGraphicsView::setDragMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82276f040] }
+&{setForegroundBrush QGraphicsView::setForegroundBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82276f2a0] }
+&{setInteractive QGraphicsView::setInteractive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82276f500] }
+&{setOptimizationFlags QGraphicsView::setOptimizationFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82276f780] }
+&{setRenderHints QGraphicsView::setRenderHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82276fa60] }
+&{setResizeAnchor QGraphicsView::setResizeAnchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82276fd40] }
+&{setRubberBandSelectionMode QGraphicsView::setRubberBandSelectionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82277c000] }
+&{setSceneRect QGraphicsView::setSceneRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82277c2c0] }
+&{setTransformationAnchor QGraphicsView::setTransformationAnchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82277c540] }
+&{setViewportUpdateMode QGraphicsView::setViewportUpdateMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  void [0xc82277c800] }
+&{transformationAnchor QGraphicsView::transformationAnchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  ViewportAnchor [] }
+&{viewportUpdateMode QGraphicsView::viewportUpdateMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.cpp non plain false false  ViewportUpdateMode [] }
+&{QGraphicsView QGraphicsView::QGraphicsView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non constructor false true 2  [0xc821f0c660 0xc821f0c700] }
+&{QGraphicsView QGraphicsView::QGraphicsView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non constructor false false   [0xc821f0c960] }
+&{centerOn QGraphicsView::centerOn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 3 void [0xc821f0d140] }
+&{centerOn QGraphicsView::centerOn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc821f0d3e0] }
+&{centerOn QGraphicsView::centerOn commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 2 void [0xc821f0d680 0xc821f0d720] }
+&{contextMenuEvent QGraphicsView::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc821f0d960] }
+&{dragEnterEvent QGraphicsView::dragEnterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc821f0dbe0] }
+&{dragLeaveEvent QGraphicsView::dragLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc821f0dea0] }
+&{dragMoveEvent QGraphicsView::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc821f1a120] }
+&{drawBackground QGraphicsView::drawBackground commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc821f1a340 0xc821f1a3e0] }
+&{drawForeground QGraphicsView::drawForeground commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc821f1a5e0 0xc821f1a6a0] }
+&{dropEvent QGraphicsView::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc821f1adc0] }
+&{ensureVisible QGraphicsView::ensureVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 3 void [0xc821f1afe0 0xc821f1b100 0xc821f1b1a0] }
+&{ensureVisible QGraphicsView::ensureVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc821f1b3e0 0xc821f1b4a0 0xc821f1b520] }
+&{ensureVisible QGraphicsView::ensureVisible commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 2 void [0xc821f1b760 0xc821f1b7e0 0xc821f1b860 0xc821f1b940 0xc821f1ba20 0xc821f1baa0] }
+&{event QGraphicsView::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  bool [0xc821f1bd20] }
+&{fitInView QGraphicsView::fitInView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 3 void [0xc821f1bfa0 0xc821f36100] }
+&{fitInView QGraphicsView::fitInView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc821f36480 0xc821f365a0] }
+&{fitInView QGraphicsView::fitInView commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 2 void [0xc821f368a0 0xc821f36960 0xc821f36a00 0xc821f36aa0 0xc821f36c00] }
+&{focusInEvent QGraphicsView::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc821f36f20] }
+&{focusNextPrevChild QGraphicsView::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  bool [0xc821f371c0] }
+&{focusOutEvent QGraphicsView::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc821f37420] }
+&{inputMethodEvent QGraphicsView::inputMethodEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc821f37720] }
+&{inputMethodQuery QGraphicsView::inputMethodQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  QVariant [0xc821f37a80] }
+&{invalidateScene QGraphicsView::invalidateScene commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non slot false false  void [0xc821f37d80 0xc821f37e80] }
+&{isTransformed QGraphicsView::isTransformed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  bool [] }
+&{itemAt QGraphicsView::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  QGraphicsItem * [0xc822b6a3a0] }
+&{itemAt QGraphicsView::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 2 QGraphicsItem * [0xc822b6a5e0 0xc822b6a6c0] }
+&{items QGraphicsView::items commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  QList<QGraphicsItem *> [] }
+&{items QGraphicsView::items commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 7 QList<QGraphicsItem *> [0xc822b6aca0 0xc822b6ae00] }
+&{items QGraphicsView::items commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 2 QList<QGraphicsItem *> [0xc822b6b200] }
+&{items QGraphicsView::items commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 6 QList<QGraphicsItem *> [0xc822b6b560 0xc822b6b6c0] }
+&{items QGraphicsView::items commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 5 QList<QGraphicsItem *> [0xc822b6baa0 0xc822b6bc00] }
+&{items QGraphicsView::items commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 3 QList<QGraphicsItem *> [0xc822b6bf00 0xc822b6bfc0] }
+&{items QGraphicsView::items commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 4 QList<QGraphicsItem *> [0xc822b7e2a0 0xc822b7e320 0xc822b7e3a0 0xc822b7e480 0xc822b7e5a0] }
+&{keyPressEvent QGraphicsView::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc822b7e840] }
+&{keyReleaseEvent QGraphicsView::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc822b7ea60] }
+&{mapFromScene QGraphicsView::mapFromScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 4 QPainterPath [0xc822b7ec80] }
+&{mapFromScene QGraphicsView::mapFromScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  QPoint [0xc822b7ef20] }
+&{mapFromScene QGraphicsView::mapFromScene commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 5 QPoint [0xc822b7f120 0xc822b7f1c0] }
+&{mapFromScene QGraphicsView::mapFromScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 3 QPolygon [0xc822b7f3c0] }
+&{mapFromScene QGraphicsView::mapFromScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 2 QPolygon [0xc822b7f660] }
+&{mapFromScene QGraphicsView::mapFromScene commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 6 QPolygon [0xc822b7f880 0xc822b7f940 0xc822b7f9c0 0xc822b7fa40] }
+&{mapToScene QGraphicsView::mapToScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 4 QPainterPath [0xc822b7fce0] }
+&{mapToScene QGraphicsView::mapToScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  QPointF [0xc822b7ff60] }
+&{mapToScene QGraphicsView::mapToScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 5 QPointF [0xc822b8c1c0 0xc822b8c240] }
+&{mapToScene QGraphicsView::mapToScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 3 QPolygonF [0xc822b8c4a0] }
+&{mapToScene QGraphicsView::mapToScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 2 QPolygonF [0xc822b8c6e0] }
+&{mapToScene QGraphicsView::mapToScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 6 QPolygonF [0xc822b8c920 0xc822b8c9e0 0xc822b8ca80 0xc822b8cb00] }
+&{matrix QGraphicsView::matrix commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  QMatrix [] }
+&{mouseDoubleClickEvent QGraphicsView::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc822b8ce60] }
+&{mouseMoveEvent QGraphicsView::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc822b8d0a0] }
+&{mousePressEvent QGraphicsView::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc822b8d280] }
+&{mouseReleaseEvent QGraphicsView::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc822b8d520] }
+&{paintEvent QGraphicsView::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc822b8d760] }
+&{render QGraphicsView::render commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc822b8d980 0xc822b8da20 0xc822b8dae0 0xc822b8dba0] }
+&{resetCachedContent QGraphicsView::resetCachedContent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [] }
+&{resetMatrix QGraphicsView::resetMatrix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [] }
+&{resetTransform QGraphicsView::resetTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [] }
+&{resizeEvent QGraphicsView::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc822b9e1e0] }
+&{rotate QGraphicsView::rotate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc822b9e420] }
+&{rubberBandChanged QGraphicsView::rubberBandChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non signal false false  void [0xc822b9e6a0 0xc822b9e720 0xc822b9e7c0] }
+&{rubberBandRect QGraphicsView::rubberBandRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  QRect [] }
+&{scale QGraphicsView::scale commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc822b9eb60 0xc822b9ebe0] }
+&{scene QGraphicsView::scene commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  QGraphicsScene * [] }
+&{scrollContentsBy QGraphicsView::scrollContentsBy commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc822b9ef80 0xc822b9f000] }
+&{setMatrix QGraphicsView::setMatrix commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc822b9f200 0xc822b9f2e0] }
+&{setOptimizationFlag QGraphicsView::setOptimizationFlag commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc822b9f4e0 0xc822b9f560] }
+&{setRenderHint QGraphicsView::setRenderHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc822b9f7a0 0xc822b9f8a0] }
+&{setScene QGraphicsView::setScene commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc822b9fac0] }
+&{setSceneRect QGraphicsView::setSceneRect commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false true 2 void [0xc822b9fd20 0xc822b9fda0 0xc822b9fe80 0xc822b9ff20] }
+&{setTransform QGraphicsView::setTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc822bb0180 0xc822bb0280] }
+&{setupViewport QGraphicsView::setupViewport commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure slot false false  void [0xc822bb04c0] }
+&{shear QGraphicsView::shear commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc822bb0740 0xc822bb07e0] }
+&{showEvent QGraphicsView::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc822bb0a00] }
+&{sizeHint QGraphicsView::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  QSize [] }
+&{transform QGraphicsView::transform commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  QTransform [] }
+&{translate QGraphicsView::translate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  void [0xc822bb0f00 0xc822bb0f80] }
+&{updateScene QGraphicsView::updateScene commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non slot false false  void [0xc822bb1200] }
+&{updateSceneRect QGraphicsView::updateSceneRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non slot false false  void [0xc822bb1480] }
+&{viewportEvent QGraphicsView::viewportEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  bool [0xc822bb16c0] }
+&{viewportTransform QGraphicsView::viewportTransform commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non plain false false  QTransform [] }
+&{wheelEvent QGraphicsView::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h impure plain false false  void [0xc822bb1a80] }
+&{~QGraphicsView QGraphicsView::~QGraphicsView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsview.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{CacheModeFlag QGraphicsView::CacheModeFlag commendable public QGraphicsView::CacheMode [0xc82277ce80 0xc82277cf20]}
+&{DragMode QGraphicsView::DragMode commendable public  [0xc82277d140 0xc82277d220 0xc82277d2c0]}
+&{OptimizationFlag QGraphicsView::OptimizationFlag commendable public QGraphicsView::OptimizationFlags [0xc82277d560 0xc82277d620 0xc82277d720 0xc82277d840]}
+&{ViewportAnchor QGraphicsView::ViewportAnchor commendable public  [0xc82277da20 0xc82277db00 0xc82277dba0]}
+&{ViewportUpdateMode QGraphicsView::ViewportUpdateMode commendable public  [0xc82277de20 0xc82277df20 0xc821f0c060 0xc821f0c160 0xc821f0c220]}

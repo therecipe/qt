@@ -1,0 +1,53 @@
+########################################			FUNCTIONS			########################################
+&{QWebSocket QWebSocket::QWebSocket commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non constructor false false   [0xc82274fda0 0xc82274fea0 0xc82275e020] }
+&{abort QWebSocket::abort commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  void [] }
+&{aboutToClose QWebSocket::aboutToClose commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [] }
+&{binaryFrameReceived QWebSocket::binaryFrameReceived commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [0xc82275ed20 0xc82275ee80] }
+&{binaryMessageReceived QWebSocket::binaryMessageReceived commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [0xc82275f2c0] }
+&{bytesWritten QWebSocket::bytesWritten commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [0xc82275f640] }
+&{close QWebSocket::close commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non slot false false  void [0xc82275f9a0 0xc82275fae0] }
+&{closeCode QWebSocket::closeCode commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QWebSocketProtocol::CloseCode [] }
+&{closeReason QWebSocket::closeReason commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QString [] }
+&{connected QWebSocket::connected commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [] }
+&{disconnected QWebSocket::disconnected commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [] }
+&{error QWebSocket::error commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false true 2 void [0xc821e66540] }
+&{error QWebSocket::error commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QAbstractSocket::SocketError [] }
+&{errorString QWebSocket::errorString commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QString [] }
+&{flush QWebSocket::flush commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  bool [] }
+&{ignoreSslErrors QWebSocket::ignoreSslErrors commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non slot false false  void [] }
+&{ignoreSslErrors QWebSocket::ignoreSslErrors commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false true 2 void [0xc821e66f60] }
+&{isValid QWebSocket::isValid commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  bool [] }
+&{localAddress QWebSocket::localAddress commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QHostAddress [] }
+&{localPort QWebSocket::localPort commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  quint16 [] }
+&{maskGenerator QWebSocket::maskGenerator commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  const QMaskGenerator * [] }
+&{open QWebSocket::open commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non slot false false  void [0xc821e67a00] }
+&{origin QWebSocket::origin commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QString [] }
+&{pauseMode QWebSocket::pauseMode commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QAbstractSocket::PauseModes [] }
+&{peerAddress QWebSocket::peerAddress commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QHostAddress [] }
+&{peerName QWebSocket::peerName commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QString [] }
+&{peerPort QWebSocket::peerPort commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  quint16 [] }
+&{ping QWebSocket::ping commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non slot false false  void [0xc82276e680] }
+&{pong QWebSocket::pong commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [0xc82276e980 0xc82276eaa0] }
+&{proxy QWebSocket::proxy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QNetworkProxy [] }
+&{proxyAuthenticationRequired QWebSocket::proxyAuthenticationRequired commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [0xc82276f0c0 0xc82276f2c0] }
+&{readBufferSize QWebSocket::readBufferSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  qint64 [] }
+&{readChannelFinished QWebSocket::readChannelFinished commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [] }
+&{requestUrl QWebSocket::requestUrl commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QUrl [] }
+&{resourceName QWebSocket::resourceName commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QString [] }
+&{resume QWebSocket::resume commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  void [] }
+&{sendBinaryMessage QWebSocket::sendBinaryMessage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  qint64 [0xc82277c0a0] }
+&{sendTextMessage QWebSocket::sendTextMessage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  qint64 [0xc82277c400] }
+&{setMaskGenerator QWebSocket::setMaskGenerator commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  void [0xc82277c7c0] }
+&{setPauseMode QWebSocket::setPauseMode commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  void [0xc82277cba0] }
+&{setProxy QWebSocket::setProxy commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  void [0xc82277cfe0] }
+&{setReadBufferSize QWebSocket::setReadBufferSize commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  void [0xc82277d4e0] }
+&{setSslConfiguration QWebSocket::setSslConfiguration commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  void [0xc82277d940] }
+&{sslConfiguration QWebSocket::sslConfiguration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QSslConfiguration [] }
+&{sslErrors QWebSocket::sslErrors commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [0xc821f0c0e0] }
+&{state QWebSocket::state commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QAbstractSocket::SocketState [] }
+&{stateChanged QWebSocket::stateChanged commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [0xc821f0c6e0] }
+&{textFrameReceived QWebSocket::textFrameReceived commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [0xc821f0caa0 0xc821f0cb40] }
+&{textMessageReceived QWebSocket::textMessageReceived commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non signal false false  void [0xc821f0ce20] }
+&{version QWebSocket::version commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h non plain false false  QWebSocketProtocol::Version [] }
+&{~QWebSocket QWebSocket::~QWebSocket commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocket.h impure destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,32 @@
+########################################			FUNCTIONS			########################################
+&{drawEllipse QPaintEngine::drawEllipse commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp impure plain false false  void [0xc822c26aa0] }
+&{drawImage QPaintEngine::drawImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp impure plain false false  void [0xc822c26c60 0xc822c26ce0 0xc822c26d60 0xc822c26e00] }
+&{drawPolygon QPaintEngine::drawPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp impure plain false false  void [0xc822c27000 0xc822c27080 0xc822c27100] }
+&{QPaintEngine QPaintEngine::QPaintEngine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non constructor false false   [0xc822c3bc60] }
+&{begin QPaintEngine::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h pure plain false false  bool [0xc822c3bf80] }
+&{drawEllipse QPaintEngine::drawEllipse commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h impure plain false true 2 void [0xc822c46640] }
+&{drawLines QPaintEngine::drawLines commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h impure plain false true 2 void [0xc822c46800 0xc822c46880] }
+&{drawLines QPaintEngine::drawLines commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h impure plain false false  void [0xc822c46a40 0xc822c46ac0] }
+&{drawPath QPaintEngine::drawPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h impure plain false false  void [0xc822c46ca0] }
+&{drawPixmap QPaintEngine::drawPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h pure plain false false  void [0xc822c46ea0 0xc822c46f20 0xc822c46fa0] }
+&{drawPoints QPaintEngine::drawPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h impure plain false true 2 void [0xc822c47160 0xc822c471e0] }
+&{drawPoints QPaintEngine::drawPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h impure plain false false  void [0xc822c473a0 0xc822c47420] }
+&{drawPolygon QPaintEngine::drawPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h impure plain false true 2 void [0xc822c47600 0xc822c47680 0xc822c47700] }
+&{drawRects QPaintEngine::drawRects commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h impure plain false true 2 void [0xc822c478c0 0xc822c47940] }
+&{drawRects QPaintEngine::drawRects commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h impure plain false false  void [0xc822c47b00 0xc822c47b80] }
+&{drawTextItem QPaintEngine::drawTextItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h impure plain false false  void [0xc822c47d40 0xc822c47de0] }
+&{drawTiledPixmap QPaintEngine::drawTiledPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h impure plain false false  void [0xc822c47fc0 0xc822c56040 0xc822c560c0] }
+&{end QPaintEngine::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h pure plain false false  bool [] }
+&{hasFeature QPaintEngine::hasFeature commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  bool [0xc822c56380] }
+&{isActive QPaintEngine::isActive commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  bool [] }
+&{paintDevice QPaintEngine::paintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QPaintDevice * [] }
+&{painter QPaintEngine::painter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QPainter * [] }
+&{setActive QPaintEngine::setActive commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  void [0xc822c56980] }
+&{type QPaintEngine::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h pure plain false false  Type [] }
+&{updateState QPaintEngine::updateState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h pure plain false false  void [0xc822c57d40] }
+&{~QPaintEngine QPaintEngine::~QPaintEngine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{DirtyFlag QPaintEngine::DirtyFlag commendable public QPaintEngine::DirtyFlags [0xc822c27440 0xc822c274c0 0xc822c27540 0xc822c275c0 0xc822c27660 0xc822c27700 0xc822c277c0 0xc822c27840 0xc822c278e0 0xc822c27960 0xc822c27a00 0xc822c27ac0 0xc822c27b40 0xc822c27bc0]}
+&{PaintEngineFeature QPaintEngine::PaintEngineFeature commendable public QPaintEngine::PaintEngineFeatures [0xc822c27de0 0xc822c27ea0 0xc822c27f20 0xc822c27fa0 0xc822c3a060 0xc822c3a140 0xc822c3a220 0xc822c3a2e0 0xc822c3a380 0xc822c3a400 0xc822c3a480 0xc822c3a500 0xc822c3a580 0xc822c3a600 0xc822c3a6a0 0xc822c3a760 0xc822c3a820 0xc822c3a8e0 0xc822c3a980 0xc822c3aa40]}
+&{PolygonDrawMode QPaintEngine::PolygonDrawMode commendable public  [0xc822c3abe0 0xc822c3ac60 0xc822c3ace0 0xc822c3ad60]}
+&{Type QPaintEngine::Type commendable public  [0xc822c3af20 0xc822c3afa0 0xc822c3b020 0xc822c3b0a0 0xc822c3b140 0xc822c3b1c0 0xc822c3b240 0xc822c3b2c0 0xc822c3b360 0xc822c3b3e0 0xc822c3b460 0xc822c3b4e0 0xc822c3b560 0xc822c3b5e0 0xc822c3b660 0xc822c3b6e0 0xc822c3b780 0xc822c3b800 0xc822c3b880 0xc822c3b900]}

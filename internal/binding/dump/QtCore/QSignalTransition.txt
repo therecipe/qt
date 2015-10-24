@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QSignalTransition QSignalTransition::QSignalTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qsignaltransition.h non constructor false false   [0xc8200a4ba0] }
+&{QSignalTransition QSignalTransition::QSignalTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qsignaltransition.h non constructor false true 2  [0xc8200a4f60 0xc8200a5020 0xc8200a5200] }
+&{event QSignalTransition::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qsignaltransition.h impure plain false false  bool [0xc8200a5540] }
+&{eventTest QSignalTransition::eventTest commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qsignaltransition.h impure plain false false  bool [0xc8200a5980] }
+&{onTransition QSignalTransition::onTransition commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qsignaltransition.h impure plain false false  void [0xc8200a5d40] }
+&{senderObject QSignalTransition::senderObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qsignaltransition.h non plain false false  QObject * [] }
+&{senderObjectChanged QSignalTransition::senderObjectChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qsignaltransition.h non signal false false  void [] }
+&{setSenderObject QSignalTransition::setSenderObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qsignaltransition.h non plain false false  void [0xc82017e440] }
+&{setSignal QSignalTransition::setSignal commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qsignaltransition.h non plain false false  void [0xc82017e780] }
+&{signal QSignalTransition::signal commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qsignaltransition.h non plain false false  QByteArray [] }
+&{signalChanged QSignalTransition::signalChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qsignaltransition.h non signal false false  void [] }
+&{~QSignalTransition QSignalTransition::~QSignalTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qsignaltransition.h non destructor false false   [] }
+########################################			ENUMS			########################################

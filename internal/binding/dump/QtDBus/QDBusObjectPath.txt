@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QDBusObjectPath QDBusObjectPath::QDBusObjectPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false false   [] }
+&{QDBusObjectPath QDBusObjectPath::QDBusObjectPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 3  [0xc821781fc0] }
+&{QDBusObjectPath QDBusObjectPath::QDBusObjectPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 4  [0xc82174c180] }
+&{QDBusObjectPath QDBusObjectPath::QDBusObjectPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 2  [0xc82174c360] }
+&{path QDBusObjectPath::path commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  QString [] }
+&{setPath QDBusObjectPath::setPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  void [0xc82174c660] }
+########################################			ENUMS			########################################

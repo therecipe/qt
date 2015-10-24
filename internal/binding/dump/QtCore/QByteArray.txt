@@ -1,0 +1,161 @@
+########################################			FUNCTIONS			########################################
+&{clear QByteArray::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.cpp non plain false false  void [] }
+&{indexOf QByteArray::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.cpp non plain false true 3 int [0xc8207bc380 0xc8207bc400] }
+&{isNull QByteArray::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.cpp non plain false false  bool [] }
+&{lastIndexOf QByteArray::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.cpp non plain false false  int [0xc8207bc6e0 0xc8207bc7a0] }
+&{lastIndexOf QByteArray::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.cpp non plain false true 3 int [0xc8207bc980 0xc8207bca00] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.cpp non plain false true 5 QByteArray & [0xc8207bcbc0 0xc8207bcc60] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.cpp non plain false true 6 QByteArray & [0xc8207bce60 0xc8207bcee0 0xc8207bcf60 0xc8207bcfe0] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.cpp non plain false true 2 QByteArray & [0xc8207bd1a0 0xc8207bd220 0xc8207bd2a0] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.cpp non plain false true 3 QByteArray & [0xc8207bd480 0xc8207bd500 0xc8207bd580 0xc8207bd600] }
+&{QByteArray QByteArray::QByteArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non constructor false false   [] }
+&{QByteArray QByteArray::QByteArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non constructor false true 6  [0xc8207f9d20] }
+&{QByteArray QByteArray::QByteArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non constructor false true 5  [0xc8207f9f00] }
+&{QByteArray QByteArray::QByteArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non constructor false true 2  [0xc82080c100 0xc82080c180] }
+&{QByteArray QByteArray::QByteArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non constructor false true 3  [0xc82080c360 0xc82080c3e0] }
+&{append QByteArray::append commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 5 QByteArray & [0xc82080c5c0] }
+&{append QByteArray::append commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray & [0xc82080c7a0] }
+&{append QByteArray::append commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 QByteArray & [0xc82080c9a0] }
+&{append QByteArray::append commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 QByteArray & [0xc82080cb60] }
+&{append QByteArray::append commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 4 QByteArray & [0xc82080cd20 0xc82080cda0] }
+&{at QByteArray::at commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  char [0xc82080cf20] }
+&{begin QByteArray::begin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  iterator [] }
+&{begin QByteArray::begin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 const_iterator [] }
+&{capacity QByteArray::capacity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  int [] }
+&{cbegin QByteArray::cbegin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  const_iterator [] }
+&{cend QByteArray::cend commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  const_iterator [] }
+&{chop QByteArray::chop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  void [0xc82080d520] }
+&{constBegin QByteArray::constBegin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  const_iterator [] }
+&{constData QByteArray::constData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  const char * [] }
+&{constEnd QByteArray::constEnd commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  const_iterator [] }
+&{contains QByteArray::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 bool [0xc82080d9e0] }
+&{contains QByteArray::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  bool [0xc82080dbc0] }
+&{contains QByteArray::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 bool [0xc82080ddc0] }
+&{count QByteArray::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 4 int [] }
+&{count QByteArray::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 int [0xc8208220a0] }
+&{count QByteArray::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  int [0xc820822280] }
+&{count QByteArray::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 int [0xc8208224a0] }
+&{data QByteArray::data commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  char * [] }
+&{data QByteArray::data commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 const char * [] }
+&{end QByteArray::end commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 const_iterator [] }
+&{end QByteArray::end commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  iterator [] }
+&{endsWith QByteArray::endsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 bool [0xc820822e00] }
+&{endsWith QByteArray::endsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  bool [0xc820822fe0] }
+&{endsWith QByteArray::endsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 bool [0xc8208231e0] }
+&{fill QByteArray::fill commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray & [0xc820823340 0xc8208233c0] }
+&{fromBase64 QByteArray::fromBase64 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain true false  QByteArray [0xc8208235a0] }
+&{fromBase64 QByteArray::fromBase64 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain true true 2 QByteArray [0xc8208237c0 0xc820823880] }
+&{fromHex QByteArray::fromHex commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain true false  QByteArray [0xc820823a60] }
+&{fromPercentEncoding QByteArray::fromPercentEncoding commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain true false  QByteArray [0xc820823cc0 0xc820823d80] }
+&{fromRawData QByteArray::fromRawData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain true false  QByteArray [0xc820823f60 0xc820823fe0] }
+&{fromStdString QByteArray::fromStdString commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain true false  QByteArray [0xc8208381c0] }
+&{indexOf QByteArray::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 4 int [0xc8208383c0 0xc820838440] }
+&{indexOf QByteArray::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  int [0xc820838620 0xc8208386e0] }
+&{indexOf QByteArray::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 int [0xc8208388a0 0xc820838920] }
+&{insert QByteArray::insert commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 5 QByteArray & [0xc820838ae0 0xc820838b60] }
+&{insert QByteArray::insert commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray & [0xc820838d20 0xc820838dc0] }
+&{insert QByteArray::insert commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 QByteArray & [0xc820838fc0 0xc820839040] }
+&{insert QByteArray::insert commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 QByteArray & [0xc820839200 0xc820839280] }
+&{insert QByteArray::insert commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 4 QByteArray & [0xc820839440 0xc8208394c0 0xc820839540] }
+&{isEmpty QByteArray::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  bool [] }
+&{lastIndexOf QByteArray::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 4 int [0xc820839b20 0xc820839ba0] }
+&{lastIndexOf QByteArray::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 int [0xc820839d60 0xc820839de0] }
+&{left QByteArray::left commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray [0xc820839f60] }
+&{leftJustified QByteArray::leftJustified commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray [0xc82084c120 0xc82084c1a0 0xc82084c220] }
+&{length QByteArray::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  int [] }
+&{mid QByteArray::mid commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray [0xc82084c480 0xc82084c500] }
+&{number QByteArray::number commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain true true 5 QByteArray [0xc82084c6c0 0xc82084c740 0xc82084c7c0] }
+&{number QByteArray::number commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain true false  QByteArray [0xc82084c980 0xc82084ca00] }
+&{number QByteArray::number commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain true true 3 QByteArray [0xc82084cbc0 0xc82084cc40] }
+&{number QByteArray::number commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain true true 4 QByteArray [0xc82084ce00 0xc82084ce80] }
+&{number QByteArray::number commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain true true 2 QByteArray [0xc82084d040 0xc82084d0c0] }
+&{operator!= QByteArray::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  bool [0xc82084d440] }
+&{operator+= QByteArray::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 4 QByteArray & [0xc82084d620] }
+&{operator+= QByteArray::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray & [0xc82084d800] }
+&{operator+= QByteArray::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 QByteArray & [0xc82084da00] }
+&{operator+= QByteArray::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 QByteArray & [0xc82084dbc0] }
+&{operator< QByteArray::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  bool [0xc82084dd80] }
+&{operator<= QByteArray::operator<= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  bool [0xc82084df40] }
+&{operator= QByteArray::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 QByteArray & [0xc82085e100] }
+&{operator= QByteArray::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray & [0xc82085e2e0] }
+&{operator= QByteArray::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 QByteArray & [0xc82085e4e0] }
+&{operator== QByteArray::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  bool [0xc82085e6a0] }
+&{operator> QByteArray::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  bool [0xc82085e860] }
+&{operator>= QByteArray::operator>= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  bool [0xc82085ea20] }
+&{operator[] QByteArray::operator[] commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteRef [0xc82085ec00] }
+&{operator[] QByteArray::operator[] commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 QByteRef [0xc82085ede0] }
+&{operator[] QByteArray::operator[] commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 char [0xc82085efc0] }
+&{operator[] QByteArray::operator[] commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 4 char [0xc82085f1a0] }
+&{prepend QByteArray::prepend commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 4 QByteArray & [0xc82085f380] }
+&{prepend QByteArray::prepend commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray & [0xc82085f560] }
+&{prepend QByteArray::prepend commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 QByteArray & [0xc82085f760] }
+&{prepend QByteArray::prepend commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 QByteArray & [0xc82085f920 0xc82085f9a0] }
+&{push_back QByteArray::push_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 void [0xc82085fb80] }
+&{push_back QByteArray::push_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  void [0xc82085fd60] }
+&{push_back QByteArray::push_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 void [0xc82085ff80] }
+&{push_front QByteArray::push_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 void [0xc820876160] }
+&{push_front QByteArray::push_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  void [0xc820876340] }
+&{push_front QByteArray::push_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 void [0xc820876560] }
+&{remove QByteArray::remove commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray & [0xc820876720 0xc8208767a0] }
+&{repeated QByteArray::repeated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray [0xc820876960] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 14 QByteArray & [0xc820876b20 0xc820876ba0] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 11 QByteArray & [0xc820876d60 0xc820876e00] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 12 QByteArray & [0xc820877000 0xc820877080] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 13 QByteArray & [0xc820877240 0xc8208772c0] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 4 QByteArray & [0xc8208774a0 0xc820877580] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 7 QByteArray & [0xc8208777a0 0xc820877860] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 8 QByteArray & [0xc820877a20 0xc820877ac0] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 9 QByteArray & [0xc820877cc0 0xc820877d40] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 10 QByteArray & [0xc820877f00 0xc820877f80] }
+&{replace QByteArray::replace commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray & [0xc820888160 0xc8208881e0 0xc820888280] }
+&{reserve QByteArray::reserve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  void [0xc8208884a0] }
+&{resize QByteArray::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  void [0xc820888680] }
+&{right QByteArray::right commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray [0xc820888860] }
+&{rightJustified QByteArray::rightJustified commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray [0xc820888a20 0xc820888aa0 0xc820888b20] }
+&{setNum QByteArray::setNum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 7 QByteArray & [0xc820888ce0 0xc820888d60 0xc820888de0] }
+&{setNum QByteArray::setNum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 8 QByteArray & [0xc820888fa0 0xc820889020 0xc8208890a0] }
+&{setNum QByteArray::setNum commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray & [0xc820889260 0xc8208892e0] }
+&{setNum QByteArray::setNum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 5 QByteArray & [0xc8208894a0 0xc820889520] }
+&{setNum QByteArray::setNum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 6 QByteArray & [0xc8208896e0 0xc820889760] }
+&{setNum QByteArray::setNum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 QByteArray & [0xc820889920 0xc8208899a0] }
+&{setNum QByteArray::setNum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 QByteArray & [0xc820889b60 0xc820889be0] }
+&{setNum QByteArray::setNum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 4 QByteArray & [0xc820889da0 0xc820889e20] }
+&{setRawData QByteArray::setRawData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray & [0xc820889fe0 0xc82089c060] }
+&{size QByteArray::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  int [] }
+&{split QByteArray::split commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QList<QByteArray> [0xc82089c300] }
+&{squeeze QByteArray::squeeze commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  void [] }
+&{startsWith QByteArray::startsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 3 bool [0xc82089c5c0] }
+&{startsWith QByteArray::startsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  bool [0xc82089c7a0] }
+&{startsWith QByteArray::startsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 bool [0xc82089c9a0] }
+&{swap QByteArray::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  void [0xc82089cb20] }
+&{toBase64 QByteArray::toBase64 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray [] }
+&{toBase64 QByteArray::toBase64 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false true 2 QByteArray [0xc82089cde0] }
+&{toDouble QByteArray::toDouble commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  double [0xc82089cfc0] }
+&{toFloat QByteArray::toFloat commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  float [0xc82089d1a0] }
+&{toHex QByteArray::toHex commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray [] }
+&{toInt QByteArray::toInt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  int [0xc82089d460 0xc82089d4e0] }
+&{toLong QByteArray::toLong commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  long [0xc82089d6a0 0xc82089d720] }
+&{toLongLong QByteArray::toLongLong commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  qlonglong [0xc82089d8e0 0xc82089d960] }
+&{toPercentEncoding QByteArray::toPercentEncoding commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  QByteArray [0xc82089db80 0xc82089dc60 0xc82089dd20] }
+&{toShort QByteArray::toShort commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  short [0xc82089dee0 0xc82089df60] }
+&{toStdString QByteArray::toStdString commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  std::string [] }
+&{toUInt QByteArray::toUInt commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  uint [0xc8208ae220 0xc8208ae2a0] }
+&{toULong QByteArray::toULong commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  ulong [0xc8208ae460 0xc8208ae4e0] }
+&{toULongLong QByteArray::toULongLong commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  qulonglong [0xc8208ae6a0 0xc8208ae720] }
+&{toUShort QByteArray::toUShort commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  ushort [0xc8208ae8e0 0xc8208ae960] }
+&{truncate QByteArray::truncate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non plain false false  void [0xc8208aeb40] }
+&{~QByteArray QByteArray::~QByteArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray.h non destructor false false   [] }
+&{fromCFData QByteArray::fromCFData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray_mac.mm non plain true false  QByteArray [0xc8208aee00] }
+&{fromNSData QByteArray::fromNSData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray_mac.mm non plain true false  QByteArray [0xc8208aefe0] }
+&{fromRawCFData QByteArray::fromRawCFData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray_mac.mm non plain true false  QByteArray [0xc8208af1c0] }
+&{fromRawNSData QByteArray::fromRawNSData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray_mac.mm non plain true false  QByteArray [0xc8208af3a0] }
+&{toCFData QByteArray::toCFData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray_mac.mm non plain false false  CFDataRef [] }
+&{toNSData QByteArray::toNSData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray_mac.mm non plain false false  NSData * [] }
+&{toRawCFData QByteArray::toRawCFData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray_mac.mm non plain false false  CFDataRef [] }
+&{toRawNSData QByteArray::toRawNSData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearray_mac.mm non plain false false  NSData * [] }
+&{simplified QByteArray::simplified commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_compat.cpp non plain false false  QByteArray [] }
+&{toLower QByteArray::toLower commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_compat.cpp non plain false false  QByteArray [] }
+&{toUpper QByteArray::toUpper commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_compat.cpp non plain false false  QByteArray [] }
+&{trimmed QByteArray::trimmed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_compat.cpp non plain false false  QByteArray [] }
+########################################			ENUMS			########################################
+&{Base64Option QByteArray::Base64Option commendable public QByteArray::Base64Options [0xc8207bd840 0xc8207bd8e0 0xc8207bd9c0 0xc8207bdaa0]}

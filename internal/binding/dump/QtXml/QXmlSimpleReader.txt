@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{DTDHandler QXmlSimpleReader::DTDHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QXmlDTDHandler * [] }
+&{QXmlSimpleReader QXmlSimpleReader::QXmlSimpleReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false false   [] }
+&{contentHandler QXmlSimpleReader::contentHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QXmlContentHandler * [] }
+&{declHandler QXmlSimpleReader::declHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QXmlDeclHandler * [] }
+&{entityResolver QXmlSimpleReader::entityResolver commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QXmlEntityResolver * [] }
+&{errorHandler QXmlSimpleReader::errorHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QXmlErrorHandler * [] }
+&{feature QXmlSimpleReader::feature commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  bool [0xc8227dd4c0 0xc8227dd560] }
+&{hasFeature QXmlSimpleReader::hasFeature commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  bool [0xc8227dd7a0] }
+&{hasProperty QXmlSimpleReader::hasProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  bool [0xc8227dd9e0] }
+&{lexicalHandler QXmlSimpleReader::lexicalHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QXmlLexicalHandler * [] }
+&{parse QXmlSimpleReader::parse commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  bool [0xc8227ddda0] }
+&{parse QXmlSimpleReader::parse commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false true 2 bool [0xc822b6a0a0] }
+&{parse QXmlSimpleReader::parse commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false true 3 bool [0xc822b6a300 0xc822b6a400] }
+&{parseContinue QXmlSimpleReader::parseContinue commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  bool [] }
+&{property QXmlSimpleReader::property commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void * [0xc822b6a720 0xc822b6a7e0] }
+&{setContentHandler QXmlSimpleReader::setContentHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void [0xc822b6a9e0] }
+&{setDTDHandler QXmlSimpleReader::setDTDHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void [0xc822b6ac80] }
+&{setDeclHandler QXmlSimpleReader::setDeclHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void [0xc822b6ae80] }
+&{setEntityResolver QXmlSimpleReader::setEntityResolver commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void [0xc822b6b100] }
+&{setErrorHandler QXmlSimpleReader::setErrorHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void [0xc822b6b300] }
+&{setFeature QXmlSimpleReader::setFeature commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void [0xc822b6b5a0 0xc822b6b620] }
+&{setLexicalHandler QXmlSimpleReader::setLexicalHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void [0xc822b6b840] }
+&{setProperty QXmlSimpleReader::setProperty commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void [0xc822b6bae0 0xc822b6bb60] }
+&{~QXmlSimpleReader QXmlSimpleReader::~QXmlSimpleReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   [] }
+########################################			ENUMS			########################################

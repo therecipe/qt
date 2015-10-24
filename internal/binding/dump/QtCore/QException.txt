@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{clone QException::clone commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qexception.cpp impure plain false false  QException * [] }
+&{raise QException::raise commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qexception.cpp impure plain false false  void [] }
+########################################			ENUMS			########################################

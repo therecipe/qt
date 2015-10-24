@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QAbstractItemDelegate QAbstractItemDelegate::QAbstractItemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h non constructor false false   [0xc821e268c0] }
+&{closeEditor QAbstractItemDelegate::closeEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h non signal false false  void [0xc821e26f20 0xc821e26fe0] }
+&{commitData QAbstractItemDelegate::commitData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h non signal false false  void [0xc821e271e0] }
+&{createEditor QAbstractItemDelegate::createEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h impure plain false false  QWidget * [0xc821e273a0 0xc821e27460 0xc821e27580] }
+&{destroyEditor QAbstractItemDelegate::destroyEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h impure plain false false  void [0xc821e27780 0xc821e27840] }
+&{editorEvent QAbstractItemDelegate::editorEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h impure plain false false  bool [0xc821e27a20 0xc821e27b00 0xc821e27c20 0xc821e27d60] }
+&{helpEvent QAbstractItemDelegate::helpEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h impure plain false false  bool [0xc821e34460 0xc821e34540 0xc821e34660 0xc821e34760] }
+&{paint QAbstractItemDelegate::paint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h pure plain false false  void [0xc821e34a20 0xc821e34ae0 0xc821e34be0] }
+&{setEditorData QAbstractItemDelegate::setEditorData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h impure plain false false  void [0xc821e34ea0 0xc821e34f60] }
+&{setModelData QAbstractItemDelegate::setModelData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h impure plain false false  void [0xc821e35160 0xc821e35220 0xc821e35340] }
+&{sizeHint QAbstractItemDelegate::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h pure plain false false  QSize [0xc821e35600 0xc821e35720] }
+&{sizeHintChanged QAbstractItemDelegate::sizeHintChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h non signal false false  void [0xc821e35900] }
+&{updateEditorGeometry QAbstractItemDelegate::updateEditorGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h impure plain false false  void [0xc821e35bc0 0xc821e35ca0 0xc821e35dc0] }
+&{~QAbstractItemDelegate QAbstractItemDelegate::~QAbstractItemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemdelegate.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{EndEditHint QAbstractItemDelegate::EndEditHint commendable public  [0xc821e26360 0xc821e263e0 0xc821e26480 0xc821e26540 0xc821e26620]}

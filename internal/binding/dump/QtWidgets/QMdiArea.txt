@@ -1,0 +1,50 @@
+########################################			FUNCTIONS			########################################
+&{activationOrder QMdiArea::activationOrder commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  WindowOrder [] }
+&{background QMdiArea::background commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  QBrush [] }
+&{documentMode QMdiArea::documentMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  bool [] }
+&{setActivationOrder QMdiArea::setActivationOrder commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  void [0xc8232c4420] }
+&{setBackground QMdiArea::setBackground commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  void [0xc8232c48e0] }
+&{setDocumentMode QMdiArea::setDocumentMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  void [0xc8232c4e80] }
+&{setTabPosition QMdiArea::setTabPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  void [0xc8232c5380] }
+&{setTabShape QMdiArea::setTabShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  void [0xc8232c5880] }
+&{setTabsClosable QMdiArea::setTabsClosable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  void [0xc8232c5e60] }
+&{setTabsMovable QMdiArea::setTabsMovable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  void [0xc8232b4320] }
+&{setViewMode QMdiArea::setViewMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  void [0xc8232b4860] }
+&{tabPosition QMdiArea::tabPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  QTabWidget::TabPosition [] }
+&{tabShape QMdiArea::tabShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  QTabWidget::TabShape [] }
+&{tabsClosable QMdiArea::tabsClosable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  bool [] }
+&{tabsMovable QMdiArea::tabsMovable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  bool [] }
+&{viewMode QMdiArea::viewMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.cpp non plain false false  ViewMode [] }
+&{QMdiArea QMdiArea::QMdiArea commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non constructor false false   [0xc82329c660] }
+&{activateNextSubWindow QMdiArea::activateNextSubWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non slot false false  void [] }
+&{activatePreviousSubWindow QMdiArea::activatePreviousSubWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non slot false false  void [] }
+&{activeSubWindow QMdiArea::activeSubWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non plain false false  QMdiSubWindow * [] }
+&{addSubWindow QMdiArea::addSubWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non plain false false  QMdiSubWindow * [0xc82329d020 0xc82329d0a0] }
+&{cascadeSubWindows QMdiArea::cascadeSubWindows commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non slot false false  void [] }
+&{childEvent QMdiArea::childEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h impure plain false false  void [0xc82329d700] }
+&{closeActiveSubWindow QMdiArea::closeActiveSubWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non slot false false  void [] }
+&{closeAllSubWindows QMdiArea::closeAllSubWindows commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non slot false false  void [] }
+&{currentSubWindow QMdiArea::currentSubWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non plain false false  QMdiSubWindow * [] }
+&{event QMdiArea::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h impure plain false false  bool [0xc8232780c0] }
+&{eventFilter QMdiArea::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h impure plain false false  bool [0xc8232783c0 0xc823278500] }
+&{minimumSizeHint QMdiArea::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h impure plain false false  QSize [] }
+&{paintEvent QMdiArea::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h impure plain false false  void [0xc823278a00] }
+&{removeSubWindow QMdiArea::removeSubWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non plain false false  void [0xc823278d80] }
+&{resizeEvent QMdiArea::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h impure plain false false  void [0xc823279260] }
+&{scrollContentsBy QMdiArea::scrollContentsBy commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h impure plain false false  void [0xc8232795e0 0xc8232797a0] }
+&{setActiveSubWindow QMdiArea::setActiveSubWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non slot false false  void [0xc823279c20] }
+&{setOption QMdiArea::setOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non plain false false  void [0xc8232640a0 0xc823264180] }
+&{setupViewport QMdiArea::setupViewport commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h impure slot false false  void [0xc823264580] }
+&{showEvent QMdiArea::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h impure plain false false  void [0xc823264a60] }
+&{sizeHint QMdiArea::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h impure plain false false  QSize [] }
+&{subWindowActivated QMdiArea::subWindowActivated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non signal false false  void [0xc8232651e0] }
+&{subWindowList QMdiArea::subWindowList commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non plain false false  QList<QMdiSubWindow *> [0xc823265740] }
+&{testOption QMdiArea::testOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non plain false false  bool [0xc823265b60] }
+&{tileSubWindows QMdiArea::tileSubWindows commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non slot false false  void [] }
+&{timerEvent QMdiArea::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h impure plain false false  void [0xc8232541c0] }
+&{viewportEvent QMdiArea::viewportEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h impure plain false false  bool [0xc823254640] }
+&{~QMdiArea QMdiArea::~QMdiArea commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdiarea.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{AreaOption QMdiArea::AreaOption commendable public QMdiArea::AreaOptions [0xc8232b59c0]}
+&{ViewMode QMdiArea::ViewMode commendable public  [0xc8232b5cc0 0xc8232b5d40]}
+&{WindowOrder QMdiArea::WindowOrder commendable public  [0xc82329c000 0xc82329c0e0 0xc82329c1c0]}

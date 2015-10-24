@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{autoRepeat QShortcut::autoRepeat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.cpp non plain false false  bool [] }
+&{context QShortcut::context commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.cpp non plain false false  Qt::ShortcutContext [] }
+&{isEnabled QShortcut::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.cpp non plain false false  bool [] }
+&{key QShortcut::key commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.cpp non plain false false  QKeySequence [] }
+&{setAutoRepeat QShortcut::setAutoRepeat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.cpp non plain false false  void [0xc822384140] }
+&{setContext QShortcut::setContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.cpp non plain false false  void [0xc8223843c0] }
+&{setEnabled QShortcut::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.cpp non plain false false  void [0xc8223846a0] }
+&{setKey QShortcut::setKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.cpp non plain false false  void [0xc822384980] }
+&{setWhatsThis QShortcut::setWhatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.cpp non plain false false  void [0xc822384c60] }
+&{whatsThis QShortcut::whatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.cpp non plain false false  QString [] }
+&{QShortcut QShortcut::QShortcut commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.h non constructor false false   [0xc822385040] }
+&{QShortcut QShortcut::QShortcut commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.h non constructor false true 2  [0xc822385220 0xc8223852e0 0xc8223853a0 0xc822385460 0xc822385540] }
+&{activated QShortcut::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.h non signal false false  void [] }
+&{activatedAmbiguously QShortcut::activatedAmbiguously commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.h non signal false false  void [] }
+&{id QShortcut::id commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.h non plain false false  int [] }
+&{parentWidget QShortcut::parentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.h non plain false false  QWidget * [] }
+&{~QShortcut QShortcut::~QShortcut commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qshortcut.h non destructor false false   [] }
+########################################			ENUMS			########################################

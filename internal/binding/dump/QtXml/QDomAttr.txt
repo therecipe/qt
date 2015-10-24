@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QDomAttr QDomAttr::QDomAttr commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   [] }
+&{QDomAttr QDomAttr::QDomAttr commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  [0xc821690e60] }
+&{name QDomAttr::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
+&{nodeType QDomAttr::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType [] }
+&{operator= QDomAttr::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomAttr & [0xc821691220] }
+&{ownerElement QDomAttr::ownerElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement [] }
+&{setValue QDomAttr::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void [0xc821691500] }
+&{specified QDomAttr::specified commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
+&{value QDomAttr::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
+########################################			ENUMS			########################################

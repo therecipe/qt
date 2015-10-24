@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QQmlListReference QQmlListReference::QQmlListReference commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non constructor false false   [] }
+&{QQmlListReference QQmlListReference::QQmlListReference commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non constructor false true 2  [0xc820d048c0 0xc820d04a60 0xc820d04be0] }
+&{append QQmlListReference::append commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  bool [0xc820d05400] }
+&{at QQmlListReference::at commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  QObject * [0xc820d05920] }
+&{canAppend QQmlListReference::canAppend commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  bool [] }
+&{canAt QQmlListReference::canAt commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  bool [] }
+&{canClear QQmlListReference::canClear commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  bool [] }
+&{canCount QQmlListReference::canCount commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  bool [] }
+&{clear QQmlListReference::clear commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  bool [] }
+&{count QQmlListReference::count commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  int [] }
+&{isManipulable QQmlListReference::isManipulable commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  bool [] }
+&{isReadable QQmlListReference::isReadable commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  bool [] }
+&{isValid QQmlListReference::isValid commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  bool [] }
+&{listElementType QQmlListReference::listElementType commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  const QMetaObject * [] }
+&{object QQmlListReference::object commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmllist.h non plain false false  QObject * [] }
+########################################			ENUMS			########################################

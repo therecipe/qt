@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QNetworkInterface QNetworkInterface::QNetworkInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non constructor false false   [] }
+&{QNetworkInterface QNetworkInterface::QNetworkInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non constructor false true 2  [0xc823255000] }
+&{addressEntries QNetworkInterface::addressEntries commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  QList<QNetworkAddressEntry> [] }
+&{allAddresses QNetworkInterface::allAddresses commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain true false  QList<QHostAddress> [] }
+&{allInterfaces QNetworkInterface::allInterfaces commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain true false  QList<QNetworkInterface> [] }
+&{flags QNetworkInterface::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  InterfaceFlags [] }
+&{hardwareAddress QNetworkInterface::hardwareAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  QString [] }
+&{humanReadableName QNetworkInterface::humanReadableName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  QString [] }
+&{index QNetworkInterface::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  int [] }
+&{interfaceFromIndex QNetworkInterface::interfaceFromIndex commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain true false  QNetworkInterface [0xc823255c80] }
+&{interfaceFromName QNetworkInterface::interfaceFromName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain true false  QNetworkInterface [0xc823255f60] }
+&{isValid QNetworkInterface::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  bool [] }
+&{name QNetworkInterface::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  QString [] }
+&{operator= QNetworkInterface::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  QNetworkInterface & [0xc823242500] }
+&{swap QNetworkInterface::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  void [0xc823242780] }
+&{~QNetworkInterface QNetworkInterface::~QNetworkInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{InterfaceFlag QNetworkInterface::InterfaceFlag commendable public QNetworkInterface::InterfaceFlags [0xc823254800 0xc8232548a0 0xc823254980 0xc823254a00 0xc823254ae0 0xc823254ba0]}

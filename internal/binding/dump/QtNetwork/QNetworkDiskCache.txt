@@ -1,0 +1,18 @@
+########################################			FUNCTIONS			########################################
+&{QNetworkDiskCache QNetworkDiskCache::QNetworkDiskCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h non constructor false false   [0xc822f30f40] }
+&{cacheDirectory QNetworkDiskCache::cacheDirectory commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h non plain false false  QString [] }
+&{cacheSize QNetworkDiskCache::cacheSize commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h impure plain false false  qint64 [] }
+&{clear QNetworkDiskCache::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h impure slot false false  void [] }
+&{data QNetworkDiskCache::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h impure plain false false  QIODevice * [0xc822f31720] }
+&{expire QNetworkDiskCache::expire commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h impure plain false false  qint64 [] }
+&{fileMetaData QNetworkDiskCache::fileMetaData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h non plain false false  QNetworkCacheMetaData [0xc822f31c00] }
+&{insert QNetworkDiskCache::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h impure plain false false  void [0xc822f31f40] }
+&{maximumCacheSize QNetworkDiskCache::maximumCacheSize commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h non plain false false  qint64 [] }
+&{metaData QNetworkDiskCache::metaData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h impure plain false false  QNetworkCacheMetaData [0xc822ffc400] }
+&{prepare QNetworkDiskCache::prepare commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h impure plain false false  QIODevice * [0xc822ffc760] }
+&{remove QNetworkDiskCache::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h impure plain false false  bool [0xc822ffcb60] }
+&{setCacheDirectory QNetworkDiskCache::setCacheDirectory commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h non plain false false  void [0xc822ffce40] }
+&{setMaximumCacheSize QNetworkDiskCache::setMaximumCacheSize commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h non plain false false  void [0xc822ffd140] }
+&{updateMetaData QNetworkDiskCache::updateMetaData commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h impure plain false false  void [0xc822ffd380] }
+&{~QNetworkDiskCache QNetworkDiskCache::~QNetworkDiskCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkdiskcache.h non destructor false false   [] }
+########################################			ENUMS			########################################

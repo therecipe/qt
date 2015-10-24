@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{cursorWidth QPlainTextDocumentLayout::cursorWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.cpp non plain false false  int [] }
+&{setCursorWidth QPlainTextDocumentLayout::setCursorWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.cpp non plain false false  void [0xc8230b6560] }
+&{QPlainTextDocumentLayout QPlainTextDocumentLayout::QPlainTextDocumentLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.h non constructor false false   [0xc8230b6f20] }
+&{blockBoundingRect QPlainTextDocumentLayout::blockBoundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.h impure plain false false  QRectF [0xc8230b73e0] }
+&{documentChanged QPlainTextDocumentLayout::documentChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.h impure plain false false  void [0xc8230b7720 0xc8230b7860 0xc8230b79e0] }
+&{documentSize QPlainTextDocumentLayout::documentSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.h impure plain false false  QSizeF [] }
+&{draw QPlainTextDocumentLayout::draw commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.h impure plain false false  void [0xc8230b7ee0 0xc8230b7fe0] }
+&{ensureBlockLayout QPlainTextDocumentLayout::ensureBlockLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.h non plain false false  void [0xc8230a8420] }
+&{frameBoundingRect QPlainTextDocumentLayout::frameBoundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.h impure plain false false  QRectF [0xc8230a87e0] }
+&{hitTest QPlainTextDocumentLayout::hitTest commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.h impure plain false false  int [0xc8230a89c0 0xc8230a8ae0] }
+&{pageCount QPlainTextDocumentLayout::pageCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.h impure plain false false  int [] }
+&{requestUpdate QPlainTextDocumentLayout::requestUpdate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.h non plain false false  void [] }
+&{~QPlainTextDocumentLayout QPlainTextDocumentLayout::~QPlainTextDocumentLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qplaintextedit.h non destructor false false   [] }
+########################################			ENUMS			########################################

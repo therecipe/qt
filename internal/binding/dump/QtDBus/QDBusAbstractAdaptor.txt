@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QDBusAbstractAdaptor QDBusAbstractAdaptor::QDBusAbstractAdaptor commendable protected /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractadaptor.h non constructor false false   [0xc821a0bfc0] }
+&{autoRelaySignals QDBusAbstractAdaptor::autoRelaySignals commendable protected /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractadaptor.h non plain false false  bool [] }
+&{setAutoRelaySignals QDBusAbstractAdaptor::setAutoRelaySignals commendable protected /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractadaptor.h non plain false false  void [0xc8219f2220] }
+&{~QDBusAbstractAdaptor QDBusAbstractAdaptor::~QDBusAbstractAdaptor commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractadaptor.h non destructor false false   [] }
+########################################			ENUMS			########################################

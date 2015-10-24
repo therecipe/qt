@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{pressure QPressureReading::pressure commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qpressuresensor.cpp non plain false false  qreal [] }
+&{temperature QPressureReading::temperature commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qpressuresensor.cpp non plain false false  qreal [] }
+&{setPressure QPressureReading::setPressure commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qpressuresensor.h non plain false false  void [0xc822e3fe40] }
+&{setTemperature QPressureReading::setTemperature commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qpressuresensor.h non plain false false  void [0xc822e2e1e0] }
+########################################			ENUMS			########################################

@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{cacheLimit QPixmapCache::cacheLimit commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  int [] }
+&{clear QPixmapCache::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  void [] }
+&{find QPixmapCache::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true true 3 bool [0xc820a26a80 0xc820a26b20] }
+&{find QPixmapCache::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  bool [0xc820a26f20 0xc820a26fa0] }
+&{insert QPixmapCache::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true true 2 Key [0xc820a27160] }
+&{insert QPixmapCache::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  bool [0xc820a27320 0xc820a273a0] }
+&{remove QPixmapCache::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true true 2 void [0xc820a275a0] }
+&{remove QPixmapCache::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  void [0xc820a27780] }
+&{replace QPixmapCache::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  bool [0xc820a27940 0xc820a279c0] }
+&{setCacheLimit QPixmapCache::setCacheLimit commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  void [0xc820a27ba0] }
+########################################			ENUMS			########################################

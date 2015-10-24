@@ -1,0 +1,3 @@
+########################################			FUNCTIONS			########################################
+&{QSGVertexColorMaterial QSGVertexColorMaterial::QSGVertexColorMaterial commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgvertexcolormaterial.h non constructor false false   [] }
+########################################			ENUMS			########################################

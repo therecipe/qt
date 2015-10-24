@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QGraphicsTransform QGraphicsTransform::QGraphicsTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non constructor false false   [0xc821e66aa0] }
+&{applyTo QGraphicsTransform::applyTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h pure plain false false  void [0xc821e67020] }
+&{update QGraphicsTransform::update commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non slot false false  void [] }
+&{~QGraphicsTransform QGraphicsTransform::~QGraphicsTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non destructor false false   [] }
+########################################			ENUMS			########################################

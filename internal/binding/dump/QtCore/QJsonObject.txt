@@ -1,0 +1,36 @@
+########################################			FUNCTIONS			########################################
+&{QJsonObject QJsonObject::QJsonObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non constructor false false   [] }
+&{QJsonObject QJsonObject::QJsonObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non constructor false true 3  [0xc8205c7140] }
+&{QJsonObject QJsonObject::QJsonObject commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non constructor false true 2  [0xc8205c7340] }
+&{begin QJsonObject::begin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  iterator [] }
+&{begin QJsonObject::begin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false true 2 const_iterator [] }
+&{constBegin QJsonObject::constBegin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  const_iterator [] }
+&{constEnd QJsonObject::constEnd commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  const_iterator [] }
+&{constFind QJsonObject::constFind commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  const_iterator [0xc8205c7ce0] }
+&{contains QJsonObject::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  bool [0xc8205c7ea0] }
+&{count QJsonObject::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  int [] }
+&{empty QJsonObject::empty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  bool [] }
+&{end QJsonObject::end commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  iterator [] }
+&{end QJsonObject::end commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false true 2 const_iterator [] }
+&{erase QJsonObject::erase commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  iterator [0xc8205e05a0] }
+&{find QJsonObject::find commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  iterator [0xc8205e0760] }
+&{find QJsonObject::find commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false true 2 const_iterator [0xc8205e0920] }
+&{fromVariantHash QJsonObject::fromVariantHash commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain true false  QJsonObject [0xc8205e0b00] }
+&{fromVariantMap QJsonObject::fromVariantMap commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain true false  QJsonObject [0xc8205e0d20] }
+&{insert QJsonObject::insert commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  iterator [0xc8205e1020 0xc8205e10c0] }
+&{isEmpty QJsonObject::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  bool [] }
+&{keys QJsonObject::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  QStringList [] }
+&{length QJsonObject::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  int [] }
+&{operator!= QJsonObject::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  bool [0xc8205e17c0] }
+&{operator= QJsonObject::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  QJsonObject & [0xc8205e19e0] }
+&{operator== QJsonObject::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  bool [0xc8205e1c00] }
+&{operator[] QJsonObject::operator[] commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false true 2 QJsonValueRef [0xc8205e1de0] }
+&{operator[] QJsonObject::operator[] commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  QJsonValue [0xc8205e1fa0] }
+&{remove QJsonObject::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  void [0xc8205f01a0] }
+&{size QJsonObject::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  int [] }
+&{take QJsonObject::take commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  QJsonValue [0xc8205f0440] }
+&{toVariantHash QJsonObject::toVariantHash commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  QVariantHash [] }
+&{toVariantMap QJsonObject::toVariantMap commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  QVariantMap [] }
+&{value QJsonObject::value commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non plain false false  QJsonValue [0xc8205f07e0] }
+&{~QJsonObject QJsonObject::~QJsonObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonobject.h non destructor false false   [] }
+########################################			ENUMS			########################################

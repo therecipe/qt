@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QMacToolBar QMacToolBar::QMacToolBar commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non constructor false false   [0xc8224db480] }
+&{QMacToolBar QMacToolBar::QMacToolBar commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non constructor false true 2  [0xc8224db640 0xc8224db6c0] }
+&{addAllowedItem QMacToolBar::addAllowedItem commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non plain false false  QMacToolBarItem * [0xc8224db8e0 0xc8224db960] }
+&{addItem QMacToolBar::addItem commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non plain false false  QMacToolBarItem * [0xc8224dbb80 0xc8224dbc00] }
+&{addSeparator QMacToolBar::addSeparator commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non plain false false  void [] }
+&{allowedItems QMacToolBar::allowedItems commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non plain false false  QList<QMacToolBarItem *> [] }
+&{attachToWindow QMacToolBar::attachToWindow commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non plain false false  void [0xc8231e4520] }
+&{detachFromWindow QMacToolBar::detachFromWindow commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non plain false false  void [] }
+&{items QMacToolBar::items commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non plain false false  QList<QMacToolBarItem *> [] }
+&{nativeToolbar QMacToolBar::nativeToolbar commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non plain false false  NSToolbar * [] }
+&{setAllowedItems QMacToolBar::setAllowedItems commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non plain false false  void [0xc8231e4a20] }
+&{setItems QMacToolBar::setItems commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non plain false false  void [0xc8231e4c40] }
+&{~QMacToolBar QMacToolBar::~QMacToolBar commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbar.h non destructor false false   [] }
+########################################			ENUMS			########################################

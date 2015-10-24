@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QKeyEventTransition QKeyEventTransition::QKeyEventTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qkeyeventtransition.h non constructor false true 2  [0xc8225eb620 0xc8225eb6e0 0xc8225eb760 0xc8225eb880] }
+&{QKeyEventTransition QKeyEventTransition::QKeyEventTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qkeyeventtransition.h non constructor false false   [0xc8225ebb40] }
+&{eventTest QKeyEventTransition::eventTest commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qkeyeventtransition.h impure plain false false  bool [0xc8225ebe40] }
+&{key QKeyEventTransition::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qkeyeventtransition.h non plain false false  int [] }
+&{modifierMask QKeyEventTransition::modifierMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qkeyeventtransition.h non plain false false  Qt::KeyboardModifiers [] }
+&{onTransition QKeyEventTransition::onTransition commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qkeyeventtransition.h impure plain false false  void [0xc8225f8400] }
+&{setKey QKeyEventTransition::setKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qkeyeventtransition.h non plain false false  void [0xc8225f87c0] }
+&{setModifierMask QKeyEventTransition::setModifierMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qkeyeventtransition.h non plain false false  void [0xc8225f8a40] }
+&{~QKeyEventTransition QKeyEventTransition::~QKeyEventTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qkeyeventtransition.h non destructor false false   [] }
+########################################			ENUMS			########################################

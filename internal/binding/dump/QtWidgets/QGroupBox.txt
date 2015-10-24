@@ -1,0 +1,28 @@
+########################################			FUNCTIONS			########################################
+&{alignment QGroupBox::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  Qt::Alignment [] }
+&{isCheckable QGroupBox::isCheckable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  bool [] }
+&{isChecked QGroupBox::isChecked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  bool [] }
+&{isFlat QGroupBox::isFlat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  bool [] }
+&{setAlignment QGroupBox::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  void [0xc8225cbfe0] }
+&{setCheckable QGroupBox::setCheckable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  void [0xc8221e8260] }
+&{setChecked QGroupBox::setChecked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non slot false false  void [0xc8221e8560] }
+&{setFlat QGroupBox::setFlat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  void [0xc8221e88a0] }
+&{setTitle QGroupBox::setTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  void [0xc8221e8b80] }
+&{title QGroupBox::title commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  QString [] }
+&{QGroupBox QGroupBox::QGroupBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non constructor false false   [0xc8221e8fe0] }
+&{QGroupBox QGroupBox::QGroupBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non constructor false true 2  [0xc8221e9320 0xc8221e93c0] }
+&{changeEvent QGroupBox::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void [0xc8221e9b40] }
+&{childEvent QGroupBox::childEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void [0xc8221e9e40] }
+&{clicked QGroupBox::clicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non signal false false  void [0xc8223ba1c0] }
+&{event QGroupBox::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  bool [0xc8223ba4e0] }
+&{focusInEvent QGroupBox::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void [0xc8223ba760] }
+&{initStyleOption QGroupBox::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non plain false false  void [0xc8223bab80] }
+&{minimumSizeHint QGroupBox::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  QSize [] }
+&{mouseMoveEvent QGroupBox::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void [0xc8223bb120] }
+&{mousePressEvent QGroupBox::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void [0xc8223bb400] }
+&{mouseReleaseEvent QGroupBox::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void [0xc8223bb6c0] }
+&{paintEvent QGroupBox::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void [0xc8223bb940] }
+&{resizeEvent QGroupBox::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void [0xc8223bbc00] }
+&{toggled QGroupBox::toggled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non signal false false  void [0xc8223bbe60] }
+&{~QGroupBox QGroupBox::~QGroupBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non destructor false false   [] }
+########################################			ENUMS			########################################

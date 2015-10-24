@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{registerNdefMessageHandler QNearFieldManager::registerNdefMessageHandler commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.cpp non plain false false  int [0xc822849600 0xc8228496a0] }
+&{startTargetDetection QNearFieldManager::startTargetDetection commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.cpp non plain false false  bool [] }
+&{QNearFieldManager QNearFieldManager::QNearFieldManager commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.h non constructor false false   [0xc82285a040] }
+&{isAvailable QNearFieldManager::isAvailable commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.h non plain false false  bool [] }
+&{registerNdefMessageHandler QNearFieldManager::registerNdefMessageHandler commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.h non plain false true 2 int [0xc82285a760 0xc82285a880 0xc82285a980 0xc82285aa00] }
+&{registerNdefMessageHandler QNearFieldManager::registerNdefMessageHandler commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.h non plain false true 3 int [0xc82285ac80 0xc82285ad60 0xc82285ae40] }
+&{setTargetAccessModes QNearFieldManager::setTargetAccessModes commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.h non plain false false  void [0xc82285b080] }
+&{stopTargetDetection QNearFieldManager::stopTargetDetection commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.h non plain false false  void [] }
+&{targetAccessModes QNearFieldManager::targetAccessModes commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.h non plain false false  TargetAccessModes [] }
+&{targetDetected QNearFieldManager::targetDetected commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.h non signal false false  void [0xc82285b600] }
+&{targetLost QNearFieldManager::targetLost commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.h non signal false false  void [0xc82285b8a0] }
+&{unregisterNdefMessageHandler QNearFieldManager::unregisterNdefMessageHandler commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.h non plain false false  bool [0xc82285bb40] }
+&{~QNearFieldManager QNearFieldManager::~QNearFieldManager commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldmanager.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{TargetAccessMode QNearFieldManager::TargetAccessMode commendable public QNearFieldManager::TargetAccessModes [0xc8228499c0 0xc822849ac0 0xc822849bc0 0xc822849d00]}

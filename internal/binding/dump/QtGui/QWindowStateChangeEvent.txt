@@ -1,0 +1,3 @@
+########################################			FUNCTIONS			########################################
+&{oldState QWindowStateChangeEvent::oldState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::WindowStates [] }
+########################################			ENUMS			########################################

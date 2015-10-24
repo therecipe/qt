@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{setSizePolicy QGraphicsAnchor::setSizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void [0xc822f43f60] }
+&{setSpacing QGraphicsAnchor::setSpacing commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void [0xc822f30520] }
+&{sizePolicy QGraphicsAnchor::sizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  QSizePolicy::Policy [] }
+&{spacing QGraphicsAnchor::spacing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  qreal [] }
+&{unsetSpacing QGraphicsAnchor::unsetSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void [] }
+&{~QGraphicsAnchor QGraphicsAnchor::~QGraphicsAnchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non destructor false false   [] }
+########################################			ENUMS			########################################

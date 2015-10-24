@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QTextDocumentFragment QTextDocumentFragment::QTextDocumentFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentfragment.cpp non constructor false true 4  [0xc82338ec00] }
+&{fromHtml QTextDocumentFragment::fromHtml commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentfragment.cpp non plain true false  QTextDocumentFragment [0xc82338ee60] }
+&{fromHtml QTextDocumentFragment::fromHtml commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentfragment.cpp non plain true true 2 QTextDocumentFragment [0xc82338f080 0xc82338f120] }
+&{operator= QTextDocumentFragment::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentfragment.cpp non plain false false  QTextDocumentFragment & [0xc82338f3a0] }
+&{QTextDocumentFragment QTextDocumentFragment::QTextDocumentFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentfragment.h non constructor false false   [] }
+&{QTextDocumentFragment QTextDocumentFragment::QTextDocumentFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentfragment.h non constructor false true 3  [0xc82338f6e0] }
+&{QTextDocumentFragment QTextDocumentFragment::QTextDocumentFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentfragment.h non constructor false true 2  [0xc82338f900] }
+&{fromPlainText QTextDocumentFragment::fromPlainText commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentfragment.h non plain true false  QTextDocumentFragment [0xc82338fb00] }
+&{isEmpty QTextDocumentFragment::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentfragment.h non plain false false  bool [] }
+&{toHtml QTextDocumentFragment::toHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentfragment.h non plain false false  QString [0xc82338fe00] }
+&{toPlainText QTextDocumentFragment::toPlainText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentfragment.h non plain false false  QString [] }
+&{~QTextDocumentFragment QTextDocumentFragment::~QTextDocumentFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentfragment.h non destructor false false   [] }
+########################################			ENUMS			########################################

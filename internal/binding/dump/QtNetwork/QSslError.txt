@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QSslError QSslError::QSslError commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslerror.h non constructor false false   [] }
+&{QSslError QSslError::QSslError commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslerror.h non constructor false true 2  [0xc82300fbe0] }
+&{QSslError QSslError::QSslError commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslerror.h non constructor false true 3  [0xc82300ff60 0xc822fe8080] }
+&{QSslError QSslError::QSslError commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslerror.h non constructor false true 4  [0xc822fe83c0] }
+&{certificate QSslError::certificate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslerror.h non plain false false  QSslCertificate [] }
+&{error QSslError::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslerror.h non plain false false  SslError [] }
+&{errorString QSslError::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslerror.h non plain false false  QString [] }
+&{operator!= QSslError::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslerror.h non plain false false  bool [0xc822fe8bc0] }
+&{operator= QSslError::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslerror.h non plain false false  QSslError & [0xc822fe8ee0] }
+&{operator== QSslError::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslerror.h non plain false false  bool [0xc822fe9240] }
+&{swap QSslError::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslerror.h non plain false false  void [0xc822fe94a0] }
+&{~QSslError QSslError::~QSslError commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslerror.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{SslError QSslError::SslError commendable public  [0xc82301f220 0xc82301f320 0xc82301f4a0 0xc82301f580 0xc82301f760 0xc82301f8c0 0xc82301f9e0 0xc82301fb80 0xc82301fd00 0xc82301fea0 0xc82301ffe0 0xc82300e160 0xc82300e220 0xc82300e3a0 0xc82300e560 0xc82300e760 0xc82300e9c0 0xc82300ea80 0xc82300eca0 0xc82300ee60 0xc82300efc0 0xc82300f140 0xc82300f280 0xc82300f400 0xc82300f580 0xc82300f6a0]}

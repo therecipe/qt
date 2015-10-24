@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{QIconEnginePlugin QIconEnginePlugin::QIconEnginePlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengineplugin.h non constructor false false   [0xc820d93540] }
+&{create QIconEnginePlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengineplugin.h pure plain false false  QIconEngine * [0xc820d937c0] }
+&{~QIconEnginePlugin QIconEnginePlugin::~QIconEnginePlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengineplugin.h non destructor false false   [] }
+########################################			ENUMS			########################################

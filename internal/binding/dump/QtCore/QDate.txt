@@ -1,0 +1,40 @@
+########################################			FUNCTIONS			########################################
+&{currentDate QDate::currentDate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain true false  QDate [] }
+&{fromString QDate::fromString commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain true false  QDate [0xc820701ae0 0xc820701b80] }
+&{fromString QDate::fromString commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain true true 2 QDate [0xc820701d80 0xc820701e20] }
+&{isLeapYear QDate::isLeapYear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain true false  bool [0xc8206e8080] }
+&{toString QDate::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain false true 2 QString [0xc8206e8260] }
+&{QDate QDate::QDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non constructor false false   [] }
+&{QDate QDate::QDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non constructor false true 3  [0xc8206e87a0 0xc8206e8820 0xc8206e88c0] }
+&{addDays QDate::addDays commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDate [0xc8206e8c20] }
+&{addMonths QDate::addMonths commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDate [0xc8206e8dc0] }
+&{addYears QDate::addYears commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QDate [0xc8206e8f80] }
+&{day QDate::day commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{dayOfWeek QDate::dayOfWeek commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{dayOfYear QDate::dayOfYear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{daysInMonth QDate::daysInMonth commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{daysInYear QDate::daysInYear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{daysTo QDate::daysTo commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  qint64 [0xc8206e95e0] }
+&{fromJulianDay QDate::fromJulianDay commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true false  QDate [0xc8206e9840] }
+&{getDate QDate::getDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  void [0xc8206e9a00 0xc8206e9a80 0xc8206e9b20] }
+&{isNull QDate::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [] }
+&{isValid QDate::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true true 2 bool [0xc8206e9de0 0xc8206e9e60 0xc8206e9f00] }
+&{isValid QDate::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [] }
+&{longDayName QDate::longDayName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true false  QString [0xc8206d61e0 0xc8206d6260] }
+&{longMonthName QDate::longMonthName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true false  QString [0xc8206d6460 0xc8206d6500] }
+&{month QDate::month commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{operator!= QDate::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc8206d6920] }
+&{operator< QDate::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc8206d6a80] }
+&{operator<= QDate::operator<= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc8206d6ca0] }
+&{operator== QDate::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc8206d6ea0] }
+&{operator> QDate::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc8206d7060] }
+&{operator>= QDate::operator>= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc8206d7260] }
+&{setDate QDate::setDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc8206d7440 0xc8206d7520 0xc8206d75a0] }
+&{shortDayName QDate::shortDayName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true false  QString [0xc8206d7a80 0xc8206d7b60] }
+&{shortMonthName QDate::shortMonthName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true false  QString [0xc8206d7d20 0xc8206d7dc0] }
+&{toJulianDay QDate::toJulianDay commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  qint64 [] }
+&{toString QDate::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QString [0xc8206bc020] }
+&{weekNumber QDate::weekNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [0xc8206bc1e0] }
+&{year QDate::year commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+########################################			ENUMS			########################################
+&{MonthNameType QDate::MonthNameType commendable public  [0xc8206e84a0 0xc8206e8540]}

@@ -1,0 +1,3 @@
+########################################			FUNCTIONS			########################################
+&{QHideEvent QHideEvent::QHideEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [] }
+########################################			ENUMS			########################################

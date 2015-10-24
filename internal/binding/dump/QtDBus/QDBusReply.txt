@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QDBusReply QDBusReply::QDBusReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non constructor false true 4  [0xc821ff1100] }
+&{QDBusReply QDBusReply::QDBusReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non constructor false false   [0xc821ff1320] }
+&{QDBusReply QDBusReply::QDBusReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non constructor false true 2  [0xc821ff1580] }
+&{QDBusReply QDBusReply::QDBusReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non constructor false true 3  [0xc821ff17c0] }
+&{error QDBusReply::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non plain false true 2 const QDBusError & [] }
+&{error QDBusReply::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non plain false false  const QDBusError & [] }
+&{isValid QDBusReply::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non plain false false  bool [] }
+&{operator Type QDBusReply::operator Type commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non plain false false   [] }
+&{operator= QDBusReply::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non plain false true 3 QDBusReply & [0xc821ff1fa0] }
+&{operator= QDBusReply::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non plain false false  QDBusReply & [0xc8224aa240] }
+&{operator= QDBusReply::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non plain false true 2 QDBusReply & [0xc8224aa520] }
+&{operator= QDBusReply::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non plain false true 4 QDBusReply & [0xc8224aa7a0] }
+&{value QDBusReply::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusreply.h non plain false false  Type [] }
+########################################			ENUMS			########################################

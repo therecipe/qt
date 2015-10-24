@@ -1,0 +1,31 @@
+########################################			FUNCTIONS			########################################
+&{QProxyStyle QProxyStyle::QProxyStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h non constructor false false   [0xc821781140] }
+&{QProxyStyle QProxyStyle::QProxyStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h non constructor false true 2  [0xc821781380] }
+&{baseStyle QProxyStyle::baseStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h non plain false false  QStyle * [] }
+&{drawComplexControl QProxyStyle::drawComplexControl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  void [0xc8217816c0 0xc821781760 0xc821781820 0xc8217818a0] }
+&{drawControl QProxyStyle::drawControl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  void [0xc821781a80 0xc821781b20 0xc821781be0 0xc821781c60] }
+&{drawItemPixmap QProxyStyle::drawItemPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  void [0xc821781e20 0xc821781ec0 0xc821781f60 0xc821776020] }
+&{drawItemText QProxyStyle::drawItemText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  void [0xc8217763c0 0xc8217764e0 0xc8217765a0 0xc821776700 0xc821776800 0xc8217768a0 0xc8217769c0] }
+&{drawPrimitive QProxyStyle::drawPrimitive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  void [0xc821776e00 0xc821776f40 0xc821777120 0xc8217771a0] }
+&{event QProxyStyle::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  bool [0xc821777600] }
+&{generatedIconPixmap QProxyStyle::generatedIconPixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  QPixmap [0xc8217779c0 0xc821777ac0 0xc821777c40] }
+&{hitTestComplexControl QProxyStyle::hitTestComplexControl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  SubControl [0xc821777fc0 0xc821764160 0xc821764380 0xc8217644e0] }
+&{itemPixmapRect QProxyStyle::itemPixmapRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  QRect [0xc821764880 0xc8217649c0 0xc821764bc0] }
+&{itemTextRect QProxyStyle::itemTextRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  QRect [0xc8217650a0 0xc821765260 0xc821765360 0xc821765540 0xc821765660] }
+&{layoutSpacing QProxyStyle::layoutSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  int [0xc821765be0 0xc821765d80 0xc821765f20 0xc82174c080 0xc82174c1c0] }
+&{pixelMetric QProxyStyle::pixelMetric commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  int [0xc82174c3e0 0xc82174c480 0xc82174c560] }
+&{polish QProxyStyle::polish commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false true 3 void [0xc82174c7a0] }
+&{polish QProxyStyle::polish commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false true 2 void [0xc82174c9a0] }
+&{polish QProxyStyle::polish commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  void [0xc82174cc00] }
+&{setBaseStyle QProxyStyle::setBaseStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h non plain false false  void [0xc82174ce60] }
+&{sizeFromContents QProxyStyle::sizeFromContents commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  QSize [0xc82174d060 0xc82174d140 0xc82174d200 0xc82174d2a0] }
+&{standardIcon QProxyStyle::standardIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  QIcon [0xc82174d4a0 0xc82174d560 0xc82174d660] }
+&{standardPalette QProxyStyle::standardPalette commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  QPalette [] }
+&{standardPixmap QProxyStyle::standardPixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  QPixmap [0xc82174d9a0 0xc82174da40 0xc82174db00] }
+&{styleHint QProxyStyle::styleHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  int [0xc82174dcc0 0xc82174dd60 0xc82174de20 0xc82174dec0] }
+&{subControlRect QProxyStyle::subControlRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  QRect [0xc82173e160 0xc82173e280 0xc82173e480 0xc82173e520] }
+&{subElementRect QProxyStyle::subElementRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  QRect [0xc82173e820 0xc82173e940 0xc82173eb20] }
+&{unpolish QProxyStyle::unpolish commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false true 2 void [0xc82173ee40] }
+&{unpolish QProxyStyle::unpolish commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h impure plain false false  void [0xc82173f1e0] }
+&{~QProxyStyle QProxyStyle::~QProxyStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qproxystyle.h non destructor false false   [] }
+########################################			ENUMS			########################################

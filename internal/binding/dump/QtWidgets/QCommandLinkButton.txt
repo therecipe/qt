@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{description QCommandLinkButton::description commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcommandlinkbutton.cpp non plain false false  QString [] }
+&{setDescription QCommandLinkButton::setDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcommandlinkbutton.cpp non plain false false  void [0xc820a7f4c0] }
+&{QCommandLinkButton QCommandLinkButton::QCommandLinkButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcommandlinkbutton.h non constructor false false   [0xc820a7f7a0] }
+&{QCommandLinkButton QCommandLinkButton::QCommandLinkButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcommandlinkbutton.h non constructor false true 2  [0xc820a7fa00 0xc820a7fac0] }
+&{QCommandLinkButton QCommandLinkButton::QCommandLinkButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcommandlinkbutton.h non constructor false true 3  [0xc820a7fd40 0xc820a7fde0 0xc820a7fea0] }
+&{event QCommandLinkButton::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcommandlinkbutton.h impure plain false false  bool [0xc82015a460] }
+&{heightForWidth QCommandLinkButton::heightForWidth commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcommandlinkbutton.h impure plain false false  int [0xc82015a780] }
+&{minimumSizeHint QCommandLinkButton::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcommandlinkbutton.h impure plain false false  QSize [] }
+&{paintEvent QCommandLinkButton::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcommandlinkbutton.h impure plain false false  void [0xc82015ae80] }
+&{sizeHint QCommandLinkButton::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcommandlinkbutton.h impure plain false false  QSize [] }
+&{~QCommandLinkButton QCommandLinkButton::~QCommandLinkButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcommandlinkbutton.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QGraphicsAnchorLayout QGraphicsAnchorLayout::QGraphicsAnchorLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non constructor false false   [0xc822f24580] }
+&{addAnchor QGraphicsAnchorLayout::addAnchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non plain false false  QGraphicsAnchor * [0xc822f24ca0 0xc822f24de0 0xc822f24f80 0xc822f251a0] }
+&{addAnchors QGraphicsAnchorLayout::addAnchors commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non plain false false  void [0xc822f25540 0xc822f25780 0xc822f259e0] }
+&{addCornerAnchors QGraphicsAnchorLayout::addCornerAnchors commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non plain false false  void [0xc822f25e60 0xc822f10020 0xc822f10160 0xc822f10360] }
+&{anchor QGraphicsAnchorLayout::anchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non plain false false  QGraphicsAnchor * [0xc822f107c0 0xc822f10900 0xc822f10ac0 0xc822f10c40] }
+&{count QGraphicsAnchorLayout::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h impure plain false false  int [] }
+&{horizontalSpacing QGraphicsAnchorLayout::horizontalSpacing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non plain false false  qreal [] }
+&{invalidate QGraphicsAnchorLayout::invalidate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h impure plain false false  void [] }
+&{itemAt QGraphicsAnchorLayout::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h impure plain false false  QGraphicsLayoutItem * [0xc822f117c0] }
+&{removeAt QGraphicsAnchorLayout::removeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h impure plain false false  void [0xc822f11ba0] }
+&{setGeometry QGraphicsAnchorLayout::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h impure plain false false  void [0xc822f11e60] }
+&{setHorizontalSpacing QGraphicsAnchorLayout::setHorizontalSpacing commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non plain false false  void [0xc822f021c0] }
+&{setSpacing QGraphicsAnchorLayout::setSpacing commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non plain false false  void [0xc822f02500] }
+&{setVerticalSpacing QGraphicsAnchorLayout::setVerticalSpacing commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non plain false false  void [0xc822f02980] }
+&{sizeHint QGraphicsAnchorLayout::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h impure plain false false  QSizeF [0xc822f02d40 0xc822f02f20] }
+&{verticalSpacing QGraphicsAnchorLayout::verticalSpacing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non plain false false  qreal [] }
+&{~QGraphicsAnchorLayout QGraphicsAnchorLayout::~QGraphicsAnchorLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h impure destructor false false   [] }
+########################################			ENUMS			########################################

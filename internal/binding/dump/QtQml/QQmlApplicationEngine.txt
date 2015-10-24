@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QQmlApplicationEngine QQmlApplicationEngine::QQmlApplicationEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlapplicationengine.h non constructor false false   [0xc823482b00] }
+&{QQmlApplicationEngine QQmlApplicationEngine::QQmlApplicationEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlapplicationengine.h non constructor false true 3  [0xc823482cc0 0xc823482d40] }
+&{QQmlApplicationEngine QQmlApplicationEngine::QQmlApplicationEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlapplicationengine.h non constructor false true 2  [0xc823482f00 0xc823482f80] }
+&{load QQmlApplicationEngine::load commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlapplicationengine.h non slot false true 2 void [0xc8234832e0] }
+&{load QQmlApplicationEngine::load commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlapplicationengine.h non slot false false  void [0xc8234834e0] }
+&{loadData QQmlApplicationEngine::loadData commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlapplicationengine.h non slot false false  void [0xc8234836c0 0xc8234837a0] }
+&{objectCreated QQmlApplicationEngine::objectCreated commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlapplicationengine.h non signal false false  void [0xc823483900 0xc823483980] }
+&{rootObjects QQmlApplicationEngine::rootObjects commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlapplicationengine.h non plain false false  QList<QObject *> [] }
+&{~QQmlApplicationEngine QQmlApplicationEngine::~QQmlApplicationEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlapplicationengine.h non destructor false false   [] }
+########################################			ENUMS			########################################

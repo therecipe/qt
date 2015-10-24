@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{defaultDevice QMediaServiceDefaultDeviceInterface::defaultDevice commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h pure plain false false  QByteArray [0xc8218f6c60] }
+&{~QMediaServiceDefaultDeviceInterface QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h impure destructor false false   [] }
+########################################			ENUMS			########################################

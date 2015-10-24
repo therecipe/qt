@@ -1,0 +1,40 @@
+########################################			FUNCTIONS			########################################
+&{QMediaPlayerControl QMediaPlayerControl::QMediaPlayerControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non constructor false false   [0xc821bbf540] }
+&{audioAvailableChanged QMediaPlayerControl::audioAvailableChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821bbf940] }
+&{availablePlaybackRanges QMediaPlayerControl::availablePlaybackRanges commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  QMediaTimeRange [] }
+&{availablePlaybackRangesChanged QMediaPlayerControl::availablePlaybackRangesChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821bae040] }
+&{bufferStatus QMediaPlayerControl::bufferStatus commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  int [] }
+&{bufferStatusChanged QMediaPlayerControl::bufferStatusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821bae400] }
+&{duration QMediaPlayerControl::duration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  qint64 [] }
+&{durationChanged QMediaPlayerControl::durationChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821bae720] }
+&{error QMediaPlayerControl::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821bae960 0xc821bae9e0] }
+&{isAudioAvailable QMediaPlayerControl::isAudioAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  bool [] }
+&{isMuted QMediaPlayerControl::isMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  bool [] }
+&{isSeekable QMediaPlayerControl::isSeekable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  bool [] }
+&{isVideoAvailable QMediaPlayerControl::isVideoAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  bool [] }
+&{media QMediaPlayerControl::media commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  QMediaContent [] }
+&{mediaChanged QMediaPlayerControl::mediaChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821baf080] }
+&{mediaStatus QMediaPlayerControl::mediaStatus commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  QMediaPlayer::MediaStatus [] }
+&{mediaStatusChanged QMediaPlayerControl::mediaStatusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821baf460] }
+&{mediaStream QMediaPlayerControl::mediaStream commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  const QIODevice * [] }
+&{mutedChanged QMediaPlayerControl::mutedChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821baf880] }
+&{pause QMediaPlayerControl::pause commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  void [] }
+&{play QMediaPlayerControl::play commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  void [] }
+&{playbackRate QMediaPlayerControl::playbackRate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  qreal [] }
+&{playbackRateChanged QMediaPlayerControl::playbackRateChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821baff40] }
+&{position QMediaPlayerControl::position commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  qint64 [] }
+&{positionChanged QMediaPlayerControl::positionChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821bac5c0] }
+&{seekableChanged QMediaPlayerControl::seekableChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821bac8a0] }
+&{setMedia QMediaPlayerControl::setMedia commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  void [0xc821bacc80 0xc821bace00] }
+&{setMuted QMediaPlayerControl::setMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  void [0xc821bad380] }
+&{setPlaybackRate QMediaPlayerControl::setPlaybackRate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  void [0xc821bad800] }
+&{setPosition QMediaPlayerControl::setPosition commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  void [0xc821badd60] }
+&{setVolume QMediaPlayerControl::setVolume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  void [0xc821ba6140] }
+&{state QMediaPlayerControl::state commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  QMediaPlayer::State [] }
+&{stateChanged QMediaPlayerControl::stateChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821ba6500] }
+&{stop QMediaPlayerControl::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  void [] }
+&{videoAvailableChanged QMediaPlayerControl::videoAvailableChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821ba68c0] }
+&{volume QMediaPlayerControl::volume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h pure plain false false  int [] }
+&{volumeChanged QMediaPlayerControl::volumeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non signal false false  void [0xc821ba6b60] }
+&{~QMediaPlayerControl QMediaPlayerControl::~QMediaPlayerControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaplayercontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################

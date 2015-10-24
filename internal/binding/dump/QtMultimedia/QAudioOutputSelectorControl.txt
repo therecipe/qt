@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QAudioOutputSelectorControl QAudioOutputSelectorControl::QAudioOutputSelectorControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiooutputselectorcontrol.h non constructor false false   [0xc822686d20] }
+&{activeOutput QAudioOutputSelectorControl::activeOutput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiooutputselectorcontrol.h pure plain false false  QString [] }
+&{activeOutputChanged QAudioOutputSelectorControl::activeOutputChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiooutputselectorcontrol.h non signal false false  void [0xc822687120] }
+&{availableOutputs QAudioOutputSelectorControl::availableOutputs commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiooutputselectorcontrol.h pure plain false false  QList<QString> [] }
+&{availableOutputsChanged QAudioOutputSelectorControl::availableOutputsChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiooutputselectorcontrol.h non signal false false  void [] }
+&{defaultOutput QAudioOutputSelectorControl::defaultOutput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiooutputselectorcontrol.h pure plain false false  QString [] }
+&{outputDescription QAudioOutputSelectorControl::outputDescription commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiooutputselectorcontrol.h pure plain false false  QString [0xc822687820] }
+&{setActiveOutput QAudioOutputSelectorControl::setActiveOutput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiooutputselectorcontrol.h pure slot false false  void [0xc822687a60] }
+&{~QAudioOutputSelectorControl QAudioOutputSelectorControl::~QAudioOutputSelectorControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiooutputselectorcontrol.h impure destructor false false   [] }
+########################################			ENUMS			########################################

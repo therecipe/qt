@@ -1,0 +1,42 @@
+########################################			FUNCTIONS			########################################
+&{aperture QCameraExposure::aperture commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non plain false false  qreal [] }
+&{exposureCompensation QCameraExposure::exposureCompensation commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non plain false false  qreal [] }
+&{exposureMode QCameraExposure::exposureMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non plain false false  ExposureMode [] }
+&{flashMode QCameraExposure::flashMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non plain false false  FlashModes [] }
+&{isoSensitivity QCameraExposure::isoSensitivity commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non plain false false  int [] }
+&{meteringMode QCameraExposure::meteringMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non plain false false  MeteringMode [] }
+&{setAutoAperture QCameraExposure::setAutoAperture commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non slot false false  void [] }
+&{setAutoIsoSensitivity QCameraExposure::setAutoIsoSensitivity commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non slot false false  void [] }
+&{setExposureCompensation QCameraExposure::setExposureCompensation commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non slot false false  void [0xc822194c80] }
+&{setExposureMode QCameraExposure::setExposureMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non slot false false  void [0xc822194fe0] }
+&{setFlashMode QCameraExposure::setFlashMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non slot false false  void [0xc822195300] }
+&{setManualAperture QCameraExposure::setManualAperture commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non slot false false  void [0xc8221955e0] }
+&{setManualIsoSensitivity QCameraExposure::setManualIsoSensitivity commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non slot false false  void [0xc8221958a0] }
+&{setMeteringMode QCameraExposure::setMeteringMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non slot false false  void [0xc822195bc0] }
+&{setSpotMeteringPoint QCameraExposure::setSpotMeteringPoint commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non plain false false  void [0xc822195e60] }
+&{spotMeteringPoint QCameraExposure::spotMeteringPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.cpp non plain false false  QPointF [] }
+&{apertureChanged QCameraExposure::apertureChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non signal false false  void [0xc8221d3040] }
+&{apertureRangeChanged QCameraExposure::apertureRangeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non signal false false  void [] }
+&{exposureCompensationChanged QCameraExposure::exposureCompensationChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non signal false false  void [0xc8221d34c0] }
+&{flashReady QCameraExposure::flashReady commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non signal false false  void [0xc8221d3800] }
+&{isAvailable QCameraExposure::isAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non plain false false  bool [] }
+&{isExposureModeSupported QCameraExposure::isExposureModeSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non plain false false  bool [0xc8221d3ca0] }
+&{isFlashModeSupported QCameraExposure::isFlashModeSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non plain false false  bool [0xc8221d3ea0] }
+&{isFlashReady QCameraExposure::isFlashReady commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non plain false false  bool [] }
+&{isMeteringModeSupported QCameraExposure::isMeteringModeSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non plain false false  bool [0xc821e9e280] }
+&{isoSensitivityChanged QCameraExposure::isoSensitivityChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non signal false false  void [0xc821e9e500] }
+&{requestedAperture QCameraExposure::requestedAperture commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non plain false false  qreal [] }
+&{requestedIsoSensitivity QCameraExposure::requestedIsoSensitivity commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non plain false false  int [] }
+&{requestedShutterSpeed QCameraExposure::requestedShutterSpeed commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non plain false false  qreal [] }
+&{setAutoShutterSpeed QCameraExposure::setAutoShutterSpeed commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non slot false false  void [] }
+&{setManualShutterSpeed QCameraExposure::setManualShutterSpeed commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non slot false false  void [0xc821e9ed80] }
+&{shutterSpeed QCameraExposure::shutterSpeed commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non plain false false  qreal [] }
+&{shutterSpeedChanged QCameraExposure::shutterSpeedChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non signal false false  void [0xc821e9f180] }
+&{shutterSpeedRangeChanged QCameraExposure::shutterSpeedRangeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non signal false false  void [] }
+&{supportedApertures QCameraExposure::supportedApertures commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non plain false false  QList<qreal> [0xc821e9f640] }
+&{supportedIsoSensitivities QCameraExposure::supportedIsoSensitivities commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non plain false false  QList<int> [0xc821e9f8e0] }
+&{supportedShutterSpeeds QCameraExposure::supportedShutterSpeeds commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraexposure.h non plain false false  QList<qreal> [0xc821e9fba0] }
+########################################			ENUMS			########################################
+&{ExposureMode QCameraExposure::ExposureMode commendable public  [0xc8221a42c0 0xc8221a4340 0xc8221a4480 0xc8221a4500 0xc8221a4620 0xc8221a4740 0xc8221a4880 0xc8221a4920 0xc8221a49e0 0xc8221a4b00 0xc8221a4c20 0xc8221a4d60 0xc8221a4e00 0xc8221a4f40 0xc8221a5000 0xc8221a50a0 0xc8221a5160 0xc8221a52e0 0xc8221a53e0 0xc8221a5480 0xc8221a55c0 0xc8221a56c0]}
+&{FlashMode QCameraExposure::FlashMode commendable public QCameraExposure::FlashModes [0xc8221a59e0 0xc8221a5a80 0xc8221a5b60 0xc8221a5c20 0xc8221a5da0 0xc8221a5e20 0xc8221a5f00 0xc8221a5fe0 0xc8221d2100 0xc8221d22a0]}
+&{MeteringMode QCameraExposure::MeteringMode commendable public  [0xc8221d24e0 0xc8221d2600 0xc8221d2680]}

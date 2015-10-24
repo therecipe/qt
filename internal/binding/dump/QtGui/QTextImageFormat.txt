@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{QTextImageFormat QTextImageFormat::QTextImageFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non constructor false false   [] }
+&{height QTextImageFormat::height commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
+&{isValid QTextImageFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{name QTextImageFormat::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QString [] }
+&{setHeight QTextImageFormat::setHeight commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820eaec60] }
+&{setName QTextImageFormat::setName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820eaf1a0] }
+&{setWidth QTextImageFormat::setWidth commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820eaf680] }
+&{width QTextImageFormat::width commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
+########################################			ENUMS			########################################

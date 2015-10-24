@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{QHelpSearchQuery QHelpSearchQuery::QHelpSearchQuery commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non constructor false false   [] }
+&{QHelpSearchQuery QHelpSearchQuery::QHelpSearchQuery commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non constructor false true 2  [0xc82215ac00 0xc82215aca0] }
+########################################			ENUMS			########################################
+&{FieldName QHelpSearchQuery::FieldName commendable public  [0xc82215a720 0xc82215a7a0 0xc82215a820 0xc82215a8a0 0xc82215a940 0xc82215a9c0]}

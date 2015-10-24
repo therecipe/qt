@@ -1,0 +1,60 @@
+########################################			FUNCTIONS			########################################
+&{cleanupPage QWizard::cleanupPage commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp impure plain false false  void [0xc826b1b6e0] }
+&{currentId QWizard::currentId commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  int [] }
+&{hasVisitedPage QWizard::hasVisitedPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  bool [0xc826b1be80] }
+&{initializePage QWizard::initializePage commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp impure plain false false  void [0xc826b0a2c0] }
+&{options QWizard::options commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  WizardOptions [] }
+&{page QWizard::page commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  QWizardPage * [0xc826b0a840] }
+&{setOptions QWizard::setOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  void [0xc826b0ad60] }
+&{setPage QWizard::setPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  void [0xc826b0b0a0 0xc826b0b200] }
+&{setStartId QWizard::setStartId commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  void [0xc826b0b700] }
+&{setSubTitleFormat QWizard::setSubTitleFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  void [0xc826b0bb80] }
+&{setTitleFormat QWizard::setTitleFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  void [0xc826aea020] }
+&{setWizardStyle QWizard::setWizardStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  void [0xc826aea440] }
+&{startId QWizard::startId commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  int [] }
+&{subTitleFormat QWizard::subTitleFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  Qt::TextFormat [] }
+&{titleFormat QWizard::titleFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  Qt::TextFormat [] }
+&{wizardStyle QWizard::wizardStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  WizardStyle [] }
+&{QWizard QWizard::QWizard commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non constructor false false   [0xc820b9e3e0 0xc820b9e540] }
+&{addPage QWizard::addPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  int [0xc820b9ebc0] }
+&{back QWizard::back commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non slot false false  void [] }
+&{button QWizard::button commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  QAbstractButton * [0xc820b9f040] }
+&{buttonText QWizard::buttonText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  QString [0xc820b9f440] }
+&{currentIdChanged QWizard::currentIdChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non signal false false  void [0xc820b9f7e0] }
+&{currentPage QWizard::currentPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  QWizardPage * [] }
+&{customButtonClicked QWizard::customButtonClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non signal false false  void [0xc820b9fe20] }
+&{done QWizard::done commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  void [0xc820c640c0] }
+&{event QWizard::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  bool [0xc820c64300] }
+&{field QWizard::field commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  QVariant [0xc820c644c0] }
+&{helpRequested QWizard::helpRequested commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non signal false false  void [] }
+&{nativeEvent QWizard::nativeEvent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  bool [0xc820c64880 0xc820c64980 0xc820c64a00] }
+&{next QWizard::next commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non slot false false  void [] }
+&{nextId QWizard::nextId commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  int [] }
+&{pageAdded QWizard::pageAdded commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non signal false false  void [0xc820c64e00] }
+&{pageIds QWizard::pageIds commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  QList<int> [] }
+&{pageRemoved QWizard::pageRemoved commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non signal false false  void [0xc820c65140] }
+&{paintEvent QWizard::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  void [0xc820c653a0] }
+&{pixmap QWizard::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  QPixmap [0xc820c65540] }
+&{removePage QWizard::removePage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc820c657c0] }
+&{resizeEvent QWizard::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  void [0xc820c65a00] }
+&{restart QWizard::restart commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non slot false false  void [] }
+&{setButton QWizard::setButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc820c65ce0 0xc820c65d80] }
+&{setButtonLayout QWizard::setButtonLayout commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc820b7e0c0] }
+&{setButtonText QWizard::setButtonText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc820b7e620 0xc820b7e780] }
+&{setDefaultProperty QWizard::setDefaultProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc820b7ec20 0xc820b7ed40 0xc820b7ee80] }
+&{setField QWizard::setField commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc820b7f140 0xc820b7f260] }
+&{setOption QWizard::setOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc820b7f560 0xc820b7f6a0] }
+&{setPixmap QWizard::setPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc820b7fa40 0xc820b7fb00] }
+&{setSideWidget QWizard::setSideWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc820b7fea0] }
+&{setVisible QWizard::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  void [0xc82315a100] }
+&{sideWidget QWizard::sideWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  QWidget * [] }
+&{sizeHint QWizard::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  QSize [] }
+&{testOption QWizard::testOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  bool [0xc82315a5c0] }
+&{validateCurrentPage QWizard::validateCurrentPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  bool [] }
+&{visitedPages QWizard::visitedPages commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  QList<int> [] }
+&{~QWizard QWizard::~QWizard commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{WizardButton QWizard::WizardButton commendable public  [0xc826aeb520 0xc826aeb6e0 0xc826aeb860 0xc826aeb9a0 0xc826aebc60 0xc826aebd80 0xc826aebf20 0xc826ada000 0xc826ada100 0xc826ada240 0xc826ada380 0xc826ada580 0xc826ada6a0]}
+&{WizardOption QWizard::WizardOption commendable public QWizard::WizardOptions [0xc826adaba0 0xc826adace0 0xc826adae80 0xc826adb060 0xc826adb260 0xc826adb4e0 0xc826adb720 0xc826adb960 0xc826adbbc0 0xc826adbe20 0xc826adbf00 0xc826abc180 0xc826abc320 0xc826abc540 0xc826abc720 0xc826abc900 0xc826abcc20]}
+&{WizardPixmap QWizard::WizardPixmap commendable public  [0xc826abd040 0xc826abd1a0 0xc826abd320 0xc826abd440 0xc826abd580]}
+&{WizardStyle QWizard::WizardStyle commendable public  [0xc826abda40 0xc826abdb40 0xc826abdc60 0xc826abdde0 0xc826abdfe0]}

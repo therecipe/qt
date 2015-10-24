@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QSpacerItem QSpacerItem::QSpacerItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h non constructor false false   [0xc822337ce0 0xc822337d60 0xc822337e80 0xc822337fc0] }
+&{changeSize QSpacerItem::changeSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h non plain false false  void [0xc822348240 0xc8223482e0 0xc8223483e0 0xc822348500] }
+&{expandingDirections QSpacerItem::expandingDirections commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  Qt::Orientations [] }
+&{geometry QSpacerItem::geometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QRect [] }
+&{isEmpty QSpacerItem::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  bool [] }
+&{maximumSize QSpacerItem::maximumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSize [] }
+&{minimumSize QSpacerItem::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSize [] }
+&{setGeometry QSpacerItem::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  void [0xc822348e60] }
+&{sizeHint QSpacerItem::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSize [] }
+&{sizePolicy QSpacerItem::sizePolicy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h non plain false false  QSizePolicy [] }
+&{spacerItem QSpacerItem::spacerItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSpacerItem * [] }
+&{~QSpacerItem QSpacerItem::~QSpacerItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h non destructor false false   [] }
+########################################			ENUMS			########################################

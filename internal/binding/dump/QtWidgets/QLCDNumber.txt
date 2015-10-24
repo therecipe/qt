@@ -1,0 +1,30 @@
+########################################			FUNCTIONS			########################################
+&{intValue QLCDNumber::intValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  int [] }
+&{mode QLCDNumber::mode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  Mode [] }
+&{segmentStyle QLCDNumber::segmentStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  SegmentStyle [] }
+&{setMode QLCDNumber::setMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  void [0xc821f1b120] }
+&{setSegmentStyle QLCDNumber::setSegmentStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  void [0xc821f1b4c0] }
+&{setSmallDecimalPoint QLCDNumber::setSmallDecimalPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non slot false false  void [0xc821f1b920] }
+&{smallDecimalPoint QLCDNumber::smallDecimalPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  bool [] }
+&{value QLCDNumber::value commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  double [] }
+&{QLCDNumber QLCDNumber::QLCDNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non constructor false false   [0xc822a46d20] }
+&{QLCDNumber QLCDNumber::QLCDNumber commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non constructor false true 2  [0xc822a47080 0xc822a47220] }
+&{checkOverflow QLCDNumber::checkOverflow commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non plain false false  bool [0xc822a475a0] }
+&{checkOverflow QLCDNumber::checkOverflow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non plain false true 2 bool [0xc822a47920] }
+&{digitCount QLCDNumber::digitCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non plain false false  int [] }
+&{display QLCDNumber::display commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false false  void [0xc822a47fa0] }
+&{display QLCDNumber::display commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false true 2 void [0xc8220b02c0] }
+&{display QLCDNumber::display commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false true 3 void [0xc8220b06c0] }
+&{event QLCDNumber::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h impure plain false false  bool [0xc8220b0aa0] }
+&{overflow QLCDNumber::overflow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non signal false false  void [] }
+&{paintEvent QLCDNumber::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h impure plain false false  void [0xc8220b1080] }
+&{setBinMode QLCDNumber::setBinMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false false  void [] }
+&{setDecMode QLCDNumber::setDecMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false false  void [] }
+&{setDigitCount QLCDNumber::setDigitCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non plain false false  void [0xc8220b1700] }
+&{setHexMode QLCDNumber::setHexMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false false  void [] }
+&{setOctMode QLCDNumber::setOctMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false false  void [] }
+&{sizeHint QLCDNumber::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h impure plain false false  QSize [] }
+&{~QLCDNumber QLCDNumber::~QLCDNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Mode QLCDNumber::Mode commendable public  [0xc822a461a0 0xc822a462e0 0xc822a46360 0xc822a46500]}
+&{SegmentStyle QLCDNumber::SegmentStyle commendable public  [0xc822a46860 0xc822a46920 0xc822a469e0]}

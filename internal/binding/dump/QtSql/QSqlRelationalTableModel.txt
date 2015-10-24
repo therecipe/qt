@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QSqlRelationalTableModel QSqlRelationalTableModel::QSqlRelationalTableModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h non constructor false false   [0xc8210f6520 0xc8210f6620] }
+&{clear QSqlRelationalTableModel::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure plain false false  void [] }
+&{data QSqlRelationalTableModel::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure plain false false  QVariant [0xc8210f6c00 0xc8210f6da0] }
+&{insertRowIntoTable QSqlRelationalTableModel::insertRowIntoTable commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure plain false false  bool [0xc8210f7080] }
+&{orderByClause QSqlRelationalTableModel::orderByClause commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure plain false false  QString [] }
+&{relation QSqlRelationalTableModel::relation commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h non plain false false  QSqlRelation [0xc8210f75a0] }
+&{relationModel QSqlRelationalTableModel::relationModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure plain false false  QSqlTableModel * [0xc8210f77c0] }
+&{removeColumns QSqlRelationalTableModel::removeColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure plain false false  bool [0xc8210f7aa0 0xc8210f7c00 0xc8210f7cc0] }
+&{revertRow QSqlRelationalTableModel::revertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure slot false false  void [0xc8210f0060] }
+&{select QSqlRelationalTableModel::select commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure plain false false  bool [] }
+&{selectStatement QSqlRelationalTableModel::selectStatement commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure plain false false  QString [] }
+&{setData QSqlRelationalTableModel::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure plain false false  bool [0xc8210f03a0 0xc8210f04a0 0xc8210f0520] }
+&{setJoinMode QSqlRelationalTableModel::setJoinMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h non plain false false  void [0xc8210f0680] }
+&{setRelation QSqlRelationalTableModel::setRelation commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure plain false false  void [0xc8210f07e0 0xc8210f0880] }
+&{setTable QSqlRelationalTableModel::setTable commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure plain false false  void [0xc8210f0a20] }
+&{updateRowInTable QSqlRelationalTableModel::updateRowInTable commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure plain false false  bool [0xc8210f0b80 0xc8210f0c20] }
+&{~QSqlRelationalTableModel QSqlRelationalTableModel::~QSqlRelationalTableModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{JoinMode QSqlRelationalTableModel::JoinMode commendable public  [0xc8210f6080 0xc8210f6140]}

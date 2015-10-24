@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{currentValue QAccessibleValueInterface::currentValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QVariant [] }
+&{maximumValue QAccessibleValueInterface::maximumValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QVariant [] }
+&{minimumStepSize QAccessibleValueInterface::minimumStepSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QVariant [] }
+&{minimumValue QAccessibleValueInterface::minimumValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QVariant [] }
+&{setCurrentValue QAccessibleValueInterface::setCurrentValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void [0xc820c256a0] }
+&{~QAccessibleValueInterface QAccessibleValueInterface::~QAccessibleValueInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure destructor false false   [] }
+########################################			ENUMS			########################################

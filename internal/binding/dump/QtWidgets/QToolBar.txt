@@ -1,0 +1,44 @@
+########################################			FUNCTIONS			########################################
+&{allowedAreas QToolBar::allowedAreas commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non plain false false  Qt::ToolBarAreas [] }
+&{iconSize QToolBar::iconSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non plain false false  QSize [] }
+&{isFloatable QToolBar::isFloatable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non plain false false  bool [] }
+&{isFloating QToolBar::isFloating commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non plain false false  bool [] }
+&{isMovable QToolBar::isMovable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non plain false false  bool [] }
+&{orientation QToolBar::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non plain false false  Qt::Orientation [] }
+&{setAllowedAreas QToolBar::setAllowedAreas commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non plain false false  void [0xc822b7eee0] }
+&{setFloatable QToolBar::setFloatable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non plain false false  void [0xc822b7f280] }
+&{setIconSize QToolBar::setIconSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non slot false false  void [0xc822b7f700] }
+&{setMovable QToolBar::setMovable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non plain false false  void [0xc822b7fb40] }
+&{setOrientation QToolBar::setOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non plain false false  void [0xc822b7ff20] }
+&{setToolButtonStyle QToolBar::setToolButtonStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non slot false false  void [0xc822b8c3c0] }
+&{toolButtonStyle QToolBar::toolButtonStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.cpp non plain false false  Qt::ToolButtonStyle [] }
+&{QToolBar QToolBar::QToolBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non constructor false true 2  [0xc822b8cac0] }
+&{QToolBar QToolBar::QToolBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non constructor false false   [0xc822b8cec0 0xc822b8cf60] }
+&{actionAt QToolBar::actionAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false false  QAction * [0xc822b8d7c0] }
+&{actionAt QToolBar::actionAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false true 2 QAction * [0xc822b8db60 0xc822b8dc60] }
+&{actionEvent QToolBar::actionEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h impure plain false false  void [0xc822b8dfe0] }
+&{actionTriggered QToolBar::actionTriggered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non signal false false  void [0xc822b9eb00] }
+&{addAction QToolBar::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false true 2 QAction * [0xc822b9ee40 0xc822b9efc0] }
+&{addAction QToolBar::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false true 4 QAction * [0xc822b9f280 0xc822b9f340 0xc822b9f3c0 0xc822b9f500] }
+&{addAction QToolBar::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false false  QAction * [0xc822b9f760] }
+&{addAction QToolBar::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false true 3 QAction * [0xc822b9fa60 0xc822b9fb40 0xc822b9fc00] }
+&{addSeparator QToolBar::addSeparator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false false  QAction * [] }
+&{addWidget QToolBar::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false false  QAction * [0xc822bb0060] }
+&{allowedAreasChanged QToolBar::allowedAreasChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non signal false false  void [0xc822bb0580] }
+&{changeEvent QToolBar::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h impure plain false false  void [0xc822bb0980] }
+&{clear QToolBar::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false false  void [] }
+&{event QToolBar::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h impure plain false false  bool [0xc822bb0dc0] }
+&{iconSizeChanged QToolBar::iconSizeChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non signal false false  void [0xc822bb11c0] }
+&{insertSeparator QToolBar::insertSeparator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false false  QAction * [0xc822bb15a0] }
+&{insertWidget QToolBar::insertWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false false  QAction * [0xc822bb1900 0xc822bb1a40] }
+&{isAreaAllowed QToolBar::isAreaAllowed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false false  bool [0xc822bb1e20] }
+&{movableChanged QToolBar::movableChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non signal false false  void [0xc821db0100] }
+&{orientationChanged QToolBar::orientationChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non signal false false  void [0xc821db0500] }
+&{paintEvent QToolBar::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h impure plain false false  void [0xc821db07c0] }
+&{toggleViewAction QToolBar::toggleViewAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false false  QAction * [] }
+&{toolButtonStyleChanged QToolBar::toolButtonStyleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non signal false false  void [0xc821db0ce0] }
+&{topLevelChanged QToolBar::topLevelChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non signal false false  void [0xc821db1020] }
+&{visibilityChanged QToolBar::visibilityChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non signal false false  void [0xc821db1340] }
+&{widgetForAction QToolBar::widgetForAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non plain false false  QWidget * [0xc821db1660] }
+&{~QToolBar QToolBar::~QToolBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbar.h non destructor false false   [] }
+########################################			ENUMS			########################################

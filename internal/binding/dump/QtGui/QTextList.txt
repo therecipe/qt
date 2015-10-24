@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{itemNumber QTextList::itemNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlist.cpp non plain false false  int [0xc821ad5160] }
+&{itemText QTextList::itemText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlist.cpp non plain false false  QString [0xc821ad5720] }
+&{add QTextList::add commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlist.h non plain false false  void [0xc821bac120] }
+&{count QTextList::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlist.h non plain false false  int [] }
+&{format QTextList::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlist.h non plain false false  QTextListFormat [] }
+&{item QTextList::item commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlist.h non plain false false  QTextBlock [0xc821bacd00] }
+&{remove QTextList::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlist.h non plain false false  void [0xc821bad240] }
+&{removeItem QTextList::removeItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlist.h non plain false false  void [0xc821bad740] }
+&{setFormat QTextList::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlist.h non plain false false  void [0xc821badc60] }
+########################################			ENUMS			########################################

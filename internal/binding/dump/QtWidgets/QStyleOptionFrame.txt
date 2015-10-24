@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QStyleOptionFrame QStyleOptionFrame::QStyleOptionFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
+&{QStyleOptionFrame QStyleOptionFrame::QStyleOptionFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8214956c0] }
+########################################			ENUMS			########################################
+&{FrameFeature QStyleOptionFrame::FrameFeature commendable public QStyleOptionFrame::FrameFeatures [0xc821494500 0xc821494620 0xc821494720]}
+&{StyleOptionType QStyleOptionFrame::StyleOptionType commendable public  [0xc821494a80]}
+&{StyleOptionVersion QStyleOptionFrame::StyleOptionVersion commendable public  [0xc821494ec0]}

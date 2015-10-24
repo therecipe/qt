@@ -1,0 +1,23 @@
+########################################			FUNCTIONS			########################################
+&{QGeoAreaMonitorSource QGeoAreaMonitorSource::QGeoAreaMonitorSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h non constructor false false   [0xc82300f500] }
+&{activeMonitors QGeoAreaMonitorSource::activeMonitors commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h pure plain false false  QList<QGeoAreaMonitorInfo> [] }
+&{activeMonitors QGeoAreaMonitorSource::activeMonitors commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h pure plain false true 2 QList<QGeoAreaMonitorInfo> [0xc82300fa60] }
+&{areaEntered QGeoAreaMonitorSource::areaEntered commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h non signal false false  void [0xc82300ff00 0xc822ffc0c0] }
+&{areaExited QGeoAreaMonitorSource::areaExited commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h non signal false false  void [0xc822ffc4a0 0xc822ffc6a0] }
+&{availableSources QGeoAreaMonitorSource::availableSources commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h non plain true false  QStringList [] }
+&{createDefaultSource QGeoAreaMonitorSource::createDefaultSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h non plain true false  QGeoAreaMonitorSource * [0xc822ffcca0] }
+&{createSource QGeoAreaMonitorSource::createSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h non plain true false  QGeoAreaMonitorSource * [0xc822ffd0e0 0xc822ffd220] }
+&{error QGeoAreaMonitorSource::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h non signal false true 2 void [0xc822ffd5c0] }
+&{error QGeoAreaMonitorSource::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h pure plain false false  Error [] }
+&{monitorExpired QGeoAreaMonitorSource::monitorExpired commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h non signal false false  void [0xc822ffdc00] }
+&{positionInfoSource QGeoAreaMonitorSource::positionInfoSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h impure plain false false  QGeoPositionInfoSource * [] }
+&{requestUpdate QGeoAreaMonitorSource::requestUpdate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h pure plain false false  bool [0xc822fe8220 0xc822fe8360] }
+&{setPositionInfoSource QGeoAreaMonitorSource::setPositionInfoSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h impure plain false false  void [0xc822fe8740] }
+&{sourceName QGeoAreaMonitorSource::sourceName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h non plain false false  QString [] }
+&{startMonitoring QGeoAreaMonitorSource::startMonitoring commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h pure plain false false  bool [0xc822fe8c20] }
+&{stopMonitoring QGeoAreaMonitorSource::stopMonitoring commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h pure plain false false  bool [0xc822fe8fa0] }
+&{supportedAreaMonitorFeatures QGeoAreaMonitorSource::supportedAreaMonitorFeatures commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h pure plain false false  AreaMonitorFeatures [] }
+&{~QGeoAreaMonitorSource QGeoAreaMonitorSource::~QGeoAreaMonitorSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorsource.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{AreaMonitorFeature QGeoAreaMonitorSource::AreaMonitorFeature commendable public QGeoAreaMonitorSource::AreaMonitorFeatures [0xc82301ff80 0xc82300e180]}
+&{Error QGeoAreaMonitorSource::Error commendable public  [0xc82300e6e0 0xc82300e820 0xc82300eac0 0xc82300eda0]}

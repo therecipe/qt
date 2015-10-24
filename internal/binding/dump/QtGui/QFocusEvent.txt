@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QFocusEvent QFocusEvent::QFocusEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc8208c2e40 0xc8208c2f00] }
+&{gotFocus QFocusEvent::gotFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  bool [] }
+&{lostFocus QFocusEvent::lostFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  bool [] }
+&{reason QFocusEvent::reason commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::FocusReason [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,29 @@
+########################################			FUNCTIONS			########################################
+&{characteristicChanged QLowEnergyService::characteristicChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice.h non signal false false  void [0xc82389d0e0 0xc82389d220] }
+&{characteristicRead QLowEnergyService::characteristicRead commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice.h non signal false false  void [0xc82389d480 0xc82389d560] }
+&{characteristicWritten QLowEnergyService::characteristicWritten commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice.h non signal false false  void [0xc82389d7a0 0xc82389d880] }
+&{descriptorRead QLowEnergyService::descriptorRead commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice.h non signal false false  void [0xc82389da40 0xc82389db20] }
+&{descriptorWritten QLowEnergyService::descriptorWritten commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice.h non signal false false  void [0xc82389dd60 0xc82389de40] }
+&{error QLowEnergyService::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice.h non signal false true 2 void [0xc82388e0a0] }
+&{stateChanged QLowEnergyService::stateChanged commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice.h non signal false false  void [0xc82388e380] }
+&{characteristic QLowEnergyService::characteristic commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  QLowEnergyCharacteristic [0xc82388e8a0] }
+&{characteristics QLowEnergyService::characteristics commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  QList<QLowEnergyCharacteristic> [] }
+&{contains QLowEnergyService::contains commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  bool [0xc82388ec00] }
+&{contains QLowEnergyService::contains commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false true 2 bool [0xc82388ee20] }
+&{discoverDetails QLowEnergyService::discoverDetails commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  void [] }
+&{error QLowEnergyService::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  ServiceError [] }
+&{includedServices QLowEnergyService::includedServices commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  QList<QBluetoothUuid> [] }
+&{readCharacteristic QLowEnergyService::readCharacteristic commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  void [0xc82388f2e0] }
+&{readDescriptor QLowEnergyService::readDescriptor commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  void [0xc82388f4c0] }
+&{serviceName QLowEnergyService::serviceName commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  QString [] }
+&{serviceUuid QLowEnergyService::serviceUuid commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  QBluetoothUuid [] }
+&{state QLowEnergyService::state commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  QLowEnergyService::ServiceState [] }
+&{type QLowEnergyService::type commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  QLowEnergyService::ServiceTypes [] }
+&{writeCharacteristic QLowEnergyService::writeCharacteristic commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  void [0xc82388fd00 0xc82388fe00 0xc82388fee0] }
+&{writeDescriptor QLowEnergyService::writeDescriptor commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non plain false false  void [0xc8234b2060 0xc8234b2160] }
+&{~QLowEnergyService QLowEnergyService::~QLowEnergyService commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergyservice_osx.mm non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ServiceError QLowEnergyService::ServiceError commendable public  [0xc823489c40 0xc823489cc0 0xc823489de0 0xc823489ec0 0xc82389c000 0xc82389c0a0 0xc82389c1a0]}
+&{ServiceState QLowEnergyService::ServiceState commendable public  [0xc82389c3e0 0xc82389c480 0xc82389c560 0xc82389c640]}
+&{ServiceType QLowEnergyService::ServiceType commendable public QLowEnergyService::ServiceTypes [0xc82389c920 0xc82389c9a0]}
+&{WriteMode QLowEnergyService::WriteMode commendable public  [0xc82389cc20 0xc82389cd00]}

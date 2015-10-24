@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{regularExpression QRegularExpressionValidator::regularExpression commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  QRegularExpression [] }
+&{setRegularExpression QRegularExpressionValidator::setRegularExpression commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non slot false false  void [0xc823115c40] }
+&{QRegularExpressionValidator QRegularExpressionValidator::QRegularExpressionValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false false   [0xc823115ea0] }
+&{QRegularExpressionValidator QRegularExpressionValidator::QRegularExpressionValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false true 2  [0xc8232ce060 0xc8232ce140] }
+&{regularExpressionChanged QRegularExpressionValidator::regularExpressionChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non signal false false  void [0xc8232ce440] }
+&{validate QRegularExpressionValidator::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h impure plain false false  QValidator::State [0xc8232ce660 0xc8232ce6e0] }
+&{~QRegularExpressionValidator QRegularExpressionValidator::~QRegularExpressionValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non destructor false false   [] }
+########################################			ENUMS			########################################

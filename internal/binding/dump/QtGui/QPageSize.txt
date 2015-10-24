@@ -1,0 +1,39 @@
+########################################			FUNCTIONS			########################################
+&{QPageSize QPageSize::QPageSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non constructor false false   [] }
+&{QPageSize QPageSize::QPageSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non constructor false true 2  [0xc822beca60] }
+&{QPageSize QPageSize::QPageSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non constructor false true 5  [0xc822becc40] }
+&{QPageSize QPageSize::QPageSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non constructor false true 3  [0xc822bece40 0xc822becec0 0xc822becf40] }
+&{QPageSize QPageSize::QPageSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non constructor false true 4  [0xc822bed120 0xc822bed1a0 0xc822bed220 0xc822bed2a0] }
+&{definitionSize QPageSize::definitionSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain true true 2 QSizeF [0xc822bedc40] }
+&{definitionSize QPageSize::definitionSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  QSizeF [] }
+&{definitionUnits QPageSize::definitionUnits commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain true true 2 Unit [0xc822bedf00] }
+&{definitionUnits QPageSize::definitionUnits commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  Unit [] }
+&{id QPageSize::id commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain true true 2 PageSizeId [0xc822c00160 0xc822c001e0] }
+&{id QPageSize::id commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain true true 3 PageSizeId [0xc822c00340 0xc822c003c0 0xc822c00440] }
+&{id QPageSize::id commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain true true 4 PageSizeId [0xc822c005c0] }
+&{id QPageSize::id commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  PageSizeId [] }
+&{isEquivalentTo QPageSize::isEquivalentTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  bool [0xc822c00860] }
+&{isValid QPageSize::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  bool [] }
+&{key QPageSize::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain true true 2 QString [0xc822c00b00] }
+&{key QPageSize::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  QString [] }
+&{name QPageSize::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain true true 2 QString [0xc822c00d00] }
+&{name QPageSize::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  QString [] }
+&{operator= QPageSize::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false true 2 QPageSize & [0xc822c00f60] }
+&{operator= QPageSize::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  QPageSize & [0xc822c01140] }
+&{rect QPageSize::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  QRectF [0xc822c01300] }
+&{rectPixels QPageSize::rectPixels commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  QRect [0xc822c014c0] }
+&{rectPoints QPageSize::rectPoints commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  QRect [] }
+&{size QPageSize::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain true true 2 QSizeF [0xc822c01720 0xc822c017a0] }
+&{size QPageSize::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  QSizeF [0xc822c01920] }
+&{sizePixels QPageSize::sizePixels commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain true true 2 QSize [0xc822c01ae0 0xc822c01b60] }
+&{sizePixels QPageSize::sizePixels commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  QSize [0xc822c01d20] }
+&{sizePoints QPageSize::sizePoints commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain true true 2 QSize [0xc822c01ee0] }
+&{sizePoints QPageSize::sizePoints commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  QSize [] }
+&{swap QPageSize::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  void [0xc822c16180] }
+&{windowsId QPageSize::windowsId commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain true true 2 int [0xc822c16340] }
+&{windowsId QPageSize::windowsId commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non plain false false  int [] }
+&{~QPageSize QPageSize::~QPageSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagesize.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{PageSizeId QPageSize::PageSizeId commendable public  [0xc822bd8000 0xc822bd8080 0xc822bd8100 0xc822bd8180 0xc822bd8220 0xc822bd82a0 0xc822bd8320 0xc822bd83a0 0xc822bd8440 0xc822bd84c0 0xc822bd8540 0xc822bd85c0 0xc822bd8640 0xc822bd86c0 0xc822bd8740 0xc822bd87c0 0xc822bd8860 0xc822bd88e0 0xc822bd8960 0xc822bd89e0 0xc822bd8a60 0xc822bd8ae0 0xc822bd8b60 0xc822bd8be0 0xc822bd8c60 0xc822bd8ce0 0xc822bd8d60 0xc822bd8de0 0xc822bd8e60 0xc822bd8ee0 0xc822bd8f60 0xc822bd8fe0 0xc822bd9080 0xc822bd9100 0xc822bd9180 0xc822bd9200 0xc822bd9280 0xc822bd9300 0xc822bd9380 0xc822bd9400 0xc822bd9480 0xc822bd9500 0xc822bd9580 0xc822bd9600 0xc822bd9680 0xc822bd9700 0xc822bd9780 0xc822bd9800 0xc822bd9880 0xc822bd9900 0xc822bd9980 0xc822bd9a00 0xc822bd9a80 0xc822bd9b00 0xc822bd9b80 0xc822bd9c00 0xc822bd9c80 0xc822bd9d00 0xc822bd9d80 0xc822bd9e00 0xc822bd9e80 0xc822bd9f00 0xc822bd9f80 0xc822be4000 0xc822be40a0 0xc822be4120 0xc822be41a0 0xc822be4220 0xc822be42a0 0xc822be4320 0xc822be43a0 0xc822be4440 0xc822be4500 0xc822be4580 0xc822be4600 0xc822be4680 0xc822be4700 0xc822be4780 0xc822be4800 0xc822be4880 0xc822be4900 0xc822be4980 0xc822be4a00 0xc822be4a80 0xc822be4b20 0xc822be4be0 0xc822be4c60 0xc822be4ce0 0xc822be4d60 0xc822be4de0 0xc822be4e60 0xc822be4ee0 0xc822be4f60 0xc822be4fe0 0xc822be5060 0xc822be50e0 0xc822be5160 0xc822be51e0 0xc822be5260 0xc822be52e0 0xc822be5360 0xc822be53e0 0xc822be5460 0xc822be54e0 0xc822be5560 0xc822be55e0 0xc822be5660 0xc822be56e0 0xc822be5760 0xc822be57e0 0xc822be5860 0xc822be58e0 0xc822be5960 0xc822be59e0 0xc822be5a60 0xc822be5ae0 0xc822be5b60 0xc822be5be0 0xc822be5c60 0xc822be5ce0 0xc822be5d60 0xc822be5de0 0xc822be5e60 0xc822be5ee0 0xc822be5f60 0xc822be5fe0 0xc822bec060]}
+&{SizeMatchPolicy QPageSize::SizeMatchPolicy commendable public  [0xc822bec200 0xc822bec2a0 0xc822bec360]}
+&{Unit QPageSize::Unit commendable public  [0xc822bec4c0 0xc822bec540 0xc822bec5c0 0xc822bec640 0xc822bec6e0 0xc822bec760]}

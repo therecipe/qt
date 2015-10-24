@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QQmlFileSelector QQmlFileSelector::QQmlFileSelector commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non constructor false false   [0xc8227a2dc0 0xc8227a2e80] }
+&{get QQmlFileSelector::get commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non plain true false  QQmlFileSelector * [0xc8227a3340] }
+&{setExtraSelectors QQmlFileSelector::setExtraSelectors commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non plain false false  void [0xc8227a36e0] }
+&{setExtraSelectors QQmlFileSelector::setExtraSelectors commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non plain false true 2 void [0xc8227a3aa0] }
+&{setSelector QQmlFileSelector::setSelector commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non plain false false  void [0xc8227a3fe0] }
+&{~QQmlFileSelector QQmlFileSelector::~QQmlFileSelector commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non destructor false false   [] }
+########################################			ENUMS			########################################

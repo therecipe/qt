@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QWinEventNotifier QWinEventNotifier::QWinEventNotifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qwineventnotifier.h non constructor false true 2  [0xc8201eb740 0xc8201eb7e0] }
+&{QWinEventNotifier QWinEventNotifier::QWinEventNotifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qwineventnotifier.h non constructor false false   [0xc8201ebac0] }
+&{activated QWinEventNotifier::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qwineventnotifier.h non signal false false  void [0xc8201ebdc0] }
+&{event QWinEventNotifier::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qwineventnotifier.h impure plain false false  bool [0xc8201dc0c0] }
+&{handle QWinEventNotifier::handle commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qwineventnotifier.h non plain false false  HANDLE [] }
+&{isEnabled QWinEventNotifier::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qwineventnotifier.h non plain false false  bool [] }
+&{setEnabled QWinEventNotifier::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qwineventnotifier.h non slot false false  void [0xc8201dc7c0] }
+&{setHandle QWinEventNotifier::setHandle commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qwineventnotifier.h non plain false false  void [0xc8201dcb20] }
+&{~QWinEventNotifier QWinEventNotifier::~QWinEventNotifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qwineventnotifier.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{error QGeoCodingManager::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanager.h non signal false false  void [0xc822a69ac0 0xc822a69bc0 0xc822a69d40] }
+&{finished QGeoCodingManager::finished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanager.h non signal false false  void [0xc821dcc0c0] }
+&{geocode QGeoCodingManager::geocode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanager.h non plain false false  QGeoCodeReply * [0xc821dcc4a0 0xc821dcc680] }
+&{geocode QGeoCodingManager::geocode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanager.h non plain false true 2 QGeoCodeReply * [0xc821dcca80 0xc821dccb40 0xc821dccc80 0xc821dcce00] }
+&{locale QGeoCodingManager::locale commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanager.h non plain false false  QLocale [] }
+&{managerName QGeoCodingManager::managerName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanager.h non plain false false  QString [] }
+&{managerVersion QGeoCodingManager::managerVersion commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanager.h non plain false false  int [] }
+&{reverseGeocode QGeoCodingManager::reverseGeocode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanager.h non plain false false  QGeoCodeReply * [0xc821dcd6c0 0xc821dcd860] }
+&{setLocale QGeoCodingManager::setLocale commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanager.h non plain false false  void [0xc821dcdc80] }
+&{~QGeoCodingManager QGeoCodingManager::~QGeoCodingManager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanager.h non destructor false false   [] }
+########################################			ENUMS			########################################

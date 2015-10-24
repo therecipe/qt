@@ -1,0 +1,91 @@
+########################################			FUNCTIONS			########################################
+&{QStandardItem QStandardItem::QStandardItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non constructor false false   [] }
+&{QStandardItem QStandardItem::QStandardItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non constructor false true 3  [0xc82015a720 0xc82015a7a0] }
+&{QStandardItem QStandardItem::QStandardItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non constructor false true 2  [0xc82015a960] }
+&{QStandardItem QStandardItem::QStandardItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non constructor false true 4  [0xc82015ab20 0xc82015aba0] }
+&{QStandardItem QStandardItem::QStandardItem commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non constructor false true 5  [0xc82015ae00] }
+&{accessibleDescription QStandardItem::accessibleDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QString [] }
+&{accessibleText QStandardItem::accessibleText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QString [] }
+&{appendColumn QStandardItem::appendColumn commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc82015b640] }
+&{appendRow QStandardItem::appendRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false true 2 void [0xc82015b8c0] }
+&{appendRow QStandardItem::appendRow commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc82015bb40] }
+&{appendRows QStandardItem::appendRows commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc82015be00] }
+&{background QStandardItem::background commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QBrush [] }
+&{checkState QStandardItem::checkState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  Qt::CheckState [] }
+&{child QStandardItem::child commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItem * [0xc8209e22c0 0xc8209e2340] }
+&{clone QStandardItem::clone commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  QStandardItem * [] }
+&{column QStandardItem::column commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  int [] }
+&{columnCount QStandardItem::columnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  int [] }
+&{data QStandardItem::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  QVariant [0xc8209e28c0] }
+&{emitDataChanged QStandardItem::emitDataChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [] }
+&{flags QStandardItem::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  Qt::ItemFlags [] }
+&{font QStandardItem::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QFont [] }
+&{foreground QStandardItem::foreground commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QBrush [] }
+&{hasChildren QStandardItem::hasChildren commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  bool [] }
+&{icon QStandardItem::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QIcon [] }
+&{index QStandardItem::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QModelIndex [] }
+&{insertColumn QStandardItem::insertColumn commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209e3320 0xc8209e33c0] }
+&{insertColumns QStandardItem::insertColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209e3680 0xc8209e3720] }
+&{insertRow QStandardItem::insertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false true 2 void [0xc8209e3940 0xc8209e39c0] }
+&{insertRow QStandardItem::insertRow commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209e3c20 0xc8209e3ce0] }
+&{insertRows QStandardItem::insertRows commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209e3f00 0xc8209e3fa0] }
+&{insertRows QStandardItem::insertRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false true 2 void [0xc8209ce200 0xc8209ce280] }
+&{isCheckable QStandardItem::isCheckable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  bool [] }
+&{isDragEnabled QStandardItem::isDragEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  bool [] }
+&{isDropEnabled QStandardItem::isDropEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  bool [] }
+&{isEditable QStandardItem::isEditable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  bool [] }
+&{isEnabled QStandardItem::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  bool [] }
+&{isSelectable QStandardItem::isSelectable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  bool [] }
+&{isTristate QStandardItem::isTristate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  bool [] }
+&{model QStandardItem::model commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItemModel * [] }
+&{operator< QStandardItem::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  bool [0xc8209cef60] }
+&{operator= QStandardItem::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItem & [0xc8209cf200] }
+&{parent QStandardItem::parent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItem * [] }
+&{read QStandardItem::read commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  void [0xc8209cf5e0] }
+&{removeColumn QStandardItem::removeColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209cf800] }
+&{removeColumns QStandardItem::removeColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209cfa40 0xc8209cfac0] }
+&{removeRow QStandardItem::removeRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209cfce0] }
+&{removeRows QStandardItem::removeRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209cff00 0xc8209cffa0] }
+&{row QStandardItem::row commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  int [] }
+&{rowCount QStandardItem::rowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  int [] }
+&{setAccessibleDescription QStandardItem::setAccessibleDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209bc420] }
+&{setAccessibleText QStandardItem::setAccessibleText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209bc680] }
+&{setBackground QStandardItem::setBackground commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209bc8c0] }
+&{setCheckState QStandardItem::setCheckState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209bcae0] }
+&{setCheckable QStandardItem::setCheckable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209bcce0] }
+&{setChild QStandardItem::setChild commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false true 2 void [0xc8209bcf20 0xc8209bcfa0] }
+&{setChild QStandardItem::setChild commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209bd1a0 0xc8209bd220 0xc8209bd2a0] }
+&{setColumnCount QStandardItem::setColumnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209bd4e0] }
+&{setData QStandardItem::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  void [0xc8209bd720 0xc8209bd7a0] }
+&{setDragEnabled QStandardItem::setDragEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209bd980] }
+&{setDropEnabled QStandardItem::setDropEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209bdb80] }
+&{setEditable QStandardItem::setEditable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209bdda0] }
+&{setEnabled QStandardItem::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b0000] }
+&{setFlags QStandardItem::setFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b01e0] }
+&{setFont QStandardItem::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b0460] }
+&{setForeground QStandardItem::setForeground commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b0660] }
+&{setIcon QStandardItem::setIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b08c0] }
+&{setRowCount QStandardItem::setRowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b0ae0] }
+&{setSelectable QStandardItem::setSelectable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b0d00] }
+&{setSizeHint QStandardItem::setSizeHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b0f00] }
+&{setStatusTip QStandardItem::setStatusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b1140] }
+&{setText QStandardItem::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b1360] }
+&{setTextAlignment QStandardItem::setTextAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b1540] }
+&{setToolTip QStandardItem::setToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b1760] }
+&{setTristate QStandardItem::setTristate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b19a0] }
+&{setWhatsThis QStandardItem::setWhatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b1ba0] }
+&{sizeHint QStandardItem::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QSize [] }
+&{sortChildren QStandardItem::sortChildren commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209b1f40 0xc8209b1fe0] }
+&{statusTip QStandardItem::statusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QString [] }
+&{takeChild QStandardItem::takeChild commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItem * [0xc82099c360 0xc82099c400] }
+&{takeColumn QStandardItem::takeColumn commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QList<QStandardItem *> [0xc82099c680] }
+&{takeRow QStandardItem::takeRow commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QList<QStandardItem *> [0xc82099c920] }
+&{text QStandardItem::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QString [] }
+&{textAlignment QStandardItem::textAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  Qt::Alignment [] }
+&{toolTip QStandardItem::toolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QString [] }
+&{type QStandardItem::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  int [] }
+&{whatsThis QStandardItem::whatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QString [] }
+&{write QStandardItem::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  void [0xc82099d180] }
+&{~QStandardItem QStandardItem::~QStandardItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{ItemType QStandardItem::ItemType commendable public  [0xc82015a380 0xc82015a420]}

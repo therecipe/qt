@@ -1,0 +1,85 @@
+########################################			FUNCTIONS			########################################
+&{QTextStream QTextStream::QTextStream commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non constructor false false   [] }
+&{QTextStream QTextStream::QTextStream commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non constructor false true 3  [0xc82025d820 0xc82025d920] }
+&{QTextStream QTextStream::QTextStream commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non constructor false true 5  [0xc82025dbe0 0xc82025dce0] }
+&{QTextStream QTextStream::QTextStream commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non constructor false true 2  [0xc82025dfc0] }
+&{QTextStream QTextStream::QTextStream commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non constructor false true 4  [0xc820252200 0xc820252300] }
+&{QTextStream QTextStream::QTextStream commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non constructor false true 6  [0xc8202525a0 0xc820252700] }
+&{atEnd QTextStream::atEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  bool [] }
+&{autoDetectUnicode QTextStream::autoDetectUnicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  bool [] }
+&{codec QTextStream::codec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  QTextCodec * [] }
+&{device QTextStream::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  QIODevice * [] }
+&{fieldAlignment QTextStream::fieldAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  FieldAlignment [] }
+&{fieldWidth QTextStream::fieldWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  int [] }
+&{flush QTextStream::flush commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [] }
+&{generateByteOrderMark QTextStream::generateByteOrderMark commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  bool [] }
+&{integerBase QTextStream::integerBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  int [] }
+&{locale QTextStream::locale commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  QLocale [] }
+&{numberFlags QTextStream::numberFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  NumberFlags [] }
+&{operator<< QTextStream::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  QTextStream & [0xc820253820] }
+&{operator<< QTextStream::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 14 QTextStream & [0xc820253a40] }
+&{operator<< QTextStream::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 5 QTextStream & [0xc820253ca0] }
+&{operator<< QTextStream::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 15 QTextStream & [0xc820253ec0] }
+&{operator<< QTextStream::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 4 QTextStream & [0xc820244100] }
+&{operator<< QTextStream::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 16 QTextStream & [0xc820244340] }
+&{operator<< QTextStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 17 QTextStream & [0xc820244540] }
+&{operator<< QTextStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 13 QTextStream & [0xc820244760] }
+&{operator<< QTextStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 3 QTextStream & [0xc820244980] }
+&{operator<< QTextStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 11 QTextStream & [0xc820244bc0] }
+&{operator<< QTextStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 12 QTextStream & [0xc820244de0] }
+&{operator<< QTextStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 7 QTextStream & [0xc820245000] }
+&{operator<< QTextStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 9 QTextStream & [0xc820245200] }
+&{operator<< QTextStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 2 QTextStream & [0xc820245460] }
+&{operator<< QTextStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 8 QTextStream & [0xc8202456a0] }
+&{operator<< QTextStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 10 QTextStream & [0xc8202458e0] }
+&{operator<< QTextStream::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 6 QTextStream & [0xc820245b00] }
+&{operator>> QTextStream::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 14 QTextStream & [0xc820245d20] }
+&{operator>> QTextStream::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  QTextStream & [0xc820245f40] }
+&{operator>> QTextStream::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 4 QTextStream & [0xc82023a160] }
+&{operator>> QTextStream::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 5 QTextStream & [0xc82023a380] }
+&{operator>> QTextStream::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 15 QTextStream & [0xc82023a580] }
+&{operator>> QTextStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 13 QTextStream & [0xc82023a7e0] }
+&{operator>> QTextStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 3 QTextStream & [0xc82023aa00] }
+&{operator>> QTextStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 11 QTextStream & [0xc82023ac20] }
+&{operator>> QTextStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 12 QTextStream & [0xc82023ae40] }
+&{operator>> QTextStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 7 QTextStream & [0xc82023b060] }
+&{operator>> QTextStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 9 QTextStream & [0xc82023b280] }
+&{operator>> QTextStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 2 QTextStream & [0xc82023b4a0] }
+&{operator>> QTextStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 8 QTextStream & [0xc82023b6c0] }
+&{operator>> QTextStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 10 QTextStream & [0xc82023b8c0] }
+&{operator>> QTextStream::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 6 QTextStream & [0xc82023bac0] }
+&{padChar QTextStream::padChar commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  QChar [] }
+&{pos QTextStream::pos commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  qint64 [] }
+&{read QTextStream::read commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  QString [0xc82023bf60] }
+&{readAll QTextStream::readAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  QString [] }
+&{readLine QTextStream::readLine commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  QString [0xc82022e2e0] }
+&{readLineInto QTextStream::readLineInto commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  bool [0xc82022e580 0xc82022e600] }
+&{realNumberNotation QTextStream::realNumberNotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  RealNumberNotation [] }
+&{realNumberPrecision QTextStream::realNumberPrecision commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  int [] }
+&{reset QTextStream::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [] }
+&{resetStatus QTextStream::resetStatus commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [] }
+&{seek QTextStream::seek commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  bool [0xc82022eec0] }
+&{setAutoDetectUnicode QTextStream::setAutoDetectUnicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc82022f0e0] }
+&{setCodec QTextStream::setCodec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc82022f360] }
+&{setCodec QTextStream::setCodec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false true 2 void [0xc82022f5e0] }
+&{setDevice QTextStream::setDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc82022f800] }
+&{setFieldAlignment QTextStream::setFieldAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc82022fac0] }
+&{setFieldWidth QTextStream::setFieldWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc82022fd00] }
+&{setGenerateByteOrderMark QTextStream::setGenerateByteOrderMark commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc82022fee0] }
+&{setIntegerBase QTextStream::setIntegerBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc820224140] }
+&{setLocale QTextStream::setLocale commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc820224360] }
+&{setNumberFlags QTextStream::setNumberFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc8202245c0] }
+&{setPadChar QTextStream::setPadChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc820224840] }
+&{setRealNumberNotation QTextStream::setRealNumberNotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc820224a40] }
+&{setRealNumberPrecision QTextStream::setRealNumberPrecision commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc820224cc0] }
+&{setStatus QTextStream::setStatus commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc820224f00] }
+&{setString QTextStream::setString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [0xc820225160 0xc820225260] }
+&{skipWhiteSpace QTextStream::skipWhiteSpace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  void [] }
+&{status QTextStream::status commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  Status [] }
+&{string QTextStream::string commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h non plain false false  QString * [] }
+&{~QTextStream QTextStream::~QTextStream commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtextstream.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{FieldAlignment QTextStream::FieldAlignment commendable public  [0xc82025c180 0xc82025c240 0xc82025c300 0xc82025c3e0]}
+&{NumberFlag QTextStream::NumberFlag commendable public QTextStream::NumberFlags [0xc82025c720 0xc82025c7c0 0xc82025c860 0xc82025c920 0xc82025ca00]}
+&{RealNumberNotation QTextStream::RealNumberNotation commendable public  [0xc82025ccc0 0xc82025cd80 0xc82025ce40]}
+&{Status QTextStream::Status commendable public  [0xc82025d100 0xc82025d1c0 0xc82025d260 0xc82025d300]}

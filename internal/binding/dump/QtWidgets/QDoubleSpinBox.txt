@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{cleanText QDoubleSpinBox::cleanText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString [] }
+&{decimals QDoubleSpinBox::decimals commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int [] }
+&{maximum QDoubleSpinBox::maximum commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  double [] }
+&{minimum QDoubleSpinBox::minimum commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  double [] }
+&{prefix QDoubleSpinBox::prefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString [] }
+&{setDecimals QDoubleSpinBox::setDecimals commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc822d8be40] }
+&{setMaximum QDoubleSpinBox::setMaximum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc822d78400] }
+&{setMinimum QDoubleSpinBox::setMinimum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc822d789e0] }
+&{setPrefix QDoubleSpinBox::setPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc822d78ee0] }
+&{setSingleStep QDoubleSpinBox::setSingleStep commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc822d793a0] }
+&{setSuffix QDoubleSpinBox::setSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc822d79760] }
+&{setValue QDoubleSpinBox::setValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non slot false false  void [0xc822d79c00] }
+&{singleStep QDoubleSpinBox::singleStep commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  double [] }
+&{suffix QDoubleSpinBox::suffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString [] }
+&{value QDoubleSpinBox::value commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  double [] }
+&{QDoubleSpinBox QDoubleSpinBox::QDoubleSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non constructor false false   [0xc822d6e940] }
+&{fixup QDoubleSpinBox::fixup commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  void [0xc822d6ee40] }
+&{setRange QDoubleSpinBox::setRange commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non plain false false  void [0xc822d6f340 0xc822d6f5e0] }
+&{textFromValue QDoubleSpinBox::textFromValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  QString [0xc822d6fa60] }
+&{validate QDoubleSpinBox::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  QValidator::State [0xc822d4e160 0xc822d4e240] }
+&{valueChanged QDoubleSpinBox::valueChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non signal false true 2 void [0xc822d4e7c0] }
+&{valueChanged QDoubleSpinBox::valueChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non signal false false  void [0xc822d4edc0] }
+&{valueFromText QDoubleSpinBox::valueFromText commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  double [0xc822d4f220] }
+&{~QDoubleSpinBox QDoubleSpinBox::~QDoubleSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non destructor false false   [] }
+########################################			ENUMS			########################################

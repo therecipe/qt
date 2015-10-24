@@ -1,0 +1,25 @@
+########################################			FUNCTIONS			########################################
+&{QAccessibleWidget QAccessibleWidget::QAccessibleWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h non constructor false false   [0xc823203960 0xc823203aa0 0xc823203c00] }
+&{actionNames QAccessibleWidget::actionNames commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QStringList [] }
+&{addControllingSignal QAccessibleWidget::addControllingSignal commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h non plain false false  void [0xc8231f40c0] }
+&{backgroundColor QAccessibleWidget::backgroundColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QColor [] }
+&{child QAccessibleWidget::child commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QAccessibleInterface * [0xc8231f4580] }
+&{childCount QAccessibleWidget::childCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  int [] }
+&{doAction QAccessibleWidget::doAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  void [0xc8231f4a40] }
+&{focusChild QAccessibleWidget::focusChild commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QAccessibleInterface * [] }
+&{foregroundColor QAccessibleWidget::foregroundColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QColor [] }
+&{indexOfChild QAccessibleWidget::indexOfChild commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  int [0xc8231f4fc0] }
+&{interface_cast QAccessibleWidget::interface_cast commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  void * [0xc8231f5300] }
+&{isValid QAccessibleWidget::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  bool [] }
+&{keyBindingsForAction QAccessibleWidget::keyBindingsForAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QStringList [0xc8231f57e0] }
+&{parent QAccessibleWidget::parent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QAccessibleInterface * [] }
+&{parentObject QAccessibleWidget::parentObject commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h non plain false false  QObject * [] }
+&{rect QAccessibleWidget::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QRect [] }
+&{relations QAccessibleWidget::relations commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QVector<QPair<QAccessibleInterface *, QAccessible::Relation> > [0xc8231de0e0] }
+&{role QAccessibleWidget::role commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QAccessible::Role [] }
+&{state QAccessibleWidget::state commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QAccessible::State [] }
+&{text QAccessibleWidget::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QString [0xc8231de860] }
+&{widget QAccessibleWidget::widget commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h non plain false false  QWidget * [] }
+&{window QAccessibleWidget::window commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h impure plain false false  QWindow * [] }
+&{~QAccessibleWidget QAccessibleWidget::~QAccessibleWidget commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/accessible/qaccessiblewidget.h non destructor false false   [] }
+########################################			ENUMS			########################################

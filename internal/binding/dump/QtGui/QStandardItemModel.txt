@@ -1,0 +1,62 @@
+########################################			FUNCTIONS			########################################
+&{setSortRole QStandardItemModel::setSortRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.cpp non plain false false  void [0xc82099d7a0] }
+&{sortRole QStandardItemModel::sortRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.cpp non plain false false  int [] }
+&{QStandardItemModel QStandardItemModel::QStandardItemModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non constructor false false   [0xc82099db00] }
+&{QStandardItemModel QStandardItemModel::QStandardItemModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non constructor false true 2  [0xc82099dce0 0xc82099dd60 0xc82099de00] }
+&{appendColumn QStandardItemModel::appendColumn commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8201aa4e0] }
+&{appendRow QStandardItemModel::appendRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false true 2 void [0xc8201aa720] }
+&{appendRow QStandardItemModel::appendRow commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8201aa960] }
+&{clear QStandardItemModel::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [] }
+&{columnCount QStandardItemModel::columnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  int [0xc8201aad40] }
+&{data QStandardItemModel::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  QVariant [0xc8201aafc0 0xc8201ab0e0] }
+&{dropMimeData QStandardItemModel::dropMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  bool [0xc8201ab300 0xc8201ab400 0xc8201ab4c0 0xc8201ab540 0xc8201ab640] }
+&{findItems QStandardItemModel::findItems commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QList<QStandardItem *> [0xc8201ab920 0xc8201ab9a0 0xc8201aba20] }
+&{flags QStandardItemModel::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  Qt::ItemFlags [0xc8201abca0] }
+&{hasChildren QStandardItemModel::hasChildren commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  bool [0xc8201abf60] }
+&{headerData QStandardItemModel::headerData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  QVariant [0xc820978180 0xc820978200 0xc820978280] }
+&{horizontalHeaderItem QStandardItemModel::horizontalHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItem * [0xc820978440] }
+&{index QStandardItemModel::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  QModelIndex [0xc820978620 0xc8209786a0 0xc820978740] }
+&{indexFromItem QStandardItemModel::indexFromItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QModelIndex [0xc820978900] }
+&{insertColumn QStandardItemModel::insertColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false true 2 bool [0xc820978b00 0xc820978ba0] }
+&{insertColumn QStandardItemModel::insertColumn commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc820978da0 0xc820978e40] }
+&{insertColumns QStandardItemModel::insertColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  bool [0xc820978fe0 0xc820979060 0xc820979100] }
+&{insertRow QStandardItemModel::insertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false true 2 bool [0xc820979300 0xc8209793a0] }
+&{insertRow QStandardItemModel::insertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false true 3 void [0xc8209795c0 0xc820979660] }
+&{insertRow QStandardItemModel::insertRow commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc820979840 0xc820979940] }
+&{insertRows QStandardItemModel::insertRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  bool [0xc820979b80 0xc820979c00 0xc820979cc0] }
+&{invisibleRootItem QStandardItemModel::invisibleRootItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItem * [] }
+&{item QStandardItemModel::item commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItem * [0xc8209a2060 0xc8209a2120] }
+&{itemChanged QStandardItemModel::itemChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non signal false false  void [0xc8209a2340] }
+&{itemData QStandardItemModel::itemData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  QMap<int, QVariant> [0xc8209a2640] }
+&{itemFromIndex QStandardItemModel::itemFromIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItem * [0xc8209a28a0] }
+&{itemPrototype QStandardItemModel::itemPrototype commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  const QStandardItem * [] }
+&{mimeData QStandardItemModel::mimeData commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  QMimeData * [0xc8209a2c80] }
+&{mimeTypes QStandardItemModel::mimeTypes commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  QStringList [] }
+&{parent QStandardItemModel::parent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  QModelIndex [0xc8209a3080] }
+&{removeColumns QStandardItemModel::removeColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  bool [0xc8209a3220 0xc8209a32a0 0xc8209a3340] }
+&{removeRows QStandardItemModel::removeRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  bool [0xc8209a35c0 0xc8209a3640 0xc8209a36e0] }
+&{rowCount QStandardItemModel::rowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  int [0xc8209a39c0] }
+&{setColumnCount QStandardItemModel::setColumnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc8209a3bc0] }
+&{setData QStandardItemModel::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  bool [0xc8209a3e00 0xc8209a3f00 0xc8209a3fa0] }
+&{setHeaderData QStandardItemModel::setHeaderData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  bool [0xc82095e140 0xc82095e1c0 0xc82095e240 0xc82095e2c0] }
+&{setHorizontalHeaderItem QStandardItemModel::setHorizontalHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc82095e480 0xc82095e500] }
+&{setHorizontalHeaderLabels QStandardItemModel::setHorizontalHeaderLabels commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc82095e6e0] }
+&{setItem QStandardItemModel::setItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false true 2 void [0xc82095e8e0 0xc82095e980] }
+&{setItem QStandardItemModel::setItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc82095ebe0 0xc82095ec60 0xc82095ece0] }
+&{setItemData QStandardItemModel::setItemData commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  bool [0xc82095ef20 0xc82095f000] }
+&{setItemPrototype QStandardItemModel::setItemPrototype commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc82095f200] }
+&{setItemRoleNames QStandardItemModel::setItemRoleNames commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc82095f420] }
+&{setRowCount QStandardItemModel::setRowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc82095f680] }
+&{setVerticalHeaderItem QStandardItemModel::setVerticalHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc82095f8c0 0xc82095f940] }
+&{setVerticalHeaderLabels QStandardItemModel::setVerticalHeaderLabels commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  void [0xc82095fb60] }
+&{sibling QStandardItemModel::sibling commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  QModelIndex [0xc82095fde0 0xc82095fe60 0xc82095ff00] }
+&{sort QStandardItemModel::sort commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  void [0xc82094a120 0xc82094a1c0] }
+&{supportedDropActions QStandardItemModel::supportedDropActions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h impure plain false false  Qt::DropActions [] }
+&{takeColumn QStandardItemModel::takeColumn commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QList<QStandardItem *> [0xc82094a540] }
+&{takeHorizontalHeaderItem QStandardItemModel::takeHorizontalHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItem * [0xc82094a780] }
+&{takeItem QStandardItemModel::takeItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItem * [0xc82094a9e0 0xc82094aa60] }
+&{takeRow QStandardItemModel::takeRow commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QList<QStandardItem *> [0xc82094ad80] }
+&{takeVerticalHeaderItem QStandardItemModel::takeVerticalHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItem * [0xc82094af60] }
+&{verticalHeaderItem QStandardItemModel::verticalHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non plain false false  QStandardItem * [0xc82094b1a0] }
+&{~QStandardItemModel QStandardItemModel::~QStandardItemModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/itemmodels/qstandarditemmodel.h non destructor false false   [] }
+########################################			ENUMS			########################################

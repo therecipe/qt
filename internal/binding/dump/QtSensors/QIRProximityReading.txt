@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{reflectance QIRProximityReading::reflectance commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qirproximitysensor.cpp non plain false false  qreal [] }
+&{setReflectance QIRProximityReading::setReflectance commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qirproximitysensor.h non plain false false  void [0xc822e91160] }
+########################################			ENUMS			########################################

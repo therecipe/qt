@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QEventTransition QEventTransition::QEventTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qeventtransition.h non constructor false true 2  [0xc820103920 0xc8201039a0 0xc820103a60] }
+&{QEventTransition QEventTransition::QEventTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qeventtransition.h non constructor false false   [0xc820103ca0] }
+&{event QEventTransition::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qeventtransition.h impure plain false false  bool [0xc8200ee900] }
+&{eventSource QEventTransition::eventSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qeventtransition.h non plain false false  QObject * [] }
+&{eventTest QEventTransition::eventTest commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qeventtransition.h impure plain false false  bool [0xc8200eeec0] }
+&{eventType QEventTransition::eventType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qeventtransition.h non plain false false  QEvent::Type [] }
+&{onTransition QEventTransition::onTransition commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qeventtransition.h impure plain false false  void [0xc8200ef4a0] }
+&{setEventSource QEventTransition::setEventSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qeventtransition.h non plain false false  void [0xc8200ef8e0] }
+&{setEventType QEventTransition::setEventType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qeventtransition.h non plain false false  void [0xc8200efc40] }
+&{~QEventTransition QEventTransition::~QEventTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qeventtransition.h non destructor false false   [] }
+########################################			ENUMS			########################################

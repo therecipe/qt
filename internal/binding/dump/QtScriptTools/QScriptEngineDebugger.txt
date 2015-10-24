@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QScriptEngineDebugger QScriptEngineDebugger::QScriptEngineDebugger commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non constructor false false   [0xc823114680] }
+&{action QScriptEngineDebugger::action commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non plain false false  QAction * [0xc823114f80] }
+&{attachTo QScriptEngineDebugger::attachTo commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non plain false false  void [0xc823115380] }
+&{autoShowStandardWindow QScriptEngineDebugger::autoShowStandardWindow commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non plain false false  bool [] }
+&{createStandardMenu QScriptEngineDebugger::createStandardMenu commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non plain false false  QMenu * [0xc8231159a0] }
+&{createStandardToolBar QScriptEngineDebugger::createStandardToolBar commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non plain false false  QToolBar * [0xc823115f20] }
+&{detach QScriptEngineDebugger::detach commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non plain false false  void [] }
+&{evaluationResumed QScriptEngineDebugger::evaluationResumed commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non signal false false  void [] }
+&{evaluationSuspended QScriptEngineDebugger::evaluationSuspended commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non signal false false  void [] }
+&{setAutoShowStandardWindow QScriptEngineDebugger::setAutoShowStandardWindow commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non plain false false  void [0xc82310c7a0] }
+&{standardWindow QScriptEngineDebugger::standardWindow commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non plain false false  QMainWindow * [] }
+&{state QScriptEngineDebugger::state commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non plain false false  DebuggerState [] }
+&{widget QScriptEngineDebugger::widget commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non plain false false  QWidget * [0xc82310cde0] }
+&{~QScriptEngineDebugger QScriptEngineDebugger::~QScriptEngineDebugger commendable public /work/build/qt5_workdir/w/s/qtscript/src/scripttools/debugging/qscriptenginedebugger.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{DebuggerAction QScriptEngineDebugger::DebuggerAction commendable public  [0xc82313ff60 0xc82312a000 0xc82312a100 0xc82312a1a0 0xc82312a2a0 0xc82312a400 0xc82312a560 0xc82312a6c0 0xc82312a860 0xc82312a9c0 0xc82312ab40 0xc82312ace0 0xc82312ae60 0xc82312b0a0 0xc82312b180]}
+&{DebuggerState QScriptEngineDebugger::DebuggerState commendable public  [0xc82312b4a0 0xc82312b560]}
+&{DebuggerWidget QScriptEngineDebugger::DebuggerWidget commendable public  [0xc82312b840 0xc82312b9a0 0xc82312ba20 0xc82312bb20 0xc82312bc00 0xc82312bd20 0xc82312be80 0xc82312bfa0 0xc8231141c0]}

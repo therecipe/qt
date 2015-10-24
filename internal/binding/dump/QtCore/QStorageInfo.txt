@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{QStorageInfo QStorageInfo::QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non constructor false false   [] }
+&{QStorageInfo QStorageInfo::QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non constructor false true 3  [0xc820274580] }
+&{QStorageInfo QStorageInfo::QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non constructor false true 4  [0xc820274800] }
+&{QStorageInfo QStorageInfo::QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non constructor false true 2  [0xc820274ac0] }
+&{bytesAvailable QStorageInfo::bytesAvailable commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  qint64 [] }
+&{bytesFree QStorageInfo::bytesFree commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  qint64 [] }
+&{bytesTotal QStorageInfo::bytesTotal commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  qint64 [] }
+&{device QStorageInfo::device commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QByteArray [] }
+&{displayName QStorageInfo::displayName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QString [] }
+&{fileSystemType QStorageInfo::fileSystemType commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QByteArray [] }
+&{isReadOnly QStorageInfo::isReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  bool [] }
+&{isReady QStorageInfo::isReady commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  bool [] }
+&{isRoot QStorageInfo::isRoot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  bool [] }
+&{isValid QStorageInfo::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  bool [] }
+&{mountedVolumes QStorageInfo::mountedVolumes commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain true false  QList<QStorageInfo> [] }
+&{name QStorageInfo::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QString [] }
+&{operator= QStorageInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false true 2 QStorageInfo & [0xc820275e60] }
+&{operator= QStorageInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QStorageInfo & [0xc82026a120] }
+&{refresh QStorageInfo::refresh commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  void [] }
+&{root QStorageInfo::root commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain true false  QStorageInfo [] }
+&{rootPath QStorageInfo::rootPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QString [] }
+&{setPath QStorageInfo::setPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  void [0xc82026a7e0] }
+&{swap QStorageInfo::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  void [0xc82026aa60] }
+&{~QStorageInfo QStorageInfo::~QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non destructor false false   [] }
+########################################			ENUMS			########################################

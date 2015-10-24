@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{QLatin1Char QLatin1Char::QLatin1Char commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false false   [0xc8207f9240] }
+&{toLatin1 QLatin1Char::toLatin1 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  char [] }
+&{unicode QLatin1Char::unicode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  ushort [] }
+########################################			ENUMS			########################################

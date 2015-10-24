@@ -1,0 +1,34 @@
+########################################			FUNCTIONS			########################################
+&{QFutureWatcher QFutureWatcher::QFutureWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non constructor false false   [0xc8206e80e0] }
+&{cancel QFutureWatcher::cancel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non slot false false  void [] }
+&{canceled QFutureWatcher::canceled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non signal false false  void [] }
+&{finished QFutureWatcher::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non signal false false  void [] }
+&{future QFutureWatcher::future commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  QFuture<T> [] }
+&{isCanceled QFutureWatcher::isCanceled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  bool [] }
+&{isFinished QFutureWatcher::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  bool [] }
+&{isPaused QFutureWatcher::isPaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  bool [] }
+&{isRunning QFutureWatcher::isRunning commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  bool [] }
+&{isStarted QFutureWatcher::isStarted commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  bool [] }
+&{pause QFutureWatcher::pause commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non slot false false  void [] }
+&{paused QFutureWatcher::paused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non signal false false  void [] }
+&{progressMaximum QFutureWatcher::progressMaximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  int [] }
+&{progressMinimum QFutureWatcher::progressMinimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  int [] }
+&{progressRangeChanged QFutureWatcher::progressRangeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non signal false false  void [0xc8206e9140 0xc8206e91c0] }
+&{progressText QFutureWatcher::progressText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  QString [] }
+&{progressTextChanged QFutureWatcher::progressTextChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non signal false false  void [0xc8206e9460] }
+&{progressValue QFutureWatcher::progressValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  int [] }
+&{progressValueChanged QFutureWatcher::progressValueChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non signal false false  void [0xc8206e96e0] }
+&{result QFutureWatcher::result commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  T [] }
+&{resultAt QFutureWatcher::resultAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  T [0xc8206e99a0] }
+&{resultReadyAt QFutureWatcher::resultReadyAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non signal false false  void [0xc8206e9b60] }
+&{resultsReadyAt QFutureWatcher::resultsReadyAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non signal false false  void [0xc8206e9d00 0xc8206e9d80] }
+&{resume QFutureWatcher::resume commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non slot false false  void [] }
+&{resumed QFutureWatcher::resumed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non signal false false  void [] }
+&{setFuture QFutureWatcher::setFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  void [0xc820700120] }
+&{setPaused QFutureWatcher::setPaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non slot false false  void [0xc820700340] }
+&{setPendingResultsLimit QFutureWatcher::setPendingResultsLimit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  void [0xc8207004e0] }
+&{started QFutureWatcher::started commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non signal false false  void [] }
+&{togglePaused QFutureWatcher::togglePaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non slot false false  void [] }
+&{waitForFinished QFutureWatcher::waitForFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non plain false false  void [] }
+&{~QFutureWatcher QFutureWatcher::~QFutureWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturewatcher.h non destructor false false   [] }
+########################################			ENUMS			########################################

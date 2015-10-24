@@ -1,0 +1,134 @@
+########################################			FUNCTIONS			########################################
+&{QQuickItem QQuickItem::QQuickItem commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non constructor false false   [0xc821cd9d60] }
+&{activeFocusOnTab QQuickItem::activeFocusOnTab commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  bool [] }
+&{antialiasing QQuickItem::antialiasing commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  bool [] }
+&{baselineOffset QQuickItem::baselineOffset commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  qreal [] }
+&{childrenRect QQuickItem::childrenRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  QRectF [] }
+&{clip QQuickItem::clip commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  bool [] }
+&{hasActiveFocus QQuickItem::hasActiveFocus commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  bool [] }
+&{hasFocus QQuickItem::hasFocus commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  bool [] }
+&{height QQuickItem::height commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  qreal [] }
+&{implicitHeight QQuickItem::implicitHeight commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  qreal [] }
+&{isEnabled QQuickItem::isEnabled commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  bool [] }
+&{isTextureProvider QQuickItem::isTextureProvider commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp impure plain false false  bool [] }
+&{isVisible QQuickItem::isVisible commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  bool [] }
+&{opacity QQuickItem::opacity commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  qreal [] }
+&{parentItem QQuickItem::parentItem commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  QQuickItem * [] }
+&{resetAntialiasing QQuickItem::resetAntialiasing commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [] }
+&{resetHeight QQuickItem::resetHeight commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [] }
+&{resetWidth QQuickItem::resetWidth commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [] }
+&{rotation QQuickItem::rotation commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  qreal [] }
+&{scale QQuickItem::scale commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  qreal [] }
+&{setActiveFocusOnTab QQuickItem::setActiveFocusOnTab commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb38e0] }
+&{setAntialiasing QQuickItem::setAntialiasing commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb3d40] }
+&{setBaselineOffset QQuickItem::setBaselineOffset commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb41e0] }
+&{setClip QQuickItem::setClip commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb4460] }
+&{setEnabled QQuickItem::setEnabled commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb46e0] }
+&{setFocus QQuickItem::setFocus commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb48e0] }
+&{setFocus QQuickItem::setFocus commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false true 2 void [0xc821cb4b00 0xc821cb4bc0] }
+&{setHeight QQuickItem::setHeight commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb4e00] }
+&{setImplicitHeight QQuickItem::setImplicitHeight commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb5120] }
+&{setImplicitWidth QQuickItem::setImplicitWidth commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb5360] }
+&{setOpacity QQuickItem::setOpacity commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb5620] }
+&{setParentItem QQuickItem::setParentItem commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb5880] }
+&{setRotation QQuickItem::setRotation commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb5b40] }
+&{setScale QQuickItem::setScale commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb5d60] }
+&{setSmooth QQuickItem::setSmooth commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821cb5f80] }
+&{setState QQuickItem::setState commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821c9a400] }
+&{setTransformOrigin QQuickItem::setTransformOrigin commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821c9aa20] }
+&{setVisible QQuickItem::setVisible commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821c9af40] }
+&{setWidth QQuickItem::setWidth commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821c9b460] }
+&{setX QQuickItem::setX commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821c9b800] }
+&{setY QQuickItem::setY commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821c9bbe0] }
+&{setZ QQuickItem::setZ commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  void [0xc821c90020] }
+&{smooth QQuickItem::smooth commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  bool [] }
+&{state QQuickItem::state commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  QString [] }
+&{textureProvider QQuickItem::textureProvider commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp impure plain false false  QSGTextureProvider * [] }
+&{transformOrigin QQuickItem::transformOrigin commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  TransformOrigin [] }
+&{width QQuickItem::width commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  qreal [] }
+&{x QQuickItem::x commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  qreal [] }
+&{y QQuickItem::y commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  qreal [] }
+&{z QQuickItem::z commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.cpp non plain false false  qreal [] }
+&{acceptHoverEvents QQuickItem::acceptHoverEvents commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  bool [] }
+&{acceptedMouseButtons QQuickItem::acceptedMouseButtons commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  Qt::MouseButtons [] }
+&{childAt QQuickItem::childAt commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QQuickItem * [0xc821c170e0 0xc821c17220] }
+&{childItems QQuickItem::childItems commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QList<QQuickItem *> [] }
+&{childMouseEventFilter QQuickItem::childMouseEventFilter commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  bool [0xc821c178e0 0xc821c179e0] }
+&{classBegin QQuickItem::classBegin commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [] }
+&{componentComplete QQuickItem::componentComplete commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [] }
+&{contains QQuickItem::contains commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  bool [0xc821bfea60] }
+&{cursor QQuickItem::cursor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QCursor [] }
+&{dragEnterEvent QQuickItem::dragEnterEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bff020] }
+&{dragLeaveEvent QQuickItem::dragLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bff400] }
+&{dragMoveEvent QQuickItem::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bff860] }
+&{dropEvent QQuickItem::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bffc00] }
+&{event QQuickItem::event commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  bool [0xc821bfffa0] }
+&{filtersChildMouseEvents QQuickItem::filtersChildMouseEvents commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  bool [] }
+&{flags QQuickItem::flags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  Flags [] }
+&{focusInEvent QQuickItem::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bf2860] }
+&{focusOutEvent QQuickItem::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bf2be0] }
+&{forceActiveFocus QQuickItem::forceActiveFocus commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [] }
+&{forceActiveFocus QQuickItem::forceActiveFocus commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false true 2 void [0xc821bf3300] }
+&{geometryChanged QQuickItem::geometryChanged commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bf3720 0xc821bf3920] }
+&{grabMouse QQuickItem::grabMouse commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [] }
+&{grabToImage QQuickItem::grabToImage commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QSharedPointer<QQuickItemGrabResult> [0xc821bf3f60] }
+&{grabTouchPoints QQuickItem::grabTouchPoints commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [0xc821be0400] }
+&{heightValid QQuickItem::heightValid commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  bool [] }
+&{hoverEnterEvent QQuickItem::hoverEnterEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821be0b20] }
+&{hoverLeaveEvent QQuickItem::hoverLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821be0fa0] }
+&{hoverMoveEvent QQuickItem::hoverMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821be1400] }
+&{implicitWidth QQuickItem::implicitWidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  qreal [] }
+&{inputMethodEvent QQuickItem::inputMethodEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821be1b40] }
+&{inputMethodQuery QQuickItem::inputMethodQuery commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  QVariant [0xc821be1fc0] }
+&{isComponentComplete QQuickItem::isComponentComplete commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  bool [] }
+&{isFocusScope QQuickItem::isFocusScope commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  bool [] }
+&{itemChange QQuickItem::itemChange commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bd0ac0 0xc821bd0c20] }
+&{keepMouseGrab QQuickItem::keepMouseGrab commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  bool [] }
+&{keepTouchGrab QQuickItem::keepTouchGrab commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  bool [] }
+&{keyPressEvent QQuickItem::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bd15a0] }
+&{keyReleaseEvent QQuickItem::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bd1a00] }
+&{mapFromItem QQuickItem::mapFromItem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QPointF [0xc821bd1de0 0xc821bd1f00] }
+&{mapFromScene QQuickItem::mapFromScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QPointF [0xc821bcc1a0] }
+&{mapRectFromItem QQuickItem::mapRectFromItem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QRectF [0xc821bcc420 0xc821bcc4e0] }
+&{mapRectFromScene QQuickItem::mapRectFromScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QRectF [0xc821bcc700] }
+&{mapRectToItem QQuickItem::mapRectToItem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QRectF [0xc821bcc920 0xc821bcc9e0] }
+&{mapRectToScene QQuickItem::mapRectToScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QRectF [0xc821bccca0] }
+&{mapToItem QQuickItem::mapToItem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QPointF [0xc821bccf60 0xc821bcd040] }
+&{mapToScene QQuickItem::mapToScene commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QPointF [0xc821bcd260] }
+&{mouseDoubleClickEvent QQuickItem::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bcd4a0] }
+&{mouseMoveEvent QQuickItem::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bcd700] }
+&{mousePressEvent QQuickItem::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bcd9c0] }
+&{mouseReleaseEvent QQuickItem::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bcdcc0] }
+&{mouseUngrabEvent QQuickItem::mouseUngrabEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [] }
+&{nextItemInFocusChain QQuickItem::nextItemInFocusChain commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QQuickItem * [0xc821bc60e0] }
+&{polish QQuickItem::polish commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [] }
+&{releaseResources QQuickItem::releaseResources commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [] }
+&{scopedFocusItem QQuickItem::scopedFocusItem commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QQuickItem * [] }
+&{setAcceptHoverEvents QQuickItem::setAcceptHoverEvents commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [0xc821bc6940] }
+&{setAcceptedMouseButtons QQuickItem::setAcceptedMouseButtons commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [0xc821bc6b40] }
+&{setCursor QQuickItem::setCursor commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [0xc821bc6d20] }
+&{setFiltersChildMouseEvents QQuickItem::setFiltersChildMouseEvents commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [0xc821bc6f40] }
+&{setFlag QQuickItem::setFlag commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [0xc821bc7160 0xc821bc71e0] }
+&{setFlags QQuickItem::setFlags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [0xc821bc7440] }
+&{setKeepMouseGrab QQuickItem::setKeepMouseGrab commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [0xc821bc7640] }
+&{setKeepTouchGrab QQuickItem::setKeepTouchGrab commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [0xc821bc7880] }
+&{stackAfter QQuickItem::stackAfter commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [0xc821bbe3a0] }
+&{stackBefore QQuickItem::stackBefore commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [0xc821bbeac0] }
+&{touchEvent QQuickItem::touchEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821bbef20] }
+&{touchUngrabEvent QQuickItem::touchUngrabEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [] }
+&{ungrabMouse QQuickItem::ungrabMouse commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [] }
+&{ungrabTouchPoints QQuickItem::ungrabTouchPoints commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [] }
+&{unsetCursor QQuickItem::unsetCursor commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [] }
+&{update QQuickItem::update commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non slot false false  void [] }
+&{updateInputMethod QQuickItem::updateInputMethod commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  void [0xc821bae6a0] }
+&{updatePaintNode QQuickItem::updatePaintNode commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  QSGNode * [0xc821bae9a0 0xc821baea80] }
+&{updatePolish QQuickItem::updatePolish commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [] }
+&{wheelEvent QQuickItem::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure plain false false  void [0xc821baee40] }
+&{widthValid QQuickItem::widthValid commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  bool [] }
+&{window QQuickItem::window commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non plain false false  QQuickWindow * [] }
+&{windowChanged QQuickItem::windowChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h non signal false false  void [0xc821baf380] }
+&{~QQuickItem QQuickItem::~QQuickItem commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickitem.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{Flag QQuickItem::Flag commendable public QQuickItem::Flags [0xc821c76a60 0xc821c76ca0 0xc821c76e40 0xc821c76ee0 0xc821c770a0]}
+&{ItemChange QQuickItem::ItemChange commendable public  [0xc821c77420 0xc821c775c0 0xc821c77760 0xc821c778c0 0xc821c77ae0 0xc821c77c80 0xc821c77e40 0xc821c77fe0 0xc821c6a340]}
+&{TransformOrigin QQuickItem::TransformOrigin commendable public  [0xc821c6a860 0xc821c6a9a0 0xc821c6ab00 0xc821c6ac40 0xc821c6ae60 0xc821c6af20 0xc821c6b000 0xc821c6b180 0xc821c6b2e0]}

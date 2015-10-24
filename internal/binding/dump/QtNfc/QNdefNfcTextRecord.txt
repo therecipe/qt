@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QNdefNfcTextRecord QNdefNfcTextRecord::QNdefNfcTextRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfctextrecord.h non constructor false false   [] }
+&{QNdefNfcTextRecord QNdefNfcTextRecord::QNdefNfcTextRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfctextrecord.h non constructor false true 2  [0xc822816680] }
+&{encoding QNdefNfcTextRecord::encoding commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfctextrecord.h non plain false false  Encoding [] }
+&{locale QNdefNfcTextRecord::locale commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfctextrecord.h non plain false false  QString [] }
+&{setEncoding QNdefNfcTextRecord::setEncoding commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfctextrecord.h non plain false false  void [0xc822816c20] }
+&{setLocale QNdefNfcTextRecord::setLocale commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfctextrecord.h non plain false false  void [0xc822816e40] }
+&{setText QNdefNfcTextRecord::setText commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfctextrecord.h non plain false false  void [0xc8228170e0] }
+&{text QNdefNfcTextRecord::text commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfctextrecord.h non plain false false  QString [] }
+########################################			ENUMS			########################################
+&{Encoding QNdefNfcTextRecord::Encoding commendable public  [0xc8228161c0 0xc822816240]}

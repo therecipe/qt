@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{QFocusFrame QFocusFrame::QFocusFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non constructor false false   [0xc8219464e0] }
+&{event QFocusFrame::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h impure plain false false  bool [0xc821946940] }
+&{eventFilter QFocusFrame::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h impure plain false false  bool [0xc821946ce0 0xc821946e20] }
+&{initStyleOption QFocusFrame::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non plain false false  void [0xc8219472e0] }
+&{paintEvent QFocusFrame::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h impure plain false false  void [0xc821947700] }
+&{setWidget QFocusFrame::setWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non plain false false  void [0xc821947bc0] }
+&{widget QFocusFrame::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non plain false false  QWidget * [] }
+&{~QFocusFrame QFocusFrame::~QFocusFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non destructor false false   [] }
+########################################			ENUMS			########################################

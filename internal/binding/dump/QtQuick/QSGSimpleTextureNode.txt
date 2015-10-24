@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QSGSimpleTextureNode QSGSimpleTextureNode::QSGSimpleTextureNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non constructor false false   [] }
+&{filtering QSGSimpleTextureNode::filtering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false false  QSGTexture::Filtering [] }
+&{ownsTexture QSGSimpleTextureNode::ownsTexture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false false  bool [] }
+&{rect QSGSimpleTextureNode::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false false  QRectF [] }
+&{setFiltering QSGSimpleTextureNode::setFiltering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false false  void [0xc821b83760] }
+&{setOwnsTexture QSGSimpleTextureNode::setOwnsTexture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false false  void [0xc821b83d40] }
+&{setRect QSGSimpleTextureNode::setRect commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false false  void [0xc821b6e1c0] }
+&{setRect QSGSimpleTextureNode::setRect commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false true 2 void [0xc821b6e520 0xc821b6e6a0 0xc821b6e740 0xc821b6e880] }
+&{setSourceRect QSGSimpleTextureNode::setSourceRect commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false false  void [0xc821b6eb40] }
+&{setSourceRect QSGSimpleTextureNode::setSourceRect commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false true 2 void [0xc821b6ede0 0xc821b6ef00 0xc821b6f060 0xc821b6f120] }
+&{setTexture QSGSimpleTextureNode::setTexture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false false  void [0xc821b6f4e0] }
+&{setTextureCoordinatesTransform QSGSimpleTextureNode::setTextureCoordinatesTransform commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false false  void [0xc821b6f8a0] }
+&{sourceRect QSGSimpleTextureNode::sourceRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false false  QRectF [] }
+&{texture QSGSimpleTextureNode::texture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false false  QSGTexture * [] }
+&{textureCoordinatesTransform QSGSimpleTextureNode::textureCoordinatesTransform commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non plain false false  TextureCoordinatesTransformMode [] }
+&{~QSGSimpleTextureNode QSGSimpleTextureNode::~QSGSimpleTextureNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimpletexturenode.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{TextureCoordinatesTransformFlag QSGSimpleTextureNode::TextureCoordinatesTransformFlag commendable public QSGSimpleTextureNode::TextureCoordinatesTransformMode [0xc821b8be40 0xc821b8bee0 0xc821b8bfa0]}

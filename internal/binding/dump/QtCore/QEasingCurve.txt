@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{QEasingCurve QEasingCurve::QEasingCurve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non constructor false true 3  [0xc8205f0f20] }
+&{QEasingCurve QEasingCurve::QEasingCurve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non constructor false false   [0xc8205f1200] }
+&{QEasingCurve QEasingCurve::QEasingCurve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non constructor false true 2  [0xc8205f14e0] }
+&{addCubicBezierSegment QEasingCurve::addCubicBezierSegment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  void [0xc8205f1800 0xc8205f18a0 0xc8205f19a0] }
+&{addTCBSegment QEasingCurve::addTCBSegment commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  void [0xc8205f1c40 0xc8205f1d00 0xc8205f1e00 0xc8205f1ea0] }
+&{amplitude QEasingCurve::amplitude commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  qreal [] }
+&{customType QEasingCurve::customType commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  EasingFunction [] }
+&{operator!= QEasingCurve::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  bool [0xc8205e0620] }
+&{operator= QEasingCurve::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false true 2 QEasingCurve & [0xc8205e0940] }
+&{operator= QEasingCurve::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  QEasingCurve & [0xc8205e0c00] }
+&{operator== QEasingCurve::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  bool [0xc8205e0f80] }
+&{overshoot QEasingCurve::overshoot commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  qreal [] }
+&{period QEasingCurve::period commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  qreal [] }
+&{setAmplitude QEasingCurve::setAmplitude commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  void [0xc8205e15a0] }
+&{setCustomType QEasingCurve::setCustomType commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  void [0xc8205e1860] }
+&{setOvershoot QEasingCurve::setOvershoot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  void [0xc8205e1b40] }
+&{setPeriod QEasingCurve::setPeriod commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  void [0xc8205e1e60] }
+&{setType QEasingCurve::setType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  void [0xc8205c6120] }
+&{swap QEasingCurve::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  void [0xc8205c6360] }
+&{toCubicSpline QEasingCurve::toCubicSpline commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  QVector<QPointF> [] }
+&{type QEasingCurve::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  Type [] }
+&{valueForProgress QEasingCurve::valueForProgress commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non plain false false  qreal [0xc8205c67c0] }
+&{~QEasingCurve QEasingCurve::~QEasingCurve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qeasingcurve.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Type QEasingCurve::Type commendable public  [0xc820606620 0xc8206066c0 0xc820606740 0xc820606820 0xc8206068c0 0xc820606960 0xc820606a60 0xc820606ae0 0xc820606c40 0xc820606cc0 0xc820606d80 0xc820606ec0 0xc820606f60 0xc820607000 0xc820607100 0xc8206071e0 0xc820607300 0xc8206073a0 0xc820607480 0xc820607540 0xc820607620 0xc8206076c0 0xc820607740 0xc820607840 0xc820607900 0xc8206079e0 0xc820607a60 0xc820607b00 0xc820607bc0 0xc820607cc0 0xc820607dc0 0xc820607e40 0xc820607f80 0xc8205f0000 0xc8205f00e0 0xc8205f01c0 0xc8205f0260 0xc8205f0300 0xc8205f03a0 0xc8205f0480 0xc8205f0520 0xc8205f05e0 0xc8205f06e0 0xc8205f0780 0xc8205f0860 0xc8205f0960 0xc8205f0a20 0xc8205f0aa0 0xc8205f0bc0]}

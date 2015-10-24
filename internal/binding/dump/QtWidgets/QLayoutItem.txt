@@ -1,0 +1,21 @@
+########################################			FUNCTIONS			########################################
+&{QLayoutItem QLayoutItem::QLayoutItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h non constructor false false   [0xc822325ec0] }
+&{alignment QLayoutItem::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h non plain false false  Qt::Alignment [] }
+&{controlTypes QLayoutItem::controlTypes commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSizePolicy::ControlTypes [] }
+&{expandingDirections QLayoutItem::expandingDirections commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h pure plain false false  Qt::Orientations [] }
+&{geometry QLayoutItem::geometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h pure plain false false  QRect [] }
+&{hasHeightForWidth QLayoutItem::hasHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  bool [] }
+&{heightForWidth QLayoutItem::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  int [0xc8223368c0] }
+&{invalidate QLayoutItem::invalidate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  void [] }
+&{isEmpty QLayoutItem::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h pure plain false false  bool [] }
+&{layout QLayoutItem::layout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QLayout * [] }
+&{maximumSize QLayoutItem::maximumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h pure plain false false  QSize [] }
+&{minimumHeightForWidth QLayoutItem::minimumHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  int [0xc822337020] }
+&{minimumSize QLayoutItem::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h pure plain false false  QSize [] }
+&{setAlignment QLayoutItem::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h non plain false false  void [0xc8223373a0] }
+&{setGeometry QLayoutItem::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h pure plain false false  void [0xc822337580] }
+&{sizeHint QLayoutItem::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h pure plain false false  QSize [] }
+&{spacerItem QLayoutItem::spacerItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSpacerItem * [] }
+&{widget QLayoutItem::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QWidget * [] }
+&{~QLayoutItem QLayoutItem::~QLayoutItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure destructor false false   [] }
+########################################			ENUMS			########################################

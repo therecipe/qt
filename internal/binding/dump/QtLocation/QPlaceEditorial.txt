@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceEditorial QPlaceEditorial::QPlaceEditorial commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non constructor false false   [] }
+&{QPlaceEditorial QPlaceEditorial::QPlaceEditorial commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non constructor false true 2  [0xc8221a4020] }
+&{language QPlaceEditorial::language commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  QString [] }
+&{setLanguage QPlaceEditorial::setLanguage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  void [0xc8221a49c0] }
+&{setText QPlaceEditorial::setText commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  void [0xc8221a4da0] }
+&{setTitle QPlaceEditorial::setTitle commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  void [0xc8221a50c0] }
+&{text QPlaceEditorial::text commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  QString [] }
+&{title QPlaceEditorial::title commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  QString [] }
+########################################			ENUMS			########################################

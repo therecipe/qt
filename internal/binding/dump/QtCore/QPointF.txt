@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QPointF QPointF::QPointF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non constructor false false   [] }
+&{QPointF QPointF::QPointF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non constructor false true 2  [0xc8201f46a0] }
+&{QPointF QPointF::QPointF commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non constructor false true 3  [0xc8201f4aa0 0xc8201f4ba0] }
+&{dotProduct QPointF::dotProduct commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain true false  qreal [0xc8201f5040 0xc8201f51c0] }
+&{isNull QPointF::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  bool [] }
+&{manhattanLength QPointF::manhattanLength commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  qreal [] }
+&{operator*= QPointF::operator*= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  QPointF & [0xc8201f59c0] }
+&{operator+= QPointF::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  QPointF & [0xc8201f5da0] }
+&{operator-= QPointF::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  QPointF & [0xc8202ec1c0] }
+&{operator/= QPointF::operator/= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  QPointF & [0xc8202ec600] }
+&{rx QPointF::rx commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  qreal & [] }
+&{ry QPointF::ry commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  qreal & [] }
+&{setX QPointF::setX commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  void [0xc8202eca80] }
+&{setY QPointF::setY commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  void [0xc8202ecda0] }
+&{toPoint QPointF::toPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  QPoint [] }
+&{x QPointF::x commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  qreal [] }
+&{y QPointF::y commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpoint.h non plain false false  qreal [] }
+########################################			ENUMS			########################################

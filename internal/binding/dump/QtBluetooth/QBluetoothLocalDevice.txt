@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{deviceConnected QBluetoothLocalDevice::deviceConnected commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice.h non signal false false  void [0xc822cbd560] }
+&{deviceDisconnected QBluetoothLocalDevice::deviceDisconnected commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice.h non signal false false  void [0xc822cbd940] }
+&{error QBluetoothLocalDevice::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice.h non signal false false  void [0xc822cbdc40] }
+&{hostModeStateChanged QBluetoothLocalDevice::hostModeStateChanged commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice.h non signal false false  void [0xc822cbdf00] }
+&{pairingDisplayConfirmation QBluetoothLocalDevice::pairingDisplayConfirmation commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice.h non signal false false  void [0xc822bc8260 0xc822bc8360] }
+&{pairingDisplayPinCode QBluetoothLocalDevice::pairingDisplayPinCode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice.h non signal false false  void [0xc822bc86a0 0xc822bc87a0] }
+&{pairingFinished QBluetoothLocalDevice::pairingFinished commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice.h non signal false false  void [0xc822bc8b00 0xc822bc8d20] }
+&{isValid QBluetoothLocalDevice::isValid commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_osx.mm non plain false false  bool [] }
+&{~QBluetoothLocalDevice QBluetoothLocalDevice::~QBluetoothLocalDevice commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_osx.mm impure destructor false false   [] }
+&{QBluetoothLocalDevice QBluetoothLocalDevice::QBluetoothLocalDevice commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_qnx.cpp non constructor false false   [0xc822bc94a0] }
+&{QBluetoothLocalDevice QBluetoothLocalDevice::QBluetoothLocalDevice commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_qnx.cpp non constructor false true 2  [0xc822bc9820 0xc822bc9980] }
+&{address QBluetoothLocalDevice::address commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_qnx.cpp non plain false false  QBluetoothAddress [] }
+&{allDevices QBluetoothLocalDevice::allDevices commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_qnx.cpp non plain true false  QList<QBluetoothHostInfo> [] }
+&{connectedDevices QBluetoothLocalDevice::connectedDevices commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_qnx.cpp non plain false false  QList<QBluetoothAddress> [] }
+&{hostMode QBluetoothLocalDevice::hostMode commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_qnx.cpp non plain false false  HostMode [] }
+&{name QBluetoothLocalDevice::name commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_qnx.cpp non plain false false  QString [] }
+&{pairingConfirmation QBluetoothLocalDevice::pairingConfirmation commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_qnx.cpp non slot false false  void [0xc821f8c420] }
+&{pairingStatus QBluetoothLocalDevice::pairingStatus commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_qnx.cpp non plain false false  Pairing [0xc821f8c660] }
+&{powerOn QBluetoothLocalDevice::powerOn commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_qnx.cpp non plain false false  void [] }
+&{requestPairing QBluetoothLocalDevice::requestPairing commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_qnx.cpp non plain false false  void [0xc821f8ca20 0xc821f8cae0] }
+&{setHostMode QBluetoothLocalDevice::setHostMode commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothlocaldevice_qnx.cpp non plain false false  void [0xc821f8cd00] }
+########################################			ENUMS			########################################
+&{Error QBluetoothLocalDevice::Error commendable public  [0xc822cbc840 0xc822cbc8e0 0xc822cbc9a0]}
+&{HostMode QBluetoothLocalDevice::HostMode commendable public  [0xc822cbcc00 0xc822cbcc80 0xc822cbcd80 0xc822cbce40]}
+&{Pairing QBluetoothLocalDevice::Pairing commendable public  [0xc822cbd120 0xc822cbd200 0xc822cbd2a0]}

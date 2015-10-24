@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{actualSize QIconEngine::actualSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h impure plain false false  QSize [0xc820cd5220 0xc820cd52c0 0xc820cd5400] }
+&{addFile QIconEngine::addFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h impure plain false false  void [0xc820cd56a0 0xc820cd5760 0xc820cd58a0 0xc820cd5980] }
+&{addPixmap QIconEngine::addPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h impure plain false false  void [0xc820cd5ce0 0xc820cd5d60 0xc820cd5e00] }
+&{availableSizes QIconEngine::availableSizes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h impure plain false false  QList<QSize> [0xc820d92140 0xc820d921c0] }
+&{clone QIconEngine::clone commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h pure plain false false  QIconEngine * [] }
+&{iconName QIconEngine::iconName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h impure plain false false  QString [] }
+&{key QIconEngine::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h impure plain false false  QString [] }
+&{paint QIconEngine::paint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h pure plain false false  void [0xc820d92680 0xc820d92700 0xc820d92780 0xc820d92800] }
+&{pixmap QIconEngine::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h impure plain false false  QPixmap [0xc820d929e0 0xc820d92a60 0xc820d92ae0] }
+&{read QIconEngine::read commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h impure plain false false  bool [0xc820d92cc0] }
+&{virtual_hook QIconEngine::virtual_hook commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h impure plain false false  void [0xc820d92e80 0xc820d92f00] }
+&{write QIconEngine::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h impure plain false false  bool [0xc820d930c0] }
+&{~QIconEngine QIconEngine::~QIconEngine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengine.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{IconEngineHook QIconEngine::IconEngineHook commendable public  [0xc820cd4de0 0xc820cd4ee0]}

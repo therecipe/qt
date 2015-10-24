@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{areaMonitor QGeoPositionInfoSourceFactory::areaMonitor commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfosourcefactory.h pure plain false false  QGeoAreaMonitorSource * [0xc822f11160] }
+&{positionInfoSource QGeoPositionInfoSourceFactory::positionInfoSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfosourcefactory.h pure plain false false  QGeoPositionInfoSource * [0xc822f114e0] }
+&{satelliteInfoSource QGeoPositionInfoSourceFactory::satelliteInfoSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfosourcefactory.h pure plain false false  QGeoSatelliteInfoSource * [0xc822f118a0] }
+&{~QGeoPositionInfoSourceFactory QGeoPositionInfoSourceFactory::~QGeoPositionInfoSourceFactory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfosourcefactory.h impure destructor false false   [] }
+########################################			ENUMS			########################################

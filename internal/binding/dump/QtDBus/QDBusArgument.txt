@@ -1,0 +1,52 @@
+########################################			FUNCTIONS			########################################
+&{QDBusArgument QDBusArgument::QDBusArgument commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non constructor false false   [] }
+&{QDBusArgument QDBusArgument::QDBusArgument commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non constructor false true 2  [0xc82198e740] }
+&{asVariant QDBusArgument::asVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  QVariant [] }
+&{atEnd QDBusArgument::atEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  bool [] }
+&{beginArray QDBusArgument::beginArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  void [0xc82198f700] }
+&{beginArray QDBusArgument::beginArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 2 void [] }
+&{beginMap QDBusArgument::beginMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  void [0xc82198f9e0 0xc82198fa60] }
+&{beginMap QDBusArgument::beginMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 2 void [] }
+&{beginMapEntry QDBusArgument::beginMapEntry commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  void [] }
+&{beginMapEntry QDBusArgument::beginMapEntry commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 2 void [] }
+&{beginStructure QDBusArgument::beginStructure commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  void [] }
+&{beginStructure QDBusArgument::beginStructure commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 2 void [] }
+&{currentType QDBusArgument::currentType commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  ElementType [] }
+&{endArray QDBusArgument::endArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  void [] }
+&{endArray QDBusArgument::endArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 2 void [] }
+&{endMap QDBusArgument::endMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  void [] }
+&{endMap QDBusArgument::endMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 2 void [] }
+&{endMapEntry QDBusArgument::endMapEntry commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  void [] }
+&{endMapEntry QDBusArgument::endMapEntry commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 2 void [] }
+&{endStructure QDBusArgument::endStructure commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  void [] }
+&{endStructure QDBusArgument::endStructure commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 2 void [] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 2 QDBusArgument & [0xc82220e960] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 16 QDBusArgument & [0xc82220eb20] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 14 QDBusArgument & [0xc82220ed20] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 10 QDBusArgument & [0xc82220ef00] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 15 QDBusArgument & [0xc82220f0c0] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 9 QDBusArgument & [0xc82220f2c0] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 5 QDBusArgument & [0xc82220f460] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 7 QDBusArgument & [0xc82220f600] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 8 QDBusArgument & [0xc82220f7a0] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 3 QDBusArgument & [0xc82220f940] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  QDBusArgument & [0xc82220fae0] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 6 QDBusArgument & [0xc82220fc80] }
+&{operator<< QDBusArgument::operator<< commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 4 QDBusArgument & [0xc82220fe20] }
+&{operator= QDBusArgument::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  QDBusArgument & [0xc8218f6600] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 16 const QDBusArgument & [0xc8218f6840] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 14 const QDBusArgument & [0xc8218f6a40] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 10 const QDBusArgument & [0xc8218f6c40] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 15 const QDBusArgument & [0xc8218f6e40] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 2 const QDBusArgument & [0xc8218f7040] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 9 const QDBusArgument & [0xc8218f7240] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 5 const QDBusArgument & [0xc8218f7440] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 7 const QDBusArgument & [0xc8218f7640] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 8 const QDBusArgument & [0xc8218f7840] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 4 const QDBusArgument & [0xc8218f7a40] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false false  const QDBusArgument & [0xc8218f7c40] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 6 const QDBusArgument & [0xc8218f7e40] }
+&{operator>> QDBusArgument::operator>> commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non plain false true 3 const QDBusArgument & [0xc8218b2040] }
+&{~QDBusArgument QDBusArgument::~QDBusArgument commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusargument.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ElementType QDBusArgument::ElementType commendable public  [0xc82198e140 0xc82198e1c0 0xc82198e240 0xc82198e2c0 0xc82198e360 0xc82198e3e0 0xc82198e460]}

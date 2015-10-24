@@ -1,0 +1,47 @@
+########################################			FUNCTIONS			########################################
+&{QSslConfiguration QSslConfiguration::QSslConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non constructor false false   [] }
+&{QSslConfiguration QSslConfiguration::QSslConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non constructor false true 2  [0xc82305e820] }
+&{allowedNextProtocols QSslConfiguration::allowedNextProtocols commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QList<QByteArray> [] }
+&{caCertificates QSslConfiguration::caCertificates commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QList<QSslCertificate> [] }
+&{ciphers QSslConfiguration::ciphers commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QList<QSslCipher> [] }
+&{defaultConfiguration QSslConfiguration::defaultConfiguration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain true false  QSslConfiguration [] }
+&{ellipticCurves QSslConfiguration::ellipticCurves commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QVector<QSslEllipticCurve> [] }
+&{isNull QSslConfiguration::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  bool [] }
+&{localCertificate QSslConfiguration::localCertificate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QSslCertificate [] }
+&{localCertificateChain QSslConfiguration::localCertificateChain commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QList<QSslCertificate> [] }
+&{nextNegotiatedProtocol QSslConfiguration::nextNegotiatedProtocol commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QByteArray [] }
+&{nextProtocolNegotiationStatus QSslConfiguration::nextProtocolNegotiationStatus commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  NextProtocolNegotiationStatus [] }
+&{operator!= QSslConfiguration::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  bool [0xc82304a040] }
+&{operator= QSslConfiguration::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QSslConfiguration & [0xc82304a440] }
+&{operator== QSslConfiguration::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  bool [0xc82304a760] }
+&{peerCertificate QSslConfiguration::peerCertificate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QSslCertificate [] }
+&{peerCertificateChain QSslConfiguration::peerCertificateChain commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QList<QSslCertificate> [] }
+&{peerVerifyDepth QSslConfiguration::peerVerifyDepth commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  int [] }
+&{peerVerifyMode QSslConfiguration::peerVerifyMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QSslSocket::PeerVerifyMode [] }
+&{privateKey QSslConfiguration::privateKey commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QSslKey [] }
+&{protocol QSslConfiguration::protocol commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QSsl::SslProtocol [] }
+&{sessionCipher QSslConfiguration::sessionCipher commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QSslCipher [] }
+&{sessionProtocol QSslConfiguration::sessionProtocol commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QSsl::SslProtocol [] }
+&{sessionTicket QSslConfiguration::sessionTicket commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  QByteArray [] }
+&{sessionTicketLifeTimeHint QSslConfiguration::sessionTicketLifeTimeHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  int [] }
+&{setAllowedNextProtocols QSslConfiguration::setAllowedNextProtocols commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82304ba60] }
+&{setCaCertificates QSslConfiguration::setCaCertificates commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82304bde0] }
+&{setCiphers QSslConfiguration::setCiphers commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82303c160] }
+&{setDefaultConfiguration QSslConfiguration::setDefaultConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain true false  void [0xc82303c4e0] }
+&{setEllipticCurves QSslConfiguration::setEllipticCurves commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82303c820] }
+&{setLocalCertificate QSslConfiguration::setLocalCertificate commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82303cb40] }
+&{setLocalCertificateChain QSslConfiguration::setLocalCertificateChain commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82303cea0] }
+&{setPeerVerifyDepth QSslConfiguration::setPeerVerifyDepth commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82303d1e0] }
+&{setPeerVerifyMode QSslConfiguration::setPeerVerifyMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82303d500] }
+&{setPrivateKey QSslConfiguration::setPrivateKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82303d840] }
+&{setProtocol QSslConfiguration::setProtocol commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82303db60] }
+&{setSessionTicket QSslConfiguration::setSessionTicket commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82303de20] }
+&{setSslOption QSslConfiguration::setSslOption commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82302c140 0xc82302c220] }
+&{supportedCiphers QSslConfiguration::supportedCiphers commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain true false  QList<QSslCipher> [] }
+&{supportedEllipticCurves QSslConfiguration::supportedEllipticCurves commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain true false  QVector<QSslEllipticCurve> [] }
+&{swap QSslConfiguration::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  void [0xc82302c8c0] }
+&{systemCaCertificates QSslConfiguration::systemCaCertificates commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain true false  QList<QSslCertificate> [] }
+&{testSslOption QSslConfiguration::testSslOption commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non plain false false  bool [0xc82302ce60] }
+&{~QSslConfiguration QSslConfiguration::~QSslConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslconfiguration.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{NextProtocolNegotiationStatus QSslConfiguration::NextProtocolNegotiationStatus commendable public  [0xc82305e0e0 0xc82305e240 0xc82305e2c0]}

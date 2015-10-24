@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{angle QGraphicsRotation::angle commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  qreal [] }
+&{axis QGraphicsRotation::axis commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  QVector3D [] }
+&{origin QGraphicsRotation::origin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  QVector3D [] }
+&{setAngle QGraphicsRotation::setAngle commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void [0xc82228be40] }
+&{setAxis QGraphicsRotation::setAxis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false true 2 void [0xc82274e120] }
+&{setAxis QGraphicsRotation::setAxis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void [0xc82274e3c0] }
+&{setOrigin QGraphicsRotation::setOrigin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void [0xc82274e6a0] }
+&{QGraphicsRotation QGraphicsRotation::QGraphicsRotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non constructor false false   [0xc82274e940] }
+&{angleChanged QGraphicsRotation::angleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void [] }
+&{applyTo QGraphicsRotation::applyTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h impure plain false false  void [0xc82274ed80] }
+&{axisChanged QGraphicsRotation::axisChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void [] }
+&{originChanged QGraphicsRotation::originChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void [] }
+&{~QGraphicsRotation QGraphicsRotation::~QGraphicsRotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non destructor false false   [] }
+########################################			ENUMS			########################################

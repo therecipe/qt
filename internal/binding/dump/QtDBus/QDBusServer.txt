@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QDBusServer QDBusServer::QDBusServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusserver.h non constructor false true 2  [0xc8224aad00] }
+&{QDBusServer QDBusServer::QDBusServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusserver.h non constructor false false   [0xc8224aaf20 0xc8224aafc0] }
+&{address QDBusServer::address commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusserver.h non plain false false  QString [] }
+&{isAnonymousAuthenticationAllowed QDBusServer::isAnonymousAuthenticationAllowed commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusserver.h non plain false false  bool [] }
+&{isConnected QDBusServer::isConnected commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusserver.h non plain false false  bool [] }
+&{lastError QDBusServer::lastError commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusserver.h non plain false false  QDBusError [] }
+&{newConnection QDBusServer::newConnection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusserver.h non signal false false  void [0xc8224ab720] }
+&{setAnonymousAuthenticationAllowed QDBusServer::setAnonymousAuthenticationAllowed commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusserver.h non plain false false  void [0xc8224ab900] }
+&{~QDBusServer QDBusServer::~QDBusServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusserver.h impure destructor false false   [] }
+########################################			ENUMS			########################################

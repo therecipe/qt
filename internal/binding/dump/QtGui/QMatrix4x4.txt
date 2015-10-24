@@ -1,0 +1,64 @@
+########################################			FUNCTIONS			########################################
+&{QMatrix4x4 QMatrix4x4::QMatrix4x4 commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non constructor false false   [] }
+&{QMatrix4x4 QMatrix4x4::QMatrix4x4 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non constructor false true 5  [0xc82039b020] }
+&{QMatrix4x4 QMatrix4x4::QMatrix4x4 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non constructor false true 8  [0xc82039b3c0] }
+&{QMatrix4x4 QMatrix4x4::QMatrix4x4 commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non constructor false true 7  [0xc82039b7e0] }
+&{QMatrix4x4 QMatrix4x4::QMatrix4x4 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non constructor false true 3  [0xc82039bba0] }
+&{QMatrix4x4 QMatrix4x4::QMatrix4x4 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non constructor false true 4  [0xc82039bee0 0xc82039bfe0 0xc820384060 0xc820384120 0xc820384220 0xc8203842a0 0xc820384320 0xc8203843a0 0xc820384480 0xc8203845a0 0xc820384660 0xc820384700 0xc820384800 0xc8203848e0 0xc8203849a0 0xc820384ae0] }
+&{determinant QMatrix4x4::determinant commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  double [] }
+&{column QMatrix4x4::column commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QVector4D [0xc82036c8c0] }
+&{constData QMatrix4x4::constData commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  const float * [] }
+&{copyDataTo QMatrix4x4::copyDataTo commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [0xc82036cd00] }
+&{data QMatrix4x4::data commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  float * [] }
+&{data QMatrix4x4::data commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 2 const float * [] }
+&{fill QMatrix4x4::fill commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [0xc82036d180] }
+&{frustum QMatrix4x4::frustum commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [0xc82036d6c0 0xc82036d800 0xc82036d920 0xc82036da20 0xc82036db60 0xc82036dca0] }
+&{inverted QMatrix4x4::inverted commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QMatrix4x4 [0xc82036df40] }
+&{isAffine QMatrix4x4::isAffine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  bool [] }
+&{isIdentity QMatrix4x4::isIdentity commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  bool [] }
+&{lookAt QMatrix4x4::lookAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [0xc820356580 0xc820356700 0xc820356800] }
+&{map QMatrix4x4::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QPoint [0xc820356a60] }
+&{map QMatrix4x4::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 2 QPointF [0xc820356c00] }
+&{map QMatrix4x4::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 3 QVector3D [0xc820356da0] }
+&{map QMatrix4x4::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 4 QVector4D [0xc820357040] }
+&{mapRect QMatrix4x4::mapRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QRect [0xc820357460] }
+&{mapRect QMatrix4x4::mapRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 2 QRectF [0xc820357740] }
+&{mapVector QMatrix4x4::mapVector commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QVector3D [0xc820357a40] }
+&{normalMatrix QMatrix4x4::normalMatrix commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QMatrix3x3 [] }
+&{operator QVariant QMatrix4x4::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false   [] }
+&{operator!= QMatrix4x4::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  bool [0xc820344380] }
+&{operator() QMatrix4x4::operator() commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 2 float & [0xc820344760 0xc820344860] }
+&{operator() QMatrix4x4::operator() commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  const float & [0xc820344b60 0xc820344c00] }
+&{operator*= QMatrix4x4::operator*= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QMatrix4x4 & [0xc820344ee0] }
+&{operator*= QMatrix4x4::operator*= commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 2 QMatrix4x4 & [0xc820345360] }
+&{operator+= QMatrix4x4::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QMatrix4x4 & [0xc8203457a0] }
+&{operator-= QMatrix4x4::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QMatrix4x4 & [0xc820345bc0] }
+&{operator/= QMatrix4x4::operator/= commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QMatrix4x4 & [0xc820345fc0] }
+&{operator== QMatrix4x4::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  bool [0xc82032e3a0] }
+&{optimize QMatrix4x4::optimize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [] }
+&{ortho QMatrix4x4::ortho commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 2 void [0xc82032ea40] }
+&{ortho QMatrix4x4::ortho commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 3 void [0xc82032ee20] }
+&{ortho QMatrix4x4::ortho commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [0xc82032f2e0 0xc82032f3a0 0xc82032f440 0xc82032f560 0xc82032f620 0xc82032f6c0] }
+&{perspective QMatrix4x4::perspective commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [0xc82032f9c0 0xc82032fa40 0xc82032fb00 0xc82032fba0] }
+&{rotate QMatrix4x4::rotate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 2 void [0xc82032fe80] }
+&{rotate QMatrix4x4::rotate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [0xc820314260 0xc8203143e0] }
+&{rotate QMatrix4x4::rotate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 3 void [0xc820314760 0xc820314820 0xc8203148e0 0xc8203149a0] }
+&{row QMatrix4x4::row commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QVector4D [0xc820314ca0] }
+&{scale QMatrix4x4::scale commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [0xc820315000] }
+&{scale QMatrix4x4::scale commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 4 void [0xc820315520] }
+&{scale QMatrix4x4::scale commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 2 void [0xc8203158e0 0xc820315a20] }
+&{scale QMatrix4x4::scale commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 3 void [0xc820315e20 0xc820315f60 0xc8202fe060] }
+&{setColumn QMatrix4x4::setColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [0xc8202fe3e0 0xc8202fe4a0] }
+&{setRow QMatrix4x4::setRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [0xc8202fe8a0 0xc8202fe980] }
+&{setToIdentity QMatrix4x4::setToIdentity commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [] }
+&{toAffine QMatrix4x4::toAffine commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QMatrix [] }
+&{toGenericMatrix QMatrix4x4::toGenericMatrix commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QGenericMatrix<N, M, float> [] }
+&{toTransform QMatrix4x4::toTransform commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QTransform [] }
+&{toTransform QMatrix4x4::toTransform commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 2 QTransform [0xc8202ff740] }
+&{translate QMatrix4x4::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [0xc8202ffbc0] }
+&{translate QMatrix4x4::translate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 2 void [0xc8202ec020 0xc8202ec140] }
+&{translate QMatrix4x4::translate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 3 void [0xc8202ec680 0xc8202ec700 0xc8202ec800] }
+&{transposed QMatrix4x4::transposed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  QMatrix4x4 [] }
+&{viewport QMatrix4x4::viewport commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false true 2 void [0xc8202ecc20] }
+&{viewport QMatrix4x4::viewport commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qmatrix4x4.h non plain false false  void [0xc8202ed0a0 0xc8202ed180 0xc8202ed220 0xc8202ed3c0 0xc8202ed500 0xc8202ed5e0] }
+########################################			ENUMS			########################################

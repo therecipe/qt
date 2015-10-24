@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QDomNodeList QDomNodeList::QDomNodeList commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   [] }
+&{QDomNodeList QDomNodeList::QDomNodeList commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  [0xc821764dc0] }
+&{at QDomNodeList::at commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc8217651a0] }
+&{count QDomNodeList::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int [] }
+&{isEmpty QDomNodeList::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
+&{item QDomNodeList::item commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc8217659a0] }
+&{length QDomNodeList::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int [] }
+&{operator!= QDomNodeList::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [0xc821816000] }
+&{operator= QDomNodeList::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNodeList & [0xc8218164a0] }
+&{operator== QDomNodeList::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [0xc821816860] }
+&{size QDomNodeList::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int [] }
+&{~QDomNodeList QDomNodeList::~QDomNodeList commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non destructor false false   [] }
+########################################			ENUMS			########################################

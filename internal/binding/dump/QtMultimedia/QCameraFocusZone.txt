@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QCameraFocusZone QCameraFocusZone::QCameraFocusZone commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non constructor false false   [0xc8225bc7e0] }
+&{area QCameraFocusZone::area commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non plain false false  QRectF [] }
+&{isValid QCameraFocusZone::isValid commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non plain false false  bool [] }
+&{operator!= QCameraFocusZone::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non plain false false  bool [0xc8225bd020] }
+&{operator= QCameraFocusZone::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non plain false false  QCameraFocusZone & [0xc8225bd320] }
+&{operator== QCameraFocusZone::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non plain false false  bool [0xc8225bd580] }
+&{status QCameraFocusZone::status commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non plain false false  FocusZoneStatus [] }
+&{~QCameraFocusZone QCameraFocusZone::~QCameraFocusZone commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{FocusZoneStatus QCameraFocusZone::FocusZoneStatus commendable public  [0xc8225bc3e0 0xc8225bc480 0xc8225bc500 0xc8225bc5c0]}

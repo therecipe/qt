@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QDBusUnixFileDescriptor QDBusUnixFileDescriptor::QDBusUnixFileDescriptor commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusunixfiledescriptor.h non constructor false false   [] }
+&{QDBusUnixFileDescriptor QDBusUnixFileDescriptor::QDBusUnixFileDescriptor commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusunixfiledescriptor.h non constructor false true 3  [0xc822a05500] }
+&{QDBusUnixFileDescriptor QDBusUnixFileDescriptor::QDBusUnixFileDescriptor commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusunixfiledescriptor.h non constructor false true 2  [0xc822a057a0] }
+&{fileDescriptor QDBusUnixFileDescriptor::fileDescriptor commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusunixfiledescriptor.h non plain false false  int [] }
+&{isSupported QDBusUnixFileDescriptor::isSupported commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusunixfiledescriptor.h non plain true false  bool [] }
+&{isValid QDBusUnixFileDescriptor::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusunixfiledescriptor.h non plain false false  bool [] }
+&{operator= QDBusUnixFileDescriptor::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusunixfiledescriptor.h non plain false true 2 QDBusUnixFileDescriptor & [0xc822a05f20] }
+&{operator= QDBusUnixFileDescriptor::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusunixfiledescriptor.h non plain false false  QDBusUnixFileDescriptor & [0xc82227a220] }
+&{setFileDescriptor QDBusUnixFileDescriptor::setFileDescriptor commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusunixfiledescriptor.h non plain false false  void [0xc82227a4a0] }
+&{swap QDBusUnixFileDescriptor::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusunixfiledescriptor.h non plain false false  void [0xc82227a720] }
+&{~QDBusUnixFileDescriptor QDBusUnixFileDescriptor::~QDBusUnixFileDescriptor commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusunixfiledescriptor.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QQmlContext QQmlContext::QQmlContext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non constructor false true 2  [0xc822e15040 0xc822e15200] }
+&{QQmlContext QQmlContext::QQmlContext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non constructor false false   [0xc822e15760 0xc822e15b00] }
+&{baseUrl QQmlContext::baseUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non plain false false  QUrl [] }
+&{contextObject QQmlContext::contextObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non plain false false  QObject * [] }
+&{contextProperty QQmlContext::contextProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non plain false false  QVariant [0xc822df1020] }
+&{engine QQmlContext::engine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non plain false false  QQmlEngine * [] }
+&{isValid QQmlContext::isValid commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non plain false false  bool [] }
+&{nameForObject QQmlContext::nameForObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non plain false false  QString [0xc822df1960] }
+&{parentContext QQmlContext::parentContext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non plain false false  QQmlContext * [] }
+&{resolvedUrl QQmlContext::resolvedUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non plain false false  QUrl [0xc822de02c0] }
+&{setBaseUrl QQmlContext::setBaseUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non plain false false  void [0xc822de0c20] }
+&{setContextObject QQmlContext::setContextObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non plain false false  void [0xc822de13a0] }
+&{setContextProperty QQmlContext::setContextProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non plain false false  void [0xc822de1da0 0xc822dd8000] }
+&{setContextProperty QQmlContext::setContextProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h non plain false true 2 void [0xc822dd8520 0xc822dd86e0] }
+&{~QQmlContext QQmlContext::~QQmlContext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcontext.h impure destructor false false   [] }
+########################################			ENUMS			########################################

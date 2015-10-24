@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{QRegularExpressionMatch QRegularExpressionMatch::QRegularExpressionMatch commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non constructor false false   [] }
+&{QRegularExpressionMatch QRegularExpressionMatch::QRegularExpressionMatch commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non constructor false true 2  [0xc820c63d60] }
+&{captured QRegularExpressionMatch::captured commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false true 2 QString [0xc820c48240] }
+&{captured QRegularExpressionMatch::captured commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  QString [0xc820c48460] }
+&{capturedEnd QRegularExpressionMatch::capturedEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false true 2 int [0xc820c48640] }
+&{capturedEnd QRegularExpressionMatch::capturedEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  int [0xc820c487e0] }
+&{capturedLength QRegularExpressionMatch::capturedLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false true 2 int [0xc820c48980] }
+&{capturedLength QRegularExpressionMatch::capturedLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  int [0xc820c48b40] }
+&{capturedRef QRegularExpressionMatch::capturedRef commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false true 2 QStringRef [0xc820c48ce0] }
+&{capturedRef QRegularExpressionMatch::capturedRef commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  QStringRef [0xc820c48ea0] }
+&{capturedStart QRegularExpressionMatch::capturedStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false true 2 int [0xc820c490a0] }
+&{capturedStart QRegularExpressionMatch::capturedStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  int [0xc820c49280] }
+&{capturedTexts QRegularExpressionMatch::capturedTexts commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  QStringList [] }
+&{hasMatch QRegularExpressionMatch::hasMatch commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  bool [] }
+&{hasPartialMatch QRegularExpressionMatch::hasPartialMatch commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  bool [] }
+&{isValid QRegularExpressionMatch::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  bool [] }
+&{lastCapturedIndex QRegularExpressionMatch::lastCapturedIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  int [] }
+&{matchOptions QRegularExpressionMatch::matchOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  QRegularExpression::MatchOptions [] }
+&{matchType QRegularExpressionMatch::matchType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  QRegularExpression::MatchType [] }
+&{operator= QRegularExpressionMatch::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false true 2 QRegularExpressionMatch & [0xc820c49ba0] }
+&{operator= QRegularExpressionMatch::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  QRegularExpressionMatch & [0xc820c49de0] }
+&{regularExpression QRegularExpressionMatch::regularExpression commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  QRegularExpression [] }
+&{swap QRegularExpressionMatch::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non plain false false  void [0xc820c34260] }
+&{~QRegularExpressionMatch QRegularExpressionMatch::~QRegularExpressionMatch commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregularexpression.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QJSValueIterator QJSValueIterator::QJSValueIterator commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non constructor false false   [0xc82347ff20] }
+&{hasNext QJSValueIterator::hasNext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non plain false false  bool [] }
+&{name QJSValueIterator::name commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non plain false false  QString [] }
+&{next QJSValueIterator::next commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non plain false false  bool [] }
+&{operator= QJSValueIterator::operator= commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non plain false false  QJSValueIterator & [0xc821f224c0] }
+&{value QJSValueIterator::value commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non plain false false  QJSValue [] }
+&{~QJSValueIterator QJSValueIterator::~QJSValueIterator commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non destructor false false   [] }
+########################################			ENUMS			########################################

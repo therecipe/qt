@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QLowEnergyDescriptor QLowEnergyDescriptor::QLowEnergyDescriptor commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergydescriptor.h non constructor false false   [] }
+&{QLowEnergyDescriptor QLowEnergyDescriptor::QLowEnergyDescriptor commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergydescriptor.h non constructor false true 2  [0xc8234b1ea0] }
+&{handle QLowEnergyDescriptor::handle commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergydescriptor.h non plain false false  QLowEnergyHandle [] }
+&{isValid QLowEnergyDescriptor::isValid commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergydescriptor.h non plain false false  bool [] }
+&{name QLowEnergyDescriptor::name commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergydescriptor.h non plain false false  QString [] }
+&{operator!= QLowEnergyDescriptor::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergydescriptor.h non plain false false  bool [0xc823488920] }
+&{operator= QLowEnergyDescriptor::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergydescriptor.h non plain false false  QLowEnergyDescriptor & [0xc823488c00] }
+&{operator== QLowEnergyDescriptor::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergydescriptor.h non plain false false  bool [0xc823488e60] }
+&{type QLowEnergyDescriptor::type commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergydescriptor.h non plain false false  QBluetoothUuid::DescriptorType [] }
+&{uuid QLowEnergyDescriptor::uuid commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergydescriptor.h non plain false false  QBluetoothUuid [] }
+&{value QLowEnergyDescriptor::value commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergydescriptor.h non plain false false  QByteArray [] }
+&{~QLowEnergyDescriptor QLowEnergyDescriptor::~QLowEnergyDescriptor commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergydescriptor.h non destructor false false   [] }
+########################################			ENUMS			########################################

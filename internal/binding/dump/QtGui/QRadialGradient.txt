@@ -1,0 +1,21 @@
+########################################			FUNCTIONS			########################################
+&{QRadialGradient QRadialGradient::QRadialGradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false false   [] }
+&{QRadialGradient QRadialGradient::QRadialGradient commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 6  [0xc821f9ee00 0xc821f9ee80 0xc821f9ef00 0xc821f9ef80] }
+&{QRadialGradient QRadialGradient::QRadialGradient commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 4  [0xc821f9f120 0xc821f9f1a0] }
+&{QRadialGradient QRadialGradient::QRadialGradient commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 2  [0xc821f9f340 0xc821f9f3c0 0xc821f9f440] }
+&{QRadialGradient QRadialGradient::QRadialGradient commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 7  [0xc821f9f600 0xc821f9f680 0xc821f9f700 0xc821f9f780 0xc821f9f820 0xc821f9f8a0] }
+&{QRadialGradient QRadialGradient::QRadialGradient commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 5  [0xc821f9fa40 0xc821f9fac0 0xc821f9fb40] }
+&{QRadialGradient QRadialGradient::QRadialGradient commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 3  [0xc821f9fce0 0xc821f9fd60 0xc821f9fde0 0xc821f9fe60 0xc821f9ff00] }
+&{center QRadialGradient::center commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  QPointF [] }
+&{centerRadius QRadialGradient::centerRadius commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  qreal [] }
+&{focalPoint QRadialGradient::focalPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  QPointF [] }
+&{focalRadius QRadialGradient::focalRadius commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  qreal [] }
+&{radius QRadialGradient::radius commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  qreal [] }
+&{setCenter QRadialGradient::setCenter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc821fb45c0] }
+&{setCenter QRadialGradient::setCenter commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false true 2 void [0xc821fb47a0 0xc821fb4820] }
+&{setCenterRadius QRadialGradient::setCenterRadius commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc821fb49c0] }
+&{setFocalPoint QRadialGradient::setFocalPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc821fb4b60] }
+&{setFocalPoint QRadialGradient::setFocalPoint commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false true 2 void [0xc821fb4d20 0xc821fb4da0] }
+&{setFocalRadius QRadialGradient::setFocalRadius commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc821fb4f40] }
+&{setRadius QRadialGradient::setRadius commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc821fb5120] }
+########################################			ENUMS			########################################

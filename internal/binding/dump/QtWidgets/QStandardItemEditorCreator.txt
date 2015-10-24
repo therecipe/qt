@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{QStandardItemEditorCreator QStandardItemEditorCreator::QStandardItemEditorCreator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.h non constructor false false   [] }
+&{createWidget QStandardItemEditorCreator::createWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.h impure plain false false  QWidget * [0xc822b1d760] }
+&{valuePropertyName QStandardItemEditorCreator::valuePropertyName commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.h impure plain false false  QByteArray [] }
+########################################			ENUMS			########################################

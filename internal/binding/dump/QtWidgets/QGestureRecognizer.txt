@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{QGestureRecognizer QGestureRecognizer::QGestureRecognizer commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesturerecognizer.h non constructor false false   [] }
+&{create QGestureRecognizer::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesturerecognizer.h impure plain false false  QGesture * [0xc8222984c0] }
+&{recognize QGestureRecognizer::recognize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesturerecognizer.h pure plain false false  Result [0xc822298760 0xc8222987e0 0xc8222988a0] }
+&{registerRecognizer QGestureRecognizer::registerRecognizer commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesturerecognizer.h non plain true false  Qt::GestureType [0xc822298ae0] }
+&{reset QGestureRecognizer::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesturerecognizer.h impure plain false false  void [0xc822298e00] }
+&{unregisterRecognizer QGestureRecognizer::unregisterRecognizer commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesturerecognizer.h non plain true false  void [0xc822299080] }
+&{~QGestureRecognizer QGestureRecognizer::~QGestureRecognizer commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesturerecognizer.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{ResultFlag QGestureRecognizer::ResultFlag commendable public QGestureRecognizer::Result [0xc822cf18a0 0xc822cf1920 0xc822cf19a0 0xc822cf1a40 0xc822cf1bc0 0xc822cf1c60 0xc822cf1d00 0xc822cf1e60]}

@@ -1,0 +1,64 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include "../cgoutil.h"
+
+char* QGuiApplication_QGuiApplication_ApplicationDisplayName();
+int QGuiApplication_QGuiApplication_ApplicationState();
+int QGuiApplication_IsSavingSession(QtObjectPtr ptr);
+int QGuiApplication_IsSessionRestored(QtObjectPtr ptr);
+int QGuiApplication_QGuiApplication_LayoutDirection();
+QtObjectPtr QGuiApplication_QGuiApplication_OverrideCursor();
+char* QGuiApplication_QGuiApplication_PlatformName();
+int QGuiApplication_QGuiApplication_QueryKeyboardModifiers();
+int QGuiApplication_QGuiApplication_QuitOnLastWindowClosed();
+void QGuiApplication_QGuiApplication_RestoreOverrideCursor();
+char* QGuiApplication_SessionId(QtObjectPtr ptr);
+char* QGuiApplication_SessionKey(QtObjectPtr ptr);
+void QGuiApplication_QGuiApplication_SetApplicationDisplayName(char* name);
+void QGuiApplication_QGuiApplication_SetLayoutDirection(int direction);
+void QGuiApplication_QGuiApplication_SetOverrideCursor(QtObjectPtr cursor);
+void QGuiApplication_QGuiApplication_SetQuitOnLastWindowClosed(int quit);
+void QGuiApplication_QGuiApplication_SetWindowIcon(QtObjectPtr icon);
+QtObjectPtr QGuiApplication_NewQGuiApplication(int argc, char* argv);
+void QGuiApplication_ConnectApplicationStateChanged(QtObjectPtr ptr);
+void QGuiApplication_DisconnectApplicationStateChanged(QtObjectPtr ptr);
+void QGuiApplication_QGuiApplication_ChangeOverrideCursor(QtObjectPtr cursor);
+QtObjectPtr QGuiApplication_QGuiApplication_Clipboard();
+int QGuiApplication_QGuiApplication_DesktopSettingsAware();
+int QGuiApplication_QGuiApplication_Exec();
+QtObjectPtr QGuiApplication_QGuiApplication_FocusObject();
+void QGuiApplication_ConnectFocusObjectChanged(QtObjectPtr ptr);
+void QGuiApplication_DisconnectFocusObjectChanged(QtObjectPtr ptr);
+QtObjectPtr QGuiApplication_QGuiApplication_FocusWindow();
+void QGuiApplication_ConnectFocusWindowChanged(QtObjectPtr ptr);
+void QGuiApplication_DisconnectFocusWindowChanged(QtObjectPtr ptr);
+void QGuiApplication_ConnectFontDatabaseChanged(QtObjectPtr ptr);
+void QGuiApplication_DisconnectFontDatabaseChanged(QtObjectPtr ptr);
+QtObjectPtr QGuiApplication_QGuiApplication_InputMethod();
+int QGuiApplication_QGuiApplication_IsLeftToRight();
+int QGuiApplication_QGuiApplication_IsRightToLeft();
+int QGuiApplication_QGuiApplication_KeyboardModifiers();
+void QGuiApplication_ConnectLastWindowClosed(QtObjectPtr ptr);
+void QGuiApplication_DisconnectLastWindowClosed(QtObjectPtr ptr);
+void QGuiApplication_ConnectLayoutDirectionChanged(QtObjectPtr ptr);
+void QGuiApplication_DisconnectLayoutDirectionChanged(QtObjectPtr ptr);
+QtObjectPtr QGuiApplication_QGuiApplication_ModalWindow();
+int QGuiApplication_QGuiApplication_MouseButtons();
+int QGuiApplication_Notify(QtObjectPtr ptr, QtObjectPtr object, QtObjectPtr event);
+QtObjectPtr QGuiApplication_QGuiApplication_PrimaryScreen();
+void QGuiApplication_ConnectScreenAdded(QtObjectPtr ptr);
+void QGuiApplication_DisconnectScreenAdded(QtObjectPtr ptr);
+void QGuiApplication_ConnectScreenRemoved(QtObjectPtr ptr);
+void QGuiApplication_DisconnectScreenRemoved(QtObjectPtr ptr);
+void QGuiApplication_QGuiApplication_SetDesktopSettingsAware(int on);
+void QGuiApplication_QGuiApplication_SetFont(QtObjectPtr font);
+void QGuiApplication_QGuiApplication_SetPalette(QtObjectPtr pal);
+QtObjectPtr QGuiApplication_QGuiApplication_StyleHints();
+void QGuiApplication_QGuiApplication_Sync();
+QtObjectPtr QGuiApplication_QGuiApplication_TopLevelAt(QtObjectPtr pos);
+void QGuiApplication_DestroyQGuiApplication(QtObjectPtr ptr);
+
+#ifdef __cplusplus
+}
+#endif

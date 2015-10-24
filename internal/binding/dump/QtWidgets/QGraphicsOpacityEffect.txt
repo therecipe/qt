@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{opacity QGraphicsOpacityEffect::opacity commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non plain false false  qreal [] }
+&{opacityMask QGraphicsOpacityEffect::opacityMask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non plain false false  QBrush [] }
+&{setOpacity QGraphicsOpacityEffect::setOpacity commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non slot false false  void [0xc822f5b1c0] }
+&{setOpacityMask QGraphicsOpacityEffect::setOpacityMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non slot false false  void [0xc822f5b520] }
+&{QGraphicsOpacityEffect QGraphicsOpacityEffect::QGraphicsOpacityEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non constructor false false   [0xc822f5ba00] }
+&{draw QGraphicsOpacityEffect::draw commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure plain false false  void [0xc822f5bf80] }
+&{opacityChanged QGraphicsOpacityEffect::opacityChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non signal false false  void [0xc822f42380] }
+&{opacityMaskChanged QGraphicsOpacityEffect::opacityMaskChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non signal false false  void [0xc822f428e0] }
+&{~QGraphicsOpacityEffect QGraphicsOpacityEffect::~QGraphicsOpacityEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non destructor false false   [] }
+########################################			ENUMS			########################################

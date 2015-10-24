@@ -1,0 +1,30 @@
+########################################			FUNCTIONS			########################################
+&{count QToolBox::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.cpp non plain false false  int [] }
+&{currentIndex QToolBox::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.cpp non plain false false  int [] }
+&{setCurrentIndex QToolBox::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.cpp non slot false false  void [0xc822a68080] }
+&{QToolBox QToolBox::QToolBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non constructor false false   [0xc822a683c0 0xc822a68480] }
+&{addItem QToolBox::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false true 2 int [0xc822a68c00 0xc822a68cc0] }
+&{addItem QToolBox::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  int [0xc822a69000 0xc822a69160 0xc822a69240] }
+&{changeEvent QToolBox::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h impure plain false false  void [0xc822a695c0] }
+&{currentChanged QToolBox::currentChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non signal false false  void [0xc822a69a40] }
+&{currentWidget QToolBox::currentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  QWidget * [] }
+&{event QToolBox::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h impure plain false false  bool [0xc822a69f00] }
+&{indexOf QToolBox::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  int [0xc821dcc300] }
+&{insertItem QToolBox::insertItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  int [0xc821dcc6e0 0xc821dcc7c0 0xc821dcc8e0 0xc821dcc9e0] }
+&{insertItem QToolBox::insertItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false true 2 int [0xc821dccd60 0xc821dcce80 0xc821dccf60] }
+&{isItemEnabled QToolBox::isItemEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  bool [0xc821dcd2c0] }
+&{itemIcon QToolBox::itemIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  QIcon [0xc821dcd6a0] }
+&{itemInserted QToolBox::itemInserted commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h impure plain false false  void [0xc821dcdaa0] }
+&{itemRemoved QToolBox::itemRemoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h impure plain false false  void [0xc821dcdee0] }
+&{itemText QToolBox::itemText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  QString [0xc821dd8260] }
+&{itemToolTip QToolBox::itemToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  QString [0xc821dd8620] }
+&{removeItem QToolBox::removeItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  void [0xc821dd89c0] }
+&{setCurrentWidget QToolBox::setCurrentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non slot false false  void [0xc821dd8d40] }
+&{setItemEnabled QToolBox::setItemEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  void [0xc821dd8fa0 0xc821dd90a0] }
+&{setItemIcon QToolBox::setItemIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  void [0xc821dd93e0 0xc821dd94a0] }
+&{setItemText QToolBox::setItemText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  void [0xc821dd97e0 0xc821dd9920] }
+&{setItemToolTip QToolBox::setItemToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  void [0xc821dd9ca0 0xc821dd9da0] }
+&{showEvent QToolBox::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h impure plain false false  void [0xc821de80e0] }
+&{widget QToolBox::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non plain false false  QWidget * [0xc821de83e0] }
+&{~QToolBox QToolBox::~QToolBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbox.h non destructor false false   [] }
+########################################			ENUMS			########################################

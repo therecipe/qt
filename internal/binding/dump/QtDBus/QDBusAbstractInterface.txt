@@ -1,0 +1,18 @@
+########################################			FUNCTIONS			########################################
+&{asyncCall QDBusAbstractInterface::asyncCall commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  QDBusPendingCall [0xc8219f2e40 0xc8219f2ec0 0xc8219f2f40 0xc8219f2fc0 0xc8219f3060 0xc8219f30e0 0xc8219f3160 0xc8219f31e0 0xc8219f3280] }
+&{asyncCallWithArgumentList QDBusAbstractInterface::asyncCallWithArgumentList commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  QDBusPendingCall [0xc8219f3460 0xc8219f3500] }
+&{call QDBusAbstractInterface::call commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false true 2 QDBusMessage [0xc8219f3700 0xc8219f3780 0xc8219f3800 0xc8219f3880 0xc8219f3920 0xc8219f39a0 0xc8219f3a20 0xc8219f3aa0 0xc8219f3b40 0xc8219f3bc0] }
+&{call QDBusAbstractInterface::call commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  QDBusMessage [0xc8219f3da0 0xc8219f3e20 0xc8219f3ea0 0xc8219f3f20 0xc8219f3fc0 0xc8219c8040 0xc8219c80c0 0xc8219c8140 0xc8219c81e0] }
+&{callWithArgumentList QDBusAbstractInterface::callWithArgumentList commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  QDBusMessage [0xc8219c83a0 0xc8219c8420 0xc8219c84c0] }
+&{callWithCallback QDBusAbstractInterface::callWithCallback commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  bool [0xc8219c8680 0xc8219c8720 0xc8219c87e0 0xc8219c8860 0xc8219c8900] }
+&{callWithCallback QDBusAbstractInterface::callWithCallback commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false true 2 bool [0xc8219c8a60 0xc8219c8b00 0xc8219c8bc0 0xc8219c8c40] }
+&{connection QDBusAbstractInterface::connection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  QDBusConnection [] }
+&{interface QDBusAbstractInterface::interface commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  QString [] }
+&{isValid QDBusAbstractInterface::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  bool [] }
+&{lastError QDBusAbstractInterface::lastError commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  QDBusError [] }
+&{path QDBusAbstractInterface::path commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  QString [] }
+&{service QDBusAbstractInterface::service commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  QString [] }
+&{setTimeout QDBusAbstractInterface::setTimeout commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  void [0xc8219c9cc0] }
+&{timeout QDBusAbstractInterface::timeout commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h non plain false false  int [] }
+&{~QDBusAbstractInterface QDBusAbstractInterface::~QDBusAbstractInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractinterface.h impure destructor false false   [] }
+########################################			ENUMS			########################################

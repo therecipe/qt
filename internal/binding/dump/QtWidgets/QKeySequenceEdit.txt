@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{keySequence QKeySequenceEdit::keySequence commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qkeysequenceedit.cpp non plain false false  QKeySequence [] }
+&{setKeySequence QKeySequenceEdit::setKeySequence commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qkeysequenceedit.cpp non slot false false  void [0xc822299a00] }
+&{QKeySequenceEdit QKeySequenceEdit::QKeySequenceEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qkeysequenceedit.h non constructor false false   [0xc822299d40] }
+&{QKeySequenceEdit QKeySequenceEdit::QKeySequenceEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qkeysequenceedit.h non constructor false true 2  [0xc822299fa0 0xc822c000c0] }
+&{clear QKeySequenceEdit::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qkeysequenceedit.h non slot false false  void [] }
+&{editingFinished QKeySequenceEdit::editingFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qkeysequenceedit.h non signal false false  void [] }
+&{event QKeySequenceEdit::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qkeysequenceedit.h impure plain false false  bool [0xc822c00cc0] }
+&{keyPressEvent QKeySequenceEdit::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qkeysequenceedit.h impure plain false false  void [0xc822c01060] }
+&{keyReleaseEvent QKeySequenceEdit::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qkeysequenceedit.h impure plain false false  void [0xc822c012a0] }
+&{keySequenceChanged QKeySequenceEdit::keySequenceChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qkeysequenceedit.h non signal false false  void [0xc822c016a0] }
+&{timerEvent QKeySequenceEdit::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qkeysequenceedit.h impure plain false false  void [0xc822c01a20] }
+&{~QKeySequenceEdit QKeySequenceEdit::~QKeySequenceEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qkeysequenceedit.h non destructor false false   [] }
+########################################			ENUMS			########################################

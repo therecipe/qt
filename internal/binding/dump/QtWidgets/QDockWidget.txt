@@ -1,0 +1,28 @@
+########################################			FUNCTIONS			########################################
+&{allowedAreas QDockWidget::allowedAreas commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.cpp non plain false false  Qt::DockWidgetAreas [] }
+&{features QDockWidget::features commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.cpp non plain false false  DockWidgetFeatures [] }
+&{setAllowedAreas QDockWidget::setAllowedAreas commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.cpp non plain false false  void [0xc821631240] }
+&{setFeatures QDockWidget::setFeatures commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.cpp non plain false false  void [0xc821631640] }
+&{setFloating QDockWidget::setFloating commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.cpp non plain false false  void [0xc821631a80] }
+&{QDockWidget QDockWidget::QDockWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non constructor false true 2  [0xc8217014e0 0xc821701620] }
+&{QDockWidget QDockWidget::QDockWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non constructor false false   [0xc821701b00 0xc821701c40 0xc821701da0] }
+&{allowedAreasChanged QDockWidget::allowedAreasChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non signal false false  void [0xc821776840] }
+&{changeEvent QDockWidget::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h impure plain false false  void [0xc821776d80] }
+&{closeEvent QDockWidget::closeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h impure plain false false  void [0xc821777280] }
+&{dockLocationChanged QDockWidget::dockLocationChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non signal false false  void [0xc821777760] }
+&{event QDockWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h impure plain false false  bool [0xc821777d80] }
+&{featuresChanged QDockWidget::featuresChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non signal false false  void [0xc8217f62a0] }
+&{initStyleOption QDockWidget::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non plain false false  void [0xc8217f6780] }
+&{isAreaAllowed QDockWidget::isAreaAllowed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non plain false false  bool [0xc8217f6c80] }
+&{isFloating QDockWidget::isFloating commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non plain false false  bool [] }
+&{paintEvent QDockWidget::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h impure plain false false  void [0xc8217f7360] }
+&{setTitleBarWidget QDockWidget::setTitleBarWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non plain false false  void [0xc8217f7780] }
+&{setWidget QDockWidget::setWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non plain false false  void [0xc8217f7c00] }
+&{titleBarWidget QDockWidget::titleBarWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non plain false false  QWidget * [] }
+&{toggleViewAction QDockWidget::toggleViewAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non plain false false  QAction * [] }
+&{topLevelChanged QDockWidget::topLevelChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non signal false false  void [0xc8218a8460] }
+&{visibilityChanged QDockWidget::visibilityChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non signal false false  void [0xc8218a8920] }
+&{widget QDockWidget::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non plain false false  QWidget * [] }
+&{~QDockWidget QDockWidget::~QDockWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdockwidget.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{DockWidgetFeature QDockWidget::DockWidgetFeature commendable public QDockWidget::DockWidgetFeatures [0xc821631ec0 0xc821700020 0xc821700260 0xc8217004c0 0xc821700740 0xc821700980 0xc821700b20 0xc821700e20]}

@@ -1,0 +1,29 @@
+########################################			FUNCTIONS			########################################
+&{QNetworkCookie QNetworkCookie::QNetworkCookie commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non constructor false false   [0xc821ece820 0xc821ece960] }
+&{QNetworkCookie QNetworkCookie::QNetworkCookie commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non constructor false true 2  [0xc821ecebe0] }
+&{domain QNetworkCookie::domain commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  QString [] }
+&{expirationDate QNetworkCookie::expirationDate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  QDateTime [] }
+&{hasSameIdentifier QNetworkCookie::hasSameIdentifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  bool [0xc821ecf140] }
+&{isHttpOnly QNetworkCookie::isHttpOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  bool [] }
+&{isSecure QNetworkCookie::isSecure commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  bool [] }
+&{isSessionCookie QNetworkCookie::isSessionCookie commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  bool [] }
+&{name QNetworkCookie::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  QByteArray [] }
+&{normalize QNetworkCookie::normalize commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  void [0xc821ecf960] }
+&{operator!= QNetworkCookie::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  bool [0xc821ecfb80] }
+&{operator= QNetworkCookie::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  QNetworkCookie & [0xc821ecfe40] }
+&{operator== QNetworkCookie::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  bool [0xc822d5c140] }
+&{parseCookies QNetworkCookie::parseCookies commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain true false  QList<QNetworkCookie> [0xc822d5c580] }
+&{path QNetworkCookie::path commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  QString [] }
+&{setDomain QNetworkCookie::setDomain commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  void [0xc822d5ca60] }
+&{setExpirationDate QNetworkCookie::setExpirationDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  void [0xc822d5cd40] }
+&{setHttpOnly QNetworkCookie::setHttpOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  void [0xc822d5d0a0] }
+&{setName QNetworkCookie::setName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  void [0xc822d5d3e0] }
+&{setPath QNetworkCookie::setPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  void [0xc822d5d740] }
+&{setSecure QNetworkCookie::setSecure commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  void [0xc822d5da20] }
+&{setValue QNetworkCookie::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  void [0xc822d5dd00] }
+&{swap QNetworkCookie::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  void [0xc822e3e100] }
+&{toRawForm QNetworkCookie::toRawForm commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  QByteArray [0xc822e3e380] }
+&{value QNetworkCookie::value commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non plain false false  QByteArray [] }
+&{~QNetworkCookie QNetworkCookie::~QNetworkCookie commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookie.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{RawForm QNetworkCookie::RawForm commendable public  [0xc821ece4e0 0xc821ece560]}

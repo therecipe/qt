@@ -1,0 +1,3 @@
+########################################			FUNCTIONS			########################################
+&{filter QOrientationFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qorientationsensor.h pure plain false false  bool [0xc822e524a0] }
+########################################			ENUMS			########################################

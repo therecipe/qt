@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QXmlInputSource QXmlInputSource::QXmlInputSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false false   [] }
+&{QXmlInputSource QXmlInputSource::QXmlInputSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false true 2  [0xc822bc8100] }
+&{data QXmlInputSource::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QString [] }
+&{fetchData QXmlInputSource::fetchData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void [] }
+&{fromRawData QXmlInputSource::fromRawData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QString [0xc822bc85e0 0xc822bc86e0] }
+&{next QXmlInputSource::next commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QChar [] }
+&{reset QXmlInputSource::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void [] }
+&{setData QXmlInputSource::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false true 2 void [0xc822bc8bc0] }
+&{setData QXmlInputSource::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void [0xc822bc8ea0] }
+&{~QXmlInputSource QXmlInputSource::~QXmlInputSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   [] }
+########################################			ENUMS			########################################

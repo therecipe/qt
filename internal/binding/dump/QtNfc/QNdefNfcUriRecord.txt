@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QNdefNfcUriRecord QNdefNfcUriRecord::QNdefNfcUriRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcurirecord.h non constructor false false   [] }
+&{QNdefNfcUriRecord QNdefNfcUriRecord::QNdefNfcUriRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcurirecord.h non constructor false true 2  [0xc822817760] }
+&{setUri QNdefNfcUriRecord::setUri commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcurirecord.h non plain false false  void [0xc822817a40] }
+&{uri QNdefNfcUriRecord::uri commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcurirecord.h non plain false false  QUrl [] }
+########################################			ENUMS			########################################

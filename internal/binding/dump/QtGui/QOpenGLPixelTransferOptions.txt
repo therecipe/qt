@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QOpenGLPixelTransferOptions QOpenGLPixelTransferOptions::QOpenGLPixelTransferOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non constructor false false   [] }
+&{alignment QOpenGLPixelTransferOptions::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  int [] }
+&{imageHeight QOpenGLPixelTransferOptions::imageHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  int [] }
+&{isLeastSignificantBitFirst QOpenGLPixelTransferOptions::isLeastSignificantBitFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  bool [] }
+&{isSwapBytesEnabled QOpenGLPixelTransferOptions::isSwapBytesEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  bool [] }
+&{setAlignment QOpenGLPixelTransferOptions::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  void [0xc822acd1c0] }
+&{setImageHeight QOpenGLPixelTransferOptions::setImageHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  void [0xc822acd320] }
+&{setSkipImages QOpenGLPixelTransferOptions::setSkipImages commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  void [0xc822acd4a0] }
+&{setSkipPixels QOpenGLPixelTransferOptions::setSkipPixels commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  void [0xc822acd600] }
+&{setSkipRows QOpenGLPixelTransferOptions::setSkipRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  void [0xc822acd780] }
+&{skipImages QOpenGLPixelTransferOptions::skipImages commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  int [] }
+&{skipPixels QOpenGLPixelTransferOptions::skipPixels commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  int [] }
+&{skipRows QOpenGLPixelTransferOptions::skipRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  int [] }
+&{rowLength QOpenGLPixelTransferOptions::rowLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  int [] }
+&{setLeastSignificantByteFirst QOpenGLPixelTransferOptions::setLeastSignificantByteFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  void [0xc822ae6180] }
+&{setRowLength QOpenGLPixelTransferOptions::setRowLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  void [0xc822ae6300] }
+&{setSwapBytesEnabled QOpenGLPixelTransferOptions::setSwapBytesEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non plain false false  void [0xc822ae64c0] }
+&{~QOpenGLPixelTransferOptions QOpenGLPixelTransferOptions::~QOpenGLPixelTransferOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpixeltransferoptions.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QDomImplementation QDomImplementation::QDomImplementation commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   [] }
+&{QDomImplementation QDomImplementation::QDomImplementation commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  [0xc820e499a0] }
+&{createDocument QDomImplementation::createDocument commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocument [0xc820e49bc0 0xc820e49c40 0xc820e49d40] }
+&{createDocumentType QDomImplementation::createDocumentType commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocumentType [0xc820e49fc0 0xc820b56040 0xc820b56120] }
+&{hasFeature QDomImplementation::hasFeature commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [0xc820b56440 0xc820b565c0] }
+&{invalidDataPolicy QDomImplementation::invalidDataPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain true false  InvalidDataPolicy [] }
+&{isNull QDomImplementation::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
+&{operator!= QDomImplementation::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [0xc820b56d60] }
+&{operator= QDomImplementation::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomImplementation & [0xc820b57200] }
+&{operator== QDomImplementation::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [0xc820b57660] }
+&{setInvalidDataPolicy QDomImplementation::setInvalidDataPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain true false  void [0xc820b57aa0] }
+&{~QDomImplementation QDomImplementation::~QDomImplementation commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{InvalidDataPolicy QDomImplementation::InvalidDataPolicy commendable public  [0xc820e494a0 0xc820e495c0 0xc820e49660]}

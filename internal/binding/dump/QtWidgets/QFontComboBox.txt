@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{currentFont QFontComboBox::currentFont commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non plain false false  QFont [] }
+&{fontFilters QFontComboBox::fontFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non plain false false  FontFilters [] }
+&{setCurrentFont QFontComboBox::setCurrentFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non slot false false  void [0xc821a0f220] }
+&{setFontFilters QFontComboBox::setFontFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non plain false false  void [0xc821a0fa00] }
+&{setWritingSystem QFontComboBox::setWritingSystem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non plain false false  void [0xc821aba1a0] }
+&{writingSystem QFontComboBox::writingSystem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non plain false false  QFontDatabase::WritingSystem [] }
+&{QFontComboBox QFontComboBox::QFontComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h non constructor false false   [0xc821abbb40] }
+&{currentFontChanged QFontComboBox::currentFontChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h non signal false false  void [0xc821b2a400] }
+&{event QFontComboBox::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h impure plain false false  bool [0xc821b2a940] }
+&{sizeHint QFontComboBox::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h impure plain false false  QSize [] }
+&{~QFontComboBox QFontComboBox::~QFontComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{FontFilter QFontComboBox::FontFilter commendable public QFontComboBox::FontFilters [0xc821abad80 0xc821abaec0 0xc821abafa0 0xc821abb120 0xc821abb360]}

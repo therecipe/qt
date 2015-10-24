@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{gestureCancelPolicy QGesture::gestureCancelPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  GestureCancelPolicy [] }
+&{gestureType QGesture::gestureType commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  Qt::GestureType [] }
+&{hasHotSpot QGesture::hasHotSpot commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  bool [] }
+&{hotSpot QGesture::hotSpot commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF [] }
+&{setGestureCancelPolicy QGesture::setGestureCancelPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822c86600] }
+&{setHotSpot QGesture::setHotSpot commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822c86900] }
+&{state QGesture::state commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  Qt::GestureState [] }
+&{unsetHotSpot QGesture::unsetHotSpot commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [] }
+&{QGesture QGesture::QGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non constructor false false   [0xc822c870e0] }
+&{~QGesture QGesture::~QGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{GestureCancelPolicy QGesture::GestureCancelPolicy commendable public  [0xc822c86e00 0xc822c86ea0]}

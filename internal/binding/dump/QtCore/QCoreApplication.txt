@@ -1,0 +1,49 @@
+########################################			FUNCTIONS			########################################
+&{applicationName QCoreApplication::applicationName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.cpp non plain true false  QString [] }
+&{applicationVersion QCoreApplication::applicationVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.cpp non plain true false  QString [] }
+&{organizationDomain QCoreApplication::organizationDomain commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.cpp non plain true false  QString [] }
+&{organizationName QCoreApplication::organizationName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.cpp non plain true false  QString [] }
+&{setApplicationName QCoreApplication::setApplicationName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.cpp non plain true false  void [0xc82065a7a0] }
+&{setApplicationVersion QCoreApplication::setApplicationVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.cpp non plain true false  void [0xc82065a9a0] }
+&{setOrganizationDomain QCoreApplication::setOrganizationDomain commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.cpp non plain true false  void [0xc82065aba0] }
+&{setOrganizationName QCoreApplication::setOrganizationName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.cpp non plain true false  void [0xc82065ada0] }
+&{QCoreApplication QCoreApplication::QCoreApplication commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non constructor false false   [0xc82065b280 0xc82065b300] }
+&{aboutToQuit QCoreApplication::aboutToQuit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non signal false false  void [] }
+&{addLibraryPath QCoreApplication::addLibraryPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [0xc82065b5c0] }
+&{applicationDirPath QCoreApplication::applicationDirPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  QString [] }
+&{applicationFilePath QCoreApplication::applicationFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  QString [] }
+&{applicationPid QCoreApplication::applicationPid commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  qint64 [] }
+&{arguments QCoreApplication::arguments commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  QStringList [] }
+&{closingDown QCoreApplication::closingDown commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  bool [] }
+&{event QCoreApplication::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h impure plain false false  bool [0xc820670380] }
+&{eventDispatcher QCoreApplication::eventDispatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  QAbstractEventDispatcher * [] }
+&{exec QCoreApplication::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  int [] }
+&{exit QCoreApplication::exit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [0xc820670760] }
+&{flush QCoreApplication::flush commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [] }
+&{installNativeEventFilter QCoreApplication::installNativeEventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain false false  void [0xc820670ae0] }
+&{installTranslator QCoreApplication::installTranslator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  bool [0xc820670ce0] }
+&{instance QCoreApplication::instance commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  QCoreApplication * [] }
+&{isQuitLockEnabled QCoreApplication::isQuitLockEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  bool [] }
+&{isSetuidAllowed QCoreApplication::isSetuidAllowed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  bool [] }
+&{libraryPaths QCoreApplication::libraryPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  QStringList [] }
+&{notify QCoreApplication::notify commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h impure plain false false  bool [0xc820671320 0xc8206713a0] }
+&{postEvent QCoreApplication::postEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [0xc8206719c0 0xc820671a40 0xc820671ae0] }
+&{processEvents QCoreApplication::processEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [0xc820671ce0] }
+&{processEvents QCoreApplication::processEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true true 2 void [0xc82068c0c0 0xc82068c180] }
+&{quit QCoreApplication::quit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non slot true false  void [] }
+&{removeLibraryPath QCoreApplication::removeLibraryPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [0xc82068c440] }
+&{removeNativeEventFilter QCoreApplication::removeNativeEventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain false false  void [0xc82068c620] }
+&{removePostedEvents QCoreApplication::removePostedEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [0xc82068c820 0xc82068c8a0] }
+&{removeTranslator QCoreApplication::removeTranslator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  bool [0xc82068ca00] }
+&{sendEvent QCoreApplication::sendEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  bool [0xc82068cbe0 0xc82068cc60] }
+&{sendPostedEvents QCoreApplication::sendPostedEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [0xc820070120 0xc820070280] }
+&{setAttribute QCoreApplication::setAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [0xc820070780 0xc820070880] }
+&{setEventDispatcher QCoreApplication::setEventDispatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [0xc820070b20] }
+&{setLibraryPaths QCoreApplication::setLibraryPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [0xc820070e00] }
+&{setQuitLockEnabled QCoreApplication::setQuitLockEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [0xc8200711a0] }
+&{setSetuidAllowed QCoreApplication::setSetuidAllowed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  void [0xc820071380] }
+&{startingUp QCoreApplication::startingUp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  bool [] }
+&{testAttribute QCoreApplication::testAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  bool [0xc820071820] }
+&{translate QCoreApplication::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non plain true false  QString [0xc820200200 0xc8202002a0 0xc820200340 0xc820200400] }
+&{~QCoreApplication QCoreApplication::~QCoreApplication commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreapplication.h non destructor false false   [] }
+########################################			ENUMS			########################################

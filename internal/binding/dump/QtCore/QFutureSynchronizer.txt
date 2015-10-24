@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QFutureSynchronizer QFutureSynchronizer::QFutureSynchronizer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non constructor false false   [] }
+&{QFutureSynchronizer QFutureSynchronizer::QFutureSynchronizer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non constructor false true 2  [0xc8206d72a0] }
+&{addFuture QFutureSynchronizer::addFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void [0xc8206d74c0] }
+&{cancelOnWait QFutureSynchronizer::cancelOnWait commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  bool [] }
+&{clearFutures QFutureSynchronizer::clearFutures commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void [] }
+&{futures QFutureSynchronizer::futures commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  QList<QFuture<T> > [] }
+&{setCancelOnWait QFutureSynchronizer::setCancelOnWait commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void [0xc8206d7920] }
+&{setFuture QFutureSynchronizer::setFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void [0xc8206d7b00] }
+&{waitForFinished QFutureSynchronizer::waitForFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void [] }
+&{~QFutureSynchronizer QFutureSynchronizer::~QFutureSynchronizer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non destructor false false   [] }
+########################################			ENUMS			########################################

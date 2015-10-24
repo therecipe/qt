@@ -1,0 +1,65 @@
+########################################			FUNCTIONS			########################################
+&{QTransform QTransform::QTransform commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non constructor false true 5  [0xc8221ffe60] }
+&{QTransform QTransform::QTransform commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non constructor false true 3  [0xc822214020 0xc8222140a0 0xc822214120 0xc8222141a0 0xc822214240 0xc8222142c0 0xc822214340 0xc8222143c0 0xc822214460] }
+&{QTransform QTransform::QTransform commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non constructor false true 4  [0xc822214620 0xc8222146a0 0xc822214720 0xc8222147a0 0xc822214840 0xc8222148c0] }
+&{map QTransform::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false true 5 QLineF [0xc822214a20] }
+&{map QTransform::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false true 3 QPoint [0xc822214ba0] }
+&{map QTransform::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false true 7 QPolygon [0xc822214d00] }
+&{map QTransform::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false true 6 QPolygonF [0xc822214e80] }
+&{map QTransform::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false true 8 QRegion [0xc822215020] }
+&{mapRect QTransform::mapRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false true 2 QRect [0xc822215200] }
+&{mapRect QTransform::mapRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false false  QRectF [0xc8222153c0] }
+&{mapToPolygon QTransform::mapToPolygon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false false  QPolygon [0xc822215580] }
+&{operator!= QTransform::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false false  bool [0xc822215760] }
+&{operator* QTransform::operator* commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false false  QTransform [0xc822215980] }
+&{operator*= QTransform::operator*= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false false  QTransform & [0xc822215ba0] }
+&{operator== QTransform::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false false  bool [0xc822215dc0] }
+&{quadToSquare QTransform::quadToSquare commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain true false  bool [0xc822215fe0 0xc82222a0a0] }
+&{rotate QTransform::rotate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false false  QTransform & [0xc82222a280 0xc82222a300] }
+&{rotateRadians QTransform::rotateRadians commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.cpp non plain false false  QTransform & [0xc82222a4c0 0xc82222a540] }
+&{QTransform QTransform::QTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non constructor false false   [] }
+&{adjoint QTransform::adjoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  QTransform [] }
+&{determinant QTransform::determinant commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  qreal [] }
+&{dx QTransform::dx commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  qreal [] }
+&{dy QTransform::dy commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  qreal [] }
+&{fromScale QTransform::fromScale commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain true false  QTransform [0xc82222b8c0 0xc82222b940] }
+&{fromTranslate QTransform::fromTranslate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain true false  QTransform [0xc82222bb00 0xc82222bb80] }
+&{inverted QTransform::inverted commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  QTransform [0xc82223a0c0] }
+&{isAffine QTransform::isAffine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  bool [] }
+&{isIdentity QTransform::isIdentity commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  bool [] }
+&{isInvertible QTransform::isInvertible commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  bool [] }
+&{isRotating QTransform::isRotating commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  bool [] }
+&{isScaling QTransform::isScaling commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  bool [] }
+&{isTranslating QTransform::isTranslating commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  bool [] }
+&{m11 QTransform::m11 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  qreal [] }
+&{m12 QTransform::m12 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  qreal [] }
+&{m13 QTransform::m13 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  qreal [] }
+&{m21 QTransform::m21 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  qreal [] }
+&{m22 QTransform::m22 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  qreal [] }
+&{m23 QTransform::m23 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  qreal [] }
+&{m31 QTransform::m31 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  qreal [] }
+&{m32 QTransform::m32 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  qreal [] }
+&{m33 QTransform::m33 commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  qreal [] }
+&{map QTransform::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false true 4 QLine [0xc82223ae00] }
+&{map QTransform::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false true 9 QPainterPath [0xc82223af80] }
+&{map QTransform::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false true 2 QPointF [0xc82223b120] }
+&{map QTransform::map commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false true 10 void [0xc82223b280 0xc82223b300 0xc82223b380 0xc82223b400] }
+&{map QTransform::map commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  void [0xc82223b560 0xc82223b5e0 0xc82223b660 0xc82223b6e0] }
+&{operator QVariant QTransform::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false   [] }
+&{operator*= QTransform::operator*= commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false true 2 QTransform & [0xc82223b9e0] }
+&{operator+= QTransform::operator+= commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  QTransform & [0xc82223bba0] }
+&{operator-= QTransform::operator-= commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  QTransform & [0xc82223bd60] }
+&{operator/= QTransform::operator/= commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  QTransform & [0xc82223bf20] }
+&{operator= QTransform::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  QTransform & [0xc822252100] }
+&{quadToQuad QTransform::quadToQuad commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain true false  bool [0xc822252320 0xc822252400 0xc8222524c0] }
+&{reset QTransform::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  void [] }
+&{scale QTransform::scale commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  QTransform & [0xc822252760 0xc8222527e0] }
+&{setMatrix QTransform::setMatrix commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  void [0xc8222529a0 0xc822252a20 0xc822252aa0 0xc822252b20 0xc822252bc0 0xc822252c40 0xc822252cc0 0xc822252d40 0xc822252de0] }
+&{shear QTransform::shear commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  QTransform & [0xc822252fa0 0xc822253020] }
+&{squareToQuad QTransform::squareToQuad commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain true false  bool [0xc822253200 0xc8222532c0] }
+&{toAffine QTransform::toAffine commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  const QMatrix & [] }
+&{translate QTransform::translate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  QTransform & [0xc8222535a0 0xc822253620] }
+&{transposed QTransform::transposed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  QTransform [] }
+&{type QTransform::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qtransform.h non plain false false  TransformationType [] }
+########################################			ENUMS			########################################
+&{TransformationType QTransform::TransformationType commendable public  [0xc82222a780 0xc82222a800 0xc82222a880 0xc82222a900 0xc82222a9a0 0xc82222aa20]}

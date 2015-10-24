@@ -1,0 +1,29 @@
+########################################			FUNCTIONS			########################################
+&{QOpenGLBuffer QOpenGLBuffer::QOpenGLBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non constructor false false   [] }
+&{QOpenGLBuffer QOpenGLBuffer::QOpenGLBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non constructor false true 2  [0xc8201b70e0] }
+&{QOpenGLBuffer QOpenGLBuffer::QOpenGLBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non constructor false true 3  [0xc8201b7660] }
+&{allocate QOpenGLBuffer::allocate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  void [0xc8201b7b00 0xc8201b7d00] }
+&{allocate QOpenGLBuffer::allocate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false true 2 void [0xc8201ae1a0] }
+&{bind QOpenGLBuffer::bind commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  bool [] }
+&{bufferId QOpenGLBuffer::bufferId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  GLuint [] }
+&{create QOpenGLBuffer::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  bool [] }
+&{destroy QOpenGLBuffer::destroy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  void [] }
+&{isCreated QOpenGLBuffer::isCreated commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  bool [] }
+&{map QOpenGLBuffer::map commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  void * [0xc8201aef20] }
+&{mapRange QOpenGLBuffer::mapRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  void * [0xc8201af3c0 0xc8201af560 0xc8201af620] }
+&{operator= QOpenGLBuffer::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  QOpenGLBuffer & [0xc8201afa80] }
+&{read QOpenGLBuffer::read commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  bool [0xc8201afec0 0xc8201affc0 0xc820a1c060] }
+&{release QOpenGLBuffer::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  void [] }
+&{release QOpenGLBuffer::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain true true 2 void [0xc820a1c380] }
+&{setUsagePattern QOpenGLBuffer::setUsagePattern commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  void [0xc820a1c600] }
+&{size QOpenGLBuffer::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  int [] }
+&{type QOpenGLBuffer::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  QOpenGLBuffer::Type [] }
+&{unmap QOpenGLBuffer::unmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  bool [] }
+&{usagePattern QOpenGLBuffer::usagePattern commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  QOpenGLBuffer::UsagePattern [] }
+&{write QOpenGLBuffer::write commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non plain false false  void [0xc820a1cd40 0xc820a1ce00 0xc820a1ce80] }
+&{~QOpenGLBuffer QOpenGLBuffer::~QOpenGLBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglbuffer.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Access QOpenGLBuffer::Access commendable public  [0xc8201ca720 0xc8201ca880 0xc8201ca9a0]}
+&{RangeAccessFlag QOpenGLBuffer::RangeAccessFlag commendable public QOpenGLBuffer::RangeAccessFlags [0xc8201cade0 0xc8201caf40 0xc8201cb080 0xc8201cb140 0xc8201cb3a0 0xc8201cb540]}
+&{Type QOpenGLBuffer::Type commendable public  [0xc8201cb8c0 0xc8201cba40 0xc8201cbb80 0xc8201cbd20]}
+&{UsagePattern QOpenGLBuffer::UsagePattern commendable public  [0xc8201b6120 0xc8201b61e0 0xc8201b6340 0xc8201b6440 0xc8201b66a0 0xc8201b67e0 0xc8201b68a0 0xc8201b69c0 0xc8201b6b00]}

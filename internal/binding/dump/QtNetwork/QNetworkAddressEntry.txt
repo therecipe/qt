@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QNetworkAddressEntry QNetworkAddressEntry::QNetworkAddressEntry commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non constructor false false   [] }
+&{QNetworkAddressEntry QNetworkAddressEntry::QNetworkAddressEntry commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non constructor false true 2  [0xc823264960] }
+&{broadcast QNetworkAddressEntry::broadcast commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  QHostAddress [] }
+&{ip QNetworkAddressEntry::ip commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  QHostAddress [] }
+&{netmask QNetworkAddressEntry::netmask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  QHostAddress [] }
+&{operator!= QNetworkAddressEntry::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  bool [0xc823264fe0] }
+&{operator= QNetworkAddressEntry::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  QNetworkAddressEntry & [0xc823265300] }
+&{operator== QNetworkAddressEntry::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  bool [0xc8232655a0] }
+&{prefixLength QNetworkAddressEntry::prefixLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  int [] }
+&{setBroadcast QNetworkAddressEntry::setBroadcast commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  void [0xc8232658c0] }
+&{setIp QNetworkAddressEntry::setIp commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  void [0xc823265be0] }
+&{setNetmask QNetworkAddressEntry::setNetmask commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  void [0xc823265e80] }
+&{setPrefixLength QNetworkAddressEntry::setPrefixLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  void [0xc8232540a0] }
+&{swap QNetworkAddressEntry::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non plain false false  void [0xc8232542e0] }
+&{~QNetworkAddressEntry QNetworkAddressEntry::~QNetworkAddressEntry commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface.h non destructor false false   [] }
+########################################			ENUMS			########################################

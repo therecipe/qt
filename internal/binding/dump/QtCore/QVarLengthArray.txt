@@ -1,0 +1,62 @@
+########################################			FUNCTIONS			########################################
+&{QVarLengthArray QVarLengthArray::QVarLengthArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non constructor false true 2  [0xc82061cfc0] }
+&{QVarLengthArray QVarLengthArray::QVarLengthArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non constructor false false   [0xc82061d260] }
+&{QVarLengthArray QVarLengthArray::QVarLengthArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non constructor false true 3  [0xc82061d580] }
+&{append QVarLengthArray::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  void [0xc82061d8a0] }
+&{append QVarLengthArray::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 void [0xc82061dc20 0xc82061dcc0] }
+&{at QVarLengthArray::at commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  const T & [0xc8206060a0] }
+&{back QVarLengthArray::back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  T & [] }
+&{back QVarLengthArray::back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 const T & [] }
+&{begin QVarLengthArray::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  iterator [] }
+&{begin QVarLengthArray::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 const_iterator [] }
+&{capacity QVarLengthArray::capacity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  int [] }
+&{cbegin QVarLengthArray::cbegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  const_iterator [] }
+&{cend QVarLengthArray::cend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  const_iterator [] }
+&{clear QVarLengthArray::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  void [] }
+&{constBegin QVarLengthArray::constBegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  const_iterator [] }
+&{constData QVarLengthArray::constData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  const T * [] }
+&{constEnd QVarLengthArray::constEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  const_iterator [] }
+&{contains QVarLengthArray::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  bool [0xc8205f0fa0] }
+&{count QVarLengthArray::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  int [] }
+&{data QVarLengthArray::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  T * [] }
+&{data QVarLengthArray::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 const T * [] }
+&{empty QVarLengthArray::empty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  bool [] }
+&{end QVarLengthArray::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  iterator [] }
+&{end QVarLengthArray::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 const_iterator [] }
+&{erase QVarLengthArray::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 iterator [0xc8205e0a20 0xc8205e0b80] }
+&{erase QVarLengthArray::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  iterator [0xc8205e1080] }
+&{first QVarLengthArray::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  T & [] }
+&{first QVarLengthArray::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 const T & [] }
+&{front QVarLengthArray::front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  T & [] }
+&{front QVarLengthArray::front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 const T & [] }
+&{indexOf QVarLengthArray::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  int [0xc8205ce1c0 0xc8205ce280] }
+&{insert QVarLengthArray::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 4 iterator [0xc8205ce4e0 0xc8205ce5c0] }
+&{insert QVarLengthArray::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 iterator [0xc8205ce860 0xc8205ce900 0xc8205ce9a0] }
+&{insert QVarLengthArray::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  void [0xc8205cebc0 0xc8205cec40] }
+&{insert QVarLengthArray::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 3 void [0xc8205cee60 0xc8205cef80 0xc8205cf060] }
+&{isEmpty QVarLengthArray::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  bool [] }
+&{last QVarLengthArray::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  T & [] }
+&{last QVarLengthArray::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 const T & [] }
+&{lastIndexOf QVarLengthArray::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  int [0xc8205cff80 0xc8204a0000] }
+&{length QVarLengthArray::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  int [] }
+&{operator+= QVarLengthArray::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  QVarLengthArray<T, Prealloc> & [0xc8204a0500] }
+&{operator<< QVarLengthArray::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  QVarLengthArray<T, Prealloc> & [0xc8204a08c0] }
+&{operator= QVarLengthArray::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  QVarLengthArray<T, Prealloc> & [0xc8204a0c20] }
+&{operator= QVarLengthArray::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 QVarLengthArray<T, Prealloc> & [0xc8204a0e60] }
+&{operator[] QVarLengthArray::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  T & [0xc8204a1100] }
+&{operator[] QVarLengthArray::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 const T & [0xc8204a1360] }
+&{pop_back QVarLengthArray::pop_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  void [] }
+&{prepend QVarLengthArray::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  void [0xc8204a1720] }
+&{push_back QVarLengthArray::push_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  void [0xc8204a1980] }
+&{remove QVarLengthArray::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  void [0xc8204a1ba0] }
+&{remove QVarLengthArray::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 void [0xc8204a1e40 0xc8204a1ee0] }
+&{removeLast QVarLengthArray::removeLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  void [] }
+&{replace QVarLengthArray::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  void [0xc8205c63e0 0xc8205c64a0] }
+&{reserve QVarLengthArray::reserve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  void [0xc8205c6860] }
+&{resize QVarLengthArray::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  void [0xc8205c6ca0] }
+&{size QVarLengthArray::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  int [] }
+&{squeeze QVarLengthArray::squeeze commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  void [] }
+&{value QVarLengthArray::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false false  T [0xc8205c7700] }
+&{value QVarLengthArray::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non plain false true 2 T [0xc8205c7c20 0xc8205c7d40] }
+&{~QVarLengthArray QVarLengthArray::~QVarLengthArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvarlengtharray.h non destructor false false   [] }
+########################################			ENUMS			########################################

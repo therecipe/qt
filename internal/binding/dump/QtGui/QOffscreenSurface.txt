@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QOffscreenSurface QOffscreenSurface::QOffscreenSurface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h non constructor false false   [0xc8201eb340] }
+&{create QOffscreenSurface::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h non plain false false  void [] }
+&{destroy QOffscreenSurface::destroy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h non plain false false  void [] }
+&{format QOffscreenSurface::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h impure plain false false  QSurfaceFormat [] }
+&{isValid QOffscreenSurface::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h non plain false false  bool [] }
+&{requestedFormat QOffscreenSurface::requestedFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h non plain false false  QSurfaceFormat [] }
+&{screen QOffscreenSurface::screen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h non plain false false  QScreen * [] }
+&{screenChanged QOffscreenSurface::screenChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h non signal false false  void [0xc8201c4720] }
+&{setFormat QOffscreenSurface::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h non plain false false  void [0xc8201c4d20] }
+&{setScreen QOffscreenSurface::setScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h non plain false false  void [0xc8201c51a0] }
+&{size QOffscreenSurface::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h impure plain false false  QSize [] }
+&{surfaceType QOffscreenSurface::surfaceType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h impure plain false false  SurfaceType [] }
+&{~QOffscreenSurface QOffscreenSurface::~QOffscreenSurface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qoffscreensurface.h impure destructor false false   [] }
+########################################			ENUMS			########################################

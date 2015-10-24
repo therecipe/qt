@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QCameraInfo QCameraInfo::QCameraInfo commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non constructor false false   [0xc8225f9da0] }
+&{QCameraInfo QCameraInfo::QCameraInfo commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non constructor false true 2  [0xc822606140] }
+&{QCameraInfo QCameraInfo::QCameraInfo commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non constructor false true 3  [0xc8226064e0] }
+&{availableCameras QCameraInfo::availableCameras commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non plain true false  QList<QCameraInfo> [0xc8226069c0] }
+&{defaultCamera QCameraInfo::defaultCamera commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non plain true false  QCameraInfo [] }
+&{description QCameraInfo::description commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non plain false false  QString [] }
+&{deviceName QCameraInfo::deviceName commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non plain false false  QString [] }
+&{isNull QCameraInfo::isNull commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non plain false false  bool [] }
+&{operator!= QCameraInfo::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non plain false false  bool [0xc822607600] }
+&{operator= QCameraInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non plain false false  QCameraInfo & [0xc822607980] }
+&{operator== QCameraInfo::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non plain false false  bool [0xc822607d60] }
+&{orientation QCameraInfo::orientation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non plain false false  int [] }
+&{position QCameraInfo::position commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non plain false false  QCamera::Position [] }
+&{~QCameraInfo QCameraInfo::~QCameraInfo commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerainfo.h non destructor false false   [] }
+########################################			ENUMS			########################################

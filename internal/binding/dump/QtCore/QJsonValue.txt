@@ -1,0 +1,36 @@
+########################################			FUNCTIONS			########################################
+&{QJsonValue QJsonValue::QJsonValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non constructor false true 5  [0xc8205f17a0] }
+&{QJsonValue QJsonValue::QJsonValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non constructor false false   [0xc8205f1980] }
+&{QJsonValue QJsonValue::QJsonValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non constructor false true 2  [0xc8205f1b60] }
+&{QJsonValue QJsonValue::QJsonValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non constructor false true 7  [0xc8205f1d80] }
+&{QJsonValue QJsonValue::QJsonValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non constructor false true 8  [0xc8205f1fc0] }
+&{QJsonValue QJsonValue::QJsonValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non constructor false true 9  [0xc8206061e0] }
+&{QJsonValue QJsonValue::QJsonValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non constructor false true 4  [0xc820606400] }
+&{QJsonValue QJsonValue::QJsonValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non constructor false true 6  [0xc820606600] }
+&{QJsonValue QJsonValue::QJsonValue commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non constructor false true 3  [0xc8206067e0] }
+&{QJsonValue QJsonValue::QJsonValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non constructor false true 12  [0xc8206069c0] }
+&{QJsonValue QJsonValue::QJsonValue commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non constructor false true 13  [0xc820606ba0] }
+&{fromVariant QJsonValue::fromVariant commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain true false  QJsonValue [0xc820607400] }
+&{isArray QJsonValue::isArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  bool [] }
+&{isBool QJsonValue::isBool commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  bool [] }
+&{isDouble QJsonValue::isDouble commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  bool [] }
+&{isNull QJsonValue::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  bool [] }
+&{isObject QJsonValue::isObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  bool [] }
+&{isString QJsonValue::isString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  bool [] }
+&{isUndefined QJsonValue::isUndefined commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  bool [] }
+&{operator!= QJsonValue::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  bool [0xc820607d00] }
+&{operator= QJsonValue::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  QJsonValue & [0xc820607f20] }
+&{operator== QJsonValue::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  bool [0xc82061c140] }
+&{toArray QJsonValue::toArray commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false true 2 QJsonArray [] }
+&{toArray QJsonValue::toArray commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  QJsonArray [0xc82061c460] }
+&{toBool QJsonValue::toBool commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  bool [0xc82061c660] }
+&{toDouble QJsonValue::toDouble commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  double [0xc82061c820] }
+&{toInt QJsonValue::toInt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  int [0xc82061c9e0] }
+&{toObject QJsonValue::toObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false true 2 QJsonObject [] }
+&{toObject QJsonValue::toObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  QJsonObject [0xc82061cce0] }
+&{toString QJsonValue::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  QString [0xc82061cee0] }
+&{toVariant QJsonValue::toVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  QVariant [] }
+&{type QJsonValue::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non plain false false  Type [] }
+&{~QJsonValue QJsonValue::~QJsonValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonvalue.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Type QJsonValue::Type commendable public  [0xc8205f12a0 0xc8205f1320 0xc8205f13a0 0xc8205f1420 0xc8205f14c0 0xc8205f1540 0xc8205f15c0]}

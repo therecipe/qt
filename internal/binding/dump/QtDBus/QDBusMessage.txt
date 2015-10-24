@@ -1,0 +1,33 @@
+########################################			FUNCTIONS			########################################
+&{createErrorReply QDBusMessage::createErrorReply commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.cpp non plain false true 3 QDBusMessage [0xc821cfa240 0xc821cfa3e0] }
+&{QDBusMessage QDBusMessage::QDBusMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non constructor false false   [] }
+&{QDBusMessage QDBusMessage::QDBusMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non constructor false true 2  [0xc821cfb2e0] }
+&{arguments QDBusMessage::arguments commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  QList<QVariant> [] }
+&{autoStartService QDBusMessage::autoStartService commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  bool [] }
+&{createError QDBusMessage::createError commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain true true 3 QDBusMessage [0xc821cfbae0 0xc821cfbcc0] }
+&{createError QDBusMessage::createError commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain true true 2 QDBusMessage [0xc822636040] }
+&{createError QDBusMessage::createError commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain true false  QDBusMessage [0xc8226363a0 0xc822636440] }
+&{createErrorReply QDBusMessage::createErrorReply commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false true 2 QDBusMessage [0xc822636760] }
+&{createErrorReply QDBusMessage::createErrorReply commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  QDBusMessage [0xc822636a60 0xc822636b40] }
+&{createMethodCall QDBusMessage::createMethodCall commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain true false  QDBusMessage [0xc822636dc0 0xc822636ea0 0xc822636f20 0xc822637040] }
+&{createReply QDBusMessage::createReply commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  QDBusMessage [0xc822637360] }
+&{createReply QDBusMessage::createReply commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false true 2 QDBusMessage [0xc822637680] }
+&{createSignal QDBusMessage::createSignal commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain true false  QDBusMessage [0xc822637960 0xc822637a20 0xc822637b20] }
+&{errorMessage QDBusMessage::errorMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  QString [] }
+&{errorName QDBusMessage::errorName commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  QString [] }
+&{interface QDBusMessage::interface commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  QString [] }
+&{isDelayedReply QDBusMessage::isDelayedReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  bool [] }
+&{isReplyRequired QDBusMessage::isReplyRequired commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  bool [] }
+&{member QDBusMessage::member commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  QString [] }
+&{operator<< QDBusMessage::operator<< commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  QDBusMessage & [0xc82257a940] }
+&{operator= QDBusMessage::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  QDBusMessage & [0xc82257ace0] }
+&{path QDBusMessage::path commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  QString [] }
+&{service QDBusMessage::service commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  QString [] }
+&{setArguments QDBusMessage::setArguments commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  void [0xc82257b520] }
+&{setAutoStartService QDBusMessage::setAutoStartService commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  void [0xc82257b8e0] }
+&{setDelayedReply QDBusMessage::setDelayedReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  void [0xc82257bba0] }
+&{signature QDBusMessage::signature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  QString [] }
+&{type QDBusMessage::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non plain false false  MessageType [] }
+&{~QDBusMessage QDBusMessage::~QDBusMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusmessage.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{MessageType QDBusMessage::MessageType commendable public  [0xc821cfa740 0xc821cfa860 0xc821cfaa20 0xc821cfab40 0xc821cfac80]}

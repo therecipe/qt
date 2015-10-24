@@ -1,0 +1,21 @@
+########################################			FUNCTIONS			########################################
+&{QPainterPathStroker QPainterPathStroker::QPainterPathStroker commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non constructor false false   [] }
+&{QPainterPathStroker QPainterPathStroker::QPainterPathStroker commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non constructor false true 2  [0xc82211d880] }
+&{capStyle QPainterPathStroker::capStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  Qt::PenCapStyle [] }
+&{createStroke QPainterPathStroker::createStroke commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  QPainterPath [0xc82211dac0] }
+&{curveThreshold QPainterPathStroker::curveThreshold commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  qreal [] }
+&{dashOffset QPainterPathStroker::dashOffset commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  qreal [] }
+&{dashPattern QPainterPathStroker::dashPattern commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  QVector<qreal> [] }
+&{joinStyle QPainterPathStroker::joinStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  Qt::PenJoinStyle [] }
+&{miterLimit QPainterPathStroker::miterLimit commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  qreal [] }
+&{setCapStyle QPainterPathStroker::setCapStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  void [0xc82213a0a0] }
+&{setCurveThreshold QPainterPathStroker::setCurveThreshold commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  void [0xc82213a240] }
+&{setDashOffset QPainterPathStroker::setDashOffset commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  void [0xc82213a3a0] }
+&{setDashPattern QPainterPathStroker::setDashPattern commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  void [0xc82213a4e0] }
+&{setDashPattern QPainterPathStroker::setDashPattern commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false true 2 void [0xc82213a640] }
+&{setJoinStyle QPainterPathStroker::setJoinStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  void [0xc82213a7c0] }
+&{setMiterLimit QPainterPathStroker::setMiterLimit commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  void [0xc82213a920] }
+&{setWidth QPainterPathStroker::setWidth commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  void [0xc82213ab00] }
+&{width QPainterPathStroker::width commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non plain false false  qreal [] }
+&{~QPainterPathStroker QPainterPathStroker::~QPainterPathStroker commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainterpath.h non destructor false false   [] }
+########################################			ENUMS			########################################

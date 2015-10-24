@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{createAction QWhatsThis::createAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  QAction * [0xc82210c460] }
+&{enterWhatsThisMode QWhatsThis::enterWhatsThisMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  void [] }
+&{hideText QWhatsThis::hideText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  void [] }
+&{inWhatsThisMode QWhatsThis::inWhatsThisMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  bool [] }
+&{leaveWhatsThisMode QWhatsThis::leaveWhatsThisMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  void [] }
+&{showText QWhatsThis::showText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  void [0xc82210cc80 0xc82210cd60 0xc82210cde0] }
+########################################			ENUMS			########################################

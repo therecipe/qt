@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{QStyleOption QStyleOption::QStyleOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8215052c0] }
+&{QStyleOption QStyleOption::QStyleOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [0xc8215057e0 0xc821505920] }
+&{initFrom QStyleOption::initFrom commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non plain false false  void [0xc8214f2180] }
+&{operator= QStyleOption::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non plain false false  QStyleOption & [0xc8214f2620] }
+&{~QStyleOption QStyleOption::~QStyleOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{OptionType QStyleOption::OptionType commendable public  [0xc821514720 0xc8215147e0 0xc8215148c0 0xc821514a00 0xc821514b00 0xc821514ce0 0xc821514de0 0xc821514f00 0xc821515080 0xc821515160 0xc8215152e0 0xc821515480 0xc821515640 0xc821515720 0xc821515800 0xc821515980 0xc821515aa0 0xc821515b60 0xc821515c40 0xc821515d60 0xc821515ec0 0xc821504020 0xc821504160 0xc8215042a0 0xc821504380 0xc821504520]}
+&{StyleOptionType QStyleOption::StyleOptionType commendable public  [0xc821504960]}
+&{StyleOptionVersion QStyleOption::StyleOptionVersion commendable public  [0xc821504e20]}

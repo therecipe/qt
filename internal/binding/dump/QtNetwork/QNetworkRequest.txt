@@ -1,0 +1,30 @@
+########################################			FUNCTIONS			########################################
+&{QNetworkRequest QNetworkRequest::QNetworkRequest commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non constructor false true 2  [0xc8233effa0] }
+&{QNetworkRequest QNetworkRequest::QNetworkRequest commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non constructor false false   [0xc8233de280] }
+&{attribute QNetworkRequest::attribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  QVariant [0xc8233de4c0 0xc8233de560] }
+&{hasRawHeader QNetworkRequest::hasRawHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  bool [0xc8233de7a0] }
+&{header QNetworkRequest::header commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  QVariant [0xc8233dea00] }
+&{operator!= QNetworkRequest::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  bool [0xc8233debe0] }
+&{operator= QNetworkRequest::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  QNetworkRequest & [0xc8233deec0] }
+&{operator== QNetworkRequest::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  bool [0xc8233df1e0] }
+&{originatingObject QNetworkRequest::originatingObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  QObject * [] }
+&{priority QNetworkRequest::priority commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  Priority [] }
+&{rawHeader QNetworkRequest::rawHeader commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  QByteArray [0xc8233df780] }
+&{rawHeaderList QNetworkRequest::rawHeaderList commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  QList<QByteArray> [] }
+&{setAttribute QNetworkRequest::setAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  void [0xc8233dfbc0 0xc8233dfc60] }
+&{setHeader QNetworkRequest::setHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  void [0xc8233dfe80 0xc8233dff20] }
+&{setOriginatingObject QNetworkRequest::setOriginatingObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  void [0xc8233bc0e0] }
+&{setPriority QNetworkRequest::setPriority commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  void [0xc8233bc2e0] }
+&{setRawHeader QNetworkRequest::setRawHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  void [0xc8233bc580 0xc8233bc6a0] }
+&{setSslConfiguration QNetworkRequest::setSslConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  void [0xc8233bc900] }
+&{setUrl QNetworkRequest::setUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  void [0xc8233bcba0] }
+&{sslConfiguration QNetworkRequest::sslConfiguration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  QSslConfiguration [] }
+&{swap QNetworkRequest::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  void [0xc8233bcf20] }
+&{url QNetworkRequest::url commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non plain false false  QUrl [] }
+&{~QNetworkRequest QNetworkRequest::~QNetworkRequest commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkrequest.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Attribute QNetworkRequest::Attribute commendable public  [0xc82340d580 0xc82340d660 0xc82340d740 0xc82340d820 0xc82340d920 0xc82340da00 0xc82340dae0 0xc82340dbc0 0xc82340dcc0 0xc82340dda0 0xc82340de80 0xc82340df60 0xc8233ee080 0xc8233ee180 0xc8233ee260 0xc8233ee320 0xc8233ee460 0xc8233ee560 0xc8233ee660 0xc8233ee780 0xc8233ee880 0xc8233ee900 0xc8233ee9a0]}
+&{CacheLoadControl QNetworkRequest::CacheLoadControl commendable public  [0xc8233eeb40 0xc8233eebe0 0xc8233eec60 0xc8233eed20]}
+&{KnownHeaders QNetworkRequest::KnownHeaders commendable public  [0xc8233eef40 0xc8233ef040 0xc8233ef120 0xc8233ef1e0 0xc8233ef320 0xc8233ef400 0xc8233ef4a0 0xc8233ef560 0xc8233ef600]}
+&{LoadControl QNetworkRequest::LoadControl commendable public  [0xc8233ef840 0xc8233ef8c0]}
+&{Priority QNetworkRequest::Priority commendable public  [0xc8233efb80 0xc8233efc20 0xc8233efca0]}

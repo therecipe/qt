@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QStack QStack::QStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non constructor false false   [] }
+&{pop QStack::pop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non plain false false  T [] }
+&{push QStack::push commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non plain false false  void [0xc820adf900] }
+&{swap QStack::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non plain false false  void [0xc820adfa60] }
+&{top QStack::top commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non plain false false  T & [] }
+&{top QStack::top commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non plain false true 2 const T & [] }
+&{~QStack QStack::~QStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non destructor false false   [] }
+########################################			ENUMS			########################################

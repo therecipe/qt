@@ -1,0 +1,272 @@
+########################################			FUNCTIONS			########################################
+&{append QString::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false true 2 QString & [0xc820a7e340] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false true 20 QString [0xc820a7eda0 0xc820a7ee20 0xc820a7ef00 0xc820a7f060 0xc820a7f1c0] }
+&{insert QString::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false true 4 QString & [0xc820a6c560 0xc820a6c5e0] }
+&{insert QString::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false true 2 QString & [0xc820a6c7e0 0xc820a6c900] }
+&{insert QString::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false true 3 QString & [0xc820a6ca80 0xc820a6cb20 0xc820a6cba0] }
+&{isRightToLeft QString::isRightToLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false false  bool [] }
+&{number QString::number commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain true true 2 QString [0xc820a6d020 0xc820a6d0c0 0xc820a6d1c0] }
+&{number QString::number commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain true false  QString [0xc820a6d380 0xc820a6d4c0] }
+&{number QString::number commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain true true 3 QString [0xc820a6d6e0 0xc820a6d7a0] }
+&{operator= QString::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false false  QString & [0xc820a6db00] }
+&{remove QString::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false false  QString & [0xc820a5a2c0 0xc820a5a360] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false true 3 QString & [0xc820a5a540 0xc820a5a5e0 0xc820a5a6c0] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false true 2 QString & [0xc820a5a840 0xc820a5a900 0xc820a5a980 0xc820a5aa20] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false false  QString & [0xc820a5abc0 0xc820a5ac60 0xc820a5ad00] }
+&{setNum QString::setNum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false true 9 QString & [0xc820a5aec0 0xc820a5af80 0xc820a5b020] }
+&{toLong QString::toLong commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false false  long [0xc820a269a0 0xc820a26ac0] }
+&{toULong QString::toULong commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false false  ulong [0xc82015a360 0xc82015a3e0] }
+&{truncate QString::truncate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false false  void [0xc82015ad40] }
+&{utf16 QString::utf16 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain false false  const ushort * [] }
+&{vasprintf QString::vasprintf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.cpp non plain true false  QString [0xc82015b020 0xc82015b0a0] }
+&{QString QString::QString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non constructor false false   [] }
+&{QString QString::QString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non constructor false true 3  [0xc8209e2ea0] }
+&{QString QString::QString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non constructor false true 5  [0xc8209e3020] }
+&{QString QString::QString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non constructor false true 7  [0xc8209e3220] }
+&{QString QString::QString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non constructor false true 9  [0xc8209e3440] }
+&{QString QString::QString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non constructor false true 2  [0xc8209e3600 0xc8209e36a0] }
+&{QString QString::QString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non constructor false true 6  [0xc8209e3840] }
+&{QString QString::QString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non constructor false true 8  [0xc8209e3a20] }
+&{QString QString::QString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non constructor false true 4  [0xc8209e3bc0 0xc8209e3c40] }
+&{append QString::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 7 QString & [0xc8209ce1e0] }
+&{append QString::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 QString & [0xc8209ce3c0] }
+&{append QString::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 QString & [0xc8209ce6a0] }
+&{append QString::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 QString & [0xc8209ce9a0 0xc8209cea60] }
+&{append QString::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString & [0xc8209cec40] }
+&{append QString::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 6 QString & [0xc8209cee20] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 18 QString [0xc8209cf060 0xc8209cf100 0xc8209cf220] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 19 QString [0xc8209cf4a0 0xc8209cf520 0xc8209cf6c0] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString [0xc8209cf940 0xc8209cfa00 0xc8209cfb20] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 QString [0xc8209cfe00 0xc8209cff20] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 QString [0xc8209bc280 0xc8209bc380 0xc8209bc400] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 QString [0xc8209bc7a0 0xc8209bc880 0xc8209bc980 0xc8209bcaa0] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 QString [0xc8209bccc0 0xc8209bcd80 0xc8209bce40 0xc8209bcf00 0xc8209bd040] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 6 QString [0xc8209bd2c0 0xc8209bd360 0xc8209bd440 0xc8209bd540 0xc8209bd5e0 0xc8209bd6e0] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 7 QString [0xc8209bd940 0xc8209bda00 0xc8209bdb40 0xc8209bdca0 0xc8209bddc0 0xc8209bdea0 0xc8209bdf40] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 8 QString [0xc8209b0200 0xc8209b0300 0xc8209b03e0 0xc8209b0500 0xc8209b06a0 0xc8209b0720 0xc8209b0880 0xc8209b09c0] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 9 QString [0xc8209b0c00 0xc8209b0ce0 0xc8209b0d80 0xc8209b0f60 0xc8209b1000 0xc8209b10e0 0xc8209b11c0 0xc8209b1300 0xc8209b14a0] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 10 QString [0xc8209b16e0 0xc8209b1820 0xc8209b18e0 0xc8209b1a20] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 12 QString [0xc8209b1c20 0xc8209b1d00 0xc8209b1dc0 0xc8209b1ea0] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 14 QString [0xc82099c0c0 0xc82099c220 0xc82099c300 0xc82099c3e0] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 15 QString [0xc82099c640 0xc82099c720 0xc82099c7e0 0xc82099c8a0] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 16 QString [0xc82099cb60 0xc82099cc20 0xc82099cd20 0xc82099ce20] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 11 QString [0xc82099cfe0 0xc82099d0c0 0xc82099d140 0xc82099d240] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 13 QString [0xc82099d4a0 0xc82099d520 0xc82099d5c0 0xc82099d6a0] }
+&{arg QString::arg commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 17 QString [0xc82099d8c0 0xc82099d9a0 0xc82099daa0 0xc82099dba0] }
+&{asprintf QString::asprintf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  QString [0xc82099de60 0xc82099df40] }
+&{at QString::at commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  const QChar [0xc8201aa120] }
+&{begin QString::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  iterator [] }
+&{begin QString::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 const_iterator [] }
+&{capacity QString::capacity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  int [] }
+&{cbegin QString::cbegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  const_iterator [] }
+&{cend QString::cend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  const_iterator [] }
+&{chop QString::chop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  void [0xc8201aa6a0] }
+&{clear QString::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  void [] }
+&{compare QString::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true true 3 int [0xc8201aa900 0xc8201aa980 0xc8201aaa60] }
+&{compare QString::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true true 2 int [0xc8201aac60 0xc8201aad00 0xc8201aae00] }
+&{compare QString::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  int [0xc8201ab000 0xc8201ab080 0xc8201ab1a0] }
+&{compare QString::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true true 7 int [0xc8201ab3a0 0xc8201ab440 0xc8201ab5a0] }
+&{compare QString::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 int [0xc8201ab7a0 0xc8201ab880] }
+&{compare QString::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 int [0xc8201aba60 0xc8201abb80] }
+&{compare QString::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 6 int [0xc8201abd80 0xc8201abea0] }
+&{constBegin QString::constBegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  const_iterator [] }
+&{constData QString::constData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  const QChar * [] }
+&{constEnd QString::constEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  const_iterator [] }
+&{contains QString::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 bool [0xc820979900 0xc820979a00] }
+&{contains QString::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc820979d00 0xc820979e20] }
+&{contains QString::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 6 bool [0xc8209a20c0] }
+&{contains QString::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 bool [0xc8209a2280] }
+&{contains QString::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 7 bool [0xc8209a2460] }
+&{contains QString::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 8 bool [0xc8209a2680 0xc8209a2760] }
+&{contains QString::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc8209a2a20 0xc8209a2ae0] }
+&{contains QString::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc8209a2e20 0xc8209a3020] }
+&{count QString::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 6 int [] }
+&{count QString::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 int [0xc8209a33c0 0xc8209a34a0] }
+&{count QString::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 int [0xc8209a3720] }
+&{count QString::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 int [0xc8209a38e0] }
+&{count QString::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  int [0xc8209a3b40 0xc8209a3c00] }
+&{count QString::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 int [0xc8209a3ee0 0xc82095e0c0] }
+&{data QString::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QChar * [] }
+&{data QString::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 const QChar * [] }
+&{end QString::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  iterator [] }
+&{end QString::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 const_iterator [] }
+&{endsWith QString::endsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 bool [0xc82095e9c0 0xc82095eb80] }
+&{endsWith QString::endsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc82095eec0 0xc82095f0e0] }
+&{endsWith QString::endsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc82095f3c0 0xc82095f4a0] }
+&{endsWith QString::endsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc82095f820 0xc82095f960] }
+&{fill QString::fill commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString & [0xc82095fbc0 0xc82095fc60] }
+&{fromLatin1 QString::fromLatin1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true true 2 QString [0xc82094a460] }
+&{fromLatin1 QString::fromLatin1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  QString [0xc82094a6a0 0xc82094a720] }
+&{fromLocal8Bit QString::fromLocal8Bit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true true 2 QString [0xc82094a900] }
+&{fromLocal8Bit QString::fromLocal8Bit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  QString [0xc82094ab00 0xc82094ab80] }
+&{fromRawData QString::fromRawData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  QString [0xc82094ad60 0xc82094ade0] }
+&{fromStdString QString::fromStdString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  QString [0xc82094b040] }
+&{fromStdU16String QString::fromStdU16String commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  QString [0xc82094b300] }
+&{fromStdU32String QString::fromStdU32String commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  QString [0xc82094b5c0] }
+&{fromStdWString QString::fromStdWString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  QString [0xc82094b860] }
+&{fromUcs4 QString::fromUcs4 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  QString [0xc82094bac0 0xc82094bb60] }
+&{fromUtf16 QString::fromUtf16 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  QString [0xc82094bd40 0xc82094be20] }
+&{fromUtf8 QString::fromUtf8 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true true 2 QString [0xc820928040] }
+&{fromUtf8 QString::fromUtf8 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  QString [0xc8209282c0 0xc820928360] }
+&{fromWCharArray QString::fromWCharArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  QString [0xc820928540 0xc8209285e0] }
+&{indexOf QString::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 int [0xc820928760 0xc820928800 0xc8209288e0] }
+&{indexOf QString::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 int [0xc820928ac0 0xc820928b60 0xc820928c80] }
+&{indexOf QString::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 6 int [0xc820928e40 0xc820928ee0] }
+&{indexOf QString::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 int [0xc820929060 0xc820929120] }
+&{indexOf QString::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 7 int [0xc8209293c0 0xc820929480] }
+&{indexOf QString::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 8 int [0xc820929760 0xc820929840 0xc820929900] }
+&{indexOf QString::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  int [0xc820929b20 0xc820929ba0 0xc820929c60] }
+&{indexOf QString::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 int [0xc820929e20 0xc820929ee0 0xc820929fa0] }
+&{insert QString::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString & [0xc8205b62a0 0xc8205b6320] }
+&{isEmpty QString::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [] }
+&{isNull QString::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [] }
+&{lastIndexOf QString::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 int [0xc8205b6980 0xc8205b6a00 0xc8205b6ac0] }
+&{lastIndexOf QString::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 int [0xc8205b6ce0 0xc8205b6d80 0xc8205b6e40] }
+&{lastIndexOf QString::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 6 int [0xc8205b7040 0xc8205b70c0] }
+&{lastIndexOf QString::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 int [0xc8205b7280 0xc8205b7300] }
+&{lastIndexOf QString::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 7 int [0xc8205b7540 0xc8205b7660] }
+&{lastIndexOf QString::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 8 int [0xc8205b78c0 0xc8205b79a0 0xc8205b7a60] }
+&{lastIndexOf QString::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  int [0xc8205b7ca0 0xc8205b7d40 0xc8205b7e20] }
+&{lastIndexOf QString::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 int [0xc82091c0c0 0xc82091c1a0 0xc82091c2c0] }
+&{left QString::left commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString [0xc82091c580] }
+&{leftJustified QString::leftJustified commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString [0xc82091c820 0xc82091c8e0 0xc82091ca00] }
+&{leftRef QString::leftRef commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QStringRef [0xc82091cbe0] }
+&{length QString::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  int [] }
+&{localeAwareCompare QString::localeAwareCompare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true false  int [0xc82091d020 0xc82091d0c0] }
+&{localeAwareCompare QString::localeAwareCompare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true true 3 int [0xc82091d3a0 0xc82091d4e0] }
+&{localeAwareCompare QString::localeAwareCompare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 int [0xc82091d8e0] }
+&{localeAwareCompare QString::localeAwareCompare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 int [0xc82091dc40] }
+&{mid QString::mid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString [0xc8208f83a0 0xc8208f8420] }
+&{midRef QString::midRef commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QStringRef [0xc8208f8640 0xc8208f86e0] }
+&{normalized QString::normalized commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString [0xc8208f8a40 0xc8208f8bc0] }
+&{number QString::number commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true true 4 QString [0xc8208f8e80 0xc8208f8f20] }
+&{number QString::number commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true true 6 QString [0xc8208f90e0 0xc8208f91e0] }
+&{number QString::number commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true true 7 QString [0xc8208f9440 0xc8208f9520] }
+&{number QString::number commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain true true 5 QString [0xc8208f97a0 0xc8208f9820] }
+&{operator!= QString::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc8208f9b00] }
+&{operator!= QString::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc8208f9d00] }
+&{operator!= QString::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc8208f9f60] }
+&{operator+= QString::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 7 QString & [0xc8208f6180] }
+&{operator+= QString::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 QString & [0xc8208f6420] }
+&{operator+= QString::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 6 QString & [0xc8208f66e0] }
+&{operator+= QString::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 QString & [0xc8208f6980] }
+&{operator+= QString::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString & [0xc8208f6c20] }
+&{operator+= QString::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 QString & [0xc8208f6e60] }
+&{operator+= QString::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 QString & [0xc8208f7120] }
+&{operator< QString::operator< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc8208f7720] }
+&{operator< QString::operator< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc8208f7a60] }
+&{operator< QString::operator< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc8208f7f00] }
+&{operator<= QString::operator<= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc8208d21c0] }
+&{operator<= QString::operator<= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc8208d2480] }
+&{operator<= QString::operator<= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc8208d27a0] }
+&{operator= QString::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 8 QString & [0xc8208d2aa0] }
+&{operator= QString::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 QString & [0xc8208d2d60] }
+&{operator= QString::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 QString & [0xc8208d3020] }
+&{operator= QString::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 7 QString & [0xc8208d33a0] }
+&{operator= QString::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 QString & [0xc8208d36a0] }
+&{operator= QString::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 6 QString & [0xc8208d3a00] }
+&{operator== QString::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc8208d3fe0] }
+&{operator== QString::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc8208c2280] }
+&{operator> QString::operator> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc8208c24c0] }
+&{operator> QString::operator> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc8208c2740] }
+&{operator> QString::operator> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc8208c2a60] }
+&{operator>= QString::operator>= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc8208c2d80] }
+&{operator>= QString::operator>= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc8208c3020] }
+&{operator>= QString::operator>= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc8208c3340] }
+&{operator[] QString::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QCharRef [0xc8208c3680] }
+&{operator[] QString::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 QCharRef [0xc8208c3980] }
+&{operator[] QString::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 const QChar [0xc8208c3c40] }
+&{operator[] QString::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 const QChar [0xc8208c3f20] }
+&{prepend QString::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 QString & [0xc8208ae1c0] }
+&{prepend QString::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 QString & [0xc8208ae480] }
+&{prepend QString::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 QString & [0xc8208ae820] }
+&{prepend QString::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString & [0xc8208aebc0] }
+&{prepend QString::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 QString & [0xc8208aeee0] }
+&{push_back QString::push_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 void [0xc8208af280] }
+&{push_back QString::push_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  void [0xc8208af5c0] }
+&{push_front QString::push_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 void [0xc8208af960] }
+&{push_front QString::push_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  void [0xc8208afcc0] }
+&{remove QString::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 QString & [0xc8208aff40 0xc82089c080] }
+&{remove QString::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 QString & [0xc82089c3a0] }
+&{remove QString::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 QString & [0xc82089c6c0] }
+&{remove QString::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 QString & [0xc82089ca80 0xc82089cc00] }
+&{repeated QString::repeated commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString [0xc82089d160] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 7 QString & [0xc82089d4c0 0xc82089d580 0xc82089d7c0] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 11 QString & [0xc82089dc40 0xc82089dd60 0xc82089df40] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 6 QString & [0xc82078c260 0xc82078c340 0xc82078c420] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 8 QString & [0xc82078c760 0xc82078c860 0xc82078c940] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 9 QString & [0xc82078cc80 0xc82078cd80 0xc82078ce60] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 QString & [0xc82078d160 0xc82078d260 0xc82078d300 0xc82078d3a0 0xc82078d560] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 12 QString & [0xc82078d820 0xc82078d900] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 13 QString & [0xc82078db80 0xc82078dca0] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 10 QString & [0xc82078dea0 0xc82078df60 0xc820888060] }
+&{replace QString::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 QString & [0xc820888500 0xc8208885c0 0xc8208887c0] }
+&{reserve QString::reserve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  void [0xc820889500] }
+&{resize QString::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  void [0xc820889780] }
+&{right QString::right commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString [0xc820889b20] }
+&{rightJustified QString::rightJustified commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString [0xc820889e60 0xc820876000 0xc8208760c0] }
+&{rightRef QString::rightRef commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QStringRef [0xc820876400] }
+&{section QString::section commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString [0xc820876620 0xc820876740 0xc820876800 0xc820876980] }
+&{section QString::section commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 QString [0xc820876c80 0xc820876e20 0xc820876f20 0xc8208770a0] }
+&{section QString::section commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 QString [0xc8208773c0 0xc8208775e0 0xc8208776a0 0xc820877760] }
+&{section QString::section commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 QString [0xc820877ae0 0xc820877d00 0xc820877dc0 0xc820877e60] }
+&{setNum QString::setNum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 10 QString & [0xc82085e1a0 0xc82085e2a0 0xc82085e400] }
+&{setNum QString::setNum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString & [0xc82085e600 0xc82085e6e0] }
+&{setNum QString::setNum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 QString & [0xc82085e9c0 0xc82085eac0] }
+&{setNum QString::setNum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 5 QString & [0xc82085ee20 0xc82085eea0] }
+&{setNum QString::setNum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 6 QString & [0xc82085f1e0 0xc82085f260] }
+&{setNum QString::setNum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 7 QString & [0xc82085f5e0 0xc82085f660] }
+&{setNum QString::setNum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 QString & [0xc82085f960 0xc82085fa20] }
+&{setNum QString::setNum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 QString & [0xc82085fd00 0xc82085fec0] }
+&{setNum QString::setNum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 8 QString & [0xc82084c200 0xc82084c300] }
+&{setRawData QString::setRawData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString & [0xc82084c6e0 0xc82084c820] }
+&{setUnicode QString::setUnicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString & [0xc82084cbe0 0xc82084ccc0] }
+&{setUtf16 QString::setUtf16 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString & [0xc82084d060 0xc82084d100] }
+&{size QString::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  int [] }
+&{split QString::split commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 QStringList [0xc82084d380 0xc82084d4a0 0xc82084d660] }
+&{split QString::split commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 QStringList [0xc82084d940 0xc82084da20] }
+&{split QString::split commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 QStringList [0xc82084dc60 0xc82084dda0] }
+&{split QString::split commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QStringList [0xc82077a020 0xc82077a180 0xc82077a240] }
+&{splitRef QString::splitRef commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 QVector<QStringRef> [0xc82077a520 0xc82077a5c0 0xc82077a6a0] }
+&{splitRef QString::splitRef commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 QVector<QStringRef> [0xc82077aa00 0xc82077aaa0] }
+&{splitRef QString::splitRef commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 QVector<QStringRef> [0xc82077ae60 0xc82077af80] }
+&{splitRef QString::splitRef commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QVector<QStringRef> [0xc82077b300 0xc82077b380 0xc82077b500] }
+&{squeeze QString::squeeze commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  void [] }
+&{startsWith QString::startsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc82077bb20 0xc82077bc20] }
+&{startsWith QString::startsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc82077bec0 0xc82077bfc0] }
+&{startsWith QString::startsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc820a54280 0xc820a54380] }
+&{startsWith QString::startsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 4 bool [0xc820a54660 0xc820a547a0] }
+&{swap QString::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  void [0xc820a54a00] }
+&{toDouble QString::toDouble commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  double [0xc820a54d60] }
+&{toFloat QString::toFloat commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  float [0xc820a54f40] }
+&{toHtmlEscaped QString::toHtmlEscaped commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QString [] }
+&{toInt QString::toInt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  int [0xc820a55280 0xc820a55320] }
+&{toLongLong QString::toLongLong commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  qlonglong [0xc820a55a40 0xc820a55b00] }
+&{toShort QString::toShort commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  short [0xc820a55cc0 0xc820a55d80] }
+&{toStdString QString::toStdString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  std::string [] }
+&{toStdU16String QString::toStdU16String commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  std::u16string [] }
+&{toStdU32String QString::toStdU32String commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  std::u32string [] }
+&{toStdWString QString::toStdWString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  std::wstring [] }
+&{toUInt QString::toUInt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  uint [0xc82083e360 0xc82083e440] }
+&{toULongLong QString::toULongLong commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  qulonglong [0xc82083e720 0xc82083e7c0] }
+&{toUShort QString::toUShort commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  ushort [0xc82083eac0 0xc82083eb60] }
+&{toUcs4 QString::toUcs4 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  QVector<uint> [] }
+&{toWCharArray QString::toWCharArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  int [0xc82083efc0] }
+&{unicode QString::unicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  const QChar * [] }
+&{~QString QString::~QString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non destructor false false   [] }
+&{simplified QString::simplified commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_compat.cpp non plain false false  QString [] }
+&{toCaseFolded QString::toCaseFolded commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_compat.cpp non plain false false  QString [] }
+&{toLatin1 QString::toLatin1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_compat.cpp non plain false false  QByteArray [] }
+&{toLocal8Bit QString::toLocal8Bit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_compat.cpp non plain false false  QByteArray [] }
+&{toLower QString::toLower commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_compat.cpp non plain false false  QString [] }
+&{toUpper QString::toUpper commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_compat.cpp non plain false false  QString [] }
+&{toUtf8 QString::toUtf8 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_compat.cpp non plain false false  QByteArray [] }
+&{trimmed QString::trimmed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_compat.cpp non plain false false  QString [] }
+&{fromCFString QString::fromCFString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_mac.mm non plain true false  QString [0xc820784780] }
+&{fromNSString QString::fromNSString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_mac.mm non plain true false  QString [0xc8207849e0] }
+&{toCFString QString::toCFString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_mac.mm non plain false false  CFStringRef [] }
+&{toNSString QString::toNSString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring_mac.mm non plain false false  NSString * [] }
+########################################			ENUMS			########################################
+&{NormalizationForm QString::NormalizationForm commendable public  [0xc82015b380 0xc82015b460 0xc82015b540 0xc82015b620]}
+&{SectionFlag QString::SectionFlag commendable public QString::SectionFlags [0xc82015b8e0 0xc82015b960 0xc82015baa0 0xc82015bbc0 0xc82015bd60]}
+&{SplitBehavior QString::SplitBehavior commendable public  [0xc8209e2020 0xc8209e20c0]}

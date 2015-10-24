@@ -1,0 +1,21 @@
+########################################			FUNCTIONS			########################################
+&{QMargins QMargins::QMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non constructor false false   [] }
+&{QMargins QMargins::QMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non constructor false true 2  [0xc820d25c60 0xc820d25ce0 0xc820d25d60 0xc820d25de0] }
+&{bottom QMargins::bottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  int [] }
+&{isNull QMargins::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  bool [] }
+&{left QMargins::left commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  int [] }
+&{operator*= QMargins::operator*= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMargins & [0xc820d36180] }
+&{operator*= QMargins::operator*= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false true 2 QMargins & [0xc820d36340] }
+&{operator+= QMargins::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMargins & [0xc820d36500] }
+&{operator+= QMargins::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false true 2 QMargins & [0xc820d366e0] }
+&{operator-= QMargins::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMargins & [0xc820d368a0] }
+&{operator-= QMargins::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false true 2 QMargins & [0xc820d36a60] }
+&{operator/= QMargins::operator/= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMargins & [0xc820d36c20] }
+&{operator/= QMargins::operator/= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false true 2 QMargins & [0xc820d36de0] }
+&{right QMargins::right commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  int [] }
+&{setBottom QMargins::setBottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  void [0xc820d37060] }
+&{setLeft QMargins::setLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  void [0xc820d37240] }
+&{setRight QMargins::setRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  void [0xc820d37440] }
+&{setTop QMargins::setTop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  void [0xc820d375c0] }
+&{top QMargins::top commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  int [] }
+########################################			ENUMS			########################################

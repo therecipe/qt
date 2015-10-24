@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QAccessibleTextUpdateEvent QAccessibleTextUpdateEvent::QAccessibleTextUpdateEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  [0xc820c2d760 0xc820c2d860 0xc820c2d940 0xc820c2d9e0] }
+&{QAccessibleTextUpdateEvent QAccessibleTextUpdateEvent::QAccessibleTextUpdateEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   [0xc820c2dc60 0xc820c2dd40 0xc820c2dde0 0xc820c2dec0] }
+&{changePosition QAccessibleTextUpdateEvent::changePosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int [] }
+&{textInserted QAccessibleTextUpdateEvent::textInserted commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QString [] }
+&{textRemoved QAccessibleTextUpdateEvent::textRemoved commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QString [] }
+########################################			ENUMS			########################################

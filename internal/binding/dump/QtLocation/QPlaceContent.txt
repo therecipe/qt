@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceContent QPlaceContent::QPlaceContent commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h non constructor false false   [] }
+&{QPlaceContent QPlaceContent::QPlaceContent commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h non constructor false true 2  [0xc82213b340] }
+&{attribution QPlaceContent::attribution commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h non plain false false  QString [] }
+&{operator!= QPlaceContent::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h non plain false false  bool [0xc82213bb40] }
+&{operator= QPlaceContent::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h non plain false false  QPlaceContent & [0xc82213bf00] }
+&{operator== QPlaceContent::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h non plain false false  bool [0xc82214e3c0] }
+&{setAttribution QPlaceContent::setAttribution commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h non plain false false  void [0xc82214e740] }
+&{setSupplier QPlaceContent::setSupplier commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h non plain false false  void [0xc82214ea40] }
+&{setUser QPlaceContent::setUser commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h non plain false false  void [0xc82214ede0] }
+&{supplier QPlaceContent::supplier commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h non plain false false  QPlaceSupplier [] }
+&{type QPlaceContent::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h non plain false false  QPlaceContent::Type [] }
+&{user QPlaceContent::user commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h non plain false false  QPlaceUser [] }
+&{~QPlaceContent QPlaceContent::~QPlaceContent commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontent.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{Type QPlaceContent::Type commendable public  [0xc82213aa20 0xc82213ab20 0xc82213ac00 0xc82213ace0]}

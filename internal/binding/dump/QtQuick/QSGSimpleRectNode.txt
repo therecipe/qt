@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QSGSimpleRectNode QSGSimpleRectNode::QSGSimpleRectNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimplerectnode.h non constructor false true 2  [] }
+&{QSGSimpleRectNode QSGSimpleRectNode::QSGSimpleRectNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimplerectnode.h non constructor false false   [0xc821b8b100 0xc821b8b180] }
+&{color QSGSimpleRectNode::color commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimplerectnode.h non plain false false  QColor [] }
+&{rect QSGSimpleRectNode::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimplerectnode.h non plain false false  QRectF [] }
+&{setColor QSGSimpleRectNode::setColor commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimplerectnode.h non plain false false  void [0xc821b8b5c0] }
+&{setRect QSGSimpleRectNode::setRect commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimplerectnode.h non plain false false  void [0xc821b8b7c0] }
+&{setRect QSGSimpleRectNode::setRect commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimplerectnode.h non plain false true 2 void [0xc821b8b9a0 0xc821b8ba20 0xc821b8baa0 0xc821b8bb20] }
+########################################			ENUMS			########################################

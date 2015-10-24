@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{calibrationLevel QMagnetometerReading::calibrationLevel commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.cpp non plain false false  qreal [] }
+&{x QMagnetometerReading::x commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.cpp non plain false false  qreal [] }
+&{y QMagnetometerReading::y commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.cpp non plain false false  qreal [] }
+&{z QMagnetometerReading::z commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.cpp non plain false false  qreal [] }
+&{setCalibrationLevel QMagnetometerReading::setCalibrationLevel commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.h non plain false false  void [0xc822e5eb20] }
+&{setX QMagnetometerReading::setX commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.h non plain false false  void [0xc822e5ee60] }
+&{setY QMagnetometerReading::setY commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.h non plain false false  void [0xc822e5f180] }
+&{setZ QMagnetometerReading::setZ commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.h non plain false false  void [0xc822e5f4e0] }
+########################################			ENUMS			########################################

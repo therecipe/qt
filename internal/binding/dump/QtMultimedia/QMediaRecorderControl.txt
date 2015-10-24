@@ -1,0 +1,22 @@
+########################################			FUNCTIONS			########################################
+&{QMediaRecorderControl QMediaRecorderControl::QMediaRecorderControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h non constructor false false   [0xc821ba7360] }
+&{actualLocationChanged QMediaRecorderControl::actualLocationChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h non signal false false  void [0xc821ba75c0] }
+&{applySettings QMediaRecorderControl::applySettings commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h pure plain false false  void [] }
+&{duration QMediaRecorderControl::duration commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h pure plain false false  qint64 [] }
+&{durationChanged QMediaRecorderControl::durationChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h non signal false false  void [0xc821ba79e0] }
+&{error QMediaRecorderControl::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h non signal false false  void [0xc821ba7c00 0xc821ba7ca0] }
+&{isMuted QMediaRecorderControl::isMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h pure plain false false  bool [] }
+&{mutedChanged QMediaRecorderControl::mutedChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h non signal false false  void [0xc821b9c000] }
+&{outputLocation QMediaRecorderControl::outputLocation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h pure plain false false  QUrl [] }
+&{setMuted QMediaRecorderControl::setMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h pure slot false false  void [0xc821b9c2e0] }
+&{setOutputLocation QMediaRecorderControl::setOutputLocation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h pure plain false false  bool [0xc821b9c4c0] }
+&{setState QMediaRecorderControl::setState commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h pure slot false false  void [0xc821b9c6e0] }
+&{setVolume QMediaRecorderControl::setVolume commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h pure slot false false  void [0xc821b9c960] }
+&{state QMediaRecorderControl::state commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h pure plain false false  QMediaRecorder::State [] }
+&{stateChanged QMediaRecorderControl::stateChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h non signal false false  void [0xc821b9cca0] }
+&{status QMediaRecorderControl::status commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h pure plain false false  QMediaRecorder::Status [] }
+&{statusChanged QMediaRecorderControl::statusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h non signal false false  void [0xc821b9d040] }
+&{volume QMediaRecorderControl::volume commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h pure plain false false  qreal [] }
+&{volumeChanged QMediaRecorderControl::volumeChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h non signal false false  void [0xc821b9d380] }
+&{~QMediaRecorderControl QMediaRecorderControl::~QMediaRecorderControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediarecordercontrol.h impure destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QGenericMatrix QGenericMatrix::QGenericMatrix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non constructor false false   [] }
+&{QGenericMatrix QGenericMatrix::QGenericMatrix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non constructor false true 3  [0xc8203da9a0] }
+&{constData QGenericMatrix::constData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  const T * [] }
+&{copyDataTo QGenericMatrix::copyDataTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  void [0xc8203db1c0] }
+&{data QGenericMatrix::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  T * [] }
+&{data QGenericMatrix::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false true 2 const T * [] }
+&{fill QGenericMatrix::fill commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  void [0xc8203dbae0] }
+&{isIdentity QGenericMatrix::isIdentity commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  bool [] }
+&{operator!= QGenericMatrix::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  bool [0xc8203dbfe0] }
+&{operator() QGenericMatrix::operator() commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false true 2 T & [0xc8203c64a0 0xc8203c6560] }
+&{operator() QGenericMatrix::operator() commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  const T & [0xc8203c6780 0xc8203c6820] }
+&{operator*= QGenericMatrix::operator*= commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  QGenericMatrix<N, M, T> & [0xc8203c6c00] }
+&{operator+= QGenericMatrix::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  QGenericMatrix<N, M, T> & [0xc8203c70c0] }
+&{operator-= QGenericMatrix::operator-= commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  QGenericMatrix<N, M, T> & [0xc8203c7620] }
+&{operator/= QGenericMatrix::operator/= commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  QGenericMatrix<N, M, T> & [0xc8203c7b80] }
+&{operator== QGenericMatrix::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  bool [0xc8203ae020] }
+&{setToIdentity QGenericMatrix::setToIdentity commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  void [] }
+&{transposed QGenericMatrix::transposed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qgenericmatrix.h non plain false false  QGenericMatrix<M, N, T> [] }
+########################################			ENUMS			########################################

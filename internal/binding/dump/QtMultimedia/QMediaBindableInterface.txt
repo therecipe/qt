@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{mediaObject QMediaBindableInterface::mediaObject commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediabindableinterface.h pure plain false false  QMediaObject * [] }
+&{setMediaObject QMediaBindableInterface::setMediaObject commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediabindableinterface.h pure plain false false  bool [0xc82198ae60] }
+&{~QMediaBindableInterface QMediaBindableInterface::~QMediaBindableInterface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediabindableinterface.h impure destructor false false   [] }
+########################################			ENUMS			########################################

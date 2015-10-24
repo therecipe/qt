@@ -1,0 +1,21 @@
+########################################			FUNCTIONS			########################################
+&{QCommonStyle QCommonStyle::QCommonStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h non constructor false false   [] }
+&{drawControl QCommonStyle::drawControl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  void [0xc822616060 0xc822616160 0xc822616260 0xc822616300] }
+&{drawPrimitive QCommonStyle::drawPrimitive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  void [0xc8226165e0 0xc822616720 0xc822616820 0xc822616920] }
+&{drawComplexControl QCommonStyle::drawComplexControl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  void [0xc8226174a0 0xc822617600 0xc822617720 0xc8226177e0] }
+&{generatedIconPixmap QCommonStyle::generatedIconPixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  QPixmap [0xc822617a80 0xc822617b60 0xc822617c60] }
+&{hitTestComplexControl QCommonStyle::hitTestComplexControl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  SubControl [0xc822617fc0 0xc822624080 0xc822624200 0xc822624280] }
+&{layoutSpacing QCommonStyle::layoutSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  int [0xc8226245c0 0xc822624760 0xc822624880 0xc8226249a0 0xc822624b00] }
+&{pixelMetric QCommonStyle::pixelMetric commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  int [0xc822624de0 0xc822624ec0 0xc822625040] }
+&{polish QCommonStyle::polish commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false true 2 void [0xc822625340] }
+&{polish QCommonStyle::polish commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  void [0xc822625600] }
+&{polish QCommonStyle::polish commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false true 3 void [0xc8226258a0] }
+&{sizeFromContents QCommonStyle::sizeFromContents commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  QSize [0xc822625ba0 0xc822625c80 0xc822625de0 0xc822625ea0] }
+&{standardPixmap QCommonStyle::standardPixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  QPixmap [0xc822636200 0xc822636400 0xc822636560] }
+&{styleHint QCommonStyle::styleHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  int [0xc822636920 0xc822636b00 0xc822636be0 0xc822636d80] }
+&{subControlRect QCommonStyle::subControlRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  QRect [0xc8226371c0 0xc8226372e0 0xc8226374c0 0xc8226375a0] }
+&{subElementRect QCommonStyle::subElementRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  QRect [0xc822637920 0xc822637a80 0xc822637c40] }
+&{unpolish QCommonStyle::unpolish commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false true 2 void [0xc822637f60] }
+&{unpolish QCommonStyle::unpolish commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h impure plain false false  void [0xc822648240] }
+&{~QCommonStyle QCommonStyle::~QCommonStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qcommonstyle.h non destructor false false   [] }
+########################################			ENUMS			########################################

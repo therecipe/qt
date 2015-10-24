@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QDragMoveEvent QDragMoveEvent::QDragMoveEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc8208f6580 0xc8208f6620 0xc8208f6700 0xc8208f67c0 0xc8208f68a0 0xc8208f69a0] }
+&{accept QDragMoveEvent::accept commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false true 2 void [] }
+&{accept QDragMoveEvent::accept commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void [0xc8208f6cc0] }
+&{answerRect QDragMoveEvent::answerRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QRect [] }
+&{ignore QDragMoveEvent::ignore commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false true 2 void [] }
+&{ignore QDragMoveEvent::ignore commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void [0xc8208f7160] }
+&{~QDragMoveEvent QDragMoveEvent::~QDragMoveEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QScriptContextInfo QScriptContextInfo::QScriptContextInfo commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non constructor false true 3  [] }
+&{QScriptContextInfo QScriptContextInfo::QScriptContextInfo commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non constructor false false   [0xc822cbc5c0] }
+&{QScriptContextInfo QScriptContextInfo::QScriptContextInfo commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non constructor false true 2  [0xc822cbc7e0] }
+&{fileName QScriptContextInfo::fileName commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  QString [] }
+&{functionEndLineNumber QScriptContextInfo::functionEndLineNumber commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  int [] }
+&{functionMetaIndex QScriptContextInfo::functionMetaIndex commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  int [] }
+&{functionName QScriptContextInfo::functionName commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  QString [] }
+&{functionParameterNames QScriptContextInfo::functionParameterNames commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  QStringList [] }
+&{functionStartLineNumber QScriptContextInfo::functionStartLineNumber commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  int [] }
+&{functionType QScriptContextInfo::functionType commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  FunctionType [] }
+&{isNull QScriptContextInfo::isNull commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  bool [] }
+&{lineNumber QScriptContextInfo::lineNumber commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  int [] }
+&{operator!= QScriptContextInfo::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  bool [0xc822cbd400] }
+&{operator= QScriptContextInfo::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  QScriptContextInfo & [0xc822cbd680] }
+&{operator== QScriptContextInfo::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  bool [0xc822cbd8a0] }
+&{scriptId QScriptContextInfo::scriptId commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non plain false false  qint64 [] }
+&{~QScriptContextInfo QScriptContextInfo::~QScriptContextInfo commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontextinfo.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{FunctionType QScriptContextInfo::FunctionType commendable public  [0xc822cbc020 0xc822cbc0a0 0xc822cbc140 0xc822cbc200]}

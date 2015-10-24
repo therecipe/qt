@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{setFrameRate QVideoEncoderSettings::setFrameRate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.cpp non plain false false  void [0xc821834d40] }
+&{QVideoEncoderSettings QVideoEncoderSettings::QVideoEncoderSettings commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non constructor false false   [] }
+&{QVideoEncoderSettings QVideoEncoderSettings::QVideoEncoderSettings commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non constructor false true 2  [0xc821835220] }
+&{bitRate QVideoEncoderSettings::bitRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  int [] }
+&{codec QVideoEncoderSettings::codec commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QString [] }
+&{encodingMode QVideoEncoderSettings::encodingMode commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QMultimedia::EncodingMode [] }
+&{encodingOption QVideoEncoderSettings::encodingOption commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QVariant [0xc821835840] }
+&{encodingOptions QVideoEncoderSettings::encodingOptions commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QVariantMap [] }
+&{frameRate QVideoEncoderSettings::frameRate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  qreal [] }
+&{isNull QVideoEncoderSettings::isNull commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  bool [] }
+&{operator!= QVideoEncoderSettings::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  bool [0xc821835d40] }
+&{operator= QVideoEncoderSettings::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QVideoEncoderSettings & [0xc82013e060] }
+&{operator== QVideoEncoderSettings::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  bool [0xc82013e440] }
+&{quality QVideoEncoderSettings::quality commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QMultimedia::EncodingQuality [] }
+&{resolution QVideoEncoderSettings::resolution commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QSize [] }
+&{setBitRate QVideoEncoderSettings::setBitRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc82013eaa0] }
+&{setCodec QVideoEncoderSettings::setCodec commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc82013ed80] }
+&{setEncodingMode QVideoEncoderSettings::setEncodingMode commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc82013efe0] }
+&{setEncodingOption QVideoEncoderSettings::setEncodingOption commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc82013f360 0xc82013f420] }
+&{setEncodingOptions QVideoEncoderSettings::setEncodingOptions commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc82013f7a0] }
+&{setQuality QVideoEncoderSettings::setQuality commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc82013fb60] }
+&{setResolution QVideoEncoderSettings::setResolution commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc82013fe40] }
+&{setResolution QVideoEncoderSettings::setResolution commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false true 2 void [0xc82013c1a0 0xc82013c320] }
+&{~QVideoEncoderSettings QVideoEncoderSettings::~QVideoEncoderSettings commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non destructor false false   [] }
+########################################			ENUMS			########################################

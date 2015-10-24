@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QVectorIterator QVectorIterator::QVectorIterator commendable public qvector.h non constructor false false   [0xc82025d2c0] }
+&{findNext QVectorIterator::findNext commendable public qvector.h non plain false false  bool [0xc82025da20] }
+&{findPrevious QVectorIterator::findPrevious commendable public qvector.h non plain false false  bool [0xc820252020] }
+&{hasNext QVectorIterator::hasNext commendable public qvector.h non plain false false  bool [] }
+&{hasPrevious QVectorIterator::hasPrevious commendable public qvector.h non plain false false  bool [] }
+&{next QVectorIterator::next commendable public qvector.h non plain false false  const T & [] }
+&{operator= QVectorIterator::operator= commendable public qvector.h non plain false false  QVectorIterator & [0xc8202536a0] }
+&{peekNext QVectorIterator::peekNext commendable public qvector.h non plain false false  const T & [] }
+&{peekPrevious QVectorIterator::peekPrevious commendable public qvector.h non plain false false  const T & [] }
+&{previous QVectorIterator::previous commendable public qvector.h non plain false false  const T & [] }
+&{toBack QVectorIterator::toBack commendable public qvector.h non plain false false  void [] }
+&{toFront QVectorIterator::toFront commendable public qvector.h non plain false false  void [] }
+########################################			ENUMS			########################################

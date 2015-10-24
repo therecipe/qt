@@ -1,0 +1,57 @@
+########################################			FUNCTIONS			########################################
+&{installEventFilter QObject::installEventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.cpp non plain false false  void [0xc8204a9b00] }
+&{objectName QObject::objectName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.cpp non plain false false  QString [] }
+&{setObjectName QObject::setObjectName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.cpp non plain false false  void [0xc8204a9ec0] }
+&{timerEvent QObject::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.cpp impure plain false false  void [0xc8204960e0] }
+&{QObject QObject::QObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non constructor false false   [0xc820496320] }
+&{blockSignals QObject::blockSignals commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  bool [0xc820496520] }
+&{childEvent QObject::childEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h impure plain false false  void [0xc820496780] }
+&{children QObject::children commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  const QObjectList & [] }
+&{connect QObject::connect commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain true true 5 QMetaObject::Connection [0xc820496b60 0xc820496c60 0xc820496d40] }
+&{connect QObject::connect commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain true true 6 QMetaObject::Connection [0xc820496f80 0xc820497040 0xc820497160 0xc8204971e0 0xc820497300] }
+&{connect QObject::connect commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain true true 4 QMetaObject::Connection [0xc820497580 0xc820497640 0xc820497720 0xc8204977c0 0xc820497980] }
+&{connect QObject::connect commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain true true 2 QMetaObject::Connection [0xc820497c20 0xc820497cc0 0xc820497da0 0xc820497ec0 0xc820484000] }
+&{connect QObject::connect commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain true false  QMetaObject::Connection [0xc8204842c0 0xc820484340 0xc8204843e0 0xc8204844c0 0xc820484600] }
+&{connect QObject::connect commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false true 3 QMetaObject::Connection [0xc820484840 0xc8204848e0 0xc820484980 0xc820484a80] }
+&{connectNotify QObject::connectNotify commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h impure plain false false  void [0xc820485aa0] }
+&{customEvent QObject::customEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h impure plain false false  void [0xc820485d60] }
+&{deleteLater QObject::deleteLater commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non slot false false  void [] }
+&{destroyed QObject::destroyed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non signal false false  void [0xc8204780e0] }
+&{disconnect QObject::disconnect commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain true true 3 bool [0xc820478360] }
+&{disconnect QObject::disconnect commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain true true 6 bool [0xc820478600 0xc8204786a0 0xc8204787a0 0xc820478880] }
+&{disconnect QObject::disconnect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain true true 2 bool [0xc820478b20 0xc820478c00 0xc820478cc0 0xc820478d80] }
+&{disconnect QObject::disconnect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain true false  bool [0xc820479040 0xc8204790c0 0xc820479160 0xc820479240] }
+&{disconnect QObject::disconnect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false true 5 bool [0xc820479440 0xc8204794e0] }
+&{disconnect QObject::disconnect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false true 4 bool [0xc8204796c0 0xc820479760 0xc820479840] }
+&{disconnectNotify QObject::disconnectNotify commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h impure plain false false  void [0xc820479a80] }
+&{dumpObjectInfo QObject::dumpObjectInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  void [] }
+&{dumpObjectTree QObject::dumpObjectTree commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  void [] }
+&{dynamicPropertyNames QObject::dynamicPropertyNames commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  QList<QByteArray> [] }
+&{event QObject::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h impure plain false false  bool [0xc82046a160] }
+&{eventFilter QObject::eventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h impure plain false false  bool [0xc82046a3c0 0xc82046a440] }
+&{findChild QObject::findChild commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  T [0xc82046a6a0 0xc82046a780] }
+&{findChildren QObject::findChildren commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false true 2 QList<T> [0xc82046aa00 0xc82046ab00] }
+&{findChildren QObject::findChildren commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false true 3 QList<T> [0xc82046adc0 0xc82046aee0] }
+&{findChildren QObject::findChildren commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  QList<T> [0xc82046b1a0 0xc82046b2a0] }
+&{inherits QObject::inherits commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  bool [0xc82046b500] }
+&{isSignalConnected QObject::isSignalConnected commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  bool [0xc82046b800] }
+&{isWidgetType QObject::isWidgetType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  bool [] }
+&{isWindowType QObject::isWindowType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  bool [] }
+&{killTimer QObject::killTimer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  void [0xc82046bd80] }
+&{metaObject QObject::metaObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h impure plain false false  const QMetaObject * [] }
+&{moveToThread QObject::moveToThread commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  void [0xc820458120] }
+&{objectNameChanged QObject::objectNameChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non signal false false  void [0xc820458400] }
+&{parent QObject::parent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  QObject * [] }
+&{property QObject::property commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  QVariant [0xc820458700] }
+&{receivers QObject::receivers commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  int [0xc820458920] }
+&{removeEventFilter QObject::removeEventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  void [0xc820458be0] }
+&{sender QObject::sender commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  QObject * [] }
+&{senderSignalIndex QObject::senderSignalIndex commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  int [] }
+&{setParent QObject::setParent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  void [0xc8204590e0] }
+&{setProperty QObject::setProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  bool [0xc820459320 0xc8204593a0] }
+&{startTimer QObject::startTimer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  int [0xc820459900 0xc8204599a0] }
+&{signalsBlocked QObject::signalsBlocked commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  bool [] }
+&{thread QObject::thread commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  QThread * [] }
+&{tr QObject::tr commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain true false  QString [0xc82044a020 0xc82044a0a0 0xc82044a180] }
+&{~QObject QObject::~QObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h impure destructor false false   [] }
+########################################			ENUMS			########################################

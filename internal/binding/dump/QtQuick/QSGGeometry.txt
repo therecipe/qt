@@ -1,0 +1,42 @@
+########################################			FUNCTIONS			########################################
+&{QSGGeometry QSGGeometry::QSGGeometry commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non constructor false false   [0xc8226cfa80 0xc8226cfb60 0xc8226cfc60 0xc8226cfd20] }
+&{allocate QSGGeometry::allocate commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  void [0xc8226cffe0 0xc8219560a0] }
+&{attributeCount QSGGeometry::attributeCount commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  int [] }
+&{attributes QSGGeometry::attributes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  const Attribute * [] }
+&{defaultAttributes_ColoredPoint2D QSGGeometry::defaultAttributes_ColoredPoint2D commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain true false  const AttributeSet & [] }
+&{defaultAttributes_Point2D QSGGeometry::defaultAttributes_Point2D commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain true false  const AttributeSet & [] }
+&{defaultAttributes_TexturedPoint2D QSGGeometry::defaultAttributes_TexturedPoint2D commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain true false  const AttributeSet & [] }
+&{drawingMode QSGGeometry::drawingMode commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  GLenum [] }
+&{indexCount QSGGeometry::indexCount commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  int [] }
+&{indexData QSGGeometry::indexData commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  void * [] }
+&{indexData QSGGeometry::indexData commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false true 2 const void * [] }
+&{indexDataAsUInt QSGGeometry::indexDataAsUInt commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  uint * [] }
+&{indexDataAsUInt QSGGeometry::indexDataAsUInt commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false true 2 const uint * [] }
+&{indexDataAsUShort QSGGeometry::indexDataAsUShort commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  quint16 * [] }
+&{indexDataAsUShort QSGGeometry::indexDataAsUShort commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false true 2 const quint16 * [] }
+&{indexDataPattern QSGGeometry::indexDataPattern commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  DataPattern [] }
+&{indexType QSGGeometry::indexType commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  int [] }
+&{lineWidth QSGGeometry::lineWidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  float [] }
+&{markIndexDataDirty QSGGeometry::markIndexDataDirty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  void [] }
+&{markVertexDataDirty QSGGeometry::markVertexDataDirty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  void [] }
+&{setDrawingMode QSGGeometry::setDrawingMode commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  void [0xc821947080] }
+&{setIndexDataPattern QSGGeometry::setIndexDataPattern commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  void [0xc821947560] }
+&{setLineWidth QSGGeometry::setLineWidth commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  void [0xc821947980] }
+&{setVertexDataPattern QSGGeometry::setVertexDataPattern commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  void [0xc821947d40] }
+&{sizeOfIndex QSGGeometry::sizeOfIndex commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  int [] }
+&{sizeOfVertex QSGGeometry::sizeOfVertex commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  int [] }
+&{updateRectGeometry QSGGeometry::updateRectGeometry commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain true false  void [0xc8219367a0 0xc821936940] }
+&{updateTexturedRectGeometry QSGGeometry::updateTexturedRectGeometry commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain true false  void [0xc821936c60 0xc821936de0 0xc821936ea0] }
+&{vertexCount QSGGeometry::vertexCount commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  int [] }
+&{vertexData QSGGeometry::vertexData commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  void * [] }
+&{vertexData QSGGeometry::vertexData commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false true 2 const void * [] }
+&{vertexDataAsColoredPoint2D QSGGeometry::vertexDataAsColoredPoint2D commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  ColoredPoint2D * [] }
+&{vertexDataAsColoredPoint2D QSGGeometry::vertexDataAsColoredPoint2D commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false true 2 const ColoredPoint2D * [] }
+&{vertexDataAsPoint2D QSGGeometry::vertexDataAsPoint2D commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  Point2D * [] }
+&{vertexDataAsPoint2D QSGGeometry::vertexDataAsPoint2D commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false true 2 const Point2D * [] }
+&{vertexDataAsTexturedPoint2D QSGGeometry::vertexDataAsTexturedPoint2D commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  TexturedPoint2D * [] }
+&{vertexDataAsTexturedPoint2D QSGGeometry::vertexDataAsTexturedPoint2D commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false true 2 const TexturedPoint2D * [] }
+&{vertexDataPattern QSGGeometry::vertexDataPattern commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h non plain false false  DataPattern [] }
+&{~QSGGeometry QSGGeometry::~QSGGeometry commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsggeometry.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{DataPattern QSGGeometry::DataPattern commendable public  [0xc8226cf4a0 0xc8226cf620 0xc8226cf6c0 0xc8226cf760]}

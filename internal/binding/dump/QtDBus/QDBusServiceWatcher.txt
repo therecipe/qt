@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{setWatchMode QDBusServiceWatcher::setWatchMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.cpp non plain false false  void [0xc8224abe20] }
+&{watchMode QDBusServiceWatcher::watchMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.cpp non plain false false  WatchMode [] }
+&{QDBusServiceWatcher QDBusServiceWatcher::QDBusServiceWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.h non constructor false false   [0xc822718a60] }
+&{QDBusServiceWatcher QDBusServiceWatcher::QDBusServiceWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.h non constructor false true 2  [0xc822718d40 0xc822718e20 0xc822718f40 0xc822718fe0] }
+&{addWatchedService QDBusServiceWatcher::addWatchedService commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.h non plain false false  void [0xc822719580] }
+&{connection QDBusServiceWatcher::connection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.h non plain false false  QDBusConnection [] }
+&{removeWatchedService QDBusServiceWatcher::removeWatchedService commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.h non plain false false  bool [0xc8227199c0] }
+&{serviceOwnerChanged QDBusServiceWatcher::serviceOwnerChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.h non signal false false  void [0xc822719d00 0xc822719d80 0xc822719e60] }
+&{serviceRegistered QDBusServiceWatcher::serviceRegistered commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.h non signal false false  void [0xc822a040a0] }
+&{serviceUnregistered QDBusServiceWatcher::serviceUnregistered commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.h non signal false false  void [0xc822a042e0] }
+&{setConnection QDBusServiceWatcher::setConnection commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.h non plain false false  void [0xc822a04500] }
+&{setWatchedServices QDBusServiceWatcher::setWatchedServices commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.h non plain false false  void [0xc822a047c0] }
+&{watchedServices QDBusServiceWatcher::watchedServices commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.h non plain false false  QStringList [] }
+&{~QDBusServiceWatcher QDBusServiceWatcher::~QDBusServiceWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusservicewatcher.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{WatchModeFlag QDBusServiceWatcher::WatchModeFlag commendable public QDBusServiceWatcher::WatchMode [0xc822718300 0xc822718480 0xc8227185c0]}

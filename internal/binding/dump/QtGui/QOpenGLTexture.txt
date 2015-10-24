@@ -1,0 +1,112 @@
+########################################			FUNCTIONS			########################################
+&{setComparisonFunction QOpenGLTexture::setComparisonFunction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.cpp non plain false false  void [0xc8229136c0] }
+&{~QOpenGLTexture QOpenGLTexture::~QOpenGLTexture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.cpp non destructor false false   [] }
+&{QOpenGLTexture QOpenGLTexture::QOpenGLTexture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non constructor false false   [0xc822448fa0] }
+&{QOpenGLTexture QOpenGLTexture::QOpenGLTexture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non constructor false true 2  [0xc822449140 0xc8224491c0] }
+&{allocateStorage QOpenGLTexture::allocateStorage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [] }
+&{allocateStorage QOpenGLTexture::allocateStorage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 2 void [0xc822449460 0xc8224494e0] }
+&{bind QOpenGLTexture::bind commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [] }
+&{bind QOpenGLTexture::bind commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 2 void [0xc822449780 0xc822449820] }
+&{borderColor QOpenGLTexture::borderColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  QColor [] }
+&{borderColor QOpenGLTexture::borderColor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 2 void [0xc822449ae0] }
+&{borderColor QOpenGLTexture::borderColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 3 void [0xc822449c80] }
+&{borderColor QOpenGLTexture::borderColor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 4 void [0xc822449e20] }
+&{boundTextureId QOpenGLTexture::boundTextureId commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain true false  GLuint [0xc822449fc0] }
+&{boundTextureId QOpenGLTexture::boundTextureId commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain true true 2 GLuint [0xc822458160 0xc8224581e0] }
+&{comparisonFunction QOpenGLTexture::comparisonFunction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  ComparisonFunction [] }
+&{comparisonMode QOpenGLTexture::comparisonMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  ComparisonMode [] }
+&{create QOpenGLTexture::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  bool [] }
+&{createTextureView QOpenGLTexture::createTextureView commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  QOpenGLTexture * [0xc822458660 0xc8224586e0 0xc822458780 0xc822458860 0xc822458940 0xc8224589c0] }
+&{depth QOpenGLTexture::depth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  int [] }
+&{depthStencilMode QOpenGLTexture::depthStencilMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  DepthStencilMode [] }
+&{destroy QOpenGLTexture::destroy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [] }
+&{faces QOpenGLTexture::faces commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  int [] }
+&{format QOpenGLTexture::format commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  TextureFormat [] }
+&{generateMipMaps QOpenGLTexture::generateMipMaps commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [] }
+&{generateMipMaps QOpenGLTexture::generateMipMaps commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 2 void [0xc8224590e0 0xc822459160] }
+&{hasFeature QOpenGLTexture::hasFeature commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain true false  bool [0xc822459340] }
+&{height QOpenGLTexture::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  int [] }
+&{isAutoMipMapGenerationEnabled QOpenGLTexture::isAutoMipMapGenerationEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  bool [] }
+&{isBound QOpenGLTexture::isBound commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 2 bool [0xc8224596e0] }
+&{isBound QOpenGLTexture::isBound commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  bool [] }
+&{isCreated QOpenGLTexture::isCreated commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  bool [] }
+&{isFixedSamplePositions QOpenGLTexture::isFixedSamplePositions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  bool [] }
+&{isStorageAllocated QOpenGLTexture::isStorageAllocated commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  bool [] }
+&{isTextureView QOpenGLTexture::isTextureView commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  bool [] }
+&{layers QOpenGLTexture::layers commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  int [] }
+&{levelOfDetailRange QOpenGLTexture::levelOfDetailRange commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  QPair<float, float> [] }
+&{levelofDetailBias QOpenGLTexture::levelofDetailBias commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  float [] }
+&{magnificationFilter QOpenGLTexture::magnificationFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  Filter [] }
+&{maximumAnisotropy QOpenGLTexture::maximumAnisotropy commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  float [] }
+&{maximumLevelOfDetail QOpenGLTexture::maximumLevelOfDetail commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  float [] }
+&{maximumMipLevels QOpenGLTexture::maximumMipLevels commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  int [] }
+&{minMagFilters QOpenGLTexture::minMagFilters commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  QPair<Filter, Filter> [] }
+&{minificationFilter QOpenGLTexture::minificationFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  Filter [] }
+&{minimumLevelOfDetail QOpenGLTexture::minimumLevelOfDetail commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  float [] }
+&{mipBaseLevel QOpenGLTexture::mipBaseLevel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  int [] }
+&{mipLevelRange QOpenGLTexture::mipLevelRange commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  QPair<int, int> [] }
+&{mipLevels QOpenGLTexture::mipLevels commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  int [] }
+&{mipMaxLevel QOpenGLTexture::mipMaxLevel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  int [] }
+&{release QOpenGLTexture::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [] }
+&{release QOpenGLTexture::release commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 2 void [0xc822470ac0 0xc822470b60] }
+&{samples QOpenGLTexture::samples commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  int [] }
+&{setAutoMipMapGenerationEnabled QOpenGLTexture::setAutoMipMapGenerationEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc822470e00] }
+&{setBorderColor QOpenGLTexture::setBorderColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc822470fa0] }
+&{setBorderColor QOpenGLTexture::setBorderColor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 2 void [0xc822471140 0xc8224711c0 0xc822471240 0xc8224712c0] }
+&{setBorderColor QOpenGLTexture::setBorderColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 3 void [0xc822471460 0xc8224714e0 0xc822471560 0xc8224715e0] }
+&{setBorderColor QOpenGLTexture::setBorderColor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 4 void [0xc822471780 0xc822471800 0xc822471880 0xc822471900] }
+&{setComparisonMode QOpenGLTexture::setComparisonMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc822471aa0] }
+&{setCompressedData QOpenGLTexture::setCompressedData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 4 void [0xc822471c40 0xc822471cc0 0xc822471d40] }
+&{setCompressedData QOpenGLTexture::setCompressedData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 3 void [0xc822488180 0xc822488200 0xc822488280 0xc822488300] }
+&{setCompressedData QOpenGLTexture::setCompressedData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224887c0 0xc822488840 0xc8224888c0 0xc822488940 0xc8224889e0 0xc822488a60] }
+&{setCompressedData QOpenGLTexture::setCompressedData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 2 void [0xc822489040 0xc8224890c0 0xc822489140 0xc8224891c0 0xc822489260] }
+&{setData QOpenGLTexture::setData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 4 void [0xc822489800 0xc822489880 0xc822489900 0xc822489980] }
+&{setData QOpenGLTexture::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 9 void [0xc822489e60 0xc822489ee0] }
+&{setData QOpenGLTexture::setData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 3 void [0xc82249a0a0 0xc82249a120 0xc82249a1a0 0xc82249a220 0xc82249a2c0] }
+&{setData QOpenGLTexture::setData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc82249a840 0xc82249a8c0 0xc82249a940 0xc82249a9c0 0xc82249aa60 0xc82249aae0 0xc82249ab60] }
+&{setData QOpenGLTexture::setData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 2 void [0xc82249b1e0 0xc82249b260 0xc82249b2e0 0xc82249b360 0xc82249b400 0xc82249b480] }
+&{setDepthStencilMode QOpenGLTexture::setDepthStencilMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc82249ba60] }
+&{setFixedSamplePositions QOpenGLTexture::setFixedSamplePositions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc82249bc00] }
+&{setFormat QOpenGLTexture::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc82249bdc0] }
+&{setLayers QOpenGLTexture::setLayers commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc82249bfa0] }
+&{setLevelOfDetailRange QOpenGLTexture::setLevelOfDetailRange commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224aa140 0xc8224aa1c0] }
+&{setLevelofDetailBias QOpenGLTexture::setLevelofDetailBias commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224aa360] }
+&{setMagnificationFilter QOpenGLTexture::setMagnificationFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224aa500] }
+&{setMaximumAnisotropy QOpenGLTexture::setMaximumAnisotropy commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224aa6a0] }
+&{setMaximumLevelOfDetail QOpenGLTexture::setMaximumLevelOfDetail commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224aa840] }
+&{setMinMagFilters QOpenGLTexture::setMinMagFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224aaa00 0xc8224aaae0] }
+&{setMinificationFilter QOpenGLTexture::setMinificationFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224aacc0] }
+&{setMinimumLevelOfDetail QOpenGLTexture::setMinimumLevelOfDetail commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224aae60] }
+&{setMipBaseLevel QOpenGLTexture::setMipBaseLevel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224ab000] }
+&{setMipLevelRange QOpenGLTexture::setMipLevelRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224ab1a0 0xc8224ab220] }
+&{setMipLevels QOpenGLTexture::setMipLevels commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224ab400] }
+&{setMipMaxLevel QOpenGLTexture::setMipMaxLevel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224ab5a0] }
+&{setSamples QOpenGLTexture::setSamples commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224ab780] }
+&{setSize QOpenGLTexture::setSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224ab940 0xc8224ab9c0 0xc8224aba40] }
+&{setSwizzleMask QOpenGLTexture::setSwizzleMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224abbe0 0xc8224abc60] }
+&{setSwizzleMask QOpenGLTexture::setSwizzleMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 2 void [0xc8224abe00 0xc8224abe80 0xc8224abf00 0xc8224abf80] }
+&{setWrapMode QOpenGLTexture::setWrapMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false true 2 void [0xc8224bc140 0xc8224bc200] }
+&{setWrapMode QOpenGLTexture::setWrapMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  void [0xc8224bc3e0] }
+&{swizzleMask QOpenGLTexture::swizzleMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  SwizzleValue [0xc8224bc5a0] }
+&{target QOpenGLTexture::target commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  Target [] }
+&{textureId QOpenGLTexture::textureId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  GLuint [] }
+&{width QOpenGLTexture::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  int [] }
+&{wrapMode QOpenGLTexture::wrapMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltexture.h non plain false false  WrapMode [0xc8224bca80] }
+########################################			ENUMS			########################################
+&{BindingTarget QOpenGLTexture::BindingTarget commendable public  [0xc8229139e0 0xc822913a80 0xc822913b40 0xc822913be0 0xc822913cc0 0xc822913d60 0xc822913e40 0xc822913f20 0xc822924020 0xc822924100 0xc8229241e0]}
+&{ComparisonFunction QOpenGLTexture::ComparisonFunction commendable public  [0xc8229243c0 0xc822924460 0xc822924520 0xc8229245a0 0xc822924640 0xc8229246c0 0xc822924740 0xc8229247c0]}
+&{ComparisonMode QOpenGLTexture::ComparisonMode commendable public  [0xc822924980 0xc822924a40]}
+&{CoordinateDirection QOpenGLTexture::CoordinateDirection commendable public  [0xc822924be0 0xc822924c60 0xc822924ce0]}
+&{CubeMapFace QOpenGLTexture::CubeMapFace commendable public  [0xc822924ea0 0xc822924f20 0xc822924fa0 0xc822925020 0xc8229250c0 0xc822925140]}
+&{DepthStencilMode QOpenGLTexture::DepthStencilMode commendable public  [0xc8229252e0 0xc822925360]}
+&{Feature QOpenGLTexture::Feature commendable public QOpenGLTexture::Features [0xc822925580 0xc822925620 0xc8229256e0 0xc822925760 0xc822925800 0xc8229258a0 0xc822925960 0xc822925a00 0xc822925ae0 0xc822925b60 0xc822925c00 0xc822925cc0 0xc822925d60 0xc822925e20 0xc822925ec0 0xc822925fa0]}
+&{Filter QOpenGLTexture::Filter commendable public  [0xc82292c1a0 0xc82292c220 0xc82292c2c0 0xc82292c3a0 0xc82292c4a0 0xc82292c580]}
+&{MipMapGeneration QOpenGLTexture::MipMapGeneration commendable public  [0xc82292c780 0xc82292c820]}
+&{PixelFormat QOpenGLTexture::PixelFormat commendable public  [0xc82292ca00 0xc82292ca80 0xc82292cb00 0xc82292cb80 0xc82292cc20 0xc82292cca0 0xc82292cd20 0xc82292cda0 0xc82292ce40 0xc82292cec0 0xc82292cf40 0xc82292cfc0 0xc82292d040 0xc82292d0c0 0xc82292d140 0xc82292d1c0 0xc82292d260 0xc82292d2e0 0xc82292d360]}
+&{PixelType QOpenGLTexture::PixelType commendable public  [0xc82292d500 0xc82292d580 0xc82292d600 0xc82292d680 0xc82292d720 0xc82292d7a0 0xc82292d820 0xc82292d8a0 0xc82292d940 0xc82292d9c0 0xc82292da40 0xc82292dac0 0xc82292db40 0xc82292dbc0 0xc82292dc40 0xc82292dce0 0xc82292ddc0 0xc82292de60 0xc82292df20 0xc82292dfa0 0xc822938020 0xc8229380a0 0xc822938120 0xc8229381c0 0xc822938280 0xc822938320]}
+&{SwizzleComponent QOpenGLTexture::SwizzleComponent commendable public  [0xc822938500 0xc822938580 0xc822938600 0xc822938680]}
+&{SwizzleValue QOpenGLTexture::SwizzleValue commendable public  [0xc822938820 0xc8229388a0 0xc822938920 0xc8229389a0 0xc822938a40 0xc822938ac0]}
+&{Target QOpenGLTexture::Target commendable public  [0xc822938c80 0xc822938d00 0xc822938d80 0xc822938e00 0xc822938ea0 0xc822938f20 0xc822938fc0 0xc8229390a0 0xc8229391a0 0xc822939260 0xc8229392e0]}
+&{TextureFormat QOpenGLTexture::TextureFormat commendable public  [0xc822939480 0xc822939500 0xc822939580 0xc822939600 0xc8229396a0 0xc822939720 0xc8229397a0 0xc822939820 0xc8229398c0 0xc822939940 0xc8229399c0 0xc822939a40 0xc822939ac0 0xc822939b40 0xc822939bc0 0xc822939c40 0xc822939ce0 0xc822939d60 0xc822939de0 0xc822939e60 0xc822939ee0 0xc822939f60 0xc822939fe0 0xc822942060 0xc8229420e0 0xc822942160 0xc8229421e0 0xc822942260 0xc8229422e0 0xc822942360 0xc8229423e0 0xc822942460 0xc822942500 0xc822942580 0xc822942600 0xc822942680 0xc822942700 0xc822942780 0xc822942800 0xc822942880 0xc822942900 0xc822942980 0xc822942a00 0xc822942a80 0xc822942b00 0xc822942b80 0xc822942c00 0xc822942c80 0xc822942d00 0xc822942d80 0xc822942e00 0xc822942e80 0xc822942f00 0xc822942f80 0xc822943000 0xc822943080 0xc822943100 0xc822943180 0xc822943200 0xc822943280 0xc822943300 0xc822943380 0xc822943400 0xc822943480 0xc822943520 0xc8229435a0 0xc822943620 0xc8229436a0 0xc822943720 0xc8229437a0 0xc822943820 0xc8229438c0 0xc8229439a0 0xc822943a60 0xc822943ae0 0xc822943b60 0xc822943be0 0xc822943c60 0xc822943ce0 0xc822943d60 0xc822943e00 0xc822943ee0 0xc822943fa0 0xc822448040 0xc822448100 0xc822448180 0xc822448200 0xc822448280 0xc822448300 0xc822448380 0xc822448400 0xc822448480 0xc822448500 0xc822448580 0xc822448600 0xc822448680 0xc822448720]}
+&{TextureUnitReset QOpenGLTexture::TextureUnitReset commendable public  [0xc822448900 0xc8224489a0]}
+&{WrapMode QOpenGLTexture::WrapMode commendable public  [0xc822448ba0 0xc822448c20 0xc822448ca0 0xc822448d20]}

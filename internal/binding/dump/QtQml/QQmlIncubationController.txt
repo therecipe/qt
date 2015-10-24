@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QQmlIncubationController QQmlIncubationController::QQmlIncubationController commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non constructor false false   [] }
+&{engine QQmlIncubationController::engine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  QQmlEngine * [] }
+&{incubateFor QQmlIncubationController::incubateFor commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  void [0xc821c7cc80] }
+&{incubateWhile QQmlIncubationController::incubateWhile commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  void [0xc821c7cf40 0xc821c7cfe0] }
+&{incubatingObjectCount QQmlIncubationController::incubatingObjectCount commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  int [] }
+&{incubatingObjectCountChanged QQmlIncubationController::incubatingObjectCountChanged commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h impure plain false false  void [0xc821c7d560] }
+########################################			ENUMS			########################################

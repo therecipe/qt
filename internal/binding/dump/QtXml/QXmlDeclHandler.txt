@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{attributeDecl QXmlDeclHandler::attributeDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8226a3000 0xc8226a3100 0xc8226a31a0 0xc8226a3240 0xc8226a3360] }
+&{errorString QXmlDeclHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString [] }
+&{externalEntityDecl QXmlDeclHandler::externalEntityDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8226a3760 0xc8226a3860 0xc8226a3920] }
+&{internalEntityDecl QXmlDeclHandler::internalEntityDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8226a3ba0 0xc8226a3ca0] }
+&{~QXmlDeclHandler QXmlDeclHandler::~QXmlDeclHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   [] }
+########################################			ENUMS			########################################

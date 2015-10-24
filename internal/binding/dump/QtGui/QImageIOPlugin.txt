@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QImageIOPlugin QImageIOPlugin::QImageIOPlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h non constructor false false   [0xc820bc01e0] }
+&{capabilities QImageIOPlugin::capabilities commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h pure plain false false  Capabilities [0xc820bc0440 0xc820bc04e0] }
+&{create QImageIOPlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h pure plain false false  QImageIOHandler * [0xc820bc07e0 0xc820bc0880] }
+&{~QImageIOPlugin QImageIOPlugin::~QImageIOPlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{Capability QImageIOPlugin::Capability commendable public QImageIOPlugin::Capabilities [0xc820c17c60 0xc820c17d20 0xc820c17dc0]}

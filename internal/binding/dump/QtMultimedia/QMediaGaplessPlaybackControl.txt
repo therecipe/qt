@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QMediaGaplessPlaybackControl QMediaGaplessPlaybackControl::QMediaGaplessPlaybackControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediagaplessplaybackcontrol.h non constructor false false   [0xc821bccc80] }
+&{advancedToNextMedia QMediaGaplessPlaybackControl::advancedToNextMedia commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediagaplessplaybackcontrol.h non signal false false  void [] }
+&{crossfadeTime QMediaGaplessPlaybackControl::crossfadeTime commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediagaplessplaybackcontrol.h pure plain false false  qreal [] }
+&{crossfadeTimeChanged QMediaGaplessPlaybackControl::crossfadeTimeChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediagaplessplaybackcontrol.h non signal false false  void [0xc821bcd0a0] }
+&{isCrossfadeSupported QMediaGaplessPlaybackControl::isCrossfadeSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediagaplessplaybackcontrol.h pure plain false false  bool [] }
+&{nextMedia QMediaGaplessPlaybackControl::nextMedia commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediagaplessplaybackcontrol.h pure plain false false  QMediaContent [] }
+&{nextMediaChanged QMediaGaplessPlaybackControl::nextMediaChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediagaplessplaybackcontrol.h non signal false false  void [0xc821bcd3e0] }
+&{setCrossfadeTime QMediaGaplessPlaybackControl::setCrossfadeTime commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediagaplessplaybackcontrol.h pure plain false false  void [0xc821bcd5a0] }
+&{setNextMedia QMediaGaplessPlaybackControl::setNextMedia commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediagaplessplaybackcontrol.h pure plain false false  void [0xc821bcd7e0] }
+&{~QMediaGaplessPlaybackControl QMediaGaplessPlaybackControl::~QMediaGaplessPlaybackControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediagaplessplaybackcontrol.h impure destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QMediaAudioProbeControl QMediaAudioProbeControl::QMediaAudioProbeControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaaudioprobecontrol.h non constructor false false   [0xc821bd0340] }
+&{audioBufferProbed QMediaAudioProbeControl::audioBufferProbed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaaudioprobecontrol.h non signal false false  void [0xc821bd0740] }
+&{flush QMediaAudioProbeControl::flush commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaaudioprobecontrol.h non signal false false  void [] }
+&{~QMediaAudioProbeControl QMediaAudioProbeControl::~QMediaAudioProbeControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaaudioprobecontrol.h impure destructor false false   [] }
+########################################			ENUMS			########################################

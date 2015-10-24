@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{propertyName QPropertyAnimation::propertyName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpropertyanimation.cpp non plain false false  QByteArray [] }
+&{setPropertyName QPropertyAnimation::setPropertyName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpropertyanimation.cpp non plain false false  void [0xc8200ef500] }
+&{setTargetObject QPropertyAnimation::setTargetObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpropertyanimation.cpp non plain false false  void [0xc8200ef6c0] }
+&{targetObject QPropertyAnimation::targetObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpropertyanimation.cpp non plain false false  QObject * [] }
+&{QPropertyAnimation QPropertyAnimation::QPropertyAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpropertyanimation.h non constructor false false   [0xc8200ef9c0] }
+&{QPropertyAnimation QPropertyAnimation::QPropertyAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpropertyanimation.h non constructor false true 2  [0xc8200efb80 0xc8200efc20 0xc8200efce0] }
+&{event QPropertyAnimation::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpropertyanimation.h impure plain false false  bool [0xc8200efee0] }
+&{updateCurrentValue QPropertyAnimation::updateCurrentValue commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpropertyanimation.h impure plain false false  void [0xc8201020a0] }
+&{updateState QPropertyAnimation::updateState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpropertyanimation.h impure plain false false  void [0xc8201022a0 0xc820102380] }
+&{~QPropertyAnimation QPropertyAnimation::~QPropertyAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpropertyanimation.h non destructor false false   [] }
+########################################			ENUMS			########################################

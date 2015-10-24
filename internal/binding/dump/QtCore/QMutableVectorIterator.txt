@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QMutableVectorIterator QMutableVectorIterator::QMutableVectorIterator commendable public qvector.h non constructor false false   [0xc82026b000] }
+&{findNext QMutableVectorIterator::findNext commendable public qvector.h non plain false false  bool [0xc82026b480] }
+&{findPrevious QMutableVectorIterator::findPrevious commendable public qvector.h non plain false false  bool [0xc82026b6c0] }
+&{hasNext QMutableVectorIterator::hasNext commendable public qvector.h non plain false false  bool [] }
+&{hasPrevious QMutableVectorIterator::hasPrevious commendable public qvector.h non plain false false  bool [] }
+&{insert QMutableVectorIterator::insert commendable public qvector.h non plain false false  void [0xc82026bec0] }
+&{next QMutableVectorIterator::next commendable public qvector.h non plain false false  T & [] }
+&{operator= QMutableVectorIterator::operator= commendable public qvector.h non plain false false  QMutableVectorIterator & [0xc820264640] }
+&{peekNext QMutableVectorIterator::peekNext commendable public qvector.h non plain false false  T & [] }
+&{peekPrevious QMutableVectorIterator::peekPrevious commendable public qvector.h non plain false false  T & [] }
+&{previous QMutableVectorIterator::previous commendable public qvector.h non plain false false  T & [] }
+&{remove QMutableVectorIterator::remove commendable public qvector.h non plain false false  void [] }
+&{setValue QMutableVectorIterator::setValue commendable public qvector.h non plain false false  void [0xc8202655c0] }
+&{toBack QMutableVectorIterator::toBack commendable public qvector.h non plain false false  void [] }
+&{toFront QMutableVectorIterator::toFront commendable public qvector.h non plain false false  void [] }
+&{value QMutableVectorIterator::value commendable public qvector.h non plain false true 2 T & [] }
+&{value QMutableVectorIterator::value commendable public qvector.h non plain false false  const T & [] }
+########################################			ENUMS			########################################

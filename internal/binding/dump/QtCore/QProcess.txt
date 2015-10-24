@@ -1,0 +1,71 @@
+########################################			FUNCTIONS			########################################
+&{QProcess QProcess::QProcess commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non constructor false false   [0xc820356880] }
+&{arguments QProcess::arguments commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QStringList [] }
+&{atEnd QProcess::atEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure plain false false  bool [] }
+&{bytesAvailable QProcess::bytesAvailable commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure plain false false  qint64 [] }
+&{bytesToWrite QProcess::bytesToWrite commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure plain false false  qint64 [] }
+&{canReadLine QProcess::canReadLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure plain false false  bool [] }
+&{close QProcess::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure plain false false  void [] }
+&{closeReadChannel QProcess::closeReadChannel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc8203573a0] }
+&{closeWriteChannel QProcess::closeWriteChannel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [] }
+&{error QProcess::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non signal false true 2 void [0xc8203577a0] }
+&{error QProcess::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QProcess::ProcessError [] }
+&{execute QProcess::execute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain true true 2 int [0xc820357b00] }
+&{execute QProcess::execute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain true false  int [0xc820357d40 0xc820357e00] }
+&{exitCode QProcess::exitCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  int [] }
+&{exitStatus QProcess::exitStatus commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QProcess::ExitStatus [] }
+&{finished QProcess::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non signal false false  void [0xc8203445a0 0xc820344660] }
+&{inputChannelMode QProcess::inputChannelMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  InputChannelMode [] }
+&{isSequential QProcess::isSequential commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure plain false false  bool [] }
+&{kill QProcess::kill commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non slot false false  void [] }
+&{nativeArguments QProcess::nativeArguments commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QString [] }
+&{nullDevice QProcess::nullDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain true false  QString [] }
+&{open QProcess::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure plain false false  bool [0xc820344ce0] }
+&{processChannelMode QProcess::processChannelMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  ProcessChannelMode [] }
+&{processEnvironment QProcess::processEnvironment commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QProcessEnvironment [] }
+&{processId QProcess::processId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  qint64 [] }
+&{program QProcess::program commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QString [] }
+&{readAllStandardError QProcess::readAllStandardError commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QByteArray [] }
+&{readAllStandardOutput QProcess::readAllStandardOutput commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QByteArray [] }
+&{readChannel QProcess::readChannel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  ProcessChannel [] }
+&{readData QProcess::readData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure plain false false  qint64 [0xc820345c20 0xc820345ce0] }
+&{readyReadStandardError QProcess::readyReadStandardError commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non signal false false  void [] }
+&{readyReadStandardOutput QProcess::readyReadStandardOutput commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non signal false false  void [] }
+&{setArguments QProcess::setArguments commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc82032e240] }
+&{setInputChannelMode QProcess::setInputChannelMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc82032e760] }
+&{setNativeArguments QProcess::setNativeArguments commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc82032ea20] }
+&{setProcessChannelMode QProcess::setProcessChannelMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc82032ecc0] }
+&{setProcessEnvironment QProcess::setProcessEnvironment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc82032efc0] }
+&{setProcessState QProcess::setProcessState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc82032f280] }
+&{setProgram QProcess::setProgram commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc82032f4c0] }
+&{setReadChannel QProcess::setReadChannel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc82032f700] }
+&{setStandardErrorFile QProcess::setStandardErrorFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc82032fc80 0xc82032fd00] }
+&{setStandardInputFile QProcess::setStandardInputFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc82032ffa0] }
+&{setStandardOutputFile QProcess::setStandardOutputFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc8203141a0 0xc820314220] }
+&{setStandardOutputProcess QProcess::setStandardOutputProcess commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc8203143c0] }
+&{setWorkingDirectory QProcess::setWorkingDirectory commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc820314600] }
+&{setupChildProcess QProcess::setupChildProcess commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure plain false false  void [] }
+&{start QProcess::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false true 2 void [0xc820314960] }
+&{start QProcess::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false true 3 void [0xc820314b00 0xc820314ba0] }
+&{start QProcess::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc820314d60 0xc820314e00 0xc820314ee0] }
+&{startDetached QProcess::startDetached commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain true true 2 bool [0xc8203150c0] }
+&{startDetached QProcess::startDetached commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain true false  bool [0xc820315320 0xc8203153c0 0xc8203154e0 0xc820315560] }
+&{started QProcess::started commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non signal false false  void [] }
+&{state QProcess::state commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QProcess::ProcessState [] }
+&{stateChanged QProcess::stateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non signal false false  void [0xc8203159e0] }
+&{systemEnvironment QProcess::systemEnvironment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain true false  QStringList [] }
+&{terminate QProcess::terminate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non slot false false  void [] }
+&{waitForBytesWritten QProcess::waitForBytesWritten commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure plain false false  bool [0xc820315fa0] }
+&{waitForFinished QProcess::waitForFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  bool [0xc8202fe1c0] }
+&{waitForReadyRead QProcess::waitForReadyRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure plain false false  bool [0xc8202fe3a0] }
+&{waitForStarted QProcess::waitForStarted commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  bool [0xc8202fe580] }
+&{workingDirectory QProcess::workingDirectory commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QString [] }
+&{writeData QProcess::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure plain false false  qint64 [0xc8202fe840 0xc8202fe8c0] }
+&{~QProcess QProcess::~QProcess commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{ExitStatus QProcess::ExitStatus commendable public  [0xc82036d000 0xc82036d0e0]}
+&{InputChannelMode QProcess::InputChannelMode commendable public  [0xc82036d2c0 0xc82036d400]}
+&{ProcessChannel QProcess::ProcessChannel commendable public  [0xc82036d660 0xc82036d6e0]}
+&{ProcessChannelMode QProcess::ProcessChannelMode commendable public  [0xc82036d960 0xc82036d9e0 0xc82036daa0 0xc82036dbc0 0xc82036dd00]}
+&{ProcessError QProcess::ProcessError commendable public  [0xc82036dfa0 0xc820356020 0xc8203560a0 0xc820356120 0xc8203561c0 0xc820356240]}
+&{ProcessState QProcess::ProcessState commendable public  [0xc820356480 0xc820356540 0xc8203565e0]}

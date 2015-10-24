@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QSqlIndex QSqlIndex::QSqlIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non constructor false true 2  [0xc82152af20] }
+&{QSqlIndex QSqlIndex::QSqlIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non constructor false false   [0xc82152b2e0 0xc82152b3e0] }
+&{append QSqlIndex::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  void [0xc82152b760] }
+&{append QSqlIndex::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false true 2 void [0xc82152bb40 0xc82152bc40] }
+&{cursorName QSqlIndex::cursorName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  QString [] }
+&{isDescending QSqlIndex::isDescending commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  bool [0xc8215146a0] }
+&{name QSqlIndex::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  QString [] }
+&{operator= QSqlIndex::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  QSqlIndex & [0xc821514b60] }
+&{setCursorName QSqlIndex::setCursorName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  void [0xc821514f60] }
+&{setDescending QSqlIndex::setDescending commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  void [0xc8215152a0 0xc821515380] }
+&{setName QSqlIndex::setName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  void [0xc8215156a0] }
+&{~QSqlIndex QSqlIndex::~QSqlIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non destructor false false   [] }
+########################################			ENUMS			########################################

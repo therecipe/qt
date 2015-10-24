@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{reading QGyroscope::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  QGyroscopeReading * [] }
+&{QGyroscope QGyroscope::QGyroscope commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non constructor false false   [0xc822ea2440] }
+&{~QGyroscope QGyroscope::~QGyroscope commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h impure destructor false false   [] }
+########################################			ENUMS			########################################

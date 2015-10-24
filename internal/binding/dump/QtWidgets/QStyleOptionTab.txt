@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{QStyleOptionTab QStyleOptionTab::QStyleOptionTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
+&{QStyleOptionTab QStyleOptionTab::QStyleOptionTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8213df100] }
+########################################			ENUMS			########################################
+&{CornerWidget QStyleOptionTab::CornerWidget commendable public QStyleOptionTab::CornerWidgets [0xc8213f0e20 0xc8213f0f40 0xc8213f1020]}
+&{SelectedPosition QStyleOptionTab::SelectedPosition commendable public  [0xc8213f12c0 0xc8213f1360 0xc8213f1500]}
+&{StyleOptionType QStyleOptionTab::StyleOptionType commendable public  [0xc8213f1880]}
+&{StyleOptionVersion QStyleOptionTab::StyleOptionVersion commendable public  [0xc8213f1bc0]}
+&{TabFeature QStyleOptionTab::TabFeature commendable public QStyleOptionTab::TabFeatures [0xc8213f1fe0 0xc8213de100]}
+&{TabPosition QStyleOptionTab::TabPosition commendable public  [0xc8213de480 0xc8213de580 0xc8213de640 0xc8213de7a0]}

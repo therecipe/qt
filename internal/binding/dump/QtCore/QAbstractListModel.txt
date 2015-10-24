@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{index QAbstractListModel::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.cpp impure plain false false  QModelIndex [0xc8200d2700 0xc8200d27a0 0xc8200d2900] }
+&{QAbstractListModel QAbstractListModel::QAbstractListModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non constructor false false   [0xc8200d2c20] }
+&{dropMimeData QAbstractListModel::dropMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h impure plain false false  bool [0xc8200d3280 0xc8200d3380 0xc8200d3420 0xc8200d3500 0xc8200d35c0] }
+&{flags QAbstractListModel::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h impure plain false false  Qt::ItemFlags [0xc8200d38a0] }
+&{sibling QAbstractListModel::sibling commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h impure plain false false  QModelIndex [0xc8200a4320 0xc8200a4420 0xc8200a4500] }
+&{~QAbstractListModel QAbstractListModel::~QAbstractListModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non destructor false false   [] }
+########################################			ENUMS			########################################

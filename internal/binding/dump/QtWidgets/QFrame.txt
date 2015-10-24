@@ -1,0 +1,25 @@
+########################################			FUNCTIONS			########################################
+&{frameRect QFrame::frameRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  QRect [] }
+&{frameShadow QFrame::frameShadow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  Shadow [] }
+&{frameShape QFrame::frameShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  Shape [] }
+&{frameWidth QFrame::frameWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  int [] }
+&{lineWidth QFrame::lineWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  int [] }
+&{midLineWidth QFrame::midLineWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  int [] }
+&{setFrameRect QFrame::setFrameRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void [0xc821baef00] }
+&{setFrameShadow QFrame::setFrameShadow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void [0xc821baf1a0] }
+&{setFrameShape QFrame::setFrameShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void [0xc821baf540] }
+&{setLineWidth QFrame::setLineWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void [0xc821baf920] }
+&{setMidLineWidth QFrame::setMidLineWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void [0xc821bafd00] }
+&{QFrame QFrame::QFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non constructor false false   [0xc821cd97c0 0xc821cd98c0] }
+&{changeEvent QFrame::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h impure plain false false  void [0xc821cd9d20] }
+&{event QFrame::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h impure plain false false  bool [0xc822694b40] }
+&{frameStyle QFrame::frameStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non plain false false  int [] }
+&{initStyleOption QFrame::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non plain false false  void [0xc822695260] }
+&{paintEvent QFrame::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h impure plain false false  void [0xc822695700] }
+&{setFrameStyle QFrame::setFrameStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non plain false false  void [0xc822695b20] }
+&{sizeHint QFrame::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h impure plain false false  QSize [] }
+&{~QFrame QFrame::~QFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Shadow QFrame::Shadow commendable public  [0xc821cd8100 0xc821cd8280 0xc821cd8360]}
+&{Shape QFrame::Shape commendable public  [0xc821cd8740 0xc821cd8840 0xc821cd8960 0xc821cd8a20 0xc821cd8c60 0xc821cd8da0 0xc821cd8f00]}
+&{StyleMask QFrame::StyleMask commendable public  [0xc821cd9340 0xc821cd9400]}

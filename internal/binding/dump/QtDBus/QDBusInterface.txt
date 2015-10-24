@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{QDBusInterface QDBusInterface::QDBusInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusinterface.h non constructor false false   [0xc821c765c0 0xc821c766a0 0xc821c76800 0xc821c769c0 0xc821c76b60] }
+&{~QDBusInterface QDBusInterface::~QDBusInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusinterface.h non destructor false false   [] }
+########################################			ENUMS			########################################

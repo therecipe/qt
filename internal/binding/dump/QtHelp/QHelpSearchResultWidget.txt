@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{linkAt QHelpSearchResultWidget::linkAt commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchresultwidget.h non plain false false  QUrl [0xc8220fe320] }
+&{requestShowLink QHelpSearchResultWidget::requestShowLink commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchresultwidget.h non signal false false  void [0xc8220fe480] }
+&{~QHelpSearchResultWidget QHelpSearchResultWidget::~QHelpSearchResultWidget commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchresultwidget.h non destructor false false   [] }
+########################################			ENUMS			########################################

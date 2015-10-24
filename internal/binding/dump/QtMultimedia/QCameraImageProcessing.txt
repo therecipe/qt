@@ -1,0 +1,21 @@
+########################################			FUNCTIONS			########################################
+&{colorFilter QCameraImageProcessing::colorFilter commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  ColorFilter [] }
+&{contrast QCameraImageProcessing::contrast commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  qreal [] }
+&{denoisingLevel QCameraImageProcessing::denoisingLevel commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  qreal [] }
+&{isAvailable QCameraImageProcessing::isAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  bool [] }
+&{isColorFilterSupported QCameraImageProcessing::isColorFilterSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  bool [0xc8225d95c0] }
+&{isWhiteBalanceModeSupported QCameraImageProcessing::isWhiteBalanceModeSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  bool [0xc8225d9880] }
+&{manualWhiteBalance QCameraImageProcessing::manualWhiteBalance commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  qreal [] }
+&{saturation QCameraImageProcessing::saturation commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  qreal [] }
+&{setColorFilter QCameraImageProcessing::setColorFilter commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  void [0xc8225d9f20] }
+&{setContrast QCameraImageProcessing::setContrast commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  void [0xc8225f82c0] }
+&{setDenoisingLevel QCameraImageProcessing::setDenoisingLevel commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  void [0xc8225f85e0] }
+&{setManualWhiteBalance QCameraImageProcessing::setManualWhiteBalance commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  void [0xc8225f8960] }
+&{setSaturation QCameraImageProcessing::setSaturation commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  void [0xc8225f8c80] }
+&{setSharpeningLevel QCameraImageProcessing::setSharpeningLevel commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  void [0xc8225f8fc0] }
+&{setWhiteBalanceMode QCameraImageProcessing::setWhiteBalanceMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  void [0xc8225f9300] }
+&{sharpeningLevel QCameraImageProcessing::sharpeningLevel commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  qreal [] }
+&{whiteBalanceMode QCameraImageProcessing::whiteBalanceMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcameraimageprocessing.h non plain false false  WhiteBalanceMode [] }
+########################################			ENUMS			########################################
+&{ColorFilter QCameraImageProcessing::ColorFilter commendable public  [0xc8225caac0 0xc8225cac00 0xc8225cad60 0xc8225caec0 0xc8225cb020 0xc8225cb160 0xc8225cb2c0 0xc8225cb480 0xc8225cb600 0xc8225cb740]}
+&{WhiteBalanceMode QCameraImageProcessing::WhiteBalanceMode commendable public  [0xc8225cba60 0xc8225cbb40 0xc8225cbd00 0xc8225cbe80 0xc8225d80c0 0xc8225d8200 0xc8225d8360 0xc8225d84e0 0xc8225d86a0 0xc8225d8820]}

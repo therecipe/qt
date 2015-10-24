@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QGeoSatelliteInfo QGeoSatelliteInfo::QGeoSatelliteInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non constructor false false   [] }
+&{QGeoSatelliteInfo QGeoSatelliteInfo::QGeoSatelliteInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non constructor false true 2  [0xc822ec76c0] }
+&{attribute QGeoSatelliteInfo::attribute commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  qreal [0xc822ec79a0] }
+&{hasAttribute QGeoSatelliteInfo::hasAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  bool [0xc822ec7c60] }
+&{operator!= QGeoSatelliteInfo::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  bool [0xc822ec7f80] }
+&{operator= QGeoSatelliteInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  QGeoSatelliteInfo & [0xc822ec2420] }
+&{operator== QGeoSatelliteInfo::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  bool [0xc822ec28a0] }
+&{removeAttribute QGeoSatelliteInfo::removeAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  void [0xc822ec2b60] }
+&{satelliteIdentifier QGeoSatelliteInfo::satelliteIdentifier commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  int [] }
+&{satelliteSystem QGeoSatelliteInfo::satelliteSystem commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  SatelliteSystem [] }
+&{setAttribute QGeoSatelliteInfo::setAttribute commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  void [0xc822ec31e0 0xc822ec32a0] }
+&{setSatelliteIdentifier QGeoSatelliteInfo::setSatelliteIdentifier commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  void [0xc822ec3580] }
+&{setSatelliteSystem QGeoSatelliteInfo::setSatelliteSystem commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  void [0xc822ec3860] }
+&{setSignalStrength QGeoSatelliteInfo::setSignalStrength commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  void [0xc822ec3bc0] }
+&{signalStrength QGeoSatelliteInfo::signalStrength commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non plain false false  int [] }
+&{~QGeoSatelliteInfo QGeoSatelliteInfo::~QGeoSatelliteInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfo.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Attribute QGeoSatelliteInfo::Attribute commendable public  [0xc822ec6de0 0xc822ec6e60]}
+&{SatelliteSystem QGeoSatelliteInfo::SatelliteSystem commendable public  [0xc822ec70e0 0xc822ec7160 0xc822ec7260]}

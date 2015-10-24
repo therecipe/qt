@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QInputMethodEvent QInputMethodEvent::QInputMethodEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [] }
+&{QInputMethodEvent QInputMethodEvent::QInputMethodEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 3  [0xc82078c400] }
+&{QInputMethodEvent QInputMethodEvent::QInputMethodEvent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 2  [0xc82078c620 0xc82078c6c0] }
+&{attributes QInputMethodEvent::attributes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QList<Attribute> & [] }
+&{commitString QInputMethodEvent::commitString commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QString & [] }
+&{preeditString QInputMethodEvent::preeditString commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QString & [] }
+&{replacementLength QInputMethodEvent::replacementLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{replacementStart QInputMethodEvent::replacementStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{setCommitString QInputMethodEvent::setCommitString commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void [0xc82078cd60 0xc82078ce00 0xc82078cea0] }
+########################################			ENUMS			########################################
+&{AttributeType QInputMethodEvent::AttributeType commendable public  [0xc82089dd40 0xc82089de00 0xc82089df20 0xc82078c020 0xc82078c0c0]}

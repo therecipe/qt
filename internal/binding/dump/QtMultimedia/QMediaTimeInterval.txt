@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QMediaTimeInterval QMediaTimeInterval::QMediaTimeInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediatimerange.cpp non constructor false false   [] }
+&{QMediaTimeInterval QMediaTimeInterval::QMediaTimeInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediatimerange.cpp non constructor false true 3  [0xc8218c6bc0] }
+&{QMediaTimeInterval QMediaTimeInterval::QMediaTimeInterval commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediatimerange.cpp non constructor false true 2  [0xc8218c6f80 0xc8218c7080] }
+&{contains QMediaTimeInterval::contains commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediatimerange.cpp non plain false false  bool [0xc8218c7420] }
+&{end QMediaTimeInterval::end commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediatimerange.cpp non plain false false  qint64 [] }
+&{isNormal QMediaTimeInterval::isNormal commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediatimerange.cpp non plain false false  bool [] }
+&{normalized QMediaTimeInterval::normalized commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediatimerange.cpp non plain false false  QMediaTimeInterval [] }
+&{start QMediaTimeInterval::start commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediatimerange.cpp non plain false false  qint64 [] }
+&{translated QMediaTimeInterval::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediatimerange.cpp non plain false false  QMediaTimeInterval [0xc8218b2120] }
+########################################			ENUMS			########################################

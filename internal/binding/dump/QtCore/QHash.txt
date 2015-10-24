@@ -1,0 +1,50 @@
+########################################			FUNCTIONS			########################################
+&{QHash QHash::QHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non constructor false false   [] }
+&{QHash QHash::QHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non constructor false true 4  [0xc820587d60] }
+&{QHash QHash::QHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non constructor false true 3  [0xc820587f40] }
+&{QHash QHash::QHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non constructor false true 2  [0xc820574220] }
+&{begin QHash::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  iterator [] }
+&{begin QHash::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false true 2 const_iterator [] }
+&{capacity QHash::capacity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  int [] }
+&{cbegin QHash::cbegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  const_iterator [] }
+&{cend QHash::cend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  const_iterator [] }
+&{clear QHash::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  void [] }
+&{count QHash::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false true 2 int [] }
+&{constBegin QHash::constBegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  const_iterator [] }
+&{constEnd QHash::constEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  const_iterator [] }
+&{constFind QHash::constFind commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  const_iterator [0xc82055ec40] }
+&{contains QHash::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  bool [0xc82055ee60] }
+&{count QHash::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  int [0xc82055f0a0] }
+&{find QHash::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  iterator [0xc82055f2e0] }
+&{find QHash::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false true 2 const_iterator [0xc82055f500] }
+&{empty QHash::empty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  bool [] }
+&{end QHash::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  iterator [] }
+&{end QHash::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false true 2 const_iterator [] }
+&{erase QHash::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  iterator [0xc82055fbe0] }
+&{insert QHash::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  iterator [0xc82055fe40 0xc82055ff00] }
+&{insertMulti QHash::insertMulti commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  iterator [0xc8205481c0 0xc820548260] }
+&{isEmpty QHash::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  bool [] }
+&{key QHash::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  const Key [0xc8205484e0] }
+&{key QHash::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false true 2 const Key [0xc820548680 0xc820548740] }
+&{keys QHash::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  QList<Key> [] }
+&{keys QHash::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false true 2 QList<Key> [0xc8205489c0] }
+&{operator!= QHash::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  bool [0xc820548c00] }
+&{operator= QHash::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false true 2 QHash & [0xc820548e00] }
+&{operator= QHash::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  QHash & [0xc820548fe0] }
+&{operator== QHash::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  bool [0xc820549220] }
+&{operator[] QHash::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  T & [0xc820549480] }
+&{operator[] QHash::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false true 2 const T [0xc8205496e0] }
+&{remove QHash::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  int [0xc8205498c0] }
+&{reserve QHash::reserve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  void [0xc820549ec0] }
+&{size QHash::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  int [] }
+&{squeeze QHash::squeeze commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  void [] }
+&{swap QHash::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  void [0xc8205241c0] }
+&{take QHash::take commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  T [0xc8205243c0] }
+&{uniqueKeys QHash::uniqueKeys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  QList<Key> [] }
+&{unite QHash::unite commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  QHash & [0xc8205246a0] }
+&{value QHash::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  const T [0xc820524860] }
+&{value QHash::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false true 2 const T [0xc8205249c0 0xc820524aa0] }
+&{values QHash::values commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  QList<T> [] }
+&{values QHash::values commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false true 2 QList<T> [0xc820524d00] }
+&{~QHash QHash::~QHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non destructor false false   [] }
+########################################			ENUMS			########################################

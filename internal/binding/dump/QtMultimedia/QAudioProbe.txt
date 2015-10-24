@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QAudioProbe QAudioProbe::QAudioProbe commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non constructor false false   [0xc8223841c0] }
+&{audioBufferProbed QAudioProbe::audioBufferProbed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non signal false false  void [0xc822384560] }
+&{flush QAudioProbe::flush commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non signal false false  void [] }
+&{isActive QAudioProbe::isActive commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non plain false false  bool [] }
+&{setSource QAudioProbe::setSource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non plain false false  bool [0xc822384be0] }
+&{setSource QAudioProbe::setSource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non plain false true 2 bool [0xc822384ea0] }
+&{~QAudioProbe QAudioProbe::~QAudioProbe commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non destructor false false   [] }
+########################################			ENUMS			########################################

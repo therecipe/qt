@@ -1,0 +1,24 @@
+########################################			FUNCTIONS			########################################
+&{QMimeType QMimeType::QMimeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non constructor false false   [] }
+&{QMimeType QMimeType::QMimeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non constructor false true 2  [0xc8201ca140] }
+&{filterString QMimeType::filterString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non plain false false  QString [] }
+&{genericIconName QMimeType::genericIconName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non plain false false  QString [] }
+&{globPatterns QMimeType::globPatterns commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non plain false false  QStringList [] }
+&{iconName QMimeType::iconName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non plain false false  QString [] }
+&{inherits QMimeType::inherits commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non plain false false  bool [0xc8201caf00] }
+&{isDefault QMimeType::isDefault commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non plain false false  bool [] }
+&{isValid QMimeType::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non plain false false  bool [] }
+&{name QMimeType::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non plain false false  QString [] }
+&{operator= QMimeType::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non plain false false  QMimeType & [0xc8201cb6c0] }
+&{operator== QMimeType::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non plain false false  bool [0xc8201cbaa0] }
+&{~QMimeType QMimeType::~QMimeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.cpp non destructor false false   [] }
+&{aliases QMimeType::aliases commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.h non plain false false  QStringList [] }
+&{allAncestors QMimeType::allAncestors commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.h non plain false false  QStringList [] }
+&{comment QMimeType::comment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.h non plain false false  QString [] }
+&{operator!= QMimeType::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.h non plain false false  bool [0xc8201c44c0] }
+&{operator= QMimeType::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.h non plain false true 2 QMimeType & [0xc8201c4860] }
+&{parentMimeTypes QMimeType::parentMimeTypes commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.h non plain false false  QStringList [] }
+&{preferredSuffix QMimeType::preferredSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.h non plain false false  QString [] }
+&{suffixes QMimeType::suffixes commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.h non plain false false  QStringList [] }
+&{swap QMimeType::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimetype.h non plain false false  void [0xc8201c4fa0] }
+########################################			ENUMS			########################################

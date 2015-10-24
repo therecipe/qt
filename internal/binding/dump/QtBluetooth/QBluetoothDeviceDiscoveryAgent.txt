@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{canceled QBluetoothDeviceDiscoveryAgent::canceled commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent.h non signal false false  void [] }
+&{deviceDiscovered QBluetoothDeviceDiscoveryAgent::deviceDiscovered commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent.h non signal false false  void [0xc821a6b000] }
+&{error QBluetoothDeviceDiscoveryAgent::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent.h non signal false true 2 void [0xc821a6b320] }
+&{finished QBluetoothDeviceDiscoveryAgent::finished commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent.h non signal false false  void [] }
+&{QBluetoothDeviceDiscoveryAgent QBluetoothDeviceDiscoveryAgent::QBluetoothDeviceDiscoveryAgent commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent_osx.mm non constructor false false   [0xc821a6ba00] }
+&{QBluetoothDeviceDiscoveryAgent QBluetoothDeviceDiscoveryAgent::QBluetoothDeviceDiscoveryAgent commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent_osx.mm non constructor false true 2  [0xc821a6bd80 0xc821a6be80] }
+&{discoveredDevices QBluetoothDeviceDiscoveryAgent::discoveredDevices commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent_osx.mm non plain false false  QList<QBluetoothDeviceInfo> [] }
+&{error QBluetoothDeviceDiscoveryAgent::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent_osx.mm non plain false false  Error [] }
+&{errorString QBluetoothDeviceDiscoveryAgent::errorString commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent_osx.mm non plain false false  QString [] }
+&{inquiryType QBluetoothDeviceDiscoveryAgent::inquiryType commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent_osx.mm non plain false false  QBluetoothDeviceDiscoveryAgent::InquiryType [] }
+&{isActive QBluetoothDeviceDiscoveryAgent::isActive commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent_osx.mm non plain false false  bool [] }
+&{setInquiryType QBluetoothDeviceDiscoveryAgent::setInquiryType commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent_osx.mm non plain false false  void [0xc821b2a9c0] }
+&{start QBluetoothDeviceDiscoveryAgent::start commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent_osx.mm non slot false false  void [] }
+&{stop QBluetoothDeviceDiscoveryAgent::stop commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent_osx.mm non slot false false  void [] }
+&{~QBluetoothDeviceDiscoveryAgent QBluetoothDeviceDiscoveryAgent::~QBluetoothDeviceDiscoveryAgent commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdevicediscoveryagent_osx.mm non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Error QBluetoothDeviceDiscoveryAgent::Error commendable public  [0xc821a6a160 0xc821a6a240 0xc821a6a2e0 0xc821a6a3e0 0xc821a6a5c0 0xc821a6a7a0]}
+&{InquiryType QBluetoothDeviceDiscoveryAgent::InquiryType commendable public  [0xc821a6aa40 0xc821a6ab80]}

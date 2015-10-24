@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{columnCount QHelpContentModel::columnCount commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h impure plain false false  int [0xc822c7e520] }
+&{contentItemAt QHelpContentModel::contentItemAt commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  QHelpContentItem * [0xc822c7e7c0] }
+&{contentsCreated QHelpContentModel::contentsCreated commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non signal false false  void [] }
+&{contentsCreationStarted QHelpContentModel::contentsCreationStarted commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non signal false false  void [] }
+&{createContents QHelpContentModel::createContents commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  void [0xc822c7eb00] }
+&{data QHelpContentModel::data commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h impure plain false false  QVariant [0xc822c7ed20 0xc822c7ede0] }
+&{index QHelpContentModel::index commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h impure plain false false  QModelIndex [0xc822c7efc0 0xc822c7f040 0xc822c7f0e0] }
+&{isCreatingContents QHelpContentModel::isCreatingContents commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  bool [] }
+&{parent QHelpContentModel::parent commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h impure plain false false  QModelIndex [0xc822c7f420] }
+&{rowCount QHelpContentModel::rowCount commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h impure plain false false  int [0xc822c7f660] }
+&{~QHelpContentModel QHelpContentModel::~QHelpContentModel commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,31 @@
+########################################			FUNCTIONS			########################################
+&{QKeySequence QKeySequence::QKeySequence commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non constructor false false   [] }
+&{QKeySequence QKeySequence::QKeySequence commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non constructor false true 5  [0xc820479ba0] }
+&{QKeySequence QKeySequence::QKeySequence commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non constructor false true 4  [0xc820479ee0] }
+&{QKeySequence QKeySequence::QKeySequence commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non constructor false true 2  [0xc8202902c0 0xc8202903a0] }
+&{QKeySequence QKeySequence::QKeySequence commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non constructor false true 3  [0xc820290680 0xc8202907c0 0xc820290860 0xc820290960] }
+&{count QKeySequence::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  int [] }
+&{fromString QKeySequence::fromString commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain true false  QKeySequence [0xc8202919c0 0xc820291ac0] }
+&{isEmpty QKeySequence::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  bool [] }
+&{keyBindings QKeySequence::keyBindings commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain true false  QList<QKeySequence> [0xc82022e180] }
+&{listFromString QKeySequence::listFromString commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain true false  QList<QKeySequence> [0xc82022e6a0 0xc82022e7e0] }
+&{listToString QKeySequence::listToString commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain true false  QString [0xc82022ec20 0xc82022edc0] }
+&{matches QKeySequence::matches commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  SequenceMatch [0xc82022f200] }
+&{mnemonic QKeySequence::mnemonic commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain true false  QKeySequence [0xc82022f6a0] }
+&{operator QVariant QKeySequence::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false   [] }
+&{operator!= QKeySequence::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  bool [0xc820208180] }
+&{operator< QKeySequence::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  bool [0xc820208740] }
+&{operator<= QKeySequence::operator<= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  bool [0xc820208ce0] }
+&{operator= QKeySequence::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false true 2 QKeySequence & [0xc820209240] }
+&{operator= QKeySequence::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  QKeySequence & [0xc8202096a0] }
+&{operator== QKeySequence::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  bool [0xc820209bc0] }
+&{operator> QKeySequence::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  bool [0xc8201ea040] }
+&{operator>= QKeySequence::operator>= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  bool [0xc8201ea3e0] }
+&{operator[] QKeySequence::operator[] commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  int [0xc8201ea6e0] }
+&{swap QKeySequence::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  void [0xc8201eaa60] }
+&{toString QKeySequence::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non plain false false  QString [0xc8201ead80] }
+&{~QKeySequence QKeySequence::~QKeySequence commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qkeysequence.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{SequenceFormat QKeySequence::SequenceFormat commendable public  [0xc8204f4720 0xc8204f47c0]}
+&{SequenceMatch QKeySequence::SequenceMatch commendable public  [0xc8204f49c0 0xc8204f4aa0 0xc8204f4b20]}
+&{StandardKey QKeySequence::StandardKey commendable public  [0xc8204f4d40 0xc8204f4de0 0xc8204f4e80 0xc8204f4f20 0xc8204f4fc0 0xc8204f50a0 0xc8204f5140 0xc8204f51c0 0xc8204f5280 0xc8204f5360 0xc8204f5440 0xc8204f54c0 0xc8204f5580 0xc8204f5620 0xc8204f5720 0xc8204f57a0 0xc8204f58c0 0xc8204f5980 0xc8204f5a00 0xc8204f5a80 0xc8204f5b60 0xc8204f5c20 0xc8204f5ca0 0xc8204f5de0 0xc8204f5f00 0xc8204f5fa0 0xc8204be080 0xc8204be160 0xc8204be2c0 0xc8204be380 0xc8204be440 0xc8204be580 0xc8204be680 0xc8204be7c0 0xc8204be8c0 0xc8204be9a0 0xc8204bea80 0xc8204beb40 0xc8204becc0 0xc8204bede0 0xc8204beec0 0xc8204bf020 0xc8204bf180 0xc8204bf320 0xc8204bf460 0xc8204bf580 0xc8204bf720 0xc8204bf860 0xc8204bf960 0xc8204bfac0 0xc8204bfc00 0xc8204bfce0 0xc8204bfe00 0xc8204bff00 0xc8204bffc0 0xc820478100 0xc8204781e0 0xc820478380 0xc8204784e0 0xc820478680 0xc8204787e0 0xc820478940 0xc820478b40 0xc820478c80 0xc820478d60 0xc820478e80 0xc820478f00 0xc820479000 0xc820479140 0xc8204792a0]}

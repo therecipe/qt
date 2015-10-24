@@ -1,0 +1,54 @@
+########################################			FUNCTIONS			########################################
+&{fieldGrowthPolicy QFormLayout::fieldGrowthPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.cpp non plain false false  FieldGrowthPolicy [] }
+&{formAlignment QFormLayout::formAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.cpp non plain false false  Qt::Alignment [] }
+&{horizontalSpacing QFormLayout::horizontalSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.cpp non plain false false  int [] }
+&{labelAlignment QFormLayout::labelAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.cpp non plain false false  Qt::Alignment [] }
+&{rowWrapPolicy QFormLayout::rowWrapPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.cpp non plain false false  RowWrapPolicy [] }
+&{setFieldGrowthPolicy QFormLayout::setFieldGrowthPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.cpp non plain false false  void [0xc822c26ba0] }
+&{setFormAlignment QFormLayout::setFormAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.cpp non plain false false  void [0xc822c26e80] }
+&{setHorizontalSpacing QFormLayout::setHorizontalSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.cpp non plain false false  void [0xc822c270e0] }
+&{setLabelAlignment QFormLayout::setLabelAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.cpp non plain false false  void [0xc822c27360] }
+&{setRowWrapPolicy QFormLayout::setRowWrapPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.cpp non plain false false  void [0xc822c275e0] }
+&{setVerticalSpacing QFormLayout::setVerticalSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.cpp non plain false false  void [0xc822c278a0] }
+&{verticalSpacing QFormLayout::verticalSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.cpp non plain false false  int [] }
+&{QFormLayout QFormLayout::QFormLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non constructor false false   [0xc822c3a960] }
+&{addItem QFormLayout::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h impure plain false false  void [0xc822c3ac00] }
+&{addRow QFormLayout::addRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false true 6 void [0xc822c3ae40] }
+&{addRow QFormLayout::addRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false true 2 void [0xc822c3b080 0xc822c3b120] }
+&{addRow QFormLayout::addRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  void [0xc822c3b3a0 0xc822c3b440] }
+&{addRow QFormLayout::addRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false true 5 void [0xc822c3b6c0] }
+&{addRow QFormLayout::addRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false true 4 void [0xc822c3b920 0xc822c3b9a0] }
+&{addRow QFormLayout::addRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false true 3 void [0xc822c3bb60 0xc822c3bc00] }
+&{count QFormLayout::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h impure plain false false  int [] }
+&{expandingDirections QFormLayout::expandingDirections commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h impure plain false false  Qt::Orientations [] }
+&{getItemPosition QFormLayout::getItemPosition commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  void [0xc822c460a0 0xc822c46120 0xc822c461a0] }
+&{getLayoutPosition QFormLayout::getLayoutPosition commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  void [0xc822c463a0 0xc822c46420 0xc822c464a0] }
+&{getWidgetPosition QFormLayout::getWidgetPosition commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  void [0xc822c46700 0xc822c467a0 0xc822c46860] }
+&{hasHeightForWidth QFormLayout::hasHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h impure plain false false  bool [] }
+&{heightForWidth QFormLayout::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h impure plain false false  int [0xc822c46c20] }
+&{insertRow QFormLayout::insertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false true 6 void [0xc822c46e60 0xc822c46f40] }
+&{insertRow QFormLayout::insertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false true 2 void [0xc822c47180 0xc822c47220 0xc822c472a0] }
+&{insertRow QFormLayout::insertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  void [0xc822c475a0 0xc822c47660 0xc822c47760] }
+&{insertRow QFormLayout::insertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false true 5 void [0xc822c47a40 0xc822c47b20] }
+&{insertRow QFormLayout::insertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false true 4 void [0xc822c47dc0 0xc822c47e80 0xc822c47f00] }
+&{insertRow QFormLayout::insertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false true 3 void [0xc822c561e0 0xc822c562a0 0xc822c56340] }
+&{invalidate QFormLayout::invalidate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h impure plain false false  void [] }
+&{itemAt QFormLayout::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h impure plain false true 2 QLayoutItem * [0xc822c56780] }
+&{itemAt QFormLayout::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  QLayoutItem * [0xc822c56ae0 0xc822c56bc0] }
+&{labelForField QFormLayout::labelForField commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false true 2 QWidget * [0xc822c56ee0] }
+&{labelForField QFormLayout::labelForField commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  QWidget * [0xc822c57200] }
+&{minimumSize QFormLayout::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h impure plain false false  QSize [] }
+&{rowCount QFormLayout::rowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  int [] }
+&{setGeometry QFormLayout::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h impure plain false false  void [0xc822c57f20] }
+&{setItem QFormLayout::setItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  void [0xc822c6a140 0xc822c6a1c0 0xc822c6a240] }
+&{setLayout QFormLayout::setLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  void [0xc822c6a420 0xc822c6a4a0 0xc822c6a520] }
+&{setSpacing QFormLayout::setSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  void [0xc822c6a740] }
+&{setWidget QFormLayout::setWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  void [0xc822c6a960 0xc822c6a9e0 0xc822c6aa80] }
+&{sizeHint QFormLayout::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h impure plain false false  QSize [] }
+&{spacing QFormLayout::spacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non plain false false  int [] }
+&{takeAt QFormLayout::takeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h impure plain false false  QLayoutItem * [0xc822c6aee0] }
+&{~QFormLayout QFormLayout::~QFormLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qformlayout.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{FieldGrowthPolicy QFormLayout::FieldGrowthPolicy commendable public  [0xc822c27ce0 0xc822c27e40 0xc822c27f60]}
+&{ItemRole QFormLayout::ItemRole commendable public  [0xc822c3a200 0xc822c3a2c0 0xc822c3a360]}
+&{RowWrapPolicy QFormLayout::RowWrapPolicy commendable public  [0xc822c3a5a0 0xc822c3a640 0xc822c3a700]}

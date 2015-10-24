@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceRatings QPlaceRatings::QPlaceRatings commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non constructor false false   [] }
+&{QPlaceRatings QPlaceRatings::QPlaceRatings commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non constructor false true 2  [0xc8225bb920] }
+&{average QPlaceRatings::average commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  qreal [] }
+&{count QPlaceRatings::count commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  int [] }
+&{isEmpty QPlaceRatings::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  bool [] }
+&{maximum QPlaceRatings::maximum commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  qreal [] }
+&{operator!= QPlaceRatings::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  bool [0xc8225bc200] }
+&{operator= QPlaceRatings::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  QPlaceRatings & [0xc8225bc5a0] }
+&{operator== QPlaceRatings::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  bool [0xc8225bc8e0] }
+&{setAverage QPlaceRatings::setAverage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  void [0xc8225bcbc0] }
+&{setCount QPlaceRatings::setCount commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  void [0xc8225bce40] }
+&{setMaximum QPlaceRatings::setMaximum commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  void [0xc8225bd180] }
+&{~QPlaceRatings QPlaceRatings::~QPlaceRatings commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non destructor false false   [] }
+########################################			ENUMS			########################################

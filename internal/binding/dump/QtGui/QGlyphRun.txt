@@ -1,0 +1,32 @@
+########################################			FUNCTIONS			########################################
+&{QGlyphRun QGlyphRun::QGlyphRun commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non constructor false false   [] }
+&{QGlyphRun QGlyphRun::QGlyphRun commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non constructor false true 2  [0xc82322f340] }
+&{boundingRect QGlyphRun::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  QRectF [] }
+&{clear QGlyphRun::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [] }
+&{flags QGlyphRun::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  GlyphRunFlags [] }
+&{glyphIndexes QGlyphRun::glyphIndexes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  QVector<quint32> [] }
+&{isEmpty QGlyphRun::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  bool [] }
+&{isRightToLeft QGlyphRun::isRightToLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  bool [] }
+&{operator!= QGlyphRun::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  bool [0xc82322fb80] }
+&{operator= QGlyphRun::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  QGlyphRun & [0xc8232421e0] }
+&{operator== QGlyphRun::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  bool [0xc823242400] }
+&{overline QGlyphRun::overline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  bool [] }
+&{positions QGlyphRun::positions commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  QVector<QPointF> [] }
+&{rawFont QGlyphRun::rawFont commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  QRawFont [] }
+&{setBoundingRect QGlyphRun::setBoundingRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [0xc823242900] }
+&{setFlag QGlyphRun::setFlag commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [0xc823242ac0 0xc823242b40] }
+&{setFlags QGlyphRun::setFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [0xc823242d00] }
+&{setGlyphIndexes QGlyphRun::setGlyphIndexes commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [0xc823242ee0] }
+&{setOverline QGlyphRun::setOverline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [0xc823243100] }
+&{setPositions QGlyphRun::setPositions commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [0xc8232432e0] }
+&{setRawData QGlyphRun::setRawData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [0xc8232434e0 0xc823243580 0xc823243640] }
+&{setRawFont QGlyphRun::setRawFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [0xc823243800] }
+&{setRightToLeft QGlyphRun::setRightToLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [0xc8232439c0] }
+&{setStrikeOut QGlyphRun::setStrikeOut commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [0xc823243b80] }
+&{setUnderline QGlyphRun::setUnderline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [0xc823243d40] }
+&{strikeOut QGlyphRun::strikeOut commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  bool [] }
+&{swap QGlyphRun::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  void [0xc823243fc0] }
+&{underline QGlyphRun::underline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non plain false false  bool [] }
+&{~QGlyphRun QGlyphRun::~QGlyphRun commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qglyphrun.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{GlyphRunFlag QGlyphRun::GlyphRunFlag commendable public QGlyphRun::GlyphRunFlags [0xc82322ed60 0xc82322ede0 0xc82322ee60 0xc82322eee0 0xc82322ef80]}

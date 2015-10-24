@@ -1,0 +1,25 @@
+########################################			FUNCTIONS			########################################
+&{access QMetaMethod::access commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  Access [] }
+&{fromSignal QMetaMethod::fromSignal commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain true false  QMetaMethod [0xc8205f0640] }
+&{invoke QMetaMethod::invoke commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false true 4 bool [0xc8205f0ba0 0xc8205f0c80 0xc8205f0d20 0xc8205f0de0 0xc8205f0ea0 0xc8205f0f40 0xc8205f1000 0xc8205f10c0 0xc8205f11c0 0xc8205f1280 0xc8205f1360] }
+&{invoke QMetaMethod::invoke commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false true 2 bool [0xc8205f15a0 0xc8205f1660 0xc8205f1760 0xc8205f1840 0xc8205f1920 0xc8205f1a00 0xc8205f1aa0 0xc8205f1ba0 0xc8205f1c60 0xc8205f1d20 0xc8205f1e20 0xc8205f1ec0] }
+&{invoke QMetaMethod::invoke commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false true 3 bool [0xc8205e0120 0xc8205e0200 0xc8205e0300 0xc8205e03a0 0xc8205e0460 0xc8205e0500 0xc8205e0600 0xc8205e06a0 0xc8205e07c0 0xc8205e0860 0xc8205e0960 0xc8205e0a00] }
+&{invoke QMetaMethod::invoke commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [0xc8205e0c40 0xc8205e0d40 0xc8205e0e40 0xc8205e0f40 0xc8205e1060 0xc8205e1140 0xc8205e11e0 0xc8205e12a0 0xc8205e1380 0xc8205e1460 0xc8205e1500 0xc8205e15c0 0xc8205e1680] }
+&{invokeOnGadget QMetaMethod::invokeOnGadget commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false true 2 bool [0xc8205e18a0 0xc8205e1960 0xc8205e1a60 0xc8205e1b00 0xc8205e1c20 0xc8205e1ce0 0xc8205e1da0 0xc8205e1e80 0xc8205e1f60 0xc8205c6040 0xc8205c60e0] }
+&{invokeOnGadget QMetaMethod::invokeOnGadget commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [0xc8205c62a0 0xc8205c6340 0xc8205c6420 0xc8205c64c0 0xc8205c6580 0xc8205c6620 0xc8205c66c0 0xc8205c6760 0xc8205c6820 0xc8205c68c0 0xc8205c6960 0xc8205c6a00] }
+&{isValid QMetaMethod::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
+&{methodIndex QMetaMethod::methodIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [] }
+&{methodSignature QMetaMethod::methodSignature commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  QByteArray [] }
+&{methodType QMetaMethod::methodType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  MethodType [] }
+&{name QMetaMethod::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  QByteArray [] }
+&{parameterCount QMetaMethod::parameterCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [] }
+&{parameterNames QMetaMethod::parameterNames commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  QList<QByteArray> [] }
+&{parameterType QMetaMethod::parameterType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [0xc8205c7400] }
+&{parameterTypes QMetaMethod::parameterTypes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  QList<QByteArray> [] }
+&{returnType QMetaMethod::returnType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [] }
+&{revision QMetaMethod::revision commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [] }
+&{tag QMetaMethod::tag commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * [] }
+&{typeName QMetaMethod::typeName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * [] }
+########################################			ENUMS			########################################
+&{Access QMetaMethod::Access commendable public  [0xc820607160 0xc820607200 0xc8206072c0]}
+&{MethodType QMetaMethod::MethodType commendable public  [0xc820607800 0xc8206078a0 0xc820607920 0xc8206079c0]}

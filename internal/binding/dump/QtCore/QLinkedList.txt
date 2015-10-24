@@ -1,0 +1,59 @@
+########################################			FUNCTIONS			########################################
+&{QLinkedList QLinkedList::QLinkedList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non constructor false false   [] }
+&{QLinkedList QLinkedList::QLinkedList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non constructor false true 4  [0xc8201ebea0] }
+&{QLinkedList QLinkedList::QLinkedList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non constructor false true 2  [0xc8201dc300] }
+&{QLinkedList QLinkedList::QLinkedList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non constructor false true 3  [0xc8201dc820] }
+&{append QLinkedList::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  void [0xc8201dcdc0] }
+&{back QLinkedList::back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  T & [] }
+&{back QLinkedList::back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false true 2 const T & [] }
+&{begin QLinkedList::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  iterator [] }
+&{begin QLinkedList::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false true 2 const_iterator [] }
+&{cbegin QLinkedList::cbegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  const_iterator [] }
+&{cend QLinkedList::cend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  const_iterator [] }
+&{clear QLinkedList::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  void [] }
+&{constBegin QLinkedList::constBegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  const_iterator [] }
+&{constEnd QLinkedList::constEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  const_iterator [] }
+&{contains QLinkedList::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  bool [0xc8201d28c0] }
+&{count QLinkedList::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false true 2 int [] }
+&{count QLinkedList::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  int [0xc8201d2f60] }
+&{empty QLinkedList::empty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  bool [] }
+&{end QLinkedList::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  iterator [] }
+&{end QLinkedList::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false true 2 const_iterator [] }
+&{endsWith QLinkedList::endsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  bool [0xc8201ca160] }
+&{erase QLinkedList::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false true 2 iterator [0xc8201ca680 0xc8201ca800] }
+&{erase QLinkedList::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  iterator [0xc8201cac40] }
+&{first QLinkedList::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  T & [] }
+&{first QLinkedList::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false true 2 const T & [] }
+&{fromStdList QLinkedList::fromStdList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain true false  QLinkedList<T> [0xc8201cbc20] }
+&{front QLinkedList::front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  T & [] }
+&{front QLinkedList::front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false true 2 const T & [] }
+&{insert QLinkedList::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  iterator [0xc8201c45e0 0xc8201c46a0] }
+&{isEmpty QLinkedList::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  bool [] }
+&{last QLinkedList::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  T & [] }
+&{last QLinkedList::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false true 2 const T & [] }
+&{operator!= QLinkedList::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  bool [0xc8201c5f00] }
+&{operator+ QLinkedList::operator+ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  QLinkedList<T> [0xc8201b6540] }
+&{operator+= QLinkedList::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  QLinkedList<T> & [0xc8201b6a60] }
+&{operator+= QLinkedList::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false true 2 QLinkedList<T> & [0xc8201b6e00] }
+&{operator<< QLinkedList::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  QLinkedList<T> & [0xc8201b7160] }
+&{operator<< QLinkedList::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false true 2 QLinkedList<T> & [0xc8201b7680] }
+&{operator= QLinkedList::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false true 2 QLinkedList<T> & [0xc8201b7ba0] }
+&{operator= QLinkedList::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  QLinkedList<T> & [0xc8201ae0c0] }
+&{operator== QLinkedList::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  bool [0xc8201ae8c0] }
+&{pop_back QLinkedList::pop_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  void [] }
+&{pop_front QLinkedList::pop_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  void [] }
+&{prepend QLinkedList::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  void [0xc8201af480] }
+&{push_back QLinkedList::push_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  void [0xc8201af980] }
+&{push_front QLinkedList::push_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  void [0xc8201aff20] }
+&{removeAll QLinkedList::removeAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  int [0xc820a1c200] }
+&{removeFirst QLinkedList::removeFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  void [] }
+&{removeLast QLinkedList::removeLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  void [] }
+&{removeOne QLinkedList::removeOne commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  bool [0xc820a1c640] }
+&{size QLinkedList::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  int [] }
+&{startsWith QLinkedList::startsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  bool [0xc820a1cb80] }
+&{swap QLinkedList::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  void [0xc820a1cda0] }
+&{takeFirst QLinkedList::takeFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  T [] }
+&{takeLast QLinkedList::takeLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  T [] }
+&{toStdList QLinkedList::toStdList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non plain false false  std::list<T> [] }
+&{~QLinkedList QLinkedList::~QLinkedList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlinkedlist.h non destructor false false   [] }
+########################################			ENUMS			########################################

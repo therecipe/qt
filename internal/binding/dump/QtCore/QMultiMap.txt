@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QMultiMap QMultiMap::QMultiMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false false   [] }
+&{QMultiMap QMultiMap::QMultiMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false true 3  [0xc820d0b120] }
+&{QMultiMap QMultiMap::QMultiMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false true 2  [0xc820d0b320] }
+&{constFind QMultiMap::constFind commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QMap<Key, T>::const_iterator [0xc820d0b540 0xc820d0b5c0] }
+&{contains QMultiMap::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  bool [0xc820d0b7a0 0xc820d0b820] }
+&{count QMultiMap::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  int [0xc820d0b980 0xc820d0ba00] }
+&{find QMultiMap::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QMap<Key, T>::iterator [0xc820d0bbc0 0xc820d0bc40] }
+&{find QMultiMap::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 QMap<Key, T>::const_iterator [0xc820d0be00 0xc820d0be80] }
+&{insert QMultiMap::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 QMap<Key, T>::iterator [0xc820d240e0 0xc820d241a0 0xc820d24220] }
+&{insert QMultiMap::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QMap<Key, T>::iterator [0xc820d24440 0xc820d244c0] }
+&{operator+ QMultiMap::operator+ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QMultiMap [0xc820d246a0] }
+&{operator+= QMultiMap::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QMultiMap & [0xc820d248c0] }
+&{remove QMultiMap::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  int [0xc820d24e60 0xc820d24ee0] }
+&{replace QMultiMap::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QMap<Key, T>::iterator [0xc820d25100 0xc820d25180] }
+&{swap QMultiMap::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  void [0xc820d25320] }
+########################################			ENUMS			########################################

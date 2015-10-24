@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QTextLength QTextLength::QTextLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non constructor false false   [] }
+&{QTextLength QTextLength::QTextLength commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non constructor false true 2  [0xc820aa0f40 0xc820aa1160] }
+&{operator QVariant QTextLength::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false   [] }
+&{operator!= QTextLength::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [0xc820aa19e0] }
+&{operator== QTextLength::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [0xc820aa1fe0] }
+&{rawValue QTextLength::rawValue commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
+&{type QTextLength::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  Type [] }
+&{value QTextLength::value commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [0xc826a8ee20] }
+########################################			ENUMS			########################################
+&{Type QTextLength::Type commendable public  [0xc820aa02e0 0xc820aa0480 0xc820aa06a0]}

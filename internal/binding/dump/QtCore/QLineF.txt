@@ -1,0 +1,37 @@
+########################################			FUNCTIONS			########################################
+&{angleTo QLineF::angleTo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.cpp non plain false false  qreal [0xc820211c00] }
+&{intersect QLineF::intersect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.cpp non plain false false  IntersectType [0xc8202080c0 0xc820208340] }
+&{QLineF QLineF::QLineF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false false   [] }
+&{QLineF QLineF::QLineF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 4  [0xc8202095a0] }
+&{QLineF QLineF::QLineF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 2  [0xc8202099c0 0xc820209b00] }
+&{QLineF QLineF::QLineF commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 3  [0xc820209e60 0xc820436080 0xc820436100 0xc8204361a0] }
+&{angle QLineF::angle commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal [] }
+&{dx QLineF::dx commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal [] }
+&{dy QLineF::dy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal [] }
+&{fromPolar QLineF::fromPolar commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain true false  QLineF [0xc820436620 0xc8204366c0] }
+&{isNull QLineF::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool [] }
+&{length QLineF::length commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal [] }
+&{normalVector QLineF::normalVector commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QLineF [] }
+&{operator!= QLineF::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool [0xc820436e00] }
+&{operator== QLineF::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool [0xc8204370e0] }
+&{p1 QLineF::p1 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QPointF [] }
+&{p2 QLineF::p2 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QPointF [] }
+&{pointAt QLineF::pointAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QPointF [0xc820437460] }
+&{setAngle QLineF::setAngle commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void [0xc820437680] }
+&{setLength QLineF::setLength commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void [0xc820437a00] }
+&{setLine QLineF::setLine commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void [0xc820437cc0 0xc820437d60 0xc820437ea0 0xc820437fa0] }
+&{setP1 QLineF::setP1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void [0xc8202003a0] }
+&{setP2 QLineF::setP2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void [0xc8202006c0] }
+&{setPoints QLineF::setPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void [0xc820200a80 0xc820200bc0] }
+&{toLine QLineF::toLine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QLine [] }
+&{translate QLineF::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void [0xc820201080] }
+&{translate QLineF::translate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false true 2 void [0xc820201440 0xc8202015a0] }
+&{translated QLineF::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QLineF [0xc820201a20] }
+&{translated QLineF::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false true 2 QLineF [0xc820201f00 0xc820201fa0] }
+&{unitVector QLineF::unitVector commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QLineF [] }
+&{x1 QLineF::x1 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal [] }
+&{x2 QLineF::x2 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal [] }
+&{y1 QLineF::y1 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal [] }
+&{y2 QLineF::y2 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal [] }
+########################################			ENUMS			########################################
+&{IntersectType QLineF::IntersectType commendable public  [0xc820208940 0xc820208b60 0xc820208cc0]}

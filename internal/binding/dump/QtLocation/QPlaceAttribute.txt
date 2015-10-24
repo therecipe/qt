@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceAttribute QPlaceAttribute::QPlaceAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceattribute.h non constructor false false   [] }
+&{QPlaceAttribute QPlaceAttribute::QPlaceAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceattribute.h non constructor false true 2  [0xc8220fe000] }
+&{isEmpty QPlaceAttribute::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceattribute.h non plain false false  bool [] }
+&{label QPlaceAttribute::label commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceattribute.h non plain false false  QString [] }
+&{operator!= QPlaceAttribute::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceattribute.h non plain false false  bool [0xc8220fe520] }
+&{operator= QPlaceAttribute::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceattribute.h non plain false false  QPlaceAttribute & [0xc8220fe7e0] }
+&{operator== QPlaceAttribute::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceattribute.h non plain false false  bool [0xc8220fea00] }
+&{setLabel QPlaceAttribute::setLabel commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceattribute.h non plain false false  void [0xc8220fec20] }
+&{setText QPlaceAttribute::setText commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceattribute.h non plain false false  void [0xc8220fee20] }
+&{text QPlaceAttribute::text commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceattribute.h non plain false false  QString [] }
+&{~QPlaceAttribute QPlaceAttribute::~QPlaceAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceattribute.h impure destructor false false   [] }
+########################################			ENUMS			########################################

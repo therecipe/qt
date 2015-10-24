@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QSocketNotifier QSocketNotifier::QSocketNotifier commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non constructor false false   [0xc8202ff9c0 0xc8202ffa40 0xc8202ffae0] }
+&{activated QSocketNotifier::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non signal false false  void [0xc8202ffdc0] }
+&{event QSocketNotifier::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h impure plain false false  bool [0xc8202ec0a0] }
+&{isEnabled QSocketNotifier::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non plain false false  bool [] }
+&{setEnabled QSocketNotifier::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non slot false false  void [0xc8202ec5e0] }
+&{socket QSocketNotifier::socket commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non plain false false  qintptr [] }
+&{type QSocketNotifier::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non plain false false  Type [] }
+&{~QSocketNotifier QSocketNotifier::~QSocketNotifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Type QSocketNotifier::Type commendable public  [0xc8202ff600 0xc8202ff680 0xc8202ff720]}

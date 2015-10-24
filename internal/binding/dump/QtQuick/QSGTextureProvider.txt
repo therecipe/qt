@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{texture QSGTextureProvider::texture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtextureprovider.h pure plain false false  QSGTexture * [] }
+&{textureChanged QSGTextureProvider::textureChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtextureprovider.h non signal false false  void [] }
+########################################			ENUMS			########################################

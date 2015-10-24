@@ -1,0 +1,38 @@
+########################################			FUNCTIONS			########################################
+&{QSslCertificate QSslCertificate::QSslCertificate commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non constructor false false   [0xc8230b7340 0xc8230b7480] }
+&{QSslCertificate QSslCertificate::QSslCertificate commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non constructor false true 2  [0xc8230b7800 0xc8230b7920] }
+&{QSslCertificate QSslCertificate::QSslCertificate commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non constructor false true 3  [0xc8230b7ca0] }
+&{clear QSslCertificate::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non plain false false  void [] }
+&{digest QSslCertificate::digest commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non plain false false  QByteArray [0xc8230a82c0] }
+&{fromData QSslCertificate::fromData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non plain true false  QList<QSslCertificate> [0xc8230a8600 0xc8230a8740] }
+&{fromDevice QSslCertificate::fromDevice commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non plain true false  QList<QSslCertificate> [0xc8230a8a60 0xc8230a8b60] }
+&{fromPath QSslCertificate::fromPath commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non plain true false  QList<QSslCertificate> [0xc8230a8ea0 0xc8230a8fa0 0xc8230a90c0] }
+&{importPkcs12 QSslCertificate::importPkcs12 commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non plain true false  bool [0xc8230a9360 0xc8230a9440 0xc8230a9500 0xc8230a9600 0xc8230a9780] }
+&{isBlacklisted QSslCertificate::isBlacklisted commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non plain false false  bool [] }
+&{operator!= QSslCertificate::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non plain false false  bool [0xc8230a9cc0] }
+&{operator= QSslCertificate::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non plain false false  QSslCertificate & [0xc8230a6080] }
+&{swap QSslCertificate::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non plain false false  void [0xc8230a63e0] }
+&{verify QSslCertificate::verify commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non plain true false  QList<QSslError> [0xc8230a6780 0xc8230a68e0] }
+&{~QSslCertificate QSslCertificate::~QSslCertificate commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate.h non destructor false false   [] }
+&{effectiveDate QSslCertificate::effectiveDate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QDateTime [] }
+&{expiryDate QSslCertificate::expiryDate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QDateTime [] }
+&{extensions QSslCertificate::extensions commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QList<QSslCertificateExtension> [] }
+&{isNull QSslCertificate::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  bool [] }
+&{isSelfSigned QSslCertificate::isSelfSigned commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  bool [] }
+&{issuerInfo QSslCertificate::issuerInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QStringList [0xc8230a7660] }
+&{issuerInfo QSslCertificate::issuerInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false true 2 QStringList [0xc8230a7940] }
+&{issuerInfoAttributes QSslCertificate::issuerInfoAttributes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QList<QByteArray> [] }
+&{operator== QSslCertificate::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  bool [0xc8230a7e60] }
+&{publicKey QSslCertificate::publicKey commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QSslKey [] }
+&{serialNumber QSslCertificate::serialNumber commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QByteArray [] }
+&{subjectAlternativeNames QSslCertificate::subjectAlternativeNames commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QMultiMap<QSsl::AlternativeNameEntryType, QString> [] }
+&{subjectInfo QSslCertificate::subjectInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QStringList [0xc8230966c0] }
+&{subjectInfo QSslCertificate::subjectInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false true 2 QStringList [0xc8230969c0] }
+&{subjectInfoAttributes QSslCertificate::subjectInfoAttributes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QList<QByteArray> [] }
+&{toDer QSslCertificate::toDer commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QByteArray [] }
+&{toPem QSslCertificate::toPem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QByteArray [] }
+&{toText QSslCertificate::toText commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QString [] }
+&{version QSslCertificate::version commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_qt.cpp non plain false false  QByteArray [] }
+&{handle QSslCertificate::handle commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcertificate_winrt.cpp non plain false false  Qt::HANDLE [] }
+########################################			ENUMS			########################################
+&{SubjectInfo QSslCertificate::SubjectInfo commendable public  [0xc8230b67a0 0xc8230b6840 0xc8230b6920 0xc8230b6a00 0xc8230b6ba0 0xc8230b6c80 0xc8230b6dc0 0xc8230b6f60 0xc8230b7040]}

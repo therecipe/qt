@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QStyleOptionDockWidget QStyleOptionDockWidget::QStyleOptionDockWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
+&{QStyleOptionDockWidget QStyleOptionDockWidget::QStyleOptionDockWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8214b3b20] }
+########################################			ENUMS			########################################
+&{StyleOptionType QStyleOptionDockWidget::StyleOptionType commendable public  [0xc8214b3040]}
+&{StyleOptionVersion QStyleOptionDockWidget::StyleOptionVersion commendable public  [0xc8214b3480]}

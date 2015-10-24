@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QMediaStreamsControl QMediaStreamsControl::QMediaStreamsControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediastreamscontrol.h non constructor false false   [0xc821b9a0e0] }
+&{activeStreamsChanged QMediaStreamsControl::activeStreamsChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediastreamscontrol.h non signal false false  void [] }
+&{isActive QMediaStreamsControl::isActive commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediastreamscontrol.h pure plain false false  bool [0xc821b9a820] }
+&{metaData QMediaStreamsControl::metaData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediastreamscontrol.h pure plain false false  QVariant [0xc821b9ac40 0xc821b9ad00] }
+&{setActive QMediaStreamsControl::setActive commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediastreamscontrol.h pure plain false false  void [0xc821b9b0c0 0xc821b9b200] }
+&{streamCount QMediaStreamsControl::streamCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediastreamscontrol.h pure plain false false  int [] }
+&{streamType QMediaStreamsControl::streamType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediastreamscontrol.h pure plain false false  StreamType [0xc821b9b7a0] }
+&{streamsChanged QMediaStreamsControl::streamsChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediastreamscontrol.h non signal false false  void [] }
+&{~QMediaStreamsControl QMediaStreamsControl::~QMediaStreamsControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediastreamscontrol.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{StreamType QMediaStreamsControl::StreamType commendable public  [0xc821b9db00 0xc821b9db80 0xc821b9dc60 0xc821b9dd00 0xc821b9ddc0]}

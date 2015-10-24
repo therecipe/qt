@@ -1,0 +1,3 @@
+########################################			FUNCTIONS			########################################
+&{filter QRotationFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h pure plain false false  bool [0xc822e21540] }
+########################################			ENUMS			########################################

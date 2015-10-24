@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{setSubTitle QWizardPage::setSubTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  void [0xc82315bd20] }
+&{setTitle QWizardPage::setTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  void [0xc82314a040] }
+&{subTitle QWizardPage::subTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  QString [] }
+&{title QWizardPage::title commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.cpp non plain false false  QString [] }
+&{QWizardPage QWizardPage::QWizardPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non constructor false false   [0xc82314a6c0] }
+&{buttonText QWizardPage::buttonText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  QString [0xc82314acc0] }
+&{cleanupPage QWizardPage::cleanupPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  void [] }
+&{completeChanged QWizardPage::completeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non signal false false  void [] }
+&{field QWizardPage::field commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  QVariant [0xc82314b2a0] }
+&{initializePage QWizardPage::initializePage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  void [] }
+&{isCommitPage QWizardPage::isCommitPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  bool [] }
+&{isComplete QWizardPage::isComplete commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  bool [] }
+&{isFinalPage QWizardPage::isFinalPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  bool [] }
+&{nextId QWizardPage::nextId commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  int [] }
+&{pixmap QWizardPage::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  QPixmap [0xc82314be80] }
+&{registerField QWizardPage::registerField commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc82313e2a0 0xc82313e380 0xc82313e420 0xc82313e520] }
+&{setButtonText QWizardPage::setButtonText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc82313e7e0 0xc82313e8a0] }
+&{setCommitPage QWizardPage::setCommitPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc82313eae0] }
+&{setField QWizardPage::setField commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc82313ed20 0xc82313eda0] }
+&{setFinalPage QWizardPage::setFinalPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc82313f000] }
+&{setPixmap QWizardPage::setPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  void [0xc82313f200 0xc82313f340] }
+&{validatePage QWizardPage::validatePage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h impure plain false false  bool [] }
+&{wizard QWizardPage::wizard commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non plain false false  QWizard * [] }
+&{~QWizardPage QWizardPage::~QWizardPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qwizard.h non destructor false false   [] }
+########################################			ENUMS			########################################

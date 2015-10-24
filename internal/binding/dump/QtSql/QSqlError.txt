@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QSqlError QSqlError::QSqlError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non constructor false true 3  [0xc82156e540] }
+&{QSqlError QSqlError::QSqlError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non constructor false false   [0xc82156e8e0 0xc82156e9a0 0xc82156eb00 0xc82156ec20] }
+&{databaseText QSqlError::databaseText commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QString [] }
+&{driverText QSqlError::driverText commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QString [] }
+&{isValid QSqlError::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  bool [] }
+&{nativeErrorCode QSqlError::nativeErrorCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QString [] }
+&{operator!= QSqlError::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  bool [0xc82156fc60] }
+&{operator= QSqlError::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QSqlError & [0xc821562060] }
+&{operator== QSqlError::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  bool [0xc821562420] }
+&{text QSqlError::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QString [] }
+&{type QSqlError::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  ErrorType [] }
+&{~QSqlError QSqlError::~QSqlError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ErrorType QSqlError::ErrorType commendable public  [0xc82157fd80 0xc82157fec0 0xc82157ff80 0xc82156e040 0xc82156e1a0]}

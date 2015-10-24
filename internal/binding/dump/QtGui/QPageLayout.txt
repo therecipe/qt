@@ -1,0 +1,42 @@
+########################################			FUNCTIONS			########################################
+&{QPageLayout QPageLayout::QPageLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non constructor false false   [] }
+&{QPageLayout QPageLayout::QPageLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non constructor false true 3  [0xc822bb8060] }
+&{QPageLayout QPageLayout::QPageLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non constructor false true 2  [0xc822bb8280 0xc822bb8340 0xc822bb83e0 0xc822bb84a0 0xc822bb8580] }
+&{fullRect QPageLayout::fullRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QRectF [] }
+&{fullRect QPageLayout::fullRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false true 2 QRectF [0xc822bb88a0] }
+&{fullRectPixels QPageLayout::fullRectPixels commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QRect [0xc822bb8a60] }
+&{fullRectPoints QPageLayout::fullRectPoints commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QRect [] }
+&{isEquivalentTo QPageLayout::isEquivalentTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  bool [0xc822bb8d40] }
+&{isValid QPageLayout::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  bool [] }
+&{margins QPageLayout::margins commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QMarginsF [] }
+&{margins QPageLayout::margins commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false true 2 QMarginsF [0xc822bb9160] }
+&{marginsPixels QPageLayout::marginsPixels commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QMargins [0xc822bb9320] }
+&{marginsPoints QPageLayout::marginsPoints commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QMargins [] }
+&{maximumMargins QPageLayout::maximumMargins commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QMarginsF [] }
+&{minimumMargins QPageLayout::minimumMargins commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QMarginsF [] }
+&{mode QPageLayout::mode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  Mode [] }
+&{operator= QPageLayout::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false true 2 QPageLayout & [0xc822bb9900] }
+&{operator= QPageLayout::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QPageLayout & [0xc822bb9ae0] }
+&{orientation QPageLayout::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  Orientation [] }
+&{pageSize QPageLayout::pageSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QPageSize [] }
+&{paintRect QPageLayout::paintRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QRectF [] }
+&{paintRect QPageLayout::paintRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false true 2 QRectF [0xc822bb9fe0] }
+&{paintRectPixels QPageLayout::paintRectPixels commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QRect [0xc822bc81a0] }
+&{paintRectPoints QPageLayout::paintRectPoints commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  QRect [] }
+&{setBottomMargin QPageLayout::setBottomMargin commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  bool [0xc822bc8460] }
+&{setLeftMargin QPageLayout::setLeftMargin commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  bool [0xc822bc8620] }
+&{setMargins QPageLayout::setMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  bool [0xc822bc8800] }
+&{setMinimumMargins QPageLayout::setMinimumMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  void [0xc822bc8a60] }
+&{setMode QPageLayout::setMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  void [0xc822bc8c80] }
+&{setOrientation QPageLayout::setOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  void [0xc822bc8e40] }
+&{setPageSize QPageLayout::setPageSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  void [0xc822bc9020 0xc822bc9120] }
+&{setRightMargin QPageLayout::setRightMargin commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  bool [0xc822bc9320] }
+&{setTopMargin QPageLayout::setTopMargin commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  bool [0xc822bc9500] }
+&{setUnits QPageLayout::setUnits commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  void [0xc822bc96e0] }
+&{swap QPageLayout::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  void [0xc822bc98c0] }
+&{units QPageLayout::units commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non plain false false  Unit [] }
+&{~QPageLayout QPageLayout::~QPageLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpagelayout.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Mode QPageLayout::Mode commendable public  [0xc822095660 0xc8220956e0]}
+&{Orientation QPageLayout::Orientation commendable public  [0xc822095880 0xc822095900]}
+&{Unit QPageLayout::Unit commendable public  [0xc822095ac0 0xc822095b40 0xc822095bc0 0xc822095c40 0xc822095ce0 0xc822095d60]}

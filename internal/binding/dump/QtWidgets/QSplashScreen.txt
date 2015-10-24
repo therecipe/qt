@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QSplashScreen QSplashScreen::QSplashScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h non constructor false true 2  [0xc8227a21c0 0xc8227a22a0 0xc8227a23a0] }
+&{QSplashScreen QSplashScreen::QSplashScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h non constructor false false   [0xc8227a26e0 0xc8227a2820] }
+&{clearMessage QSplashScreen::clearMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h non slot false false  void [] }
+&{drawContents QSplashScreen::drawContents commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h impure plain false false  void [0xc8227a2da0] }
+&{event QSplashScreen::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h impure plain false false  bool [0xc8227a3180] }
+&{finish QSplashScreen::finish commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h non plain false false  void [0xc8227a3540] }
+&{message QSplashScreen::message commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h non plain false false  QString [] }
+&{messageChanged QSplashScreen::messageChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h non signal false false  void [0xc8227a3980] }
+&{mousePressEvent QSplashScreen::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h impure plain false false  void [0xc8227a3d20] }
+&{pixmap QSplashScreen::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h non plain false false  const QPixmap [] }
+&{repaint QSplashScreen::repaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h non plain false false  void [] }
+&{setPixmap QSplashScreen::setPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h non plain false false  void [0xc821c7c320] }
+&{showMessage QSplashScreen::showMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h non slot false false  void [0xc821c7c6e0 0xc821c7c7c0 0xc821c7c8a0] }
+&{~QSplashScreen QSplashScreen::~QSplashScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplashscreen.h impure destructor false false   [] }
+########################################			ENUMS			########################################

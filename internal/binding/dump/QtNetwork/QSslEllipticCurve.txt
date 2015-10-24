@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QSslEllipticCurve QSslEllipticCurve::QSslEllipticCurve commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslellipticcurve.h non constructor false false   [] }
+&{isValid QSslEllipticCurve::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslellipticcurve.h non plain false false  bool [] }
+&{fromLongName QSslEllipticCurve::fromLongName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslellipticcurve_openssl.cpp non plain true false  QSslEllipticCurve [0xc82302da60] }
+&{fromShortName QSslEllipticCurve::fromShortName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslellipticcurve_openssl.cpp non plain true false  QSslEllipticCurve [0xc82302dde0] }
+&{isTlsNamedCurve QSslEllipticCurve::isTlsNamedCurve commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslellipticcurve_openssl.cpp non plain false false  bool [] }
+&{longName QSslEllipticCurve::longName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslellipticcurve_openssl.cpp non plain false false  QString [] }
+&{shortName QSslEllipticCurve::shortName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslellipticcurve_openssl.cpp non plain false false  QString [] }
+########################################			ENUMS			########################################

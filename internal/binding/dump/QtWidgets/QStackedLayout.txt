@@ -1,0 +1,27 @@
+########################################			FUNCTIONS			########################################
+&{count QStackedLayout::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.cpp impure plain false false  int [] }
+&{currentIndex QStackedLayout::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.cpp non plain false false  int [] }
+&{setCurrentIndex QStackedLayout::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.cpp non slot false false  void [0xc8223bbb40] }
+&{setCurrentWidget QStackedLayout::setCurrentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.cpp non slot false false  void [0xc8223bbd40] }
+&{setStackingMode QStackedLayout::setStackingMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.cpp non plain false false  void [0xc8223bbf40] }
+&{stackingMode QStackedLayout::stackingMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.cpp non plain false false  StackingMode [] }
+&{QStackedLayout QStackedLayout::QStackedLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h non constructor false false   [] }
+&{QStackedLayout QStackedLayout::QStackedLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h non constructor false true 3  [0xc8223d0500] }
+&{QStackedLayout QStackedLayout::QStackedLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h non constructor false true 2  [0xc8223d06e0] }
+&{addItem QStackedLayout::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h impure plain false false  void [0xc8223d08c0] }
+&{addWidget QStackedLayout::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h non plain false false  int [0xc8223d0b40] }
+&{currentChanged QStackedLayout::currentChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h non signal false false  void [0xc8223d0d80] }
+&{currentWidget QStackedLayout::currentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h non plain false false  QWidget * [] }
+&{hasHeightForWidth QStackedLayout::hasHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h impure plain false false  bool [] }
+&{heightForWidth QStackedLayout::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h impure plain false false  int [0xc8223d11c0] }
+&{insertWidget QStackedLayout::insertWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h non plain false false  int [0xc8223d1420 0xc8223d14a0] }
+&{itemAt QStackedLayout::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h impure plain false false  QLayoutItem * [0xc8223d1720] }
+&{minimumSize QStackedLayout::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h impure plain false false  QSize [] }
+&{setGeometry QStackedLayout::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h impure plain false false  void [0xc8223d1a80] }
+&{sizeHint QStackedLayout::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h impure plain false false  QSize [] }
+&{takeAt QStackedLayout::takeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h impure plain false false  QLayoutItem * [0xc8223d1e20] }
+&{widget QStackedLayout::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h non plain false false  QWidget * [0xc8223e0020] }
+&{widgetRemoved QStackedLayout::widgetRemoved commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h non signal false false  void [0xc8223e0260] }
+&{~QStackedLayout QStackedLayout::~QStackedLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qstackedlayout.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{StackingMode QStackedLayout::StackingMode commendable public  [0xc8223d0220 0xc8223d02a0]}

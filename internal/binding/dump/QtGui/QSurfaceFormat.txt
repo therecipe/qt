@@ -1,0 +1,48 @@
+########################################			FUNCTIONS			########################################
+&{QSurfaceFormat QSurfaceFormat::QSurfaceFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non constructor false false   [] }
+&{QSurfaceFormat QSurfaceFormat::QSurfaceFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non constructor false true 2  [0xc820504200] }
+&{QSurfaceFormat QSurfaceFormat::QSurfaceFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non constructor false true 3  [0xc8205045e0] }
+&{alphaBufferSize QSurfaceFormat::alphaBufferSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  int [] }
+&{blueBufferSize QSurfaceFormat::blueBufferSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  int [] }
+&{defaultFormat QSurfaceFormat::defaultFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain true false  QSurfaceFormat [] }
+&{depthBufferSize QSurfaceFormat::depthBufferSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  int [] }
+&{greenBufferSize QSurfaceFormat::greenBufferSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  int [] }
+&{hasAlpha QSurfaceFormat::hasAlpha commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  bool [] }
+&{majorVersion QSurfaceFormat::majorVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  int [] }
+&{minorVersion QSurfaceFormat::minorVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  int [] }
+&{operator= QSurfaceFormat::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  QSurfaceFormat & [0xc820505620] }
+&{options QSurfaceFormat::options commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  QSurfaceFormat::FormatOptions [] }
+&{profile QSurfaceFormat::profile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  OpenGLContextProfile [] }
+&{redBufferSize QSurfaceFormat::redBufferSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  int [] }
+&{renderableType QSurfaceFormat::renderableType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  RenderableType [] }
+&{samples QSurfaceFormat::samples commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  int [] }
+&{setAlphaBufferSize QSurfaceFormat::setAlphaBufferSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc820505de0] }
+&{setBlueBufferSize QSurfaceFormat::setBlueBufferSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204e4160] }
+&{setDefaultFormat QSurfaceFormat::setDefaultFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain true false  void [0xc8204e44c0] }
+&{setDepthBufferSize QSurfaceFormat::setDepthBufferSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204e4840] }
+&{setGreenBufferSize QSurfaceFormat::setGreenBufferSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204e4b60] }
+&{setMajorVersion QSurfaceFormat::setMajorVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204e4f20] }
+&{setMinorVersion QSurfaceFormat::setMinorVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204e5260] }
+&{setOption QSurfaceFormat::setOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204e5620 0xc8204e56e0] }
+&{setOptions QSurfaceFormat::setOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204e5e80] }
+&{setProfile QSurfaceFormat::setProfile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204ce1e0] }
+&{setRedBufferSize QSurfaceFormat::setRedBufferSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204ce4c0] }
+&{setRenderableType QSurfaceFormat::setRenderableType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204ce740] }
+&{setSamples QSurfaceFormat::setSamples commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204ceac0] }
+&{setStencilBufferSize QSurfaceFormat::setStencilBufferSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204ced00] }
+&{setStereo QSurfaceFormat::setStereo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204cef60] }
+&{setSwapBehavior QSurfaceFormat::setSwapBehavior commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204cf1e0] }
+&{setSwapInterval QSurfaceFormat::setSwapInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204cf460] }
+&{setVersion QSurfaceFormat::setVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  void [0xc8204cf680 0xc8204cf720] }
+&{stencilBufferSize QSurfaceFormat::stencilBufferSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  int [] }
+&{stereo QSurfaceFormat::stereo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  bool [] }
+&{swapBehavior QSurfaceFormat::swapBehavior commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  SwapBehavior [] }
+&{swapInterval QSurfaceFormat::swapInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  int [] }
+&{testOption QSurfaceFormat::testOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  bool [0xc8204cfea0] }
+&{version QSurfaceFormat::version commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non plain false false  QPair<int, int> [] }
+&{~QSurfaceFormat QSurfaceFormat::~QSurfaceFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurfaceformat.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{FormatOption QSurfaceFormat::FormatOption commendable public QSurfaceFormat::FormatOptions [0xc820549fa0 0xc8205140a0 0xc8205141e0 0xc820514420]}
+&{OpenGLContextProfile QSurfaceFormat::OpenGLContextProfile commendable public  [0xc8205148e0 0xc8205149e0 0xc820514be0]}
+&{RenderableType QSurfaceFormat::RenderableType commendable public  [0xc8205150e0 0xc820515260 0xc8205152e0 0xc820515400]}
+&{SwapBehavior QSurfaceFormat::SwapBehavior commendable public  [0xc820515740 0xc820515820 0xc8205159a0 0xc820515b00]}

@@ -1,0 +1,22 @@
+########################################			FUNCTIONS			########################################
+&{QVideoWidgetControl QVideoWidgetControl::QVideoWidgetControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h non constructor false false   [0xc822ae6680] }
+&{aspectRatioMode QVideoWidgetControl::aspectRatioMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  Qt::AspectRatioMode [] }
+&{brightness QVideoWidgetControl::brightness commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  int [] }
+&{brightnessChanged QVideoWidgetControl::brightnessChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h non signal false false  void [0xc822ae6b20] }
+&{contrast QVideoWidgetControl::contrast commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  int [] }
+&{contrastChanged QVideoWidgetControl::contrastChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h non signal false false  void [0xc822ae6e00] }
+&{fullScreenChanged QVideoWidgetControl::fullScreenChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h non signal false false  void [0xc822ae7140] }
+&{hue QVideoWidgetControl::hue commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  int [] }
+&{hueChanged QVideoWidgetControl::hueChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h non signal false false  void [0xc822ae7680] }
+&{isFullScreen QVideoWidgetControl::isFullScreen commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  bool [] }
+&{saturation QVideoWidgetControl::saturation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  int [] }
+&{saturationChanged QVideoWidgetControl::saturationChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h non signal false false  void [0xc822ae7c20] }
+&{setAspectRatioMode QVideoWidgetControl::setAspectRatioMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  void [0xc822ae7f00] }
+&{setBrightness QVideoWidgetControl::setBrightness commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  void [0xc822af2180] }
+&{setContrast QVideoWidgetControl::setContrast commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  void [0xc822af2460] }
+&{setFullScreen QVideoWidgetControl::setFullScreen commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  void [0xc822af2640] }
+&{setHue QVideoWidgetControl::setHue commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  void [0xc822af2960] }
+&{setSaturation QVideoWidgetControl::setSaturation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  void [0xc822af2bc0] }
+&{videoWidget QVideoWidgetControl::videoWidget commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h pure plain false false  QWidget * [] }
+&{~QVideoWidgetControl QVideoWidgetControl::~QVideoWidgetControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidgetcontrol.h impure destructor false false   [] }
+########################################			ENUMS			########################################

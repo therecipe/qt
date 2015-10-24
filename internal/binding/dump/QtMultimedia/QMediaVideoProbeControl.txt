@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QMediaVideoProbeControl QMediaVideoProbeControl::QMediaVideoProbeControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediavideoprobecontrol.h non constructor false false   [0xc821b943a0] }
+&{flush QMediaVideoProbeControl::flush commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediavideoprobecontrol.h non signal false false  void [] }
+&{videoFrameProbed QMediaVideoProbeControl::videoFrameProbed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediavideoprobecontrol.h non signal false false  void [0xc821b946c0] }
+&{~QMediaVideoProbeControl QMediaVideoProbeControl::~QMediaVideoProbeControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediavideoprobecontrol.h impure destructor false false   [] }
+########################################			ENUMS			########################################

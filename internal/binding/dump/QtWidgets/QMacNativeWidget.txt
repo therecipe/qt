@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QMacNativeWidget QMacNativeWidget::QMacNativeWidget commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmacnativewidget_mac.h non constructor false false   [0xc82338f5e0] }
+&{event QMacNativeWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmacnativewidget_mac.h impure plain false false  bool [0xc82338fa00] }
+&{sizeHint QMacNativeWidget::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmacnativewidget_mac.h impure plain false false  QSize [] }
+&{~QMacNativeWidget QMacNativeWidget::~QMacNativeWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmacnativewidget_mac.h non destructor false false   [] }
+&{nativeView QMacNativeWidget::nativeView commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmacnativewidget_mac.mm non plain false false  NSView * [] }
+########################################			ENUMS			########################################

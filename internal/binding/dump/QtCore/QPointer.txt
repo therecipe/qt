@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QPointer QPointer::QPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non constructor false false   [] }
+&{QPointer QPointer::QPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non constructor false true 2  [0xc82036cd60] }
+&{clear QPointer::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  void [] }
+&{data QPointer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  T * [] }
+&{isNull QPointer::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  bool [] }
+&{operator T * QPointer::operator T * commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false   [] }
+&{operator* QPointer::operator* commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  T & [] }
+&{operator-> QPointer::operator-> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  T * [] }
+&{operator= QPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  QPointer<T> & [0xc82036d7c0] }
+&{~QPointer QPointer::~QPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,24 @@
+########################################			FUNCTIONS			########################################
+&{QOpenGLWidget QOpenGLWidget::QOpenGLWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non constructor false false   [0xc82235b380 0xc82235b400] }
+&{aboutToCompose QOpenGLWidget::aboutToCompose commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non signal false false  void [] }
+&{aboutToResize QOpenGLWidget::aboutToResize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non signal false false  void [] }
+&{context QOpenGLWidget::context commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  QOpenGLContext * [] }
+&{defaultFramebufferObject QOpenGLWidget::defaultFramebufferObject commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  GLuint [] }
+&{doneCurrent QOpenGLWidget::doneCurrent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  void [] }
+&{format QOpenGLWidget::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  QSurfaceFormat [] }
+&{grabFramebuffer QOpenGLWidget::grabFramebuffer commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  QImage [] }
+&{isValid QOpenGLWidget::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  bool [] }
+&{makeCurrent QOpenGLWidget::makeCurrent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  void [] }
+&{frameSwapped QOpenGLWidget::frameSwapped commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non signal false false  void [] }
+&{initializeGL QOpenGLWidget::initializeGL commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void [] }
+&{paintEvent QOpenGLWidget::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void [0xc822370b20] }
+&{paintGL QOpenGLWidget::paintGL commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void [] }
+&{resizeEvent QOpenGLWidget::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void [0xc822370e20] }
+&{resizeGL QOpenGLWidget::resizeGL commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void [0xc8223710a0 0xc822371160] }
+&{resized QOpenGLWidget::resized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non signal false false  void [] }
+&{setFormat QOpenGLWidget::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  void [0xc8223714c0] }
+&{setUpdateBehavior QOpenGLWidget::setUpdateBehavior commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  void [0xc822371700] }
+&{updateBehavior QOpenGLWidget::updateBehavior commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  UpdateBehavior [] }
+&{~QOpenGLWidget QOpenGLWidget::~QOpenGLWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{UpdateBehavior QOpenGLWidget::UpdateBehavior commendable public  [0xc82235b0c0 0xc82235b160]}

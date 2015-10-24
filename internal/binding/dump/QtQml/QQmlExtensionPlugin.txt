@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{initializeEngine QQmlExtensionPlugin::initializeEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlextensionplugin.cpp impure plain false false  void [0xc82182bc80 0xc82182bd60] }
+&{QQmlExtensionPlugin QQmlExtensionPlugin::QQmlExtensionPlugin commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlextensionplugin.h non constructor false false   [0xc82182bfc0] }
+&{baseUrl QQmlExtensionPlugin::baseUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlextensionplugin.h non plain false false  QUrl [] }
+&{registerTypes QQmlExtensionPlugin::registerTypes commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlextensionplugin.h pure plain false false  void [0xc8227a2500] }
+########################################			ENUMS			########################################

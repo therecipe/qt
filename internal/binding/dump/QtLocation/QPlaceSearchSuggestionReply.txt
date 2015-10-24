@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceSearchSuggestionReply QPlaceSearchSuggestionReply::QPlaceSearchSuggestionReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchsuggestionreply.h non constructor false false   [0xc822637c00] }
+&{setSuggestions QPlaceSearchSuggestionReply::setSuggestions commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchsuggestionreply.h non plain false false  void [0xc822648020] }
+&{suggestions QPlaceSearchSuggestionReply::suggestions commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchsuggestionreply.h non plain false false  QStringList [] }
+&{type QPlaceSearchSuggestionReply::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchsuggestionreply.h impure plain false false  Type [] }
+&{~QPlaceSearchSuggestionReply QPlaceSearchSuggestionReply::~QPlaceSearchSuggestionReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchsuggestionreply.h non destructor false false   [] }
+########################################			ENUMS			########################################

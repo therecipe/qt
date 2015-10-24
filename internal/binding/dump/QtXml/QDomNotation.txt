@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QDomNotation QDomNotation::QDomNotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   [] }
+&{QDomNotation QDomNotation::QDomNotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  [0xc821817880] }
+&{nodeType QDomNotation::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType [] }
+&{operator= QDomNotation::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNotation & [0xc821817e80] }
+&{publicId QDomNotation::publicId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
+&{systemId QDomNotation::systemId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
+########################################			ENUMS			########################################

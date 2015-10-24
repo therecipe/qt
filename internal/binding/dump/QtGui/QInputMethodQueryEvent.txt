@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QInputMethodQueryEvent QInputMethodQueryEvent::QInputMethodQueryEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc82078d380] }
+&{queries QInputMethodQueryEvent::queries commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::InputMethodQueries [] }
+&{setValue QInputMethodQueryEvent::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void [0xc82078d700 0xc82078d7c0] }
+&{value QInputMethodQueryEvent::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QVariant [0xc82078d9e0] }
+########################################			ENUMS			########################################

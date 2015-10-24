@@ -1,0 +1,33 @@
+########################################			FUNCTIONS			########################################
+&{QSqlField QSqlField::QSqlField commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non constructor false true 2  [0xc821563300] }
+&{QSqlField QSqlField::QSqlField commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non constructor false false   [0xc821563680 0xc821563780] }
+&{clear QSqlField::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  void [] }
+&{defaultValue QSqlField::defaultValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  QVariant [] }
+&{isAutoValue QSqlField::isAutoValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  bool [] }
+&{isGenerated QSqlField::isGenerated commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  bool [] }
+&{isNull QSqlField::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  bool [] }
+&{isReadOnly QSqlField::isReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  bool [] }
+&{isValid QSqlField::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  bool [] }
+&{length QSqlField::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  int [] }
+&{name QSqlField::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  QString [] }
+&{operator!= QSqlField::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  bool [0xc82154ecc0] }
+&{operator= QSqlField::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  QSqlField & [0xc82154f1e0] }
+&{operator== QSqlField::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  bool [0xc82154f640] }
+&{precision QSqlField::precision commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  int [] }
+&{requiredStatus QSqlField::requiredStatus commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  RequiredStatus [] }
+&{setAutoValue QSqlField::setAutoValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  void [0xc82154fea0] }
+&{setDefaultValue QSqlField::setDefaultValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  void [0xc8215401e0] }
+&{setGenerated QSqlField::setGenerated commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  void [0xc821540540] }
+&{setLength QSqlField::setLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  void [0xc8215408c0] }
+&{setName QSqlField::setName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  void [0xc821540c00] }
+&{setPrecision QSqlField::setPrecision commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  void [0xc821540f80] }
+&{setReadOnly QSqlField::setReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  void [0xc821541320] }
+&{setRequired QSqlField::setRequired commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  void [0xc8215416a0] }
+&{setRequiredStatus QSqlField::setRequiredStatus commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  void [0xc821541a40] }
+&{setType QSqlField::setType commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  void [0xc82152a2c0] }
+&{setValue QSqlField::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  void [0xc82152a640] }
+&{type QSqlField::type commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  QVariant::Type [] }
+&{value QSqlField::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non plain false false  QVariant [] }
+&{~QSqlField QSqlField::~QSqlField commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlfield.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{RequiredStatus QSqlField::RequiredStatus commendable public  [0xc821562d00 0xc821562de0 0xc821562f00]}

@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QGeoCodingManagerEngine QGeoCodingManagerEngine::QGeoCodingManagerEngine commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanagerengine.h non constructor false false   [0xc821dd8460 0xc821dd85c0] }
+&{error QGeoCodingManagerEngine::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanagerengine.h non signal false false  void [0xc821dd8900 0xc821dd8a40 0xc821dd8b80] }
+&{finished QGeoCodingManagerEngine::finished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanagerengine.h non signal false false  void [0xc821dd8e60] }
+&{geocode QGeoCodingManagerEngine::geocode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanagerengine.h impure plain false false  QGeoCodeReply * [0xc821dd91c0 0xc821dd9380] }
+&{geocode QGeoCodingManagerEngine::geocode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanagerengine.h impure plain false true 2 QGeoCodeReply * [0xc821dd9800 0xc821dd98e0 0xc821dd9a20 0xc821dd9b00] }
+&{locale QGeoCodingManagerEngine::locale commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanagerengine.h non plain false false  QLocale [] }
+&{managerName QGeoCodingManagerEngine::managerName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanagerengine.h non plain false false  QString [] }
+&{managerVersion QGeoCodingManagerEngine::managerVersion commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanagerengine.h non plain false false  int [] }
+&{reverseGeocode QGeoCodingManagerEngine::reverseGeocode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanagerengine.h impure plain false false  QGeoCodeReply * [0xc821de8180 0xc821de8300] }
+&{setLocale QGeoCodingManagerEngine::setLocale commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanagerengine.h non plain false false  void [0xc821de85c0] }
+&{~QGeoCodingManagerEngine QGeoCodingManagerEngine::~QGeoCodingManagerEngine commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodingmanagerengine.h impure destructor false false   [] }
+########################################			ENUMS			########################################

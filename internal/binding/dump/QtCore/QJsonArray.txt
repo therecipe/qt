@@ -1,0 +1,45 @@
+########################################			FUNCTIONS			########################################
+&{QJsonArray QJsonArray::QJsonArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non constructor false false   [] }
+&{QJsonArray QJsonArray::QJsonArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non constructor false true 3  [0xc82055e0c0] }
+&{QJsonArray QJsonArray::QJsonArray commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non constructor false true 2  [0xc82055e2c0] }
+&{append QJsonArray::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  void [0xc82055e7c0] }
+&{at QJsonArray::at commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  QJsonValue [0xc82055e980] }
+&{begin QJsonArray::begin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  iterator [] }
+&{begin QJsonArray::begin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false true 2 const_iterator [] }
+&{constBegin QJsonArray::constBegin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  const_iterator [] }
+&{constEnd QJsonArray::constEnd commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  const_iterator [] }
+&{contains QJsonArray::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  bool [0xc82055f200] }
+&{count QJsonArray::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  int [] }
+&{empty QJsonArray::empty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  bool [] }
+&{end QJsonArray::end commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  iterator [] }
+&{end QJsonArray::end commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false true 2 const_iterator [] }
+&{erase QJsonArray::erase commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  iterator [0xc82055f760] }
+&{first QJsonArray::first commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  QJsonValue [] }
+&{fromStringList QJsonArray::fromStringList commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain true false  QJsonArray [0xc82055fa40] }
+&{fromVariantList QJsonArray::fromVariantList commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain true false  QJsonArray [0xc82055fc60] }
+&{insert QJsonArray::insert commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false true 2 iterator [0xc82055ff60 0xc820574000] }
+&{insert QJsonArray::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  void [0xc820574200 0xc8205742a0] }
+&{isEmpty QJsonArray::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  bool [] }
+&{last QJsonArray::last commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  QJsonValue [] }
+&{operator!= QJsonArray::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  bool [0xc820574660] }
+&{operator+ QJsonArray::operator+ commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  QJsonArray [0xc820574880] }
+&{operator+= QJsonArray::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  QJsonArray & [0xc820574aa0] }
+&{operator<< QJsonArray::operator<< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  QJsonArray & [0xc820574cc0] }
+&{operator= QJsonArray::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  QJsonArray & [0xc820574ee0] }
+&{operator== QJsonArray::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  bool [0xc820575100] }
+&{operator[] QJsonArray::operator[] commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  QJsonValueRef [0xc820575340] }
+&{operator[] QJsonArray::operator[] commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false true 2 QJsonValue [0xc820575600] }
+&{pop_back QJsonArray::pop_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  void [] }
+&{pop_front QJsonArray::pop_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  void [] }
+&{prepend QJsonArray::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  void [0xc8205759a0] }
+&{push_back QJsonArray::push_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  void [0xc820575bc0] }
+&{push_front QJsonArray::push_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  void [0xc820575de0] }
+&{removeAt QJsonArray::removeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  void [0xc820586000] }
+&{removeFirst QJsonArray::removeFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  void [] }
+&{removeLast QJsonArray::removeLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  void [] }
+&{replace QJsonArray::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  void [0xc8205863c0 0xc820586460] }
+&{size QJsonArray::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  int [] }
+&{takeAt QJsonArray::takeAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  QJsonValue [0xc820586700] }
+&{toVariantList QJsonArray::toVariantList commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non plain false false  QVariantList [] }
+&{~QJsonArray QJsonArray::~QJsonArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsonarray.h non destructor false false   [] }
+########################################			ENUMS			########################################

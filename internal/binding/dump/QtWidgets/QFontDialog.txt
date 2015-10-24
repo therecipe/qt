@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{options QFontDialog::options commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.cpp non plain false false  FontDialogOptions [] }
+&{setOptions QFontDialog::setOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.cpp non plain false false  void [0xc82334c9e0] }
+&{QFontDialog QFontDialog::QFontDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h non constructor false false   [0xc82334d640] }
+&{QFontDialog QFontDialog::QFontDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h non constructor false true 2  [0xc82334d860 0xc82334d940] }
+&{changeEvent QFontDialog::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h impure plain false false  void [0xc82334de00] }
+&{currentFont QFontDialog::currentFont commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h non plain false false  QFont [] }
+&{currentFontChanged QFontDialog::currentFontChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h non signal false false  void [0xc8233381c0] }
+&{done QFontDialog::done commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h impure plain false false  void [0xc8233383c0] }
+&{fontSelected QFontDialog::fontSelected commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h non signal false false  void [0xc823338980] }
+&{getFont QFontDialog::getFont commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h non plain true true 2 QFont [0xc823338c00 0xc823338d00] }
+&{getFont QFontDialog::getFont commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h non plain true false  QFont [0xc823338fc0 0xc823339040 0xc823339160 0xc823339220 0xc823339340] }
+&{open QFontDialog::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h non plain false false  void [0xc823339600 0xc8233396c0] }
+&{selectedFont QFontDialog::selectedFont commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h non plain false false  QFont [] }
+&{setCurrentFont QFontDialog::setCurrentFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h non plain false false  void [0xc823339b60] }
+&{setOption QFontDialog::setOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h non plain false false  void [0xc823339de0 0xc823339e80] }
+&{setVisible QFontDialog::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h impure plain false false  void [0xc823324100] }
+&{testOption QFontDialog::testOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfontdialog.h non plain false false  bool [0xc823324380] }
+########################################			ENUMS			########################################
+&{FontDialogOption QFontDialog::FontDialogOption commendable public QFontDialog::FontDialogOptions [0xc82334ce40 0xc82334cf00 0xc82334d020 0xc82334d0e0 0xc82334d1a0 0xc82334d240]}

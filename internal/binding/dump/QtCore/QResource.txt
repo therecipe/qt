@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{registerResource QResource::registerResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.cpp non plain true false  bool [0xc8202ecd80 0xc8202ece00] }
+&{registerResource QResource::registerResource commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.cpp non plain true true 2 bool [0xc8202ed020 0xc8202ed0c0] }
+&{unregisterResource QResource::unregisterResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.cpp non plain true false  bool [0xc8202ed360 0xc8202ed3e0] }
+&{unregisterResource QResource::unregisterResource commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.cpp non plain true true 2 bool [0xc8202ed660 0xc8202ed6e0] }
+&{QResource QResource::QResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non constructor false false   [0xc8202ed920 0xc8202eda00] }
+&{absoluteFilePath QResource::absoluteFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  QString [] }
+&{children QResource::children commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  QStringList [] }
+&{data QResource::data commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  const uchar * [] }
+&{fileName QResource::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  QString [] }
+&{isCompressed QResource::isCompressed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  bool [] }
+&{isDir QResource::isDir commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  bool [] }
+&{isFile QResource::isFile commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  bool [] }
+&{isValid QResource::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  bool [] }
+&{locale QResource::locale commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  QLocale [] }
+&{setFileName QResource::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  void [0xc8202d09a0] }
+&{setLocale QResource::setLocale commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  void [0xc8202d0bc0] }
+&{size QResource::size commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  qint64 [] }
+&{~QResource QResource::~QResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non destructor false false   [] }
+########################################			ENUMS			########################################

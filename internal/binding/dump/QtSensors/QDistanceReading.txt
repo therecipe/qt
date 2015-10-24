@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{distance QDistanceReading::distance commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qdistancesensor.cpp non plain false false  qreal [] }
+&{setDistance QDistanceReading::setDistance commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qdistancesensor.h non plain false false  void [0xc822eb5260] }
+########################################			ENUMS			########################################

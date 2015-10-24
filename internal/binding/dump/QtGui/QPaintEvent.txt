@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QPaintEvent QPaintEvent::QPaintEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 2  [0xc82077b520] }
+&{QPaintEvent QPaintEvent::QPaintEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc82077b700] }
+&{rect QPaintEvent::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QRect & [] }
+&{region QPaintEvent::region commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QRegion & [] }
+########################################			ENUMS			########################################

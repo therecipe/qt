@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{characters QXmlContentHandler::characters commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821b838c0] }
+&{endDocument QXmlContentHandler::endDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [] }
+&{endElement QXmlContentHandler::endElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821b83de0 0xc821b83e80 0xc821b83f60] }
+&{endPrefixMapping QXmlContentHandler::endPrefixMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821c3e200] }
+&{errorString QXmlContentHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString [] }
+&{ignorableWhitespace QXmlContentHandler::ignorableWhitespace commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821c3e720] }
+&{processingInstruction QXmlContentHandler::processingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821c3ea20 0xc821c3eb00] }
+&{setDocumentLocator QXmlContentHandler::setDocumentLocator commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  void [0xc821c3ee40] }
+&{skippedEntity QXmlContentHandler::skippedEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821c3f120] }
+&{startDocument QXmlContentHandler::startDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [] }
+&{startElement QXmlContentHandler::startElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821c3f540 0xc821c3f620 0xc821c3f720 0xc821c3f840] }
+&{startPrefixMapping QXmlContentHandler::startPrefixMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821c3fc20 0xc821c3fd40] }
+&{~QXmlContentHandler QXmlContentHandler::~QXmlContentHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   [] }
+########################################			ENUMS			########################################

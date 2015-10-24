@@ -1,0 +1,3 @@
+########################################			FUNCTIONS			########################################
+&{filter QDistanceFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qdistancesensor.h pure plain false false  bool [0xc822eb4820] }
+########################################			ENUMS			########################################

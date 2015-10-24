@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QScriptClass QScriptClass::QScriptClass commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptclass.h non constructor false false   [0xc822c47ce0] }
+&{engine QScriptClass::engine commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptclass.h non plain false false  QScriptEngine * [] }
+&{extension QScriptClass::extension commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptclass.h impure plain false false  QVariant [0xc822c56460 0xc822c564e0] }
+&{name QScriptClass::name commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptclass.h impure plain false false  QString [] }
+&{newIterator QScriptClass::newIterator commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptclass.h impure plain false false  QScriptClassPropertyIterator * [0xc822c569a0] }
+&{property QScriptClass::property commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptclass.h impure plain false false  QScriptValue [0xc822c56c20 0xc822c56d80 0xc822c56e40] }
+&{propertyFlags QScriptClass::propertyFlags commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptclass.h impure plain false false  QScriptValue::PropertyFlags [0xc822c57120 0xc822c57240 0xc822c57360] }
+&{prototype QScriptClass::prototype commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptclass.h impure plain false false  QScriptValue [] }
+&{queryProperty QScriptClass::queryProperty commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptclass.h impure plain false false  QueryFlags [0xc822c576c0 0xc822c577a0 0xc822c57860 0xc822c57900] }
+&{setProperty QScriptClass::setProperty commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptclass.h impure plain false false  void [0xc822c57b40 0xc822c57c00 0xc822c57ce0 0xc822c57de0] }
+&{supportsExtension QScriptClass::supportsExtension commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptclass.h impure plain false false  bool [0xc822c860c0] }
+&{~QScriptClass QScriptClass::~QScriptClass commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptclass.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{Extension QScriptClass::Extension commendable public  [0xc822c47480 0xc822c47500]}
+&{QueryFlag QScriptClass::QueryFlag commendable public QScriptClass::QueryFlags [0xc822c477e0 0xc822c47920]}

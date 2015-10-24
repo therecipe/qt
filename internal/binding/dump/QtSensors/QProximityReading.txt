@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{close QProximityReading::close commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qproximitysensor.cpp non plain false false  bool [] }
+&{setClose QProximityReading::setClose commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qproximitysensor.h non plain false false  void [0xc822e202a0] }
+########################################			ENUMS			########################################

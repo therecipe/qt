@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{acceptProposedAction QGraphicsSceneDragDropEvent::acceptProposedAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  void [] }
+&{buttons QGraphicsSceneDragDropEvent::buttons commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::MouseButtons [] }
+&{dropAction QGraphicsSceneDragDropEvent::dropAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::DropAction [] }
+&{mimeData QGraphicsSceneDragDropEvent::mimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  const QMimeData * [] }
+&{modifiers QGraphicsSceneDragDropEvent::modifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::KeyboardModifiers [] }
+&{pos QGraphicsSceneDragDropEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
+&{possibleActions QGraphicsSceneDragDropEvent::possibleActions commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::DropActions [] }
+&{proposedAction QGraphicsSceneDragDropEvent::proposedAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::DropAction [] }
+&{scenePos QGraphicsSceneDragDropEvent::scenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
+&{screenPos QGraphicsSceneDragDropEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint [] }
+&{setDropAction QGraphicsSceneDragDropEvent::setDropAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  void [0xc822968500] }
+&{source QGraphicsSceneDragDropEvent::source commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QWidget * [] }
+&{~QGraphicsSceneDragDropEvent QGraphicsSceneDragDropEvent::~QGraphicsSceneDragDropEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   [] }
+########################################			ENUMS			########################################

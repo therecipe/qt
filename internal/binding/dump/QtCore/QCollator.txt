@@ -1,0 +1,21 @@
+########################################			FUNCTIONS			########################################
+&{caseSensitivity QCollator::caseSensitivity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.cpp non plain false false  Qt::CaseSensitivity [] }
+&{ignorePunctuation QCollator::ignorePunctuation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.cpp non plain false false  bool [] }
+&{numericMode QCollator::numericMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.cpp non plain false false  bool [] }
+&{setCaseSensitivity QCollator::setCaseSensitivity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.cpp non plain false false  void [0xc8207bcaa0] }
+&{setIgnorePunctuation QCollator::setIgnorePunctuation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.cpp non plain false false  void [0xc8207bcda0] }
+&{setNumericMode QCollator::setNumericMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.cpp non plain false false  void [0xc8207bd040] }
+&{QCollator QCollator::QCollator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non constructor false true 3  [0xc8207bd2c0] }
+&{QCollator QCollator::QCollator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non constructor false true 2  [0xc8207bd520] }
+&{QCollator QCollator::QCollator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non constructor false false   [0xc8207bd800] }
+&{locale QCollator::locale commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false false  QLocale [] }
+&{operator= QCollator::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false true 2 QCollator & [0xc8207bdee0] }
+&{operator= QCollator::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false false  QCollator & [0xc8207a8120] }
+&{setLocale QCollator::setLocale commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false false  void [0xc8207a8380] }
+&{swap QCollator::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false false  void [0xc8207a8580] }
+&{~QCollator QCollator::~QCollator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non destructor false false   [] }
+&{compare QCollator::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator_win.cpp non plain false true 3 int [0xc8207a8900 0xc8207a89a0 0xc8207a8a60 0xc8207a8ae0] }
+&{compare QCollator::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator_win.cpp non plain false false  int [0xc8207a8d40 0xc8207a8e00] }
+&{compare QCollator::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator_win.cpp non plain false true 2 int [0xc8207a9060 0xc8207a9140] }
+&{sortKey QCollator::sortKey commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator_win.cpp non plain false false  QCollatorSortKey [0xc8207a9420] }
+########################################			ENUMS			########################################

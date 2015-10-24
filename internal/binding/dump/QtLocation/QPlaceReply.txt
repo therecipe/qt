@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceReply QPlaceReply::QPlaceReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non constructor false false   [0xc8221feaa0] }
+&{abort QPlaceReply::abort commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h impure slot false false  void [] }
+&{error QPlaceReply::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non signal false true 2 void [0xc8221ff0c0 0xc8221ff1a0] }
+&{error QPlaceReply::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non plain false false  QPlaceReply::Error [] }
+&{errorString QPlaceReply::errorString commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non plain false false  QString [] }
+&{finished QPlaceReply::finished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non signal false false  void [] }
+&{isFinished QPlaceReply::isFinished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non plain false false  bool [] }
+&{setError QPlaceReply::setError commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non plain false false  void [0xc8221ff980 0xc8221ffa60] }
+&{setFinished QPlaceReply::setFinished commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non plain false false  void [0xc8221ffce0] }
+&{type QPlaceReply::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h impure plain false false  Type [] }
+&{~QPlaceReply QPlaceReply::~QPlaceReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Error QPlaceReply::Error commendable public  [0xc8225bd700 0xc8225bd7e0 0xc8225bd8e0 0xc8225bda40 0xc8225bdb80 0xc8225bdc20 0xc8225bdca0 0xc8225bddc0 0xc8225bde60 0xc8225bdf60]}
+&{Type QPlaceReply::Type commendable public  [0xc8221fe280 0xc8221fe300 0xc8221fe3c0 0xc8221fe520 0xc8221fe660 0xc8221fe700 0xc8221fe800]}

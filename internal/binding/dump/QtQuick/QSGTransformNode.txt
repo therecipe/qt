@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QSGTransformNode QSGTransformNode::QSGTransformNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non constructor false false   [] }
+&{matrix QSGTransformNode::matrix commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  const QMatrix4x4 & [] }
+&{setMatrix QSGTransformNode::setMatrix commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void [0xc821ba7a20] }
+&{~QSGTransformNode QSGTransformNode::~QSGTransformNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non destructor false false   [] }
+########################################			ENUMS			########################################

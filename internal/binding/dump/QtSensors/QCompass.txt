@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{reading QCompass::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.cpp non plain false false  QCompassReading * [] }
+&{QCompass QCompass::QCompass commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.h non constructor false false   [0xc822ec2580] }
+&{~QCompass QCompass::~QCompass commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.h impure destructor false false   [] }
+########################################			ENUMS			########################################

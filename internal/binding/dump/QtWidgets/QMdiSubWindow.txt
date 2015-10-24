@@ -1,0 +1,43 @@
+########################################			FUNCTIONS			########################################
+&{keyboardPageStep QMdiSubWindow::keyboardPageStep commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.cpp non plain false false  int [] }
+&{keyboardSingleStep QMdiSubWindow::keyboardSingleStep commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.cpp non plain false false  int [] }
+&{setKeyboardPageStep QMdiSubWindow::setKeyboardPageStep commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.cpp non plain false false  void [0xc823242e00] }
+&{setKeyboardSingleStep QMdiSubWindow::setKeyboardSingleStep commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.cpp non plain false false  void [0xc823243420] }
+&{QMdiSubWindow QMdiSubWindow::QMdiSubWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non constructor false false   [0xc82322e540 0xc82322e720] }
+&{aboutToActivate QMdiSubWindow::aboutToActivate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non signal false false  void [] }
+&{changeEvent QMdiSubWindow::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc82322f140] }
+&{childEvent QMdiSubWindow::childEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc82322f620] }
+&{closeEvent QMdiSubWindow::closeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc82322f960] }
+&{contextMenuEvent QMdiSubWindow::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc82322fd40] }
+&{event QMdiSubWindow::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  bool [0xc82321a180] }
+&{eventFilter QMdiSubWindow::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  bool [0xc82321a460 0xc82321a500] }
+&{focusInEvent QMdiSubWindow::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc82321a7e0] }
+&{focusOutEvent QMdiSubWindow::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc82321abe0] }
+&{hideEvent QMdiSubWindow::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc82321af20] }
+&{isShaded QMdiSubWindow::isShaded commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non plain false false  bool [] }
+&{keyPressEvent QMdiSubWindow::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc82321b480] }
+&{leaveEvent QMdiSubWindow::leaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc82321b800] }
+&{mdiArea QMdiSubWindow::mdiArea commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non plain false false  QMdiArea * [] }
+&{minimumSizeHint QMdiSubWindow::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  QSize [] }
+&{mouseDoubleClickEvent QMdiSubWindow::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc823202260] }
+&{mouseMoveEvent QMdiSubWindow::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc823202540] }
+&{mousePressEvent QMdiSubWindow::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc8232027a0] }
+&{mouseReleaseEvent QMdiSubWindow::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc823202a80] }
+&{moveEvent QMdiSubWindow::moveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc823202e00] }
+&{paintEvent QMdiSubWindow::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc8232031a0] }
+&{resizeEvent QMdiSubWindow::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc823203580] }
+&{setOption QMdiSubWindow::setOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non plain false false  void [0xc823203ac0 0xc823203c60] }
+&{setSystemMenu QMdiSubWindow::setSystemMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non plain false false  void [0xc8231f4160] }
+&{setWidget QMdiSubWindow::setWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non plain false false  void [0xc8231f45a0] }
+&{showEvent QMdiSubWindow::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc8231f49c0] }
+&{showShaded QMdiSubWindow::showShaded commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non slot false false  void [] }
+&{showSystemMenu QMdiSubWindow::showSystemMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non slot false false  void [] }
+&{sizeHint QMdiSubWindow::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  QSize [] }
+&{systemMenu QMdiSubWindow::systemMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non plain false false  QMenu * [] }
+&{testOption QMdiSubWindow::testOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non plain false false  bool [0xc8231f58e0] }
+&{timerEvent QMdiSubWindow::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h impure plain false false  void [0xc8231f5d20] }
+&{widget QMdiSubWindow::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non plain false false  QWidget * [] }
+&{windowStateChanged QMdiSubWindow::windowStateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non signal false false  void [0xc8231de280 0xc8231de400] }
+&{~QMdiSubWindow QMdiSubWindow::~QMdiSubWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmdisubwindow.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{SubWindowOption QMdiSubWindow::SubWindowOption commendable public QMdiSubWindow::SubWindowOptions [0xc823243a80 0xc823243d60 0xc823243e60 0xc823243f60]}

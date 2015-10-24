@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QNetworkProxyFactory QNetworkProxyFactory::QNetworkProxyFactory commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non constructor false false   [] }
+&{proxyForQuery QNetworkProxyFactory::proxyForQuery commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain true false  QList<QNetworkProxy> [0xc82321bc80] }
+&{queryProxy QNetworkProxyFactory::queryProxy commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h pure plain false false  QList<QNetworkProxy> [0xc82321bfc0] }
+&{setApplicationProxyFactory QNetworkProxyFactory::setApplicationProxyFactory commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain true false  void [0xc823202240] }
+&{setUseSystemConfiguration QNetworkProxyFactory::setUseSystemConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain true false  void [0xc823202480] }
+&{~QNetworkProxyFactory QNetworkProxyFactory::~QNetworkProxyFactory commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h impure destructor false false   [] }
+&{systemProxyForQuery QNetworkProxyFactory::systemProxyForQuery commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy_win.cpp non plain true false  QList<QNetworkProxy> [0xc823202880] }
+########################################			ENUMS			########################################

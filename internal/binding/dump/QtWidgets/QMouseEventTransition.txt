@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QMouseEventTransition QMouseEventTransition::QMouseEventTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qmouseeventtransition.h non constructor false true 2  [0xc8225f9760 0xc8225f98a0 0xc8225f9980 0xc8225f9a20] }
+&{QMouseEventTransition QMouseEventTransition::QMouseEventTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qmouseeventtransition.h non constructor false false   [0xc8225f9d20] }
+&{button QMouseEventTransition::button commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qmouseeventtransition.h non plain false false  Qt::MouseButton [] }
+&{eventTest QMouseEventTransition::eventTest commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qmouseeventtransition.h impure plain false false  bool [0xc822606220] }
+&{hitTestPath QMouseEventTransition::hitTestPath commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qmouseeventtransition.h non plain false false  QPainterPath [] }
+&{modifierMask QMouseEventTransition::modifierMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qmouseeventtransition.h non plain false false  Qt::KeyboardModifiers [] }
+&{onTransition QMouseEventTransition::onTransition commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qmouseeventtransition.h impure plain false false  void [0xc822606780] }
+&{setButton QMouseEventTransition::setButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qmouseeventtransition.h non plain false false  void [0xc822606a80] }
+&{setHitTestPath QMouseEventTransition::setHitTestPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qmouseeventtransition.h non plain false false  void [0xc822606d60] }
+&{setModifierMask QMouseEventTransition::setModifierMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qmouseeventtransition.h non plain false false  void [0xc822607080] }
+&{~QMouseEventTransition QMouseEventTransition::~QMouseEventTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/statemachine/qmouseeventtransition.h non destructor false false   [] }
+########################################			ENUMS			########################################

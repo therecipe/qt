@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{connected QLowEnergyController::connected commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller.h non signal false false  void [] }
+&{disconnected QLowEnergyController::disconnected commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller.h non signal false false  void [] }
+&{discoveryFinished QLowEnergyController::discoveryFinished commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller.h non signal false false  void [] }
+&{error QLowEnergyController::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller.h non signal false true 2 void [0xc8234679c0] }
+&{serviceDiscovered QLowEnergyController::serviceDiscovered commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller.h non signal false false  void [0xc823467c40] }
+&{stateChanged QLowEnergyController::stateChanged commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller.h non signal false false  void [0xc823467e40] }
+&{QLowEnergyController QLowEnergyController::QLowEnergyController commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non constructor false false   [0xc8234b06e0 0xc8234b07a0] }
+&{connectToDevice QLowEnergyController::connectToDevice commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  void [] }
+&{createServiceObject QLowEnergyController::createServiceObject commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  QLowEnergyService * [0xc8234b0a80 0xc8234b0b60] }
+&{disconnectFromDevice QLowEnergyController::disconnectFromDevice commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  void [] }
+&{discoverServices QLowEnergyController::discoverServices commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  void [] }
+&{error QLowEnergyController::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  Error [] }
+&{errorString QLowEnergyController::errorString commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  QString [] }
+&{localAddress QLowEnergyController::localAddress commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  QBluetoothAddress [] }
+&{remoteAddress QLowEnergyController::remoteAddress commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  QBluetoothAddress [] }
+&{remoteAddressType QLowEnergyController::remoteAddressType commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  RemoteAddressType [] }
+&{remoteName QLowEnergyController::remoteName commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  QString [] }
+&{services QLowEnergyController::services commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  QList<QBluetoothUuid> [] }
+&{setRemoteAddressType QLowEnergyController::setRemoteAddressType commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  void [0xc8234b17a0] }
+&{state QLowEnergyController::state commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non plain false false  ControllerState [] }
+&{~QLowEnergyController QLowEnergyController::~QLowEnergyController commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qlowenergycontroller_osx.mm non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ControllerState QLowEnergyController::ControllerState commendable public  [0xc823466940 0xc8234669c0 0xc823466a40 0xc823466ac0 0xc823466b60 0xc823466be0]}
+&{Error QLowEnergyController::Error commendable public  [0xc823466e00 0xc823466ec0 0xc823466fa0 0xc823467080 0xc823467140 0xc823467200]}
+&{RemoteAddressType QLowEnergyController::RemoteAddressType commendable public  [0xc8234673c0 0xc823467440]}

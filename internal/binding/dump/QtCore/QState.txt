@@ -1,0 +1,28 @@
+########################################			FUNCTIONS			########################################
+&{QState QState::QState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non constructor false true 2  [0xc82000e100 0xc82000e1c0] }
+&{QState QState::QState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non constructor false false   [0xc82000e400] }
+&{addTransition QState::addTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false true 3 QAbstractTransition * [0xc82000eaa0] }
+&{addTransition QState::addTransition commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false true 4 QSignalTransition * [0xc82000eee0 0xc82000efe0 0xc82000f0c0] }
+&{addTransition QState::addTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false true 2 QSignalTransition * [0xc82000f400 0xc82000f4c0 0xc82000f5a0] }
+&{addTransition QState::addTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false false  void [0xc82000f940] }
+&{assignProperty QState::assignProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false false  void [0xc82000fca0 0xc82000fda0 0xc82000fe60] }
+&{childMode QState::childMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false false  ChildMode [] }
+&{childModeChanged QState::childModeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non signal false false  void [] }
+&{errorState QState::errorState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false false  QAbstractState * [] }
+&{errorStateChanged QState::errorStateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non signal false false  void [] }
+&{event QState::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h impure plain false false  bool [0xc82068d260] }
+&{finished QState::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non signal false false  void [] }
+&{initialState QState::initialState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false false  QAbstractState * [] }
+&{initialStateChanged QState::initialStateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non signal false false  void [] }
+&{onEntry QState::onEntry commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h impure plain false false  void [0xc82068d700] }
+&{onExit QState::onExit commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h impure plain false false  void [0xc82068d880] }
+&{propertiesAssigned QState::propertiesAssigned commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non signal false false  void [] }
+&{removeTransition QState::removeTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false false  void [0xc82068dbc0] }
+&{setChildMode QState::setChildMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false false  void [0xc82068dde0] }
+&{setErrorState QState::setErrorState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false false  void [0xc82068dfc0] }
+&{setInitialState QState::setInitialState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false false  void [0xc820670240] }
+&{transitions QState::transitions commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non plain false false  QList<QAbstractTransition *> [] }
+&{~QState QState::~QState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qstate.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ChildMode QState::ChildMode commendable public  [0xc82017f8e0 0xc82017f980]}
+&{RestorePolicy QState::RestorePolicy commendable public  [0xc82017fc60 0xc82017fdc0]}

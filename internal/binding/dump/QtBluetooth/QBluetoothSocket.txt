@@ -1,0 +1,38 @@
+########################################			FUNCTIONS			########################################
+&{connected QBluetoothSocket::connected commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket.h non signal false false  void [] }
+&{disconnected QBluetoothSocket::disconnected commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket.h non signal false false  void [] }
+&{error QBluetoothSocket::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket.h non signal false true 2 void [0xc8233ef9a0] }
+&{stateChanged QBluetoothSocket::stateChanged commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket.h non signal false false  void [0xc8233efe40] }
+&{QBluetoothSocket QBluetoothSocket::QBluetoothSocket commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non constructor false false   [0xc82340c640 0xc82340c800] }
+&{QBluetoothSocket QBluetoothSocket::QBluetoothSocket commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non constructor false true 2  [0xc82340cc00] }
+&{abort QBluetoothSocket::abort commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  void [] }
+&{bytesAvailable QBluetoothSocket::bytesAvailable commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm impure plain false false  qint64 [] }
+&{bytesToWrite QBluetoothSocket::bytesToWrite commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm impure plain false false  qint64 [] }
+&{canReadLine QBluetoothSocket::canReadLine commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm impure plain false false  bool [] }
+&{close QBluetoothSocket::close commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm impure plain false false  void [] }
+&{connectToService QBluetoothSocket::connectToService commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false true 2 void [0xc82340da80 0xc82340dc40 0xc82340dd60] }
+&{connectToService QBluetoothSocket::connectToService commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false true 3 void [0xc82340dfe0 0xc82347e0c0 0xc82347e160] }
+&{connectToService QBluetoothSocket::connectToService commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  void [0xc82347e300 0xc82347e3e0] }
+&{disconnectFromService QBluetoothSocket::disconnectFromService commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  void [] }
+&{doDeviceDiscovery QBluetoothSocket::doDeviceDiscovery commendable protected /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  void [0xc82347e8e0 0xc82347e9e0] }
+&{error QBluetoothSocket::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  SocketError [] }
+&{errorString QBluetoothSocket::errorString commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  QString [] }
+&{isSequential QBluetoothSocket::isSequential commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm impure plain false false  bool [] }
+&{localAddress QBluetoothSocket::localAddress commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  QBluetoothAddress [] }
+&{localName QBluetoothSocket::localName commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  QString [] }
+&{localPort QBluetoothSocket::localPort commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  quint16 [] }
+&{peerAddress QBluetoothSocket::peerAddress commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  QBluetoothAddress [] }
+&{peerName QBluetoothSocket::peerName commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  QString [] }
+&{peerPort QBluetoothSocket::peerPort commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  quint16 [] }
+&{readData QBluetoothSocket::readData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm impure plain false false  qint64 [0xc82347f860 0xc82347f8e0] }
+&{setSocketDescriptor QBluetoothSocket::setSocketDescriptor commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  bool [0xc82347fd40 0xc82347fde0 0xc82347fec0 0xc82347ff80] }
+&{setSocketError QBluetoothSocket::setSocketError commendable protected /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  void [0xc82384c1a0] }
+&{setSocketState QBluetoothSocket::setSocketState commendable protected /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  void [0xc82384c360] }
+&{socketDescriptor QBluetoothSocket::socketDescriptor commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  int [] }
+&{socketType QBluetoothSocket::socketType commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  QBluetoothServiceInfo::Protocol [] }
+&{state QBluetoothSocket::state commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm non plain false false  SocketState [] }
+&{writeData QBluetoothSocket::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm impure plain false false  qint64 [0xc82384c9c0 0xc82384ca80] }
+&{~QBluetoothSocket QBluetoothSocket::~QBluetoothSocket commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothsocket_osx.mm impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{SocketError QBluetoothSocket::SocketError commendable public  [0xc8233396e0 0xc8233398a0 0xc823339a40 0xc823339c40 0xc823339ea0 0xc8233ee020 0xc8233ee1e0]}
+&{SocketState QBluetoothSocket::SocketState commendable public  [0xc8233ee520 0xc8233ee720 0xc8233ee940 0xc8233eeac0 0xc8233eecc0 0xc8233eee20 0xc8233eefe0]}

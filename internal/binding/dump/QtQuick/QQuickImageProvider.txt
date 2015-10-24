@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QQuickImageProvider QQuickImageProvider::QQuickImageProvider commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h non constructor false false   [0xc821a96880 0xc821a96a80] }
+&{flags QQuickImageProvider::flags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h impure plain false false  Flags [] }
+&{imageType QQuickImageProvider::imageType commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h impure plain false false  ImageType [] }
+&{requestImage QQuickImageProvider::requestImage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h impure plain false false  QImage [0xc821a97480 0xc821a97680 0xc821a97800 0xc821a97920] }
+&{requestPixmap QQuickImageProvider::requestPixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h impure plain false false  QPixmap [0xc821a97e60 0xc821a97fa0 0xc821a860a0 0xc821a86280] }
+&{requestTexture QQuickImageProvider::requestTexture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h impure plain false false  QQuickTextureFactory * [0xc821a867e0 0xc821a868c0 0xc821a869c0 0xc821a86c20] }
+&{~QQuickImageProvider QQuickImageProvider::~QQuickImageProvider commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h impure destructor false false   [] }
+########################################			ENUMS			########################################

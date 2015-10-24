@@ -1,0 +1,18 @@
+########################################			FUNCTIONS			########################################
+&{QXmlSchema QXmlSchema::QXmlSchema commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non constructor false false   [] }
+&{QXmlSchema QXmlSchema::QXmlSchema commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non constructor false true 2  [0xc822f5b240] }
+&{documentUri QXmlSchema::documentUri commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false false  QUrl [] }
+&{isValid QXmlSchema::isValid commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false false  bool [] }
+&{load QXmlSchema::load commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false true 2 bool [0xc822fd00e0 0xc822fd0300] }
+&{load QXmlSchema::load commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false true 3 bool [0xc822fd0760 0xc822fd0ac0] }
+&{load QXmlSchema::load commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false false  bool [0xc822fd0ea0] }
+&{messageHandler QXmlSchema::messageHandler commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false false  QAbstractMessageHandler * [] }
+&{namePool QXmlSchema::namePool commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false false  QXmlNamePool [] }
+&{networkAccessManager QXmlSchema::networkAccessManager commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false false  QNetworkAccessManager * [] }
+&{operator= QXmlSchema::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false false  QXmlSchema & [0xc82302c2c0] }
+&{setMessageHandler QXmlSchema::setMessageHandler commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false false  void [0xc82302ca40] }
+&{setNetworkAccessManager QXmlSchema::setNetworkAccessManager commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false false  void [0xc82302cf80] }
+&{setUriResolver QXmlSchema::setUriResolver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false false  void [0xc82302d4c0] }
+&{uriResolver QXmlSchema::uriResolver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non plain false false  const QAbstractUriResolver * [] }
+&{~QXmlSchema QXmlSchema::~QXmlSchema commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschema.h non destructor false false   [] }
+########################################			ENUMS			########################################

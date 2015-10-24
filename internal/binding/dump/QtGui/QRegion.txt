@@ -1,0 +1,49 @@
+########################################			FUNCTIONS			########################################
+&{QRegion QRegion::QRegion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non constructor false false   [] }
+&{QRegion QRegion::QRegion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non constructor false true 5  [0xc8221bc880] }
+&{QRegion QRegion::QRegion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non constructor false true 3  [0xc8221bc9e0 0xc8221bca60] }
+&{QRegion QRegion::QRegion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non constructor false true 6  [0xc8221bcbc0 0xc8221bcc40] }
+&{QRegion QRegion::QRegion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non constructor false true 4  [0xc8221bcde0] }
+&{boundingRect QRegion::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  QRect [] }
+&{contains QRegion::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  bool [0xc8221bd220] }
+&{contains QRegion::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false true 2 bool [0xc8221bd400] }
+&{intersected QRegion::intersected commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false true 2 QRegion [0xc8221bdb80] }
+&{intersected QRegion::intersected commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  QRegion [0xc8221bdd40] }
+&{intersects QRegion::intersects commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false true 2 bool [0xc8221bdf00] }
+&{isEmpty QRegion::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  bool [] }
+&{isNull QRegion::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  bool [] }
+&{operator&= QRegion::operator&= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  QRegion & [0xc8221d2220] }
+&{operator+= QRegion::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false true 2 QRegion & [0xc8221d23e0] }
+&{operator+= QRegion::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  QRegion & [0xc8221d25a0] }
+&{operator-= QRegion::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  QRegion & [0xc8221d2760] }
+&{operator= QRegion::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  QRegion & [0xc8221d2920] }
+&{operator== QRegion::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  bool [0xc8221d2ae0] }
+&{rectCount QRegion::rectCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  int [] }
+&{rects QRegion::rects commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  QVector<QRect> [] }
+&{setRects QRegion::setRects commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  void [0xc8221d2e40 0xc8221d2ec0] }
+&{subtracted QRegion::subtracted commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  QRegion [0xc8221d3080] }
+&{translate QRegion::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  void [0xc8221d3260 0xc8221d32e0] }
+&{united QRegion::united commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false true 2 QRegion [0xc8221d3440] }
+&{united QRegion::united commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  QRegion [0xc8221d35a0] }
+&{xored QRegion::xored commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.cpp non plain false false  QRegion [0xc8221d3700] }
+&{QRegion QRegion::QRegion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non constructor false true 2  [0xc8221d3ae0 0xc8221d3b60 0xc8221d3be0 0xc8221d3c60 0xc8221d3d00] }
+&{intersects QRegion::intersects commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false false  bool [0xc8221e8520] }
+&{operator QVariant QRegion::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false false   [] }
+&{operator!= QRegion::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false false  bool [0xc8221e8840] }
+&{operator& QRegion::operator& commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false true 2 QRegion [0xc8221e8a00] }
+&{operator& QRegion::operator& commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false false  QRegion [0xc8221e8bc0] }
+&{operator&= QRegion::operator&= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false true 2 QRegion & [0xc8221e8d80] }
+&{operator+ QRegion::operator+ commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false true 2 QRegion [0xc8221e8f40] }
+&{operator+ QRegion::operator+ commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false false  QRegion [0xc8221e9100] }
+&{operator- QRegion::operator- commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false false  QRegion [0xc8221e92c0] }
+&{operator= QRegion::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false true 2 QRegion & [0xc8221e9480] }
+&{operator^ QRegion::operator^ commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false false  QRegion [0xc8221e9640] }
+&{operator^= QRegion::operator^= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false false  QRegion & [0xc8221e9800] }
+&{operator| QRegion::operator| commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false false  QRegion [0xc8221e99c0] }
+&{operator|= QRegion::operator|= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false false  QRegion & [0xc8221e9b80] }
+&{swap QRegion::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false false  void [0xc8221e9ec0] }
+&{translate QRegion::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false true 2 void [0xc8221fe080] }
+&{translated QRegion::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false true 2 QRegion [0xc8221fe240] }
+&{translated QRegion::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qregion.h non plain false false  QRegion [0xc8221fe400 0xc8221fe480] }
+########################################			ENUMS			########################################
+&{RegionType QRegion::RegionType commendable public  [0xc8221d3900 0xc8221d3980]}

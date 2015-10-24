@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QSignalBlocker QSignalBlocker::QSignalBlocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non constructor false true 3  [0xc82044ae20] }
+&{QSignalBlocker QSignalBlocker::QSignalBlocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non constructor false false   [0xc82044b060] }
+&{QSignalBlocker QSignalBlocker::QSignalBlocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non constructor false true 2  [0xc82044b2a0] }
+&{operator= QSignalBlocker::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  QSignalBlocker & [0xc82044b560] }
+&{reblock QSignalBlocker::reblock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  void [] }
+&{unblock QSignalBlocker::unblock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  void [] }
+&{~QSignalBlocker QSignalBlocker::~QSignalBlocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non destructor false false   [] }
+########################################			ENUMS			########################################

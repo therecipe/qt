@@ -1,0 +1,46 @@
+########################################			FUNCTIONS			########################################
+&{setSizeConstraint QLayout::setSizeConstraint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.cpp non plain false false  void [0xc8222ecbc0] }
+&{setSpacing QLayout::setSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.cpp non plain false false  void [0xc8222ece60] }
+&{sizeConstraint QLayout::sizeConstraint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.cpp non plain false false  SizeConstraint [] }
+&{spacing QLayout::spacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.cpp non plain false false  int [] }
+&{QLayout QLayout::QLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non constructor false true 2  [] }
+&{QLayout QLayout::QLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non constructor false false   [0xc8222ed9e0] }
+&{activate QLayout::activate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  bool [] }
+&{addChildLayout QLayout::addChildLayout commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  void [0xc8222fc080] }
+&{addChildWidget QLayout::addChildWidget commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  void [0xc8222fc3c0] }
+&{addItem QLayout::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h pure plain false false  void [0xc8222fc5e0] }
+&{addWidget QLayout::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  void [0xc8222fc840] }
+&{alignmentRect QLayout::alignmentRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  QRect [0xc8222fcd00] }
+&{childEvent QLayout::childEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h impure plain false false  void [0xc8222fcf40] }
+&{closestAcceptableSize QLayout::closestAcceptableSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain true false  QSize [0xc8222fd200 0xc8222fd280] }
+&{contentsMargins QLayout::contentsMargins commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  QMargins [] }
+&{contentsRect QLayout::contentsRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  QRect [] }
+&{controlTypes QLayout::controlTypes commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h impure plain false false  QSizePolicy::ControlTypes [] }
+&{count QLayout::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h pure plain false false  int [] }
+&{expandingDirections QLayout::expandingDirections commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h impure plain false false  Qt::Orientations [] }
+&{geometry QLayout::geometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h impure plain false false  QRect [] }
+&{getContentsMargins QLayout::getContentsMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  void [0xc8222fdce0 0xc8222fddc0 0xc8222fde80 0xc8222fdf20] }
+&{indexOf QLayout::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h impure plain false false  int [0xc8223100c0] }
+&{invalidate QLayout::invalidate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h impure plain false false  void [] }
+&{isEmpty QLayout::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h impure plain false false  bool [] }
+&{isEnabled QLayout::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  bool [] }
+&{itemAt QLayout::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h pure plain false false  QLayoutItem * [0xc822310600] }
+&{layout QLayout::layout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h impure plain false false  QLayout * [] }
+&{maximumSize QLayout::maximumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h impure plain false false  QSize [] }
+&{menuBar QLayout::menuBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  QWidget * [] }
+&{minimumSize QLayout::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h impure plain false false  QSize [] }
+&{parentWidget QLayout::parentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  QWidget * [] }
+&{removeItem QLayout::removeItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  void [0xc822310ea0] }
+&{removeWidget QLayout::removeWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  void [0xc822311100] }
+&{replaceWidget QLayout::replaceWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  QLayoutItem * [0xc822311340 0xc8223113e0 0xc8223114a0] }
+&{setAlignment QLayout::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false true 2 bool [0xc822311740 0xc822311820] }
+&{setAlignment QLayout::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  bool [0xc822311a60 0xc822311b00] }
+&{setContentsMargins QLayout::setContentsMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false true 2 void [0xc822311d80] }
+&{setContentsMargins QLayout::setContentsMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  void [0xc822324020 0xc822324100 0xc822324180 0xc822324220] }
+&{setEnabled QLayout::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  void [0xc8223244a0] }
+&{setGeometry QLayout::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h impure plain false false  void [0xc822324720] }
+&{setMenuBar QLayout::setMenuBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  void [0xc822324c00] }
+&{takeAt QLayout::takeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h pure plain false false  QLayoutItem * [0xc822324d80] }
+&{update QLayout::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayout.h non plain false false  void [] }
+########################################			ENUMS			########################################
+&{SizeConstraint QLayout::SizeConstraint commendable public  [0xc8222ed3c0 0xc8222ed480 0xc8222ed560 0xc8222ed600 0xc8222ed6c0 0xc8222ed740]}

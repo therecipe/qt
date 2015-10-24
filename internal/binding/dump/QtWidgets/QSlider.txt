@@ -1,0 +1,18 @@
+########################################			FUNCTIONS			########################################
+&{setTickInterval QSlider::setTickInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.cpp non plain false false  void [0xc822d9cb20] }
+&{setTickPosition QSlider::setTickPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.cpp non plain false false  void [0xc822d9cfa0] }
+&{tickInterval QSlider::tickInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.cpp non plain false false  int [] }
+&{tickPosition QSlider::tickPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.cpp non plain false false  TickPosition [] }
+&{QSlider QSlider::QSlider commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.h non constructor false false   [0xc822d943a0] }
+&{QSlider QSlider::QSlider commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.h non constructor false true 2  [0xc822d945e0 0xc822d946c0] }
+&{event QSlider::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.h impure plain false false  bool [0xc822d94900] }
+&{initStyleOption QSlider::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.h non plain false false  void [0xc822d94d00] }
+&{minimumSizeHint QSlider::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.h impure plain false false  QSize [] }
+&{mouseMoveEvent QSlider::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.h impure plain false false  void [0xc822d95380] }
+&{mousePressEvent QSlider::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.h impure plain false false  void [0xc822d95640] }
+&{mouseReleaseEvent QSlider::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.h impure plain false false  void [0xc822d959a0] }
+&{paintEvent QSlider::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.h impure plain false false  void [0xc822d95dc0] }
+&{sizeHint QSlider::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.h impure plain false false  QSize [] }
+&{~QSlider QSlider::~QSlider commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qslider.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{TickPosition QSlider::TickPosition commendable public  [0xc822d9da20 0xc822d9dba0 0xc822d9dca0 0xc822d9dd60 0xc822d9dee0 0xc822d940a0]}

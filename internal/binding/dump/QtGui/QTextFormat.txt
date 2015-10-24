@@ -1,0 +1,61 @@
+########################################			FUNCTIONS			########################################
+&{QTextFormat QTextFormat::QTextFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non constructor false true 3  [0xc820314660] }
+&{operator= QTextFormat::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  QTextFormat & [0xc820315140] }
+&{operator== QTextFormat::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  bool [0xc820315c00] }
+&{setObjectIndex QTextFormat::setObjectIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  void [0xc82036c740] }
+&{QTextFormat QTextFormat::QTextFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non constructor false false   [] }
+&{QTextFormat QTextFormat::QTextFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non constructor false true 2  [0xc82055f400] }
+&{background QTextFormat::background commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QBrush [] }
+&{boolProperty QTextFormat::boolProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [0xc8205f2040] }
+&{brushProperty QTextFormat::brushProperty commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QBrush [0xc8205f22c0] }
+&{clearBackground QTextFormat::clearBackground commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [] }
+&{clearForeground QTextFormat::clearForeground commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [] }
+&{clearProperty QTextFormat::clearProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8205f27a0] }
+&{colorProperty QTextFormat::colorProperty commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QColor [0xc8205f29c0] }
+&{doubleProperty QTextFormat::doubleProperty commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [0xc8205f2c00] }
+&{foreground QTextFormat::foreground commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QBrush [] }
+&{hasProperty QTextFormat::hasProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [0xc8205f2fc0] }
+&{intProperty QTextFormat::intProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int [0xc8205f3240] }
+&{isBlockFormat QTextFormat::isBlockFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{isCharFormat QTextFormat::isCharFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{isEmpty QTextFormat::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{isFrameFormat QTextFormat::isFrameFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{isImageFormat QTextFormat::isImageFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{isListFormat QTextFormat::isListFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{isTableCellFormat QTextFormat::isTableCellFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{isTableFormat QTextFormat::isTableFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{isValid QTextFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{layoutDirection QTextFormat::layoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  Qt::LayoutDirection [] }
+&{lengthProperty QTextFormat::lengthProperty commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QTextLength [0xc820ae6420] }
+&{lengthVectorProperty QTextFormat::lengthVectorProperty commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QVector<QTextLength> [0xc820ae6b00] }
+&{merge QTextFormat::merge commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820ae71a0] }
+&{objectIndex QTextFormat::objectIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int [] }
+&{objectType QTextFormat::objectType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int [] }
+&{operator QVariant QTextFormat::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false   [] }
+&{operator!= QTextFormat::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [0xc82083e500] }
+&{penProperty QTextFormat::penProperty commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QPen [0xc82083ecc0] }
+&{properties QTextFormat::properties commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QMap<int, QVariant> [] }
+&{property QTextFormat::property commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QVariant [0xc82083f700] }
+&{propertyCount QTextFormat::propertyCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int [] }
+&{setBackground QTextFormat::setBackground commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820a30060] }
+&{setForeground QTextFormat::setForeground commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820a30260] }
+&{setLayoutDirection QTextFormat::setLayoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820a30560] }
+&{setObjectType QTextFormat::setObjectType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820a30820] }
+&{setProperty QTextFormat::setProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820a30a00 0xc820a30aa0] }
+&{setProperty QTextFormat::setProperty commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false true 2 void [0xc820a30cc0 0xc820a30dc0] }
+&{stringProperty QTextFormat::stringProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QString [0xc820a31020] }
+&{swap QTextFormat::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820a31240] }
+&{toBlockFormat QTextFormat::toBlockFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QTextBlockFormat [] }
+&{toCharFormat QTextFormat::toCharFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QTextCharFormat [] }
+&{toFrameFormat QTextFormat::toFrameFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QTextFrameFormat [] }
+&{toImageFormat QTextFormat::toImageFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QTextImageFormat [] }
+&{toListFormat QTextFormat::toListFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QTextListFormat [] }
+&{toTableCellFormat QTextFormat::toTableCellFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QTextTableCellFormat [] }
+&{toTableFormat QTextFormat::toTableFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QTextTableFormat [] }
+&{type QTextFormat::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int [] }
+&{~QTextFormat QTextFormat::~QTextFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{FormatType QTextFormat::FormatType commendable public  [0xc82036ce60 0xc82036cfc0 0xc82036d1c0 0xc82036d4a0 0xc82036d7e0 0xc82036da80 0xc82036dd20]}
+&{ObjectTypes QTextFormat::ObjectTypes commendable public  [0xc8203ae480 0xc8203ae5e0 0xc8203ae7c0 0xc8203ae9c0 0xc8203aeb80]}
+&{PageBreakFlag QTextFormat::PageBreakFlag commendable public QTextFormat::PageBreakFlags [0xc8203af140 0xc8203af320 0xc8203af540]}
+&{Property QTextFormat::Property commendable public  [0xc8203afa40 0xc8203afb20 0xc8203afc40 0xc8203afce0 0xc8203afe40 0xc8203aff80 0xc820a4c1a0 0xc820a4c320 0xc820a4c520 0xc820a4c660 0xc820a4c920 0xc820a4ca00 0xc820a4cbc0 0xc820a4cd00 0xc820a4cf00 0xc820a4d0a0 0xc820a4d220 0xc820a4d440 0xc820a4d680 0xc820a4d800 0xc820a4dba0 0xc820a4dee0 0xc8204660e0 0xc8204661e0 0xc820466260 0xc820466320 0xc820466400 0xc8204664e0 0xc8204665a0 0xc8204666a0 0xc820466740 0xc820466800 0xc820466980 0xc820466ac0 0xc820466b40 0xc820466c20 0xc820466cc0 0xc820466d60 0xc820466de0 0xc820466ec0 0xc820466f60 0xc820467020 0xc820467160 0xc820467240 0xc820467300 0xc820467400 0xc8204674a0 0xc820467540 0xc8204675e0 0xc8204676a0 0xc820467740 0xc8204677c0 0xc820467860 0xc820467900 0xc8204679a0 0xc820467a40 0xc820467b00 0xc820467b80 0xc820467c40 0xc820467ce0 0xc820467dc0 0xc820467e80 0xc820467f40 0xc820524020 0xc820524220 0xc820524480 0xc8205245e0 0xc820524800 0xc820524a20 0xc820524c00 0xc820524e00 0xc820524ec0 0xc820525260 0xc820525540 0xc8205258c0 0xc820525c60 0xc820525f40 0xc82055e140 0xc82055e1e0 0xc82055e400 0xc82055e560 0xc82055e640]}

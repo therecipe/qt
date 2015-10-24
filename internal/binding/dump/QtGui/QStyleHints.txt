@@ -1,0 +1,23 @@
+########################################			FUNCTIONS			########################################
+&{cursorFlashTime QStyleHints::cursorFlashTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  int [] }
+&{fontSmoothingGamma QStyleHints::fontSmoothingGamma commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  qreal [] }
+&{keyboardAutoRepeatRate QStyleHints::keyboardAutoRepeatRate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  int [] }
+&{keyboardInputInterval QStyleHints::keyboardInputInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  int [] }
+&{mouseDoubleClickInterval QStyleHints::mouseDoubleClickInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  int [] }
+&{mousePressAndHoldInterval QStyleHints::mousePressAndHoldInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  int [] }
+&{passwordMaskCharacter QStyleHints::passwordMaskCharacter commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  QChar [] }
+&{passwordMaskDelay QStyleHints::passwordMaskDelay commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  int [] }
+&{setFocusOnTouchRelease QStyleHints::setFocusOnTouchRelease commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  bool [] }
+&{showIsFullScreen QStyleHints::showIsFullScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  bool [] }
+&{singleClickActivation QStyleHints::singleClickActivation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  bool [] }
+&{startDragDistance QStyleHints::startDragDistance commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  int [] }
+&{startDragTime QStyleHints::startDragTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  int [] }
+&{startDragVelocity QStyleHints::startDragVelocity commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  int [] }
+&{tabFocusBehavior QStyleHints::tabFocusBehavior commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  Qt::TabFocusBehavior [] }
+&{useRtlExtensions QStyleHints::useRtlExtensions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.cpp non plain false false  bool [] }
+&{cursorFlashTimeChanged QStyleHints::cursorFlashTimeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.h non signal false false  void [0xc8205862a0] }
+&{keyboardInputIntervalChanged QStyleHints::keyboardInputIntervalChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.h non signal false false  void [0xc8205865c0] }
+&{mouseDoubleClickIntervalChanged QStyleHints::mouseDoubleClickIntervalChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.h non signal false false  void [0xc820586960] }
+&{startDragDistanceChanged QStyleHints::startDragDistanceChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.h non signal false false  void [0xc820587aa0] }
+&{startDragTimeChanged QStyleHints::startDragTimeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qstylehints.h non signal false false  void [0xc820587d80] }
+########################################			ENUMS			########################################

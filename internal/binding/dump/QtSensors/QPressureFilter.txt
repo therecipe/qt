@@ -1,0 +1,3 @@
+########################################			FUNCTIONS			########################################
+&{filter QPressureFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qpressuresensor.h pure plain false false  bool [0xc822e3ef00] }
+########################################			ENUMS			########################################

@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{QTcpServer QTcpServer::QTcpServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non constructor false false   [0xc82310c3c0] }
+&{acceptError QTcpServer::acceptError commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non signal false false  void [0xc82310c9a0] }
+&{addPendingConnection QTcpServer::addPendingConnection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  void [0xc82310cc60] }
+&{close QTcpServer::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  void [] }
+&{errorString QTcpServer::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  QString [] }
+&{hasPendingConnections QTcpServer::hasPendingConnections commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h impure plain false false  bool [] }
+&{incomingConnection QTcpServer::incomingConnection commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h impure plain false false  void [0xc82310d260] }
+&{isListening QTcpServer::isListening commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  bool [] }
+&{listen QTcpServer::listen commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  bool [0xc82310d680 0xc82310d760] }
+&{maxPendingConnections QTcpServer::maxPendingConnections commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  int [] }
+&{newConnection QTcpServer::newConnection commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non signal false false  void [] }
+&{nextPendingConnection QTcpServer::nextPendingConnection commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h impure plain false false  QTcpSocket * [] }
+&{pauseAccepting QTcpServer::pauseAccepting commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  void [] }
+&{proxy QTcpServer::proxy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  QNetworkProxy [] }
+&{resumeAccepting QTcpServer::resumeAccepting commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  void [] }
+&{serverAddress QTcpServer::serverAddress commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  QHostAddress [] }
+&{serverError QTcpServer::serverError commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  QAbstractSocket::SocketError [] }
+&{serverPort QTcpServer::serverPort commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  quint16 [] }
+&{setMaxPendingConnections QTcpServer::setMaxPendingConnections commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  void [0xc8230f64a0] }
+&{setProxy QTcpServer::setProxy commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  void [0xc8230f66e0] }
+&{setSocketDescriptor QTcpServer::setSocketDescriptor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  bool [0xc8230f69e0] }
+&{socketDescriptor QTcpServer::socketDescriptor commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  qintptr [] }
+&{waitForNewConnection QTcpServer::waitForNewConnection commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h non plain false false  bool [0xc8230f6da0 0xc8230f6e20] }
+&{~QTcpServer QTcpServer::~QTcpServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpserver.h impure destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QCameraExposureControl QCameraExposureControl::QCameraExposureControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraexposurecontrol.h non constructor false false   [0xc8226b1800] }
+&{actualValue QCameraExposureControl::actualValue commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraexposurecontrol.h pure plain false false  QVariant [0xc8226b1b00] }
+&{actualValueChanged QCameraExposureControl::actualValueChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraexposurecontrol.h non signal false false  void [0xc8226b1f20] }
+&{isParameterSupported QCameraExposureControl::isParameterSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraexposurecontrol.h pure plain false false  bool [0xc8226bc240] }
+&{parameterRangeChanged QCameraExposureControl::parameterRangeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraexposurecontrol.h non signal false false  void [0xc8226bc5c0] }
+&{requestedValue QCameraExposureControl::requestedValue commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraexposurecontrol.h pure plain false false  QVariant [0xc8226bc8c0] }
+&{requestedValueChanged QCameraExposureControl::requestedValueChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraexposurecontrol.h non signal false false  void [0xc8226bcc00] }
+&{setValue QCameraExposureControl::setValue commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraexposurecontrol.h pure plain false false  bool [0xc8226bcec0 0xc8226bd020] }
+&{supportedParameterRange QCameraExposureControl::supportedParameterRange commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraexposurecontrol.h pure plain false false  QVariantList [0xc8226bd320 0xc8226bd460] }
+&{~QCameraExposureControl QCameraExposureControl::~QCameraExposureControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameraexposurecontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ExposureParameter QCameraExposureControl::ExposureParameter commendable public  [0xc8226b05c0 0xc8226b06c0 0xc8226b07a0 0xc8226b0900 0xc8226b0ac0 0xc8226b0be0 0xc8226b0d80 0xc8226b0f20 0xc8226b10c0 0xc8226b1200 0xc8226b1380]}

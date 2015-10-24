@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{blockUpdates QWebChannel::blockUpdates commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannel.cpp non plain false false  bool [] }
+&{setBlockUpdates QWebChannel::setBlockUpdates commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannel.cpp non plain false false  void [0xc822895160] }
+&{QWebChannel QWebChannel::QWebChannel commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannel.h non constructor false false   [0xc822895340] }
+&{blockUpdatesChanged QWebChannel::blockUpdatesChanged commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannel.h non signal false false  void [0xc822895a00] }
+&{connectTo QWebChannel::connectTo commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannel.h non slot false false  void [0xc822895be0] }
+&{deregisterObject QWebChannel::deregisterObject commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannel.h non plain false false  void [0xc822895dc0] }
+&{disconnectFrom QWebChannel::disconnectFrom commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannel.h non slot false false  void [0xc822895fc0] }
+&{registerObject QWebChannel::registerObject commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannel.h non plain false false  void [0xc8228c41c0 0xc8228c4240] }
+&{registerObjects QWebChannel::registerObjects commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannel.h non plain false false  void [0xc8228c4400] }
+&{registeredObjects QWebChannel::registeredObjects commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannel.h non plain false false  QHash<QString, QObject *> [] }
+&{~QWebChannel QWebChannel::~QWebChannel commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannel.h non destructor false false   [] }
+########################################			ENUMS			########################################

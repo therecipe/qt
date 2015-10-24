@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceContactDetail QPlaceContactDetail::QPlaceContactDetail commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontactdetail.h non constructor false false   [] }
+&{QPlaceContactDetail QPlaceContactDetail::QPlaceContactDetail commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontactdetail.h non constructor false true 2  [0xc82210d920] }
+&{clear QPlaceContactDetail::clear commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontactdetail.h non plain false false  void [] }
+&{label QPlaceContactDetail::label commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontactdetail.h non plain false false  QString [] }
+&{operator!= QPlaceContactDetail::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontactdetail.h non plain false false  bool [0xc82211c020] }
+&{operator= QPlaceContactDetail::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontactdetail.h non plain false false  QPlaceContactDetail & [0xc82211c5a0] }
+&{operator== QPlaceContactDetail::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontactdetail.h non plain false false  bool [0xc82211c9c0] }
+&{setLabel QPlaceContactDetail::setLabel commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontactdetail.h non plain false false  void [0xc82211cee0] }
+&{setValue QPlaceContactDetail::setValue commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontactdetail.h non plain false false  void [0xc82211d300] }
+&{value QPlaceContactDetail::value commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontactdetail.h non plain false false  QString [] }
+&{~QPlaceContactDetail QPlaceContactDetail::~QPlaceContactDetail commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecontactdetail.h impure destructor false false   [] }
+########################################			ENUMS			########################################

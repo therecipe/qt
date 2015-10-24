@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QHoverEvent QHoverEvent::QHoverEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc8208ae980 0xc8208aea20 0xc8208aeb00 0xc8208aec60] }
+&{oldPos QHoverEvent::oldPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
+&{oldPosF QHoverEvent::oldPosF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
+&{pos QHoverEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
+&{posF QHoverEvent::posF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
+########################################			ENUMS			########################################

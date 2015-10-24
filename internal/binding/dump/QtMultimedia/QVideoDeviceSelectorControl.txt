@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QVideoDeviceSelectorControl QVideoDeviceSelectorControl::QVideoDeviceSelectorControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideodeviceselectorcontrol.h non constructor false false   [0xc821aba7c0] }
+&{defaultDevice QVideoDeviceSelectorControl::defaultDevice commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideodeviceselectorcontrol.h pure plain false false  int [] }
+&{deviceCount QVideoDeviceSelectorControl::deviceCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideodeviceselectorcontrol.h pure plain false false  int [] }
+&{deviceDescription QVideoDeviceSelectorControl::deviceDescription commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideodeviceselectorcontrol.h pure plain false false  QString [0xc821abaea0] }
+&{deviceName QVideoDeviceSelectorControl::deviceName commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideodeviceselectorcontrol.h pure plain false false  QString [0xc821abb1a0] }
+&{devicesChanged QVideoDeviceSelectorControl::devicesChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideodeviceselectorcontrol.h non signal false false  void [] }
+&{selectedDevice QVideoDeviceSelectorControl::selectedDevice commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideodeviceselectorcontrol.h pure plain false false  int [] }
+&{selectedDeviceChanged QVideoDeviceSelectorControl::selectedDeviceChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideodeviceselectorcontrol.h non signal false true 2 void [0xc821abb7c0] }
+&{selectedDeviceChanged QVideoDeviceSelectorControl::selectedDeviceChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideodeviceselectorcontrol.h non signal false false  void [0xc821abbc00] }
+&{setSelectedDevice QVideoDeviceSelectorControl::setSelectedDevice commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideodeviceselectorcontrol.h pure slot false false  void [0xc821abbf80] }
+&{~QVideoDeviceSelectorControl QVideoDeviceSelectorControl::~QVideoDeviceSelectorControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideodeviceselectorcontrol.h impure destructor false false   [] }
+########################################			ENUMS			########################################

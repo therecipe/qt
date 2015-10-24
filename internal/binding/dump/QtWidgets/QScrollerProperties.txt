@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QScrollerProperties QScrollerProperties::QScrollerProperties commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscrollerproperties.h non constructor false false   [] }
+&{QScrollerProperties QScrollerProperties::QScrollerProperties commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscrollerproperties.h non constructor false true 2  [0xc821293120] }
+&{operator!= QScrollerProperties::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscrollerproperties.h non plain false false  bool [0xc821293900] }
+&{operator= QScrollerProperties::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscrollerproperties.h non plain false false  QScrollerProperties & [0xc821293e00] }
+&{operator== QScrollerProperties::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscrollerproperties.h non plain false false  bool [0xc821284260] }
+&{scrollMetric QScrollerProperties::scrollMetric commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscrollerproperties.h non plain false false  QVariant [0xc821284560] }
+&{setDefaultScrollerProperties QScrollerProperties::setDefaultScrollerProperties commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscrollerproperties.h non plain true false  void [0xc8212848c0] }
+&{setScrollMetric QScrollerProperties::setScrollMetric commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscrollerproperties.h non plain false false  void [0xc821284ca0 0xc821284d60] }
+&{unsetDefaultScrollerProperties QScrollerProperties::unsetDefaultScrollerProperties commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscrollerproperties.h non plain true false  void [] }
+&{~QScrollerProperties QScrollerProperties::~QScrollerProperties commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscrollerproperties.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{FrameRates QScrollerProperties::FrameRates commendable public  [0xc8212b5f20 0xc8212a4020 0xc8212a4120 0xc8212a4260]}
+&{OvershootPolicy QScrollerProperties::OvershootPolicy commendable public  [0xc8212a4540 0xc8212a4720 0xc8212a4940]}
+&{ScrollMetric QScrollerProperties::ScrollMetric commendable public  [0xc8212a4ca0 0xc8212a4e20 0xc8212a5000 0xc8212a51a0 0xc8212a5340 0xc8212a5480 0xc8212a55e0 0xc8212a5680 0xc8212a5800 0xc8212a5980 0xc8212a5b60 0xc8212a5ce0 0xc8212a5e20 0xc8212a5f20 0xc821292160 0xc821292300 0xc821292500 0xc821292660 0xc8212927e0 0xc8212929c0 0xc821292ae0]}

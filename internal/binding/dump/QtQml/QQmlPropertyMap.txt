@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QQmlPropertyMap QQmlPropertyMap::QQmlPropertyMap commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non constructor false false   [0xc821eb8340] }
+&{QQmlPropertyMap QQmlPropertyMap::QQmlPropertyMap commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non constructor false true 2  [0xc821eb8660 0xc821eb87a0] }
+&{clear QQmlPropertyMap::clear commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non plain false false  void [0xc821eb8ec0] }
+&{contains QQmlPropertyMap::contains commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non plain false false  bool [0xc821eb9300] }
+&{count QQmlPropertyMap::count commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non plain false false  int [] }
+&{insert QQmlPropertyMap::insert commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non plain false false  void [0xc8220b0040 0xc8220b00c0] }
+&{isEmpty QQmlPropertyMap::isEmpty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non plain false false  bool [] }
+&{keys QQmlPropertyMap::keys commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non plain false false  QStringList [] }
+&{operator[] QQmlPropertyMap::operator[] commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non plain false false  QVariant & [0xc8220b08a0] }
+&{operator[] QQmlPropertyMap::operator[] commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non plain false true 2 QVariant [0xc8220b0c60] }
+&{size QQmlPropertyMap::size commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non plain false false  int [] }
+&{updateValue QQmlPropertyMap::updateValue commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h impure plain false false  QVariant [0xc8220b1180 0xc8220b1240] }
+&{value QQmlPropertyMap::value commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non plain false false  QVariant [0xc8220b1560] }
+&{valueChanged QQmlPropertyMap::valueChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h non signal false false  void [0xc8220b18c0 0xc8220b19a0] }
+&{~QQmlPropertyMap QQmlPropertyMap::~QQmlPropertyMap commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/util/qqmlpropertymap.h impure destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QSupportedWritingSystems QSupportedWritingSystems::QSupportedWritingSystems commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qplatformfontdatabase.h non constructor false false   [] }
+&{QSupportedWritingSystems QSupportedWritingSystems::QSupportedWritingSystems commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qplatformfontdatabase.h non constructor false true 2  [0xc8232545e0] }
+&{operator= QSupportedWritingSystems::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qplatformfontdatabase.h non plain false false  QSupportedWritingSystems & [0xc8232548e0] }
+&{setSupported QSupportedWritingSystems::setSupported commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qplatformfontdatabase.h non plain false false  void [0xc823254ac0 0xc823254b80] }
+&{supported QSupportedWritingSystems::supported commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qplatformfontdatabase.h non plain false false  bool [0xc823254d00] }
+&{~QSupportedWritingSystems QSupportedWritingSystems::~QSupportedWritingSystems commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qplatformfontdatabase.h non destructor false false   [] }
+########################################			ENUMS			########################################

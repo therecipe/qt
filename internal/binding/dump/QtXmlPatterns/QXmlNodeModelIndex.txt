@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QXmlNodeModelIndex QXmlNodeModelIndex::QXmlNodeModelIndex commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non constructor false false   [] }
+&{QXmlNodeModelIndex QXmlNodeModelIndex::QXmlNodeModelIndex commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non constructor false true 2  [0xc821bfe300] }
+&{additionalData QXmlNodeModelIndex::additionalData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  qint64 [] }
+&{data QXmlNodeModelIndex::data commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  qint64 [] }
+&{internalPointer QXmlNodeModelIndex::internalPointer commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  void * [] }
+&{isNull QXmlNodeModelIndex::isNull commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  bool [] }
+&{model QXmlNodeModelIndex::model commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  const QAbstractXmlNodeModel * [] }
+&{operator!= QXmlNodeModelIndex::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  bool [0xc8221bc7c0] }
+&{operator== QXmlNodeModelIndex::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  bool [0xc8221bcae0] }
+########################################			ENUMS			########################################
+&{DocumentOrder QXmlNodeModelIndex::DocumentOrder commendable public  [0xc821b82b40 0xc821b82c80 0xc821b82d80]}
+&{NodeKind QXmlNodeModelIndex::NodeKind commendable public  [0xc821b831c0 0xc821b83380 0xc821b83440 0xc821b83560 0xc821b83700 0xc821b83880 0xc821b83a40]}

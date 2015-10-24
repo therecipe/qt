@@ -1,0 +1,33 @@
+########################################			FUNCTIONS			########################################
+&{QFuture QFuture::QFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non constructor false false   [] }
+&{QFuture QFuture::QFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non constructor false true 3  [0xc8206bce00] }
+&{begin QFuture::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  const_iterator [] }
+&{cancel QFuture::cancel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void [] }
+&{constBegin QFuture::constBegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  const_iterator [] }
+&{constEnd QFuture::constEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  const_iterator [] }
+&{end QFuture::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  const_iterator [] }
+&{isCanceled QFuture::isCanceled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool [] }
+&{isFinished QFuture::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool [] }
+&{isPaused QFuture::isPaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool [] }
+&{isResultReadyAt QFuture::isResultReadyAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool [0xc8206bd840] }
+&{isRunning QFuture::isRunning commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool [] }
+&{isStarted QFuture::isStarted commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool [] }
+&{operator T QFuture::operator T commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false   [] }
+&{operator!= QFuture::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool [0xc8206bdd00] }
+&{operator= QFuture::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  QFuture & [0xc8206bdee0] }
+&{operator== QFuture::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool [0xc8206d60a0] }
+&{pause QFuture::pause commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void [] }
+&{progressMaximum QFuture::progressMaximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  int [] }
+&{progressMinimum QFuture::progressMinimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  int [] }
+&{progressText QFuture::progressText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  QString [] }
+&{progressValue QFuture::progressValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  int [] }
+&{result QFuture::result commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  T [] }
+&{resultAt QFuture::resultAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  T [0xc8206d6780] }
+&{resultCount QFuture::resultCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  int [] }
+&{results QFuture::results commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  QList<T> [] }
+&{resume QFuture::resume commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void [] }
+&{setPaused QFuture::setPaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void [0xc8206d6b80] }
+&{togglePaused QFuture::togglePaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void [] }
+&{waitForFinished QFuture::waitForFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void [] }
+&{~QFuture QFuture::~QFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non destructor false false   [] }
+########################################			ENUMS			########################################

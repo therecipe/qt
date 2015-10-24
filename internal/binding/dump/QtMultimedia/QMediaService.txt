@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QMediaService QMediaService::QMediaService commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaservice.h non constructor false false   [0xc821917360] }
+&{releaseControl QMediaService::releaseControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaservice.h pure plain false false  void [0xc821917ba0] }
+&{requestControl QMediaService::requestControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaservice.h pure plain false false  QMediaControl * [0xc821917f00] }
+&{requestControl QMediaService::requestControl commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaservice.h non plain false true 2 T [] }
+&{~QMediaService QMediaService::~QMediaService commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaservice.h non destructor false false   [] }
+########################################			ENUMS			########################################

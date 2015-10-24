@@ -1,0 +1,23 @@
+########################################			FUNCTIONS			########################################
+&{QStaticText QStaticText::QStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non constructor false false   [] }
+&{QStaticText QStaticText::QStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non constructor false true 3  [0xc8232887c0] }
+&{QStaticText QStaticText::QStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non constructor false true 2  [0xc8232889e0] }
+&{operator!= QStaticText::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  bool [0xc823288cc0] }
+&{operator= QStaticText::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  QStaticText & [0xc823288ee0] }
+&{operator== QStaticText::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  bool [0xc823289100] }
+&{performanceHint QStaticText::performanceHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  PerformanceHint [] }
+&{prepare QStaticText::prepare commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void [0xc823289420 0xc8232894e0] }
+&{setPerformanceHint QStaticText::setPerformanceHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void [0xc8232896e0] }
+&{setText QStaticText::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void [0xc8232898a0] }
+&{setTextFormat QStaticText::setTextFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void [0xc823289a60] }
+&{setTextOption QStaticText::setTextOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void [0xc823289c40] }
+&{setTextWidth QStaticText::setTextWidth commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void [0xc823289e40] }
+&{size QStaticText::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  QSizeF [] }
+&{swap QStaticText::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void [0xc82329c120] }
+&{text QStaticText::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  QString [] }
+&{textFormat QStaticText::textFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  Qt::TextFormat [] }
+&{textOption QStaticText::textOption commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  QTextOption [] }
+&{textWidth QStaticText::textWidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  qreal [] }
+&{~QStaticText QStaticText::~QStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{PerformanceHint QStaticText::PerformanceHint commendable public  [0xc8232883e0 0xc823288480]}

@@ -1,0 +1,3 @@
+########################################			FUNCTIONS			########################################
+&{filter QMagnetometerFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.h pure plain false false  bool [0xc822e71b40] }
+########################################			ENUMS			########################################

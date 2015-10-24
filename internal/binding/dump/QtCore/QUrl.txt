@@ -1,0 +1,74 @@
+########################################			FUNCTIONS			########################################
+&{fromEncoded QUrl::fromEncoded commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.cpp non plain true false  QUrl [0xc8202081e0 0xc8202082e0] }
+&{QUrl QUrl::QUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non constructor false false   [] }
+&{QUrl QUrl::QUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non constructor false true 4  [0xc820200700] }
+&{QUrl QUrl::QUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non constructor false true 3  [0xc8202008c0 0xc820200980] }
+&{QUrl QUrl::QUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non constructor false true 2  [0xc820200b80] }
+&{adjusted QUrl::adjusted commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QUrl [0xc820201520] }
+&{authority QUrl::authority commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc820201e00] }
+&{clear QUrl::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [] }
+&{errorString QUrl::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [] }
+&{fileName QUrl::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc8201f5720] }
+&{fragment QUrl::fragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc8201f5980] }
+&{fromAce QUrl::fromAce commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain true false  QString [0xc8201f5be0] }
+&{fromLocalFile QUrl::fromLocalFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain true false  QUrl [0xc8201f5e80] }
+&{fromPercentEncoding QUrl::fromPercentEncoding commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain true false  QString [0xc8201ea1c0] }
+&{fromStringList QUrl::fromStringList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain true false  QList<QUrl> [0xc8201ea7a0 0xc8201ea8a0] }
+&{fromUserInput QUrl::fromUserInput commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain true false  QUrl [0xc8201eaae0] }
+&{fromUserInput QUrl::fromUserInput commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain true true 2 QUrl [0xc8201ead40 0xc8201eade0 0xc8201eaee0] }
+&{hasFragment QUrl::hasFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  bool [] }
+&{hasQuery QUrl::hasQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  bool [] }
+&{host QUrl::host commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc8201eb8c0] }
+&{idnWhitelist QUrl::idnWhitelist commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain true false  QStringList [] }
+&{isEmpty QUrl::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  bool [] }
+&{isLocalFile QUrl::isLocalFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  bool [] }
+&{isParentOf QUrl::isParentOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  bool [0xc8201ebe60] }
+&{isRelative QUrl::isRelative commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  bool [] }
+&{isValid QUrl::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  bool [] }
+&{matches QUrl::matches commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  bool [0xc8201dc200 0xc8201dc2c0] }
+&{operator!= QUrl::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  bool [0xc8201dc500] }
+&{operator= QUrl::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false true 3 QUrl & [0xc8201dc700] }
+&{operator= QUrl::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false true 2 QUrl & [0xc8201dc8c0] }
+&{operator= QUrl::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QUrl & [0xc8201dcaa0] }
+&{operator== QUrl::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  bool [0xc8201dcc60] }
+&{password QUrl::password commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc8201dce60] }
+&{path QUrl::path commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc8201dd0a0] }
+&{port QUrl::port commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  int [0xc8201dd2c0] }
+&{query QUrl::query commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc8201dd4a0] }
+&{resolved QUrl::resolved commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QUrl [0xc8201d2540] }
+&{scheme QUrl::scheme commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [] }
+&{setAuthority QUrl::setAuthority commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [0xc8201d2860 0xc8201d2900] }
+&{setFragment QUrl::setFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [0xc8201ca300 0xc8201ca3a0] }
+&{setHost QUrl::setHost commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [0xc8201ca560 0xc8201ca620] }
+&{setIdnWhitelist QUrl::setIdnWhitelist commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain true false  void [0xc8201ca8c0] }
+&{setPassword QUrl::setPassword commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [0xc8201cab20 0xc8201cabc0] }
+&{setPath QUrl::setPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [0xc8201cada0 0xc8201cae40] }
+&{setPort QUrl::setPort commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [0xc8201cb040] }
+&{setQuery QUrl::setQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [0xc8201cb220 0xc8201cb2c0] }
+&{setQuery QUrl::setQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false true 2 void [0xc8201cb4e0] }
+&{setScheme QUrl::setScheme commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [0xc8201cb980] }
+&{setUrl QUrl::setUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [0xc8201cbb20 0xc8201cbba0] }
+&{setUserInfo QUrl::setUserInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [0xc8201cbe00 0xc8201cbea0] }
+&{setUserName QUrl::setUserName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [0xc8201c4100 0xc8201c41a0] }
+&{swap QUrl::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  void [0xc8201c43a0] }
+&{toAce QUrl::toAce commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain true false  QByteArray [0xc8201c4540] }
+&{toDisplayString QUrl::toDisplayString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc8201c47c0] }
+&{toEncoded QUrl::toEncoded commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QByteArray [0xc8201c4a20] }
+&{toLocalFile QUrl::toLocalFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [] }
+&{toPercentEncoding QUrl::toPercentEncoding commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain true false  QByteArray [0xc8201c4e60 0xc8201c4f20 0xc8201c5040] }
+&{toString QUrl::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc8201c54a0] }
+&{toStringList QUrl::toStringList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain true false  QStringList [0xc8201c5780 0xc8201c58a0] }
+&{topLevelDomain QUrl::topLevelDomain commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc8201c5b80] }
+&{url QUrl::url commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc8201c5d80] }
+&{userInfo QUrl::userInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc8201c5fe0] }
+&{userName QUrl::userName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non plain false false  QString [0xc8201b6220] }
+&{~QUrl QUrl::~QUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl.h non destructor false false   [] }
+&{fromCFURL QUrl::fromCFURL commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl_mac.mm non plain true false  QUrl [0xc8201b64e0] }
+&{fromNSURL QUrl::fromNSURL commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl_mac.mm non plain true false  QUrl [0xc8201b6740] }
+&{toCFURL QUrl::toCFURL commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl_mac.mm non plain false false  CFURLRef [] }
+&{toNSURL QUrl::toNSURL commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurl_mac.mm non plain false false  NSURL * [] }
+########################################			ENUMS			########################################
+&{ComponentFormattingOption QUrl::ComponentFormattingOption commendable public QUrl::ComponentFormattingOptions [0xc820208660 0xc820208700 0xc8202087c0 0xc820208880 0xc8202089c0 0xc820208a60 0xc820208b00 0xc820208bc0]}
+&{ParsingMode QUrl::ParsingMode commendable public  [0xc820208e20 0xc820208ec0 0xc820208f80]}
+&{UrlFormattingOption QUrl::UrlFormattingOption commendable public QUrl::FormattingOptions [0xc8202092c0 0xc820209360 0xc820209420 0xc8202094e0 0xc820209600 0xc8202096c0 0xc820209780 0xc820209820 0xc8202098e0 0xc8202099a0 0xc820209a80 0xc820209b80 0xc820209c60]}
+&{UserInputResolutionOption QUrl::UserInputResolutionOption commendable public QUrl::UserInputResolutionOptions [0xc820200000 0xc820200100]}

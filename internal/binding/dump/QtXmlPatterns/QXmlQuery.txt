@@ -1,0 +1,39 @@
+########################################			FUNCTIONS			########################################
+&{QXmlQuery QXmlQuery::QXmlQuery commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non constructor false false   [] }
+&{QXmlQuery QXmlQuery::QXmlQuery commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non constructor false true 4  [0xc822b7eb80 0xc822b7ed00] }
+&{QXmlQuery QXmlQuery::QXmlQuery commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non constructor false true 3  [0xc822b7f0c0] }
+&{QXmlQuery QXmlQuery::QXmlQuery commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non constructor false true 2  [0xc822b7f520] }
+&{bindVariable QXmlQuery::bindVariable commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 5 void [0xc822b7f980 0xc822b7fa20] }
+&{bindVariable QXmlQuery::bindVariable commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 4 void [0xc822b7fdc0 0xc822b7fec0] }
+&{bindVariable QXmlQuery::bindVariable commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 6 void [0xc82227a1e0 0xc82227a300] }
+&{bindVariable QXmlQuery::bindVariable commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 2 void [0xc82227a6e0 0xc82227a7c0] }
+&{bindVariable QXmlQuery::bindVariable commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  void [0xc82227ab00 0xc82227aba0] }
+&{bindVariable QXmlQuery::bindVariable commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 3 void [0xc82227ae80 0xc82227af80] }
+&{evaluateTo QXmlQuery::evaluateTo commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 2 bool [0xc82227b300] }
+&{evaluateTo QXmlQuery::evaluateTo commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 5 bool [0xc82227b580] }
+&{evaluateTo QXmlQuery::evaluateTo commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 4 bool [0xc82227b7a0] }
+&{evaluateTo QXmlQuery::evaluateTo commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 3 bool [0xc82227b9e0] }
+&{evaluateTo QXmlQuery::evaluateTo commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  void [0xc82227bc00] }
+&{initialTemplateName QXmlQuery::initialTemplateName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  QXmlName [] }
+&{isValid QXmlQuery::isValid commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  bool [] }
+&{messageHandler QXmlQuery::messageHandler commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  QAbstractMessageHandler * [] }
+&{namePool QXmlQuery::namePool commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  QXmlNamePool [] }
+&{networkAccessManager QXmlQuery::networkAccessManager commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  QNetworkAccessManager * [] }
+&{operator= QXmlQuery::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  QXmlQuery & [0xc8220b0be0] }
+&{queryLanguage QXmlQuery::queryLanguage commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  QueryLanguage [] }
+&{setFocus QXmlQuery::setFocus commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 3 bool [0xc8220b1280] }
+&{setFocus QXmlQuery::setFocus commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 4 bool [0xc8220b15c0] }
+&{setFocus QXmlQuery::setFocus commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 2 bool [0xc8220b1960] }
+&{setFocus QXmlQuery::setFocus commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  void [0xc8220b1c80] }
+&{setInitialTemplateName QXmlQuery::setInitialTemplateName commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 2 void [0xc8220b1fa0] }
+&{setInitialTemplateName QXmlQuery::setInitialTemplateName commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  void [0xc821704260] }
+&{setMessageHandler QXmlQuery::setMessageHandler commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  void [0xc8217046c0] }
+&{setNetworkAccessManager QXmlQuery::setNetworkAccessManager commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  void [0xc8217049e0] }
+&{setQuery QXmlQuery::setQuery commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  void [0xc821704d00 0xc821704e00] }
+&{setQuery QXmlQuery::setQuery commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 3 void [0xc8217051a0 0xc8217053c0] }
+&{setQuery QXmlQuery::setQuery commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false true 2 void [0xc821705700 0xc8217057e0] }
+&{setUriResolver QXmlQuery::setUriResolver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  void [0xc821705be0] }
+&{uriResolver QXmlQuery::uriResolver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non plain false false  const QAbstractUriResolver * [] }
+&{~QXmlQuery QXmlQuery::~QXmlQuery commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlquery.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{QueryLanguage QXmlQuery::QueryLanguage commendable public  [0xc822b7e2e0 0xc822b7e380 0xc822b7e4a0 0xc822b7e580 0xc822b7e680]}

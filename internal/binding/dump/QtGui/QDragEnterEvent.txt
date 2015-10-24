@@ -1,0 +1,3 @@
+########################################			FUNCTIONS			########################################
+&{QDragEnterEvent QDragEnterEvent::QDragEnterEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc8208f9b80 0xc8208f9c00 0xc8208f9cc0 0xc8208f9de0 0xc8208f9ec0] }
+########################################			ENUMS			########################################

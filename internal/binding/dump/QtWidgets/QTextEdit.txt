@@ -1,0 +1,125 @@
+########################################			FUNCTIONS			########################################
+&{acceptRichText QTextEdit::acceptRichText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  bool [] }
+&{autoFormatting QTextEdit::autoFormatting commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  AutoFormatting [] }
+&{contextMenuEvent QTextEdit::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp impure plain false false  void [0xc82295cd80] }
+&{cursorWidth QTextEdit::cursorWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  int [] }
+&{document QTextEdit::document commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  QTextDocument * [] }
+&{find QTextEdit::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false true 2 bool [0xc82295d420 0xc82295d5e0] }
+&{isReadOnly QTextEdit::isReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  bool [] }
+&{lineWrapColumnOrWidth QTextEdit::lineWrapColumnOrWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  int [] }
+&{lineWrapMode QTextEdit::lineWrapMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  LineWrapMode [] }
+&{overwriteMode QTextEdit::overwriteMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  bool [] }
+&{paintEvent QTextEdit::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp impure plain false false  void [0xc8229681c0] }
+&{placeholderText QTextEdit::placeholderText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  QString [] }
+&{redo QTextEdit::redo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non slot false false  void [] }
+&{setAcceptRichText QTextEdit::setAcceptRichText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc822968860] }
+&{setAutoFormatting QTextEdit::setAutoFormatting commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc822968c80] }
+&{setCursorWidth QTextEdit::setCursorWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc822969060] }
+&{setDocument QTextEdit::setDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc822969340] }
+&{setFontWeight QTextEdit::setFontWeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non slot false false  void [0xc8229696c0] }
+&{setHtml QTextEdit::setHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non slot false false  void [0xc822969aa0] }
+&{setLineWrapColumnOrWidth QTextEdit::setLineWrapColumnOrWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc822969d60] }
+&{setLineWrapMode QTextEdit::setLineWrapMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc822946140] }
+&{setOverwriteMode QTextEdit::setOverwriteMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc8229464e0] }
+&{setPlaceholderText QTextEdit::setPlaceholderText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc822946880] }
+&{setReadOnly QTextEdit::setReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc822946c00] }
+&{setTabChangesFocus QTextEdit::setTabChangesFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc8229470a0] }
+&{setTabStopWidth QTextEdit::setTabStopWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc822947460] }
+&{setTextInteractionFlags QTextEdit::setTextInteractionFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc822947860] }
+&{setWordWrapMode QTextEdit::setWordWrapMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  void [0xc822947d40] }
+&{tabChangesFocus QTextEdit::tabChangesFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  bool [] }
+&{tabStopWidth QTextEdit::tabStopWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  int [] }
+&{textInteractionFlags QTextEdit::textInteractionFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  Qt::TextInteractionFlags [] }
+&{toHtml QTextEdit::toHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  QString [] }
+&{wordWrapMode QTextEdit::wordWrapMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non plain false false  QTextOption::WrapMode [] }
+&{zoomIn QTextEdit::zoomIn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non slot false false  void [0xc82226cd20] }
+&{zoomOut QTextEdit::zoomOut commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.cpp non slot false false  void [0xc82226d0a0] }
+&{QTextEdit QTextEdit::QTextEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non constructor false false   [0xc82227a560] }
+&{QTextEdit QTextEdit::QTextEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non constructor false true 2  [0xc82227aa00 0xc82227aae0] }
+&{alignment QTextEdit::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  Qt::Alignment [] }
+&{anchorAt QTextEdit::anchorAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QString [0xc822260320] }
+&{append QTextEdit::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc822260700] }
+&{canInsertFromMimeData QTextEdit::canInsertFromMimeData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  bool [0xc822260a60] }
+&{canPaste QTextEdit::canPaste commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  bool [] }
+&{changeEvent QTextEdit::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc8222610e0] }
+&{clear QTextEdit::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [] }
+&{copy QTextEdit::copy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [] }
+&{copyAvailable QTextEdit::copyAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non signal false false  void [0xc822261640] }
+&{createMimeDataFromSelection QTextEdit::createMimeDataFromSelection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  QMimeData * [] }
+&{createStandardContextMenu QTextEdit::createStandardContextMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QMenu * [] }
+&{createStandardContextMenu QTextEdit::createStandardContextMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false true 2 QMenu * [0xc822261bc0] }
+&{currentCharFormat QTextEdit::currentCharFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QTextCharFormat [] }
+&{currentCharFormatChanged QTextEdit::currentCharFormatChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non signal false false  void [0xc82228a100] }
+&{currentFont QTextEdit::currentFont commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QFont [] }
+&{cursorForPosition QTextEdit::cursorForPosition commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QTextCursor [0xc82228a6e0] }
+&{cursorPositionChanged QTextEdit::cursorPositionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non signal false false  void [] }
+&{cursorRect QTextEdit::cursorRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false true 2 QRect [] }
+&{cursorRect QTextEdit::cursorRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QRect [0xc82228af00] }
+&{cut QTextEdit::cut commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [] }
+&{documentTitle QTextEdit::documentTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QString [] }
+&{dragEnterEvent QTextEdit::dragEnterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc82228b5a0] }
+&{dragLeaveEvent QTextEdit::dragLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc82228b9e0] }
+&{dragMoveEvent QTextEdit::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc82228bde0] }
+&{dropEvent QTextEdit::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc82274e1a0] }
+&{ensureCursorVisible QTextEdit::ensureCursorVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  void [] }
+&{extraSelections QTextEdit::extraSelections commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QList<ExtraSelection> [] }
+&{find QTextEdit::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  bool [0xc82274f000 0xc82274f140] }
+&{focusInEvent QTextEdit::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc82274f4a0] }
+&{focusNextPrevChild QTextEdit::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  bool [0xc82274f780] }
+&{focusOutEvent QTextEdit::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc82274fa00] }
+&{fontFamily QTextEdit::fontFamily commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QString [] }
+&{fontItalic QTextEdit::fontItalic commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  bool [] }
+&{fontPointSize QTextEdit::fontPointSize commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  qreal [] }
+&{fontUnderline QTextEdit::fontUnderline commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  bool [] }
+&{fontWeight QTextEdit::fontWeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  int [] }
+&{inputMethodEvent QTextEdit::inputMethodEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc82275e440] }
+&{inputMethodQuery QTextEdit::inputMethodQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  QVariant [0xc82275e7a0] }
+&{insertFromMimeData QTextEdit::insertFromMimeData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc82275eec0] }
+&{insertHtml QTextEdit::insertHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82275f220] }
+&{insertPlainText QTextEdit::insertPlainText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82275f4e0] }
+&{isUndoRedoEnabled QTextEdit::isUndoRedoEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  bool [] }
+&{keyPressEvent QTextEdit::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc82275f960] }
+&{keyReleaseEvent QTextEdit::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc82275fbe0] }
+&{loadResource QTextEdit::loadResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  QVariant [0xc82275fe60 0xc82275fee0] }
+&{mergeCurrentCharFormat QTextEdit::mergeCurrentCharFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  void [0xc821e66160] }
+&{mouseDoubleClickEvent QTextEdit::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc821e664e0] }
+&{mouseMoveEvent QTextEdit::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc821e667c0] }
+&{mousePressEvent QTextEdit::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc821e66b80] }
+&{mouseReleaseEvent QTextEdit::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc821e66fc0] }
+&{moveCursor QTextEdit::moveCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  void [0xc821e67340 0xc821e67520] }
+&{paste QTextEdit::paste commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [] }
+&{print QTextEdit::print commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  void [0xc821e678c0] }
+&{redoAvailable QTextEdit::redoAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non signal false false  void [0xc821e67c00] }
+&{resizeEvent QTextEdit::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc821e67f20] }
+&{scrollContentsBy QTextEdit::scrollContentsBy commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc82276e200 0xc82276e2a0] }
+&{scrollToAnchor QTextEdit::scrollToAnchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82276e560] }
+&{selectAll QTextEdit::selectAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [] }
+&{selectionChanged QTextEdit::selectionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non signal false false  void [] }
+&{setAlignment QTextEdit::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82276eb20] }
+&{setCurrentCharFormat QTextEdit::setCurrentCharFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  void [0xc82276ee40] }
+&{setCurrentFont QTextEdit::setCurrentFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82276f240] }
+&{setDocumentTitle QTextEdit::setDocumentTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  void [0xc82276f5e0] }
+&{setExtraSelections QTextEdit::setExtraSelections commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  void [0xc82276fa00] }
+&{setFontFamily QTextEdit::setFontFamily commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82276fe00] }
+&{setFontItalic QTextEdit::setFontItalic commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82277c1c0] }
+&{setFontPointSize QTextEdit::setFontPointSize commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82277c5c0] }
+&{setFontUnderline QTextEdit::setFontUnderline commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82277c940] }
+&{setPlainText QTextEdit::setPlainText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82277ccc0] }
+&{setText QTextEdit::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82277d080] }
+&{setTextBackgroundColor QTextEdit::setTextBackgroundColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82277d3e0] }
+&{setTextColor QTextEdit::setTextColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [0xc82277d820] }
+&{setTextCursor QTextEdit::setTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  void [0xc82277db60] }
+&{setUndoRedoEnabled QTextEdit::setUndoRedoEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  void [0xc82277df80] }
+&{showEvent QTextEdit::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc821f0c360] }
+&{textBackgroundColor QTextEdit::textBackgroundColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QColor [] }
+&{textChanged QTextEdit::textChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non signal false false  void [] }
+&{textColor QTextEdit::textColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QColor [] }
+&{textCursor QTextEdit::textCursor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QTextCursor [] }
+&{toPlainText QTextEdit::toPlainText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non plain false false  QString [] }
+&{undo QTextEdit::undo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non slot false false  void [] }
+&{undoAvailable QTextEdit::undoAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h non signal false false  void [0xc821f0d200] }
+&{wheelEvent QTextEdit::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure plain false false  void [0xc821f0d500] }
+&{~QTextEdit QTextEdit::~QTextEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextedit.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{AutoFormattingFlag QTextEdit::AutoFormattingFlag commendable public QTextEdit::AutoFormatting [0xc82226d8a0 0xc82226d980 0xc82226da80]}
+&{LineWrapMode QTextEdit::LineWrapMode commendable public  [0xc82226dd80 0xc82226de20 0xc82226df00 0xc82226dfa0]}

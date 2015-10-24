@@ -1,0 +1,36 @@
+########################################			FUNCTIONS			########################################
+&{connectSlotsByName QMetaObject::connectSlotsByName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.cpp non plain true false  void [0xc820403d20] }
+&{checkConnectArgs QMetaObject::checkConnectArgs commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain true true 2 bool [0xc8203dbec0 0xc8203c6020] }
+&{checkConnectArgs QMetaObject::checkConnectArgs commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain true false  bool [0xc8203c6320 0xc8203c63e0] }
+&{classInfo QMetaObject::classInfo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  QMetaClassInfo [0xc8203c66a0] }
+&{classInfoCount QMetaObject::classInfoCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [] }
+&{classInfoOffset QMetaObject::classInfoOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [] }
+&{className QMetaObject::className commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  const char * [] }
+&{constructor QMetaObject::constructor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  QMetaMethod [0xc8203c6e60] }
+&{constructorCount QMetaObject::constructorCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [] }
+&{enumerator QMetaObject::enumerator commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  QMetaEnum [0xc8203c7240] }
+&{enumeratorCount QMetaObject::enumeratorCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [] }
+&{enumeratorOffset QMetaObject::enumeratorOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [] }
+&{indexOfClassInfo QMetaObject::indexOfClassInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [0xc8203c77c0] }
+&{indexOfConstructor QMetaObject::indexOfConstructor commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [0xc8203c7b20] }
+&{indexOfEnumerator QMetaObject::indexOfEnumerator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [0xc8203c7e20] }
+&{indexOfMethod QMetaObject::indexOfMethod commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [0xc8203ae140] }
+&{indexOfProperty QMetaObject::indexOfProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [0xc8203ae400] }
+&{indexOfSignal QMetaObject::indexOfSignal commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [0xc8203ae640] }
+&{indexOfSlot QMetaObject::indexOfSlot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [0xc8203ae920] }
+&{invokeMethod QMetaObject::invokeMethod commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain true true 4 bool [0xc8203aeba0 0xc8203aec60 0xc8203aed60 0xc8203aee00 0xc8203aef40 0xc8203aefe0 0xc8203af0e0 0xc8203af1c0 0xc8203af2c0 0xc8203af360 0xc8203af440 0xc8203af4e0] }
+&{invokeMethod QMetaObject::invokeMethod commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain true true 2 bool [0xc8203af720 0xc8203af7a0 0xc8203af8a0 0xc8203af980 0xc8203afa60 0xc8203afb40 0xc8203afbe0 0xc8203afc80 0xc8203afd80 0xc8203afe20 0xc8203aff00 0xc8203affa0 0xc82039a0c0] }
+&{invokeMethod QMetaObject::invokeMethod commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain true true 3 bool [0xc82039a3c0 0xc82039a460 0xc82039a520 0xc82039a640 0xc82039a760 0xc82039a820 0xc82039a9a0 0xc82039aa40 0xc82039abe0 0xc82039ace0 0xc82039ade0 0xc82039af00 0xc82039afe0] }
+&{invokeMethod QMetaObject::invokeMethod commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain true false  bool [0xc82039b240 0xc82039b2e0 0xc82039b400 0xc82039b560 0xc82039b680 0xc82039b7a0 0xc82039b840 0xc82039b940 0xc82039ba00 0xc82039bac0 0xc82039bc00 0xc82039bca0 0xc82039bda0 0xc82039be40] }
+&{method QMetaObject::method commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  QMetaMethod [0xc820384500] }
+&{methodCount QMetaObject::methodCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [] }
+&{methodOffset QMetaObject::methodOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [] }
+&{newInstance QMetaObject::newInstance commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  QObject * [0xc8203849c0 0xc820384aa0 0xc820384b40 0xc820384c20 0xc820384ce0 0xc820384de0 0xc820384f00 0xc820384fa0 0xc8203850e0 0xc820385180] }
+&{normalizedSignature QMetaObject::normalizedSignature commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain true false  QByteArray [0xc8203854c0] }
+&{normalizedType QMetaObject::normalizedType commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain true false  QByteArray [0xc8203857a0] }
+&{property QMetaObject::property commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  QMetaProperty [0xc820385a00] }
+&{propertyCount QMetaObject::propertyCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [] }
+&{propertyOffset QMetaObject::propertyOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  int [] }
+&{superClass QMetaObject::superClass commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  const QMetaObject * [] }
+&{userProperty QMetaObject::userProperty commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  QMetaProperty [] }
+########################################			ENUMS			########################################

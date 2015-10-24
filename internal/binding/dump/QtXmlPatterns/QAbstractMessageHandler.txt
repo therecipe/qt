@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QAbstractMessageHandler QAbstractMessageHandler::QAbstractMessageHandler commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractmessagehandler.h non constructor false false   [0xc8213de3e0] }
+&{handleMessage QAbstractMessageHandler::handleMessage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractmessagehandler.h pure plain false false  void [0xc8213de820 0xc8213de980 0xc8213dea60 0xc8213deb80] }
+&{message QAbstractMessageHandler::message commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractmessagehandler.h non plain false false  void [0xc8213df1a0 0xc8213df260 0xc8213df3c0 0xc8213df600] }
+&{~QAbstractMessageHandler QAbstractMessageHandler::~QAbstractMessageHandler commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractmessagehandler.h impure destructor false false   [] }
+########################################			ENUMS			########################################

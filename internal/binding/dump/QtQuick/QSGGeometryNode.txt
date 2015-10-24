@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QSGGeometryNode QSGGeometryNode::QSGGeometryNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non constructor false false   [] }
+&{material QSGGeometryNode::material commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  QSGMaterial * [] }
+&{opaqueMaterial QSGGeometryNode::opaqueMaterial commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  QSGMaterial * [] }
+&{setMaterial QSGGeometryNode::setMaterial commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void [0xc821bcd4e0] }
+&{setOpaqueMaterial QSGGeometryNode::setOpaqueMaterial commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void [0xc821bcd800] }
+&{~QSGGeometryNode QSGGeometryNode::~QSGGeometryNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non destructor false false   [] }
+########################################			ENUMS			########################################

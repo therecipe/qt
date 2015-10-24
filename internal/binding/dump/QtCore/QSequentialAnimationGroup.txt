@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{currentAnimation QSequentialAnimationGroup::currentAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qsequentialanimationgroup.cpp non plain false false  QAbstractAnimation * [] }
+&{QSequentialAnimationGroup QSequentialAnimationGroup::QSequentialAnimationGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qsequentialanimationgroup.h non constructor false false   [0xc820102c40] }
+&{addPause QSequentialAnimationGroup::addPause commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qsequentialanimationgroup.h non plain false false  QPauseAnimation * [0xc8201031e0] }
+&{currentAnimationChanged QSequentialAnimationGroup::currentAnimationChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qsequentialanimationgroup.h non signal false false  void [0xc8201033e0] }
+&{duration QSequentialAnimationGroup::duration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qsequentialanimationgroup.h impure plain false false  int [] }
+&{event QSequentialAnimationGroup::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qsequentialanimationgroup.h impure plain false false  bool [0xc8201036a0] }
+&{insertPause QSequentialAnimationGroup::insertPause commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qsequentialanimationgroup.h non plain false false  QPauseAnimation * [0xc820103880 0xc820103900] }
+&{updateCurrentTime QSequentialAnimationGroup::updateCurrentTime commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qsequentialanimationgroup.h impure plain false false  void [0xc820103ac0] }
+&{updateDirection QSequentialAnimationGroup::updateDirection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qsequentialanimationgroup.h impure plain false false  void [0xc820103c40] }
+&{updateState QSequentialAnimationGroup::updateState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qsequentialanimationgroup.h impure plain false false  void [0xc820103e00 0xc820103ee0] }
+&{~QSequentialAnimationGroup QSequentialAnimationGroup::~QSequentialAnimationGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qsequentialanimationgroup.h non destructor false false   [] }
+########################################			ENUMS			########################################

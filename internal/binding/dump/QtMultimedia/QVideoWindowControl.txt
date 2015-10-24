@@ -1,0 +1,28 @@
+########################################			FUNCTIONS			########################################
+&{QVideoWindowControl QVideoWindowControl::QVideoWindowControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h non constructor false false   [0xc821a87740] }
+&{aspectRatioMode QVideoWindowControl::aspectRatioMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  Qt::AspectRatioMode [] }
+&{brightness QVideoWindowControl::brightness commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  int [] }
+&{brightnessChanged QVideoWindowControl::brightnessChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h non signal false false  void [0xc821a87e00] }
+&{contrast QVideoWindowControl::contrast commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  int [] }
+&{contrastChanged QVideoWindowControl::contrastChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h non signal false false  void [0xc821a6a380] }
+&{displayRect QVideoWindowControl::displayRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  QRect [] }
+&{fullScreenChanged QVideoWindowControl::fullScreenChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h non signal false false  void [0xc821a6aa80] }
+&{hue QVideoWindowControl::hue commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  int [] }
+&{hueChanged QVideoWindowControl::hueChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h non signal false false  void [0xc821a6b120] }
+&{isFullScreen QVideoWindowControl::isFullScreen commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  bool [] }
+&{nativeSize QVideoWindowControl::nativeSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  QSize [] }
+&{nativeSizeChanged QVideoWindowControl::nativeSizeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h non signal false false  void [] }
+&{repaint QVideoWindowControl::repaint commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  void [] }
+&{saturation QVideoWindowControl::saturation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  int [] }
+&{saturationChanged QVideoWindowControl::saturationChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h non signal false false  void [0xc821a6bfc0] }
+&{setAspectRatioMode QVideoWindowControl::setAspectRatioMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  void [0xc821a641e0] }
+&{setBrightness QVideoWindowControl::setBrightness commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  void [0xc821a64380] }
+&{setContrast QVideoWindowControl::setContrast commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  void [0xc821a64560] }
+&{setDisplayRect QVideoWindowControl::setDisplayRect commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  void [0xc821a646c0] }
+&{setFullScreen QVideoWindowControl::setFullScreen commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  void [0xc821a64820] }
+&{setHue QVideoWindowControl::setHue commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  void [0xc821a64a20] }
+&{setSaturation QVideoWindowControl::setSaturation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  void [0xc821a64b80] }
+&{setWinId QVideoWindowControl::setWinId commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  void [0xc821a64d60] }
+&{winId QVideoWindowControl::winId commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h pure plain false false  WId [] }
+&{~QVideoWindowControl QVideoWindowControl::~QVideoWindowControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideowindowcontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################

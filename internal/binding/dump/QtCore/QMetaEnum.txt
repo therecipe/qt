@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{fromType QMetaEnum::fromType commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain true false  QMetaEnum [] }
+&{isFlag QMetaEnum::isFlag commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
+&{isValid QMetaEnum::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
+&{key QMetaEnum::key commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * [0xc82061df40] }
+&{keyCount QMetaEnum::keyCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [] }
+&{keyToValue QMetaEnum::keyToValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [0xc8206062c0 0xc820606340] }
+&{keysToValue QMetaEnum::keysToValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [0xc8206065a0 0xc820606660] }
+&{name QMetaEnum::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * [] }
+&{scope QMetaEnum::scope commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * [] }
+&{value QMetaEnum::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [0xc8206069e0] }
+&{valueToKey QMetaEnum::valueToKey commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * [0xc820606c00] }
+&{valueToKeys QMetaEnum::valueToKeys commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  QByteArray [0xc820606e00] }
+########################################			ENUMS			########################################

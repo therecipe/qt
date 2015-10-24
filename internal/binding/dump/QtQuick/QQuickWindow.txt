@@ -1,0 +1,67 @@
+########################################			FUNCTIONS			########################################
+&{activeFocusItem QQuickWindow::activeFocusItem commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.cpp non plain false false  QQuickItem * [] }
+&{color QQuickWindow::color commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.cpp non plain false false  QColor [] }
+&{contentItem QQuickWindow::contentItem commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.cpp non plain false false  QQuickItem * [] }
+&{setColor QQuickWindow::setColor commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.cpp non plain false false  void [0xc8219c9f60] }
+&{QQuickWindow QQuickWindow::QQuickWindow commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non constructor false false   [0xc8219b6800] }
+&{accessibleRoot QQuickWindow::accessibleRoot commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  QAccessibleInterface * [] }
+&{activeFocusItemChanged QQuickWindow::activeFocusItemChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [] }
+&{afterAnimating QQuickWindow::afterAnimating commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [] }
+&{afterRendering QQuickWindow::afterRendering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [] }
+&{afterSynchronizing QQuickWindow::afterSynchronizing commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [] }
+&{beforeRendering QQuickWindow::beforeRendering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [] }
+&{beforeSynchronizing QQuickWindow::beforeSynchronizing commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [] }
+&{clearBeforeRendering QQuickWindow::clearBeforeRendering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  bool [] }
+&{closing QQuickWindow::closing commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [0xc8219a6b80] }
+&{colorChanged QQuickWindow::colorChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [0xc8219a6fe0] }
+&{createTextureFromId QQuickWindow::createTextureFromId commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  QSGTexture * [0xc8219a72c0 0xc8219a73e0 0xc8219a7580] }
+&{createTextureFromImage QQuickWindow::createTextureFromImage commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false true 2 QSGTexture * [0xc8219a7880] }
+&{createTextureFromImage QQuickWindow::createTextureFromImage commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  QSGTexture * [0xc8219a7ca0 0xc8219a7ea0] }
+&{effectiveDevicePixelRatio QQuickWindow::effectiveDevicePixelRatio commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  qreal [] }
+&{event QQuickWindow::event commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  bool [0xc8219985c0] }
+&{exposeEvent QQuickWindow::exposeEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc8219989c0] }
+&{focusInEvent QQuickWindow::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc821998e00] }
+&{focusOutEvent QQuickWindow::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc821999200] }
+&{frameSwapped QQuickWindow::frameSwapped commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [] }
+&{grabWindow QQuickWindow::grabWindow commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  QImage [] }
+&{hasDefaultAlphaBuffer QQuickWindow::hasDefaultAlphaBuffer commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain true false  bool [] }
+&{hideEvent QQuickWindow::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc821999ec0] }
+&{incubationController QQuickWindow::incubationController commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  QQmlIncubationController * [] }
+&{isPersistentOpenGLContext QQuickWindow::isPersistentOpenGLContext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  bool [] }
+&{isPersistentSceneGraph QQuickWindow::isPersistentSceneGraph commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  bool [] }
+&{isSceneGraphInitialized QQuickWindow::isSceneGraphInitialized commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  bool [] }
+&{keyPressEvent QQuickWindow::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc82198e760] }
+&{keyReleaseEvent QQuickWindow::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc82198e9a0] }
+&{mouseDoubleClickEvent QQuickWindow::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc82198eb80] }
+&{mouseGrabberItem QQuickWindow::mouseGrabberItem commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  QQuickItem * [] }
+&{mouseMoveEvent QQuickWindow::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc82198ee80] }
+&{mousePressEvent QQuickWindow::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc82198f0e0] }
+&{mouseReleaseEvent QQuickWindow::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc82198f340] }
+&{openglContext QQuickWindow::openglContext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  QOpenGLContext * [] }
+&{openglContextCreated QQuickWindow::openglContextCreated commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [0xc82198f720] }
+&{releaseResources QQuickWindow::releaseResources commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non slot false false  void [] }
+&{renderTarget QQuickWindow::renderTarget commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  QOpenGLFramebufferObject * [] }
+&{renderTargetId QQuickWindow::renderTargetId commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  uint [] }
+&{renderTargetSize QQuickWindow::renderTargetSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  QSize [] }
+&{resetOpenGLState QQuickWindow::resetOpenGLState commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  void [] }
+&{resizeEvent QQuickWindow::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc82198a220] }
+&{sceneGraphAboutToStop QQuickWindow::sceneGraphAboutToStop commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [] }
+&{sceneGraphError QQuickWindow::sceneGraphError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [0xc82198a8e0 0xc82198aa20] }
+&{sceneGraphInitialized QQuickWindow::sceneGraphInitialized commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [] }
+&{sceneGraphInvalidated QQuickWindow::sceneGraphInvalidated commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non signal false false  void [] }
+&{scheduleRenderJob QQuickWindow::scheduleRenderJob commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  void [0xc82198b340 0xc82198b480] }
+&{sendEvent QQuickWindow::sendEvent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  bool [0xc82198b860 0xc82198ba60] }
+&{setClearBeforeRendering QQuickWindow::setClearBeforeRendering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  void [0xc82198bdc0] }
+&{setDefaultAlphaBuffer QQuickWindow::setDefaultAlphaBuffer commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain true false  void [0xc82197a0e0] }
+&{setPersistentOpenGLContext QQuickWindow::setPersistentOpenGLContext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  void [0xc82197a420] }
+&{setPersistentSceneGraph QQuickWindow::setPersistentSceneGraph commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  void [0xc82197a700] }
+&{setRenderTarget QQuickWindow::setRenderTarget commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false false  void [0xc82197aaa0] }
+&{setRenderTarget QQuickWindow::setRenderTarget commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non plain false true 2 void [0xc82197aec0 0xc82197af80] }
+&{showEvent QQuickWindow::showEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc82197b3a0] }
+&{update QQuickWindow::update commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h non slot false false  void [] }
+&{wheelEvent QQuickWindow::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure plain false false  void [0xc82197b880] }
+&{~QQuickWindow QQuickWindow::~QQuickWindow commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickwindow.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{CreateTextureOption QQuickWindow::CreateTextureOption commendable public QQuickWindow::CreateTextureOptions [0xc8219c6440 0xc8219c6600 0xc8219c6980 0xc8219c6b80]}
+&{RenderStage QQuickWindow::RenderStage commendable public  [0xc8219c7120 0xc8219c7360 0xc8219c7540 0xc8219c7740 0xc8219c7a20]}
+&{SceneGraphError QQuickWindow::SceneGraphError commendable public  [0xc8219c7f20]}

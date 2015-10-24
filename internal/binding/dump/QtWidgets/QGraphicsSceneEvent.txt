@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{widget QGraphicsSceneEvent::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QWidget * [] }
+&{~QGraphicsSceneEvent QGraphicsSceneEvent::~QGraphicsSceneEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   [] }
+########################################			ENUMS			########################################

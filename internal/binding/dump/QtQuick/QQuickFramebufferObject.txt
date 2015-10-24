@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{setTextureFollowsItemSize QQuickFramebufferObject::setTextureFollowsItemSize commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickframebufferobject.cpp non plain false false  void [0xc8226aa040] }
+&{textureFollowsItemSize QQuickFramebufferObject::textureFollowsItemSize commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickframebufferobject.cpp non plain false false  bool [] }
+&{QQuickFramebufferObject QQuickFramebufferObject::QQuickFramebufferObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickframebufferobject.h non constructor false false   [0xc8226aace0] }
+&{createRenderer QQuickFramebufferObject::createRenderer commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickframebufferobject.h pure plain false false  Renderer * [] }
+&{isTextureProvider QQuickFramebufferObject::isTextureProvider commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickframebufferobject.h impure plain false false  bool [] }
+&{releaseResources QQuickFramebufferObject::releaseResources commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickframebufferobject.h impure plain false false  void [] }
+&{textureFollowsItemSizeChanged QQuickFramebufferObject::textureFollowsItemSizeChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickframebufferobject.h non signal false false  void [0xc8226ab6c0] }
+&{textureProvider QQuickFramebufferObject::textureProvider commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickframebufferobject.h impure plain false false  QSGTextureProvider * [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QAudioEncoderSettingsControl QAudioEncoderSettingsControl::QAudioEncoderSettingsControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudioencodersettingscontrol.h non constructor false false   [0xc82266a260] }
+&{audioSettings QAudioEncoderSettingsControl::audioSettings commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudioencodersettingscontrol.h pure plain false false  QAudioEncoderSettings [] }
+&{codecDescription QAudioEncoderSettingsControl::codecDescription commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudioencodersettingscontrol.h pure plain false false  QString [0xc82266a600] }
+&{setAudioSettings QAudioEncoderSettingsControl::setAudioSettings commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudioencodersettingscontrol.h pure plain false false  void [0xc82266a880] }
+&{supportedAudioCodecs QAudioEncoderSettingsControl::supportedAudioCodecs commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudioencodersettingscontrol.h pure plain false false  QStringList [] }
+&{supportedSampleRates QAudioEncoderSettingsControl::supportedSampleRates commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudioencodersettingscontrol.h pure plain false false  QList<int> [0xc82266ad60 0xc82266aec0] }
+&{~QAudioEncoderSettingsControl QAudioEncoderSettingsControl::~QAudioEncoderSettingsControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudioencodersettingscontrol.h impure destructor false false   [] }
+########################################			ENUMS			########################################

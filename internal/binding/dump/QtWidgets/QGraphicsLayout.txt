@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QGraphicsLayout QGraphicsLayout::QGraphicsLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h non constructor false false   [0xc821f49380] }
+&{activate QGraphicsLayout::activate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h non plain false false  void [] }
+&{count QGraphicsLayout::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h pure plain false false  int [] }
+&{getContentsMargins QGraphicsLayout::getContentsMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h impure plain false false  void [0xc821f498c0 0xc821f49960 0xc821f499e0 0xc821f49ac0] }
+&{invalidate QGraphicsLayout::invalidate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h impure plain false false  void [] }
+&{isActivated QGraphicsLayout::isActivated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h non plain false false  bool [] }
+&{itemAt QGraphicsLayout::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h pure plain false false  QGraphicsLayoutItem * [0xc8220de080] }
+&{removeAt QGraphicsLayout::removeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h pure plain false false  void [0xc8220de320] }
+&{setContentsMargins QGraphicsLayout::setContentsMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h non plain false false  void [0xc8220de5c0 0xc8220de660 0xc8220de6e0 0xc8220de780] }
+&{addChildLayoutItem QGraphicsLayout::addChildLayoutItem commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h non plain false false  void [0xc8220df140] }
+&{updateGeometry QGraphicsLayout::updateGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h impure plain false false  void [] }
+&{widgetEvent QGraphicsLayout::widgetEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h impure plain false false  void [0xc8220df580] }
+&{~QGraphicsLayout QGraphicsLayout::~QGraphicsLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicslayout.h non destructor false false   [] }
+########################################			ENUMS			########################################

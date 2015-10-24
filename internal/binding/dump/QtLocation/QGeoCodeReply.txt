@@ -1,0 +1,23 @@
+########################################			FUNCTIONS			########################################
+&{QGeoCodeReply QGeoCodeReply::QGeoCodeReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non constructor false false   [0xc821db1960 0xc821db1a00 0xc821db1aa0] }
+&{QGeoCodeReply QGeoCodeReply::QGeoCodeReply commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non constructor false true 2  [0xc821db1d60] }
+&{abort QGeoCodeReply::abort commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h impure plain false false  void [] }
+&{addLocation QGeoCodeReply::addLocation commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  void [0xc821dbc220] }
+&{error QGeoCodeReply::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non signal false true 2 void [0xc821dbc660 0xc821dbc7c0] }
+&{error QGeoCodeReply::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  Error [] }
+&{errorString QGeoCodeReply::errorString commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  QString [] }
+&{finished QGeoCodeReply::finished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non signal false false  void [] }
+&{isFinished QGeoCodeReply::isFinished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  bool [] }
+&{limit QGeoCodeReply::limit commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  int [] }
+&{locations QGeoCodeReply::locations commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  QList<QGeoLocation> [] }
+&{offset QGeoCodeReply::offset commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  int [] }
+&{setError QGeoCodeReply::setError commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  void [0xc821dbda40 0xc821dbdae0] }
+&{setFinished QGeoCodeReply::setFinished commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  void [0xc821dbdfc0] }
+&{setLimit QGeoCodeReply::setLimit commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  void [0xc822a682c0] }
+&{setLocations QGeoCodeReply::setLocations commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  void [0xc822a68600] }
+&{setOffset QGeoCodeReply::setOffset commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  void [0xc822a68960] }
+&{setViewport QGeoCodeReply::setViewport commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  void [0xc822a68c20] }
+&{viewport QGeoCodeReply::viewport commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h non plain false false  QGeoShape [] }
+&{~QGeoCodeReply QGeoCodeReply::~QGeoCodeReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeocodereply.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{Error QGeoCodeReply::Error commendable public  [0xc821db0fc0 0xc821db10c0 0xc821db1200 0xc821db1360 0xc821db1480 0xc821db1580 0xc821db1680]}

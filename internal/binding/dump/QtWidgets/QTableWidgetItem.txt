@@ -1,0 +1,45 @@
+########################################			FUNCTIONS			########################################
+&{setFlags QTableWidgetItem::setFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.cpp non plain false false  void [0xc8224d00e0] }
+&{QTableWidgetItem QTableWidgetItem::QTableWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non constructor false true 3  [0xc8224d04e0 0xc8224d0580 0xc8224d0600] }
+&{QTableWidgetItem QTableWidgetItem::QTableWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non constructor false true 2  [0xc8224d0760 0xc8224d07e0] }
+&{QTableWidgetItem QTableWidgetItem::QTableWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non constructor false true 4  [0xc8224d0960] }
+&{QTableWidgetItem QTableWidgetItem::QTableWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non constructor false false   [0xc8224d0b60] }
+&{background QTableWidgetItem::background commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QBrush [] }
+&{checkState QTableWidgetItem::checkState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  Qt::CheckState [] }
+&{clone QTableWidgetItem::clone commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure plain false false  QTableWidgetItem * [] }
+&{column QTableWidgetItem::column commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
+&{data QTableWidgetItem::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure plain false false  QVariant [0xc8224d1260] }
+&{flags QTableWidgetItem::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  Qt::ItemFlags [] }
+&{font QTableWidgetItem::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QFont [] }
+&{foreground QTableWidgetItem::foreground commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QBrush [] }
+&{icon QTableWidgetItem::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QIcon [] }
+&{isSelected QTableWidgetItem::isSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  bool [] }
+&{operator< QTableWidgetItem::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure plain false false  bool [0xc8224d19c0] }
+&{operator= QTableWidgetItem::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QTableWidgetItem & [0xc8224d1c40] }
+&{read QTableWidgetItem::read commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure plain false false  void [0xc8224d1e80] }
+&{row QTableWidgetItem::row commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
+&{setBackground QTableWidgetItem::setBackground commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eea180] }
+&{setCheckState QTableWidgetItem::setCheckState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eea580] }
+&{setData QTableWidgetItem::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure plain false false  void [0xc821eea7c0 0xc821eea840] }
+&{setFont QTableWidgetItem::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eeaa60] }
+&{setForeground QTableWidgetItem::setForeground commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eeac80] }
+&{setIcon QTableWidgetItem::setIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eeae80] }
+&{setSelected QTableWidgetItem::setSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eeb0c0] }
+&{setSizeHint QTableWidgetItem::setSizeHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eeb2c0] }
+&{setStatusTip QTableWidgetItem::setStatusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eeb4c0] }
+&{setText QTableWidgetItem::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eeb6c0] }
+&{setTextAlignment QTableWidgetItem::setTextAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eeb860] }
+&{setToolTip QTableWidgetItem::setToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eebca0] }
+&{setWhatsThis QTableWidgetItem::setWhatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eebe80] }
+&{sizeHint QTableWidgetItem::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QSize [] }
+&{statusTip QTableWidgetItem::statusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QString [] }
+&{tableWidget QTableWidgetItem::tableWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QTableWidget * [] }
+&{text QTableWidgetItem::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QString [] }
+&{textAlignment QTableWidgetItem::textAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
+&{toolTip QTableWidgetItem::toolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QString [] }
+&{type QTableWidgetItem::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
+&{whatsThis QTableWidgetItem::whatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QString [] }
+&{write QTableWidgetItem::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure plain false false  void [0xc821ef8a80] }
+&{~QTableWidgetItem QTableWidgetItem::~QTableWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{ItemType QTableWidgetItem::ItemType commendable public  [0xc8224d0300 0xc8224d0380]}

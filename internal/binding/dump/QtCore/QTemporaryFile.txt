@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QTemporaryFile QTemporaryFile::QTemporaryFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h non constructor false false   [] }
+&{QTemporaryFile QTemporaryFile::QTemporaryFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h non constructor false true 3  [0xc8202640e0] }
+&{QTemporaryFile QTemporaryFile::QTemporaryFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h non constructor false true 2  [0xc820264320] }
+&{QTemporaryFile QTemporaryFile::QTemporaryFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h non constructor false true 4  [0xc820264560 0xc820264620] }
+&{autoRemove QTemporaryFile::autoRemove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h non plain false false  bool [] }
+&{createNativeFile QTemporaryFile::createNativeFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h non plain true false  QTemporaryFile * [0xc820264e40] }
+&{createNativeFile QTemporaryFile::createNativeFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h non plain true true 2 QTemporaryFile * [0xc8202650c0] }
+&{fileName QTemporaryFile::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h impure plain false false  QString [] }
+&{fileTemplate QTemporaryFile::fileTemplate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h non plain false false  QString [] }
+&{open QTemporaryFile::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h non plain false false  bool [] }
+&{open QTemporaryFile::open commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h impure plain false true 2 bool [0xc820265760] }
+&{setAutoRemove QTemporaryFile::setAutoRemove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h non plain false false  void [0xc8202659c0] }
+&{setFileTemplate QTemporaryFile::setFileTemplate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h non plain false false  void [0xc820265c00] }
+&{~QTemporaryFile QTemporaryFile::~QTemporaryFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporaryfile.h non destructor false false   [] }
+########################################			ENUMS			########################################

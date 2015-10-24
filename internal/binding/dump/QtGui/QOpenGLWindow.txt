@@ -1,0 +1,22 @@
+########################################			FUNCTIONS			########################################
+&{QOpenGLWindow QOpenGLWindow::QOpenGLWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h non constructor false true 2  [0xc8207a9d80 0xc8207a9e60 0xc8207a9ee0] }
+&{QOpenGLWindow QOpenGLWindow::QOpenGLWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h non constructor false false   [0xc8207bc140 0xc8207bc1e0] }
+&{context QOpenGLWindow::context commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h non plain false false  QOpenGLContext * [] }
+&{defaultFramebufferObject QOpenGLWindow::defaultFramebufferObject commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h non plain false false  GLuint [] }
+&{doneCurrent QOpenGLWindow::doneCurrent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h non plain false false  void [] }
+&{frameSwapped QOpenGLWindow::frameSwapped commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h non signal false false  void [] }
+&{grabFramebuffer QOpenGLWindow::grabFramebuffer commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h non plain false false  QImage [] }
+&{initializeGL QOpenGLWindow::initializeGL commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h impure plain false false  void [] }
+&{isValid QOpenGLWindow::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h non plain false false  bool [] }
+&{makeCurrent QOpenGLWindow::makeCurrent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h non plain false false  void [] }
+&{paintEvent QOpenGLWindow::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h impure plain false false  void [0xc8207bd880] }
+&{paintGL QOpenGLWindow::paintGL commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h impure plain false false  void [] }
+&{paintOverGL QOpenGLWindow::paintOverGL commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h impure plain false false  void [] }
+&{paintUnderGL QOpenGLWindow::paintUnderGL commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h impure plain false false  void [] }
+&{resizeEvent QOpenGLWindow::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h impure plain false false  void [0xc820b0e100] }
+&{resizeGL QOpenGLWindow::resizeGL commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h impure plain false false  void [0xc820b0e440 0xc820b0e560] }
+&{shareContext QOpenGLWindow::shareContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h non plain false false  QOpenGLContext * [] }
+&{updateBehavior QOpenGLWindow::updateBehavior commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h non plain false false  UpdateBehavior [] }
+&{~QOpenGLWindow QOpenGLWindow::~QOpenGLWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglwindow.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{UpdateBehavior QOpenGLWindow::UpdateBehavior commendable public  [0xc8207a9840 0xc8207a98e0 0xc8207a9a00]}

@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QTextFragment QTextFragment::QTextFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non constructor false false   [] }
+&{QTextFragment QTextFragment::QTextFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non constructor false true 3  [0xc822cf0700] }
+&{charFormat QTextFragment::charFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextCharFormat [] }
+&{charFormatIndex QTextFragment::charFormatIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
+&{contains QTextFragment::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool [0xc822cf1000] }
+&{glyphRuns QTextFragment::glyphRuns commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QList<QGlyphRun> [0xc822cf1240 0xc822cf12e0] }
+&{isValid QTextFragment::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool [] }
+&{length QTextFragment::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
+&{operator!= QTextFragment::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool [0xc822cf17c0] }
+&{operator< QTextFragment::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool [0xc822cf1a80] }
+&{operator= QTextFragment::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextFragment & [0xc822cf1d40] }
+&{operator== QTextFragment::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool [0xc82207a000] }
+&{position QTextFragment::position commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
+&{text QTextFragment::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QString [] }
+########################################			ENUMS			########################################

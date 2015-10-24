@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QHelpSearchEngine QHelpSearchEngine::QHelpSearchEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non constructor false false   [0xc8223a11a0 0xc8223a1260] }
+&{cancelIndexing QHelpSearchEngine::cancelIndexing commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non slot false false  void [] }
+&{cancelSearching QHelpSearchEngine::cancelSearching commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non slot false false  void [] }
+&{hitCount QHelpSearchEngine::hitCount commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non plain false false  int [] }
+&{hits QHelpSearchEngine::hits commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non plain false false  QList<SearchHit> [0xc8223a16c0 0xc8223a1740] }
+&{indexingFinished QHelpSearchEngine::indexingFinished commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non signal false false  void [] }
+&{indexingStarted QHelpSearchEngine::indexingStarted commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non signal false false  void [] }
+&{query QHelpSearchEngine::query commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non plain false false  QList<QHelpSearchQuery> [] }
+&{queryWidget QHelpSearchEngine::queryWidget commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non plain false false  QHelpSearchQueryWidget * [] }
+&{reindexDocumentation QHelpSearchEngine::reindexDocumentation commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non slot false false  void [] }
+&{resultWidget QHelpSearchEngine::resultWidget commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non plain false false  QHelpSearchResultWidget * [] }
+&{search QHelpSearchEngine::search commendable unsupported_goInput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non slot false false  void [0xc82215a080] }
+&{searchingFinished QHelpSearchEngine::searchingFinished commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non signal false false  void [0xc82215a2a0] }
+&{searchingStarted QHelpSearchEngine::searchingStarted commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non signal false false  void [] }
+&{~QHelpSearchEngine QHelpSearchEngine::~QHelpSearchEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non destructor false false   [] }
+########################################			ENUMS			########################################

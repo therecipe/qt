@@ -1,0 +1,35 @@
+########################################			FUNCTIONS			########################################
+&{QIcon QIcon::QIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non constructor false false   [] }
+&{QIcon QIcon::QIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non constructor false true 4  [0xc820c07720] }
+&{QIcon QIcon::QIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non constructor false true 6  [0xc820c07920] }
+&{QIcon QIcon::QIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non constructor false true 3  [0xc820c07b80] }
+&{QIcon QIcon::QIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non constructor false true 2  [0xc820c07e20] }
+&{QIcon QIcon::QIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non constructor false true 5  [0xc820bc8040] }
+&{actualSize QIcon::actualSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false true 2 QSize [0xc820bc8240 0xc820bc82c0 0xc820bc8380 0xc820bc8400] }
+&{actualSize QIcon::actualSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false false  QSize [0xc820bc8600 0xc820bc86c0 0xc820bc8740] }
+&{addFile QIcon::addFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false false  void [0xc820bc8900 0xc820bc8980 0xc820bc8a40 0xc820bc8ac0] }
+&{addPixmap QIcon::addPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false false  void [0xc820bc8c20 0xc820bc8ca0 0xc820bc8d20] }
+&{availableSizes QIcon::availableSizes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false false  QList<QSize> [0xc820bc8ee0 0xc820bc8f60] }
+&{cacheKey QIcon::cacheKey commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false false  qint64 [] }
+&{fromTheme QIcon::fromTheme commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain true false  QIcon [0xc820bc9440 0xc820bc94c0] }
+&{hasThemeIcon QIcon::hasThemeIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain true false  bool [0xc820bc96e0] }
+&{isNull QIcon::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false false  bool [] }
+&{name QIcon::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false false  QString [] }
+&{operator QVariant QIcon::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false false   [] }
+&{operator= QIcon::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false true 2 QIcon & [0xc820bc9ba0] }
+&{operator= QIcon::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false false  QIcon & [0xc820bc9d00] }
+&{paint QIcon::paint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false false  void [0xc820bc9e80 0xc820bc9f00 0xc820bc9fc0 0xc820b060c0 0xc820b06260] }
+&{paint QIcon::paint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false true 2 void [0xc820b064c0 0xc820b06580 0xc820b06640 0xc820b06760 0xc820b06860 0xc820b06900 0xc820b06a40 0xc820b06b00] }
+&{pixmap QIcon::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false true 2 QPixmap [0xc820b06d60 0xc820b06e40 0xc820b06ee0 0xc820b06fc0] }
+&{pixmap QIcon::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false false  QPixmap [0xc820b071c0 0xc820b07280 0xc820b07340] }
+&{pixmap QIcon::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false true 4 QPixmap [0xc820b07560 0xc820b07600 0xc820b076c0] }
+&{pixmap QIcon::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false true 3 QPixmap [0xc820b07880 0xc820b07940 0xc820b079e0 0xc820b07a80] }
+&{setThemeName QIcon::setThemeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain true false  void [0xc820b07e40] }
+&{setThemeSearchPaths QIcon::setThemeSearchPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain true false  void [0xc820cd4100] }
+&{swap QIcon::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain false false  void [0xc820cd42c0] }
+&{themeName QIcon::themeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain true false  QString [] }
+&{themeSearchPaths QIcon::themeSearchPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non plain true false  QStringList [] }
+&{~QIcon QIcon::~QIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qicon.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Mode QIcon::Mode commendable public  [0xc820c06d20 0xc820c06dc0 0xc820c06ee0 0xc820c06fa0]}
+&{State QIcon::State commendable public  [0xc820c071e0 0xc820c072a0]}

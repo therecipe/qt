@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{macVersion QSysInfo::macVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qglobal.cpp non plain true false  MacVersion [] }
+&{buildAbi QSysInfo::buildAbi commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qsysinfo.h non plain true false  QString [] }
+&{buildCpuArchitecture QSysInfo::buildCpuArchitecture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qsysinfo.h non plain true false  QString [] }
+&{currentCpuArchitecture QSysInfo::currentCpuArchitecture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qsysinfo.h non plain true false  QString [] }
+&{kernelType QSysInfo::kernelType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qsysinfo.h non plain true false  QString [] }
+&{kernelVersion QSysInfo::kernelVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qsysinfo.h non plain true false  QString [] }
+&{prettyProductName QSysInfo::prettyProductName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qsysinfo.h non plain true false  QString [] }
+&{productType QSysInfo::productType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qsysinfo.h non plain true false  QString [] }
+&{productVersion QSysInfo::productVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qsysinfo.h non plain true false  QString [] }
+&{windowsVersion QSysInfo::windowsVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qsysinfo.h non plain true false  WinVersion [] }
+########################################			ENUMS			########################################
+&{Endian QSysInfo::Endian commendable public  [0xc820290300 0xc820290380 0xc820290420 0xc8202904e0]}
+&{MacVersion QSysInfo::MacVersion commendable public  [0xc8202906a0 0xc820290720 0xc8202907a0 0xc820290820 0xc8202908c0 0xc820290940 0xc8202909c0 0xc820290a40 0xc820290ae0 0xc820290b60 0xc820290be0 0xc820290c60 0xc820290ce0 0xc820290d60 0xc820290de0 0xc820290e60 0xc820290f00 0xc820290f80 0xc820291000 0xc820291080 0xc820291100 0xc820291180 0xc820291200 0xc820291280 0xc820291300 0xc820291380 0xc820291400 0xc820291480 0xc820291500 0xc820291580 0xc820291600 0xc820291680 0xc820291720 0xc8202917a0 0xc820291820 0xc8202918a0 0xc820291920 0xc8202919a0 0xc820291a20 0xc820291aa0 0xc820291b20]}
+&{Sizes QSysInfo::Sizes commendable public  [0xc820291ca0]}
+&{WinVersion QSysInfo::WinVersion commendable public  [0xc820291ea0 0xc820291f20 0xc820291fa0 0xc82029a020 0xc82029a0c0 0xc82029a140 0xc82029a1c0 0xc82029a240 0xc82029a2e0 0xc82029a360 0xc82029a3e0 0xc82029a460 0xc82029a4e0 0xc82029a560 0xc82029a5e0 0xc82029a660 0xc82029a700 0xc82029a780 0xc82029a800 0xc82029a880 0xc82029a900 0xc82029a980 0xc82029aa00 0xc82029aa80 0xc82029ab00 0xc82029ab80 0xc82029ac00 0xc82029ac80 0xc82029ad00 0xc82029ad80]}

@@ -1,0 +1,24 @@
+########################################			FUNCTIONS			########################################
+&{QImageIOHandler QImageIOHandler::QImageIOHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h non constructor false false   [] }
+&{canRead QImageIOHandler::canRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h pure plain false false  bool [] }
+&{currentImageNumber QImageIOHandler::currentImageNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure plain false false  int [] }
+&{currentImageRect QImageIOHandler::currentImageRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure plain false false  QRect [] }
+&{device QImageIOHandler::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h non plain false false  QIODevice * [] }
+&{format QImageIOHandler::format commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h non plain false false  QByteArray [] }
+&{imageCount QImageIOHandler::imageCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure plain false false  int [] }
+&{jumpToImage QImageIOHandler::jumpToImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure plain false false  bool [0xc820c25080] }
+&{jumpToNextImage QImageIOHandler::jumpToNextImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure plain false false  bool [] }
+&{loopCount QImageIOHandler::loopCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure plain false false  int [] }
+&{nextImageDelay QImageIOHandler::nextImageDelay commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure plain false false  int [] }
+&{option QImageIOHandler::option commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure plain false false  QVariant [0xc820c25b00] }
+&{read QImageIOHandler::read commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h pure plain false false  bool [0xc820c25f60] }
+&{setDevice QImageIOHandler::setDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h non plain false false  void [0xc820c16320] }
+&{setFormat QImageIOHandler::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h non plain false false  void [0xc820c16720] }
+&{setFormat QImageIOHandler::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h non plain false true 2 void [0xc820c16b80] }
+&{setOption QImageIOHandler::setOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure plain false false  void [0xc820c16f00 0xc820c16fa0] }
+&{supportsOption QImageIOHandler::supportsOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure plain false false  bool [0xc820c172e0] }
+&{write QImageIOHandler::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure plain false false  bool [0xc820c17640] }
+&{~QImageIOHandler QImageIOHandler::~QImageIOHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{ImageOption QImageIOHandler::ImageOption commendable public  [0xc820c35620 0xc820c356c0 0xc820c35780 0xc820c35840 0xc820c35940 0xc820c35a00 0xc820c35ae0 0xc820c35bc0 0xc820c35d00 0xc820c35d80 0xc820c35f20 0xc820c2c040 0xc820c2c100 0xc820c2c1a0 0xc820c2c260 0xc820c2c320 0xc820c2c440 0xc820c2c580 0xc820c2c780 0xc820c2c920]}
+&{Transformation QImageIOHandler::Transformation commendable public QImageIOHandler::Transformations [0xc820c2cd60 0xc820c2cf20 0xc820c2d0c0 0xc820c2d280 0xc820c2d3c0 0xc820c2d560 0xc820c2d780 0xc820c2d960]}

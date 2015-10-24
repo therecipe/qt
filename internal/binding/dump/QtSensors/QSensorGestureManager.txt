@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QSensorGestureManager QSensorGestureManager::QSensorGestureManager commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesturemanager.h non constructor false false   [0xc822f101c0] }
+&{gestureIds QSensorGestureManager::gestureIds commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesturemanager.h non plain false false  QStringList [] }
+&{newSensorGestureAvailable QSensorGestureManager::newSensorGestureAvailable commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesturemanager.h non signal false false  void [] }
+&{recognizerSignals QSensorGestureManager::recognizerSignals commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesturemanager.h non plain false false  QStringList [0xc822f10700] }
+&{registerSensorGestureRecognizer QSensorGestureManager::registerSensorGestureRecognizer commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesturemanager.h non plain false false  bool [0xc822f10a20] }
+&{sensorGestureRecognizer QSensorGestureManager::sensorGestureRecognizer commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesturemanager.h non plain true false  QSensorGestureRecognizer * [0xc822f10e00] }
+&{~QSensorGestureManager QSensorGestureManager::~QSensorGestureManager commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesturemanager.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,27 @@
+########################################			FUNCTIONS			########################################
+&{cursorRectangle QInputMethod::cursorRectangle commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.cpp non plain false false  QRectF [] }
+&{inputDirection QInputMethod::inputDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.cpp non plain false false  Qt::LayoutDirection [] }
+&{isAnimating QInputMethod::isAnimating commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.cpp non plain false false  bool [] }
+&{isVisible QInputMethod::isVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.cpp non plain false false  bool [] }
+&{keyboardRectangle QInputMethod::keyboardRectangle commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.cpp non plain false false  QRectF [] }
+&{locale QInputMethod::locale commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.cpp non plain false false  QLocale [] }
+&{animatingChanged QInputMethod::animatingChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non signal false false  void [] }
+&{commit QInputMethod::commit commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void [] }
+&{cursorRectangleChanged QInputMethod::cursorRectangleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non signal false false  void [] }
+&{hide QInputMethod::hide commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void [] }
+&{inputDirectionChanged QInputMethod::inputDirectionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non signal false false  void [0xc820574f60] }
+&{inputItemRectangle QInputMethod::inputItemRectangle commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  QRectF [] }
+&{inputItemTransform QInputMethod::inputItemTransform commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  QTransform [] }
+&{invokeAction QInputMethod::invokeAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void [0xc8205754c0 0xc820575540] }
+&{keyboardRectangleChanged QInputMethod::keyboardRectangleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non signal false false  void [] }
+&{localeChanged QInputMethod::localeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non signal false false  void [] }
+&{queryFocusObject QInputMethod::queryFocusObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain true false  QVariant [0xc820575ae0 0xc820575c20] }
+&{reset QInputMethod::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void [] }
+&{setInputItemRectangle QInputMethod::setInputItemRectangle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  void [0xc820575f20] }
+&{setInputItemTransform QInputMethod::setInputItemTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  void [0xc820524140] }
+&{setVisible QInputMethod::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  void [0xc820524420] }
+&{show QInputMethod::show commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void [] }
+&{update QInputMethod::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void [0xc820524740] }
+&{visibleChanged QInputMethod::visibleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non signal false false  void [] }
+########################################			ENUMS			########################################
+&{Action QInputMethod::Action commendable public  [0xc8205744e0 0xc820574560]}

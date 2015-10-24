@@ -1,0 +1,24 @@
+########################################			FUNCTIONS			########################################
+&{QLine QLine::QLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false false   [] }
+&{QLine QLine::QLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 2  [0xc820225040 0xc820225220] }
+&{QLine QLine::QLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 3  [0xc820225600 0xc8202257a0 0xc8202258a0 0xc8202259c0] }
+&{dx QLine::dx commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  int [] }
+&{dy QLine::dy commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  int [] }
+&{isNull QLine::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool [] }
+&{operator!= QLine::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool [0xc82021c140] }
+&{operator== QLine::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool [0xc82021c460] }
+&{p1 QLine::p1 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QPoint [] }
+&{p2 QLine::p2 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QPoint [] }
+&{setLine QLine::setLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void [0xc82021ca40 0xc82021cba0 0xc82021ccc0 0xc82021ce80] }
+&{setP1 QLine::setP1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void [0xc82021d1a0] }
+&{setP2 QLine::setP2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void [0xc82021d580] }
+&{setPoints QLine::setPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void [0xc82021d820 0xc82021da00] }
+&{translate QLine::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void [0xc82021ddc0] }
+&{translate QLine::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false true 2 void [0xc820210300 0xc8202103e0] }
+&{translated QLine::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QLine [0xc820210960] }
+&{translated QLine::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false true 2 QLine [0xc820210fa0 0xc8202110a0] }
+&{x1 QLine::x1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  int [] }
+&{x2 QLine::x2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  int [] }
+&{y1 QLine::y1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  int [] }
+&{y2 QLine::y2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  int [] }
+########################################			ENUMS			########################################

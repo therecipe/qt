@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{count QStackedWidget::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.cpp non plain false false  int [] }
+&{currentIndex QStackedWidget::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.cpp non plain false false  int [] }
+&{setCurrentIndex QStackedWidget::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.cpp non slot false false  void [0xc820d05f80] }
+&{setCurrentWidget QStackedWidget::setCurrentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.cpp non slot false false  void [0xc8214aa2c0] }
+&{QStackedWidget QStackedWidget::QStackedWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non constructor false false   [0xc8214aa560] }
+&{addWidget QStackedWidget::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  int [0xc8214aa960] }
+&{currentChanged QStackedWidget::currentChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non signal false false  void [0xc8214aad00] }
+&{currentWidget QStackedWidget::currentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  QWidget * [] }
+&{event QStackedWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h impure plain false false  bool [0xc8214ab360] }
+&{indexOf QStackedWidget::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  int [0xc8214ab760] }
+&{insertWidget QStackedWidget::insertWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  int [0xc8214aba60 0xc8214abc00] }
+&{removeWidget QStackedWidget::removeWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  void [0xc8214abf40] }
+&{widget QStackedWidget::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  QWidget * [0xc821d822c0] }
+&{widgetRemoved QStackedWidget::widgetRemoved commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non signal false false  void [0xc821d82640] }
+&{~QStackedWidget QStackedWidget::~QStackedWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non destructor false false   [] }
+########################################			ENUMS			########################################

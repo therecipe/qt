@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{acceleration QPanGesture::acceleration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal [] }
+&{delta QPanGesture::delta commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF [] }
+&{lastOffset QPanGesture::lastOffset commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF [] }
+&{offset QPanGesture::offset commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF [] }
+&{setAcceleration QPanGesture::setAcceleration commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822caaa80] }
+&{setLastOffset QPanGesture::setLastOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822caace0] }
+&{setOffset QPanGesture::setOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822caafc0] }
+&{~QPanGesture QPanGesture::~QPanGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QMetaDataWriterControl QMetaDataWriterControl::QMetaDataWriterControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmetadatawritercontrol.h non constructor false false   [0xc821b95ca0] }
+&{availableMetaData QMetaDataWriterControl::availableMetaData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmetadatawritercontrol.h pure plain false false  QStringList [] }
+&{isMetaDataAvailable QMetaDataWriterControl::isMetaDataAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmetadatawritercontrol.h pure plain false false  bool [] }
+&{isWritable QMetaDataWriterControl::isWritable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmetadatawritercontrol.h pure plain false false  bool [] }
+&{metaData QMetaDataWriterControl::metaData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmetadatawritercontrol.h pure plain false false  QVariant [0xc821b82580] }
+&{metaDataAvailableChanged QMetaDataWriterControl::metaDataAvailableChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmetadatawritercontrol.h non signal false false  void [0xc821b82a20] }
+&{metaDataChanged QMetaDataWriterControl::metaDataChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmetadatawritercontrol.h non signal false false  void [] }
+&{metaDataChanged QMetaDataWriterControl::metaDataChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmetadatawritercontrol.h non signal false true 2 void [0xc821b83060 0xc821b83200] }
+&{setMetaData QMetaDataWriterControl::setMetaData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmetadatawritercontrol.h pure plain false false  void [0xc821b836a0 0xc821b83840] }
+&{writableChanged QMetaDataWriterControl::writableChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmetadatawritercontrol.h non signal false false  void [0xc821b83c00] }
+&{~QMetaDataWriterControl QMetaDataWriterControl::~QMetaDataWriterControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmetadatawritercontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################

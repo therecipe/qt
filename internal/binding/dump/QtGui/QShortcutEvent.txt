@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QShortcutEvent QShortcutEvent::QShortcutEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc82083f5c0 0xc82083f6c0 0xc82083f760] }
+&{isAmbiguous QShortcutEvent::isAmbiguous commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  bool [] }
+&{key QShortcutEvent::key commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QKeySequence & [] }
+&{shortcutId QShortcutEvent::shortcutId commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{~QShortcutEvent QShortcutEvent::~QShortcutEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QTextEncoder QTextEncoder::QTextEncoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non constructor false false   [0xc820162cc0] }
+&{QTextEncoder QTextEncoder::QTextEncoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non constructor false true 2  [0xc820162ee0 0xc820162fc0] }
+&{fromUnicode QTextEncoder::fromUnicode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false true 2 QByteArray [0xc8201631c0 0xc820163240] }
+&{fromUnicode QTextEncoder::fromUnicode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false false  QByteArray [0xc820163400] }
+&{~QTextEncoder QTextEncoder::~QTextEncoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non destructor false false   [] }
+########################################			ENUMS			########################################

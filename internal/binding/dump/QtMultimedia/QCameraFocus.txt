@@ -1,0 +1,24 @@
+########################################			FUNCTIONS			########################################
+&{customFocusPoint QCameraFocus::customFocusPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.cpp non plain false false  QPointF [] }
+&{digitalZoom QCameraFocus::digitalZoom commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.cpp non plain false false  qreal [] }
+&{focusMode QCameraFocus::focusMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.cpp non plain false false  FocusModes [] }
+&{focusPointMode QCameraFocus::focusPointMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.cpp non plain false false  FocusPointMode [] }
+&{focusZones QCameraFocus::focusZones commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.cpp non plain false false  QCameraFocusZoneList [] }
+&{opticalZoom QCameraFocus::opticalZoom commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.cpp non plain false false  qreal [] }
+&{setCustomFocusPoint QCameraFocus::setCustomFocusPoint commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.cpp non plain false false  void [0xc82255e700] }
+&{setFocusMode QCameraFocus::setFocusMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.cpp non plain false false  void [0xc82255ea80] }
+&{setFocusPointMode QCameraFocus::setFocusPointMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.cpp non plain false false  void [0xc82255ef00] }
+&{digitalZoomChanged QCameraFocus::digitalZoomChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non signal false false  void [0xc822588a80] }
+&{focusZonesChanged QCameraFocus::focusZonesChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non signal false false  void [] }
+&{isAvailable QCameraFocus::isAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non plain false false  bool [] }
+&{isFocusModeSupported QCameraFocus::isFocusModeSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non plain false false  bool [0xc8225892a0] }
+&{isFocusPointModeSupported QCameraFocus::isFocusPointModeSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non plain false false  bool [0xc822589540] }
+&{maximumDigitalZoom QCameraFocus::maximumDigitalZoom commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non plain false false  qreal [] }
+&{maximumDigitalZoomChanged QCameraFocus::maximumDigitalZoomChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non signal false false  void [0xc822589c00] }
+&{maximumOpticalZoom QCameraFocus::maximumOpticalZoom commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non plain false false  qreal [] }
+&{maximumOpticalZoomChanged QCameraFocus::maximumOpticalZoomChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non signal false false  void [0xc8225a81a0] }
+&{opticalZoomChanged QCameraFocus::opticalZoomChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non signal false false  void [0xc8225a8540] }
+&{zoomTo QCameraFocus::zoomTo commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamerafocus.h non plain false false  void [0xc8225a88c0 0xc8225a8960] }
+########################################			ENUMS			########################################
+&{FocusMode QCameraFocus::FocusMode commendable public QCameraFocus::FocusModes [0xc82255f460 0xc82255f5a0 0xc82255f640 0xc82255f6e0 0xc82255f880 0xc82255f980]}
+&{FocusPointMode QCameraFocus::FocusPointMode commendable public  [0xc82255fcc0 0xc82255fd60 0xc82255ff40 0xc8225880e0]}

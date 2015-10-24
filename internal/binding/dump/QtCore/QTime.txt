@@ -1,0 +1,32 @@
+########################################			FUNCTIONS			########################################
+&{currentTime QTime::currentTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain true false  QTime [] }
+&{fromString QTime::fromString commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain true false  QTime [0xc82065baa0 0xc82065bba0] }
+&{fromString QTime::fromString commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.cpp non plain true true 2 QTime [0xc82065be60 0xc82065bee0] }
+&{QTime QTime::QTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non constructor false false   [] }
+&{QTime QTime::QTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non constructor false true 3  [0xc820642400 0xc820642480 0xc820642520 0xc8206425a0] }
+&{addMSecs QTime::addMSecs commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QTime [0xc820642a60] }
+&{addSecs QTime::addSecs commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QTime [0xc820642ca0] }
+&{elapsed QTime::elapsed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{fromMSecsSinceStartOfDay QTime::fromMSecsSinceStartOfDay commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true false  QTime [0xc820643080] }
+&{hour QTime::hour commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{isNull QTime::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [] }
+&{isValid QTime::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain true true 2 bool [0xc8206434c0 0xc820643560 0xc820643600 0xc8206436a0] }
+&{isValid QTime::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [] }
+&{minute QTime::minute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{msec QTime::msec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{msecsSinceStartOfDay QTime::msecsSinceStartOfDay commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{msecsTo QTime::msecsTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [0xc820643c60] }
+&{operator!= QTime::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc820643e60] }
+&{operator< QTime::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc820643fe0] }
+&{operator<= QTime::operator<= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc82061c220] }
+&{operator== QTime::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc82061c420] }
+&{operator> QTime::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc82061c600] }
+&{operator>= QTime::operator>= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc82061c860] }
+&{restart QTime::restart commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{second QTime::second commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [] }
+&{secsTo QTime::secsTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  int [0xc82061cb80] }
+&{setHMS QTime::setHMS commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  bool [0xc82061cd60 0xc82061cde0 0xc82061ce80 0xc82061cf40] }
+&{start QTime::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  void [] }
+&{toString QTime::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false true 2 QString [0xc82061d120] }
+&{toString QTime::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qdatetime.h non plain false false  QString [0xc82061d2a0] }
+########################################			ENUMS			########################################

@@ -1,0 +1,42 @@
+########################################			FUNCTIONS			########################################
+&{proxyFactory QNetworkAccessManager::proxyFactory commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.cpp non plain false false  QNetworkProxyFactory * [] }
+&{QNetworkAccessManager QNetworkAccessManager::QNetworkAccessManager commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non constructor false false   [0xc822719ee0] }
+&{activeConfiguration QNetworkAccessManager::activeConfiguration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  QNetworkConfiguration [] }
+&{authenticationRequired QNetworkAccessManager::authenticationRequired commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non signal false false  void [0xc8227ea4e0 0xc8227ea560] }
+&{cache QNetworkAccessManager::cache commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  QAbstractNetworkCache * [] }
+&{clearAccessCache QNetworkAccessManager::clearAccessCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  void [] }
+&{configuration QNetworkAccessManager::configuration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  QNetworkConfiguration [] }
+&{connectToHost QNetworkAccessManager::connectToHost commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  void [0xc8227eab00 0xc8227eab80] }
+&{connectToHostEncrypted QNetworkAccessManager::connectToHostEncrypted commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  void [0xc8227eadc0 0xc8227eae60 0xc8227eaf60] }
+&{cookieJar QNetworkAccessManager::cookieJar commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  QNetworkCookieJar * [] }
+&{createRequest QNetworkAccessManager::createRequest commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h impure plain false false  QNetworkReply * [0xc8227eb300 0xc8227eb3c0 0xc8227eb4a0] }
+&{deleteResource QNetworkAccessManager::deleteResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  QNetworkReply * [0xc8227eb6a0] }
+&{encrypted QNetworkAccessManager::encrypted commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non signal false false  void [0xc8227eb940] }
+&{finished QNetworkAccessManager::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non signal false false  void [0xc8227ebb60] }
+&{get QNetworkAccessManager::get commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  QNetworkReply * [0xc8227ebe20] }
+&{head QNetworkAccessManager::head commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  QNetworkReply * [0xc821dbc120] }
+&{networkAccessible QNetworkAccessManager::networkAccessible commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  NetworkAccessibility [] }
+&{networkAccessibleChanged QNetworkAccessManager::networkAccessibleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non signal false false  void [0xc821dbc5e0] }
+&{post QNetworkAccessManager::post commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false true 3 QNetworkReply * [0xc821dbc960 0xc821dbca80] }
+&{post QNetworkAccessManager::post commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  QNetworkReply * [0xc821dbcd00 0xc821dbce00] }
+&{post QNetworkAccessManager::post commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false true 2 QNetworkReply * [0xc821dbd040 0xc821dbd180] }
+&{preSharedKeyAuthenticationRequired QNetworkAccessManager::preSharedKeyAuthenticationRequired commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non signal false false  void [0xc821dbd380 0xc821dbd440] }
+&{proxy QNetworkAccessManager::proxy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  QNetworkProxy [] }
+&{proxyAuthenticationRequired QNetworkAccessManager::proxyAuthenticationRequired commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non signal false false  void [0xc821dbd840 0xc821dbd980] }
+&{put QNetworkAccessManager::put commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false true 2 QNetworkReply * [0xc821dbdbe0 0xc821dbdce0] }
+&{put QNetworkAccessManager::put commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  QNetworkReply * [0xc821dbdf60 0xc82295c040] }
+&{put QNetworkAccessManager::put commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false true 3 QNetworkReply * [0xc82295c2c0 0xc82295c3c0] }
+&{sendCustomRequest QNetworkAccessManager::sendCustomRequest commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  QNetworkReply * [0xc82295c680 0xc82295c780 0xc82295c880] }
+&{setCache QNetworkAccessManager::setCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  void [0xc82295cae0] }
+&{setConfiguration QNetworkAccessManager::setConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  void [0xc82295cd00] }
+&{setCookieJar QNetworkAccessManager::setCookieJar commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  void [0xc82295cf40] }
+&{setNetworkAccessible QNetworkAccessManager::setNetworkAccessible commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  void [0xc82295d240] }
+&{setProxy QNetworkAccessManager::setProxy commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  void [0xc82295d4e0] }
+&{setProxyFactory QNetworkAccessManager::setProxyFactory commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  void [0xc82295d720] }
+&{sslErrors QNetworkAccessManager::sslErrors commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non signal false false  void [0xc82295d9a0 0xc82295daa0] }
+&{supportedSchemes QNetworkAccessManager::supportedSchemes commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non plain false false  QStringList [] }
+&{supportedSchemesImplementation QNetworkAccessManager::supportedSchemesImplementation commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non slot false false  QStringList [] }
+&{~QNetworkAccessManager QNetworkAccessManager::~QNetworkAccessManager commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkaccessmanager.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{NetworkAccessibility QNetworkAccessManager::NetworkAccessibility commendable public  [0xc8227194c0 0xc8227195c0 0xc822719640]}
+&{Operation QNetworkAccessManager::Operation commendable public  [0xc8227198a0 0xc822719920 0xc8227199e0 0xc822719aa0 0xc822719b40 0xc822719c00 0xc822719ca0]}

@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{lux QLightReading::lux commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.cpp non plain false false  qreal [] }
+&{setLux QLightReading::setLux commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h non plain false false  void [0xc822e80ac0] }
+########################################			ENUMS			########################################

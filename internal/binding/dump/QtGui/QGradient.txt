@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{setColorAt QGradient::setColorAt commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non plain false false  void [0xc8225199e0 0xc822519a60] }
+&{setStops QGradient::setStops commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non plain false false  void [0xc822519c40] }
+&{coordinateMode QGradient::coordinateMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  CoordinateMode [] }
+&{operator!= QGradient::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  bool [0xc821f8ce60] }
+&{operator== QGradient::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  bool [0xc821f8d080] }
+&{setCoordinateMode QGradient::setCoordinateMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc821f8d2e0] }
+&{setSpread QGradient::setSpread commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc821f8d740] }
+&{spread QGradient::spread commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  Spread [] }
+&{stops QGradient::stops commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  QGradientStops [] }
+&{type QGradient::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  Type [] }
+########################################			ENUMS			########################################
+&{CoordinateMode QGradient::CoordinateMode commendable public  [0xc822519e60 0xc822519f00 0xc822519fe0]}
+&{Spread QGradient::Spread commendable public  [0xc821f8c520 0xc821f8c5a0 0xc821f8c620]}
+&{Type QGradient::Type commendable public  [0xc821f8c780 0xc821f8c800 0xc821f8c880 0xc821f8c900]}

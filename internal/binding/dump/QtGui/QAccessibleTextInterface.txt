@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{addSelection QAccessibleTextInterface::addSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void [0xc820c48c40 0xc820c48d60] }
+&{attributes QAccessibleTextInterface::attributes commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QString [0xc820c48f40 0xc820c49000 0xc820c490e0] }
+&{characterCount QAccessibleTextInterface::characterCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  int [] }
+&{characterRect QAccessibleTextInterface::characterRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QRect [0xc820c49360] }
+&{cursorPosition QAccessibleTextInterface::cursorPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  int [] }
+&{offsetAtPoint QAccessibleTextInterface::offsetAtPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  int [0xc820c495a0] }
+&{removeSelection QAccessibleTextInterface::removeSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void [0xc820c49740] }
+&{scrollToSubstring QAccessibleTextInterface::scrollToSubstring commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void [0xc820c49980 0xc820c49a40] }
+&{selection QAccessibleTextInterface::selection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void [0xc820c49c80 0xc820c49d00 0xc820c49e00] }
+&{selectionCount QAccessibleTextInterface::selectionCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  int [] }
+&{setCursorPosition QAccessibleTextInterface::setCursorPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void [0xc820c34160] }
+&{setSelection QAccessibleTextInterface::setSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void [0xc820c343c0 0xc820c34460 0xc820c34540] }
+&{text QAccessibleTextInterface::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QString [0xc820c347a0 0xc820c34880] }
+&{textAfterOffset QAccessibleTextInterface::textAfterOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure plain false false  QString [0xc820c34aa0 0xc820c34b80 0xc820c34c80 0xc820c34d00] }
+&{textAtOffset QAccessibleTextInterface::textAtOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure plain false false  QString [0xc820c34e40 0xc820c34f40 0xc820c35020 0xc820c35120] }
+&{textBeforeOffset QAccessibleTextInterface::textBeforeOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure plain false false  QString [0xc820c352a0 0xc820c353c0 0xc820c35500 0xc820c35580] }
+&{~QAccessibleTextInterface QAccessibleTextInterface::~QAccessibleTextInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure destructor false false   [] }
+########################################			ENUMS			########################################

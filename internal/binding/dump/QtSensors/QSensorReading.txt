@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{setTimestamp QSensorReading::setTimestamp commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  void [0xc822d9d5c0] }
+&{timestamp QSensorReading::timestamp commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  quint64 [] }
+&{value QSensorReading::value commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  QVariant [0xc822d9da80] }
+&{valueCount QSensorReading::valueCount commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  int [] }
+########################################			ENUMS			########################################

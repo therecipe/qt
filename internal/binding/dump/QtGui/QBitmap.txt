@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QBitmap QBitmap::QBitmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.cpp non constructor false true 3  [0xc820c0c480 0xc820c0c540] }
+&{QBitmap QBitmap::QBitmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.h non constructor false false   [] }
+&{QBitmap QBitmap::QBitmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.h non constructor false true 2  [0xc820c0c880] }
+&{QBitmap QBitmap::QBitmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.h non constructor false true 4  [0xc820c0cae0] }
+&{QBitmap QBitmap::QBitmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.h non constructor false true 5  [0xc820c0cce0 0xc820c0cd80] }
+&{clear QBitmap::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.h non plain false false  void [] }
+&{fromData QBitmap::fromData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.h non plain true false  QBitmap [0xc820c0d080 0xc820c0d140 0xc820c0d200] }
+&{fromImage QBitmap::fromImage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.h non plain true false  QBitmap [0xc820c0d460 0xc820c0d540] }
+&{operator QVariant QBitmap::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.h non plain false false   [] }
+&{operator= QBitmap::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.h non plain false false  QBitmap & [0xc820c0d9e0] }
+&{swap QBitmap::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.h non plain false false  void [0xc820c0dbe0] }
+&{transformed QBitmap::transformed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.h non plain false false  QBitmap [0xc820c06340] }
+&{~QBitmap QBitmap::~QBitmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qbitmap.h non destructor false false   [] }
+########################################			ENUMS			########################################

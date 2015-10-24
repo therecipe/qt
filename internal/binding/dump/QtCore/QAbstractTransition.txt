@@ -1,0 +1,22 @@
+########################################			FUNCTIONS			########################################
+&{QAbstractTransition QAbstractTransition::QAbstractTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non constructor false false   [0xc82012bfc0] }
+&{addAnimation QAbstractTransition::addAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non plain false false  void [0xc820116580] }
+&{animations QAbstractTransition::animations commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non plain false false  QList<QAbstractAnimation *> [] }
+&{event QAbstractTransition::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h impure plain false false  bool [0xc820116ae0] }
+&{eventTest QAbstractTransition::eventTest commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h pure plain false false  bool [0xc820116d80] }
+&{machine QAbstractTransition::machine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non plain false false  QStateMachine * [] }
+&{onTransition QAbstractTransition::onTransition commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h pure plain false false  void [0xc8201171a0] }
+&{removeAnimation QAbstractTransition::removeAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non plain false false  void [0xc820117420] }
+&{setTargetState QAbstractTransition::setTargetState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non plain false false  void [0xc8201176c0] }
+&{setTargetStates QAbstractTransition::setTargetStates commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non plain false false  void [0xc8201179a0] }
+&{setTransitionType QAbstractTransition::setTransitionType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non plain false false  void [0xc820117d00] }
+&{sourceState QAbstractTransition::sourceState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non plain false false  QState * [] }
+&{targetState QAbstractTransition::targetState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non plain false false  QAbstractState * [] }
+&{targetStateChanged QAbstractTransition::targetStateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non signal false false  void [] }
+&{targetStates QAbstractTransition::targetStates commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non plain false false  QList<QAbstractState *> [] }
+&{targetStatesChanged QAbstractTransition::targetStatesChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non signal false false  void [] }
+&{transitionType QAbstractTransition::transitionType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non plain false false  TransitionType [] }
+&{triggered QAbstractTransition::triggered commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h non signal false false  void [] }
+&{~QAbstractTransition QAbstractTransition::~QAbstractTransition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstracttransition.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{TransitionType QAbstractTransition::TransitionType commendable public  [0xc82012bbe0 0xc82012bcc0]}

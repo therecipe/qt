@@ -1,0 +1,22 @@
+########################################			FUNCTIONS			########################################
+&{QNetworkCacheMetaData QNetworkCacheMetaData::QNetworkCacheMetaData commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non constructor false false   [] }
+&{QNetworkCacheMetaData QNetworkCacheMetaData::QNetworkCacheMetaData commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non constructor false true 2  [0xc822c57a60] }
+&{attributes QNetworkCacheMetaData::attributes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  AttributesMap [] }
+&{expirationDate QNetworkCacheMetaData::expirationDate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  QDateTime [] }
+&{isValid QNetworkCacheMetaData::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  bool [] }
+&{lastModified QNetworkCacheMetaData::lastModified commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  QDateTime [] }
+&{operator!= QNetworkCacheMetaData::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  bool [0xc822c57fe0] }
+&{operator= QNetworkCacheMetaData::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  QNetworkCacheMetaData & [0xc821d762e0] }
+&{operator== QNetworkCacheMetaData::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  bool [0xc821d76540] }
+&{rawHeaders QNetworkCacheMetaData::rawHeaders commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  RawHeaderList [] }
+&{saveToDisk QNetworkCacheMetaData::saveToDisk commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  bool [] }
+&{setAttributes QNetworkCacheMetaData::setAttributes commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  void [0xc821d768c0] }
+&{setExpirationDate QNetworkCacheMetaData::setExpirationDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  void [0xc821d76b60] }
+&{setLastModified QNetworkCacheMetaData::setLastModified commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  void [0xc821d76da0] }
+&{setRawHeaders QNetworkCacheMetaData::setRawHeaders commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  void [0xc821d76fa0] }
+&{setSaveToDisk QNetworkCacheMetaData::setSaveToDisk commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  void [0xc821d771e0] }
+&{setUrl QNetworkCacheMetaData::setUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  void [0xc821d77460] }
+&{swap QNetworkCacheMetaData::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  void [0xc821d776e0] }
+&{url QNetworkCacheMetaData::url commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non plain false false  QUrl [] }
+&{~QNetworkCacheMetaData QNetworkCacheMetaData::~QNetworkCacheMetaData commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non destructor false false   [] }
+########################################			ENUMS			########################################

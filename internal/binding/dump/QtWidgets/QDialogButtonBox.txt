@@ -1,0 +1,31 @@
+########################################			FUNCTIONS			########################################
+&{centerButtons QDialogButtonBox::centerButtons commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.cpp non plain false false  bool [] }
+&{orientation QDialogButtonBox::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.cpp non plain false false  Qt::Orientation [] }
+&{setCenterButtons QDialogButtonBox::setCenterButtons commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.cpp non plain false false  void [0xc822252500] }
+&{setOrientation QDialogButtonBox::setOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.cpp non plain false false  void [0xc822252820] }
+&{setStandardButtons QDialogButtonBox::setStandardButtons commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.cpp non plain false false  void [0xc822252ba0] }
+&{standardButtons QDialogButtonBox::standardButtons commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.cpp non plain false false  StandardButtons [] }
+&{QDialogButtonBox QDialogButtonBox::QDialogButtonBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non constructor false false   [0xc8213c3fe0] }
+&{QDialogButtonBox QDialogButtonBox::QDialogButtonBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non constructor false true 2  [0xc821442300 0xc821442440] }
+&{QDialogButtonBox QDialogButtonBox::QDialogButtonBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non constructor false true 3  [0xc821442740 0xc821442940] }
+&{QDialogButtonBox QDialogButtonBox::QDialogButtonBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non constructor false true 4  [0xc821442c00 0xc821442d60 0xc821442f00] }
+&{accepted QDialogButtonBox::accepted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non signal false false  void [] }
+&{addButton QDialogButtonBox::addButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non plain false true 3 QPushButton * [0xc8214437e0] }
+&{addButton QDialogButtonBox::addButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non plain false true 2 QPushButton * [0xc821443b20 0xc821443bc0] }
+&{addButton QDialogButtonBox::addButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non plain false false  void [0xc8215140a0 0xc821514240] }
+&{button QDialogButtonBox::button commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non plain false false  QPushButton * [0xc8215147a0] }
+&{buttonRole QDialogButtonBox::buttonRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non plain false false  ButtonRole [0xc821514dc0] }
+&{buttons QDialogButtonBox::buttons commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non plain false false  QList<QAbstractButton *> [] }
+&{changeEvent QDialogButtonBox::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h impure plain false false  void [0xc821515840] }
+&{clear QDialogButtonBox::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non plain false false  void [] }
+&{clicked QDialogButtonBox::clicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non signal false false  void [0xc8215a01c0] }
+&{event QDialogButtonBox::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h impure plain false false  bool [0xc8215a0900] }
+&{helpRequested QDialogButtonBox::helpRequested commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non signal false false  void [] }
+&{rejected QDialogButtonBox::rejected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non signal false false  void [] }
+&{removeButton QDialogButtonBox::removeButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non plain false false  void [0xc8215a15a0] }
+&{standardButton QDialogButtonBox::standardButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non plain false false  StandardButton [0xc8215a1dc0] }
+&{~QDialogButtonBox QDialogButtonBox::~QDialogButtonBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdialogbuttonbox.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ButtonLayout QDialogButtonBox::ButtonLayout commendable public  [0xc8222530a0 0xc822253140 0xc822253320 0xc8222533a0]}
+&{ButtonRole QDialogButtonBox::ButtonRole commendable public  [0xc8222536e0 0xc8222537a0 0xc822253820 0xc822253920 0xc8222539e0 0xc822253ac0 0xc822253b60 0xc822253c40 0xc822253d60 0xc822253de0 0xc822253ea0]}
+&{StandardButton QDialogButtonBox::StandardButton commendable public QDialogButtonBox::StandardButtons [0xc8213c21c0 0xc8213c22a0 0xc8213c23a0 0xc8213c24a0 0xc8213c2680 0xc8213c2780 0xc8213c2900 0xc8213c2a00 0xc8213c2c00 0xc8213c2d40 0xc8213c2e80 0xc8213c2fc0 0xc8213c3100 0xc8213c3260 0xc8213c33c0 0xc8213c3480 0xc8213c35e0 0xc8213c3720 0xc8213c3840 0xc8213c3a40 0xc8213c3b40]}

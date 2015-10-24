@@ -1,0 +1,33 @@
+########################################			FUNCTIONS			########################################
+&{QMediaResource QMediaResource::QMediaResource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non constructor false false   [] }
+&{QMediaResource QMediaResource::QMediaResource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non constructor false true 4  [0xc821998ba0] }
+&{QMediaResource QMediaResource::QMediaResource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non constructor false true 3  [0xc821998f00 0xc8219990c0] }
+&{QMediaResource QMediaResource::QMediaResource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non constructor false true 2  [0xc8219993a0 0xc8219994a0] }
+&{audioBitRate QMediaResource::audioBitRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  int [] }
+&{audioCodec QMediaResource::audioCodec commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  QString [] }
+&{channelCount QMediaResource::channelCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  int [] }
+&{dataSize QMediaResource::dataSize commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  qint64 [] }
+&{isNull QMediaResource::isNull commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  bool [] }
+&{language QMediaResource::language commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  QString [] }
+&{mimeType QMediaResource::mimeType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  QString [] }
+&{operator!= QMediaResource::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  bool [0xc82198e340] }
+&{operator= QMediaResource::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  QMediaResource & [0xc82198e5c0] }
+&{operator== QMediaResource::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  bool [0xc82198e860] }
+&{request QMediaResource::request commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  QNetworkRequest [] }
+&{resolution QMediaResource::resolution commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  QSize [] }
+&{sampleRate QMediaResource::sampleRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  int [] }
+&{setAudioBitRate QMediaResource::setAudioBitRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  void [0xc82198ed80] }
+&{setAudioCodec QMediaResource::setAudioCodec commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  void [0xc82198ef20] }
+&{setChannelCount QMediaResource::setChannelCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  void [0xc82198f0c0] }
+&{setDataSize QMediaResource::setDataSize commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  void [0xc82198f280] }
+&{setLanguage QMediaResource::setLanguage commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  void [0xc82198f440] }
+&{setResolution QMediaResource::setResolution commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  void [0xc82198f620] }
+&{setResolution QMediaResource::setResolution commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false true 2 void [0xc82198f820 0xc82198f8c0] }
+&{setSampleRate QMediaResource::setSampleRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  void [0xc82198fae0] }
+&{setVideoBitRate QMediaResource::setVideoBitRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  void [0xc82198fce0] }
+&{setVideoCodec QMediaResource::setVideoCodec commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  void [0xc82198fec0] }
+&{url QMediaResource::url commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  QUrl [] }
+&{videoBitRate QMediaResource::videoBitRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  int [] }
+&{videoCodec QMediaResource::videoCodec commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non plain false false  QString [] }
+&{~QMediaResource QMediaResource::~QMediaResource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaresource.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QGeoAreaMonitorInfo QGeoAreaMonitorInfo::QGeoAreaMonitorInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non constructor false true 2  [0xc82302c6a0] }
+&{QGeoAreaMonitorInfo QGeoAreaMonitorInfo::QGeoAreaMonitorInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non constructor false false   [0xc82302cac0] }
+&{area QGeoAreaMonitorInfo::area commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  QGeoShape [] }
+&{expiration QGeoAreaMonitorInfo::expiration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  QDateTime [] }
+&{identifier QGeoAreaMonitorInfo::identifier commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  QString [] }
+&{isPersistent QGeoAreaMonitorInfo::isPersistent commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  bool [] }
+&{isValid QGeoAreaMonitorInfo::isValid commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  bool [] }
+&{name QGeoAreaMonitorInfo::name commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  QString [] }
+&{notificationParameters QGeoAreaMonitorInfo::notificationParameters commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  QVariantMap [] }
+&{operator!= QGeoAreaMonitorInfo::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  bool [0xc82302db40] }
+&{operator= QGeoAreaMonitorInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  QGeoAreaMonitorInfo & [0xc82301e000] }
+&{operator== QGeoAreaMonitorInfo::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  bool [0xc82301e3c0] }
+&{setArea QGeoAreaMonitorInfo::setArea commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  void [0xc82301e760] }
+&{setExpiration QGeoAreaMonitorInfo::setExpiration commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  void [0xc82301eaa0] }
+&{setName QGeoAreaMonitorInfo::setName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  void [0xc82301ee20] }
+&{setNotificationParameters QGeoAreaMonitorInfo::setNotificationParameters commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  void [0xc82301f1a0] }
+&{setPersistent QGeoAreaMonitorInfo::setPersistent commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non plain false false  void [0xc82301f560] }
+&{~QGeoAreaMonitorInfo QGeoAreaMonitorInfo::~QGeoAreaMonitorInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoareamonitorinfo.h non destructor false false   [] }
+########################################			ENUMS			########################################

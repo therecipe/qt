@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QTouchEvent QTouchEvent::QTouchEvent commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc82080cbc0 0xc82080cc60 0xc82080cde0 0xc82080cec0 0xc82080d0a0] }
+&{device QTouchEvent::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QTouchDevice * [] }
+&{target QTouchEvent::target commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QObject * [] }
+&{touchPointStates QTouchEvent::touchPointStates commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::TouchPointStates [] }
+&{touchPoints QTouchEvent::touchPoints commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QList<QTouchEvent::TouchPoint> & [] }
+&{window QTouchEvent::window commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QWindow * [] }
+&{~QTouchEvent QTouchEvent::~QTouchEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non destructor false false   [] }
+########################################			ENUMS			########################################

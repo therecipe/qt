@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QScriptString QScriptString::QScriptString commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptstring.h non constructor false false   [] }
+&{QScriptString QScriptString::QScriptString commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptstring.h non constructor false true 2  [0xc821bbf480] }
+&{isValid QScriptString::isValid commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptstring.h non plain false false  bool [] }
+&{operator QString QScriptString::operator QString commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptstring.h non plain false false   [] }
+&{operator!= QScriptString::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptstring.h non plain false false  bool [0xc821bbfcc0] }
+&{operator= QScriptString::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptstring.h non plain false false  QScriptString & [0xc821bae080] }
+&{operator== QScriptString::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptstring.h non plain false false  bool [0xc821bae2a0] }
+&{toArrayIndex QScriptString::toArrayIndex commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptstring.h non plain false false  quint32 [0xc821bae4a0] }
+&{toString QScriptString::toString commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptstring.h non plain false false  QString [] }
+&{~QScriptString QScriptString::~QScriptString commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptstring.h non destructor false false   [] }
+########################################			ENUMS			########################################

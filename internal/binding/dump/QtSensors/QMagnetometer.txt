@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{reading QMagnetometer::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.cpp non plain false false  QMagnetometerReading * [] }
+&{returnGeoValues QMagnetometer::returnGeoValues commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.cpp non plain false false  bool [] }
+&{setReturnGeoValues QMagnetometer::setReturnGeoValues commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.cpp non plain false false  void [0xc822e70800] }
+&{QMagnetometer QMagnetometer::QMagnetometer commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.h non constructor false false   [0xc822e70b00] }
+&{returnGeoValuesChanged QMagnetometer::returnGeoValuesChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.h non signal false false  void [0xc822e70e20] }
+&{~QMagnetometer QMagnetometer::~QMagnetometer commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.h impure destructor false false   [] }
+########################################			ENUMS			########################################

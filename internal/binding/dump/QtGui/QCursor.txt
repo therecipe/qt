@@ -1,0 +1,24 @@
+########################################			FUNCTIONS			########################################
+&{pos QCursor::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.cpp non plain true false  QPoint [] }
+&{pos QCursor::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.cpp non plain true true 2 QPoint [0xc8205b7680] }
+&{setPos QCursor::setPos commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.cpp non plain true true 2 void [0xc8205b7800 0xc8205b7880 0xc8205b7960] }
+&{setPos QCursor::setPos commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.cpp non plain true false  void [0xc8205b7b40 0xc8205b7bc0] }
+&{QCursor QCursor::QCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non constructor false false   [] }
+&{QCursor QCursor::QCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non constructor false true 6  [0xc8205b7ea0] }
+&{QCursor QCursor::QCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non constructor false true 2  [0xc82091c040] }
+&{QCursor QCursor::QCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non constructor false true 3  [0xc82091c220 0xc82091c2a0 0xc82091c360 0xc82091c3e0] }
+&{QCursor QCursor::QCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non constructor false true 5  [0xc82091c5c0] }
+&{QCursor QCursor::QCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non constructor false true 4  [0xc82091c720 0xc82091c7c0 0xc82091c880] }
+&{bitmap QCursor::bitmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non plain false false  const QBitmap * [] }
+&{hotSpot QCursor::hotSpot commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non plain false false  QPoint [] }
+&{mask QCursor::mask commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non plain false false  const QBitmap * [] }
+&{operator QVariant QCursor::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non plain false false   [] }
+&{operator= QCursor::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non plain false true 2 QCursor & [0xc82091ce00] }
+&{operator= QCursor::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non plain false false  QCursor & [0xc82091d040] }
+&{pixmap QCursor::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non plain false false  QPixmap [] }
+&{setPos QCursor::setPos commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non plain true true 4 void [0xc82091d280 0xc82091d340] }
+&{setPos QCursor::setPos commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non plain true true 3 void [0xc82091d540] }
+&{setShape QCursor::setShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non plain false false  void [0xc82091d700] }
+&{shape QCursor::shape commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non plain false false  Qt::CursorShape [] }
+&{~QCursor QCursor::~QCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qcursor.h non destructor false false   [] }
+########################################			ENUMS			########################################

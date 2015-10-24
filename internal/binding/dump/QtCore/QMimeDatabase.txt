@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QMimeDatabase QMimeDatabase::QMimeDatabase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.cpp non constructor false false   [] }
+&{mimeTypeForName QMimeDatabase::mimeTypeForName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.cpp non plain false false  QMimeType [0xc8201dd320] }
+&{~QMimeDatabase QMimeDatabase::~QMimeDatabase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.cpp non destructor false false   [] }
+&{allMimeTypes QMimeDatabase::allMimeTypes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.h non plain false false  QList<QMimeType> [] }
+&{mimeTypeForData QMimeDatabase::mimeTypeForData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.h non plain false true 2 QMimeType [0xc8201dde40] }
+&{mimeTypeForData QMimeDatabase::mimeTypeForData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.h non plain false false  QMimeType [0xc8201d2140] }
+&{mimeTypeForFile QMimeDatabase::mimeTypeForFile commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.h non plain false false  QMimeType [0xc8201d2460 0xc8201d2600] }
+&{mimeTypeForFile QMimeDatabase::mimeTypeForFile commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.h non plain false true 2 QMimeType [0xc8201d2880 0xc8201d2960] }
+&{mimeTypeForFileNameAndData QMimeDatabase::mimeTypeForFileNameAndData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.h non plain false false  QMimeType [0xc8201d2c80 0xc8201d2d20] }
+&{mimeTypeForFileNameAndData QMimeDatabase::mimeTypeForFileNameAndData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.h non plain false true 2 QMimeType [0xc8201d2fe0 0xc8201d3100] }
+&{mimeTypeForUrl QMimeDatabase::mimeTypeForUrl commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.h non plain false false  QMimeType [0xc8201d34a0] }
+&{mimeTypesForFileName QMimeDatabase::mimeTypesForFileName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.h non plain false false  QList<QMimeType> [0xc8201d3780] }
+&{suffixForFileName QMimeDatabase::suffixForFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/mimetypes/qmimedatabase.h non plain false false  QString [0xc8201d3ae0] }
+########################################			ENUMS			########################################
+&{MatchMode QMimeDatabase::MatchMode commendable public  [0xc8201dd7c0 0xc8201dd860 0xc8201dd940]}

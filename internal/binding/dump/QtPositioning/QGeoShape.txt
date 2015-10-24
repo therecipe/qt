@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QGeoShape QGeoShape::QGeoShape commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non constructor false false   [] }
+&{QGeoShape QGeoShape::QGeoShape commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non constructor false true 2  [0xc822e90700] }
+&{center QGeoShape::center commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  QGeoCoordinate [] }
+&{contains QGeoShape::contains commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool [0xc822e90f20] }
+&{extendShape QGeoShape::extendShape commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  void [0xc822e91240] }
+&{isEmpty QGeoShape::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool [] }
+&{isValid QGeoShape::isValid commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool [] }
+&{operator!= QGeoShape::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool [0xc822e91940] }
+&{operator= QGeoShape::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  QGeoShape & [0xc822e91c40] }
+&{operator== QGeoShape::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool [0xc822e91f40] }
+&{toString QGeoShape::toString commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  QString [] }
+&{type QGeoShape::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  ShapeType [] }
+&{~QGeoShape QGeoShape::~QGeoShape commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ShapeType QGeoShape::ShapeType commendable public  [0xc822e901c0 0xc822e90260 0xc822e90340]}

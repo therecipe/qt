@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{setUpdateInterval QGeoSatelliteInfoSource::setUpdateInterval commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.cpp impure plain false false  void [0xc822eb44a0] }
+&{updateInterval QGeoSatelliteInfoSource::updateInterval commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.cpp non plain false false  int [] }
+&{QGeoSatelliteInfoSource QGeoSatelliteInfoSource::QGeoSatelliteInfoSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h non constructor false false   [0xc822eb5060] }
+&{availableSources QGeoSatelliteInfoSource::availableSources commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h non plain true false  QStringList [] }
+&{createDefaultSource QGeoSatelliteInfoSource::createDefaultSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h non plain true false  QGeoSatelliteInfoSource * [0xc822eb55a0] }
+&{createSource QGeoSatelliteInfoSource::createSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h non plain true false  QGeoSatelliteInfoSource * [0xc822eb5940 0xc822eb59e0] }
+&{error QGeoSatelliteInfoSource::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h non signal false true 2 void [0xc822eb5d80] }
+&{error QGeoSatelliteInfoSource::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h pure plain false false  Error [] }
+&{minimumUpdateInterval QGeoSatelliteInfoSource::minimumUpdateInterval commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h pure plain false false  int [] }
+&{requestTimeout QGeoSatelliteInfoSource::requestTimeout commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h non signal false false  void [] }
+&{requestUpdate QGeoSatelliteInfoSource::requestUpdate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h pure slot false false  void [0xc822e945c0] }
+&{satellitesInUseUpdated QGeoSatelliteInfoSource::satellitesInUseUpdated commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h non signal false false  void [0xc822e948e0] }
+&{satellitesInViewUpdated QGeoSatelliteInfoSource::satellitesInViewUpdated commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h non signal false false  void [0xc822e94c40] }
+&{sourceName QGeoSatelliteInfoSource::sourceName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h non plain false false  QString [] }
+&{startUpdates QGeoSatelliteInfoSource::startUpdates commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h pure slot false false  void [] }
+&{stopUpdates QGeoSatelliteInfoSource::stopUpdates commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h pure slot false false  void [] }
+&{~QGeoSatelliteInfoSource QGeoSatelliteInfoSource::~QGeoSatelliteInfoSource commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeosatelliteinfosource.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{Error QGeoSatelliteInfoSource::Error commendable public  [0xc822eb49e0 0xc822eb4ac0 0xc822eb4b80 0xc822eb4ca0]}

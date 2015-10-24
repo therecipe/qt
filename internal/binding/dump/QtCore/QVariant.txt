@@ -1,0 +1,111 @@
+########################################			FUNCTIONS			########################################
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 20  [0xc820274f60] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 18  [0xc820275240] }
+&{QVariant QVariant::QVariant commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 2  [0xc820275580] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 11  [0xc820275860] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 16  [0xc820275be0] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 15  [0xc820275fc0] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 21  [0xc82026a380] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 23  [0xc82026a6a0] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 39  [0xc82026aae0] }
+&{QVariant QVariant::QVariant commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 26  [0xc82026ade0] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 45  [0xc82026b120] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 46  [0xc82026b460] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 44  [0xc82026b7a0] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 43  [0xc82026bae0] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 31  [0xc82026be60] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 32  [0xc820264120] }
+&{QVariant QVariant::QVariant commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 24  [0xc820264460] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 35  [0xc8202647e0] }
+&{QVariant QVariant::QVariant commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 25  [0xc820264b40] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 41  [0xc820264f60] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 42  [0xc820265320] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 29  [0xc820265640] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 30  [0xc820265a00] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 33  [0xc820265d20] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 34  [0xc820265fc0] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 36  [0xc82025c380] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 37  [0xc82025c6c0] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 27  [0xc82025ca80] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 28  [0xc82025ce00] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 17  [0xc82025d160] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 19  [0xc82025d4a0] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 22  [0xc82025d840] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 38  [0xc82025db80] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 40  [0xc82025dec0] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 5  [0xc8202521a0] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 14  [0xc8202524e0] }
+&{QVariant QVariant::QVariant commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 12  [0xc820252800] }
+&{QVariant QVariant::QVariant commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 13  [0xc820252b20] }
+&{QVariant QVariant::QVariant commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 3  [0xc820252d80 0xc820252e40] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 7  [0xc820253180] }
+&{QVariant QVariant::QVariant commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 9  [0xc820253480] }
+&{QVariant QVariant::QVariant commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 10  [0xc820253700] }
+&{QVariant QVariant::QVariant commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non constructor false true 8  [0xc820253a60] }
+&{toByteArray QVariant::toByteArray commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QByteArray [] }
+&{toChar QVariant::toChar commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QChar [] }
+&{toDate QVariant::toDate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QDate [] }
+&{toDateTime QVariant::toDateTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QDateTime [] }
+&{toEasingCurve QVariant::toEasingCurve commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QEasingCurve [] }
+&{toLine QVariant::toLine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QLine [] }
+&{toLineF QVariant::toLineF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QLineF [] }
+&{toLocale QVariant::toLocale commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QLocale [] }
+&{toPoint QVariant::toPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QPoint [] }
+&{toPointF QVariant::toPointF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QPointF [] }
+&{toRect QVariant::toRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QRect [] }
+&{toRectF QVariant::toRectF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QRectF [] }
+&{toRegExp QVariant::toRegExp commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QRegExp [] }
+&{toRegularExpression QVariant::toRegularExpression commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QRegularExpression [] }
+&{toSize QVariant::toSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QSize [] }
+&{toSizeF QVariant::toSizeF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QSizeF [] }
+&{toStringList QVariant::toStringList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QStringList [] }
+&{toTime QVariant::toTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QTime [] }
+&{toUrl QVariant::toUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  QUrl [] }
+&{~QVariant QVariant::~QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non destructor false false   [] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non constructor false false   [] }
+&{QVariant QVariant::QVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non constructor false true 6  [0xc8202256c0] }
+&{QVariant QVariant::QVariant commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non constructor false true 47  [0xc8202259a0] }
+&{canConvert QVariant::canConvert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false true 2 bool [] }
+&{canConvert QVariant::canConvert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool [0xc820225d40] }
+&{clear QVariant::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  void [] }
+&{convert QVariant::convert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool [0xc82021c060] }
+&{fromValue QVariant::fromValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain true false  QVariant [0xc820210580] }
+&{isNull QVariant::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool [] }
+&{isValid QVariant::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool [] }
+&{nameToType QVariant::nameToType commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain true false  Type [0xc820210c60] }
+&{operator!= QVariant::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool [0xc820210f40] }
+&{operator< QVariant::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool [0xc8202111e0] }
+&{operator<= QVariant::operator<= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool [0xc820211440] }
+&{operator= QVariant::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false true 2 QVariant & [0xc8202116a0] }
+&{operator= QVariant::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QVariant & [0xc8202119a0] }
+&{operator== QVariant::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool [0xc820211ca0] }
+&{operator> QVariant::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool [0xc820211f80] }
+&{operator>= QVariant::operator>= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool [0xc820208280] }
+&{setValue QVariant::setValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  void [0xc8202085e0] }
+&{swap QVariant::swap commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  void [0xc820208860] }
+&{toBitArray QVariant::toBitArray commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QBitArray [] }
+&{toBool QVariant::toBool commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool [] }
+&{toDouble QVariant::toDouble commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  double [0xc820208ea0] }
+&{toFloat QVariant::toFloat commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  float [0xc8202091e0] }
+&{toHash QVariant::toHash commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QHash<QString, QVariant> [] }
+&{toInt QVariant::toInt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  int [0xc820209640] }
+&{toJsonArray QVariant::toJsonArray commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QJsonArray [] }
+&{toJsonDocument QVariant::toJsonDocument commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QJsonDocument [] }
+&{toJsonObject QVariant::toJsonObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QJsonObject [] }
+&{toJsonValue QVariant::toJsonValue commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QJsonValue [] }
+&{toList QVariant::toList commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QList<QVariant> [] }
+&{toLongLong QVariant::toLongLong commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  qlonglong [0xc8201f4160] }
+&{toMap QVariant::toMap commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QMap<QString, QVariant> [] }
+&{toModelIndex QVariant::toModelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QModelIndex [] }
+&{toPersistentModelIndex QVariant::toPersistentModelIndex commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QPersistentModelIndex [] }
+&{toReal QVariant::toReal commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  qreal [0xc8201f4920] }
+&{toString QVariant::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QString [] }
+&{toUInt QVariant::toUInt commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  uint [0xc8201f4ce0] }
+&{toULongLong QVariant::toULongLong commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  qulonglong [0xc8201f4fa0] }
+&{toUuid QVariant::toUuid commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QUuid [] }
+&{type QVariant::type commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  Type [] }
+&{typeName QVariant::typeName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  const char * [] }
+&{typeToName QVariant::typeToName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain true false  const char * [0xc8201f5660] }
+&{userType QVariant::userType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  int [] }
+&{value QVariant::value commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  T [] }
+########################################			ENUMS			########################################

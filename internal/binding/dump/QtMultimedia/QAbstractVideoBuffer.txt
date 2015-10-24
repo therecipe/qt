@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QAbstractVideoBuffer QAbstractVideoBuffer::QAbstractVideoBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h non constructor false false   [0xc820d62780] }
+&{handle QAbstractVideoBuffer::handle commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h impure plain false false  QVariant [] }
+&{handleType QAbstractVideoBuffer::handleType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h non plain false false  HandleType [] }
+&{map QAbstractVideoBuffer::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h pure plain false false  uchar * [0xc820ace580 0xc820ace660 0xc820ace760] }
+&{mapMode QAbstractVideoBuffer::mapMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h pure plain false false  MapMode [] }
+&{mapPlanes QAbstractVideoBuffer::mapPlanes commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h non plain false false  int [0xc820aced40 0xc820acef20 0xc820acf020 0xc820acf160] }
+&{release QAbstractVideoBuffer::release commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h impure plain false false  void [] }
+&{unmap QAbstractVideoBuffer::unmap commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h pure plain false false  void [] }
+&{~QAbstractVideoBuffer QAbstractVideoBuffer::~QAbstractVideoBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{HandleType QAbstractVideoBuffer::HandleType commendable public  [0xc820d0a0a0 0xc820d0a320 0xc820d0a5e0 0xc820d0a7c0 0xc820d0aa80 0xc820d0adc0 0xc820d0af80]}
+&{MapMode QAbstractVideoBuffer::MapMode commendable public  [0xc820d0b740 0xc820d0baa0 0xc820d0bbe0 0xc820d0bd00]}

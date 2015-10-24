@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{image QQuickTextureFactory::image commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.cpp impure plain false false  QImage [] }
+&{QQuickTextureFactory QQuickTextureFactory::QQuickTextureFactory commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h non constructor false false   [] }
+&{createTexture QQuickTextureFactory::createTexture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h pure plain false false  QSGTexture * [0xc821a87900] }
+&{textureByteCount QQuickTextureFactory::textureByteCount commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h pure plain false false  int [] }
+&{textureSize QQuickTextureFactory::textureSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h pure plain false false  QSize [] }
+&{~QQuickTextureFactory QQuickTextureFactory::~QQuickTextureFactory commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h impure destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{paintDevice QBackingStore::paintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.cpp non plain false false  QPaintDevice * [] }
+&{QBackingStore QBackingStore::QBackingStore commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non constructor false false   [0xc8224ea160] }
+&{beginPaint QBackingStore::beginPaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void [0xc8224ea320] }
+&{endPaint QBackingStore::endPaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void [] }
+&{flush QBackingStore::flush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void [0xc8224ea5e0 0xc8224ea660 0xc8224ea6e0] }
+&{handle QBackingStore::handle commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  QPlatformBackingStore * [] }
+&{hasStaticContents QBackingStore::hasStaticContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  bool [] }
+&{resize QBackingStore::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void [0xc8224eab40] }
+&{scroll QBackingStore::scroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  bool [0xc8224ead20 0xc8224eada0 0xc8224eae20] }
+&{setStaticContents QBackingStore::setStaticContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void [0xc8224eb020] }
+&{size QBackingStore::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  QSize [] }
+&{staticContents QBackingStore::staticContents commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  QRegion [] }
+&{window QBackingStore::window commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  QWindow * [] }
+&{~QBackingStore QBackingStore::~QBackingStore commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non destructor false false   [] }
+########################################			ENUMS			########################################

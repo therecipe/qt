@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{argument QScriptable::argument commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptable.h non plain false false  QScriptValue [0xc822bb8de0] }
+&{argumentCount QScriptable::argumentCount commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptable.h non plain false false  int [] }
+&{context QScriptable::context commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptable.h non plain false false  QScriptContext * [] }
+&{engine QScriptable::engine commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptable.h non plain false false  QScriptEngine * [] }
+&{thisObject QScriptable::thisObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptable.h non plain false false  QScriptValue [] }
+########################################			ENUMS			########################################

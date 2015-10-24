@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QThreadStorage QThreadStorage::QThreadStorage commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non constructor false false   [] }
+&{hasLocalData QThreadStorage::hasLocalData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  bool [] }
+&{localData QThreadStorage::localData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  T & [] }
+&{localData QThreadStorage::localData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false true 2 T [] }
+&{setLocalData QThreadStorage::setLocalData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  void [0xc8207597c0] }
+&{~QThreadStorage QThreadStorage::~QThreadStorage commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{ascent QTextInlineObject::ascent commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
+&{descent QTextInlineObject::descent commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
+&{format QTextInlineObject::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QTextFormat [] }
+&{formatIndex QTextInlineObject::formatIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int [] }
+&{height QTextInlineObject::height commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
+&{isValid QTextInlineObject::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  bool [] }
+&{rect QTextInlineObject::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QRectF [] }
+&{setAscent QTextInlineObject::setAscent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc821308760] }
+&{setDescent QTextInlineObject::setDescent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc821308ba0] }
+&{setWidth QTextInlineObject::setWidth commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc821308f80] }
+&{textDirection QTextInlineObject::textDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  Qt::LayoutDirection [] }
+&{textPosition QTextInlineObject::textPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int [] }
+&{width QTextInlineObject::width commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
+########################################			ENUMS			########################################

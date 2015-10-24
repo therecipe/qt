@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QStringListModel QStringListModel::QStringListModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h non constructor false false   [0xc8205143c0] }
+&{QStringListModel QStringListModel::QStringListModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h non constructor false true 2  [0xc820514540 0xc820514600] }
+&{data QStringListModel::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h impure plain false false  QVariant [0xc820514800 0xc8205148c0] }
+&{flags QStringListModel::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h impure plain false false  Qt::ItemFlags [0xc820514ac0] }
+&{insertRows QStringListModel::insertRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h impure plain false false  bool [0xc820514d00 0xc820514d80 0xc820514e20] }
+&{removeRows QStringListModel::removeRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h impure plain false false  bool [0xc820515040 0xc8205150c0 0xc820515160] }
+&{rowCount QStringListModel::rowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h impure plain false false  int [0xc8205153a0] }
+&{setData QStringListModel::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h impure plain false false  bool [0xc8205155e0 0xc8205156a0 0xc820515720] }
+&{setStringList QStringListModel::setStringList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h non plain false false  void [0xc820515920] }
+&{sibling QStringListModel::sibling commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h impure plain false false  QModelIndex [0xc820515b40 0xc820515bc0 0xc820515c60] }
+&{sort QStringListModel::sort commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h impure plain false false  void [0xc820515e80 0xc820515f20] }
+&{stringList QStringListModel::stringList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h non plain false false  QStringList [] }
+&{supportedDropActions QStringListModel::supportedDropActions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qstringlistmodel.h impure plain false false  Qt::DropActions [] }
+########################################			ENUMS			########################################

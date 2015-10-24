@@ -1,0 +1,32 @@
+########################################			FUNCTIONS			########################################
+&{scrollerProperties QScroller::scrollerProperties commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.cpp non plain false false  QScrollerProperties [] }
+&{setScrollerProperties QScroller::setScrollerProperties commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.cpp non slot false false  void [0xc8212ec080] }
+&{state QScroller::state commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.cpp non plain false false  State [] }
+&{activeScrollers QScroller::activeScrollers commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain true false  QList<QScroller *> [] }
+&{ensureVisible QScroller::ensureVisible commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non slot false false  void [0xc8212edf00 0xc8212edfa0 0xc8212d8120] }
+&{ensureVisible QScroller::ensureVisible commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non slot false true 2 void [0xc8212d8400 0xc8212d84e0 0xc8212d8620 0xc8212d86e0] }
+&{finalPosition QScroller::finalPosition commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain false false  QPointF [] }
+&{grabGesture QScroller::grabGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain true false  Qt::GestureType [0xc8212d8be0 0xc8212d8d00] }
+&{grabbedGesture QScroller::grabbedGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain true false  Qt::GestureType [0xc8212d9160] }
+&{handleInput QScroller::handleInput commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain false false  bool [0xc8212d94c0 0xc8212d9580 0xc8212d9680] }
+&{hasScroller QScroller::hasScroller commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain true false  bool [0xc8212d9a00] }
+&{pixelPerMeter QScroller::pixelPerMeter commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain false false  QPointF [] }
+&{resendPrepareEvent QScroller::resendPrepareEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non slot false false  void [] }
+&{scrollTo QScroller::scrollTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non slot false false  void [0xc8212cc120] }
+&{scrollTo QScroller::scrollTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non slot false true 2 void [0xc8212cc4a0 0xc8212cc540] }
+&{scroller QScroller::scroller commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain true false  QScroller * [0xc8212cc8e0] }
+&{scroller QScroller::scroller commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain true true 2 const QScroller * [0xc8212ccd80] }
+&{scrollerPropertiesChanged QScroller::scrollerPropertiesChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non signal false false  void [0xc8212cd120] }
+&{setSnapPositionsX QScroller::setSnapPositionsX commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain false false  void [0xc8212cd5e0] }
+&{setSnapPositionsX QScroller::setSnapPositionsX commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain false true 2 void [0xc8212cda20 0xc8212cdb40] }
+&{setSnapPositionsY QScroller::setSnapPositionsY commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain false false  void [0xc8212cdf00] }
+&{setSnapPositionsY QScroller::setSnapPositionsY commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain false true 2 void [0xc8212b42c0 0xc8212b4360] }
+&{stateChanged QScroller::stateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non signal false false  void [0xc8212b46e0] }
+&{stop QScroller::stop commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain false false  void [] }
+&{target QScroller::target commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain false false  QObject * [] }
+&{ungrabGesture QScroller::ungrabGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain true false  void [0xc8212b4d40] }
+&{velocity QScroller::velocity commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qscroller.h non plain false false  QPointF [] }
+########################################			ENUMS			########################################
+&{Input QScroller::Input commendable public  [0xc8212ec560 0xc8212ec660 0xc8212ec780]}
+&{ScrollerGestureType QScroller::ScrollerGestureType commendable public  [0xc8212ecb40 0xc8212ecc20 0xc8212ecde0 0xc8212ecf80]}
+&{State QScroller::State commendable public  [0xc8212ed2c0 0xc8212ed360 0xc8212ed4c0 0xc8212ed5c0]}

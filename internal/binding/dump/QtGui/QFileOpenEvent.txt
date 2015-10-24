@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{openFile QFileOpenEvent::openFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.cpp non plain false false  bool [0xc8208c2300 0xc8208c23a0] }
+&{file QFileOpenEvent::file commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QString [] }
+&{url QFileOpenEvent::url commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QUrl [] }
+########################################			ENUMS			########################################

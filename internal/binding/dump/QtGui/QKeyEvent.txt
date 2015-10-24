@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{matches QKeyEvent::matches commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.cpp non plain false false  bool [0xc82078dee0] }
+&{QKeyEvent QKeyEvent::QKeyEvent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc820888240 0xc820888320 0xc820888400 0xc820888620 0xc820888740 0xc8208888a0] }
+&{QKeyEvent QKeyEvent::QKeyEvent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 2  [0xc820888ba0 0xc820888c40 0xc820888dc0 0xc820888ec0 0xc820889040 0xc820889100 0xc8208891c0 0xc8208892c0 0xc8208893c0] }
+&{count QKeyEvent::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{isAutoRepeat QKeyEvent::isAutoRepeat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  bool [] }
+&{key QKeyEvent::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{modifiers QKeyEvent::modifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::KeyboardModifiers [] }
+&{nativeModifiers QKeyEvent::nativeModifiers commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  quint32 [] }
+&{nativeScanCode QKeyEvent::nativeScanCode commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  quint32 [] }
+&{nativeVirtualKey QKeyEvent::nativeVirtualKey commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  quint32 [] }
+&{text QKeyEvent::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QString [] }
+########################################			ENUMS			########################################

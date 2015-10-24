@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{QAudioDecoderControl QAudioDecoderControl::QAudioDecoderControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h non constructor false false   [0xc822648fe0] }
+&{audioFormat QAudioDecoderControl::audioFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  QAudioFormat [] }
+&{bufferAvailable QAudioDecoderControl::bufferAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  bool [] }
+&{bufferAvailableChanged QAudioDecoderControl::bufferAvailableChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h non signal false false  void [0xc8226494a0] }
+&{bufferReady QAudioDecoderControl::bufferReady commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h non signal false false  void [] }
+&{duration QAudioDecoderControl::duration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  qint64 [] }
+&{durationChanged QAudioDecoderControl::durationChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h non signal false false  void [0xc822649a20] }
+&{error QAudioDecoderControl::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h non signal false false  void [0xc822649d00 0xc822649e40] }
+&{finished QAudioDecoderControl::finished commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h non signal false false  void [] }
+&{formatChanged QAudioDecoderControl::formatChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h non signal false false  void [0xc821d301e0] }
+&{position QAudioDecoderControl::position commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  qint64 [] }
+&{positionChanged QAudioDecoderControl::positionChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h non signal false false  void [0xc821d305e0] }
+&{read QAudioDecoderControl::read commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  QAudioBuffer [] }
+&{setAudioFormat QAudioDecoderControl::setAudioFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  void [0xc821d30a20] }
+&{setSourceDevice QAudioDecoderControl::setSourceDevice commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  void [0xc821d30c80] }
+&{setSourceFilename QAudioDecoderControl::setSourceFilename commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  void [0xc821d30f60] }
+&{sourceChanged QAudioDecoderControl::sourceChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h non signal false false  void [] }
+&{sourceDevice QAudioDecoderControl::sourceDevice commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  QIODevice * [] }
+&{sourceFilename QAudioDecoderControl::sourceFilename commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  QString [] }
+&{start QAudioDecoderControl::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  void [] }
+&{state QAudioDecoderControl::state commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  QAudioDecoder::State [] }
+&{stateChanged QAudioDecoderControl::stateChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h non signal false false  void [0xc821d317e0] }
+&{stop QAudioDecoderControl::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h pure plain false false  void [] }
+&{~QAudioDecoderControl QAudioDecoderControl::~QAudioDecoderControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qaudiodecodercontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,45 @@
+########################################			FUNCTIONS			########################################
+&{playbackMode QMediaPlaylist::playbackMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.cpp non plain false false  PlaybackMode [] }
+&{setPlaybackMode QMediaPlaylist::setPlaybackMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.cpp non plain false false  void [0xc8219da2e0] }
+&{QMediaPlaylist QMediaPlaylist::QMediaPlaylist commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non constructor false false   [0xc8219db740] }
+&{addMedia QMediaPlaylist::addMedia commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false true 2 bool [0xc8219dbe60] }
+&{addMedia QMediaPlaylist::addMedia commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  bool [0xc8219c81c0] }
+&{clear QMediaPlaylist::clear commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  bool [] }
+&{currentIndex QMediaPlaylist::currentIndex commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  int [] }
+&{currentIndexChanged QMediaPlaylist::currentIndexChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non signal false false  void [0xc8219c86c0] }
+&{currentMedia QMediaPlaylist::currentMedia commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  QMediaContent [] }
+&{currentMediaChanged QMediaPlaylist::currentMediaChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non signal false false  void [0xc8219c8a20] }
+&{error QMediaPlaylist::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  Error [] }
+&{errorString QMediaPlaylist::errorString commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  QString [] }
+&{insertMedia QMediaPlaylist::insertMedia commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false true 2 bool [0xc8219c8ec0 0xc8219c8f60] }
+&{insertMedia QMediaPlaylist::insertMedia commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  bool [0xc8219c9160 0xc8219c9200] }
+&{isEmpty QMediaPlaylist::isEmpty commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  bool [] }
+&{isReadOnly QMediaPlaylist::isReadOnly commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  bool [] }
+&{load QMediaPlaylist::load commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false true 3 void [0xc8219c9620 0xc8219c96a0] }
+&{load QMediaPlaylist::load commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  void [0xc8219c9880 0xc8219c9960] }
+&{load QMediaPlaylist::load commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false true 2 void [0xc8219c9b40 0xc8219c9be0] }
+&{loadFailed QMediaPlaylist::loadFailed commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non signal false false  void [] }
+&{loaded QMediaPlaylist::loaded commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non signal false false  void [] }
+&{media QMediaPlaylist::media commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  QMediaContent [0xc8219c6000] }
+&{mediaAboutToBeInserted QMediaPlaylist::mediaAboutToBeInserted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non signal false false  void [0xc8219c6300 0xc8219c63e0] }
+&{mediaAboutToBeRemoved QMediaPlaylist::mediaAboutToBeRemoved commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non signal false false  void [0xc8219c67a0 0xc8219c68e0] }
+&{mediaChanged QMediaPlaylist::mediaChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non signal false false  void [0xc8219c6ca0 0xc8219c6e00] }
+&{mediaCount QMediaPlaylist::mediaCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  int [] }
+&{mediaInserted QMediaPlaylist::mediaInserted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non signal false false  void [0xc8219c7340 0xc8219c7400] }
+&{mediaObject QMediaPlaylist::mediaObject commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h impure plain false false  QMediaObject * [] }
+&{mediaRemoved QMediaPlaylist::mediaRemoved commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non signal false false  void [0xc8219c7960 0xc8219c7ac0] }
+&{next QMediaPlaylist::next commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non slot false false  void [] }
+&{nextIndex QMediaPlaylist::nextIndex commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  int [0xc8219b6120] }
+&{playbackModeChanged QMediaPlaylist::playbackModeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non signal false false  void [0xc8219b6640] }
+&{previous QMediaPlaylist::previous commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non slot false false  void [] }
+&{previousIndex QMediaPlaylist::previousIndex commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  int [0xc8219b6d40] }
+&{removeMedia QMediaPlaylist::removeMedia commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  bool [0xc8219b7200] }
+&{removeMedia QMediaPlaylist::removeMedia commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false true 2 bool [0xc8219b75a0 0xc8219b7660] }
+&{save QMediaPlaylist::save commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false true 2 bool [0xc8219b7a40 0xc8219b7b00] }
+&{save QMediaPlaylist::save commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non plain false false  bool [0xc8219b7e40 0xc8219b7f40] }
+&{setCurrentIndex QMediaPlaylist::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non slot false false  void [0xc8219a6340] }
+&{shuffle QMediaPlaylist::shuffle commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h non slot false false  void [] }
+&{~QMediaPlaylist QMediaPlaylist::~QMediaPlaylist commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediaplaylist.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{Error QMediaPlaylist::Error commendable public  [0xc8219da640 0xc8219da700 0xc8219da8a0 0xc8219da9c0 0xc8219dab20]}
+&{PlaybackMode QMediaPlaylist::PlaybackMode commendable public  [0xc8219daec0 0xc8219dafa0 0xc8219db160 0xc8219db240 0xc8219db3a0]}

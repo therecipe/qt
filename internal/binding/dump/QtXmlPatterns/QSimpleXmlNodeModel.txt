@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{QSimpleXmlNodeModel QSimpleXmlNodeModel::QSimpleXmlNodeModel commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsimplexmlnodemodel.h non constructor false false   [0xc822bd8a20] }
+&{baseUri QSimpleXmlNodeModel::baseUri commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsimplexmlnodemodel.h impure plain false false  QUrl [0xc822bd8d20] }
+&{elementById QSimpleXmlNodeModel::elementById commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsimplexmlnodemodel.h impure plain false false  QXmlNodeModelIndex [0xc822bd9040] }
+&{namePool QSimpleXmlNodeModel::namePool commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsimplexmlnodemodel.h non plain false false  QXmlNamePool & [] }
+&{namespaceBindings QSimpleXmlNodeModel::namespaceBindings commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsimplexmlnodemodel.h impure plain false false  QVector<QXmlName> [0xc822bd94c0] }
+&{nodesByIdref QSimpleXmlNodeModel::nodesByIdref commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsimplexmlnodemodel.h impure plain false false  QVector<QXmlNodeModelIndex> [0xc822bd97a0] }
+&{stringValue QSimpleXmlNodeModel::stringValue commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsimplexmlnodemodel.h impure plain false false  QString [0xc822bd9ae0] }
+&{~QSimpleXmlNodeModel QSimpleXmlNodeModel::~QSimpleXmlNodeModel commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsimplexmlnodemodel.h impure destructor false false   [] }
+########################################			ENUMS			########################################

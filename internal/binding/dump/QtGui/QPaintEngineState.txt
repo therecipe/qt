@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{backgroundBrush QPaintEngineState::backgroundBrush commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QBrush [] }
+&{backgroundMode QPaintEngineState::backgroundMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  Qt::BGMode [] }
+&{brush QPaintEngineState::brush commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QBrush [] }
+&{brushNeedsResolving QPaintEngineState::brushNeedsResolving commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  bool [] }
+&{brushOrigin QPaintEngineState::brushOrigin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QPointF [] }
+&{clipOperation QPaintEngineState::clipOperation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  Qt::ClipOperation [] }
+&{clipPath QPaintEngineState::clipPath commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QPainterPath [] }
+&{clipRegion QPaintEngineState::clipRegion commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QRegion [] }
+&{compositionMode QPaintEngineState::compositionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QPainter::CompositionMode [] }
+&{font QPaintEngineState::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QFont [] }
+&{isClipEnabled QPaintEngineState::isClipEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  bool [] }
+&{opacity QPaintEngineState::opacity commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  qreal [] }
+&{painter QPaintEngineState::painter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QPainter * [] }
+&{pen QPaintEngineState::pen commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QPen [] }
+&{penNeedsResolving QPaintEngineState::penNeedsResolving commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  bool [] }
+&{renderHints QPaintEngineState::renderHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QPainter::RenderHints [] }
+&{state QPaintEngineState::state commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QPaintEngine::DirtyFlags [] }
+&{transform QPaintEngineState::transform commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.h non plain false false  QTransform [] }
+########################################			ENUMS			########################################

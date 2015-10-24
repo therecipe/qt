@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QWebSocketCorsAuthenticator QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocketcorsauthenticator.h non constructor false true 3  [0xc822bb1940] }
+&{QWebSocketCorsAuthenticator QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocketcorsauthenticator.h non constructor false false   [0xc822bb1ca0] }
+&{QWebSocketCorsAuthenticator QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocketcorsauthenticator.h non constructor false true 2  [0xc822bb1f60] }
+&{allowed QWebSocketCorsAuthenticator::allowed commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocketcorsauthenticator.h non plain false false  bool [] }
+&{operator= QWebSocketCorsAuthenticator::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocketcorsauthenticator.h non plain false false  QWebSocketCorsAuthenticator & [0xc821db0380] }
+&{operator= QWebSocketCorsAuthenticator::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocketcorsauthenticator.h non plain false true 2 QWebSocketCorsAuthenticator & [0xc821db06c0] }
+&{origin QWebSocketCorsAuthenticator::origin commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocketcorsauthenticator.h non plain false false  QString [] }
+&{setAllowed QWebSocketCorsAuthenticator::setAllowed commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocketcorsauthenticator.h non plain false false  void [0xc821db0a20] }
+&{swap QWebSocketCorsAuthenticator::swap commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocketcorsauthenticator.h non plain false false  void [0xc821db0c60] }
+&{~QWebSocketCorsAuthenticator QWebSocketCorsAuthenticator::~QWebSocketCorsAuthenticator commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qwebsocketcorsauthenticator.h non destructor false false   [] }
+########################################			ENUMS			########################################

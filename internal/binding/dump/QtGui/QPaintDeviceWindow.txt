@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{paintEvent QPaintDeviceWindow::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpaintdevicewindow.h impure plain false false  void [0xc820b0ffa0] }
+&{update QPaintDeviceWindow::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpaintdevicewindow.h non slot false true 3 void [] }
+&{update QPaintDeviceWindow::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpaintdevicewindow.h non plain false false  void [0xc8207965c0] }
+&{update QPaintDeviceWindow::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpaintdevicewindow.h non plain false true 2 void [0xc820796840] }
+########################################			ENUMS			########################################

@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{createObject QSqlDriverCreatorBase::createObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h pure plain false false  QSqlDriver * [] }
+&{~QSqlDriverCreatorBase QSqlDriverCreatorBase::~QSqlDriverCreatorBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h impure destructor false false   [] }
+########################################			ENUMS			########################################

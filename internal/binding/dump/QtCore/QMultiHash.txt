@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QMultiHash QMultiHash::QMultiHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non constructor false false   [] }
+&{QMultiHash QMultiHash::QMultiHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non constructor false true 3  [0xc820525240] }
+&{QMultiHash QMultiHash::QMultiHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non constructor false true 2  [0xc820525500] }
+&{constFind QMultiHash::constFind commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  QHash<Key, T>::const_iterator [0xc820525780 0xc820525860] }
+&{contains QMultiHash::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  bool [0xc820525ac0 0xc820525b40] }
+&{count QMultiHash::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  int [0xc820525da0 0xc820525e20] }
+&{find QMultiHash::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  QHash<Key, T>::iterator [0xc820514060 0xc820514100] }
+&{find QMultiHash::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false true 2 QHash<Key, T>::const_iterator [0xc820514380 0xc820514460] }
+&{insert QMultiHash::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  QHash<Key, T>::iterator [0xc8205147c0 0xc820514900] }
+&{operator+ QMultiHash::operator+ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  QMultiHash [0xc820514bc0] }
+&{operator+= QMultiHash::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  QMultiHash & [0xc820514f20] }
+&{remove QMultiHash::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  int [0xc820515860 0xc820515940] }
+&{replace QMultiHash::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  QHash<Key, T>::iterator [0xc820515cc0 0xc820515d40] }
+&{swap QMultiHash::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qhash.h non plain false false  void [0xc820515fc0] }
+########################################			ENUMS			########################################

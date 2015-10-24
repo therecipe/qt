@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{QExposeEvent QExposeEvent::QExposeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc8208d3d20] }
+&{region QExposeEvent::region commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QRegion & [] }
+########################################			ENUMS			########################################

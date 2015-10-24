@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QSourceLocation QSourceLocation::QSourceLocation commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non constructor false false   [] }
+&{QSourceLocation QSourceLocation::QSourceLocation commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non constructor false true 2  [0xc821f9e380] }
+&{QSourceLocation QSourceLocation::QSourceLocation commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non constructor false true 3  [0xc821f9e6e0 0xc821f9e7a0 0xc821f9e820] }
+&{column QSourceLocation::column commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non plain false false  qint64 [] }
+&{isNull QSourceLocation::isNull commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non plain false false  bool [] }
+&{line QSourceLocation::line commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non plain false false  qint64 [] }
+&{operator!= QSourceLocation::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non plain false false  bool [0xc821f9f0e0] }
+&{operator= QSourceLocation::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non plain false false  QSourceLocation & [0xc821f9f520] }
+&{operator== QSourceLocation::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non plain false false  bool [0xc821f9f8c0] }
+&{setColumn QSourceLocation::setColumn commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non plain false false  void [0xc821f9fc40] }
+&{setLine QSourceLocation::setLine commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non plain false false  void [0xc821f9ff80] }
+&{setUri QSourceLocation::setUri commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non plain false false  void [0xc821d3e300] }
+&{uri QSourceLocation::uri commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non plain false false  QUrl [] }
+&{~QSourceLocation QSourceLocation::~QSourceLocation commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qsourcelocation.h non destructor false false   [] }
+########################################			ENUMS			########################################

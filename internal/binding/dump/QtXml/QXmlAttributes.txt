@@ -1,0 +1,21 @@
+########################################			FUNCTIONS			########################################
+&{QXmlAttributes QXmlAttributes::QXmlAttributes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.cpp non constructor false false   [] }
+&{~QXmlAttributes QXmlAttributes::~QXmlAttributes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.cpp impure destructor false false   [] }
+&{append QXmlAttributes::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [0xc8219c7aa0 0xc8219c7b60 0xc8219c7ca0 0xc8219c7d60] }
+&{clear QXmlAttributes::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [] }
+&{count QXmlAttributes::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int [] }
+&{index QXmlAttributes::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 2 int [0xc821ab04e0] }
+&{index QXmlAttributes::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int [0xc821ab07c0] }
+&{index QXmlAttributes::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 3 int [0xc821ab0b80 0xc821ab0c40] }
+&{length QXmlAttributes::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int [] }
+&{localName QXmlAttributes::localName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString [0xc821ab1200] }
+&{qName QXmlAttributes::qName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString [0xc821ab1520] }
+&{type QXmlAttributes::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 2 QString [0xc821ab1880] }
+&{type QXmlAttributes::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 3 QString [0xc821ab1bc0 0xc821ab1ce0] }
+&{type QXmlAttributes::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString [0xc821b82040] }
+&{uri QXmlAttributes::uri commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString [0xc821b82460] }
+&{value QXmlAttributes::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 3 QString [0xc821b82800] }
+&{value QXmlAttributes::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 2 QString [0xc821b82b20] }
+&{value QXmlAttributes::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 4 QString [0xc821b82ec0 0xc821b82f80] }
+&{value QXmlAttributes::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString [0xc821b83340] }
+########################################			ENUMS			########################################

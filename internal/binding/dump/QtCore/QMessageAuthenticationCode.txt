@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QMessageAuthenticationCode QMessageAuthenticationCode::QMessageAuthenticationCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmessageauthenticationcode.h non constructor false false   [0xc820d63da0 0xc820d63e80] }
+&{addData QMessageAuthenticationCode::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmessageauthenticationcode.h non plain false true 2 bool [0xc820d82040] }
+&{addData QMessageAuthenticationCode::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmessageauthenticationcode.h non plain false true 3 void [0xc820d821c0] }
+&{addData QMessageAuthenticationCode::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmessageauthenticationcode.h non plain false false  void [0xc820d82360 0xc820d823e0] }
+&{hash QMessageAuthenticationCode::hash commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmessageauthenticationcode.h non plain true false  QByteArray [0xc820d825e0 0xc820d826c0 0xc820d827a0] }
+&{reset QMessageAuthenticationCode::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmessageauthenticationcode.h non plain false false  void [] }
+&{result QMessageAuthenticationCode::result commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmessageauthenticationcode.h non plain false false  QByteArray [] }
+&{setKey QMessageAuthenticationCode::setKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmessageauthenticationcode.h non plain false false  void [0xc820d82a80] }
+&{~QMessageAuthenticationCode QMessageAuthenticationCode::~QMessageAuthenticationCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmessageauthenticationcode.h non destructor false false   [] }
+########################################			ENUMS			########################################

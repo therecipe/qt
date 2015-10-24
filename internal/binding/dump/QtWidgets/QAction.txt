@@ -1,0 +1,68 @@
+########################################			FUNCTIONS			########################################
+&{autoRepeat QAction::autoRepeat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  bool [] }
+&{font QAction::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  QFont [] }
+&{icon QAction::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  QIcon [] }
+&{iconText QAction::iconText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  QString [] }
+&{isCheckable QAction::isCheckable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  bool [] }
+&{isChecked QAction::isChecked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  bool [] }
+&{isEnabled QAction::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  bool [] }
+&{isIconVisibleInMenu QAction::isIconVisibleInMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  bool [] }
+&{isVisible QAction::isVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  bool [] }
+&{menuRole QAction::menuRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  MenuRole [] }
+&{priority QAction::priority commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  Priority [] }
+&{setAutoRepeat QAction::setAutoRepeat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fb51a0] }
+&{setCheckable QAction::setCheckable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fb53a0] }
+&{setChecked QAction::setChecked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non slot false false  void [0xc821fb55a0] }
+&{setData QAction::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fb5700] }
+&{setEnabled QAction::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non slot false false  void [0xc821fb5900] }
+&{setFont QAction::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fb5b20] }
+&{setIcon QAction::setIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fb5cc0] }
+&{setIconText QAction::setIconText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fb5ea0] }
+&{setIconVisibleInMenu QAction::setIconVisibleInMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fcc180] }
+&{setMenuRole QAction::setMenuRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fcc400] }
+&{setPriority QAction::setPriority commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fcc660] }
+&{setShortcut QAction::setShortcut commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fcc880] }
+&{setShortcutContext QAction::setShortcutContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fccb80] }
+&{setStatusTip QAction::setStatusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fcce20] }
+&{setText QAction::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fccfe0] }
+&{setToolTip QAction::setToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fcd260] }
+&{setVisible QAction::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non slot false false  void [0xc821fcd460] }
+&{setWhatsThis QAction::setWhatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  void [0xc821fcd640] }
+&{shortcutContext QAction::shortcutContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  Qt::ShortcutContext [] }
+&{statusTip QAction::statusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  QString [] }
+&{text QAction::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  QString [] }
+&{toggle QAction::toggle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non slot false false  void [] }
+&{toolTip QAction::toolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  QString [] }
+&{whatsThis QAction::whatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.cpp non plain false false  QString [] }
+&{QAction QAction::QAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non constructor false false   [0xc821fe2bc0] }
+&{QAction QAction::QAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non constructor false true 3  [0xc821fe2d80 0xc821fe2e20 0xc821fe2ee0] }
+&{QAction QAction::QAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non constructor false true 2  [0xc821fe3080 0xc821fe3100] }
+&{actionGroup QAction::actionGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  QActionGroup * [] }
+&{activate QAction::activate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  void [0xc821fe36e0] }
+&{associatedGraphicsWidgets QAction::associatedGraphicsWidgets commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  QList<QGraphicsWidget *> [] }
+&{associatedWidgets QAction::associatedWidgets commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  QList<QWidget *> [] }
+&{changed QAction::changed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non signal false false  void [] }
+&{data QAction::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  QVariant [] }
+&{event QAction::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h impure plain false false  bool [0xc821fe3d20] }
+&{hover QAction::hover commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non slot false false  void [] }
+&{hovered QAction::hovered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non signal false false  void [] }
+&{isSeparator QAction::isSeparator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  bool [] }
+&{menu QAction::menu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  QMenu * [] }
+&{parentWidget QAction::parentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  QWidget * [] }
+&{setActionGroup QAction::setActionGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  void [0xc821ff0540] }
+&{setDisabled QAction::setDisabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non slot false false  void [0xc821ff0860] }
+&{setMenu QAction::setMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  void [0xc821ff0ac0] }
+&{setSeparator QAction::setSeparator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  void [0xc821ff0d60] }
+&{setShortcuts QAction::setShortcuts commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false true 2 void [0xc821ff0fc0] }
+&{setShortcuts QAction::setShortcuts commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  void [0xc821ff12a0] }
+&{shortcut QAction::shortcut commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  QKeySequence [] }
+&{shortcuts QAction::shortcuts commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  QList<QKeySequence> [] }
+&{showStatusText QAction::showStatusText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non plain false false  bool [0xc821ff18e0] }
+&{toggled QAction::toggled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non signal false false  void [0xc821ff1ac0] }
+&{trigger QAction::trigger commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non slot false false  void [] }
+&{triggered QAction::triggered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non signal false false  void [0xc821ff1e00] }
+&{~QAction QAction::~QAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qaction.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ActionEvent QAction::ActionEvent commendable public  [0xc821fcdea0 0xc821fcdf40]}
+&{MenuRole QAction::MenuRole commendable public  [0xc821fe2160 0xc821fe2240 0xc821fe2360 0xc821fe2420 0xc821fe2500 0xc821fe25c0 0xc821fe2660]}
+&{Priority QAction::Priority commendable public  [0xc821fe28a0 0xc821fe2940 0xc821fe29c0]}

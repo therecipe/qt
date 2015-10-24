@@ -1,0 +1,45 @@
+########################################			FUNCTIONS			########################################
+&{QMetaType QMetaType::QMetaType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.cpp non constructor false false   [0xc820574020] }
+&{compare QMetaType::compare commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [0xc820524a60 0xc820524ae0 0xc820524b60 0xc820524be0] }
+&{construct QMetaType::construct commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  void * [0xc820524fe0 0xc820525060 0xc8205250e0] }
+&{construct QMetaType::construct commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain false true 3 void * [0xc8205252a0 0xc820525320] }
+&{convert QMetaType::convert commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [0xc8205254e0 0xc820525560 0xc8205255e0 0xc820525660] }
+&{create QMetaType::create commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  void * [0xc820525820 0xc8205258a0] }
+&{create QMetaType::create commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain false true 2 void * [0xc820525a60] }
+&{debugStream QMetaType::debugStream commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [0xc820525c20 0xc820525ca0 0xc820525d20] }
+&{destroy QMetaType::destroy commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  void [0xc820525ee0 0xc820525f60] }
+&{destroy QMetaType::destroy commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain false true 2 void [0xc820514140] }
+&{destruct QMetaType::destruct commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  void [0xc820514320 0xc8205143e0] }
+&{destruct QMetaType::destruct commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain false true 2 void [0xc820514640] }
+&{equals QMetaType::equals commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [0xc820514880 0xc820514920 0xc8205149a0 0xc820514a40] }
+&{flags QMetaType::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain false false  TypeFlags [] }
+&{hasRegisteredComparators QMetaType::hasRegisteredComparators commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [] }
+&{hasRegisteredComparators QMetaType::hasRegisteredComparators commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true true 2 bool [0xc820514e80] }
+&{hasRegisteredConverterFunction QMetaType::hasRegisteredConverterFunction commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true true 2 bool [] }
+&{hasRegisteredConverterFunction QMetaType::hasRegisteredConverterFunction commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [0xc8205151c0 0xc820515240] }
+&{hasRegisteredDebugStreamOperator QMetaType::hasRegisteredDebugStreamOperator commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [] }
+&{hasRegisteredDebugStreamOperator QMetaType::hasRegisteredDebugStreamOperator commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true true 2 bool [0xc820515520] }
+&{isRegistered QMetaType::isRegistered commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [0xc820515a60] }
+&{isRegistered QMetaType::isRegistered commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain false true 2 bool [] }
+&{isValid QMetaType::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain false false  bool [] }
+&{load QMetaType::load commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [0xc820515ee0 0xc820515f80 0xc820504000] }
+&{metaObject QMetaType::metaObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain false false  const QMetaObject * [] }
+&{registerComparators QMetaType::registerComparators commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [] }
+&{registerConverter QMetaType::registerConverter commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true true 2 bool [0xc8205045c0] }
+&{registerConverter QMetaType::registerConverter commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true true 3 bool [0xc820504860] }
+&{registerConverter QMetaType::registerConverter commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true true 4 bool [0xc820504ae0] }
+&{registerDebugStreamOperator QMetaType::registerDebugStreamOperator commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [] }
+&{registerEqualsComparator QMetaType::registerEqualsComparator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [] }
+&{metaObjectForType QMetaType::metaObjectForType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  const QMetaObject * [0xc820505f20] }
+&{registerConverter QMetaType::registerConverter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [] }
+&{save QMetaType::save commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  bool [0xc8204f5e40 0xc8204f5ee0 0xc8204f5f60] }
+&{sizeOf QMetaType::sizeOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  int [0xc8204ce1a0] }
+&{sizeOf QMetaType::sizeOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain false true 2 int [] }
+&{type QMetaType::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true true 2 int [0xc8204ce420] }
+&{type QMetaType::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  int [0xc8204ce660] }
+&{typeFlags QMetaType::typeFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  TypeFlags [0xc8204ce8e0] }
+&{typeName QMetaType::typeName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non plain true false  const char * [0xc8204ceb00] }
+&{~QMetaType QMetaType::~QMetaType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetatype.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Type QMetaType::Type commendable public  [0xc82055e780 0xc82055e860 0xc82055e8e0 0xc82055e9a0 0xc82055ea40 0xc82055eae0 0xc82055eb60 0xc82055ec00 0xc82055eca0 0xc82055ed80 0xc82055ee00 0xc82055ee80 0xc82055ef20 0xc82055efc0 0xc82055f040 0xc82055f0e0 0xc82055f1a0 0xc82055f280 0xc82055f300 0xc82055f380 0xc82055f420 0xc82055f4c0 0xc82055f540 0xc82055f5c0 0xc82055f640 0xc82055f6c0 0xc82055f7a0 0xc82055f820 0xc82055f8a0 0xc82055f940 0xc82055f9e0 0xc82055fac0 0xc82055fb60 0xc82055fc00 0xc82055fce0 0xc82055fd60 0xc82055fde0 0xc82055fe80 0xc82055ff80 0xc820548060 0xc820548120 0xc8205481a0 0xc820548220 0xc8205482a0 0xc820548320 0xc8205483a0 0xc820548420 0xc8205484a0 0xc820548520 0xc8205485a0 0xc820548620 0xc8205486a0 0xc820548720 0xc8205487a0 0xc820548820 0xc8205488a0 0xc820548920 0xc8205489a0 0xc820548a20 0xc820548aa0 0xc820548b20 0xc820548ba0 0xc820548c20 0xc820548ca0 0xc820548d40 0xc820548dc0 0xc820548e40 0xc820548ec0 0xc820548f40 0xc820548fc0 0xc820549040 0xc8205490c0 0xc820549140 0xc8205491c0 0xc820549240 0xc8205492c0]}
+&{TypeFlag QMetaType::TypeFlag commendable public QMetaType::TypeFlags [0xc820549500 0xc8205495c0 0xc820549640 0xc8205496c0 0xc820549760 0xc820549800 0xc8205498e0 0xc8205499c0 0xc820549ac0 0xc820549b80]}

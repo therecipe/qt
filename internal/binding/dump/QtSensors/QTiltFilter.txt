@@ -1,0 +1,3 @@
+########################################			FUNCTIONS			########################################
+&{filter QTiltFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.h pure plain false false  bool [0xc822d5da40] }
+########################################			ENUMS			########################################

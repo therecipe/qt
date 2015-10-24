@@ -1,0 +1,55 @@
+########################################			FUNCTIONS			########################################
+&{captureMode QCamera::captureMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.cpp non plain false false  CaptureModes [] }
+&{searchAndLock QCamera::searchAndLock commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.cpp non slot false true 2 void [0xc8223d0ac0] }
+&{setCaptureMode QCamera::setCaptureMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.cpp non slot false false  void [0xc8223d0e60] }
+&{state QCamera::state commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.cpp non plain false false  State [] }
+&{status QCamera::status commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.cpp non plain false false  Status [] }
+&{QCamera QCamera::QCamera commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non constructor false true 4  [0xc82210c7e0 0xc82210c920] }
+&{QCamera QCamera::QCamera commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non constructor false false   [0xc82210cb80] }
+&{QCamera QCamera::QCamera commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non constructor false true 2  [0xc82210ce20 0xc82210cf40] }
+&{QCamera QCamera::QCamera commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non constructor false true 3  [0xc82210d160 0xc82210d280] }
+&{availability QCamera::availability commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h impure plain false false  QMultimedia::AvailabilityStatus [] }
+&{captureModeChanged QCamera::captureModeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non signal false false  void [0xc82210dae0] }
+&{error QCamera::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non signal false true 2 void [0xc82211c100] }
+&{error QCamera::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  Error [] }
+&{errorString QCamera::errorString commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  QString [] }
+&{exposure QCamera::exposure commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  QCameraExposure * [] }
+&{focus QCamera::focus commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  QCameraFocus * [] }
+&{imageProcessing QCamera::imageProcessing commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  QCameraImageProcessing * [] }
+&{isCaptureModeSupported QCamera::isCaptureModeSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  bool [0xc82211cda0] }
+&{load QCamera::load commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non slot false false  void [] }
+&{lockFailed QCamera::lockFailed commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non signal false false  void [] }
+&{lockStatus QCamera::lockStatus commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  QCamera::LockStatus [] }
+&{lockStatus QCamera::lockStatus commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false true 2 QCamera::LockStatus [0xc82211d700] }
+&{lockStatusChanged QCamera::lockStatusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non signal false false  void [0xc82211dc40 0xc82211de20] }
+&{lockStatusChanged QCamera::lockStatusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non signal false true 2 void [0xc82214e300 0xc82214e420 0xc82214e540] }
+&{locked QCamera::locked commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non signal false false  void [] }
+&{requestedLocks QCamera::requestedLocks commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  QCamera::LockTypes [] }
+&{searchAndLock QCamera::searchAndLock commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non slot false false  void [] }
+&{setViewfinder QCamera::setViewfinder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false true 3 void [0xc82214ec40] }
+&{setViewfinder QCamera::setViewfinder commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false true 2 void [0xc82214ef60] }
+&{setViewfinder QCamera::setViewfinder commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  void [0xc82214f220] }
+&{setViewfinderSettings QCamera::setViewfinderSettings commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  void [0xc82214f4a0] }
+&{start QCamera::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non slot false false  void [] }
+&{stateChanged QCamera::stateChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non signal false false  void [0xc82214f7e0] }
+&{statusChanged QCamera::statusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non signal false false  void [0xc82214fa40] }
+&{stop QCamera::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non slot false false  void [] }
+&{supportedLocks QCamera::supportedLocks commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  QCamera::LockTypes [] }
+&{supportedViewfinderFrameRateRanges QCamera::supportedViewfinderFrameRateRanges commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  QList<FrameRateRange> [0xc82214fee0] }
+&{supportedViewfinderPixelFormats QCamera::supportedViewfinderPixelFormats commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  QList<QVideoFrame::PixelFormat> [0xc822164240] }
+&{supportedViewfinderResolutions QCamera::supportedViewfinderResolutions commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  QList<QSize> [0xc822164520] }
+&{supportedViewfinderSettings QCamera::supportedViewfinderSettings commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  QList<QCameraViewfinderSettings> [0xc822164800] }
+&{unload QCamera::unload commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non slot false false  void [] }
+&{unlock QCamera::unlock commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non slot false false  void [] }
+&{unlock QCamera::unlock commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non slot false true 2 void [0xc822164bc0] }
+&{viewfinderSettings QCamera::viewfinderSettings commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non plain false false  QCameraViewfinderSettings [] }
+&{~QCamera QCamera::~QCamera commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/camera/qcamera.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{CaptureMode QCamera::CaptureMode commendable public QCamera::CaptureModes [0xc8223d1a20 0xc8223d1ba0 0xc8223d1cc0]}
+&{Error QCamera::Error commendable public  [0xc8223d1ec0 0xc8223d1f60 0xc8223e0080 0xc8223e0200 0xc8223e0360]}
+&{LockChangeReason QCamera::LockChangeReason commendable public  [0xc8223e0600 0xc8223e06a0 0xc8223e0740 0xc8223e07c0 0xc8223e0880]}
+&{LockStatus QCamera::LockStatus commendable public  [0xc8223e0a80 0xc8223e0b00 0xc8223e0b80]}
+&{LockType QCamera::LockType commendable public QCamera::LockTypes [0xc8223e0ec0 0xc8223e0f40 0xc8223e1080 0xc8223e1120]}
+&{Position QCamera::Position commendable public  [0xc8223e13e0 0xc8223e1540 0xc8223e1640]}
+&{State QCamera::State commendable public  [0xc8223e18a0 0xc8223e1940 0xc8223e1a00]}
+&{Status QCamera::Status commendable public  [0xc8223e1ca0 0xc8223e1da0 0xc8223e1ee0 0xc8223e1f80 0xc82210c040 0xc82210c120 0xc82210c1a0 0xc82210c240 0xc82210c340]}

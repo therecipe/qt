@@ -1,0 +1,144 @@
+########################################			FUNCTIONS			########################################
+&{contentOrientation QWindow::contentOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  Qt::ScreenOrientation [] }
+&{flags QWindow::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  Qt::WindowFlags [] }
+&{isVisible QWindow::isVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  bool [] }
+&{mapFromGlobal QWindow::mapFromGlobal commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  QPoint [0xc8204a8ce0] }
+&{mapToGlobal QWindow::mapToGlobal commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  QPoint [0xc8204a8f40] }
+&{modality QWindow::modality commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  Qt::WindowModality [] }
+&{opacity QWindow::opacity commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  qreal [] }
+&{reportContentOrientationChange QWindow::reportContentOrientationChange commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  void [0xc8204a9540] }
+&{setFlags QWindow::setFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  void [0xc8204a9820] }
+&{setHeight QWindow::setHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non slot false false  void [0xc8204a9ba0] }
+&{setMaximumHeight QWindow::setMaximumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non slot false false  void [0xc8204a9ee0] }
+&{setMaximumWidth QWindow::setMaximumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non slot false false  void [0xc820496240] }
+&{setMinimumHeight QWindow::setMinimumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non slot false false  void [0xc820496600] }
+&{setMinimumWidth QWindow::setMinimumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non slot false false  void [0xc820496980] }
+&{setModality QWindow::setModality commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  void [0xc820496d00] }
+&{setOpacity QWindow::setOpacity commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  void [0xc8204970e0] }
+&{setTitle QWindow::setTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non slot false false  void [0xc820497460] }
+&{setVisibility QWindow::setVisibility commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  void [0xc8204977a0] }
+&{setVisible QWindow::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non slot false false  void [0xc820497ba0] }
+&{setWidth QWindow::setWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non slot false false  void [0xc820497f40] }
+&{setX QWindow::setX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non slot false false  void [0xc820484260] }
+&{setY QWindow::setY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non slot false false  void [0xc8204845c0] }
+&{title QWindow::title commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  QString [] }
+&{visibility QWindow::visibility commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.cpp non plain false false  Visibility [] }
+&{QWindow QWindow::QWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non constructor false false   [0xc820485660] }
+&{QWindow QWindow::QWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non constructor false true 2  [0xc8204857e0] }
+&{activeChanged QWindow::activeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [] }
+&{alert QWindow::alert commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non slot false false  void [0xc82046a460] }
+&{baseSize QWindow::baseSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QSize [] }
+&{close QWindow::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non slot false false  bool [] }
+&{contentOrientationChanged QWindow::contentOrientationChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc82046aaa0] }
+&{create QWindow::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [] }
+&{cursor QWindow::cursor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QCursor [] }
+&{destroy QWindow::destroy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [] }
+&{devicePixelRatio QWindow::devicePixelRatio commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  qreal [] }
+&{event QWindow::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  bool [0xc82046b3c0] }
+&{exposeEvent QWindow::exposeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc82046b6c0] }
+&{filePath QWindow::filePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QString [] }
+&{focusInEvent QWindow::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc82046bbc0] }
+&{focusObject QWindow::focusObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  QObject * [] }
+&{focusObjectChanged QWindow::focusObjectChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc820458180] }
+&{focusOutEvent QWindow::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc820458500] }
+&{format QWindow::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  QSurfaceFormat [] }
+&{frameGeometry QWindow::frameGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QRect [] }
+&{frameMargins QWindow::frameMargins commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QMargins [] }
+&{framePosition QWindow::framePosition commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QPoint [] }
+&{fromWinId QWindow::fromWinId commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain true false  QWindow * [0xc820458ea0] }
+&{geometry QWindow::geometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QRect [] }
+&{height QWindow::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  int [] }
+&{heightChanged QWindow::heightChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc820459680] }
+&{hide QWindow::hide commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non slot false false  void [] }
+&{hideEvent QWindow::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc820459a60] }
+&{icon QWindow::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QIcon [] }
+&{isActive QWindow::isActive commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  bool [] }
+&{isAncestorOf QWindow::isAncestorOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  bool [0xc820459ec0 0xc820459fe0] }
+&{isExposed QWindow::isExposed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  bool [] }
+&{isModal QWindow::isModal commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  bool [] }
+&{isTopLevel QWindow::isTopLevel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  bool [] }
+&{keyPressEvent QWindow::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc82044a6e0] }
+&{keyReleaseEvent QWindow::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc82044a960] }
+&{lower QWindow::lower commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non slot false false  void [] }
+&{mask QWindow::mask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QRegion [] }
+&{maximumHeight QWindow::maximumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  int [] }
+&{maximumHeightChanged QWindow::maximumHeightChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc82044b1c0] }
+&{maximumSize QWindow::maximumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QSize [] }
+&{maximumWidth QWindow::maximumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  int [] }
+&{maximumWidthChanged QWindow::maximumWidthChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc82044b960] }
+&{minimumHeight QWindow::minimumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  int [] }
+&{minimumHeightChanged QWindow::minimumHeightChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc82044be60] }
+&{minimumSize QWindow::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QSize [] }
+&{minimumWidth QWindow::minimumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  int [] }
+&{minimumWidthChanged QWindow::minimumWidthChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc820558500] }
+&{modalityChanged QWindow::modalityChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc8205587a0] }
+&{mouseDoubleClickEvent QWindow::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc820558b00] }
+&{mouseMoveEvent QWindow::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc820558ce0] }
+&{mousePressEvent QWindow::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc820558ec0] }
+&{mouseReleaseEvent QWindow::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc820559160] }
+&{moveEvent QWindow::moveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc820559420] }
+&{nativeEvent QWindow::nativeEvent commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  bool [0xc820559740 0xc820559840 0xc8205598c0] }
+&{opacityChanged QWindow::opacityChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc820559b80] }
+&{parent QWindow::parent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QWindow * [] }
+&{position QWindow::position commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QPoint [] }
+&{raise QWindow::raise commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non slot false false  void [] }
+&{requestActivate QWindow::requestActivate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non slot false false  void [] }
+&{requestUpdate QWindow::requestUpdate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non slot false false  void [] }
+&{requestedFormat QWindow::requestedFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QSurfaceFormat [] }
+&{resize QWindow::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820a4c3e0] }
+&{resize QWindow::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false true 2 void [0xc820a4c580 0xc820a4c620] }
+&{resizeEvent QWindow::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc820a4c820] }
+&{screen QWindow::screen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QScreen * [] }
+&{screenChanged QWindow::screenChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc820a4cae0] }
+&{setBaseSize QWindow::setBaseSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820a4cce0] }
+&{setCursor QWindow::setCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820a4cee0] }
+&{setFilePath QWindow::setFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820a4d100] }
+&{setFormat QWindow::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820a4d340] }
+&{setFramePosition QWindow::setFramePosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820a4d560] }
+&{setGeometry QWindow::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false true 2 void [0xc820a4d740] }
+&{setGeometry QWindow::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820a4d960 0xc820a4d9e0 0xc820a4da80 0xc820a4db40] }
+&{setIcon QWindow::setIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820a4dd00] }
+&{setKeyboardGrabEnabled QWindow::setKeyboardGrabEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  bool [0xc820a4df40] }
+&{setMask QWindow::setMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820410100] }
+&{setMaximumSize QWindow::setMaximumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc8204103a0] }
+&{setMinimumSize QWindow::setMinimumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820410620] }
+&{setMouseGrabEnabled QWindow::setMouseGrabEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  bool [0xc820410960] }
+&{setParent QWindow::setParent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820410c60] }
+&{setPosition QWindow::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820410f20] }
+&{setPosition QWindow::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false true 2 void [0xc8204111e0 0xc8204112e0] }
+&{setScreen QWindow::setScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc8204115c0] }
+&{setSizeIncrement QWindow::setSizeIncrement commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820411900] }
+&{setSurfaceType QWindow::setSurfaceType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820411b60] }
+&{setTransientParent QWindow::setTransientParent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc820411f00] }
+&{setWindowState QWindow::setWindowState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [0xc8204021c0] }
+&{show QWindow::show commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non slot false false  void [] }
+&{showEvent QWindow::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc820402540] }
+&{showFullScreen QWindow::showFullScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non slot false false  void [] }
+&{showMaximized QWindow::showMaximized commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non slot false false  void [] }
+&{showMinimized QWindow::showMinimized commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non slot false false  void [] }
+&{showNormal QWindow::showNormal commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non slot false false  void [] }
+&{size QWindow::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  QSize [] }
+&{sizeIncrement QWindow::sizeIncrement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QSize [] }
+&{surfaceType QWindow::surfaceType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  SurfaceType [] }
+&{tabletEvent QWindow::tabletEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc820403200] }
+&{touchEvent QWindow::touchEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc820403540] }
+&{transientParent QWindow::transientParent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  QWindow * [] }
+&{type QWindow::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  Qt::WindowType [] }
+&{unsetCursor QWindow::unsetCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  void [] }
+&{visibilityChanged QWindow::visibilityChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc820403be0] }
+&{visibleChanged QWindow::visibleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc820403fc0] }
+&{wheelEvent QWindow::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure plain false false  void [0xc8204c8220] }
+&{width QWindow::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  int [] }
+&{widthChanged QWindow::widthChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc8204c85c0] }
+&{winId QWindow::winId commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  WId [] }
+&{windowState QWindow::windowState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  Qt::WindowState [] }
+&{windowStateChanged QWindow::windowStateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc8204c8b00] }
+&{windowTitleChanged QWindow::windowTitleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc8204c8dc0] }
+&{x QWindow::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  int [] }
+&{xChanged QWindow::xChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc8204c91a0] }
+&{y QWindow::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non plain false false  int [] }
+&{yChanged QWindow::yChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h non signal false false  void [0xc8204c9580] }
+&{~QWindow QWindow::~QWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qwindow.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{AncestorMode QWindow::AncestorMode commendable public  [0xc820484ca0 0xc820484e20]}
+&{Visibility QWindow::Visibility commendable public  [0xc8204850a0 0xc8204851a0 0xc8204852c0 0xc820485380 0xc820485460 0xc8204854e0]}

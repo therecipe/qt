@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{reading QTapSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.cpp non plain false false  QTapReading * [] }
+&{returnDoubleTapEvents QTapSensor::returnDoubleTapEvents commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.cpp non plain false false  bool [] }
+&{setReturnDoubleTapEvents QTapSensor::setReturnDoubleTapEvents commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.cpp non plain false false  void [0xc822d5c020] }
+&{QTapSensor QTapSensor::QTapSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.h non constructor false false   [0xc822d5c500] }
+&{returnDoubleTapEventsChanged QTapSensor::returnDoubleTapEventsChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.h non signal false false  void [0xc822d5c940] }
+&{~QTapSensor QTapSensor::~QTapSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.h impure destructor false false   [] }
+########################################			ENUMS			########################################

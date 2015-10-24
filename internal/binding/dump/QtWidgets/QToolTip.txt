@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{font QToolTip::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qtooltip.h non plain true false  QFont [] }
+&{hideText QToolTip::hideText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qtooltip.h non plain true false  void [] }
+&{isVisible QToolTip::isVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qtooltip.h non plain true false  bool [] }
+&{palette QToolTip::palette commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qtooltip.h non plain true false  QPalette [] }
+&{setFont QToolTip::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qtooltip.h non plain true false  void [0xc8223e1020] }
+&{setPalette QToolTip::setPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qtooltip.h non plain true false  void [0xc8223e1260] }
+&{showText QToolTip::showText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qtooltip.h non plain true true 3 void [0xc8223e14a0 0xc8223e1520 0xc8223e1600] }
+&{showText QToolTip::showText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qtooltip.h non plain true false  void [0xc8223e1880 0xc8223e1900 0xc8223e1980 0xc8223e1a60] }
+&{showText QToolTip::showText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qtooltip.h non plain true true 2 void [0xc8223e1cc0 0xc8223e1d40 0xc8223e1de0 0xc8223e1ec0 0xc8223e1f60] }
+&{text QToolTip::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qtooltip.h non plain true false  QString [] }
+########################################			ENUMS			########################################

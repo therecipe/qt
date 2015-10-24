@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QXmlSchemaValidator QXmlSchemaValidator::QXmlSchemaValidator commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non constructor false false   [] }
+&{QXmlSchemaValidator QXmlSchemaValidator::QXmlSchemaValidator commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non constructor false true 2  [0xc823324840] }
+&{messageHandler QXmlSchemaValidator::messageHandler commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non plain false false  QAbstractMessageHandler * [] }
+&{namePool QXmlSchemaValidator::namePool commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non plain false false  QXmlNamePool [] }
+&{networkAccessManager QXmlSchemaValidator::networkAccessManager commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non plain false false  QNetworkAccessManager * [] }
+&{schema QXmlSchemaValidator::schema commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non plain false false  QXmlSchema [] }
+&{setMessageHandler QXmlSchemaValidator::setMessageHandler commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non plain false false  void [0xc823325460] }
+&{setNetworkAccessManager QXmlSchemaValidator::setNetworkAccessManager commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non plain false false  void [0xc823325980] }
+&{setSchema QXmlSchemaValidator::setSchema commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non plain false false  void [0xc823325ee0] }
+&{setUriResolver QXmlSchemaValidator::setUriResolver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non plain false false  void [0xc82340c2c0] }
+&{uriResolver QXmlSchemaValidator::uriResolver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non plain false false  const QAbstractUriResolver * [] }
+&{validate QXmlSchemaValidator::validate commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non plain false true 2 bool [0xc82340c9a0 0xc82340cb20] }
+&{validate QXmlSchemaValidator::validate commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non plain false true 3 bool [0xc82340cf00 0xc82340cfe0] }
+&{validate QXmlSchemaValidator::validate commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non plain false false  bool [0xc82340d2e0] }
+&{~QXmlSchemaValidator QXmlSchemaValidator::~QXmlSchemaValidator commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlschemavalidator.h non destructor false false   [] }
+########################################			ENUMS			########################################

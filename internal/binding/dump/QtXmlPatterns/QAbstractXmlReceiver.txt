@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QAbstractXmlReceiver QAbstractXmlReceiver::QAbstractXmlReceiver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h non constructor false false   [] }
+&{atomicValue QAbstractXmlReceiver::atomicValue commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h pure plain false false  void [0xc8221bd8e0] }
+&{attribute QAbstractXmlReceiver::attribute commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h pure plain false false  void [0xc8221bdaa0 0xc8221bdba0] }
+&{characters QAbstractXmlReceiver::characters commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h pure plain false false  void [0xc8221bde20] }
+&{comment QAbstractXmlReceiver::comment commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h pure plain false false  void [0xc8222fc260] }
+&{endDocument QAbstractXmlReceiver::endDocument commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h pure plain false false  void [] }
+&{endElement QAbstractXmlReceiver::endElement commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h pure plain false false  void [] }
+&{endOfSequence QAbstractXmlReceiver::endOfSequence commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h pure plain false false  void [] }
+&{namespaceBinding QAbstractXmlReceiver::namespaceBinding commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h pure plain false false  void [0xc8222fc8a0] }
+&{processingInstruction QAbstractXmlReceiver::processingInstruction commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h pure plain false false  void [0xc8222fcae0 0xc8222fcb80] }
+&{startDocument QAbstractXmlReceiver::startDocument commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h pure plain false false  void [] }
+&{startElement QAbstractXmlReceiver::startElement commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h pure plain false false  void [0xc8222fcec0] }
+&{startOfSequence QAbstractXmlReceiver::startOfSequence commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlreceiver.h pure plain false false  void [] }
+&{~QAbstractXmlReceiver QAbstractXmlReceiver::~QAbstractXmlReceiver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/data/qsequencereceiver.cpp impure destructor false false   [] }
+########################################			ENUMS			########################################

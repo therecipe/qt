@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QScrollEvent QScrollEvent::QScrollEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc820a558c0 0xc820a559c0 0xc820a55b40] }
+&{contentPos QScrollEvent::contentPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPointF [] }
+&{overshootDistance QScrollEvent::overshootDistance commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPointF [] }
+&{scrollState QScrollEvent::scrollState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  ScrollState [] }
+&{~QScrollEvent QScrollEvent::~QScrollEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ScrollState QScrollEvent::ScrollState commendable public  [0xc820a554c0 0xc820a55580 0xc820a55620]}

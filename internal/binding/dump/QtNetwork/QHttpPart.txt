@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QHttpPart QHttpPart::QHttpPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non constructor false false   [] }
+&{QHttpPart QHttpPart::QHttpPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non constructor false true 2  [0xc8229135e0] }
+&{operator!= QHttpPart::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  bool [0xc8229138a0] }
+&{operator= QHttpPart::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  QHttpPart & [0xc822913b60] }
+&{operator== QHttpPart::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  bool [0xc822913e60] }
+&{setBody QHttpPart::setBody commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc822718140] }
+&{setBodyDevice QHttpPart::setBodyDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc8227183c0] }
+&{setHeader QHttpPart::setHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc822718620 0xc822718720] }
+&{setRawHeader QHttpPart::setRawHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc822718980 0xc822718ac0] }
+&{swap QHttpPart::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc822718d00] }
+&{~QHttpPart QHttpPart::~QHttpPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non destructor false false   [] }
+########################################			ENUMS			########################################

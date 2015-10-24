@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceIcon QPlaceIcon::QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non constructor false false   [] }
+&{QPlaceIcon QPlaceIcon::QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non constructor false true 2  [0xc8221a5c00] }
+&{isEmpty QPlaceIcon::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool [] }
+&{manager QPlaceIcon::manager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QPlaceManager * [] }
+&{operator!= QPlaceIcon::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool [0xc8221bc4c0] }
+&{operator= QPlaceIcon::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QPlaceIcon & [0xc8221bc940] }
+&{operator== QPlaceIcon::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool [0xc8221bcd80] }
+&{parameters QPlaceIcon::parameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QVariantMap [] }
+&{setManager QPlaceIcon::setManager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  void [0xc8221bd260] }
+&{setParameters QPlaceIcon::setParameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  void [0xc8221bd520] }
+&{url QPlaceIcon::url commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QUrl [0xc8221bd700] }
+&{~QPlaceIcon QPlaceIcon::~QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non destructor false false   [] }
+########################################			ENUMS			########################################

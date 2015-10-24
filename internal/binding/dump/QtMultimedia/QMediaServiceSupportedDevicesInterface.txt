@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{deviceDescription QMediaServiceSupportedDevicesInterface::deviceDescription commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h pure plain false false  QString [0xc8218f7c00 0xc8218f7d20] }
+&{devices QMediaServiceSupportedDevicesInterface::devices commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h pure plain false false  QList<QByteArray> [0xc8218e80c0] }
+&{~QMediaServiceSupportedDevicesInterface QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h impure destructor false false   [] }
+########################################			ENUMS			########################################

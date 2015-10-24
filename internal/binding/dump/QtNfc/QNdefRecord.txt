@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QNdefRecord QNdefRecord::QNdefRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non constructor false false   [] }
+&{QNdefRecord QNdefRecord::QNdefRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non constructor false true 2  [0xc82282aac0] }
+&{id QNdefRecord::id commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  QByteArray [] }
+&{isEmpty QNdefRecord::isEmpty commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  bool [] }
+&{isRecordType QNdefRecord::isRecordType commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  bool [] }
+&{operator!= QNdefRecord::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  bool [0xc82282bc00] }
+&{operator= QNdefRecord::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  QNdefRecord & [0xc82282be80] }
+&{operator== QNdefRecord::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  bool [0xc822848140] }
+&{payload QNdefRecord::payload commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  QByteArray [] }
+&{setId QNdefRecord::setId commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  void [0xc822848560] }
+&{setPayload QNdefRecord::setPayload commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  void [0xc8228487e0] }
+&{setType QNdefRecord::setType commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  void [0xc822848aa0] }
+&{setTypeNameFormat QNdefRecord::setTypeNameFormat commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  void [0xc822848d60] }
+&{type QNdefRecord::type commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  QByteArray [] }
+&{typeNameFormat QNdefRecord::typeNameFormat commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non plain false false  TypeNameFormat [] }
+&{~QNdefRecord QNdefRecord::~QNdefRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefrecord.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{TypeNameFormat QNdefRecord::TypeNameFormat commendable public  [0xc82282a3c0 0xc82282a440 0xc82282a4e0 0xc82282a5a0 0xc82282a660 0xc82282a700]}

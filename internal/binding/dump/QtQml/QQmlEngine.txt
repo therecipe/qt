@@ -1,0 +1,36 @@
+########################################			FUNCTIONS			########################################
+&{offlineStoragePath QQmlEngine::offlineStoragePath commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.cpp non plain false false  QString [] }
+&{setOfflineStoragePath QQmlEngine::setOfflineStoragePath commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.cpp non plain false false  void [0xc822d9c620] }
+&{QQmlEngine QQmlEngine::QQmlEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non constructor false false   [0xc822d9d4e0] }
+&{addImageProvider QQmlEngine::addImageProvider commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  void [0xc822d94540 0xc822d946a0] }
+&{addImportPath QQmlEngine::addImportPath commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  void [0xc822d94a60] }
+&{addPluginPath QQmlEngine::addPluginPath commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  void [0xc822d954c0] }
+&{baseUrl QQmlEngine::baseUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  QUrl [] }
+&{clearComponentCache QQmlEngine::clearComponentCache commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  void [] }
+&{contextForObject QQmlEngine::contextForObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain true false  QQmlContext * [0xc822d95e40] }
+&{event QQmlEngine::event commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h impure plain false false  bool [0xc822d8a300] }
+&{imageProvider QQmlEngine::imageProvider commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  QQmlImageProviderBase * [0xc822d8a940] }
+&{importPathList QQmlEngine::importPathList commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  QStringList [] }
+&{importPlugin QQmlEngine::importPlugin commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  bool [0xc822d8af40 0xc822d8b0e0 0xc822d8b300] }
+&{incubationController QQmlEngine::incubationController commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  QQmlIncubationController * [] }
+&{networkAccessManager QQmlEngine::networkAccessManager commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  QNetworkAccessManager * [] }
+&{networkAccessManagerFactory QQmlEngine::networkAccessManagerFactory commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  QQmlNetworkAccessManagerFactory * [] }
+&{objectOwnership QQmlEngine::objectOwnership commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain true false  ObjectOwnership [0xc822d78ae0] }
+&{outputWarningsToStandardError QQmlEngine::outputWarningsToStandardError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  bool [] }
+&{pluginPathList QQmlEngine::pluginPathList commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  QStringList [] }
+&{quit QQmlEngine::quit commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non signal false false  void [] }
+&{removeImageProvider QQmlEngine::removeImageProvider commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  void [0xc822d799a0] }
+&{rootContext QQmlEngine::rootContext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  QQmlContext * [] }
+&{setBaseUrl QQmlEngine::setBaseUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  void [0xc822d6e360] }
+&{setContextForObject QQmlEngine::setContextForObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain true false  void [0xc822d6eaa0 0xc822d6eb80] }
+&{setImportPathList QQmlEngine::setImportPathList commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  void [0xc822d6f280] }
+&{setIncubationController QQmlEngine::setIncubationController commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  void [0xc822d6f9c0] }
+&{setNetworkAccessManagerFactory QQmlEngine::setNetworkAccessManagerFactory commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  void [0xc822d5c0c0] }
+&{setObjectOwnership QQmlEngine::setObjectOwnership commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain true false  void [0xc822d5cb00 0xc822d5ccc0] }
+&{setOutputWarningsToStandardError QQmlEngine::setOutputWarningsToStandardError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  void [0xc822d5d1c0] }
+&{setPluginPathList QQmlEngine::setPluginPathList commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  void [0xc822d5d860] }
+&{trimComponentCache QQmlEngine::trimComponentCache commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non plain false false  void [] }
+&{warnings QQmlEngine::warnings commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h non signal false false  void [0xc822d4eb00] }
+&{~QQmlEngine QQmlEngine::~QQmlEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{ObjectOwnership QQmlEngine::ObjectOwnership commendable public  [0xc822d9ccc0 0xc822d9cea0]}

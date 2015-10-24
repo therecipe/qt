@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QTiltSensor QTiltSensor::QTiltSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non constructor false false   [0xc822d4f200] }
+&{reading QTiltSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non plain false false  QTiltReading * [] }
+&{~QTiltSensor QTiltSensor::~QTiltSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non destructor false false   [] }
+&{calibrate QTiltSensor::calibrate commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.h non plain false false  void [] }
+########################################			ENUMS			########################################

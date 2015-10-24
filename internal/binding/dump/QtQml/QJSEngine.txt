@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QJSEngine QJSEngine::QJSEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsengine.h non constructor false false   [] }
+&{QJSEngine QJSEngine::QJSEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsengine.h non constructor false true 2  [0xc8234b0cc0] }
+&{collectGarbage QJSEngine::collectGarbage commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsengine.h non plain false false  void [] }
+&{evaluate QJSEngine::evaluate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsengine.h non plain false false  QJSValue [0xc8234b0f80 0xc8234b1000 0xc8234b1080] }
+&{fromScriptValue QJSEngine::fromScriptValue commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsengine.h non plain false false  T [0xc8234b1260] }
+&{globalObject QJSEngine::globalObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsengine.h non plain false false  QJSValue [] }
+&{installTranslatorFunctions QJSEngine::installTranslatorFunctions commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsengine.h non plain false false  void [0xc8234b1e40] }
+&{newArray QJSEngine::newArray commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsengine.h non plain false false  QJSValue [0xc823488020] }
+&{newObject QJSEngine::newObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsengine.h non plain false false  QJSValue [] }
+&{newQObject QJSEngine::newQObject commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsengine.h non plain false false  QJSValue [0xc8234883c0] }
+&{toScriptValue QJSEngine::toScriptValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsengine.h non plain false false  QJSValue [0xc823488680] }
+&{~QJSEngine QJSEngine::~QJSEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsengine.h impure destructor false false   [] }
+########################################			ENUMS			########################################

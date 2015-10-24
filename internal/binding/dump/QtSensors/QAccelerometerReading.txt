@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{x QAccelerometerReading::x commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.cpp non plain false false  qreal [] }
+&{y QAccelerometerReading::y commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.cpp non plain false false  qreal [] }
+&{z QAccelerometerReading::z commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.cpp non plain false false  qreal [] }
+&{setX QAccelerometerReading::setX commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non plain false false  void [0xc822ef3f00] }
+&{setY QAccelerometerReading::setY commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non plain false false  void [0xc822ee4200] }
+&{setZ QAccelerometerReading::setZ commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non plain false false  void [0xc822ee4520] }
+########################################			ENUMS			########################################

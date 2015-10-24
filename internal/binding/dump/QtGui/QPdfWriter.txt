@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QPdfWriter QPdfWriter::QPdfWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non constructor false true 2  [0xc82213afe0] }
+&{QPdfWriter QPdfWriter::QPdfWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non constructor false false   [0xc82213b1a0] }
+&{creator QPdfWriter::creator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  QString [] }
+&{newPage QPdfWriter::newPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h impure plain false false  bool [] }
+&{pageLayout QPdfWriter::pageLayout commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  QPageLayout [] }
+&{paintEngine QPdfWriter::paintEngine commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h impure plain false false  QPaintEngine * [] }
+&{resolution QPdfWriter::resolution commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  int [] }
+&{setCreator QPdfWriter::setCreator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  void [0xc82213ba80] }
+&{setPageLayout QPdfWriter::setPageLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  bool [0xc82213be00] }
+&{setPageMargins QPdfWriter::setPageMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  bool [0xc82214e020] }
+&{setPageMargins QPdfWriter::setPageMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false true 2 bool [0xc82214e240 0xc82214e320] }
+&{setPageOrientation QPdfWriter::setPageOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  bool [0xc82214e580] }
+&{setPageSize QPdfWriter::setPageSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  bool [0xc82214e7a0] }
+&{setResolution QPdfWriter::setResolution commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  void [0xc82214ed20] }
+&{setTitle QPdfWriter::setTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  void [0xc82214eee0] }
+&{title QPdfWriter::title commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  QString [] }
+&{~QPdfWriter QPdfWriter::~QPdfWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non destructor false false   [] }
+########################################			ENUMS			########################################

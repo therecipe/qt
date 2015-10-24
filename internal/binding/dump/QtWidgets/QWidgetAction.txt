@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QWidgetAction QWidgetAction::QWidgetAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non constructor false false   [0xc8225d9400] }
+&{createWidget QWidgetAction::createWidget commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure plain false false  QWidget * [0xc8225d9a00] }
+&{createdWidgets QWidgetAction::createdWidgets commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  QList<QWidget *> [] }
+&{defaultWidget QWidgetAction::defaultWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  QWidget * [] }
+&{deleteWidget QWidgetAction::deleteWidget commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure plain false false  void [0xc8225d9fa0] }
+&{event QWidgetAction::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure plain false false  bool [0xc8225ea300] }
+&{eventFilter QWidgetAction::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure plain false false  bool [0xc8225ea5c0 0xc8225ea6a0] }
+&{releaseWidget QWidgetAction::releaseWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  void [0xc8225ea9a0] }
+&{requestWidget QWidgetAction::requestWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  QWidget * [0xc8225eaca0] }
+&{setDefaultWidget QWidgetAction::setDefaultWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  void [0xc8225eaf40] }
+&{~QWidgetAction QWidgetAction::~QWidgetAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure destructor false false   [] }
+########################################			ENUMS			########################################

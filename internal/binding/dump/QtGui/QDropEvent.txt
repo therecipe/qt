@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{setDropAction QDropEvent::setDropAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.cpp non plain false false  void [0xc8208f7580] }
+&{QDropEvent QDropEvent::QDropEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc8208f77a0 0xc8208f7820 0xc8208f78c0 0xc8208f79a0 0xc8208f7aa0 0xc8208f7b80] }
+&{acceptProposedAction QDropEvent::acceptProposedAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void [] }
+&{dropAction QDropEvent::dropAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::DropAction [] }
+&{keyboardModifiers QDropEvent::keyboardModifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::KeyboardModifiers [] }
+&{mimeData QDropEvent::mimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QMimeData * [] }
+&{mouseButtons QDropEvent::mouseButtons commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseButtons [] }
+&{pos QDropEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
+&{posF QDropEvent::posF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
+&{possibleActions QDropEvent::possibleActions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::DropActions [] }
+&{proposedAction QDropEvent::proposedAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::DropAction [] }
+&{source QDropEvent::source commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QObject * [] }
+########################################			ENUMS			########################################

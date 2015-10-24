@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QHelpEvent QHelpEvent::QHelpEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc8208c36c0 0xc8208c3780 0xc8208c3820] }
+&{globalPos QHelpEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & [] }
+&{globalX QHelpEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{globalY QHelpEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{pos QHelpEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & [] }
+&{x QHelpEvent::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{y QHelpEvent::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+########################################			ENUMS			########################################

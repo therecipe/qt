@@ -1,0 +1,34 @@
+########################################			FUNCTIONS			########################################
+&{QNetworkProxy QNetworkProxy::QNetworkProxy commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non constructor false false   [] }
+&{QNetworkProxy QNetworkProxy::QNetworkProxy commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non constructor false true 2  [0xc823243ca0 0xc823243d80 0xc823243e00 0xc823243e80 0xc823243f40] }
+&{QNetworkProxy QNetworkProxy::QNetworkProxy commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non constructor false true 3  [0xc82322e160] }
+&{applicationProxy QNetworkProxy::applicationProxy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain true false  QNetworkProxy [] }
+&{capabilities QNetworkProxy::capabilities commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  Capabilities [] }
+&{hasRawHeader QNetworkProxy::hasRawHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  bool [0xc82322e660] }
+&{header QNetworkProxy::header commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QVariant [0xc82322e940] }
+&{hostName QNetworkProxy::hostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QString [] }
+&{isCachingProxy QNetworkProxy::isCachingProxy commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  bool [] }
+&{isTransparentProxy QNetworkProxy::isTransparentProxy commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  bool [] }
+&{operator!= QNetworkProxy::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  bool [0xc82322ef40] }
+&{operator= QNetworkProxy::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QNetworkProxy & [0xc82322f180] }
+&{operator== QNetworkProxy::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  bool [0xc82322f420] }
+&{password QNetworkProxy::password commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QString [] }
+&{port QNetworkProxy::port commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  quint16 [] }
+&{rawHeader QNetworkProxy::rawHeader commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QByteArray [0xc82322f880] }
+&{rawHeaderList QNetworkProxy::rawHeaderList commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QList<QByteArray> [] }
+&{setApplicationProxy QNetworkProxy::setApplicationProxy commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain true false  void [0xc82322fca0] }
+&{setCapabilities QNetworkProxy::setCapabilities commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc82322fe80] }
+&{setHeader QNetworkProxy::setHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc82321a080 0xc82321a140] }
+&{setHostName QNetworkProxy::setHostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc82321a3c0] }
+&{setPassword QNetworkProxy::setPassword commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc82321a5c0] }
+&{setPort QNetworkProxy::setPort commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc82321a820] }
+&{setRawHeader QNetworkProxy::setRawHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc82321aa80 0xc82321ab60] }
+&{setType QNetworkProxy::setType commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc82321ade0] }
+&{setUser QNetworkProxy::setUser commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc82321b020] }
+&{swap QNetworkProxy::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  void [0xc82321b2a0] }
+&{type QNetworkProxy::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QNetworkProxy::ProxyType [] }
+&{user QNetworkProxy::user commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non plain false false  QString [] }
+&{~QNetworkProxy QNetworkProxy::~QNetworkProxy commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkproxy.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Capability QNetworkProxy::Capability commendable public QNetworkProxy::Capabilities [0xc823242de0 0xc823242f40 0xc823243020 0xc823243160 0xc823243280]}
+&{ProxyType QNetworkProxy::ProxyType commendable public  [0xc823243520 0xc8232435e0 0xc823243680 0xc823243700 0xc8232437c0 0xc823243880]}

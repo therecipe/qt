@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QAudioRecorder QAudioRecorder::QAudioRecorder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qaudiorecorder.h non constructor false false   [0xc8226dc820] }
+&{audioInput QAudioRecorder::audioInput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qaudiorecorder.h non plain false false  QString [] }
+&{audioInputChanged QAudioRecorder::audioInputChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qaudiorecorder.h non signal false false  void [0xc8226dcca0] }
+&{audioInputDescription QAudioRecorder::audioInputDescription commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qaudiorecorder.h non plain false false  QString [0xc8226dcf00] }
+&{audioInputs QAudioRecorder::audioInputs commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qaudiorecorder.h non plain false false  QStringList [] }
+&{availableAudioInputsChanged QAudioRecorder::availableAudioInputsChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qaudiorecorder.h non signal false false  void [] }
+&{defaultAudioInput QAudioRecorder::defaultAudioInput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qaudiorecorder.h non plain false false  QString [] }
+&{setAudioInput QAudioRecorder::setAudioInput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qaudiorecorder.h non slot false false  void [0xc8226dd600] }
+&{~QAudioRecorder QAudioRecorder::~QAudioRecorder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qaudiorecorder.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QStyleOptionButton QStyleOptionButton::QStyleOptionButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
+&{QStyleOptionButton QStyleOptionButton::QStyleOptionButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8214e2da0] }
+########################################			ENUMS			########################################
+&{ButtonFeature QStyleOptionButton::ButtonFeature commendable public QStyleOptionButton::ButtonFeatures [0xc8214f3880 0xc8214f3980 0xc8214f3aa0 0xc8214f3ba0 0xc8214f3d80 0xc8214f3f80]}
+&{StyleOptionType QStyleOptionButton::StyleOptionType commendable public  [0xc8214e2360]}
+&{StyleOptionVersion QStyleOptionButton::StyleOptionVersion commendable public  [0xc8214e2720]}

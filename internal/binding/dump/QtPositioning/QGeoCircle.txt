@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QGeoCircle QGeoCircle::QGeoCircle commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non constructor false false   [] }
+&{QGeoCircle QGeoCircle::QGeoCircle commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non constructor false true 3  [0xc822fe9f80] }
+&{QGeoCircle QGeoCircle::QGeoCircle commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non constructor false true 2  [0xc822fd0400 0xc822fd0600] }
+&{QGeoCircle QGeoCircle::QGeoCircle commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non constructor false true 4  [0xc822fd09e0] }
+&{center QGeoCircle::center commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non plain false false  QGeoCoordinate [] }
+&{operator!= QGeoCircle::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non plain false false  bool [0xc822fd1060] }
+&{operator= QGeoCircle::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non plain false false  QGeoCircle & [0xc822fd1480] }
+&{operator== QGeoCircle::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non plain false false  bool [0xc822fd1840] }
+&{radius QGeoCircle::radius commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non plain false false  qreal [] }
+&{setCenter QGeoCircle::setCenter commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non plain false false  void [0xc822fd1f80] }
+&{setRadius QGeoCircle::setRadius commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non plain false false  void [0xc822fc0420] }
+&{toString QGeoCircle::toString commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non plain false false  QString [] }
+&{translate QGeoCircle::translate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non plain false false  void [0xc822fc0960 0xc822fc0aa0] }
+&{translated QGeoCircle::translated commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non plain false false  QGeoCircle [0xc822fc0e00 0xc822fc0f00] }
+&{~QGeoCircle QGeoCircle::~QGeoCircle commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocircle.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,33 @@
+########################################			FUNCTIONS			########################################
+&{alignment QProgressBar::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  Qt::Alignment [] }
+&{format QProgressBar::format commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  QString [] }
+&{invertedAppearance QProgressBar::invertedAppearance commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  bool [] }
+&{isTextVisible QProgressBar::isTextVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  bool [] }
+&{maximum QProgressBar::maximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  int [] }
+&{minimum QProgressBar::minimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  int [] }
+&{orientation QProgressBar::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  Qt::Orientation [] }
+&{resetFormat QProgressBar::resetFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  void [] }
+&{setAlignment QProgressBar::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  void [0xc822f027a0] }
+&{setFormat QProgressBar::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  void [0xc822f02dc0] }
+&{setInvertedAppearance QProgressBar::setInvertedAppearance commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  void [0xc822f03300] }
+&{setMaximum QProgressBar::setMaximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non slot false false  void [0xc822f03920] }
+&{setMinimum QProgressBar::setMinimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non slot false false  void [0xc822ee4060] }
+&{setOrientation QProgressBar::setOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non slot false false  void [0xc822ee4720] }
+&{setTextDirection QProgressBar::setTextDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  void [0xc822ee4ca0] }
+&{setTextVisible QProgressBar::setTextVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  void [0xc822ee5280] }
+&{setValue QProgressBar::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non slot false false  void [0xc822ee5800] }
+&{text QProgressBar::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp impure plain false false  QString [] }
+&{textDirection QProgressBar::textDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  QProgressBar::Direction [] }
+&{value QProgressBar::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.cpp non plain false false  int [] }
+&{QProgressBar QProgressBar::QProgressBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.h non constructor false false   [0xc822ed3080] }
+&{event QProgressBar::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.h impure plain false false  bool [0xc822ed3700] }
+&{initStyleOption QProgressBar::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.h non plain false false  void [0xc822ed3c20] }
+&{minimumSizeHint QProgressBar::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.h impure plain false false  QSize [] }
+&{paintEvent QProgressBar::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.h impure plain false false  void [0xc822ec6320] }
+&{reset QProgressBar::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.h non slot false false  void [] }
+&{setRange QProgressBar::setRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.h non slot false false  void [0xc822ec69e0 0xc822ec6ae0] }
+&{sizeHint QProgressBar::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.h impure plain false false  QSize [] }
+&{valueChanged QProgressBar::valueChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.h non signal false false  void [0xc822ec73a0] }
+&{~QProgressBar QProgressBar::~QProgressBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qprogressbar.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Direction QProgressBar::Direction commendable public  [0xc822ed2960 0xc822ed2a60]}

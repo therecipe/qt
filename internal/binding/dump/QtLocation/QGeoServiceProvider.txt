@@ -1,0 +1,22 @@
+########################################			FUNCTIONS			########################################
+&{QGeoServiceProvider QGeoServiceProvider::QGeoServiceProvider commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non constructor false false   [0xc8227dc3a0 0xc8227dc5c0 0xc8227dc700] }
+&{availableServiceProviders QGeoServiceProvider::availableServiceProviders commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain true false  QStringList [] }
+&{error QGeoServiceProvider::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain false false  Error [] }
+&{errorString QGeoServiceProvider::errorString commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain false false  QString [] }
+&{geocodingFeatures QGeoServiceProvider::geocodingFeatures commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain false false  GeocodingFeatures [] }
+&{geocodingManager QGeoServiceProvider::geocodingManager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain false false  QGeoCodingManager * [] }
+&{mappingFeatures QGeoServiceProvider::mappingFeatures commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain false false  MappingFeatures [] }
+&{placeManager QGeoServiceProvider::placeManager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain false false  QPlaceManager * [] }
+&{placesFeatures QGeoServiceProvider::placesFeatures commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain false false  PlacesFeatures [] }
+&{routingFeatures QGeoServiceProvider::routingFeatures commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain false false  RoutingFeatures [] }
+&{routingManager QGeoServiceProvider::routingManager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain false false  QGeoRoutingManager * [] }
+&{setAllowExperimental QGeoServiceProvider::setAllowExperimental commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain false false  void [0xc8227ddfe0] }
+&{setLocale QGeoServiceProvider::setLocale commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain false false  void [0xc8227ea520] }
+&{setParameters QGeoServiceProvider::setParameters commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non plain false false  void [0xc8227ea840] }
+&{~QGeoServiceProvider QGeoServiceProvider::~QGeoServiceProvider commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceprovider.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Error QGeoServiceProvider::Error commendable public  [0xc822a14de0 0xc822a14ea0 0xc822a14fa0 0xc822a150e0 0xc822a151e0]}
+&{GeocodingFeature QGeoServiceProvider::GeocodingFeature commendable public QGeoServiceProvider::GeocodingFeatures [0xc822a153c0 0xc822a15520 0xc822a15660 0xc822a157a0 0xc822a158c0 0xc822a15a80]}
+&{MappingFeature QGeoServiceProvider::MappingFeature commendable public QGeoServiceProvider::MappingFeatures [0xc822a15da0 0xc822a15ee0 0xc8227c8080 0xc8227c81c0 0xc8227c82e0]}
+&{PlacesFeature QGeoServiceProvider::PlacesFeature commendable public QGeoServiceProvider::PlacesFeatures [0xc8227c8500 0xc8227c8600 0xc8227c8700 0xc8227c87e0 0xc8227c8900 0xc8227c8a00 0xc8227c8b40 0xc8227c8c40 0xc8227c8dc0 0xc8227c8ec0 0xc8227c9000 0xc8227c9100 0xc8227c9240]}
+&{RoutingFeature QGeoServiceProvider::RoutingFeature commendable public QGeoServiceProvider::RoutingFeatures [0xc8227c9480 0xc8227c95c0 0xc8227c96c0 0xc8227c9800 0xc8227c9960 0xc8227c9a40 0xc8227c9ba0 0xc8227c9c80]}

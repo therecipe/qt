@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{run QVideoFilterRunnable::run commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.h pure plain false false  QVideoFrame [0xc826b1b580 0xc826b1b840 0xc826b1b9e0] }
+########################################			ENUMS			########################################
+&{RunFlag QVideoFilterRunnable::RunFlag commendable public QVideoFilterRunnable::RunFlags [0xc826b1ac60]}

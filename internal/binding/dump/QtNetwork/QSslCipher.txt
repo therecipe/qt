@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QSslCipher QSslCipher::QSslCipher commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non constructor false false   [] }
+&{QSslCipher QSslCipher::QSslCipher commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non constructor false true 4  [0xc8230855e0] }
+&{QSslCipher QSslCipher::QSslCipher commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non constructor false true 2  [0xc823085940] }
+&{QSslCipher QSslCipher::QSslCipher commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non constructor false true 3  [0xc823085c40 0xc823085d20] }
+&{authenticationMethod QSslCipher::authenticationMethod commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  QString [] }
+&{encryptionMethod QSslCipher::encryptionMethod commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  QString [] }
+&{isNull QSslCipher::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  bool [] }
+&{keyExchangeMethod QSslCipher::keyExchangeMethod commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  QString [] }
+&{name QSslCipher::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  QString [] }
+&{operator!= QSslCipher::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  bool [0xc823072920] }
+&{operator= QSslCipher::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  QSslCipher & [0xc823072ca0] }
+&{operator== QSslCipher::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  bool [0xc823073020] }
+&{protocol QSslCipher::protocol commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  QSsl::SslProtocol [] }
+&{protocolString QSslCipher::protocolString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  QString [] }
+&{supportedBits QSslCipher::supportedBits commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  int [] }
+&{swap QSslCipher::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  void [0xc8230738a0] }
+&{usedBits QSslCipher::usedBits commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non plain false false  int [] }
+&{~QSslCipher QSslCipher::~QSslCipher commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslcipher.h non destructor false false   [] }
+########################################			ENUMS			########################################

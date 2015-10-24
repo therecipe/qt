@@ -1,0 +1,34 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceManagerEngine QPlaceManagerEngine::QPlaceManagerEngine commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non constructor false false   [0xc822b53ae0 0xc822b53cc0] }
+&{category QPlaceManagerEngine::category commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QPlaceCategory [0xc82254e000] }
+&{categoryAdded QPlaceManagerEngine::categoryAdded commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non signal false false  void [0xc82254e2c0 0xc82254e3c0] }
+&{categoryRemoved QPlaceManagerEngine::categoryRemoved commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non signal false false  void [0xc82254e680 0xc82254e7e0] }
+&{categoryUpdated QPlaceManagerEngine::categoryUpdated commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non signal false false  void [0xc82254eb40 0xc82254ece0] }
+&{childCategories QPlaceManagerEngine::childCategories commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QList<QPlaceCategory> [0xc82254f060] }
+&{childCategoryIds QPlaceManagerEngine::childCategoryIds commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QStringList [0xc82254f2c0] }
+&{compatiblePlace QPlaceManagerEngine::compatiblePlace commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QPlace [0xc82254f540] }
+&{constructIconUrl QPlaceManagerEngine::constructIconUrl commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QUrl [0xc82254f8a0 0xc82254f9e0] }
+&{dataChanged QPlaceManagerEngine::dataChanged commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non signal false false  void [] }
+&{error QPlaceManagerEngine::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non signal false false  void [0xc82254ff60 0xc82255e100 0xc82255e260] }
+&{finished QPlaceManagerEngine::finished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non signal false false  void [0xc82255e720] }
+&{getPlaceContent QPlaceManagerEngine::getPlaceContent commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QPlaceContentReply * [0xc82255ebe0] }
+&{getPlaceDetails QPlaceManagerEngine::getPlaceDetails commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QPlaceDetailsReply * [0xc82255f140] }
+&{initializeCategories QPlaceManagerEngine::initializeCategories commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QPlaceReply * [] }
+&{locales QPlaceManagerEngine::locales commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QList<QLocale> [] }
+&{manager QPlaceManagerEngine::manager commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non plain false false  QPlaceManager * [] }
+&{managerName QPlaceManagerEngine::managerName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non plain false false  QString [] }
+&{managerVersion QPlaceManagerEngine::managerVersion commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non plain false false  int [] }
+&{matchingPlaces QPlaceManagerEngine::matchingPlaces commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QPlaceMatchReply * [0xc82256a2c0] }
+&{parentCategoryId QPlaceManagerEngine::parentCategoryId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QString [0xc82256a680] }
+&{placeAdded QPlaceManagerEngine::placeAdded commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non signal false false  void [0xc82256aa40] }
+&{placeRemoved QPlaceManagerEngine::placeRemoved commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non signal false false  void [0xc82256ae40] }
+&{placeUpdated QPlaceManagerEngine::placeUpdated commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h non signal false false  void [0xc82256b200] }
+&{removeCategory QPlaceManagerEngine::removeCategory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QPlaceIdReply * [0xc82256b5c0] }
+&{removePlace QPlaceManagerEngine::removePlace commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QPlaceIdReply * [0xc82256b980] }
+&{saveCategory QPlaceManagerEngine::saveCategory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QPlaceIdReply * [0xc82256bda0 0xc82256bec0] }
+&{savePlace QPlaceManagerEngine::savePlace commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QPlaceIdReply * [0xc82257a400] }
+&{search QPlaceManagerEngine::search commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QPlaceSearchReply * [0xc82257ab80] }
+&{searchSuggestions QPlaceManagerEngine::searchSuggestions commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  QPlaceSearchSuggestionReply * [0xc82257b2a0] }
+&{setLocales QPlaceManagerEngine::setLocales commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure plain false false  void [0xc82257ba60] }
+&{~QPlaceManagerEngine QPlaceManagerEngine::~QPlaceManagerEngine commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacemanagerengine.h impure destructor false false   [] }
+########################################			ENUMS			########################################

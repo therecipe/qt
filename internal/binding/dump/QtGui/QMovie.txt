@@ -1,0 +1,44 @@
+########################################			FUNCTIONS			########################################
+&{cacheMode QMovie::cacheMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.cpp non plain false false  CacheMode [] }
+&{setCacheMode QMovie::setCacheMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.cpp non plain false false  void [0xc820b568c0] }
+&{setSpeed QMovie::setSpeed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.cpp non slot false false  void [0xc820b56a80] }
+&{speed QMovie::speed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.cpp non plain false false  int [] }
+&{QMovie QMovie::QMovie commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non constructor false true 2  [0xc820b572e0 0xc820b573e0 0xc820b574a0] }
+&{QMovie QMovie::QMovie commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non constructor false false   [0xc820b576a0] }
+&{QMovie QMovie::QMovie commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non constructor false true 3  [0xc820b57820 0xc820b57900 0xc820b579e0] }
+&{backgroundColor QMovie::backgroundColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  QColor [] }
+&{currentFrameNumber QMovie::currentFrameNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  int [] }
+&{currentImage QMovie::currentImage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  QImage [] }
+&{currentPixmap QMovie::currentPixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  QPixmap [] }
+&{device QMovie::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  QIODevice * [] }
+&{error QMovie::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non signal false false  void [0xc820b282c0] }
+&{fileName QMovie::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  QString [] }
+&{finished QMovie::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non signal false false  void [] }
+&{format QMovie::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  QByteArray [] }
+&{frameChanged QMovie::frameChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non signal false false  void [0xc820b28700] }
+&{frameCount QMovie::frameCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  int [] }
+&{frameRect QMovie::frameRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  QRect [] }
+&{isValid QMovie::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  bool [] }
+&{jumpToFrame QMovie::jumpToFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  bool [0xc820b28c00] }
+&{jumpToNextFrame QMovie::jumpToNextFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non slot false false  bool [] }
+&{loopCount QMovie::loopCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  int [] }
+&{nextFrameDelay QMovie::nextFrameDelay commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  int [] }
+&{resized QMovie::resized commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non signal false false  void [0xc820b29080] }
+&{scaledSize QMovie::scaledSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  QSize [] }
+&{setBackgroundColor QMovie::setBackgroundColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  void [0xc820b29460] }
+&{setDevice QMovie::setDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  void [0xc820b29640] }
+&{setFileName QMovie::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  void [0xc820b29860] }
+&{setFormat QMovie::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  void [0xc820b29a80] }
+&{setPaused QMovie::setPaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non slot false false  void [0xc820b29ce0] }
+&{setScaledSize QMovie::setScaledSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  void [0xc820b29f00] }
+&{start QMovie::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non slot false false  void [] }
+&{started QMovie::started commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non signal false false  void [] }
+&{state QMovie::state commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain false false  MovieState [] }
+&{stateChanged QMovie::stateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non signal false false  void [0xc820b18320] }
+&{stop QMovie::stop commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non slot false false  void [] }
+&{supportedFormats QMovie::supportedFormats commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non plain true false  QList<QByteArray> [] }
+&{updated QMovie::updated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non signal false false  void [0xc820b187a0] }
+&{~QMovie QMovie::~QMovie commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qmovie.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{CacheMode QMovie::CacheMode commendable public  [0xc820b56dc0 0xc820b56e60]}
+&{MovieState QMovie::MovieState commendable public  [0xc820b57040 0xc820b570c0 0xc820b57140]}

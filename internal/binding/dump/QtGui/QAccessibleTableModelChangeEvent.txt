@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QAccessibleTableModelChangeEvent QAccessibleTableModelChangeEvent::QAccessibleTableModelChangeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  [0xc820c77640 0xc820c77760] }
+&{QAccessibleTableModelChangeEvent QAccessibleTableModelChangeEvent::QAccessibleTableModelChangeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   [0xc820c779c0 0xc820c77b20] }
+&{firstColumn QAccessibleTableModelChangeEvent::firstColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int [] }
+&{firstRow QAccessibleTableModelChangeEvent::firstRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int [] }
+&{lastColumn QAccessibleTableModelChangeEvent::lastColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int [] }
+&{lastRow QAccessibleTableModelChangeEvent::lastRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int [] }
+&{modelChangeType QAccessibleTableModelChangeEvent::modelChangeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  ModelChangeType [] }
+&{setFirstColumn QAccessibleTableModelChangeEvent::setFirstColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  void [0xc820c62120] }
+&{setFirstRow QAccessibleTableModelChangeEvent::setFirstRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  void [0xc820c623a0] }
+&{setLastColumn QAccessibleTableModelChangeEvent::setLastColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  void [0xc820c625a0] }
+&{setLastRow QAccessibleTableModelChangeEvent::setLastRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  void [0xc820c62800] }
+&{setModelChangeType QAccessibleTableModelChangeEvent::setModelChangeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  void [0xc820c62ae0] }
+########################################			ENUMS			########################################
+&{ModelChangeType QAccessibleTableModelChangeEvent::ModelChangeType commendable public  [0xc820c76e60 0xc820c76fa0 0xc820c770a0 0xc820c77140 0xc820c77260 0xc820c772e0]}

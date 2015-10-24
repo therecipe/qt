@@ -1,0 +1,41 @@
+########################################			FUNCTIONS			########################################
+&{currentTime QTimeLine::currentTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  int [] }
+&{curveShape QTimeLine::curveShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  CurveShape [] }
+&{direction QTimeLine::direction commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  Direction [] }
+&{duration QTimeLine::duration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  int [] }
+&{easingCurve QTimeLine::easingCurve commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  QEasingCurve [] }
+&{loopCount QTimeLine::loopCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  int [] }
+&{setCurrentTime QTimeLine::setCurrentTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non slot false false  void [0xc8206e86a0] }
+&{setCurveShape QTimeLine::setCurveShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  void [0xc8206e8b00] }
+&{setDirection QTimeLine::setDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  void [0xc8206e9040] }
+&{setDuration QTimeLine::setDuration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  void [0xc8206e9480] }
+&{setEasingCurve QTimeLine::setEasingCurve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  void [0xc8206e9a20] }
+&{setLoopCount QTimeLine::setLoopCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  void [0xc8206e9f80] }
+&{setUpdateInterval QTimeLine::setUpdateInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  void [0xc8206d6360] }
+&{updateInterval QTimeLine::updateInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.cpp non plain false false  int [] }
+&{QTimeLine QTimeLine::QTimeLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non constructor false false   [0xc8206d7cc0 0xc8206d7de0] }
+&{currentFrame QTimeLine::currentFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non plain false false  int [] }
+&{currentValue QTimeLine::currentValue commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non plain false false  qreal [] }
+&{endFrame QTimeLine::endFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non plain false false  int [] }
+&{finished QTimeLine::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non signal false false  void [] }
+&{frameChanged QTimeLine::frameChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non signal false false  void [0xc82098c700] }
+&{frameForTime QTimeLine::frameForTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non plain false false  int [0xc82098c9e0] }
+&{resume QTimeLine::resume commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non slot false false  void [] }
+&{setEndFrame QTimeLine::setEndFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non plain false false  void [0xc82098ce20] }
+&{setFrameRange QTimeLine::setFrameRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non plain false false  void [0xc82098d140 0xc82098d200] }
+&{setPaused QTimeLine::setPaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non slot false false  void [0xc82098d4e0] }
+&{setStartFrame QTimeLine::setStartFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non plain false false  void [0xc82098d780] }
+&{start QTimeLine::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non slot false false  void [] }
+&{startFrame QTimeLine::startFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non plain false false  int [] }
+&{state QTimeLine::state commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non plain false false  State [] }
+&{stateChanged QTimeLine::stateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non signal false false  void [0xc82098dd40] }
+&{stop QTimeLine::stop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non slot false false  void [] }
+&{timerEvent QTimeLine::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h impure plain false false  void [0xc8206bc120] }
+&{toggleDirection QTimeLine::toggleDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non slot false false  void [] }
+&{valueChanged QTimeLine::valueChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h non signal false false  void [0xc8206bc600] }
+&{valueForTime QTimeLine::valueForTime commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h impure plain false false  qreal [0xc8206bc8e0] }
+&{~QTimeLine QTimeLine::~QTimeLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimeline.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{CurveShape QTimeLine::CurveShape commendable public  [0xc8206d6960 0xc8206d6a00 0xc8206d6ae0 0xc8206d6c40 0xc8206d6da0 0xc8206d6f40]}
+&{Direction QTimeLine::Direction commendable public  [0xc8206d7340 0xc8206d74e0]}
+&{State QTimeLine::State commendable public  [0xc8206d77c0 0xc8206d78a0 0xc8206d7980]}

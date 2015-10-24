@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QQuickRenderControl QQuickRenderControl::QQuickRenderControl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h non constructor false false   [0xc821a96a40] }
+&{grab QQuickRenderControl::grab commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h non plain false false  QImage [] }
+&{initialize QQuickRenderControl::initialize commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h non plain false false  void [0xc821a97160] }
+&{invalidate QQuickRenderControl::invalidate commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h non plain false false  void [] }
+&{polishItems QQuickRenderControl::polishItems commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h non plain false false  void [] }
+&{prepareThread QQuickRenderControl::prepareThread commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h non plain false false  void [0xc821a97980] }
+&{render QQuickRenderControl::render commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h non plain false false  void [] }
+&{renderRequested QQuickRenderControl::renderRequested commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h non signal false false  void [] }
+&{renderWindow QQuickRenderControl::renderWindow commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h impure plain false false  QWindow * [0xc821a860e0] }
+&{renderWindowFor QQuickRenderControl::renderWindowFor commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h non plain true false  QWindow * [0xc821a86380 0xc821a86460] }
+&{sceneChanged QQuickRenderControl::sceneChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h non signal false false  void [] }
+&{sync QQuickRenderControl::sync commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h non plain false false  bool [] }
+&{~QQuickRenderControl QQuickRenderControl::~QQuickRenderControl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickrendercontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################

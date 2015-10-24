@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{color QGraphicsColorizeEffect::color commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non plain false false  QColor [] }
+&{setColor QGraphicsColorizeEffect::setColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non slot false false  void [0xc822fe8ac0] }
+&{setStrength QGraphicsColorizeEffect::setStrength commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non slot false false  void [0xc822fe8f40] }
+&{strength QGraphicsColorizeEffect::strength commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non plain false false  qreal [] }
+&{QGraphicsColorizeEffect QGraphicsColorizeEffect::QGraphicsColorizeEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non constructor false false   [0xc822fe9540] }
+&{colorChanged QGraphicsColorizeEffect::colorChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non signal false false  void [0xc822fe97e0] }
+&{draw QGraphicsColorizeEffect::draw commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure plain false false  void [0xc822fe9b20] }
+&{strengthChanged QGraphicsColorizeEffect::strengthChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non signal false false  void [0xc822fe9e80] }
+&{~QGraphicsColorizeEffect QGraphicsColorizeEffect::~QGraphicsColorizeEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non destructor false false   [] }
+########################################			ENUMS			########################################

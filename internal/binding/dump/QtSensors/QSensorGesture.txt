@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QSensorGesture QSensorGesture::QSensorGesture commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesture.h non constructor false false   [0xc822f241a0 0xc822f24300] }
+&{detected QSensorGesture::detected commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesture.h non signal false false  void [0xc822f24640] }
+&{gestureSignals QSensorGesture::gestureSignals commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesture.h non plain false false  QStringList [] }
+&{invalidIds QSensorGesture::invalidIds commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesture.h non plain false false  QStringList [] }
+&{isActive QSensorGesture::isActive commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesture.h non plain false false  bool [] }
+&{startDetection QSensorGesture::startDetection commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesture.h non plain false false  void [] }
+&{stopDetection QSensorGesture::stopDetection commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesture.h non plain false false  void [] }
+&{validIds QSensorGesture::validIds commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesture.h non plain false false  QStringList [] }
+&{~QSensorGesture QSensorGesture::~QSensorGesture commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/gestures/qsensorgesture.h non destructor false false   [] }
+########################################			ENUMS			########################################

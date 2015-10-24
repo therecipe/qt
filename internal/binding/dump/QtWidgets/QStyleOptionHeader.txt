@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QStyleOptionHeader QStyleOptionHeader::QStyleOptionHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
+&{QStyleOptionHeader QStyleOptionHeader::QStyleOptionHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc821463f60] }
+########################################			ENUMS			########################################
+&{SectionPosition QStyleOptionHeader::SectionPosition commendable public  [0xc8214622e0 0xc821462420 0xc8214624a0 0xc821462600]}
+&{SelectedPosition QStyleOptionHeader::SelectedPosition commendable public  [0xc821462900 0xc8214629e0 0xc821462bc0 0xc821462e00]}
+&{SortIndicator QStyleOptionHeader::SortIndicator commendable public  [0xc8214630a0 0xc8214631e0 0xc8214632c0]}
+&{StyleOptionType QStyleOptionHeader::StyleOptionType commendable public  [0xc821463560]}
+&{StyleOptionVersion QStyleOptionHeader::StyleOptionVersion commendable public  [0xc821463900]}

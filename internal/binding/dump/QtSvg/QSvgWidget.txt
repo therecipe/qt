@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{QSvgWidget QSvgWidget::QSvgWidget commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgwidget.h non constructor false false   [0xc821a65ca0] }
+&{QSvgWidget QSvgWidget::QSvgWidget commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgwidget.h non constructor false true 2  [0xc821a65e60 0xc821a65ee0] }
+&{load QSvgWidget::load commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgwidget.h non slot false true 2 void [0xc821a42060] }
+&{load QSvgWidget::load commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgwidget.h non slot false false  void [0xc821a42220] }
+&{paintEvent QSvgWidget::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgwidget.h impure plain false false  void [0xc821a42400] }
+&{renderer QSvgWidget::renderer commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgwidget.h non plain false false  QSvgRenderer * [] }
+&{sizeHint QSvgWidget::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgwidget.h impure plain false false  QSize [] }
+&{~QSvgWidget QSvgWidget::~QSvgWidget commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgwidget.h non destructor false false   [] }
+########################################			ENUMS			########################################

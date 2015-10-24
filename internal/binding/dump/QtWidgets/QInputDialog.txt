@@ -1,0 +1,60 @@
+########################################			FUNCTIONS			########################################
+&{cancelButtonText QInputDialog::cancelButtonText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  QString [] }
+&{comboBoxItems QInputDialog::comboBoxItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  QStringList [] }
+&{doubleDecimals QInputDialog::doubleDecimals commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  int [] }
+&{doubleMaximum QInputDialog::doubleMaximum commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  double [] }
+&{doubleMinimum QInputDialog::doubleMinimum commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  double [] }
+&{doubleValue QInputDialog::doubleValue commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  double [] }
+&{inputMode QInputDialog::inputMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  InputMode [] }
+&{intMaximum QInputDialog::intMaximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  int [] }
+&{intMinimum QInputDialog::intMinimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  int [] }
+&{intStep QInputDialog::intStep commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  int [] }
+&{intValue QInputDialog::intValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  int [] }
+&{isComboBoxEditable QInputDialog::isComboBoxEditable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  bool [] }
+&{labelText QInputDialog::labelText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  QString [] }
+&{okButtonText QInputDialog::okButtonText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  QString [] }
+&{options QInputDialog::options commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  InputDialogOptions [] }
+&{setCancelButtonText QInputDialog::setCancelButtonText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc82330c760] }
+&{setComboBoxEditable QInputDialog::setComboBoxEditable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc82330ca00] }
+&{setComboBoxItems QInputDialog::setComboBoxItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc82330cc60] }
+&{setDoubleDecimals QInputDialog::setDoubleDecimals commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc82330d060] }
+&{setDoubleMaximum QInputDialog::setDoubleMaximum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc82330d2c0] }
+&{setDoubleMinimum QInputDialog::setDoubleMinimum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc82330d4e0] }
+&{setDoubleValue QInputDialog::setDoubleValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc82330d7e0] }
+&{setInputMode QInputDialog::setInputMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc82330db00] }
+&{setIntMaximum QInputDialog::setIntMaximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc82330dde0] }
+&{setIntMinimum QInputDialog::setIntMinimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc8232fc0e0] }
+&{setIntStep QInputDialog::setIntStep commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc8232fc460] }
+&{setIntValue QInputDialog::setIntValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc8232fc700] }
+&{setLabelText QInputDialog::setLabelText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc8232fca20] }
+&{setOkButtonText QInputDialog::setOkButtonText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc8232fcca0] }
+&{setOptions QInputDialog::setOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc8232fcfa0] }
+&{setTextEchoMode QInputDialog::setTextEchoMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc8232fd2c0] }
+&{setTextValue QInputDialog::setTextValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  void [0xc8232fd600] }
+&{textEchoMode QInputDialog::textEchoMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  QLineEdit::EchoMode [] }
+&{textValue QInputDialog::textValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.cpp non plain false false  QString [] }
+&{QInputDialog QInputDialog::QInputDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non constructor false false   [0xc8232e6a20 0xc8232e6b00] }
+&{done QInputDialog::done commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h impure plain false false  void [0xc8232e7160] }
+&{doubleValueChanged QInputDialog::doubleValueChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non signal false false  void [0xc8232e74c0] }
+&{doubleValueSelected QInputDialog::doubleValueSelected commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non signal false false  void [0xc8232e7780] }
+&{getDouble QInputDialog::getDouble commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non plain true false  double [0xc8232e7a40 0xc8232e7b00 0xc8232e7ba0 0xc8232e7c60 0xc8232e7dc0 0xc8232e7e60 0xc8232e7f20 0xc8232ce0c0 0xc8232ce180] }
+&{getInt QInputDialog::getInt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non plain true false  int [0xc8232ce3e0 0xc8232ce4e0 0xc8232ce5a0 0xc8232ce6a0 0xc8232ce7a0 0xc8232ce840 0xc8232ce8e0 0xc8232ce980 0xc8232cea40] }
+&{getItem QInputDialog::getItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non plain true false  QString [0xc8232cf580 0xc8232cf620 0xc8232cf6c0 0xc8232cf800 0xc8232cf920 0xc8232cf9e0 0xc8232cfa60 0xc8232cfb40 0xc8232cfc60] }
+&{getMultiLineText QInputDialog::getMultiLineText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non plain true false  QString [0xc8232cffe0 0xc8232c4140 0xc8232c41c0 0xc8232c4260 0xc8232c4360 0xc8232c4400 0xc8232c4520] }
+&{getText QInputDialog::getText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non plain true false  QString [0xc8232c4880 0xc8232c4920 0xc8232c49e0 0xc8232c4b00 0xc8232c4d00 0xc8232c4da0 0xc8232c4e60 0xc8232c4f60] }
+&{intValueChanged QInputDialog::intValueChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non signal false false  void [0xc8232c5320] }
+&{intValueSelected QInputDialog::intValueSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non signal false false  void [0xc8232c55c0] }
+&{minimumSizeHint QInputDialog::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h impure plain false false  QSize [] }
+&{open QInputDialog::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non plain false false  void [0xc8232c5940 0xc8232c5a20] }
+&{setDoubleRange QInputDialog::setDoubleRange commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non plain false false  void [0xc8232c5ce0 0xc8232c5dc0] }
+&{setIntRange QInputDialog::setIntRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non plain false false  void [0xc8232b40c0 0xc8232b4140] }
+&{setOption QInputDialog::setOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non plain false false  void [0xc8232b4420 0xc8232b4560] }
+&{setVisible QInputDialog::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h impure plain false false  void [0xc8232b4820] }
+&{sizeHint QInputDialog::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h impure plain false false  QSize [] }
+&{testOption QInputDialog::testOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non plain false false  bool [0xc8232b4cc0] }
+&{textValueChanged QInputDialog::textValueChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non signal false false  void [0xc8232b5020] }
+&{textValueSelected QInputDialog::textValueSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non signal false false  void [0xc8232b5380] }
+&{~QInputDialog QInputDialog::~QInputDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qinputdialog.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{InputDialogOption QInputDialog::InputDialogOption commendable public QInputDialog::InputDialogOptions [0xc8232fdec0 0xc8232fdfc0 0xc8232e60e0]}
+&{InputMode QInputDialog::InputMode commendable public  [0xc8232e6460 0xc8232e6500 0xc8232e6660]}

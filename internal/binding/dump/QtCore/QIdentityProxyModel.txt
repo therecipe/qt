@@ -1,0 +1,21 @@
+########################################			FUNCTIONS			########################################
+&{QIdentityProxyModel QIdentityProxyModel::QIdentityProxyModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h non constructor false false   [0xc82046a080] }
+&{columnCount QIdentityProxyModel::columnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  int [0xc82046a680] }
+&{dropMimeData QIdentityProxyModel::dropMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  bool [0xc82046a860 0xc82046a920 0xc82046a9a0 0xc82046aa20 0xc82046aae0] }
+&{headerData QIdentityProxyModel::headerData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  QVariant [0xc82046ace0 0xc82046ad60 0xc82046ade0] }
+&{index QIdentityProxyModel::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  QModelIndex [0xc82046afc0 0xc82046b040 0xc82046b0e0] }
+&{insertColumns QIdentityProxyModel::insertColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  bool [0xc82046b280 0xc82046b300 0xc82046b3a0] }
+&{insertRows QIdentityProxyModel::insertRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  bool [0xc82046b5c0 0xc82046b640 0xc82046b6e0] }
+&{mapFromSource QIdentityProxyModel::mapFromSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  QModelIndex [0xc82046b8a0] }
+&{mapSelectionFromSource QIdentityProxyModel::mapSelectionFromSource commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  QItemSelection [0xc82046bac0] }
+&{mapSelectionToSource QIdentityProxyModel::mapSelectionToSource commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  QItemSelection [0xc82046bce0] }
+&{mapToSource QIdentityProxyModel::mapToSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  QModelIndex [0xc82046bf00] }
+&{match QIdentityProxyModel::match commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  QModelIndexList [0xc820478140 0xc820478200 0xc820478280 0xc820478300 0xc8204783a0] }
+&{parent QIdentityProxyModel::parent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  QModelIndex [0xc8204785a0] }
+&{removeColumns QIdentityProxyModel::removeColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  bool [0xc820478740 0xc8204787c0 0xc820478860] }
+&{removeRows QIdentityProxyModel::removeRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  bool [0xc820478a80 0xc820478b00 0xc820478ba0] }
+&{rowCount QIdentityProxyModel::rowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  int [0xc820478dc0] }
+&{setSourceModel QIdentityProxyModel::setSourceModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  void [0xc820478f80] }
+&{sibling QIdentityProxyModel::sibling commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h impure plain false false  QModelIndex [0xc8204791a0 0xc820479220 0xc8204792c0] }
+&{~QIdentityProxyModel QIdentityProxyModel::~QIdentityProxyModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qidentityproxymodel.h non destructor false false   [] }
+########################################			ENUMS			########################################

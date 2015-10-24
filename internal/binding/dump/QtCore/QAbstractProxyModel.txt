@@ -1,0 +1,34 @@
+########################################			FUNCTIONS			########################################
+&{QAbstractProxyModel QAbstractProxyModel::QAbstractProxyModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h non constructor false false   [0xc8204034c0] }
+&{buddy QAbstractProxyModel::buddy commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  QModelIndex [0xc820403ae0] }
+&{canDropMimeData QAbstractProxyModel::canDropMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  bool [0xc820403cc0 0xc820403d80 0xc820403e00 0xc820403e80 0xc820403f40] }
+&{canFetchMore QAbstractProxyModel::canFetchMore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  bool [0xc82044a100] }
+&{data QAbstractProxyModel::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  QVariant [0xc82044a340 0xc82044a400] }
+&{dropMimeData QAbstractProxyModel::dropMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  bool [0xc82044a580 0xc82044a640 0xc82044a6c0 0xc82044a740 0xc82044a800] }
+&{fetchMore QAbstractProxyModel::fetchMore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  void [0xc82044aa40] }
+&{flags QAbstractProxyModel::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  Qt::ItemFlags [0xc82044ac80] }
+&{hasChildren QAbstractProxyModel::hasChildren commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  bool [0xc82044aea0] }
+&{headerData QAbstractProxyModel::headerData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  QVariant [0xc82044b0a0 0xc82044b120 0xc82044b1a0] }
+&{itemData QAbstractProxyModel::itemData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  QMap<int, QVariant> [0xc82044b3e0] }
+&{mapFromSource QAbstractProxyModel::mapFromSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h pure plain false false  QModelIndex [0xc82044b5a0] }
+&{mapSelectionFromSource QAbstractProxyModel::mapSelectionFromSource commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  QItemSelection [0xc82044b7c0] }
+&{mapSelectionToSource QAbstractProxyModel::mapSelectionToSource commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  QItemSelection [0xc82044b9e0] }
+&{mapToSource QAbstractProxyModel::mapToSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h pure plain false false  QModelIndex [0xc82044bc20] }
+&{mimeData QAbstractProxyModel::mimeData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  QMimeData * [0xc82044be40] }
+&{mimeTypes QAbstractProxyModel::mimeTypes commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  QStringList [] }
+&{resetInternalData QAbstractProxyModel::resetInternalData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h non slot false false  void [] }
+&{revert QAbstractProxyModel::revert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  void [] }
+&{setData QAbstractProxyModel::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  bool [0xc820458380 0xc820458440 0xc8204584c0] }
+&{setHeaderData QAbstractProxyModel::setHeaderData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  bool [0xc820458620 0xc8204586a0 0xc820458720 0xc8204587a0] }
+&{setItemData QAbstractProxyModel::setItemData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  bool [0xc820458980 0xc820458a60] }
+&{setSourceModel QAbstractProxyModel::setSourceModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  void [0xc820458c40] }
+&{sibling QAbstractProxyModel::sibling commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  QModelIndex [0xc820458e60 0xc820458ee0 0xc820458f80] }
+&{sort QAbstractProxyModel::sort commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  void [0xc8204591a0 0xc820459240] }
+&{sourceModel QAbstractProxyModel::sourceModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h non plain false false  QAbstractItemModel * [] }
+&{sourceModelChanged QAbstractProxyModel::sourceModelChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h non signal false false  void [] }
+&{span QAbstractProxyModel::span commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  QSize [0xc8204596c0] }
+&{submit QAbstractProxyModel::submit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  bool [] }
+&{supportedDragActions QAbstractProxyModel::supportedDragActions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  Qt::DropActions [] }
+&{supportedDropActions QAbstractProxyModel::supportedDropActions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h impure plain false false  Qt::DropActions [] }
+&{~QAbstractProxyModel QAbstractProxyModel::~QAbstractProxyModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractproxymodel.h non destructor false false   [] }
+########################################			ENUMS			########################################

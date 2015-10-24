@@ -1,0 +1,25 @@
+########################################			FUNCTIONS			########################################
+&{QUndoGroup QUndoGroup::QUndoGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non constructor false false   [0xc8212535e0] }
+&{activeStack QUndoGroup::activeStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non plain false false  QUndoStack * [] }
+&{activeStackChanged QUndoGroup::activeStackChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non signal false false  void [0xc821253b40] }
+&{addStack QUndoGroup::addStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non plain false false  void [0xc821253f00] }
+&{canRedo QUndoGroup::canRedo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non plain false false  bool [] }
+&{canRedoChanged QUndoGroup::canRedoChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non signal false false  void [0xc82123c500] }
+&{canUndo QUndoGroup::canUndo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non plain false false  bool [] }
+&{canUndoChanged QUndoGroup::canUndoChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non signal false false  void [0xc82123cac0] }
+&{cleanChanged QUndoGroup::cleanChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non signal false false  void [0xc82123cea0] }
+&{createRedoAction QUndoGroup::createRedoAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non plain false false  QAction * [0xc82123d220 0xc82123d300] }
+&{createUndoAction QUndoGroup::createUndoAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non plain false false  QAction * [0xc82123d640 0xc82123d700] }
+&{indexChanged QUndoGroup::indexChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non signal false false  void [0xc82123da80] }
+&{isClean QUndoGroup::isClean commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non plain false false  bool [] }
+&{redo QUndoGroup::redo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non slot false false  void [] }
+&{redoText QUndoGroup::redoText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non plain false false  QString [] }
+&{redoTextChanged QUndoGroup::redoTextChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non signal false false  void [0xc82122e280] }
+&{removeStack QUndoGroup::removeStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non plain false false  void [0xc82122e600] }
+&{setActiveStack QUndoGroup::setActiveStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non slot false false  void [0xc82122e9e0] }
+&{stacks QUndoGroup::stacks commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non plain false false  QList<QUndoStack *> [] }
+&{undo QUndoGroup::undo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non slot false false  void [] }
+&{undoText QUndoGroup::undoText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non plain false false  QString [] }
+&{undoTextChanged QUndoGroup::undoTextChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non signal false false  void [0xc82122f380] }
+&{~QUndoGroup QUndoGroup::~QUndoGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundogroup.h non destructor false false   [] }
+########################################			ENUMS			########################################

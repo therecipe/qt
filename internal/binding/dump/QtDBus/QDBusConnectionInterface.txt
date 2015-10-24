@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{registeredServiceNames QDBusConnectionInterface::registeredServiceNames commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusconnectioninterface.cpp non slot false false  QDBusReply<QStringList> [] }
+&{callWithCallbackFailed QDBusConnectionInterface::callWithCallbackFailed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusconnectioninterface.h non signal false false  void [0xc8217e7240 0xc8217e7320] }
+&{isServiceRegistered QDBusConnectionInterface::isServiceRegistered commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusconnectioninterface.h non slot false false  QDBusReply<bool> [0xc8217e7520] }
+&{registerService QDBusConnectionInterface::registerService commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusconnectioninterface.h non slot false false  QDBusReply<QDBusConnectionInterface::RegisterServiceReply> [0xc8217e76a0 0xc8217e7740 0xc8217e7840] }
+&{serviceOwner QDBusConnectionInterface::serviceOwner commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusconnectioninterface.h non slot false false  QDBusReply<QString> [0xc8217e7a40] }
+&{servicePid QDBusConnectionInterface::servicePid commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusconnectioninterface.h non slot false false  QDBusReply<uint> [0xc8217e7e60] }
+&{serviceRegistered QDBusConnectionInterface::serviceRegistered commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusconnectioninterface.h non signal false false  void [0xc8217c8040] }
+&{serviceUid QDBusConnectionInterface::serviceUid commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusconnectioninterface.h non slot false false  QDBusReply<uint> [0xc8217c81a0] }
+&{serviceUnregistered QDBusConnectionInterface::serviceUnregistered commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusconnectioninterface.h non signal false false  void [0xc8217c8360] }
+&{startService QDBusConnectionInterface::startService commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusconnectioninterface.h non slot false false  QDBusReply<void> [0xc8217c84c0] }
+&{unregisterService QDBusConnectionInterface::unregisterService commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusconnectioninterface.h non slot false false  QDBusReply<bool> [0xc8217c8680] }
+########################################			ENUMS			########################################
+&{RegisterServiceReply QDBusConnectionInterface::RegisterServiceReply commendable public  [0xc8217e6660 0xc8217e6740 0xc8217e6800]}
+&{ServiceQueueOptions QDBusConnectionInterface::ServiceQueueOptions commendable public  [0xc8217e69c0 0xc8217e6a40 0xc8217e6ae0]}
+&{ServiceReplacementOptions QDBusConnectionInterface::ServiceReplacementOptions commendable public  [0xc8217e6d00 0xc8217e6dc0]}

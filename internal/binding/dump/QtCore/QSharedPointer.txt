@@ -1,0 +1,28 @@
+########################################			FUNCTIONS			########################################
+&{QSharedPointer QSharedPointer::QSharedPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non constructor false false   [] }
+&{QSharedPointer QSharedPointer::QSharedPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non constructor false true 2  [0xc820b7f5a0] }
+&{QSharedPointer QSharedPointer::QSharedPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non constructor false true 3  [0xc820b7f740 0xc820b7f7e0] }
+&{QSharedPointer QSharedPointer::QSharedPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non constructor false true 4  [0xc820b7fa20] }
+&{QSharedPointer QSharedPointer::QSharedPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non constructor false true 5  [0xc820b7fcc0] }
+&{clear QSharedPointer::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  void [] }
+&{constCast QSharedPointer::constCast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  QSharedPointer<X> [] }
+&{create QSharedPointer::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain true false  QSharedPointer<T> [] }
+&{create QSharedPointer::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain true true 2 QSharedPointer<T> [0xc820b66440] }
+&{data QSharedPointer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  T * [] }
+&{dynamicCast QSharedPointer::dynamicCast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  QSharedPointer<X> [] }
+&{isNull QSharedPointer::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  bool [] }
+&{objectCast QSharedPointer::objectCast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  QSharedPointer<X> [] }
+&{operator bool QSharedPointer::operator bool commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false   [] }
+&{operator! QSharedPointer::operator! commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  bool [] }
+&{operator* QSharedPointer::operator* commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  T & [] }
+&{operator-> QSharedPointer::operator-> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  T * [] }
+&{operator= QSharedPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  QSharedPointer<T> & [0xc820b66f80] }
+&{operator= QSharedPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false true 2 QSharedPointer<T> & [0xc820b67200] }
+&{reset QSharedPointer::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  void [] }
+&{reset QSharedPointer::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false true 2 void [0xc820b675c0] }
+&{reset QSharedPointer::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false true 3 void [0xc820b677e0 0xc820b67880] }
+&{staticCast QSharedPointer::staticCast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  QSharedPointer<X> [] }
+&{swap QSharedPointer::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  void [0xc820b67c20] }
+&{toWeakRef QSharedPointer::toWeakRef commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  QWeakPointer<T> [] }
+&{~QSharedPointer QSharedPointer::~QSharedPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non destructor false false   [] }
+########################################			ENUMS			########################################

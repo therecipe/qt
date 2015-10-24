@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QNetworkCookieJar QNetworkCookieJar::QNetworkCookieJar commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookiejar.h non constructor false false   [0xc822e3ebe0] }
+&{allCookies QNetworkCookieJar::allCookies commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookiejar.h non plain false false  QList<QNetworkCookie> [] }
+&{cookiesForUrl QNetworkCookieJar::cookiesForUrl commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookiejar.h impure plain false false  QList<QNetworkCookie> [0xc822e3f180] }
+&{deleteCookie QNetworkCookieJar::deleteCookie commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookiejar.h impure plain false false  bool [0xc822e3f460] }
+&{insertCookie QNetworkCookieJar::insertCookie commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookiejar.h impure plain false false  bool [0xc822e3f840] }
+&{setAllCookies QNetworkCookieJar::setAllCookies commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookiejar.h non plain false false  void [0xc822e3fb80] }
+&{setCookiesFromUrl QNetworkCookieJar::setCookiesFromUrl commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookiejar.h impure plain false false  bool [0xc822e3fee0 0xc822f30040] }
+&{updateCookie QNetworkCookieJar::updateCookie commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookiejar.h impure plain false false  bool [0xc822f30320] }
+&{validateCookie QNetworkCookieJar::validateCookie commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookiejar.h impure plain false false  bool [0xc822f30620 0xc822f30760] }
+&{~QNetworkCookieJar QNetworkCookieJar::~QNetworkCookieJar commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkcookiejar.h impure destructor false false   [] }
+########################################			ENUMS			########################################

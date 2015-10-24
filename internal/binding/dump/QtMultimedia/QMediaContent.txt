@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QMediaContent QMediaContent::QMediaContent commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non constructor false false   [] }
+&{QMediaContent QMediaContent::QMediaContent commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non constructor false true 7  [0xc821a42be0 0xc821a42c60 0xc821a42ce0] }
+&{QMediaContent QMediaContent::QMediaContent commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non constructor false true 6  [0xc821a42ea0] }
+&{QMediaContent QMediaContent::QMediaContent commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non constructor false true 4  [0xc821a430a0] }
+&{QMediaContent QMediaContent::QMediaContent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non constructor false true 5  [0xc821a432c0] }
+&{QMediaContent QMediaContent::QMediaContent commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non constructor false true 3  [0xc821a434c0] }
+&{QMediaContent QMediaContent::QMediaContent commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non constructor false true 2  [0xc821a436c0] }
+&{canonicalRequest QMediaContent::canonicalRequest commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non plain false false  QNetworkRequest [] }
+&{canonicalResource QMediaContent::canonicalResource commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non plain false false  QMediaResource [] }
+&{canonicalUrl QMediaContent::canonicalUrl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non plain false false  QUrl [] }
+&{isNull QMediaContent::isNull commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non plain false false  bool [] }
+&{operator!= QMediaContent::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non plain false false  bool [0xc821a43c80] }
+&{operator= QMediaContent::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non plain false false  QMediaContent & [0xc821a43ea0] }
+&{operator== QMediaContent::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non plain false false  bool [0xc821a32140] }
+&{playlist QMediaContent::playlist commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non plain false false  QMediaPlaylist * [] }
+&{resources QMediaContent::resources commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non plain false false  QMediaResourceList [] }
+&{~QMediaContent QMediaContent::~QMediaContent commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/playback/qmediacontent.h non destructor false false   [] }
+########################################			ENUMS			########################################

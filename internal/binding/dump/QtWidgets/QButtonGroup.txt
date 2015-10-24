@@ -1,0 +1,22 @@
+########################################			FUNCTIONS			########################################
+&{QButtonGroup QButtonGroup::QButtonGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non constructor false false   [0xc820acfd40] }
+&{addButton QButtonGroup::addButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc820ee0220 0xc820ee03a0] }
+&{button QButtonGroup::button commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  QAbstractButton * [0xc820ee08c0] }
+&{buttons QButtonGroup::buttons commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  QList<QAbstractButton *> [] }
+&{checkedButton QButtonGroup::checkedButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  QAbstractButton * [] }
+&{checkedId QButtonGroup::checkedId commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  int [] }
+&{exclusive QButtonGroup::exclusive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  bool [] }
+&{id QButtonGroup::id commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  int [0xc820ee1860] }
+&{removeButton QButtonGroup::removeButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc820ee1e40] }
+&{setExclusive QButtonGroup::setExclusive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc82271a300] }
+&{setId QButtonGroup::setId commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc82271a680 0xc82271a780] }
+&{~QButtonGroup QButtonGroup::~QButtonGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non destructor false false   [] }
+&{buttonClicked QButtonGroup::buttonClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qbuttongroup.h non signal false false  void [0xc82271ac40] }
+&{buttonClicked QButtonGroup::buttonClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qbuttongroup.h non signal false true 2 void [0xc82271af60] }
+&{buttonPressed QButtonGroup::buttonPressed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qbuttongroup.h non signal false false  void [0xc82271b280] }
+&{buttonPressed QButtonGroup::buttonPressed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qbuttongroup.h non signal false true 2 void [0xc82271b5c0] }
+&{buttonReleased QButtonGroup::buttonReleased commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qbuttongroup.h non signal false false  void [0xc82271b920] }
+&{buttonReleased QButtonGroup::buttonReleased commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qbuttongroup.h non signal false true 2 void [0xc82271bc80] }
+&{buttonToggled QButtonGroup::buttonToggled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qbuttongroup.h non signal false false  void [0xc82271bfa0 0xc820d82140] }
+&{buttonToggled QButtonGroup::buttonToggled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qbuttongroup.h non signal false true 2 void [0xc820d826a0 0xc820d828e0] }
+########################################			ENUMS			########################################

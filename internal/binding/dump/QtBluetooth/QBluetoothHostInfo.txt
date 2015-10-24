@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QBluetoothHostInfo QBluetoothHostInfo::QBluetoothHostInfo commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothhostinfo.h non constructor false false   [] }
+&{QBluetoothHostInfo QBluetoothHostInfo::QBluetoothHostInfo commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothhostinfo.h non constructor false true 2  [0xc8223708a0] }
+&{address QBluetoothHostInfo::address commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothhostinfo.h non plain false false  QBluetoothAddress [] }
+&{name QBluetoothHostInfo::name commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothhostinfo.h non plain false false  QString [] }
+&{operator!= QBluetoothHostInfo::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothhostinfo.h non plain false false  bool [0xc822370fe0] }
+&{operator= QBluetoothHostInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothhostinfo.h non plain false false  QBluetoothHostInfo & [0xc822371400] }
+&{operator== QBluetoothHostInfo::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothhostinfo.h non plain false false  bool [0xc822371720] }
+&{setAddress QBluetoothHostInfo::setAddress commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothhostinfo.h non plain false false  void [0xc8223719e0] }
+&{setName QBluetoothHostInfo::setName commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothhostinfo.h non plain false false  void [0xc822371cc0] }
+&{~QBluetoothHostInfo QBluetoothHostInfo::~QBluetoothHostInfo commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothhostinfo.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{QStylePlugin QStylePlugin::QStylePlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleplugin.h non constructor false false   [0xc82136f0a0] }
+&{create QStylePlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleplugin.h pure plain false false  QStyle * [0xc82136f380] }
+&{~QStylePlugin QStylePlugin::~QStylePlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleplugin.h non destructor false false   [] }
+########################################			ENUMS			########################################

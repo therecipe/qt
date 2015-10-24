@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{isActive QAbstractVideoFilter::isActive commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.cpp non plain false false  bool [] }
+&{setActive QAbstractVideoFilter::setActive commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.cpp non plain false false  void [0xc826a78a00] }
+&{QAbstractVideoFilter QAbstractVideoFilter::QAbstractVideoFilter commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.h non constructor false false   [0xc826a790a0] }
+&{activeChanged QAbstractVideoFilter::activeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.h non signal false false  void [] }
+&{createFilterRunnable QAbstractVideoFilter::createFilterRunnable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.h pure plain false false  QVideoFilterRunnable * [] }
+########################################			ENUMS			########################################

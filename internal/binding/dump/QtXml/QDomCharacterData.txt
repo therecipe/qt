@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QDomCharacterData QDomCharacterData::QDomCharacterData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   [] }
+&{QDomCharacterData QDomCharacterData::QDomCharacterData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  [0xc821630560] }
+&{appendData QDomCharacterData::appendData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void [0xc821630740] }
+&{data QDomCharacterData::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
+&{deleteData QDomCharacterData::deleteData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void [0xc821630a00 0xc821630a80] }
+&{insertData QDomCharacterData::insertData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void [0xc821630c20 0xc821630ca0] }
+&{length QDomCharacterData::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int [] }
+&{nodeType QDomCharacterData::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType [] }
+&{operator= QDomCharacterData::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomCharacterData & [0xc821631120] }
+&{replaceData QDomCharacterData::replaceData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void [0xc821631300 0xc821631380 0xc821631400] }
+&{setData QDomCharacterData::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void [0xc8216315e0] }
+&{substringData QDomCharacterData::substringData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [0xc821631780 0xc821631800] }
+########################################			ENUMS			########################################

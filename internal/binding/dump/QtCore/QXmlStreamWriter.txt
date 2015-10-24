@@ -1,0 +1,41 @@
+########################################			FUNCTIONS			########################################
+&{autoFormattingIndent QXmlStreamWriter::autoFormattingIndent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.cpp non plain false false  int [] }
+&{setAutoFormattingIndent QXmlStreamWriter::setAutoFormattingIndent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.cpp non plain false false  void [0xc820403400] }
+&{QXmlStreamWriter QXmlStreamWriter::QXmlStreamWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false false   [] }
+&{QXmlStreamWriter QXmlStreamWriter::QXmlStreamWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 3  [0xc820403a80] }
+&{QXmlStreamWriter QXmlStreamWriter::QXmlStreamWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 2  [0xc820403e60] }
+&{QXmlStreamWriter QXmlStreamWriter::QXmlStreamWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 4  [0xc8204c81e0] }
+&{autoFormatting QXmlStreamWriter::autoFormatting commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{codec QXmlStreamWriter::codec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QTextCodec * [] }
+&{device QXmlStreamWriter::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QIODevice * [] }
+&{hasError QXmlStreamWriter::hasError commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{setAutoFormatting QXmlStreamWriter::setAutoFormatting commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8204c8f00] }
+&{setCodec QXmlStreamWriter::setCodec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8204c9200] }
+&{setCodec QXmlStreamWriter::setCodec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 2 void [0xc8204c95c0] }
+&{setDevice QXmlStreamWriter::setDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8204c9980] }
+&{writeAttribute QXmlStreamWriter::writeAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8204c9c60 0xc8204c9d20 0xc8204c9e60] }
+&{writeAttribute QXmlStreamWriter::writeAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 2 void [0xc8203ec0e0 0xc8203ec280] }
+&{writeAttribute QXmlStreamWriter::writeAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 3 void [0xc8203ec6c0] }
+&{writeAttributes QXmlStreamWriter::writeAttributes commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203eca40] }
+&{writeCDATA QXmlStreamWriter::writeCDATA commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203ed000] }
+&{writeCharacters QXmlStreamWriter::writeCharacters commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203ed400] }
+&{writeComment QXmlStreamWriter::writeComment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203ed740] }
+&{writeCurrentToken QXmlStreamWriter::writeCurrentToken commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203edb80] }
+&{writeDTD QXmlStreamWriter::writeDTD commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203da000] }
+&{writeDefaultNamespace QXmlStreamWriter::writeDefaultNamespace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203da4c0] }
+&{writeEmptyElement QXmlStreamWriter::writeEmptyElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203daa60 0xc8203dab00] }
+&{writeEmptyElement QXmlStreamWriter::writeEmptyElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 2 void [0xc8203daf40] }
+&{writeEndDocument QXmlStreamWriter::writeEndDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [] }
+&{writeEndElement QXmlStreamWriter::writeEndElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [] }
+&{writeEntityReference QXmlStreamWriter::writeEntityReference commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203db5a0] }
+&{writeNamespace QXmlStreamWriter::writeNamespace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203dbb00 0xc8203dbd00] }
+&{writeProcessingInstruction QXmlStreamWriter::writeProcessingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203c6360 0xc8203c6600] }
+&{writeStartDocument QXmlStreamWriter::writeStartDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 3 void [] }
+&{writeStartDocument QXmlStreamWriter::writeStartDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203c7020] }
+&{writeStartDocument QXmlStreamWriter::writeStartDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 2 void [0xc8203c7520 0xc8203c7740] }
+&{writeStartElement QXmlStreamWriter::writeStartElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203c7d00 0xc8203c7fe0] }
+&{writeStartElement QXmlStreamWriter::writeStartElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 2 void [0xc8203ae3c0] }
+&{writeTextElement QXmlStreamWriter::writeTextElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc8203ae780 0xc8203aea40 0xc8203aec20] }
+&{writeTextElement QXmlStreamWriter::writeTextElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 2 void [0xc8203aef80 0xc8203af100] }
+&{~QXmlStreamWriter QXmlStreamWriter::~QXmlStreamWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non destructor false false   [] }
+########################################			ENUMS			########################################

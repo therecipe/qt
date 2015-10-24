@@ -1,0 +1,24 @@
+########################################			FUNCTIONS			########################################
+&{QGeoCoordinate QGeoCoordinate::QGeoCoordinate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non constructor false false   [] }
+&{QGeoCoordinate QGeoCoordinate::QGeoCoordinate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non constructor false true 4  [0xc822fb3420] }
+&{QGeoCoordinate QGeoCoordinate::QGeoCoordinate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non constructor false true 2  [0xc822fb37c0 0xc822fb38c0] }
+&{QGeoCoordinate QGeoCoordinate::QGeoCoordinate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non constructor false true 3  [0xc822fb3ba0 0xc822fb3c20 0xc822fb3da0] }
+&{altitude QGeoCoordinate::altitude commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  double [] }
+&{atDistanceAndAzimuth QGeoCoordinate::atDistanceAndAzimuth commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  QGeoCoordinate [0xc822f9e380 0xc822f9e460 0xc822f9e600] }
+&{azimuthTo QGeoCoordinate::azimuthTo commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  qreal [0xc822f9ea20] }
+&{distanceTo QGeoCoordinate::distanceTo commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  qreal [0xc822f9ef20] }
+&{isValid QGeoCoordinate::isValid commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  bool [] }
+&{latitude QGeoCoordinate::latitude commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  double [] }
+&{longitude QGeoCoordinate::longitude commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  double [] }
+&{operator!= QGeoCoordinate::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  bool [0xc822f9faa0] }
+&{operator= QGeoCoordinate::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  QGeoCoordinate & [0xc822f9fec0] }
+&{operator== QGeoCoordinate::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  bool [0xc822f90260] }
+&{setAltitude QGeoCoordinate::setAltitude commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  void [0xc822f905e0] }
+&{setLatitude QGeoCoordinate::setLatitude commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  void [0xc822f90880] }
+&{setLongitude QGeoCoordinate::setLongitude commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  void [0xc822f90bc0] }
+&{toString QGeoCoordinate::toString commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  QString [0xc822f90f40] }
+&{type QGeoCoordinate::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non plain false false  CoordinateType [] }
+&{~QGeoCoordinate QGeoCoordinate::~QGeoCoordinate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeocoordinate.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{CoordinateFormat QGeoCoordinate::CoordinateFormat commendable public  [0xc822fb2100 0xc822fb2240 0xc822fb2400 0xc822fb2520 0xc822fb2740 0xc822fb28c0]}
+&{CoordinateType QGeoCoordinate::CoordinateType commendable public  [0xc822fb2ba0 0xc822fb2d40 0xc822fb2e20]}

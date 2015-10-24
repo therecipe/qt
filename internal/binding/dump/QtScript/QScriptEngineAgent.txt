@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QScriptEngineAgent QScriptEngineAgent::QScriptEngineAgent commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h non constructor false false   [0xc821bccf20] }
+&{contextPop QScriptEngineAgent::contextPop commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h impure plain false false  void [] }
+&{contextPush QScriptEngineAgent::contextPush commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h impure plain false false  void [] }
+&{engine QScriptEngineAgent::engine commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h non plain false false  QScriptEngine * [] }
+&{exceptionCatch QScriptEngineAgent::exceptionCatch commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h impure plain false false  void [0xc821bcd6c0 0xc821bcd760] }
+&{exceptionThrow QScriptEngineAgent::exceptionThrow commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h impure plain false false  void [0xc821bcd900 0xc821bcd9a0 0xc821bcda60] }
+&{extension QScriptEngineAgent::extension commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h impure plain false false  QVariant [0xc821bcdc20 0xc821bcdca0] }
+&{functionEntry QScriptEngineAgent::functionEntry commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h impure plain false false  void [0xc821bcde20] }
+&{functionExit QScriptEngineAgent::functionExit commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h impure plain false false  void [0xc821bcdfe0 0xc821bc6080] }
+&{positionChange QScriptEngineAgent::positionChange commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h impure plain false false  void [0xc821bc6220 0xc821bc62a0 0xc821bc6320] }
+&{scriptLoad QScriptEngineAgent::scriptLoad commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h impure plain false false  void [0xc821bc6500 0xc821bc6580 0xc821bc6600 0xc821bc6680] }
+&{scriptUnload QScriptEngineAgent::scriptUnload commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h impure plain false false  void [0xc821bc6860] }
+&{supportsExtension QScriptEngineAgent::supportsExtension commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h impure plain false false  bool [0xc821bc6a20] }
+&{~QScriptEngineAgent QScriptEngineAgent::~QScriptEngineAgent commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptengineagent.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{Extension QScriptEngineAgent::Extension commendable public  [0xc821bccce0]}

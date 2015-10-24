@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QGeoLocation QGeoLocation::QGeoLocation commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non constructor false false   [] }
+&{QGeoLocation QGeoLocation::QGeoLocation commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non constructor false true 2  [0xc822f7e500] }
+&{address QGeoLocation::address commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  QGeoAddress [] }
+&{boundingBox QGeoLocation::boundingBox commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  QGeoRectangle [] }
+&{coordinate QGeoLocation::coordinate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  QGeoCoordinate [] }
+&{isEmpty QGeoLocation::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  bool [] }
+&{operator!= QGeoLocation::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  bool [0xc822f7f040] }
+&{operator= QGeoLocation::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  QGeoLocation & [0xc822f7f460] }
+&{operator== QGeoLocation::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  bool [0xc822f7f8e0] }
+&{setAddress QGeoLocation::setAddress commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  void [0xc822f7fd60] }
+&{setBoundingBox QGeoLocation::setBoundingBox commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  void [0xc822f6e140] }
+&{setCoordinate QGeoLocation::setCoordinate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  void [0xc822f6e5a0] }
+&{~QGeoLocation QGeoLocation::~QGeoLocation commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non destructor false false   [] }
+########################################			ENUMS			########################################

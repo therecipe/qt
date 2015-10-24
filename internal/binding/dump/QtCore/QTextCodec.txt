@@ -1,0 +1,30 @@
+########################################			FUNCTIONS			########################################
+&{QTextCodec QTextCodec::QTextCodec commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non constructor false false   [] }
+&{aliases QTextCodec::aliases commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h impure plain false false  QList<QByteArray> [] }
+&{availableCodecs QTextCodec::availableCodecs commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain true false  QList<QByteArray> [] }
+&{availableMibs QTextCodec::availableMibs commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain true false  QList<int> [] }
+&{canEncode QTextCodec::canEncode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false false  bool [0xc82013ce20] }
+&{canEncode QTextCodec::canEncode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false true 2 bool [0xc82013cfe0] }
+&{codecForHtml QTextCodec::codecForHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain true true 2 QTextCodec * [0xc82013d1c0] }
+&{codecForHtml QTextCodec::codecForHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain true false  QTextCodec * [0xc82013d3e0 0xc82013d4a0] }
+&{codecForLocale QTextCodec::codecForLocale commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain true false  QTextCodec * [] }
+&{codecForMib QTextCodec::codecForMib commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain true false  QTextCodec * [0xc82013d780] }
+&{codecForName QTextCodec::codecForName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain true false  QTextCodec * [0xc82013d960] }
+&{codecForName QTextCodec::codecForName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain true true 2 QTextCodec * [0xc82013db60] }
+&{codecForUtfText QTextCodec::codecForUtfText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain true true 2 QTextCodec * [0xc82013de00] }
+&{codecForUtfText QTextCodec::codecForUtfText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain true false  QTextCodec * [0xc820152020 0xc8201520e0] }
+&{convertFromUnicode QTextCodec::convertFromUnicode commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h pure plain false false  QByteArray [0xc8201522e0 0xc820152360 0xc8201523e0] }
+&{convertToUnicode QTextCodec::convertToUnicode commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h pure plain false false  QString [0xc8201525c0 0xc820152640 0xc8201526c0] }
+&{fromUnicode QTextCodec::fromUnicode commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false true 2 QByteArray [0xc820152880 0xc820152900 0xc820152980] }
+&{fromUnicode QTextCodec::fromUnicode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false false  QByteArray [0xc820152b40] }
+&{makeDecoder QTextCodec::makeDecoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false false  QTextDecoder * [0xc820152d20] }
+&{makeEncoder QTextCodec::makeEncoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false false  QTextEncoder * [0xc820152f00] }
+&{mibEnum QTextCodec::mibEnum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h pure plain false false  int [] }
+&{name QTextCodec::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h pure plain false false  QByteArray [] }
+&{setCodecForLocale QTextCodec::setCodecForLocale commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain true false  void [0xc8201532a0] }
+&{toUnicode QTextCodec::toUnicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false false  QString [0xc820153480] }
+&{toUnicode QTextCodec::toUnicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false true 3 QString [0xc820153680] }
+&{toUnicode QTextCodec::toUnicode commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false true 2 QString [0xc820153840 0xc8201538c0 0xc820153940] }
+&{~QTextCodec QTextCodec::~QTextCodec commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{ConversionFlag QTextCodec::ConversionFlag commendable public QTextCodec::ConversionFlags [0xc82013c4c0 0xc82013c5a0 0xc82013c660 0xc82013c6e0]}

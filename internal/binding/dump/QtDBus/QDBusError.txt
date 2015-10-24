@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{errorString QDBusError::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuserror.h non plain true false  QString [0xc821781360] }
+&{isValid QDBusError::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuserror.h non plain false false  bool [] }
+&{message QDBusError::message commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuserror.h non plain false false  QString [] }
+&{name QDBusError::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuserror.h non plain false false  QString [] }
+&{type QDBusError::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuserror.h non plain false false  ErrorType [] }
+########################################			ENUMS			########################################
+&{ErrorType QDBusError::ErrorType commendable public  [0xc8217c9980 0xc8217c9a00 0xc8217c9a80 0xc8217c9b00 0xc8217c9ba0 0xc8217c9c20 0xc8217c9ca0 0xc8217c9d20 0xc8217c9dc0 0xc8217c9e40 0xc8217c9ec0 0xc8217c9f40 0xc8217c9fc0 0xc821780040 0xc8217800c0 0xc821780140 0xc8217801e0 0xc821780260 0xc8217802e0 0xc821780360 0xc8217803e0 0xc821780460 0xc8217804e0 0xc821780560 0xc8217805e0 0xc821780680 0xc821780740 0xc8217807c0]}

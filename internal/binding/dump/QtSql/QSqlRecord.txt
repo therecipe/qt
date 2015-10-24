@@ -1,0 +1,34 @@
+########################################			FUNCTIONS			########################################
+&{QSqlRecord QSqlRecord::QSqlRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non constructor false false   [] }
+&{QSqlRecord QSqlRecord::QSqlRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non constructor false true 2  [0xc8214d3940] }
+&{append QSqlRecord::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  void [0xc8214d3d00] }
+&{clear QSqlRecord::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  void [] }
+&{clearValues QSqlRecord::clearValues commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  void [] }
+&{contains QSqlRecord::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  bool [0xc8214c44a0] }
+&{count QSqlRecord::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  int [] }
+&{field QSqlRecord::field commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false true 2 QSqlField [0xc8214c4bc0] }
+&{field QSqlRecord::field commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  QSqlField [0xc8214c4f40] }
+&{fieldName QSqlRecord::fieldName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  QString [0xc8214c52c0] }
+&{indexOf QSqlRecord::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  int [0xc8214c5640] }
+&{insert QSqlRecord::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  void [0xc8214c59a0 0xc8214c5aa0] }
+&{isEmpty QSqlRecord::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  bool [] }
+&{isGenerated QSqlRecord::isGenerated commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  bool [0xc8214b2040] }
+&{isGenerated QSqlRecord::isGenerated commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false true 2 bool [0xc8214b2360] }
+&{isNull QSqlRecord::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  bool [0xc8214b26e0] }
+&{isNull QSqlRecord::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false true 2 bool [0xc8214b2b00] }
+&{keyValues QSqlRecord::keyValues commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  QSqlRecord [0xc8214b2e80] }
+&{operator!= QSqlRecord::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  bool [0xc8214b32a0] }
+&{operator= QSqlRecord::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  QSqlRecord & [0xc8214b3700] }
+&{operator== QSqlRecord::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  bool [0xc8214b3b00] }
+&{remove QSqlRecord::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  void [0xc8214b3f60] }
+&{replace QSqlRecord::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  void [0xc8214a2320 0xc8214a2400] }
+&{setGenerated QSqlRecord::setGenerated commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  void [0xc8214a2800 0xc8214a2940] }
+&{setGenerated QSqlRecord::setGenerated commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false true 2 void [0xc8214a2c80 0xc8214a2d80] }
+&{setNull QSqlRecord::setNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false true 2 void [0xc8214a3100] }
+&{setNull QSqlRecord::setNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  void [0xc8214a34c0] }
+&{setValue QSqlRecord::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false true 2 void [0xc8214a3820 0xc8214a3920] }
+&{setValue QSqlRecord::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  void [0xc8214a3c20 0xc8214a3d20] }
+&{value QSqlRecord::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false true 2 QVariant [0xc821494060] }
+&{value QSqlRecord::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non plain false false  QVariant [0xc821494440] }
+&{~QSqlRecord QSqlRecord::~QSqlRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlrecord.h non destructor false false   [] }
+########################################			ENUMS			########################################

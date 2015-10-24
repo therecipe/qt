@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{x QGyroscopeReading::x commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  qreal [] }
+&{y QGyroscopeReading::y commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  qreal [] }
+&{z QGyroscopeReading::z commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  qreal [] }
+&{setX QGyroscopeReading::setX commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non plain false false  void [0xc822ea3c00] }
+&{setY QGyroscopeReading::setY commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non plain false false  void [0xc822ea3f00] }
+&{setZ QGyroscopeReading::setZ commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non plain false false  void [0xc822e94200] }
+########################################			ENUMS			########################################

@@ -1,0 +1,39 @@
+########################################			FUNCTIONS			########################################
+&{inFontUcs4 QFontMetricsF::inFontUcs4 commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.cpp non plain false false  bool [0xc823202ec0] }
+&{QFontMetricsF QFontMetricsF::QFontMetricsF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non constructor false false   [0xc8232030a0] }
+&{QFontMetricsF QFontMetricsF::QFontMetricsF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non constructor false true 2  [0xc823203240 0xc8232032c0] }
+&{QFontMetricsF QFontMetricsF::QFontMetricsF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non constructor false true 3  [0xc823203480] }
+&{QFontMetricsF QFontMetricsF::QFontMetricsF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non constructor false true 4  [0xc8232036a0] }
+&{ascent QFontMetricsF::ascent commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{averageCharWidth QFontMetricsF::averageCharWidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{boundingRect QFontMetricsF::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false true 2 QRectF [0xc823203a60] }
+&{boundingRect QFontMetricsF::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false true 3 QRectF [0xc823203c20 0xc823203ca0 0xc823203d20 0xc823203da0 0xc823203e40] }
+&{boundingRect QFontMetricsF::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  QRectF [0xc82321a000] }
+&{descent QFontMetricsF::descent commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{elidedText QFontMetricsF::elidedText commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  QString [0xc82321a2c0 0xc82321a360 0xc82321a420 0xc82321a4a0] }
+&{height QFontMetricsF::height commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{inFont QFontMetricsF::inFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  bool [0xc82321a780] }
+&{leading QFontMetricsF::leading commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{leftBearing QFontMetricsF::leftBearing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [0xc82321aa40] }
+&{lineSpacing QFontMetricsF::lineSpacing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{lineWidth QFontMetricsF::lineWidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{maxWidth QFontMetricsF::maxWidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{minLeftBearing QFontMetricsF::minLeftBearing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{minRightBearing QFontMetricsF::minRightBearing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{operator!= QFontMetricsF::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  bool [0xc82321b0e0] }
+&{operator= QFontMetricsF::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false true 3 QFontMetricsF & [0xc82321b2e0] }
+&{operator= QFontMetricsF::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false true 2 QFontMetricsF & [0xc82321b4c0] }
+&{operator= QFontMetricsF::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  QFontMetricsF & [0xc82321b6e0] }
+&{operator== QFontMetricsF::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  bool [0xc82321b8e0] }
+&{overlinePos QFontMetricsF::overlinePos commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{rightBearing QFontMetricsF::rightBearing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [0xc82321bbe0] }
+&{size QFontMetricsF::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  QSizeF [0xc82321bda0 0xc82321be20 0xc82321bea0 0xc82321bf20] }
+&{strikeOutPos QFontMetricsF::strikeOutPos commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{swap QFontMetricsF::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  void [0xc82322e200] }
+&{tightBoundingRect QFontMetricsF::tightBoundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  QRectF [0xc82322e400] }
+&{underlinePos QFontMetricsF::underlinePos commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{width QFontMetricsF::width commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false true 2 qreal [0xc82322e700] }
+&{width QFontMetricsF::width commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [0xc82322e8c0] }
+&{xHeight QFontMetricsF::xHeight commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  qreal [] }
+&{~QFontMetricsF QFontMetricsF::~QFontMetricsF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non destructor false false   [] }
+########################################			ENUMS			########################################

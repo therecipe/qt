@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{position QTapAndHoldGesture::position commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF [] }
+&{setPosition QTapAndHoldGesture::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822ce1c20] }
+&{setTimeout QTapAndHoldGesture::setTimeout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non plain true false  void [0xc822cf0080] }
+&{timeout QTapAndHoldGesture::timeout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non plain true false  int [] }
+&{~QTapAndHoldGesture QTapAndHoldGesture::~QTapAndHoldGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   [] }
+########################################			ENUMS			########################################

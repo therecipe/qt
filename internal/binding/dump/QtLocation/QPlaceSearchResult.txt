@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceSearchResult QPlaceSearchResult::QPlaceSearchResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non constructor false false   [] }
+&{QPlaceSearchResult QPlaceSearchResult::QPlaceSearchResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non constructor false true 2  [0xc822617bc0] }
+&{icon QPlaceSearchResult::icon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  QPlaceIcon [] }
+&{operator!= QPlaceSearchResult::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  bool [0xc822624ba0] }
+&{operator= QPlaceSearchResult::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  QPlaceSearchResult & [0xc822625160] }
+&{operator== QPlaceSearchResult::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  bool [0xc8226256e0] }
+&{setIcon QPlaceSearchResult::setIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  void [0xc822625c60] }
+&{setTitle QPlaceSearchResult::setTitle commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  void [0xc822636360] }
+&{title QPlaceSearchResult::title commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  QString [] }
+&{type QPlaceSearchResult::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  SearchResultType [] }
+&{~QPlaceSearchResult QPlaceSearchResult::~QPlaceSearchResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{SearchResultType QPlaceSearchResult::SearchResultType commendable public  [0xc8226171c0 0xc822617340 0xc822617500]}

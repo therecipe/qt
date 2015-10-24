@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QCollatorSortKey QCollatorSortKey::QCollatorSortKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non constructor false false   [0xc8207a96e0] }
+&{operator= QCollatorSortKey::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false true 2 QCollatorSortKey & [0xc8207a9b60] }
+&{operator= QCollatorSortKey::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false false  QCollatorSortKey & [0xc8207a9de0] }
+&{swap QCollatorSortKey::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false false  void [0xc820796000] }
+&{~QCollatorSortKey QCollatorSortKey::~QCollatorSortKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non destructor false false   [] }
+&{compare QCollatorSortKey::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator_win.cpp non plain false false  int [0xc820796480] }
+########################################			ENUMS			########################################

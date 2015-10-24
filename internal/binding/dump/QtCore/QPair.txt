@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QPair QPair::QPair commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non constructor false false   [] }
+&{QPair QPair::QPair commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non constructor false true 4  [0xc820d82fe0] }
+&{QPair QPair::QPair commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non constructor false true 3  [0xc820d831c0] }
+&{QPair QPair::QPair commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non constructor false true 2  [0xc820d83360 0xc820d833e0] }
+&{operator= QPair::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non plain false true 2 QPair & [0xc820d83580] }
+&{operator= QPair::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non plain false false  QPair & [0xc820d92080] }
+&{swap QPair::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non plain false false  void [0xc820d92220] }
+########################################			ENUMS			########################################

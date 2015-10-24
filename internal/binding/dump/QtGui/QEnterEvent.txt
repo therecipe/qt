@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QEnterEvent QEnterEvent::QEnterEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc8208d2fa0 0xc8208d3060 0xc8208d30e0] }
+&{globalPos QEnterEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
+&{globalX QEnterEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{globalY QEnterEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{localPos QEnterEvent::localPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
+&{pos QEnterEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
+&{screenPos QEnterEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
+&{windowPos QEnterEvent::windowPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
+&{x QEnterEvent::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{y QEnterEvent::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+########################################			ENUMS			########################################

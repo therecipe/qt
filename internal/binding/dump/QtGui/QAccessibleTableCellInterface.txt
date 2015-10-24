@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{columnExtent QAccessibleTableCellInterface::columnExtent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  int [] }
+&{columnHeaderCells QAccessibleTableCellInterface::columnHeaderCells commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QList<QAccessibleInterface *> [] }
+&{columnIndex QAccessibleTableCellInterface::columnIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  int [] }
+&{isSelected QAccessibleTableCellInterface::isSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  bool [] }
+&{rowExtent QAccessibleTableCellInterface::rowExtent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  int [] }
+&{rowHeaderCells QAccessibleTableCellInterface::rowHeaderCells commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QList<QAccessibleInterface *> [] }
+&{rowIndex QAccessibleTableCellInterface::rowIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  int [] }
+&{table QAccessibleTableCellInterface::table commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QAccessibleInterface * [] }
+&{~QAccessibleTableCellInterface QAccessibleTableCellInterface::~QAccessibleTableCellInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QXmlStreamNotationDeclaration QXmlStreamNotationDeclaration::QXmlStreamNotationDeclaration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false false   [] }
+&{QXmlStreamNotationDeclaration QXmlStreamNotationDeclaration::QXmlStreamNotationDeclaration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 2  [0xc820485fa0] }
+&{name QXmlStreamNotationDeclaration::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{operator!= QXmlStreamNotationDeclaration::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [0xc820478400] }
+&{operator= QXmlStreamNotationDeclaration::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QXmlStreamNotationDeclaration & [0xc820478820] }
+&{operator== QXmlStreamNotationDeclaration::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [0xc820478ac0] }
+&{publicId QXmlStreamNotationDeclaration::publicId commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{systemId QXmlStreamNotationDeclaration::systemId commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{~QXmlStreamNotationDeclaration QXmlStreamNotationDeclaration::~QXmlStreamNotationDeclaration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non destructor false false   [] }
+########################################			ENUMS			########################################

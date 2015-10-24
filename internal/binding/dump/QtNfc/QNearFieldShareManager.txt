@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QNearFieldShareManager QNearFieldShareManager::QNearFieldShareManager commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharemanager.h non constructor false false   [0xc822896ba0] }
+&{error QNearFieldShareManager::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharemanager.h non signal false false  void [0xc822896de0] }
+&{setShareModes QNearFieldShareManager::setShareModes commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharemanager.h non plain false false  void [0xc822896fa0] }
+&{shareError QNearFieldShareManager::shareError commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharemanager.h non plain false false  QNearFieldShareManager::ShareError [] }
+&{shareModes QNearFieldShareManager::shareModes commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharemanager.h non plain false false  QNearFieldShareManager::ShareModes [] }
+&{shareModesChanged QNearFieldShareManager::shareModesChanged commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharemanager.h non signal false false  void [0xc822897340] }
+&{supportedShareModes QNearFieldShareManager::supportedShareModes commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharemanager.h non plain true false  QNearFieldShareManager::ShareModes [] }
+&{targetDetected QNearFieldShareManager::targetDetected commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharemanager.h non signal false false  void [0xc822897660] }
+&{~QNearFieldShareManager QNearFieldShareManager::~QNearFieldShareManager commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharemanager.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{ShareError QNearFieldShareManager::ShareError commendable public  [0xc822883ce0 0xc822883d60 0xc822883e40 0xc822883f60 0xc822896080 0xc8228961a0 0xc8228962c0 0xc8228963c0 0xc822896520]}
+&{ShareMode QNearFieldShareManager::ShareMode commendable public QNearFieldShareManager::ShareModes [0xc822896720 0xc8228967a0 0xc822896860]}

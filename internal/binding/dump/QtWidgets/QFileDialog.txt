@@ -1,0 +1,85 @@
+########################################			FUNCTIONS			########################################
+&{QFileDialog QFileDialog::QFileDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non constructor false false   [0xc823182f80 0xc823183020] }
+&{acceptMode QFileDialog::acceptMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  AcceptMode [] }
+&{confirmOverwrite QFileDialog::confirmOverwrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  bool [] }
+&{defaultSuffix QFileDialog::defaultSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  QString [] }
+&{fileMode QFileDialog::fileMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  FileMode [] }
+&{isNameFilterDetailsVisible QFileDialog::isNameFilterDetailsVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  bool [] }
+&{isReadOnly QFileDialog::isReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  bool [] }
+&{options QFileDialog::options commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  Options [] }
+&{resolveSymlinks QFileDialog::resolveSymlinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  bool [] }
+&{setAcceptMode QFileDialog::setAcceptMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  void [0xc8222520c0] }
+&{setConfirmOverwrite QFileDialog::setConfirmOverwrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  void [0xc8222523c0] }
+&{setDefaultSuffix QFileDialog::setDefaultSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  void [0xc8222525e0] }
+&{setFileMode QFileDialog::setFileMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  void [0xc822252880] }
+&{setNameFilterDetailsVisible QFileDialog::setNameFilterDetailsVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  void [0xc822252ae0] }
+&{setOptions QFileDialog::setOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  void [0xc822252d80] }
+&{setReadOnly QFileDialog::setReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  void [0xc822252fe0] }
+&{setResolveSymlinks QFileDialog::setResolveSymlinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  void [0xc8222532e0] }
+&{setViewMode QFileDialog::setViewMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  void [0xc822253500] }
+&{viewMode QFileDialog::viewMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.cpp non plain false false  ViewMode [] }
+&{QFileDialog QFileDialog::QFileDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non constructor false true 2  [0xc821755b20 0xc821755be0 0xc821755ce0 0xc821755e20] }
+&{accept QFileDialog::accept commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h impure plain false false  void [] }
+&{changeEvent QFileDialog::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h impure plain false false  void [0xc821816e20] }
+&{currentChanged QFileDialog::currentChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non signal false false  void [0xc8218171c0] }
+&{currentUrlChanged QFileDialog::currentUrlChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non signal false false  void [0xc821817600] }
+&{directory QFileDialog::directory commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QDir [] }
+&{directoryEntered QFileDialog::directoryEntered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non signal false false  void [0xc821817c40] }
+&{directoryUrl QFileDialog::directoryUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QUrl [] }
+&{directoryUrlEntered QFileDialog::directoryUrlEntered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non signal false false  void [0xc821f9e220] }
+&{done QFileDialog::done commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h impure plain false false  void [0xc821f9e480] }
+&{fileSelected QFileDialog::fileSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non signal false false  void [0xc821f9e6c0] }
+&{filesSelected QFileDialog::filesSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non signal false false  void [0xc821f9e960] }
+&{filter QFileDialog::filter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QDir::Filters [] }
+&{filterSelected QFileDialog::filterSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non signal false false  void [0xc821f9eca0] }
+&{getExistingDirectory QFileDialog::getExistingDirectory commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain true false  QString [0xc821f9eee0 0xc821f9efa0 0xc821f9f020 0xc821f9f0c0] }
+&{getExistingDirectoryUrl QFileDialog::getExistingDirectoryUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain true false  QUrl [0xc821f9f2e0 0xc821f9f3a0 0xc821f9f460 0xc821f9f4e0 0xc821f9f5c0] }
+&{getOpenFileName QFileDialog::getOpenFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain true false  QString [0xc821f9f860 0xc821f9f900 0xc821f9f980 0xc821f9fa60 0xc821f9fb20 0xc821f9fbc0] }
+&{getOpenFileNames QFileDialog::getOpenFileNames commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain true false  QStringList [0xc821f9fdc0 0xc821f9fe80 0xc821f9ff20 0xc821f9ffa0 0xc821e04060 0xc821e04100] }
+&{getOpenFileUrl QFileDialog::getOpenFileUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain true false  QUrl [0xc821e04340 0xc821e043e0 0xc821e04460 0xc821e04500 0xc821e045c0 0xc821e04680 0xc821e04740] }
+&{getOpenFileUrls QFileDialog::getOpenFileUrls commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain true false  QList<QUrl> [0xc821e049c0 0xc821e04a40 0xc821e04ae0 0xc821e04b80 0xc821e04c60 0xc821e04d00 0xc821e04da0] }
+&{getSaveFileName QFileDialog::getSaveFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain true false  QString [0xc821e05060 0xc821e050e0 0xc821e05180 0xc821e05240 0xc821e05320 0xc821e053e0] }
+&{getSaveFileUrl QFileDialog::getSaveFileUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain true false  QUrl [0xc821e05620 0xc821e056a0 0xc821e05740 0xc821e05800 0xc821e058e0 0xc821e05980 0xc821e05a20] }
+&{history QFileDialog::history commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QStringList [] }
+&{iconProvider QFileDialog::iconProvider commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QFileIconProvider * [] }
+&{itemDelegate QFileDialog::itemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QAbstractItemDelegate * [] }
+&{labelText QFileDialog::labelText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QString [0xc82303c2c0] }
+&{mimeTypeFilters QFileDialog::mimeTypeFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QStringList [] }
+&{nameFilters QFileDialog::nameFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QStringList [] }
+&{open QFileDialog::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82303cbe0 0xc82303cd40] }
+&{proxyModel QFileDialog::proxyModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QAbstractProxyModel * [] }
+&{restoreState QFileDialog::restoreState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  bool [0xc82303d520] }
+&{saveState QFileDialog::saveState commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QByteArray [] }
+&{selectFile QFileDialog::selectFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82303dc20] }
+&{selectMimeTypeFilter QFileDialog::selectMimeTypeFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82303df80] }
+&{selectNameFilter QFileDialog::selectNameFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82339e1a0] }
+&{selectUrl QFileDialog::selectUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82339e4a0] }
+&{selectedFiles QFileDialog::selectedFiles commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QStringList [] }
+&{selectedNameFilter QFileDialog::selectedNameFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QString [] }
+&{selectedUrls QFileDialog::selectedUrls commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QList<QUrl> [] }
+&{setDirectory QFileDialog::setDirectory commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false true 2 void [0xc82339ec20] }
+&{setDirectory QFileDialog::setDirectory commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82339eea0] }
+&{setDirectoryUrl QFileDialog::setDirectoryUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82339f140] }
+&{setFilter QFileDialog::setFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82339f3e0] }
+&{setHistory QFileDialog::setHistory commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82339f680] }
+&{setIconProvider QFileDialog::setIconProvider commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82339fa20] }
+&{setItemDelegate QFileDialog::setItemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82339fd00] }
+&{setLabelText QFileDialog::setLabelText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82339ff80 0xc82340c000] }
+&{setMimeTypeFilters QFileDialog::setMimeTypeFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82340c320] }
+&{setNameFilter QFileDialog::setNameFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82340c5e0] }
+&{setNameFilters QFileDialog::setNameFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82340c840] }
+&{setOption QFileDialog::setOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82340cac0 0xc82340cb60] }
+&{setProxyModel QFileDialog::setProxyModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82340cde0] }
+&{setSidebarUrls QFileDialog::setSidebarUrls commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  void [0xc82340d080] }
+&{setVisible QFileDialog::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h impure plain false false  void [0xc82340d2a0] }
+&{sidebarUrls QFileDialog::sidebarUrls commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  QList<QUrl> [] }
+&{testOption QFileDialog::testOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non plain false false  bool [0xc82340d5e0] }
+&{urlSelected QFileDialog::urlSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non signal false false  void [0xc82340d840] }
+&{urlsSelected QFileDialog::urlsSelected commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non signal false false  void [0xc82340dac0] }
+&{~QFileDialog QFileDialog::~QFileDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qfiledialog.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{AcceptMode QFileDialog::AcceptMode commendable public  [0xc8222538e0 0xc822253960]}
+&{DialogLabel QFileDialog::DialogLabel commendable public  [0xc822253b00 0xc822253b80 0xc822253c00 0xc822253c80 0xc822253d20]}
+&{FileMode QFileDialog::FileMode commendable public  [0xc822253ee0 0xc822253f60 0xc822253fe0 0xc821754140 0xc821754260]}
+&{Option QFileDialog::Option commendable public QFileDialog::Options [0xc821754660 0xc821754780 0xc821754980 0xc821754ac0 0xc821754c20 0xc821754de0 0xc821754f20 0xc821755080]}
+&{ViewMode QFileDialog::ViewMode commendable public  [0xc8217554e0 0xc821755600]}

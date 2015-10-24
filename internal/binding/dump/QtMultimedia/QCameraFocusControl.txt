@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QCameraFocusControl QCameraFocusControl::QCameraFocusControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h non constructor false false   [0xc821cef000] }
+&{customFocusPoint QCameraFocusControl::customFocusPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h pure plain false false  QPointF [] }
+&{customFocusPointChanged QCameraFocusControl::customFocusPointChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h non signal false false  void [0xc821cef260] }
+&{focusMode QCameraFocusControl::focusMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h pure plain false false  QCameraFocus::FocusModes [] }
+&{focusModeChanged QCameraFocusControl::focusModeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h non signal false false  void [0xc821cef5e0] }
+&{focusPointMode QCameraFocusControl::focusPointMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h pure plain false false  QCameraFocus::FocusPointMode [] }
+&{focusPointModeChanged QCameraFocusControl::focusPointModeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h non signal false false  void [0xc821cef9a0] }
+&{focusZones QCameraFocusControl::focusZones commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h pure plain false false  QCameraFocusZoneList [] }
+&{focusZonesChanged QCameraFocusControl::focusZonesChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h non signal false false  void [] }
+&{isFocusModeSupported QCameraFocusControl::isFocusModeSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h pure plain false false  bool [0xc821ceff40] }
+&{isFocusPointModeSupported QCameraFocusControl::isFocusPointModeSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h pure plain false false  bool [0xc821cea420] }
+&{setCustomFocusPoint QCameraFocusControl::setCustomFocusPoint commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h pure plain false false  void [0xc821cea960] }
+&{setFocusMode QCameraFocusControl::setFocusMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h pure plain false false  void [0xc821ceada0] }
+&{setFocusPointMode QCameraFocusControl::setFocusPointMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h pure plain false false  void [0xc821ceb340] }
+&{~QCameraFocusControl QCameraFocusControl::~QCameraFocusControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerafocuscontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################

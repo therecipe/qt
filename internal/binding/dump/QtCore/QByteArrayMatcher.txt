@@ -1,0 +1,12 @@
+########################################			FUNCTIONS			########################################
+&{QByteArrayMatcher QByteArrayMatcher::QByteArrayMatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraymatcher.h non constructor false false   [] }
+&{QByteArrayMatcher QByteArrayMatcher::QByteArrayMatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraymatcher.h non constructor false true 2  [0xc8202fedc0] }
+&{QByteArrayMatcher QByteArrayMatcher::QByteArrayMatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraymatcher.h non constructor false true 4  [0xc8202ff100] }
+&{QByteArrayMatcher QByteArrayMatcher::QByteArrayMatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraymatcher.h non constructor false true 3  [0xc8202ff3a0 0xc8202ff4c0] }
+&{indexIn QByteArrayMatcher::indexIn commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraymatcher.h non plain false false  int [0xc8202ff860 0xc8202ffa00] }
+&{indexIn QByteArrayMatcher::indexIn commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraymatcher.h non plain false true 2 int [0xc8202ffcc0 0xc8202ffe20 0xc8202ffea0] }
+&{operator= QByteArrayMatcher::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraymatcher.h non plain false false  QByteArrayMatcher & [0xc8205581e0] }
+&{pattern QByteArrayMatcher::pattern commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraymatcher.h non plain false false  QByteArray [] }
+&{setPattern QByteArrayMatcher::setPattern commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraymatcher.h non plain false false  void [0xc820558640] }
+&{~QByteArrayMatcher QByteArrayMatcher::~QByteArrayMatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraymatcher.h non destructor false false   [] }
+########################################			ENUMS			########################################

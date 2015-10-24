@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QCommandLineOption QCommandLineOption::QCommandLineOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non constructor false true 5  [0xc820796a60] }
+&{QCommandLineOption QCommandLineOption::QCommandLineOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non constructor false false   [0xc820796ce0] }
+&{QCommandLineOption QCommandLineOption::QCommandLineOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non constructor false true 3  [0xc820796f20 0xc820796fa0 0xc820797020 0xc8207970c0] }
+&{QCommandLineOption QCommandLineOption::QCommandLineOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non constructor false true 2  [0xc820797340] }
+&{QCommandLineOption QCommandLineOption::QCommandLineOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non constructor false true 4  [0xc820797600 0xc820797720 0xc8207977a0 0xc820797820] }
+&{defaultValues QCommandLineOption::defaultValues commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non plain false false  QStringList [] }
+&{description QCommandLineOption::description commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non plain false false  QString [] }
+&{names QCommandLineOption::names commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non plain false false  QStringList [] }
+&{operator= QCommandLineOption::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non plain false true 2 QCommandLineOption & [0xc820797ea0] }
+&{operator= QCommandLineOption::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non plain false false  QCommandLineOption & [0xc820780160] }
+&{setDefaultValue QCommandLineOption::setDefaultValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non plain false false  void [0xc820780300] }
+&{setDefaultValues QCommandLineOption::setDefaultValues commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non plain false false  void [0xc820780480] }
+&{setDescription QCommandLineOption::setDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non plain false false  void [0xc820780620] }
+&{setValueName QCommandLineOption::setValueName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non plain false false  void [0xc8207807e0] }
+&{swap QCommandLineOption::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non plain false false  void [0xc8207809e0] }
+&{valueName QCommandLineOption::valueName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non plain false false  QString [] }
+&{~QCommandLineOption QCommandLineOption::~QCommandLineOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineoption.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QTextFrame QTextFrame::QTextFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.cpp non constructor false false   [0xc82207a680] }
+&{end QTextFrame::end commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  iterator [] }
+&{begin QTextFrame::begin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  iterator [] }
+&{childFrames QTextFrame::childFrames commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QList<QTextFrame *> [] }
+&{firstCursorPosition QTextFrame::firstCursorPosition commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextCursor [] }
+&{firstPosition QTextFrame::firstPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
+&{frameFormat QTextFrame::frameFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextFrameFormat [] }
+&{lastCursorPosition QTextFrame::lastCursorPosition commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextCursor [] }
+&{lastPosition QTextFrame::lastPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
+&{parentFrame QTextFrame::parentFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextFrame * [] }
+&{setFrameFormat QTextFrame::setFrameFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void [0xc821f02ce0] }
+&{~QTextFrame QTextFrame::~QTextFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non destructor false false   [] }
+########################################			ENUMS			########################################

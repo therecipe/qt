@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QCameraCaptureBufferFormatControl QCameraCaptureBufferFormatControl::QCameraCaptureBufferFormatControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracapturebufferformatcontrol.h non constructor false false   [0xc8226940a0] }
+&{bufferFormat QCameraCaptureBufferFormatControl::bufferFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracapturebufferformatcontrol.h pure plain false false  QVideoFrame::PixelFormat [] }
+&{bufferFormatChanged QCameraCaptureBufferFormatControl::bufferFormatChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracapturebufferformatcontrol.h non signal false false  void [0xc8226944c0] }
+&{setBufferFormat QCameraCaptureBufferFormatControl::setBufferFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracapturebufferformatcontrol.h pure plain false false  void [0xc822694760] }
+&{supportedBufferFormats QCameraCaptureBufferFormatControl::supportedBufferFormats commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracapturebufferformatcontrol.h pure plain false false  QList<QVideoFrame::PixelFormat> [] }
+&{~QCameraCaptureBufferFormatControl QCameraCaptureBufferFormatControl::~QCameraCaptureBufferFormatControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcameracapturebufferformatcontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,111 @@
+########################################			FUNCTIONS			########################################
+&{backgroundBrush QGraphicsScene::backgroundBrush commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  QBrush [] }
+&{bspTreeDepth QGraphicsScene::bspTreeDepth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  int [] }
+&{font QGraphicsScene::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  QFont [] }
+&{foregroundBrush QGraphicsScene::foregroundBrush commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  QBrush [] }
+&{isSortCacheEnabled QGraphicsScene::isSortCacheEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  bool [] }
+&{itemIndexMethod QGraphicsScene::itemIndexMethod commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  ItemIndexMethod [] }
+&{items QGraphicsScene::items commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false true 7 QList<QGraphicsItem *> [0xc821e5aca0 0xc821e5adc0 0xc821e5af00 0xc821e5afa0] }
+&{items QGraphicsScene::items commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false true 2 QList<QGraphicsItem *> [0xc821e5b300 0xc821e5b400 0xc821e5b4e0 0xc821e5b5c0] }
+&{items QGraphicsScene::items commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false true 6 QList<QGraphicsItem *> [0xc821e5b940 0xc821e5ba80 0xc821e5bb80 0xc821e5bc40] }
+&{items QGraphicsScene::items commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false true 5 QList<QGraphicsItem *> [0xc821e5bfa0 0xc822532080 0xc822532180 0xc822532240] }
+&{minimumRenderSize QGraphicsScene::minimumRenderSize commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  qreal [] }
+&{palette QGraphicsScene::palette commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  QPalette [] }
+&{sceneRect QGraphicsScene::sceneRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  QRectF [] }
+&{setBackgroundBrush QGraphicsScene::setBackgroundBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  void [0xc8225329c0] }
+&{setBspTreeDepth QGraphicsScene::setBspTreeDepth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  void [0xc822532c20] }
+&{setFont QGraphicsScene::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  void [0xc822532ee0] }
+&{setForegroundBrush QGraphicsScene::setForegroundBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  void [0xc822533180] }
+&{setItemIndexMethod QGraphicsScene::setItemIndexMethod commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  void [0xc8225333e0] }
+&{setMinimumRenderSize QGraphicsScene::setMinimumRenderSize commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  void [0xc822533680] }
+&{setPalette QGraphicsScene::setPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  void [0xc8225338e0] }
+&{setSceneRect QGraphicsScene::setSceneRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  void [0xc822533b40] }
+&{setSortCacheEnabled QGraphicsScene::setSortCacheEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  void [0xc822533d80] }
+&{setStickyFocus QGraphicsScene::setStickyFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  void [0xc822a28000] }
+&{stickyFocus QGraphicsScene::stickyFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non plain false false  bool [] }
+&{update QGraphicsScene::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.cpp non slot false false  void [0xc822a28480] }
+&{QGraphicsScene QGraphicsScene::QGraphicsScene commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non constructor false false   [0xc822a28ee0] }
+&{QGraphicsScene QGraphicsScene::QGraphicsScene commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non constructor false true 2  [0xc822a29100 0xc822a29180] }
+&{QGraphicsScene QGraphicsScene::QGraphicsScene commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non constructor false true 3  [0xc822a293a0 0xc822a29440 0xc822a294e0 0xc822a29560 0xc822a29620] }
+&{activePanel QGraphicsScene::activePanel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsItem * [] }
+&{activeWindow QGraphicsScene::activeWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsWidget * [] }
+&{addEllipse QGraphicsScene::addEllipse commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsEllipseItem * [0xc822a29dc0 0xc822a29ea0 0xc822a29f40] }
+&{addEllipse QGraphicsScene::addEllipse commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false true 2 QGraphicsEllipseItem * [0xc822a36220 0xc822a362e0 0xc822a36380 0xc822a36400 0xc822a364c0 0xc822a365a0] }
+&{addItem QGraphicsScene::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  void [0xc822a367a0] }
+&{addLine QGraphicsScene::addLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsLineItem * [0xc822a36a40 0xc822a36b00] }
+&{addLine QGraphicsScene::addLine commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false true 2 QGraphicsLineItem * [0xc822a36d80 0xc822a36e20 0xc822a36ee0 0xc822a36f80 0xc822a37040] }
+&{addPath QGraphicsScene::addPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsPathItem * [0xc822a37320 0xc822a37420 0xc822a374c0] }
+&{addPixmap QGraphicsScene::addPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsPixmapItem * [0xc822a37760] }
+&{addPolygon QGraphicsScene::addPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsPolygonItem * [0xc822a37a40 0xc822a37b20 0xc822a37bc0] }
+&{addRect QGraphicsScene::addRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsRectItem * [0xc822a37e40 0xc822a37f00 0xc822a37f80] }
+&{addRect QGraphicsScene::addRect commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false true 2 QGraphicsRectItem * [0xc821e84280 0xc821e84340 0xc821e84440 0xc821e844e0 0xc821e845c0 0xc821e84660] }
+&{addSimpleText QGraphicsScene::addSimpleText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsSimpleTextItem * [0xc821e84900 0xc821e849c0] }
+&{addText QGraphicsScene::addText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsTextItem * [0xc821e84ce0 0xc821e84dc0] }
+&{addWidget QGraphicsScene::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsProxyWidget * [0xc821e850a0 0xc821e85160] }
+&{advance QGraphicsScene::advance commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non slot false false  void [] }
+&{changed QGraphicsScene::changed commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non signal false false  void [0xc821e85520] }
+&{clear QGraphicsScene::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non slot false false  void [] }
+&{clearFocus QGraphicsScene::clearFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  void [] }
+&{clearSelection QGraphicsScene::clearSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non slot false false  void [] }
+&{collidingItems QGraphicsScene::collidingItems commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QList<QGraphicsItem *> [0xc821e85da0 0xc821e85f40] }
+&{contextMenuEvent QGraphicsScene::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821e901a0] }
+&{createItemGroup QGraphicsScene::createItemGroup commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsItemGroup * [0xc821e904c0] }
+&{destroyItemGroup QGraphicsScene::destroyItemGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  void [0xc821e90720] }
+&{dragEnterEvent QGraphicsScene::dragEnterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821e909c0] }
+&{dragLeaveEvent QGraphicsScene::dragLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821e90c40] }
+&{dragMoveEvent QGraphicsScene::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821e90ee0] }
+&{drawBackground QGraphicsScene::drawBackground commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821e91140 0xc821e911e0] }
+&{drawForeground QGraphicsScene::drawForeground commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821e913e0 0xc821e91480] }
+&{dropEvent QGraphicsScene::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821e91ca0] }
+&{event QGraphicsScene::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  bool [0xc821e91f80] }
+&{eventFilter QGraphicsScene::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  bool [0xc821f54180 0xc821f54240] }
+&{focusInEvent QGraphicsScene::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821f54440] }
+&{focusItem QGraphicsScene::focusItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsItem * [] }
+&{focusItemChanged QGraphicsScene::focusItemChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non signal false false  void [0xc821f547a0 0xc821f54840 0xc821f548c0] }
+&{focusNextPrevChild QGraphicsScene::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure slot false false  bool [0xc821f54ae0] }
+&{focusOutEvent QGraphicsScene::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821f54d00] }
+&{hasFocus QGraphicsScene::hasFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  bool [] }
+&{height QGraphicsScene::height commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  qreal [] }
+&{helpEvent QGraphicsScene::helpEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821f551c0] }
+&{inputMethodEvent QGraphicsScene::inputMethodEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821f55440] }
+&{inputMethodQuery QGraphicsScene::inputMethodQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  QVariant [0xc821f556e0] }
+&{invalidate QGraphicsScene::invalidate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non slot false false  void [0xc821f55960 0xc821f55a00] }
+&{invalidate QGraphicsScene::invalidate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false true 2 void [0xc821f55c40 0xc821f55ce0 0xc821f55d60 0xc821f55e00 0xc821f55ee0] }
+&{isActive QGraphicsScene::isActive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  bool [] }
+&{itemAt QGraphicsScene::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsItem * [0xc821f62460 0xc821f62520] }
+&{itemAt QGraphicsScene::itemAt commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false true 3 QGraphicsItem * [0xc821f62a60 0xc821f62b00 0xc821f62be0] }
+&{items QGraphicsScene::items commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QList<QGraphicsItem *> [0xc821f62ee0] }
+&{items QGraphicsScene::items commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false true 4 QList<QGraphicsItem *> [0xc821f63780 0xc821f63820 0xc821f638a0 0xc821f63960 0xc821f63a40 0xc821f63b40 0xc821f63be0] }
+&{itemsBoundingRect QGraphicsScene::itemsBoundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QRectF [] }
+&{keyPressEvent QGraphicsScene::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821f63f60] }
+&{keyReleaseEvent QGraphicsScene::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821f72180] }
+&{mouseDoubleClickEvent QGraphicsScene::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821f723c0] }
+&{mouseGrabberItem QGraphicsScene::mouseGrabberItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QGraphicsItem * [] }
+&{mouseMoveEvent QGraphicsScene::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821f72740] }
+&{mousePressEvent QGraphicsScene::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821f729c0] }
+&{mouseReleaseEvent QGraphicsScene::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc821f72c60] }
+&{removeItem QGraphicsScene::removeItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  void [0xc821f72ec0] }
+&{render QGraphicsScene::render commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  void [0xc821f73100 0xc821f731c0 0xc821f73240 0xc821f73340] }
+&{sceneRectChanged QGraphicsScene::sceneRectChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non signal false false  void [0xc821f735a0] }
+&{selectedItems QGraphicsScene::selectedItems commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QList<QGraphicsItem *> [] }
+&{selectionArea QGraphicsScene::selectionArea commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QPainterPath [] }
+&{selectionChanged QGraphicsScene::selectionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non signal false false  void [] }
+&{sendEvent QGraphicsScene::sendEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  bool [0xc821f73b60 0xc821f73be0] }
+&{setActivePanel QGraphicsScene::setActivePanel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  void [0xc821f73e00] }
+&{setActiveWindow QGraphicsScene::setActiveWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  void [0xc822a46020] }
+&{setFocus QGraphicsScene::setFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  void [0xc822a462c0] }
+&{setFocusItem QGraphicsScene::setFocusItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  void [0xc822a464e0 0xc822a465a0] }
+&{setSceneRect QGraphicsScene::setSceneRect commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false true 2 void [0xc822a467e0 0xc822a468c0 0xc822a46940 0xc822a469c0] }
+&{setSelectionArea QGraphicsScene::setSelectionArea commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false true 2 void [0xc822a46c00 0xc822a46d40 0xc822a46e40] }
+&{setSelectionArea QGraphicsScene::setSelectionArea commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false true 3 void [0xc822a470e0 0xc822a47240 0xc822a473c0 0xc822a474e0] }
+&{setSelectionArea QGraphicsScene::setSelectionArea commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  void [0xc822a47760 0xc822a47880] }
+&{setStyle QGraphicsScene::setStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  void [0xc822a47b20] }
+&{style QGraphicsScene::style commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QStyle * [] }
+&{update QGraphicsScene::update commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false true 2 void [0xc822a47ea0 0xc822a47f20 0xc822a47fc0 0xc822a540a0] }
+&{views QGraphicsScene::views commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  QList<QGraphicsView *> [] }
+&{wheelEvent QGraphicsScene::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure plain false false  void [0xc822a54480] }
+&{width QGraphicsScene::width commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h non plain false false  qreal [] }
+&{~QGraphicsScene QGraphicsScene::~QGraphicsScene commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsscene.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{ItemIndexMethod QGraphicsScene::ItemIndexMethod commendable public  [0xc822a286e0 0xc822a287a0]}
+&{SceneLayer QGraphicsScene::SceneLayer commendable public QGraphicsScene::SceneLayers [0xc822a28a20 0xc822a28ac0 0xc822a28b60 0xc822a28be0]}

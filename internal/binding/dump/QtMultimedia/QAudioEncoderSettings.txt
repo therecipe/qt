@@ -1,0 +1,25 @@
+########################################			FUNCTIONS			########################################
+&{QAudioEncoderSettings QAudioEncoderSettings::QAudioEncoderSettings commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non constructor false false   [] }
+&{QAudioEncoderSettings QAudioEncoderSettings::QAudioEncoderSettings commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non constructor false true 2  [0xc8217e61c0] }
+&{bitRate QAudioEncoderSettings::bitRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  int [] }
+&{channelCount QAudioEncoderSettings::channelCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  int [] }
+&{codec QAudioEncoderSettings::codec commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QString [] }
+&{encodingMode QAudioEncoderSettings::encodingMode commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QMultimedia::EncodingMode [] }
+&{encodingOption QAudioEncoderSettings::encodingOption commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QVariant [0xc8217e68a0] }
+&{encodingOptions QAudioEncoderSettings::encodingOptions commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QVariantMap [] }
+&{isNull QAudioEncoderSettings::isNull commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  bool [] }
+&{operator!= QAudioEncoderSettings::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  bool [0xc8217e6ca0] }
+&{operator= QAudioEncoderSettings::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QAudioEncoderSettings & [0xc8217e6fa0] }
+&{operator== QAudioEncoderSettings::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  bool [0xc8217e7160] }
+&{quality QAudioEncoderSettings::quality commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  QMultimedia::EncodingQuality [] }
+&{sampleRate QAudioEncoderSettings::sampleRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  int [] }
+&{setBitRate QAudioEncoderSettings::setBitRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc8217e7620] }
+&{setChannelCount QAudioEncoderSettings::setChannelCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc8217e7800] }
+&{setCodec QAudioEncoderSettings::setCodec commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc8217e7a80] }
+&{setEncodingMode QAudioEncoderSettings::setEncodingMode commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc8217e7c00] }
+&{setEncodingOption QAudioEncoderSettings::setEncodingOption commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc8217e7e00 0xc8217e7ec0] }
+&{setEncodingOptions QAudioEncoderSettings::setEncodingOptions commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc8217e2200] }
+&{setQuality QAudioEncoderSettings::setQuality commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc8217e2540] }
+&{setSampleRate QAudioEncoderSettings::setSampleRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non plain false false  void [0xc8217e2860] }
+&{~QAudioEncoderSettings QAudioEncoderSettings::~QAudioEncoderSettings commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/recording/qmediaencodersettings.h non destructor false false   [] }
+########################################			ENUMS			########################################

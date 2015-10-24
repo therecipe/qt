@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{QLatin1String QLatin1String::QLatin1String commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non constructor false true 3  [0xc820aaa5c0] }
+&{QLatin1String QLatin1String::QLatin1String commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non constructor false false   [0xc820aaa7e0] }
+&{QLatin1String QLatin1String::QLatin1String commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non constructor false true 2  [0xc820aaa9c0 0xc820aaaa40] }
+&{data QLatin1String::data commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  const char * [] }
+&{latin1 QLatin1String::latin1 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  const char * [] }
+&{operator!= QLatin1String::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc820aaaf80] }
+&{operator!= QLatin1String::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc820aab1e0] }
+&{operator!= QLatin1String::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc820aab380] }
+&{operator< QLatin1String::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc820aab580] }
+&{operator< QLatin1String::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc820aab8c0] }
+&{operator< QLatin1String::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc820aabbe0] }
+&{operator<= QLatin1String::operator<= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc820aabe80] }
+&{operator<= QLatin1String::operator<= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc820a94120] }
+&{operator<= QLatin1String::operator<= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc820a94340] }
+&{operator== QLatin1String::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc820a94540] }
+&{operator== QLatin1String::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc820a947e0] }
+&{operator== QLatin1String::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc820a94a20] }
+&{operator> QLatin1String::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc820a94ce0] }
+&{operator> QLatin1String::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc820a94fa0] }
+&{operator> QLatin1String::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc820a95240] }
+&{operator>= QLatin1String::operator>= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 3 bool [0xc820a95540] }
+&{operator>= QLatin1String::operator>= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  bool [0xc820a957c0] }
+&{operator>= QLatin1String::operator>= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false true 2 bool [0xc820a959c0] }
+&{size QLatin1String::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstring.h non plain false false  int [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QUndoCommand QUndoCommand::QUndoCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non constructor false false   [0xc82122fb80] }
+&{QUndoCommand QUndoCommand::QUndoCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non constructor false true 2  [0xc82122ff60 0xc821216040] }
+&{actionText QUndoCommand::actionText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  QString [] }
+&{child QUndoCommand::child commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  const QUndoCommand * [0xc8212168c0] }
+&{childCount QUndoCommand::childCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  int [] }
+&{id QUndoCommand::id commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h impure plain false false  int [] }
+&{mergeWith QUndoCommand::mergeWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h impure plain false false  bool [0xc821217180] }
+&{redo QUndoCommand::redo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h impure plain false false  void [] }
+&{setText QUndoCommand::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  void [0xc821217920] }
+&{text QUndoCommand::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  QString [] }
+&{undo QUndoCommand::undo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h impure plain false false  void [] }
+&{~QUndoCommand QUndoCommand::~QUndoCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h impure destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,29 @@
+########################################			FUNCTIONS			########################################
+&{QMessageLogger QMessageLogger::QMessageLogger commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non constructor false false   [] }
+&{QMessageLogger QMessageLogger::QMessageLogger commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non constructor false true 2  [0xc8200e1a40 0xc8200e1ac0 0xc8200e1b60] }
+&{QMessageLogger QMessageLogger::QMessageLogger commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non constructor false true 3  [0xc8200e1da0 0xc8200e1e20 0xc8200e1ea0 0xc8200e1f80] }
+&{critical QMessageLogger::critical commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 4 QDebug [] }
+&{critical QMessageLogger::critical commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 6 QDebug [0xc8200d2320] }
+&{critical QMessageLogger::critical commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 5 QDebug [0xc8200d25c0] }
+&{critical QMessageLogger::critical commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 3 void [0xc8200d27e0 0xc8200d2880 0xc8200d2940] }
+&{critical QMessageLogger::critical commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 2 void [0xc8200d2b80 0xc8200d2cc0 0xc8200d2d60] }
+&{critical QMessageLogger::critical commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false false  void [0xc8200d2f80 0xc8200d3000] }
+&{debug QMessageLogger::debug commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 4 QDebug [] }
+&{debug QMessageLogger::debug commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 6 QDebug [0xc8200d32c0] }
+&{debug QMessageLogger::debug commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 5 QDebug [0xc8200d34a0] }
+&{debug QMessageLogger::debug commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 3 void [0xc8200d36a0 0xc8200d3720 0xc8200d37a0] }
+&{debug QMessageLogger::debug commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 2 void [0xc8200d3980 0xc8200d3a60 0xc8200d3b40] }
+&{debug QMessageLogger::debug commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false false  void [0xc8200d3d80 0xc8200d3e20] }
+&{fatal QMessageLogger::fatal commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false false  void [0xc8200a4060 0xc8200a40e0] }
+&{info QMessageLogger::info commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 3 QDebug [] }
+&{info QMessageLogger::info commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 5 QDebug [0xc8200a4480] }
+&{info QMessageLogger::info commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 4 QDebug [0xc8200a46c0] }
+&{info QMessageLogger::info commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 2 void [0xc8200a4960 0xc8200a49e0 0xc8200a4ac0] }
+&{info QMessageLogger::info commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false false  void [0xc8200a4d20 0xc8200a4e20 0xc8200a4ea0] }
+&{warning QMessageLogger::warning commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 4 QDebug [] }
+&{warning QMessageLogger::warning commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 6 QDebug [0xc8200a5600] }
+&{warning QMessageLogger::warning commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 5 QDebug [0xc8200a5860] }
+&{warning QMessageLogger::warning commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 3 void [0xc8200a5ac0 0xc8200a5b60 0xc8200a5be0] }
+&{warning QMessageLogger::warning commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false true 2 void [0xc8200a5e20 0xc8200a5f00 0xc8200a5f80] }
+&{warning QMessageLogger::warning commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlogging.h non plain false false  void [0xc8200702e0 0xc820070360] }
+########################################			ENUMS			########################################

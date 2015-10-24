@@ -1,0 +1,26 @@
+########################################			FUNCTIONS			########################################
+&{seek QFileDevice::seek commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.cpp impure plain false false  bool [0xc8203c7400] }
+&{atEnd QFileDevice::atEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  bool [] }
+&{close QFileDevice::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  void [] }
+&{error QFileDevice::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  FileError [] }
+&{fileName QFileDevice::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  QString [] }
+&{flush QFileDevice::flush commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  bool [] }
+&{handle QFileDevice::handle commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  int [] }
+&{isSequential QFileDevice::isSequential commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  bool [] }
+&{map QFileDevice::map commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  uchar * [0xc8203db8e0 0xc8203db960 0xc8203db9e0] }
+&{permissions QFileDevice::permissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  Permissions [] }
+&{pos QFileDevice::pos commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 [] }
+&{readData QFileDevice::readData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 [0xc8203dbd40 0xc8203dbdc0] }
+&{readLineData QFileDevice::readLineData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 [0xc8203dbf80 0xc8203ec000] }
+&{resize QFileDevice::resize commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  bool [0xc8203ec200] }
+&{setPermissions QFileDevice::setPermissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  bool [0xc8203ec3c0] }
+&{size QFileDevice::size commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 [] }
+&{unmap QFileDevice::unmap commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  bool [0xc8203ec6a0] }
+&{unsetError QFileDevice::unsetError commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  void [] }
+&{writeData QFileDevice::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 [0xc8203ec960 0xc8203ec9e0] }
+&{~QFileDevice QFileDevice::~QFileDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{FileError QFileDevice::FileError commendable public  [0xc8203c7600 0xc8203c7680 0xc8203c7700 0xc8203c7780 0xc8203c7820 0xc8203c78a0 0xc8203c7920 0xc8203c79a0 0xc8203c7a40 0xc8203c7ac0 0xc8203c7b40 0xc8203c7bc0 0xc8203c7c40 0xc8203c7cc0 0xc8203c7d40]}
+&{FileHandleFlag QFileDevice::FileHandleFlag commendable public QFileDevice::FileHandleFlags [0xc8203c7f40 0xc8203c7fc0]}
+&{MemoryMapFlags QFileDevice::MemoryMapFlags commendable public  [0xc8203da160 0xc8203da1e0]}
+&{Permission QFileDevice::Permission commendable public QFileDevice::Permissions [0xc8203da400 0xc8203da480 0xc8203da500 0xc8203da580 0xc8203da620 0xc8203da6a0 0xc8203da720 0xc8203da7a0 0xc8203da840 0xc8203da8c0 0xc8203da940 0xc8203da9c0]}

@@ -1,0 +1,25 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include "../cgoutil.h"
+
+QtObjectPtr QOpenGLFunctions_3_3_Compatibility_NewQOpenGLFunctions_3_3_Compatibility();
+int QOpenGLFunctions_3_3_Compatibility_InitializeOpenGLFunctions(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_DestroyQOpenGLFunctions_3_3_Compatibility(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlEnd(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlEndConditionalRender(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlEndList(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlEndTransformFeedback(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlFinish(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlFlush(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlInitNames(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlLoadIdentity(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlPopAttrib(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlPopClientAttrib(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlPopMatrix(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlPopName(QtObjectPtr ptr);
+void QOpenGLFunctions_3_3_Compatibility_GlPushMatrix(QtObjectPtr ptr);
+
+#ifdef __cplusplus
+}
+#endif

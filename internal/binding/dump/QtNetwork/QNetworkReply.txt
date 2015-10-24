@@ -1,0 +1,45 @@
+########################################			FUNCTIONS			########################################
+&{ignoreSslErrorsImplementation QNetworkReply::ignoreSslErrorsImplementation commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.cpp impure plain false false  void [0xc822ffda60] }
+&{setSslConfigurationImplementation QNetworkReply::setSslConfigurationImplementation commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.cpp impure plain false false  void [0xc822ffdd00] }
+&{sslConfigurationImplementation QNetworkReply::sslConfigurationImplementation commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.cpp impure plain false false  void [0xc823114080] }
+&{QNetworkReply QNetworkReply::QNetworkReply commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non constructor false false   [0xc823190600] }
+&{abort QNetworkReply::abort commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h pure slot false false  void [] }
+&{attribute QNetworkReply::attribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  QVariant [0xc823190c80] }
+&{close QNetworkReply::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h impure plain false false  void [] }
+&{downloadProgress QNetworkReply::downloadProgress commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non signal false false  void [0xc823190f80 0xc823191000] }
+&{encrypted QNetworkReply::encrypted commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non signal false false  void [] }
+&{error QNetworkReply::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non signal false true 2 void [0xc8231912c0] }
+&{error QNetworkReply::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  NetworkError [] }
+&{finished QNetworkReply::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non signal false false  void [] }
+&{hasRawHeader QNetworkReply::hasRawHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  bool [0xc8231916c0] }
+&{header QNetworkReply::header commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  QVariant [0xc8231918e0] }
+&{ignoreSslErrors QNetworkReply::ignoreSslErrors commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h impure slot false false  void [] }
+&{ignoreSslErrors QNetworkReply::ignoreSslErrors commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false true 2 void [0xc823191be0] }
+&{isFinished QNetworkReply::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  bool [] }
+&{isRunning QNetworkReply::isRunning commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  bool [] }
+&{manager QNetworkReply::manager commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  QNetworkAccessManager * [] }
+&{metaDataChanged QNetworkReply::metaDataChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non signal false false  void [] }
+&{operation QNetworkReply::operation commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  QNetworkAccessManager::Operation [] }
+&{preSharedKeyAuthenticationRequired QNetworkReply::preSharedKeyAuthenticationRequired commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non signal false false  void [0xc8232e65a0] }
+&{rawHeader QNetworkReply::rawHeader commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  QByteArray [0xc8232e6880] }
+&{rawHeaderList QNetworkReply::rawHeaderList commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  QList<QByteArray> [] }
+&{rawHeaderPairs QNetworkReply::rawHeaderPairs commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  const QList<RawHeaderPair> & [] }
+&{readBufferSize QNetworkReply::readBufferSize commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  qint64 [] }
+&{request QNetworkReply::request commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  QNetworkRequest [] }
+&{setAttribute QNetworkReply::setAttribute commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  void [0xc8232e70c0 0xc8232e71c0] }
+&{setError QNetworkReply::setError commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  void [0xc8232e7400 0xc8232e74a0] }
+&{setFinished QNetworkReply::setFinished commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  void [0xc8232e7740] }
+&{setHeader QNetworkReply::setHeader commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  void [0xc8232e79c0 0xc8232e7a80] }
+&{setOperation QNetworkReply::setOperation commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  void [0xc8232e7cc0] }
+&{setRawHeader QNetworkReply::setRawHeader commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  void [0xc8232e7fc0 0xc82340c120] }
+&{setReadBufferSize QNetworkReply::setReadBufferSize commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h impure plain false false  void [0xc82340c360] }
+&{setRequest QNetworkReply::setRequest commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  void [0xc82340c540] }
+&{setSslConfiguration QNetworkReply::setSslConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  void [0xc82340c740] }
+&{setUrl QNetworkReply::setUrl commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  void [0xc82340c960] }
+&{sslConfiguration QNetworkReply::sslConfiguration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  QSslConfiguration [] }
+&{sslErrors QNetworkReply::sslErrors commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non signal false false  void [0xc82340cc60] }
+&{uploadProgress QNetworkReply::uploadProgress commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non signal false false  void [0xc82340ce40 0xc82340cec0] }
+&{url QNetworkReply::url commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non plain false false  QUrl [] }
+&{~QNetworkReply QNetworkReply::~QNetworkReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qnetworkreply.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{NetworkError QNetworkReply::NetworkError commendable public  [0xc8231142e0 0xc823114380 0xc823114460 0xc823114560 0xc823114640 0xc8231146e0 0xc8231147c0 0xc823114900 0xc823114a80 0xc823114bc0 0xc823114d40 0xc823114ec0 0xc823114fa0 0xc8231150a0 0xc823115180 0xc823115260 0xc823115400 0xc823115500 0xc823115620 0xc8231156c0 0xc8231157a0 0xc8231158a0 0xc823115980 0xc823115aa0 0xc823115bc0 0xc823115d00 0xc823115ec0 0xc823115f80 0xc823190040 0xc823190180 0xc823190260 0xc823190340]}

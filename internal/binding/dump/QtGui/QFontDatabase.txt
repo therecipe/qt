@@ -1,0 +1,31 @@
+########################################			FUNCTIONS			########################################
+&{removeAllApplicationFonts QFontDatabase::removeAllApplicationFonts commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.cpp non plain true false  bool [] }
+&{removeApplicationFont QFontDatabase::removeApplicationFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.cpp non plain true false  bool [0xc823191ea0] }
+&{QFontDatabase QFontDatabase::QFontDatabase commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non constructor false false   [] }
+&{addApplicationFont QFontDatabase::addApplicationFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain true false  int [0xc8231abaa0] }
+&{addApplicationFontFromData QFontDatabase::addApplicationFontFromData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain true false  int [0xc8231abc60] }
+&{applicationFontFamilies QFontDatabase::applicationFontFamilies commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain true false  QStringList [0xc8231abe40] }
+&{bold QFontDatabase::bold commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  bool [0xc8231ba000 0xc8231ba080] }
+&{families QFontDatabase::families commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  QStringList [0xc8231ba240] }
+&{font QFontDatabase::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  QFont [0xc8231ba640 0xc8231ba6c0 0xc8231ba740] }
+&{isBitmapScalable QFontDatabase::isBitmapScalable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  bool [0xc8231baac0 0xc8231bab40] }
+&{isFixedPitch QFontDatabase::isFixedPitch commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  bool [0xc8231bad00 0xc8231bad80] }
+&{isPrivateFamily QFontDatabase::isPrivateFamily commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  bool [0xc8231baf20] }
+&{isScalable QFontDatabase::isScalable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  bool [0xc8231bb0e0 0xc8231bb160] }
+&{isSmoothlyScalable QFontDatabase::isSmoothlyScalable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  bool [0xc8231bb300 0xc8231bb380] }
+&{italic QFontDatabase::italic commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  bool [0xc8231bb540 0xc8231bb5c0] }
+&{pointSizes QFontDatabase::pointSizes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  QList<int> [0xc8231bb780 0xc8231bb800] }
+&{smoothSizes QFontDatabase::smoothSizes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  QList<int> [0xc8231bb9c0 0xc8231bba40] }
+&{standardSizes QFontDatabase::standardSizes commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain true false  QList<int> [] }
+&{styleString QFontDatabase::styleString commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  QString [0xc8231bbd00] }
+&{styleString QFontDatabase::styleString commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false true 2 QString [0xc8231bbee0] }
+&{styles QFontDatabase::styles commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  QStringList [0xc8231c80e0] }
+&{systemFont QFontDatabase::systemFont commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain true false  QFont [0xc8231c82a0] }
+&{weight QFontDatabase::weight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  int [0xc8231c8460 0xc8231c84e0] }
+&{writingSystemName QFontDatabase::writingSystemName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain true false  QString [0xc8231c86e0] }
+&{writingSystemSample QFontDatabase::writingSystemSample commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain true false  QString [0xc8231c8880] }
+&{writingSystems QFontDatabase::writingSystems commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false false  QList<WritingSystem> [] }
+&{writingSystems QFontDatabase::writingSystems commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontdatabase.h non plain false true 2 QList<WritingSystem> [0xc8231c8bc0] }
+########################################			ENUMS			########################################
+&{SystemFont QFontDatabase::SystemFont commendable public  [0xc8231aa160 0xc8231aa1e0 0xc8231aa260 0xc8231aa300]}
+&{WritingSystem QFontDatabase::WritingSystem commendable public  [0xc8231aa4e0 0xc8231aa560 0xc8231aa5e0 0xc8231aa660 0xc8231aa700 0xc8231aa780 0xc8231aa800 0xc8231aa880 0xc8231aa920 0xc8231aa9a0 0xc8231aaa20 0xc8231aaaa0 0xc8231aab20 0xc8231aaba0 0xc8231aac20 0xc8231aaca0 0xc8231aad40 0xc8231aadc0 0xc8231aae40 0xc8231aaec0 0xc8231aaf40 0xc8231aafc0 0xc8231ab040 0xc8231ab0c0 0xc8231ab140 0xc8231ab1e0 0xc8231ab2c0 0xc8231ab380 0xc8231ab400 0xc8231ab480 0xc8231ab500 0xc8231ab580 0xc8231ab620 0xc8231ab6a0 0xc8231ab720 0xc8231ab7c0]}

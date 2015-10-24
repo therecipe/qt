@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{reading QAmbientLightSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambientlightsensor.cpp non plain false false  QAmbientLightReading * [] }
+&{QAmbientLightSensor QAmbientLightSensor::QAmbientLightSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambientlightsensor.h non constructor false false   [0xc822ec6740] }
+&{~QAmbientLightSensor QAmbientLightSensor::~QAmbientLightSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambientlightsensor.h impure destructor false false   [] }
+########################################			ENUMS			########################################

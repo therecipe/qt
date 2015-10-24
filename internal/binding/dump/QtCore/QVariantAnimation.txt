@@ -1,0 +1,23 @@
+########################################			FUNCTIONS			########################################
+&{currentValue QVariantAnimation::currentValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.cpp non plain false false  QVariant [] }
+&{duration QVariantAnimation::duration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.cpp impure plain false false  int [] }
+&{easingCurve QVariantAnimation::easingCurve commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.cpp non plain false false  QEasingCurve [] }
+&{endValue QVariantAnimation::endValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.cpp non plain false false  QVariant [] }
+&{setDuration QVariantAnimation::setDuration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.cpp non plain false false  void [0xc820116a20] }
+&{setEasingCurve QVariantAnimation::setEasingCurve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.cpp non plain false false  void [0xc820116bc0] }
+&{setEndValue QVariantAnimation::setEndValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.cpp non plain false false  void [0xc820116de0] }
+&{setStartValue QVariantAnimation::setStartValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.cpp non plain false false  void [0xc820116fc0] }
+&{startValue QVariantAnimation::startValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.cpp non plain false false  QVariant [] }
+&{QVariantAnimation QVariantAnimation::QVariantAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.h non constructor false false   [0xc820117400] }
+&{keyValueAt QVariantAnimation::keyValueAt commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.h non plain false false  QVariant [0xc8201175c0] }
+&{event QVariantAnimation::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.h impure plain false false  bool [0xc820117da0] }
+&{interpolated QVariantAnimation::interpolated commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.h impure plain false false  QVariant [0xc820117f60 0xc820117fe0 0xc82012a060] }
+&{keyValues QVariantAnimation::keyValues commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.h non plain false false  KeyValues [] }
+&{setKeyValueAt QVariantAnimation::setKeyValueAt commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.h non plain false false  void [0xc82012a360 0xc82012a3e0] }
+&{setKeyValues QVariantAnimation::setKeyValues commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.h non plain false false  void [0xc82012a5c0] }
+&{updateCurrentTime QVariantAnimation::updateCurrentTime commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.h impure plain false false  void [0xc82012a7e0] }
+&{updateCurrentValue QVariantAnimation::updateCurrentValue commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.h impure plain false false  void [0xc82012a9a0] }
+&{updateState QVariantAnimation::updateState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.h impure plain false false  void [0xc82012ab80 0xc82012ac60] }
+&{valueChanged QVariantAnimation::valueChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.h non signal false false  void [0xc82012ae80] }
+&{~QVariantAnimation QVariantAnimation::~QVariantAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qvariantanimation.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,18 @@
+########################################			FUNCTIONS			########################################
+&{QCache QCache::QCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non constructor false false   [0xc820559000] }
+&{clear QCache::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  void [] }
+&{contains QCache::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  bool [0xc8205592a0] }
+&{count QCache::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  int [] }
+&{insert QCache::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  bool [0xc820559520 0xc8205595e0 0xc820559660] }
+&{isEmpty QCache::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  bool [] }
+&{keys QCache::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  QList<Key> [] }
+&{maxCost QCache::maxCost commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  int [] }
+&{object QCache::object commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  T * [0xc820559a80] }
+&{operator[] QCache::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  T * [0xc820559ce0] }
+&{remove QCache::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  bool [0xc820559ea0] }
+&{setMaxCost QCache::setMaxCost commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  void [0xc8206301e0] }
+&{size QCache::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  int [] }
+&{take QCache::take commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  T * [0xc820630440] }
+&{totalCost QCache::totalCost commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  int [] }
+&{~QCache QCache::~QCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non destructor false false   [] }
+########################################			ENUMS			########################################

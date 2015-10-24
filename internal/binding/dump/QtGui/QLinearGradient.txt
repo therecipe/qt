@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QLinearGradient QLinearGradient::QLinearGradient commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non constructor false true 3  [0xc821f8dc00 0xc821f8dc80 0xc821f8dd00 0xc821f8dd80] }
+&{QLinearGradient QLinearGradient::QLinearGradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false false   [] }
+&{QLinearGradient QLinearGradient::QLinearGradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 2  [0xc821f9e000 0xc821f9e080] }
+&{finalStop QLinearGradient::finalStop commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  QPointF [] }
+&{setFinalStop QLinearGradient::setFinalStop commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc821f9e340] }
+&{setFinalStop QLinearGradient::setFinalStop commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false true 2 void [0xc821f9e4e0 0xc821f9e560] }
+&{setStart QLinearGradient::setStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc821f9e720] }
+&{setStart QLinearGradient::setStart commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false true 2 void [0xc821f9e900 0xc821f9e980] }
+&{start QLinearGradient::start commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  QPointF [] }
+########################################			ENUMS			########################################

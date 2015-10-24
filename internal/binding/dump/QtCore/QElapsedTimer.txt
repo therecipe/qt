@@ -1,0 +1,18 @@
+########################################			FUNCTIONS			########################################
+&{QElapsedTimer QElapsedTimer::QElapsedTimer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non constructor false false   [] }
+&{hasExpired QElapsedTimer::hasExpired commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  bool [0xc8205c73c0] }
+&{invalidate QElapsedTimer::invalidate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  void [] }
+&{isValid QElapsedTimer::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  bool [] }
+&{operator!= QElapsedTimer::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  bool [0xc8205c7960] }
+&{operator== QElapsedTimer::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  bool [0xc8205c7c00] }
+&{clockType QElapsedTimer::clockType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain true false  ClockType [] }
+&{elapsed QElapsedTimer::elapsed commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 [] }
+&{isMonotonic QElapsedTimer::isMonotonic commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain true false  bool [] }
+&{msecsSinceReference QElapsedTimer::msecsSinceReference commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 [] }
+&{msecsTo QElapsedTimer::msecsTo commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 [0xc8205ac700] }
+&{nsecsElapsed QElapsedTimer::nsecsElapsed commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 [] }
+&{restart QElapsedTimer::restart commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 [] }
+&{secsTo QElapsedTimer::secsTo commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 [0xc8205acd40] }
+&{start QElapsedTimer::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  void [] }
+########################################			ENUMS			########################################
+&{ClockType QElapsedTimer::ClockType commendable public  [0xc8205c6c80 0xc8205c6d00 0xc8205c6da0 0xc8205c6e20 0xc8205c6f00]}

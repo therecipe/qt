@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{QVideoRendererControl QVideoRendererControl::QVideoRendererControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideorenderercontrol.h non constructor false false   [0xc821a867c0] }
+&{setSurface QVideoRendererControl::setSurface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideorenderercontrol.h pure plain false false  void [0xc821a86ac0] }
+&{surface QVideoRendererControl::surface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideorenderercontrol.h pure plain false false  QAbstractVideoSurface * [] }
+&{~QVideoRendererControl QVideoRendererControl::~QVideoRendererControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideorenderercontrol.h non destructor false false   [] }
+########################################			ENUMS			########################################

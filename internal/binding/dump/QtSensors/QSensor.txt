@@ -1,0 +1,62 @@
+########################################			FUNCTIONS			########################################
+&{availableDataRates QSensor::availableDataRates commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  qrangelist [] }
+&{axesOrientationMode QSensor::axesOrientationMode commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  AxesOrientationMode [] }
+&{bufferSize QSensor::bufferSize commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  int [] }
+&{currentOrientation QSensor::currentOrientation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  int [] }
+&{dataRate QSensor::dataRate commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  int [] }
+&{description QSensor::description commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  QString [] }
+&{efficientBufferSize QSensor::efficientBufferSize commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  int [] }
+&{error QSensor::error commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  int [] }
+&{identifier QSensor::identifier commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  QByteArray [] }
+&{isActive QSensor::isActive commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  bool [] }
+&{isAlwaysOn QSensor::isAlwaysOn commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  bool [] }
+&{isBusy QSensor::isBusy commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  bool [] }
+&{isConnectedToBackend QSensor::isConnectedToBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  bool [] }
+&{maxBufferSize QSensor::maxBufferSize commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  int [] }
+&{outputRange QSensor::outputRange commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  int [] }
+&{outputRanges QSensor::outputRanges commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  qoutputrangelist [] }
+&{reading QSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  QSensorReading * [] }
+&{setActive QSensor::setActive commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  void [0xc822df0720] }
+&{setAlwaysOn QSensor::setAlwaysOn commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  void [0xc822df0aa0] }
+&{setAxesOrientationMode QSensor::setAxesOrientationMode commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  void [0xc822df0ee0] }
+&{setBufferSize QSensor::setBufferSize commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  void [0xc822df1280] }
+&{setDataRate QSensor::setDataRate commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  void [0xc822df15e0] }
+&{setIdentifier QSensor::setIdentifier commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  void [0xc822df1940] }
+&{setOutputRange QSensor::setOutputRange commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  void [0xc822df1ce0] }
+&{setUserOrientation QSensor::setUserOrientation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  void [0xc822de00a0] }
+&{skipDuplicates QSensor::skipDuplicates commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  bool [] }
+&{type QSensor::type commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  QByteArray [] }
+&{userOrientation QSensor::userOrientation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.cpp non plain false false  int [] }
+&{QSensor QSensor::QSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non constructor false false   [0xc822de1c80 0xc822de1de0] }
+&{activeChanged QSensor::activeChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [] }
+&{addFilter QSensor::addFilter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  void [0xc822dd8660] }
+&{alwaysOnChanged QSensor::alwaysOnChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [] }
+&{availableSensorsChanged QSensor::availableSensorsChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [] }
+&{axesOrientationModeChanged QSensor::axesOrientationModeChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [0xc822dd8c80] }
+&{bufferSizeChanged QSensor::bufferSizeChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [0xc822dd90c0] }
+&{busyChanged QSensor::busyChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [] }
+&{connectToBackend QSensor::connectToBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  bool [] }
+&{currentOrientationChanged QSensor::currentOrientationChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [0xc822dd9600] }
+&{dataRateChanged QSensor::dataRateChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [] }
+&{defaultSensorForType QSensor::defaultSensorForType commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain true false  QByteArray [0xc822dd9ae0] }
+&{efficientBufferSizeChanged QSensor::efficientBufferSizeChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [0xc822dd9dc0] }
+&{filters QSensor::filters commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  QList<QSensorFilter *> [] }
+&{isFeatureSupported QSensor::isFeatureSupported commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  bool [0xc822dcc220] }
+&{maxBufferSizeChanged QSensor::maxBufferSizeChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [0xc822dcc640] }
+&{readingChanged QSensor::readingChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [] }
+&{removeFilter QSensor::removeFilter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  void [0xc822dccae0] }
+&{sensorError QSensor::sensorError commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [0xc822dcce00] }
+&{sensorTypes QSensor::sensorTypes commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain true false  QList<QByteArray> [] }
+&{sensorsForType QSensor::sensorsForType commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain true false  QList<QByteArray> [0xc822dcd420] }
+&{setCurrentOrientation QSensor::setCurrentOrientation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  void [0xc822dcd7e0] }
+&{setEfficientBufferSize QSensor::setEfficientBufferSize commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  void [0xc822dcdba0] }
+&{setMaxBufferSize QSensor::setMaxBufferSize commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  void [0xc822dcdee0] }
+&{setSkipDuplicates QSensor::setSkipDuplicates commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  void [0xc822dbc280] }
+&{skipDuplicatesChanged QSensor::skipDuplicatesChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [0xc822dbc620] }
+&{start QSensor::start commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non slot false false  bool [] }
+&{stop QSensor::stop commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non slot false false  void [] }
+&{userOrientationChanged QSensor::userOrientationChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non signal false false  void [0xc822dbcb60] }
+&{~QSensor QSensor::~QSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{AxesOrientationMode QSensor::AxesOrientationMode commendable public  [0xc822de09c0 0xc822de0ae0 0xc822de0c80]}
+&{Feature QSensor::Feature commendable public  [0xc822de0fa0 0xc822de1080 0xc822de1120 0xc822de12a0 0xc822de1380 0xc822de14c0 0xc822de15e0 0xc822de1780 0xc822de1960]}

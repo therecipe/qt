@@ -1,0 +1,98 @@
+########################################			FUNCTIONS			########################################
+&{baseUrl QTextDocument::baseUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  QUrl [] }
+&{blockCount QTextDocument::blockCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  int [] }
+&{createObject QTextDocument::createObject commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp impure plain false false  QTextObject * [0xc82330c9e0] }
+&{defaultStyleSheet QTextDocument::defaultStyleSheet commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  QString [] }
+&{documentMargin QTextDocument::documentMargin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  qreal [] }
+&{find QTextDocument::find commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false true 4 QTextCursor [0xc82330cec0 0xc82330cf40 0xc82330cfc0] }
+&{indentWidth QTextDocument::indentWidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  qreal [] }
+&{isModified QTextDocument::isModified commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  bool [] }
+&{isUndoRedoEnabled QTextDocument::isUndoRedoEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  bool [] }
+&{markContentsDirty QTextDocument::markContentsDirty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  void [0xc82330d5e0 0xc82330d660] }
+&{maximumBlockCount QTextDocument::maximumBlockCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  int [] }
+&{pageSize QTextDocument::pageSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  QSizeF [] }
+&{setBaseUrl QTextDocument::setBaseUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  void [0xc82330db60] }
+&{setDefaultStyleSheet QTextDocument::setDefaultStyleSheet commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  void [0xc82330dd60] }
+&{setDocumentMargin QTextDocument::setDocumentMargin commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  void [0xc82330dfa0] }
+&{setMaximumBlockCount QTextDocument::setMaximumBlockCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  void [0xc8233241a0] }
+&{setModified QTextDocument::setModified commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non slot false false  void [0xc8233243e0] }
+&{setPageSize QTextDocument::setPageSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  void [0xc8233245e0] }
+&{setTextWidth QTextDocument::setTextWidth commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  void [0xc8233247e0] }
+&{setUndoRedoEnabled QTextDocument::setUndoRedoEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  void [0xc8233249c0] }
+&{setUseDesignMetrics QTextDocument::setUseDesignMetrics commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  void [0xc823324bc0] }
+&{size QTextDocument::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  QSizeF [] }
+&{textWidth QTextDocument::textWidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  qreal [] }
+&{useDesignMetrics QTextDocument::useDesignMetrics commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.cpp non plain false false  bool [] }
+&{QTextDocument QTextDocument::QTextDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non constructor false false   [0xc823325ec0] }
+&{QTextDocument QTextDocument::QTextDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non constructor false true 2  [0xc823338060 0xc8233380e0] }
+&{addResource QTextDocument::addResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc823338520 0xc8233385a0 0xc823338620] }
+&{adjustSize QTextDocument::adjustSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [] }
+&{allFormats QTextDocument::allFormats commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QVector<QTextFormat> [] }
+&{availableRedoSteps QTextDocument::availableRedoSteps commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  int [] }
+&{availableUndoSteps QTextDocument::availableUndoSteps commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  int [] }
+&{baseUrlChanged QTextDocument::baseUrlChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non signal false false  void [0xc823338e20] }
+&{begin QTextDocument::begin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextBlock [] }
+&{blockCountChanged QTextDocument::blockCountChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non signal false false  void [0xc823339120] }
+&{characterAt QTextDocument::characterAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QChar [0xc823339300] }
+&{characterCount QTextDocument::characterCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  int [] }
+&{clear QTextDocument::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h impure plain false false  void [] }
+&{clearUndoRedoStacks QTextDocument::clearUndoRedoStacks commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc823339680] }
+&{clone QTextDocument::clone commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextDocument * [0xc823339840] }
+&{contentsChange QTextDocument::contentsChange commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non signal false false  void [0xc8233399e0 0xc823339a60 0xc823339ae0] }
+&{contentsChanged QTextDocument::contentsChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non signal false false  void [] }
+&{cursorPositionChanged QTextDocument::cursorPositionChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non signal false false  void [0xc823339d80] }
+&{defaultCursorMoveStyle QTextDocument::defaultCursorMoveStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  Qt::CursorMoveStyle [] }
+&{defaultFont QTextDocument::defaultFont commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QFont [] }
+&{defaultTextOption QTextDocument::defaultTextOption commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextOption [] }
+&{documentLayout QTextDocument::documentLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QAbstractTextDocumentLayout * [] }
+&{documentLayoutChanged QTextDocument::documentLayoutChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non signal false false  void [] }
+&{drawContents QTextDocument::drawContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc82334c640 0xc82334c6c0] }
+&{end QTextDocument::end commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextBlock [] }
+&{find QTextDocument::find commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false true 6 QTextCursor [0xc82334c980 0xc82334ca20 0xc82334cae0] }
+&{find QTextDocument::find commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false true 5 QTextCursor [0xc82334cca0 0xc82334cd20 0xc82334cda0] }
+&{find QTextDocument::find commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false true 3 QTextCursor [0xc82334cf80 0xc82334d060 0xc82334d120] }
+&{find QTextDocument::find commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false true 2 QTextCursor [0xc82334d300 0xc82334d3c0 0xc82334d440] }
+&{find QTextDocument::find commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextCursor [0xc82334d600 0xc82334d6a0 0xc82334d760] }
+&{findBlock QTextDocument::findBlock commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextBlock [0xc82334d920] }
+&{findBlockByLineNumber QTextDocument::findBlockByLineNumber commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextBlock [0xc82334dac0] }
+&{findBlockByNumber QTextDocument::findBlockByNumber commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextBlock [0xc82334dcc0] }
+&{firstBlock QTextDocument::firstBlock commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextBlock [] }
+&{idealWidth QTextDocument::idealWidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  qreal [] }
+&{isEmpty QTextDocument::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  bool [] }
+&{isRedoAvailable QTextDocument::isRedoAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  bool [] }
+&{isUndoAvailable QTextDocument::isUndoAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  bool [] }
+&{lastBlock QTextDocument::lastBlock commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextBlock [] }
+&{lineCount QTextDocument::lineCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  int [] }
+&{loadResource QTextDocument::loadResource commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h impure plain false false  QVariant [0xc823364720 0xc8233647a0] }
+&{metaInformation QTextDocument::metaInformation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QString [0xc823364940] }
+&{modificationChanged QTextDocument::modificationChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non signal false false  void [0xc823364ae0] }
+&{object QTextDocument::object commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextObject * [0xc823364ca0] }
+&{objectForFormat QTextDocument::objectForFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextObject * [0xc823364e60] }
+&{pageCount QTextDocument::pageCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  int [] }
+&{print QTextDocument::print commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc823365180] }
+&{redo QTextDocument::redo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non slot false true 2 void [] }
+&{redo QTextDocument::redo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc823365480] }
+&{redoAvailable QTextDocument::redoAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non signal false false  void [0xc823365640] }
+&{resource QTextDocument::resource commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QVariant [0xc823365800 0xc823365880] }
+&{revision QTextDocument::revision commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  int [] }
+&{rootFrame QTextDocument::rootFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QTextFrame * [] }
+&{setDefaultCursorMoveStyle QTextDocument::setDefaultCursorMoveStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc823365c40] }
+&{setDefaultFont QTextDocument::setDefaultFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc823365e40] }
+&{setDefaultTextOption QTextDocument::setDefaultTextOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc82337c040] }
+&{setDocumentLayout QTextDocument::setDocumentLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc82337c2a0] }
+&{setHtml QTextDocument::setHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc82337c4a0] }
+&{setIndentWidth QTextDocument::setIndentWidth commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc82337c680] }
+&{setMetaInformation QTextDocument::setMetaInformation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc82337c820 0xc82337c8a0] }
+&{setPlainText QTextDocument::setPlainText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc82337ca60] }
+&{toHtml QTextDocument::toHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QString [0xc82337cc40] }
+&{toPlainText QTextDocument::toPlainText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  QString [] }
+&{undo QTextDocument::undo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non slot false true 2 void [] }
+&{undo QTextDocument::undo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non plain false false  void [0xc82337d040] }
+&{undoAvailable QTextDocument::undoAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non signal false false  void [0xc82337d200] }
+&{undoCommandAdded QTextDocument::undoCommandAdded commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non signal false false  void [] }
+&{~QTextDocument QTextDocument::~QTextDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocument.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{FindFlag QTextDocument::FindFlag commendable public QTextDocument::FindFlags [0xc8233251a0 0xc823325240 0xc823325300]}
+&{MetaInformation QTextDocument::MetaInformation commendable public  [0xc8233254a0 0xc823325520]}
+&{ResourceType QTextDocument::ResourceType commendable public  [0xc8233256c0 0xc823325740 0xc8233257e0 0xc8233258a0]}
+&{Stacks QTextDocument::Stacks commendable public  [0xc823325a60 0xc823325ae0 0xc823325ba0]}

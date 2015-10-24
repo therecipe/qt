@@ -1,0 +1,65 @@
+########################################			FUNCTIONS			########################################
+&{namespaceProcessing QXmlStreamReader::namespaceProcessing commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.cpp non plain false false  bool [] }
+&{setNamespaceProcessing QXmlStreamReader::setNamespaceProcessing commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.cpp non plain false false  void [0xc820479d40] }
+&{QXmlStreamReader QXmlStreamReader::QXmlStreamReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false false   [] }
+&{QXmlStreamReader QXmlStreamReader::QXmlStreamReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 2  [0xc820458da0] }
+&{QXmlStreamReader QXmlStreamReader::QXmlStreamReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 3  [0xc820459100] }
+&{QXmlStreamReader QXmlStreamReader::QXmlStreamReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 4  [0xc820459460] }
+&{QXmlStreamReader QXmlStreamReader::QXmlStreamReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 5  [0xc820459780] }
+&{addData QXmlStreamReader::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc820459bc0] }
+&{addData QXmlStreamReader::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 2 void [0xc820459f40] }
+&{addData QXmlStreamReader::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false true 3 void [0xc82044a440] }
+&{addExtraNamespaceDeclaration QXmlStreamReader::addExtraNamespaceDeclaration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc82044a7c0] }
+&{addExtraNamespaceDeclarations QXmlStreamReader::addExtraNamespaceDeclarations commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc82044ab00] }
+&{atEnd QXmlStreamReader::atEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{attributes QXmlStreamReader::attributes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QXmlStreamAttributes [] }
+&{characterOffset QXmlStreamReader::characterOffset commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  qint64 [] }
+&{clear QXmlStreamReader::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [] }
+&{columnNumber QXmlStreamReader::columnNumber commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  qint64 [] }
+&{device QXmlStreamReader::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QIODevice * [] }
+&{documentEncoding QXmlStreamReader::documentEncoding commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{documentVersion QXmlStreamReader::documentVersion commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{dtdName QXmlStreamReader::dtdName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{dtdPublicId QXmlStreamReader::dtdPublicId commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{dtdSystemId QXmlStreamReader::dtdSystemId commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{entityDeclarations QXmlStreamReader::entityDeclarations commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QXmlStreamEntityDeclarations [] }
+&{entityResolver QXmlStreamReader::entityResolver commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QXmlStreamEntityResolver * [] }
+&{error QXmlStreamReader::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  Error [] }
+&{errorString QXmlStreamReader::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QString [] }
+&{hasError QXmlStreamReader::hasError commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{isCDATA QXmlStreamReader::isCDATA commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{isCharacters QXmlStreamReader::isCharacters commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{isComment QXmlStreamReader::isComment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{isDTD QXmlStreamReader::isDTD commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{isEndDocument QXmlStreamReader::isEndDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{isEndElement QXmlStreamReader::isEndElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{isEntityReference QXmlStreamReader::isEntityReference commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{isProcessingInstruction QXmlStreamReader::isProcessingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{isStandaloneDocument QXmlStreamReader::isStandaloneDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{isStartDocument QXmlStreamReader::isStartDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{isStartElement QXmlStreamReader::isStartElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{isWhitespace QXmlStreamReader::isWhitespace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{lineNumber QXmlStreamReader::lineNumber commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  qint64 [] }
+&{name QXmlStreamReader::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{namespaceDeclarations QXmlStreamReader::namespaceDeclarations commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QXmlStreamNamespaceDeclarations [] }
+&{namespaceUri QXmlStreamReader::namespaceUri commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{notationDeclarations QXmlStreamReader::notationDeclarations commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QXmlStreamNotationDeclarations [] }
+&{prefix QXmlStreamReader::prefix commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{processingInstructionData QXmlStreamReader::processingInstructionData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{processingInstructionTarget QXmlStreamReader::processingInstructionTarget commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{qualifiedName QXmlStreamReader::qualifiedName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{raiseError QXmlStreamReader::raiseError commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc820a4d080] }
+&{readElementText QXmlStreamReader::readElementText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QString [0xc820a4d280] }
+&{readNext QXmlStreamReader::readNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  TokenType [] }
+&{readNextStartElement QXmlStreamReader::readNextStartElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
+&{setDevice QXmlStreamReader::setDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc820a4d840] }
+&{setEntityResolver QXmlStreamReader::setEntityResolver commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [0xc820a4dae0] }
+&{skipCurrentElement QXmlStreamReader::skipCurrentElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  void [] }
+&{text QXmlStreamReader::text commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
+&{tokenString QXmlStreamReader::tokenString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QString [] }
+&{tokenType QXmlStreamReader::tokenType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  TokenType [] }
+&{~QXmlStreamReader QXmlStreamReader::~QXmlStreamReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Error QXmlStreamReader::Error commendable public  [0xc82046a220 0xc82046a380 0xc82046a580 0xc82046a760 0xc82046aa60]}
+&{ReadElementTextBehaviour QXmlStreamReader::ReadElementTextBehaviour commendable public  [0xc82046afe0 0xc82046b200 0xc82046b4a0]}
+&{TokenType QXmlStreamReader::TokenType commendable public  [0xc82046bb40 0xc82046bc20 0xc82046bdc0 0xc82046bea0 0xc820458020 0xc8204581c0 0xc8204582a0 0xc820458480 0xc820458560 0xc820458640 0xc820458800]}

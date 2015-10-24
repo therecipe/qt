@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QItemSelection QItemSelection::QItemSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non constructor false false   [] }
+&{QItemSelection QItemSelection::QItemSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non constructor false true 2  [0xc8204797c0 0xc8204798a0] }
+&{contains QItemSelection::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  bool [0xc820479ae0] }
+&{indexes QItemSelection::indexes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  QModelIndexList [] }
+&{merge QItemSelection::merge commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  void [0xc820479e60 0xc820479f20] }
+&{select QItemSelection::select commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  void [0xc820484120 0xc820484200] }
+&{split QItemSelection::split commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain true false  void [0xc820484440 0xc820484520 0xc8204845e0] }
+########################################			ENUMS			########################################

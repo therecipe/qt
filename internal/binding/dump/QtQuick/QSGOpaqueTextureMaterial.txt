@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{QSGOpaqueTextureMaterial QSGOpaqueTextureMaterial::QSGOpaqueTextureMaterial commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexturematerial.h non constructor false false   [] }
+&{filtering QSGOpaqueTextureMaterial::filtering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexturematerial.h non plain false false  QSGTexture::Filtering [] }
+&{horizontalWrapMode QSGOpaqueTextureMaterial::horizontalWrapMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexturematerial.h non plain false false  QSGTexture::WrapMode [] }
+&{mipmapFiltering QSGOpaqueTextureMaterial::mipmapFiltering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexturematerial.h non plain false false  QSGTexture::Filtering [] }
+&{setFiltering QSGOpaqueTextureMaterial::setFiltering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexturematerial.h non plain false false  void [0xc822449ca0] }
+&{setHorizontalWrapMode QSGOpaqueTextureMaterial::setHorizontalWrapMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexturematerial.h non plain false false  void [0xc821b3a020] }
+&{setMipmapFiltering QSGOpaqueTextureMaterial::setMipmapFiltering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexturematerial.h non plain false false  void [0xc821b3a660] }
+&{setTexture QSGOpaqueTextureMaterial::setTexture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexturematerial.h non plain false false  void [0xc821b3aa60] }
+&{setVerticalWrapMode QSGOpaqueTextureMaterial::setVerticalWrapMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexturematerial.h non plain false false  void [0xc821b3b0e0] }
+&{texture QSGOpaqueTextureMaterial::texture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexturematerial.h non plain false false  QSGTexture * [] }
+&{verticalWrapMode QSGOpaqueTextureMaterial::verticalWrapMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexturematerial.h non plain false false  QSGTexture::WrapMode [] }
+########################################			ENUMS			########################################

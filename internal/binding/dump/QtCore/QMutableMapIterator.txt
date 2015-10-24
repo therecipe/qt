@@ -1,0 +1,19 @@
+########################################			FUNCTIONS			########################################
+&{QMutableMapIterator QMutableMapIterator::QMutableMapIterator commendable public qmap.h non constructor false false   [0xc820291780] }
+&{findNext QMutableMapIterator::findNext commendable public qmap.h non plain false false  bool [0xc820291ae0] }
+&{findPrevious QMutableMapIterator::findPrevious commendable public qmap.h non plain false false  bool [0xc820291d40] }
+&{hasNext QMutableMapIterator::hasNext commendable public qmap.h non plain false false  bool [] }
+&{hasPrevious QMutableMapIterator::hasPrevious commendable public qmap.h non plain false false  bool [] }
+&{key QMutableMapIterator::key commendable public qmap.h non plain false false  const Key & [] }
+&{next QMutableMapIterator::next commendable public qmap.h non plain false false  Item [] }
+&{operator= QMutableMapIterator::operator= commendable public qmap.h non plain false false  QMutableMapIterator & [0xc82027ae20] }
+&{peekNext QMutableMapIterator::peekNext commendable public qmap.h non plain false false  Item [] }
+&{peekPrevious QMutableMapIterator::peekPrevious commendable public qmap.h non plain false false  Item [] }
+&{previous QMutableMapIterator::previous commendable public qmap.h non plain false false  Item [] }
+&{remove QMutableMapIterator::remove commendable public qmap.h non plain false false  void [] }
+&{setValue QMutableMapIterator::setValue commendable public qmap.h non plain false false  void [0xc82027b700] }
+&{toBack QMutableMapIterator::toBack commendable public qmap.h non plain false false  void [] }
+&{toFront QMutableMapIterator::toFront commendable public qmap.h non plain false false  void [] }
+&{value QMutableMapIterator::value commendable public qmap.h non plain false true 2 T & [] }
+&{value QMutableMapIterator::value commendable public qmap.h non plain false false  const T & [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,15 @@
+########################################			FUNCTIONS			########################################
+&{QSGMaterialShader QSGMaterialShader::QSGMaterialShader commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.cpp non constructor false true 2  [0xc821bfe9e0] }
+&{fragmentShader QSGMaterialShader::fragmentShader commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.cpp impure plain false false  const char * [] }
+&{vertexShader QSGMaterialShader::vertexShader commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.cpp impure plain false false  const char * [] }
+&{QSGMaterialShader QSGMaterialShader::QSGMaterialShader commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non constructor false false   [] }
+&{activate QSGMaterialShader::activate commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h impure plain false false  void [] }
+&{attributeNames QSGMaterialShader::attributeNames commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h pure plain false false  char const * const * [] }
+&{compile QSGMaterialShader::compile commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h impure plain false false  void [] }
+&{deactivate QSGMaterialShader::deactivate commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h impure plain false false  void [] }
+&{initialize QSGMaterialShader::initialize commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h impure plain false false  void [] }
+&{program QSGMaterialShader::program commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  QOpenGLShaderProgram * [] }
+&{setShaderSourceFile QSGMaterialShader::setShaderSourceFile commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  void [0xc821bf3c60 0xc821bf3ea0] }
+&{setShaderSourceFiles QSGMaterialShader::setShaderSourceFiles commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  void [0xc821be0480 0xc821be0620] }
+&{updateState QSGMaterialShader::updateState commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h impure plain false false  void [0xc821be0d00 0xc821be0f40 0xc821be1060] }
+########################################			ENUMS			########################################

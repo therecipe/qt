@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QLinkedListIterator QLinkedListIterator::QLinkedListIterator commendable public qlinkedlist.h non constructor false false   [0xc82032e640] }
+&{findNext QLinkedListIterator::findNext commendable public qlinkedlist.h non plain false false  bool [0xc82032ec40] }
+&{findPrevious QLinkedListIterator::findPrevious commendable public qlinkedlist.h non plain false false  bool [0xc82032f0a0] }
+&{hasNext QLinkedListIterator::hasNext commendable public qlinkedlist.h non plain false false  bool [] }
+&{hasPrevious QLinkedListIterator::hasPrevious commendable public qlinkedlist.h non plain false false  bool [] }
+&{next QLinkedListIterator::next commendable public qlinkedlist.h non plain false false  const T & [] }
+&{operator= QLinkedListIterator::operator= commendable public qlinkedlist.h non plain false false  QLinkedListIterator & [0xc8203142c0] }
+&{peekNext QLinkedListIterator::peekNext commendable public qlinkedlist.h non plain false false  const T & [] }
+&{peekPrevious QLinkedListIterator::peekPrevious commendable public qlinkedlist.h non plain false false  const T & [] }
+&{previous QLinkedListIterator::previous commendable public qlinkedlist.h non plain false false  const T & [] }
+&{toBack QLinkedListIterator::toBack commendable public qlinkedlist.h non plain false false  void [] }
+&{toFront QLinkedListIterator::toFront commendable public qlinkedlist.h non plain false false  void [] }
+########################################			ENUMS			########################################

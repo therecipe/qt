@@ -1,0 +1,46 @@
+########################################			FUNCTIONS			########################################
+&{QRawFont QRawFont::QRawFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non constructor false false   [] }
+&{QRawFont QRawFont::QRawFont commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non constructor false true 3  [0xc8232558c0 0xc823255980 0xc823255a60] }
+&{QRawFont QRawFont::QRawFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non constructor false true 4  [0xc823255cc0] }
+&{QRawFont QRawFont::QRawFont commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non constructor false true 2  [0xc823255e80 0xc823255f00 0xc823255fe0] }
+&{advancesForGlyphIndexes QRawFont::advancesForGlyphIndexes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false true 3 QVector<QPointF> [0xc823264240] }
+&{advancesForGlyphIndexes QRawFont::advancesForGlyphIndexes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  QVector<QPointF> [0xc823264440 0xc823264500] }
+&{advancesForGlyphIndexes QRawFont::advancesForGlyphIndexes commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false true 4 bool [0xc8232646a0 0xc823264720 0xc8232647a0] }
+&{advancesForGlyphIndexes QRawFont::advancesForGlyphIndexes commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false true 2 bool [0xc823264940 0xc8232649c0 0xc823264a40 0xc823264ac0] }
+&{alphaMapForGlyph QRawFont::alphaMapForGlyph commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  QImage [0xc823264ca0 0xc823264d40 0xc823264de0] }
+&{ascent QRawFont::ascent commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  qreal [] }
+&{averageCharWidth QRawFont::averageCharWidth commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  qreal [] }
+&{boundingRect QRawFont::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  QRectF [0xc823265180] }
+&{descent QRawFont::descent commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  qreal [] }
+&{familyName QRawFont::familyName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  QString [] }
+&{fontTable QRawFont::fontTable commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  QByteArray [0xc823265540] }
+&{fromFont QRawFont::fromFont commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain true false  QRawFont [0xc823265700 0xc8232657c0] }
+&{glyphIndexesForChars QRawFont::glyphIndexesForChars commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  bool [0xc823265a20 0xc823265aa0 0xc823265b20 0xc823265ba0] }
+&{glyphIndexesForString QRawFont::glyphIndexesForString commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  QVector<quint32> [0xc823265da0] }
+&{hintingPreference QRawFont::hintingPreference commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  QFont::HintingPreference [] }
+&{isValid QRawFont::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  bool [] }
+&{leading QRawFont::leading commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  qreal [] }
+&{lineThickness QRawFont::lineThickness commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  qreal [] }
+&{loadFromData QRawFont::loadFromData commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  void [0xc823278420 0xc8232784e0 0xc8232785a0] }
+&{loadFromFile QRawFont::loadFromFile commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  void [0xc8232787e0 0xc823278860 0xc823278920] }
+&{maxCharWidth QRawFont::maxCharWidth commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  qreal [] }
+&{operator!= QRawFont::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  bool [0xc823278c60] }
+&{operator= QRawFont::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  QRawFont & [0xc823278e20] }
+&{operator== QRawFont::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  bool [0xc823278fe0] }
+&{pathForGlyph QRawFont::pathForGlyph commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  QPainterPath [0xc8232791a0] }
+&{pixelSize QRawFont::pixelSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  qreal [] }
+&{setPixelSize QRawFont::setPixelSize commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  void [0xc823279460] }
+&{style QRawFont::style commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  QFont::Style [] }
+&{styleName QRawFont::styleName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  QString [] }
+&{supportedWritingSystems QRawFont::supportedWritingSystems commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  QList<QFontDatabase::WritingSystem> [] }
+&{supportsCharacter QRawFont::supportsCharacter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  bool [0xc823279900] }
+&{supportsCharacter QRawFont::supportsCharacter commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false true 2 bool [0xc823279b00] }
+&{swap QRawFont::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  void [0xc823279c80] }
+&{underlinePosition QRawFont::underlinePosition commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  qreal [] }
+&{unitsPerEm QRawFont::unitsPerEm commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  qreal [] }
+&{weight QRawFont::weight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  int [] }
+&{xHeight QRawFont::xHeight commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non plain false false  qreal [] }
+&{~QRawFont QRawFont::~QRawFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qrawfont.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{AntialiasingType QRawFont::AntialiasingType commendable public  [0xc8232550c0 0xc8232551a0]}
+&{LayoutFlag QRawFont::LayoutFlag commendable public QRawFont::LayoutFlags [0xc823255400 0xc823255480 0xc823255500]}

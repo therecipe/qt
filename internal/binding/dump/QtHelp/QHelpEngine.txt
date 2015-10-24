@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QHelpEngine QHelpEngine::QHelpEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non constructor false false   [0xc8222ce960 0xc8222ce9e0] }
+&{contentModel QHelpEngine::contentModel commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpContentModel * [] }
+&{contentWidget QHelpEngine::contentWidget commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpContentWidget * [] }
+&{indexModel QHelpEngine::indexModel commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpIndexModel * [] }
+&{indexWidget QHelpEngine::indexWidget commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpIndexWidget * [] }
+&{searchEngine QHelpEngine::searchEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpSearchEngine * [] }
+&{~QHelpEngine QHelpEngine::~QHelpEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non destructor false false   [] }
+########################################			ENUMS			########################################

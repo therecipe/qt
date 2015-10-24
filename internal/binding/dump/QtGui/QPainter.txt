@@ -1,0 +1,195 @@
+########################################			FUNCTIONS			########################################
+&{QPainter QPainter::QPainter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non constructor false true 2  [0xc822cd1900] }
+&{begin QPainter::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  bool [0xc822cd1a80] }
+&{boundingRect QPainter::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 2 QRect [0xc822cd1c40 0xc822cd1cc0 0xc822cd1d40] }
+&{boundingRect QPainter::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 4 QRectF [0xc822cd1f00 0xc822cd1f80 0xc822ce0020] }
+&{boundingRect QPainter::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  QRectF [0xc822ce0240 0xc822ce02c0 0xc822ce0340] }
+&{drawArc QPainter::drawArc commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822ce0500 0xc822ce0580 0xc822ce0600] }
+&{drawChord QPainter::drawChord commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822ce07c0 0xc822ce0840 0xc822ce08c0] }
+&{drawConvexPolygon QPainter::drawConvexPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 2 void [0xc822ce0ac0 0xc822ce0b40] }
+&{drawConvexPolygon QPainter::drawConvexPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822ce0d80 0xc822ce0e00] }
+&{drawEllipse QPainter::drawEllipse commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 2 void [0xc822ce0fc0] }
+&{drawEllipse QPainter::drawEllipse commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822ce1180] }
+&{drawGlyphRun QPainter::drawGlyphRun commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822ce1340 0xc822ce13e0] }
+&{drawImage QPainter::drawImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 3 void [0xc822ce15e0 0xc822ce1660] }
+&{drawImage QPainter::drawImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822ce1820 0xc822ce18a0 0xc822ce1920 0xc822ce19c0] }
+&{drawLines QPainter::drawLines commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 2 void [0xc822ce1bc0 0xc822ce1c40] }
+&{drawPicture QPainter::drawPicture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822ce1e00 0xc822ce1e80] }
+&{drawPie QPainter::drawPie commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822cf0060 0xc822cf00e0 0xc822cf0160] }
+&{drawPixmap QPainter::drawPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 5 void [0xc822cf0320 0xc822cf03a0] }
+&{drawPixmap QPainter::drawPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822cf0560 0xc822cf05e0 0xc822cf0660] }
+&{drawRects QPainter::drawRects commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 2 void [0xc822cf0820 0xc822cf08a0] }
+&{drawRects QPainter::drawRects commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822cf0a60 0xc822cf0ae0] }
+&{drawText QPainter::drawText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822cf0ca0 0xc822cf0d20] }
+&{drawText QPainter::drawText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 5 void [0xc822cf0ee0 0xc822cf0f60 0xc822cf0fe0 0xc822cf1060] }
+&{drawText QPainter::drawText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 8 void [0xc822cf1220 0xc822cf12a0 0xc822cf1340] }
+&{drawText QPainter::drawText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 4 void [0xc822cf1540 0xc822cf15c0 0xc822cf1640 0xc822cf16c0] }
+&{drawTiledPixmap QPainter::drawTiledPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822cf1b20 0xc822cf1ba0 0xc822cf1c20] }
+&{eraseRect QPainter::eraseRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822cf1de0] }
+&{fillRect QPainter::fillRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 5 void [0xc822cf1fa0 0xc822298020] }
+&{fillRect QPainter::fillRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 6 void [0xc8222981e0 0xc822298260] }
+&{fillRect QPainter::fillRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822298420 0xc8222984a0] }
+&{fillRect QPainter::fillRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 7 void [0xc822298660 0xc8222986e0] }
+&{rotate QPainter::rotate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822298880] }
+&{setBackground QPainter::setBackground commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822298a40] }
+&{setBrushOrigin QPainter::setBrushOrigin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822298c00] }
+&{setClipPath QPainter::setClipPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822298de0 0xc822298ec0] }
+&{setClipRect QPainter::setClipRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false true 3 void [0xc8222990c0 0xc822299160] }
+&{setClipRect QPainter::setClipRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822299360 0xc822299400] }
+&{setClipRegion QPainter::setClipRegion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822299600 0xc8222996a0] }
+&{setViewport QPainter::setViewport commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc8222998a0] }
+&{setWindow QPainter::setWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.cpp non plain false false  void [0xc822299a60] }
+&{QPainter QPainter::QPainter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non constructor false false   [] }
+&{background QPainter::background commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  const QBrush & [] }
+&{backgroundMode QPainter::backgroundMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  Qt::BGMode [] }
+&{beginNativePainting QPainter::beginNativePainting commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [] }
+&{boundingRect QPainter::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 QRect [0xc8222b54a0 0xc8222b5520 0xc8222b55a0 0xc8222b5620 0xc8222b56c0 0xc8222b5740] }
+&{brush QPainter::brush commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  const QBrush & [] }
+&{brushOrigin QPainter::brushOrigin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  QPoint [] }
+&{clipBoundingRect QPainter::clipBoundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  QRectF [] }
+&{clipPath QPainter::clipPath commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  QPainterPath [] }
+&{clipRegion QPainter::clipRegion commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  QRegion [] }
+&{combinedTransform QPainter::combinedTransform commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  QTransform [] }
+&{compositionMode QPainter::compositionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  CompositionMode [] }
+&{device QPainter::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  QPaintDevice * [] }
+&{deviceTransform QPainter::deviceTransform commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  const QTransform & [] }
+&{drawArc QPainter::drawArc commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc8222c8340 0xc8222c83c0 0xc8222c8440] }
+&{drawArc QPainter::drawArc commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8222c8600 0xc8222c8680 0xc8222c8700 0xc8222c8780 0xc8222c8820 0xc8222c88a0] }
+&{drawChord QPainter::drawChord commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc8222c8a60 0xc8222c8ae0 0xc8222c8b60] }
+&{drawChord QPainter::drawChord commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8222c8d20 0xc8222c8da0 0xc8222c8e20 0xc8222c8ea0 0xc8222c8f40 0xc8222c8fc0] }
+&{drawConvexPolygon QPainter::drawConvexPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 4 void [0xc8222c91c0] }
+&{drawConvexPolygon QPainter::drawConvexPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8222c93e0] }
+&{drawEllipse QPainter::drawEllipse commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 5 void [0xc8222c95e0 0xc8222c9660 0xc8222c96e0] }
+&{drawEllipse QPainter::drawEllipse commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 4 void [0xc8222c98c0 0xc8222c9940 0xc8222c99c0] }
+&{drawEllipse QPainter::drawEllipse commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8222c9b80 0xc8222c9c00 0xc8222c9c80 0xc8222c9d00] }
+&{drawImage QPainter::drawImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 4 void [0xc8222c9ec0 0xc8222c9f40] }
+&{drawImage QPainter::drawImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 6 void [0xc8222da100 0xc8222da180 0xc8222da200 0xc8222da2a0] }
+&{drawImage QPainter::drawImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 5 void [0xc8222da4a0 0xc8222da520 0xc8222da5a0 0xc8222da640] }
+&{drawImage QPainter::drawImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 8 void [0xc8222da840 0xc8222da8c0] }
+&{drawImage QPainter::drawImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc8222daa80 0xc8222dab00 0xc8222dab80 0xc8222dac20] }
+&{drawImage QPainter::drawImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 7 void [0xc8222dae20 0xc8222daea0] }
+&{drawImage QPainter::drawImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 9 void [0xc8222db060 0xc8222db0e0 0xc8222db160 0xc8222db1e0 0xc8222db280 0xc8222db300 0xc8222db380 0xc8222db420] }
+&{drawLine QPainter::drawLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc8222db640] }
+&{drawLine QPainter::drawLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc8222db800] }
+&{drawLine QPainter::drawLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8222db9c0 0xc8222dba40] }
+&{drawLine QPainter::drawLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 4 void [0xc8222dbc00 0xc8222dbc80] }
+&{drawLine QPainter::drawLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 5 void [0xc8222dbe40 0xc8222dbec0 0xc8222dbf40 0xc8222dbfc0] }
+&{drawLines QPainter::drawLines commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc8222ec180 0xc8222ec200] }
+&{drawLines QPainter::drawLines commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 4 void [0xc8222ec3c0 0xc8222ec440] }
+&{drawLines QPainter::drawLines commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8222ec600 0xc8222ec680] }
+&{drawLines QPainter::drawLines commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 8 void [0xc8222ec860] }
+&{drawLines QPainter::drawLines commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 7 void [0xc8222eca80] }
+&{drawLines QPainter::drawLines commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 6 void [0xc8222ecca0] }
+&{drawLines QPainter::drawLines commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 5 void [0xc8222ecec0] }
+&{drawPath QPainter::drawPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc8222ed0e0] }
+&{drawPicture QPainter::drawPicture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc8222ed2e0 0xc8222ed360] }
+&{drawPicture QPainter::drawPicture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8222ed520 0xc8222ed5a0 0xc8222ed620] }
+&{drawPie QPainter::drawPie commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc8222ed7e0 0xc8222ed860 0xc8222ed8e0] }
+&{drawPie QPainter::drawPie commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8222edaa0 0xc8222edb20 0xc8222edba0 0xc8222edc20 0xc8222edcc0 0xc8222edd40] }
+&{drawPixmap QPainter::drawPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 6 void [0xc8222edf00 0xc8222edf80] }
+&{drawPixmap QPainter::drawPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 4 void [0xc8222fc140 0xc8222fc1c0 0xc8222fc240] }
+&{drawPixmap QPainter::drawPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8222fc400 0xc8222fc480 0xc8222fc500] }
+&{drawPixmap QPainter::drawPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 8 void [0xc8222fc6c0 0xc8222fc740] }
+&{drawPixmap QPainter::drawPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc8222fc900 0xc8222fc980 0xc8222fca00] }
+&{drawPixmap QPainter::drawPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 7 void [0xc8222fcbc0 0xc8222fcc40 0xc8222fccc0] }
+&{drawPixmap QPainter::drawPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 11 void [0xc8222fce80 0xc8222fcf00 0xc8222fcf80 0xc8222fd000 0xc8222fd0a0 0xc8222fd120 0xc8222fd1a0] }
+&{drawPixmap QPainter::drawPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 10 void [0xc8222fd360 0xc8222fd3e0 0xc8222fd460 0xc8222fd4e0 0xc8222fd580 0xc8222fd600 0xc8222fd680 0xc8222fd700 0xc8222fd7a0] }
+&{drawPixmap QPainter::drawPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 9 void [0xc8222fd960 0xc8222fd9e0 0xc8222fda60 0xc8222fdae0 0xc8222fdb80] }
+&{drawPixmapFragments QPainter::drawPixmapFragments commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc8222fdda0 0xc8222fde60 0xc8222fdee0 0xc8222fdf80] }
+&{drawPoint QPainter::drawPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822310180] }
+&{drawPoint QPainter::drawPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822310340] }
+&{drawPoint QPainter::drawPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc822310520 0xc8223105a0] }
+&{drawPoints QPainter::drawPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822310760 0xc8223107e0] }
+&{drawPoints QPainter::drawPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc8223109a0 0xc822310a20] }
+&{drawPoints QPainter::drawPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 4 void [0xc822310be0] }
+&{drawPoints QPainter::drawPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc822310dc0] }
+&{drawPolygon QPainter::drawPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822310fc0 0xc822311040 0xc8223110c0] }
+&{drawPolygon QPainter::drawPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822311280 0xc822311300 0xc822311380] }
+&{drawPolygon QPainter::drawPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 4 void [0xc822311540 0xc8223115c0] }
+&{drawPolygon QPainter::drawPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8223117a0 0xc822311860] }
+&{drawPolyline QPainter::drawPolyline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822311a20 0xc822311aa0] }
+&{drawPolyline QPainter::drawPolyline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822311c60 0xc822311ce0] }
+&{drawPolyline QPainter::drawPolyline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 4 void [0xc822311ea0] }
+&{drawPolyline QPainter::drawPolyline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc822324080] }
+&{drawRect QPainter::drawRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822324280] }
+&{drawRect QPainter::drawRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822324440] }
+&{drawRect QPainter::drawRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc822324600 0xc822324680 0xc822324700 0xc822324780] }
+&{drawRects QPainter::drawRects commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 4 void [0xc822324960] }
+&{drawRects QPainter::drawRects commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc822324b80] }
+&{drawRoundedRect QPainter::drawRoundedRect commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822325700 0xc822325780 0xc822325800 0xc822325880] }
+&{drawRoundedRect QPainter::drawRoundedRect commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822325a40 0xc822325ac0 0xc822325b40 0xc822325bc0] }
+&{drawRoundedRect QPainter::drawRoundedRect commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc822325d80 0xc822325e00 0xc822325e80 0xc822325f00 0xc822325fa0 0xc822336020 0xc8223360a0] }
+&{drawStaticText QPainter::drawStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822336260 0xc822336300] }
+&{drawStaticText QPainter::drawStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822336500 0xc8223365a0] }
+&{drawStaticText QPainter::drawStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8223367c0 0xc822336840 0xc8223368e0] }
+&{drawText QPainter::drawText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc822336ae0 0xc822336b60] }
+&{drawText QPainter::drawText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 6 void [0xc822336d20 0xc822336da0 0xc822336e20] }
+&{drawText QPainter::drawText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 7 void [0xc822336fe0 0xc822337060 0xc8223370e0 0xc822337160 0xc822337200 0xc822337280 0xc822337300] }
+&{drawTiledPixmap QPainter::drawTiledPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822337e20 0xc822337ea0 0xc822337f20] }
+&{drawTiledPixmap QPainter::drawTiledPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8223480e0 0xc822348160 0xc8223481e0 0xc822348260 0xc822348300 0xc822348380 0xc822348400] }
+&{end QPainter::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  bool [] }
+&{endNativePainting QPainter::endNativePainting commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [] }
+&{eraseRect QPainter::eraseRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc8223487a0] }
+&{eraseRect QPainter::eraseRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc822348960 0xc8223489e0 0xc822348a60 0xc822348ae0] }
+&{fillPath QPainter::fillPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822348cc0 0xc822348d80] }
+&{fillRect QPainter::fillRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc822348f40 0xc822348fc0] }
+&{fillRect QPainter::fillRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 11 void [0xc822349180 0xc822349200] }
+&{fillRect QPainter::fillRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 4 void [0xc8223493c0 0xc822349440] }
+&{fillRect QPainter::fillRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 12 void [0xc822349600 0xc822349680] }
+&{fillRect QPainter::fillRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822349840 0xc8223498c0 0xc822349940 0xc8223499c0 0xc822349a60] }
+&{fillRect QPainter::fillRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 10 void [0xc822349c20 0xc822349ca0 0xc822349d20 0xc822349da0 0xc822349e40] }
+&{fillRect QPainter::fillRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 8 void [0xc82235a000 0xc82235a080 0xc82235a100 0xc82235a180 0xc82235a220] }
+&{fillRect QPainter::fillRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 9 void [0xc82235a3e0 0xc82235a460 0xc82235a4e0 0xc82235a560 0xc82235a600] }
+&{font QPainter::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  const QFont & [] }
+&{fontInfo QPainter::fontInfo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  QFontInfo [] }
+&{fontMetrics QPainter::fontMetrics commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  QFontMetrics [] }
+&{hasClipping QPainter::hasClipping commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  bool [] }
+&{isActive QPainter::isActive commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  bool [] }
+&{layoutDirection QPainter::layoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  Qt::LayoutDirection [] }
+&{opacity QPainter::opacity commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  qreal [] }
+&{paintEngine QPainter::paintEngine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  QPaintEngine * [] }
+&{pen QPainter::pen commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  const QPen & [] }
+&{renderHints QPainter::renderHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  RenderHints [] }
+&{resetTransform QPainter::resetTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [] }
+&{restore QPainter::restore commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [] }
+&{save QPainter::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [] }
+&{scale QPainter::scale commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc82235bca0 0xc82235bd20] }
+&{setBackgroundMode QPainter::setBackgroundMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc82235bf40] }
+&{setBrush QPainter::setBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822370100] }
+&{setBrush QPainter::setBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc8223702c0] }
+&{setBrushOrigin QPainter::setBrushOrigin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822370480] }
+&{setBrushOrigin QPainter::setBrushOrigin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc822370640 0xc8223706c0] }
+&{setClipRect QPainter::setClipRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822370880 0xc822370900 0xc822370980 0xc822370a00 0xc822370ac0] }
+&{setClipping QPainter::setClipping commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822370ce0] }
+&{setCompositionMode QPainter::setCompositionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822370f00] }
+&{setFont QPainter::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc8223710e0] }
+&{setLayoutDirection QPainter::setLayoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822371320] }
+&{setOpacity QPainter::setOpacity commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822371920] }
+&{setPen QPainter::setPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc822371aa0] }
+&{setPen QPainter::setPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822371c20] }
+&{setPen QPainter::setPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822371da0] }
+&{setRenderHint QPainter::setRenderHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822384260 0xc8223842e0] }
+&{setRenderHints QPainter::setRenderHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc8223844a0 0xc822384520] }
+&{setTransform QPainter::setTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822384700 0xc8223847c0] }
+&{setViewTransformEnabled QPainter::setViewTransformEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822384960] }
+&{setViewport QPainter::setViewport commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822384b20 0xc822384ba0 0xc822384c20 0xc822384ca0] }
+&{setWindow QPainter::setWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822384e60 0xc822384ee0 0xc822384f60 0xc822384fe0] }
+&{setWorldMatrixEnabled QPainter::setWorldMatrixEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822385400] }
+&{setWorldTransform QPainter::setWorldTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822385640 0xc822385700] }
+&{shear QPainter::shear commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822385880 0xc822385900] }
+&{strokePath QPainter::strokePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822385ae0 0xc822385ba0] }
+&{testRenderHint QPainter::testRenderHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  bool [0xc822385d60] }
+&{transform QPainter::transform commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  const QTransform & [] }
+&{translate QPainter::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 2 void [0xc822396060] }
+&{translate QPainter::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  void [0xc822396220] }
+&{translate QPainter::translate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false true 3 void [0xc8223963e0 0xc822396460] }
+&{viewTransformEnabled QPainter::viewTransformEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  bool [] }
+&{viewport QPainter::viewport commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  QRect [] }
+&{window QPainter::window commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  QRect [] }
+&{worldMatrixEnabled QPainter::worldMatrixEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  bool [] }
+&{worldTransform QPainter::worldTransform commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non plain false false  const QTransform & [] }
+&{~QPainter QPainter::~QPainter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpainter.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{CompositionMode QPainter::CompositionMode commendable public  [0xc8222aa480 0xc8222aa560 0xc8222aa640 0xc8222aa720 0xc8222aa820 0xc8222aa900 0xc8222aa9e0 0xc8222aaac0 0xc8222aabc0 0xc8222aaca0 0xc8222aad80 0xc8222aae60 0xc8222aaf40 0xc8222ab020 0xc8222ab100 0xc8222ab1e0 0xc8222ab2e0 0xc8222ab3c0 0xc8222ab4a0 0xc8222ab580 0xc8222ab660 0xc8222ab740 0xc8222ab820 0xc8222ab900 0xc8222ab9e0 0xc8222abac0 0xc8222abba0 0xc8222abc60 0xc8222abce0 0xc8222abd80 0xc8222abe60 0xc8222abf40 0xc8222b4040 0xc8222b4120 0xc8222b4200 0xc8222b42e0 0xc8222b43c0 0xc8222b44a0]}
+&{PixmapFragmentHint QPainter::PixmapFragmentHint commendable public QPainter::PixmapFragmentHints [0xc8222b4740]}
+&{RenderHint QPainter::RenderHint commendable public QPainter::RenderHints [0xc8222b4960 0xc8222b49e0 0xc8222b4a80 0xc8222b4b60 0xc8222b4c60 0xc8222b4d40]}

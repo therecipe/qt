@@ -1,0 +1,21 @@
+########################################			FUNCTIONS			########################################
+&{eventFilter QItemDelegate::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.cpp impure plain false false  bool [0xc822acd6c0 0xc822acd740] }
+&{hasClipping QItemDelegate::hasClipping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.cpp non plain false false  bool [] }
+&{setClipping QItemDelegate::setClipping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.cpp non plain false false  void [0xc822acdae0] }
+&{QItemDelegate QItemDelegate::QItemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h non constructor false false   [0xc822acdcc0] }
+&{createEditor QItemDelegate::createEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h impure plain false false  QWidget * [0xc822acdea0 0xc822acdf40 0xc822ae6020] }
+&{drawBackground QItemDelegate::drawBackground commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h non plain false false  void [0xc822ae6ec0 0xc822ae6fc0 0xc822ae70c0] }
+&{drawCheck QItemDelegate::drawCheck commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h impure plain false false  void [0xc822ae7360 0xc822ae7440 0xc822ae7540 0xc822ae75c0] }
+&{drawDecoration QItemDelegate::drawDecoration commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h impure plain false false  void [0xc822ae77e0 0xc822ae78c0 0xc822ae79c0 0xc822ae7a60] }
+&{drawDisplay QItemDelegate::drawDisplay commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h impure plain false false  void [0xc822ae7c80 0xc822ae7d40 0xc822ae7e20 0xc822ae7ea0] }
+&{drawFocus QItemDelegate::drawFocus commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h impure plain false false  void [0xc822af20c0 0xc822af2160 0xc822af2240] }
+&{editorEvent QItemDelegate::editorEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h impure plain false false  bool [0xc822af2440 0xc822af24e0 0xc822af25c0 0xc822af26a0] }
+&{itemEditorFactory QItemDelegate::itemEditorFactory commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h non plain false false  QItemEditorFactory * [] }
+&{paint QItemDelegate::paint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h impure plain false false  void [0xc822af2ae0 0xc822af2ba0 0xc822af2ce0] }
+&{setEditorData QItemDelegate::setEditorData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h impure plain false false  void [0xc822af3420 0xc822af3520] }
+&{setItemEditorFactory QItemDelegate::setItemEditorFactory commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h non plain false false  void [0xc822af37c0] }
+&{setModelData QItemDelegate::setModelData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h impure plain false false  void [0xc822af3a20 0xc822af3b20 0xc822af3c00] }
+&{sizeHint QItemDelegate::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h impure plain false false  QSize [0xc822b04640 0xc822b04760] }
+&{updateEditorGeometry QItemDelegate::updateEditorGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h impure plain false false  void [0xc822b04de0 0xc822b04ee0 0xc822b04fc0] }
+&{~QItemDelegate QItemDelegate::~QItemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemdelegate.h non destructor false false   [] }
+########################################			ENUMS			########################################

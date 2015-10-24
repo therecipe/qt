@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{format QSyntaxHighlighter::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.cpp non plain false false  QTextCharFormat [0xc82329c940] }
+&{QSyntaxHighlighter QSyntaxHighlighter::QSyntaxHighlighter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non constructor false false   [0xc82329cb00] }
+&{QSyntaxHighlighter QSyntaxHighlighter::QSyntaxHighlighter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non constructor false true 2  [0xc82329ccc0] }
+&{currentBlock QSyntaxHighlighter::currentBlock commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non plain false false  QTextBlock [] }
+&{currentBlockState QSyntaxHighlighter::currentBlockState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non plain false false  int [] }
+&{currentBlockUserData QSyntaxHighlighter::currentBlockUserData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non plain false false  QTextBlockUserData * [] }
+&{document QSyntaxHighlighter::document commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non plain false false  QTextDocument * [] }
+&{highlightBlock QSyntaxHighlighter::highlightBlock commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h pure plain false false  void [0xc82329d440] }
+&{previousBlockState QSyntaxHighlighter::previousBlockState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non plain false false  int [] }
+&{rehighlight QSyntaxHighlighter::rehighlight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non slot false false  void [] }
+&{rehighlightBlock QSyntaxHighlighter::rehighlightBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non slot false false  void [0xc82329d7c0] }
+&{setCurrentBlockState QSyntaxHighlighter::setCurrentBlockState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non plain false false  void [0xc82329d9c0] }
+&{setCurrentBlockUserData QSyntaxHighlighter::setCurrentBlockUserData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non plain false false  void [0xc82329dba0] }
+&{setDocument QSyntaxHighlighter::setDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non plain false false  void [0xc82329dda0] }
+&{setFormat QSyntaxHighlighter::setFormat commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non plain false true 2 void [0xc82329df60 0xc82329dfe0 0xc8232b4060] }
+&{setFormat QSyntaxHighlighter::setFormat commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non plain false true 3 void [0xc8232b4240 0xc8232b42c0 0xc8232b4340] }
+&{setFormat QSyntaxHighlighter::setFormat commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h non plain false false  void [0xc8232b4500 0xc8232b4580 0xc8232b4620] }
+&{~QSyntaxHighlighter QSyntaxHighlighter::~QSyntaxHighlighter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qsyntaxhighlighter.h impure destructor false false   [] }
+########################################			ENUMS			########################################

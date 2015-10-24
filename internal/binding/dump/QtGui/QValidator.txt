@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{fixup QValidator::fixup commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp impure plain false false  void [0xc8232cee00] }
+&{QValidator QValidator::QValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false false   [0xc8232cf3e0] }
+&{changed QValidator::changed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non signal false false  void [] }
+&{locale QValidator::locale commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  QLocale [] }
+&{setLocale QValidator::setLocale commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  void [0xc8232cfe20] }
+&{validate QValidator::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h pure plain false false  State [0xc8233ef200 0xc8233ef920] }
+&{~QValidator QValidator::~QValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{State QValidator::State commendable public  [0xc8232cf040 0xc8232cf0e0 0xc8232cf160]}

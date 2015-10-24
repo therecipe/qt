@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{fieldOfView QLightSensor::fieldOfView commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.cpp non plain false false  qreal [] }
+&{reading QLightSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.cpp non plain false false  QLightReading * [] }
+&{QLightSensor QLightSensor::QLightSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h non constructor false false   [0xc822e813a0] }
+&{fieldOfViewChanged QLightSensor::fieldOfViewChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h non signal false false  void [0xc822e81720] }
+&{setFieldOfView QLightSensor::setFieldOfView commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h non plain false false  void [0xc822e81a40] }
+&{~QLightSensor QLightSensor::~QLightSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h impure destructor false false   [] }
+########################################			ENUMS			########################################

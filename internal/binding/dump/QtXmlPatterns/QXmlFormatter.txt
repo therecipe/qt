@@ -1,0 +1,16 @@
+########################################			FUNCTIONS			########################################
+&{QXmlFormatter QXmlFormatter::QXmlFormatter commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h non constructor false false   [0xc821d3ede0 0xc821d3ef60] }
+&{atomicValue QXmlFormatter::atomicValue commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h impure plain false false  void [0xc821d3f1a0] }
+&{attribute QXmlFormatter::attribute commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h impure plain false false  void [0xc821d3f480 0xc821d3f5c0] }
+&{characters QXmlFormatter::characters commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h impure plain false false  void [0xc821d3f900] }
+&{comment QXmlFormatter::comment commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h impure plain false false  void [0xc821d3fbe0] }
+&{endDocument QXmlFormatter::endDocument commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h impure plain false false  void [] }
+&{endElement QXmlFormatter::endElement commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h impure plain false false  void [] }
+&{endOfSequence QXmlFormatter::endOfSequence commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h impure plain false false  void [] }
+&{indentationDepth QXmlFormatter::indentationDepth commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h non plain false false  int [] }
+&{processingInstruction QXmlFormatter::processingInstruction commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h impure plain false false  void [0xc822458800 0xc822458900] }
+&{setIndentationDepth QXmlFormatter::setIndentationDepth commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h non plain false false  void [0xc822458bc0] }
+&{startDocument QXmlFormatter::startDocument commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h impure plain false false  void [] }
+&{startElement QXmlFormatter::startElement commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h impure plain false false  void [0xc822458fc0] }
+&{startOfSequence QXmlFormatter::startOfSequence commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlformatter.h impure plain false false  void [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,41 @@
+########################################			FUNCTIONS			########################################
+&{QNdefNfcSmartPosterRecord QNdefNfcSmartPosterRecord::QNdefNfcSmartPosterRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non constructor false false   [] }
+&{QNdefNfcSmartPosterRecord QNdefNfcSmartPosterRecord::QNdefNfcSmartPosterRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non constructor false true 3  [0xc822806420] }
+&{QNdefNfcSmartPosterRecord QNdefNfcSmartPosterRecord::QNdefNfcSmartPosterRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non constructor false true 2  [0xc822806680] }
+&{action QNdefNfcSmartPosterRecord::action commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  Action [] }
+&{addIcon QNdefNfcSmartPosterRecord::addIcon commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false true 2 void [0xc822806920 0xc822806a00] }
+&{addIcon QNdefNfcSmartPosterRecord::addIcon commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  void [0xc822806c20] }
+&{addTitle QNdefNfcSmartPosterRecord::addTitle commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  bool [0xc822806e40] }
+&{addTitle QNdefNfcSmartPosterRecord::addTitle commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false true 2 bool [0xc822807080 0xc822807100 0xc8228071e0] }
+&{hasAction QNdefNfcSmartPosterRecord::hasAction commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  bool [] }
+&{hasIcon QNdefNfcSmartPosterRecord::hasIcon commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  bool [0xc8228074e0] }
+&{hasSize QNdefNfcSmartPosterRecord::hasSize commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  bool [] }
+&{hasTitle QNdefNfcSmartPosterRecord::hasTitle commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  bool [0xc8228077a0] }
+&{hasTypeInfo QNdefNfcSmartPosterRecord::hasTypeInfo commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  bool [] }
+&{icon QNdefNfcSmartPosterRecord::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  QByteArray [0xc822807b20] }
+&{iconCount QNdefNfcSmartPosterRecord::iconCount commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  int [] }
+&{iconRecord QNdefNfcSmartPosterRecord::iconRecord commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  QNdefNfcIconRecord [0xc822807e40] }
+&{iconRecords QNdefNfcSmartPosterRecord::iconRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  QList<QNdefNfcIconRecord> [] }
+&{operator= QNdefNfcSmartPosterRecord::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  QNdefNfcSmartPosterRecord & [0xc821da8160] }
+&{removeIcon QNdefNfcSmartPosterRecord::removeIcon commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false true 2 bool [0xc821da82e0] }
+&{removeIcon QNdefNfcSmartPosterRecord::removeIcon commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  bool [0xc821da84a0] }
+&{removeTitle QNdefNfcSmartPosterRecord::removeTitle commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  bool [0xc821da8660] }
+&{removeTitle QNdefNfcSmartPosterRecord::removeTitle commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false true 2 bool [0xc821da8800] }
+&{setAction QNdefNfcSmartPosterRecord::setAction commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  void [0xc821da8980] }
+&{setIcons QNdefNfcSmartPosterRecord::setIcons commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  void [0xc821da8ae0] }
+&{setSize QNdefNfcSmartPosterRecord::setSize commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  void [0xc821da8e20] }
+&{setTitles QNdefNfcSmartPosterRecord::setTitles commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  void [0xc821da8f80] }
+&{setTypeInfo QNdefNfcSmartPosterRecord::setTypeInfo commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  void [0xc821da9140] }
+&{setUri QNdefNfcSmartPosterRecord::setUri commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  void [0xc821da9320] }
+&{setUri QNdefNfcSmartPosterRecord::setUri commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false true 2 void [0xc821da94e0] }
+&{size QNdefNfcSmartPosterRecord::size commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  quint32 [] }
+&{title QNdefNfcSmartPosterRecord::title commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  QString [0xc821da97a0] }
+&{titleCount QNdefNfcSmartPosterRecord::titleCount commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  int [] }
+&{titleRecord QNdefNfcSmartPosterRecord::titleRecord commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  QNdefNfcTextRecord [0xc821da9a00] }
+&{titleRecords QNdefNfcSmartPosterRecord::titleRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  QList<QNdefNfcTextRecord> [] }
+&{typeInfo QNdefNfcSmartPosterRecord::typeInfo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  QByteArray [] }
+&{uri QNdefNfcSmartPosterRecord::uri commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  QUrl [] }
+&{uriRecord QNdefNfcSmartPosterRecord::uriRecord commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non plain false false  QNdefNfcUriRecord [] }
+&{~QNdefNfcSmartPosterRecord QNdefNfcSmartPosterRecord::~QNdefNfcSmartPosterRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcsmartposterrecord.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{Action QNdefNfcSmartPosterRecord::Action commendable public  [0xc8227ebe80 0xc8227ebfa0 0xc822806040 0xc8228060c0]}

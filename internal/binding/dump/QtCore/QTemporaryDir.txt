@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{QTemporaryDir QTemporaryDir::QTemporaryDir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporarydir.h non constructor false false   [] }
+&{QTemporaryDir QTemporaryDir::QTemporaryDir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporarydir.h non constructor false true 2  [0xc82026b440] }
+&{autoRemove QTemporaryDir::autoRemove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporarydir.h non plain false false  bool [] }
+&{isValid QTemporaryDir::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporarydir.h non plain false false  bool [] }
+&{path QTemporaryDir::path commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporarydir.h non plain false false  QString [] }
+&{remove QTemporaryDir::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporarydir.h non plain false false  bool [] }
+&{setAutoRemove QTemporaryDir::setAutoRemove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporarydir.h non plain false false  void [0xc82026bbe0] }
+&{~QTemporaryDir QTemporaryDir::~QTemporaryDir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qtemporarydir.h non destructor false false   [] }
+########################################			ENUMS			########################################

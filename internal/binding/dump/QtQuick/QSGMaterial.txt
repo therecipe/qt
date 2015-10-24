@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{compare QSGMaterial::compare commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h impure plain false false  int [0xc821c16a80] }
+&{createShader QSGMaterial::createShader commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h pure plain false false  QSGMaterialShader * [] }
+&{flags QSGMaterial::flags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  QSGMaterial::Flags [] }
+&{setFlag QSGMaterial::setFlag commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  void [0xc821c179a0 0xc821c17b20] }
+&{type QSGMaterial::type commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h pure plain false false  QSGMaterialType * [] }
+########################################			ENUMS			########################################
+&{Flag QSGMaterial::Flag commendable public QSGMaterial::Flags [0xc821c29600 0xc821c297a0 0xc821c29a20 0xc821c29c40 0xc821c29f00]}

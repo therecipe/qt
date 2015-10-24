@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceIdReply QPlaceIdReply::QPlaceIdReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceidreply.h non constructor false false   [0xc8221d22e0 0xc8221d2380] }
+&{id QPlaceIdReply::id commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceidreply.h non plain false false  QString [] }
+&{operationType QPlaceIdReply::operationType commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceidreply.h non plain false false  OperationType [] }
+&{setId QPlaceIdReply::setId commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceidreply.h non plain false false  void [0xc8221d2a00] }
+&{type QPlaceIdReply::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceidreply.h impure plain false false  QPlaceReply::Type [] }
+&{~QPlaceIdReply QPlaceIdReply::~QPlaceIdReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceidreply.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{OperationType QPlaceIdReply::OperationType commendable public  [0xc8221bdc60 0xc8221bdd00 0xc8221bdde0 0xc8221bdf20]}

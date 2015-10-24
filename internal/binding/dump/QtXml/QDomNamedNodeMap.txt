@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QDomNamedNodeMap QDomNamedNodeMap::QDomNamedNodeMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   [] }
+&{QDomNamedNodeMap QDomNamedNodeMap::QDomNamedNodeMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  [0xc820c24560] }
+&{contains QDomNamedNodeMap::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [0xc820c24c00] }
+&{count QDomNamedNodeMap::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int [] }
+&{isEmpty QDomNamedNodeMap::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
+&{item QDomNamedNodeMap::item commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc820c257c0] }
+&{length QDomNamedNodeMap::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int [] }
+&{namedItem QDomNamedNodeMap::namedItem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc820cf4100] }
+&{namedItemNS QDomNamedNodeMap::namedItemNS commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc820cf4600 0xc820cf4700] }
+&{operator!= QDomNamedNodeMap::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [0xc820cf4b80] }
+&{operator= QDomNamedNodeMap::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNamedNodeMap & [0xc820cf5200] }
+&{operator== QDomNamedNodeMap::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [0xc820cf5740] }
+&{removeNamedItem QDomNamedNodeMap::removeNamedItem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc820cf5d00] }
+&{removeNamedItemNS QDomNamedNodeMap::removeNamedItemNS commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc820d620a0 0xc820d62220] }
+&{setNamedItem QDomNamedNodeMap::setNamedItem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc820d626c0] }
+&{setNamedItemNS QDomNamedNodeMap::setNamedItemNS commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc820d62b00] }
+&{size QDomNamedNodeMap::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int [] }
+&{~QDomNamedNodeMap QDomNamedNodeMap::~QDomNamedNodeMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non destructor false false   [] }
+########################################			ENUMS			########################################

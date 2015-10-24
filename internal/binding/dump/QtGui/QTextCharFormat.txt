@@ -1,0 +1,60 @@
+########################################			FUNCTIONS			########################################
+&{QTextCharFormat QTextCharFormat::QTextCharFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non constructor false false   [] }
+&{anchorNames QTextCharFormat::anchorNames commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  QStringList [] }
+&{fontUnderline QTextCharFormat::fontUnderline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  bool [] }
+&{setUnderlineStyle QTextCharFormat::setUnderlineStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  void [0xc8233def80] }
+&{anchorHref QTextCharFormat::anchorHref commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QString [] }
+&{font QTextCharFormat::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QFont [] }
+&{fontCapitalization QTextCharFormat::fontCapitalization commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QFont::Capitalization [] }
+&{fontFamily QTextCharFormat::fontFamily commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QString [] }
+&{fontFixedPitch QTextCharFormat::fontFixedPitch commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{fontHintingPreference QTextCharFormat::fontHintingPreference commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QFont::HintingPreference [] }
+&{fontItalic QTextCharFormat::fontItalic commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{fontKerning QTextCharFormat::fontKerning commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{fontLetterSpacing QTextCharFormat::fontLetterSpacing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
+&{fontLetterSpacingType QTextCharFormat::fontLetterSpacingType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QFont::SpacingType [] }
+&{fontOverline QTextCharFormat::fontOverline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{fontPointSize QTextCharFormat::fontPointSize commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
+&{fontStretch QTextCharFormat::fontStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int [] }
+&{fontStrikeOut QTextCharFormat::fontStrikeOut commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{fontStyleHint QTextCharFormat::fontStyleHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QFont::StyleHint [] }
+&{fontStyleStrategy QTextCharFormat::fontStyleStrategy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QFont::StyleStrategy [] }
+&{fontWeight QTextCharFormat::fontWeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int [] }
+&{fontWordSpacing QTextCharFormat::fontWordSpacing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
+&{isAnchor QTextCharFormat::isAnchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{isValid QTextCharFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
+&{setAnchor QTextCharFormat::setAnchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8233ef240] }
+&{setAnchorHref QTextCharFormat::setAnchorHref commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8233ef3e0] }
+&{setAnchorNames QTextCharFormat::setAnchorNames commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8233ef740] }
+&{setFont QTextCharFormat::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false true 2 void [0xc8233ef960] }
+&{setFont QTextCharFormat::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8233efb20 0xc8233efba0] }
+&{setFontCapitalization QTextCharFormat::setFontCapitalization commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8233efd80] }
+&{setFontFamily QTextCharFormat::setFontFamily commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8233eff60] }
+&{setFontFixedPitch QTextCharFormat::setFontFixedPitch commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc82340c100] }
+&{setFontHintingPreference QTextCharFormat::setFontHintingPreference commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc82000e4e0] }
+&{setFontItalic QTextCharFormat::setFontItalic commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc82000f1e0] }
+&{setFontKerning QTextCharFormat::setFontKerning commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc82000fd00] }
+&{setFontLetterSpacing QTextCharFormat::setFontLetterSpacing commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8215f8340] }
+&{setFontLetterSpacingType QTextCharFormat::setFontLetterSpacingType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8215f8700] }
+&{setFontOverline QTextCharFormat::setFontOverline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8215f8b40] }
+&{setFontPointSize QTextCharFormat::setFontPointSize commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8215f8e00] }
+&{setFontStretch QTextCharFormat::setFontStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8215f91c0] }
+&{setFontStrikeOut QTextCharFormat::setFontStrikeOut commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8215f9400] }
+&{setFontStyleHint QTextCharFormat::setFontStyleHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8215f96c0 0xc8215f9820] }
+&{setFontStyleStrategy QTextCharFormat::setFontStyleStrategy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8215f9b60] }
+&{setFontUnderline QTextCharFormat::setFontUnderline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8215f9dc0] }
+&{setFontWeight QTextCharFormat::setFontWeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8201ae260] }
+&{setFontWordSpacing QTextCharFormat::setFontWordSpacing commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8201ae900] }
+&{setTextOutline QTextCharFormat::setTextOutline commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8201afba0] }
+&{setToolTip QTextCharFormat::setToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820200420] }
+&{setUnderlineColor QTextCharFormat::setUnderlineColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820200960] }
+&{setVerticalAlignment QTextCharFormat::setVerticalAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820200ec0] }
+&{textOutline QTextCharFormat::textOutline commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QPen [] }
+&{toolTip QTextCharFormat::toolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QString [] }
+&{underlineColor QTextCharFormat::underlineColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QColor [] }
+&{underlineStyle QTextCharFormat::underlineStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  UnderlineStyle [] }
+&{verticalAlignment QTextCharFormat::verticalAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  VerticalAlignment [] }
+########################################			ENUMS			########################################
+&{FontPropertiesInheritanceBehavior QTextCharFormat::FontPropertiesInheritanceBehavior commendable public  [0xc8233df120 0xc8233df200]}
+&{UnderlineStyle QTextCharFormat::UnderlineStyle commendable public  [0xc8233df3e0 0xc8233df460 0xc8233df4e0 0xc8233df560 0xc8233df600 0xc8233df680 0xc8233df700 0xc8233df7a0]}
+&{VerticalAlignment QTextCharFormat::VerticalAlignment commendable public  [0xc8233df980 0xc8233dfa00 0xc8233dfa80 0xc8233dfb00 0xc8233dfba0 0xc8233dfc20 0xc8233dfca0]}

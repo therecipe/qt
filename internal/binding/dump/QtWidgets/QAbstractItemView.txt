@@ -1,0 +1,132 @@
+########################################			FUNCTIONS			########################################
+&{alternatingRowColors QAbstractItemView::alternatingRowColors commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  bool [] }
+&{autoScrollMargin QAbstractItemView::autoScrollMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  int [] }
+&{defaultDropAction QAbstractItemView::defaultDropAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  Qt::DropAction [] }
+&{dragDropMode QAbstractItemView::dragDropMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  DragDropMode [] }
+&{dragDropOverwriteMode QAbstractItemView::dragDropOverwriteMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  bool [] }
+&{dragEnabled QAbstractItemView::dragEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  bool [] }
+&{dragLeaveEvent QAbstractItemView::dragLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp impure plain false false  void [0xc822986ba0] }
+&{editTriggers QAbstractItemView::editTriggers commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  EditTriggers [] }
+&{hasAutoScroll QAbstractItemView::hasAutoScroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  bool [] }
+&{horizontalScrollMode QAbstractItemView::horizontalScrollMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  ScrollMode [] }
+&{iconSize QAbstractItemView::iconSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  QSize [] }
+&{selectionBehavior QAbstractItemView::selectionBehavior commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  QAbstractItemView::SelectionBehavior [] }
+&{selectionMode QAbstractItemView::selectionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  QAbstractItemView::SelectionMode [] }
+&{setAlternatingRowColors QAbstractItemView::setAlternatingRowColors commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822987740] }
+&{setAutoScroll QAbstractItemView::setAutoScroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc8229879e0] }
+&{setAutoScrollMargin QAbstractItemView::setAutoScrollMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822987c20] }
+&{setDefaultDropAction QAbstractItemView::setDefaultDropAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822987ee0] }
+&{setDragDropMode QAbstractItemView::setDragDropMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc8229920e0] }
+&{setDragDropOverwriteMode QAbstractItemView::setDragDropOverwriteMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822992380] }
+&{setDragEnabled QAbstractItemView::setDragEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc8229925a0] }
+&{setDropIndicatorShown QAbstractItemView::setDropIndicatorShown commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822992800] }
+&{setEditTriggers QAbstractItemView::setEditTriggers commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822992a00] }
+&{setHorizontalScrollMode QAbstractItemView::setHorizontalScrollMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822992c60] }
+&{setIconSize QAbstractItemView::setIconSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822992ec0] }
+&{setSelectionBehavior QAbstractItemView::setSelectionBehavior commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822993160] }
+&{setSelectionMode QAbstractItemView::setSelectionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822993380] }
+&{setTabKeyNavigation QAbstractItemView::setTabKeyNavigation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822993620] }
+&{setTextElideMode QAbstractItemView::setTextElideMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822993840] }
+&{setVerticalScrollMode QAbstractItemView::setVerticalScrollMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  void [0xc822993b20] }
+&{showDropIndicator QAbstractItemView::showDropIndicator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  bool [] }
+&{tabKeyNavigation QAbstractItemView::tabKeyNavigation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  bool [] }
+&{textElideMode QAbstractItemView::textElideMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  Qt::TextElideMode [] }
+&{verticalScrollMode QAbstractItemView::verticalScrollMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp non plain false false  ScrollMode [] }
+&{viewportEvent QAbstractItemView::viewportEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.cpp impure plain false false  bool [0xc8229a6300] }
+&{QAbstractItemView QAbstractItemView::QAbstractItemView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non constructor false false   [0xc8229bb540] }
+&{activated QAbstractItemView::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non signal false false  void [0xc8229bb7e0] }
+&{clearSelection QAbstractItemView::clearSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non slot false false  void [] }
+&{clicked QAbstractItemView::clicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non signal false false  void [0xc8229bbbc0] }
+&{closeEditor QAbstractItemView::closeEditor commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure slot false false  void [0xc8229bbe20 0xc8229bbf00] }
+&{closePersistentEditor QAbstractItemView::closePersistentEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  void [0xc8229c81e0] }
+&{commitData QAbstractItemView::commitData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure slot false false  void [0xc8229c8500] }
+&{currentChanged QAbstractItemView::currentChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure slot false false  void [0xc8229c8720 0xc8229c8880] }
+&{currentIndex QAbstractItemView::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  QModelIndex [] }
+&{dataChanged QAbstractItemView::dataChanged commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure slot false false  void [0xc8229c8d80 0xc8229c8ee0 0xc8229c9080] }
+&{dirtyRegionOffset QAbstractItemView::dirtyRegionOffset commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  QPoint [] }
+&{doubleClicked QAbstractItemView::doubleClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non signal false false  void [0xc8229d8440] }
+&{dragEnterEvent QAbstractItemView::dragEnterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229d86a0] }
+&{dragMoveEvent QAbstractItemView::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229d8940] }
+&{dropEvent QAbstractItemView::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229d8b80] }
+&{dropIndicatorPosition QAbstractItemView::dropIndicatorPosition commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  DropIndicatorPosition [] }
+&{edit QAbstractItemView::edit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non slot false false  void [0xc8229d8fe0] }
+&{edit QAbstractItemView::edit commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false true 2 bool [0xc8229d92c0 0xc8229d93c0 0xc8229d9460] }
+&{editorDestroyed QAbstractItemView::editorDestroyed commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure slot false false  void [0xc8229d9640] }
+&{entered QAbstractItemView::entered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non signal false false  void [0xc8229d98a0] }
+&{event QAbstractItemView::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  bool [0xc8229d9b80] }
+&{executeDelayedItemsLayout QAbstractItemView::executeDelayedItemsLayout commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  void [] }
+&{focusInEvent QAbstractItemView::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229d9ee0] }
+&{focusNextPrevChild QAbstractItemView::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  bool [0xc8229e8120] }
+&{focusOutEvent QAbstractItemView::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229e83c0] }
+&{horizontalOffset QAbstractItemView::horizontalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h pure plain false false  int [] }
+&{iconSizeChanged QAbstractItemView::iconSizeChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non signal false false  void [0xc8229e8780] }
+&{indexAt QAbstractItemView::indexAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h pure plain false false  QModelIndex [0xc8229e89a0] }
+&{indexWidget QAbstractItemView::indexWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  QWidget * [0xc8229e8c20] }
+&{inputMethodEvent QAbstractItemView::inputMethodEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229e8e40] }
+&{inputMethodQuery QAbstractItemView::inputMethodQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  QVariant [0xc8229e9080] }
+&{isIndexHidden QAbstractItemView::isIndexHidden commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h pure plain false false  bool [0xc8229e9340] }
+&{itemDelegate QAbstractItemView::itemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  QAbstractItemDelegate * [] }
+&{itemDelegate QAbstractItemView::itemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false true 2 QAbstractItemDelegate * [0xc8229e97e0] }
+&{itemDelegateForColumn QAbstractItemView::itemDelegateForColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  QAbstractItemDelegate * [0xc8229e9ac0] }
+&{itemDelegateForRow QAbstractItemView::itemDelegateForRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  QAbstractItemDelegate * [0xc8229e9da0] }
+&{keyPressEvent QAbstractItemView::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229e9fc0] }
+&{keyboardSearch QAbstractItemView::keyboardSearch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229f6180] }
+&{model QAbstractItemView::model commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  QAbstractItemModel * [] }
+&{mouseDoubleClickEvent QAbstractItemView::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229f6580] }
+&{mouseMoveEvent QAbstractItemView::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229f6740] }
+&{mousePressEvent QAbstractItemView::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229f68c0] }
+&{mouseReleaseEvent QAbstractItemView::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229f6b00] }
+&{moveCursor QAbstractItemView::moveCursor commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h pure plain false false  QModelIndex [0xc8229f6d40 0xc8229f6e40] }
+&{openPersistentEditor QAbstractItemView::openPersistentEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  void [0xc8229f7100] }
+&{pressed QAbstractItemView::pressed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non signal false false  void [0xc8229f73c0] }
+&{reset QAbstractItemView::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure slot false false  void [] }
+&{resizeEvent QAbstractItemView::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc8229f77a0] }
+&{rootIndex QAbstractItemView::rootIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  QModelIndex [] }
+&{rowsAboutToBeRemoved QAbstractItemView::rowsAboutToBeRemoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure slot false false  void [0xc8229f7b60 0xc8229f7c80 0xc8229f7d20] }
+&{rowsInserted QAbstractItemView::rowsInserted commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure slot false false  void [0xc8229f7f80 0xc822a040c0 0xc822a041a0] }
+&{scheduleDelayedItemsLayout QAbstractItemView::scheduleDelayedItemsLayout commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  void [] }
+&{scrollDirtyRegion QAbstractItemView::scrollDirtyRegion commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  void [0xc822a045c0 0xc822a04660] }
+&{scrollTo QAbstractItemView::scrollTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h pure plain false false  void [0xc822a049c0 0xc822a04ac0] }
+&{scrollToBottom QAbstractItemView::scrollToBottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non slot false false  void [] }
+&{scrollToTop QAbstractItemView::scrollToTop commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non slot false false  void [] }
+&{selectAll QAbstractItemView::selectAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure slot false false  void [] }
+&{selectedIndexes QAbstractItemView::selectedIndexes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  QModelIndexList [] }
+&{selectionChanged QAbstractItemView::selectionChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure slot false false  void [0xc822a05100 0xc822a05220] }
+&{selectionCommand QAbstractItemView::selectionCommand commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  QItemSelectionModel::SelectionFlags [0xc822a054a0 0xc822a05620] }
+&{selectionModel QAbstractItemView::selectionModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  QItemSelectionModel * [] }
+&{setCurrentIndex QAbstractItemView::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non slot false false  void [0xc822a05980] }
+&{setDirtyRegion QAbstractItemView::setDirtyRegion commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  void [0xc822a05ba0] }
+&{setIndexWidget QAbstractItemView::setIndexWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  void [0xc821e3e080 0xc821e3e160] }
+&{setItemDelegate QAbstractItemView::setItemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  void [0xc821e3e360] }
+&{setItemDelegateForColumn QAbstractItemView::setItemDelegateForColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  void [0xc821e3e600 0xc821e3e6c0] }
+&{setItemDelegateForRow QAbstractItemView::setItemDelegateForRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  void [0xc821e3e960 0xc821e3ea00] }
+&{setModel QAbstractItemView::setModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc821e3ece0] }
+&{setRootIndex QAbstractItemView::setRootIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure slot false false  void [0xc821e3efa0] }
+&{setSelection QAbstractItemView::setSelection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h pure plain false false  void [0xc821e3f260 0xc821e3f2e0] }
+&{setSelectionModel QAbstractItemView::setSelectionModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc821e3f560] }
+&{setState QAbstractItemView::setState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  void [0xc821e3f820] }
+&{sizeHintForColumn QAbstractItemView::sizeHintForColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  int [0xc821e3fc80] }
+&{sizeHintForIndex QAbstractItemView::sizeHintForIndex commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  QSize [0xc821e3fe80] }
+&{sizeHintForRow QAbstractItemView::sizeHintForRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  int [0xc822a14060] }
+&{startDrag QAbstractItemView::startDrag commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc822a142a0] }
+&{state QAbstractItemView::state commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non plain false false  State [] }
+&{timerEvent QAbstractItemView::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  void [0xc822a14660] }
+&{update QAbstractItemView::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non slot false false  void [0xc822a148e0] }
+&{updateGeometries QAbstractItemView::updateGeometries commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure slot false false  void [] }
+&{verticalOffset QAbstractItemView::verticalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h pure plain false false  int [] }
+&{viewOptions QAbstractItemView::viewOptions commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  QStyleOptionViewItem [] }
+&{viewportEntered QAbstractItemView::viewportEntered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non signal false false  void [] }
+&{viewportSizeHint QAbstractItemView::viewportSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h impure plain false false  QSize [] }
+&{visualRect QAbstractItemView::visualRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h pure plain false false  QRect [0xc822a159e0] }
+&{visualRegionForSelection QAbstractItemView::visualRegionForSelection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h pure plain false false  QRegion [0xc822a15c80] }
+&{~QAbstractItemView QAbstractItemView::~QAbstractItemView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qabstractitemview.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{CursorAction QAbstractItemView::CursorAction commendable protected  [0xc8229a6580 0xc8229a6640 0xc8229a66e0 0xc8229a6780 0xc8229a6820 0xc8229a6900 0xc8229a69a0 0xc8229a6a20 0xc8229a6b00 0xc8229a6ba0]}
+&{DragDropMode QAbstractItemView::DragDropMode commendable public  [0xc8229a6de0 0xc8229a6e80 0xc8229a6f20 0xc8229a6fa0 0xc8229a70a0]}
+&{DropIndicatorPosition QAbstractItemView::DropIndicatorPosition commendable protected  [0xc8229a72a0 0xc8229a7380 0xc8229a7420 0xc8229a74a0]}
+&{EditTrigger QAbstractItemView::EditTrigger commendable public QAbstractItemView::EditTriggers [0xc8229a7760 0xc8229a77e0 0xc8229a78c0 0xc8229a7960 0xc8229a7a00 0xc8229a7ac0 0xc8229a7b60]}
+&{ScrollHint QAbstractItemView::ScrollHint commendable public  [0xc8229a7dc0 0xc8229a7e80 0xc8229a7f00 0xc8229a7f80]}
+&{ScrollMode QAbstractItemView::ScrollMode commendable public  [0xc8229ba1c0 0xc8229ba260]}
+&{SelectionBehavior QAbstractItemView::SelectionBehavior commendable public  [0xc8229ba4a0 0xc8229ba520 0xc8229ba5c0]}
+&{SelectionMode QAbstractItemView::SelectionMode commendable public  [0xc8229ba800 0xc8229ba880 0xc8229ba940 0xc8229baa00 0xc8229bab20]}
+&{State QAbstractItemView::State commendable protected  [0xc8229bade0 0xc8229bae60 0xc8229baf40 0xc8229bb040 0xc8229bb0e0 0xc8229bb180 0xc8229bb220]}

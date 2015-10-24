@@ -1,0 +1,9 @@
+########################################			FUNCTIONS			########################################
+&{QStyleOptionViewItem QStyleOptionViewItem::QStyleOptionViewItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
+&{QStyleOptionViewItem QStyleOptionViewItem::QStyleOptionViewItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc822021880] }
+########################################			ENUMS			########################################
+&{Position QStyleOptionViewItem::Position commendable public  [0xc8220205c0 0xc822020660 0xc8220206e0 0xc8220207a0]}
+&{StyleOptionType QStyleOptionViewItem::StyleOptionType commendable public  [0xc822020940]}
+&{StyleOptionVersion QStyleOptionViewItem::StyleOptionVersion commendable public  [0xc822020b60]}
+&{ViewItemFeature QStyleOptionViewItem::ViewItemFeature commendable public QStyleOptionViewItem::ViewItemFeatures [0xc822020cc0 0xc822020da0 0xc822020e20 0xc822020f00 0xc822020fe0 0xc8220210a0]}
+&{ViewItemPosition QStyleOptionViewItem::ViewItemPosition commendable public  [0xc822021240 0xc8220212c0 0xc822021380 0xc822021420 0xc822021500]}

@@ -1,0 +1,13 @@
+########################################			FUNCTIONS			########################################
+&{directories QFileSystemWatcher::directories commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.cpp non plain false false  QStringList [] }
+&{files QFileSystemWatcher::files commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.cpp non plain false false  QStringList [] }
+&{QFileSystemWatcher QFileSystemWatcher::QFileSystemWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non constructor false false   [0xc82039a960] }
+&{QFileSystemWatcher QFileSystemWatcher::QFileSystemWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non constructor false true 2  [0xc82039abc0 0xc82039aca0] }
+&{addPath QFileSystemWatcher::addPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non plain false false  bool [0xc82039b100] }
+&{addPaths QFileSystemWatcher::addPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non plain false false  QStringList [0xc82039b360] }
+&{directoryChanged QFileSystemWatcher::directoryChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non signal false false  void [0xc82039b540] }
+&{fileChanged QFileSystemWatcher::fileChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non signal false false  void [0xc82039b760] }
+&{removePath QFileSystemWatcher::removePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non plain false false  bool [0xc82039b920] }
+&{removePaths QFileSystemWatcher::removePaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non plain false false  QStringList [0xc82039bb00] }
+&{~QFileSystemWatcher QFileSystemWatcher::~QFileSystemWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non destructor false false   [] }
+########################################			ENUMS			########################################

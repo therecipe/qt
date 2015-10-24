@@ -1,0 +1,11 @@
+########################################			FUNCTIONS			########################################
+&{QMacPasteboardMime QMacPasteboardMime::QMacPasteboardMime commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmacpasteboardmime.h non constructor false false   [0xc8224da0c0] }
+&{canConvert QMacPasteboardMime::canConvert commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmacpasteboardmime.h pure plain false false  bool [0xc8224da280 0xc8224da300] }
+&{convertFromMime QMacPasteboardMime::convertFromMime commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmacpasteboardmime.h pure plain false false  QList<QByteArray> [0xc8224da4c0 0xc8224da540 0xc8224da5c0] }
+&{convertToMime QMacPasteboardMime::convertToMime commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmacpasteboardmime.h pure plain false false  QVariant [0xc8224da720 0xc8224da7c0 0xc8224da880] }
+&{convertorName QMacPasteboardMime::convertorName commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmacpasteboardmime.h pure plain false false  QString [] }
+&{count QMacPasteboardMime::count commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmacpasteboardmime.h impure plain false false  int [0xc8224dab40] }
+&{flavorFor QMacPasteboardMime::flavorFor commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmacpasteboardmime.h pure plain false false  QString [0xc8224dad00] }
+&{mimeFor QMacPasteboardMime::mimeFor commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmacpasteboardmime.h pure plain false false  QString [0xc8224daf00] }
+&{~QMacPasteboardMime QMacPasteboardMime::~QMacPasteboardMime commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmacpasteboardmime.h impure destructor false false   [] }
+########################################			ENUMS			########################################

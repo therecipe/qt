@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{createBackend QSensorManager::createBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  QSensorBackend * [0xc822d8b5c0] }
+&{isBackendRegistered QSensorManager::isBackendRegistered commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  bool [0xc822d8b8a0 0xc822d8ba00] }
+&{registerBackend QSensorManager::registerBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  void [0xc822d8bd20 0xc822d8bea0 0xc822d78020] }
+&{setDefaultBackend QSensorManager::setDefaultBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  void [0xc822d78360 0xc822d784a0] }
+&{unregisterBackend QSensorManager::unregisterBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  void [0xc822d78860 0xc822d78980] }
+########################################			ENUMS			########################################

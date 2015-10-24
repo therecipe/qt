@@ -1,0 +1,34 @@
+########################################			FUNCTIONS			########################################
+&{isActive QUndoStack::isActive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.cpp non plain false false  bool [] }
+&{setActive QUndoStack::setActive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.cpp non slot false false  void [0xc821206dc0] }
+&{setUndoLimit QUndoStack::setUndoLimit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.cpp non plain false false  void [0xc8212072c0] }
+&{undoLimit QUndoStack::undoLimit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.cpp non plain false false  int [] }
+&{QUndoStack QUndoStack::QUndoStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non constructor false false   [0xc821207ac0] }
+&{beginMacro QUndoStack::beginMacro commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  void [0xc821207e80] }
+&{canRedo QUndoStack::canRedo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  bool [] }
+&{canRedoChanged QUndoStack::canRedoChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non signal false false  void [0xc8211f4440] }
+&{canUndo QUndoStack::canUndo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  bool [] }
+&{canUndoChanged QUndoStack::canUndoChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non signal false false  void [0xc8211f4b20] }
+&{cleanChanged QUndoStack::cleanChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non signal false false  void [0xc8211f5020] }
+&{cleanIndex QUndoStack::cleanIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  int [] }
+&{clear QUndoStack::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  void [] }
+&{command QUndoStack::command commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  const QUndoCommand * [0xc8211f58e0] }
+&{count QUndoStack::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  int [] }
+&{createRedoAction QUndoStack::createRedoAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  QAction * [0xc8211f5fe0 0xc8211e40e0] }
+&{createUndoAction QUndoStack::createUndoAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  QAction * [0xc8211e4580 0xc8211e4700] }
+&{endMacro QUndoStack::endMacro commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  void [] }
+&{index QUndoStack::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  int [] }
+&{indexChanged QUndoStack::indexChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non signal false false  void [0xc8211e4fc0] }
+&{isClean QUndoStack::isClean commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  bool [] }
+&{push QUndoStack::push commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  void [0xc8211e55a0] }
+&{redo QUndoStack::redo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non slot false false  void [] }
+&{redoText QUndoStack::redoText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  QString [] }
+&{redoTextChanged QUndoStack::redoTextChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non signal false false  void [0xc8211e5be0] }
+&{setClean QUndoStack::setClean commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non slot false false  void [] }
+&{setIndex QUndoStack::setIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non slot false false  void [0xc8211d0380] }
+&{text QUndoStack::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  QString [0xc8211d06a0] }
+&{undo QUndoStack::undo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non slot false false  void [] }
+&{undoText QUndoStack::undoText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  QString [] }
+&{undoTextChanged QUndoStack::undoTextChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non signal false false  void [0xc8211d0e60] }
+&{~QUndoStack QUndoStack::~QUndoStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non destructor false false   [] }
+########################################			ENUMS			########################################

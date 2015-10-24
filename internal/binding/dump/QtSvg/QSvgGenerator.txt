@@ -1,0 +1,22 @@
+########################################			FUNCTIONS			########################################
+&{description QSvgGenerator::description commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  QString [] }
+&{fileName QSvgGenerator::fileName commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  QString [] }
+&{outputDevice QSvgGenerator::outputDevice commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  QIODevice * [] }
+&{resolution QSvgGenerator::resolution commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  int [] }
+&{setDescription QSvgGenerator::setDescription commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  void [0xc8226aaee0] }
+&{setFileName QSvgGenerator::setFileName commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  void [0xc8226ab0e0] }
+&{setOutputDevice QSvgGenerator::setOutputDevice commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  void [0xc8226ab2c0] }
+&{setResolution QSvgGenerator::setResolution commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  void [0xc8226ab4c0] }
+&{setSize QSvgGenerator::setSize commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  void [0xc8226ab700] }
+&{setTitle QSvgGenerator::setTitle commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  void [0xc8226ab900] }
+&{setViewBox QSvgGenerator::setViewBox commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  void [0xc8226abb00] }
+&{setViewBox QSvgGenerator::setViewBox commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false true 2 void [0xc8226abd00] }
+&{size QSvgGenerator::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  QSize [] }
+&{title QSvgGenerator::title commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  QString [] }
+&{viewBoxF QSvgGenerator::viewBoxF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.cpp non plain false false  QRectF [] }
+&{QSvgGenerator QSvgGenerator::QSvgGenerator commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.h non constructor false false   [] }
+&{metric QSvgGenerator::metric commendable protected /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.h impure plain false false  int [0xc821cee3a0] }
+&{paintEngine QSvgGenerator::paintEngine commendable protected /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.h impure plain false false  QPaintEngine * [] }
+&{viewBox QSvgGenerator::viewBox commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.h non plain false false  QRect [] }
+&{~QSvgGenerator QSvgGenerator::~QSvgGenerator commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvggenerator.h non destructor false false   [] }
+########################################			ENUMS			########################################

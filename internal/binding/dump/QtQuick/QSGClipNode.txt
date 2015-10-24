@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QSGClipNode QSGClipNode::QSGClipNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non constructor false false   [] }
+&{clipRect QSGClipNode::clipRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  QRectF [] }
+&{isRectangular QSGClipNode::isRectangular commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  bool [] }
+&{setClipRect QSGClipNode::setClipRect commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void [0xc821bcc580] }
+&{setIsRectangular QSGClipNode::setIsRectangular commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void [0xc821bcc820] }
+&{~QSGClipNode QSGClipNode::~QSGClipNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non destructor false false   [] }
+########################################			ENUMS			########################################

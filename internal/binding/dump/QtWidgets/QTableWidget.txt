@@ -1,0 +1,78 @@
+########################################			FUNCTIONS			########################################
+&{itemAt QTableWidget::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.cpp non plain false false  QTableWidgetItem * [0xc8224aad80] }
+&{QTableWidget QTableWidget::QTableWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non constructor false false   [0xc8224ab0a0] }
+&{QTableWidget QTableWidget::QTableWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non constructor false true 2  [0xc8224ab320 0xc8224ab3c0 0xc8224ab4a0] }
+&{cellActivated QTableWidget::cellActivated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc8224abaa0 0xc8224abb40] }
+&{cellChanged QTableWidget::cellChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc8224abe40 0xc8224abee0] }
+&{cellClicked QTableWidget::cellClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc821ea8120 0xc821ea81a0] }
+&{cellDoubleClicked QTableWidget::cellDoubleClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc821ea8400 0xc821ea84e0] }
+&{cellEntered QTableWidget::cellEntered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc821ea8700 0xc821ea8780] }
+&{cellPressed QTableWidget::cellPressed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc821ea89e0 0xc821ea8a60] }
+&{cellWidget QTableWidget::cellWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QWidget * [0xc821ea8c80 0xc821ea8d00] }
+&{clear QTableWidget::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non slot false false  void [] }
+&{clearContents QTableWidget::clearContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non slot false false  void [] }
+&{closePersistentEditor QTableWidget::closePersistentEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ea9140] }
+&{column QTableWidget::column commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [0xc821ea93c0] }
+&{columnCount QTableWidget::columnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
+&{currentCellChanged QTableWidget::currentCellChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc821ea9800 0xc821ea9880 0xc821ea9960 0xc821ea9a00] }
+&{currentColumn QTableWidget::currentColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
+&{currentItem QTableWidget::currentItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QTableWidgetItem * [] }
+&{currentItemChanged QTableWidget::currentItemChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc821ea9f80 0xc821eb20a0] }
+&{currentRow QTableWidget::currentRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
+&{dropEvent QTableWidget::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure plain false false  void [0xc821eb2440] }
+&{dropMimeData QTableWidget::dropMimeData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure plain false false  bool [0xc821eb2680 0xc821eb2720 0xc821eb27c0 0xc821eb28c0] }
+&{editItem QTableWidget::editItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821eb2b00] }
+&{event QTableWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure plain false false  bool [0xc821eb2da0] }
+&{findItems QTableWidget::findItems commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QList<QTableWidgetItem *> [0xc821eb3000 0xc821eb30c0] }
+&{horizontalHeaderItem QTableWidget::horizontalHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QTableWidgetItem * [0xc821eb3320] }
+&{indexFromItem QTableWidget::indexFromItem commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QModelIndex [0xc821eb3520] }
+&{insertColumn QTableWidget::insertColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non slot false false  void [0xc821eb37c0] }
+&{insertRow QTableWidget::insertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non slot false false  void [0xc821eb3a00] }
+&{item QTableWidget::item commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QTableWidgetItem * [0xc8224bc060 0xc8224bc100] }
+&{itemActivated QTableWidget::itemActivated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc8224bc380] }
+&{itemAt QTableWidget::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false true 2 QTableWidgetItem * [0xc8224bc680 0xc8224bc720] }
+&{itemChanged QTableWidget::itemChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc8224bc940] }
+&{itemClicked QTableWidget::itemClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc8224bcbe0] }
+&{itemDoubleClicked QTableWidget::itemDoubleClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc8224bcec0] }
+&{itemEntered QTableWidget::itemEntered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc8224bd120] }
+&{itemFromIndex QTableWidget::itemFromIndex commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QTableWidgetItem * [0xc8224bd400] }
+&{itemPressed QTableWidget::itemPressed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [0xc8224bd680] }
+&{itemPrototype QTableWidget::itemPrototype commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  const QTableWidgetItem * [] }
+&{itemSelectionChanged QTableWidget::itemSelectionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non signal false false  void [] }
+&{items QTableWidget::items commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QList<QTableWidgetItem *> [0xc8224bdbc0] }
+&{mimeData QTableWidget::mimeData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure plain false false  QMimeData * [0xc8224bde40] }
+&{mimeTypes QTableWidget::mimeTypes commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure plain false false  QStringList [] }
+&{openPersistentEditor QTableWidget::openPersistentEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ec6180] }
+&{removeCellWidget QTableWidget::removeCellWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ec63c0 0xc821ec6460] }
+&{removeColumn QTableWidget::removeColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non slot false false  void [0xc821ec66a0] }
+&{removeRow QTableWidget::removeRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non slot false false  void [0xc821ec68e0] }
+&{row QTableWidget::row commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [0xc821ec6b20] }
+&{rowCount QTableWidget::rowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
+&{scrollToItem QTableWidget::scrollToItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non slot false false  void [0xc821ec6f40 0xc821ec7060] }
+&{selectedItems QTableWidget::selectedItems commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QList<QTableWidgetItem *> [] }
+&{selectedRanges QTableWidget::selectedRanges commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QList<QTableWidgetSelectionRange> [] }
+&{setCellWidget QTableWidget::setCellWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ec7580 0xc821ec7620 0xc821ec76c0] }
+&{setColumnCount QTableWidget::setColumnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ec78e0] }
+&{setCurrentCell QTableWidget::setCurrentCell commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ec7b20 0xc821ec7bc0] }
+&{setCurrentCell QTableWidget::setCurrentCell commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false true 2 void [0xc821ec7dc0 0xc821ec7e60 0xc821ec7f00] }
+&{setCurrentItem QTableWidget::setCurrentItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ed4120] }
+&{setCurrentItem QTableWidget::setCurrentItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false true 2 void [0xc821ed43a0 0xc821ed4480] }
+&{setHorizontalHeaderItem QTableWidget::setHorizontalHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ed4660 0xc821ed4720] }
+&{setHorizontalHeaderLabels QTableWidget::setHorizontalHeaderLabels commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ed4980] }
+&{setItem QTableWidget::setItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ed4c00 0xc821ed4c80 0xc821ed4d60] }
+&{setItemPrototype QTableWidget::setItemPrototype commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ed4fe0] }
+&{setRangeSelected QTableWidget::setRangeSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ed5800 0xc821ed58a0] }
+&{setRowCount QTableWidget::setRowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ed5ae0] }
+&{setVerticalHeaderItem QTableWidget::setVerticalHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821ed5f80 0xc821edc040] }
+&{setVerticalHeaderLabels QTableWidget::setVerticalHeaderLabels commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821edc2c0] }
+&{sortItems QTableWidget::sortItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  void [0xc821edc500 0xc821edc5e0] }
+&{supportedDropActions QTableWidget::supportedDropActions commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h impure plain false false  Qt::DropActions [] }
+&{takeHorizontalHeaderItem QTableWidget::takeHorizontalHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QTableWidgetItem * [0xc821edc900] }
+&{takeItem QTableWidget::takeItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QTableWidgetItem * [0xc821edcbc0 0xc821edcc60] }
+&{takeVerticalHeaderItem QTableWidget::takeVerticalHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QTableWidgetItem * [0xc821edcee0] }
+&{verticalHeaderItem QTableWidget::verticalHeaderItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QTableWidgetItem * [0xc821edd1e0] }
+&{visualColumn QTableWidget::visualColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [0xc821edd3c0] }
+&{visualItemRect QTableWidget::visualItemRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  QRect [0xc821edd640] }
+&{visualRow QTableWidget::visualRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [0xc821edd8a0] }
+&{~QTableWidget QTableWidget::~QTableWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non destructor false false   [] }
+########################################			ENUMS			########################################

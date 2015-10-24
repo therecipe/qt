@@ -1,0 +1,22 @@
+########################################			FUNCTIONS			########################################
+&{clear QClipboard::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.cpp non plain false false  void [0xc82094bde0] }
+&{mimeData QClipboard::mimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.cpp non plain false false  const QMimeData * [0xc8209280a0] }
+&{setMimeData QClipboard::setMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.cpp non plain false false  void [0xc820928de0 0xc820928ea0] }
+&{changed QClipboard::changed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non signal false false  void [0xc8209292a0] }
+&{dataChanged QClipboard::dataChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non signal false false  void [] }
+&{findBufferChanged QClipboard::findBufferChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non signal false false  void [] }
+&{image QClipboard::image commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  QImage [0xc8209297c0] }
+&{ownsClipboard QClipboard::ownsClipboard commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  bool [] }
+&{ownsFindBuffer QClipboard::ownsFindBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  bool [] }
+&{ownsSelection QClipboard::ownsSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  bool [] }
+&{pixmap QClipboard::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  QPixmap [0xc820929da0] }
+&{selectionChanged QClipboard::selectionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non signal false false  void [] }
+&{setImage QClipboard::setImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  void [0xc8205b6140 0xc8205b61c0] }
+&{setPixmap QClipboard::setPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  void [0xc8205b63e0 0xc8205b6460] }
+&{setText QClipboard::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  void [0xc8205b6620 0xc8205b66a0] }
+&{supportsFindBuffer QClipboard::supportsFindBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  bool [] }
+&{supportsSelection QClipboard::supportsSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  bool [] }
+&{text QClipboard::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  QString [0xc8205b6b60] }
+&{text QClipboard::text commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false true 2 QString [0xc8205b6d20 0xc8205b6dc0] }
+########################################			ENUMS			########################################
+&{Mode QClipboard::Mode commendable public  [0xc820928260 0xc820928320 0xc8209283c0 0xc820928440]}

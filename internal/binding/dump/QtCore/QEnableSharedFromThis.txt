@@ -1,0 +1,4 @@
+########################################			FUNCTIONS			########################################
+&{sharedFromThis QEnableSharedFromThis::sharedFromThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false false  QSharedPointer<T> [] }
+&{sharedFromThis QEnableSharedFromThis::sharedFromThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsharedpointer.h non plain false true 2 QSharedPointer<const T> [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,35 @@
+########################################			FUNCTIONS			########################################
+&{QBitArray QBitArray::QBitArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non constructor false false   [] }
+&{QBitArray QBitArray::QBitArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non constructor false true 4  [0xc820781ce0] }
+&{QBitArray QBitArray::QBitArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non constructor false true 3  [0xc820781ec0] }
+&{QBitArray QBitArray::QBitArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non constructor false true 2  [0xc8207960e0 0xc820796160] }
+&{at QBitArray::at commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  bool [0xc820796300] }
+&{clear QBitArray::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  void [] }
+&{clearBit QBitArray::clearBit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  void [0xc820796560] }
+&{count QBitArray::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  int [] }
+&{count QBitArray::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false true 2 int [0xc8207967a0] }
+&{fill QBitArray::fill commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  bool [0xc820796c00 0xc820796c80] }
+&{fill QBitArray::fill commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false true 2 void [0xc820796de0 0xc820796e60 0xc820796ee0] }
+&{isEmpty QBitArray::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  bool [] }
+&{isNull QBitArray::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  bool [] }
+&{operator!= QBitArray::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  bool [0xc8207972e0] }
+&{operator&= QBitArray::operator&= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  QBitArray & [0xc820797500] }
+&{operator= QBitArray::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false true 2 QBitArray & [0xc820797700] }
+&{operator= QBitArray::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  QBitArray & [0xc8207978e0] }
+&{operator== QBitArray::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  bool [0xc820797b00] }
+&{operator[] QBitArray::operator[] commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  QBitRef [0xc820797d20] }
+&{operator[] QBitArray::operator[] commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false true 3 QBitRef [0xc820797f00] }
+&{operator[] QBitArray::operator[] commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false true 2 bool [0xc8207a80e0] }
+&{operator[] QBitArray::operator[] commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false true 4 bool [0xc8207a82c0] }
+&{operator^= QBitArray::operator^= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  QBitArray & [0xc8207a84a0] }
+&{operator|= QBitArray::operator|= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  QBitArray & [0xc8207a86c0] }
+&{operator~ QBitArray::operator~ commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  QBitArray [] }
+&{resize QBitArray::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  void [0xc8207a89e0] }
+&{setBit QBitArray::setBit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  void [0xc8207a8bc0] }
+&{setBit QBitArray::setBit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false true 2 void [0xc8207a8da0 0xc8207a8e20] }
+&{size QBitArray::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  int [] }
+&{swap QBitArray::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  void [0xc8207a9040] }
+&{testBit QBitArray::testBit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  bool [0xc8207a9220] }
+&{toggleBit QBitArray::toggleBit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  bool [0xc8207a9400] }
+&{truncate QBitArray::truncate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbitarray.h non plain false false  void [0xc8207a95e0] }
+########################################			ENUMS			########################################

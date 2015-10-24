@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{QSplitterHandle QSplitterHandle::QSplitterHandle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non constructor false false   [0xc8216466c0 0xc821646760] }
+&{closestLegalPosition QSplitterHandle::closestLegalPosition commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  int [0xc821646a80] }
+&{event QSplitterHandle::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  bool [0xc821646d60] }
+&{mouseMoveEvent QSplitterHandle::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  void [0xc821646fc0] }
+&{mousePressEvent QSplitterHandle::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  void [0xc8216472e0] }
+&{mouseReleaseEvent QSplitterHandle::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  void [0xc821647560] }
+&{moveSplitter QSplitterHandle::moveSplitter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void [0xc821647880] }
+&{opaqueResize QSplitterHandle::opaqueResize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  bool [] }
+&{orientation QSplitterHandle::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  Qt::Orientation [] }
+&{paintEvent QSplitterHandle::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  void [0xc821647ea0] }
+&{resizeEvent QSplitterHandle::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  void [0xc820d042a0] }
+&{setOrientation QSplitterHandle::setOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void [0xc820d04640] }
+&{sizeHint QSplitterHandle::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  QSize [] }
+&{splitter QSplitterHandle::splitter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  QSplitter * [] }
+&{~QSplitterHandle QSplitterHandle::~QSplitterHandle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non destructor false false   [] }
+########################################			ENUMS			########################################

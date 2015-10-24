@@ -1,0 +1,24 @@
+########################################			FUNCTIONS			########################################
+&{QAbstractEventDispatcher QAbstractEventDispatcher::QAbstractEventDispatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h non constructor false false   [0xc82061d860] }
+&{aboutToBlock QAbstractEventDispatcher::aboutToBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h non signal false false  void [] }
+&{awake QAbstractEventDispatcher::awake commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h non signal false false  void [] }
+&{filterNativeEvent QAbstractEventDispatcher::filterNativeEvent commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h non plain false false  bool [0xc820630040 0xc820630100 0xc820630180] }
+&{flush QAbstractEventDispatcher::flush commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false false  void [] }
+&{installNativeEventFilter QAbstractEventDispatcher::installNativeEventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h non plain false false  void [0xc820630500] }
+&{instance QAbstractEventDispatcher::instance commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h non plain true false  QAbstractEventDispatcher * [0xc820630700] }
+&{interrupt QAbstractEventDispatcher::interrupt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false false  void [] }
+&{processEvents QAbstractEventDispatcher::processEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false false  bool [0xc820630900] }
+&{registerEventNotifier QAbstractEventDispatcher::registerEventNotifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false false  bool [0xc820630b20] }
+&{registerSocketNotifier QAbstractEventDispatcher::registerSocketNotifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false false  void [0xc820630d40] }
+&{registerTimer QAbstractEventDispatcher::registerTimer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h non plain false false  int [0xc8206310e0 0xc820631160 0xc8206311e0] }
+&{registerTimer QAbstractEventDispatcher::registerTimer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false true 4 void [0xc8206315a0 0xc820631620 0xc8206316a0 0xc820631720] }
+&{registeredTimers QAbstractEventDispatcher::registeredTimers commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false false  QList<TimerInfo> [0xc820631880] }
+&{remainingTime QAbstractEventDispatcher::remainingTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false false  int [0xc820631a00] }
+&{removeNativeEventFilter QAbstractEventDispatcher::removeNativeEventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h non plain false false  void [0xc820631be0] }
+&{unregisterEventNotifier QAbstractEventDispatcher::unregisterEventNotifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false false  void [0xc820631ea0] }
+&{unregisterSocketNotifier QAbstractEventDispatcher::unregisterSocketNotifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false false  void [0xc8206420c0] }
+&{unregisterTimer QAbstractEventDispatcher::unregisterTimer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false false  bool [0xc820642260] }
+&{unregisterTimers QAbstractEventDispatcher::unregisterTimers commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false false  bool [0xc8206423c0] }
+&{wakeUp QAbstractEventDispatcher::wakeUp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h pure plain false false  void [] }
+&{~QAbstractEventDispatcher QAbstractEventDispatcher::~QAbstractEventDispatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstracteventdispatcher.h non destructor false false   [] }
+########################################			ENUMS			########################################

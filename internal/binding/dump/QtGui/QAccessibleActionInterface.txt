@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{localizedActionDescription QAccessibleActionInterface::localizedActionDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.cpp impure plain false false  QString [0xc820d0b200] }
+&{localizedActionName QAccessibleActionInterface::localizedActionName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.cpp impure plain false false  QString [0xc820d0b400] }
+&{actionNames QAccessibleActionInterface::actionNames commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QStringList [] }
+&{decreaseAction QAccessibleActionInterface::decreaseAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain true false  const QString & [] }
+&{doAction QAccessibleActionInterface::doAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void [0xc820d0b700] }
+&{increaseAction QAccessibleActionInterface::increaseAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain true false  const QString & [] }
+&{keyBindingsForAction QAccessibleActionInterface::keyBindingsForAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QStringList [0xc820d0b9e0] }
+&{nextPageAction QAccessibleActionInterface::nextPageAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain true false  QString [] }
+&{pressAction QAccessibleActionInterface::pressAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain true false  const QString & [] }
+&{previousPageAction QAccessibleActionInterface::previousPageAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain true false  QString [] }
+&{scrollDownAction QAccessibleActionInterface::scrollDownAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain true false  QString [] }
+&{scrollLeftAction QAccessibleActionInterface::scrollLeftAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain true false  QString [] }
+&{scrollRightAction QAccessibleActionInterface::scrollRightAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain true false  QString [] }
+&{scrollUpAction QAccessibleActionInterface::scrollUpAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain true false  QString [] }
+&{setFocusAction QAccessibleActionInterface::setFocusAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain true false  const QString & [] }
+&{showMenuAction QAccessibleActionInterface::showMenuAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain true false  const QString & [] }
+&{toggleAction QAccessibleActionInterface::toggleAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain true false  const QString & [] }
+&{~QAccessibleActionInterface QAccessibleActionInterface::~QAccessibleActionInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure destructor false false   [] }
+########################################			ENUMS			########################################

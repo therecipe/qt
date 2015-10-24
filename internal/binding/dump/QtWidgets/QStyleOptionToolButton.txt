@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QStyleOptionToolButton QStyleOptionToolButton::QStyleOptionToolButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
+&{QStyleOptionToolButton QStyleOptionToolButton::QStyleOptionToolButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8213a1780] }
+########################################			ENUMS			########################################
+&{StyleOptionType QStyleOptionToolButton::StyleOptionType commendable public  [0xc8213a0640]}
+&{StyleOptionVersion QStyleOptionToolButton::StyleOptionVersion commendable public  [0xc8213a0900]}
+&{ToolButtonFeature QStyleOptionToolButton::ToolButtonFeature commendable public QStyleOptionToolButton::ToolButtonFeatures [0xc8213a0c40 0xc8213a0d40 0xc8213a0dc0 0xc8213a0ea0 0xc8213a1080 0xc8213a1100]}

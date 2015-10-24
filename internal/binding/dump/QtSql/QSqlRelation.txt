@@ -1,0 +1,8 @@
+########################################			FUNCTIONS			########################################
+&{QSqlRelation QSqlRelation::QSqlRelation commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h non constructor false false   [] }
+&{QSqlRelation QSqlRelation::QSqlRelation commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h non constructor false true 2  [0xc8210f8c80 0xc8210f8da0 0xc8210f8e80] }
+&{displayColumn QSqlRelation::displayColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h non plain false false  QString [] }
+&{indexColumn QSqlRelation::indexColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h non plain false false  QString [] }
+&{isValid QSqlRelation::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h non plain false false  bool [] }
+&{tableName QSqlRelation::tableName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaltablemodel.h non plain false false  QString [] }
+########################################			ENUMS			########################################

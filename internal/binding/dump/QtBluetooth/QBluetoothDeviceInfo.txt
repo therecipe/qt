@@ -1,0 +1,41 @@
+########################################			FUNCTIONS			########################################
+&{QBluetoothDeviceInfo QBluetoothDeviceInfo::QBluetoothDeviceInfo commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non constructor false false   [] }
+&{QBluetoothDeviceInfo QBluetoothDeviceInfo::QBluetoothDeviceInfo commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non constructor false true 2  [0xc821d319e0 0xc821d31ac0 0xc821d31b40] }
+&{QBluetoothDeviceInfo QBluetoothDeviceInfo::QBluetoothDeviceInfo commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non constructor false true 4  [0xc821d31da0] }
+&{QBluetoothDeviceInfo QBluetoothDeviceInfo::QBluetoothDeviceInfo commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non constructor false true 3  [0xc82259a140 0xc82259a340 0xc82259a460] }
+&{address QBluetoothDeviceInfo::address commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  QBluetoothAddress [] }
+&{coreConfigurations QBluetoothDeviceInfo::coreConfigurations commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  QBluetoothDeviceInfo::CoreConfigurations [] }
+&{deviceUuid QBluetoothDeviceInfo::deviceUuid commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  QBluetoothUuid [] }
+&{isCached QBluetoothDeviceInfo::isCached commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  bool [] }
+&{isValid QBluetoothDeviceInfo::isValid commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  bool [] }
+&{majorDeviceClass QBluetoothDeviceInfo::majorDeviceClass commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  MajorDeviceClass [] }
+&{minorDeviceClass QBluetoothDeviceInfo::minorDeviceClass commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  quint8 [] }
+&{name QBluetoothDeviceInfo::name commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  QString [] }
+&{operator!= QBluetoothDeviceInfo::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  bool [0xc82259b600] }
+&{operator= QBluetoothDeviceInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  QBluetoothDeviceInfo & [0xc82259bac0] }
+&{operator== QBluetoothDeviceInfo::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  bool [0xc82259bee0] }
+&{rssi QBluetoothDeviceInfo::rssi commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  qint16 [] }
+&{serviceClasses QBluetoothDeviceInfo::serviceClasses commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  ServiceClasses [] }
+&{serviceUuids QBluetoothDeviceInfo::serviceUuids commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  QList<QBluetoothUuid> [0xc8221bc660] }
+&{serviceUuidsCompleteness QBluetoothDeviceInfo::serviceUuidsCompleteness commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  DataCompleteness [] }
+&{setCached QBluetoothDeviceInfo::setCached commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  void [0xc8221bcbe0] }
+&{setCoreConfigurations QBluetoothDeviceInfo::setCoreConfigurations commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  void [0xc8221bce00] }
+&{setDeviceUuid QBluetoothDeviceInfo::setDeviceUuid commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  void [0xc8221bcfa0] }
+&{setRssi QBluetoothDeviceInfo::setRssi commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  void [0xc8221bd1e0] }
+&{setServiceUuids QBluetoothDeviceInfo::setServiceUuids commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non plain false false  void [0xc8221bd3c0 0xc8221bd4c0] }
+&{~QBluetoothDeviceInfo QBluetoothDeviceInfo::~QBluetoothDeviceInfo commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothdeviceinfo.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{CoreConfiguration QBluetoothDeviceInfo::CoreConfiguration commendable public QBluetoothDeviceInfo::CoreConfigurations [0xc821b2bd80 0xc821b2bf40 0xc821c3e100 0xc821c3e2c0]}
+&{DataCompleteness QBluetoothDeviceInfo::DataCompleteness commendable public  [0xc821c3e5a0 0xc821c3e760 0xc821c3e860]}
+&{MajorDeviceClass QBluetoothDeviceInfo::MajorDeviceClass commendable public  [0xc821c3ec20 0xc821c3ee60 0xc821c3ef00 0xc821c3f040 0xc821c3f200 0xc821c3f2e0 0xc821c3f460 0xc821c3f5e0 0xc821c3f760 0xc821c3f940 0xc821c3fa20]}
+&{MinorAudioVideoClass QBluetoothDeviceInfo::MinorAudioVideoClass commendable public  [0xc821c3ff60 0xc821c9a0a0 0xc821c9a240 0xc821c9a380 0xc821c9a4a0 0xc821c9a5a0 0xc821c9a720 0xc821c9a860 0xc821c9a9e0 0xc821c9aaa0 0xc821c9abc0 0xc821c9ad00 0xc821c9ae20 0xc821c9aee0 0xc821c9b020 0xc821c9b1e0 0xc821c9b380]}
+&{MinorComputerClass QBluetoothDeviceInfo::MinorComputerClass commendable public  [0xc821c9b760 0xc821c9b8a0 0xc821c9b9e0 0xc821c9bac0 0xc821c9bbc0 0xc821c9bda0 0xc821c9be80]}
+&{MinorHealthClass QBluetoothDeviceInfo::MinorHealthClass commendable public  [0xc821cea160 0xc821cea2c0 0xc821cea4a0 0xc821cea680 0xc821cea8e0 0xc821ceaa80 0xc821ceac20 0xc821ceade0]}
+&{MinorImagingClass QBluetoothDeviceInfo::MinorImagingClass commendable public  [0xc821ceb1e0 0xc821ceb3e0 0xc821ceb460 0xc821ceb5a0 0xc821ceb740]}
+&{MinorMiscellaneousClass QBluetoothDeviceInfo::MinorMiscellaneousClass commendable public  [0xc821cebaa0]}
+&{MinorNetworkClass QBluetoothDeviceInfo::MinorNetworkClass commendable public  [0xc821cebf60 0xc8226b00e0 0xc8226b0240 0xc8226b03c0 0xc8226b0520 0xc8226b06a0 0xc8226b0800 0xc8226b08e0]}
+&{MinorPeripheralClass QBluetoothDeviceInfo::MinorPeripheralClass commendable public  [0xc8226b0c20 0xc8226b0d60 0xc8226b0ee0 0xc8226b1020 0xc8226b1100 0xc8226b1280 0xc8226b1420 0xc8226b1560 0xc8226b1720 0xc8226b1860]}
+&{MinorPhoneClass QBluetoothDeviceInfo::MinorPhoneClass commendable public  [0xc8226b1b20 0xc8226b1c40 0xc8226b1ce0 0xc8226b1de0 0xc8226b1ee0 0xc821d30020]}
+&{MinorToyClass QBluetoothDeviceInfo::MinorToyClass commendable public  [0xc821d30200 0xc821d302c0 0xc821d30340 0xc821d303e0 0xc821d304a0 0xc821d30520]}
+&{MinorWearableClass QBluetoothDeviceInfo::MinorWearableClass commendable public  [0xc821d307a0 0xc821d308a0 0xc821d30960 0xc821d30a00 0xc821d30ac0 0xc821d30b60]}
+&{ServiceClass QBluetoothDeviceInfo::ServiceClass commendable public QBluetoothDeviceInfo::ServiceClasses [0xc821d30d00 0xc821d30dc0 0xc821d30ec0 0xc821d30fe0 0xc821d310a0 0xc821d31160 0xc821d31240 0xc821d312c0 0xc821d313c0 0xc821d314c0]}

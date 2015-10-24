@@ -1,0 +1,6 @@
+########################################			FUNCTIONS			########################################
+&{createGeocodingManagerEngine QGeoServiceProviderFactory::createGeocodingManagerEngine commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceproviderfactory.h impure plain false false  QGeoCodingManagerEngine * [0xc8227eb4e0 0xc8227eb760 0xc8227eb820] }
+&{createPlaceManagerEngine QGeoServiceProviderFactory::createPlaceManagerEngine commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceproviderfactory.h impure plain false false  QPlaceManagerEngine * [0xc8227f65c0 0xc8227f6820 0xc8227f6960] }
+&{createRoutingManagerEngine QGeoServiceProviderFactory::createRoutingManagerEngine commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceproviderfactory.h impure plain false false  QGeoRoutingManagerEngine * [0xc8227f6de0 0xc8227f6f00 0xc8227f70e0] }
+&{~QGeoServiceProviderFactory QGeoServiceProviderFactory::~QGeoServiceProviderFactory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoserviceproviderfactory.h impure destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QPlatformGraphicsBuffer QPlatformGraphicsBuffer::QPlatformGraphicsBuffer commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h non constructor false false   [0xc820aeab40 0xc820aeac40] }
+&{bindToTexture QPlatformGraphicsBuffer::bindToTexture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h impure plain false false  bool [0xc820aeaee0] }
+&{byteCount QPlatformGraphicsBuffer::byteCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h non plain false false  int [] }
+&{bytesPerLine QPlatformGraphicsBuffer::bytesPerLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h impure plain false false  int [] }
+&{data QPlatformGraphicsBuffer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h impure plain false true 2 uchar * [] }
+&{data QPlatformGraphicsBuffer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h impure plain false false  const uchar * [] }
+&{doLock QPlatformGraphicsBuffer::doLock commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h pure plain false false  bool [0xc820aeb720 0xc820aeb7e0] }
+&{doUnlock QPlatformGraphicsBuffer::doUnlock commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h pure plain false false  void [] }
+&{format QPlatformGraphicsBuffer::format commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h non plain false false  QPixelFormat [] }
+&{isLocked QPlatformGraphicsBuffer::isLocked commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h non plain false false  AccessTypes [] }
+&{lock QPlatformGraphicsBuffer::lock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h non plain false false  bool [0xc820aebec0 0xc820aebfa0] }
+&{origin QPlatformGraphicsBuffer::origin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h impure plain false false  Origin [] }
+&{size QPlatformGraphicsBuffer::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h non plain false false  QSize [] }
+&{unlock QPlatformGraphicsBuffer::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h non plain false false  void [] }
+&{unlocked QPlatformGraphicsBuffer::unlocked commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h non signal false false  void [0xc820670660] }
+&{~QPlatformGraphicsBuffer QPlatformGraphicsBuffer::~QPlatformGraphicsBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qplatformgraphicsbuffer.h impure destructor false false   [] }
+########################################			ENUMS			########################################
+&{AccessType QPlatformGraphicsBuffer::AccessType commendable public QPlatformGraphicsBuffer::AccessTypes [0xc820aea140 0xc820aea200 0xc820aea2a0 0xc820aea340 0xc820aea420]}
+&{Origin QPlatformGraphicsBuffer::Origin commendable public  [0xc820aea660 0xc820aea720]}

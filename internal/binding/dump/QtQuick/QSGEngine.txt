@@ -1,0 +1,10 @@
+########################################			FUNCTIONS			########################################
+&{QSGEngine QSGEngine::QSGEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgengine.h non constructor false false   [0xc821b9c840] }
+&{createRenderer QSGEngine::createRenderer commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgengine.h non plain false false  QSGAbstractRenderer * [] }
+&{createTextureFromId QSGEngine::createTextureFromId commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgengine.h non plain false false  QSGTexture * [0xc821b9cd20 0xc821b9cda0 0xc821b9cea0] }
+&{createTextureFromImage QSGEngine::createTextureFromImage commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgengine.h non plain false false  QSGTexture * [0xc821b9d1a0 0xc821b9d2a0] }
+&{initialize QSGEngine::initialize commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgengine.h non plain false false  void [0xc821b9d5a0] }
+&{invalidate QSGEngine::invalidate commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgengine.h non plain false false  void [] }
+&{~QSGEngine QSGEngine::~QSGEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgengine.h non destructor false false   [] }
+########################################			ENUMS			########################################
+&{CreateTextureOption QSGEngine::CreateTextureOption commendable public QSGEngine::CreateTextureOptions [0xc821b9c160 0xc821b9c280 0xc821b9c3a0]}

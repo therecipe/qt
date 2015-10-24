@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{activeThreadCount QThreadPool::activeThreadCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.cpp non plain false false  int [] }
+&{expiryTimeout QThreadPool::expiryTimeout commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.cpp non plain false false  int [] }
+&{maxThreadCount QThreadPool::maxThreadCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.cpp non plain false false  int [] }
+&{setExpiryTimeout QThreadPool::setExpiryTimeout commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.cpp non plain false false  void [0xc8207419e0] }
+&{setMaxThreadCount QThreadPool::setMaxThreadCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.cpp non plain false false  void [0xc820741c20] }
+&{QThreadPool QThreadPool::QThreadPool commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.h non constructor false false   [0xc820741e00] }
+&{cancel QThreadPool::cancel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.h non plain false false  void [0xc820741fe0] }
+&{clear QThreadPool::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.h non plain false false  void [] }
+&{globalInstance QThreadPool::globalInstance commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.h non plain true false  QThreadPool * [] }
+&{releaseThread QThreadPool::releaseThread commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.h non plain false false  void [] }
+&{reserveThread QThreadPool::reserveThread commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.h non plain false false  void [] }
+&{start QThreadPool::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.h non plain false false  void [0xc8207585a0 0xc820758620] }
+&{tryStart QThreadPool::tryStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.h non plain false false  bool [0xc8207587e0] }
+&{waitForDone QThreadPool::waitForDone commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.h non plain false false  bool [0xc8207589c0] }
+&{~QThreadPool QThreadPool::~QThreadPool commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadpool.h non destructor false false   [] }
+########################################			ENUMS			########################################

@@ -1,0 +1,7 @@
+########################################			FUNCTIONS			########################################
+&{QPlaceDetailsReply QPlaceDetailsReply::QPlaceDetailsReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacedetailsreply.h non constructor false false   [0xc822194cc0] }
+&{place QPlaceDetailsReply::place commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacedetailsreply.h non plain false false  QPlace [] }
+&{setPlace QPlaceDetailsReply::setPlace commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacedetailsreply.h non plain false false  void [0xc822195320] }
+&{type QPlaceDetailsReply::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacedetailsreply.h impure plain false false  QPlaceReply::Type [] }
+&{~QPlaceDetailsReply QPlaceDetailsReply::~QPlaceDetailsReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacedetailsreply.h impure destructor false false   [] }
+########################################			ENUMS			########################################

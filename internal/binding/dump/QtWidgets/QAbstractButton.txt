@@ -1,0 +1,48 @@
+########################################			FUNCTIONS			########################################
+&{autoExclusive QAbstractButton::autoExclusive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  bool [] }
+&{autoRepeat QAbstractButton::autoRepeat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  bool [] }
+&{autoRepeatDelay QAbstractButton::autoRepeatDelay commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  int [] }
+&{autoRepeatInterval QAbstractButton::autoRepeatInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  int [] }
+&{icon QAbstractButton::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  QIcon [] }
+&{iconSize QAbstractButton::iconSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  QSize [] }
+&{isCheckable QAbstractButton::isCheckable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  bool [] }
+&{isChecked QAbstractButton::isChecked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  bool [] }
+&{isDown QAbstractButton::isDown commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  bool [] }
+&{setAutoExclusive QAbstractButton::setAutoExclusive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc8211a51c0] }
+&{setAutoRepeat QAbstractButton::setAutoRepeat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc8211a56e0] }
+&{setAutoRepeatDelay QAbstractButton::setAutoRepeatDelay commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc8211a5ca0] }
+&{setAutoRepeatInterval QAbstractButton::setAutoRepeatInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc82119c1c0] }
+&{setCheckable QAbstractButton::setCheckable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc82119c540] }
+&{setChecked QAbstractButton::setChecked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non slot false false  void [0xc82119c8a0] }
+&{setDown QAbstractButton::setDown commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc82119ccc0] }
+&{setIcon QAbstractButton::setIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc82119d140] }
+&{setIconSize QAbstractButton::setIconSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non slot false false  void [0xc82119d540] }
+&{setShortcut QAbstractButton::setShortcut commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc82119d8a0] }
+&{setText QAbstractButton::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  void [0xc82119dd60] }
+&{shortcut QAbstractButton::shortcut commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  QKeySequence [] }
+&{text QAbstractButton::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non plain false false  QString [] }
+&{toggle QAbstractButton::toggle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.cpp non slot false false  void [] }
+&{QAbstractButton QAbstractButton::QAbstractButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h non constructor false false   [0xc8211909e0] }
+&{animateClick QAbstractButton::animateClick commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h non slot false false  void [0xc8211915a0] }
+&{changeEvent QAbstractButton::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  void [0xc821191b00] }
+&{checkStateSet QAbstractButton::checkStateSet commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  void [] }
+&{click QAbstractButton::click commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h non slot false false  void [] }
+&{clicked QAbstractButton::clicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h non signal false false  void [0xc82117e400] }
+&{event QAbstractButton::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  bool [0xc82117e900] }
+&{focusInEvent QAbstractButton::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  void [0xc82117eda0] }
+&{focusOutEvent QAbstractButton::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  void [0xc82117f1e0] }
+&{group QAbstractButton::group commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h non plain false false  QButtonGroup * [] }
+&{hitButton QAbstractButton::hitButton commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  bool [0xc82117f8a0] }
+&{keyPressEvent QAbstractButton::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  void [0xc82117fc80] }
+&{keyReleaseEvent QAbstractButton::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  void [0xc821172060] }
+&{mouseMoveEvent QAbstractButton::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  void [0xc8211724c0] }
+&{mousePressEvent QAbstractButton::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  void [0xc821172880] }
+&{mouseReleaseEvent QAbstractButton::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  void [0xc821172c60] }
+&{nextCheckState QAbstractButton::nextCheckState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  void [] }
+&{paintEvent QAbstractButton::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h pure plain false false  void [0xc821173380] }
+&{pressed QAbstractButton::pressed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h non signal false false  void [] }
+&{released QAbstractButton::released commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h non signal false false  void [] }
+&{timerEvent QAbstractButton::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h impure plain false false  void [0xc821173ca0] }
+&{toggled QAbstractButton::toggled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h non signal false false  void [0xc821160200] }
+&{~QAbstractButton QAbstractButton::~QAbstractButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractbutton.h non destructor false false   [] }
+########################################			ENUMS			########################################

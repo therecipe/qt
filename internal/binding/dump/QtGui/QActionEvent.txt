@@ -1,0 +1,5 @@
+########################################			FUNCTIONS			########################################
+&{QActionEvent QActionEvent::QActionEvent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc820909820 0xc8209098e0 0xc820909960] }
+&{action QActionEvent::action commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QAction * [] }
+&{before QActionEvent::before commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QAction * [] }
+########################################			ENUMS			########################################

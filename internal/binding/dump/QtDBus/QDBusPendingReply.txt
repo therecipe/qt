@@ -1,0 +1,20 @@
+########################################			FUNCTIONS			########################################
+&{QDBusPendingReply QDBusPendingReply::QDBusPendingReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non constructor false true 3  [0xc822298520] }
+&{QDBusPendingReply QDBusPendingReply::QDBusPendingReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non constructor false false   [] }
+&{QDBusPendingReply QDBusPendingReply::QDBusPendingReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non constructor false true 4  [0xc822299120] }
+&{QDBusPendingReply QDBusPendingReply::QDBusPendingReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non constructor false true 2  [0xc8222993e0] }
+&{argumentAt QDBusPendingReply::argumentAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false false  QVariant [0xc822299680] }
+&{argumentAt QDBusPendingReply::argumentAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false true 2 Type [] }
+&{count QDBusPendingReply::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false false  int [] }
+&{error QDBusPendingReply::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false false  QDBusError [] }
+&{isError QDBusPendingReply::isError commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false false  bool [] }
+&{isFinished QDBusPendingReply::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false false  bool [] }
+&{isValid QDBusPendingReply::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false false  bool [] }
+&{operator T1 QDBusPendingReply::operator T1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false false   [] }
+&{operator= QDBusPendingReply::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false true 3 QDBusPendingReply & [0xc821ff01e0] }
+&{operator= QDBusPendingReply::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false true 2 QDBusPendingReply & [0xc821ff0520] }
+&{operator= QDBusPendingReply::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false false  QDBusPendingReply & [0xc821ff0840] }
+&{reply QDBusPendingReply::reply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false false  QDBusMessage [] }
+&{value QDBusPendingReply::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false false  T1 [] }
+&{waitForFinished QDBusPendingReply::waitForFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingreply.h non plain false false  void [] }
+########################################			ENUMS			########################################

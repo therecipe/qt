@@ -1,0 +1,14 @@
+########################################			FUNCTIONS			########################################
+&{QXmlNamespaceSupport QXmlNamespaceSupport::QXmlNamespaceSupport commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false false   [] }
+&{popContext QXmlNamespaceSupport::popContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [] }
+&{prefix QXmlNamespaceSupport::prefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString [0xc821f02f20] }
+&{prefixes QXmlNamespaceSupport::prefixes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QStringList [] }
+&{prefixes QXmlNamespaceSupport::prefixes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 2 QStringList [0xc821f032e0] }
+&{processName QXmlNamespaceSupport::processName commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [0xc821f03480 0xc821f03560 0xc821f035e0 0xc821f03660] }
+&{pushContext QXmlNamespaceSupport::pushContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [] }
+&{reset QXmlNamespaceSupport::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [] }
+&{setPrefix QXmlNamespaceSupport::setPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [0xc821f039e0 0xc821f03a80] }
+&{splitName QXmlNamespaceSupport::splitName commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [0xc821f03c80 0xc821f03d20 0xc821f03dc0] }
+&{uri QXmlNamespaceSupport::uri commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString [0xc822912040] }
+&{~QXmlNamespaceSupport QXmlNamespaceSupport::~QXmlNamespaceSupport commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non destructor false false   [] }
+########################################			ENUMS			########################################

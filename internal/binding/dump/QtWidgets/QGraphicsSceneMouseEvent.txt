@@ -1,0 +1,17 @@
+########################################			FUNCTIONS			########################################
+&{button QGraphicsSceneMouseEvent::button commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::MouseButton [] }
+&{buttonDownPos QGraphicsSceneMouseEvent::buttonDownPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [0xc82226d240] }
+&{buttonDownScenePos QGraphicsSceneMouseEvent::buttonDownScenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [0xc82226d480] }
+&{buttonDownScreenPos QGraphicsSceneMouseEvent::buttonDownScreenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint [0xc82226d6c0] }
+&{buttons QGraphicsSceneMouseEvent::buttons commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::MouseButtons [] }
+&{flags QGraphicsSceneMouseEvent::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::MouseEventFlags [] }
+&{lastPos QGraphicsSceneMouseEvent::lastPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
+&{lastScenePos QGraphicsSceneMouseEvent::lastScenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
+&{lastScreenPos QGraphicsSceneMouseEvent::lastScreenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint [] }
+&{modifiers QGraphicsSceneMouseEvent::modifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::KeyboardModifiers [] }
+&{pos QGraphicsSceneMouseEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
+&{scenePos QGraphicsSceneMouseEvent::scenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
+&{screenPos QGraphicsSceneMouseEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint [] }
+&{source QGraphicsSceneMouseEvent::source commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::MouseEventSource [] }
+&{~QGraphicsSceneMouseEvent QGraphicsSceneMouseEvent::~QGraphicsSceneMouseEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   [] }
+########################################			ENUMS			########################################

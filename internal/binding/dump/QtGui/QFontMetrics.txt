@@ -1,0 +1,38 @@
+########################################			FUNCTIONS			########################################
+&{QFontMetrics QFontMetrics::QFontMetrics commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non constructor false false   [0xc8231de840] }
+&{QFontMetrics QFontMetrics::QFontMetrics commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non constructor false true 2  [0xc8231dea00 0xc8231dea80] }
+&{QFontMetrics QFontMetrics::QFontMetrics commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non constructor false true 3  [0xc8231dec60] }
+&{ascent QFontMetrics::ascent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{averageCharWidth QFontMetrics::averageCharWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{boundingRect QFontMetrics::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  QRect [0xc8231df060] }
+&{boundingRect QFontMetrics::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false true 4 QRect [0xc8231df220 0xc8231df2a0 0xc8231df320 0xc8231df3a0 0xc8231df440] }
+&{boundingRect QFontMetrics::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false true 2 QRect [0xc8231df600] }
+&{boundingRect QFontMetrics::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false true 3 QRect [0xc8231df7e0 0xc8231df860 0xc8231df8e0 0xc8231df960 0xc8231dfa00 0xc8231dfa80 0xc8231dfb00 0xc8231dfb80] }
+&{descent QFontMetrics::descent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{elidedText QFontMetrics::elidedText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  QString [0xc8231f4060 0xc8231f4100 0xc8231f41c0 0xc8231f4240] }
+&{height QFontMetrics::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{inFont QFontMetrics::inFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  bool [0xc8231f4520] }
+&{inFontUcs4 QFontMetrics::inFontUcs4 commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  bool [0xc8231f4700] }
+&{leading QFontMetrics::leading commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{leftBearing QFontMetrics::leftBearing commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [0xc8231f4a00] }
+&{lineSpacing QFontMetrics::lineSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{lineWidth QFontMetrics::lineWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{maxWidth QFontMetrics::maxWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{minLeftBearing QFontMetrics::minLeftBearing commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{minRightBearing QFontMetrics::minRightBearing commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{operator!= QFontMetrics::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  bool [0xc8231f50a0] }
+&{operator= QFontMetrics::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false true 2 QFontMetrics & [0xc8231f52a0] }
+&{operator= QFontMetrics::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  QFontMetrics & [0xc8231f5480] }
+&{operator== QFontMetrics::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  bool [0xc8231f56a0] }
+&{overlinePos QFontMetrics::overlinePos commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{rightBearing QFontMetrics::rightBearing commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [0xc8231f59c0] }
+&{size QFontMetrics::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  QSize [0xc8231f5b80 0xc8231f5c00 0xc8231f5c80 0xc8231f5d00] }
+&{strikeOutPos QFontMetrics::strikeOutPos commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{swap QFontMetrics::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  void [0xc8231f5fe0] }
+&{tightBoundingRect QFontMetrics::tightBoundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  QRect [0xc8232021e0] }
+&{underlinePos QFontMetrics::underlinePos commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{width QFontMetrics::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false true 3 int [0xc8232024e0] }
+&{width QFontMetrics::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [0xc8232026a0 0xc823202720] }
+&{xHeight QFontMetrics::xHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non plain false false  int [] }
+&{~QFontMetrics QFontMetrics::~QFontMetrics commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontmetrics.h non destructor false false   [] }
+########################################			ENUMS			########################################
