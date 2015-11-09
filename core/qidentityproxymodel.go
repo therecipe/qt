@@ -11,135 +11,135 @@ type QIdentityProxyModel struct {
 	QAbstractProxyModel
 }
 
-type QIdentityProxyModelITF interface {
-	QAbstractProxyModelITF
-	QIdentityProxyModelPTR() *QIdentityProxyModel
+type QIdentityProxyModel_ITF interface {
+	QAbstractProxyModel_ITF
+	QIdentityProxyModel_PTR() *QIdentityProxyModel
 }
 
-func PointerFromQIdentityProxyModel(ptr QIdentityProxyModelITF) unsafe.Pointer {
+func PointerFromQIdentityProxyModel(ptr QIdentityProxyModel_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QIdentityProxyModelPTR().Pointer()
+		return ptr.QIdentityProxyModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func QIdentityProxyModelFromPointer(ptr unsafe.Pointer) *QIdentityProxyModel {
+func NewQIdentityProxyModelFromPointer(ptr unsafe.Pointer) *QIdentityProxyModel {
 	var n = new(QIdentityProxyModel)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QIdentityProxyModel_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QIdentityProxyModel) QIdentityProxyModelPTR() *QIdentityProxyModel {
+func (ptr *QIdentityProxyModel) QIdentityProxyModel_PTR() *QIdentityProxyModel {
 	return ptr
 }
 
-func NewQIdentityProxyModel(parent QObjectITF) *QIdentityProxyModel {
-	return QIdentityProxyModelFromPointer(unsafe.Pointer(C.QIdentityProxyModel_NewQIdentityProxyModel(C.QtObjectPtr(PointerFromQObject(parent)))))
+func NewQIdentityProxyModel(parent QObject_ITF) *QIdentityProxyModel {
+	return NewQIdentityProxyModelFromPointer(C.QIdentityProxyModel_NewQIdentityProxyModel(PointerFromQObject(parent)))
 }
 
-func (ptr *QIdentityProxyModel) ColumnCount(parent QModelIndexITF) int {
+func (ptr *QIdentityProxyModel) ColumnCount(parent QModelIndex_ITF) int {
 	if ptr.Pointer() != nil {
-		return int(C.QIdentityProxyModel_ColumnCount(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQModelIndex(parent))))
+		return int(C.QIdentityProxyModel_ColumnCount(ptr.Pointer(), PointerFromQModelIndex(parent)))
 	}
 	return 0
 }
 
-func (ptr *QIdentityProxyModel) DropMimeData(data QMimeDataITF, action Qt__DropAction, row int, column int, parent QModelIndexITF) bool {
+func (ptr *QIdentityProxyModel) DropMimeData(data QMimeData_ITF, action Qt__DropAction, row int, column int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QIdentityProxyModel_DropMimeData(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQMimeData(data)), C.int(action), C.int(row), C.int(column), C.QtObjectPtr(PointerFromQModelIndex(parent))) != 0
+		return C.QIdentityProxyModel_DropMimeData(ptr.Pointer(), PointerFromQMimeData(data), C.int(action), C.int(row), C.int(column), PointerFromQModelIndex(parent)) != 0
 	}
 	return false
 }
 
-func (ptr *QIdentityProxyModel) HeaderData(section int, orientation Qt__Orientation, role int) string {
+func (ptr *QIdentityProxyModel) HeaderData(section int, orientation Qt__Orientation, role int) *QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QIdentityProxyModel_HeaderData(C.QtObjectPtr(ptr.Pointer()), C.int(section), C.int(orientation), C.int(role)))
-	}
-	return ""
-}
-
-func (ptr *QIdentityProxyModel) Index(row int, column int, parent QModelIndexITF) *QModelIndex {
-	if ptr.Pointer() != nil {
-		return QModelIndexFromPointer(unsafe.Pointer(C.QIdentityProxyModel_Index(C.QtObjectPtr(ptr.Pointer()), C.int(row), C.int(column), C.QtObjectPtr(PointerFromQModelIndex(parent)))))
+		return NewQVariantFromPointer(C.QIdentityProxyModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
 	}
 	return nil
 }
 
-func (ptr *QIdentityProxyModel) InsertColumns(column int, count int, parent QModelIndexITF) bool {
+func (ptr *QIdentityProxyModel) Index(row int, column int, parent QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
-		return C.QIdentityProxyModel_InsertColumns(C.QtObjectPtr(ptr.Pointer()), C.int(column), C.int(count), C.QtObjectPtr(PointerFromQModelIndex(parent))) != 0
-	}
-	return false
-}
-
-func (ptr *QIdentityProxyModel) InsertRows(row int, count int, parent QModelIndexITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QIdentityProxyModel_InsertRows(C.QtObjectPtr(ptr.Pointer()), C.int(row), C.int(count), C.QtObjectPtr(PointerFromQModelIndex(parent))) != 0
-	}
-	return false
-}
-
-func (ptr *QIdentityProxyModel) MapFromSource(sourceIndex QModelIndexITF) *QModelIndex {
-	if ptr.Pointer() != nil {
-		return QModelIndexFromPointer(unsafe.Pointer(C.QIdentityProxyModel_MapFromSource(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQModelIndex(sourceIndex)))))
+		return NewQModelIndexFromPointer(C.QIdentityProxyModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
 	}
 	return nil
 }
 
-func (ptr *QIdentityProxyModel) MapToSource(proxyIndex QModelIndexITF) *QModelIndex {
+func (ptr *QIdentityProxyModel) InsertColumns(column int, count int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return QModelIndexFromPointer(unsafe.Pointer(C.QIdentityProxyModel_MapToSource(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQModelIndex(proxyIndex)))))
-	}
-	return nil
-}
-
-func (ptr *QIdentityProxyModel) Parent(child QModelIndexITF) *QModelIndex {
-	if ptr.Pointer() != nil {
-		return QModelIndexFromPointer(unsafe.Pointer(C.QIdentityProxyModel_Parent(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQModelIndex(child)))))
-	}
-	return nil
-}
-
-func (ptr *QIdentityProxyModel) RemoveColumns(column int, count int, parent QModelIndexITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QIdentityProxyModel_RemoveColumns(C.QtObjectPtr(ptr.Pointer()), C.int(column), C.int(count), C.QtObjectPtr(PointerFromQModelIndex(parent))) != 0
+		return C.QIdentityProxyModel_InsertColumns(ptr.Pointer(), C.int(column), C.int(count), PointerFromQModelIndex(parent)) != 0
 	}
 	return false
 }
 
-func (ptr *QIdentityProxyModel) RemoveRows(row int, count int, parent QModelIndexITF) bool {
+func (ptr *QIdentityProxyModel) InsertRows(row int, count int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QIdentityProxyModel_RemoveRows(C.QtObjectPtr(ptr.Pointer()), C.int(row), C.int(count), C.QtObjectPtr(PointerFromQModelIndex(parent))) != 0
+		return C.QIdentityProxyModel_InsertRows(ptr.Pointer(), C.int(row), C.int(count), PointerFromQModelIndex(parent)) != 0
 	}
 	return false
 }
 
-func (ptr *QIdentityProxyModel) RowCount(parent QModelIndexITF) int {
+func (ptr *QIdentityProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
-		return int(C.QIdentityProxyModel_RowCount(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQModelIndex(parent))))
+		return NewQModelIndexFromPointer(C.QIdentityProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
+	}
+	return nil
+}
+
+func (ptr *QIdentityProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelIndex {
+	if ptr.Pointer() != nil {
+		return NewQModelIndexFromPointer(C.QIdentityProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
+	}
+	return nil
+}
+
+func (ptr *QIdentityProxyModel) Parent(child QModelIndex_ITF) *QModelIndex {
+	if ptr.Pointer() != nil {
+		return NewQModelIndexFromPointer(C.QIdentityProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(child)))
+	}
+	return nil
+}
+
+func (ptr *QIdentityProxyModel) RemoveColumns(column int, count int, parent QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QIdentityProxyModel_RemoveColumns(ptr.Pointer(), C.int(column), C.int(count), PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+func (ptr *QIdentityProxyModel) RemoveRows(row int, count int, parent QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QIdentityProxyModel_RemoveRows(ptr.Pointer(), C.int(row), C.int(count), PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+func (ptr *QIdentityProxyModel) RowCount(parent QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(C.QIdentityProxyModel_RowCount(ptr.Pointer(), PointerFromQModelIndex(parent)))
 	}
 	return 0
 }
 
-func (ptr *QIdentityProxyModel) SetSourceModel(newSourceModel QAbstractItemModelITF) {
+func (ptr *QIdentityProxyModel) SetSourceModel(newSourceModel QAbstractItemModel_ITF) {
 	if ptr.Pointer() != nil {
-		C.QIdentityProxyModel_SetSourceModel(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractItemModel(newSourceModel)))
+		C.QIdentityProxyModel_SetSourceModel(ptr.Pointer(), PointerFromQAbstractItemModel(newSourceModel))
 	}
 }
 
-func (ptr *QIdentityProxyModel) Sibling(row int, column int, idx QModelIndexITF) *QModelIndex {
+func (ptr *QIdentityProxyModel) Sibling(row int, column int, idx QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
-		return QModelIndexFromPointer(unsafe.Pointer(C.QIdentityProxyModel_Sibling(C.QtObjectPtr(ptr.Pointer()), C.int(row), C.int(column), C.QtObjectPtr(PointerFromQModelIndex(idx)))))
+		return NewQModelIndexFromPointer(C.QIdentityProxyModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
 	}
 	return nil
 }
 
 func (ptr *QIdentityProxyModel) DestroyQIdentityProxyModel() {
 	if ptr.Pointer() != nil {
-		C.QIdentityProxyModel_DestroyQIdentityProxyModel(C.QtObjectPtr(ptr.Pointer()))
+		C.QIdentityProxyModel_DestroyQIdentityProxyModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

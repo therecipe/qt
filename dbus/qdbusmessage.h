@@ -1,24 +1,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDBusMessage_NewQDBusMessage();
-QtObjectPtr QDBusMessage_NewQDBusMessage2(QtObjectPtr other);
-int QDBusMessage_AutoStartService(QtObjectPtr ptr);
-char* QDBusMessage_ErrorMessage(QtObjectPtr ptr);
-char* QDBusMessage_ErrorName(QtObjectPtr ptr);
-char* QDBusMessage_Interface(QtObjectPtr ptr);
-int QDBusMessage_IsDelayedReply(QtObjectPtr ptr);
-int QDBusMessage_IsReplyRequired(QtObjectPtr ptr);
-char* QDBusMessage_Member(QtObjectPtr ptr);
-char* QDBusMessage_Path(QtObjectPtr ptr);
-char* QDBusMessage_Service(QtObjectPtr ptr);
-void QDBusMessage_SetAutoStartService(QtObjectPtr ptr, int enable);
-void QDBusMessage_SetDelayedReply(QtObjectPtr ptr, int enable);
-char* QDBusMessage_Signature(QtObjectPtr ptr);
-int QDBusMessage_Type(QtObjectPtr ptr);
-void QDBusMessage_DestroyQDBusMessage(QtObjectPtr ptr);
+void* QDBusMessage_NewQDBusMessage();
+void* QDBusMessage_NewQDBusMessage2(void* other);
+int QDBusMessage_AutoStartService(void* ptr);
+char* QDBusMessage_ErrorMessage(void* ptr);
+char* QDBusMessage_ErrorName(void* ptr);
+char* QDBusMessage_Interface(void* ptr);
+int QDBusMessage_IsDelayedReply(void* ptr);
+int QDBusMessage_IsReplyRequired(void* ptr);
+char* QDBusMessage_Member(void* ptr);
+char* QDBusMessage_Path(void* ptr);
+char* QDBusMessage_Service(void* ptr);
+void QDBusMessage_SetAutoStartService(void* ptr, int enable);
+void QDBusMessage_SetDelayedReply(void* ptr, int enable);
+char* QDBusMessage_Signature(void* ptr);
+int QDBusMessage_Type(void* ptr);
+void QDBusMessage_DestroyQDBusMessage(void* ptr);
 
 #ifdef __cplusplus
 }

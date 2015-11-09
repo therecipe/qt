@@ -1,16 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QHttpPart_NewQHttpPart();
-QtObjectPtr QHttpPart_NewQHttpPart2(QtObjectPtr other);
-void QHttpPart_SetBody(QtObjectPtr ptr, QtObjectPtr body);
-void QHttpPart_SetBodyDevice(QtObjectPtr ptr, QtObjectPtr device);
-void QHttpPart_SetHeader(QtObjectPtr ptr, int header, char* value);
-void QHttpPart_SetRawHeader(QtObjectPtr ptr, QtObjectPtr headerName, QtObjectPtr headerValue);
-void QHttpPart_Swap(QtObjectPtr ptr, QtObjectPtr other);
-void QHttpPart_DestroyQHttpPart(QtObjectPtr ptr);
+void* QHttpPart_NewQHttpPart();
+void* QHttpPart_NewQHttpPart2(void* other);
+void QHttpPart_SetBody(void* ptr, void* body);
+void QHttpPart_SetBodyDevice(void* ptr, void* device);
+void QHttpPart_SetHeader(void* ptr, int header, void* value);
+void QHttpPart_SetRawHeader(void* ptr, void* headerName, void* headerValue);
+void QHttpPart_Swap(void* ptr, void* other);
+void QHttpPart_DestroyQHttpPart(void* ptr);
 
 #ifdef __cplusplus
 }

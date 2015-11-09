@@ -1,10 +1,10 @@
 #include "qstyleoptionbutton.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStyle>
 #include <QStyleOption>
+#include <QString>
+#include <QVariant>
 #include <QStyleOptionButton>
 #include "_cgo_export.h"
 
@@ -12,11 +12,11 @@ class MyQStyleOptionButton: public QStyleOptionButton {
 public:
 };
 
-QtObjectPtr QStyleOptionButton_NewQStyleOptionButton(){
+void* QStyleOptionButton_NewQStyleOptionButton(){
 	return new QStyleOptionButton();
 }
 
-QtObjectPtr QStyleOptionButton_NewQStyleOptionButton2(QtObjectPtr other){
+void* QStyleOptionButton_NewQStyleOptionButton2(void* other){
 	return new QStyleOptionButton(*static_cast<QStyleOptionButton*>(other));
 }
 

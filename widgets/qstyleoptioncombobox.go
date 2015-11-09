@@ -10,46 +10,46 @@ type QStyleOptionComboBox struct {
 	QStyleOptionComplex
 }
 
-type QStyleOptionComboBoxITF interface {
-	QStyleOptionComplexITF
-	QStyleOptionComboBoxPTR() *QStyleOptionComboBox
+type QStyleOptionComboBox_ITF interface {
+	QStyleOptionComplex_ITF
+	QStyleOptionComboBox_PTR() *QStyleOptionComboBox
 }
 
-func PointerFromQStyleOptionComboBox(ptr QStyleOptionComboBoxITF) unsafe.Pointer {
+func PointerFromQStyleOptionComboBox(ptr QStyleOptionComboBox_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionComboBoxPTR().Pointer()
+		return ptr.QStyleOptionComboBox_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionComboBoxFromPointer(ptr unsafe.Pointer) *QStyleOptionComboBox {
+func NewQStyleOptionComboBoxFromPointer(ptr unsafe.Pointer) *QStyleOptionComboBox {
 	var n = new(QStyleOptionComboBox)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionComboBox) QStyleOptionComboBoxPTR() *QStyleOptionComboBox {
+func (ptr *QStyleOptionComboBox) QStyleOptionComboBox_PTR() *QStyleOptionComboBox {
 	return ptr
 }
 
 //QStyleOptionComboBox::StyleOptionType
-type QStyleOptionComboBox__StyleOptionType int
+type QStyleOptionComboBox__StyleOptionType int64
 
 var (
 	QStyleOptionComboBox__Type = QStyleOptionComboBox__StyleOptionType(QStyleOption__SO_ComboBox)
 )
 
 //QStyleOptionComboBox::StyleOptionVersion
-type QStyleOptionComboBox__StyleOptionVersion int
+type QStyleOptionComboBox__StyleOptionVersion int64
 
 var (
 	QStyleOptionComboBox__Version = QStyleOptionComboBox__StyleOptionVersion(1)
 )
 
 func NewQStyleOptionComboBox() *QStyleOptionComboBox {
-	return QStyleOptionComboBoxFromPointer(unsafe.Pointer(C.QStyleOptionComboBox_NewQStyleOptionComboBox()))
+	return NewQStyleOptionComboBoxFromPointer(C.QStyleOptionComboBox_NewQStyleOptionComboBox())
 }
 
-func NewQStyleOptionComboBox2(other QStyleOptionComboBoxITF) *QStyleOptionComboBox {
-	return QStyleOptionComboBoxFromPointer(unsafe.Pointer(C.QStyleOptionComboBox_NewQStyleOptionComboBox2(C.QtObjectPtr(PointerFromQStyleOptionComboBox(other)))))
+func NewQStyleOptionComboBox2(other QStyleOptionComboBox_ITF) *QStyleOptionComboBox {
+	return NewQStyleOptionComboBoxFromPointer(C.QStyleOptionComboBox_NewQStyleOptionComboBox2(PointerFromQStyleOptionComboBox(other)))
 }

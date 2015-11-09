@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QStyleHintReturn QStyleHintReturn::QStyleHintReturn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [0xc82223bfa0 0xc82152a060] }
+&{QStyleHintReturn QStyleHintReturn::QStyleHintReturn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleHintReturn(int version, int type) [0xc822153580 0xc822153660] }
 ########################################			ENUMS			########################################
-&{HintReturnType QStyleHintReturn::HintReturnType commendable public  [0xc82223b8a0 0xc82223b920 0xc82223ba00]}
-&{StyleOptionType QStyleHintReturn::StyleOptionType commendable public  [0xc82223bb60]}
-&{StyleOptionVersion QStyleHintReturn::StyleOptionVersion commendable public  [0xc82223bda0]}
+&{HintReturnType QStyleHintReturn::HintReturnType commendable public  [0xc822152aa0 0xc822152b80 0xc822152c80] true}
+&{StyleOptionType QStyleHintReturn::StyleOptionType commendable public  [0xc822152f40] false}
+&{StyleOptionVersion QStyleHintReturn::StyleOptionVersion commendable public  [0xc822153280] false}

@@ -1,11 +1,11 @@
 #include "qwhatsthis.h"
-#include <QModelIndex>
 #include <QObject>
-#include <QPoint>
-#include <QWidget>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QWidget>
+#include <QPoint>
 #include <QWhatsThis>
 #include "_cgo_export.h"
 
@@ -13,7 +13,7 @@ class MyQWhatsThis: public QWhatsThis {
 public:
 };
 
-QtObjectPtr QWhatsThis_QWhatsThis_CreateAction(QtObjectPtr parent){
+void* QWhatsThis_QWhatsThis_CreateAction(void* parent){
 	return QWhatsThis::createAction(static_cast<QObject*>(parent));
 }
 
@@ -33,7 +33,7 @@ void QWhatsThis_QWhatsThis_LeaveWhatsThisMode(){
 	QWhatsThis::leaveWhatsThisMode();
 }
 
-void QWhatsThis_QWhatsThis_ShowText(QtObjectPtr pos, char* text, QtObjectPtr w){
+void QWhatsThis_QWhatsThis_ShowText(void* pos, char* text, void* w){
 	QWhatsThis::showText(*static_cast<QPoint*>(pos), QString(text), static_cast<QWidget*>(w));
 }
 

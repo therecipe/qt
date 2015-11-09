@@ -12,45 +12,45 @@ type QDrag struct {
 	core.QObject
 }
 
-type QDragITF interface {
-	core.QObjectITF
-	QDragPTR() *QDrag
+type QDrag_ITF interface {
+	core.QObject_ITF
+	QDrag_PTR() *QDrag
 }
 
-func PointerFromQDrag(ptr QDragITF) unsafe.Pointer {
+func PointerFromQDrag(ptr QDrag_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDragPTR().Pointer()
+		return ptr.QDrag_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDragFromPointer(ptr unsafe.Pointer) *QDrag {
+func NewQDragFromPointer(ptr unsafe.Pointer) *QDrag {
 	var n = new(QDrag)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QDrag_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QDrag) QDragPTR() *QDrag {
+func (ptr *QDrag) QDrag_PTR() *QDrag {
 	return ptr
 }
 
-func NewQDrag(dragSource core.QObjectITF) *QDrag {
-	return QDragFromPointer(unsafe.Pointer(C.QDrag_NewQDrag(C.QtObjectPtr(core.PointerFromQObject(dragSource)))))
+func NewQDrag(dragSource core.QObject_ITF) *QDrag {
+	return NewQDragFromPointer(C.QDrag_NewQDrag(core.PointerFromQObject(dragSource)))
 }
 
 func (ptr *QDrag) ConnectActionChanged(f func(action core.Qt__DropAction)) {
 	if ptr.Pointer() != nil {
-		C.QDrag_ConnectActionChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QDrag_ConnectActionChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "actionChanged", f)
 	}
 }
 
 func (ptr *QDrag) DisconnectActionChanged() {
 	if ptr.Pointer() != nil {
-		C.QDrag_DisconnectActionChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QDrag_DisconnectActionChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "actionChanged")
 	}
 }
@@ -62,92 +62,92 @@ func callbackQDragActionChanged(ptrName *C.char, action C.int) {
 
 func (ptr *QDrag) Exec(supportedActions core.Qt__DropAction) core.Qt__DropAction {
 	if ptr.Pointer() != nil {
-		return core.Qt__DropAction(C.QDrag_Exec(C.QtObjectPtr(ptr.Pointer()), C.int(supportedActions)))
+		return core.Qt__DropAction(C.QDrag_Exec(ptr.Pointer(), C.int(supportedActions)))
 	}
 	return 0
 }
 
 func (ptr *QDrag) Exec2(supportedActions core.Qt__DropAction, defaultDropAction core.Qt__DropAction) core.Qt__DropAction {
 	if ptr.Pointer() != nil {
-		return core.Qt__DropAction(C.QDrag_Exec2(C.QtObjectPtr(ptr.Pointer()), C.int(supportedActions), C.int(defaultDropAction)))
+		return core.Qt__DropAction(C.QDrag_Exec2(ptr.Pointer(), C.int(supportedActions), C.int(defaultDropAction)))
 	}
 	return 0
 }
 
 func (ptr *QDrag) MimeData() *core.QMimeData {
 	if ptr.Pointer() != nil {
-		return core.QMimeDataFromPointer(unsafe.Pointer(C.QDrag_MimeData(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQMimeDataFromPointer(C.QDrag_MimeData(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QDrag) SetDragCursor(cursor QPixmapITF, action core.Qt__DropAction) {
+func (ptr *QDrag) SetDragCursor(cursor QPixmap_ITF, action core.Qt__DropAction) {
 	if ptr.Pointer() != nil {
-		C.QDrag_SetDragCursor(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPixmap(cursor)), C.int(action))
+		C.QDrag_SetDragCursor(ptr.Pointer(), PointerFromQPixmap(cursor), C.int(action))
 	}
 }
 
-func (ptr *QDrag) SetHotSpot(hotspot core.QPointITF) {
+func (ptr *QDrag) SetHotSpot(hotspot core.QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDrag_SetHotSpot(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(hotspot)))
+		C.QDrag_SetHotSpot(ptr.Pointer(), core.PointerFromQPoint(hotspot))
 	}
 }
 
-func (ptr *QDrag) SetMimeData(data core.QMimeDataITF) {
+func (ptr *QDrag) SetMimeData(data core.QMimeData_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDrag_SetMimeData(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQMimeData(data)))
+		C.QDrag_SetMimeData(ptr.Pointer(), core.PointerFromQMimeData(data))
 	}
 }
 
-func (ptr *QDrag) SetPixmap(pixmap QPixmapITF) {
+func (ptr *QDrag) SetPixmap(pixmap QPixmap_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDrag_SetPixmap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPixmap(pixmap)))
+		C.QDrag_SetPixmap(ptr.Pointer(), PointerFromQPixmap(pixmap))
 	}
 }
 
 func (ptr *QDrag) Source() *core.QObject {
 	if ptr.Pointer() != nil {
-		return core.QObjectFromPointer(unsafe.Pointer(C.QDrag_Source(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQObjectFromPointer(C.QDrag_Source(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QDrag) SupportedActions() core.Qt__DropAction {
 	if ptr.Pointer() != nil {
-		return core.Qt__DropAction(C.QDrag_SupportedActions(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__DropAction(C.QDrag_SupportedActions(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDrag) Target() *core.QObject {
 	if ptr.Pointer() != nil {
-		return core.QObjectFromPointer(unsafe.Pointer(C.QDrag_Target(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQObjectFromPointer(C.QDrag_Target(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QDrag) ConnectTargetChanged(f func(newTarget core.QObjectITF)) {
+func (ptr *QDrag) ConnectTargetChanged(f func(newTarget *core.QObject)) {
 	if ptr.Pointer() != nil {
-		C.QDrag_ConnectTargetChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QDrag_ConnectTargetChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "targetChanged", f)
 	}
 }
 
 func (ptr *QDrag) DisconnectTargetChanged() {
 	if ptr.Pointer() != nil {
-		C.QDrag_DisconnectTargetChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QDrag_DisconnectTargetChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "targetChanged")
 	}
 }
 
 //export callbackQDragTargetChanged
 func callbackQDragTargetChanged(ptrName *C.char, newTarget unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "targetChanged").(func(*core.QObject))(core.QObjectFromPointer(newTarget))
+	qt.GetSignal(C.GoString(ptrName), "targetChanged").(func(*core.QObject))(core.NewQObjectFromPointer(newTarget))
 }
 
 func (ptr *QDrag) DestroyQDrag() {
 	if ptr.Pointer() != nil {
-		C.QDrag_DestroyQDrag(C.QtObjectPtr(ptr.Pointer()))
+		C.QDrag_DestroyQDrag(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

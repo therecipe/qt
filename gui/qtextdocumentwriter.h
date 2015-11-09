@@ -1,21 +1,21 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QTextDocumentWriter_NewQTextDocumentWriter();
-QtObjectPtr QTextDocumentWriter_NewQTextDocumentWriter2(QtObjectPtr device, QtObjectPtr format);
-QtObjectPtr QTextDocumentWriter_NewQTextDocumentWriter3(char* fileName, QtObjectPtr format);
-QtObjectPtr QTextDocumentWriter_Codec(QtObjectPtr ptr);
-QtObjectPtr QTextDocumentWriter_Device(QtObjectPtr ptr);
-char* QTextDocumentWriter_FileName(QtObjectPtr ptr);
-void QTextDocumentWriter_SetCodec(QtObjectPtr ptr, QtObjectPtr codec);
-void QTextDocumentWriter_SetDevice(QtObjectPtr ptr, QtObjectPtr device);
-void QTextDocumentWriter_SetFileName(QtObjectPtr ptr, char* fileName);
-void QTextDocumentWriter_SetFormat(QtObjectPtr ptr, QtObjectPtr format);
-int QTextDocumentWriter_Write(QtObjectPtr ptr, QtObjectPtr document);
-int QTextDocumentWriter_Write2(QtObjectPtr ptr, QtObjectPtr fragment);
-void QTextDocumentWriter_DestroyQTextDocumentWriter(QtObjectPtr ptr);
+void* QTextDocumentWriter_NewQTextDocumentWriter();
+void* QTextDocumentWriter_NewQTextDocumentWriter2(void* device, void* format);
+void* QTextDocumentWriter_NewQTextDocumentWriter3(char* fileName, void* format);
+void* QTextDocumentWriter_Codec(void* ptr);
+void* QTextDocumentWriter_Device(void* ptr);
+char* QTextDocumentWriter_FileName(void* ptr);
+void* QTextDocumentWriter_Format(void* ptr);
+void QTextDocumentWriter_SetCodec(void* ptr, void* codec);
+void QTextDocumentWriter_SetDevice(void* ptr, void* device);
+void QTextDocumentWriter_SetFileName(void* ptr, char* fileName);
+void QTextDocumentWriter_SetFormat(void* ptr, void* format);
+int QTextDocumentWriter_Write(void* ptr, void* document);
+int QTextDocumentWriter_Write2(void* ptr, void* fragment);
+void QTextDocumentWriter_DestroyQTextDocumentWriter(void* ptr);
 
 #ifdef __cplusplus
 }

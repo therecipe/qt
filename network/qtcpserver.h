@@ -1,26 +1,25 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QTcpServer_NewQTcpServer(QtObjectPtr parent);
-void QTcpServer_ConnectAcceptError(QtObjectPtr ptr);
-void QTcpServer_DisconnectAcceptError(QtObjectPtr ptr);
-void QTcpServer_Close(QtObjectPtr ptr);
-char* QTcpServer_ErrorString(QtObjectPtr ptr);
-int QTcpServer_HasPendingConnections(QtObjectPtr ptr);
-int QTcpServer_IsListening(QtObjectPtr ptr);
-int QTcpServer_MaxPendingConnections(QtObjectPtr ptr);
-void QTcpServer_ConnectNewConnection(QtObjectPtr ptr);
-void QTcpServer_DisconnectNewConnection(QtObjectPtr ptr);
-QtObjectPtr QTcpServer_NextPendingConnection(QtObjectPtr ptr);
-void QTcpServer_PauseAccepting(QtObjectPtr ptr);
-void QTcpServer_ResumeAccepting(QtObjectPtr ptr);
-int QTcpServer_ServerError(QtObjectPtr ptr);
-void QTcpServer_SetMaxPendingConnections(QtObjectPtr ptr, int numConnections);
-void QTcpServer_SetProxy(QtObjectPtr ptr, QtObjectPtr networkProxy);
-int QTcpServer_WaitForNewConnection(QtObjectPtr ptr, int msec, int timedOut);
-void QTcpServer_DestroyQTcpServer(QtObjectPtr ptr);
+void* QTcpServer_NewQTcpServer(void* parent);
+void QTcpServer_ConnectAcceptError(void* ptr);
+void QTcpServer_DisconnectAcceptError(void* ptr);
+void QTcpServer_Close(void* ptr);
+char* QTcpServer_ErrorString(void* ptr);
+int QTcpServer_HasPendingConnections(void* ptr);
+int QTcpServer_IsListening(void* ptr);
+int QTcpServer_MaxPendingConnections(void* ptr);
+void QTcpServer_ConnectNewConnection(void* ptr);
+void QTcpServer_DisconnectNewConnection(void* ptr);
+void* QTcpServer_NextPendingConnection(void* ptr);
+void QTcpServer_PauseAccepting(void* ptr);
+void QTcpServer_ResumeAccepting(void* ptr);
+int QTcpServer_ServerError(void* ptr);
+void QTcpServer_SetMaxPendingConnections(void* ptr, int numConnections);
+void QTcpServer_SetProxy(void* ptr, void* networkProxy);
+int QTcpServer_WaitForNewConnection(void* ptr, int msec, int timedOut);
+void QTcpServer_DestroyQTcpServer(void* ptr);
 
 #ifdef __cplusplus
 }

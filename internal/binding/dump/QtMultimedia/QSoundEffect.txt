@@ -1,32 +1,32 @@
 ########################################			FUNCTIONS			########################################
-&{isLoaded QSoundEffect::isLoaded commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.cpp non plain false false  bool [] }
-&{loopsRemaining QSoundEffect::loopsRemaining commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.cpp non plain false false  int [] }
-&{play QSoundEffect::play commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.cpp non slot false false  void [] }
-&{stop QSoundEffect::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.cpp non slot false false  void [] }
-&{supportedMimeTypes QSoundEffect::supportedMimeTypes commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.cpp non plain true false  QStringList [] }
-&{QSoundEffect QSoundEffect::QSoundEffect commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non constructor false false   [0xc8223ac240] }
-&{category QSoundEffect::category commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  QString [] }
-&{categoryChanged QSoundEffect::categoryChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void [] }
-&{isMuted QSoundEffect::isMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  bool [] }
-&{isPlaying QSoundEffect::isPlaying commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  bool [] }
-&{loadedChanged QSoundEffect::loadedChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void [] }
-&{loopCount QSoundEffect::loopCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  int [] }
-&{loopCountChanged QSoundEffect::loopCountChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void [] }
-&{loopsRemainingChanged QSoundEffect::loopsRemainingChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void [] }
-&{mutedChanged QSoundEffect::mutedChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void [] }
-&{playingChanged QSoundEffect::playingChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void [] }
-&{setCategory QSoundEffect::setCategory commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  void [0xc8223ad540] }
-&{setLoopCount QSoundEffect::setLoopCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  void [0xc8223ad8e0] }
-&{setMuted QSoundEffect::setMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  void [0xc8223adbe0] }
-&{setSource QSoundEffect::setSource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  void [0xc8223adec0] }
-&{setVolume QSoundEffect::setVolume commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  void [0xc8223ba280] }
-&{source QSoundEffect::source commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  QUrl [] }
-&{sourceChanged QSoundEffect::sourceChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void [] }
-&{status QSoundEffect::status commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  Status [] }
-&{statusChanged QSoundEffect::statusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void [] }
-&{volume QSoundEffect::volume commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  qreal [] }
-&{volumeChanged QSoundEffect::volumeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void [] }
-&{~QSoundEffect QSoundEffect::~QSoundEffect commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non destructor false false   [] }
+&{isLoaded QSoundEffect::isLoaded commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.cpp non plain false false  bool bool isLoaded() const [] }
+&{loopsRemaining QSoundEffect::loopsRemaining commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.cpp non plain false false  int int loopsRemaining() const [] }
+&{play QSoundEffect::play commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.cpp non slot false false  void void play() [] }
+&{stop QSoundEffect::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.cpp non slot false false  void void stop() [] }
+&{supportedMimeTypes QSoundEffect::supportedMimeTypes commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.cpp non plain true false  QStringList QStringList supportedMimeTypes() [] }
+&{QSoundEffect QSoundEffect::QSoundEffect commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non constructor false false   QSoundEffect(QObject *parent) [0xc821242740] }
+&{category QSoundEffect::category commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  QString QString category() const [] }
+&{categoryChanged QSoundEffect::categoryChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void void categoryChanged() [] }
+&{isMuted QSoundEffect::isMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  bool bool isMuted() const [] }
+&{isPlaying QSoundEffect::isPlaying commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  bool bool isPlaying() const [] }
+&{loadedChanged QSoundEffect::loadedChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void void loadedChanged() [] }
+&{loopCount QSoundEffect::loopCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  int int loopCount() const [] }
+&{loopCountChanged QSoundEffect::loopCountChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void void loopCountChanged() [] }
+&{loopsRemainingChanged QSoundEffect::loopsRemainingChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void void loopsRemainingChanged() [] }
+&{mutedChanged QSoundEffect::mutedChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void void mutedChanged() [] }
+&{playingChanged QSoundEffect::playingChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void void playingChanged() [] }
+&{setCategory QSoundEffect::setCategory commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  void void setCategory(const QString &category) [0xc82103eb80] }
+&{setLoopCount QSoundEffect::setLoopCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  void void setLoopCount(int loopCount) [0xc82103f000] }
+&{setMuted QSoundEffect::setMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  void void setMuted(bool muted) [0xc82103f420] }
+&{setSource QSoundEffect::setSource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  void void setSource(const QUrl &url) [0xc82103f7e0] }
+&{setVolume QSoundEffect::setVolume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  void void setVolume(qreal volume) [0xc82103fc80] }
+&{source QSoundEffect::source commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  QUrl QUrl source() const [] }
+&{sourceChanged QSoundEffect::sourceChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void void sourceChanged() [] }
+&{status QSoundEffect::status commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  Status Status status() const [] }
+&{statusChanged QSoundEffect::statusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void void statusChanged() [] }
+&{volume QSoundEffect::volume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non plain false false  qreal qreal volume() const [] }
+&{volumeChanged QSoundEffect::volumeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non signal false false  void void volumeChanged() [] }
+&{~QSoundEffect QSoundEffect::~QSoundEffect commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qsoundeffect.h non destructor false false   ~QSoundEffect() [] }
 ########################################			ENUMS			########################################
-&{Loop QSoundEffect::Loop commendable public  [0xc8223979c0]}
-&{Status QSoundEffect::Status commendable public  [0xc822397ca0 0xc822397d80 0xc822397e40 0xc822397f20]}
+&{Loop QSoundEffect::Loop commendable public  [0xc8227e3a80] false}
+&{Status QSoundEffect::Status commendable public  [0xc8227e3de0 0xc8227e3ee0 0xc8212420a0 0xc8212421a0] false}

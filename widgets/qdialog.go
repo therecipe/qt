@@ -12,84 +12,84 @@ type QDialog struct {
 	QWidget
 }
 
-type QDialogITF interface {
-	QWidgetITF
-	QDialogPTR() *QDialog
+type QDialog_ITF interface {
+	QWidget_ITF
+	QDialog_PTR() *QDialog
 }
 
-func PointerFromQDialog(ptr QDialogITF) unsafe.Pointer {
+func PointerFromQDialog(ptr QDialog_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDialogPTR().Pointer()
+		return ptr.QDialog_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDialogFromPointer(ptr unsafe.Pointer) *QDialog {
+func NewQDialogFromPointer(ptr unsafe.Pointer) *QDialog {
 	var n = new(QDialog)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QDialog_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QDialog) QDialogPTR() *QDialog {
+func (ptr *QDialog) QDialog_PTR() *QDialog {
 	return ptr
 }
 
 //QDialog::DialogCode
-type QDialog__DialogCode int
+type QDialog__DialogCode int64
 
-var (
+const (
 	QDialog__Rejected = QDialog__DialogCode(0)
 	QDialog__Accepted = QDialog__DialogCode(1)
 )
 
 func (ptr *QDialog) IsSizeGripEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QDialog_IsSizeGripEnabled(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QDialog_IsSizeGripEnabled(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QDialog) SetModal(modal bool) {
 	if ptr.Pointer() != nil {
-		C.QDialog_SetModal(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(modal)))
+		C.QDialog_SetModal(ptr.Pointer(), C.int(qt.GoBoolToInt(modal)))
 	}
 }
 
 func (ptr *QDialog) SetResult(i int) {
 	if ptr.Pointer() != nil {
-		C.QDialog_SetResult(C.QtObjectPtr(ptr.Pointer()), C.int(i))
+		C.QDialog_SetResult(ptr.Pointer(), C.int(i))
 	}
 }
 
 func (ptr *QDialog) SetSizeGripEnabled(v bool) {
 	if ptr.Pointer() != nil {
-		C.QDialog_SetSizeGripEnabled(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(v)))
+		C.QDialog_SetSizeGripEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
 	}
 }
 
-func NewQDialog(parent QWidgetITF, f core.Qt__WindowType) *QDialog {
-	return QDialogFromPointer(unsafe.Pointer(C.QDialog_NewQDialog(C.QtObjectPtr(PointerFromQWidget(parent)), C.int(f))))
+func NewQDialog(parent QWidget_ITF, f core.Qt__WindowType) *QDialog {
+	return NewQDialogFromPointer(C.QDialog_NewQDialog(PointerFromQWidget(parent), C.int(f)))
 }
 
 func (ptr *QDialog) Accept() {
 	if ptr.Pointer() != nil {
-		C.QDialog_Accept(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialog_Accept(ptr.Pointer())
 	}
 }
 
 func (ptr *QDialog) ConnectAccepted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QDialog_ConnectAccepted(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialog_ConnectAccepted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "accepted", f)
 	}
 }
 
 func (ptr *QDialog) DisconnectAccepted() {
 	if ptr.Pointer() != nil {
-		C.QDialog_DisconnectAccepted(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialog_DisconnectAccepted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "accepted")
 	}
 }
@@ -101,27 +101,27 @@ func callbackQDialogAccepted(ptrName *C.char) {
 
 func (ptr *QDialog) Done(r int) {
 	if ptr.Pointer() != nil {
-		C.QDialog_Done(C.QtObjectPtr(ptr.Pointer()), C.int(r))
+		C.QDialog_Done(ptr.Pointer(), C.int(r))
 	}
 }
 
 func (ptr *QDialog) Exec() int {
 	if ptr.Pointer() != nil {
-		return int(C.QDialog_Exec(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QDialog_Exec(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDialog) ConnectFinished(f func(result int)) {
 	if ptr.Pointer() != nil {
-		C.QDialog_ConnectFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialog_ConnectFinished(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "finished", f)
 	}
 }
 
 func (ptr *QDialog) DisconnectFinished() {
 	if ptr.Pointer() != nil {
-		C.QDialog_DisconnectFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialog_DisconnectFinished(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "finished")
 	}
 }
@@ -133,26 +133,26 @@ func callbackQDialogFinished(ptrName *C.char, result C.int) {
 
 func (ptr *QDialog) Open() {
 	if ptr.Pointer() != nil {
-		C.QDialog_Open(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialog_Open(ptr.Pointer())
 	}
 }
 
 func (ptr *QDialog) Reject() {
 	if ptr.Pointer() != nil {
-		C.QDialog_Reject(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialog_Reject(ptr.Pointer())
 	}
 }
 
 func (ptr *QDialog) ConnectRejected(f func()) {
 	if ptr.Pointer() != nil {
-		C.QDialog_ConnectRejected(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialog_ConnectRejected(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "rejected", f)
 	}
 }
 
 func (ptr *QDialog) DisconnectRejected() {
 	if ptr.Pointer() != nil {
-		C.QDialog_DisconnectRejected(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialog_DisconnectRejected(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "rejected")
 	}
 }
@@ -164,20 +164,20 @@ func callbackQDialogRejected(ptrName *C.char) {
 
 func (ptr *QDialog) Result() int {
 	if ptr.Pointer() != nil {
-		return int(C.QDialog_Result(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QDialog_Result(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDialog) SetVisible(visible bool) {
 	if ptr.Pointer() != nil {
-		C.QDialog_SetVisible(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(visible)))
+		C.QDialog_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
 	}
 }
 
 func (ptr *QDialog) DestroyQDialog() {
 	if ptr.Pointer() != nil {
-		C.QDialog_DestroyQDialog(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialog_DestroyQDialog(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

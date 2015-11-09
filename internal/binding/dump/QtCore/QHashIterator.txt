@@ -1,16 +1,16 @@
 ########################################			FUNCTIONS			########################################
-&{QHashIterator QHashIterator::QHashIterator commendable public qhash.h non constructor false false   [0xc82036c5c0] }
-&{findNext QHashIterator::findNext commendable public qhash.h non plain false false  bool [0xc82036ca40] }
-&{findPrevious QHashIterator::findPrevious commendable public qhash.h non plain false false  bool [0xc82036cca0] }
-&{hasNext QHashIterator::hasNext commendable public qhash.h non plain false false  bool [] }
-&{hasPrevious QHashIterator::hasPrevious commendable public qhash.h non plain false false  bool [] }
-&{key QHashIterator::key commendable public qhash.h non plain false false  const Key & [] }
-&{next QHashIterator::next commendable public qhash.h non plain false false  Item [] }
-&{operator= QHashIterator::operator= commendable public qhash.h non plain false false  QHashIterator & [0xc82036dbe0] }
-&{peekNext QHashIterator::peekNext commendable public qhash.h non plain false false  Item [] }
-&{peekPrevious QHashIterator::peekPrevious commendable public qhash.h non plain false false  Item [] }
-&{previous QHashIterator::previous commendable public qhash.h non plain false false  Item [] }
-&{toBack QHashIterator::toBack commendable public qhash.h non plain false false  void [] }
-&{toFront QHashIterator::toFront commendable public qhash.h non plain false false  void [] }
-&{value QHashIterator::value commendable public qhash.h non plain false false  const T & [] }
+&{QHashIterator QHashIterator::QHashIterator commendable public qhash.h non constructor false false   QHashIterator(const QHash<Key, T> &hash) [0xc820927fc0] }
+&{findNext QHashIterator::findNext commendable public qhash.h non plain false false  bool bool findNext(const T &value) [0xc820308660] }
+&{findPrevious QHashIterator::findPrevious commendable public qhash.h non plain false false  bool bool findPrevious(const T &value) [0xc820308b80] }
+&{hasNext QHashIterator::hasNext commendable public qhash.h non plain false false  bool bool hasNext() const [] }
+&{hasPrevious QHashIterator::hasPrevious commendable public qhash.h non plain false false  bool bool hasPrevious() const [] }
+&{key QHashIterator::key commendable public qhash.h non plain false false  const Key & const Key & key() const [] }
+&{next QHashIterator::next commendable public qhash.h non plain false false  Item Item next() [] }
+&{operator= QHashIterator::operator= commendable public qhash.h non plain false false  QHashIterator & QHashIterator & operator=(const QHash<Key, T> &hash) [0xc820309de0] }
+&{peekNext QHashIterator::peekNext commendable public qhash.h non plain false false  Item Item peekNext() const [] }
+&{peekPrevious QHashIterator::peekPrevious commendable public qhash.h non plain false false  Item Item peekPrevious() const [] }
+&{previous QHashIterator::previous commendable public qhash.h non plain false false  Item Item previous() [] }
+&{toBack QHashIterator::toBack commendable public qhash.h non plain false false  void void toBack() [] }
+&{toFront QHashIterator::toFront commendable public qhash.h non plain false false  void void toFront() [] }
+&{value QHashIterator::value commendable public qhash.h non plain false false  const T & const T & value() const [] }
 ########################################			ENUMS			########################################

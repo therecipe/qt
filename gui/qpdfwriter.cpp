@@ -1,13 +1,13 @@
 #include "qpdfwriter.h"
-#include <QIODevice>
 #include <QString>
-#include <QMargins>
-#include <QPageLayout>
-#include <QMarginsF>
-#include <QPageSize>
 #include <QVariant>
+#include <QPageSize>
+#include <QIODevice>
+#include <QPageLayout>
+#include <QMargins>
 #include <QUrl>
 #include <QModelIndex>
+#include <QMarginsF>
 #include <QPdfWriter>
 #include "_cgo_export.h"
 
@@ -15,63 +15,63 @@ class MyQPdfWriter: public QPdfWriter {
 public:
 };
 
-QtObjectPtr QPdfWriter_NewQPdfWriter2(QtObjectPtr device){
+void* QPdfWriter_NewQPdfWriter2(void* device){
 	return new QPdfWriter(static_cast<QIODevice*>(device));
 }
 
-QtObjectPtr QPdfWriter_NewQPdfWriter(char* filename){
+void* QPdfWriter_NewQPdfWriter(char* filename){
 	return new QPdfWriter(QString(filename));
 }
 
-char* QPdfWriter_Creator(QtObjectPtr ptr){
+char* QPdfWriter_Creator(void* ptr){
 	return static_cast<QPdfWriter*>(ptr)->creator().toUtf8().data();
 }
 
-int QPdfWriter_NewPage(QtObjectPtr ptr){
+int QPdfWriter_NewPage(void* ptr){
 	return static_cast<QPdfWriter*>(ptr)->newPage();
 }
 
-int QPdfWriter_Resolution(QtObjectPtr ptr){
+int QPdfWriter_Resolution(void* ptr){
 	return static_cast<QPdfWriter*>(ptr)->resolution();
 }
 
-void QPdfWriter_SetCreator(QtObjectPtr ptr, char* creator){
+void QPdfWriter_SetCreator(void* ptr, char* creator){
 	static_cast<QPdfWriter*>(ptr)->setCreator(QString(creator));
 }
 
-int QPdfWriter_SetPageLayout(QtObjectPtr ptr, QtObjectPtr newPageLayout){
+int QPdfWriter_SetPageLayout(void* ptr, void* newPageLayout){
 	return static_cast<QPdfWriter*>(ptr)->setPageLayout(*static_cast<QPageLayout*>(newPageLayout));
 }
 
-int QPdfWriter_SetPageMargins(QtObjectPtr ptr, QtObjectPtr margins){
+int QPdfWriter_SetPageMargins(void* ptr, void* margins){
 	return static_cast<QPdfWriter*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins));
 }
 
-int QPdfWriter_SetPageMargins2(QtObjectPtr ptr, QtObjectPtr margins, int units){
+int QPdfWriter_SetPageMargins2(void* ptr, void* margins, int units){
 	return static_cast<QPdfWriter*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins), static_cast<QPageLayout::Unit>(units));
 }
 
-int QPdfWriter_SetPageOrientation(QtObjectPtr ptr, int orientation){
+int QPdfWriter_SetPageOrientation(void* ptr, int orientation){
 	return static_cast<QPdfWriter*>(ptr)->setPageOrientation(static_cast<QPageLayout::Orientation>(orientation));
 }
 
-int QPdfWriter_SetPageSize(QtObjectPtr ptr, QtObjectPtr pageSize){
+int QPdfWriter_SetPageSize(void* ptr, void* pageSize){
 	return static_cast<QPdfWriter*>(ptr)->setPageSize(*static_cast<QPageSize*>(pageSize));
 }
 
-void QPdfWriter_SetResolution(QtObjectPtr ptr, int resolution){
+void QPdfWriter_SetResolution(void* ptr, int resolution){
 	static_cast<QPdfWriter*>(ptr)->setResolution(resolution);
 }
 
-void QPdfWriter_SetTitle(QtObjectPtr ptr, char* title){
+void QPdfWriter_SetTitle(void* ptr, char* title){
 	static_cast<QPdfWriter*>(ptr)->setTitle(QString(title));
 }
 
-char* QPdfWriter_Title(QtObjectPtr ptr){
+char* QPdfWriter_Title(void* ptr){
 	return static_cast<QPdfWriter*>(ptr)->title().toUtf8().data();
 }
 
-void QPdfWriter_DestroyQPdfWriter(QtObjectPtr ptr){
+void QPdfWriter_DestroyQPdfWriter(void* ptr){
 	static_cast<QPdfWriter*>(ptr)->~QPdfWriter();
 }
 

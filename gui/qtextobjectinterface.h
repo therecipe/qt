@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QTextObjectInterface_DrawObject(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr rect, QtObjectPtr doc, int posInDocument, QtObjectPtr format);
-void QTextObjectInterface_DestroyQTextObjectInterface(QtObjectPtr ptr);
+void QTextObjectInterface_DrawObject(void* ptr, void* painter, void* rect, void* doc, int posInDocument, void* format);
+void QTextObjectInterface_DestroyQTextObjectInterface(void* ptr);
 
 #ifdef __cplusplus
 }

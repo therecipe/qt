@@ -12,91 +12,91 @@ type QUndoView struct {
 	QListView
 }
 
-type QUndoViewITF interface {
-	QListViewITF
-	QUndoViewPTR() *QUndoView
+type QUndoView_ITF interface {
+	QListView_ITF
+	QUndoView_PTR() *QUndoView
 }
 
-func PointerFromQUndoView(ptr QUndoViewITF) unsafe.Pointer {
+func PointerFromQUndoView(ptr QUndoView_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QUndoViewPTR().Pointer()
+		return ptr.QUndoView_PTR().Pointer()
 	}
 	return nil
 }
 
-func QUndoViewFromPointer(ptr unsafe.Pointer) *QUndoView {
+func NewQUndoViewFromPointer(ptr unsafe.Pointer) *QUndoView {
 	var n = new(QUndoView)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QUndoView_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QUndoView) QUndoViewPTR() *QUndoView {
+func (ptr *QUndoView) QUndoView_PTR() *QUndoView {
 	return ptr
 }
 
 func (ptr *QUndoView) EmptyLabel() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QUndoView_EmptyLabel(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QUndoView_EmptyLabel(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QUndoView) SetCleanIcon(icon gui.QIconITF) {
+func (ptr *QUndoView) SetCleanIcon(icon gui.QIcon_ITF) {
 	if ptr.Pointer() != nil {
-		C.QUndoView_SetCleanIcon(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQIcon(icon)))
+		C.QUndoView_SetCleanIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
 	}
 }
 
 func (ptr *QUndoView) SetEmptyLabel(label string) {
 	if ptr.Pointer() != nil {
-		C.QUndoView_SetEmptyLabel(C.QtObjectPtr(ptr.Pointer()), C.CString(label))
+		C.QUndoView_SetEmptyLabel(ptr.Pointer(), C.CString(label))
 	}
 }
 
-func NewQUndoView3(group QUndoGroupITF, parent QWidgetITF) *QUndoView {
-	return QUndoViewFromPointer(unsafe.Pointer(C.QUndoView_NewQUndoView3(C.QtObjectPtr(PointerFromQUndoGroup(group)), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQUndoView3(group QUndoGroup_ITF, parent QWidget_ITF) *QUndoView {
+	return NewQUndoViewFromPointer(C.QUndoView_NewQUndoView3(PointerFromQUndoGroup(group), PointerFromQWidget(parent)))
 }
 
-func NewQUndoView2(stack QUndoStackITF, parent QWidgetITF) *QUndoView {
-	return QUndoViewFromPointer(unsafe.Pointer(C.QUndoView_NewQUndoView2(C.QtObjectPtr(PointerFromQUndoStack(stack)), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQUndoView2(stack QUndoStack_ITF, parent QWidget_ITF) *QUndoView {
+	return NewQUndoViewFromPointer(C.QUndoView_NewQUndoView2(PointerFromQUndoStack(stack), PointerFromQWidget(parent)))
 }
 
-func NewQUndoView(parent QWidgetITF) *QUndoView {
-	return QUndoViewFromPointer(unsafe.Pointer(C.QUndoView_NewQUndoView(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQUndoView(parent QWidget_ITF) *QUndoView {
+	return NewQUndoViewFromPointer(C.QUndoView_NewQUndoView(PointerFromQWidget(parent)))
 }
 
 func (ptr *QUndoView) Group() *QUndoGroup {
 	if ptr.Pointer() != nil {
-		return QUndoGroupFromPointer(unsafe.Pointer(C.QUndoView_Group(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQUndoGroupFromPointer(C.QUndoView_Group(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QUndoView) SetGroup(group QUndoGroupITF) {
+func (ptr *QUndoView) SetGroup(group QUndoGroup_ITF) {
 	if ptr.Pointer() != nil {
-		C.QUndoView_SetGroup(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQUndoGroup(group)))
+		C.QUndoView_SetGroup(ptr.Pointer(), PointerFromQUndoGroup(group))
 	}
 }
 
-func (ptr *QUndoView) SetStack(stack QUndoStackITF) {
+func (ptr *QUndoView) SetStack(stack QUndoStack_ITF) {
 	if ptr.Pointer() != nil {
-		C.QUndoView_SetStack(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQUndoStack(stack)))
+		C.QUndoView_SetStack(ptr.Pointer(), PointerFromQUndoStack(stack))
 	}
 }
 
 func (ptr *QUndoView) Stack() *QUndoStack {
 	if ptr.Pointer() != nil {
-		return QUndoStackFromPointer(unsafe.Pointer(C.QUndoView_Stack(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQUndoStackFromPointer(C.QUndoView_Stack(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QUndoView) DestroyQUndoView() {
 	if ptr.Pointer() != nil {
-		C.QUndoView_DestroyQUndoView(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoView_DestroyQUndoView(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

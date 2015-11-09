@@ -1,9 +1,9 @@
 #include "qgeoserviceprovider.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QLocale>
+#include <QString>
+#include <QVariant>
 #include <QGeoServiceProvider>
 #include "_cgo_export.h"
 
@@ -127,51 +127,51 @@ char* QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders(){
 	return QGeoServiceProvider::availableServiceProviders().join("|").toUtf8().data();
 }
 
-int QGeoServiceProvider_Error(QtObjectPtr ptr){
+int QGeoServiceProvider_Error(void* ptr){
 	return static_cast<QGeoServiceProvider*>(ptr)->error();
 }
 
-char* QGeoServiceProvider_ErrorString(QtObjectPtr ptr){
+char* QGeoServiceProvider_ErrorString(void* ptr){
 	return static_cast<QGeoServiceProvider*>(ptr)->errorString().toUtf8().data();
 }
 
-int QGeoServiceProvider_GeocodingFeatures(QtObjectPtr ptr){
+int QGeoServiceProvider_GeocodingFeatures(void* ptr){
 	return static_cast<QGeoServiceProvider*>(ptr)->geocodingFeatures();
 }
 
-QtObjectPtr QGeoServiceProvider_GeocodingManager(QtObjectPtr ptr){
+void* QGeoServiceProvider_GeocodingManager(void* ptr){
 	return static_cast<QGeoServiceProvider*>(ptr)->geocodingManager();
 }
 
-int QGeoServiceProvider_MappingFeatures(QtObjectPtr ptr){
+int QGeoServiceProvider_MappingFeatures(void* ptr){
 	return static_cast<QGeoServiceProvider*>(ptr)->mappingFeatures();
 }
 
-QtObjectPtr QGeoServiceProvider_PlaceManager(QtObjectPtr ptr){
+void* QGeoServiceProvider_PlaceManager(void* ptr){
 	return static_cast<QGeoServiceProvider*>(ptr)->placeManager();
 }
 
-int QGeoServiceProvider_PlacesFeatures(QtObjectPtr ptr){
+int QGeoServiceProvider_PlacesFeatures(void* ptr){
 	return static_cast<QGeoServiceProvider*>(ptr)->placesFeatures();
 }
 
-int QGeoServiceProvider_RoutingFeatures(QtObjectPtr ptr){
+int QGeoServiceProvider_RoutingFeatures(void* ptr){
 	return static_cast<QGeoServiceProvider*>(ptr)->routingFeatures();
 }
 
-QtObjectPtr QGeoServiceProvider_RoutingManager(QtObjectPtr ptr){
+void* QGeoServiceProvider_RoutingManager(void* ptr){
 	return static_cast<QGeoServiceProvider*>(ptr)->routingManager();
 }
 
-void QGeoServiceProvider_SetAllowExperimental(QtObjectPtr ptr, int allow){
+void QGeoServiceProvider_SetAllowExperimental(void* ptr, int allow){
 	static_cast<QGeoServiceProvider*>(ptr)->setAllowExperimental(allow != 0);
 }
 
-void QGeoServiceProvider_SetLocale(QtObjectPtr ptr, QtObjectPtr locale){
+void QGeoServiceProvider_SetLocale(void* ptr, void* locale){
 	static_cast<QGeoServiceProvider*>(ptr)->setLocale(*static_cast<QLocale*>(locale));
 }
 
-void QGeoServiceProvider_DestroyQGeoServiceProvider(QtObjectPtr ptr){
+void QGeoServiceProvider_DestroyQGeoServiceProvider(void* ptr){
 	static_cast<QGeoServiceProvider*>(ptr)->~QGeoServiceProvider();
 }
 

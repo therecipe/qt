@@ -1,9 +1,9 @@
 #include "qtablewidgetselectionrange.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QTableWidget>
-#include <QString>
-#include <QVariant>
 #include <QTableWidgetSelectionRange>
 #include "_cgo_export.h"
 
@@ -11,43 +11,43 @@ class MyQTableWidgetSelectionRange: public QTableWidgetSelectionRange {
 public:
 };
 
-QtObjectPtr QTableWidgetSelectionRange_NewQTableWidgetSelectionRange(){
+void* QTableWidgetSelectionRange_NewQTableWidgetSelectionRange(){
 	return new QTableWidgetSelectionRange();
 }
 
-QtObjectPtr QTableWidgetSelectionRange_NewQTableWidgetSelectionRange3(QtObjectPtr other){
+void* QTableWidgetSelectionRange_NewQTableWidgetSelectionRange3(void* other){
 	return new QTableWidgetSelectionRange(*static_cast<QTableWidgetSelectionRange*>(other));
 }
 
-QtObjectPtr QTableWidgetSelectionRange_NewQTableWidgetSelectionRange2(int top, int left, int bottom, int right){
+void* QTableWidgetSelectionRange_NewQTableWidgetSelectionRange2(int top, int left, int bottom, int right){
 	return new QTableWidgetSelectionRange(top, left, bottom, right);
 }
 
-int QTableWidgetSelectionRange_BottomRow(QtObjectPtr ptr){
+int QTableWidgetSelectionRange_BottomRow(void* ptr){
 	return static_cast<QTableWidgetSelectionRange*>(ptr)->bottomRow();
 }
 
-int QTableWidgetSelectionRange_ColumnCount(QtObjectPtr ptr){
+int QTableWidgetSelectionRange_ColumnCount(void* ptr){
 	return static_cast<QTableWidgetSelectionRange*>(ptr)->columnCount();
 }
 
-int QTableWidgetSelectionRange_LeftColumn(QtObjectPtr ptr){
+int QTableWidgetSelectionRange_LeftColumn(void* ptr){
 	return static_cast<QTableWidgetSelectionRange*>(ptr)->leftColumn();
 }
 
-int QTableWidgetSelectionRange_RightColumn(QtObjectPtr ptr){
+int QTableWidgetSelectionRange_RightColumn(void* ptr){
 	return static_cast<QTableWidgetSelectionRange*>(ptr)->rightColumn();
 }
 
-int QTableWidgetSelectionRange_RowCount(QtObjectPtr ptr){
+int QTableWidgetSelectionRange_RowCount(void* ptr){
 	return static_cast<QTableWidgetSelectionRange*>(ptr)->rowCount();
 }
 
-int QTableWidgetSelectionRange_TopRow(QtObjectPtr ptr){
+int QTableWidgetSelectionRange_TopRow(void* ptr){
 	return static_cast<QTableWidgetSelectionRange*>(ptr)->topRow();
 }
 
-void QTableWidgetSelectionRange_DestroyQTableWidgetSelectionRange(QtObjectPtr ptr){
+void QTableWidgetSelectionRange_DestroyQTableWidgetSelectionRange(void* ptr){
 	static_cast<QTableWidgetSelectionRange*>(ptr)->~QTableWidgetSelectionRange();
 }
 

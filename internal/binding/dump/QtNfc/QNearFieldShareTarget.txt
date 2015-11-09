@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{cancel QNearFieldShareTarget::cancel commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non plain false false  void [] }
-&{error QNearFieldShareTarget::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non signal false false  void [0xc8228c2080] }
-&{isShareInProgress QNearFieldShareTarget::isShareInProgress commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non plain false false  bool [] }
-&{share QNearFieldShareTarget::share commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non plain false true 2 bool [0xc8228c2520] }
-&{share QNearFieldShareTarget::share commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non plain false false  bool [0xc8228c28a0] }
-&{shareError QNearFieldShareTarget::shareError commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non plain false false  QNearFieldShareManager::ShareError [] }
-&{shareFinished QNearFieldShareTarget::shareFinished commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non signal false false  void [] }
-&{shareModes QNearFieldShareTarget::shareModes commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non plain false false  QNearFieldShareManager::ShareModes [] }
-&{~QNearFieldShareTarget QNearFieldShareTarget::~QNearFieldShareTarget commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non destructor false false   [] }
+&{cancel QNearFieldShareTarget::cancel commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non plain false false  void void cancel() [] }
+&{error QNearFieldShareTarget::error commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non signal false false  void void error(QNearFieldShareManager::ShareError error) [0xc823160a80] }
+&{isShareInProgress QNearFieldShareTarget::isShareInProgress commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non plain false false  bool bool isShareInProgress() const [] }
+&{share QNearFieldShareTarget::share commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non plain false true 2 bool bool share(const QList<QFileInfo> &files) [0xc823161180] }
+&{share QNearFieldShareTarget::share commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non plain false false  bool bool share(const QNdefMessage &message) [0xc8231615c0] }
+&{shareError QNearFieldShareTarget::shareError commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non plain false false  QNearFieldShareManager::ShareError QNearFieldShareManager::ShareError shareError() const [] }
+&{shareFinished QNearFieldShareTarget::shareFinished commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non signal false false  void void shareFinished() [] }
+&{shareModes QNearFieldShareTarget::shareModes commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non plain false false  QNearFieldShareManager::ShareModes QNearFieldShareManager::ShareModes shareModes() const [] }
+&{~QNearFieldShareTarget QNearFieldShareTarget::~QNearFieldShareTarget commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qnearfieldsharetarget.h non destructor false false   ~QNearFieldShareTarget() [] }
 ########################################			ENUMS			########################################

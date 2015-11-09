@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QXmlDTDHandler_ErrorString(QtObjectPtr ptr);
-int QXmlDTDHandler_NotationDecl(QtObjectPtr ptr, char* name, char* publicId, char* systemId);
-int QXmlDTDHandler_UnparsedEntityDecl(QtObjectPtr ptr, char* name, char* publicId, char* systemId, char* notationName);
-void QXmlDTDHandler_DestroyQXmlDTDHandler(QtObjectPtr ptr);
+char* QXmlDTDHandler_ErrorString(void* ptr);
+int QXmlDTDHandler_NotationDecl(void* ptr, char* name, char* publicId, char* systemId);
+int QXmlDTDHandler_UnparsedEntityDecl(void* ptr, char* name, char* publicId, char* systemId, char* notationName);
+void QXmlDTDHandler_DestroyQXmlDTDHandler(void* ptr);
 
 #ifdef __cplusplus
 }

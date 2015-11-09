@@ -1,11 +1,11 @@
 #include "qsignaltransition.h"
+#include <QByteArray>
+#include <QState>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
-#include <QByteArray>
-#include <QState>
 #include <QSignalTransition>
 #include "_cgo_export.h"
 
@@ -15,43 +15,47 @@ void Signal_SenderObjectChanged(){callbackQSignalTransitionSenderObjectChanged(t
 void Signal_SignalChanged(){callbackQSignalTransitionSignalChanged(this->objectName().toUtf8().data());};
 };
 
-QtObjectPtr QSignalTransition_NewQSignalTransition(QtObjectPtr sourceState){
+void* QSignalTransition_NewQSignalTransition(void* sourceState){
 	return new QSignalTransition(static_cast<QState*>(sourceState));
 }
 
-QtObjectPtr QSignalTransition_NewQSignalTransition2(QtObjectPtr sender, char* signal, QtObjectPtr sourceState){
+void* QSignalTransition_NewQSignalTransition2(void* sender, char* signal, void* sourceState){
 	return new QSignalTransition(static_cast<QObject*>(sender), const_cast<const char*>(signal), static_cast<QState*>(sourceState));
 }
 
-QtObjectPtr QSignalTransition_SenderObject(QtObjectPtr ptr){
+void* QSignalTransition_SenderObject(void* ptr){
 	return static_cast<QSignalTransition*>(ptr)->senderObject();
 }
 
-void QSignalTransition_ConnectSenderObjectChanged(QtObjectPtr ptr){
+void QSignalTransition_ConnectSenderObjectChanged(void* ptr){
 	QObject::connect(static_cast<QSignalTransition*>(ptr), &QSignalTransition::senderObjectChanged, static_cast<MyQSignalTransition*>(ptr), static_cast<void (MyQSignalTransition::*)()>(&MyQSignalTransition::Signal_SenderObjectChanged));;
 }
 
-void QSignalTransition_DisconnectSenderObjectChanged(QtObjectPtr ptr){
+void QSignalTransition_DisconnectSenderObjectChanged(void* ptr){
 	QObject::disconnect(static_cast<QSignalTransition*>(ptr), &QSignalTransition::senderObjectChanged, static_cast<MyQSignalTransition*>(ptr), static_cast<void (MyQSignalTransition::*)()>(&MyQSignalTransition::Signal_SenderObjectChanged));;
 }
 
-void QSignalTransition_SetSenderObject(QtObjectPtr ptr, QtObjectPtr sender){
+void QSignalTransition_SetSenderObject(void* ptr, void* sender){
 	static_cast<QSignalTransition*>(ptr)->setSenderObject(static_cast<QObject*>(sender));
 }
 
-void QSignalTransition_SetSignal(QtObjectPtr ptr, QtObjectPtr signal){
+void QSignalTransition_SetSignal(void* ptr, void* signal){
 	static_cast<QSignalTransition*>(ptr)->setSignal(*static_cast<QByteArray*>(signal));
 }
 
-void QSignalTransition_ConnectSignalChanged(QtObjectPtr ptr){
+void* QSignalTransition_Signal(void* ptr){
+	return new QByteArray(static_cast<QSignalTransition*>(ptr)->signal());
+}
+
+void QSignalTransition_ConnectSignalChanged(void* ptr){
 	QObject::connect(static_cast<QSignalTransition*>(ptr), &QSignalTransition::signalChanged, static_cast<MyQSignalTransition*>(ptr), static_cast<void (MyQSignalTransition::*)()>(&MyQSignalTransition::Signal_SignalChanged));;
 }
 
-void QSignalTransition_DisconnectSignalChanged(QtObjectPtr ptr){
+void QSignalTransition_DisconnectSignalChanged(void* ptr){
 	QObject::disconnect(static_cast<QSignalTransition*>(ptr), &QSignalTransition::signalChanged, static_cast<MyQSignalTransition*>(ptr), static_cast<void (MyQSignalTransition::*)()>(&MyQSignalTransition::Signal_SignalChanged));;
 }
 
-void QSignalTransition_DestroyQSignalTransition(QtObjectPtr ptr){
+void QSignalTransition_DestroyQSignalTransition(void* ptr){
 	static_cast<QSignalTransition*>(ptr)->~QSignalTransition();
 }
 

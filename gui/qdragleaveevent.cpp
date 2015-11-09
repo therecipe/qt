@@ -1,9 +1,9 @@
 #include "qdragleaveevent.h"
+#include <QModelIndex>
+#include <QDrag>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QDrag>
 #include <QDragLeaveEvent>
 #include "_cgo_export.h"
 
@@ -11,7 +11,7 @@ class MyQDragLeaveEvent: public QDragLeaveEvent {
 public:
 };
 
-QtObjectPtr QDragLeaveEvent_NewQDragLeaveEvent(){
+void* QDragLeaveEvent_NewQDragLeaveEvent(){
 	return new QDragLeaveEvent();
 }
 

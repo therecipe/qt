@@ -12,27 +12,27 @@ type QIconEnginePlugin struct {
 	core.QObject
 }
 
-type QIconEnginePluginITF interface {
-	core.QObjectITF
-	QIconEnginePluginPTR() *QIconEnginePlugin
+type QIconEnginePlugin_ITF interface {
+	core.QObject_ITF
+	QIconEnginePlugin_PTR() *QIconEnginePlugin
 }
 
-func PointerFromQIconEnginePlugin(ptr QIconEnginePluginITF) unsafe.Pointer {
+func PointerFromQIconEnginePlugin(ptr QIconEnginePlugin_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QIconEnginePluginPTR().Pointer()
+		return ptr.QIconEnginePlugin_PTR().Pointer()
 	}
 	return nil
 }
 
-func QIconEnginePluginFromPointer(ptr unsafe.Pointer) *QIconEnginePlugin {
+func NewQIconEnginePluginFromPointer(ptr unsafe.Pointer) *QIconEnginePlugin {
 	var n = new(QIconEnginePlugin)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QIconEnginePlugin_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QIconEnginePlugin) QIconEnginePluginPTR() *QIconEnginePlugin {
+func (ptr *QIconEnginePlugin) QIconEnginePlugin_PTR() *QIconEnginePlugin {
 	return ptr
 }

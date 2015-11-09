@@ -11,56 +11,56 @@ type QHelpEvent struct {
 	core.QEvent
 }
 
-type QHelpEventITF interface {
-	core.QEventITF
-	QHelpEventPTR() *QHelpEvent
+type QHelpEvent_ITF interface {
+	core.QEvent_ITF
+	QHelpEvent_PTR() *QHelpEvent
 }
 
-func PointerFromQHelpEvent(ptr QHelpEventITF) unsafe.Pointer {
+func PointerFromQHelpEvent(ptr QHelpEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHelpEventPTR().Pointer()
+		return ptr.QHelpEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHelpEventFromPointer(ptr unsafe.Pointer) *QHelpEvent {
+func NewQHelpEventFromPointer(ptr unsafe.Pointer) *QHelpEvent {
 	var n = new(QHelpEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QHelpEvent) QHelpEventPTR() *QHelpEvent {
+func (ptr *QHelpEvent) QHelpEvent_PTR() *QHelpEvent {
 	return ptr
 }
 
-func NewQHelpEvent(ty core.QEvent__Type, pos core.QPointITF, globalPos core.QPointITF) *QHelpEvent {
-	return QHelpEventFromPointer(unsafe.Pointer(C.QHelpEvent_NewQHelpEvent(C.int(ty), C.QtObjectPtr(core.PointerFromQPoint(pos)), C.QtObjectPtr(core.PointerFromQPoint(globalPos)))))
+func NewQHelpEvent(ty core.QEvent__Type, pos core.QPoint_ITF, globalPos core.QPoint_ITF) *QHelpEvent {
+	return NewQHelpEventFromPointer(C.QHelpEvent_NewQHelpEvent(C.int(ty), core.PointerFromQPoint(pos), core.PointerFromQPoint(globalPos)))
 }
 
 func (ptr *QHelpEvent) GlobalX() int {
 	if ptr.Pointer() != nil {
-		return int(C.QHelpEvent_GlobalX(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QHelpEvent_GlobalX(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QHelpEvent) GlobalY() int {
 	if ptr.Pointer() != nil {
-		return int(C.QHelpEvent_GlobalY(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QHelpEvent_GlobalY(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QHelpEvent) X() int {
 	if ptr.Pointer() != nil {
-		return int(C.QHelpEvent_X(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QHelpEvent_X(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QHelpEvent) Y() int {
 	if ptr.Pointer() != nil {
-		return int(C.QHelpEvent_Y(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QHelpEvent_Y(ptr.Pointer()))
 	}
 	return 0
 }

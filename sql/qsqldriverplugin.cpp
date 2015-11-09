@@ -11,11 +11,11 @@ class MyQSqlDriverPlugin: public QSqlDriverPlugin {
 public:
 };
 
-QtObjectPtr QSqlDriverPlugin_Create(QtObjectPtr ptr, char* key){
+void* QSqlDriverPlugin_Create(void* ptr, char* key){
 	return static_cast<QSqlDriverPlugin*>(ptr)->create(QString(key));
 }
 
-void QSqlDriverPlugin_DestroyQSqlDriverPlugin(QtObjectPtr ptr){
+void QSqlDriverPlugin_DestroyQSqlDriverPlugin(void* ptr){
 	static_cast<QSqlDriverPlugin*>(ptr)->~QSqlDriverPlugin();
 }
 

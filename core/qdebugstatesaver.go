@@ -10,8 +10,8 @@ type QDebugStateSaver struct {
 	ptr unsafe.Pointer
 }
 
-type QDebugStateSaverITF interface {
-	QDebugStateSaverPTR() *QDebugStateSaver
+type QDebugStateSaver_ITF interface {
+	QDebugStateSaver_PTR() *QDebugStateSaver
 }
 
 func (p *QDebugStateSaver) Pointer() unsafe.Pointer {
@@ -22,29 +22,29 @@ func (p *QDebugStateSaver) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQDebugStateSaver(ptr QDebugStateSaverITF) unsafe.Pointer {
+func PointerFromQDebugStateSaver(ptr QDebugStateSaver_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDebugStateSaverPTR().Pointer()
+		return ptr.QDebugStateSaver_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDebugStateSaverFromPointer(ptr unsafe.Pointer) *QDebugStateSaver {
+func NewQDebugStateSaverFromPointer(ptr unsafe.Pointer) *QDebugStateSaver {
 	var n = new(QDebugStateSaver)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDebugStateSaver) QDebugStateSaverPTR() *QDebugStateSaver {
+func (ptr *QDebugStateSaver) QDebugStateSaver_PTR() *QDebugStateSaver {
 	return ptr
 }
 
-func NewQDebugStateSaver(dbg QDebugITF) *QDebugStateSaver {
-	return QDebugStateSaverFromPointer(unsafe.Pointer(C.QDebugStateSaver_NewQDebugStateSaver(C.QtObjectPtr(PointerFromQDebug(dbg)))))
+func NewQDebugStateSaver(dbg QDebug_ITF) *QDebugStateSaver {
+	return NewQDebugStateSaverFromPointer(C.QDebugStateSaver_NewQDebugStateSaver(PointerFromQDebug(dbg)))
 }
 
 func (ptr *QDebugStateSaver) DestroyQDebugStateSaver() {
 	if ptr.Pointer() != nil {
-		C.QDebugStateSaver_DestroyQDebugStateSaver(C.QtObjectPtr(ptr.Pointer()))
+		C.QDebugStateSaver_DestroyQDebugStateSaver(ptr.Pointer())
 	}
 }

@@ -10,11 +10,23 @@ class MyQTextItem: public QTextItem {
 public:
 };
 
-int QTextItem_RenderFlags(QtObjectPtr ptr){
+double QTextItem_Ascent(void* ptr){
+	return static_cast<double>(static_cast<QTextItem*>(ptr)->ascent());
+}
+
+double QTextItem_Descent(void* ptr){
+	return static_cast<double>(static_cast<QTextItem*>(ptr)->descent());
+}
+
+int QTextItem_RenderFlags(void* ptr){
 	return static_cast<QTextItem*>(ptr)->renderFlags();
 }
 
-char* QTextItem_Text(QtObjectPtr ptr){
+char* QTextItem_Text(void* ptr){
 	return static_cast<QTextItem*>(ptr)->text().toUtf8().data();
+}
+
+double QTextItem_Width(void* ptr){
+	return static_cast<double>(static_cast<QTextItem*>(ptr)->width());
 }
 

@@ -1,16 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QXmlParseException_NewQXmlParseException(char* name, int c, int l, char* p, char* s);
-QtObjectPtr QXmlParseException_NewQXmlParseException2(QtObjectPtr other);
-int QXmlParseException_ColumnNumber(QtObjectPtr ptr);
-int QXmlParseException_LineNumber(QtObjectPtr ptr);
-char* QXmlParseException_Message(QtObjectPtr ptr);
-char* QXmlParseException_PublicId(QtObjectPtr ptr);
-char* QXmlParseException_SystemId(QtObjectPtr ptr);
-void QXmlParseException_DestroyQXmlParseException(QtObjectPtr ptr);
+void* QXmlParseException_NewQXmlParseException(char* name, int c, int l, char* p, char* s);
+void* QXmlParseException_NewQXmlParseException2(void* other);
+int QXmlParseException_ColumnNumber(void* ptr);
+int QXmlParseException_LineNumber(void* ptr);
+char* QXmlParseException_Message(void* ptr);
+char* QXmlParseException_PublicId(void* ptr);
+char* QXmlParseException_SystemId(void* ptr);
+void QXmlParseException_DestroyQXmlParseException(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -11,34 +11,34 @@ type QMediaAvailabilityControl struct {
 	QMediaControl
 }
 
-type QMediaAvailabilityControlITF interface {
-	QMediaControlITF
-	QMediaAvailabilityControlPTR() *QMediaAvailabilityControl
+type QMediaAvailabilityControl_ITF interface {
+	QMediaControl_ITF
+	QMediaAvailabilityControl_PTR() *QMediaAvailabilityControl
 }
 
-func PointerFromQMediaAvailabilityControl(ptr QMediaAvailabilityControlITF) unsafe.Pointer {
+func PointerFromQMediaAvailabilityControl(ptr QMediaAvailabilityControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaAvailabilityControlPTR().Pointer()
+		return ptr.QMediaAvailabilityControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaAvailabilityControlFromPointer(ptr unsafe.Pointer) *QMediaAvailabilityControl {
+func NewQMediaAvailabilityControlFromPointer(ptr unsafe.Pointer) *QMediaAvailabilityControl {
 	var n = new(QMediaAvailabilityControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMediaAvailabilityControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMediaAvailabilityControl) QMediaAvailabilityControlPTR() *QMediaAvailabilityControl {
+func (ptr *QMediaAvailabilityControl) QMediaAvailabilityControl_PTR() *QMediaAvailabilityControl {
 	return ptr
 }
 
 func (ptr *QMediaAvailabilityControl) DestroyQMediaAvailabilityControl() {
 	if ptr.Pointer() != nil {
-		C.QMediaAvailabilityControl_DestroyQMediaAvailabilityControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaAvailabilityControl_DestroyQMediaAvailabilityControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

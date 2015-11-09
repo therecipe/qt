@@ -1,20 +1,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QPluginLoader_FileName(QtObjectPtr ptr);
-int QPluginLoader_LoadHints(QtObjectPtr ptr);
-void QPluginLoader_SetFileName(QtObjectPtr ptr, char* fileName);
-void QPluginLoader_SetLoadHints(QtObjectPtr ptr, int loadHints);
-QtObjectPtr QPluginLoader_NewQPluginLoader(QtObjectPtr parent);
-QtObjectPtr QPluginLoader_NewQPluginLoader2(char* fileName, QtObjectPtr parent);
-char* QPluginLoader_ErrorString(QtObjectPtr ptr);
-QtObjectPtr QPluginLoader_Instance(QtObjectPtr ptr);
-int QPluginLoader_IsLoaded(QtObjectPtr ptr);
-int QPluginLoader_Load(QtObjectPtr ptr);
-int QPluginLoader_Unload(QtObjectPtr ptr);
-void QPluginLoader_DestroyQPluginLoader(QtObjectPtr ptr);
+char* QPluginLoader_FileName(void* ptr);
+int QPluginLoader_LoadHints(void* ptr);
+void QPluginLoader_SetFileName(void* ptr, char* fileName);
+void QPluginLoader_SetLoadHints(void* ptr, int loadHints);
+void* QPluginLoader_NewQPluginLoader(void* parent);
+void* QPluginLoader_NewQPluginLoader2(char* fileName, void* parent);
+char* QPluginLoader_ErrorString(void* ptr);
+void* QPluginLoader_Instance(void* ptr);
+int QPluginLoader_IsLoaded(void* ptr);
+int QPluginLoader_Load(void* ptr);
+void* QPluginLoader_MetaData(void* ptr);
+int QPluginLoader_Unload(void* ptr);
+void QPluginLoader_DestroyQPluginLoader(void* ptr);
 
 #ifdef __cplusplus
 }

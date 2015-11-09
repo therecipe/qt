@@ -1,9 +1,9 @@
 #include "qvideoencodersettings.h"
+#include <QModelIndex>
 #include <QSize>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QVideoEncoderSettings>
 #include "_cgo_export.h"
 
@@ -11,51 +11,59 @@ class MyQVideoEncoderSettings: public QVideoEncoderSettings {
 public:
 };
 
-QtObjectPtr QVideoEncoderSettings_NewQVideoEncoderSettings(){
+void QVideoEncoderSettings_SetFrameRate(void* ptr, double rate){
+	static_cast<QVideoEncoderSettings*>(ptr)->setFrameRate(static_cast<qreal>(rate));
+}
+
+void* QVideoEncoderSettings_NewQVideoEncoderSettings(){
 	return new QVideoEncoderSettings();
 }
 
-QtObjectPtr QVideoEncoderSettings_NewQVideoEncoderSettings2(QtObjectPtr other){
+void* QVideoEncoderSettings_NewQVideoEncoderSettings2(void* other){
 	return new QVideoEncoderSettings(*static_cast<QVideoEncoderSettings*>(other));
 }
 
-int QVideoEncoderSettings_BitRate(QtObjectPtr ptr){
+int QVideoEncoderSettings_BitRate(void* ptr){
 	return static_cast<QVideoEncoderSettings*>(ptr)->bitRate();
 }
 
-char* QVideoEncoderSettings_Codec(QtObjectPtr ptr){
+char* QVideoEncoderSettings_Codec(void* ptr){
 	return static_cast<QVideoEncoderSettings*>(ptr)->codec().toUtf8().data();
 }
 
-char* QVideoEncoderSettings_EncodingOption(QtObjectPtr ptr, char* option){
-	return static_cast<QVideoEncoderSettings*>(ptr)->encodingOption(QString(option)).toString().toUtf8().data();
+void* QVideoEncoderSettings_EncodingOption(void* ptr, char* option){
+	return new QVariant(static_cast<QVideoEncoderSettings*>(ptr)->encodingOption(QString(option)));
 }
 
-int QVideoEncoderSettings_IsNull(QtObjectPtr ptr){
+double QVideoEncoderSettings_FrameRate(void* ptr){
+	return static_cast<double>(static_cast<QVideoEncoderSettings*>(ptr)->frameRate());
+}
+
+int QVideoEncoderSettings_IsNull(void* ptr){
 	return static_cast<QVideoEncoderSettings*>(ptr)->isNull();
 }
 
-void QVideoEncoderSettings_SetBitRate(QtObjectPtr ptr, int value){
+void QVideoEncoderSettings_SetBitRate(void* ptr, int value){
 	static_cast<QVideoEncoderSettings*>(ptr)->setBitRate(value);
 }
 
-void QVideoEncoderSettings_SetCodec(QtObjectPtr ptr, char* codec){
+void QVideoEncoderSettings_SetCodec(void* ptr, char* codec){
 	static_cast<QVideoEncoderSettings*>(ptr)->setCodec(QString(codec));
 }
 
-void QVideoEncoderSettings_SetEncodingOption(QtObjectPtr ptr, char* option, char* value){
-	static_cast<QVideoEncoderSettings*>(ptr)->setEncodingOption(QString(option), QVariant(value));
+void QVideoEncoderSettings_SetEncodingOption(void* ptr, char* option, void* value){
+	static_cast<QVideoEncoderSettings*>(ptr)->setEncodingOption(QString(option), *static_cast<QVariant*>(value));
 }
 
-void QVideoEncoderSettings_SetResolution(QtObjectPtr ptr, QtObjectPtr resolution){
+void QVideoEncoderSettings_SetResolution(void* ptr, void* resolution){
 	static_cast<QVideoEncoderSettings*>(ptr)->setResolution(*static_cast<QSize*>(resolution));
 }
 
-void QVideoEncoderSettings_SetResolution2(QtObjectPtr ptr, int width, int height){
+void QVideoEncoderSettings_SetResolution2(void* ptr, int width, int height){
 	static_cast<QVideoEncoderSettings*>(ptr)->setResolution(width, height);
 }
 
-void QVideoEncoderSettings_DestroyQVideoEncoderSettings(QtObjectPtr ptr){
+void QVideoEncoderSettings_DestroyQVideoEncoderSettings(void* ptr){
 	static_cast<QVideoEncoderSettings*>(ptr)->~QVideoEncoderSettings();
 }
 

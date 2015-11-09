@@ -11,27 +11,27 @@ type QPlaceSearchSuggestionReply struct {
 	QPlaceReply
 }
 
-type QPlaceSearchSuggestionReplyITF interface {
-	QPlaceReplyITF
-	QPlaceSearchSuggestionReplyPTR() *QPlaceSearchSuggestionReply
+type QPlaceSearchSuggestionReply_ITF interface {
+	QPlaceReply_ITF
+	QPlaceSearchSuggestionReply_PTR() *QPlaceSearchSuggestionReply
 }
 
-func PointerFromQPlaceSearchSuggestionReply(ptr QPlaceSearchSuggestionReplyITF) unsafe.Pointer {
+func PointerFromQPlaceSearchSuggestionReply(ptr QPlaceSearchSuggestionReply_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceSearchSuggestionReplyPTR().Pointer()
+		return ptr.QPlaceSearchSuggestionReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceSearchSuggestionReplyFromPointer(ptr unsafe.Pointer) *QPlaceSearchSuggestionReply {
+func NewQPlaceSearchSuggestionReplyFromPointer(ptr unsafe.Pointer) *QPlaceSearchSuggestionReply {
 	var n = new(QPlaceSearchSuggestionReply)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QPlaceSearchSuggestionReply_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QPlaceSearchSuggestionReply) QPlaceSearchSuggestionReplyPTR() *QPlaceSearchSuggestionReply {
+func (ptr *QPlaceSearchSuggestionReply) QPlaceSearchSuggestionReply_PTR() *QPlaceSearchSuggestionReply {
 	return ptr
 }

@@ -11,52 +11,52 @@ type QAccessibleTextSelectionEvent struct {
 	QAccessibleTextCursorEvent
 }
 
-type QAccessibleTextSelectionEventITF interface {
-	QAccessibleTextCursorEventITF
-	QAccessibleTextSelectionEventPTR() *QAccessibleTextSelectionEvent
+type QAccessibleTextSelectionEvent_ITF interface {
+	QAccessibleTextCursorEvent_ITF
+	QAccessibleTextSelectionEvent_PTR() *QAccessibleTextSelectionEvent
 }
 
-func PointerFromQAccessibleTextSelectionEvent(ptr QAccessibleTextSelectionEventITF) unsafe.Pointer {
+func PointerFromQAccessibleTextSelectionEvent(ptr QAccessibleTextSelectionEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAccessibleTextSelectionEventPTR().Pointer()
+		return ptr.QAccessibleTextSelectionEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAccessibleTextSelectionEventFromPointer(ptr unsafe.Pointer) *QAccessibleTextSelectionEvent {
+func NewQAccessibleTextSelectionEventFromPointer(ptr unsafe.Pointer) *QAccessibleTextSelectionEvent {
 	var n = new(QAccessibleTextSelectionEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAccessibleTextSelectionEvent) QAccessibleTextSelectionEventPTR() *QAccessibleTextSelectionEvent {
+func (ptr *QAccessibleTextSelectionEvent) QAccessibleTextSelectionEvent_PTR() *QAccessibleTextSelectionEvent {
 	return ptr
 }
 
-func NewQAccessibleTextSelectionEvent2(iface QAccessibleInterfaceITF, start int, end int) *QAccessibleTextSelectionEvent {
-	return QAccessibleTextSelectionEventFromPointer(unsafe.Pointer(C.QAccessibleTextSelectionEvent_NewQAccessibleTextSelectionEvent2(C.QtObjectPtr(PointerFromQAccessibleInterface(iface)), C.int(start), C.int(end))))
+func NewQAccessibleTextSelectionEvent2(iface QAccessibleInterface_ITF, start int, end int) *QAccessibleTextSelectionEvent {
+	return NewQAccessibleTextSelectionEventFromPointer(C.QAccessibleTextSelectionEvent_NewQAccessibleTextSelectionEvent2(PointerFromQAccessibleInterface(iface), C.int(start), C.int(end)))
 }
 
-func NewQAccessibleTextSelectionEvent(object core.QObjectITF, start int, end int) *QAccessibleTextSelectionEvent {
-	return QAccessibleTextSelectionEventFromPointer(unsafe.Pointer(C.QAccessibleTextSelectionEvent_NewQAccessibleTextSelectionEvent(C.QtObjectPtr(core.PointerFromQObject(object)), C.int(start), C.int(end))))
+func NewQAccessibleTextSelectionEvent(object core.QObject_ITF, start int, end int) *QAccessibleTextSelectionEvent {
+	return NewQAccessibleTextSelectionEventFromPointer(C.QAccessibleTextSelectionEvent_NewQAccessibleTextSelectionEvent(core.PointerFromQObject(object), C.int(start), C.int(end)))
 }
 
 func (ptr *QAccessibleTextSelectionEvent) SelectionEnd() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAccessibleTextSelectionEvent_SelectionEnd(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAccessibleTextSelectionEvent_SelectionEnd(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAccessibleTextSelectionEvent) SelectionStart() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAccessibleTextSelectionEvent_SelectionStart(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAccessibleTextSelectionEvent_SelectionStart(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAccessibleTextSelectionEvent) SetSelection(start int, end int) {
 	if ptr.Pointer() != nil {
-		C.QAccessibleTextSelectionEvent_SetSelection(C.QtObjectPtr(ptr.Pointer()), C.int(start), C.int(end))
+		C.QAccessibleTextSelectionEvent_SetSelection(ptr.Pointer(), C.int(start), C.int(end))
 	}
 }

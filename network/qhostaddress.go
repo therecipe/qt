@@ -10,8 +10,8 @@ type QHostAddress struct {
 	ptr unsafe.Pointer
 }
 
-type QHostAddressITF interface {
-	QHostAddressPTR() *QHostAddress
+type QHostAddress_ITF interface {
+	QHostAddress_PTR() *QHostAddress
 }
 
 func (p *QHostAddress) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QHostAddress) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQHostAddress(ptr QHostAddressITF) unsafe.Pointer {
+func PointerFromQHostAddress(ptr QHostAddress_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHostAddressPTR().Pointer()
+		return ptr.QHostAddress_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHostAddressFromPointer(ptr unsafe.Pointer) *QHostAddress {
+func NewQHostAddressFromPointer(ptr unsafe.Pointer) *QHostAddress {
 	var n = new(QHostAddress)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QHostAddress) QHostAddressPTR() *QHostAddress {
+func (ptr *QHostAddress) QHostAddress_PTR() *QHostAddress {
 	return ptr
 }
 
 //QHostAddress::SpecialAddress
-type QHostAddress__SpecialAddress int
+type QHostAddress__SpecialAddress int64
 
-var (
+const (
 	QHostAddress__Null          = QHostAddress__SpecialAddress(0)
 	QHostAddress__Broadcast     = QHostAddress__SpecialAddress(1)
 	QHostAddress__LocalHost     = QHostAddress__SpecialAddress(2)
@@ -53,84 +53,84 @@ var (
 )
 
 func NewQHostAddress() *QHostAddress {
-	return QHostAddressFromPointer(unsafe.Pointer(C.QHostAddress_NewQHostAddress()))
+	return NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress())
 }
 
 func NewQHostAddress9(address QHostAddress__SpecialAddress) *QHostAddress {
-	return QHostAddressFromPointer(unsafe.Pointer(C.QHostAddress_NewQHostAddress9(C.int(address))))
+	return NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress9(C.int(address)))
 }
 
-func NewQHostAddress8(address QHostAddressITF) *QHostAddress {
-	return QHostAddressFromPointer(unsafe.Pointer(C.QHostAddress_NewQHostAddress8(C.QtObjectPtr(PointerFromQHostAddress(address)))))
+func NewQHostAddress8(address QHostAddress_ITF) *QHostAddress {
+	return NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress8(PointerFromQHostAddress(address)))
 }
 
 func NewQHostAddress7(address string) *QHostAddress {
-	return QHostAddressFromPointer(unsafe.Pointer(C.QHostAddress_NewQHostAddress7(C.CString(address))))
+	return NewQHostAddressFromPointer(C.QHostAddress_NewQHostAddress7(C.CString(address)))
 }
 
 func (ptr *QHostAddress) Clear() {
 	if ptr.Pointer() != nil {
-		C.QHostAddress_Clear(C.QtObjectPtr(ptr.Pointer()))
+		C.QHostAddress_Clear(ptr.Pointer())
 	}
 }
 
-func (ptr *QHostAddress) IsInSubnet(subnet QHostAddressITF, netmask int) bool {
+func (ptr *QHostAddress) IsInSubnet(subnet QHostAddress_ITF, netmask int) bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsInSubnet(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQHostAddress(subnet)), C.int(netmask)) != 0
+		return C.QHostAddress_IsInSubnet(ptr.Pointer(), PointerFromQHostAddress(subnet), C.int(netmask)) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) IsLoopback() bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsLoopback(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QHostAddress_IsLoopback(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_IsNull(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QHostAddress_IsNull(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) Protocol() QAbstractSocket__NetworkLayerProtocol {
 	if ptr.Pointer() != nil {
-		return QAbstractSocket__NetworkLayerProtocol(C.QHostAddress_Protocol(C.QtObjectPtr(ptr.Pointer())))
+		return QAbstractSocket__NetworkLayerProtocol(C.QHostAddress_Protocol(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QHostAddress) ScopeId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QHostAddress_ScopeId(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QHostAddress_ScopeId(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QHostAddress) SetAddress5(address string) bool {
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_SetAddress5(C.QtObjectPtr(ptr.Pointer()), C.CString(address)) != 0
+		return C.QHostAddress_SetAddress5(ptr.Pointer(), C.CString(address)) != 0
 	}
 	return false
 }
 
 func (ptr *QHostAddress) SetScopeId(id string) {
 	if ptr.Pointer() != nil {
-		C.QHostAddress_SetScopeId(C.QtObjectPtr(ptr.Pointer()), C.CString(id))
+		C.QHostAddress_SetScopeId(ptr.Pointer(), C.CString(id))
 	}
 }
 
 func (ptr *QHostAddress) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QHostAddress_ToString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QHostAddress_ToString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QHostAddress) DestroyQHostAddress() {
 	if ptr.Pointer() != nil {
-		C.QHostAddress_DestroyQHostAddress(C.QtObjectPtr(ptr.Pointer()))
+		C.QHostAddress_DestroyQHostAddress(ptr.Pointer())
 	}
 }

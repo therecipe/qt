@@ -11,8 +11,8 @@ type QBluetoothDeviceInfo struct {
 	ptr unsafe.Pointer
 }
 
-type QBluetoothDeviceInfoITF interface {
-	QBluetoothDeviceInfoPTR() *QBluetoothDeviceInfo
+type QBluetoothDeviceInfo_ITF interface {
+	QBluetoothDeviceInfo_PTR() *QBluetoothDeviceInfo
 }
 
 func (p *QBluetoothDeviceInfo) Pointer() unsafe.Pointer {
@@ -23,27 +23,27 @@ func (p *QBluetoothDeviceInfo) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQBluetoothDeviceInfo(ptr QBluetoothDeviceInfoITF) unsafe.Pointer {
+func PointerFromQBluetoothDeviceInfo(ptr QBluetoothDeviceInfo_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QBluetoothDeviceInfoPTR().Pointer()
+		return ptr.QBluetoothDeviceInfo_PTR().Pointer()
 	}
 	return nil
 }
 
-func QBluetoothDeviceInfoFromPointer(ptr unsafe.Pointer) *QBluetoothDeviceInfo {
+func NewQBluetoothDeviceInfoFromPointer(ptr unsafe.Pointer) *QBluetoothDeviceInfo {
 	var n = new(QBluetoothDeviceInfo)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QBluetoothDeviceInfo) QBluetoothDeviceInfoPTR() *QBluetoothDeviceInfo {
+func (ptr *QBluetoothDeviceInfo) QBluetoothDeviceInfo_PTR() *QBluetoothDeviceInfo {
 	return ptr
 }
 
 //QBluetoothDeviceInfo::CoreConfiguration
-type QBluetoothDeviceInfo__CoreConfiguration int
+type QBluetoothDeviceInfo__CoreConfiguration int64
 
-var (
+const (
 	QBluetoothDeviceInfo__UnknownCoreConfiguration              = QBluetoothDeviceInfo__CoreConfiguration(0x0)
 	QBluetoothDeviceInfo__LowEnergyCoreConfiguration            = QBluetoothDeviceInfo__CoreConfiguration(0x01)
 	QBluetoothDeviceInfo__BaseRateCoreConfiguration             = QBluetoothDeviceInfo__CoreConfiguration(0x02)
@@ -51,18 +51,18 @@ var (
 )
 
 //QBluetoothDeviceInfo::DataCompleteness
-type QBluetoothDeviceInfo__DataCompleteness int
+type QBluetoothDeviceInfo__DataCompleteness int64
 
-var (
+const (
 	QBluetoothDeviceInfo__DataComplete    = QBluetoothDeviceInfo__DataCompleteness(0)
 	QBluetoothDeviceInfo__DataIncomplete  = QBluetoothDeviceInfo__DataCompleteness(1)
 	QBluetoothDeviceInfo__DataUnavailable = QBluetoothDeviceInfo__DataCompleteness(2)
 )
 
 //QBluetoothDeviceInfo::MajorDeviceClass
-type QBluetoothDeviceInfo__MajorDeviceClass int
+type QBluetoothDeviceInfo__MajorDeviceClass int64
 
-var (
+const (
 	QBluetoothDeviceInfo__MiscellaneousDevice = QBluetoothDeviceInfo__MajorDeviceClass(0)
 	QBluetoothDeviceInfo__ComputerDevice      = QBluetoothDeviceInfo__MajorDeviceClass(1)
 	QBluetoothDeviceInfo__PhoneDevice         = QBluetoothDeviceInfo__MajorDeviceClass(2)
@@ -77,9 +77,9 @@ var (
 )
 
 //QBluetoothDeviceInfo::MinorAudioVideoClass
-type QBluetoothDeviceInfo__MinorAudioVideoClass int
+type QBluetoothDeviceInfo__MinorAudioVideoClass int64
 
-var (
+const (
 	QBluetoothDeviceInfo__UncategorizedAudioVideoDevice = QBluetoothDeviceInfo__MinorAudioVideoClass(0)
 	QBluetoothDeviceInfo__WearableHeadsetDevice         = QBluetoothDeviceInfo__MinorAudioVideoClass(1)
 	QBluetoothDeviceInfo__HandsFreeDevice               = QBluetoothDeviceInfo__MinorAudioVideoClass(2)
@@ -100,9 +100,9 @@ var (
 )
 
 //QBluetoothDeviceInfo::MinorComputerClass
-type QBluetoothDeviceInfo__MinorComputerClass int
+type QBluetoothDeviceInfo__MinorComputerClass int64
 
-var (
+const (
 	QBluetoothDeviceInfo__UncategorizedComputer     = QBluetoothDeviceInfo__MinorComputerClass(0)
 	QBluetoothDeviceInfo__DesktopComputer           = QBluetoothDeviceInfo__MinorComputerClass(1)
 	QBluetoothDeviceInfo__ServerComputer            = QBluetoothDeviceInfo__MinorComputerClass(2)
@@ -113,9 +113,9 @@ var (
 )
 
 //QBluetoothDeviceInfo::MinorHealthClass
-type QBluetoothDeviceInfo__MinorHealthClass int
+type QBluetoothDeviceInfo__MinorHealthClass int64
 
-var (
+const (
 	QBluetoothDeviceInfo__UncategorizedHealthDevice  = QBluetoothDeviceInfo__MinorHealthClass(0)
 	QBluetoothDeviceInfo__HealthBloodPressureMonitor = QBluetoothDeviceInfo__MinorHealthClass(0x1)
 	QBluetoothDeviceInfo__HealthThermometer          = QBluetoothDeviceInfo__MinorHealthClass(0x2)
@@ -127,9 +127,9 @@ var (
 )
 
 //QBluetoothDeviceInfo::MinorImagingClass
-type QBluetoothDeviceInfo__MinorImagingClass int
+type QBluetoothDeviceInfo__MinorImagingClass int64
 
-var (
+const (
 	QBluetoothDeviceInfo__UncategorizedImagingDevice = QBluetoothDeviceInfo__MinorImagingClass(0)
 	QBluetoothDeviceInfo__ImageDisplay               = QBluetoothDeviceInfo__MinorImagingClass(0x04)
 	QBluetoothDeviceInfo__ImageCamera                = QBluetoothDeviceInfo__MinorImagingClass(0x08)
@@ -138,16 +138,16 @@ var (
 )
 
 //QBluetoothDeviceInfo::MinorMiscellaneousClass
-type QBluetoothDeviceInfo__MinorMiscellaneousClass int
+type QBluetoothDeviceInfo__MinorMiscellaneousClass int64
 
-var (
+const (
 	QBluetoothDeviceInfo__UncategorizedMiscellaneous = QBluetoothDeviceInfo__MinorMiscellaneousClass(0)
 )
 
 //QBluetoothDeviceInfo::MinorNetworkClass
-type QBluetoothDeviceInfo__MinorNetworkClass int
+type QBluetoothDeviceInfo__MinorNetworkClass int64
 
-var (
+const (
 	QBluetoothDeviceInfo__NetworkFullService     = QBluetoothDeviceInfo__MinorNetworkClass(0x00)
 	QBluetoothDeviceInfo__NetworkLoadFactorOne   = QBluetoothDeviceInfo__MinorNetworkClass(0x08)
 	QBluetoothDeviceInfo__NetworkLoadFactorTwo   = QBluetoothDeviceInfo__MinorNetworkClass(0x10)
@@ -159,9 +159,9 @@ var (
 )
 
 //QBluetoothDeviceInfo::MinorPeripheralClass
-type QBluetoothDeviceInfo__MinorPeripheralClass int
+type QBluetoothDeviceInfo__MinorPeripheralClass int64
 
-var (
+const (
 	QBluetoothDeviceInfo__UncategorizedPeripheral              = QBluetoothDeviceInfo__MinorPeripheralClass(0)
 	QBluetoothDeviceInfo__KeyboardPeripheral                   = QBluetoothDeviceInfo__MinorPeripheralClass(0x10)
 	QBluetoothDeviceInfo__PointingDevicePeripheral             = QBluetoothDeviceInfo__MinorPeripheralClass(0x20)
@@ -175,9 +175,9 @@ var (
 )
 
 //QBluetoothDeviceInfo::MinorPhoneClass
-type QBluetoothDeviceInfo__MinorPhoneClass int
+type QBluetoothDeviceInfo__MinorPhoneClass int64
 
-var (
+const (
 	QBluetoothDeviceInfo__UncategorizedPhone            = QBluetoothDeviceInfo__MinorPhoneClass(0)
 	QBluetoothDeviceInfo__CellularPhone                 = QBluetoothDeviceInfo__MinorPhoneClass(1)
 	QBluetoothDeviceInfo__CordlessPhone                 = QBluetoothDeviceInfo__MinorPhoneClass(2)
@@ -187,9 +187,9 @@ var (
 )
 
 //QBluetoothDeviceInfo::MinorToyClass
-type QBluetoothDeviceInfo__MinorToyClass int
+type QBluetoothDeviceInfo__MinorToyClass int64
 
-var (
+const (
 	QBluetoothDeviceInfo__UncategorizedToy = QBluetoothDeviceInfo__MinorToyClass(0)
 	QBluetoothDeviceInfo__ToyRobot         = QBluetoothDeviceInfo__MinorToyClass(1)
 	QBluetoothDeviceInfo__ToyVehicle       = QBluetoothDeviceInfo__MinorToyClass(2)
@@ -199,9 +199,9 @@ var (
 )
 
 //QBluetoothDeviceInfo::MinorWearableClass
-type QBluetoothDeviceInfo__MinorWearableClass int
+type QBluetoothDeviceInfo__MinorWearableClass int64
 
-var (
+const (
 	QBluetoothDeviceInfo__UncategorizedWearableDevice = QBluetoothDeviceInfo__MinorWearableClass(0)
 	QBluetoothDeviceInfo__WearableWristWatch          = QBluetoothDeviceInfo__MinorWearableClass(1)
 	QBluetoothDeviceInfo__WearablePager               = QBluetoothDeviceInfo__MinorWearableClass(2)
@@ -211,9 +211,9 @@ var (
 )
 
 //QBluetoothDeviceInfo::ServiceClass
-type QBluetoothDeviceInfo__ServiceClass int
+type QBluetoothDeviceInfo__ServiceClass int64
 
-var (
+const (
 	QBluetoothDeviceInfo__NoService             = QBluetoothDeviceInfo__ServiceClass(0x0000)
 	QBluetoothDeviceInfo__PositioningService    = QBluetoothDeviceInfo__ServiceClass(0x0001)
 	QBluetoothDeviceInfo__NetworkingService     = QBluetoothDeviceInfo__ServiceClass(0x0002)
@@ -227,82 +227,82 @@ var (
 )
 
 func NewQBluetoothDeviceInfo() *QBluetoothDeviceInfo {
-	return QBluetoothDeviceInfoFromPointer(unsafe.Pointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo()))
+	return NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo())
 }
 
-func NewQBluetoothDeviceInfo4(other QBluetoothDeviceInfoITF) *QBluetoothDeviceInfo {
-	return QBluetoothDeviceInfoFromPointer(unsafe.Pointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo4(C.QtObjectPtr(PointerFromQBluetoothDeviceInfo(other)))))
+func NewQBluetoothDeviceInfo4(other QBluetoothDeviceInfo_ITF) *QBluetoothDeviceInfo {
+	return NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo4(PointerFromQBluetoothDeviceInfo(other)))
 }
 
 func (ptr *QBluetoothDeviceInfo) CoreConfigurations() QBluetoothDeviceInfo__CoreConfiguration {
 	if ptr.Pointer() != nil {
-		return QBluetoothDeviceInfo__CoreConfiguration(C.QBluetoothDeviceInfo_CoreConfigurations(C.QtObjectPtr(ptr.Pointer())))
+		return QBluetoothDeviceInfo__CoreConfiguration(C.QBluetoothDeviceInfo_CoreConfigurations(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QBluetoothDeviceInfo) IsCached() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothDeviceInfo_IsCached(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QBluetoothDeviceInfo_IsCached(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QBluetoothDeviceInfo) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QBluetoothDeviceInfo_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QBluetoothDeviceInfo_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QBluetoothDeviceInfo) MajorDeviceClass() QBluetoothDeviceInfo__MajorDeviceClass {
 	if ptr.Pointer() != nil {
-		return QBluetoothDeviceInfo__MajorDeviceClass(C.QBluetoothDeviceInfo_MajorDeviceClass(C.QtObjectPtr(ptr.Pointer())))
+		return QBluetoothDeviceInfo__MajorDeviceClass(C.QBluetoothDeviceInfo_MajorDeviceClass(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QBluetoothDeviceInfo) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QBluetoothDeviceInfo_Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QBluetoothDeviceInfo_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QBluetoothDeviceInfo) ServiceClasses() QBluetoothDeviceInfo__ServiceClass {
 	if ptr.Pointer() != nil {
-		return QBluetoothDeviceInfo__ServiceClass(C.QBluetoothDeviceInfo_ServiceClasses(C.QtObjectPtr(ptr.Pointer())))
+		return QBluetoothDeviceInfo__ServiceClass(C.QBluetoothDeviceInfo_ServiceClasses(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QBluetoothDeviceInfo) ServiceUuidsCompleteness() QBluetoothDeviceInfo__DataCompleteness {
 	if ptr.Pointer() != nil {
-		return QBluetoothDeviceInfo__DataCompleteness(C.QBluetoothDeviceInfo_ServiceUuidsCompleteness(C.QtObjectPtr(ptr.Pointer())))
+		return QBluetoothDeviceInfo__DataCompleteness(C.QBluetoothDeviceInfo_ServiceUuidsCompleteness(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QBluetoothDeviceInfo) SetCached(cached bool) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceInfo_SetCached(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(cached)))
+		C.QBluetoothDeviceInfo_SetCached(ptr.Pointer(), C.int(qt.GoBoolToInt(cached)))
 	}
 }
 
 func (ptr *QBluetoothDeviceInfo) SetCoreConfigurations(coreConfigs QBluetoothDeviceInfo__CoreConfiguration) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceInfo_SetCoreConfigurations(C.QtObjectPtr(ptr.Pointer()), C.int(coreConfigs))
+		C.QBluetoothDeviceInfo_SetCoreConfigurations(ptr.Pointer(), C.int(coreConfigs))
 	}
 }
 
-func (ptr *QBluetoothDeviceInfo) SetDeviceUuid(uuid QBluetoothUuidITF) {
+func (ptr *QBluetoothDeviceInfo) SetDeviceUuid(uuid QBluetoothUuid_ITF) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceInfo_SetDeviceUuid(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQBluetoothUuid(uuid)))
+		C.QBluetoothDeviceInfo_SetDeviceUuid(ptr.Pointer(), PointerFromQBluetoothUuid(uuid))
 	}
 }
 
 func (ptr *QBluetoothDeviceInfo) DestroyQBluetoothDeviceInfo() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothDeviceInfo_DestroyQBluetoothDeviceInfo(C.QtObjectPtr(ptr.Pointer()))
+		C.QBluetoothDeviceInfo_DestroyQBluetoothDeviceInfo(ptr.Pointer())
 	}
 }

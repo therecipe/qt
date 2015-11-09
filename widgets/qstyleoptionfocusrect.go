@@ -10,46 +10,46 @@ type QStyleOptionFocusRect struct {
 	QStyleOption
 }
 
-type QStyleOptionFocusRectITF interface {
-	QStyleOptionITF
-	QStyleOptionFocusRectPTR() *QStyleOptionFocusRect
+type QStyleOptionFocusRect_ITF interface {
+	QStyleOption_ITF
+	QStyleOptionFocusRect_PTR() *QStyleOptionFocusRect
 }
 
-func PointerFromQStyleOptionFocusRect(ptr QStyleOptionFocusRectITF) unsafe.Pointer {
+func PointerFromQStyleOptionFocusRect(ptr QStyleOptionFocusRect_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionFocusRectPTR().Pointer()
+		return ptr.QStyleOptionFocusRect_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionFocusRectFromPointer(ptr unsafe.Pointer) *QStyleOptionFocusRect {
+func NewQStyleOptionFocusRectFromPointer(ptr unsafe.Pointer) *QStyleOptionFocusRect {
 	var n = new(QStyleOptionFocusRect)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionFocusRect) QStyleOptionFocusRectPTR() *QStyleOptionFocusRect {
+func (ptr *QStyleOptionFocusRect) QStyleOptionFocusRect_PTR() *QStyleOptionFocusRect {
 	return ptr
 }
 
 //QStyleOptionFocusRect::StyleOptionType
-type QStyleOptionFocusRect__StyleOptionType int
+type QStyleOptionFocusRect__StyleOptionType int64
 
 var (
 	QStyleOptionFocusRect__Type = QStyleOptionFocusRect__StyleOptionType(QStyleOption__SO_FocusRect)
 )
 
 //QStyleOptionFocusRect::StyleOptionVersion
-type QStyleOptionFocusRect__StyleOptionVersion int
+type QStyleOptionFocusRect__StyleOptionVersion int64
 
 var (
 	QStyleOptionFocusRect__Version = QStyleOptionFocusRect__StyleOptionVersion(1)
 )
 
 func NewQStyleOptionFocusRect() *QStyleOptionFocusRect {
-	return QStyleOptionFocusRectFromPointer(unsafe.Pointer(C.QStyleOptionFocusRect_NewQStyleOptionFocusRect()))
+	return NewQStyleOptionFocusRectFromPointer(C.QStyleOptionFocusRect_NewQStyleOptionFocusRect())
 }
 
-func NewQStyleOptionFocusRect2(other QStyleOptionFocusRectITF) *QStyleOptionFocusRect {
-	return QStyleOptionFocusRectFromPointer(unsafe.Pointer(C.QStyleOptionFocusRect_NewQStyleOptionFocusRect2(C.QtObjectPtr(PointerFromQStyleOptionFocusRect(other)))))
+func NewQStyleOptionFocusRect2(other QStyleOptionFocusRect_ITF) *QStyleOptionFocusRect {
+	return NewQStyleOptionFocusRectFromPointer(C.QStyleOptionFocusRect_NewQStyleOptionFocusRect2(PointerFromQStyleOptionFocusRect(other)))
 }

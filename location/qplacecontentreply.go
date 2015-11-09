@@ -11,27 +11,27 @@ type QPlaceContentReply struct {
 	QPlaceReply
 }
 
-type QPlaceContentReplyITF interface {
-	QPlaceReplyITF
-	QPlaceContentReplyPTR() *QPlaceContentReply
+type QPlaceContentReply_ITF interface {
+	QPlaceReply_ITF
+	QPlaceContentReply_PTR() *QPlaceContentReply
 }
 
-func PointerFromQPlaceContentReply(ptr QPlaceContentReplyITF) unsafe.Pointer {
+func PointerFromQPlaceContentReply(ptr QPlaceContentReply_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceContentReplyPTR().Pointer()
+		return ptr.QPlaceContentReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceContentReplyFromPointer(ptr unsafe.Pointer) *QPlaceContentReply {
+func NewQPlaceContentReplyFromPointer(ptr unsafe.Pointer) *QPlaceContentReply {
 	var n = new(QPlaceContentReply)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QPlaceContentReply_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QPlaceContentReply) QPlaceContentReplyPTR() *QPlaceContentReply {
+func (ptr *QPlaceContentReply) QPlaceContentReply_PTR() *QPlaceContentReply {
 	return ptr
 }

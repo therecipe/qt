@@ -1,48 +1,48 @@
 ########################################			FUNCTIONS			########################################
-&{band QRadioTuner::band commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  Band [] }
-&{frequency QRadioTuner::frequency commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  int [] }
-&{isAntennaConnected QRadioTuner::isAntennaConnected commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  bool [] }
-&{isMuted QRadioTuner::isMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  bool [] }
-&{isSearching QRadioTuner::isSearching commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  bool [] }
-&{isStereo QRadioTuner::isStereo commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  bool [] }
-&{radioData QRadioTuner::radioData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  QRadioData * [] }
-&{setMuted QRadioTuner::setMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non slot false false  void [0xc82183e400] }
-&{setStereoMode QRadioTuner::setStereoMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  void [0xc82183e8a0] }
-&{setVolume QRadioTuner::setVolume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non slot false false  void [0xc82183ec80] }
-&{signalStrength QRadioTuner::signalStrength commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  int [] }
-&{state QRadioTuner::state commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  State [] }
-&{stereoMode QRadioTuner::stereoMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  StereoMode [] }
-&{volume QRadioTuner::volume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  int [] }
-&{QRadioTuner QRadioTuner::QRadioTuner commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non constructor false false   [0xc821834da0] }
-&{antennaConnectedChanged QRadioTuner::antennaConnectedChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void [0xc821834fc0] }
-&{availability QRadioTuner::availability commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h impure plain false false  QMultimedia::AvailabilityStatus [] }
-&{bandChanged QRadioTuner::bandChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void [0xc82182c420] }
-&{cancelSearch QRadioTuner::cancelSearch commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void [] }
-&{error QRadioTuner::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false true 2 void [0xc82182ca80] }
-&{error QRadioTuner::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non plain false false  Error [] }
-&{errorString QRadioTuner::errorString commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non plain false false  QString [] }
-&{frequencyChanged QRadioTuner::frequencyChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void [0xc82182d200] }
-&{frequencyRange QRadioTuner::frequencyRange commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non plain false false  QPair<int, int> [0xc82182d540] }
-&{frequencyStep QRadioTuner::frequencyStep commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non plain false false  int [0xc82182d8c0] }
-&{isBandSupported QRadioTuner::isBandSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non plain false false  bool [0xc82182dc60] }
-&{mutedChanged QRadioTuner::mutedChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void [0xc82182dfc0] }
-&{searchAllStations QRadioTuner::searchAllStations commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void [0xc8218165a0] }
-&{searchBackward QRadioTuner::searchBackward commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void [] }
-&{searchForward QRadioTuner::searchForward commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void [] }
-&{searchingChanged QRadioTuner::searchingChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void [0xc821817040] }
-&{setBand QRadioTuner::setBand commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void [0xc821817640] }
-&{setFrequency QRadioTuner::setFrequency commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void [0xc821817c60] }
-&{signalStrengthChanged QRadioTuner::signalStrengthChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void [0xc8218060c0] }
-&{start QRadioTuner::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void [] }
-&{stateChanged QRadioTuner::stateChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void [0xc8218066c0] }
-&{stationFound QRadioTuner::stationFound commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void [0xc821806ac0 0xc821806b80] }
-&{stereoStatusChanged QRadioTuner::stereoStatusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void [0xc821806fe0] }
-&{stop QRadioTuner::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void [] }
-&{volumeChanged QRadioTuner::volumeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void [0xc821807580] }
-&{~QRadioTuner QRadioTuner::~QRadioTuner commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non destructor false false   [] }
+&{band QRadioTuner::band commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  Band Band band() const [] }
+&{frequency QRadioTuner::frequency commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  int int frequency() const [] }
+&{isAntennaConnected QRadioTuner::isAntennaConnected commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  bool bool isAntennaConnected() const [] }
+&{isMuted QRadioTuner::isMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  bool bool isMuted() const [] }
+&{isSearching QRadioTuner::isSearching commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  bool bool isSearching() const [] }
+&{isStereo QRadioTuner::isStereo commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  bool bool isStereo() const [] }
+&{radioData QRadioTuner::radioData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  QRadioData * QRadioData * radioData() const [] }
+&{setMuted QRadioTuner::setMuted commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non slot false false  void void setMuted(bool muted) [0xc8229c0c40] }
+&{setStereoMode QRadioTuner::setStereoMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  void void setStereoMode(QRadioTuner::StereoMode mode) [0xc8229c0f20] }
+&{setVolume QRadioTuner::setVolume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non slot false false  void void setVolume(int volume) [0xc8229c1200] }
+&{signalStrength QRadioTuner::signalStrength commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  int int signalStrength() const [] }
+&{state QRadioTuner::state commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  State State state() const [] }
+&{stereoMode QRadioTuner::stereoMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  StereoMode StereoMode stereoMode() const [] }
+&{volume QRadioTuner::volume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.cpp non plain false false  int int volume() const [] }
+&{QRadioTuner QRadioTuner::QRadioTuner commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non constructor false false   QRadioTuner(QObject *parent) [0xc8229e4f80] }
+&{antennaConnectedChanged QRadioTuner::antennaConnectedChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void void antennaConnectedChanged(bool connectionStatus) [0xc8229e52a0] }
+&{availability QRadioTuner::availability commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h impure plain false false  QMultimedia::AvailabilityStatus QMultimedia::AvailabilityStatus availability() const [] }
+&{bandChanged QRadioTuner::bandChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void void bandChanged(QRadioTuner::Band band) [0xc8229e5860] }
+&{cancelSearch QRadioTuner::cancelSearch commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void void cancelSearch() [] }
+&{error QRadioTuner::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false true 2 void void error(QRadioTuner::Error error) [0xc8229e5d40] }
+&{error QRadioTuner::error commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non plain false false  Error Error error() const [] }
+&{errorString QRadioTuner::errorString commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non plain false false  QString QString errorString() const [] }
+&{frequencyChanged QRadioTuner::frequencyChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void void frequencyChanged(int frequency) [0xc8229fc4e0] }
+&{frequencyRange QRadioTuner::frequencyRange commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non plain false false  QPair<int, int> QPair<int, int> frequencyRange(Band band) const [0xc8229fc760] }
+&{frequencyStep QRadioTuner::frequencyStep commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non plain false false  int int frequencyStep(Band band) const [0xc8229fca60] }
+&{isBandSupported QRadioTuner::isBandSupported commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non plain false false  bool bool isBandSupported(Band band) const [0xc8229fcd60] }
+&{mutedChanged QRadioTuner::mutedChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void void mutedChanged(bool muted) [0xc8229fd0e0] }
+&{searchAllStations QRadioTuner::searchAllStations commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void void searchAllStations(QRadioTuner::SearchMode searchMode) [0xc8229fd3a0] }
+&{searchBackward QRadioTuner::searchBackward commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void void searchBackward() [] }
+&{searchForward QRadioTuner::searchForward commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void void searchForward() [] }
+&{searchingChanged QRadioTuner::searchingChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void void searchingChanged(bool searching) [0xc8229fdb60] }
+&{setBand QRadioTuner::setBand commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void void setBand(Band band) [0xc8229fdf20] }
+&{setFrequency QRadioTuner::setFrequency commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void void setFrequency(int frequency) [0xc822a0c360] }
+&{signalStrengthChanged QRadioTuner::signalStrengthChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void void signalStrengthChanged(int strength) [0xc822a0c620] }
+&{start QRadioTuner::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void void start() [] }
+&{stateChanged QRadioTuner::stateChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void void stateChanged(QRadioTuner::State state) [0xc822a0cae0] }
+&{stationFound QRadioTuner::stationFound commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void void stationFound(int frequency, QString stationId) [0xc822a0cde0 0xc822a0ce80] }
+&{stereoStatusChanged QRadioTuner::stereoStatusChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void void stereoStatusChanged(bool stereo) [0xc822a0d200] }
+&{stop QRadioTuner::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non slot false false  void void stop() [] }
+&{volumeChanged QRadioTuner::volumeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non signal false false  void void volumeChanged(int volume) [0xc822a0d700] }
+&{~QRadioTuner QRadioTuner::~QRadioTuner commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/radio/qradiotuner.h non destructor false false   ~QRadioTuner() [] }
 ########################################			ENUMS			########################################
-&{Band QRadioTuner::Band commendable public  [0xc82183f860 0xc82183f940 0xc82183fa00 0xc82183fb40 0xc82183fc20]}
-&{Error QRadioTuner::Error commendable public  [0xc821834000 0xc8218340a0 0xc821834140 0xc8218341e0]}
-&{SearchMode QRadioTuner::SearchMode commendable public  [0xc821834440 0xc8218344e0]}
-&{State QRadioTuner::State commendable public  [0xc8218347a0 0xc821834820]}
-&{StereoMode QRadioTuner::StereoMode commendable public  [0xc821834a60 0xc821834ae0 0xc821834b80]}
+&{Band QRadioTuner::Band commendable public  [0xc8229c1960 0xc8229c19e0 0xc8229c1a60 0xc8229c1ae0 0xc8229c1ba0] false}
+&{Error QRadioTuner::Error commendable public  [0xc8229c1de0 0xc8229c1e80 0xc8229c1fe0 0xc8229e4060] false}
+&{SearchMode QRadioTuner::SearchMode commendable public  [0xc8229e42a0 0xc8229e4340] false}
+&{State QRadioTuner::State commendable public  [0xc8229e46a0 0xc8229e47e0] false}
+&{StereoMode QRadioTuner::StereoMode commendable public  [0xc8229e4aa0 0xc8229e4b60 0xc8229e4c40] false}

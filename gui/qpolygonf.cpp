@@ -1,13 +1,13 @@
 #include "qpolygonf.h"
-#include <QRectF>
-#include <QPoint>
 #include <QString>
+#include <QPointF>
+#include <QPolygon>
+#include <QRectF>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QRect>
-#include <QVariant>
-#include <QPolygon>
-#include <QPointF>
+#include <QPoint>
 #include <QPolygonF>
 #include "_cgo_export.h"
 
@@ -15,43 +15,47 @@ class MyQPolygonF: public QPolygonF {
 public:
 };
 
-QtObjectPtr QPolygonF_NewQPolygonF6(QtObjectPtr polygon){
+void* QPolygonF_NewQPolygonF6(void* polygon){
 	return new QPolygonF(*static_cast<QPolygon*>(polygon));
 }
 
-QtObjectPtr QPolygonF_NewQPolygonF5(QtObjectPtr rectangle){
+void* QPolygonF_NewQPolygonF5(void* rectangle){
 	return new QPolygonF(*static_cast<QRectF*>(rectangle));
 }
 
-int QPolygonF_ContainsPoint(QtObjectPtr ptr, QtObjectPtr point, int fillRule){
+int QPolygonF_ContainsPoint(void* ptr, void* point, int fillRule){
 	return static_cast<QPolygonF*>(ptr)->containsPoint(*static_cast<QPointF*>(point), static_cast<Qt::FillRule>(fillRule));
 }
 
-QtObjectPtr QPolygonF_NewQPolygonF(){
+void* QPolygonF_NewQPolygonF(){
 	return new QPolygonF();
 }
 
-QtObjectPtr QPolygonF_NewQPolygonF3(QtObjectPtr polygon){
+void* QPolygonF_NewQPolygonF3(void* polygon){
 	return new QPolygonF(*static_cast<QPolygonF*>(polygon));
 }
 
-QtObjectPtr QPolygonF_NewQPolygonF2(int size){
+void* QPolygonF_NewQPolygonF2(int size){
 	return new QPolygonF(size);
 }
 
-int QPolygonF_IsClosed(QtObjectPtr ptr){
+int QPolygonF_IsClosed(void* ptr){
 	return static_cast<QPolygonF*>(ptr)->isClosed();
 }
 
-void QPolygonF_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QPolygonF_Swap(void* ptr, void* other){
 	static_cast<QPolygonF*>(ptr)->swap(*static_cast<QPolygonF*>(other));
 }
 
-void QPolygonF_Translate(QtObjectPtr ptr, QtObjectPtr offset){
+void QPolygonF_Translate(void* ptr, void* offset){
 	static_cast<QPolygonF*>(ptr)->translate(*static_cast<QPointF*>(offset));
 }
 
-void QPolygonF_DestroyQPolygonF(QtObjectPtr ptr){
+void QPolygonF_Translate2(void* ptr, double dx, double dy){
+	static_cast<QPolygonF*>(ptr)->translate(static_cast<qreal>(dx), static_cast<qreal>(dy));
+}
+
+void QPolygonF_DestroyQPolygonF(void* ptr){
 	static_cast<QPolygonF*>(ptr)->~QPolygonF();
 }
 

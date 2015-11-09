@@ -13,35 +13,35 @@ type QAbstractItemDelegate struct {
 	core.QObject
 }
 
-type QAbstractItemDelegateITF interface {
-	core.QObjectITF
-	QAbstractItemDelegatePTR() *QAbstractItemDelegate
+type QAbstractItemDelegate_ITF interface {
+	core.QObject_ITF
+	QAbstractItemDelegate_PTR() *QAbstractItemDelegate
 }
 
-func PointerFromQAbstractItemDelegate(ptr QAbstractItemDelegateITF) unsafe.Pointer {
+func PointerFromQAbstractItemDelegate(ptr QAbstractItemDelegate_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAbstractItemDelegatePTR().Pointer()
+		return ptr.QAbstractItemDelegate_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAbstractItemDelegateFromPointer(ptr unsafe.Pointer) *QAbstractItemDelegate {
+func NewQAbstractItemDelegateFromPointer(ptr unsafe.Pointer) *QAbstractItemDelegate {
 	var n = new(QAbstractItemDelegate)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAbstractItemDelegate_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAbstractItemDelegate) QAbstractItemDelegatePTR() *QAbstractItemDelegate {
+func (ptr *QAbstractItemDelegate) QAbstractItemDelegate_PTR() *QAbstractItemDelegate {
 	return ptr
 }
 
 //QAbstractItemDelegate::EndEditHint
-type QAbstractItemDelegate__EndEditHint int
+type QAbstractItemDelegate__EndEditHint int64
 
-var (
+const (
 	QAbstractItemDelegate__NoHint           = QAbstractItemDelegate__EndEditHint(0)
 	QAbstractItemDelegate__EditNextItem     = QAbstractItemDelegate__EndEditHint(1)
 	QAbstractItemDelegate__EditPreviousItem = QAbstractItemDelegate__EndEditHint(2)
@@ -49,117 +49,117 @@ var (
 	QAbstractItemDelegate__RevertModelCache = QAbstractItemDelegate__EndEditHint(4)
 )
 
-func (ptr *QAbstractItemDelegate) ConnectCloseEditor(f func(editor QWidgetITF, hint QAbstractItemDelegate__EndEditHint)) {
+func (ptr *QAbstractItemDelegate) ConnectCloseEditor(f func(editor *QWidget, hint QAbstractItemDelegate__EndEditHint)) {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemDelegate_ConnectCloseEditor(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractItemDelegate_ConnectCloseEditor(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "closeEditor", f)
 	}
 }
 
 func (ptr *QAbstractItemDelegate) DisconnectCloseEditor() {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemDelegate_DisconnectCloseEditor(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractItemDelegate_DisconnectCloseEditor(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "closeEditor")
 	}
 }
 
 //export callbackQAbstractItemDelegateCloseEditor
 func callbackQAbstractItemDelegateCloseEditor(ptrName *C.char, editor unsafe.Pointer, hint C.int) {
-	qt.GetSignal(C.GoString(ptrName), "closeEditor").(func(*QWidget, QAbstractItemDelegate__EndEditHint))(QWidgetFromPointer(editor), QAbstractItemDelegate__EndEditHint(hint))
+	qt.GetSignal(C.GoString(ptrName), "closeEditor").(func(*QWidget, QAbstractItemDelegate__EndEditHint))(NewQWidgetFromPointer(editor), QAbstractItemDelegate__EndEditHint(hint))
 }
 
-func (ptr *QAbstractItemDelegate) ConnectCommitData(f func(editor QWidgetITF)) {
+func (ptr *QAbstractItemDelegate) ConnectCommitData(f func(editor *QWidget)) {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemDelegate_ConnectCommitData(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractItemDelegate_ConnectCommitData(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "commitData", f)
 	}
 }
 
 func (ptr *QAbstractItemDelegate) DisconnectCommitData() {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemDelegate_DisconnectCommitData(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractItemDelegate_DisconnectCommitData(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "commitData")
 	}
 }
 
 //export callbackQAbstractItemDelegateCommitData
 func callbackQAbstractItemDelegateCommitData(ptrName *C.char, editor unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "commitData").(func(*QWidget))(QWidgetFromPointer(editor))
+	qt.GetSignal(C.GoString(ptrName), "commitData").(func(*QWidget))(NewQWidgetFromPointer(editor))
 }
 
-func (ptr *QAbstractItemDelegate) CreateEditor(parent QWidgetITF, option QStyleOptionViewItemITF, index core.QModelIndexITF) *QWidget {
+func (ptr *QAbstractItemDelegate) CreateEditor(parent QWidget_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *QWidget {
 	if ptr.Pointer() != nil {
-		return QWidgetFromPointer(unsafe.Pointer(C.QAbstractItemDelegate_CreateEditor(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(parent)), C.QtObjectPtr(PointerFromQStyleOptionViewItem(option)), C.QtObjectPtr(core.PointerFromQModelIndex(index)))))
+		return NewQWidgetFromPointer(C.QAbstractItemDelegate_CreateEditor(ptr.Pointer(), PointerFromQWidget(parent), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
 	}
 	return nil
 }
 
-func (ptr *QAbstractItemDelegate) DestroyEditor(editor QWidgetITF, index core.QModelIndexITF) {
+func (ptr *QAbstractItemDelegate) DestroyEditor(editor QWidget_ITF, index core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemDelegate_DestroyEditor(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(editor)), C.QtObjectPtr(core.PointerFromQModelIndex(index)))
+		C.QAbstractItemDelegate_DestroyEditor(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
 	}
 }
 
-func (ptr *QAbstractItemDelegate) EditorEvent(event core.QEventITF, model core.QAbstractItemModelITF, option QStyleOptionViewItemITF, index core.QModelIndexITF) bool {
+func (ptr *QAbstractItemDelegate) EditorEvent(event core.QEvent_ITF, model core.QAbstractItemModel_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractItemDelegate_EditorEvent(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQEvent(event)), C.QtObjectPtr(core.PointerFromQAbstractItemModel(model)), C.QtObjectPtr(PointerFromQStyleOptionViewItem(option)), C.QtObjectPtr(core.PointerFromQModelIndex(index))) != 0
-	}
-	return false
-}
-
-func (ptr *QAbstractItemDelegate) HelpEvent(event gui.QHelpEventITF, view QAbstractItemViewITF, option QStyleOptionViewItemITF, index core.QModelIndexITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAbstractItemDelegate_HelpEvent(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQHelpEvent(event)), C.QtObjectPtr(PointerFromQAbstractItemView(view)), C.QtObjectPtr(PointerFromQStyleOptionViewItem(option)), C.QtObjectPtr(core.PointerFromQModelIndex(index))) != 0
+		return C.QAbstractItemDelegate_EditorEvent(ptr.Pointer(), core.PointerFromQEvent(event), core.PointerFromQAbstractItemModel(model), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
 	}
 	return false
 }
 
-func (ptr *QAbstractItemDelegate) Paint(painter gui.QPainterITF, option QStyleOptionViewItemITF, index core.QModelIndexITF) {
+func (ptr *QAbstractItemDelegate) HelpEvent(event gui.QHelpEvent_ITF, view QAbstractItemView_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemDelegate_Paint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(PointerFromQStyleOptionViewItem(option)), C.QtObjectPtr(core.PointerFromQModelIndex(index)))
+		return C.QAbstractItemDelegate_HelpEvent(ptr.Pointer(), gui.PointerFromQHelpEvent(event), PointerFromQAbstractItemView(view), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
+	}
+	return false
+}
+
+func (ptr *QAbstractItemDelegate) Paint(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemDelegate_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
 	}
 }
 
-func (ptr *QAbstractItemDelegate) SetEditorData(editor QWidgetITF, index core.QModelIndexITF) {
+func (ptr *QAbstractItemDelegate) SetEditorData(editor QWidget_ITF, index core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemDelegate_SetEditorData(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(editor)), C.QtObjectPtr(core.PointerFromQModelIndex(index)))
+		C.QAbstractItemDelegate_SetEditorData(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
 	}
 }
 
-func (ptr *QAbstractItemDelegate) SetModelData(editor QWidgetITF, model core.QAbstractItemModelITF, index core.QModelIndexITF) {
+func (ptr *QAbstractItemDelegate) SetModelData(editor QWidget_ITF, model core.QAbstractItemModel_ITF, index core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemDelegate_SetModelData(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(editor)), C.QtObjectPtr(core.PointerFromQAbstractItemModel(model)), C.QtObjectPtr(core.PointerFromQModelIndex(index)))
+		C.QAbstractItemDelegate_SetModelData(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQAbstractItemModel(model), core.PointerFromQModelIndex(index))
 	}
 }
 
-func (ptr *QAbstractItemDelegate) ConnectSizeHintChanged(f func(index core.QModelIndexITF)) {
+func (ptr *QAbstractItemDelegate) ConnectSizeHintChanged(f func(index *core.QModelIndex)) {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemDelegate_ConnectSizeHintChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractItemDelegate_ConnectSizeHintChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "sizeHintChanged", f)
 	}
 }
 
 func (ptr *QAbstractItemDelegate) DisconnectSizeHintChanged() {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemDelegate_DisconnectSizeHintChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractItemDelegate_DisconnectSizeHintChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "sizeHintChanged")
 	}
 }
 
 //export callbackQAbstractItemDelegateSizeHintChanged
 func callbackQAbstractItemDelegateSizeHintChanged(ptrName *C.char, index unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "sizeHintChanged").(func(*core.QModelIndex))(core.QModelIndexFromPointer(index))
+	qt.GetSignal(C.GoString(ptrName), "sizeHintChanged").(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 }
 
-func (ptr *QAbstractItemDelegate) UpdateEditorGeometry(editor QWidgetITF, option QStyleOptionViewItemITF, index core.QModelIndexITF) {
+func (ptr *QAbstractItemDelegate) UpdateEditorGeometry(editor QWidget_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemDelegate_UpdateEditorGeometry(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(editor)), C.QtObjectPtr(PointerFromQStyleOptionViewItem(option)), C.QtObjectPtr(core.PointerFromQModelIndex(index)))
+		C.QAbstractItemDelegate_UpdateEditorGeometry(ptr.Pointer(), PointerFromQWidget(editor), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QAbstractItemDelegate) DestroyQAbstractItemDelegate() {
 	if ptr.Pointer() != nil {
-		C.QAbstractItemDelegate_DestroyQAbstractItemDelegate(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractItemDelegate_DestroyQAbstractItemDelegate(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

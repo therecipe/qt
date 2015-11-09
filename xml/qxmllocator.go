@@ -10,8 +10,8 @@ type QXmlLocator struct {
 	ptr unsafe.Pointer
 }
 
-type QXmlLocatorITF interface {
-	QXmlLocatorPTR() *QXmlLocator
+type QXmlLocator_ITF interface {
+	QXmlLocator_PTR() *QXmlLocator
 }
 
 func (p *QXmlLocator) Pointer() unsafe.Pointer {
@@ -22,39 +22,39 @@ func (p *QXmlLocator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQXmlLocator(ptr QXmlLocatorITF) unsafe.Pointer {
+func PointerFromQXmlLocator(ptr QXmlLocator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QXmlLocatorPTR().Pointer()
+		return ptr.QXmlLocator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QXmlLocatorFromPointer(ptr unsafe.Pointer) *QXmlLocator {
+func NewQXmlLocatorFromPointer(ptr unsafe.Pointer) *QXmlLocator {
 	var n = new(QXmlLocator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QXmlLocator) QXmlLocatorPTR() *QXmlLocator {
+func (ptr *QXmlLocator) QXmlLocator_PTR() *QXmlLocator {
 	return ptr
 }
 
 func (ptr *QXmlLocator) ColumnNumber() int {
 	if ptr.Pointer() != nil {
-		return int(C.QXmlLocator_ColumnNumber(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QXmlLocator_ColumnNumber(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QXmlLocator) LineNumber() int {
 	if ptr.Pointer() != nil {
-		return int(C.QXmlLocator_LineNumber(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QXmlLocator_LineNumber(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QXmlLocator) DestroyQXmlLocator() {
 	if ptr.Pointer() != nil {
-		C.QXmlLocator_DestroyQXmlLocator(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlLocator_DestroyQXmlLocator(ptr.Pointer())
 	}
 }

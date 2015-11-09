@@ -1,16 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGeoRouteReply_NewQGeoRouteReply(int error, char* errorString, QtObjectPtr parent);
-void QGeoRouteReply_Abort(QtObjectPtr ptr);
-int QGeoRouteReply_Error(QtObjectPtr ptr);
-char* QGeoRouteReply_ErrorString(QtObjectPtr ptr);
-void QGeoRouteReply_ConnectFinished(QtObjectPtr ptr);
-void QGeoRouteReply_DisconnectFinished(QtObjectPtr ptr);
-int QGeoRouteReply_IsFinished(QtObjectPtr ptr);
-void QGeoRouteReply_DestroyQGeoRouteReply(QtObjectPtr ptr);
+void* QGeoRouteReply_NewQGeoRouteReply(int error, char* errorString, void* parent);
+void QGeoRouteReply_Abort(void* ptr);
+int QGeoRouteReply_Error(void* ptr);
+char* QGeoRouteReply_ErrorString(void* ptr);
+void QGeoRouteReply_ConnectFinished(void* ptr);
+void QGeoRouteReply_DisconnectFinished(void* ptr);
+int QGeoRouteReply_IsFinished(void* ptr);
+void QGeoRouteReply_DestroyQGeoRouteReply(void* ptr);
 
 #ifdef __cplusplus
 }

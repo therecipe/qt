@@ -1,10 +1,10 @@
 #include "qtextblock.h"
-#include <QTextBlockUserData>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QTextBlockUserData>
 #include <QTextDocument>
+#include <QString>
+#include <QVariant>
 #include <QTextBlock>
 #include "_cgo_export.h"
 
@@ -12,103 +12,103 @@ class MyQTextBlock: public QTextBlock {
 public:
 };
 
-int QTextBlock_IsValid(QtObjectPtr ptr){
+int QTextBlock_IsValid(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->isValid();
 }
 
-QtObjectPtr QTextBlock_NewQTextBlock(QtObjectPtr other){
+void* QTextBlock_NewQTextBlock(void* other){
 	return new QTextBlock(*static_cast<QTextBlock*>(other));
 }
 
-int QTextBlock_BlockFormatIndex(QtObjectPtr ptr){
+int QTextBlock_BlockFormatIndex(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->blockFormatIndex();
 }
 
-int QTextBlock_CharFormatIndex(QtObjectPtr ptr){
+int QTextBlock_CharFormatIndex(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->charFormatIndex();
 }
 
-void QTextBlock_ClearLayout(QtObjectPtr ptr){
+void QTextBlock_ClearLayout(void* ptr){
 	static_cast<QTextBlock*>(ptr)->clearLayout();
 }
 
-int QTextBlock_Contains(QtObjectPtr ptr, int position){
+int QTextBlock_Contains(void* ptr, int position){
 	return static_cast<QTextBlock*>(ptr)->contains(position);
 }
 
-int QTextBlock_BlockNumber(QtObjectPtr ptr){
+int QTextBlock_BlockNumber(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->blockNumber();
 }
 
-QtObjectPtr QTextBlock_Document(QtObjectPtr ptr){
+void* QTextBlock_Document(void* ptr){
 	return const_cast<QTextDocument*>(static_cast<QTextBlock*>(ptr)->document());
 }
 
-int QTextBlock_FirstLineNumber(QtObjectPtr ptr){
+int QTextBlock_FirstLineNumber(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->firstLineNumber();
 }
 
-int QTextBlock_IsVisible(QtObjectPtr ptr){
+int QTextBlock_IsVisible(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->isVisible();
 }
 
-QtObjectPtr QTextBlock_Layout(QtObjectPtr ptr){
+void* QTextBlock_Layout(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->layout();
 }
 
-int QTextBlock_Length(QtObjectPtr ptr){
+int QTextBlock_Length(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->length();
 }
 
-int QTextBlock_LineCount(QtObjectPtr ptr){
+int QTextBlock_LineCount(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->lineCount();
 }
 
-int QTextBlock_Position(QtObjectPtr ptr){
+int QTextBlock_Position(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->position();
 }
 
-int QTextBlock_Revision(QtObjectPtr ptr){
+int QTextBlock_Revision(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->revision();
 }
 
-void QTextBlock_SetLineCount(QtObjectPtr ptr, int count){
+void QTextBlock_SetLineCount(void* ptr, int count){
 	static_cast<QTextBlock*>(ptr)->setLineCount(count);
 }
 
-void QTextBlock_SetRevision(QtObjectPtr ptr, int rev){
+void QTextBlock_SetRevision(void* ptr, int rev){
 	static_cast<QTextBlock*>(ptr)->setRevision(rev);
 }
 
-void QTextBlock_SetUserData(QtObjectPtr ptr, QtObjectPtr data){
+void QTextBlock_SetUserData(void* ptr, void* data){
 	static_cast<QTextBlock*>(ptr)->setUserData(static_cast<QTextBlockUserData*>(data));
 }
 
-void QTextBlock_SetUserState(QtObjectPtr ptr, int state){
+void QTextBlock_SetUserState(void* ptr, int state){
 	static_cast<QTextBlock*>(ptr)->setUserState(state);
 }
 
-void QTextBlock_SetVisible(QtObjectPtr ptr, int visible){
+void QTextBlock_SetVisible(void* ptr, int visible){
 	static_cast<QTextBlock*>(ptr)->setVisible(visible != 0);
 }
 
-char* QTextBlock_Text(QtObjectPtr ptr){
+char* QTextBlock_Text(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->text().toUtf8().data();
 }
 
-int QTextBlock_TextDirection(QtObjectPtr ptr){
+int QTextBlock_TextDirection(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->textDirection();
 }
 
-QtObjectPtr QTextBlock_TextList(QtObjectPtr ptr){
+void* QTextBlock_TextList(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->textList();
 }
 
-QtObjectPtr QTextBlock_UserData(QtObjectPtr ptr){
+void* QTextBlock_UserData(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->userData();
 }
 
-int QTextBlock_UserState(QtObjectPtr ptr){
+int QTextBlock_UserState(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->userState();
 }
 

@@ -1,34 +1,33 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QLocalSocket_Open(QtObjectPtr ptr, int openMode);
-QtObjectPtr QLocalSocket_NewQLocalSocket(QtObjectPtr parent);
-void QLocalSocket_ConnectToServer2(QtObjectPtr ptr, char* name, int openMode);
-void QLocalSocket_ConnectConnected(QtObjectPtr ptr);
-void QLocalSocket_DisconnectConnected(QtObjectPtr ptr);
-void QLocalSocket_ConnectDisconnected(QtObjectPtr ptr);
-void QLocalSocket_DisconnectDisconnected(QtObjectPtr ptr);
-char* QLocalSocket_FullServerName(QtObjectPtr ptr);
-int QLocalSocket_IsSequential(QtObjectPtr ptr);
-char* QLocalSocket_ServerName(QtObjectPtr ptr);
-void QLocalSocket_SetServerName(QtObjectPtr ptr, char* name);
-void QLocalSocket_ConnectStateChanged(QtObjectPtr ptr);
-void QLocalSocket_DisconnectStateChanged(QtObjectPtr ptr);
-void QLocalSocket_DestroyQLocalSocket(QtObjectPtr ptr);
-void QLocalSocket_Abort(QtObjectPtr ptr);
-int QLocalSocket_CanReadLine(QtObjectPtr ptr);
-void QLocalSocket_Close(QtObjectPtr ptr);
-void QLocalSocket_ConnectToServer(QtObjectPtr ptr, int openMode);
-void QLocalSocket_DisconnectFromServer(QtObjectPtr ptr);
-int QLocalSocket_Error(QtObjectPtr ptr);
-int QLocalSocket_Flush(QtObjectPtr ptr);
-int QLocalSocket_IsValid(QtObjectPtr ptr);
-int QLocalSocket_WaitForBytesWritten(QtObjectPtr ptr, int msecs);
-int QLocalSocket_WaitForConnected(QtObjectPtr ptr, int msecs);
-int QLocalSocket_WaitForDisconnected(QtObjectPtr ptr, int msecs);
-int QLocalSocket_WaitForReadyRead(QtObjectPtr ptr, int msecs);
+int QLocalSocket_Open(void* ptr, int openMode);
+void* QLocalSocket_NewQLocalSocket(void* parent);
+void QLocalSocket_ConnectToServer2(void* ptr, char* name, int openMode);
+void QLocalSocket_ConnectConnected(void* ptr);
+void QLocalSocket_DisconnectConnected(void* ptr);
+void QLocalSocket_ConnectDisconnected(void* ptr);
+void QLocalSocket_DisconnectDisconnected(void* ptr);
+char* QLocalSocket_FullServerName(void* ptr);
+int QLocalSocket_IsSequential(void* ptr);
+char* QLocalSocket_ServerName(void* ptr);
+void QLocalSocket_SetServerName(void* ptr, char* name);
+void QLocalSocket_ConnectStateChanged(void* ptr);
+void QLocalSocket_DisconnectStateChanged(void* ptr);
+void QLocalSocket_DestroyQLocalSocket(void* ptr);
+void QLocalSocket_Abort(void* ptr);
+int QLocalSocket_CanReadLine(void* ptr);
+void QLocalSocket_Close(void* ptr);
+void QLocalSocket_ConnectToServer(void* ptr, int openMode);
+void QLocalSocket_DisconnectFromServer(void* ptr);
+int QLocalSocket_Error(void* ptr);
+int QLocalSocket_Flush(void* ptr);
+int QLocalSocket_IsValid(void* ptr);
+int QLocalSocket_WaitForBytesWritten(void* ptr, int msecs);
+int QLocalSocket_WaitForConnected(void* ptr, int msecs);
+int QLocalSocket_WaitForDisconnected(void* ptr, int msecs);
+int QLocalSocket_WaitForReadyRead(void* ptr, int msecs);
 
 #ifdef __cplusplus
 }

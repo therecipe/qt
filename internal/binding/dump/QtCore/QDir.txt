@@ -1,71 +1,71 @@
 ########################################			FUNCTIONS			########################################
-&{QDir QDir::QDir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non constructor false false   [0xc820356280] }
-&{QDir QDir::QDir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non constructor false true 2  [0xc8203563e0] }
-&{QDir QDir::QDir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non constructor false true 3  [0xc820356520 0xc8203565a0 0xc820356640 0xc8203566c0] }
-&{absoluteFilePath QDir::absoluteFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString [0xc820356a00] }
-&{absolutePath QDir::absolutePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString [] }
-&{addSearchPath QDir::addSearchPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  void [0xc820356ec0 0xc820356f40] }
-&{canonicalPath QDir::canonicalPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString [] }
-&{cd QDir::cd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [0xc8203571c0] }
-&{cdUp QDir::cdUp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [] }
-&{cleanPath QDir::cleanPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString [0xc820357380] }
-&{count QDir::count commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  uint [] }
-&{current QDir::current commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QDir [] }
-&{currentPath QDir::currentPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString [] }
-&{dirName QDir::dirName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString [] }
-&{drives QDir::drives commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QFileInfoList [] }
-&{entryInfoList QDir::entryInfoList commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false true 2 QFileInfoList [0xc820357c00 0xc820357c80] }
-&{entryInfoList QDir::entryInfoList commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QFileInfoList [0xc820357e60 0xc820357f20 0xc820357fa0] }
-&{entryList QDir::entryList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false true 2 QStringList [0xc82036c100 0xc82036c180] }
-&{entryList QDir::entryList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QStringList [0xc82036c300 0xc82036c3c0 0xc82036c440] }
-&{exists QDir::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false true 2 bool [] }
-&{exists QDir::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [0xc82036c620] }
-&{filePath QDir::filePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString [0xc82036c780] }
-&{filter QDir::filter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  Filters [] }
-&{fromNativeSeparators QDir::fromNativeSeparators commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString [0xc82036ca20] }
-&{home QDir::home commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QDir [] }
-&{homePath QDir::homePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString [] }
-&{isAbsolute QDir::isAbsolute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [] }
-&{isAbsolutePath QDir::isAbsolutePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  bool [0xc82036cda0] }
-&{isReadable QDir::isReadable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [] }
-&{isRelative QDir::isRelative commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [] }
-&{isRelativePath QDir::isRelativePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  bool [0xc82036d0a0] }
-&{isRoot QDir::isRoot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [] }
-&{makeAbsolute QDir::makeAbsolute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [] }
-&{match QDir::match commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  bool [0xc82036d360 0xc82036d3e0] }
-&{match QDir::match commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true true 2 bool [0xc82036d560 0xc82036d620] }
-&{mkdir QDir::mkdir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [0xc82036d760] }
-&{mkpath QDir::mkpath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [0xc82036d8a0] }
-&{nameFilters QDir::nameFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QStringList [] }
-&{operator!= QDir::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [0xc82036db00] }
-&{operator= QDir::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false true 2 QDir & [0xc82036dc80] }
-&{operator= QDir::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QDir & [0xc82036dde0] }
-&{operator== QDir::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [0xc8203840a0] }
-&{operator[] QDir::operator[] commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString [0xc820384200] }
-&{path QDir::path commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString [] }
-&{refresh QDir::refresh commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  void [] }
-&{relativeFilePath QDir::relativeFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString [0xc8203844e0] }
-&{remove QDir::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [0xc820384620] }
-&{removeRecursively QDir::removeRecursively commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [] }
-&{rename QDir::rename commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [0xc8203848c0 0xc820384940] }
-&{rmdir QDir::rmdir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [0xc820384a80] }
-&{rmpath QDir::rmpath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool [0xc820384bc0] }
-&{root QDir::root commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QDir [] }
-&{rootPath QDir::rootPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString [] }
-&{searchPaths QDir::searchPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QStringList [0xc820384e80] }
-&{separator QDir::separator commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QChar [] }
-&{setCurrent QDir::setCurrent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  bool [0xc820385080] }
-&{setFilter QDir::setFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  void [0xc820385200] }
-&{setNameFilters QDir::setNameFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  void [0xc8203853e0] }
-&{setPath QDir::setPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  void [0xc8203855a0] }
-&{setSearchPaths QDir::setSearchPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  void [0xc820385760 0xc820385800] }
-&{setSorting QDir::setSorting commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  void [0xc8203859c0] }
-&{sorting QDir::sorting commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  SortFlags [] }
-&{swap QDir::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  void [0xc820385bc0] }
-&{temp QDir::temp commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QDir [] }
-&{tempPath QDir::tempPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString [] }
-&{toNativeSeparators QDir::toNativeSeparators commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString [0xc820385ee0] }
-&{~QDir QDir::~QDir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non destructor false false   [] }
+&{QDir QDir::QDir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non constructor false false   QDir(const QDir &dir) [0xc82035c440] }
+&{QDir QDir::QDir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non constructor false true 2  QDir(const QString &path) [0xc82035c5e0] }
+&{QDir QDir::QDir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non constructor false true 3  QDir(const QString &path, const QString &nameFilter, SortFlags sort, Filters filters) [0xc82035c720 0xc82035c7a0 0xc82035c840 0xc82035c8c0] }
+&{absoluteFilePath QDir::absoluteFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString QString absoluteFilePath(const QString &fileName) const [0xc82035cc40] }
+&{absolutePath QDir::absolutePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString QString absolutePath() const [] }
+&{addSearchPath QDir::addSearchPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  void void addSearchPath(const QString &prefix, const QString &path) [0xc82035d140 0xc82035d1c0] }
+&{canonicalPath QDir::canonicalPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString QString canonicalPath() const [] }
+&{cd QDir::cd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool cd(const QString &dirName) [0xc82035d4c0] }
+&{cdUp QDir::cdUp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool cdUp() [] }
+&{cleanPath QDir::cleanPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString QString cleanPath(const QString &path) [0xc82035d680] }
+&{count QDir::count commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  uint uint count() const [] }
+&{current QDir::current commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QDir QDir current() [] }
+&{currentPath QDir::currentPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString QString currentPath() [] }
+&{dirName QDir::dirName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString QString dirName() const [] }
+&{drives QDir::drives commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QFileInfoList QFileInfoList drives() [] }
+&{entryInfoList QDir::entryInfoList commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false true 2 QFileInfoList QFileInfoList entryInfoList(Filters filters, SortFlags sort) const [0xc820372040 0xc8203720c0] }
+&{entryInfoList QDir::entryInfoList commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QFileInfoList QFileInfoList entryInfoList(const QStringList &nameFilters, Filters filters, SortFlags sort) const [0xc8203722a0 0xc820372360 0xc8203723e0] }
+&{entryList QDir::entryList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false true 2 QStringList QStringList entryList(Filters filters, SortFlags sort) const [0xc820372540 0xc8203725c0] }
+&{entryList QDir::entryList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QStringList QStringList entryList(const QStringList &nameFilters, Filters filters, SortFlags sort) const [0xc820372740 0xc820372800 0xc820372880] }
+&{exists QDir::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false true 2 bool bool exists() const [] }
+&{exists QDir::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool exists(const QString &name) const [0xc820372aa0] }
+&{filePath QDir::filePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString QString filePath(const QString &fileName) const [0xc820372c00] }
+&{filter QDir::filter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  Filters Filters filter() const [] }
+&{fromNativeSeparators QDir::fromNativeSeparators commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString QString fromNativeSeparators(const QString &pathName) [0xc820372ee0] }
+&{home QDir::home commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QDir QDir home() [] }
+&{homePath QDir::homePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString QString homePath() [] }
+&{isAbsolute QDir::isAbsolute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool isAbsolute() const [] }
+&{isAbsolutePath QDir::isAbsolutePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  bool bool isAbsolutePath(const QString &path) [0xc8203732e0] }
+&{isReadable QDir::isReadable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool isReadable() const [] }
+&{isRelative QDir::isRelative commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool isRelative() const [] }
+&{isRelativePath QDir::isRelativePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  bool bool isRelativePath(const QString &path) [0xc820373660] }
+&{isRoot QDir::isRoot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool isRoot() const [] }
+&{makeAbsolute QDir::makeAbsolute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool makeAbsolute() [] }
+&{match QDir::match commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  bool bool match(const QString &filter, const QString &fileName) [0xc8203739a0 0xc820373a20] }
+&{match QDir::match commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true true 2 bool bool match(const QStringList &filters, const QString &fileName) [0xc820373ba0 0xc820373c60] }
+&{mkdir QDir::mkdir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool mkdir(const QString &dirName) const [0xc820373da0] }
+&{mkpath QDir::mkpath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool mkpath(const QString &dirPath) const [0xc820373ee0] }
+&{nameFilters QDir::nameFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QStringList QStringList nameFilters() const [] }
+&{operator!= QDir::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool operator!=(const QDir &dir) const [0xc820386180] }
+&{operator= QDir::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false true 2 QDir & QDir & operator=(QDir &&other) [0xc820386340] }
+&{operator= QDir::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QDir & QDir & operator=(const QDir &dir) [0xc8203864a0] }
+&{operator== QDir::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool operator==(const QDir &dir) const [0xc820386760] }
+&{operator[] QDir::operator[] commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString QString operator[](int pos) const [0xc8203868c0] }
+&{path QDir::path commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString QString path() const [] }
+&{refresh QDir::refresh commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  void void refresh() const [] }
+&{relativeFilePath QDir::relativeFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  QString QString relativeFilePath(const QString &fileName) const [0xc820386c20] }
+&{remove QDir::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool remove(const QString &fileName) [0xc820386d60] }
+&{removeRecursively QDir::removeRecursively commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool removeRecursively() [] }
+&{rename QDir::rename commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool rename(const QString &oldName, const QString &newName) [0xc820387040 0xc8203870c0] }
+&{rmdir QDir::rmdir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool rmdir(const QString &dirName) const [0xc820387200] }
+&{rmpath QDir::rmpath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  bool bool rmpath(const QString &dirPath) const [0xc820387340] }
+&{root QDir::root commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QDir QDir root() [] }
+&{rootPath QDir::rootPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString QString rootPath() [] }
+&{searchPaths QDir::searchPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QStringList QStringList searchPaths(const QString &prefix) [0xc820387640] }
+&{separator QDir::separator commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QChar QChar separator() [] }
+&{setCurrent QDir::setCurrent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  bool bool setCurrent(const QString &path) [0xc820387880] }
+&{setFilter QDir::setFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  void void setFilter(Filters filters) [0xc820387a40] }
+&{setNameFilters QDir::setNameFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  void void setNameFilters(const QStringList &nameFilters) [0xc820387c20] }
+&{setPath QDir::setPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  void void setPath(const QString &path) [0xc820387de0] }
+&{setSearchPaths QDir::setSearchPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  void void setSearchPaths(const QString &prefix, const QStringList &searchPaths) [0xc820387fa0 0xc8203a0040] }
+&{setSorting QDir::setSorting commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  void void setSorting(SortFlags sort) [0xc8203a0240] }
+&{sorting QDir::sorting commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  SortFlags SortFlags sorting() const [] }
+&{swap QDir::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain false false  void void swap(QDir &other) [0xc8203a04c0] }
+&{temp QDir::temp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QDir QDir temp() [] }
+&{tempPath QDir::tempPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString QString tempPath() [] }
+&{toNativeSeparators QDir::toNativeSeparators commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non plain true false  QString QString toNativeSeparators(const QString &pathName) [0xc8203a0820] }
+&{~QDir QDir::~QDir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdir.h non destructor false false   ~QDir() [] }
 ########################################			ENUMS			########################################
-&{Filter QDir::Filter commendable public QDir::Filters [0xc820344e80 0xc820344f00 0xc820344f80 0xc820345000 0xc8203450c0 0xc820345180 0xc820345200 0xc820345280 0xc820345320 0xc8203453a0 0xc820345420 0xc8203454a0 0xc820345520 0xc8203455a0 0xc820345620 0xc8203456a0 0xc820345740 0xc8203457c0 0xc820345840 0xc8203458c0]}
-&{SortFlag QDir::SortFlag commendable public QDir::SortFlags [0xc820345a20 0xc820345aa0 0xc820345b20 0xc820345ba0 0xc820345c40 0xc820345cc0 0xc820345d40 0xc820345dc0 0xc820345e60 0xc820345ee0 0xc820345f60 0xc820345fe0]}
+&{Filter QDir::Filter commendable public QDir::Filters [0xc82034b000 0xc82034b080 0xc82034b100 0xc82034b180 0xc82034b240 0xc82034b300 0xc82034b380 0xc82034b400 0xc82034b4a0 0xc82034b520 0xc82034b5a0 0xc82034b620 0xc82034b6a0 0xc82034b720 0xc82034b7a0 0xc82034b820 0xc82034b8c0 0xc82034b940 0xc82034b9c0 0xc82034ba40] false}
+&{SortFlag QDir::SortFlag commendable public QDir::SortFlags [0xc82034bba0 0xc82034bc20 0xc82034bca0 0xc82034bd20 0xc82034bdc0 0xc82034be40 0xc82034bec0 0xc82034bf40 0xc82034bfe0 0xc82035c060 0xc82035c0e0 0xc82035c160] false}

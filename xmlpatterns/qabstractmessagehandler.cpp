@@ -10,7 +10,7 @@ class MyQAbstractMessageHandler: public QAbstractMessageHandler {
 public:
 };
 
-void QAbstractMessageHandler_DestroyQAbstractMessageHandler(QtObjectPtr ptr){
+void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr){
 	static_cast<QAbstractMessageHandler*>(ptr)->~QAbstractMessageHandler();
 }
 

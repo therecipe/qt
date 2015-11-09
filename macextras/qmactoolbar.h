@@ -1,16 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QMacToolBar_NewQMacToolBar(QtObjectPtr parent);
-QtObjectPtr QMacToolBar_NewQMacToolBar2(char* identifier, QtObjectPtr parent);
-QtObjectPtr QMacToolBar_AddAllowedItem(QtObjectPtr ptr, QtObjectPtr icon, char* text);
-QtObjectPtr QMacToolBar_AddItem(QtObjectPtr ptr, QtObjectPtr icon, char* text);
-void QMacToolBar_AddSeparator(QtObjectPtr ptr);
-void QMacToolBar_AttachToWindow(QtObjectPtr ptr, QtObjectPtr window);
-void QMacToolBar_DetachFromWindow(QtObjectPtr ptr);
-void QMacToolBar_DestroyQMacToolBar(QtObjectPtr ptr);
+void* QMacToolBar_NewQMacToolBar(void* parent);
+void* QMacToolBar_NewQMacToolBar2(char* identifier, void* parent);
+void* QMacToolBar_AddAllowedItem(void* ptr, void* icon, char* text);
+void* QMacToolBar_AddItem(void* ptr, void* icon, char* text);
+void QMacToolBar_AddSeparator(void* ptr);
+void QMacToolBar_AttachToWindow(void* ptr, void* window);
+void QMacToolBar_DetachFromWindow(void* ptr);
+void QMacToolBar_DestroyQMacToolBar(void* ptr);
 
 #ifdef __cplusplus
 }

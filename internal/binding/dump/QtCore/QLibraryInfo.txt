@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{isDebugBuild QLibraryInfo::isDebugBuild commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlibraryinfo.h non plain true false  bool [] }
-&{licensedProducts QLibraryInfo::licensedProducts commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlibraryinfo.h non plain true false  QString [] }
-&{licensee QLibraryInfo::licensee commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlibraryinfo.h non plain true false  QString [] }
-&{location QLibraryInfo::location commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlibraryinfo.h non plain true false  QString [0xc8200e0180] }
+&{isDebugBuild QLibraryInfo::isDebugBuild commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlibraryinfo.h non plain true false  bool bool isDebugBuild() [] }
+&{licensedProducts QLibraryInfo::licensedProducts commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlibraryinfo.h non plain true false  QString QString licensedProducts() [] }
+&{licensee QLibraryInfo::licensee commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlibraryinfo.h non plain true false  QString QString licensee() [] }
+&{location QLibraryInfo::location commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qlibraryinfo.h non plain true false  QString QString location(LibraryLocation loc) [0xc8200ecda0] }
 ########################################			ENUMS			########################################
-&{LibraryLocation QLibraryInfo::LibraryLocation commendable public  [0xc8200eef60 0xc8200ef000 0xc8200ef0c0 0xc8200ef140 0xc8200ef200 0xc8200ef320 0xc8200ef3a0 0xc8200ef440 0xc8200ef520 0xc8200ef5c0 0xc8200ef640 0xc8200ef700 0xc8200ef780 0xc8200ef800 0xc8200ef8a0]}
+&{LibraryLocation QLibraryInfo::LibraryLocation commendable public  [0xc8200ff8e0 0xc8200ff980 0xc8200ffaa0 0xc8200ffb20 0xc8200ffc00 0xc8200ffd20 0xc8200ffda0 0xc8200ffe40 0xc8200fff20 0xc8200fffe0 0xc8200ec060 0xc8200ec140 0xc8200ec1c0 0xc8200ec240 0xc8200ec320] false}

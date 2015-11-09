@@ -10,24 +10,24 @@ type QScopedArrayPointer struct {
 	QScopedPointer
 }
 
-type QScopedArrayPointerITF interface {
-	QScopedPointerITF
-	QScopedArrayPointerPTR() *QScopedArrayPointer
+type QScopedArrayPointer_ITF interface {
+	QScopedPointer_ITF
+	QScopedArrayPointer_PTR() *QScopedArrayPointer
 }
 
-func PointerFromQScopedArrayPointer(ptr QScopedArrayPointerITF) unsafe.Pointer {
+func PointerFromQScopedArrayPointer(ptr QScopedArrayPointer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScopedArrayPointerPTR().Pointer()
+		return ptr.QScopedArrayPointer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScopedArrayPointerFromPointer(ptr unsafe.Pointer) *QScopedArrayPointer {
+func NewQScopedArrayPointerFromPointer(ptr unsafe.Pointer) *QScopedArrayPointer {
 	var n = new(QScopedArrayPointer)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QScopedArrayPointer) QScopedArrayPointerPTR() *QScopedArrayPointer {
+func (ptr *QScopedArrayPointer) QScopedArrayPointer_PTR() *QScopedArrayPointer {
 	return ptr
 }

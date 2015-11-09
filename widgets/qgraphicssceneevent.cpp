@@ -11,11 +11,11 @@ class MyQGraphicsSceneEvent: public QGraphicsSceneEvent {
 public:
 };
 
-QtObjectPtr QGraphicsSceneEvent_Widget(QtObjectPtr ptr){
+void* QGraphicsSceneEvent_Widget(void* ptr){
 	return static_cast<QGraphicsSceneEvent*>(ptr)->widget();
 }
 
-void QGraphicsSceneEvent_DestroyQGraphicsSceneEvent(QtObjectPtr ptr){
+void QGraphicsSceneEvent_DestroyQGraphicsSceneEvent(void* ptr){
 	static_cast<QGraphicsSceneEvent*>(ptr)->~QGraphicsSceneEvent();
 }
 

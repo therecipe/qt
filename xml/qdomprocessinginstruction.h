@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDomProcessingInstruction_NewQDomProcessingInstruction();
-QtObjectPtr QDomProcessingInstruction_NewQDomProcessingInstruction2(QtObjectPtr x);
-char* QDomProcessingInstruction_Data(QtObjectPtr ptr);
-int QDomProcessingInstruction_NodeType(QtObjectPtr ptr);
-void QDomProcessingInstruction_SetData(QtObjectPtr ptr, char* d);
-char* QDomProcessingInstruction_Target(QtObjectPtr ptr);
+void* QDomProcessingInstruction_NewQDomProcessingInstruction();
+void* QDomProcessingInstruction_NewQDomProcessingInstruction2(void* x);
+char* QDomProcessingInstruction_Data(void* ptr);
+int QDomProcessingInstruction_NodeType(void* ptr);
+void QDomProcessingInstruction_SetData(void* ptr, char* d);
+char* QDomProcessingInstruction_Target(void* ptr);
 
 #ifdef __cplusplus
 }

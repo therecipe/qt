@@ -11,40 +11,40 @@ type QProximityReading struct {
 	QSensorReading
 }
 
-type QProximityReadingITF interface {
-	QSensorReadingITF
-	QProximityReadingPTR() *QProximityReading
+type QProximityReading_ITF interface {
+	QSensorReading_ITF
+	QProximityReading_PTR() *QProximityReading
 }
 
-func PointerFromQProximityReading(ptr QProximityReadingITF) unsafe.Pointer {
+func PointerFromQProximityReading(ptr QProximityReading_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QProximityReadingPTR().Pointer()
+		return ptr.QProximityReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func QProximityReadingFromPointer(ptr unsafe.Pointer) *QProximityReading {
+func NewQProximityReadingFromPointer(ptr unsafe.Pointer) *QProximityReading {
 	var n = new(QProximityReading)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QProximityReading_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QProximityReading) QProximityReadingPTR() *QProximityReading {
+func (ptr *QProximityReading) QProximityReading_PTR() *QProximityReading {
 	return ptr
 }
 
 func (ptr *QProximityReading) Close() bool {
 	if ptr.Pointer() != nil {
-		return C.QProximityReading_Close(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QProximityReading_Close(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QProximityReading) SetClose(close bool) {
 	if ptr.Pointer() != nil {
-		C.QProximityReading_SetClose(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(close)))
+		C.QProximityReading_SetClose(ptr.Pointer(), C.int(qt.GoBoolToInt(close)))
 	}
 }

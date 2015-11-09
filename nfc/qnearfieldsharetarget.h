@@ -1,18 +1,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QNearFieldShareTarget_Cancel(QtObjectPtr ptr);
-void QNearFieldShareTarget_ConnectError(QtObjectPtr ptr);
-void QNearFieldShareTarget_DisconnectError(QtObjectPtr ptr);
-int QNearFieldShareTarget_IsShareInProgress(QtObjectPtr ptr);
-int QNearFieldShareTarget_Share(QtObjectPtr ptr, QtObjectPtr message);
-int QNearFieldShareTarget_ShareError(QtObjectPtr ptr);
-void QNearFieldShareTarget_ConnectShareFinished(QtObjectPtr ptr);
-void QNearFieldShareTarget_DisconnectShareFinished(QtObjectPtr ptr);
-int QNearFieldShareTarget_ShareModes(QtObjectPtr ptr);
-void QNearFieldShareTarget_DestroyQNearFieldShareTarget(QtObjectPtr ptr);
+void QNearFieldShareTarget_Cancel(void* ptr);
+void QNearFieldShareTarget_ConnectError(void* ptr);
+void QNearFieldShareTarget_DisconnectError(void* ptr);
+int QNearFieldShareTarget_IsShareInProgress(void* ptr);
+int QNearFieldShareTarget_Share(void* ptr, void* message);
+int QNearFieldShareTarget_ShareError(void* ptr);
+void QNearFieldShareTarget_ConnectShareFinished(void* ptr);
+void QNearFieldShareTarget_DisconnectShareFinished(void* ptr);
+int QNearFieldShareTarget_ShareModes(void* ptr);
+void QNearFieldShareTarget_DestroyQNearFieldShareTarget(void* ptr);
 
 #ifdef __cplusplus
 }

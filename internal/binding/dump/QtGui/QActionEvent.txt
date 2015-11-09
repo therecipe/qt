@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QActionEvent QActionEvent::QActionEvent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc820909820 0xc8209098e0 0xc820909960] }
-&{action QActionEvent::action commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QAction * [] }
-&{before QActionEvent::before commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QAction * [] }
+&{QActionEvent QActionEvent::QActionEvent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QActionEvent(int type, QAction *action, QAction *before) [0xc820999d00 0xc820999d80 0xc820999e00] }
+&{action QActionEvent::action commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QAction * QAction * action() const [] }
+&{before QActionEvent::before commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QAction * QAction * before() const [] }
 ########################################			ENUMS			########################################

@@ -1,11 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QMediaService_ReleaseControl(QtObjectPtr ptr, QtObjectPtr control);
-QtObjectPtr QMediaService_RequestControl(QtObjectPtr ptr, char* interfa);
-void QMediaService_DestroyQMediaService(QtObjectPtr ptr);
+void QMediaService_ReleaseControl(void* ptr, void* control);
+void* QMediaService_RequestControl(void* ptr, char* interfa);
+void* QMediaService_RequestControl2(void* ptr);
+void QMediaService_DestroyQMediaService(void* ptr);
 
 #ifdef __cplusplus
 }

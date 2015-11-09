@@ -1,6 +1,7 @@
 #include "qlowenergycharacteristic.h"
 #include <QUrl>
 #include <QModelIndex>
+#include <QByteArray>
 #include <QString>
 #include <QVariant>
 #include <QLowEnergyCharacteristic>
@@ -10,27 +11,31 @@ class MyQLowEnergyCharacteristic: public QLowEnergyCharacteristic {
 public:
 };
 
-QtObjectPtr QLowEnergyCharacteristic_NewQLowEnergyCharacteristic(){
+void* QLowEnergyCharacteristic_NewQLowEnergyCharacteristic(){
 	return new QLowEnergyCharacteristic();
 }
 
-QtObjectPtr QLowEnergyCharacteristic_NewQLowEnergyCharacteristic2(QtObjectPtr other){
+void* QLowEnergyCharacteristic_NewQLowEnergyCharacteristic2(void* other){
 	return new QLowEnergyCharacteristic(*static_cast<QLowEnergyCharacteristic*>(other));
 }
 
-int QLowEnergyCharacteristic_IsValid(QtObjectPtr ptr){
+int QLowEnergyCharacteristic_IsValid(void* ptr){
 	return static_cast<QLowEnergyCharacteristic*>(ptr)->isValid();
 }
 
-char* QLowEnergyCharacteristic_Name(QtObjectPtr ptr){
+char* QLowEnergyCharacteristic_Name(void* ptr){
 	return static_cast<QLowEnergyCharacteristic*>(ptr)->name().toUtf8().data();
 }
 
-int QLowEnergyCharacteristic_Properties(QtObjectPtr ptr){
+int QLowEnergyCharacteristic_Properties(void* ptr){
 	return static_cast<QLowEnergyCharacteristic*>(ptr)->properties();
 }
 
-void QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(QtObjectPtr ptr){
+void* QLowEnergyCharacteristic_Value(void* ptr){
+	return new QByteArray(static_cast<QLowEnergyCharacteristic*>(ptr)->value());
+}
+
+void QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(void* ptr){
 	static_cast<QLowEnergyCharacteristic*>(ptr)->~QLowEnergyCharacteristic();
 }
 

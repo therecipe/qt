@@ -11,31 +11,39 @@ class MyQUuid: public QUuid {
 public:
 };
 
-int QUuid_Variant(QtObjectPtr ptr){
+int QUuid_Variant(void* ptr){
 	return static_cast<QUuid*>(ptr)->variant();
 }
 
-int QUuid_Version(QtObjectPtr ptr){
+int QUuid_Version(void* ptr){
 	return static_cast<QUuid*>(ptr)->version();
 }
 
-QtObjectPtr QUuid_NewQUuid(){
+void* QUuid_NewQUuid(){
 	return new QUuid();
 }
 
-QtObjectPtr QUuid_NewQUuid5(QtObjectPtr text){
+void* QUuid_NewQUuid5(void* text){
 	return new QUuid(*static_cast<QByteArray*>(text));
 }
 
-QtObjectPtr QUuid_NewQUuid3(char* text){
+void* QUuid_NewQUuid3(char* text){
 	return new QUuid(QString(text));
 }
 
-int QUuid_IsNull(QtObjectPtr ptr){
+int QUuid_IsNull(void* ptr){
 	return static_cast<QUuid*>(ptr)->isNull();
 }
 
-char* QUuid_ToString(QtObjectPtr ptr){
+void* QUuid_ToByteArray(void* ptr){
+	return new QByteArray(static_cast<QUuid*>(ptr)->toByteArray());
+}
+
+void* QUuid_ToRfc4122(void* ptr){
+	return new QByteArray(static_cast<QUuid*>(ptr)->toRfc4122());
+}
+
+char* QUuid_ToString(void* ptr){
 	return static_cast<QUuid*>(ptr)->toString().toUtf8().data();
 }
 

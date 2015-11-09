@@ -10,8 +10,8 @@ type QRegularExpressionMatchIterator struct {
 	ptr unsafe.Pointer
 }
 
-type QRegularExpressionMatchIteratorITF interface {
-	QRegularExpressionMatchIteratorPTR() *QRegularExpressionMatchIterator
+type QRegularExpressionMatchIterator_ITF interface {
+	QRegularExpressionMatchIterator_PTR() *QRegularExpressionMatchIterator
 }
 
 func (p *QRegularExpressionMatchIterator) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QRegularExpressionMatchIterator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQRegularExpressionMatchIterator(ptr QRegularExpressionMatchIteratorITF) unsafe.Pointer {
+func PointerFromQRegularExpressionMatchIterator(ptr QRegularExpressionMatchIterator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QRegularExpressionMatchIteratorPTR().Pointer()
+		return ptr.QRegularExpressionMatchIterator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QRegularExpressionMatchIteratorFromPointer(ptr unsafe.Pointer) *QRegularExpressionMatchIterator {
+func NewQRegularExpressionMatchIteratorFromPointer(ptr unsafe.Pointer) *QRegularExpressionMatchIterator {
 	var n = new(QRegularExpressionMatchIterator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QRegularExpressionMatchIterator) QRegularExpressionMatchIteratorPTR() *QRegularExpressionMatchIterator {
+func (ptr *QRegularExpressionMatchIterator) QRegularExpressionMatchIterator_PTR() *QRegularExpressionMatchIterator {
 	return ptr
 }

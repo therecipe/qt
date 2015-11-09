@@ -1,25 +1,25 @@
 ########################################			FUNCTIONS			########################################
-&{detach QSharedDataPointer::detach commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.cpp non plain false false  void [] }
-&{QSharedDataPointer QSharedDataPointer::QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false false   [] }
-&{QSharedDataPointer QSharedDataPointer::QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false true 4  [0xc820b8ebe0] }
-&{QSharedDataPointer QSharedDataPointer::QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false true 2  [0xc820b8edc0] }
-&{QSharedDataPointer QSharedDataPointer::QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false true 3  [0xc820b8efe0] }
-&{constData QSharedDataPointer::constData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  const T * [] }
-&{data QSharedDataPointer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  T * [] }
-&{data QSharedDataPointer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 2 const T * [] }
-&{operator T * QSharedDataPointer::operator T * commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false   [] }
-&{operator const T * QSharedDataPointer::operator const T * commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false   [] }
-&{operator! QSharedDataPointer::operator! commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  bool [] }
-&{operator!= QSharedDataPointer::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  bool [0xc820b8f920] }
-&{operator* QSharedDataPointer::operator* commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  T & [] }
-&{operator* QSharedDataPointer::operator* commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 2 const T & [] }
-&{operator-> QSharedDataPointer::operator-> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  T * [] }
-&{operator-> QSharedDataPointer::operator-> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 2 const T * [] }
-&{operator= QSharedDataPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 2 QSharedDataPointer & [0xc820b8fec0] }
-&{operator= QSharedDataPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 3 QSharedDataPointer<T> & [0xc820b7e1a0] }
-&{operator= QSharedDataPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  QSharedDataPointer<T> & [0xc820b7e440] }
-&{operator== QSharedDataPointer::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  bool [0xc820b7e700] }
-&{swap QSharedDataPointer::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  void [0xc820b7e960] }
-&{~QSharedDataPointer QSharedDataPointer::~QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non destructor false false   [] }
-&{clone QSharedDataPointer::clone commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezoneprivate.cpp non plain false false  T * [] }
+&{detach QSharedDataPointer::detach commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qurlquery.cpp non plain false false  void void detach() [] }
+&{QSharedDataPointer QSharedDataPointer::QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false false   QSharedDataPointer() [] }
+&{QSharedDataPointer QSharedDataPointer::QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false true 4  QSharedDataPointer(QSharedDataPointer &&o) [0xc820c84320] }
+&{QSharedDataPointer QSharedDataPointer::QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false true 2  QSharedDataPointer(T *sharedData) [0xc820c84560] }
+&{QSharedDataPointer QSharedDataPointer::QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false true 3  QSharedDataPointer(const QSharedDataPointer<T> &other) [0xc820c847e0] }
+&{constData QSharedDataPointer::constData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  const T * const T * constData() const [] }
+&{data QSharedDataPointer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  T * T * data() [] }
+&{data QSharedDataPointer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 2 const T * const T * data() const [] }
+&{operator T * QSharedDataPointer::operator T * commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false   operator T *() [] }
+&{operator const T * QSharedDataPointer::operator const T * commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false   operator const T *() const [] }
+&{operator! QSharedDataPointer::operator! commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  bool bool operator!() const [] }
+&{operator!= QSharedDataPointer::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  bool bool operator!=(const QSharedDataPointer<T> &other) const [0xc820c85400] }
+&{operator* QSharedDataPointer::operator* commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  T & T & operator*() [] }
+&{operator* QSharedDataPointer::operator* commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 2 const T & const T & operator*() const [] }
+&{operator-> QSharedDataPointer::operator-> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  T * T * operator->() [] }
+&{operator-> QSharedDataPointer::operator-> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 2 const T * const T * operator->() const [] }
+&{operator= QSharedDataPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 2 QSharedDataPointer & QSharedDataPointer & operator=(T *sharedData) [0xc820c85c20] }
+&{operator= QSharedDataPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false true 3 QSharedDataPointer<T> & QSharedDataPointer<T> & operator=(QSharedDataPointer<T> &&other) [0xc820c85ee0] }
+&{operator= QSharedDataPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  QSharedDataPointer<T> & QSharedDataPointer<T> & operator=(const QSharedDataPointer<T> &other) [0xc820c7e200] }
+&{operator== QSharedDataPointer::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  bool bool operator==(const QSharedDataPointer<T> &other) const [0xc820c7e4e0] }
+&{swap QSharedDataPointer::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non plain false false  void void swap(QSharedDataPointer &other) [0xc820c7e7c0] }
+&{~QSharedDataPointer QSharedDataPointer::~QSharedDataPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non destructor false false   ~QSharedDataPointer() [] }
+&{clone QSharedDataPointer::clone commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qtimezoneprivate.cpp non plain false false  T * T * clone() [] }
 ########################################			ENUMS			########################################

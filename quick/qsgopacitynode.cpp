@@ -10,11 +10,19 @@ class MyQSGOpacityNode: public QSGOpacityNode {
 public:
 };
 
-QtObjectPtr QSGOpacityNode_NewQSGOpacityNode(){
+void* QSGOpacityNode_NewQSGOpacityNode(){
 	return new QSGOpacityNode();
 }
 
-void QSGOpacityNode_DestroyQSGOpacityNode(QtObjectPtr ptr){
+double QSGOpacityNode_Opacity(void* ptr){
+	return static_cast<double>(static_cast<QSGOpacityNode*>(ptr)->opacity());
+}
+
+void QSGOpacityNode_SetOpacity(void* ptr, double opacity){
+	static_cast<QSGOpacityNode*>(ptr)->setOpacity(static_cast<qreal>(opacity));
+}
+
+void QSGOpacityNode_DestroyQSGOpacityNode(void* ptr){
 	static_cast<QSGOpacityNode*>(ptr)->~QSGOpacityNode();
 }
 

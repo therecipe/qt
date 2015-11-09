@@ -1,23 +1,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QAbstractItemDelegate_ConnectCloseEditor(QtObjectPtr ptr);
-void QAbstractItemDelegate_DisconnectCloseEditor(QtObjectPtr ptr);
-void QAbstractItemDelegate_ConnectCommitData(QtObjectPtr ptr);
-void QAbstractItemDelegate_DisconnectCommitData(QtObjectPtr ptr);
-QtObjectPtr QAbstractItemDelegate_CreateEditor(QtObjectPtr ptr, QtObjectPtr parent, QtObjectPtr option, QtObjectPtr index);
-void QAbstractItemDelegate_DestroyEditor(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr index);
-int QAbstractItemDelegate_EditorEvent(QtObjectPtr ptr, QtObjectPtr event, QtObjectPtr model, QtObjectPtr option, QtObjectPtr index);
-int QAbstractItemDelegate_HelpEvent(QtObjectPtr ptr, QtObjectPtr event, QtObjectPtr view, QtObjectPtr option, QtObjectPtr index);
-void QAbstractItemDelegate_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr index);
-void QAbstractItemDelegate_SetEditorData(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr index);
-void QAbstractItemDelegate_SetModelData(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr model, QtObjectPtr index);
-void QAbstractItemDelegate_ConnectSizeHintChanged(QtObjectPtr ptr);
-void QAbstractItemDelegate_DisconnectSizeHintChanged(QtObjectPtr ptr);
-void QAbstractItemDelegate_UpdateEditorGeometry(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr option, QtObjectPtr index);
-void QAbstractItemDelegate_DestroyQAbstractItemDelegate(QtObjectPtr ptr);
+void QAbstractItemDelegate_ConnectCloseEditor(void* ptr);
+void QAbstractItemDelegate_DisconnectCloseEditor(void* ptr);
+void QAbstractItemDelegate_ConnectCommitData(void* ptr);
+void QAbstractItemDelegate_DisconnectCommitData(void* ptr);
+void* QAbstractItemDelegate_CreateEditor(void* ptr, void* parent, void* option, void* index);
+void QAbstractItemDelegate_DestroyEditor(void* ptr, void* editor, void* index);
+int QAbstractItemDelegate_EditorEvent(void* ptr, void* event, void* model, void* option, void* index);
+int QAbstractItemDelegate_HelpEvent(void* ptr, void* event, void* view, void* option, void* index);
+void QAbstractItemDelegate_Paint(void* ptr, void* painter, void* option, void* index);
+void QAbstractItemDelegate_SetEditorData(void* ptr, void* editor, void* index);
+void QAbstractItemDelegate_SetModelData(void* ptr, void* editor, void* model, void* index);
+void QAbstractItemDelegate_ConnectSizeHintChanged(void* ptr);
+void QAbstractItemDelegate_DisconnectSizeHintChanged(void* ptr);
+void QAbstractItemDelegate_UpdateEditorGeometry(void* ptr, void* editor, void* option, void* index);
+void QAbstractItemDelegate_DestroyQAbstractItemDelegate(void* ptr);
 
 #ifdef __cplusplus
 }

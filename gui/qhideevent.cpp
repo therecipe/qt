@@ -10,7 +10,7 @@ class MyQHideEvent: public QHideEvent {
 public:
 };
 
-QtObjectPtr QHideEvent_NewQHideEvent(){
+void* QHideEvent_NewQHideEvent(){
 	return new QHideEvent();
 }
 

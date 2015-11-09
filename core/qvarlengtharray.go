@@ -10,8 +10,8 @@ type QVarLengthArray struct {
 	ptr unsafe.Pointer
 }
 
-type QVarLengthArrayITF interface {
-	QVarLengthArrayPTR() *QVarLengthArray
+type QVarLengthArray_ITF interface {
+	QVarLengthArray_PTR() *QVarLengthArray
 }
 
 func (p *QVarLengthArray) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QVarLengthArray) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQVarLengthArray(ptr QVarLengthArrayITF) unsafe.Pointer {
+func PointerFromQVarLengthArray(ptr QVarLengthArray_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QVarLengthArrayPTR().Pointer()
+		return ptr.QVarLengthArray_PTR().Pointer()
 	}
 	return nil
 }
 
-func QVarLengthArrayFromPointer(ptr unsafe.Pointer) *QVarLengthArray {
+func NewQVarLengthArrayFromPointer(ptr unsafe.Pointer) *QVarLengthArray {
 	var n = new(QVarLengthArray)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QVarLengthArray) QVarLengthArrayPTR() *QVarLengthArray {
+func (ptr *QVarLengthArray) QVarLengthArray_PTR() *QVarLengthArray {
 	return ptr
 }

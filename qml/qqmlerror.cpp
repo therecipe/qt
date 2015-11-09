@@ -11,59 +11,55 @@ class MyQQmlError: public QQmlError {
 public:
 };
 
-QtObjectPtr QQmlError_NewQQmlError(){
+void* QQmlError_NewQQmlError(){
 	return new QQmlError();
 }
 
-QtObjectPtr QQmlError_NewQQmlError2(QtObjectPtr other){
+void* QQmlError_NewQQmlError2(void* other){
 	return new QQmlError(*static_cast<QQmlError*>(other));
 }
 
-int QQmlError_Column(QtObjectPtr ptr){
+int QQmlError_Column(void* ptr){
 	return static_cast<QQmlError*>(ptr)->column();
 }
 
-char* QQmlError_Description(QtObjectPtr ptr){
+char* QQmlError_Description(void* ptr){
 	return static_cast<QQmlError*>(ptr)->description().toUtf8().data();
 }
 
-int QQmlError_IsValid(QtObjectPtr ptr){
+int QQmlError_IsValid(void* ptr){
 	return static_cast<QQmlError*>(ptr)->isValid();
 }
 
-int QQmlError_Line(QtObjectPtr ptr){
+int QQmlError_Line(void* ptr){
 	return static_cast<QQmlError*>(ptr)->line();
 }
 
-QtObjectPtr QQmlError_Object(QtObjectPtr ptr){
+void* QQmlError_Object(void* ptr){
 	return static_cast<QQmlError*>(ptr)->object();
 }
 
-void QQmlError_SetColumn(QtObjectPtr ptr, int column){
+void QQmlError_SetColumn(void* ptr, int column){
 	static_cast<QQmlError*>(ptr)->setColumn(column);
 }
 
-void QQmlError_SetDescription(QtObjectPtr ptr, char* description){
+void QQmlError_SetDescription(void* ptr, char* description){
 	static_cast<QQmlError*>(ptr)->setDescription(QString(description));
 }
 
-void QQmlError_SetLine(QtObjectPtr ptr, int line){
+void QQmlError_SetLine(void* ptr, int line){
 	static_cast<QQmlError*>(ptr)->setLine(line);
 }
 
-void QQmlError_SetObject(QtObjectPtr ptr, QtObjectPtr object){
+void QQmlError_SetObject(void* ptr, void* object){
 	static_cast<QQmlError*>(ptr)->setObject(static_cast<QObject*>(object));
 }
 
-void QQmlError_SetUrl(QtObjectPtr ptr, char* url){
-	static_cast<QQmlError*>(ptr)->setUrl(QUrl(QString(url)));
+void QQmlError_SetUrl(void* ptr, void* url){
+	static_cast<QQmlError*>(ptr)->setUrl(*static_cast<QUrl*>(url));
 }
 
-char* QQmlError_ToString(QtObjectPtr ptr){
+char* QQmlError_ToString(void* ptr){
 	return static_cast<QQmlError*>(ptr)->toString().toUtf8().data();
-}
-
-char* QQmlError_Url(QtObjectPtr ptr){
-	return static_cast<QQmlError*>(ptr)->url().toString().toUtf8().data();
 }
 

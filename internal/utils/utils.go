@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path"
 )
 
 func MakeFolder(dir string) {
@@ -33,4 +34,16 @@ func Load(name string) string {
 		fmt.Println("file.Load", err)
 	}
 	return string(b)
+}
+
+func GetAbsPath(appPath string) string {
+	var wd, err = os.Getwd()
+	if err != nil {
+		panic(err)
+	}
+	return path.Clean(path.Join(wd, appPath))
+}
+
+func GetQtPkgPath(s ...string) string {
+	return path.Join(os.Getenv("GOPATH"), "src", "github.com", "therecipe", "qt", path.Join(s...))
 }

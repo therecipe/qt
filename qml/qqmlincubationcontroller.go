@@ -10,8 +10,8 @@ type QQmlIncubationController struct {
 	ptr unsafe.Pointer
 }
 
-type QQmlIncubationControllerITF interface {
-	QQmlIncubationControllerPTR() *QQmlIncubationController
+type QQmlIncubationController_ITF interface {
+	QQmlIncubationController_PTR() *QQmlIncubationController
 }
 
 func (p *QQmlIncubationController) Pointer() unsafe.Pointer {
@@ -22,43 +22,43 @@ func (p *QQmlIncubationController) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQQmlIncubationController(ptr QQmlIncubationControllerITF) unsafe.Pointer {
+func PointerFromQQmlIncubationController(ptr QQmlIncubationController_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QQmlIncubationControllerPTR().Pointer()
+		return ptr.QQmlIncubationController_PTR().Pointer()
 	}
 	return nil
 }
 
-func QQmlIncubationControllerFromPointer(ptr unsafe.Pointer) *QQmlIncubationController {
+func NewQQmlIncubationControllerFromPointer(ptr unsafe.Pointer) *QQmlIncubationController {
 	var n = new(QQmlIncubationController)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QQmlIncubationController) QQmlIncubationControllerPTR() *QQmlIncubationController {
+func (ptr *QQmlIncubationController) QQmlIncubationController_PTR() *QQmlIncubationController {
 	return ptr
 }
 
 func NewQQmlIncubationController() *QQmlIncubationController {
-	return QQmlIncubationControllerFromPointer(unsafe.Pointer(C.QQmlIncubationController_NewQQmlIncubationController()))
+	return NewQQmlIncubationControllerFromPointer(C.QQmlIncubationController_NewQQmlIncubationController())
 }
 
 func (ptr *QQmlIncubationController) Engine() *QQmlEngine {
 	if ptr.Pointer() != nil {
-		return QQmlEngineFromPointer(unsafe.Pointer(C.QQmlIncubationController_Engine(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQQmlEngineFromPointer(C.QQmlIncubationController_Engine(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QQmlIncubationController) IncubateFor(msecs int) {
 	if ptr.Pointer() != nil {
-		C.QQmlIncubationController_IncubateFor(C.QtObjectPtr(ptr.Pointer()), C.int(msecs))
+		C.QQmlIncubationController_IncubateFor(ptr.Pointer(), C.int(msecs))
 	}
 }
 
 func (ptr *QQmlIncubationController) IncubatingObjectCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QQmlIncubationController_IncubatingObjectCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QQmlIncubationController_IncubatingObjectCount(ptr.Pointer()))
 	}
 	return 0
 }

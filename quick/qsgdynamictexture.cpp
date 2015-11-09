@@ -10,7 +10,7 @@ class MyQSGDynamicTexture: public QSGDynamicTexture {
 public:
 };
 
-int QSGDynamicTexture_UpdateTexture(QtObjectPtr ptr){
+int QSGDynamicTexture_UpdateTexture(void* ptr){
 	return static_cast<QSGDynamicTexture*>(ptr)->updateTexture();
 }
 

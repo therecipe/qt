@@ -12,111 +12,111 @@ type QNmeaPositionInfoSource struct {
 	QGeoPositionInfoSource
 }
 
-type QNmeaPositionInfoSourceITF interface {
-	QGeoPositionInfoSourceITF
-	QNmeaPositionInfoSourcePTR() *QNmeaPositionInfoSource
+type QNmeaPositionInfoSource_ITF interface {
+	QGeoPositionInfoSource_ITF
+	QNmeaPositionInfoSource_PTR() *QNmeaPositionInfoSource
 }
 
-func PointerFromQNmeaPositionInfoSource(ptr QNmeaPositionInfoSourceITF) unsafe.Pointer {
+func PointerFromQNmeaPositionInfoSource(ptr QNmeaPositionInfoSource_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNmeaPositionInfoSourcePTR().Pointer()
+		return ptr.QNmeaPositionInfoSource_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNmeaPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QNmeaPositionInfoSource {
+func NewQNmeaPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QNmeaPositionInfoSource {
 	var n = new(QNmeaPositionInfoSource)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QNmeaPositionInfoSource_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QNmeaPositionInfoSource) QNmeaPositionInfoSourcePTR() *QNmeaPositionInfoSource {
+func (ptr *QNmeaPositionInfoSource) QNmeaPositionInfoSource_PTR() *QNmeaPositionInfoSource {
 	return ptr
 }
 
 //QNmeaPositionInfoSource::UpdateMode
-type QNmeaPositionInfoSource__UpdateMode int
+type QNmeaPositionInfoSource__UpdateMode int64
 
-var (
+const (
 	QNmeaPositionInfoSource__RealTimeMode   = QNmeaPositionInfoSource__UpdateMode(1)
 	QNmeaPositionInfoSource__SimulationMode = QNmeaPositionInfoSource__UpdateMode(2)
 )
 
-func NewQNmeaPositionInfoSource(updateMode QNmeaPositionInfoSource__UpdateMode, parent core.QObjectITF) *QNmeaPositionInfoSource {
-	return QNmeaPositionInfoSourceFromPointer(unsafe.Pointer(C.QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(C.int(updateMode), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQNmeaPositionInfoSource(updateMode QNmeaPositionInfoSource__UpdateMode, parent core.QObject_ITF) *QNmeaPositionInfoSource {
+	return NewQNmeaPositionInfoSourceFromPointer(C.QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(C.int(updateMode), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNmeaPositionInfoSource) Device() *core.QIODevice {
 	if ptr.Pointer() != nil {
-		return core.QIODeviceFromPointer(unsafe.Pointer(C.QNmeaPositionInfoSource_Device(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQIODeviceFromPointer(C.QNmeaPositionInfoSource_Device(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QNmeaPositionInfoSource) Error() QGeoPositionInfoSource__Error {
 	if ptr.Pointer() != nil {
-		return QGeoPositionInfoSource__Error(C.QNmeaPositionInfoSource_Error(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoPositionInfoSource__Error(C.QNmeaPositionInfoSource_Error(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNmeaPositionInfoSource) MinimumUpdateInterval() int {
 	if ptr.Pointer() != nil {
-		return int(C.QNmeaPositionInfoSource_MinimumUpdateInterval(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QNmeaPositionInfoSource_MinimumUpdateInterval(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNmeaPositionInfoSource) RequestUpdate(msec int) {
 	if ptr.Pointer() != nil {
-		C.QNmeaPositionInfoSource_RequestUpdate(C.QtObjectPtr(ptr.Pointer()), C.int(msec))
+		C.QNmeaPositionInfoSource_RequestUpdate(ptr.Pointer(), C.int(msec))
 	}
 }
 
-func (ptr *QNmeaPositionInfoSource) SetDevice(device core.QIODeviceITF) {
+func (ptr *QNmeaPositionInfoSource) SetDevice(device core.QIODevice_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNmeaPositionInfoSource_SetDevice(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQIODevice(device)))
+		C.QNmeaPositionInfoSource_SetDevice(ptr.Pointer(), core.PointerFromQIODevice(device))
 	}
 }
 
 func (ptr *QNmeaPositionInfoSource) SetUpdateInterval(msec int) {
 	if ptr.Pointer() != nil {
-		C.QNmeaPositionInfoSource_SetUpdateInterval(C.QtObjectPtr(ptr.Pointer()), C.int(msec))
+		C.QNmeaPositionInfoSource_SetUpdateInterval(ptr.Pointer(), C.int(msec))
 	}
 }
 
 func (ptr *QNmeaPositionInfoSource) StartUpdates() {
 	if ptr.Pointer() != nil {
-		C.QNmeaPositionInfoSource_StartUpdates(C.QtObjectPtr(ptr.Pointer()))
+		C.QNmeaPositionInfoSource_StartUpdates(ptr.Pointer())
 	}
 }
 
 func (ptr *QNmeaPositionInfoSource) StopUpdates() {
 	if ptr.Pointer() != nil {
-		C.QNmeaPositionInfoSource_StopUpdates(C.QtObjectPtr(ptr.Pointer()))
+		C.QNmeaPositionInfoSource_StopUpdates(ptr.Pointer())
 	}
 }
 
 func (ptr *QNmeaPositionInfoSource) SupportedPositioningMethods() QGeoPositionInfoSource__PositioningMethod {
 	if ptr.Pointer() != nil {
-		return QGeoPositionInfoSource__PositioningMethod(C.QNmeaPositionInfoSource_SupportedPositioningMethods(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoPositionInfoSource__PositioningMethod(C.QNmeaPositionInfoSource_SupportedPositioningMethods(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNmeaPositionInfoSource) UpdateMode() QNmeaPositionInfoSource__UpdateMode {
 	if ptr.Pointer() != nil {
-		return QNmeaPositionInfoSource__UpdateMode(C.QNmeaPositionInfoSource_UpdateMode(C.QtObjectPtr(ptr.Pointer())))
+		return QNmeaPositionInfoSource__UpdateMode(C.QNmeaPositionInfoSource_UpdateMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNmeaPositionInfoSource) DestroyQNmeaPositionInfoSource() {
 	if ptr.Pointer() != nil {
-		C.QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(C.QtObjectPtr(ptr.Pointer()))
+		C.QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

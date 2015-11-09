@@ -1,16 +1,16 @@
 #include "qgraphicsproxywidget.h"
-#include <QString>
-#include <QModelIndex>
-#include <QStyle>
+#include <QWidget>
+#include <QStyleOptionGraphicsItem>
 #include <QPainter>
-#include <QRect>
 #include <QRectF>
-#include <QStyleOption>
 #include <QVariant>
 #include <QUrl>
-#include <QStyleOptionGraphicsItem>
-#include <QWidget>
+#include <QModelIndex>
+#include <QStyle>
 #include <QGraphicsItem>
+#include <QRect>
+#include <QStyleOption>
+#include <QString>
 #include <QGraphicsProxyWidget>
 #include "_cgo_export.h"
 
@@ -18,35 +18,35 @@ class MyQGraphicsProxyWidget: public QGraphicsProxyWidget {
 public:
 };
 
-QtObjectPtr QGraphicsProxyWidget_NewQGraphicsProxyWidget(QtObjectPtr parent, int wFlags){
+void* QGraphicsProxyWidget_NewQGraphicsProxyWidget(void* parent, int wFlags){
 	return new QGraphicsProxyWidget(static_cast<QGraphicsItem*>(parent), static_cast<Qt::WindowType>(wFlags));
 }
 
-QtObjectPtr QGraphicsProxyWidget_CreateProxyForChildWidget(QtObjectPtr ptr, QtObjectPtr child){
+void* QGraphicsProxyWidget_CreateProxyForChildWidget(void* ptr, void* child){
 	return static_cast<QGraphicsProxyWidget*>(ptr)->createProxyForChildWidget(static_cast<QWidget*>(child));
 }
 
-void QGraphicsProxyWidget_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr widget){
+void QGraphicsProxyWidget_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<QGraphicsProxyWidget*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
 
-void QGraphicsProxyWidget_SetGeometry(QtObjectPtr ptr, QtObjectPtr rect){
+void QGraphicsProxyWidget_SetGeometry(void* ptr, void* rect){
 	static_cast<QGraphicsProxyWidget*>(ptr)->setGeometry(*static_cast<QRectF*>(rect));
 }
 
-void QGraphicsProxyWidget_SetWidget(QtObjectPtr ptr, QtObjectPtr widget){
+void QGraphicsProxyWidget_SetWidget(void* ptr, void* widget){
 	static_cast<QGraphicsProxyWidget*>(ptr)->setWidget(static_cast<QWidget*>(widget));
 }
 
-int QGraphicsProxyWidget_Type(QtObjectPtr ptr){
+int QGraphicsProxyWidget_Type(void* ptr){
 	return static_cast<QGraphicsProxyWidget*>(ptr)->type();
 }
 
-QtObjectPtr QGraphicsProxyWidget_Widget(QtObjectPtr ptr){
+void* QGraphicsProxyWidget_Widget(void* ptr){
 	return static_cast<QGraphicsProxyWidget*>(ptr)->widget();
 }
 
-void QGraphicsProxyWidget_DestroyQGraphicsProxyWidget(QtObjectPtr ptr){
+void QGraphicsProxyWidget_DestroyQGraphicsProxyWidget(void* ptr){
 	static_cast<QGraphicsProxyWidget*>(ptr)->~QGraphicsProxyWidget();
 }
 

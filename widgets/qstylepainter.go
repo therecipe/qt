@@ -13,87 +13,87 @@ type QStylePainter struct {
 	gui.QPainter
 }
 
-type QStylePainterITF interface {
-	gui.QPainterITF
-	QStylePainterPTR() *QStylePainter
+type QStylePainter_ITF interface {
+	gui.QPainter_ITF
+	QStylePainter_PTR() *QStylePainter
 }
 
-func PointerFromQStylePainter(ptr QStylePainterITF) unsafe.Pointer {
+func PointerFromQStylePainter(ptr QStylePainter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStylePainterPTR().Pointer()
+		return ptr.QStylePainter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStylePainterFromPointer(ptr unsafe.Pointer) *QStylePainter {
+func NewQStylePainterFromPointer(ptr unsafe.Pointer) *QStylePainter {
 	var n = new(QStylePainter)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStylePainter) QStylePainterPTR() *QStylePainter {
+func (ptr *QStylePainter) QStylePainter_PTR() *QStylePainter {
 	return ptr
 }
 
 func NewQStylePainter() *QStylePainter {
-	return QStylePainterFromPointer(unsafe.Pointer(C.QStylePainter_NewQStylePainter()))
+	return NewQStylePainterFromPointer(C.QStylePainter_NewQStylePainter())
 }
 
-func NewQStylePainter3(pd gui.QPaintDeviceITF, widget QWidgetITF) *QStylePainter {
-	return QStylePainterFromPointer(unsafe.Pointer(C.QStylePainter_NewQStylePainter3(C.QtObjectPtr(gui.PointerFromQPaintDevice(pd)), C.QtObjectPtr(PointerFromQWidget(widget)))))
+func NewQStylePainter3(pd gui.QPaintDevice_ITF, widget QWidget_ITF) *QStylePainter {
+	return NewQStylePainterFromPointer(C.QStylePainter_NewQStylePainter3(gui.PointerFromQPaintDevice(pd), PointerFromQWidget(widget)))
 }
 
-func NewQStylePainter2(widget QWidgetITF) *QStylePainter {
-	return QStylePainterFromPointer(unsafe.Pointer(C.QStylePainter_NewQStylePainter2(C.QtObjectPtr(PointerFromQWidget(widget)))))
+func NewQStylePainter2(widget QWidget_ITF) *QStylePainter {
+	return NewQStylePainterFromPointer(C.QStylePainter_NewQStylePainter2(PointerFromQWidget(widget)))
 }
 
-func (ptr *QStylePainter) Begin2(pd gui.QPaintDeviceITF, widget QWidgetITF) bool {
+func (ptr *QStylePainter) Begin2(pd gui.QPaintDevice_ITF, widget QWidget_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QStylePainter_Begin2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPaintDevice(pd)), C.QtObjectPtr(PointerFromQWidget(widget))) != 0
+		return C.QStylePainter_Begin2(ptr.Pointer(), gui.PointerFromQPaintDevice(pd), PointerFromQWidget(widget)) != 0
 	}
 	return false
 }
 
-func (ptr *QStylePainter) Begin(widget QWidgetITF) bool {
+func (ptr *QStylePainter) Begin(widget QWidget_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QStylePainter_Begin(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget))) != 0
+		return C.QStylePainter_Begin(ptr.Pointer(), PointerFromQWidget(widget)) != 0
 	}
 	return false
 }
 
-func (ptr *QStylePainter) DrawComplexControl(cc QStyle__ComplexControl, option QStyleOptionComplexITF) {
+func (ptr *QStylePainter) DrawComplexControl(cc QStyle__ComplexControl, option QStyleOptionComplex_ITF) {
 	if ptr.Pointer() != nil {
-		C.QStylePainter_DrawComplexControl(C.QtObjectPtr(ptr.Pointer()), C.int(cc), C.QtObjectPtr(PointerFromQStyleOptionComplex(option)))
+		C.QStylePainter_DrawComplexControl(ptr.Pointer(), C.int(cc), PointerFromQStyleOptionComplex(option))
 	}
 }
 
-func (ptr *QStylePainter) DrawControl(ce QStyle__ControlElement, option QStyleOptionITF) {
+func (ptr *QStylePainter) DrawControl(ce QStyle__ControlElement, option QStyleOption_ITF) {
 	if ptr.Pointer() != nil {
-		C.QStylePainter_DrawControl(C.QtObjectPtr(ptr.Pointer()), C.int(ce), C.QtObjectPtr(PointerFromQStyleOption(option)))
+		C.QStylePainter_DrawControl(ptr.Pointer(), C.int(ce), PointerFromQStyleOption(option))
 	}
 }
 
-func (ptr *QStylePainter) DrawItemPixmap(rect core.QRectITF, flags int, pixmap gui.QPixmapITF) {
+func (ptr *QStylePainter) DrawItemPixmap(rect core.QRect_ITF, flags int, pixmap gui.QPixmap_ITF) {
 	if ptr.Pointer() != nil {
-		C.QStylePainter_DrawItemPixmap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rect)), C.int(flags), C.QtObjectPtr(gui.PointerFromQPixmap(pixmap)))
+		C.QStylePainter_DrawItemPixmap(ptr.Pointer(), core.PointerFromQRect(rect), C.int(flags), gui.PointerFromQPixmap(pixmap))
 	}
 }
 
-func (ptr *QStylePainter) DrawItemText(rect core.QRectITF, flags int, pal gui.QPaletteITF, enabled bool, text string, textRole gui.QPalette__ColorRole) {
+func (ptr *QStylePainter) DrawItemText(rect core.QRect_ITF, flags int, pal gui.QPalette_ITF, enabled bool, text string, textRole gui.QPalette__ColorRole) {
 	if ptr.Pointer() != nil {
-		C.QStylePainter_DrawItemText(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rect)), C.int(flags), C.QtObjectPtr(gui.PointerFromQPalette(pal)), C.int(qt.GoBoolToInt(enabled)), C.CString(text), C.int(textRole))
+		C.QStylePainter_DrawItemText(ptr.Pointer(), core.PointerFromQRect(rect), C.int(flags), gui.PointerFromQPalette(pal), C.int(qt.GoBoolToInt(enabled)), C.CString(text), C.int(textRole))
 	}
 }
 
-func (ptr *QStylePainter) DrawPrimitive(pe QStyle__PrimitiveElement, option QStyleOptionITF) {
+func (ptr *QStylePainter) DrawPrimitive(pe QStyle__PrimitiveElement, option QStyleOption_ITF) {
 	if ptr.Pointer() != nil {
-		C.QStylePainter_DrawPrimitive(C.QtObjectPtr(ptr.Pointer()), C.int(pe), C.QtObjectPtr(PointerFromQStyleOption(option)))
+		C.QStylePainter_DrawPrimitive(ptr.Pointer(), C.int(pe), PointerFromQStyleOption(option))
 	}
 }
 
 func (ptr *QStylePainter) Style() *QStyle {
 	if ptr.Pointer() != nil {
-		return QStyleFromPointer(unsafe.Pointer(C.QStylePainter_Style(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQStyleFromPointer(C.QStylePainter_Style(ptr.Pointer()))
 	}
 	return nil
 }

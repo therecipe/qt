@@ -10,8 +10,8 @@ type QVideoFilterRunnable struct {
 	ptr unsafe.Pointer
 }
 
-type QVideoFilterRunnableITF interface {
-	QVideoFilterRunnablePTR() *QVideoFilterRunnable
+type QVideoFilterRunnable_ITF interface {
+	QVideoFilterRunnable_PTR() *QVideoFilterRunnable
 }
 
 func (p *QVideoFilterRunnable) Pointer() unsafe.Pointer {
@@ -22,26 +22,26 @@ func (p *QVideoFilterRunnable) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQVideoFilterRunnable(ptr QVideoFilterRunnableITF) unsafe.Pointer {
+func PointerFromQVideoFilterRunnable(ptr QVideoFilterRunnable_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QVideoFilterRunnablePTR().Pointer()
+		return ptr.QVideoFilterRunnable_PTR().Pointer()
 	}
 	return nil
 }
 
-func QVideoFilterRunnableFromPointer(ptr unsafe.Pointer) *QVideoFilterRunnable {
+func NewQVideoFilterRunnableFromPointer(ptr unsafe.Pointer) *QVideoFilterRunnable {
 	var n = new(QVideoFilterRunnable)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QVideoFilterRunnable) QVideoFilterRunnablePTR() *QVideoFilterRunnable {
+func (ptr *QVideoFilterRunnable) QVideoFilterRunnable_PTR() *QVideoFilterRunnable {
 	return ptr
 }
 
 //QVideoFilterRunnable::RunFlag
-type QVideoFilterRunnable__RunFlag int
+type QVideoFilterRunnable__RunFlag int64
 
-var (
+const (
 	QVideoFilterRunnable__LastInChain = QVideoFilterRunnable__RunFlag(0x01)
 )

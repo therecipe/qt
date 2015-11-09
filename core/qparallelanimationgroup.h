@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QParallelAnimationGroup_Duration(QtObjectPtr ptr);
-void QParallelAnimationGroup_DestroyQParallelAnimationGroup(QtObjectPtr ptr);
+int QParallelAnimationGroup_Duration(void* ptr);
+void QParallelAnimationGroup_DestroyQParallelAnimationGroup(void* ptr);
 
 #ifdef __cplusplus
 }

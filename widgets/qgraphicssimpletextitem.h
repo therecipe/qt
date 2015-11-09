@@ -1,16 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QGraphicsSimpleTextItem_Contains(QtObjectPtr ptr, QtObjectPtr point);
-int QGraphicsSimpleTextItem_IsObscuredBy(QtObjectPtr ptr, QtObjectPtr item);
-void QGraphicsSimpleTextItem_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr widget);
-void QGraphicsSimpleTextItem_SetFont(QtObjectPtr ptr, QtObjectPtr font);
-void QGraphicsSimpleTextItem_SetText(QtObjectPtr ptr, char* text);
-char* QGraphicsSimpleTextItem_Text(QtObjectPtr ptr);
-int QGraphicsSimpleTextItem_Type(QtObjectPtr ptr);
-void QGraphicsSimpleTextItem_DestroyQGraphicsSimpleTextItem(QtObjectPtr ptr);
+int QGraphicsSimpleTextItem_Contains(void* ptr, void* point);
+int QGraphicsSimpleTextItem_IsObscuredBy(void* ptr, void* item);
+void QGraphicsSimpleTextItem_Paint(void* ptr, void* painter, void* option, void* widget);
+void QGraphicsSimpleTextItem_SetFont(void* ptr, void* font);
+void QGraphicsSimpleTextItem_SetText(void* ptr, char* text);
+char* QGraphicsSimpleTextItem_Text(void* ptr);
+int QGraphicsSimpleTextItem_Type(void* ptr);
+void QGraphicsSimpleTextItem_DestroyQGraphicsSimpleTextItem(void* ptr);
 
 #ifdef __cplusplus
 }

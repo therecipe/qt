@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QAudioProbe_NewQAudioProbe(QtObjectPtr parent);
-void QAudioProbe_ConnectFlush(QtObjectPtr ptr);
-void QAudioProbe_DisconnectFlush(QtObjectPtr ptr);
-int QAudioProbe_IsActive(QtObjectPtr ptr);
-int QAudioProbe_SetSource(QtObjectPtr ptr, QtObjectPtr source);
-int QAudioProbe_SetSource2(QtObjectPtr ptr, QtObjectPtr mediaRecorder);
-void QAudioProbe_DestroyQAudioProbe(QtObjectPtr ptr);
+void* QAudioProbe_NewQAudioProbe(void* parent);
+void QAudioProbe_ConnectFlush(void* ptr);
+void QAudioProbe_DisconnectFlush(void* ptr);
+int QAudioProbe_IsActive(void* ptr);
+int QAudioProbe_SetSource(void* ptr, void* source);
+int QAudioProbe_SetSource2(void* ptr, void* mediaRecorder);
+void QAudioProbe_DestroyQAudioProbe(void* ptr);
 
 #ifdef __cplusplus
 }

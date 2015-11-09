@@ -1,44 +1,44 @@
 ########################################			FUNCTIONS			########################################
-&{horizontalSpacing QGridLayout::horizontalSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.cpp non plain false false  int [] }
-&{setHorizontalSpacing QGridLayout::setHorizontalSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.cpp non plain false false  void [0xc822299980] }
-&{setVerticalSpacing QGridLayout::setVerticalSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.cpp non plain false false  void [0xc822299c40] }
-&{verticalSpacing QGridLayout::verticalSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.cpp non plain false false  int [] }
-&{QGridLayout QGridLayout::QGridLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non constructor false true 2  [] }
-&{QGridLayout QGridLayout::QGridLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non constructor false false   [0xc8222aa0a0] }
-&{addItem QGridLayout::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void [0xc8222aa2c0 0xc8222aa340 0xc8222aa400 0xc8222aa4a0 0xc8222aa5e0 0xc8222aa6e0] }
-&{addItem QGridLayout::addItem commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false true 2 void [0xc8222aa9c0] }
-&{addLayout QGridLayout::addLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void [0xc8222aad20 0xc8222aae00 0xc8222aaf20 0xc8222aafe0] }
-&{addLayout QGridLayout::addLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false true 2 void [0xc8222ab340 0xc8222ab3e0 0xc8222ab4c0 0xc8222ab600 0xc8222ab6e0 0xc8222ab7c0] }
-&{addWidget QGridLayout::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false true 2 void [0xc8222abae0 0xc8222abb80 0xc8222abc80 0xc8222abd40 0xc8222abec0 0xc8222abf60] }
-&{addWidget QGridLayout::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void [0xc8222b4380 0xc8222b4460 0xc8222b4560 0xc8222b4700] }
-&{cellRect QGridLayout::cellRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  QRect [0xc8222b4ea0 0xc8222b4fa0] }
-&{columnCount QGridLayout::columnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int [] }
-&{columnMinimumWidth QGridLayout::columnMinimumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int [0xc8222b5540] }
-&{columnStretch QGridLayout::columnStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int [0xc8222b58e0] }
-&{count QGridLayout::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  int [] }
-&{expandingDirections QGridLayout::expandingDirections commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  Qt::Orientations [] }
-&{getItemPosition QGridLayout::getItemPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void [0xc8222b5f80 0xc8222c8060 0xc8222c80e0 0xc8222c8180 0xc8222c82e0] }
-&{hasHeightForWidth QGridLayout::hasHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  bool [] }
-&{heightForWidth QGridLayout::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  int [0xc8222c8800] }
-&{invalidate QGridLayout::invalidate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  void [] }
-&{itemAt QGridLayout::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  QLayoutItem * [0xc8222c8c80] }
-&{itemAtPosition QGridLayout::itemAtPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  QLayoutItem * [0xc8222c8f60 0xc8222c9040] }
-&{maximumSize QGridLayout::maximumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  QSize [] }
-&{minimumHeightForWidth QGridLayout::minimumHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  int [0xc8222c9460] }
-&{minimumSize QGridLayout::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  QSize [] }
-&{originCorner QGridLayout::originCorner commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  Qt::Corner [] }
-&{rowCount QGridLayout::rowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int [] }
-&{rowMinimumHeight QGridLayout::rowMinimumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int [0xc8222c9bc0] }
-&{rowStretch QGridLayout::rowStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int [0xc8222c9f00] }
-&{setColumnMinimumWidth QGridLayout::setColumnMinimumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void [0xc8222da220 0xc8222da320] }
-&{setColumnStretch QGridLayout::setColumnStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void [0xc8222da5e0 0xc8222da6a0] }
-&{setGeometry QGridLayout::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  void [0xc8222dad20] }
-&{setOriginCorner QGridLayout::setOriginCorner commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void [0xc8222dafc0] }
-&{setRowMinimumHeight QGridLayout::setRowMinimumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void [0xc8222db2e0 0xc8222db3a0] }
-&{setRowStretch QGridLayout::setRowStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void [0xc8222db6e0 0xc8222db760] }
-&{setSpacing QGridLayout::setSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void [0xc8222dbaa0] }
-&{sizeHint QGridLayout::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  QSize [] }
-&{spacing QGridLayout::spacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int [] }
-&{takeAt QGridLayout::takeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  QLayoutItem * [0xc8222dbfe0] }
-&{~QGridLayout QGridLayout::~QGridLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non destructor false false   [] }
+&{horizontalSpacing QGridLayout::horizontalSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.cpp non plain false false  int int horizontalSpacing() const [] }
+&{setHorizontalSpacing QGridLayout::setHorizontalSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.cpp non plain false false  void void setHorizontalSpacing(int spacing) [0xc822079320] }
+&{setVerticalSpacing QGridLayout::setVerticalSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.cpp non plain false false  void void setVerticalSpacing(int spacing) [0xc8220795e0] }
+&{verticalSpacing QGridLayout::verticalSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.cpp non plain false false  int int verticalSpacing() const [] }
+&{QGridLayout QGridLayout::QGridLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non constructor false true 2  QGridLayout() [] }
+&{QGridLayout QGridLayout::QGridLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non constructor false false   QGridLayout(QWidget *parent) [0xc822079b60] }
+&{addItem QGridLayout::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void void addItem(QLayoutItem *item, int row, int column, int rowSpan, int columnSpan, Qt::Alignment alignment) [0xc822079da0 0xc822079e40 0xc822079f20 0xc822079fa0 0xc8221ea060 0xc8221ea120] }
+&{addItem QGridLayout::addItem commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false true 2 void void addItem(QLayoutItem *item) [0xc8221ea400] }
+&{addLayout QGridLayout::addLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void void addLayout(QLayout *layout, int row, int column, Qt::Alignment alignment) [0xc8221ea600 0xc8221ea680 0xc8221ea700 0xc8221ea780] }
+&{addLayout QGridLayout::addLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false true 2 void void addLayout(QLayout *layout, int row, int column, int rowSpan, int columnSpan, Qt::Alignment alignment) [0xc8221ea940 0xc8221ea9c0 0xc8221eaa40 0xc8221eaac0 0xc8221eab60 0xc8221eabe0] }
+&{addWidget QGridLayout::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false true 2 void void addWidget(QWidget *widget, int fromRow, int fromColumn, int rowSpan, int columnSpan, Qt::Alignment alignment) [0xc8221eada0 0xc8221eae20 0xc8221eaea0 0xc8221eaf20 0xc8221eafc0 0xc8221eb040] }
+&{addWidget QGridLayout::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void void addWidget(QWidget *widget, int row, int column, Qt::Alignment alignment) [0xc8221eb200 0xc8221eb280 0xc8221eb300 0xc8221eb380] }
+&{cellRect QGridLayout::cellRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  QRect QRect cellRect(int row, int column) const [0xc8221eb840 0xc8221eb8e0] }
+&{columnCount QGridLayout::columnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int int columnCount() const [] }
+&{columnMinimumWidth QGridLayout::columnMinimumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int int columnMinimumWidth(int column) const [0xc8221ebc20] }
+&{columnStretch QGridLayout::columnStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int int columnStretch(int column) const [0xc8221ebe00] }
+&{count QGridLayout::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  int int count() const [] }
+&{expandingDirections QGridLayout::expandingDirections commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  Qt::Orientations Qt::Orientations expandingDirections() const [] }
+&{getItemPosition QGridLayout::getItemPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void void getItemPosition(int index, int *row, int *column, int *rowSpan, int *columnSpan) const [0xc8226902a0 0xc822690320 0xc8226903a0 0xc822690440 0xc822690520] }
+&{hasHeightForWidth QGridLayout::hasHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  bool bool hasHeightForWidth() const [] }
+&{heightForWidth QGridLayout::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  int int heightForWidth(int w) const [0xc822690960] }
+&{invalidate QGridLayout::invalidate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  void void invalidate() [] }
+&{itemAt QGridLayout::itemAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  QLayoutItem * QLayoutItem * itemAt(int index) const [0xc822690d00] }
+&{itemAtPosition QGridLayout::itemAtPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  QLayoutItem * QLayoutItem * itemAtPosition(int row, int column) const [0xc822690f20 0xc822690fc0] }
+&{maximumSize QGridLayout::maximumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  QSize QSize maximumSize() const [] }
+&{minimumHeightForWidth QGridLayout::minimumHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  int int minimumHeightForWidth(int w) const [0xc822691340] }
+&{minimumSize QGridLayout::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  QSize QSize minimumSize() const [] }
+&{originCorner QGridLayout::originCorner commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  Qt::Corner Qt::Corner originCorner() const [] }
+&{rowCount QGridLayout::rowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int int rowCount() const [] }
+&{rowMinimumHeight QGridLayout::rowMinimumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int int rowMinimumHeight(int row) const [0xc8226919a0] }
+&{rowStretch QGridLayout::rowStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int int rowStretch(int row) const [0xc822691c00] }
+&{setColumnMinimumWidth QGridLayout::setColumnMinimumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void void setColumnMinimumWidth(int column, int minSize) [0xc822691e60 0xc822691ee0] }
+&{setColumnStretch QGridLayout::setColumnStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void void setColumnStretch(int column, int stretch) [0xc82269a100 0xc82269a180] }
+&{setGeometry QGridLayout::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  void void setGeometry(const QRect &rect) [0xc82269a600] }
+&{setOriginCorner QGridLayout::setOriginCorner commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void void setOriginCorner(Qt::Corner corner) [0xc82269a820] }
+&{setRowMinimumHeight QGridLayout::setRowMinimumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void void setRowMinimumHeight(int row, int minSize) [0xc82269aa80 0xc82269ab20] }
+&{setRowStretch QGridLayout::setRowStretch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void void setRowStretch(int row, int stretch) [0xc82269ad20 0xc82269ada0] }
+&{setSpacing QGridLayout::setSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  void void setSpacing(int spacing) [0xc82269b040] }
+&{sizeHint QGridLayout::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  QSize QSize sizeHint() const [] }
+&{spacing QGridLayout::spacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non plain false false  int int spacing() const [] }
+&{takeAt QGridLayout::takeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h impure plain false false  QLayoutItem * QLayoutItem * takeAt(int index) [0xc82269b5e0] }
+&{~QGridLayout QGridLayout::~QGridLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgridlayout.h non destructor false false   ~QGridLayout() [] }
 ########################################			ENUMS			########################################

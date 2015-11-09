@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDragEnterEvent_NewQDragEnterEvent(QtObjectPtr point, int actions, QtObjectPtr data, int buttons, int modifiers);
+void* QDragEnterEvent_NewQDragEnterEvent(void* point, int actions, void* data, int buttons, int modifiers);
 
 #ifdef __cplusplus
 }

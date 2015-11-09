@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{activateCurrentItem QHelpIndexWidget::activateCurrentItem commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non slot false false  void [] }
-&{filterIndices QHelpIndexWidget::filterIndices commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non slot false false  void [0xc8223a0740 0xc8223a07c0] }
-&{linkActivated QHelpIndexWidget::linkActivated commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non signal false false  void [0xc8223a09a0 0xc8223a0a20] }
-&{linksActivated QHelpIndexWidget::linksActivated commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non signal false false  void [0xc8223a0c00 0xc8223a0cc0] }
+&{activateCurrentItem QHelpIndexWidget::activateCurrentItem commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non slot false false  void void activateCurrentItem() [] }
+&{filterIndices QHelpIndexWidget::filterIndices commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non slot false false  void void filterIndices(const QString &filter, const QString &wildcard) [0xc823407600 0xc823407700] }
+&{linkActivated QHelpIndexWidget::linkActivated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non signal false false  void void linkActivated(const QUrl &link, const QString &keyword) [0xc823407b80 0xc823407ca0] }
+&{linksActivated QHelpIndexWidget::linksActivated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non signal false false  void void linksActivated(const QMap<QString, QUrl> &links, const QString &keyword) [0xc8233fa060 0xc8233fa1e0] }
 ########################################			ENUMS			########################################

@@ -10,48 +10,48 @@ type QStyleHintReturnVariant struct {
 	QStyleHintReturn
 }
 
-type QStyleHintReturnVariantITF interface {
-	QStyleHintReturnITF
-	QStyleHintReturnVariantPTR() *QStyleHintReturnVariant
+type QStyleHintReturnVariant_ITF interface {
+	QStyleHintReturn_ITF
+	QStyleHintReturnVariant_PTR() *QStyleHintReturnVariant
 }
 
-func PointerFromQStyleHintReturnVariant(ptr QStyleHintReturnVariantITF) unsafe.Pointer {
+func PointerFromQStyleHintReturnVariant(ptr QStyleHintReturnVariant_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleHintReturnVariantPTR().Pointer()
+		return ptr.QStyleHintReturnVariant_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleHintReturnVariantFromPointer(ptr unsafe.Pointer) *QStyleHintReturnVariant {
+func NewQStyleHintReturnVariantFromPointer(ptr unsafe.Pointer) *QStyleHintReturnVariant {
 	var n = new(QStyleHintReturnVariant)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleHintReturnVariant) QStyleHintReturnVariantPTR() *QStyleHintReturnVariant {
+func (ptr *QStyleHintReturnVariant) QStyleHintReturnVariant_PTR() *QStyleHintReturnVariant {
 	return ptr
 }
 
 //QStyleHintReturnVariant::StyleOptionType
-type QStyleHintReturnVariant__StyleOptionType int
+type QStyleHintReturnVariant__StyleOptionType int64
 
 var (
 	QStyleHintReturnVariant__Type = QStyleHintReturnVariant__StyleOptionType(QStyleHintReturn__SH_Variant)
 )
 
 //QStyleHintReturnVariant::StyleOptionVersion
-type QStyleHintReturnVariant__StyleOptionVersion int
+type QStyleHintReturnVariant__StyleOptionVersion int64
 
 var (
 	QStyleHintReturnVariant__Version = QStyleHintReturnVariant__StyleOptionVersion(1)
 )
 
 func NewQStyleHintReturnVariant() *QStyleHintReturnVariant {
-	return QStyleHintReturnVariantFromPointer(unsafe.Pointer(C.QStyleHintReturnVariant_NewQStyleHintReturnVariant()))
+	return NewQStyleHintReturnVariantFromPointer(C.QStyleHintReturnVariant_NewQStyleHintReturnVariant())
 }
 
 func (ptr *QStyleHintReturnVariant) DestroyQStyleHintReturnVariant() {
 	if ptr.Pointer() != nil {
-		C.QStyleHintReturnVariant_DestroyQStyleHintReturnVariant(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleHintReturnVariant_DestroyQStyleHintReturnVariant(ptr.Pointer())
 	}
 }

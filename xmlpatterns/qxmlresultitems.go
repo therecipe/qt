@@ -10,8 +10,8 @@ type QXmlResultItems struct {
 	ptr unsafe.Pointer
 }
 
-type QXmlResultItemsITF interface {
-	QXmlResultItemsPTR() *QXmlResultItems
+type QXmlResultItems_ITF interface {
+	QXmlResultItems_PTR() *QXmlResultItems
 }
 
 func (p *QXmlResultItems) Pointer() unsafe.Pointer {
@@ -22,36 +22,36 @@ func (p *QXmlResultItems) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQXmlResultItems(ptr QXmlResultItemsITF) unsafe.Pointer {
+func PointerFromQXmlResultItems(ptr QXmlResultItems_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QXmlResultItemsPTR().Pointer()
+		return ptr.QXmlResultItems_PTR().Pointer()
 	}
 	return nil
 }
 
-func QXmlResultItemsFromPointer(ptr unsafe.Pointer) *QXmlResultItems {
+func NewQXmlResultItemsFromPointer(ptr unsafe.Pointer) *QXmlResultItems {
 	var n = new(QXmlResultItems)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QXmlResultItems) QXmlResultItemsPTR() *QXmlResultItems {
+func (ptr *QXmlResultItems) QXmlResultItems_PTR() *QXmlResultItems {
 	return ptr
 }
 
 func NewQXmlResultItems() *QXmlResultItems {
-	return QXmlResultItemsFromPointer(unsafe.Pointer(C.QXmlResultItems_NewQXmlResultItems()))
+	return NewQXmlResultItemsFromPointer(C.QXmlResultItems_NewQXmlResultItems())
 }
 
 func (ptr *QXmlResultItems) HasError() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlResultItems_HasError(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QXmlResultItems_HasError(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlResultItems) DestroyQXmlResultItems() {
 	if ptr.Pointer() != nil {
-		C.QXmlResultItems_DestroyQXmlResultItems(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlResultItems_DestroyQXmlResultItems(ptr.Pointer())
 	}
 }

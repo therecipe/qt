@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QAbstractNativeEventFilter QAbstractNativeEventFilter::QAbstractNativeEventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstractnativeeventfilter.h non constructor false false   [] }
-&{nativeEventFilter QAbstractNativeEventFilter::nativeEventFilter commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstractnativeeventfilter.h pure plain false false  bool [0xc8206429e0 0xc820642aa0 0xc820642b20] }
-&{~QAbstractNativeEventFilter QAbstractNativeEventFilter::~QAbstractNativeEventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstractnativeeventfilter.h impure destructor false false   [] }
+&{QAbstractNativeEventFilter QAbstractNativeEventFilter::QAbstractNativeEventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstractnativeeventfilter.h non constructor false false   QAbstractNativeEventFilter() [] }
+&{nativeEventFilter QAbstractNativeEventFilter::nativeEventFilter commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstractnativeeventfilter.h pure plain false false  bool bool nativeEventFilter(const QByteArray &eventType, void *message, long *result) [0xc82066ec40 0xc82066ed00 0xc82066ed80] }
+&{~QAbstractNativeEventFilter QAbstractNativeEventFilter::~QAbstractNativeEventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstractnativeeventfilter.h impure destructor false false   ~QAbstractNativeEventFilter() [] }
 ########################################			ENUMS			########################################

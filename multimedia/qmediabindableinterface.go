@@ -10,8 +10,8 @@ type QMediaBindableInterface struct {
 	ptr unsafe.Pointer
 }
 
-type QMediaBindableInterfaceITF interface {
-	QMediaBindableInterfacePTR() *QMediaBindableInterface
+type QMediaBindableInterface_ITF interface {
+	QMediaBindableInterface_PTR() *QMediaBindableInterface
 }
 
 func (p *QMediaBindableInterface) Pointer() unsafe.Pointer {
@@ -22,32 +22,32 @@ func (p *QMediaBindableInterface) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMediaBindableInterface(ptr QMediaBindableInterfaceITF) unsafe.Pointer {
+func PointerFromQMediaBindableInterface(ptr QMediaBindableInterface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaBindableInterfacePTR().Pointer()
+		return ptr.QMediaBindableInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaBindableInterfaceFromPointer(ptr unsafe.Pointer) *QMediaBindableInterface {
+func NewQMediaBindableInterfaceFromPointer(ptr unsafe.Pointer) *QMediaBindableInterface {
 	var n = new(QMediaBindableInterface)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMediaBindableInterface) QMediaBindableInterfacePTR() *QMediaBindableInterface {
+func (ptr *QMediaBindableInterface) QMediaBindableInterface_PTR() *QMediaBindableInterface {
 	return ptr
 }
 
 func (ptr *QMediaBindableInterface) MediaObject() *QMediaObject {
 	if ptr.Pointer() != nil {
-		return QMediaObjectFromPointer(unsafe.Pointer(C.QMediaBindableInterface_MediaObject(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQMediaObjectFromPointer(C.QMediaBindableInterface_MediaObject(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QMediaBindableInterface) DestroyQMediaBindableInterface() {
 	if ptr.Pointer() != nil {
-		C.QMediaBindableInterface_DestroyQMediaBindableInterface(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaBindableInterface_DestroyQMediaBindableInterface(ptr.Pointer())
 	}
 }

@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{QTileRules QTileRules::QTileRules commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qdrawutil.h non constructor false false   [0xc821d31ec0 0xc821d31f40] }
-&{QTileRules QTileRules::QTileRules commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qdrawutil.h non constructor false true 2  [0xc822658280] }
+&{QTileRules QTileRules::QTileRules commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qdrawutil.h non constructor false false   QTileRules(Qt::TileRule horizontalRule, Qt::TileRule verticalRule) [0xc8228a9f20 0xc8228a9fc0] }
+&{QTileRules QTileRules::QTileRules commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qdrawutil.h non constructor false true 2  QTileRules(Qt::TileRule rule) [0xc8228ba340] }
 ########################################			ENUMS			########################################

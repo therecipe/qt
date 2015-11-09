@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame();
-QtObjectPtr QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame2(QtObjectPtr other);
+void* QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame();
+void* QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame2(void* other);
 
 #ifdef __cplusplus
 }

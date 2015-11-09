@@ -12,35 +12,35 @@ type QNetworkReply struct {
 	core.QIODevice
 }
 
-type QNetworkReplyITF interface {
-	core.QIODeviceITF
-	QNetworkReplyPTR() *QNetworkReply
+type QNetworkReply_ITF interface {
+	core.QIODevice_ITF
+	QNetworkReply_PTR() *QNetworkReply
 }
 
-func PointerFromQNetworkReply(ptr QNetworkReplyITF) unsafe.Pointer {
+func PointerFromQNetworkReply(ptr QNetworkReply_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNetworkReplyPTR().Pointer()
+		return ptr.QNetworkReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNetworkReplyFromPointer(ptr unsafe.Pointer) *QNetworkReply {
+func NewQNetworkReplyFromPointer(ptr unsafe.Pointer) *QNetworkReply {
 	var n = new(QNetworkReply)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QNetworkReply_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QNetworkReply) QNetworkReplyPTR() *QNetworkReply {
+func (ptr *QNetworkReply) QNetworkReply_PTR() *QNetworkReply {
 	return ptr
 }
 
 //QNetworkReply::NetworkError
-type QNetworkReply__NetworkError int
+type QNetworkReply__NetworkError int64
 
-var (
+const (
 	QNetworkReply__NoError                           = QNetworkReply__NetworkError(0)
 	QNetworkReply__ConnectionRefusedError            = QNetworkReply__NetworkError(1)
 	QNetworkReply__RemoteHostClosedError             = QNetworkReply__NetworkError(2)
@@ -77,33 +77,33 @@ var (
 
 func (ptr *QNetworkReply) Abort() {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_Abort(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkReply_Abort(ptr.Pointer())
 	}
 }
 
-func (ptr *QNetworkReply) Attribute(code QNetworkRequest__Attribute) string {
+func (ptr *QNetworkReply) Attribute(code QNetworkRequest__Attribute) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkReply_Attribute(C.QtObjectPtr(ptr.Pointer()), C.int(code)))
+		return core.NewQVariantFromPointer(C.QNetworkReply_Attribute(ptr.Pointer(), C.int(code)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QNetworkReply) Close() {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_Close(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkReply_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QNetworkReply) ConnectEncrypted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectEncrypted(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkReply_ConnectEncrypted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "encrypted", f)
 	}
 }
 
 func (ptr *QNetworkReply) DisconnectEncrypted() {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectEncrypted(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkReply_DisconnectEncrypted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "encrypted")
 	}
 }
@@ -115,21 +115,21 @@ func callbackQNetworkReplyEncrypted(ptrName *C.char) {
 
 func (ptr *QNetworkReply) Error() QNetworkReply__NetworkError {
 	if ptr.Pointer() != nil {
-		return QNetworkReply__NetworkError(C.QNetworkReply_Error(C.QtObjectPtr(ptr.Pointer())))
+		return QNetworkReply__NetworkError(C.QNetworkReply_Error(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNetworkReply) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkReply_ConnectFinished(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "finished", f)
 	}
 }
 
 func (ptr *QNetworkReply) DisconnectFinished() {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkReply_DisconnectFinished(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "finished")
 	}
 }
@@ -139,57 +139,57 @@ func callbackQNetworkReplyFinished(ptrName *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "finished").(func())()
 }
 
-func (ptr *QNetworkReply) HasRawHeader(headerName core.QByteArrayITF) bool {
+func (ptr *QNetworkReply) HasRawHeader(headerName core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_HasRawHeader(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(headerName))) != 0
+		return C.QNetworkReply_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)) != 0
 	}
 	return false
 }
 
-func (ptr *QNetworkReply) Header(header QNetworkRequest__KnownHeaders) string {
+func (ptr *QNetworkReply) Header(header QNetworkRequest__KnownHeaders) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkReply_Header(C.QtObjectPtr(ptr.Pointer()), C.int(header)))
+		return core.NewQVariantFromPointer(C.QNetworkReply_Header(ptr.Pointer(), C.int(header)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QNetworkReply) IgnoreSslErrors() {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_IgnoreSslErrors(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkReply_IgnoreSslErrors(ptr.Pointer())
 	}
 }
 
 func (ptr *QNetworkReply) IsFinished() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_IsFinished(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QNetworkReply_IsFinished(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkReply) IsRunning() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkReply_IsRunning(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QNetworkReply_IsRunning(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkReply) Manager() *QNetworkAccessManager {
 	if ptr.Pointer() != nil {
-		return QNetworkAccessManagerFromPointer(unsafe.Pointer(C.QNetworkReply_Manager(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQNetworkAccessManagerFromPointer(C.QNetworkReply_Manager(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QNetworkReply) ConnectMetaDataChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectMetaDataChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkReply_ConnectMetaDataChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "metaDataChanged", f)
 	}
 }
 
 func (ptr *QNetworkReply) DisconnectMetaDataChanged() {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectMetaDataChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkReply_DisconnectMetaDataChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "metaDataChanged")
 	}
 }
@@ -201,46 +201,46 @@ func callbackQNetworkReplyMetaDataChanged(ptrName *C.char) {
 
 func (ptr *QNetworkReply) Operation() QNetworkAccessManager__Operation {
 	if ptr.Pointer() != nil {
-		return QNetworkAccessManager__Operation(C.QNetworkReply_Operation(C.QtObjectPtr(ptr.Pointer())))
+		return QNetworkAccessManager__Operation(C.QNetworkReply_Operation(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QNetworkReply) ConnectPreSharedKeyAuthenticationRequired(f func(authenticator QSslPreSharedKeyAuthenticatorITF)) {
+func (ptr *QNetworkReply) ConnectPreSharedKeyAuthenticationRequired(f func(authenticator *QSslPreSharedKeyAuthenticator)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "preSharedKeyAuthenticationRequired", f)
 	}
 }
 
 func (ptr *QNetworkReply) DisconnectPreSharedKeyAuthenticationRequired() {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_DisconnectPreSharedKeyAuthenticationRequired(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkReply_DisconnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "preSharedKeyAuthenticationRequired")
 	}
 }
 
 //export callbackQNetworkReplyPreSharedKeyAuthenticationRequired
 func callbackQNetworkReplyPreSharedKeyAuthenticationRequired(ptrName *C.char, authenticator unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "preSharedKeyAuthenticationRequired").(func(*QSslPreSharedKeyAuthenticator))(QSslPreSharedKeyAuthenticatorFromPointer(authenticator))
+	qt.GetSignal(C.GoString(ptrName), "preSharedKeyAuthenticationRequired").(func(*QSslPreSharedKeyAuthenticator))(NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
 }
 
-func (ptr *QNetworkReply) SetSslConfiguration(config QSslConfigurationITF) {
+func (ptr *QNetworkReply) RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_SetSslConfiguration(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSslConfiguration(config)))
+		return core.NewQByteArrayFromPointer(C.QNetworkReply_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
 	}
+	return nil
 }
 
-func (ptr *QNetworkReply) Url() string {
+func (ptr *QNetworkReply) SetSslConfiguration(config QSslConfiguration_ITF) {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkReply_Url(C.QtObjectPtr(ptr.Pointer())))
+		C.QNetworkReply_SetSslConfiguration(ptr.Pointer(), PointerFromQSslConfiguration(config))
 	}
-	return ""
 }
 
 func (ptr *QNetworkReply) DestroyQNetworkReply() {
 	if ptr.Pointer() != nil {
-		C.QNetworkReply_DestroyQNetworkReply(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkReply_DestroyQNetworkReply(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -1,11 +1,11 @@
 #include "qvideoframe.h"
-#include <QAbstractVideoBuffer>
-#include <QImage>
-#include <QSize>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QSize>
+#include <QAbstractVideoBuffer>
+#include <QImage>
 #include <QVideoFrame>
 #include "_cgo_export.h"
 
@@ -13,47 +13,47 @@ class MyQVideoFrame: public QVideoFrame {
 public:
 };
 
-QtObjectPtr QVideoFrame_NewQVideoFrame(){
+void* QVideoFrame_NewQVideoFrame(){
 	return new QVideoFrame();
 }
 
-QtObjectPtr QVideoFrame_NewQVideoFrame2(QtObjectPtr buffer, QtObjectPtr size, int format){
+void* QVideoFrame_NewQVideoFrame2(void* buffer, void* size, int format){
 	return new QVideoFrame(static_cast<QAbstractVideoBuffer*>(buffer), *static_cast<QSize*>(size), static_cast<QVideoFrame::PixelFormat>(format));
 }
 
-QtObjectPtr QVideoFrame_NewQVideoFrame4(QtObjectPtr image){
+void* QVideoFrame_NewQVideoFrame4(void* image){
 	return new QVideoFrame(*static_cast<QImage*>(image));
 }
 
-QtObjectPtr QVideoFrame_NewQVideoFrame5(QtObjectPtr other){
+void* QVideoFrame_NewQVideoFrame5(void* other){
 	return new QVideoFrame(*static_cast<QVideoFrame*>(other));
 }
 
-QtObjectPtr QVideoFrame_NewQVideoFrame3(int bytes, QtObjectPtr size, int bytesPerLine, int format){
+void* QVideoFrame_NewQVideoFrame3(int bytes, void* size, int bytesPerLine, int format){
 	return new QVideoFrame(bytes, *static_cast<QSize*>(size), bytesPerLine, static_cast<QVideoFrame::PixelFormat>(format));
 }
 
-int QVideoFrame_BytesPerLine(QtObjectPtr ptr){
+int QVideoFrame_BytesPerLine(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->bytesPerLine();
 }
 
-int QVideoFrame_BytesPerLine2(QtObjectPtr ptr, int plane){
+int QVideoFrame_BytesPerLine2(void* ptr, int plane){
 	return static_cast<QVideoFrame*>(ptr)->bytesPerLine(plane);
 }
 
-int QVideoFrame_FieldType(QtObjectPtr ptr){
+int QVideoFrame_FieldType(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->fieldType();
 }
 
-char* QVideoFrame_Handle(QtObjectPtr ptr){
-	return static_cast<QVideoFrame*>(ptr)->handle().toString().toUtf8().data();
+void* QVideoFrame_Handle(void* ptr){
+	return new QVariant(static_cast<QVideoFrame*>(ptr)->handle());
 }
 
-int QVideoFrame_HandleType(QtObjectPtr ptr){
+int QVideoFrame_HandleType(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->handleType();
 }
 
-int QVideoFrame_Height(QtObjectPtr ptr){
+int QVideoFrame_Height(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->height();
 }
 
@@ -61,39 +61,39 @@ int QVideoFrame_QVideoFrame_ImageFormatFromPixelFormat(int format){
 	return QVideoFrame::imageFormatFromPixelFormat(static_cast<QVideoFrame::PixelFormat>(format));
 }
 
-int QVideoFrame_IsMapped(QtObjectPtr ptr){
+int QVideoFrame_IsMapped(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->isMapped();
 }
 
-int QVideoFrame_IsReadable(QtObjectPtr ptr){
+int QVideoFrame_IsReadable(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->isReadable();
 }
 
-int QVideoFrame_IsValid(QtObjectPtr ptr){
+int QVideoFrame_IsValid(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->isValid();
 }
 
-int QVideoFrame_IsWritable(QtObjectPtr ptr){
+int QVideoFrame_IsWritable(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->isWritable();
 }
 
-int QVideoFrame_Map(QtObjectPtr ptr, int mode){
+int QVideoFrame_Map(void* ptr, int mode){
 	return static_cast<QVideoFrame*>(ptr)->map(static_cast<QAbstractVideoBuffer::MapMode>(mode));
 }
 
-int QVideoFrame_MapMode(QtObjectPtr ptr){
+int QVideoFrame_MapMode(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->mapMode();
 }
 
-int QVideoFrame_MappedBytes(QtObjectPtr ptr){
+int QVideoFrame_MappedBytes(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->mappedBytes();
 }
 
-char* QVideoFrame_MetaData(QtObjectPtr ptr, char* key){
-	return static_cast<QVideoFrame*>(ptr)->metaData(QString(key)).toString().toUtf8().data();
+void* QVideoFrame_MetaData(void* ptr, char* key){
+	return new QVariant(static_cast<QVideoFrame*>(ptr)->metaData(QString(key)));
 }
 
-int QVideoFrame_PixelFormat(QtObjectPtr ptr){
+int QVideoFrame_PixelFormat(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->pixelFormat();
 }
 
@@ -101,27 +101,27 @@ int QVideoFrame_QVideoFrame_PixelFormatFromImageFormat(int format){
 	return QVideoFrame::pixelFormatFromImageFormat(static_cast<QImage::Format>(format));
 }
 
-int QVideoFrame_PlaneCount(QtObjectPtr ptr){
+int QVideoFrame_PlaneCount(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->planeCount();
 }
 
-void QVideoFrame_SetFieldType(QtObjectPtr ptr, int field){
+void QVideoFrame_SetFieldType(void* ptr, int field){
 	static_cast<QVideoFrame*>(ptr)->setFieldType(static_cast<QVideoFrame::FieldType>(field));
 }
 
-void QVideoFrame_SetMetaData(QtObjectPtr ptr, char* key, char* value){
-	static_cast<QVideoFrame*>(ptr)->setMetaData(QString(key), QVariant(value));
+void QVideoFrame_SetMetaData(void* ptr, char* key, void* value){
+	static_cast<QVideoFrame*>(ptr)->setMetaData(QString(key), *static_cast<QVariant*>(value));
 }
 
-void QVideoFrame_Unmap(QtObjectPtr ptr){
+void QVideoFrame_Unmap(void* ptr){
 	static_cast<QVideoFrame*>(ptr)->unmap();
 }
 
-int QVideoFrame_Width(QtObjectPtr ptr){
+int QVideoFrame_Width(void* ptr){
 	return static_cast<QVideoFrame*>(ptr)->width();
 }
 
-void QVideoFrame_DestroyQVideoFrame(QtObjectPtr ptr){
+void QVideoFrame_DestroyQVideoFrame(void* ptr){
 	static_cast<QVideoFrame*>(ptr)->~QVideoFrame();
 }
 

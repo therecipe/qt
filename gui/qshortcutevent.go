@@ -12,48 +12,48 @@ type QShortcutEvent struct {
 	core.QEvent
 }
 
-type QShortcutEventITF interface {
-	core.QEventITF
-	QShortcutEventPTR() *QShortcutEvent
+type QShortcutEvent_ITF interface {
+	core.QEvent_ITF
+	QShortcutEvent_PTR() *QShortcutEvent
 }
 
-func PointerFromQShortcutEvent(ptr QShortcutEventITF) unsafe.Pointer {
+func PointerFromQShortcutEvent(ptr QShortcutEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QShortcutEventPTR().Pointer()
+		return ptr.QShortcutEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QShortcutEventFromPointer(ptr unsafe.Pointer) *QShortcutEvent {
+func NewQShortcutEventFromPointer(ptr unsafe.Pointer) *QShortcutEvent {
 	var n = new(QShortcutEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QShortcutEvent) QShortcutEventPTR() *QShortcutEvent {
+func (ptr *QShortcutEvent) QShortcutEvent_PTR() *QShortcutEvent {
 	return ptr
 }
 
-func NewQShortcutEvent(key QKeySequenceITF, id int, ambiguous bool) *QShortcutEvent {
-	return QShortcutEventFromPointer(unsafe.Pointer(C.QShortcutEvent_NewQShortcutEvent(C.QtObjectPtr(PointerFromQKeySequence(key)), C.int(id), C.int(qt.GoBoolToInt(ambiguous)))))
+func NewQShortcutEvent(key QKeySequence_ITF, id int, ambiguous bool) *QShortcutEvent {
+	return NewQShortcutEventFromPointer(C.QShortcutEvent_NewQShortcutEvent(PointerFromQKeySequence(key), C.int(id), C.int(qt.GoBoolToInt(ambiguous))))
 }
 
 func (ptr *QShortcutEvent) IsAmbiguous() bool {
 	if ptr.Pointer() != nil {
-		return C.QShortcutEvent_IsAmbiguous(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QShortcutEvent_IsAmbiguous(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QShortcutEvent) ShortcutId() int {
 	if ptr.Pointer() != nil {
-		return int(C.QShortcutEvent_ShortcutId(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QShortcutEvent_ShortcutId(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QShortcutEvent) DestroyQShortcutEvent() {
 	if ptr.Pointer() != nil {
-		C.QShortcutEvent_DestroyQShortcutEvent(C.QtObjectPtr(ptr.Pointer()))
+		C.QShortcutEvent_DestroyQShortcutEvent(ptr.Pointer())
 	}
 }

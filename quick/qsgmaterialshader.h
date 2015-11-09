@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QSGMaterialShader_Activate(QtObjectPtr ptr);
-void QSGMaterialShader_Deactivate(QtObjectPtr ptr);
-QtObjectPtr QSGMaterialShader_Program(QtObjectPtr ptr);
+void QSGMaterialShader_Activate(void* ptr);
+void QSGMaterialShader_Deactivate(void* ptr);
+void* QSGMaterialShader_Program(void* ptr);
 
 #ifdef __cplusplus
 }

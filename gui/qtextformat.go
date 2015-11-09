@@ -11,8 +11,8 @@ type QTextFormat struct {
 	ptr unsafe.Pointer
 }
 
-type QTextFormatITF interface {
-	QTextFormatPTR() *QTextFormat
+type QTextFormat_ITF interface {
+	QTextFormat_PTR() *QTextFormat
 }
 
 func (p *QTextFormat) Pointer() unsafe.Pointer {
@@ -23,27 +23,27 @@ func (p *QTextFormat) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQTextFormat(ptr QTextFormatITF) unsafe.Pointer {
+func PointerFromQTextFormat(ptr QTextFormat_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTextFormatPTR().Pointer()
+		return ptr.QTextFormat_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTextFormatFromPointer(ptr unsafe.Pointer) *QTextFormat {
+func NewQTextFormatFromPointer(ptr unsafe.Pointer) *QTextFormat {
 	var n = new(QTextFormat)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QTextFormat) QTextFormatPTR() *QTextFormat {
+func (ptr *QTextFormat) QTextFormat_PTR() *QTextFormat {
 	return ptr
 }
 
 //QTextFormat::FormatType
-type QTextFormat__FormatType int
+type QTextFormat__FormatType int64
 
-var (
+const (
 	QTextFormat__InvalidFormat = QTextFormat__FormatType(-1)
 	QTextFormat__BlockFormat   = QTextFormat__FormatType(1)
 	QTextFormat__CharFormat    = QTextFormat__FormatType(2)
@@ -54,9 +54,9 @@ var (
 )
 
 //QTextFormat::ObjectTypes
-type QTextFormat__ObjectTypes int
+type QTextFormat__ObjectTypes int64
 
-var (
+const (
 	QTextFormat__NoObject        = QTextFormat__ObjectTypes(0)
 	QTextFormat__ImageObject     = QTextFormat__ObjectTypes(1)
 	QTextFormat__TableObject     = QTextFormat__ObjectTypes(2)
@@ -65,18 +65,18 @@ var (
 )
 
 //QTextFormat::PageBreakFlag
-type QTextFormat__PageBreakFlag int
+type QTextFormat__PageBreakFlag int64
 
-var (
+const (
 	QTextFormat__PageBreak_Auto         = QTextFormat__PageBreakFlag(0)
 	QTextFormat__PageBreak_AlwaysBefore = QTextFormat__PageBreakFlag(0x001)
 	QTextFormat__PageBreak_AlwaysAfter  = QTextFormat__PageBreakFlag(0x010)
 )
 
 //QTextFormat::Property
-type QTextFormat__Property int
+type QTextFormat__Property int64
 
-var (
+const (
 	QTextFormat__ObjectIndex                       = QTextFormat__Property(0x0)
 	QTextFormat__CssFloat                          = QTextFormat__Property(0x0800)
 	QTextFormat__LayoutDirection                   = QTextFormat__Property(0x0801)
@@ -161,219 +161,254 @@ var (
 	QTextFormat__UserProperty                      = QTextFormat__Property(0x100000)
 )
 
-func NewQTextFormat3(other QTextFormatITF) *QTextFormat {
-	return QTextFormatFromPointer(unsafe.Pointer(C.QTextFormat_NewQTextFormat3(C.QtObjectPtr(PointerFromQTextFormat(other)))))
+func NewQTextFormat3(other QTextFormat_ITF) *QTextFormat {
+	return NewQTextFormatFromPointer(C.QTextFormat_NewQTextFormat3(PointerFromQTextFormat(other)))
 }
 
 func (ptr *QTextFormat) SetObjectIndex(index int) {
 	if ptr.Pointer() != nil {
-		C.QTextFormat_SetObjectIndex(C.QtObjectPtr(ptr.Pointer()), C.int(index))
+		C.QTextFormat_SetObjectIndex(ptr.Pointer(), C.int(index))
 	}
 }
 
 func NewQTextFormat() *QTextFormat {
-	return QTextFormatFromPointer(unsafe.Pointer(C.QTextFormat_NewQTextFormat()))
+	return NewQTextFormatFromPointer(C.QTextFormat_NewQTextFormat())
 }
 
 func NewQTextFormat2(ty int) *QTextFormat {
-	return QTextFormatFromPointer(unsafe.Pointer(C.QTextFormat_NewQTextFormat2(C.int(ty))))
+	return NewQTextFormatFromPointer(C.QTextFormat_NewQTextFormat2(C.int(ty)))
+}
+
+func (ptr *QTextFormat) Background() *QBrush {
+	if ptr.Pointer() != nil {
+		return NewQBrushFromPointer(C.QTextFormat_Background(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QTextFormat) BoolProperty(propertyId int) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextFormat_BoolProperty(C.QtObjectPtr(ptr.Pointer()), C.int(propertyId)) != 0
+		return C.QTextFormat_BoolProperty(ptr.Pointer(), C.int(propertyId)) != 0
 	}
 	return false
 }
 
+func (ptr *QTextFormat) BrushProperty(propertyId int) *QBrush {
+	if ptr.Pointer() != nil {
+		return NewQBrushFromPointer(C.QTextFormat_BrushProperty(ptr.Pointer(), C.int(propertyId)))
+	}
+	return nil
+}
+
 func (ptr *QTextFormat) ClearBackground() {
 	if ptr.Pointer() != nil {
-		C.QTextFormat_ClearBackground(C.QtObjectPtr(ptr.Pointer()))
+		C.QTextFormat_ClearBackground(ptr.Pointer())
 	}
 }
 
 func (ptr *QTextFormat) ClearForeground() {
 	if ptr.Pointer() != nil {
-		C.QTextFormat_ClearForeground(C.QtObjectPtr(ptr.Pointer()))
+		C.QTextFormat_ClearForeground(ptr.Pointer())
 	}
 }
 
 func (ptr *QTextFormat) ClearProperty(propertyId int) {
 	if ptr.Pointer() != nil {
-		C.QTextFormat_ClearProperty(C.QtObjectPtr(ptr.Pointer()), C.int(propertyId))
+		C.QTextFormat_ClearProperty(ptr.Pointer(), C.int(propertyId))
 	}
+}
+
+func (ptr *QTextFormat) ColorProperty(propertyId int) *QColor {
+	if ptr.Pointer() != nil {
+		return NewQColorFromPointer(C.QTextFormat_ColorProperty(ptr.Pointer(), C.int(propertyId)))
+	}
+	return nil
+}
+
+func (ptr *QTextFormat) DoubleProperty(propertyId int) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QTextFormat_DoubleProperty(ptr.Pointer(), C.int(propertyId)))
+	}
+	return 0
+}
+
+func (ptr *QTextFormat) Foreground() *QBrush {
+	if ptr.Pointer() != nil {
+		return NewQBrushFromPointer(C.QTextFormat_Foreground(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QTextFormat) HasProperty(propertyId int) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextFormat_HasProperty(C.QtObjectPtr(ptr.Pointer()), C.int(propertyId)) != 0
+		return C.QTextFormat_HasProperty(ptr.Pointer(), C.int(propertyId)) != 0
 	}
 	return false
 }
 
 func (ptr *QTextFormat) IntProperty(propertyId int) int {
 	if ptr.Pointer() != nil {
-		return int(C.QTextFormat_IntProperty(C.QtObjectPtr(ptr.Pointer()), C.int(propertyId)))
+		return int(C.QTextFormat_IntProperty(ptr.Pointer(), C.int(propertyId)))
 	}
 	return 0
 }
 
 func (ptr *QTextFormat) IsBlockFormat() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextFormat_IsBlockFormat(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTextFormat_IsBlockFormat(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTextFormat) IsCharFormat() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextFormat_IsCharFormat(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTextFormat_IsCharFormat(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTextFormat) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextFormat_IsEmpty(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTextFormat_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTextFormat) IsFrameFormat() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextFormat_IsFrameFormat(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTextFormat_IsFrameFormat(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTextFormat) IsImageFormat() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextFormat_IsImageFormat(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTextFormat_IsImageFormat(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTextFormat) IsListFormat() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextFormat_IsListFormat(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTextFormat_IsListFormat(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTextFormat) IsTableCellFormat() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextFormat_IsTableCellFormat(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTextFormat_IsTableCellFormat(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTextFormat) IsTableFormat() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextFormat_IsTableFormat(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTextFormat_IsTableFormat(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTextFormat) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextFormat_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTextFormat_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTextFormat) LayoutDirection() core.Qt__LayoutDirection {
 	if ptr.Pointer() != nil {
-		return core.Qt__LayoutDirection(C.QTextFormat_LayoutDirection(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__LayoutDirection(C.QTextFormat_LayoutDirection(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QTextFormat) Merge(other QTextFormatITF) {
+func (ptr *QTextFormat) Merge(other QTextFormat_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTextFormat_Merge(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTextFormat(other)))
+		C.QTextFormat_Merge(ptr.Pointer(), PointerFromQTextFormat(other))
 	}
 }
 
 func (ptr *QTextFormat) ObjectIndex() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTextFormat_ObjectIndex(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTextFormat_ObjectIndex(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTextFormat) ObjectType() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTextFormat_ObjectType(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTextFormat_ObjectType(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QTextFormat) Property(propertyId int) string {
+func (ptr *QTextFormat) Property(propertyId int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextFormat_Property(C.QtObjectPtr(ptr.Pointer()), C.int(propertyId)))
+		return core.NewQVariantFromPointer(C.QTextFormat_Property(ptr.Pointer(), C.int(propertyId)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QTextFormat) PropertyCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTextFormat_PropertyCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTextFormat_PropertyCount(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QTextFormat) SetBackground(brush QBrushITF) {
+func (ptr *QTextFormat) SetBackground(brush QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTextFormat_SetBackground(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQBrush(brush)))
+		C.QTextFormat_SetBackground(ptr.Pointer(), PointerFromQBrush(brush))
 	}
 }
 
-func (ptr *QTextFormat) SetForeground(brush QBrushITF) {
+func (ptr *QTextFormat) SetForeground(brush QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTextFormat_SetForeground(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQBrush(brush)))
+		C.QTextFormat_SetForeground(ptr.Pointer(), PointerFromQBrush(brush))
 	}
 }
 
 func (ptr *QTextFormat) SetLayoutDirection(direction core.Qt__LayoutDirection) {
 	if ptr.Pointer() != nil {
-		C.QTextFormat_SetLayoutDirection(C.QtObjectPtr(ptr.Pointer()), C.int(direction))
+		C.QTextFormat_SetLayoutDirection(ptr.Pointer(), C.int(direction))
 	}
 }
 
 func (ptr *QTextFormat) SetObjectType(ty int) {
 	if ptr.Pointer() != nil {
-		C.QTextFormat_SetObjectType(C.QtObjectPtr(ptr.Pointer()), C.int(ty))
+		C.QTextFormat_SetObjectType(ptr.Pointer(), C.int(ty))
 	}
 }
 
-func (ptr *QTextFormat) SetProperty(propertyId int, value string) {
+func (ptr *QTextFormat) SetProperty(propertyId int, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTextFormat_SetProperty(C.QtObjectPtr(ptr.Pointer()), C.int(propertyId), C.CString(value))
+		C.QTextFormat_SetProperty(ptr.Pointer(), C.int(propertyId), core.PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QTextFormat) StringProperty(propertyId int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextFormat_StringProperty(C.QtObjectPtr(ptr.Pointer()), C.int(propertyId)))
+		return C.GoString(C.QTextFormat_StringProperty(ptr.Pointer(), C.int(propertyId)))
 	}
 	return ""
 }
 
-func (ptr *QTextFormat) Swap(other QTextFormatITF) {
+func (ptr *QTextFormat) Swap(other QTextFormat_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTextFormat_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTextFormat(other)))
+		C.QTextFormat_Swap(ptr.Pointer(), PointerFromQTextFormat(other))
 	}
 }
 
 func (ptr *QTextFormat) Type() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTextFormat_Type(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTextFormat_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTextFormat) DestroyQTextFormat() {
 	if ptr.Pointer() != nil {
-		C.QTextFormat_DestroyQTextFormat(C.QtObjectPtr(ptr.Pointer()))
+		C.QTextFormat_DestroyQTextFormat(ptr.Pointer())
 	}
 }

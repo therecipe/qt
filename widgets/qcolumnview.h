@@ -1,22 +1,21 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QColumnView_ResizeGripsVisible(QtObjectPtr ptr);
-void QColumnView_SetResizeGripsVisible(QtObjectPtr ptr, int visible);
-QtObjectPtr QColumnView_NewQColumnView(QtObjectPtr parent);
-QtObjectPtr QColumnView_IndexAt(QtObjectPtr ptr, QtObjectPtr point);
-QtObjectPtr QColumnView_PreviewWidget(QtObjectPtr ptr);
-void QColumnView_ScrollTo(QtObjectPtr ptr, QtObjectPtr index, int hint);
-void QColumnView_SelectAll(QtObjectPtr ptr);
-void QColumnView_SetModel(QtObjectPtr ptr, QtObjectPtr model);
-void QColumnView_SetPreviewWidget(QtObjectPtr ptr, QtObjectPtr widget);
-void QColumnView_SetRootIndex(QtObjectPtr ptr, QtObjectPtr index);
-void QColumnView_SetSelectionModel(QtObjectPtr ptr, QtObjectPtr newSelectionModel);
-void QColumnView_ConnectUpdatePreviewWidget(QtObjectPtr ptr);
-void QColumnView_DisconnectUpdatePreviewWidget(QtObjectPtr ptr);
-void QColumnView_DestroyQColumnView(QtObjectPtr ptr);
+int QColumnView_ResizeGripsVisible(void* ptr);
+void QColumnView_SetResizeGripsVisible(void* ptr, int visible);
+void* QColumnView_NewQColumnView(void* parent);
+void* QColumnView_IndexAt(void* ptr, void* point);
+void* QColumnView_PreviewWidget(void* ptr);
+void QColumnView_ScrollTo(void* ptr, void* index, int hint);
+void QColumnView_SelectAll(void* ptr);
+void QColumnView_SetModel(void* ptr, void* model);
+void QColumnView_SetPreviewWidget(void* ptr, void* widget);
+void QColumnView_SetRootIndex(void* ptr, void* index);
+void QColumnView_SetSelectionModel(void* ptr, void* newSelectionModel);
+void QColumnView_ConnectUpdatePreviewWidget(void* ptr);
+void QColumnView_DisconnectUpdatePreviewWidget(void* ptr);
+void QColumnView_DestroyQColumnView(void* ptr);
 
 #ifdef __cplusplus
 }

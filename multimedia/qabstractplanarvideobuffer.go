@@ -10,30 +10,30 @@ type QAbstractPlanarVideoBuffer struct {
 	QAbstractVideoBuffer
 }
 
-type QAbstractPlanarVideoBufferITF interface {
-	QAbstractVideoBufferITF
-	QAbstractPlanarVideoBufferPTR() *QAbstractPlanarVideoBuffer
+type QAbstractPlanarVideoBuffer_ITF interface {
+	QAbstractVideoBuffer_ITF
+	QAbstractPlanarVideoBuffer_PTR() *QAbstractPlanarVideoBuffer
 }
 
-func PointerFromQAbstractPlanarVideoBuffer(ptr QAbstractPlanarVideoBufferITF) unsafe.Pointer {
+func PointerFromQAbstractPlanarVideoBuffer(ptr QAbstractPlanarVideoBuffer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAbstractPlanarVideoBufferPTR().Pointer()
+		return ptr.QAbstractPlanarVideoBuffer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAbstractPlanarVideoBufferFromPointer(ptr unsafe.Pointer) *QAbstractPlanarVideoBuffer {
+func NewQAbstractPlanarVideoBufferFromPointer(ptr unsafe.Pointer) *QAbstractPlanarVideoBuffer {
 	var n = new(QAbstractPlanarVideoBuffer)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAbstractPlanarVideoBuffer) QAbstractPlanarVideoBufferPTR() *QAbstractPlanarVideoBuffer {
+func (ptr *QAbstractPlanarVideoBuffer) QAbstractPlanarVideoBuffer_PTR() *QAbstractPlanarVideoBuffer {
 	return ptr
 }
 
 func (ptr *QAbstractPlanarVideoBuffer) DestroyQAbstractPlanarVideoBuffer() {
 	if ptr.Pointer() != nil {
-		C.QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(ptr.Pointer())
 	}
 }

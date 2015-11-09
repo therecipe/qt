@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QAccessibleTextInsertEvent QAccessibleTextInsertEvent::QAccessibleTextInsertEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  [0xc820c48080 0xc820c481a0 0xc820c48260] }
-&{QAccessibleTextInsertEvent QAccessibleTextInsertEvent::QAccessibleTextInsertEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   [0xc820c48500 0xc820c48580 0xc820c48680] }
-&{changePosition QAccessibleTextInsertEvent::changePosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int [] }
-&{textInserted QAccessibleTextInsertEvent::textInserted commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QString [] }
+&{QAccessibleTextInsertEvent QAccessibleTextInsertEvent::QAccessibleTextInsertEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  QAccessibleTextInsertEvent(QAccessibleInterface *iface, int position, const QString &text) [0xc820d19800 0xc820d19940 0xc820d19a40] }
+&{QAccessibleTextInsertEvent QAccessibleTextInsertEvent::QAccessibleTextInsertEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   QAccessibleTextInsertEvent(QObject *object, int position, const QString &text) [0xc820d19d00 0xc820d19da0 0xc820d19e60] }
+&{changePosition QAccessibleTextInsertEvent::changePosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int int changePosition() const [] }
+&{textInserted QAccessibleTextInsertEvent::textInserted commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QString QString textInserted() const [] }
 ########################################			ENUMS			########################################

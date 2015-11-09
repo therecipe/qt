@@ -10,8 +10,8 @@ type QLinkedList struct {
 	ptr unsafe.Pointer
 }
 
-type QLinkedListITF interface {
-	QLinkedListPTR() *QLinkedList
+type QLinkedList_ITF interface {
+	QLinkedList_PTR() *QLinkedList
 }
 
 func (p *QLinkedList) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QLinkedList) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQLinkedList(ptr QLinkedListITF) unsafe.Pointer {
+func PointerFromQLinkedList(ptr QLinkedList_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QLinkedListPTR().Pointer()
+		return ptr.QLinkedList_PTR().Pointer()
 	}
 	return nil
 }
 
-func QLinkedListFromPointer(ptr unsafe.Pointer) *QLinkedList {
+func NewQLinkedListFromPointer(ptr unsafe.Pointer) *QLinkedList {
 	var n = new(QLinkedList)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QLinkedList) QLinkedListPTR() *QLinkedList {
+func (ptr *QLinkedList) QLinkedList_PTR() *QLinkedList {
 	return ptr
 }

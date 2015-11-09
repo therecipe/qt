@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QReadLocker_NewQReadLocker(QtObjectPtr lock);
-QtObjectPtr QReadLocker_ReadWriteLock(QtObjectPtr ptr);
-void QReadLocker_Relock(QtObjectPtr ptr);
-void QReadLocker_Unlock(QtObjectPtr ptr);
-void QReadLocker_DestroyQReadLocker(QtObjectPtr ptr);
+void* QReadLocker_NewQReadLocker(void* lock);
+void* QReadLocker_ReadWriteLock(void* ptr);
+void QReadLocker_Relock(void* ptr);
+void QReadLocker_Unlock(void* ptr);
+void QReadLocker_DestroyQReadLocker(void* ptr);
 
 #ifdef __cplusplus
 }

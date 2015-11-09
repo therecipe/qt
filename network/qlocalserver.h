@@ -1,27 +1,26 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QLocalServer_SetSocketOptions(QtObjectPtr ptr, int options);
-QtObjectPtr QLocalServer_NewQLocalServer(QtObjectPtr parent);
-void QLocalServer_Close(QtObjectPtr ptr);
-char* QLocalServer_ErrorString(QtObjectPtr ptr);
-char* QLocalServer_FullServerName(QtObjectPtr ptr);
-int QLocalServer_HasPendingConnections(QtObjectPtr ptr);
-int QLocalServer_IsListening(QtObjectPtr ptr);
-int QLocalServer_Listen(QtObjectPtr ptr, char* name);
-int QLocalServer_MaxPendingConnections(QtObjectPtr ptr);
-void QLocalServer_ConnectNewConnection(QtObjectPtr ptr);
-void QLocalServer_DisconnectNewConnection(QtObjectPtr ptr);
-QtObjectPtr QLocalServer_NextPendingConnection(QtObjectPtr ptr);
+void QLocalServer_SetSocketOptions(void* ptr, int options);
+void* QLocalServer_NewQLocalServer(void* parent);
+void QLocalServer_Close(void* ptr);
+char* QLocalServer_ErrorString(void* ptr);
+char* QLocalServer_FullServerName(void* ptr);
+int QLocalServer_HasPendingConnections(void* ptr);
+int QLocalServer_IsListening(void* ptr);
+int QLocalServer_Listen(void* ptr, char* name);
+int QLocalServer_MaxPendingConnections(void* ptr);
+void QLocalServer_ConnectNewConnection(void* ptr);
+void QLocalServer_DisconnectNewConnection(void* ptr);
+void* QLocalServer_NextPendingConnection(void* ptr);
 int QLocalServer_QLocalServer_RemoveServer(char* name);
-int QLocalServer_ServerError(QtObjectPtr ptr);
-char* QLocalServer_ServerName(QtObjectPtr ptr);
-void QLocalServer_SetMaxPendingConnections(QtObjectPtr ptr, int numConnections);
-int QLocalServer_SocketOptions(QtObjectPtr ptr);
-int QLocalServer_WaitForNewConnection(QtObjectPtr ptr, int msec, int timedOut);
-void QLocalServer_DestroyQLocalServer(QtObjectPtr ptr);
+int QLocalServer_ServerError(void* ptr);
+char* QLocalServer_ServerName(void* ptr);
+void QLocalServer_SetMaxPendingConnections(void* ptr, int numConnections);
+int QLocalServer_SocketOptions(void* ptr);
+int QLocalServer_WaitForNewConnection(void* ptr, int msec, int timedOut);
+void QLocalServer_DestroyQLocalServer(void* ptr);
 
 #ifdef __cplusplus
 }

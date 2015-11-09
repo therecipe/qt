@@ -11,8 +11,8 @@ type QObject struct {
 	ptr unsafe.Pointer
 }
 
-type QObjectITF interface {
-	QObjectPTR() *QObject
+type QObject_ITF interface {
+	QObject_PTR() *QObject
 }
 
 func (p *QObject) Pointer() unsafe.Pointer {
@@ -23,158 +23,165 @@ func (p *QObject) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQObject(ptr QObjectITF) unsafe.Pointer {
+func PointerFromQObject(ptr QObject_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QObjectPTR().Pointer()
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func QObjectFromPointer(ptr unsafe.Pointer) *QObject {
+func NewQObjectFromPointer(ptr unsafe.Pointer) *QObject {
 	var n = new(QObject)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QObject_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QObject) QObjectPTR() *QObject {
+func (ptr *QObject) QObject_PTR() *QObject {
 	return ptr
 }
 
-func (ptr *QObject) InstallEventFilter(filterObj QObjectITF) {
+func (ptr *QObject) InstallEventFilter(filterObj QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QObject_InstallEventFilter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(filterObj)))
+		C.QObject_InstallEventFilter(ptr.Pointer(), PointerFromQObject(filterObj))
 	}
 }
 
 func (ptr *QObject) ObjectName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QObject_ObjectName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QObject_ObjectName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QObject) SetObjectName(name string) {
 	if ptr.Pointer() != nil {
-		C.QObject_SetObjectName(C.QtObjectPtr(ptr.Pointer()), C.CString(name))
+		C.QObject_SetObjectName(ptr.Pointer(), C.CString(name))
 	}
 }
 
-func NewQObject(parent QObjectITF) *QObject {
-	return QObjectFromPointer(unsafe.Pointer(C.QObject_NewQObject(C.QtObjectPtr(PointerFromQObject(parent)))))
+func NewQObject(parent QObject_ITF) *QObject {
+	return NewQObjectFromPointer(C.QObject_NewQObject(PointerFromQObject(parent)))
 }
 
 func (ptr *QObject) BlockSignals(block bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_BlockSignals(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(block))) != 0
+		return C.QObject_BlockSignals(ptr.Pointer(), C.int(qt.GoBoolToInt(block))) != 0
 	}
 	return false
 }
 
 func (ptr *QObject) DeleteLater() {
 	if ptr.Pointer() != nil {
-		C.QObject_DeleteLater(C.QtObjectPtr(ptr.Pointer()))
+		C.QObject_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
-func (ptr *QObject) ConnectDestroyed(f func(obj QObjectITF)) {
+func (ptr *QObject) ConnectDestroyed(f func(obj *QObject)) {
 	if ptr.Pointer() != nil {
-		C.QObject_ConnectDestroyed(C.QtObjectPtr(ptr.Pointer()))
+		C.QObject_ConnectDestroyed(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "destroyed", f)
 	}
 }
 
 func (ptr *QObject) DisconnectDestroyed() {
 	if ptr.Pointer() != nil {
-		C.QObject_DisconnectDestroyed(C.QtObjectPtr(ptr.Pointer()))
+		C.QObject_DisconnectDestroyed(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "destroyed")
 	}
 }
 
 //export callbackQObjectDestroyed
 func callbackQObjectDestroyed(ptrName *C.char, obj unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "destroyed").(func(*QObject))(QObjectFromPointer(obj))
+	qt.GetSignal(C.GoString(ptrName), "destroyed").(func(*QObject))(NewQObjectFromPointer(obj))
 }
 
 func (ptr *QObject) DumpObjectInfo() {
 	if ptr.Pointer() != nil {
-		C.QObject_DumpObjectInfo(C.QtObjectPtr(ptr.Pointer()))
+		C.QObject_DumpObjectInfo(ptr.Pointer())
 	}
 }
 
 func (ptr *QObject) DumpObjectTree() {
 	if ptr.Pointer() != nil {
-		C.QObject_DumpObjectTree(C.QtObjectPtr(ptr.Pointer()))
+		C.QObject_DumpObjectTree(ptr.Pointer())
 	}
 }
 
-func (ptr *QObject) Event(e QEventITF) bool {
+func (ptr *QObject) Event(e QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_Event(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQEvent(e))) != 0
+		return C.QObject_Event(ptr.Pointer(), PointerFromQEvent(e)) != 0
 	}
 	return false
 }
 
-func (ptr *QObject) EventFilter(watched QObjectITF, event QEventITF) bool {
+func (ptr *QObject) EventFilter(watched QObject_ITF, event QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_EventFilter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(watched)), C.QtObjectPtr(PointerFromQEvent(event))) != 0
+		return C.QObject_EventFilter(ptr.Pointer(), PointerFromQObject(watched), PointerFromQEvent(event)) != 0
 	}
 	return false
+}
+
+func (ptr *QObject) FindChild(name string, options Qt__FindChildOption) unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QObject_FindChild(ptr.Pointer(), C.CString(name), C.int(options)))
+	}
+	return nil
 }
 
 func (ptr *QObject) Inherits(className string) bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_Inherits(C.QtObjectPtr(ptr.Pointer()), C.CString(className)) != 0
+		return C.QObject_Inherits(ptr.Pointer(), C.CString(className)) != 0
 	}
 	return false
 }
 
 func (ptr *QObject) IsWidgetType() bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_IsWidgetType(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QObject_IsWidgetType(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QObject) IsWindowType() bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_IsWindowType(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QObject_IsWindowType(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QObject) KillTimer(id int) {
 	if ptr.Pointer() != nil {
-		C.QObject_KillTimer(C.QtObjectPtr(ptr.Pointer()), C.int(id))
+		C.QObject_KillTimer(ptr.Pointer(), C.int(id))
 	}
 }
 
 func (ptr *QObject) MetaObject() *QMetaObject {
 	if ptr.Pointer() != nil {
-		return QMetaObjectFromPointer(unsafe.Pointer(C.QObject_MetaObject(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQMetaObjectFromPointer(C.QObject_MetaObject(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QObject) MoveToThread(targetThread QThreadITF) {
+func (ptr *QObject) MoveToThread(targetThread QThread_ITF) {
 	if ptr.Pointer() != nil {
-		C.QObject_MoveToThread(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQThread(targetThread)))
+		C.QObject_MoveToThread(ptr.Pointer(), PointerFromQThread(targetThread))
 	}
 }
 
 func (ptr *QObject) ConnectObjectNameChanged(f func(objectName string)) {
 	if ptr.Pointer() != nil {
-		C.QObject_ConnectObjectNameChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QObject_ConnectObjectNameChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "objectNameChanged", f)
 	}
 }
 
 func (ptr *QObject) DisconnectObjectNameChanged() {
 	if ptr.Pointer() != nil {
-		C.QObject_DisconnectObjectNameChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QObject_DisconnectObjectNameChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "objectNameChanged")
 	}
 }
@@ -186,54 +193,54 @@ func callbackQObjectObjectNameChanged(ptrName *C.char, objectName *C.char) {
 
 func (ptr *QObject) Parent() *QObject {
 	if ptr.Pointer() != nil {
-		return QObjectFromPointer(unsafe.Pointer(C.QObject_Parent(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQObjectFromPointer(C.QObject_Parent(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QObject) Property(name string) string {
+func (ptr *QObject) Property(name string) *QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QObject_Property(C.QtObjectPtr(ptr.Pointer()), C.CString(name)))
+		return NewQVariantFromPointer(C.QObject_Property(ptr.Pointer(), C.CString(name)))
 	}
-	return ""
+	return nil
 }
 
-func (ptr *QObject) RemoveEventFilter(obj QObjectITF) {
+func (ptr *QObject) RemoveEventFilter(obj QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QObject_RemoveEventFilter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(obj)))
-	}
-}
-
-func (ptr *QObject) SetParent(parent QObjectITF) {
-	if ptr.Pointer() != nil {
-		C.QObject_SetParent(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(parent)))
+		C.QObject_RemoveEventFilter(ptr.Pointer(), PointerFromQObject(obj))
 	}
 }
 
-func (ptr *QObject) SetProperty(name string, value string) bool {
+func (ptr *QObject) SetParent(parent QObject_ITF) {
 	if ptr.Pointer() != nil {
-		return C.QObject_SetProperty(C.QtObjectPtr(ptr.Pointer()), C.CString(name), C.CString(value)) != 0
+		C.QObject_SetParent(ptr.Pointer(), PointerFromQObject(parent))
+	}
+}
+
+func (ptr *QObject) SetProperty(name string, value QVariant_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QObject_SetProperty(ptr.Pointer(), C.CString(name), PointerFromQVariant(value)) != 0
 	}
 	return false
 }
 
 func (ptr *QObject) StartTimer(interval int, timerType Qt__TimerType) int {
 	if ptr.Pointer() != nil {
-		return int(C.QObject_StartTimer(C.QtObjectPtr(ptr.Pointer()), C.int(interval), C.int(timerType)))
+		return int(C.QObject_StartTimer(ptr.Pointer(), C.int(interval), C.int(timerType)))
 	}
 	return 0
 }
 
 func (ptr *QObject) SignalsBlocked() bool {
 	if ptr.Pointer() != nil {
-		return C.QObject_SignalsBlocked(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QObject_SignalsBlocked(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QObject) Thread() *QThread {
 	if ptr.Pointer() != nil {
-		return QThreadFromPointer(unsafe.Pointer(C.QObject_Thread(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQThreadFromPointer(C.QObject_Thread(ptr.Pointer()))
 	}
 	return nil
 }
@@ -244,7 +251,7 @@ func QObject_Tr(sourceText string, disambiguation string, n int) string {
 
 func (ptr *QObject) DestroyQObject() {
 	if ptr.Pointer() != nil {
-		C.QObject_DestroyQObject(C.QtObjectPtr(ptr.Pointer()))
+		C.QObject_DestroyQObject(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -11,42 +11,42 @@ type QRadioButton struct {
 	QAbstractButton
 }
 
-type QRadioButtonITF interface {
-	QAbstractButtonITF
-	QRadioButtonPTR() *QRadioButton
+type QRadioButton_ITF interface {
+	QAbstractButton_ITF
+	QRadioButton_PTR() *QRadioButton
 }
 
-func PointerFromQRadioButton(ptr QRadioButtonITF) unsafe.Pointer {
+func PointerFromQRadioButton(ptr QRadioButton_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QRadioButtonPTR().Pointer()
+		return ptr.QRadioButton_PTR().Pointer()
 	}
 	return nil
 }
 
-func QRadioButtonFromPointer(ptr unsafe.Pointer) *QRadioButton {
+func NewQRadioButtonFromPointer(ptr unsafe.Pointer) *QRadioButton {
 	var n = new(QRadioButton)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QRadioButton_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QRadioButton) QRadioButtonPTR() *QRadioButton {
+func (ptr *QRadioButton) QRadioButton_PTR() *QRadioButton {
 	return ptr
 }
 
-func NewQRadioButton(parent QWidgetITF) *QRadioButton {
-	return QRadioButtonFromPointer(unsafe.Pointer(C.QRadioButton_NewQRadioButton(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQRadioButton(parent QWidget_ITF) *QRadioButton {
+	return NewQRadioButtonFromPointer(C.QRadioButton_NewQRadioButton(PointerFromQWidget(parent)))
 }
 
-func NewQRadioButton2(text string, parent QWidgetITF) *QRadioButton {
-	return QRadioButtonFromPointer(unsafe.Pointer(C.QRadioButton_NewQRadioButton2(C.CString(text), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQRadioButton2(text string, parent QWidget_ITF) *QRadioButton {
+	return NewQRadioButtonFromPointer(C.QRadioButton_NewQRadioButton2(C.CString(text), PointerFromQWidget(parent)))
 }
 
 func (ptr *QRadioButton) DestroyQRadioButton() {
 	if ptr.Pointer() != nil {
-		C.QRadioButton_DestroyQRadioButton(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioButton_DestroyQRadioButton(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

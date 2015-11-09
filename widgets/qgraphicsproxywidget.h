@@ -1,16 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGraphicsProxyWidget_NewQGraphicsProxyWidget(QtObjectPtr parent, int wFlags);
-QtObjectPtr QGraphicsProxyWidget_CreateProxyForChildWidget(QtObjectPtr ptr, QtObjectPtr child);
-void QGraphicsProxyWidget_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr widget);
-void QGraphicsProxyWidget_SetGeometry(QtObjectPtr ptr, QtObjectPtr rect);
-void QGraphicsProxyWidget_SetWidget(QtObjectPtr ptr, QtObjectPtr widget);
-int QGraphicsProxyWidget_Type(QtObjectPtr ptr);
-QtObjectPtr QGraphicsProxyWidget_Widget(QtObjectPtr ptr);
-void QGraphicsProxyWidget_DestroyQGraphicsProxyWidget(QtObjectPtr ptr);
+void* QGraphicsProxyWidget_NewQGraphicsProxyWidget(void* parent, int wFlags);
+void* QGraphicsProxyWidget_CreateProxyForChildWidget(void* ptr, void* child);
+void QGraphicsProxyWidget_Paint(void* ptr, void* painter, void* option, void* widget);
+void QGraphicsProxyWidget_SetGeometry(void* ptr, void* rect);
+void QGraphicsProxyWidget_SetWidget(void* ptr, void* widget);
+int QGraphicsProxyWidget_Type(void* ptr);
+void* QGraphicsProxyWidget_Widget(void* ptr);
+void QGraphicsProxyWidget_DestroyQGraphicsProxyWidget(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{begin QAssociativeIterable::begin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  const_iterator [] }
-&{end QAssociativeIterable::end commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  const_iterator [] }
-&{find QAssociativeIterable::find commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  const_iterator [0xc82027a520] }
-&{size QAssociativeIterable::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  int [] }
-&{value QAssociativeIterable::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QVariant [0xc82027a8e0] }
+&{begin QAssociativeIterable::begin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  const_iterator const_iterator begin() const [] }
+&{end QAssociativeIterable::end commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  const_iterator const_iterator end() const [] }
+&{find QAssociativeIterable::find commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  const_iterator const_iterator find(const QVariant &key) const [0xc82025bba0] }
+&{size QAssociativeIterable::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  int int size() const [] }
+&{value QAssociativeIterable::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QVariant QVariant value(const QVariant &key) const [0xc8202500e0] }
 ########################################			ENUMS			########################################

@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{QOpenGLShader QOpenGLShader::QOpenGLShader commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non constructor false false   [0xc822ae6f40 0xc822ae7000] }
-&{compileSourceCode QOpenGLShader::compileSourceCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false true 2 bool [0xc822ae7240] }
-&{compileSourceCode QOpenGLShader::compileSourceCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false true 3 bool [0xc822ae74a0] }
-&{compileSourceCode QOpenGLShader::compileSourceCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  bool [0xc822ae76c0] }
-&{compileSourceFile QOpenGLShader::compileSourceFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  bool [0xc822ae7900] }
-&{hasOpenGLShaders QOpenGLShader::hasOpenGLShaders commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain true false  bool [0xc822ae7ac0 0xc822ae7b40] }
-&{isCompiled QOpenGLShader::isCompiled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  bool [] }
-&{log QOpenGLShader::log commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  QString [] }
-&{shaderId QOpenGLShader::shaderId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  GLuint [] }
-&{shaderType QOpenGLShader::shaderType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  QOpenGLShader::ShaderType [] }
-&{sourceCode QOpenGLShader::sourceCode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  QByteArray [] }
-&{~QOpenGLShader QOpenGLShader::~QOpenGLShader commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h impure destructor false false   [] }
+&{QOpenGLShader QOpenGLShader::QOpenGLShader commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non constructor false false   QOpenGLShader(QOpenGLShader::ShaderType type, QObject *parent) [0xc8226eb140 0xc8226eb200] }
+&{compileSourceCode QOpenGLShader::compileSourceCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false true 2 bool bool compileSourceCode(const QByteArray &source) [0xc8226eb440] }
+&{compileSourceCode QOpenGLShader::compileSourceCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false true 3 bool bool compileSourceCode(const QString &source) [0xc8226eb6a0] }
+&{compileSourceCode QOpenGLShader::compileSourceCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  bool bool compileSourceCode(const char *source) [0xc8226eb8c0] }
+&{compileSourceFile QOpenGLShader::compileSourceFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  bool bool compileSourceFile(const QString &fileName) [0xc8226ebb00] }
+&{hasOpenGLShaders QOpenGLShader::hasOpenGLShaders commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain true false  bool bool hasOpenGLShaders(ShaderType type, QOpenGLContext *context) [0xc8226ebcc0 0xc8226ebd40] }
+&{isCompiled QOpenGLShader::isCompiled commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  bool bool isCompiled() const [] }
+&{log QOpenGLShader::log commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  QString QString log() const [] }
+&{shaderId QOpenGLShader::shaderId commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  GLuint GLuint shaderId() const [] }
+&{shaderType QOpenGLShader::shaderType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  QOpenGLShader::ShaderType QOpenGLShader::ShaderType shaderType() const [] }
+&{sourceCode QOpenGLShader::sourceCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h non plain false false  QByteArray QByteArray sourceCode() const [] }
+&{~QOpenGLShader QOpenGLShader::~QOpenGLShader commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglshaderprogram.h impure destructor false false   ~QOpenGLShader() [] }
 ########################################			ENUMS			########################################
-&{ShaderTypeBit QOpenGLShader::ShaderTypeBit commendable public QOpenGLShader::ShaderType [0xc822ae68e0 0xc822ae6960 0xc822ae69e0 0xc822ae6a80 0xc822ae6b80 0xc822ae6c40]}
+&{ShaderTypeBit QOpenGLShader::ShaderTypeBit commendable public QOpenGLShader::ShaderType [0xc8226eaae0 0xc8226eab60 0xc8226eabe0 0xc8226eac80 0xc8226ead80 0xc8226eae40] false}

@@ -1,27 +1,27 @@
 ########################################			FUNCTIONS			########################################
-&{QTabletEvent QTabletEvent::QTabletEvent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc820838a20 0xc820838b00 0xc820838ba0 0xc820838c20 0xc820838ce0 0xc820838de0 0xc820838ea0 0xc820838f60 0xc8208390a0 0xc8208391a0 0xc8208392e0 0xc8208393e0 0xc8208395e0 0xc820839660 0xc820839720] }
-&{button QTabletEvent::button commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseButton [] }
-&{buttons QTabletEvent::buttons commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseButtons [] }
-&{device QTabletEvent::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  TabletDevice [] }
-&{globalPos QTabletEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
-&{globalPosF QTabletEvent::globalPosF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
-&{globalX QTabletEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{globalY QTabletEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{hiResGlobalPos QTabletEvent::hiResGlobalPos compat unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
-&{hiResGlobalX QTabletEvent::hiResGlobalX commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qreal [] }
-&{hiResGlobalY QTabletEvent::hiResGlobalY commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qreal [] }
-&{pointerType QTabletEvent::pointerType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  PointerType [] }
-&{pos QTabletEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
-&{posF QTabletEvent::posF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
-&{pressure QTabletEvent::pressure commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qreal [] }
-&{rotation QTabletEvent::rotation commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qreal [] }
-&{tangentialPressure QTabletEvent::tangentialPressure commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qreal [] }
-&{uniqueId QTabletEvent::uniqueId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qint64 [] }
-&{x QTabletEvent::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{xTilt QTabletEvent::xTilt commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{y QTabletEvent::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{yTilt QTabletEvent::yTilt commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{z QTabletEvent::z commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{QTabletEvent QTabletEvent::QTabletEvent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QTabletEvent(Type type, const QPointF &pos, const QPointF &globalPos, int device, int pointerType, qreal pressure, int xTilt, int yTilt, qreal tangentialPressure, qreal rotation, int z, Qt::KeyboardModifiers keyState, qint64 uniqueID, Qt::MouseButton button, Qt::MouseButtons buttons) [0xc820873fe0 0xc82085c080 0xc82085c140 0xc82085c200 0xc82085c2c0 0xc82085c380 0xc82085c420 0xc82085c540 0xc82085c700 0xc82085c8c0 0xc82085c980 0xc82085cae0 0xc82085cc20 0xc82085cd00 0xc82085ce40] }
+&{button QTabletEvent::button commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseButton Qt::MouseButton button() const [] }
+&{buttons QTabletEvent::buttons commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseButtons Qt::MouseButtons buttons() const [] }
+&{device QTabletEvent::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  TabletDevice TabletDevice device() const [] }
+&{globalPos QTabletEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint QPoint globalPos() const [] }
+&{globalPosF QTabletEvent::globalPosF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & const QPointF & globalPosF() const [] }
+&{globalX QTabletEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalX() const [] }
+&{globalY QTabletEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalY() const [] }
+&{hiResGlobalPos QTabletEvent::hiResGlobalPos compat unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & const QPointF & hiResGlobalPos() const [] }
+&{hiResGlobalX QTabletEvent::hiResGlobalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qreal qreal hiResGlobalX() const [] }
+&{hiResGlobalY QTabletEvent::hiResGlobalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qreal qreal hiResGlobalY() const [] }
+&{pointerType QTabletEvent::pointerType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  PointerType PointerType pointerType() const [] }
+&{pos QTabletEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint QPoint pos() const [] }
+&{posF QTabletEvent::posF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & const QPointF & posF() const [] }
+&{pressure QTabletEvent::pressure commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qreal qreal pressure() const [] }
+&{rotation QTabletEvent::rotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qreal qreal rotation() const [] }
+&{tangentialPressure QTabletEvent::tangentialPressure commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qreal qreal tangentialPressure() const [] }
+&{uniqueId QTabletEvent::uniqueId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qint64 qint64 uniqueId() const [] }
+&{x QTabletEvent::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int x() const [] }
+&{xTilt QTabletEvent::xTilt commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int xTilt() const [] }
+&{y QTabletEvent::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int y() const [] }
+&{yTilt QTabletEvent::yTilt commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int yTilt() const [] }
+&{z QTabletEvent::z commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int z() const [] }
 ########################################			ENUMS			########################################
-&{PointerType QTabletEvent::PointerType commendable public  [0xc820784f00 0xc820785000 0xc8207850a0 0xc820785160]}
-&{TabletDevice QTabletEvent::TabletDevice commendable public  [0xc820785400 0xc820785540 0xc8207855e0 0xc8207856a0 0xc820785820 0xc8207858c0 0xc820785960]}
+&{PointerType QTabletEvent::PointerType commendable public  [0xc82088bf00 0xc820872000 0xc8208720e0 0xc8208721e0] false}
+&{TabletDevice QTabletEvent::TabletDevice commendable public  [0xc820872520 0xc820872660 0xc820872720 0xc820872860 0xc820872980 0xc820872ac0 0xc820872ba0] false}

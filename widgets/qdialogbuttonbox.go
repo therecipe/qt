@@ -12,35 +12,35 @@ type QDialogButtonBox struct {
 	QWidget
 }
 
-type QDialogButtonBoxITF interface {
-	QWidgetITF
-	QDialogButtonBoxPTR() *QDialogButtonBox
+type QDialogButtonBox_ITF interface {
+	QWidget_ITF
+	QDialogButtonBox_PTR() *QDialogButtonBox
 }
 
-func PointerFromQDialogButtonBox(ptr QDialogButtonBoxITF) unsafe.Pointer {
+func PointerFromQDialogButtonBox(ptr QDialogButtonBox_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDialogButtonBoxPTR().Pointer()
+		return ptr.QDialogButtonBox_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDialogButtonBoxFromPointer(ptr unsafe.Pointer) *QDialogButtonBox {
+func NewQDialogButtonBoxFromPointer(ptr unsafe.Pointer) *QDialogButtonBox {
 	var n = new(QDialogButtonBox)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QDialogButtonBox_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QDialogButtonBox) QDialogButtonBoxPTR() *QDialogButtonBox {
+func (ptr *QDialogButtonBox) QDialogButtonBox_PTR() *QDialogButtonBox {
 	return ptr
 }
 
 //QDialogButtonBox::ButtonLayout
-type QDialogButtonBox__ButtonLayout int
+type QDialogButtonBox__ButtonLayout int64
 
-var (
+const (
 	QDialogButtonBox__WinLayout   = QDialogButtonBox__ButtonLayout(0)
 	QDialogButtonBox__MacLayout   = QDialogButtonBox__ButtonLayout(1)
 	QDialogButtonBox__KdeLayout   = QDialogButtonBox__ButtonLayout(2)
@@ -48,9 +48,9 @@ var (
 )
 
 //QDialogButtonBox::ButtonRole
-type QDialogButtonBox__ButtonRole int
+type QDialogButtonBox__ButtonRole int64
 
-var (
+const (
 	QDialogButtonBox__InvalidRole     = QDialogButtonBox__ButtonRole(-1)
 	QDialogButtonBox__AcceptRole      = QDialogButtonBox__ButtonRole(0)
 	QDialogButtonBox__RejectRole      = QDialogButtonBox__ButtonRole(1)
@@ -65,9 +65,9 @@ var (
 )
 
 //QDialogButtonBox::StandardButton
-type QDialogButtonBox__StandardButton int
+type QDialogButtonBox__StandardButton int64
 
-var (
+const (
 	QDialogButtonBox__NoButton        = QDialogButtonBox__StandardButton(0x00000000)
 	QDialogButtonBox__Ok              = QDialogButtonBox__StandardButton(0x00000400)
 	QDialogButtonBox__Save            = QDialogButtonBox__StandardButton(0x00000800)
@@ -93,69 +93,69 @@ var (
 
 func (ptr *QDialogButtonBox) CenterButtons() bool {
 	if ptr.Pointer() != nil {
-		return C.QDialogButtonBox_CenterButtons(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QDialogButtonBox_CenterButtons(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QDialogButtonBox) Orientation() core.Qt__Orientation {
 	if ptr.Pointer() != nil {
-		return core.Qt__Orientation(C.QDialogButtonBox_Orientation(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__Orientation(C.QDialogButtonBox_Orientation(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDialogButtonBox) SetCenterButtons(center bool) {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_SetCenterButtons(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(center)))
+		C.QDialogButtonBox_SetCenterButtons(ptr.Pointer(), C.int(qt.GoBoolToInt(center)))
 	}
 }
 
 func (ptr *QDialogButtonBox) SetOrientation(orientation core.Qt__Orientation) {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_SetOrientation(C.QtObjectPtr(ptr.Pointer()), C.int(orientation))
+		C.QDialogButtonBox_SetOrientation(ptr.Pointer(), C.int(orientation))
 	}
 }
 
 func (ptr *QDialogButtonBox) SetStandardButtons(buttons QDialogButtonBox__StandardButton) {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_SetStandardButtons(C.QtObjectPtr(ptr.Pointer()), C.int(buttons))
+		C.QDialogButtonBox_SetStandardButtons(ptr.Pointer(), C.int(buttons))
 	}
 }
 
 func (ptr *QDialogButtonBox) StandardButtons() QDialogButtonBox__StandardButton {
 	if ptr.Pointer() != nil {
-		return QDialogButtonBox__StandardButton(C.QDialogButtonBox_StandardButtons(C.QtObjectPtr(ptr.Pointer())))
+		return QDialogButtonBox__StandardButton(C.QDialogButtonBox_StandardButtons(ptr.Pointer()))
 	}
 	return 0
 }
 
-func NewQDialogButtonBox(parent QWidgetITF) *QDialogButtonBox {
-	return QDialogButtonBoxFromPointer(unsafe.Pointer(C.QDialogButtonBox_NewQDialogButtonBox(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQDialogButtonBox(parent QWidget_ITF) *QDialogButtonBox {
+	return NewQDialogButtonBoxFromPointer(C.QDialogButtonBox_NewQDialogButtonBox(PointerFromQWidget(parent)))
 }
 
-func NewQDialogButtonBox2(orientation core.Qt__Orientation, parent QWidgetITF) *QDialogButtonBox {
-	return QDialogButtonBoxFromPointer(unsafe.Pointer(C.QDialogButtonBox_NewQDialogButtonBox2(C.int(orientation), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQDialogButtonBox2(orientation core.Qt__Orientation, parent QWidget_ITF) *QDialogButtonBox {
+	return NewQDialogButtonBoxFromPointer(C.QDialogButtonBox_NewQDialogButtonBox2(C.int(orientation), PointerFromQWidget(parent)))
 }
 
-func NewQDialogButtonBox3(buttons QDialogButtonBox__StandardButton, parent QWidgetITF) *QDialogButtonBox {
-	return QDialogButtonBoxFromPointer(unsafe.Pointer(C.QDialogButtonBox_NewQDialogButtonBox3(C.int(buttons), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQDialogButtonBox3(buttons QDialogButtonBox__StandardButton, parent QWidget_ITF) *QDialogButtonBox {
+	return NewQDialogButtonBoxFromPointer(C.QDialogButtonBox_NewQDialogButtonBox3(C.int(buttons), PointerFromQWidget(parent)))
 }
 
-func NewQDialogButtonBox4(buttons QDialogButtonBox__StandardButton, orientation core.Qt__Orientation, parent QWidgetITF) *QDialogButtonBox {
-	return QDialogButtonBoxFromPointer(unsafe.Pointer(C.QDialogButtonBox_NewQDialogButtonBox4(C.int(buttons), C.int(orientation), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQDialogButtonBox4(buttons QDialogButtonBox__StandardButton, orientation core.Qt__Orientation, parent QWidget_ITF) *QDialogButtonBox {
+	return NewQDialogButtonBoxFromPointer(C.QDialogButtonBox_NewQDialogButtonBox4(C.int(buttons), C.int(orientation), PointerFromQWidget(parent)))
 }
 
 func (ptr *QDialogButtonBox) ConnectAccepted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_ConnectAccepted(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialogButtonBox_ConnectAccepted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "accepted", f)
 	}
 }
 
 func (ptr *QDialogButtonBox) DisconnectAccepted() {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_DisconnectAccepted(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialogButtonBox_DisconnectAccepted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "accepted")
 	}
 }
@@ -167,73 +167,73 @@ func callbackQDialogButtonBoxAccepted(ptrName *C.char) {
 
 func (ptr *QDialogButtonBox) AddButton3(button QDialogButtonBox__StandardButton) *QPushButton {
 	if ptr.Pointer() != nil {
-		return QPushButtonFromPointer(unsafe.Pointer(C.QDialogButtonBox_AddButton3(C.QtObjectPtr(ptr.Pointer()), C.int(button))))
+		return NewQPushButtonFromPointer(C.QDialogButtonBox_AddButton3(ptr.Pointer(), C.int(button)))
 	}
 	return nil
 }
 
 func (ptr *QDialogButtonBox) AddButton2(text string, role QDialogButtonBox__ButtonRole) *QPushButton {
 	if ptr.Pointer() != nil {
-		return QPushButtonFromPointer(unsafe.Pointer(C.QDialogButtonBox_AddButton2(C.QtObjectPtr(ptr.Pointer()), C.CString(text), C.int(role))))
+		return NewQPushButtonFromPointer(C.QDialogButtonBox_AddButton2(ptr.Pointer(), C.CString(text), C.int(role)))
 	}
 	return nil
 }
 
-func (ptr *QDialogButtonBox) AddButton(button QAbstractButtonITF, role QDialogButtonBox__ButtonRole) {
+func (ptr *QDialogButtonBox) AddButton(button QAbstractButton_ITF, role QDialogButtonBox__ButtonRole) {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_AddButton(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractButton(button)), C.int(role))
+		C.QDialogButtonBox_AddButton(ptr.Pointer(), PointerFromQAbstractButton(button), C.int(role))
 	}
 }
 
 func (ptr *QDialogButtonBox) Button(which QDialogButtonBox__StandardButton) *QPushButton {
 	if ptr.Pointer() != nil {
-		return QPushButtonFromPointer(unsafe.Pointer(C.QDialogButtonBox_Button(C.QtObjectPtr(ptr.Pointer()), C.int(which))))
+		return NewQPushButtonFromPointer(C.QDialogButtonBox_Button(ptr.Pointer(), C.int(which)))
 	}
 	return nil
 }
 
-func (ptr *QDialogButtonBox) ButtonRole(button QAbstractButtonITF) QDialogButtonBox__ButtonRole {
+func (ptr *QDialogButtonBox) ButtonRole(button QAbstractButton_ITF) QDialogButtonBox__ButtonRole {
 	if ptr.Pointer() != nil {
-		return QDialogButtonBox__ButtonRole(C.QDialogButtonBox_ButtonRole(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractButton(button))))
+		return QDialogButtonBox__ButtonRole(C.QDialogButtonBox_ButtonRole(ptr.Pointer(), PointerFromQAbstractButton(button)))
 	}
 	return 0
 }
 
 func (ptr *QDialogButtonBox) Clear() {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_Clear(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialogButtonBox_Clear(ptr.Pointer())
 	}
 }
 
-func (ptr *QDialogButtonBox) ConnectClicked(f func(button QAbstractButtonITF)) {
+func (ptr *QDialogButtonBox) ConnectClicked(f func(button *QAbstractButton)) {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_ConnectClicked(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialogButtonBox_ConnectClicked(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "clicked", f)
 	}
 }
 
 func (ptr *QDialogButtonBox) DisconnectClicked() {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_DisconnectClicked(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialogButtonBox_DisconnectClicked(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "clicked")
 	}
 }
 
 //export callbackQDialogButtonBoxClicked
 func callbackQDialogButtonBoxClicked(ptrName *C.char, button unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "clicked").(func(*QAbstractButton))(QAbstractButtonFromPointer(button))
+	qt.GetSignal(C.GoString(ptrName), "clicked").(func(*QAbstractButton))(NewQAbstractButtonFromPointer(button))
 }
 
 func (ptr *QDialogButtonBox) ConnectHelpRequested(f func()) {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_ConnectHelpRequested(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialogButtonBox_ConnectHelpRequested(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "helpRequested", f)
 	}
 }
 
 func (ptr *QDialogButtonBox) DisconnectHelpRequested() {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_DisconnectHelpRequested(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialogButtonBox_DisconnectHelpRequested(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "helpRequested")
 	}
 }
@@ -245,14 +245,14 @@ func callbackQDialogButtonBoxHelpRequested(ptrName *C.char) {
 
 func (ptr *QDialogButtonBox) ConnectRejected(f func()) {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_ConnectRejected(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialogButtonBox_ConnectRejected(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "rejected", f)
 	}
 }
 
 func (ptr *QDialogButtonBox) DisconnectRejected() {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_DisconnectRejected(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialogButtonBox_DisconnectRejected(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "rejected")
 	}
 }
@@ -262,22 +262,22 @@ func callbackQDialogButtonBoxRejected(ptrName *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "rejected").(func())()
 }
 
-func (ptr *QDialogButtonBox) RemoveButton(button QAbstractButtonITF) {
+func (ptr *QDialogButtonBox) RemoveButton(button QAbstractButton_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_RemoveButton(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractButton(button)))
+		C.QDialogButtonBox_RemoveButton(ptr.Pointer(), PointerFromQAbstractButton(button))
 	}
 }
 
-func (ptr *QDialogButtonBox) StandardButton(button QAbstractButtonITF) QDialogButtonBox__StandardButton {
+func (ptr *QDialogButtonBox) StandardButton(button QAbstractButton_ITF) QDialogButtonBox__StandardButton {
 	if ptr.Pointer() != nil {
-		return QDialogButtonBox__StandardButton(C.QDialogButtonBox_StandardButton(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractButton(button))))
+		return QDialogButtonBox__StandardButton(C.QDialogButtonBox_StandardButton(ptr.Pointer(), PointerFromQAbstractButton(button)))
 	}
 	return 0
 }
 
 func (ptr *QDialogButtonBox) DestroyQDialogButtonBox() {
 	if ptr.Pointer() != nil {
-		C.QDialogButtonBox_DestroyQDialogButtonBox(C.QtObjectPtr(ptr.Pointer()))
+		C.QDialogButtonBox_DestroyQDialogButtonBox(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

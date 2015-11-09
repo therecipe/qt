@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QSocketNotifier_ConnectActivated(QtObjectPtr ptr);
-void QSocketNotifier_DisconnectActivated(QtObjectPtr ptr);
-int QSocketNotifier_IsEnabled(QtObjectPtr ptr);
-void QSocketNotifier_SetEnabled(QtObjectPtr ptr, int enable);
-int QSocketNotifier_Type(QtObjectPtr ptr);
-void QSocketNotifier_DestroyQSocketNotifier(QtObjectPtr ptr);
+void QSocketNotifier_ConnectActivated(void* ptr);
+void QSocketNotifier_DisconnectActivated(void* ptr);
+int QSocketNotifier_IsEnabled(void* ptr);
+void QSocketNotifier_SetEnabled(void* ptr, int enable);
+int QSocketNotifier_Type(void* ptr);
+void QSocketNotifier_DestroyQSocketNotifier(void* ptr);
 
 #ifdef __cplusplus
 }

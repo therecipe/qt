@@ -1,11 +1,11 @@
 #include "qgeopositioninfosourcefactory.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QGeoPositionInfoSource>
-#include <QGeoPositionInfo>
 #include <QObject>
+#include <QGeoPositionInfo>
+#include <QGeoPositionInfoSource>
 #include <QString>
-#include <QVariant>
 #include <QGeoPositionInfoSourceFactory>
 #include "_cgo_export.h"
 
@@ -13,19 +13,19 @@ class MyQGeoPositionInfoSourceFactory: public QGeoPositionInfoSourceFactory {
 public:
 };
 
-QtObjectPtr QGeoPositionInfoSourceFactory_AreaMonitor(QtObjectPtr ptr, QtObjectPtr parent){
+void* QGeoPositionInfoSourceFactory_AreaMonitor(void* ptr, void* parent){
 	return static_cast<QGeoPositionInfoSourceFactory*>(ptr)->areaMonitor(static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QGeoPositionInfoSourceFactory_PositionInfoSource(QtObjectPtr ptr, QtObjectPtr parent){
+void* QGeoPositionInfoSourceFactory_PositionInfoSource(void* ptr, void* parent){
 	return static_cast<QGeoPositionInfoSourceFactory*>(ptr)->positionInfoSource(static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QGeoPositionInfoSourceFactory_SatelliteInfoSource(QtObjectPtr ptr, QtObjectPtr parent){
+void* QGeoPositionInfoSourceFactory_SatelliteInfoSource(void* ptr, void* parent){
 	return static_cast<QGeoPositionInfoSourceFactory*>(ptr)->satelliteInfoSource(static_cast<QObject*>(parent));
 }
 
-void QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(QtObjectPtr ptr){
+void QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(void* ptr){
 	static_cast<QGeoPositionInfoSourceFactory*>(ptr)->~QGeoPositionInfoSourceFactory();
 }
 

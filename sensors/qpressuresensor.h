@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QPressureSensor_Reading(QtObjectPtr ptr);
-QtObjectPtr QPressureSensor_NewQPressureSensor(QtObjectPtr parent);
-void QPressureSensor_DestroyQPressureSensor(QtObjectPtr ptr);
+void* QPressureSensor_Reading(void* ptr);
+void* QPressureSensor_NewQPressureSensor(void* parent);
+void QPressureSensor_DestroyQPressureSensor(void* ptr);
 
 #ifdef __cplusplus
 }

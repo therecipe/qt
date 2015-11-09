@@ -9,6 +9,7 @@ type Enum struct {
 	Access   string   `xml:"access,attr"`
 	Typedef  string   `xml:"typedef,attr"`
 	Values   []*Value `xml:"value"`
+	NoConst  bool
 }
 
 type Value struct {

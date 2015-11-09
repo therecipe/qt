@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QAmbientLightReading_LightLevel(QtObjectPtr ptr);
-void QAmbientLightReading_SetLightLevel(QtObjectPtr ptr, int lightLevel);
+int QAmbientLightReading_LightLevel(void* ptr);
+void QAmbientLightReading_SetLightLevel(void* ptr, int lightLevel);
 
 #ifdef __cplusplus
 }

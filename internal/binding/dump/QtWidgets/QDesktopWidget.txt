@@ -1,18 +1,18 @@
 ########################################			FUNCTIONS			########################################
-&{availableGeometry QDesktopWidget::availableGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false true 2 const QRect [0xc822c01c40] }
-&{availableGeometry QDesktopWidget::availableGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false false  const QRect [0xc822c01e80] }
-&{isVirtualDesktop QDesktopWidget::isVirtualDesktop commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false false  bool [] }
-&{primaryScreen QDesktopWidget::primaryScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false false  int [] }
-&{resizeEvent QDesktopWidget::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp impure plain false false  void [0xc822c164e0] }
-&{screen QDesktopWidget::screen commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false false  QWidget * [0xc822c16700] }
-&{screenGeometry QDesktopWidget::screenGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false true 2 const QRect [0xc822c168e0] }
-&{screenGeometry QDesktopWidget::screenGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false false  const QRect [0xc822c16ac0] }
-&{screenNumber QDesktopWidget::screenNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false true 2 int [0xc822c16d00] }
-&{screenNumber QDesktopWidget::screenNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false false  int [0xc822c16f80] }
-&{availableGeometry QDesktopWidget::availableGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.h non plain false true 3 const QRect [0xc822c17540] }
-&{resized QDesktopWidget::resized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.h non signal false false  void [0xc822c17760] }
-&{screenCount QDesktopWidget::screenCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.h non plain false false  int [] }
-&{screenCountChanged QDesktopWidget::screenCountChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.h non signal false false  void [0xc822c17a80] }
-&{screenGeometry QDesktopWidget::screenGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.h non plain false true 3 const QRect [0xc822c17c40] }
-&{workAreaResized QDesktopWidget::workAreaResized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.h non signal false false  void [0xc822c17e20] }
+&{availableGeometry QDesktopWidget::availableGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false true 2 const QRect const QRect availableGeometry(const QWidget *widget) const [0xc82203da60] }
+&{availableGeometry QDesktopWidget::availableGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false false  const QRect const QRect availableGeometry(int screen) const [0xc82203dcc0] }
+&{isVirtualDesktop QDesktopWidget::isVirtualDesktop commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false false  bool bool isVirtualDesktop() const [] }
+&{primaryScreen QDesktopWidget::primaryScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false false  int int primaryScreen() const [] }
+&{resizeEvent QDesktopWidget::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp impure plain false false  void void resizeEvent(QResizeEvent *event) [0xc82232e3a0] }
+&{screen QDesktopWidget::screen commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false false  QWidget * QWidget * screen(int screen) [0xc82232e680] }
+&{screenGeometry QDesktopWidget::screenGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false true 2 const QRect const QRect screenGeometry(const QWidget *widget) const [0xc82232e8a0] }
+&{screenGeometry QDesktopWidget::screenGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false false  const QRect const QRect screenGeometry(int screen) const [0xc82232eac0] }
+&{screenNumber QDesktopWidget::screenNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false true 2 int int screenNumber(const QPoint &point) const [0xc82232ed00] }
+&{screenNumber QDesktopWidget::screenNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.cpp non plain false false  int int screenNumber(const QWidget *widget) const [0xc82232ef40] }
+&{availableGeometry QDesktopWidget::availableGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.h non plain false true 3 const QRect const QRect availableGeometry(const QPoint &p) const [0xc82232f520] }
+&{resized QDesktopWidget::resized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.h non signal false false  void void resized(int screen) [0xc82232f7c0] }
+&{screenCount QDesktopWidget::screenCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.h non plain false false  int int screenCount() const [] }
+&{screenCountChanged QDesktopWidget::screenCountChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.h non signal false false  void void screenCountChanged(int newCount) [0xc82232fb80] }
+&{screenGeometry QDesktopWidget::screenGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.h non plain false true 3 const QRect const QRect screenGeometry(const QPoint &p) const [0xc82232fd80] }
+&{workAreaResized QDesktopWidget::workAreaResized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qdesktopwidget.h non signal false false  void void workAreaResized(int screen) [0xc82232ffa0] }
 ########################################			ENUMS			########################################

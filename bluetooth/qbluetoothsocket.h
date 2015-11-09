@@ -1,31 +1,30 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QBluetoothSocket_ConnectConnected(QtObjectPtr ptr);
-void QBluetoothSocket_DisconnectConnected(QtObjectPtr ptr);
-void QBluetoothSocket_ConnectDisconnected(QtObjectPtr ptr);
-void QBluetoothSocket_DisconnectDisconnected(QtObjectPtr ptr);
-void QBluetoothSocket_ConnectStateChanged(QtObjectPtr ptr);
-void QBluetoothSocket_DisconnectStateChanged(QtObjectPtr ptr);
-QtObjectPtr QBluetoothSocket_NewQBluetoothSocket(int socketType, QtObjectPtr parent);
-QtObjectPtr QBluetoothSocket_NewQBluetoothSocket2(QtObjectPtr parent);
-void QBluetoothSocket_Abort(QtObjectPtr ptr);
-int QBluetoothSocket_CanReadLine(QtObjectPtr ptr);
-void QBluetoothSocket_Close(QtObjectPtr ptr);
-void QBluetoothSocket_ConnectToService2(QtObjectPtr ptr, QtObjectPtr address, QtObjectPtr uuid, int openMode);
-void QBluetoothSocket_ConnectToService(QtObjectPtr ptr, QtObjectPtr service, int openMode);
-void QBluetoothSocket_DisconnectFromService(QtObjectPtr ptr);
-int QBluetoothSocket_Error(QtObjectPtr ptr);
-char* QBluetoothSocket_ErrorString(QtObjectPtr ptr);
-int QBluetoothSocket_IsSequential(QtObjectPtr ptr);
-char* QBluetoothSocket_LocalName(QtObjectPtr ptr);
-char* QBluetoothSocket_PeerName(QtObjectPtr ptr);
-int QBluetoothSocket_SetSocketDescriptor(QtObjectPtr ptr, int socketDescriptor, int socketType, int socketState, int openMode);
-int QBluetoothSocket_SocketDescriptor(QtObjectPtr ptr);
-int QBluetoothSocket_SocketType(QtObjectPtr ptr);
-void QBluetoothSocket_DestroyQBluetoothSocket(QtObjectPtr ptr);
+void QBluetoothSocket_ConnectConnected(void* ptr);
+void QBluetoothSocket_DisconnectConnected(void* ptr);
+void QBluetoothSocket_ConnectDisconnected(void* ptr);
+void QBluetoothSocket_DisconnectDisconnected(void* ptr);
+void QBluetoothSocket_ConnectStateChanged(void* ptr);
+void QBluetoothSocket_DisconnectStateChanged(void* ptr);
+void* QBluetoothSocket_NewQBluetoothSocket(int socketType, void* parent);
+void* QBluetoothSocket_NewQBluetoothSocket2(void* parent);
+void QBluetoothSocket_Abort(void* ptr);
+int QBluetoothSocket_CanReadLine(void* ptr);
+void QBluetoothSocket_Close(void* ptr);
+void QBluetoothSocket_ConnectToService2(void* ptr, void* address, void* uuid, int openMode);
+void QBluetoothSocket_ConnectToService(void* ptr, void* service, int openMode);
+void QBluetoothSocket_DisconnectFromService(void* ptr);
+int QBluetoothSocket_Error(void* ptr);
+char* QBluetoothSocket_ErrorString(void* ptr);
+int QBluetoothSocket_IsSequential(void* ptr);
+char* QBluetoothSocket_LocalName(void* ptr);
+char* QBluetoothSocket_PeerName(void* ptr);
+int QBluetoothSocket_SetSocketDescriptor(void* ptr, int socketDescriptor, int socketType, int socketState, int openMode);
+int QBluetoothSocket_SocketDescriptor(void* ptr);
+int QBluetoothSocket_SocketType(void* ptr);
+void QBluetoothSocket_DestroyQBluetoothSocket(void* ptr);
 
 #ifdef __cplusplus
 }

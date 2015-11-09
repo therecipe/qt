@@ -10,8 +10,8 @@ type QMetaClassInfo struct {
 	ptr unsafe.Pointer
 }
 
-type QMetaClassInfoITF interface {
-	QMetaClassInfoPTR() *QMetaClassInfo
+type QMetaClassInfo_ITF interface {
+	QMetaClassInfo_PTR() *QMetaClassInfo
 }
 
 func (p *QMetaClassInfo) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QMetaClassInfo) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMetaClassInfo(ptr QMetaClassInfoITF) unsafe.Pointer {
+func PointerFromQMetaClassInfo(ptr QMetaClassInfo_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMetaClassInfoPTR().Pointer()
+		return ptr.QMetaClassInfo_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMetaClassInfoFromPointer(ptr unsafe.Pointer) *QMetaClassInfo {
+func NewQMetaClassInfoFromPointer(ptr unsafe.Pointer) *QMetaClassInfo {
 	var n = new(QMetaClassInfo)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMetaClassInfo) QMetaClassInfoPTR() *QMetaClassInfo {
+func (ptr *QMetaClassInfo) QMetaClassInfo_PTR() *QMetaClassInfo {
 	return ptr
 }

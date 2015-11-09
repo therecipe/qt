@@ -1,8 +1,8 @@
 #include "qsqlresult.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QSqlResult>
 #include "_cgo_export.h"
 
@@ -10,11 +10,11 @@ class MyQSqlResult: public QSqlResult {
 public:
 };
 
-char* QSqlResult_Handle(QtObjectPtr ptr){
-	return static_cast<QSqlResult*>(ptr)->handle().toString().toUtf8().data();
+void* QSqlResult_Handle(void* ptr){
+	return new QVariant(static_cast<QSqlResult*>(ptr)->handle());
 }
 
-void QSqlResult_DestroyQSqlResult(QtObjectPtr ptr){
+void QSqlResult_DestroyQSqlResult(void* ptr){
 	static_cast<QSqlResult*>(ptr)->~QSqlResult();
 }
 

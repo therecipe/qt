@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{directories QFileSystemWatcher::directories commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.cpp non plain false false  QStringList [] }
-&{files QFileSystemWatcher::files commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.cpp non plain false false  QStringList [] }
-&{QFileSystemWatcher QFileSystemWatcher::QFileSystemWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non constructor false false   [0xc82039a960] }
-&{QFileSystemWatcher QFileSystemWatcher::QFileSystemWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non constructor false true 2  [0xc82039abc0 0xc82039aca0] }
-&{addPath QFileSystemWatcher::addPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non plain false false  bool [0xc82039b100] }
-&{addPaths QFileSystemWatcher::addPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non plain false false  QStringList [0xc82039b360] }
-&{directoryChanged QFileSystemWatcher::directoryChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non signal false false  void [0xc82039b540] }
-&{fileChanged QFileSystemWatcher::fileChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non signal false false  void [0xc82039b760] }
-&{removePath QFileSystemWatcher::removePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non plain false false  bool [0xc82039b920] }
-&{removePaths QFileSystemWatcher::removePaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non plain false false  QStringList [0xc82039bb00] }
-&{~QFileSystemWatcher QFileSystemWatcher::~QFileSystemWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non destructor false false   [] }
+&{directories QFileSystemWatcher::directories commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.cpp non plain false false  QStringList QStringList directories() const [] }
+&{files QFileSystemWatcher::files commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.cpp non plain false false  QStringList QStringList files() const [] }
+&{QFileSystemWatcher QFileSystemWatcher::QFileSystemWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non constructor false false   QFileSystemWatcher(QObject *parent) [0xc820373560] }
+&{QFileSystemWatcher QFileSystemWatcher::QFileSystemWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non constructor false true 2  QFileSystemWatcher(const QStringList &paths, QObject *parent) [0xc8203737c0 0xc8203738a0] }
+&{addPath QFileSystemWatcher::addPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non plain false false  bool bool addPath(const QString &path) [0xc820373d60] }
+&{addPaths QFileSystemWatcher::addPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non plain false false  QStringList QStringList addPaths(const QStringList &paths) [0xc820373fe0] }
+&{directoryChanged QFileSystemWatcher::directoryChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non signal false false  void void directoryChanged(const QString &path) [0xc8203ee1c0] }
+&{fileChanged QFileSystemWatcher::fileChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non signal false false  void void fileChanged(const QString &path) [0xc8203ee400] }
+&{removePath QFileSystemWatcher::removePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non plain false false  bool bool removePath(const QString &path) [0xc8203ee620] }
+&{removePaths QFileSystemWatcher::removePaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non plain false false  QStringList QStringList removePaths(const QStringList &paths) [0xc8203ee8c0] }
+&{~QFileSystemWatcher QFileSystemWatcher::~QFileSystemWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfilesystemwatcher.h non destructor false false   ~QFileSystemWatcher() [] }
 ########################################			ENUMS			########################################

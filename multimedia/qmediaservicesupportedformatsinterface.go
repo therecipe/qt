@@ -11,8 +11,8 @@ type QMediaServiceSupportedFormatsInterface struct {
 	ptr unsafe.Pointer
 }
 
-type QMediaServiceSupportedFormatsInterfaceITF interface {
-	QMediaServiceSupportedFormatsInterfacePTR() *QMediaServiceSupportedFormatsInterface
+type QMediaServiceSupportedFormatsInterface_ITF interface {
+	QMediaServiceSupportedFormatsInterface_PTR() *QMediaServiceSupportedFormatsInterface
 }
 
 func (p *QMediaServiceSupportedFormatsInterface) Pointer() unsafe.Pointer {
@@ -23,32 +23,32 @@ func (p *QMediaServiceSupportedFormatsInterface) SetPointer(ptr unsafe.Pointer) 
 	p.ptr = ptr
 }
 
-func PointerFromQMediaServiceSupportedFormatsInterface(ptr QMediaServiceSupportedFormatsInterfaceITF) unsafe.Pointer {
+func PointerFromQMediaServiceSupportedFormatsInterface(ptr QMediaServiceSupportedFormatsInterface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceSupportedFormatsInterfacePTR().Pointer()
+		return ptr.QMediaServiceSupportedFormatsInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaServiceSupportedFormatsInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceSupportedFormatsInterface {
+func NewQMediaServiceSupportedFormatsInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceSupportedFormatsInterface {
 	var n = new(QMediaServiceSupportedFormatsInterface)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMediaServiceSupportedFormatsInterface) QMediaServiceSupportedFormatsInterfacePTR() *QMediaServiceSupportedFormatsInterface {
+func (ptr *QMediaServiceSupportedFormatsInterface) QMediaServiceSupportedFormatsInterface_PTR() *QMediaServiceSupportedFormatsInterface {
 	return ptr
 }
 
 func (ptr *QMediaServiceSupportedFormatsInterface) SupportedMimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(C.QtObjectPtr(ptr.Pointer()))), "|")
+		return strings.Split(C.GoString(C.QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QMediaServiceSupportedFormatsInterface) DestroyQMediaServiceSupportedFormatsInterface() {
 	if ptr.Pointer() != nil {
-		C.QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(ptr.Pointer())
 	}
 }

@@ -1,20 +1,20 @@
 ########################################			FUNCTIONS			########################################
-&{alignment QScrollArea::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.cpp non plain false false  Qt::Alignment [] }
-&{setAlignment QScrollArea::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.cpp non plain false false  void [0xc822e216a0] }
-&{setWidget QScrollArea::setWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.cpp non plain false false  void [0xc822e21b60] }
-&{setWidgetResizable QScrollArea::setWidgetResizable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.cpp non plain false false  void [0xc822e142a0] }
-&{widgetResizable QScrollArea::widgetResizable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.cpp non plain false false  bool [] }
-&{QScrollArea QScrollArea::QScrollArea commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h non constructor false false   [0xc822e14b20] }
-&{ensureVisible QScrollArea::ensureVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h non plain false false  void [0xc822e157c0 0xc822e158e0 0xc822e15ba0 0xc822e15c80] }
-&{ensureWidgetVisible QScrollArea::ensureWidgetVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h non plain false false  void [0xc822e02260 0xc822e023a0 0xc822e02520] }
-&{event QScrollArea::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  bool [0xc822e02ac0] }
-&{eventFilter QScrollArea::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  bool [0xc822e02ec0 0xc822e03020] }
-&{focusNextPrevChild QScrollArea::focusNextPrevChild commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  bool [0xc822e035e0] }
-&{resizeEvent QScrollArea::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  void [0xc822e03ba0] }
-&{scrollContentsBy QScrollArea::scrollContentsBy commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  void [0xc822df0020 0xc822df0180] }
-&{sizeHint QScrollArea::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  QSize [] }
-&{takeWidget QScrollArea::takeWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h non plain false false  QWidget * [] }
-&{viewportSizeHint QScrollArea::viewportSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  QSize [] }
-&{widget QScrollArea::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h non plain false false  QWidget * [] }
-&{~QScrollArea QScrollArea::~QScrollArea commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h non destructor false false   [] }
+&{alignment QScrollArea::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.cpp non plain false false  Qt::Alignment Qt::Alignment alignment() const [] }
+&{setAlignment QScrollArea::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.cpp non plain false false  void void setAlignment(Qt::Alignment ) [0xc821e45720] }
+&{setWidget QScrollArea::setWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.cpp non plain false false  void void setWidget(QWidget *widget) [0xc821e45ae0] }
+&{setWidgetResizable QScrollArea::setWidgetResizable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.cpp non plain false false  void void setWidgetResizable(bool resizable) [0xc821e45e60] }
+&{widgetResizable QScrollArea::widgetResizable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.cpp non plain false false  bool bool widgetResizable() const [] }
+&{QScrollArea QScrollArea::QScrollArea commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h non constructor false false   QScrollArea(QWidget *parent) [0xc820f625e0] }
+&{ensureVisible QScrollArea::ensureVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h non plain false false  void void ensureVisible(int x, int y, int xmargin, int ymargin) [0xc820f630e0 0xc820f63240 0xc820f633a0 0xc820f63580] }
+&{ensureWidgetVisible QScrollArea::ensureWidgetVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h non plain false false  void void ensureWidgetVisible(QWidget *childWidget, int xmargin, int ymargin) [0xc820f63a20 0xc820f63c20 0xc820f63d80] }
+&{event QScrollArea::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  bool bool event(QEvent *e) [0xc820f4e260] }
+&{eventFilter QScrollArea::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  bool bool eventFilter(QObject *o, QEvent *e) [0xc820f4e6c0 0xc820f4e800] }
+&{focusNextPrevChild QScrollArea::focusNextPrevChild commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  bool bool focusNextPrevChild(bool next) [0xc820f4ec80] }
+&{resizeEvent QScrollArea::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  void void resizeEvent(QResizeEvent *) [0xc820f4f160] }
+&{scrollContentsBy QScrollArea::scrollContentsBy commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  void void scrollContentsBy(int dx, int dy) [0xc820f4f560 0xc820f4f6a0] }
+&{sizeHint QScrollArea::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  QSize QSize sizeHint() const [] }
+&{takeWidget QScrollArea::takeWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h non plain false false  QWidget * QWidget * takeWidget() [] }
+&{viewportSizeHint QScrollArea::viewportSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h impure plain false false  QSize QSize viewportSizeHint() const [] }
+&{widget QScrollArea::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h non plain false false  QWidget * QWidget * widget() const [] }
+&{~QScrollArea QScrollArea::~QScrollArea commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollarea.h non destructor false false   ~QScrollArea() [] }
 ########################################			ENUMS			########################################

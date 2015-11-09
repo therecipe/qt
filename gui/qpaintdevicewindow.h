@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QPaintDeviceWindow_Update3(QtObjectPtr ptr);
-void QPaintDeviceWindow_Update(QtObjectPtr ptr, QtObjectPtr rect);
-void QPaintDeviceWindow_Update2(QtObjectPtr ptr, QtObjectPtr region);
+void QPaintDeviceWindow_Update3(void* ptr);
+void QPaintDeviceWindow_Update(void* ptr, void* rect);
+void QPaintDeviceWindow_Update2(void* ptr, void* region);
 
 #ifdef __cplusplus
 }

@@ -10,8 +10,8 @@ type QSize struct {
 	ptr unsafe.Pointer
 }
 
-type QSizeITF interface {
-	QSizePTR() *QSize
+type QSize_ITF interface {
+	QSize_PTR() *QSize
 }
 
 func (p *QSize) Pointer() unsafe.Pointer {
@@ -22,106 +22,106 @@ func (p *QSize) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSize(ptr QSizeITF) unsafe.Pointer {
+func PointerFromQSize(ptr QSize_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSizePTR().Pointer()
+		return ptr.QSize_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSizeFromPointer(ptr unsafe.Pointer) *QSize {
+func NewQSizeFromPointer(ptr unsafe.Pointer) *QSize {
 	var n = new(QSize)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSize) QSizePTR() *QSize {
+func (ptr *QSize) QSize_PTR() *QSize {
 	return ptr
 }
 
 func NewQSize() *QSize {
-	return QSizeFromPointer(unsafe.Pointer(C.QSize_NewQSize()))
+	return NewQSizeFromPointer(C.QSize_NewQSize())
 }
 
 func NewQSize2(width int, height int) *QSize {
-	return QSizeFromPointer(unsafe.Pointer(C.QSize_NewQSize2(C.int(width), C.int(height))))
+	return NewQSizeFromPointer(C.QSize_NewQSize2(C.int(width), C.int(height)))
 }
 
 func (ptr *QSize) Height() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSize_Height(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSize_Height(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSize) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QSize_IsEmpty(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSize_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSize) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QSize_IsNull(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSize_IsNull(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSize) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSize_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSize_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSize) Rheight() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSize_Rheight(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSize_Rheight(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSize) Rwidth() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSize_Rwidth(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSize_Rwidth(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QSize) Scale2(size QSizeITF, mode Qt__AspectRatioMode) {
+func (ptr *QSize) Scale2(size QSize_ITF, mode Qt__AspectRatioMode) {
 	if ptr.Pointer() != nil {
-		C.QSize_Scale2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSize(size)), C.int(mode))
+		C.QSize_Scale2(ptr.Pointer(), PointerFromQSize(size), C.int(mode))
 	}
 }
 
 func (ptr *QSize) Scale(width int, height int, mode Qt__AspectRatioMode) {
 	if ptr.Pointer() != nil {
-		C.QSize_Scale(C.QtObjectPtr(ptr.Pointer()), C.int(width), C.int(height), C.int(mode))
+		C.QSize_Scale(ptr.Pointer(), C.int(width), C.int(height), C.int(mode))
 	}
 }
 
 func (ptr *QSize) SetHeight(height int) {
 	if ptr.Pointer() != nil {
-		C.QSize_SetHeight(C.QtObjectPtr(ptr.Pointer()), C.int(height))
+		C.QSize_SetHeight(ptr.Pointer(), C.int(height))
 	}
 }
 
 func (ptr *QSize) SetWidth(width int) {
 	if ptr.Pointer() != nil {
-		C.QSize_SetWidth(C.QtObjectPtr(ptr.Pointer()), C.int(width))
+		C.QSize_SetWidth(ptr.Pointer(), C.int(width))
 	}
 }
 
 func (ptr *QSize) Transpose() {
 	if ptr.Pointer() != nil {
-		C.QSize_Transpose(C.QtObjectPtr(ptr.Pointer()))
+		C.QSize_Transpose(ptr.Pointer())
 	}
 }
 
 func (ptr *QSize) Width() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSize_Width(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSize_Width(ptr.Pointer()))
 	}
 	return 0
 }

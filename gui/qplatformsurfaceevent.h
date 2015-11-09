@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QPlatformSurfaceEvent_NewQPlatformSurfaceEvent(int surfaceEventType);
-int QPlatformSurfaceEvent_SurfaceEventType(QtObjectPtr ptr);
+void* QPlatformSurfaceEvent_NewQPlatformSurfaceEvent(int surfaceEventType);
+int QPlatformSurfaceEvent_SurfaceEventType(void* ptr);
 
 #ifdef __cplusplus
 }

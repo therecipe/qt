@@ -1,18 +1,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QNearFieldTarget_AccessMethods(QtObjectPtr ptr);
-void QNearFieldTarget_ConnectDisconnected(QtObjectPtr ptr);
-void QNearFieldTarget_DisconnectDisconnected(QtObjectPtr ptr);
-int QNearFieldTarget_HasNdefMessage(QtObjectPtr ptr);
-int QNearFieldTarget_IsProcessingCommand(QtObjectPtr ptr);
-void QNearFieldTarget_ConnectNdefMessagesWritten(QtObjectPtr ptr);
-void QNearFieldTarget_DisconnectNdefMessagesWritten(QtObjectPtr ptr);
-int QNearFieldTarget_Type(QtObjectPtr ptr);
-char* QNearFieldTarget_Url(QtObjectPtr ptr);
-void QNearFieldTarget_DestroyQNearFieldTarget(QtObjectPtr ptr);
+int QNearFieldTarget_AccessMethods(void* ptr);
+void QNearFieldTarget_ConnectDisconnected(void* ptr);
+void QNearFieldTarget_DisconnectDisconnected(void* ptr);
+int QNearFieldTarget_HasNdefMessage(void* ptr);
+int QNearFieldTarget_IsProcessingCommand(void* ptr);
+void QNearFieldTarget_ConnectNdefMessagesWritten(void* ptr);
+void QNearFieldTarget_DisconnectNdefMessagesWritten(void* ptr);
+int QNearFieldTarget_Type(void* ptr);
+void* QNearFieldTarget_Uid(void* ptr);
+void QNearFieldTarget_DestroyQNearFieldTarget(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -10,8 +10,8 @@ type QTreeWidgetItemIterator struct {
 	ptr unsafe.Pointer
 }
 
-type QTreeWidgetItemIteratorITF interface {
-	QTreeWidgetItemIteratorPTR() *QTreeWidgetItemIterator
+type QTreeWidgetItemIterator_ITF interface {
+	QTreeWidgetItemIterator_PTR() *QTreeWidgetItemIterator
 }
 
 func (p *QTreeWidgetItemIterator) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QTreeWidgetItemIterator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQTreeWidgetItemIterator(ptr QTreeWidgetItemIteratorITF) unsafe.Pointer {
+func PointerFromQTreeWidgetItemIterator(ptr QTreeWidgetItemIterator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTreeWidgetItemIteratorPTR().Pointer()
+		return ptr.QTreeWidgetItemIterator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTreeWidgetItemIteratorFromPointer(ptr unsafe.Pointer) *QTreeWidgetItemIterator {
+func NewQTreeWidgetItemIteratorFromPointer(ptr unsafe.Pointer) *QTreeWidgetItemIterator {
 	var n = new(QTreeWidgetItemIterator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QTreeWidgetItemIterator) QTreeWidgetItemIteratorPTR() *QTreeWidgetItemIterator {
+func (ptr *QTreeWidgetItemIterator) QTreeWidgetItemIterator_PTR() *QTreeWidgetItemIterator {
 	return ptr
 }
 
 //QTreeWidgetItemIterator::IteratorFlag
-type QTreeWidgetItemIterator__IteratorFlag int
+type QTreeWidgetItemIterator__IteratorFlag int64
 
-var (
+const (
 	QTreeWidgetItemIterator__All           = QTreeWidgetItemIterator__IteratorFlag(0x00000000)
 	QTreeWidgetItemIterator__Hidden        = QTreeWidgetItemIterator__IteratorFlag(0x00000001)
 	QTreeWidgetItemIterator__NotHidden     = QTreeWidgetItemIterator__IteratorFlag(0x00000002)

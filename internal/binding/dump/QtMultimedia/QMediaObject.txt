@@ -1,22 +1,22 @@
 ########################################			FUNCTIONS			########################################
-&{notifyInterval QMediaObject::notifyInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.cpp non plain false false  int [] }
-&{setNotifyInterval QMediaObject::setNotifyInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.cpp non plain false false  void [0xc8219564c0] }
-&{QMediaObject QMediaObject::QMediaObject commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non constructor false false   [0xc8219567e0 0xc821956900] }
-&{addPropertyWatch QMediaObject::addPropertyWatch commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non plain false false  void [0xc8219578c0] }
-&{availability QMediaObject::availability commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h impure plain false false  QMultimedia::AvailabilityStatus [] }
-&{availabilityChanged QMediaObject::availabilityChanged commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non signal false true 2 void [0xc821957f00] }
-&{availabilityChanged QMediaObject::availabilityChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non signal false false  void [0xc821936280] }
-&{availableMetaData QMediaObject::availableMetaData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non plain false false  QStringList [] }
-&{bind QMediaObject::bind commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h impure plain false false  bool [0xc821936900] }
-&{isAvailable QMediaObject::isAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h impure plain false false  bool [] }
-&{isMetaDataAvailable QMediaObject::isMetaDataAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non plain false false  bool [] }
-&{metaData QMediaObject::metaData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non plain false false  QVariant [0xc821936f80] }
-&{metaDataAvailableChanged QMediaObject::metaDataAvailableChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non signal false false  void [0xc821937340] }
-&{metaDataChanged QMediaObject::metaDataChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non signal false false  void [] }
-&{metaDataChanged QMediaObject::metaDataChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non signal false true 2 void [0xc8219377e0 0xc821937920] }
-&{notifyIntervalChanged QMediaObject::notifyIntervalChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non signal false false  void [0xc821937cc0] }
-&{removePropertyWatch QMediaObject::removePropertyWatch commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non plain false false  void [0xc821937fe0] }
-&{service QMediaObject::service commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h impure plain false false  QMediaService * [] }
-&{unbind QMediaObject::unbind commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h impure plain false false  void [0xc821916660] }
-&{~QMediaObject QMediaObject::~QMediaObject commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non destructor false false   [] }
+&{notifyInterval QMediaObject::notifyInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.cpp non plain false false  int int notifyInterval() const [] }
+&{setNotifyInterval QMediaObject::setNotifyInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.cpp non plain false false  void void setNotifyInterval(int milliSeconds) [0xc822372280] }
+&{QMediaObject QMediaObject::QMediaObject commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non constructor false false   QMediaObject(QObject *parent, QMediaService *service) [0xc822372620 0xc822372720] }
+&{addPropertyWatch QMediaObject::addPropertyWatch commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non plain false false  void void addPropertyWatch(QByteArray const &name) [0xc822373700] }
+&{availability QMediaObject::availability commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h impure plain false false  QMultimedia::AvailabilityStatus QMultimedia::AvailabilityStatus availability() const [] }
+&{availabilityChanged QMediaObject::availabilityChanged commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non signal false true 2 void void availabilityChanged(QMultimedia::AvailabilityStatus availability) [0xc822373dc0] }
+&{availabilityChanged QMediaObject::availabilityChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non signal false false  void void availabilityChanged(bool available) [0xc822068ea0] }
+&{availableMetaData QMediaObject::availableMetaData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non plain false false  QStringList QStringList availableMetaData() const [] }
+&{bind QMediaObject::bind commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h impure plain false false  bool bool bind(QObject *object) [0xc8222afc00] }
+&{isAvailable QMediaObject::isAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h impure plain false false  bool bool isAvailable() const [] }
+&{isMetaDataAvailable QMediaObject::isMetaDataAvailable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non plain false false  bool bool isMetaDataAvailable() const [] }
+&{metaData QMediaObject::metaData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non plain false false  QVariant QVariant metaData(const QString &key) const [0xc822aee0e0] }
+&{metaDataAvailableChanged QMediaObject::metaDataAvailableChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non signal false false  void void metaDataAvailableChanged(bool available) [0xc822aee300] }
+&{metaDataChanged QMediaObject::metaDataChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non signal false false  void void metaDataChanged() [] }
+&{metaDataChanged QMediaObject::metaDataChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non signal false true 2 void void metaDataChanged(const QString &key, const QVariant &value) [0xc822aee740 0xc822aee7c0] }
+&{notifyIntervalChanged QMediaObject::notifyIntervalChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non signal false false  void void notifyIntervalChanged(int milliseconds) [0xc822aeeac0] }
+&{removePropertyWatch QMediaObject::removePropertyWatch commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non plain false false  void void removePropertyWatch(QByteArray const &name) [0xc822aeed80] }
+&{service QMediaObject::service commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h impure plain false false  QMediaService * QMediaService * service() const [] }
+&{unbind QMediaObject::unbind commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h impure plain false false  void void unbind(QObject *object) [0xc822aef380] }
+&{~QMediaObject QMediaObject::~QMediaObject commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaobject.h non destructor false false   ~QMediaObject() [] }
 ########################################			ENUMS			########################################

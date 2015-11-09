@@ -10,8 +10,8 @@ type QXmlStreamAttribute struct {
 	ptr unsafe.Pointer
 }
 
-type QXmlStreamAttributeITF interface {
-	QXmlStreamAttributePTR() *QXmlStreamAttribute
+type QXmlStreamAttribute_ITF interface {
+	QXmlStreamAttribute_PTR() *QXmlStreamAttribute
 }
 
 func (p *QXmlStreamAttribute) Pointer() unsafe.Pointer {
@@ -22,48 +22,83 @@ func (p *QXmlStreamAttribute) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQXmlStreamAttribute(ptr QXmlStreamAttributeITF) unsafe.Pointer {
+func PointerFromQXmlStreamAttribute(ptr QXmlStreamAttribute_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QXmlStreamAttributePTR().Pointer()
+		return ptr.QXmlStreamAttribute_PTR().Pointer()
 	}
 	return nil
 }
 
-func QXmlStreamAttributeFromPointer(ptr unsafe.Pointer) *QXmlStreamAttribute {
+func NewQXmlStreamAttributeFromPointer(ptr unsafe.Pointer) *QXmlStreamAttribute {
 	var n = new(QXmlStreamAttribute)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QXmlStreamAttribute) QXmlStreamAttributePTR() *QXmlStreamAttribute {
+func (ptr *QXmlStreamAttribute) QXmlStreamAttribute_PTR() *QXmlStreamAttribute {
 	return ptr
 }
 
 func NewQXmlStreamAttribute() *QXmlStreamAttribute {
-	return QXmlStreamAttributeFromPointer(unsafe.Pointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute()))
+	return NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute())
 }
 
 func NewQXmlStreamAttribute3(namespaceUri string, name string, value string) *QXmlStreamAttribute {
-	return QXmlStreamAttributeFromPointer(unsafe.Pointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute3(C.CString(namespaceUri), C.CString(name), C.CString(value))))
+	return NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute3(C.CString(namespaceUri), C.CString(name), C.CString(value)))
 }
 
 func NewQXmlStreamAttribute2(qualifiedName string, value string) *QXmlStreamAttribute {
-	return QXmlStreamAttributeFromPointer(unsafe.Pointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute2(C.CString(qualifiedName), C.CString(value))))
+	return NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute2(C.CString(qualifiedName), C.CString(value)))
 }
 
-func NewQXmlStreamAttribute4(other QXmlStreamAttributeITF) *QXmlStreamAttribute {
-	return QXmlStreamAttributeFromPointer(unsafe.Pointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute4(C.QtObjectPtr(PointerFromQXmlStreamAttribute(other)))))
+func NewQXmlStreamAttribute4(other QXmlStreamAttribute_ITF) *QXmlStreamAttribute {
+	return NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute4(PointerFromQXmlStreamAttribute(other)))
 }
 
 func (ptr *QXmlStreamAttribute) IsDefault() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamAttribute_IsDefault(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QXmlStreamAttribute_IsDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
 
+func (ptr *QXmlStreamAttribute) Name() *QStringRef {
+	if ptr.Pointer() != nil {
+		return NewQStringRefFromPointer(C.QXmlStreamAttribute_Name(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QXmlStreamAttribute) NamespaceUri() *QStringRef {
+	if ptr.Pointer() != nil {
+		return NewQStringRefFromPointer(C.QXmlStreamAttribute_NamespaceUri(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QXmlStreamAttribute) Prefix() *QStringRef {
+	if ptr.Pointer() != nil {
+		return NewQStringRefFromPointer(C.QXmlStreamAttribute_Prefix(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QXmlStreamAttribute) QualifiedName() *QStringRef {
+	if ptr.Pointer() != nil {
+		return NewQStringRefFromPointer(C.QXmlStreamAttribute_QualifiedName(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QXmlStreamAttribute) Value() *QStringRef {
+	if ptr.Pointer() != nil {
+		return NewQStringRefFromPointer(C.QXmlStreamAttribute_Value(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QXmlStreamAttribute) DestroyQXmlStreamAttribute() {
 	if ptr.Pointer() != nil {
-		C.QXmlStreamAttribute_DestroyQXmlStreamAttribute(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlStreamAttribute_DestroyQXmlStreamAttribute(ptr.Pointer())
 	}
 }

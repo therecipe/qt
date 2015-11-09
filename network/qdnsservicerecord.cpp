@@ -10,27 +10,27 @@ class MyQDnsServiceRecord: public QDnsServiceRecord {
 public:
 };
 
-QtObjectPtr QDnsServiceRecord_NewQDnsServiceRecord(){
+void* QDnsServiceRecord_NewQDnsServiceRecord(){
 	return new QDnsServiceRecord();
 }
 
-QtObjectPtr QDnsServiceRecord_NewQDnsServiceRecord2(QtObjectPtr other){
+void* QDnsServiceRecord_NewQDnsServiceRecord2(void* other){
 	return new QDnsServiceRecord(*static_cast<QDnsServiceRecord*>(other));
 }
 
-char* QDnsServiceRecord_Name(QtObjectPtr ptr){
+char* QDnsServiceRecord_Name(void* ptr){
 	return static_cast<QDnsServiceRecord*>(ptr)->name().toUtf8().data();
 }
 
-void QDnsServiceRecord_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QDnsServiceRecord_Swap(void* ptr, void* other){
 	static_cast<QDnsServiceRecord*>(ptr)->swap(*static_cast<QDnsServiceRecord*>(other));
 }
 
-char* QDnsServiceRecord_Target(QtObjectPtr ptr){
+char* QDnsServiceRecord_Target(void* ptr){
 	return static_cast<QDnsServiceRecord*>(ptr)->target().toUtf8().data();
 }
 
-void QDnsServiceRecord_DestroyQDnsServiceRecord(QtObjectPtr ptr){
+void QDnsServiceRecord_DestroyQDnsServiceRecord(void* ptr){
 	static_cast<QDnsServiceRecord*>(ptr)->~QDnsServiceRecord();
 }
 

@@ -1,3 +1,3 @@
 ########################################			FUNCTIONS			########################################
-&{sensorsChanged QSensorChangesInterface::sensorsChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensorplugin.h pure plain false false  void [] }
+&{sensorsChanged QSensorChangesInterface::sensorsChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensorplugin.h pure plain false false  void void sensorsChanged() [] }
 ########################################			ENUMS			########################################

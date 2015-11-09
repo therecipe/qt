@@ -1,17 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QWidgetItem_NewQWidgetItem(QtObjectPtr widget);
-int QWidgetItem_ControlTypes(QtObjectPtr ptr);
-int QWidgetItem_ExpandingDirections(QtObjectPtr ptr);
-int QWidgetItem_HasHeightForWidth(QtObjectPtr ptr);
-int QWidgetItem_HeightForWidth(QtObjectPtr ptr, int w);
-int QWidgetItem_IsEmpty(QtObjectPtr ptr);
-void QWidgetItem_SetGeometry(QtObjectPtr ptr, QtObjectPtr rect);
-QtObjectPtr QWidgetItem_Widget(QtObjectPtr ptr);
-void QWidgetItem_DestroyQWidgetItem(QtObjectPtr ptr);
+void* QWidgetItem_NewQWidgetItem(void* widget);
+int QWidgetItem_ControlTypes(void* ptr);
+int QWidgetItem_ExpandingDirections(void* ptr);
+int QWidgetItem_HasHeightForWidth(void* ptr);
+int QWidgetItem_HeightForWidth(void* ptr, int w);
+int QWidgetItem_IsEmpty(void* ptr);
+void QWidgetItem_SetGeometry(void* ptr, void* rect);
+void* QWidgetItem_Widget(void* ptr);
+void QWidgetItem_DestroyQWidgetItem(void* ptr);
 
 #ifdef __cplusplus
 }

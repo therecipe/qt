@@ -1,18 +1,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QQmlIncubator_NewQQmlIncubator(int mode);
-void QQmlIncubator_Clear(QtObjectPtr ptr);
-void QQmlIncubator_ForceCompletion(QtObjectPtr ptr);
-int QQmlIncubator_IncubationMode(QtObjectPtr ptr);
-int QQmlIncubator_IsError(QtObjectPtr ptr);
-int QQmlIncubator_IsLoading(QtObjectPtr ptr);
-int QQmlIncubator_IsNull(QtObjectPtr ptr);
-int QQmlIncubator_IsReady(QtObjectPtr ptr);
-QtObjectPtr QQmlIncubator_Object(QtObjectPtr ptr);
-int QQmlIncubator_Status(QtObjectPtr ptr);
+void* QQmlIncubator_NewQQmlIncubator(int mode);
+void QQmlIncubator_Clear(void* ptr);
+void QQmlIncubator_ForceCompletion(void* ptr);
+int QQmlIncubator_IncubationMode(void* ptr);
+int QQmlIncubator_IsError(void* ptr);
+int QQmlIncubator_IsLoading(void* ptr);
+int QQmlIncubator_IsNull(void* ptr);
+int QQmlIncubator_IsReady(void* ptr);
+void* QQmlIncubator_Object(void* ptr);
+int QQmlIncubator_Status(void* ptr);
 
 #ifdef __cplusplus
 }

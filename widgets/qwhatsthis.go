@@ -11,8 +11,8 @@ type QWhatsThis struct {
 	ptr unsafe.Pointer
 }
 
-type QWhatsThisITF interface {
-	QWhatsThisPTR() *QWhatsThis
+type QWhatsThis_ITF interface {
+	QWhatsThis_PTR() *QWhatsThis
 }
 
 func (p *QWhatsThis) Pointer() unsafe.Pointer {
@@ -23,25 +23,25 @@ func (p *QWhatsThis) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQWhatsThis(ptr QWhatsThisITF) unsafe.Pointer {
+func PointerFromQWhatsThis(ptr QWhatsThis_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QWhatsThisPTR().Pointer()
+		return ptr.QWhatsThis_PTR().Pointer()
 	}
 	return nil
 }
 
-func QWhatsThisFromPointer(ptr unsafe.Pointer) *QWhatsThis {
+func NewQWhatsThisFromPointer(ptr unsafe.Pointer) *QWhatsThis {
 	var n = new(QWhatsThis)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QWhatsThis) QWhatsThisPTR() *QWhatsThis {
+func (ptr *QWhatsThis) QWhatsThis_PTR() *QWhatsThis {
 	return ptr
 }
 
-func QWhatsThis_CreateAction(parent core.QObjectITF) *QAction {
-	return QActionFromPointer(unsafe.Pointer(C.QWhatsThis_QWhatsThis_CreateAction(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func QWhatsThis_CreateAction(parent core.QObject_ITF) *QAction {
+	return NewQActionFromPointer(C.QWhatsThis_QWhatsThis_CreateAction(core.PointerFromQObject(parent)))
 }
 
 func QWhatsThis_EnterWhatsThisMode() {
@@ -60,6 +60,6 @@ func QWhatsThis_LeaveWhatsThisMode() {
 	C.QWhatsThis_QWhatsThis_LeaveWhatsThisMode()
 }
 
-func QWhatsThis_ShowText(pos core.QPointITF, text string, w QWidgetITF) {
-	C.QWhatsThis_QWhatsThis_ShowText(C.QtObjectPtr(core.PointerFromQPoint(pos)), C.CString(text), C.QtObjectPtr(PointerFromQWidget(w)))
+func QWhatsThis_ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF) {
+	C.QWhatsThis_QWhatsThis_ShowText(core.PointerFromQPoint(pos), C.CString(text), PointerFromQWidget(w))
 }

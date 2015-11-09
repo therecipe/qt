@@ -1,12 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QTextImageFormat_NewQTextImageFormat();
-int QTextImageFormat_IsValid(QtObjectPtr ptr);
-char* QTextImageFormat_Name(QtObjectPtr ptr);
-void QTextImageFormat_SetName(QtObjectPtr ptr, char* name);
+void* QTextImageFormat_NewQTextImageFormat();
+double QTextImageFormat_Height(void* ptr);
+int QTextImageFormat_IsValid(void* ptr);
+char* QTextImageFormat_Name(void* ptr);
+void QTextImageFormat_SetHeight(void* ptr, double height);
+void QTextImageFormat_SetName(void* ptr, char* name);
+void QTextImageFormat_SetWidth(void* ptr, double width);
+double QTextImageFormat_Width(void* ptr);
 
 #ifdef __cplusplus
 }

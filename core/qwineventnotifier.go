@@ -11,27 +11,27 @@ type QWinEventNotifier struct {
 	QObject
 }
 
-type QWinEventNotifierITF interface {
-	QObjectITF
-	QWinEventNotifierPTR() *QWinEventNotifier
+type QWinEventNotifier_ITF interface {
+	QObject_ITF
+	QWinEventNotifier_PTR() *QWinEventNotifier
 }
 
-func PointerFromQWinEventNotifier(ptr QWinEventNotifierITF) unsafe.Pointer {
+func PointerFromQWinEventNotifier(ptr QWinEventNotifier_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QWinEventNotifierPTR().Pointer()
+		return ptr.QWinEventNotifier_PTR().Pointer()
 	}
 	return nil
 }
 
-func QWinEventNotifierFromPointer(ptr unsafe.Pointer) *QWinEventNotifier {
+func NewQWinEventNotifierFromPointer(ptr unsafe.Pointer) *QWinEventNotifier {
 	var n = new(QWinEventNotifier)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QWinEventNotifier_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QWinEventNotifier) QWinEventNotifierPTR() *QWinEventNotifier {
+func (ptr *QWinEventNotifier) QWinEventNotifier_PTR() *QWinEventNotifier {
 	return ptr
 }

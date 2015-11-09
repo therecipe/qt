@@ -10,8 +10,8 @@ type QMetaMethod struct {
 	ptr unsafe.Pointer
 }
 
-type QMetaMethodITF interface {
-	QMetaMethodPTR() *QMetaMethod
+type QMetaMethod_ITF interface {
+	QMetaMethod_PTR() *QMetaMethod
 }
 
 func (p *QMetaMethod) Pointer() unsafe.Pointer {
@@ -22,36 +22,36 @@ func (p *QMetaMethod) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMetaMethod(ptr QMetaMethodITF) unsafe.Pointer {
+func PointerFromQMetaMethod(ptr QMetaMethod_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMetaMethodPTR().Pointer()
+		return ptr.QMetaMethod_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMetaMethodFromPointer(ptr unsafe.Pointer) *QMetaMethod {
+func NewQMetaMethodFromPointer(ptr unsafe.Pointer) *QMetaMethod {
 	var n = new(QMetaMethod)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMetaMethod) QMetaMethodPTR() *QMetaMethod {
+func (ptr *QMetaMethod) QMetaMethod_PTR() *QMetaMethod {
 	return ptr
 }
 
 //QMetaMethod::Access
-type QMetaMethod__Access int
+type QMetaMethod__Access int64
 
-var (
+const (
 	QMetaMethod__Private   = QMetaMethod__Access(0)
 	QMetaMethod__Protected = QMetaMethod__Access(1)
 	QMetaMethod__Public    = QMetaMethod__Access(2)
 )
 
 //QMetaMethod::MethodType
-type QMetaMethod__MethodType int
+type QMetaMethod__MethodType int64
 
-var (
+const (
 	QMetaMethod__Method      = QMetaMethod__MethodType(0)
 	QMetaMethod__Signal      = QMetaMethod__MethodType(1)
 	QMetaMethod__Slot        = QMetaMethod__MethodType(2)
@@ -60,84 +60,98 @@ var (
 
 func (ptr *QMetaMethod) Access() QMetaMethod__Access {
 	if ptr.Pointer() != nil {
-		return QMetaMethod__Access(C.QMetaMethod_Access(C.QtObjectPtr(ptr.Pointer())))
+		return QMetaMethod__Access(C.QMetaMethod_Access(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QMetaMethod) Invoke4(object QObjectITF, val0 QGenericArgumentITF, val1 QGenericArgumentITF, val2 QGenericArgumentITF, val3 QGenericArgumentITF, val4 QGenericArgumentITF, val5 QGenericArgumentITF, val6 QGenericArgumentITF, val7 QGenericArgumentITF, val8 QGenericArgumentITF, val9 QGenericArgumentITF) bool {
+func (ptr *QMetaMethod) Invoke4(object QObject_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaMethod_Invoke4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(object)), C.QtObjectPtr(PointerFromQGenericArgument(val0)), C.QtObjectPtr(PointerFromQGenericArgument(val1)), C.QtObjectPtr(PointerFromQGenericArgument(val2)), C.QtObjectPtr(PointerFromQGenericArgument(val3)), C.QtObjectPtr(PointerFromQGenericArgument(val4)), C.QtObjectPtr(PointerFromQGenericArgument(val5)), C.QtObjectPtr(PointerFromQGenericArgument(val6)), C.QtObjectPtr(PointerFromQGenericArgument(val7)), C.QtObjectPtr(PointerFromQGenericArgument(val8)), C.QtObjectPtr(PointerFromQGenericArgument(val9))) != 0
+		return C.QMetaMethod_Invoke4(ptr.Pointer(), PointerFromQObject(object), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 	}
 	return false
 }
 
-func (ptr *QMetaMethod) Invoke2(object QObjectITF, returnValue QGenericReturnArgumentITF, val0 QGenericArgumentITF, val1 QGenericArgumentITF, val2 QGenericArgumentITF, val3 QGenericArgumentITF, val4 QGenericArgumentITF, val5 QGenericArgumentITF, val6 QGenericArgumentITF, val7 QGenericArgumentITF, val8 QGenericArgumentITF, val9 QGenericArgumentITF) bool {
+func (ptr *QMetaMethod) Invoke2(object QObject_ITF, returnValue QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaMethod_Invoke2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(object)), C.QtObjectPtr(PointerFromQGenericReturnArgument(returnValue)), C.QtObjectPtr(PointerFromQGenericArgument(val0)), C.QtObjectPtr(PointerFromQGenericArgument(val1)), C.QtObjectPtr(PointerFromQGenericArgument(val2)), C.QtObjectPtr(PointerFromQGenericArgument(val3)), C.QtObjectPtr(PointerFromQGenericArgument(val4)), C.QtObjectPtr(PointerFromQGenericArgument(val5)), C.QtObjectPtr(PointerFromQGenericArgument(val6)), C.QtObjectPtr(PointerFromQGenericArgument(val7)), C.QtObjectPtr(PointerFromQGenericArgument(val8)), C.QtObjectPtr(PointerFromQGenericArgument(val9))) != 0
+		return C.QMetaMethod_Invoke2(ptr.Pointer(), PointerFromQObject(object), PointerFromQGenericReturnArgument(returnValue), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 	}
 	return false
 }
 
-func (ptr *QMetaMethod) Invoke3(object QObjectITF, connectionType Qt__ConnectionType, val0 QGenericArgumentITF, val1 QGenericArgumentITF, val2 QGenericArgumentITF, val3 QGenericArgumentITF, val4 QGenericArgumentITF, val5 QGenericArgumentITF, val6 QGenericArgumentITF, val7 QGenericArgumentITF, val8 QGenericArgumentITF, val9 QGenericArgumentITF) bool {
+func (ptr *QMetaMethod) Invoke3(object QObject_ITF, connectionType Qt__ConnectionType, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaMethod_Invoke3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(object)), C.int(connectionType), C.QtObjectPtr(PointerFromQGenericArgument(val0)), C.QtObjectPtr(PointerFromQGenericArgument(val1)), C.QtObjectPtr(PointerFromQGenericArgument(val2)), C.QtObjectPtr(PointerFromQGenericArgument(val3)), C.QtObjectPtr(PointerFromQGenericArgument(val4)), C.QtObjectPtr(PointerFromQGenericArgument(val5)), C.QtObjectPtr(PointerFromQGenericArgument(val6)), C.QtObjectPtr(PointerFromQGenericArgument(val7)), C.QtObjectPtr(PointerFromQGenericArgument(val8)), C.QtObjectPtr(PointerFromQGenericArgument(val9))) != 0
+		return C.QMetaMethod_Invoke3(ptr.Pointer(), PointerFromQObject(object), C.int(connectionType), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 	}
 	return false
 }
 
-func (ptr *QMetaMethod) Invoke(object QObjectITF, connectionType Qt__ConnectionType, returnValue QGenericReturnArgumentITF, val0 QGenericArgumentITF, val1 QGenericArgumentITF, val2 QGenericArgumentITF, val3 QGenericArgumentITF, val4 QGenericArgumentITF, val5 QGenericArgumentITF, val6 QGenericArgumentITF, val7 QGenericArgumentITF, val8 QGenericArgumentITF, val9 QGenericArgumentITF) bool {
+func (ptr *QMetaMethod) Invoke(object QObject_ITF, connectionType Qt__ConnectionType, returnValue QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaMethod_Invoke(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(object)), C.int(connectionType), C.QtObjectPtr(PointerFromQGenericReturnArgument(returnValue)), C.QtObjectPtr(PointerFromQGenericArgument(val0)), C.QtObjectPtr(PointerFromQGenericArgument(val1)), C.QtObjectPtr(PointerFromQGenericArgument(val2)), C.QtObjectPtr(PointerFromQGenericArgument(val3)), C.QtObjectPtr(PointerFromQGenericArgument(val4)), C.QtObjectPtr(PointerFromQGenericArgument(val5)), C.QtObjectPtr(PointerFromQGenericArgument(val6)), C.QtObjectPtr(PointerFromQGenericArgument(val7)), C.QtObjectPtr(PointerFromQGenericArgument(val8)), C.QtObjectPtr(PointerFromQGenericArgument(val9))) != 0
+		return C.QMetaMethod_Invoke(ptr.Pointer(), PointerFromQObject(object), C.int(connectionType), PointerFromQGenericReturnArgument(returnValue), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaMethod) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaMethod_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMetaMethod_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaMethod) MethodIndex() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMetaMethod_MethodIndex(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMetaMethod_MethodIndex(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QMetaMethod) MethodSignature() *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QMetaMethod_MethodSignature(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMetaMethod) MethodType() QMetaMethod__MethodType {
 	if ptr.Pointer() != nil {
-		return QMetaMethod__MethodType(C.QMetaMethod_MethodType(C.QtObjectPtr(ptr.Pointer())))
+		return QMetaMethod__MethodType(C.QMetaMethod_MethodType(ptr.Pointer()))
 	}
 	return 0
 }
 
+func (ptr *QMetaMethod) Name() *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QMetaMethod_Name(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMetaMethod) ParameterCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMetaMethod_ParameterCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMetaMethod_ParameterCount(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QMetaMethod) ParameterType(index int) int {
 	if ptr.Pointer() != nil {
-		return int(C.QMetaMethod_ParameterType(C.QtObjectPtr(ptr.Pointer()), C.int(index)))
+		return int(C.QMetaMethod_ParameterType(ptr.Pointer(), C.int(index)))
 	}
 	return 0
 }
 
 func (ptr *QMetaMethod) ReturnType() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMetaMethod_ReturnType(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMetaMethod_ReturnType(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QMetaMethod) Revision() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMetaMethod_Revision(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMetaMethod_Revision(ptr.Pointer()))
 	}
 	return 0
 }

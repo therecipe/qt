@@ -1,9 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QExposeEvent_NewQExposeEvent(QtObjectPtr exposeRegion);
+void* QExposeEvent_NewQExposeEvent(void* exposeRegion);
+void* QExposeEvent_Region(void* ptr);
 
 #ifdef __cplusplus
 }

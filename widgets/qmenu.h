@@ -1,53 +1,52 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QMenu_IsTearOffEnabled(QtObjectPtr ptr);
-int QMenu_SeparatorsCollapsible(QtObjectPtr ptr);
-void QMenu_SetIcon(QtObjectPtr ptr, QtObjectPtr icon);
-void QMenu_SetSeparatorsCollapsible(QtObjectPtr ptr, int collapse);
-void QMenu_SetTearOffEnabled(QtObjectPtr ptr, int v);
-void QMenu_SetTitle(QtObjectPtr ptr, char* title);
-void QMenu_SetToolTipsVisible(QtObjectPtr ptr, int visible);
-char* QMenu_Title(QtObjectPtr ptr);
-int QMenu_ToolTipsVisible(QtObjectPtr ptr);
-QtObjectPtr QMenu_NewQMenu(QtObjectPtr parent);
-QtObjectPtr QMenu_NewQMenu2(char* title, QtObjectPtr parent);
-void QMenu_ConnectAboutToHide(QtObjectPtr ptr);
-void QMenu_DisconnectAboutToHide(QtObjectPtr ptr);
-void QMenu_ConnectAboutToShow(QtObjectPtr ptr);
-void QMenu_DisconnectAboutToShow(QtObjectPtr ptr);
-QtObjectPtr QMenu_ActionAt(QtObjectPtr ptr, QtObjectPtr pt);
-QtObjectPtr QMenu_ActiveAction(QtObjectPtr ptr);
-QtObjectPtr QMenu_AddAction2(QtObjectPtr ptr, QtObjectPtr icon, char* text);
-QtObjectPtr QMenu_AddAction4(QtObjectPtr ptr, QtObjectPtr icon, char* text, QtObjectPtr receiver, char* member, QtObjectPtr shortcut);
-QtObjectPtr QMenu_AddAction(QtObjectPtr ptr, char* text);
-QtObjectPtr QMenu_AddAction3(QtObjectPtr ptr, char* text, QtObjectPtr receiver, char* member, QtObjectPtr shortcut);
-QtObjectPtr QMenu_AddMenu(QtObjectPtr ptr, QtObjectPtr menu);
-QtObjectPtr QMenu_AddMenu3(QtObjectPtr ptr, QtObjectPtr icon, char* title);
-QtObjectPtr QMenu_AddMenu2(QtObjectPtr ptr, char* title);
-QtObjectPtr QMenu_AddSection2(QtObjectPtr ptr, QtObjectPtr icon, char* text);
-QtObjectPtr QMenu_AddSection(QtObjectPtr ptr, char* text);
-QtObjectPtr QMenu_AddSeparator(QtObjectPtr ptr);
-void QMenu_Clear(QtObjectPtr ptr);
-QtObjectPtr QMenu_Exec(QtObjectPtr ptr);
-QtObjectPtr QMenu_Exec2(QtObjectPtr ptr, QtObjectPtr p, QtObjectPtr action);
-void QMenu_HideTearOffMenu(QtObjectPtr ptr);
-void QMenu_ConnectHovered(QtObjectPtr ptr);
-void QMenu_DisconnectHovered(QtObjectPtr ptr);
-QtObjectPtr QMenu_InsertMenu(QtObjectPtr ptr, QtObjectPtr before, QtObjectPtr menu);
-QtObjectPtr QMenu_InsertSection2(QtObjectPtr ptr, QtObjectPtr before, QtObjectPtr icon, char* text);
-QtObjectPtr QMenu_InsertSection(QtObjectPtr ptr, QtObjectPtr before, char* text);
-QtObjectPtr QMenu_InsertSeparator(QtObjectPtr ptr, QtObjectPtr before);
-int QMenu_IsEmpty(QtObjectPtr ptr);
-int QMenu_IsTearOffMenuVisible(QtObjectPtr ptr);
-QtObjectPtr QMenu_MenuAction(QtObjectPtr ptr);
-void QMenu_Popup(QtObjectPtr ptr, QtObjectPtr p, QtObjectPtr atAction);
-void QMenu_SetActiveAction(QtObjectPtr ptr, QtObjectPtr act);
-void QMenu_ConnectTriggered(QtObjectPtr ptr);
-void QMenu_DisconnectTriggered(QtObjectPtr ptr);
-void QMenu_DestroyQMenu(QtObjectPtr ptr);
+int QMenu_IsTearOffEnabled(void* ptr);
+int QMenu_SeparatorsCollapsible(void* ptr);
+void QMenu_SetIcon(void* ptr, void* icon);
+void QMenu_SetSeparatorsCollapsible(void* ptr, int collapse);
+void QMenu_SetTearOffEnabled(void* ptr, int v);
+void QMenu_SetTitle(void* ptr, char* title);
+void QMenu_SetToolTipsVisible(void* ptr, int visible);
+char* QMenu_Title(void* ptr);
+int QMenu_ToolTipsVisible(void* ptr);
+void* QMenu_NewQMenu(void* parent);
+void* QMenu_NewQMenu2(char* title, void* parent);
+void QMenu_ConnectAboutToHide(void* ptr);
+void QMenu_DisconnectAboutToHide(void* ptr);
+void QMenu_ConnectAboutToShow(void* ptr);
+void QMenu_DisconnectAboutToShow(void* ptr);
+void* QMenu_ActionAt(void* ptr, void* pt);
+void* QMenu_ActiveAction(void* ptr);
+void* QMenu_AddAction2(void* ptr, void* icon, char* text);
+void* QMenu_AddAction4(void* ptr, void* icon, char* text, void* receiver, char* member, void* shortcut);
+void* QMenu_AddAction(void* ptr, char* text);
+void* QMenu_AddAction3(void* ptr, char* text, void* receiver, char* member, void* shortcut);
+void* QMenu_AddMenu(void* ptr, void* menu);
+void* QMenu_AddMenu3(void* ptr, void* icon, char* title);
+void* QMenu_AddMenu2(void* ptr, char* title);
+void* QMenu_AddSection2(void* ptr, void* icon, char* text);
+void* QMenu_AddSection(void* ptr, char* text);
+void* QMenu_AddSeparator(void* ptr);
+void QMenu_Clear(void* ptr);
+void* QMenu_Exec(void* ptr);
+void* QMenu_Exec2(void* ptr, void* p, void* action);
+void QMenu_HideTearOffMenu(void* ptr);
+void QMenu_ConnectHovered(void* ptr);
+void QMenu_DisconnectHovered(void* ptr);
+void* QMenu_InsertMenu(void* ptr, void* before, void* menu);
+void* QMenu_InsertSection2(void* ptr, void* before, void* icon, char* text);
+void* QMenu_InsertSection(void* ptr, void* before, char* text);
+void* QMenu_InsertSeparator(void* ptr, void* before);
+int QMenu_IsEmpty(void* ptr);
+int QMenu_IsTearOffMenuVisible(void* ptr);
+void* QMenu_MenuAction(void* ptr);
+void QMenu_Popup(void* ptr, void* p, void* atAction);
+void QMenu_SetActiveAction(void* ptr, void* act);
+void QMenu_ConnectTriggered(void* ptr);
+void QMenu_DisconnectTriggered(void* ptr);
+void QMenu_DestroyQMenu(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{fromType QMetaEnum::fromType commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain true false  QMetaEnum [] }
-&{isFlag QMetaEnum::isFlag commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
-&{isValid QMetaEnum::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool [] }
-&{key QMetaEnum::key commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * [0xc82061df40] }
-&{keyCount QMetaEnum::keyCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [] }
-&{keyToValue QMetaEnum::keyToValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [0xc8206062c0 0xc820606340] }
-&{keysToValue QMetaEnum::keysToValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [0xc8206065a0 0xc820606660] }
-&{name QMetaEnum::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * [] }
-&{scope QMetaEnum::scope commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * [] }
-&{value QMetaEnum::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int [0xc8206069e0] }
-&{valueToKey QMetaEnum::valueToKey commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * [0xc820606c00] }
-&{valueToKeys QMetaEnum::valueToKeys commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  QByteArray [0xc820606e00] }
+&{fromType QMetaEnum::fromType commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain true false  QMetaEnum QMetaEnum fromType() [] }
+&{isFlag QMetaEnum::isFlag commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool bool isFlag() const [] }
+&{isValid QMetaEnum::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  bool bool isValid() const [] }
+&{key QMetaEnum::key commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * const char * key(int index) const [0xc8205cd3e0] }
+&{keyCount QMetaEnum::keyCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int int keyCount() const [] }
+&{keyToValue QMetaEnum::keyToValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int int keyToValue(const char *key, bool *ok) const [0xc8205cd7e0 0xc8205cd8a0] }
+&{keysToValue QMetaEnum::keysToValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int int keysToValue(const char *keys, bool *ok) const [0xc8205cdb40 0xc8205cdbe0] }
+&{name QMetaEnum::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * const char * name() const [] }
+&{scope QMetaEnum::scope commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * const char * scope() const [] }
+&{value QMetaEnum::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  int int value(int index) const [0xc8205cdfe0] }
+&{valueToKey QMetaEnum::valueToKey commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * const char * valueToKey(int value) const [0xc8205b6240] }
+&{valueToKeys QMetaEnum::valueToKeys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  QByteArray QByteArray valueToKeys(int value) const [0xc8205b6460] }
 ########################################			ENUMS			########################################

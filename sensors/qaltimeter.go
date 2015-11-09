@@ -12,45 +12,45 @@ type QAltimeter struct {
 	QSensor
 }
 
-type QAltimeterITF interface {
-	QSensorITF
-	QAltimeterPTR() *QAltimeter
+type QAltimeter_ITF interface {
+	QSensor_ITF
+	QAltimeter_PTR() *QAltimeter
 }
 
-func PointerFromQAltimeter(ptr QAltimeterITF) unsafe.Pointer {
+func PointerFromQAltimeter(ptr QAltimeter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAltimeterPTR().Pointer()
+		return ptr.QAltimeter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAltimeterFromPointer(ptr unsafe.Pointer) *QAltimeter {
+func NewQAltimeterFromPointer(ptr unsafe.Pointer) *QAltimeter {
 	var n = new(QAltimeter)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAltimeter_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAltimeter) QAltimeterPTR() *QAltimeter {
+func (ptr *QAltimeter) QAltimeter_PTR() *QAltimeter {
 	return ptr
 }
 
 func (ptr *QAltimeter) Reading() *QAltimeterReading {
 	if ptr.Pointer() != nil {
-		return QAltimeterReadingFromPointer(unsafe.Pointer(C.QAltimeter_Reading(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAltimeterReadingFromPointer(C.QAltimeter_Reading(ptr.Pointer()))
 	}
 	return nil
 }
 
-func NewQAltimeter(parent core.QObjectITF) *QAltimeter {
-	return QAltimeterFromPointer(unsafe.Pointer(C.QAltimeter_NewQAltimeter(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQAltimeter(parent core.QObject_ITF) *QAltimeter {
+	return NewQAltimeterFromPointer(C.QAltimeter_NewQAltimeter(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAltimeter) DestroyQAltimeter() {
 	if ptr.Pointer() != nil {
-		C.QAltimeter_DestroyQAltimeter(C.QtObjectPtr(ptr.Pointer()))
+		C.QAltimeter_DestroyQAltimeter(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

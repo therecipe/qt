@@ -3,6 +3,7 @@ package bluetooth
 //#include "qlowenergycharacteristic.h"
 import "C"
 import (
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -10,8 +11,8 @@ type QLowEnergyCharacteristic struct {
 	ptr unsafe.Pointer
 }
 
-type QLowEnergyCharacteristicITF interface {
-	QLowEnergyCharacteristicPTR() *QLowEnergyCharacteristic
+type QLowEnergyCharacteristic_ITF interface {
+	QLowEnergyCharacteristic_PTR() *QLowEnergyCharacteristic
 }
 
 func (p *QLowEnergyCharacteristic) Pointer() unsafe.Pointer {
@@ -22,27 +23,27 @@ func (p *QLowEnergyCharacteristic) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQLowEnergyCharacteristic(ptr QLowEnergyCharacteristicITF) unsafe.Pointer {
+func PointerFromQLowEnergyCharacteristic(ptr QLowEnergyCharacteristic_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QLowEnergyCharacteristicPTR().Pointer()
+		return ptr.QLowEnergyCharacteristic_PTR().Pointer()
 	}
 	return nil
 }
 
-func QLowEnergyCharacteristicFromPointer(ptr unsafe.Pointer) *QLowEnergyCharacteristic {
+func NewQLowEnergyCharacteristicFromPointer(ptr unsafe.Pointer) *QLowEnergyCharacteristic {
 	var n = new(QLowEnergyCharacteristic)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QLowEnergyCharacteristic) QLowEnergyCharacteristicPTR() *QLowEnergyCharacteristic {
+func (ptr *QLowEnergyCharacteristic) QLowEnergyCharacteristic_PTR() *QLowEnergyCharacteristic {
 	return ptr
 }
 
 //QLowEnergyCharacteristic::PropertyType
-type QLowEnergyCharacteristic__PropertyType int
+type QLowEnergyCharacteristic__PropertyType int64
 
-var (
+const (
 	QLowEnergyCharacteristic__Unknown          = QLowEnergyCharacteristic__PropertyType(0x00)
 	QLowEnergyCharacteristic__Broadcasting     = QLowEnergyCharacteristic__PropertyType(0x01)
 	QLowEnergyCharacteristic__Read             = QLowEnergyCharacteristic__PropertyType(0x02)
@@ -55,36 +56,43 @@ var (
 )
 
 func NewQLowEnergyCharacteristic() *QLowEnergyCharacteristic {
-	return QLowEnergyCharacteristicFromPointer(unsafe.Pointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic()))
+	return NewQLowEnergyCharacteristicFromPointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic())
 }
 
-func NewQLowEnergyCharacteristic2(other QLowEnergyCharacteristicITF) *QLowEnergyCharacteristic {
-	return QLowEnergyCharacteristicFromPointer(unsafe.Pointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic2(C.QtObjectPtr(PointerFromQLowEnergyCharacteristic(other)))))
+func NewQLowEnergyCharacteristic2(other QLowEnergyCharacteristic_ITF) *QLowEnergyCharacteristic {
+	return NewQLowEnergyCharacteristicFromPointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic2(PointerFromQLowEnergyCharacteristic(other)))
 }
 
 func (ptr *QLowEnergyCharacteristic) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QLowEnergyCharacteristic_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QLowEnergyCharacteristic_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QLowEnergyCharacteristic) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLowEnergyCharacteristic_Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QLowEnergyCharacteristic_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QLowEnergyCharacteristic) Properties() QLowEnergyCharacteristic__PropertyType {
 	if ptr.Pointer() != nil {
-		return QLowEnergyCharacteristic__PropertyType(C.QLowEnergyCharacteristic_Properties(C.QtObjectPtr(ptr.Pointer())))
+		return QLowEnergyCharacteristic__PropertyType(C.QLowEnergyCharacteristic_Properties(ptr.Pointer()))
 	}
 	return 0
 }
 
+func (ptr *QLowEnergyCharacteristic) Value() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		return core.NewQByteArrayFromPointer(C.QLowEnergyCharacteristic_Value(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QLowEnergyCharacteristic) DestroyQLowEnergyCharacteristic() {
 	if ptr.Pointer() != nil {
-		C.QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(C.QtObjectPtr(ptr.Pointer()))
+		C.QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(ptr.Pointer())
 	}
 }

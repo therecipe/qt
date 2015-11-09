@@ -10,8 +10,8 @@ type QSGMaterialType struct {
 	ptr unsafe.Pointer
 }
 
-type QSGMaterialTypeITF interface {
-	QSGMaterialTypePTR() *QSGMaterialType
+type QSGMaterialType_ITF interface {
+	QSGMaterialType_PTR() *QSGMaterialType
 }
 
 func (p *QSGMaterialType) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QSGMaterialType) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSGMaterialType(ptr QSGMaterialTypeITF) unsafe.Pointer {
+func PointerFromQSGMaterialType(ptr QSGMaterialType_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSGMaterialTypePTR().Pointer()
+		return ptr.QSGMaterialType_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSGMaterialTypeFromPointer(ptr unsafe.Pointer) *QSGMaterialType {
+func NewQSGMaterialTypeFromPointer(ptr unsafe.Pointer) *QSGMaterialType {
 	var n = new(QSGMaterialType)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSGMaterialType) QSGMaterialTypePTR() *QSGMaterialType {
+func (ptr *QSGMaterialType) QSGMaterialType_PTR() *QSGMaterialType {
 	return ptr
 }

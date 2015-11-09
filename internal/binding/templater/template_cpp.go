@@ -8,7 +8,7 @@ import (
 )
 
 func HTemplate(c *parser.Class) (o string) {
-	o += "#ifdef __cplusplus\nextern \"C\" {\n#endif\n#include \"../cgoutil.h\"\n\n"
+	o += "#ifdef __cplusplus\nextern \"C\" {\n#endif\n\n"
 
 	for _, e := range c.Enums {
 		if isSupportedEnum(e) {

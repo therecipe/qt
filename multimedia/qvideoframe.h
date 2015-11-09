@@ -1,36 +1,35 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QVideoFrame_NewQVideoFrame();
-QtObjectPtr QVideoFrame_NewQVideoFrame2(QtObjectPtr buffer, QtObjectPtr size, int format);
-QtObjectPtr QVideoFrame_NewQVideoFrame4(QtObjectPtr image);
-QtObjectPtr QVideoFrame_NewQVideoFrame5(QtObjectPtr other);
-QtObjectPtr QVideoFrame_NewQVideoFrame3(int bytes, QtObjectPtr size, int bytesPerLine, int format);
-int QVideoFrame_BytesPerLine(QtObjectPtr ptr);
-int QVideoFrame_BytesPerLine2(QtObjectPtr ptr, int plane);
-int QVideoFrame_FieldType(QtObjectPtr ptr);
-char* QVideoFrame_Handle(QtObjectPtr ptr);
-int QVideoFrame_HandleType(QtObjectPtr ptr);
-int QVideoFrame_Height(QtObjectPtr ptr);
+void* QVideoFrame_NewQVideoFrame();
+void* QVideoFrame_NewQVideoFrame2(void* buffer, void* size, int format);
+void* QVideoFrame_NewQVideoFrame4(void* image);
+void* QVideoFrame_NewQVideoFrame5(void* other);
+void* QVideoFrame_NewQVideoFrame3(int bytes, void* size, int bytesPerLine, int format);
+int QVideoFrame_BytesPerLine(void* ptr);
+int QVideoFrame_BytesPerLine2(void* ptr, int plane);
+int QVideoFrame_FieldType(void* ptr);
+void* QVideoFrame_Handle(void* ptr);
+int QVideoFrame_HandleType(void* ptr);
+int QVideoFrame_Height(void* ptr);
 int QVideoFrame_QVideoFrame_ImageFormatFromPixelFormat(int format);
-int QVideoFrame_IsMapped(QtObjectPtr ptr);
-int QVideoFrame_IsReadable(QtObjectPtr ptr);
-int QVideoFrame_IsValid(QtObjectPtr ptr);
-int QVideoFrame_IsWritable(QtObjectPtr ptr);
-int QVideoFrame_Map(QtObjectPtr ptr, int mode);
-int QVideoFrame_MapMode(QtObjectPtr ptr);
-int QVideoFrame_MappedBytes(QtObjectPtr ptr);
-char* QVideoFrame_MetaData(QtObjectPtr ptr, char* key);
-int QVideoFrame_PixelFormat(QtObjectPtr ptr);
+int QVideoFrame_IsMapped(void* ptr);
+int QVideoFrame_IsReadable(void* ptr);
+int QVideoFrame_IsValid(void* ptr);
+int QVideoFrame_IsWritable(void* ptr);
+int QVideoFrame_Map(void* ptr, int mode);
+int QVideoFrame_MapMode(void* ptr);
+int QVideoFrame_MappedBytes(void* ptr);
+void* QVideoFrame_MetaData(void* ptr, char* key);
+int QVideoFrame_PixelFormat(void* ptr);
 int QVideoFrame_QVideoFrame_PixelFormatFromImageFormat(int format);
-int QVideoFrame_PlaneCount(QtObjectPtr ptr);
-void QVideoFrame_SetFieldType(QtObjectPtr ptr, int field);
-void QVideoFrame_SetMetaData(QtObjectPtr ptr, char* key, char* value);
-void QVideoFrame_Unmap(QtObjectPtr ptr);
-int QVideoFrame_Width(QtObjectPtr ptr);
-void QVideoFrame_DestroyQVideoFrame(QtObjectPtr ptr);
+int QVideoFrame_PlaneCount(void* ptr);
+void QVideoFrame_SetFieldType(void* ptr, int field);
+void QVideoFrame_SetMetaData(void* ptr, char* key, void* value);
+void QVideoFrame_Unmap(void* ptr);
+int QVideoFrame_Width(void* ptr);
+void QVideoFrame_DestroyQVideoFrame(void* ptr);
 
 #ifdef __cplusplus
 }

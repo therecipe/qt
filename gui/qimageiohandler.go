@@ -10,8 +10,8 @@ type QImageIOHandler struct {
 	ptr unsafe.Pointer
 }
 
-type QImageIOHandlerITF interface {
-	QImageIOHandlerPTR() *QImageIOHandler
+type QImageIOHandler_ITF interface {
+	QImageIOHandler_PTR() *QImageIOHandler
 }
 
 func (p *QImageIOHandler) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QImageIOHandler) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQImageIOHandler(ptr QImageIOHandlerITF) unsafe.Pointer {
+func PointerFromQImageIOHandler(ptr QImageIOHandler_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QImageIOHandlerPTR().Pointer()
+		return ptr.QImageIOHandler_PTR().Pointer()
 	}
 	return nil
 }
 
-func QImageIOHandlerFromPointer(ptr unsafe.Pointer) *QImageIOHandler {
+func NewQImageIOHandlerFromPointer(ptr unsafe.Pointer) *QImageIOHandler {
 	var n = new(QImageIOHandler)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QImageIOHandler) QImageIOHandlerPTR() *QImageIOHandler {
+func (ptr *QImageIOHandler) QImageIOHandler_PTR() *QImageIOHandler {
 	return ptr
 }
 
 //QImageIOHandler::ImageOption
-type QImageIOHandler__ImageOption int
+type QImageIOHandler__ImageOption int64
 
-var (
+const (
 	QImageIOHandler__Size                 = QImageIOHandler__ImageOption(0)
 	QImageIOHandler__ClipRect             = QImageIOHandler__ImageOption(1)
 	QImageIOHandler__Description          = QImageIOHandler__ImageOption(2)
@@ -66,9 +66,9 @@ var (
 )
 
 //QImageIOHandler::Transformation
-type QImageIOHandler__Transformation int
+type QImageIOHandler__Transformation int64
 
-var (
+const (
 	QImageIOHandler__TransformationNone              = QImageIOHandler__Transformation(0)
 	QImageIOHandler__TransformationMirror            = QImageIOHandler__Transformation(1)
 	QImageIOHandler__TransformationFlip              = QImageIOHandler__Transformation(2)

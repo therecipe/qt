@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{QThreadStorage QThreadStorage::QThreadStorage commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non constructor false false   [] }
-&{hasLocalData QThreadStorage::hasLocalData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  bool [] }
-&{localData QThreadStorage::localData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  T & [] }
-&{localData QThreadStorage::localData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false true 2 T [] }
-&{setLocalData QThreadStorage::setLocalData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  void [0xc8207597c0] }
-&{~QThreadStorage QThreadStorage::~QThreadStorage commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non destructor false false   [] }
+&{QThreadStorage QThreadStorage::QThreadStorage commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non constructor false false   QThreadStorage() [] }
+&{hasLocalData QThreadStorage::hasLocalData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  bool bool hasLocalData() const [] }
+&{localData QThreadStorage::localData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  T & T & localData() [] }
+&{localData QThreadStorage::localData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false true 2 T T localData() const [] }
+&{setLocalData QThreadStorage::setLocalData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  void void setLocalData(T data) [0xc8207a79e0] }
+&{~QThreadStorage QThreadStorage::~QThreadStorage commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non destructor false false   ~QThreadStorage() [] }
 ########################################			ENUMS			########################################

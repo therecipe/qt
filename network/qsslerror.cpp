@@ -11,35 +11,35 @@ class MyQSslError: public QSslError {
 public:
 };
 
-QtObjectPtr QSslError_NewQSslError(){
+void* QSslError_NewQSslError(){
 	return new QSslError();
 }
 
-QtObjectPtr QSslError_NewQSslError2(int error){
+void* QSslError_NewQSslError2(int error){
 	return new QSslError(static_cast<QSslError::SslError>(error));
 }
 
-QtObjectPtr QSslError_NewQSslError3(int error, QtObjectPtr certificate){
+void* QSslError_NewQSslError3(int error, void* certificate){
 	return new QSslError(static_cast<QSslError::SslError>(error), *static_cast<QSslCertificate*>(certificate));
 }
 
-QtObjectPtr QSslError_NewQSslError4(QtObjectPtr other){
+void* QSslError_NewQSslError4(void* other){
 	return new QSslError(*static_cast<QSslError*>(other));
 }
 
-int QSslError_Error(QtObjectPtr ptr){
+int QSslError_Error(void* ptr){
 	return static_cast<QSslError*>(ptr)->error();
 }
 
-char* QSslError_ErrorString(QtObjectPtr ptr){
+char* QSslError_ErrorString(void* ptr){
 	return static_cast<QSslError*>(ptr)->errorString().toUtf8().data();
 }
 
-void QSslError_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QSslError_Swap(void* ptr, void* other){
 	static_cast<QSslError*>(ptr)->swap(*static_cast<QSslError*>(other));
 }
 
-void QSslError_DestroyQSslError(QtObjectPtr ptr){
+void QSslError_DestroyQSslError(void* ptr){
 	static_cast<QSslError*>(ptr)->~QSslError();
 }
 

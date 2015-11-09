@@ -1,8 +1,8 @@
 #include "qgenericmatrix.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
+#include <QVariant>
 #include <QGenericMatrix>
 #include "_cgo_export.h"
 

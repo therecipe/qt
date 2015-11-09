@@ -1,31 +1,30 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGeoAddress_NewQGeoAddress();
-QtObjectPtr QGeoAddress_NewQGeoAddress2(QtObjectPtr other);
-char* QGeoAddress_City(QtObjectPtr ptr);
-void QGeoAddress_Clear(QtObjectPtr ptr);
-char* QGeoAddress_Country(QtObjectPtr ptr);
-char* QGeoAddress_CountryCode(QtObjectPtr ptr);
-char* QGeoAddress_County(QtObjectPtr ptr);
-char* QGeoAddress_District(QtObjectPtr ptr);
-int QGeoAddress_IsEmpty(QtObjectPtr ptr);
-int QGeoAddress_IsTextGenerated(QtObjectPtr ptr);
-char* QGeoAddress_PostalCode(QtObjectPtr ptr);
-void QGeoAddress_SetCity(QtObjectPtr ptr, char* city);
-void QGeoAddress_SetCountry(QtObjectPtr ptr, char* country);
-void QGeoAddress_SetCountryCode(QtObjectPtr ptr, char* countryCode);
-void QGeoAddress_SetCounty(QtObjectPtr ptr, char* county);
-void QGeoAddress_SetDistrict(QtObjectPtr ptr, char* district);
-void QGeoAddress_SetPostalCode(QtObjectPtr ptr, char* postalCode);
-void QGeoAddress_SetState(QtObjectPtr ptr, char* state);
-void QGeoAddress_SetStreet(QtObjectPtr ptr, char* street);
-void QGeoAddress_SetText(QtObjectPtr ptr, char* text);
-char* QGeoAddress_Street(QtObjectPtr ptr);
-char* QGeoAddress_Text(QtObjectPtr ptr);
-void QGeoAddress_DestroyQGeoAddress(QtObjectPtr ptr);
+void* QGeoAddress_NewQGeoAddress();
+void* QGeoAddress_NewQGeoAddress2(void* other);
+char* QGeoAddress_City(void* ptr);
+void QGeoAddress_Clear(void* ptr);
+char* QGeoAddress_Country(void* ptr);
+char* QGeoAddress_CountryCode(void* ptr);
+char* QGeoAddress_County(void* ptr);
+char* QGeoAddress_District(void* ptr);
+int QGeoAddress_IsEmpty(void* ptr);
+int QGeoAddress_IsTextGenerated(void* ptr);
+char* QGeoAddress_PostalCode(void* ptr);
+void QGeoAddress_SetCity(void* ptr, char* city);
+void QGeoAddress_SetCountry(void* ptr, char* country);
+void QGeoAddress_SetCountryCode(void* ptr, char* countryCode);
+void QGeoAddress_SetCounty(void* ptr, char* county);
+void QGeoAddress_SetDistrict(void* ptr, char* district);
+void QGeoAddress_SetPostalCode(void* ptr, char* postalCode);
+void QGeoAddress_SetState(void* ptr, char* state);
+void QGeoAddress_SetStreet(void* ptr, char* street);
+void QGeoAddress_SetText(void* ptr, char* text);
+char* QGeoAddress_Street(void* ptr);
+char* QGeoAddress_Text(void* ptr);
+void QGeoAddress_DestroyQGeoAddress(void* ptr);
 
 #ifdef __cplusplus
 }

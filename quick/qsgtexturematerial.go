@@ -10,24 +10,24 @@ type QSGTextureMaterial struct {
 	QSGOpaqueTextureMaterial
 }
 
-type QSGTextureMaterialITF interface {
-	QSGOpaqueTextureMaterialITF
-	QSGTextureMaterialPTR() *QSGTextureMaterial
+type QSGTextureMaterial_ITF interface {
+	QSGOpaqueTextureMaterial_ITF
+	QSGTextureMaterial_PTR() *QSGTextureMaterial
 }
 
-func PointerFromQSGTextureMaterial(ptr QSGTextureMaterialITF) unsafe.Pointer {
+func PointerFromQSGTextureMaterial(ptr QSGTextureMaterial_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSGTextureMaterialPTR().Pointer()
+		return ptr.QSGTextureMaterial_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSGTextureMaterialFromPointer(ptr unsafe.Pointer) *QSGTextureMaterial {
+func NewQSGTextureMaterialFromPointer(ptr unsafe.Pointer) *QSGTextureMaterial {
 	var n = new(QSGTextureMaterial)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSGTextureMaterial) QSGTextureMaterialPTR() *QSGTextureMaterial {
+func (ptr *QSGTextureMaterial) QSGTextureMaterial_PTR() *QSGTextureMaterial {
 	return ptr
 }

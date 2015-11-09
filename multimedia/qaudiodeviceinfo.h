@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QAudioDeviceInfo_NewQAudioDeviceInfo();
-QtObjectPtr QAudioDeviceInfo_NewQAudioDeviceInfo2(QtObjectPtr other);
-char* QAudioDeviceInfo_DeviceName(QtObjectPtr ptr);
-int QAudioDeviceInfo_IsFormatSupported(QtObjectPtr ptr, QtObjectPtr settings);
-int QAudioDeviceInfo_IsNull(QtObjectPtr ptr);
-char* QAudioDeviceInfo_SupportedCodecs(QtObjectPtr ptr);
-void QAudioDeviceInfo_DestroyQAudioDeviceInfo(QtObjectPtr ptr);
+void* QAudioDeviceInfo_NewQAudioDeviceInfo();
+void* QAudioDeviceInfo_NewQAudioDeviceInfo2(void* other);
+char* QAudioDeviceInfo_DeviceName(void* ptr);
+int QAudioDeviceInfo_IsFormatSupported(void* ptr, void* settings);
+int QAudioDeviceInfo_IsNull(void* ptr);
+char* QAudioDeviceInfo_SupportedCodecs(void* ptr);
+void QAudioDeviceInfo_DestroyQAudioDeviceInfo(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -10,35 +10,35 @@ class MyQDomNamedNodeMap: public QDomNamedNodeMap {
 public:
 };
 
-QtObjectPtr QDomNamedNodeMap_NewQDomNamedNodeMap(){
+void* QDomNamedNodeMap_NewQDomNamedNodeMap(){
 	return new QDomNamedNodeMap();
 }
 
-QtObjectPtr QDomNamedNodeMap_NewQDomNamedNodeMap2(QtObjectPtr n){
+void* QDomNamedNodeMap_NewQDomNamedNodeMap2(void* n){
 	return new QDomNamedNodeMap(*static_cast<QDomNamedNodeMap*>(n));
 }
 
-int QDomNamedNodeMap_Contains(QtObjectPtr ptr, char* name){
+int QDomNamedNodeMap_Contains(void* ptr, char* name){
 	return static_cast<QDomNamedNodeMap*>(ptr)->contains(QString(name));
 }
 
-int QDomNamedNodeMap_Count(QtObjectPtr ptr){
+int QDomNamedNodeMap_Count(void* ptr){
 	return static_cast<QDomNamedNodeMap*>(ptr)->count();
 }
 
-int QDomNamedNodeMap_IsEmpty(QtObjectPtr ptr){
+int QDomNamedNodeMap_IsEmpty(void* ptr){
 	return static_cast<QDomNamedNodeMap*>(ptr)->isEmpty();
 }
 
-int QDomNamedNodeMap_Length(QtObjectPtr ptr){
+int QDomNamedNodeMap_Length(void* ptr){
 	return static_cast<QDomNamedNodeMap*>(ptr)->length();
 }
 
-int QDomNamedNodeMap_Size(QtObjectPtr ptr){
+int QDomNamedNodeMap_Size(void* ptr){
 	return static_cast<QDomNamedNodeMap*>(ptr)->size();
 }
 
-void QDomNamedNodeMap_DestroyQDomNamedNodeMap(QtObjectPtr ptr){
+void QDomNamedNodeMap_DestroyQDomNamedNodeMap(void* ptr){
 	static_cast<QDomNamedNodeMap*>(ptr)->~QDomNamedNodeMap();
 }
 

@@ -1,8 +1,8 @@
 #include "qhostaddress.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
+#include <QVariant>
 #include <QHostAddress>
 #include "_cgo_export.h"
 
@@ -10,59 +10,59 @@ class MyQHostAddress: public QHostAddress {
 public:
 };
 
-QtObjectPtr QHostAddress_NewQHostAddress(){
+void* QHostAddress_NewQHostAddress(){
 	return new QHostAddress();
 }
 
-QtObjectPtr QHostAddress_NewQHostAddress9(int address){
+void* QHostAddress_NewQHostAddress9(int address){
 	return new QHostAddress(static_cast<QHostAddress::SpecialAddress>(address));
 }
 
-QtObjectPtr QHostAddress_NewQHostAddress8(QtObjectPtr address){
+void* QHostAddress_NewQHostAddress8(void* address){
 	return new QHostAddress(*static_cast<QHostAddress*>(address));
 }
 
-QtObjectPtr QHostAddress_NewQHostAddress7(char* address){
+void* QHostAddress_NewQHostAddress7(char* address){
 	return new QHostAddress(QString(address));
 }
 
-void QHostAddress_Clear(QtObjectPtr ptr){
+void QHostAddress_Clear(void* ptr){
 	static_cast<QHostAddress*>(ptr)->clear();
 }
 
-int QHostAddress_IsInSubnet(QtObjectPtr ptr, QtObjectPtr subnet, int netmask){
+int QHostAddress_IsInSubnet(void* ptr, void* subnet, int netmask){
 	return static_cast<QHostAddress*>(ptr)->isInSubnet(*static_cast<QHostAddress*>(subnet), netmask);
 }
 
-int QHostAddress_IsLoopback(QtObjectPtr ptr){
+int QHostAddress_IsLoopback(void* ptr){
 	return static_cast<QHostAddress*>(ptr)->isLoopback();
 }
 
-int QHostAddress_IsNull(QtObjectPtr ptr){
+int QHostAddress_IsNull(void* ptr){
 	return static_cast<QHostAddress*>(ptr)->isNull();
 }
 
-int QHostAddress_Protocol(QtObjectPtr ptr){
+int QHostAddress_Protocol(void* ptr){
 	return static_cast<QHostAddress*>(ptr)->protocol();
 }
 
-char* QHostAddress_ScopeId(QtObjectPtr ptr){
+char* QHostAddress_ScopeId(void* ptr){
 	return static_cast<QHostAddress*>(ptr)->scopeId().toUtf8().data();
 }
 
-int QHostAddress_SetAddress5(QtObjectPtr ptr, char* address){
+int QHostAddress_SetAddress5(void* ptr, char* address){
 	return static_cast<QHostAddress*>(ptr)->setAddress(QString(address));
 }
 
-void QHostAddress_SetScopeId(QtObjectPtr ptr, char* id){
+void QHostAddress_SetScopeId(void* ptr, char* id){
 	static_cast<QHostAddress*>(ptr)->setScopeId(QString(id));
 }
 
-char* QHostAddress_ToString(QtObjectPtr ptr){
+char* QHostAddress_ToString(void* ptr){
 	return static_cast<QHostAddress*>(ptr)->toString().toUtf8().data();
 }
 
-void QHostAddress_DestroyQHostAddress(QtObjectPtr ptr){
+void QHostAddress_DestroyQHostAddress(void* ptr){
 	static_cast<QHostAddress*>(ptr)->~QHostAddress();
 }
 

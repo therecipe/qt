@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{mouseMoveEvent QSizeGrip::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.cpp impure plain false false  void [0xc822dbc8c0] }
-&{mousePressEvent QSizeGrip::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.cpp impure plain false false  void [0xc822dbcea0] }
-&{QSizeGrip QSizeGrip::QSizeGrip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h non constructor false false   [0xc822dbd3a0] }
-&{event QSizeGrip::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  bool [0xc822dbdd80] }
-&{eventFilter QSizeGrip::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  bool [0xc822dae200 0xc822dae3a0] }
-&{hideEvent QSizeGrip::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  void [0xc822dae840] }
-&{mouseReleaseEvent QSizeGrip::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  void [0xc822daee00] }
-&{moveEvent QSizeGrip::moveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  void [0xc822daf300] }
-&{paintEvent QSizeGrip::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  void [0xc822daf7a0] }
-&{setVisible QSizeGrip::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  void [0xc822dafc40] }
-&{showEvent QSizeGrip::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  void [0xc822d9c000] }
-&{sizeHint QSizeGrip::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  QSize [] }
-&{~QSizeGrip QSizeGrip::~QSizeGrip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h non destructor false false   [] }
+&{mouseMoveEvent QSizeGrip::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.cpp impure plain false false  void void mouseMoveEvent(QMouseEvent *event) [0xc820f1b6e0] }
+&{mousePressEvent QSizeGrip::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.cpp impure plain false false  void void mousePressEvent(QMouseEvent *event) [0xc820f1bc40] }
+&{QSizeGrip QSizeGrip::QSizeGrip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h non constructor false false   QSizeGrip(QWidget *parent) [0xc820f04220] }
+&{event QSizeGrip::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  bool bool event(QEvent *event) [0xc820f04ba0] }
+&{eventFilter QSizeGrip::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  bool bool eventFilter(QObject *o, QEvent *e) [0xc820f04fe0 0xc820f05100] }
+&{hideEvent QSizeGrip::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  void void hideEvent(QHideEvent *hideEvent) [0xc820f05540] }
+&{mouseReleaseEvent QSizeGrip::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *mouseEvent) [0xc820f05ac0] }
+&{moveEvent QSizeGrip::moveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  void void moveEvent(QMoveEvent *moveEvent) [0xc820f05fa0] }
+&{paintEvent QSizeGrip::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  void void paintEvent(QPaintEvent *event) [0xc820ef63c0] }
+&{setVisible QSizeGrip::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  void void setVisible(bool visible) [0xc820ef6980] }
+&{showEvent QSizeGrip::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  void void showEvent(QShowEvent *showEvent) [0xc820ef6e40] }
+&{sizeHint QSizeGrip::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h impure plain false false  QSize QSize sizeHint() const [] }
+&{~QSizeGrip QSizeGrip::~QSizeGrip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsizegrip.h non destructor false false   ~QSizeGrip() [] }
 ########################################			ENUMS			########################################

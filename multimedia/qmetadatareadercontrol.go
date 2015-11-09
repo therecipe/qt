@@ -4,6 +4,7 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"strings"
 	"unsafe"
 )
@@ -12,62 +13,62 @@ type QMetaDataReaderControl struct {
 	QMediaControl
 }
 
-type QMetaDataReaderControlITF interface {
-	QMediaControlITF
-	QMetaDataReaderControlPTR() *QMetaDataReaderControl
+type QMetaDataReaderControl_ITF interface {
+	QMediaControl_ITF
+	QMetaDataReaderControl_PTR() *QMetaDataReaderControl
 }
 
-func PointerFromQMetaDataReaderControl(ptr QMetaDataReaderControlITF) unsafe.Pointer {
+func PointerFromQMetaDataReaderControl(ptr QMetaDataReaderControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMetaDataReaderControlPTR().Pointer()
+		return ptr.QMetaDataReaderControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMetaDataReaderControlFromPointer(ptr unsafe.Pointer) *QMetaDataReaderControl {
+func NewQMetaDataReaderControlFromPointer(ptr unsafe.Pointer) *QMetaDataReaderControl {
 	var n = new(QMetaDataReaderControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMetaDataReaderControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMetaDataReaderControl) QMetaDataReaderControlPTR() *QMetaDataReaderControl {
+func (ptr *QMetaDataReaderControl) QMetaDataReaderControl_PTR() *QMetaDataReaderControl {
 	return ptr
 }
 
 func (ptr *QMetaDataReaderControl) AvailableMetaData() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QMetaDataReaderControl_AvailableMetaData(C.QtObjectPtr(ptr.Pointer()))), "|")
+		return strings.Split(C.GoString(C.QMetaDataReaderControl_AvailableMetaData(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QMetaDataReaderControl) IsMetaDataAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaDataReaderControl_IsMetaDataAvailable(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMetaDataReaderControl_IsMetaDataAvailable(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QMetaDataReaderControl) MetaData(key string) string {
+func (ptr *QMetaDataReaderControl) MetaData(key string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMetaDataReaderControl_MetaData(C.QtObjectPtr(ptr.Pointer()), C.CString(key)))
+		return core.NewQVariantFromPointer(C.QMetaDataReaderControl_MetaData(ptr.Pointer(), C.CString(key)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QMetaDataReaderControl) ConnectMetaDataAvailableChanged(f func(available bool)) {
 	if ptr.Pointer() != nil {
-		C.QMetaDataReaderControl_ConnectMetaDataAvailableChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMetaDataReaderControl_ConnectMetaDataAvailableChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "metaDataAvailableChanged", f)
 	}
 }
 
 func (ptr *QMetaDataReaderControl) DisconnectMetaDataAvailableChanged() {
 	if ptr.Pointer() != nil {
-		C.QMetaDataReaderControl_DisconnectMetaDataAvailableChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMetaDataReaderControl_DisconnectMetaDataAvailableChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "metaDataAvailableChanged")
 	}
 }
@@ -79,14 +80,14 @@ func callbackQMetaDataReaderControlMetaDataAvailableChanged(ptrName *C.char, ava
 
 func (ptr *QMetaDataReaderControl) ConnectMetaDataChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QMetaDataReaderControl_ConnectMetaDataChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMetaDataReaderControl_ConnectMetaDataChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "metaDataChanged", f)
 	}
 }
 
 func (ptr *QMetaDataReaderControl) DisconnectMetaDataChanged() {
 	if ptr.Pointer() != nil {
-		C.QMetaDataReaderControl_DisconnectMetaDataChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMetaDataReaderControl_DisconnectMetaDataChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "metaDataChanged")
 	}
 }
@@ -98,7 +99,7 @@ func callbackQMetaDataReaderControlMetaDataChanged(ptrName *C.char) {
 
 func (ptr *QMetaDataReaderControl) DestroyQMetaDataReaderControl() {
 	if ptr.Pointer() != nil {
-		C.QMetaDataReaderControl_DestroyQMetaDataReaderControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QMetaDataReaderControl_DestroyQMetaDataReaderControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

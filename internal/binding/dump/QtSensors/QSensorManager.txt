@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{createBackend QSensorManager::createBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  QSensorBackend * [0xc822d8b5c0] }
-&{isBackendRegistered QSensorManager::isBackendRegistered commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  bool [0xc822d8b8a0 0xc822d8ba00] }
-&{registerBackend QSensorManager::registerBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  void [0xc822d8bd20 0xc822d8bea0 0xc822d78020] }
-&{setDefaultBackend QSensorManager::setDefaultBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  void [0xc822d78360 0xc822d784a0] }
-&{unregisterBackend QSensorManager::unregisterBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  void [0xc822d78860 0xc822d78980] }
+&{createBackend QSensorManager::createBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  QSensorBackend * QSensorBackend * createBackend(QSensor *sensor) [0xc823490740] }
+&{isBackendRegistered QSensorManager::isBackendRegistered commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  bool bool isBackendRegistered(const QByteArray &type, const QByteArray &identifier) [0xc8234909e0 0xc823490b80] }
+&{registerBackend QSensorManager::registerBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  void void registerBackend(const QByteArray &type, const QByteArray &identifier, QSensorBackendFactory *factory) [0xc823490fa0 0xc823491160 0xc8234912a0] }
+&{setDefaultBackend QSensorManager::setDefaultBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  void void setDefaultBackend(const QByteArray &type, const QByteArray &identifier) [0xc823491620 0xc8234917e0] }
+&{unregisterBackend QSensorManager::unregisterBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h non plain true false  void void unregisterBackend(const QByteArray &type, const QByteArray &identifier) [0xc823491b60 0xc823491ca0] }
 ########################################			ENUMS			########################################

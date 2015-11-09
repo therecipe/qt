@@ -1,22 +1,22 @@
 ########################################			FUNCTIONS			########################################
-&{QGeoManeuver QGeoManeuver::QGeoManeuver commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non constructor false false   [] }
-&{QGeoManeuver QGeoManeuver::QGeoManeuver commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non constructor false true 2  [0xc821df6780] }
-&{direction QGeoManeuver::direction commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  InstructionDirection [] }
-&{distanceToNextInstruction QGeoManeuver::distanceToNextInstruction commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  qreal [] }
-&{instructionText QGeoManeuver::instructionText commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  QString [] }
-&{isValid QGeoManeuver::isValid commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  bool [] }
-&{operator!= QGeoManeuver::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  bool [0xc821df73a0] }
-&{operator= QGeoManeuver::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  QGeoManeuver & [0xc821df7760] }
-&{operator== QGeoManeuver::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  bool [0xc821df7ae0] }
-&{position QGeoManeuver::position commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  QGeoCoordinate [] }
-&{setDirection QGeoManeuver::setDirection commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  void [0xc821e04040] }
-&{setDistanceToNextInstruction QGeoManeuver::setDistanceToNextInstruction commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  void [0xc821e04320] }
-&{setInstructionText QGeoManeuver::setInstructionText commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  void [0xc821e04640] }
-&{setPosition QGeoManeuver::setPosition commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  void [0xc821e04960] }
-&{setTimeToNextInstruction QGeoManeuver::setTimeToNextInstruction commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  void [0xc821e04c40] }
-&{setWaypoint QGeoManeuver::setWaypoint commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  void [0xc821e04f20] }
-&{timeToNextInstruction QGeoManeuver::timeToNextInstruction commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  int [] }
-&{waypoint QGeoManeuver::waypoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  QGeoCoordinate [] }
-&{~QGeoManeuver QGeoManeuver::~QGeoManeuver commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non destructor false false   [] }
+&{QGeoManeuver QGeoManeuver::QGeoManeuver commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non constructor false false   QGeoManeuver() [] }
+&{QGeoManeuver QGeoManeuver::QGeoManeuver commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non constructor false true 2  QGeoManeuver(const QGeoManeuver &other) [0xc820bac3a0] }
+&{direction QGeoManeuver::direction commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  InstructionDirection InstructionDirection direction() const [] }
+&{distanceToNextInstruction QGeoManeuver::distanceToNextInstruction commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  qreal qreal distanceToNextInstruction() const [] }
+&{instructionText QGeoManeuver::instructionText commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  QString QString instructionText() const [] }
+&{isValid QGeoManeuver::isValid commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  bool bool isValid() const [] }
+&{operator!= QGeoManeuver::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  bool bool operator!=(const QGeoManeuver &other) const [0xc820baca20] }
+&{operator= QGeoManeuver::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  QGeoManeuver & QGeoManeuver & operator=(const QGeoManeuver &other) [0xc820bacc40] }
+&{operator== QGeoManeuver::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  bool bool operator==(const QGeoManeuver &other) const [0xc820bace80] }
+&{position QGeoManeuver::position commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  QGeoCoordinate QGeoCoordinate position() const [] }
+&{setDirection QGeoManeuver::setDirection commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  void void setDirection(InstructionDirection direction) [0xc820bad1e0] }
+&{setDistanceToNextInstruction QGeoManeuver::setDistanceToNextInstruction commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  void void setDistanceToNextInstruction(qreal distance) [0xc820bad3c0] }
+&{setInstructionText QGeoManeuver::setInstructionText commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  void void setInstructionText(const QString &instructionText) [0xc820bad5c0] }
+&{setPosition QGeoManeuver::setPosition commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  void void setPosition(const QGeoCoordinate &position) [0xc820bad7a0] }
+&{setTimeToNextInstruction QGeoManeuver::setTimeToNextInstruction commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  void void setTimeToNextInstruction(int secs) [0xc820bad980] }
+&{setWaypoint QGeoManeuver::setWaypoint commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  void void setWaypoint(const QGeoCoordinate &coordinate) [0xc820badb60] }
+&{timeToNextInstruction QGeoManeuver::timeToNextInstruction commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  int int timeToNextInstruction() const [] }
+&{waypoint QGeoManeuver::waypoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non plain false false  QGeoCoordinate QGeoCoordinate waypoint() const [] }
+&{~QGeoManeuver QGeoManeuver::~QGeoManeuver commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeomaneuver.h non destructor false false   ~QGeoManeuver() [] }
 ########################################			ENUMS			########################################
-&{InstructionDirection QGeoManeuver::InstructionDirection commendable public  [0xc821de9140 0xc821de9240 0xc821de93a0 0xc821de9520 0xc821de96c0 0xc821de97e0 0xc821de9960 0xc821de9b00 0xc821de9ce0 0xc821de9e60 0xc821de9f20 0xc821df6140]}
+&{InstructionDirection QGeoManeuver::InstructionDirection commendable public  [0xc820bdb7e0 0xc820bdb860 0xc820bdb900 0xc820bdb9e0 0xc820bdbac0 0xc820bdbb60 0xc820bdbc40 0xc820bdbd20 0xc820bdbe20 0xc820bdbee0 0xc820bdbf80 0xc820bac060] false}

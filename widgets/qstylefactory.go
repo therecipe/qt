@@ -11,8 +11,8 @@ type QStyleFactory struct {
 	ptr unsafe.Pointer
 }
 
-type QStyleFactoryITF interface {
-	QStyleFactoryPTR() *QStyleFactory
+type QStyleFactory_ITF interface {
+	QStyleFactory_PTR() *QStyleFactory
 }
 
 func (p *QStyleFactory) Pointer() unsafe.Pointer {
@@ -23,25 +23,25 @@ func (p *QStyleFactory) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQStyleFactory(ptr QStyleFactoryITF) unsafe.Pointer {
+func PointerFromQStyleFactory(ptr QStyleFactory_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleFactoryPTR().Pointer()
+		return ptr.QStyleFactory_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleFactoryFromPointer(ptr unsafe.Pointer) *QStyleFactory {
+func NewQStyleFactoryFromPointer(ptr unsafe.Pointer) *QStyleFactory {
 	var n = new(QStyleFactory)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleFactory) QStyleFactoryPTR() *QStyleFactory {
+func (ptr *QStyleFactory) QStyleFactory_PTR() *QStyleFactory {
 	return ptr
 }
 
 func QStyleFactory_Create(key string) *QStyle {
-	return QStyleFromPointer(unsafe.Pointer(C.QStyleFactory_QStyleFactory_Create(C.CString(key))))
+	return NewQStyleFromPointer(C.QStyleFactory_QStyleFactory_Create(C.CString(key)))
 }
 
 func QStyleFactory_Keys() []string {

@@ -1,7 +1,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
 int Qt_LocaleDate_Type();
 int Qt_SystemLocaleShortDate_Type();

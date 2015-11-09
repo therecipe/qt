@@ -1,27 +1,27 @@
 ########################################			FUNCTIONS			########################################
-&{QPolygon QPolygon::QPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.cpp non constructor false true 5  [0xc82217cb80 0xc82217cc00] }
-&{containsPoint QPolygon::containsPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.cpp non plain false false  bool [0xc82217cdc0 0xc82217ce40] }
-&{putPoints QPolygon::putPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.cpp non plain false true 3 void [0xc82217d000 0xc82217d080 0xc82217d100 0xc82217d180] }
-&{QPolygon QPolygon::QPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non constructor false false   [] }
-&{QPolygon QPolygon::QPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non constructor false true 3  [0xc82217d440] }
-&{QPolygon QPolygon::QPolygon commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non constructor false true 4  [0xc82217d620] }
-&{QPolygon QPolygon::QPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non constructor false true 2  [0xc82217d840] }
-&{boundingRect QPolygon::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  QRect [] }
-&{intersected QPolygon::intersected commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  QPolygon [0xc82217dd60] }
-&{operator QVariant QPolygon::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false   [] }
-&{point QPolygon::point commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false true 2 QPoint [0xc822194040] }
-&{point QPolygon::point commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  void [0xc8221941a0 0xc822194220 0xc8221942a0] }
-&{putPoints QPolygon::putPoints commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  void [0xc822194460 0xc8221944e0 0xc822194560 0xc8221945e0 0xc822194680] }
-&{setPoint QPolygon::setPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false true 2 void [0xc822194b00 0xc822194b80] }
-&{setPoint QPolygon::setPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  void [0xc822194d60 0xc822194de0 0xc822194e60] }
-&{setPoints QPolygon::setPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  void [0xc822195020 0xc8221950a0] }
-&{setPoints QPolygon::setPoints commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false true 2 void [0xc822195260 0xc8221952e0 0xc822195360 0xc8221953e0] }
-&{subtracted QPolygon::subtracted commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  QPolygon [0xc8221955a0] }
-&{swap QPolygon::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  void [0xc822195720] }
-&{translate QPolygon::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false true 2 void [0xc8221958e0] }
-&{translate QPolygon::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  void [0xc822195ac0 0xc822195b40] }
-&{translated QPolygon::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false true 2 QPolygon [0xc822195d00] }
-&{translated QPolygon::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  QPolygon [0xc822195ec0 0xc822195f40] }
-&{united QPolygon::united commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  QPolygon [0xc8221a40a0] }
-&{~QPolygon QPolygon::~QPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non destructor false false   [] }
+&{QPolygon QPolygon::QPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.cpp non constructor false true 5  QPolygon(const QRect &rectangle, bool closed) [0xc822a66dc0 0xc822a66e40] }
+&{containsPoint QPolygon::containsPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.cpp non plain false false  bool bool containsPoint(const QPoint &point, Qt::FillRule fillRule) const [0xc822a67000 0xc822a67080] }
+&{putPoints QPolygon::putPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.cpp non plain false true 3 void void putPoints(int index, int nPoints, const QPolygon &fromPolygon, int fromIndex) [0xc822a67240 0xc822a672c0 0xc822a67340 0xc822a673c0] }
+&{QPolygon QPolygon::QPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non constructor false false   QPolygon() [] }
+&{QPolygon QPolygon::QPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non constructor false true 3  QPolygon(const QPolygon &polygon) [0xc822a67680] }
+&{QPolygon QPolygon::QPolygon commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non constructor false true 4  QPolygon(const QVector<QPoint> &points) [0xc822a67860] }
+&{QPolygon QPolygon::QPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non constructor false true 2  QPolygon(int size) [0xc822a67ac0] }
+&{boundingRect QPolygon::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  QRect QRect boundingRect() const [] }
+&{intersected QPolygon::intersected commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  QPolygon QPolygon intersected(const QPolygon &r) const [0xc822a7c020] }
+&{operator QVariant QPolygon::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false   operator QVariant() const [] }
+&{point QPolygon::point commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false true 2 QPoint QPoint point(int index) const [0xc822a7c380] }
+&{point QPolygon::point commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  void void point(int index, int *x, int *y) const [0xc822a7c4e0 0xc822a7c560 0xc822a7c5e0] }
+&{putPoints QPolygon::putPoints commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  void void putPoints(int index, int nPoints, int firstx, int firsty, ... ) [0xc822a7c7a0 0xc822a7c820 0xc822a7c8a0 0xc822a7c920 0xc822a7c9c0] }
+&{setPoint QPolygon::setPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false true 2 void void setPoint(int index, const QPoint &point) [0xc822a7ce40 0xc822a7cec0] }
+&{setPoint QPolygon::setPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  void void setPoint(int index, int x, int y) [0xc822a7d0a0 0xc822a7d120 0xc822a7d1a0] }
+&{setPoints QPolygon::setPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  void void setPoints(int nPoints, const int *points) [0xc822a7d360 0xc822a7d3e0] }
+&{setPoints QPolygon::setPoints commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false true 2 void void setPoints(int nPoints, int firstx, int firsty, ... ) [0xc822a7d5a0 0xc822a7d620 0xc822a7d6a0 0xc822a7d720] }
+&{subtracted QPolygon::subtracted commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  QPolygon QPolygon subtracted(const QPolygon &r) const [0xc822a7d8e0] }
+&{swap QPolygon::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  void void swap(QPolygon &other) [0xc822a7daa0] }
+&{translate QPolygon::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false true 2 void void translate(const QPoint &offset) [0xc822a7dc60] }
+&{translate QPolygon::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  void void translate(int dx, int dy) [0xc822a7de80 0xc822a7df00] }
+&{translated QPolygon::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false true 2 QPolygon QPolygon translated(const QPoint &offset) const [0xc822a900c0] }
+&{translated QPolygon::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  QPolygon QPolygon translated(int dx, int dy) const [0xc822a90280 0xc822a90300] }
+&{united QPolygon::united commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non plain false false  QPolygon QPolygon united(const QPolygon &r) const [0xc822a90460] }
+&{~QPolygon QPolygon::~QPolygon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpolygon.h non destructor false false   ~QPolygon() [] }
 ########################################			ENUMS			########################################

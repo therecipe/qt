@@ -12,44 +12,57 @@ type QSGSimpleRectNode struct {
 	QSGGeometryNode
 }
 
-type QSGSimpleRectNodeITF interface {
-	QSGGeometryNodeITF
-	QSGSimpleRectNodePTR() *QSGSimpleRectNode
+type QSGSimpleRectNode_ITF interface {
+	QSGGeometryNode_ITF
+	QSGSimpleRectNode_PTR() *QSGSimpleRectNode
 }
 
-func PointerFromQSGSimpleRectNode(ptr QSGSimpleRectNodeITF) unsafe.Pointer {
+func PointerFromQSGSimpleRectNode(ptr QSGSimpleRectNode_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSGSimpleRectNodePTR().Pointer()
+		return ptr.QSGSimpleRectNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSGSimpleRectNodeFromPointer(ptr unsafe.Pointer) *QSGSimpleRectNode {
+func NewQSGSimpleRectNodeFromPointer(ptr unsafe.Pointer) *QSGSimpleRectNode {
 	var n = new(QSGSimpleRectNode)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSGSimpleRectNode) QSGSimpleRectNodePTR() *QSGSimpleRectNode {
+func (ptr *QSGSimpleRectNode) QSGSimpleRectNode_PTR() *QSGSimpleRectNode {
 	return ptr
 }
 
 func NewQSGSimpleRectNode2() *QSGSimpleRectNode {
-	return QSGSimpleRectNodeFromPointer(unsafe.Pointer(C.QSGSimpleRectNode_NewQSGSimpleRectNode2()))
+	return NewQSGSimpleRectNodeFromPointer(C.QSGSimpleRectNode_NewQSGSimpleRectNode2())
 }
 
-func NewQSGSimpleRectNode(rect core.QRectFITF, color gui.QColorITF) *QSGSimpleRectNode {
-	return QSGSimpleRectNodeFromPointer(unsafe.Pointer(C.QSGSimpleRectNode_NewQSGSimpleRectNode(C.QtObjectPtr(core.PointerFromQRectF(rect)), C.QtObjectPtr(gui.PointerFromQColor(color)))))
+func NewQSGSimpleRectNode(rect core.QRectF_ITF, color gui.QColor_ITF) *QSGSimpleRectNode {
+	return NewQSGSimpleRectNodeFromPointer(C.QSGSimpleRectNode_NewQSGSimpleRectNode(core.PointerFromQRectF(rect), gui.PointerFromQColor(color)))
 }
 
-func (ptr *QSGSimpleRectNode) SetColor(color gui.QColorITF) {
+func (ptr *QSGSimpleRectNode) Color() *gui.QColor {
 	if ptr.Pointer() != nil {
-		C.QSGSimpleRectNode_SetColor(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQColor(color)))
+		return gui.NewQColorFromPointer(C.QSGSimpleRectNode_Color(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSGSimpleRectNode) SetColor(color gui.QColor_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleRectNode_SetColor(ptr.Pointer(), gui.PointerFromQColor(color))
 	}
 }
 
-func (ptr *QSGSimpleRectNode) SetRect(rect core.QRectFITF) {
+func (ptr *QSGSimpleRectNode) SetRect(rect core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSGSimpleRectNode_SetRect(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)))
+		C.QSGSimpleRectNode_SetRect(ptr.Pointer(), core.PointerFromQRectF(rect))
+	}
+}
+
+func (ptr *QSGSimpleRectNode) SetRect2(x float64, y float64, w float64, h float64) {
+	if ptr.Pointer() != nil {
+		C.QSGSimpleRectNode_SetRect2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h))
 	}
 }

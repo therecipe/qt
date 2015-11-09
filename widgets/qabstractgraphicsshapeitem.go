@@ -11,49 +11,56 @@ type QAbstractGraphicsShapeItem struct {
 	QGraphicsItem
 }
 
-type QAbstractGraphicsShapeItemITF interface {
-	QGraphicsItemITF
-	QAbstractGraphicsShapeItemPTR() *QAbstractGraphicsShapeItem
+type QAbstractGraphicsShapeItem_ITF interface {
+	QGraphicsItem_ITF
+	QAbstractGraphicsShapeItem_PTR() *QAbstractGraphicsShapeItem
 }
 
-func PointerFromQAbstractGraphicsShapeItem(ptr QAbstractGraphicsShapeItemITF) unsafe.Pointer {
+func PointerFromQAbstractGraphicsShapeItem(ptr QAbstractGraphicsShapeItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAbstractGraphicsShapeItemPTR().Pointer()
+		return ptr.QAbstractGraphicsShapeItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAbstractGraphicsShapeItemFromPointer(ptr unsafe.Pointer) *QAbstractGraphicsShapeItem {
+func NewQAbstractGraphicsShapeItemFromPointer(ptr unsafe.Pointer) *QAbstractGraphicsShapeItem {
 	var n = new(QAbstractGraphicsShapeItem)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAbstractGraphicsShapeItem) QAbstractGraphicsShapeItemPTR() *QAbstractGraphicsShapeItem {
+func (ptr *QAbstractGraphicsShapeItem) QAbstractGraphicsShapeItem_PTR() *QAbstractGraphicsShapeItem {
 	return ptr
 }
 
-func (ptr *QAbstractGraphicsShapeItem) IsObscuredBy(item QGraphicsItemITF) bool {
+func (ptr *QAbstractGraphicsShapeItem) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
-		return C.QAbstractGraphicsShapeItem_IsObscuredBy(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItem(item))) != 0
+		return gui.NewQBrushFromPointer(C.QAbstractGraphicsShapeItem_Brush(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAbstractGraphicsShapeItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QAbstractGraphicsShapeItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
 	}
 	return false
 }
 
-func (ptr *QAbstractGraphicsShapeItem) SetBrush(brush gui.QBrushITF) {
+func (ptr *QAbstractGraphicsShapeItem) SetBrush(brush gui.QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractGraphicsShapeItem_SetBrush(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQBrush(brush)))
+		C.QAbstractGraphicsShapeItem_SetBrush(ptr.Pointer(), gui.PointerFromQBrush(brush))
 	}
 }
 
-func (ptr *QAbstractGraphicsShapeItem) SetPen(pen gui.QPenITF) {
+func (ptr *QAbstractGraphicsShapeItem) SetPen(pen gui.QPen_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractGraphicsShapeItem_SetPen(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPen(pen)))
+		C.QAbstractGraphicsShapeItem_SetPen(ptr.Pointer(), gui.PointerFromQPen(pen))
 	}
 }
 
 func (ptr *QAbstractGraphicsShapeItem) DestroyQAbstractGraphicsShapeItem() {
 	if ptr.Pointer() != nil {
-		C.QAbstractGraphicsShapeItem_DestroyQAbstractGraphicsShapeItem(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractGraphicsShapeItem_DestroyQAbstractGraphicsShapeItem(ptr.Pointer())
 	}
 }

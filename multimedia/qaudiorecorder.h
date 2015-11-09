@@ -1,19 +1,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QAudioRecorder_NewQAudioRecorder(QtObjectPtr parent);
-char* QAudioRecorder_AudioInput(QtObjectPtr ptr);
-void QAudioRecorder_ConnectAudioInputChanged(QtObjectPtr ptr);
-void QAudioRecorder_DisconnectAudioInputChanged(QtObjectPtr ptr);
-char* QAudioRecorder_AudioInputDescription(QtObjectPtr ptr, char* name);
-char* QAudioRecorder_AudioInputs(QtObjectPtr ptr);
-void QAudioRecorder_ConnectAvailableAudioInputsChanged(QtObjectPtr ptr);
-void QAudioRecorder_DisconnectAvailableAudioInputsChanged(QtObjectPtr ptr);
-char* QAudioRecorder_DefaultAudioInput(QtObjectPtr ptr);
-void QAudioRecorder_SetAudioInput(QtObjectPtr ptr, char* name);
-void QAudioRecorder_DestroyQAudioRecorder(QtObjectPtr ptr);
+void* QAudioRecorder_NewQAudioRecorder(void* parent);
+char* QAudioRecorder_AudioInput(void* ptr);
+void QAudioRecorder_ConnectAudioInputChanged(void* ptr);
+void QAudioRecorder_DisconnectAudioInputChanged(void* ptr);
+char* QAudioRecorder_AudioInputDescription(void* ptr, char* name);
+char* QAudioRecorder_AudioInputs(void* ptr);
+void QAudioRecorder_ConnectAvailableAudioInputsChanged(void* ptr);
+void QAudioRecorder_DisconnectAvailableAudioInputsChanged(void* ptr);
+char* QAudioRecorder_DefaultAudioInput(void* ptr);
+void QAudioRecorder_SetAudioInput(void* ptr, char* name);
+void QAudioRecorder_DestroyQAudioRecorder(void* ptr);
 
 #ifdef __cplusplus
 }

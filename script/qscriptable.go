@@ -10,8 +10,8 @@ type QScriptable struct {
 	ptr unsafe.Pointer
 }
 
-type QScriptableITF interface {
-	QScriptablePTR() *QScriptable
+type QScriptable_ITF interface {
+	QScriptable_PTR() *QScriptable
 }
 
 func (p *QScriptable) Pointer() unsafe.Pointer {
@@ -22,40 +22,54 @@ func (p *QScriptable) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQScriptable(ptr QScriptableITF) unsafe.Pointer {
+func PointerFromQScriptable(ptr QScriptable_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScriptablePTR().Pointer()
+		return ptr.QScriptable_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScriptableFromPointer(ptr unsafe.Pointer) *QScriptable {
+func NewQScriptableFromPointer(ptr unsafe.Pointer) *QScriptable {
 	var n = new(QScriptable)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QScriptable) QScriptablePTR() *QScriptable {
+func (ptr *QScriptable) QScriptable_PTR() *QScriptable {
 	return ptr
+}
+
+func (ptr *QScriptable) Argument(index int) *QScriptValue {
+	if ptr.Pointer() != nil {
+		return NewQScriptValueFromPointer(C.QScriptable_Argument(ptr.Pointer(), C.int(index)))
+	}
+	return nil
 }
 
 func (ptr *QScriptable) ArgumentCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QScriptable_ArgumentCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QScriptable_ArgumentCount(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QScriptable) Context() *QScriptContext {
 	if ptr.Pointer() != nil {
-		return QScriptContextFromPointer(unsafe.Pointer(C.QScriptable_Context(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQScriptContextFromPointer(C.QScriptable_Context(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QScriptable) Engine() *QScriptEngine {
 	if ptr.Pointer() != nil {
-		return QScriptEngineFromPointer(unsafe.Pointer(C.QScriptable_Engine(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQScriptEngineFromPointer(C.QScriptable_Engine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QScriptable) ThisObject() *QScriptValue {
+	if ptr.Pointer() != nil {
+		return NewQScriptValueFromPointer(C.QScriptable_ThisObject(ptr.Pointer()))
 	}
 	return nil
 }

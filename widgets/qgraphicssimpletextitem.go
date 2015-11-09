@@ -12,76 +12,76 @@ type QGraphicsSimpleTextItem struct {
 	QAbstractGraphicsShapeItem
 }
 
-type QGraphicsSimpleTextItemITF interface {
-	QAbstractGraphicsShapeItemITF
-	QGraphicsSimpleTextItemPTR() *QGraphicsSimpleTextItem
+type QGraphicsSimpleTextItem_ITF interface {
+	QAbstractGraphicsShapeItem_ITF
+	QGraphicsSimpleTextItem_PTR() *QGraphicsSimpleTextItem
 }
 
-func PointerFromQGraphicsSimpleTextItem(ptr QGraphicsSimpleTextItemITF) unsafe.Pointer {
+func PointerFromQGraphicsSimpleTextItem(ptr QGraphicsSimpleTextItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsSimpleTextItemPTR().Pointer()
+		return ptr.QGraphicsSimpleTextItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsSimpleTextItemFromPointer(ptr unsafe.Pointer) *QGraphicsSimpleTextItem {
+func NewQGraphicsSimpleTextItemFromPointer(ptr unsafe.Pointer) *QGraphicsSimpleTextItem {
 	var n = new(QGraphicsSimpleTextItem)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsSimpleTextItem) QGraphicsSimpleTextItemPTR() *QGraphicsSimpleTextItem {
+func (ptr *QGraphicsSimpleTextItem) QGraphicsSimpleTextItem_PTR() *QGraphicsSimpleTextItem {
 	return ptr
 }
 
-func (ptr *QGraphicsSimpleTextItem) Contains(point core.QPointFITF) bool {
+func (ptr *QGraphicsSimpleTextItem) Contains(point core.QPointF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsSimpleTextItem_Contains(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(point))) != 0
+		return C.QGraphicsSimpleTextItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
 	}
 	return false
 }
 
-func (ptr *QGraphicsSimpleTextItem) IsObscuredBy(item QGraphicsItemITF) bool {
+func (ptr *QGraphicsSimpleTextItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsSimpleTextItem_IsObscuredBy(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItem(item))) != 0
+		return C.QGraphicsSimpleTextItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
 	}
 	return false
 }
 
-func (ptr *QGraphicsSimpleTextItem) Paint(painter gui.QPainterITF, option QStyleOptionGraphicsItemITF, widget QWidgetITF) {
+func (ptr *QGraphicsSimpleTextItem) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSimpleTextItem_Paint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(PointerFromQStyleOptionGraphicsItem(option)), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QGraphicsSimpleTextItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
 	}
 }
 
-func (ptr *QGraphicsSimpleTextItem) SetFont(font gui.QFontITF) {
+func (ptr *QGraphicsSimpleTextItem) SetFont(font gui.QFont_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSimpleTextItem_SetFont(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQFont(font)))
+		C.QGraphicsSimpleTextItem_SetFont(ptr.Pointer(), gui.PointerFromQFont(font))
 	}
 }
 
 func (ptr *QGraphicsSimpleTextItem) SetText(text string) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSimpleTextItem_SetText(C.QtObjectPtr(ptr.Pointer()), C.CString(text))
+		C.QGraphicsSimpleTextItem_SetText(ptr.Pointer(), C.CString(text))
 	}
 }
 
 func (ptr *QGraphicsSimpleTextItem) Text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGraphicsSimpleTextItem_Text(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QGraphicsSimpleTextItem_Text(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QGraphicsSimpleTextItem) Type() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsSimpleTextItem_Type(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGraphicsSimpleTextItem_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsSimpleTextItem) DestroyQGraphicsSimpleTextItem() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSimpleTextItem_DestroyQGraphicsSimpleTextItem(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsSimpleTextItem_DestroyQGraphicsSimpleTextItem(ptr.Pointer())
 	}
 }

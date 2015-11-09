@@ -11,59 +11,59 @@ type QCommandLinkButton struct {
 	QPushButton
 }
 
-type QCommandLinkButtonITF interface {
-	QPushButtonITF
-	QCommandLinkButtonPTR() *QCommandLinkButton
+type QCommandLinkButton_ITF interface {
+	QPushButton_ITF
+	QCommandLinkButton_PTR() *QCommandLinkButton
 }
 
-func PointerFromQCommandLinkButton(ptr QCommandLinkButtonITF) unsafe.Pointer {
+func PointerFromQCommandLinkButton(ptr QCommandLinkButton_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCommandLinkButtonPTR().Pointer()
+		return ptr.QCommandLinkButton_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCommandLinkButtonFromPointer(ptr unsafe.Pointer) *QCommandLinkButton {
+func NewQCommandLinkButtonFromPointer(ptr unsafe.Pointer) *QCommandLinkButton {
 	var n = new(QCommandLinkButton)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCommandLinkButton_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCommandLinkButton) QCommandLinkButtonPTR() *QCommandLinkButton {
+func (ptr *QCommandLinkButton) QCommandLinkButton_PTR() *QCommandLinkButton {
 	return ptr
 }
 
 func (ptr *QCommandLinkButton) Description() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QCommandLinkButton_Description(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QCommandLinkButton_Description(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QCommandLinkButton) SetDescription(description string) {
 	if ptr.Pointer() != nil {
-		C.QCommandLinkButton_SetDescription(C.QtObjectPtr(ptr.Pointer()), C.CString(description))
+		C.QCommandLinkButton_SetDescription(ptr.Pointer(), C.CString(description))
 	}
 }
 
-func NewQCommandLinkButton(parent QWidgetITF) *QCommandLinkButton {
-	return QCommandLinkButtonFromPointer(unsafe.Pointer(C.QCommandLinkButton_NewQCommandLinkButton(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQCommandLinkButton(parent QWidget_ITF) *QCommandLinkButton {
+	return NewQCommandLinkButtonFromPointer(C.QCommandLinkButton_NewQCommandLinkButton(PointerFromQWidget(parent)))
 }
 
-func NewQCommandLinkButton2(text string, parent QWidgetITF) *QCommandLinkButton {
-	return QCommandLinkButtonFromPointer(unsafe.Pointer(C.QCommandLinkButton_NewQCommandLinkButton2(C.CString(text), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQCommandLinkButton2(text string, parent QWidget_ITF) *QCommandLinkButton {
+	return NewQCommandLinkButtonFromPointer(C.QCommandLinkButton_NewQCommandLinkButton2(C.CString(text), PointerFromQWidget(parent)))
 }
 
-func NewQCommandLinkButton3(text string, description string, parent QWidgetITF) *QCommandLinkButton {
-	return QCommandLinkButtonFromPointer(unsafe.Pointer(C.QCommandLinkButton_NewQCommandLinkButton3(C.CString(text), C.CString(description), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQCommandLinkButton3(text string, description string, parent QWidget_ITF) *QCommandLinkButton {
+	return NewQCommandLinkButtonFromPointer(C.QCommandLinkButton_NewQCommandLinkButton3(C.CString(text), C.CString(description), PointerFromQWidget(parent)))
 }
 
 func (ptr *QCommandLinkButton) DestroyQCommandLinkButton() {
 	if ptr.Pointer() != nil {
-		C.QCommandLinkButton_DestroyQCommandLinkButton(C.QtObjectPtr(ptr.Pointer()))
+		C.QCommandLinkButton_DestroyQCommandLinkButton(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

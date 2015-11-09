@@ -11,65 +11,65 @@ type QTextFrame struct {
 	QTextObject
 }
 
-type QTextFrameITF interface {
-	QTextObjectITF
-	QTextFramePTR() *QTextFrame
+type QTextFrame_ITF interface {
+	QTextObject_ITF
+	QTextFrame_PTR() *QTextFrame
 }
 
-func PointerFromQTextFrame(ptr QTextFrameITF) unsafe.Pointer {
+func PointerFromQTextFrame(ptr QTextFrame_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTextFramePTR().Pointer()
+		return ptr.QTextFrame_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTextFrameFromPointer(ptr unsafe.Pointer) *QTextFrame {
+func NewQTextFrameFromPointer(ptr unsafe.Pointer) *QTextFrame {
 	var n = new(QTextFrame)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QTextFrame_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QTextFrame) QTextFramePTR() *QTextFrame {
+func (ptr *QTextFrame) QTextFrame_PTR() *QTextFrame {
 	return ptr
 }
 
-func NewQTextFrame(document QTextDocumentITF) *QTextFrame {
-	return QTextFrameFromPointer(unsafe.Pointer(C.QTextFrame_NewQTextFrame(C.QtObjectPtr(PointerFromQTextDocument(document)))))
+func NewQTextFrame(document QTextDocument_ITF) *QTextFrame {
+	return NewQTextFrameFromPointer(C.QTextFrame_NewQTextFrame(PointerFromQTextDocument(document)))
 }
 
 func (ptr *QTextFrame) FirstPosition() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTextFrame_FirstPosition(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTextFrame_FirstPosition(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTextFrame) LastPosition() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTextFrame_LastPosition(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTextFrame_LastPosition(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTextFrame) ParentFrame() *QTextFrame {
 	if ptr.Pointer() != nil {
-		return QTextFrameFromPointer(unsafe.Pointer(C.QTextFrame_ParentFrame(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQTextFrameFromPointer(C.QTextFrame_ParentFrame(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QTextFrame) SetFrameFormat(format QTextFrameFormatITF) {
+func (ptr *QTextFrame) SetFrameFormat(format QTextFrameFormat_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTextFrame_SetFrameFormat(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTextFrameFormat(format)))
+		C.QTextFrame_SetFrameFormat(ptr.Pointer(), PointerFromQTextFrameFormat(format))
 	}
 }
 
 func (ptr *QTextFrame) DestroyQTextFrame() {
 	if ptr.Pointer() != nil {
-		C.QTextFrame_DestroyQTextFrame(C.QtObjectPtr(ptr.Pointer()))
+		C.QTextFrame_DestroyQTextFrame(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

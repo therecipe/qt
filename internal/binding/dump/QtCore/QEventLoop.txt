@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QEventLoop QEventLoop::QEventLoop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non constructor false false   [0xc820643860] }
-&{event QEventLoop::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h impure plain false false  bool [0xc820643a40] }
-&{exec QEventLoop::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  int [0xc820643bc0] }
-&{exit QEventLoop::exit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  void [0xc820643d80] }
-&{isRunning QEventLoop::isRunning commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  bool [] }
-&{processEvents QEventLoop::processEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  bool [0xc820630140] }
-&{processEvents QEventLoop::processEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false true 2 void [0xc8206303a0 0xc820630480] }
-&{quit QEventLoop::quit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non slot false false  void [] }
-&{wakeUp QEventLoop::wakeUp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  void [] }
-&{~QEventLoop QEventLoop::~QEventLoop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non destructor false false   [] }
+&{QEventLoop QEventLoop::QEventLoop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non constructor false false   QEventLoop(QObject *parent) [0xc8205f8e40] }
+&{event QEventLoop::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h impure plain false false  bool bool event(QEvent *event) [0xc8205f90c0] }
+&{exec QEventLoop::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  int int exec(ProcessEventsFlags flags) [0xc8205f9280] }
+&{exit QEventLoop::exit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  void void exit(int returnCode) [0xc8205f9520] }
+&{isRunning QEventLoop::isRunning commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  bool bool isRunning() const [] }
+&{processEvents QEventLoop::processEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  bool bool processEvents(ProcessEventsFlags flags) [0xc8205f9940] }
+&{processEvents QEventLoop::processEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false true 2 void void processEvents(ProcessEventsFlags flags, int maxTime) [0xc8205f9be0 0xc8205f9cc0] }
+&{quit QEventLoop::quit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non slot false false  void void quit() [] }
+&{wakeUp QEventLoop::wakeUp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  void void wakeUp() [] }
+&{~QEventLoop QEventLoop::~QEventLoop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non destructor false false   ~QEventLoop() [] }
 ########################################			ENUMS			########################################
-&{ProcessEventsFlag QEventLoop::ProcessEventsFlag commendable public QEventLoop::ProcessEventsFlags [0xc820643000 0xc8206430a0 0xc8206431a0 0xc8206432c0 0xc820643400 0xc8206434a0 0xc820643520]}
+&{ProcessEventsFlag QEventLoop::ProcessEventsFlag commendable public QEventLoop::ProcessEventsFlags [0xc8205f8520 0xc8205f85c0 0xc8205f86a0 0xc8205f87a0 0xc8205f8900 0xc8205f8980 0xc8205f8a20] false}

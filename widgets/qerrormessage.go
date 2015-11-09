@@ -11,54 +11,54 @@ type QErrorMessage struct {
 	QDialog
 }
 
-type QErrorMessageITF interface {
-	QDialogITF
-	QErrorMessagePTR() *QErrorMessage
+type QErrorMessage_ITF interface {
+	QDialog_ITF
+	QErrorMessage_PTR() *QErrorMessage
 }
 
-func PointerFromQErrorMessage(ptr QErrorMessageITF) unsafe.Pointer {
+func PointerFromQErrorMessage(ptr QErrorMessage_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QErrorMessagePTR().Pointer()
+		return ptr.QErrorMessage_PTR().Pointer()
 	}
 	return nil
 }
 
-func QErrorMessageFromPointer(ptr unsafe.Pointer) *QErrorMessage {
+func NewQErrorMessageFromPointer(ptr unsafe.Pointer) *QErrorMessage {
 	var n = new(QErrorMessage)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QErrorMessage_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QErrorMessage) QErrorMessagePTR() *QErrorMessage {
+func (ptr *QErrorMessage) QErrorMessage_PTR() *QErrorMessage {
 	return ptr
 }
 
-func NewQErrorMessage(parent QWidgetITF) *QErrorMessage {
-	return QErrorMessageFromPointer(unsafe.Pointer(C.QErrorMessage_NewQErrorMessage(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQErrorMessage(parent QWidget_ITF) *QErrorMessage {
+	return NewQErrorMessageFromPointer(C.QErrorMessage_NewQErrorMessage(PointerFromQWidget(parent)))
 }
 
 func QErrorMessage_QtHandler() *QErrorMessage {
-	return QErrorMessageFromPointer(unsafe.Pointer(C.QErrorMessage_QErrorMessage_QtHandler()))
+	return NewQErrorMessageFromPointer(C.QErrorMessage_QErrorMessage_QtHandler())
 }
 
 func (ptr *QErrorMessage) ShowMessage(message string) {
 	if ptr.Pointer() != nil {
-		C.QErrorMessage_ShowMessage(C.QtObjectPtr(ptr.Pointer()), C.CString(message))
+		C.QErrorMessage_ShowMessage(ptr.Pointer(), C.CString(message))
 	}
 }
 
 func (ptr *QErrorMessage) ShowMessage2(message string, ty string) {
 	if ptr.Pointer() != nil {
-		C.QErrorMessage_ShowMessage2(C.QtObjectPtr(ptr.Pointer()), C.CString(message), C.CString(ty))
+		C.QErrorMessage_ShowMessage2(ptr.Pointer(), C.CString(message), C.CString(ty))
 	}
 }
 
 func (ptr *QErrorMessage) DestroyQErrorMessage() {
 	if ptr.Pointer() != nil {
-		C.QErrorMessage_DestroyQErrorMessage(C.QtObjectPtr(ptr.Pointer()))
+		C.QErrorMessage_DestroyQErrorMessage(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

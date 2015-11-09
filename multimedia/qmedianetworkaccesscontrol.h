@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(QtObjectPtr ptr);
+void QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -3,6 +3,7 @@ package dbus
 //#include "qdbusvariant.h"
 import "C"
 import (
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -10,8 +11,8 @@ type QDBusVariant struct {
 	ptr unsafe.Pointer
 }
 
-type QDBusVariantITF interface {
-	QDBusVariantPTR() *QDBusVariant
+type QDBusVariant_ITF interface {
+	QDBusVariant_PTR() *QDBusVariant
 }
 
 func (p *QDBusVariant) Pointer() unsafe.Pointer {
@@ -22,40 +23,40 @@ func (p *QDBusVariant) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQDBusVariant(ptr QDBusVariantITF) unsafe.Pointer {
+func PointerFromQDBusVariant(ptr QDBusVariant_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDBusVariantPTR().Pointer()
+		return ptr.QDBusVariant_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDBusVariantFromPointer(ptr unsafe.Pointer) *QDBusVariant {
+func NewQDBusVariantFromPointer(ptr unsafe.Pointer) *QDBusVariant {
 	var n = new(QDBusVariant)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDBusVariant) QDBusVariantPTR() *QDBusVariant {
+func (ptr *QDBusVariant) QDBusVariant_PTR() *QDBusVariant {
 	return ptr
 }
 
 func NewQDBusVariant() *QDBusVariant {
-	return QDBusVariantFromPointer(unsafe.Pointer(C.QDBusVariant_NewQDBusVariant()))
+	return NewQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant())
 }
 
-func NewQDBusVariant2(variant string) *QDBusVariant {
-	return QDBusVariantFromPointer(unsafe.Pointer(C.QDBusVariant_NewQDBusVariant2(C.CString(variant))))
+func NewQDBusVariant2(variant core.QVariant_ITF) *QDBusVariant {
+	return NewQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant2(core.PointerFromQVariant(variant)))
 }
 
-func (ptr *QDBusVariant) SetVariant(variant string) {
+func (ptr *QDBusVariant) SetVariant(variant core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDBusVariant_SetVariant(C.QtObjectPtr(ptr.Pointer()), C.CString(variant))
+		C.QDBusVariant_SetVariant(ptr.Pointer(), core.PointerFromQVariant(variant))
 	}
 }
 
-func (ptr *QDBusVariant) Variant() string {
+func (ptr *QDBusVariant) Variant() *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusVariant_Variant(C.QtObjectPtr(ptr.Pointer())))
+		return core.NewQVariantFromPointer(C.QDBusVariant_Variant(ptr.Pointer()))
 	}
-	return ""
+	return nil
 }

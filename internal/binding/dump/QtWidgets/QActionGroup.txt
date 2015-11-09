@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
-&{addAction QActionGroup::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non plain false false  QAction * [0xc822068800] }
-&{isEnabled QActionGroup::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non plain false false  bool [] }
-&{isExclusive QActionGroup::isExclusive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non plain false false  bool [] }
-&{isVisible QActionGroup::isVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non plain false false  bool [] }
-&{setEnabled QActionGroup::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non slot false false  void [0xc822068d80] }
-&{setExclusive QActionGroup::setExclusive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non slot false false  void [0xc822068f80] }
-&{setVisible QActionGroup::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non slot false false  void [0xc8220691a0] }
-&{QActionGroup QActionGroup::QActionGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non constructor false false   [0xc822069380] }
-&{actions QActionGroup::actions commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non plain false false  QList<QAction *> [] }
-&{addAction QActionGroup::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non plain false true 3 QAction * [0xc822069960 0xc822069a00] }
-&{addAction QActionGroup::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non plain false true 2 QAction * [0xc822069c60] }
-&{checkedAction QActionGroup::checkedAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non plain false false  QAction * [] }
-&{hovered QActionGroup::hovered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non signal false false  void [0xc82207a080] }
-&{removeAction QActionGroup::removeAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non plain false false  void [0xc82207a300] }
-&{setDisabled QActionGroup::setDisabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non slot false false  void [0xc82207a5a0] }
-&{triggered QActionGroup::triggered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non signal false false  void [0xc82207a8c0] }
-&{~QActionGroup QActionGroup::~QActionGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non destructor false false   [] }
+&{addAction QActionGroup::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non plain false false  QAction * QAction * addAction(QAction *action) [0xc8224c4140] }
+&{isEnabled QActionGroup::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non plain false false  bool bool isEnabled() const [] }
+&{isExclusive QActionGroup::isExclusive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non plain false false  bool bool isExclusive() const [] }
+&{isVisible QActionGroup::isVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non plain false false  bool bool isVisible() const [] }
+&{setEnabled QActionGroup::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non slot false false  void void setEnabled(bool ) [0xc8224c4900] }
+&{setExclusive QActionGroup::setExclusive commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non slot false false  void void setExclusive(bool ) [0xc8224c4bc0] }
+&{setVisible QActionGroup::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.cpp non slot false false  void void setVisible(bool ) [0xc8224c4e80] }
+&{QActionGroup QActionGroup::QActionGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non constructor false false   QActionGroup(QObject *parent) [0xc8224c5100] }
+&{actions QActionGroup::actions commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non plain false false  QList<QAction *> QList<QAction *> actions() const [] }
+&{addAction QActionGroup::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non plain false true 3 QAction * QAction * addAction(const QIcon &icon, const QString &text) [0xc8224c57c0 0xc8224c5860] }
+&{addAction QActionGroup::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non plain false true 2 QAction * QAction * addAction(const QString &text) [0xc8224c5a80] }
+&{checkedAction QActionGroup::checkedAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non plain false false  QAction * QAction * checkedAction() const [] }
+&{hovered QActionGroup::hovered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non signal false false  void void hovered(QAction *action) [0xc8224c5e80] }
+&{removeAction QActionGroup::removeAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non plain false false  void void removeAction(QAction *action) [0xc8220260a0] }
+&{setDisabled QActionGroup::setDisabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non slot false false  void void setDisabled(bool b) [0xc822026320] }
+&{triggered QActionGroup::triggered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non signal false false  void void triggered(QAction *action) [0xc8220265e0] }
+&{~QActionGroup QActionGroup::~QActionGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qactiongroup.h non destructor false false   ~QActionGroup() [] }
 ########################################			ENUMS			########################################

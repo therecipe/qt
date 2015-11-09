@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QWaitCondition_NewQWaitCondition();
-void QWaitCondition_WakeAll(QtObjectPtr ptr);
-void QWaitCondition_WakeOne(QtObjectPtr ptr);
-void QWaitCondition_DestroyQWaitCondition(QtObjectPtr ptr);
+void* QWaitCondition_NewQWaitCondition();
+void QWaitCondition_WakeAll(void* ptr);
+void QWaitCondition_WakeOne(void* ptr);
+void QWaitCondition_DestroyQWaitCondition(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStyleOptionSlider_NewQStyleOptionSlider();
-QtObjectPtr QStyleOptionSlider_NewQStyleOptionSlider2(QtObjectPtr other);
+void* QStyleOptionSlider_NewQStyleOptionSlider();
+void* QStyleOptionSlider_NewQStyleOptionSlider2(void* other);
 
 #ifdef __cplusplus
 }

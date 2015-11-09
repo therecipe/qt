@@ -11,101 +11,101 @@ type QXmlFormatter struct {
 	QXmlSerializer
 }
 
-type QXmlFormatterITF interface {
-	QXmlSerializerITF
-	QXmlFormatterPTR() *QXmlFormatter
+type QXmlFormatter_ITF interface {
+	QXmlSerializer_ITF
+	QXmlFormatter_PTR() *QXmlFormatter
 }
 
-func PointerFromQXmlFormatter(ptr QXmlFormatterITF) unsafe.Pointer {
+func PointerFromQXmlFormatter(ptr QXmlFormatter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QXmlFormatterPTR().Pointer()
+		return ptr.QXmlFormatter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QXmlFormatterFromPointer(ptr unsafe.Pointer) *QXmlFormatter {
+func NewQXmlFormatterFromPointer(ptr unsafe.Pointer) *QXmlFormatter {
 	var n = new(QXmlFormatter)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QXmlFormatter) QXmlFormatterPTR() *QXmlFormatter {
+func (ptr *QXmlFormatter) QXmlFormatter_PTR() *QXmlFormatter {
 	return ptr
 }
 
-func NewQXmlFormatter(query QXmlQueryITF, outputDevice core.QIODeviceITF) *QXmlFormatter {
-	return QXmlFormatterFromPointer(unsafe.Pointer(C.QXmlFormatter_NewQXmlFormatter(C.QtObjectPtr(PointerFromQXmlQuery(query)), C.QtObjectPtr(core.PointerFromQIODevice(outputDevice)))))
+func NewQXmlFormatter(query QXmlQuery_ITF, outputDevice core.QIODevice_ITF) *QXmlFormatter {
+	return NewQXmlFormatterFromPointer(C.QXmlFormatter_NewQXmlFormatter(PointerFromQXmlQuery(query), core.PointerFromQIODevice(outputDevice)))
 }
 
-func (ptr *QXmlFormatter) Attribute(name QXmlNameITF, value core.QStringRefITF) {
+func (ptr *QXmlFormatter) Attribute(name QXmlName_ITF, value core.QStringRef_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_Attribute(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlName(name)), C.QtObjectPtr(core.PointerFromQStringRef(value)))
+		C.QXmlFormatter_Attribute(ptr.Pointer(), PointerFromQXmlName(name), core.PointerFromQStringRef(value))
 	}
 }
 
-func (ptr *QXmlFormatter) Characters(value core.QStringRefITF) {
+func (ptr *QXmlFormatter) Characters(value core.QStringRef_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_Characters(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQStringRef(value)))
+		C.QXmlFormatter_Characters(ptr.Pointer(), core.PointerFromQStringRef(value))
 	}
 }
 
 func (ptr *QXmlFormatter) Comment(value string) {
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_Comment(C.QtObjectPtr(ptr.Pointer()), C.CString(value))
+		C.QXmlFormatter_Comment(ptr.Pointer(), C.CString(value))
 	}
 }
 
 func (ptr *QXmlFormatter) EndDocument() {
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_EndDocument(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlFormatter_EndDocument(ptr.Pointer())
 	}
 }
 
 func (ptr *QXmlFormatter) EndElement() {
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_EndElement(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlFormatter_EndElement(ptr.Pointer())
 	}
 }
 
 func (ptr *QXmlFormatter) EndOfSequence() {
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_EndOfSequence(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlFormatter_EndOfSequence(ptr.Pointer())
 	}
 }
 
 func (ptr *QXmlFormatter) IndentationDepth() int {
 	if ptr.Pointer() != nil {
-		return int(C.QXmlFormatter_IndentationDepth(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QXmlFormatter_IndentationDepth(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QXmlFormatter) ProcessingInstruction(name QXmlNameITF, value string) {
+func (ptr *QXmlFormatter) ProcessingInstruction(name QXmlName_ITF, value string) {
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_ProcessingInstruction(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlName(name)), C.CString(value))
+		C.QXmlFormatter_ProcessingInstruction(ptr.Pointer(), PointerFromQXmlName(name), C.CString(value))
 	}
 }
 
 func (ptr *QXmlFormatter) SetIndentationDepth(depth int) {
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_SetIndentationDepth(C.QtObjectPtr(ptr.Pointer()), C.int(depth))
+		C.QXmlFormatter_SetIndentationDepth(ptr.Pointer(), C.int(depth))
 	}
 }
 
 func (ptr *QXmlFormatter) StartDocument() {
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_StartDocument(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlFormatter_StartDocument(ptr.Pointer())
 	}
 }
 
-func (ptr *QXmlFormatter) StartElement(name QXmlNameITF) {
+func (ptr *QXmlFormatter) StartElement(name QXmlName_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_StartElement(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlName(name)))
+		C.QXmlFormatter_StartElement(ptr.Pointer(), PointerFromQXmlName(name))
 	}
 }
 
 func (ptr *QXmlFormatter) StartOfSequence() {
 	if ptr.Pointer() != nil {
-		C.QXmlFormatter_StartOfSequence(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlFormatter_StartOfSequence(ptr.Pointer())
 	}
 }

@@ -3,6 +3,7 @@ package widgets
 //#include "qscrollerproperties.h"
 import "C"
 import (
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -10,8 +11,8 @@ type QScrollerProperties struct {
 	ptr unsafe.Pointer
 }
 
-type QScrollerPropertiesITF interface {
-	QScrollerPropertiesPTR() *QScrollerProperties
+type QScrollerProperties_ITF interface {
+	QScrollerProperties_PTR() *QScrollerProperties
 }
 
 func (p *QScrollerProperties) Pointer() unsafe.Pointer {
@@ -22,27 +23,27 @@ func (p *QScrollerProperties) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQScrollerProperties(ptr QScrollerPropertiesITF) unsafe.Pointer {
+func PointerFromQScrollerProperties(ptr QScrollerProperties_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScrollerPropertiesPTR().Pointer()
+		return ptr.QScrollerProperties_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScrollerPropertiesFromPointer(ptr unsafe.Pointer) *QScrollerProperties {
+func NewQScrollerPropertiesFromPointer(ptr unsafe.Pointer) *QScrollerProperties {
 	var n = new(QScrollerProperties)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QScrollerProperties) QScrollerPropertiesPTR() *QScrollerProperties {
+func (ptr *QScrollerProperties) QScrollerProperties_PTR() *QScrollerProperties {
 	return ptr
 }
 
 //QScrollerProperties::FrameRates
-type QScrollerProperties__FrameRates int
+type QScrollerProperties__FrameRates int64
 
-var (
+const (
 	QScrollerProperties__Standard = QScrollerProperties__FrameRates(0)
 	QScrollerProperties__Fps60    = QScrollerProperties__FrameRates(1)
 	QScrollerProperties__Fps30    = QScrollerProperties__FrameRates(2)
@@ -50,18 +51,18 @@ var (
 )
 
 //QScrollerProperties::OvershootPolicy
-type QScrollerProperties__OvershootPolicy int
+type QScrollerProperties__OvershootPolicy int64
 
-var (
+const (
 	QScrollerProperties__OvershootWhenScrollable = QScrollerProperties__OvershootPolicy(0)
 	QScrollerProperties__OvershootAlwaysOff      = QScrollerProperties__OvershootPolicy(1)
 	QScrollerProperties__OvershootAlwaysOn       = QScrollerProperties__OvershootPolicy(2)
 )
 
 //QScrollerProperties::ScrollMetric
-type QScrollerProperties__ScrollMetric int
+type QScrollerProperties__ScrollMetric int64
 
-var (
+const (
 	QScrollerProperties__MousePressEventDelay           = QScrollerProperties__ScrollMetric(0)
 	QScrollerProperties__DragStartDistance              = QScrollerProperties__ScrollMetric(1)
 	QScrollerProperties__DragVelocitySmoothingFactor    = QScrollerProperties__ScrollMetric(2)
@@ -86,27 +87,27 @@ var (
 )
 
 func NewQScrollerProperties() *QScrollerProperties {
-	return QScrollerPropertiesFromPointer(unsafe.Pointer(C.QScrollerProperties_NewQScrollerProperties()))
+	return NewQScrollerPropertiesFromPointer(C.QScrollerProperties_NewQScrollerProperties())
 }
 
-func NewQScrollerProperties2(sp QScrollerPropertiesITF) *QScrollerProperties {
-	return QScrollerPropertiesFromPointer(unsafe.Pointer(C.QScrollerProperties_NewQScrollerProperties2(C.QtObjectPtr(PointerFromQScrollerProperties(sp)))))
+func NewQScrollerProperties2(sp QScrollerProperties_ITF) *QScrollerProperties {
+	return NewQScrollerPropertiesFromPointer(C.QScrollerProperties_NewQScrollerProperties2(PointerFromQScrollerProperties(sp)))
 }
 
-func (ptr *QScrollerProperties) ScrollMetric(metric QScrollerProperties__ScrollMetric) string {
+func (ptr *QScrollerProperties) ScrollMetric(metric QScrollerProperties__ScrollMetric) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScrollerProperties_ScrollMetric(C.QtObjectPtr(ptr.Pointer()), C.int(metric)))
+		return core.NewQVariantFromPointer(C.QScrollerProperties_ScrollMetric(ptr.Pointer(), C.int(metric)))
 	}
-	return ""
+	return nil
 }
 
-func QScrollerProperties_SetDefaultScrollerProperties(sp QScrollerPropertiesITF) {
-	C.QScrollerProperties_QScrollerProperties_SetDefaultScrollerProperties(C.QtObjectPtr(PointerFromQScrollerProperties(sp)))
+func QScrollerProperties_SetDefaultScrollerProperties(sp QScrollerProperties_ITF) {
+	C.QScrollerProperties_QScrollerProperties_SetDefaultScrollerProperties(PointerFromQScrollerProperties(sp))
 }
 
-func (ptr *QScrollerProperties) SetScrollMetric(metric QScrollerProperties__ScrollMetric, value string) {
+func (ptr *QScrollerProperties) SetScrollMetric(metric QScrollerProperties__ScrollMetric, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QScrollerProperties_SetScrollMetric(C.QtObjectPtr(ptr.Pointer()), C.int(metric), C.CString(value))
+		C.QScrollerProperties_SetScrollMetric(ptr.Pointer(), C.int(metric), core.PointerFromQVariant(value))
 	}
 }
 
@@ -116,6 +117,6 @@ func QScrollerProperties_UnsetDefaultScrollerProperties() {
 
 func (ptr *QScrollerProperties) DestroyQScrollerProperties() {
 	if ptr.Pointer() != nil {
-		C.QScrollerProperties_DestroyQScrollerProperties(C.QtObjectPtr(ptr.Pointer()))
+		C.QScrollerProperties_DestroyQScrollerProperties(ptr.Pointer())
 	}
 }

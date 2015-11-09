@@ -1,23 +1,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QMatrix4x4_NewQMatrix4x4();
-QtObjectPtr QMatrix4x4_NewQMatrix4x47(QtObjectPtr transform);
-int QMatrix4x4_IsAffine(QtObjectPtr ptr);
-int QMatrix4x4_IsIdentity(QtObjectPtr ptr);
-void QMatrix4x4_LookAt(QtObjectPtr ptr, QtObjectPtr eye, QtObjectPtr center, QtObjectPtr up);
-void QMatrix4x4_Optimize(QtObjectPtr ptr);
-void QMatrix4x4_Ortho2(QtObjectPtr ptr, QtObjectPtr rect);
-void QMatrix4x4_Ortho3(QtObjectPtr ptr, QtObjectPtr rect);
-void QMatrix4x4_Rotate2(QtObjectPtr ptr, QtObjectPtr quaternion);
-void QMatrix4x4_Scale(QtObjectPtr ptr, QtObjectPtr vector);
-void QMatrix4x4_SetColumn(QtObjectPtr ptr, int index, QtObjectPtr value);
-void QMatrix4x4_SetRow(QtObjectPtr ptr, int index, QtObjectPtr value);
-void QMatrix4x4_SetToIdentity(QtObjectPtr ptr);
-void QMatrix4x4_Translate(QtObjectPtr ptr, QtObjectPtr vector);
-void QMatrix4x4_Viewport2(QtObjectPtr ptr, QtObjectPtr rect);
+void* QMatrix4x4_NewQMatrix4x4();
+void* QMatrix4x4_NewQMatrix4x47(void* transform);
+int QMatrix4x4_IsAffine(void* ptr);
+int QMatrix4x4_IsIdentity(void* ptr);
+void QMatrix4x4_LookAt(void* ptr, void* eye, void* center, void* up);
+void QMatrix4x4_Optimize(void* ptr);
+void QMatrix4x4_Ortho2(void* ptr, void* rect);
+void QMatrix4x4_Ortho3(void* ptr, void* rect);
+void QMatrix4x4_Rotate2(void* ptr, void* quaternion);
+void QMatrix4x4_Scale(void* ptr, void* vector);
+void QMatrix4x4_SetColumn(void* ptr, int index, void* value);
+void QMatrix4x4_SetRow(void* ptr, int index, void* value);
+void QMatrix4x4_SetToIdentity(void* ptr);
+void QMatrix4x4_Translate(void* ptr, void* vector);
+void QMatrix4x4_Viewport2(void* ptr, void* rect);
 
 #ifdef __cplusplus
 }

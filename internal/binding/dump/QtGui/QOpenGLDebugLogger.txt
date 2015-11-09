@@ -1,20 +1,20 @@
 ########################################			FUNCTIONS			########################################
-&{QOpenGLDebugLogger QOpenGLDebugLogger::QOpenGLDebugLogger commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non constructor false false   [0xc820a1d920] }
-&{disableMessages QOpenGLDebugLogger::disableMessages commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  void [0xc820a1dc00 0xc820a1dd00 0xc820a1de00] }
-&{disableMessages QOpenGLDebugLogger::disableMessages commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false true 2 void [0xc820a1dfa0 0xc8201a4100 0xc8201a4240] }
-&{enableMessages QOpenGLDebugLogger::enableMessages commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  void [0xc8201a4540 0xc8201a46c0 0xc8201a4860] }
-&{enableMessages QOpenGLDebugLogger::enableMessages commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false true 2 void [0xc8201a4b00 0xc8201a4c20 0xc8201a4d80] }
-&{initialize QOpenGLDebugLogger::initialize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  bool [] }
-&{isLogging QOpenGLDebugLogger::isLogging commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  bool [] }
-&{logMessage QOpenGLDebugLogger::logMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non slot false false  void [0xc8201a5400] }
-&{loggedMessages QOpenGLDebugLogger::loggedMessages commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  QList<QOpenGLDebugMessage> [] }
-&{loggingMode QOpenGLDebugLogger::loggingMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  LoggingMode [] }
-&{maximumMessageLength QOpenGLDebugLogger::maximumMessageLength commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  qint64 [] }
-&{messageLogged QOpenGLDebugLogger::messageLogged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non signal false false  void [0xc8201a5d00] }
-&{popGroup QOpenGLDebugLogger::popGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  void [] }
-&{pushGroup QOpenGLDebugLogger::pushGroup commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  void [0xc8205ba140 0xc8205ba1c0 0xc8205ba280] }
-&{startLogging QOpenGLDebugLogger::startLogging commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non slot false false  void [0xc8205ba4c0] }
-&{stopLogging QOpenGLDebugLogger::stopLogging commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non slot false false  void [] }
-&{~QOpenGLDebugLogger QOpenGLDebugLogger::~QOpenGLDebugLogger commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non destructor false false   [] }
+&{QOpenGLDebugLogger QOpenGLDebugLogger::QOpenGLDebugLogger commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non constructor false false   QOpenGLDebugLogger(QObject *parent) [0xc82055c280] }
+&{disableMessages QOpenGLDebugLogger::disableMessages commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  void void disableMessages(QOpenGLDebugMessage::Sources sources, QOpenGLDebugMessage::Types types, QOpenGLDebugMessage::Severities severities) [0xc82055c5a0 0xc82055c6a0 0xc82055c840] }
+&{disableMessages QOpenGLDebugLogger::disableMessages commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false true 2 void void disableMessages(const QVector<GLuint> &ids, QOpenGLDebugMessage::Sources sources, QOpenGLDebugMessage::Types types) [0xc82055caa0 0xc82055cbc0 0xc82055ccc0] }
+&{enableMessages QOpenGLDebugLogger::enableMessages commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  void void enableMessages(QOpenGLDebugMessage::Sources sources, QOpenGLDebugMessage::Types types, QOpenGLDebugMessage::Severities severities) [0xc82055cf20 0xc82055d080 0xc82055d1a0] }
+&{enableMessages QOpenGLDebugLogger::enableMessages commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false true 2 void void enableMessages(const QVector<GLuint> &ids, QOpenGLDebugMessage::Sources sources, QOpenGLDebugMessage::Types types) [0xc82055d340 0xc82055d4c0 0xc82055d640] }
+&{initialize QOpenGLDebugLogger::initialize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  bool bool initialize() [] }
+&{isLogging QOpenGLDebugLogger::isLogging commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  bool bool isLogging() const [] }
+&{logMessage QOpenGLDebugLogger::logMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non slot false false  void void logMessage(const QOpenGLDebugMessage &debugMessage) [0xc82055dc20] }
+&{loggedMessages QOpenGLDebugLogger::loggedMessages commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  QList<QOpenGLDebugMessage> QList<QOpenGLDebugMessage> loggedMessages() const [] }
+&{loggingMode QOpenGLDebugLogger::loggingMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  LoggingMode LoggingMode loggingMode() const [] }
+&{maximumMessageLength QOpenGLDebugLogger::maximumMessageLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  qint64 qint64 maximumMessageLength() const [] }
+&{messageLogged QOpenGLDebugLogger::messageLogged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non signal false false  void void messageLogged(const QOpenGLDebugMessage &debugMessage) [0xc820170460] }
+&{popGroup QOpenGLDebugLogger::popGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  void void popGroup() [] }
+&{pushGroup QOpenGLDebugLogger::pushGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non plain false false  void void pushGroup(const QString &name, GLuint id, QOpenGLDebugMessage::Source source) [0xc820170b60 0xc820170be0 0xc820170d20] }
+&{startLogging QOpenGLDebugLogger::startLogging commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non slot false false  void void startLogging(LoggingMode loggingMode) [0xc8201711a0] }
+&{stopLogging QOpenGLDebugLogger::stopLogging commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non slot false false  void void stopLogging() [] }
+&{~QOpenGLDebugLogger QOpenGLDebugLogger::~QOpenGLDebugLogger commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengldebug.h non destructor false false   ~QOpenGLDebugLogger() [] }
 ########################################			ENUMS			########################################
-&{LoggingMode QOpenGLDebugLogger::LoggingMode commendable public  [0xc820a1d620 0xc820a1d700]}
+&{LoggingMode QOpenGLDebugLogger::LoggingMode commendable public  [0xc8201a3d80 0xc8201a3f00] false}

@@ -1,63 +1,75 @@
 #include "qvariantanimation.h"
-#include <QObject>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QEasingCurve>
+#include <QObject>
+#include <QString>
+#include <QVariant>
 #include <QVariantAnimation>
 #include "_cgo_export.h"
 
 class MyQVariantAnimation: public QVariantAnimation {
 public:
-void Signal_ValueChanged(const QVariant & value){callbackQVariantAnimationValueChanged(this->objectName().toUtf8().data(), value.toString().toUtf8().data());};
+void Signal_ValueChanged(const QVariant & value){callbackQVariantAnimationValueChanged(this->objectName().toUtf8().data(), new QVariant(value));};
 };
 
-char* QVariantAnimation_CurrentValue(QtObjectPtr ptr){
-	return static_cast<QVariantAnimation*>(ptr)->currentValue().toString().toUtf8().data();
+void* QVariantAnimation_CurrentValue(void* ptr){
+	return new QVariant(static_cast<QVariantAnimation*>(ptr)->currentValue());
 }
 
-int QVariantAnimation_Duration(QtObjectPtr ptr){
+int QVariantAnimation_Duration(void* ptr){
 	return static_cast<QVariantAnimation*>(ptr)->duration();
 }
 
-char* QVariantAnimation_EndValue(QtObjectPtr ptr){
-	return static_cast<QVariantAnimation*>(ptr)->endValue().toString().toUtf8().data();
+void* QVariantAnimation_EasingCurve(void* ptr){
+	return new QEasingCurve(static_cast<QVariantAnimation*>(ptr)->easingCurve());
 }
 
-void QVariantAnimation_SetDuration(QtObjectPtr ptr, int msecs){
+void* QVariantAnimation_EndValue(void* ptr){
+	return new QVariant(static_cast<QVariantAnimation*>(ptr)->endValue());
+}
+
+void QVariantAnimation_SetDuration(void* ptr, int msecs){
 	static_cast<QVariantAnimation*>(ptr)->setDuration(msecs);
 }
 
-void QVariantAnimation_SetEasingCurve(QtObjectPtr ptr, QtObjectPtr easing){
+void QVariantAnimation_SetEasingCurve(void* ptr, void* easing){
 	static_cast<QVariantAnimation*>(ptr)->setEasingCurve(*static_cast<QEasingCurve*>(easing));
 }
 
-void QVariantAnimation_SetEndValue(QtObjectPtr ptr, char* value){
-	static_cast<QVariantAnimation*>(ptr)->setEndValue(QVariant(value));
+void QVariantAnimation_SetEndValue(void* ptr, void* value){
+	static_cast<QVariantAnimation*>(ptr)->setEndValue(*static_cast<QVariant*>(value));
 }
 
-void QVariantAnimation_SetStartValue(QtObjectPtr ptr, char* value){
-	static_cast<QVariantAnimation*>(ptr)->setStartValue(QVariant(value));
+void QVariantAnimation_SetStartValue(void* ptr, void* value){
+	static_cast<QVariantAnimation*>(ptr)->setStartValue(*static_cast<QVariant*>(value));
 }
 
-char* QVariantAnimation_StartValue(QtObjectPtr ptr){
-	return static_cast<QVariantAnimation*>(ptr)->startValue().toString().toUtf8().data();
+void* QVariantAnimation_StartValue(void* ptr){
+	return new QVariant(static_cast<QVariantAnimation*>(ptr)->startValue());
 }
 
-QtObjectPtr QVariantAnimation_NewQVariantAnimation(QtObjectPtr parent){
+void* QVariantAnimation_NewQVariantAnimation(void* parent){
 	return new QVariantAnimation(static_cast<QObject*>(parent));
 }
 
-void QVariantAnimation_ConnectValueChanged(QtObjectPtr ptr){
+void* QVariantAnimation_KeyValueAt(void* ptr, double step){
+	return new QVariant(static_cast<QVariantAnimation*>(ptr)->keyValueAt(static_cast<qreal>(step)));
+}
+
+void QVariantAnimation_SetKeyValueAt(void* ptr, double step, void* value){
+	static_cast<QVariantAnimation*>(ptr)->setKeyValueAt(static_cast<qreal>(step), *static_cast<QVariant*>(value));
+}
+
+void QVariantAnimation_ConnectValueChanged(void* ptr){
 	QObject::connect(static_cast<QVariantAnimation*>(ptr), static_cast<void (QVariantAnimation::*)(const QVariant &)>(&QVariantAnimation::valueChanged), static_cast<MyQVariantAnimation*>(ptr), static_cast<void (MyQVariantAnimation::*)(const QVariant &)>(&MyQVariantAnimation::Signal_ValueChanged));;
 }
 
-void QVariantAnimation_DisconnectValueChanged(QtObjectPtr ptr){
+void QVariantAnimation_DisconnectValueChanged(void* ptr){
 	QObject::disconnect(static_cast<QVariantAnimation*>(ptr), static_cast<void (QVariantAnimation::*)(const QVariant &)>(&QVariantAnimation::valueChanged), static_cast<MyQVariantAnimation*>(ptr), static_cast<void (MyQVariantAnimation::*)(const QVariant &)>(&MyQVariantAnimation::Signal_ValueChanged));;
 }
 
-void QVariantAnimation_DestroyQVariantAnimation(QtObjectPtr ptr){
+void QVariantAnimation_DestroyQVariantAnimation(void* ptr){
 	static_cast<QVariantAnimation*>(ptr)->~QVariantAnimation();
 }
 

@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QStyleOption>
 #include <QStyle>
+#include <QStyleOption>
 #include <QStyleOptionFocusRect>
 #include "_cgo_export.h"
 
@@ -12,11 +12,11 @@ class MyQStyleOptionFocusRect: public QStyleOptionFocusRect {
 public:
 };
 
-QtObjectPtr QStyleOptionFocusRect_NewQStyleOptionFocusRect(){
+void* QStyleOptionFocusRect_NewQStyleOptionFocusRect(){
 	return new QStyleOptionFocusRect();
 }
 
-QtObjectPtr QStyleOptionFocusRect_NewQStyleOptionFocusRect2(QtObjectPtr other){
+void* QStyleOptionFocusRect_NewQStyleOptionFocusRect2(void* other){
 	return new QStyleOptionFocusRect(*static_cast<QStyleOptionFocusRect*>(other));
 }
 

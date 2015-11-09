@@ -1,24 +1,24 @@
 ########################################			FUNCTIONS			########################################
-&{autoDefault QPushButton::autoDefault commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.cpp non plain false false  bool [] }
-&{isDefault QPushButton::isDefault commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.cpp non plain false false  bool [] }
-&{isFlat QPushButton::isFlat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.cpp non plain false false  bool [] }
-&{setAutoDefault QPushButton::setAutoDefault commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.cpp non plain false false  void [0xc822eb5a80] }
-&{setDefault QPushButton::setDefault commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.cpp non plain false false  void [0xc822ea2280] }
-&{setFlat QPushButton::setFlat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.cpp non plain false false  void [0xc822ea28a0] }
-&{QPushButton QPushButton::QPushButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non constructor false false   [0xc822ea2d40] }
-&{QPushButton QPushButton::QPushButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non constructor false true 3  [0xc822ea3260 0xc822ea3420 0xc822ea3540] }
-&{QPushButton QPushButton::QPushButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non constructor false true 2  [0xc822ea39c0 0xc822ea3a80] }
-&{event QPushButton::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  bool [0xc822e94ae0] }
-&{focusInEvent QPushButton::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  void [0xc822e94fe0] }
-&{focusOutEvent QPushButton::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  void [0xc822e95320] }
-&{hitButton QPushButton::hitButton commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  bool [0xc822e956e0] }
-&{initStyleOption QPushButton::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non plain false false  void [0xc822e95c40] }
-&{keyPressEvent QPushButton::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  void [0xc822e90240] }
-&{menu QPushButton::menu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non plain false false  QMenu * [] }
-&{minimumSizeHint QPushButton::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  QSize [] }
-&{paintEvent QPushButton::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  void [0xc822e90c00] }
-&{setMenu QPushButton::setMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non plain false false  void [0xc822e910a0] }
-&{showMenu QPushButton::showMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non slot false false  void [] }
-&{sizeHint QPushButton::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  QSize [] }
-&{~QPushButton QPushButton::~QPushButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non destructor false false   [] }
+&{autoDefault QPushButton::autoDefault commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.cpp non plain false false  bool bool autoDefault() const [] }
+&{isDefault QPushButton::isDefault commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.cpp non plain false false  bool bool isDefault() const [] }
+&{isFlat QPushButton::isFlat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.cpp non plain false false  bool bool isFlat() const [] }
+&{setAutoDefault QPushButton::setAutoDefault commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.cpp non plain false false  void void setAutoDefault(bool ) [0xc820fdc740] }
+&{setDefault QPushButton::setDefault commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.cpp non plain false false  void void setDefault(bool ) [0xc820fdcd20] }
+&{setFlat QPushButton::setFlat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.cpp non plain false false  void void setFlat(bool ) [0xc820fdd2c0] }
+&{QPushButton QPushButton::QPushButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non constructor false false   QPushButton(QWidget *parent) [0xc820fdd820] }
+&{QPushButton QPushButton::QPushButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non constructor false true 3  QPushButton(const QIcon &icon, const QString &text, QWidget *parent) [0xc820fddc40 0xc820fddd20 0xc820fdde60] }
+&{QPushButton QPushButton::QPushButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non constructor false true 2  QPushButton(const QString &text, QWidget *parent) [0xc820fc6300 0xc820fc6440] }
+&{event QPushButton::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  bool bool event(QEvent *e) [0xc820fc7480] }
+&{focusInEvent QPushButton::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  void void focusInEvent(QFocusEvent *e) [0xc820fc7900] }
+&{focusOutEvent QPushButton::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  void void focusOutEvent(QFocusEvent *e) [0xc820fc7ce0] }
+&{hitButton QPushButton::hitButton commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  bool bool hitButton(const QPoint &pos) const [0xc820fb8100] }
+&{initStyleOption QPushButton::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non plain false false  void void initStyleOption(QStyleOptionButton *option) const [0xc820fb8640] }
+&{keyPressEvent QPushButton::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  void void keyPressEvent(QKeyEvent *e) [0xc820fb8bc0] }
+&{menu QPushButton::menu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non plain false false  QMenu * QMenu * menu() const [] }
+&{minimumSizeHint QPushButton::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  QSize QSize minimumSizeHint() const [] }
+&{paintEvent QPushButton::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc820fb9620] }
+&{setMenu QPushButton::setMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non plain false false  void void setMenu(QMenu *menu) [0xc820fb9be0] }
+&{showMenu QPushButton::showMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non slot false false  void void showMenu() [] }
+&{sizeHint QPushButton::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h impure plain false false  QSize QSize sizeHint() const [] }
+&{~QPushButton QPushButton::~QPushButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qpushbutton.h non destructor false false   ~QPushButton() [] }
 ########################################			ENUMS			########################################

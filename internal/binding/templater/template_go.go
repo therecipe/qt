@@ -27,20 +27,20 @@ func GoTemplate(c *parser.Class) (o string) {
 		}
 		o += "}\n\n"
 
-		o += fmt.Sprintf("type %vITF interface {\n", c.Name)
+		o += fmt.Sprintf("type %v_ITF interface {\n", c.Name)
 
 		if c.Bases != "" {
 			for _, b := range c.GetBases() {
 				if bC, exists := parser.ClassMap[b]; exists {
 					if m := shortModule(bC.Module); m != shortModule(c.Module) {
-						o += fmt.Sprintf("%v.%vITF\n", m, b)
+						o += fmt.Sprintf("%v.%v_ITF\n", m, b)
 					} else {
-						o += fmt.Sprintf("%vITF\n", b)
+						o += fmt.Sprintf("%v_ITF\n", b)
 					}
 				}
 			}
 		}
-		o += fmt.Sprintf("%vPTR() *%v\n", c.Name, c.Name)
+		o += fmt.Sprintf("%v_PTR() *%v\n", c.Name, c.Name)
 		o += "\n}\n\n"
 
 		if c.Bases == "" {
@@ -49,30 +49,30 @@ func GoTemplate(c *parser.Class) (o string) {
 		}
 
 		if len(c.GetBases()) > 1 {
-			o += fmt.Sprintf("func (p *%v)Pointer() unsafe.Pointer {\nreturn p.%vPTR().Pointer()\n}\n\n", c.Name, c.GetBases()[0])
+			o += fmt.Sprintf("func (p *%v)Pointer() unsafe.Pointer {\nreturn p.%v_PTR().Pointer()\n}\n\n", c.Name, c.GetBases()[0])
 
 			o += fmt.Sprintf("func (p *%v)SetPointer(ptr unsafe.Pointer) {\n", c.Name)
 			for _, b := range c.GetBases() {
-				o += fmt.Sprintf("p.%vPTR().SetPointer(ptr)\n", b)
+				o += fmt.Sprintf("p.%v_PTR().SetPointer(ptr)\n", b)
 			}
 			o += "}\n\n"
 		}
 
-		o += fmt.Sprintf("func PointerFrom%v(ptr %vITF) unsafe.Pointer {\n", c.Name, c.Name)
-		o += fmt.Sprintf("if ptr != nil {\nreturn ptr.%vPTR().Pointer()\n}\nreturn nil\n}\n\n", c.Name)
+		o += fmt.Sprintf("func PointerFrom%v(ptr %v_ITF) unsafe.Pointer {\n", c.Name, c.Name)
+		o += fmt.Sprintf("if ptr != nil {\nreturn ptr.%v_PTR().Pointer()\n}\nreturn nil\n}\n\n", c.Name)
 
-		o += fmt.Sprintf("func %vFromPointer(ptr unsafe.Pointer) *%v {\n", c.Name, c.Name)
+		o += fmt.Sprintf("func New%vFromPointer(ptr unsafe.Pointer) *%v {\n", c.Name, c.Name)
 		o += fmt.Sprintf("var n = new(%v)\n", c.Name)
 		o += "n.SetPointer(ptr)\n"
 
 		if isObjectSubClass(c.Name) {
-			o += "if n.ObjectName() == \"\" {\n"
+			o += "if len(n.ObjectName()) == 0 {\n"
 			o += fmt.Sprintf("n.SetObjectName(\"%v_\" + qt.RandomIdentifier())\n", c.Name)
 			o += "}\n"
 		}
 		o += "return n\n}\n\n"
 
-		o += fmt.Sprintf("func (ptr *%v) %vPTR() *%v {\n", c.Name, c.Name, c.Name)
+		o += fmt.Sprintf("func (ptr *%v) %v_PTR() *%v {\n", c.Name, c.Name, c.Name)
 		o += "return ptr\n}\n\n"
 
 	}

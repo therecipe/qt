@@ -1,26 +1,25 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QActionGroup_AddAction(QtObjectPtr ptr, QtObjectPtr action);
-int QActionGroup_IsEnabled(QtObjectPtr ptr);
-int QActionGroup_IsExclusive(QtObjectPtr ptr);
-int QActionGroup_IsVisible(QtObjectPtr ptr);
-void QActionGroup_SetEnabled(QtObjectPtr ptr, int v);
-void QActionGroup_SetExclusive(QtObjectPtr ptr, int v);
-void QActionGroup_SetVisible(QtObjectPtr ptr, int v);
-QtObjectPtr QActionGroup_NewQActionGroup(QtObjectPtr parent);
-QtObjectPtr QActionGroup_AddAction3(QtObjectPtr ptr, QtObjectPtr icon, char* text);
-QtObjectPtr QActionGroup_AddAction2(QtObjectPtr ptr, char* text);
-QtObjectPtr QActionGroup_CheckedAction(QtObjectPtr ptr);
-void QActionGroup_ConnectHovered(QtObjectPtr ptr);
-void QActionGroup_DisconnectHovered(QtObjectPtr ptr);
-void QActionGroup_RemoveAction(QtObjectPtr ptr, QtObjectPtr action);
-void QActionGroup_SetDisabled(QtObjectPtr ptr, int b);
-void QActionGroup_ConnectTriggered(QtObjectPtr ptr);
-void QActionGroup_DisconnectTriggered(QtObjectPtr ptr);
-void QActionGroup_DestroyQActionGroup(QtObjectPtr ptr);
+void* QActionGroup_AddAction(void* ptr, void* action);
+int QActionGroup_IsEnabled(void* ptr);
+int QActionGroup_IsExclusive(void* ptr);
+int QActionGroup_IsVisible(void* ptr);
+void QActionGroup_SetEnabled(void* ptr, int v);
+void QActionGroup_SetExclusive(void* ptr, int v);
+void QActionGroup_SetVisible(void* ptr, int v);
+void* QActionGroup_NewQActionGroup(void* parent);
+void* QActionGroup_AddAction3(void* ptr, void* icon, char* text);
+void* QActionGroup_AddAction2(void* ptr, char* text);
+void* QActionGroup_CheckedAction(void* ptr);
+void QActionGroup_ConnectHovered(void* ptr);
+void QActionGroup_DisconnectHovered(void* ptr);
+void QActionGroup_RemoveAction(void* ptr, void* action);
+void QActionGroup_SetDisabled(void* ptr, int b);
+void QActionGroup_ConnectTriggered(void* ptr);
+void QActionGroup_DisconnectTriggered(void* ptr);
+void QActionGroup_DestroyQActionGroup(void* ptr);
 
 #ifdef __cplusplus
 }

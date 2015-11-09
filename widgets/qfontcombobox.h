@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QFontComboBox_FontFilters(QtObjectPtr ptr);
-void QFontComboBox_SetCurrentFont(QtObjectPtr ptr, QtObjectPtr font);
-void QFontComboBox_SetFontFilters(QtObjectPtr ptr, int filters);
-void QFontComboBox_SetWritingSystem(QtObjectPtr ptr, int script);
-int QFontComboBox_WritingSystem(QtObjectPtr ptr);
-QtObjectPtr QFontComboBox_NewQFontComboBox(QtObjectPtr parent);
-void QFontComboBox_DestroyQFontComboBox(QtObjectPtr ptr);
+int QFontComboBox_FontFilters(void* ptr);
+void QFontComboBox_SetCurrentFont(void* ptr, void* font);
+void QFontComboBox_SetFontFilters(void* ptr, int filters);
+void QFontComboBox_SetWritingSystem(void* ptr, int script);
+int QFontComboBox_WritingSystem(void* ptr);
+void* QFontComboBox_NewQFontComboBox(void* parent);
+void QFontComboBox_DestroyQFontComboBox(void* ptr);
 
 #ifdef __cplusplus
 }

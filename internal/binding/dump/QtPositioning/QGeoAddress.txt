@@ -1,29 +1,29 @@
 ########################################			FUNCTIONS			########################################
-&{QGeoAddress QGeoAddress::QGeoAddress commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non constructor false false   [] }
-&{QGeoAddress QGeoAddress::QGeoAddress commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non constructor false true 2  [0xc82305f1c0] }
-&{city QGeoAddress::city commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString [] }
-&{clear QGeoAddress::clear commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void [] }
-&{country QGeoAddress::country commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString [] }
-&{countryCode QGeoAddress::countryCode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString [] }
-&{county QGeoAddress::county commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString [] }
-&{district QGeoAddress::district commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString [] }
-&{isEmpty QGeoAddress::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  bool [] }
-&{isTextGenerated QGeoAddress::isTextGenerated commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  bool [] }
-&{operator!= QGeoAddress::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  bool [0xc82304a600] }
-&{operator= QGeoAddress::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QGeoAddress & [0xc82304aa20] }
-&{operator== QGeoAddress::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  bool [0xc82304ae00] }
-&{postalCode QGeoAddress::postalCode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString [] }
-&{setCity QGeoAddress::setCity commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void [0xc82304b3c0] }
-&{setCountry QGeoAddress::setCountry commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void [0xc82304b700] }
-&{setCountryCode QGeoAddress::setCountryCode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void [0xc82304bb20] }
-&{setCounty QGeoAddress::setCounty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void [0xc82304bec0] }
-&{setDistrict QGeoAddress::setDistrict commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void [0xc82303c240] }
-&{setPostalCode QGeoAddress::setPostalCode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void [0xc82303c620] }
-&{setState QGeoAddress::setState commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void [0xc82303c980] }
-&{setStreet QGeoAddress::setStreet commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void [0xc82303cd20] }
-&{setText QGeoAddress::setText commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void [0xc82303d0c0] }
-&{state QGeoAddress::state commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString [] }
-&{street QGeoAddress::street commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString [] }
-&{text QGeoAddress::text commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString [] }
-&{~QGeoAddress QGeoAddress::~QGeoAddress commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non destructor false false   [] }
+&{QGeoAddress QGeoAddress::QGeoAddress commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non constructor false false   QGeoAddress() [] }
+&{QGeoAddress QGeoAddress::QGeoAddress commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non constructor false true 2  QGeoAddress(const QGeoAddress &other) [0xc821916640] }
+&{city QGeoAddress::city commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString QString city() const [] }
+&{clear QGeoAddress::clear commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void void clear() [] }
+&{country QGeoAddress::country commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString QString country() const [] }
+&{countryCode QGeoAddress::countryCode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString QString countryCode() const [] }
+&{county QGeoAddress::county commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString QString county() const [] }
+&{district QGeoAddress::district commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString QString district() const [] }
+&{isEmpty QGeoAddress::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  bool bool isEmpty() const [] }
+&{isTextGenerated QGeoAddress::isTextGenerated commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  bool bool isTextGenerated() const [] }
+&{operator!= QGeoAddress::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  bool bool operator!=(const QGeoAddress &other) const [0xc821917da0] }
+&{operator= QGeoAddress::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QGeoAddress & QGeoAddress & operator=(const QGeoAddress &address) [0xc82190a1a0] }
+&{operator== QGeoAddress::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  bool bool operator==(const QGeoAddress &other) const [0xc82190a5a0] }
+&{postalCode QGeoAddress::postalCode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString QString postalCode() const [] }
+&{setCity QGeoAddress::setCity commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void void setCity(const QString &city) [0xc82190aba0] }
+&{setCountry QGeoAddress::setCountry commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void void setCountry(const QString &country) [0xc82190ae80] }
+&{setCountryCode QGeoAddress::setCountryCode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void void setCountryCode(const QString &countryCode) [0xc82190b200] }
+&{setCounty QGeoAddress::setCounty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void void setCounty(const QString &county) [0xc82190b540] }
+&{setDistrict QGeoAddress::setDistrict commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void void setDistrict(const QString &district) [0xc82190b8e0] }
+&{setPostalCode QGeoAddress::setPostalCode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void void setPostalCode(const QString &postalCode) [0xc82190bbc0] }
+&{setState QGeoAddress::setState commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void void setState(const QString &state) [0xc82190bf80] }
+&{setStreet QGeoAddress::setStreet commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void void setStreet(const QString &street) [0xc821da2220] }
+&{setText QGeoAddress::setText commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  void void setText(const QString &text) [0xc821da2500] }
+&{state QGeoAddress::state commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString QString state() const [] }
+&{street QGeoAddress::street commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString QString street() const [] }
+&{text QGeoAddress::text commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non plain false false  QString QString text() const [] }
+&{~QGeoAddress QGeoAddress::~QGeoAddress commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoaddress.h non destructor false false   ~QGeoAddress() [] }
 ########################################			ENUMS			########################################

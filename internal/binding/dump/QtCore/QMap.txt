@@ -1,60 +1,60 @@
 ########################################			FUNCTIONS			########################################
-&{QMap QMap::QMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false false   [] }
-&{QMap QMap::QMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false true 4  [0xc820cd45e0] }
-&{QMap QMap::QMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false true 3  [0xc820cd4760] }
-&{QMap QMap::QMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false true 5  [0xc820cd4900] }
-&{QMap QMap::QMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false true 2  [0xc820cd4aa0] }
-&{begin QMap::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator [] }
-&{begin QMap::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const_iterator [] }
-&{cbegin QMap::cbegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const_iterator [] }
-&{cend QMap::cend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const_iterator [] }
-&{clear QMap::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  void [] }
-&{constBegin QMap::constBegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const_iterator [] }
-&{constEnd QMap::constEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const_iterator [] }
-&{constFind QMap::constFind commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const_iterator [0xc820cd4fa0] }
-&{contains QMap::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  bool [0xc820cd5100] }
-&{count QMap::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 int [] }
-&{count QMap::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  int [0xc820cd5300] }
-&{empty QMap::empty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  bool [] }
-&{end QMap::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator [] }
-&{end QMap::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const_iterator [] }
-&{equal_range QMap::equal_range commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QPair<iterator, iterator> [0xc820cd5800] }
-&{erase QMap::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator [0xc820cd5960] }
-&{find QMap::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator [0xc820cd5ac0] }
-&{find QMap::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const_iterator [0xc820cd5c00] }
-&{first QMap::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  T & [] }
-&{first QMap::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const T & [] }
-&{firstKey QMap::firstKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const Key & [] }
-&{insert QMap::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator [0xc820cd5ee0 0xc820cd5f60] }
-&{insert QMap::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 iterator [0xc820cf40c0 0xc820cf4140 0xc820cf41c0] }
-&{insertMulti QMap::insertMulti commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator [0xc820cf4380 0xc820cf4400] }
-&{insertMulti QMap::insertMulti commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 iterator [0xc820cf45c0 0xc820cf4640 0xc820cf46c0] }
-&{isEmpty QMap::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  bool [] }
-&{key QMap::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const Key [0xc820cf4f80 0xc820cf5000] }
-&{keys QMap::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QList<Key> [] }
-&{keys QMap::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 QList<Key> [0xc820cf51c0] }
-&{last QMap::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  T & [] }
-&{last QMap::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const T & [] }
-&{lastKey QMap::lastKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const Key & [] }
-&{lowerBound QMap::lowerBound commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator [0xc820cf54a0] }
-&{lowerBound QMap::lowerBound commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const_iterator [0xc820cf5600] }
-&{operator!= QMap::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  bool [0xc820cf5780] }
-&{operator= QMap::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 QMap<Key, T> & [0xc820cf5920] }
-&{operator= QMap::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QMap<Key, T> & [0xc820cf5aa0] }
-&{operator== QMap::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  bool [0xc820cf5c60] }
-&{operator[] QMap::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  T & [0xc820cf5e20] }
-&{operator[] QMap::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const T [0xc820cf5f80] }
-&{remove QMap::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  int [0xc820d0a0e0] }
-&{size QMap::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  int [] }
-&{swap QMap::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  void [0xc820d0a2a0] }
-&{take QMap::take commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  T [0xc820d0a400] }
-&{toStdMap QMap::toStdMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  std::map<Key, T> [] }
-&{uniqueKeys QMap::uniqueKeys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QList<Key> [] }
-&{unite QMap::unite commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QMap<Key, T> & [0xc820d0a680] }
-&{upperBound QMap::upperBound commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator [0xc820d0a820] }
-&{upperBound QMap::upperBound commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const_iterator [0xc820d0a980] }
-&{value QMap::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const T [0xc820d0aac0 0xc820d0ab40] }
-&{values QMap::values commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QList<T> [] }
-&{values QMap::values commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 QList<T> [0xc820d0ad20] }
-&{~QMap QMap::~QMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non destructor false false   [] }
+&{QMap QMap::QMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false false   QMap() [] }
+&{QMap QMap::QMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false true 4  QMap(QMap<Key, T> &&other) [0xc820d5ee40] }
+&{QMap QMap::QMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false true 3  QMap(const QMap<Key, T> &other) [0xc820d5f000] }
+&{QMap QMap::QMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false true 5  QMap(const std::map<Key, T> &other) [0xc820d5f1a0] }
+&{QMap QMap::QMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non constructor false true 2  QMap(std::initializer_list<std::pair<Key, T> > list) [0xc820d5f340] }
+&{begin QMap::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator iterator begin() [] }
+&{begin QMap::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const_iterator const_iterator begin() const [] }
+&{cbegin QMap::cbegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const_iterator const_iterator cbegin() const [] }
+&{cend QMap::cend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const_iterator const_iterator cend() const [] }
+&{clear QMap::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  void void clear() [] }
+&{constBegin QMap::constBegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const_iterator const_iterator constBegin() const [] }
+&{constEnd QMap::constEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const_iterator const_iterator constEnd() const [] }
+&{constFind QMap::constFind commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const_iterator const_iterator constFind(const Key &key) const [0xc820d5f940] }
+&{contains QMap::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  bool bool contains(const Key &key) const [0xc820d5faa0] }
+&{count QMap::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 int int count() const [] }
+&{count QMap::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  int int count(const Key &key) const [0xc820d5fd20] }
+&{empty QMap::empty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  bool bool empty() const [] }
+&{end QMap::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator iterator end() [] }
+&{end QMap::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const_iterator const_iterator end() const [] }
+&{equal_range QMap::equal_range commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QPair<iterator, iterator> QPair<iterator, iterator> equal_range(const Key &key) [0xc820d7a2e0] }
+&{erase QMap::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator iterator erase(iterator pos) [0xc820d7a480] }
+&{find QMap::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator iterator find(const Key &key) [0xc820d7a620] }
+&{find QMap::find commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const_iterator const_iterator find(const Key &key) const [0xc820d7a760] }
+&{first QMap::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  T & T & first() [] }
+&{first QMap::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const T & const T & first() const [] }
+&{firstKey QMap::firstKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const Key & const Key & firstKey() const [] }
+&{insert QMap::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator iterator insert(const Key &key, const T &value) [0xc820d7aac0 0xc820d7ab40] }
+&{insert QMap::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 iterator iterator insert(const_iterator pos, const Key &key, const T &value) [0xc820d7aca0 0xc820d7ad20 0xc820d7ada0] }
+&{insertMulti QMap::insertMulti commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator iterator insertMulti(const Key &key, const T &value) [0xc820d7af60 0xc820d7afe0] }
+&{insertMulti QMap::insertMulti commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 iterator iterator insertMulti(const_iterator pos, const Key &key, const T &value) [0xc820d7b1a0 0xc820d7b220 0xc820d7b2a0] }
+&{isEmpty QMap::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  bool bool isEmpty() const [] }
+&{key QMap::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const Key const Key key(const T &value, const Key &defaultKey) const [0xc820d7bc20 0xc820d7bca0] }
+&{keys QMap::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QList<Key> QList<Key> keys() const [] }
+&{keys QMap::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 QList<Key> QList<Key> keys(const T &value) const [0xc820d7bea0] }
+&{last QMap::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  T & T & last() [] }
+&{last QMap::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const T & const T & last() const [] }
+&{lastKey QMap::lastKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const Key & const Key & lastKey() const [] }
+&{lowerBound QMap::lowerBound commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator iterator lowerBound(const Key &key) [0xc820d94200] }
+&{lowerBound QMap::lowerBound commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const_iterator const_iterator lowerBound(const Key &key) const [0xc820d94360] }
+&{operator!= QMap::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  bool bool operator!=(const QMap<Key, T> &other) const [0xc820d944e0] }
+&{operator= QMap::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 QMap<Key, T> & QMap<Key, T> & operator=(QMap<Key, T> &&other) [0xc820d94680] }
+&{operator= QMap::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QMap<Key, T> & QMap<Key, T> & operator=(const QMap<Key, T> &other) [0xc820d94800] }
+&{operator== QMap::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  bool bool operator==(const QMap<Key, T> &other) const [0xc820d949c0] }
+&{operator[] QMap::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  T & T & operator[](const Key &key) [0xc820d94bc0] }
+&{operator[] QMap::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const T const T operator[](const Key &key) const [0xc820d94d20] }
+&{remove QMap::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  int int remove(const Key &key) [0xc820d94ec0] }
+&{size QMap::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  int int size() const [] }
+&{swap QMap::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  void void swap(QMap<Key, T> &other) [0xc820d950c0] }
+&{take QMap::take commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  T T take(const Key &key) [0xc820d95260] }
+&{toStdMap QMap::toStdMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  std::map<Key, T> std::map<Key, T> toStdMap() const [] }
+&{uniqueKeys QMap::uniqueKeys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QList<Key> QList<Key> uniqueKeys() const [] }
+&{unite QMap::unite commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QMap<Key, T> & QMap<Key, T> & unite(const QMap<Key, T> &other) [0xc820d95520] }
+&{upperBound QMap::upperBound commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  iterator iterator upperBound(const Key &key) [0xc820d956c0] }
+&{upperBound QMap::upperBound commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 const_iterator const_iterator upperBound(const Key &key) const [0xc820d95820] }
+&{value QMap::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  const T const T value(const Key &key, const T &defaultValue) const [0xc820d95960 0xc820d959e0] }
+&{values QMap::values commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false false  QList<T> QList<T> values() const [] }
+&{values QMap::values commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non plain false true 2 QList<T> QList<T> values(const Key &key) const [0xc820d95c00] }
+&{~QMap QMap::~QMap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmap.h non destructor false false   ~QMap() [] }
 ########################################			ENUMS			########################################

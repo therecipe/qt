@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDBusServer_NewQDBusServer2(QtObjectPtr parent);
-QtObjectPtr QDBusServer_NewQDBusServer(char* address, QtObjectPtr parent);
-char* QDBusServer_Address(QtObjectPtr ptr);
-int QDBusServer_IsAnonymousAuthenticationAllowed(QtObjectPtr ptr);
-int QDBusServer_IsConnected(QtObjectPtr ptr);
-void QDBusServer_SetAnonymousAuthenticationAllowed(QtObjectPtr ptr, int value);
-void QDBusServer_DestroyQDBusServer(QtObjectPtr ptr);
+void* QDBusServer_NewQDBusServer2(void* parent);
+void* QDBusServer_NewQDBusServer(char* address, void* parent);
+char* QDBusServer_Address(void* ptr);
+int QDBusServer_IsAnonymousAuthenticationAllowed(void* ptr);
+int QDBusServer_IsConnected(void* ptr);
+void QDBusServer_SetAnonymousAuthenticationAllowed(void* ptr, int value);
+void QDBusServer_DestroyQDBusServer(void* ptr);
 
 #ifdef __cplusplus
 }

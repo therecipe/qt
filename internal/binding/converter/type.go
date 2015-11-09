@@ -1,14 +1,23 @@
 package converter
 
-import "github.com/therecipe/qt/internal/binding/parser"
+import (
+	"strings"
+
+	"github.com/therecipe/qt/internal/binding/parser"
+)
 
 func goType(f *parser.Function, value string) string {
+	var vOld = value
 
 	value = cleanValue(value)
 
 	switch value {
-	case "uchar", "char", "QString", "QUrl", "QVariant":
+	case "uchar", "char", "QString":
 		{
+			if strings.Contains(vOld, "**") {
+				return "[]string"
+			}
+
 			return "string"
 		}
 
@@ -19,12 +28,25 @@ func goType(f *parser.Function, value string) string {
 
 	case "void":
 		{
+			if strings.Contains(vOld, "*") {
+				return "unsafe.Pointer"
+			}
 			return ""
 		}
 
 	case "bool", "int", "":
 		{
 			return value
+		}
+
+	case "T":
+		{
+			return "unsafe.Pointer"
+		}
+
+	case "qreal":
+		{
+			return "float64"
 		}
 	}
 
@@ -55,7 +77,7 @@ func cgoType(f *parser.Function, value string) string {
 	value = cleanValue(value)
 
 	switch value {
-	case "uchar", "char", "QString", "QUrl", "QVariant", "QStringList":
+	case "uchar", "char", "QString", "QStringList":
 		{
 			return "*C.char"
 		}
@@ -88,11 +110,12 @@ func cgoType(f *parser.Function, value string) string {
 }
 
 func cppType(f *parser.Function, value string) string {
+	var vOld = value
 
 	value = cleanValue(value)
 
 	switch value {
-	case "uchar", "char", "QString", "QStringList", "QUrl", "QVariant":
+	case "uchar", "char", "QString", "QStringList":
 		{
 			return "char*"
 		}
@@ -104,7 +127,20 @@ func cppType(f *parser.Function, value string) string {
 
 	case "void", "":
 		{
+			if strings.Contains(vOld, "*") {
+				return "void*"
+			}
 			return "void"
+		}
+
+	case "T":
+		{
+			return "void*"
+		}
+
+	case "qreal":
+		{
+			return "double"
 		}
 	}
 
@@ -116,7 +152,7 @@ func cppType(f *parser.Function, value string) string {
 
 	case isClass(value):
 		{
-			return "QtObjectPtr"
+			return "void*"
 		}
 	}
 

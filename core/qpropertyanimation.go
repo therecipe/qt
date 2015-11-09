@@ -11,61 +11,68 @@ type QPropertyAnimation struct {
 	QVariantAnimation
 }
 
-type QPropertyAnimationITF interface {
-	QVariantAnimationITF
-	QPropertyAnimationPTR() *QPropertyAnimation
+type QPropertyAnimation_ITF interface {
+	QVariantAnimation_ITF
+	QPropertyAnimation_PTR() *QPropertyAnimation
 }
 
-func PointerFromQPropertyAnimation(ptr QPropertyAnimationITF) unsafe.Pointer {
+func PointerFromQPropertyAnimation(ptr QPropertyAnimation_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPropertyAnimationPTR().Pointer()
+		return ptr.QPropertyAnimation_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPropertyAnimationFromPointer(ptr unsafe.Pointer) *QPropertyAnimation {
+func NewQPropertyAnimationFromPointer(ptr unsafe.Pointer) *QPropertyAnimation {
 	var n = new(QPropertyAnimation)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QPropertyAnimation_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QPropertyAnimation) QPropertyAnimationPTR() *QPropertyAnimation {
+func (ptr *QPropertyAnimation) QPropertyAnimation_PTR() *QPropertyAnimation {
 	return ptr
 }
 
-func (ptr *QPropertyAnimation) SetPropertyName(propertyName QByteArrayITF) {
+func (ptr *QPropertyAnimation) PropertyName() *QByteArray {
 	if ptr.Pointer() != nil {
-		C.QPropertyAnimation_SetPropertyName(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQByteArray(propertyName)))
+		return NewQByteArrayFromPointer(C.QPropertyAnimation_PropertyName(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPropertyAnimation) SetPropertyName(propertyName QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPropertyAnimation_SetPropertyName(ptr.Pointer(), PointerFromQByteArray(propertyName))
 	}
 }
 
-func (ptr *QPropertyAnimation) SetTargetObject(target QObjectITF) {
+func (ptr *QPropertyAnimation) SetTargetObject(target QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPropertyAnimation_SetTargetObject(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(target)))
+		C.QPropertyAnimation_SetTargetObject(ptr.Pointer(), PointerFromQObject(target))
 	}
 }
 
 func (ptr *QPropertyAnimation) TargetObject() *QObject {
 	if ptr.Pointer() != nil {
-		return QObjectFromPointer(unsafe.Pointer(C.QPropertyAnimation_TargetObject(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQObjectFromPointer(C.QPropertyAnimation_TargetObject(ptr.Pointer()))
 	}
 	return nil
 }
 
-func NewQPropertyAnimation(parent QObjectITF) *QPropertyAnimation {
-	return QPropertyAnimationFromPointer(unsafe.Pointer(C.QPropertyAnimation_NewQPropertyAnimation(C.QtObjectPtr(PointerFromQObject(parent)))))
+func NewQPropertyAnimation(parent QObject_ITF) *QPropertyAnimation {
+	return NewQPropertyAnimationFromPointer(C.QPropertyAnimation_NewQPropertyAnimation(PointerFromQObject(parent)))
 }
 
-func NewQPropertyAnimation2(target QObjectITF, propertyName QByteArrayITF, parent QObjectITF) *QPropertyAnimation {
-	return QPropertyAnimationFromPointer(unsafe.Pointer(C.QPropertyAnimation_NewQPropertyAnimation2(C.QtObjectPtr(PointerFromQObject(target)), C.QtObjectPtr(PointerFromQByteArray(propertyName)), C.QtObjectPtr(PointerFromQObject(parent)))))
+func NewQPropertyAnimation2(target QObject_ITF, propertyName QByteArray_ITF, parent QObject_ITF) *QPropertyAnimation {
+	return NewQPropertyAnimationFromPointer(C.QPropertyAnimation_NewQPropertyAnimation2(PointerFromQObject(target), PointerFromQByteArray(propertyName), PointerFromQObject(parent)))
 }
 
 func (ptr *QPropertyAnimation) DestroyQPropertyAnimation() {
 	if ptr.Pointer() != nil {
-		C.QPropertyAnimation_DestroyQPropertyAnimation(C.QtObjectPtr(ptr.Pointer()))
+		C.QPropertyAnimation_DestroyQPropertyAnimation(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

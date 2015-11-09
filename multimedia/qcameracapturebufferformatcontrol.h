@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QCameraCaptureBufferFormatControl_BufferFormat(QtObjectPtr ptr);
-void QCameraCaptureBufferFormatControl_ConnectBufferFormatChanged(QtObjectPtr ptr);
-void QCameraCaptureBufferFormatControl_DisconnectBufferFormatChanged(QtObjectPtr ptr);
-void QCameraCaptureBufferFormatControl_SetBufferFormat(QtObjectPtr ptr, int format);
-void QCameraCaptureBufferFormatControl_DestroyQCameraCaptureBufferFormatControl(QtObjectPtr ptr);
+int QCameraCaptureBufferFormatControl_BufferFormat(void* ptr);
+void QCameraCaptureBufferFormatControl_ConnectBufferFormatChanged(void* ptr);
+void QCameraCaptureBufferFormatControl_DisconnectBufferFormatChanged(void* ptr);
+void QCameraCaptureBufferFormatControl_SetBufferFormat(void* ptr, int format);
+void QCameraCaptureBufferFormatControl_DestroyQCameraCaptureBufferFormatControl(void* ptr);
 
 #ifdef __cplusplus
 }

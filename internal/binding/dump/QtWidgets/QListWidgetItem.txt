@@ -1,45 +1,45 @@
 ########################################			FUNCTIONS			########################################
-&{QListWidgetItem QListWidgetItem::QListWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.cpp non constructor false false   [0xc82292d7c0 0xc82292d860] }
-&{QListWidgetItem QListWidgetItem::QListWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.cpp non constructor false true 3  [0xc82292da80 0xc82292db20 0xc82292dbe0 0xc82292dc80] }
-&{QListWidgetItem QListWidgetItem::QListWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.cpp non constructor false true 2  [0xc82292dec0 0xc82292df60 0xc822744000] }
-&{setFlags QListWidgetItem::setFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.cpp non plain false false  void [0xc822744240] }
-&{QListWidgetItem QListWidgetItem::QListWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non constructor false true 4  [0xc822744780] }
-&{background QListWidgetItem::background commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QBrush [] }
-&{checkState QListWidgetItem::checkState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  Qt::CheckState [] }
-&{clone QListWidgetItem::clone commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure plain false false  QListWidgetItem * [] }
-&{data QListWidgetItem::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure plain false false  QVariant [0xc822744fc0] }
-&{flags QListWidgetItem::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  Qt::ItemFlags [] }
-&{font QListWidgetItem::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QFont [] }
-&{foreground QListWidgetItem::foreground commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QBrush [] }
-&{icon QListWidgetItem::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QIcon [] }
-&{isHidden QListWidgetItem::isHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  bool [] }
-&{isSelected QListWidgetItem::isSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  bool [] }
-&{listWidget QListWidgetItem::listWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QListWidget * [] }
-&{operator< QListWidgetItem::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure plain false false  bool [0xc822745b20] }
-&{operator= QListWidgetItem::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QListWidgetItem & [0xc822745e60] }
-&{read QListWidgetItem::read commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure plain false false  void [0xc822938140] }
-&{setBackground QListWidgetItem::setBackground commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc822938380] }
-&{setCheckState QListWidgetItem::setCheckState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc822938780] }
-&{setData QListWidgetItem::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure plain false false  void [0xc8229389e0 0xc822938a80] }
-&{setFont QListWidgetItem::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc822938cc0] }
-&{setForeground QListWidgetItem::setForeground commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc822938ee0] }
-&{setHidden QListWidgetItem::setHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc822939160] }
-&{setIcon QListWidgetItem::setIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc8229393c0] }
-&{setSelected QListWidgetItem::setSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc822939640] }
-&{setSizeHint QListWidgetItem::setSizeHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc822939880] }
-&{setStatusTip QListWidgetItem::setStatusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc822939aa0] }
-&{setText QListWidgetItem::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc822939d00] }
-&{setTextAlignment QListWidgetItem::setTextAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc822939ec0] }
-&{setToolTip QListWidgetItem::setToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc822942340] }
-&{setWhatsThis QListWidgetItem::setWhatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void [0xc822942560] }
-&{sizeHint QListWidgetItem::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QSize [] }
-&{statusTip QListWidgetItem::statusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QString [] }
-&{text QListWidgetItem::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QString [] }
-&{textAlignment QListWidgetItem::textAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  int [] }
-&{toolTip QListWidgetItem::toolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QString [] }
-&{type QListWidgetItem::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  int [] }
-&{whatsThis QListWidgetItem::whatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QString [] }
-&{write QListWidgetItem::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure plain false false  void [0xc8229431e0] }
-&{~QListWidgetItem QListWidgetItem::~QListWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure destructor false false   [] }
+&{QListWidgetItem QListWidgetItem::QListWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.cpp non constructor false false   QListWidgetItem(QListWidget *parent, int type) [0xc821d5ff80 0xc821d74000] }
+&{QListWidgetItem QListWidgetItem::QListWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.cpp non constructor false true 3  QListWidgetItem(const QIcon &icon, const QString &text, QListWidget *parent, int type) [0xc821d74220 0xc821d74300 0xc821d743a0 0xc821d74420] }
+&{QListWidgetItem QListWidgetItem::QListWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.cpp non constructor false true 2  QListWidgetItem(const QString &text, QListWidget *parent, int type) [0xc821d74600 0xc821d74680 0xc821d74740] }
+&{setFlags QListWidgetItem::setFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.cpp non plain false false  void void setFlags(Qt::ItemFlags flags) [0xc821d749a0] }
+&{QListWidgetItem QListWidgetItem::QListWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non constructor false true 4  QListWidgetItem(const QListWidgetItem &other) [0xc821d74f20] }
+&{background QListWidgetItem::background commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QBrush QBrush background() const [] }
+&{checkState QListWidgetItem::checkState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  Qt::CheckState Qt::CheckState checkState() const [] }
+&{clone QListWidgetItem::clone commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure plain false false  QListWidgetItem * QListWidgetItem * clone() const [] }
+&{data QListWidgetItem::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure plain false false  QVariant QVariant data(int role) const [0xc821d75880] }
+&{flags QListWidgetItem::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  Qt::ItemFlags Qt::ItemFlags flags() const [] }
+&{font QListWidgetItem::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QFont QFont font() const [] }
+&{foreground QListWidgetItem::foreground commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QBrush QBrush foreground() const [] }
+&{icon QListWidgetItem::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QIcon QIcon icon() const [] }
+&{isHidden QListWidgetItem::isHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  bool bool isHidden() const [] }
+&{isSelected QListWidgetItem::isSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  bool bool isSelected() const [] }
+&{listWidget QListWidgetItem::listWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QListWidget * QListWidget * listWidget() const [] }
+&{operator< QListWidgetItem::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure plain false false  bool bool operator<(const QListWidgetItem &other) const [0xc821d86620] }
+&{operator= QListWidgetItem::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QListWidgetItem & QListWidgetItem & operator=(const QListWidgetItem &other) [0xc821d86980] }
+&{read QListWidgetItem::read commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure plain false false  void void read(QDataStream &in) [0xc821d86c40] }
+&{setBackground QListWidgetItem::setBackground commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setBackground(const QBrush &brush) [0xc821d86e60] }
+&{setCheckState QListWidgetItem::setCheckState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setCheckState(Qt::CheckState state) [0xc821d871a0] }
+&{setData QListWidgetItem::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure plain false false  void void setData(int role, const QVariant &value) [0xc821d87360 0xc821d873e0] }
+&{setFont QListWidgetItem::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setFont(const QFont &font) [0xc821d87600] }
+&{setForeground QListWidgetItem::setForeground commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setForeground(const QBrush &brush) [0xc821d87800] }
+&{setHidden QListWidgetItem::setHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setHidden(bool hide) [0xc821d87a40] }
+&{setIcon QListWidgetItem::setIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setIcon(const QIcon &icon) [0xc821d87ce0] }
+&{setSelected QListWidgetItem::setSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setSelected(bool select) [0xc821d87fc0] }
+&{setSizeHint QListWidgetItem::setSizeHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setSizeHint(const QSize &size) [0xc822622200] }
+&{setStatusTip QListWidgetItem::setStatusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setStatusTip(const QString &statusTip) [0xc822622420] }
+&{setText QListWidgetItem::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setText(const QString &text) [0xc822622660] }
+&{setTextAlignment QListWidgetItem::setTextAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setTextAlignment(int alignment) [0xc822622800] }
+&{setToolTip QListWidgetItem::setToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setToolTip(const QString &toolTip) [0xc822622c60] }
+&{setWhatsThis QListWidgetItem::setWhatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  void void setWhatsThis(const QString &whatsThis) [0xc822622e60] }
+&{sizeHint QListWidgetItem::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QSize QSize sizeHint() const [] }
+&{statusTip QListWidgetItem::statusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QString QString statusTip() const [] }
+&{text QListWidgetItem::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QString QString text() const [] }
+&{textAlignment QListWidgetItem::textAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  int int textAlignment() const [] }
+&{toolTip QListWidgetItem::toolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QString QString toolTip() const [] }
+&{type QListWidgetItem::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  int int type() const [] }
+&{whatsThis QListWidgetItem::whatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h non plain false false  QString QString whatsThis() const [] }
+&{write QListWidgetItem::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure plain false false  void void write(QDataStream &out) const [0xc822623c60] }
+&{~QListWidgetItem QListWidgetItem::~QListWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistwidget.h impure destructor false false   ~QListWidgetItem() [] }
 ########################################			ENUMS			########################################
-&{ItemType QListWidgetItem::ItemType commendable public  [0xc822744480 0xc822744520]}
+&{ItemType QListWidgetItem::ItemType commendable public  [0xc821d74c20 0xc821d74ca0] false}

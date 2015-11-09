@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QTimeEdit_NewQTimeEdit(QtObjectPtr parent);
-QtObjectPtr QTimeEdit_NewQTimeEdit2(QtObjectPtr time, QtObjectPtr parent);
-void QTimeEdit_DestroyQTimeEdit(QtObjectPtr ptr);
+void* QTimeEdit_NewQTimeEdit(void* parent);
+void* QTimeEdit_NewQTimeEdit2(void* time, void* parent);
+void QTimeEdit_DestroyQTimeEdit(void* ptr);
 
 #ifdef __cplusplus
 }

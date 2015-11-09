@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(QtObjectPtr ptr);
+void QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -13,43 +13,43 @@ void Signal_ActiveStreamsChanged(){callbackQMediaStreamsControlActiveStreamsChan
 void Signal_StreamsChanged(){callbackQMediaStreamsControlStreamsChanged(this->objectName().toUtf8().data());};
 };
 
-void QMediaStreamsControl_ConnectActiveStreamsChanged(QtObjectPtr ptr){
+void QMediaStreamsControl_ConnectActiveStreamsChanged(void* ptr){
 	QObject::connect(static_cast<QMediaStreamsControl*>(ptr), static_cast<void (QMediaStreamsControl::*)()>(&QMediaStreamsControl::activeStreamsChanged), static_cast<MyQMediaStreamsControl*>(ptr), static_cast<void (MyQMediaStreamsControl::*)()>(&MyQMediaStreamsControl::Signal_ActiveStreamsChanged));;
 }
 
-void QMediaStreamsControl_DisconnectActiveStreamsChanged(QtObjectPtr ptr){
+void QMediaStreamsControl_DisconnectActiveStreamsChanged(void* ptr){
 	QObject::disconnect(static_cast<QMediaStreamsControl*>(ptr), static_cast<void (QMediaStreamsControl::*)()>(&QMediaStreamsControl::activeStreamsChanged), static_cast<MyQMediaStreamsControl*>(ptr), static_cast<void (MyQMediaStreamsControl::*)()>(&MyQMediaStreamsControl::Signal_ActiveStreamsChanged));;
 }
 
-int QMediaStreamsControl_IsActive(QtObjectPtr ptr, int stream){
+int QMediaStreamsControl_IsActive(void* ptr, int stream){
 	return static_cast<QMediaStreamsControl*>(ptr)->isActive(stream);
 }
 
-char* QMediaStreamsControl_MetaData(QtObjectPtr ptr, int stream, char* key){
-	return static_cast<QMediaStreamsControl*>(ptr)->metaData(stream, QString(key)).toString().toUtf8().data();
+void* QMediaStreamsControl_MetaData(void* ptr, int stream, char* key){
+	return new QVariant(static_cast<QMediaStreamsControl*>(ptr)->metaData(stream, QString(key)));
 }
 
-void QMediaStreamsControl_SetActive(QtObjectPtr ptr, int stream, int state){
+void QMediaStreamsControl_SetActive(void* ptr, int stream, int state){
 	static_cast<QMediaStreamsControl*>(ptr)->setActive(stream, state != 0);
 }
 
-int QMediaStreamsControl_StreamCount(QtObjectPtr ptr){
+int QMediaStreamsControl_StreamCount(void* ptr){
 	return static_cast<QMediaStreamsControl*>(ptr)->streamCount();
 }
 
-int QMediaStreamsControl_StreamType(QtObjectPtr ptr, int stream){
+int QMediaStreamsControl_StreamType(void* ptr, int stream){
 	return static_cast<QMediaStreamsControl*>(ptr)->streamType(stream);
 }
 
-void QMediaStreamsControl_ConnectStreamsChanged(QtObjectPtr ptr){
+void QMediaStreamsControl_ConnectStreamsChanged(void* ptr){
 	QObject::connect(static_cast<QMediaStreamsControl*>(ptr), static_cast<void (QMediaStreamsControl::*)()>(&QMediaStreamsControl::streamsChanged), static_cast<MyQMediaStreamsControl*>(ptr), static_cast<void (MyQMediaStreamsControl::*)()>(&MyQMediaStreamsControl::Signal_StreamsChanged));;
 }
 
-void QMediaStreamsControl_DisconnectStreamsChanged(QtObjectPtr ptr){
+void QMediaStreamsControl_DisconnectStreamsChanged(void* ptr){
 	QObject::disconnect(static_cast<QMediaStreamsControl*>(ptr), static_cast<void (QMediaStreamsControl::*)()>(&QMediaStreamsControl::streamsChanged), static_cast<MyQMediaStreamsControl*>(ptr), static_cast<void (MyQMediaStreamsControl::*)()>(&MyQMediaStreamsControl::Signal_StreamsChanged));;
 }
 
-void QMediaStreamsControl_DestroyQMediaStreamsControl(QtObjectPtr ptr){
+void QMediaStreamsControl_DestroyQMediaStreamsControl(void* ptr){
 	static_cast<QMediaStreamsControl*>(ptr)->~QMediaStreamsControl();
 }
 

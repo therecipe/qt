@@ -10,7 +10,7 @@ class MyQMacCocoaViewContainer: public QMacCocoaViewContainer {
 public:
 };
 
-void QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(QtObjectPtr ptr){
+void QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(void* ptr){
 	static_cast<QMacCocoaViewContainer*>(ptr)->~QMacCocoaViewContainer();
 }
 

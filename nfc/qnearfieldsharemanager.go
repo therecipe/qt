@@ -12,35 +12,35 @@ type QNearFieldShareManager struct {
 	core.QObject
 }
 
-type QNearFieldShareManagerITF interface {
-	core.QObjectITF
-	QNearFieldShareManagerPTR() *QNearFieldShareManager
+type QNearFieldShareManager_ITF interface {
+	core.QObject_ITF
+	QNearFieldShareManager_PTR() *QNearFieldShareManager
 }
 
-func PointerFromQNearFieldShareManager(ptr QNearFieldShareManagerITF) unsafe.Pointer {
+func PointerFromQNearFieldShareManager(ptr QNearFieldShareManager_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNearFieldShareManagerPTR().Pointer()
+		return ptr.QNearFieldShareManager_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNearFieldShareManagerFromPointer(ptr unsafe.Pointer) *QNearFieldShareManager {
+func NewQNearFieldShareManagerFromPointer(ptr unsafe.Pointer) *QNearFieldShareManager {
 	var n = new(QNearFieldShareManager)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QNearFieldShareManager_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QNearFieldShareManager) QNearFieldShareManagerPTR() *QNearFieldShareManager {
+func (ptr *QNearFieldShareManager) QNearFieldShareManager_PTR() *QNearFieldShareManager {
 	return ptr
 }
 
 //QNearFieldShareManager::ShareError
-type QNearFieldShareManager__ShareError int
+type QNearFieldShareManager__ShareError int64
 
-var (
+const (
 	QNearFieldShareManager__NoError                     = QNearFieldShareManager__ShareError(0)
 	QNearFieldShareManager__UnknownError                = QNearFieldShareManager__ShareError(1)
 	QNearFieldShareManager__InvalidShareContentError    = QNearFieldShareManager__ShareError(2)
@@ -53,28 +53,28 @@ var (
 )
 
 //QNearFieldShareManager::ShareMode
-type QNearFieldShareManager__ShareMode int
+type QNearFieldShareManager__ShareMode int64
 
-var (
+const (
 	QNearFieldShareManager__NoShare   = QNearFieldShareManager__ShareMode(0x00)
 	QNearFieldShareManager__NdefShare = QNearFieldShareManager__ShareMode(0x01)
 	QNearFieldShareManager__FileShare = QNearFieldShareManager__ShareMode(0x02)
 )
 
-func NewQNearFieldShareManager(parent core.QObjectITF) *QNearFieldShareManager {
-	return QNearFieldShareManagerFromPointer(unsafe.Pointer(C.QNearFieldShareManager_NewQNearFieldShareManager(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQNearFieldShareManager(parent core.QObject_ITF) *QNearFieldShareManager {
+	return NewQNearFieldShareManagerFromPointer(C.QNearFieldShareManager_NewQNearFieldShareManager(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNearFieldShareManager) ConnectError(f func(error QNearFieldShareManager__ShareError)) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager_ConnectError(C.QtObjectPtr(ptr.Pointer()))
+		C.QNearFieldShareManager_ConnectError(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "error", f)
 	}
 }
 
 func (ptr *QNearFieldShareManager) DisconnectError() {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager_DisconnectError(C.QtObjectPtr(ptr.Pointer()))
+		C.QNearFieldShareManager_DisconnectError(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "error")
 	}
 }
@@ -86,34 +86,34 @@ func callbackQNearFieldShareManagerError(ptrName *C.char, error C.int) {
 
 func (ptr *QNearFieldShareManager) SetShareModes(mode QNearFieldShareManager__ShareMode) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager_SetShareModes(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QNearFieldShareManager_SetShareModes(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QNearFieldShareManager) ShareError() QNearFieldShareManager__ShareError {
 	if ptr.Pointer() != nil {
-		return QNearFieldShareManager__ShareError(C.QNearFieldShareManager_ShareError(C.QtObjectPtr(ptr.Pointer())))
+		return QNearFieldShareManager__ShareError(C.QNearFieldShareManager_ShareError(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNearFieldShareManager) ShareModes() QNearFieldShareManager__ShareMode {
 	if ptr.Pointer() != nil {
-		return QNearFieldShareManager__ShareMode(C.QNearFieldShareManager_ShareModes(C.QtObjectPtr(ptr.Pointer())))
+		return QNearFieldShareManager__ShareMode(C.QNearFieldShareManager_ShareModes(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNearFieldShareManager) ConnectShareModesChanged(f func(modes QNearFieldShareManager__ShareMode)) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager_ConnectShareModesChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QNearFieldShareManager_ConnectShareModesChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "shareModesChanged", f)
 	}
 }
 
 func (ptr *QNearFieldShareManager) DisconnectShareModesChanged() {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager_DisconnectShareModesChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QNearFieldShareManager_DisconnectShareModesChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "shareModesChanged")
 	}
 }
@@ -127,28 +127,28 @@ func QNearFieldShareManager_SupportedShareModes() QNearFieldShareManager__ShareM
 	return QNearFieldShareManager__ShareMode(C.QNearFieldShareManager_QNearFieldShareManager_SupportedShareModes())
 }
 
-func (ptr *QNearFieldShareManager) ConnectTargetDetected(f func(shareTarget QNearFieldShareTargetITF)) {
+func (ptr *QNearFieldShareManager) ConnectTargetDetected(f func(shareTarget *QNearFieldShareTarget)) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager_ConnectTargetDetected(C.QtObjectPtr(ptr.Pointer()))
+		C.QNearFieldShareManager_ConnectTargetDetected(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "targetDetected", f)
 	}
 }
 
 func (ptr *QNearFieldShareManager) DisconnectTargetDetected() {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager_DisconnectTargetDetected(C.QtObjectPtr(ptr.Pointer()))
+		C.QNearFieldShareManager_DisconnectTargetDetected(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "targetDetected")
 	}
 }
 
 //export callbackQNearFieldShareManagerTargetDetected
 func callbackQNearFieldShareManagerTargetDetected(ptrName *C.char, shareTarget unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "targetDetected").(func(*QNearFieldShareTarget))(QNearFieldShareTargetFromPointer(shareTarget))
+	qt.GetSignal(C.GoString(ptrName), "targetDetected").(func(*QNearFieldShareTarget))(NewQNearFieldShareTargetFromPointer(shareTarget))
 }
 
 func (ptr *QNearFieldShareManager) DestroyQNearFieldShareManager() {
 	if ptr.Pointer() != nil {
-		C.QNearFieldShareManager_DestroyQNearFieldShareManager(C.QtObjectPtr(ptr.Pointer()))
+		C.QNearFieldShareManager_DestroyQNearFieldShareManager(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

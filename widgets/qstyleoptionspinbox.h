@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStyleOptionSpinBox_NewQStyleOptionSpinBox();
-QtObjectPtr QStyleOptionSpinBox_NewQStyleOptionSpinBox2(QtObjectPtr other);
+void* QStyleOptionSpinBox_NewQStyleOptionSpinBox();
+void* QStyleOptionSpinBox_NewQStyleOptionSpinBox2(void* other);
 
 #ifdef __cplusplus
 }

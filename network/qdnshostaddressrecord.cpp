@@ -10,23 +10,23 @@ class MyQDnsHostAddressRecord: public QDnsHostAddressRecord {
 public:
 };
 
-QtObjectPtr QDnsHostAddressRecord_NewQDnsHostAddressRecord(){
+void* QDnsHostAddressRecord_NewQDnsHostAddressRecord(){
 	return new QDnsHostAddressRecord();
 }
 
-QtObjectPtr QDnsHostAddressRecord_NewQDnsHostAddressRecord2(QtObjectPtr other){
+void* QDnsHostAddressRecord_NewQDnsHostAddressRecord2(void* other){
 	return new QDnsHostAddressRecord(*static_cast<QDnsHostAddressRecord*>(other));
 }
 
-char* QDnsHostAddressRecord_Name(QtObjectPtr ptr){
+char* QDnsHostAddressRecord_Name(void* ptr){
 	return static_cast<QDnsHostAddressRecord*>(ptr)->name().toUtf8().data();
 }
 
-void QDnsHostAddressRecord_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QDnsHostAddressRecord_Swap(void* ptr, void* other){
 	static_cast<QDnsHostAddressRecord*>(ptr)->swap(*static_cast<QDnsHostAddressRecord*>(other));
 }
 
-void QDnsHostAddressRecord_DestroyQDnsHostAddressRecord(QtObjectPtr ptr){
+void QDnsHostAddressRecord_DestroyQDnsHostAddressRecord(void* ptr){
 	static_cast<QDnsHostAddressRecord*>(ptr)->~QDnsHostAddressRecord();
 }
 

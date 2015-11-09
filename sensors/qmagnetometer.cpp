@@ -12,31 +12,31 @@ public:
 void Signal_ReturnGeoValuesChanged(bool returnGeoValues){callbackQMagnetometerReturnGeoValuesChanged(this->objectName().toUtf8().data(), returnGeoValues);};
 };
 
-QtObjectPtr QMagnetometer_Reading(QtObjectPtr ptr){
+void* QMagnetometer_Reading(void* ptr){
 	return static_cast<QMagnetometer*>(ptr)->reading();
 }
 
-int QMagnetometer_ReturnGeoValues(QtObjectPtr ptr){
+int QMagnetometer_ReturnGeoValues(void* ptr){
 	return static_cast<QMagnetometer*>(ptr)->returnGeoValues();
 }
 
-void QMagnetometer_SetReturnGeoValues(QtObjectPtr ptr, int returnGeoValues){
+void QMagnetometer_SetReturnGeoValues(void* ptr, int returnGeoValues){
 	static_cast<QMagnetometer*>(ptr)->setReturnGeoValues(returnGeoValues != 0);
 }
 
-QtObjectPtr QMagnetometer_NewQMagnetometer(QtObjectPtr parent){
+void* QMagnetometer_NewQMagnetometer(void* parent){
 	return new QMagnetometer(static_cast<QObject*>(parent));
 }
 
-void QMagnetometer_ConnectReturnGeoValuesChanged(QtObjectPtr ptr){
+void QMagnetometer_ConnectReturnGeoValuesChanged(void* ptr){
 	QObject::connect(static_cast<QMagnetometer*>(ptr), static_cast<void (QMagnetometer::*)(bool)>(&QMagnetometer::returnGeoValuesChanged), static_cast<MyQMagnetometer*>(ptr), static_cast<void (MyQMagnetometer::*)(bool)>(&MyQMagnetometer::Signal_ReturnGeoValuesChanged));;
 }
 
-void QMagnetometer_DisconnectReturnGeoValuesChanged(QtObjectPtr ptr){
+void QMagnetometer_DisconnectReturnGeoValuesChanged(void* ptr){
 	QObject::disconnect(static_cast<QMagnetometer*>(ptr), static_cast<void (QMagnetometer::*)(bool)>(&QMagnetometer::returnGeoValuesChanged), static_cast<MyQMagnetometer*>(ptr), static_cast<void (MyQMagnetometer::*)(bool)>(&MyQMagnetometer::Signal_ReturnGeoValuesChanged));;
 }
 
-void QMagnetometer_DestroyQMagnetometer(QtObjectPtr ptr){
+void QMagnetometer_DestroyQMagnetometer(void* ptr){
 	static_cast<QMagnetometer*>(ptr)->~QMagnetometer();
 }
 

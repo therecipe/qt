@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QContextMenuEvent QContextMenuEvent::QContextMenuEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 3  [0xc8208f8580 0xc8208f8620] }
-&{QContextMenuEvent QContextMenuEvent::QContextMenuEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 2  [0xc8208f8800 0xc8208f8880 0xc8208f8920] }
-&{QContextMenuEvent QContextMenuEvent::QContextMenuEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc8208f8b20 0xc8208f8ba0 0xc8208f8c60 0xc8208f8d00] }
-&{globalPos QContextMenuEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & [] }
-&{globalX QContextMenuEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{globalY QContextMenuEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{pos QContextMenuEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & [] }
-&{reason QContextMenuEvent::reason commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Reason [] }
-&{x QContextMenuEvent::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{y QContextMenuEvent::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{QContextMenuEvent QContextMenuEvent::QContextMenuEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 3  QContextMenuEvent(Reason reason, const QPoint &pos) [0xc820988b20 0xc820988ba0] }
+&{QContextMenuEvent QContextMenuEvent::QContextMenuEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 2  QContextMenuEvent(Reason reason, const QPoint &pos, const QPoint &globalPos) [0xc820988d60 0xc820988e20 0xc820988ea0] }
+&{QContextMenuEvent QContextMenuEvent::QContextMenuEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QContextMenuEvent(Reason reason, const QPoint &pos, const QPoint &globalPos, Qt::KeyboardModifiers modifiers) [0xc8209890a0 0xc820989120 0xc8209891a0 0xc820989240] }
+&{globalPos QContextMenuEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & const QPoint & globalPos() const [] }
+&{globalX QContextMenuEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalX() const [] }
+&{globalY QContextMenuEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalY() const [] }
+&{pos QContextMenuEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & const QPoint & pos() const [] }
+&{reason QContextMenuEvent::reason commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Reason Reason reason() const [] }
+&{x QContextMenuEvent::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int x() const [] }
+&{y QContextMenuEvent::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int y() const [] }
 ########################################			ENUMS			########################################
-&{Reason QContextMenuEvent::Reason commendable public  [0xc8208f8240 0xc8208f82c0 0xc8208f8340]}
+&{Reason QContextMenuEvent::Reason commendable public  [0xc8209887c0 0xc820988840 0xc8209888c0] false}

@@ -1,17 +1,17 @@
 ########################################			FUNCTIONS			########################################
-&{QTextDocumentWriter QTextDocumentWriter::QTextDocumentWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non constructor false false   [] }
-&{QTextDocumentWriter QTextDocumentWriter::QTextDocumentWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non constructor false true 2  [0xc82339e420 0xc82339e4c0] }
-&{QTextDocumentWriter QTextDocumentWriter::QTextDocumentWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non constructor false true 3  [0xc82339e6c0 0xc82339e760] }
-&{codec QTextDocumentWriter::codec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  QTextCodec * [] }
-&{device QTextDocumentWriter::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  QIODevice * [] }
-&{fileName QTextDocumentWriter::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  QString [] }
-&{format QTextDocumentWriter::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  QByteArray [] }
-&{setCodec QTextDocumentWriter::setCodec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  void [0xc82339ee00] }
-&{setDevice QTextDocumentWriter::setDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  void [0xc82339efe0] }
-&{setFileName QTextDocumentWriter::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  void [0xc82339f1a0] }
-&{setFormat QTextDocumentWriter::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  void [0xc82339f380] }
-&{supportedDocumentFormats QTextDocumentWriter::supportedDocumentFormats commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain true false  QList<QByteArray> [] }
-&{write QTextDocumentWriter::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  bool [0xc82339f700] }
-&{write QTextDocumentWriter::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false true 2 bool [0xc82339f940] }
-&{~QTextDocumentWriter QTextDocumentWriter::~QTextDocumentWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non destructor false false   [] }
+&{QTextDocumentWriter QTextDocumentWriter::QTextDocumentWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non constructor false false   QTextDocumentWriter() [] }
+&{QTextDocumentWriter QTextDocumentWriter::QTextDocumentWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non constructor false true 2  QTextDocumentWriter(QIODevice *device, const QByteArray &format) [0xc823406e20 0xc823406ec0] }
+&{QTextDocumentWriter QTextDocumentWriter::QTextDocumentWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non constructor false true 3  QTextDocumentWriter(const QString &fileName, const QByteArray &format) [0xc8234070c0 0xc823407160] }
+&{codec QTextDocumentWriter::codec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  QTextCodec * QTextCodec * codec() const [] }
+&{device QTextDocumentWriter::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  QIODevice * QIODevice * device() const [] }
+&{fileName QTextDocumentWriter::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  QString QString fileName() const [] }
+&{format QTextDocumentWriter::format commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  QByteArray QByteArray format() const [] }
+&{setCodec QTextDocumentWriter::setCodec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  void void setCodec(QTextCodec *codec) [0xc823407940] }
+&{setDevice QTextDocumentWriter::setDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  void void setDevice(QIODevice *device) [0xc823407b20] }
+&{setFileName QTextDocumentWriter::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  void void setFileName(const QString &fileName) [0xc823407ce0] }
+&{setFormat QTextDocumentWriter::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  void void setFormat(const QByteArray &format) [0xc823407ec0] }
+&{supportedDocumentFormats QTextDocumentWriter::supportedDocumentFormats commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain true false  QList<QByteArray> QList<QByteArray> supportedDocumentFormats() [] }
+&{write QTextDocumentWriter::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false false  bool bool write(const QTextDocument *document) [0xc823418240] }
+&{write QTextDocumentWriter::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non plain false true 2 bool bool write(const QTextDocumentFragment &fragment) [0xc823418480] }
+&{~QTextDocumentWriter QTextDocumentWriter::~QTextDocumentWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextdocumentwriter.h non destructor false false   ~QTextDocumentWriter() [] }
 ########################################			ENUMS			########################################

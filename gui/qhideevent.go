@@ -11,28 +11,28 @@ type QHideEvent struct {
 	core.QEvent
 }
 
-type QHideEventITF interface {
-	core.QEventITF
-	QHideEventPTR() *QHideEvent
+type QHideEvent_ITF interface {
+	core.QEvent_ITF
+	QHideEvent_PTR() *QHideEvent
 }
 
-func PointerFromQHideEvent(ptr QHideEventITF) unsafe.Pointer {
+func PointerFromQHideEvent(ptr QHideEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHideEventPTR().Pointer()
+		return ptr.QHideEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHideEventFromPointer(ptr unsafe.Pointer) *QHideEvent {
+func NewQHideEventFromPointer(ptr unsafe.Pointer) *QHideEvent {
 	var n = new(QHideEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QHideEvent) QHideEventPTR() *QHideEvent {
+func (ptr *QHideEvent) QHideEvent_PTR() *QHideEvent {
 	return ptr
 }
 
 func NewQHideEvent() *QHideEvent {
-	return QHideEventFromPointer(unsafe.Pointer(C.QHideEvent_NewQHideEvent()))
+	return NewQHideEventFromPointer(C.QHideEvent_NewQHideEvent())
 }

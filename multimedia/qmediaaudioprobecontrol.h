@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QMediaAudioProbeControl_ConnectFlush(QtObjectPtr ptr);
-void QMediaAudioProbeControl_DisconnectFlush(QtObjectPtr ptr);
-void QMediaAudioProbeControl_DestroyQMediaAudioProbeControl(QtObjectPtr ptr);
+void QMediaAudioProbeControl_ConnectFlush(void* ptr);
+void QMediaAudioProbeControl_DisconnectFlush(void* ptr);
+void QMediaAudioProbeControl_DestroyQMediaAudioProbeControl(void* ptr);
 
 #ifdef __cplusplus
 }

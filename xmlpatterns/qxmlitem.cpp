@@ -11,31 +11,31 @@ class MyQXmlItem: public QXmlItem {
 public:
 };
 
-QtObjectPtr QXmlItem_NewQXmlItem(){
+void* QXmlItem_NewQXmlItem(){
 	return new QXmlItem();
 }
 
-QtObjectPtr QXmlItem_NewQXmlItem4(char* atomicValue){
-	return new QXmlItem(QVariant(atomicValue));
+void* QXmlItem_NewQXmlItem4(void* atomicValue){
+	return new QXmlItem(*static_cast<QVariant*>(atomicValue));
 }
 
-QtObjectPtr QXmlItem_NewQXmlItem2(QtObjectPtr other){
+void* QXmlItem_NewQXmlItem2(void* other){
 	return new QXmlItem(*static_cast<QXmlItem*>(other));
 }
 
-QtObjectPtr QXmlItem_NewQXmlItem3(QtObjectPtr node){
+void* QXmlItem_NewQXmlItem3(void* node){
 	return new QXmlItem(*static_cast<QXmlNodeModelIndex*>(node));
 }
 
-int QXmlItem_IsNode(QtObjectPtr ptr){
+int QXmlItem_IsNode(void* ptr){
 	return static_cast<QXmlItem*>(ptr)->isNode();
 }
 
-int QXmlItem_IsNull(QtObjectPtr ptr){
+int QXmlItem_IsNull(void* ptr){
 	return static_cast<QXmlItem*>(ptr)->isNull();
 }
 
-void QXmlItem_DestroyQXmlItem(QtObjectPtr ptr){
+void QXmlItem_DestroyQXmlItem(void* ptr){
 	static_cast<QXmlItem*>(ptr)->~QXmlItem();
 }
 

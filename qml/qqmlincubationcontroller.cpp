@@ -10,19 +10,19 @@ class MyQQmlIncubationController: public QQmlIncubationController {
 public:
 };
 
-QtObjectPtr QQmlIncubationController_NewQQmlIncubationController(){
+void* QQmlIncubationController_NewQQmlIncubationController(){
 	return new QQmlIncubationController();
 }
 
-QtObjectPtr QQmlIncubationController_Engine(QtObjectPtr ptr){
+void* QQmlIncubationController_Engine(void* ptr){
 	return static_cast<QQmlIncubationController*>(ptr)->engine();
 }
 
-void QQmlIncubationController_IncubateFor(QtObjectPtr ptr, int msecs){
+void QQmlIncubationController_IncubateFor(void* ptr, int msecs){
 	static_cast<QQmlIncubationController*>(ptr)->incubateFor(msecs);
 }
 
-int QQmlIncubationController_IncubatingObjectCount(QtObjectPtr ptr){
+int QQmlIncubationController_IncubatingObjectCount(void* ptr){
 	return static_cast<QQmlIncubationController*>(ptr)->incubatingObjectCount();
 }
 

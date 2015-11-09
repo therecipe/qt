@@ -1,9 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStaticPlugin_Instance(QtObjectPtr ptr);
+void* QStaticPlugin_Instance(void* ptr);
+void* QStaticPlugin_MetaData(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -11,8 +11,8 @@ type QBrush struct {
 	ptr unsafe.Pointer
 }
 
-type QBrushITF interface {
-	QBrushPTR() *QBrush
+type QBrush_ITF interface {
+	QBrush_PTR() *QBrush
 }
 
 func (p *QBrush) Pointer() unsafe.Pointer {
@@ -23,128 +23,135 @@ func (p *QBrush) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQBrush(ptr QBrushITF) unsafe.Pointer {
+func PointerFromQBrush(ptr QBrush_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QBrushPTR().Pointer()
+		return ptr.QBrush_PTR().Pointer()
 	}
 	return nil
 }
 
-func QBrushFromPointer(ptr unsafe.Pointer) *QBrush {
+func NewQBrushFromPointer(ptr unsafe.Pointer) *QBrush {
 	var n = new(QBrush)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QBrush) QBrushPTR() *QBrush {
+func (ptr *QBrush) QBrush_PTR() *QBrush {
 	return ptr
 }
 
 func NewQBrush4(color core.Qt__GlobalColor, style core.Qt__BrushStyle) *QBrush {
-	return QBrushFromPointer(unsafe.Pointer(C.QBrush_NewQBrush4(C.int(color), C.int(style))))
+	return NewQBrushFromPointer(C.QBrush_NewQBrush4(C.int(color), C.int(style)))
 }
 
-func (ptr *QBrush) SetColor(color QColorITF) {
+func (ptr *QBrush) SetColor(color QColor_ITF) {
 	if ptr.Pointer() != nil {
-		C.QBrush_SetColor(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQColor(color)))
+		C.QBrush_SetColor(ptr.Pointer(), PointerFromQColor(color))
 	}
 }
 
 func NewQBrush() *QBrush {
-	return QBrushFromPointer(unsafe.Pointer(C.QBrush_NewQBrush()))
+	return NewQBrushFromPointer(C.QBrush_NewQBrush())
 }
 
 func NewQBrush2(style core.Qt__BrushStyle) *QBrush {
-	return QBrushFromPointer(unsafe.Pointer(C.QBrush_NewQBrush2(C.int(style))))
+	return NewQBrushFromPointer(C.QBrush_NewQBrush2(C.int(style)))
 }
 
-func NewQBrush6(color core.Qt__GlobalColor, pixmap QPixmapITF) *QBrush {
-	return QBrushFromPointer(unsafe.Pointer(C.QBrush_NewQBrush6(C.int(color), C.QtObjectPtr(PointerFromQPixmap(pixmap)))))
+func NewQBrush6(color core.Qt__GlobalColor, pixmap QPixmap_ITF) *QBrush {
+	return NewQBrushFromPointer(C.QBrush_NewQBrush6(C.int(color), PointerFromQPixmap(pixmap)))
 }
 
-func NewQBrush9(other QBrushITF) *QBrush {
-	return QBrushFromPointer(unsafe.Pointer(C.QBrush_NewQBrush9(C.QtObjectPtr(PointerFromQBrush(other)))))
+func NewQBrush9(other QBrush_ITF) *QBrush {
+	return NewQBrushFromPointer(C.QBrush_NewQBrush9(PointerFromQBrush(other)))
 }
 
-func NewQBrush3(color QColorITF, style core.Qt__BrushStyle) *QBrush {
-	return QBrushFromPointer(unsafe.Pointer(C.QBrush_NewQBrush3(C.QtObjectPtr(PointerFromQColor(color)), C.int(style))))
+func NewQBrush3(color QColor_ITF, style core.Qt__BrushStyle) *QBrush {
+	return NewQBrushFromPointer(C.QBrush_NewQBrush3(PointerFromQColor(color), C.int(style)))
 }
 
-func NewQBrush5(color QColorITF, pixmap QPixmapITF) *QBrush {
-	return QBrushFromPointer(unsafe.Pointer(C.QBrush_NewQBrush5(C.QtObjectPtr(PointerFromQColor(color)), C.QtObjectPtr(PointerFromQPixmap(pixmap)))))
+func NewQBrush5(color QColor_ITF, pixmap QPixmap_ITF) *QBrush {
+	return NewQBrushFromPointer(C.QBrush_NewQBrush5(PointerFromQColor(color), PointerFromQPixmap(pixmap)))
 }
 
-func NewQBrush10(gradient QGradientITF) *QBrush {
-	return QBrushFromPointer(unsafe.Pointer(C.QBrush_NewQBrush10(C.QtObjectPtr(PointerFromQGradient(gradient)))))
+func NewQBrush10(gradient QGradient_ITF) *QBrush {
+	return NewQBrushFromPointer(C.QBrush_NewQBrush10(PointerFromQGradient(gradient)))
 }
 
-func NewQBrush8(image QImageITF) *QBrush {
-	return QBrushFromPointer(unsafe.Pointer(C.QBrush_NewQBrush8(C.QtObjectPtr(PointerFromQImage(image)))))
+func NewQBrush8(image QImage_ITF) *QBrush {
+	return NewQBrushFromPointer(C.QBrush_NewQBrush8(PointerFromQImage(image)))
 }
 
-func NewQBrush7(pixmap QPixmapITF) *QBrush {
-	return QBrushFromPointer(unsafe.Pointer(C.QBrush_NewQBrush7(C.QtObjectPtr(PointerFromQPixmap(pixmap)))))
+func NewQBrush7(pixmap QPixmap_ITF) *QBrush {
+	return NewQBrushFromPointer(C.QBrush_NewQBrush7(PointerFromQPixmap(pixmap)))
+}
+
+func (ptr *QBrush) Color() *QColor {
+	if ptr.Pointer() != nil {
+		return NewQColorFromPointer(C.QBrush_Color(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QBrush) Gradient() *QGradient {
 	if ptr.Pointer() != nil {
-		return QGradientFromPointer(unsafe.Pointer(C.QBrush_Gradient(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQGradientFromPointer(C.QBrush_Gradient(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QBrush) IsOpaque() bool {
 	if ptr.Pointer() != nil {
-		return C.QBrush_IsOpaque(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QBrush_IsOpaque(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QBrush) SetColor2(color core.Qt__GlobalColor) {
 	if ptr.Pointer() != nil {
-		C.QBrush_SetColor2(C.QtObjectPtr(ptr.Pointer()), C.int(color))
+		C.QBrush_SetColor2(ptr.Pointer(), C.int(color))
 	}
 }
 
 func (ptr *QBrush) SetStyle(style core.Qt__BrushStyle) {
 	if ptr.Pointer() != nil {
-		C.QBrush_SetStyle(C.QtObjectPtr(ptr.Pointer()), C.int(style))
+		C.QBrush_SetStyle(ptr.Pointer(), C.int(style))
 	}
 }
 
-func (ptr *QBrush) SetTexture(pixmap QPixmapITF) {
+func (ptr *QBrush) SetTexture(pixmap QPixmap_ITF) {
 	if ptr.Pointer() != nil {
-		C.QBrush_SetTexture(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPixmap(pixmap)))
+		C.QBrush_SetTexture(ptr.Pointer(), PointerFromQPixmap(pixmap))
 	}
 }
 
-func (ptr *QBrush) SetTextureImage(image QImageITF) {
+func (ptr *QBrush) SetTextureImage(image QImage_ITF) {
 	if ptr.Pointer() != nil {
-		C.QBrush_SetTextureImage(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQImage(image)))
+		C.QBrush_SetTextureImage(ptr.Pointer(), PointerFromQImage(image))
 	}
 }
 
-func (ptr *QBrush) SetTransform(matrix QTransformITF) {
+func (ptr *QBrush) SetTransform(matrix QTransform_ITF) {
 	if ptr.Pointer() != nil {
-		C.QBrush_SetTransform(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTransform(matrix)))
+		C.QBrush_SetTransform(ptr.Pointer(), PointerFromQTransform(matrix))
 	}
 }
 
 func (ptr *QBrush) Style() core.Qt__BrushStyle {
 	if ptr.Pointer() != nil {
-		return core.Qt__BrushStyle(C.QBrush_Style(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__BrushStyle(C.QBrush_Style(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QBrush) Swap(other QBrushITF) {
+func (ptr *QBrush) Swap(other QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QBrush_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQBrush(other)))
+		C.QBrush_Swap(ptr.Pointer(), PointerFromQBrush(other))
 	}
 }
 
 func (ptr *QBrush) DestroyQBrush() {
 	if ptr.Pointer() != nil {
-		C.QBrush_DestroyQBrush(C.QtObjectPtr(ptr.Pointer()))
+		C.QBrush_DestroyQBrush(ptr.Pointer())
 	}
 }

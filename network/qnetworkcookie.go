@@ -12,8 +12,8 @@ type QNetworkCookie struct {
 	ptr unsafe.Pointer
 }
 
-type QNetworkCookieITF interface {
-	QNetworkCookiePTR() *QNetworkCookie
+type QNetworkCookie_ITF interface {
+	QNetworkCookie_PTR() *QNetworkCookie
 }
 
 func (p *QNetworkCookie) Pointer() unsafe.Pointer {
@@ -24,137 +24,165 @@ func (p *QNetworkCookie) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQNetworkCookie(ptr QNetworkCookieITF) unsafe.Pointer {
+func PointerFromQNetworkCookie(ptr QNetworkCookie_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNetworkCookiePTR().Pointer()
+		return ptr.QNetworkCookie_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNetworkCookieFromPointer(ptr unsafe.Pointer) *QNetworkCookie {
+func NewQNetworkCookieFromPointer(ptr unsafe.Pointer) *QNetworkCookie {
 	var n = new(QNetworkCookie)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QNetworkCookie) QNetworkCookiePTR() *QNetworkCookie {
+func (ptr *QNetworkCookie) QNetworkCookie_PTR() *QNetworkCookie {
 	return ptr
 }
 
 //QNetworkCookie::RawForm
-type QNetworkCookie__RawForm int
+type QNetworkCookie__RawForm int64
 
-var (
+const (
 	QNetworkCookie__NameAndValueOnly = QNetworkCookie__RawForm(0)
 	QNetworkCookie__Full             = QNetworkCookie__RawForm(1)
 )
 
-func NewQNetworkCookie(name core.QByteArrayITF, value core.QByteArrayITF) *QNetworkCookie {
-	return QNetworkCookieFromPointer(unsafe.Pointer(C.QNetworkCookie_NewQNetworkCookie(C.QtObjectPtr(core.PointerFromQByteArray(name)), C.QtObjectPtr(core.PointerFromQByteArray(value)))))
+func NewQNetworkCookie(name core.QByteArray_ITF, value core.QByteArray_ITF) *QNetworkCookie {
+	return NewQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie(core.PointerFromQByteArray(name), core.PointerFromQByteArray(value)))
 }
 
-func NewQNetworkCookie2(other QNetworkCookieITF) *QNetworkCookie {
-	return QNetworkCookieFromPointer(unsafe.Pointer(C.QNetworkCookie_NewQNetworkCookie2(C.QtObjectPtr(PointerFromQNetworkCookie(other)))))
+func NewQNetworkCookie2(other QNetworkCookie_ITF) *QNetworkCookie {
+	return NewQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie2(PointerFromQNetworkCookie(other)))
 }
 
 func (ptr *QNetworkCookie) Domain() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkCookie_Domain(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QNetworkCookie_Domain(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QNetworkCookie) HasSameIdentifier(other QNetworkCookieITF) bool {
+func (ptr *QNetworkCookie) ExpirationDate() *core.QDateTime {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookie_HasSameIdentifier(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQNetworkCookie(other))) != 0
+		return core.NewQDateTimeFromPointer(C.QNetworkCookie_ExpirationDate(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QNetworkCookie) HasSameIdentifier(other QNetworkCookie_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QNetworkCookie_HasSameIdentifier(ptr.Pointer(), PointerFromQNetworkCookie(other)) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkCookie) IsHttpOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookie_IsHttpOnly(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QNetworkCookie_IsHttpOnly(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkCookie) IsSecure() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookie_IsSecure(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QNetworkCookie_IsSecure(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkCookie) IsSessionCookie() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkCookie_IsSessionCookie(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QNetworkCookie_IsSessionCookie(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QNetworkCookie) Normalize(url string) {
+func (ptr *QNetworkCookie) Name() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		C.QNetworkCookie_Normalize(C.QtObjectPtr(ptr.Pointer()), C.CString(url))
+		return core.NewQByteArrayFromPointer(C.QNetworkCookie_Name(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QNetworkCookie) Normalize(url core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNetworkCookie_Normalize(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QNetworkCookie) Path() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkCookie_Path(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QNetworkCookie_Path(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QNetworkCookie) SetDomain(domain string) {
 	if ptr.Pointer() != nil {
-		C.QNetworkCookie_SetDomain(C.QtObjectPtr(ptr.Pointer()), C.CString(domain))
+		C.QNetworkCookie_SetDomain(ptr.Pointer(), C.CString(domain))
 	}
 }
 
-func (ptr *QNetworkCookie) SetExpirationDate(date core.QDateTimeITF) {
+func (ptr *QNetworkCookie) SetExpirationDate(date core.QDateTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNetworkCookie_SetExpirationDate(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQDateTime(date)))
+		C.QNetworkCookie_SetExpirationDate(ptr.Pointer(), core.PointerFromQDateTime(date))
 	}
 }
 
 func (ptr *QNetworkCookie) SetHttpOnly(enable bool) {
 	if ptr.Pointer() != nil {
-		C.QNetworkCookie_SetHttpOnly(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enable)))
+		C.QNetworkCookie_SetHttpOnly(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
-func (ptr *QNetworkCookie) SetName(cookieName core.QByteArrayITF) {
+func (ptr *QNetworkCookie) SetName(cookieName core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNetworkCookie_SetName(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(cookieName)))
+		C.QNetworkCookie_SetName(ptr.Pointer(), core.PointerFromQByteArray(cookieName))
 	}
 }
 
 func (ptr *QNetworkCookie) SetPath(path string) {
 	if ptr.Pointer() != nil {
-		C.QNetworkCookie_SetPath(C.QtObjectPtr(ptr.Pointer()), C.CString(path))
+		C.QNetworkCookie_SetPath(ptr.Pointer(), C.CString(path))
 	}
 }
 
 func (ptr *QNetworkCookie) SetSecure(enable bool) {
 	if ptr.Pointer() != nil {
-		C.QNetworkCookie_SetSecure(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enable)))
+		C.QNetworkCookie_SetSecure(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
-func (ptr *QNetworkCookie) SetValue(value core.QByteArrayITF) {
+func (ptr *QNetworkCookie) SetValue(value core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNetworkCookie_SetValue(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(value)))
+		C.QNetworkCookie_SetValue(ptr.Pointer(), core.PointerFromQByteArray(value))
 	}
 }
 
-func (ptr *QNetworkCookie) Swap(other QNetworkCookieITF) {
+func (ptr *QNetworkCookie) Swap(other QNetworkCookie_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNetworkCookie_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQNetworkCookie(other)))
+		C.QNetworkCookie_Swap(ptr.Pointer(), PointerFromQNetworkCookie(other))
 	}
+}
+
+func (ptr *QNetworkCookie) ToRawForm(form QNetworkCookie__RawForm) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		return core.NewQByteArrayFromPointer(C.QNetworkCookie_ToRawForm(ptr.Pointer(), C.int(form)))
+	}
+	return nil
+}
+
+func (ptr *QNetworkCookie) Value() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		return core.NewQByteArrayFromPointer(C.QNetworkCookie_Value(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QNetworkCookie) DestroyQNetworkCookie() {
 	if ptr.Pointer() != nil {
-		C.QNetworkCookie_DestroyQNetworkCookie(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkCookie_DestroyQNetworkCookie(ptr.Pointer())
 	}
 }

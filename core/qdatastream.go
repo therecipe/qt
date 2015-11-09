@@ -10,8 +10,8 @@ type QDataStream struct {
 	ptr unsafe.Pointer
 }
 
-type QDataStreamITF interface {
-	QDataStreamPTR() *QDataStream
+type QDataStream_ITF interface {
+	QDataStream_PTR() *QDataStream
 }
 
 func (p *QDataStream) Pointer() unsafe.Pointer {
@@ -22,43 +22,43 @@ func (p *QDataStream) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQDataStream(ptr QDataStreamITF) unsafe.Pointer {
+func PointerFromQDataStream(ptr QDataStream_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDataStreamPTR().Pointer()
+		return ptr.QDataStream_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDataStreamFromPointer(ptr unsafe.Pointer) *QDataStream {
+func NewQDataStreamFromPointer(ptr unsafe.Pointer) *QDataStream {
 	var n = new(QDataStream)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDataStream) QDataStreamPTR() *QDataStream {
+func (ptr *QDataStream) QDataStream_PTR() *QDataStream {
 	return ptr
 }
 
 //QDataStream::ByteOrder
-type QDataStream__ByteOrder int
+type QDataStream__ByteOrder int64
 
-var (
+const (
 	QDataStream__BigEndian    = QDataStream__ByteOrder(QSysInfo__BigEndian)
 	QDataStream__LittleEndian = QDataStream__ByteOrder(QSysInfo__LittleEndian)
 )
 
 //QDataStream::FloatingPointPrecision
-type QDataStream__FloatingPointPrecision int
+type QDataStream__FloatingPointPrecision int64
 
-var (
+const (
 	QDataStream__SinglePrecision = QDataStream__FloatingPointPrecision(0)
 	QDataStream__DoublePrecision = QDataStream__FloatingPointPrecision(1)
 )
 
 //QDataStream::Status
-type QDataStream__Status int
+type QDataStream__Status int64
 
-var (
+const (
 	QDataStream__Ok              = QDataStream__Status(0)
 	QDataStream__ReadPastEnd     = QDataStream__Status(1)
 	QDataStream__ReadCorruptData = QDataStream__Status(2)
@@ -66,9 +66,9 @@ var (
 )
 
 //QDataStream::Version
-type QDataStream__Version int
+type QDataStream__Version int64
 
-var (
+const (
 	QDataStream__Qt_1_0                    = QDataStream__Version(1)
 	QDataStream__Qt_2_0                    = QDataStream__Version(2)
 	QDataStream__Qt_2_1                    = QDataStream__Version(3)
@@ -94,123 +94,123 @@ var (
 	QDataStream__Qt_DefaultCompiledVersion = QDataStream__Version(QDataStream__Qt_5_5)
 )
 
-func NewQDataStream3(a QByteArrayITF, mode QIODevice__OpenModeFlag) *QDataStream {
-	return QDataStreamFromPointer(unsafe.Pointer(C.QDataStream_NewQDataStream3(C.QtObjectPtr(PointerFromQByteArray(a)), C.int(mode))))
+func NewQDataStream3(a QByteArray_ITF, mode QIODevice__OpenModeFlag) *QDataStream {
+	return NewQDataStreamFromPointer(C.QDataStream_NewQDataStream3(PointerFromQByteArray(a), C.int(mode)))
 }
 
 func (ptr *QDataStream) AtEnd() bool {
 	if ptr.Pointer() != nil {
-		return C.QDataStream_AtEnd(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QDataStream_AtEnd(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func NewQDataStream() *QDataStream {
-	return QDataStreamFromPointer(unsafe.Pointer(C.QDataStream_NewQDataStream()))
+	return NewQDataStreamFromPointer(C.QDataStream_NewQDataStream())
 }
 
-func NewQDataStream2(d QIODeviceITF) *QDataStream {
-	return QDataStreamFromPointer(unsafe.Pointer(C.QDataStream_NewQDataStream2(C.QtObjectPtr(PointerFromQIODevice(d)))))
+func NewQDataStream2(d QIODevice_ITF) *QDataStream {
+	return NewQDataStreamFromPointer(C.QDataStream_NewQDataStream2(PointerFromQIODevice(d)))
 }
 
-func NewQDataStream4(a QByteArrayITF) *QDataStream {
-	return QDataStreamFromPointer(unsafe.Pointer(C.QDataStream_NewQDataStream4(C.QtObjectPtr(PointerFromQByteArray(a)))))
+func NewQDataStream4(a QByteArray_ITF) *QDataStream {
+	return NewQDataStreamFromPointer(C.QDataStream_NewQDataStream4(PointerFromQByteArray(a)))
 }
 
 func (ptr *QDataStream) ByteOrder() QDataStream__ByteOrder {
 	if ptr.Pointer() != nil {
-		return QDataStream__ByteOrder(C.QDataStream_ByteOrder(C.QtObjectPtr(ptr.Pointer())))
+		return QDataStream__ByteOrder(C.QDataStream_ByteOrder(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDataStream) Device() *QIODevice {
 	if ptr.Pointer() != nil {
-		return QIODeviceFromPointer(unsafe.Pointer(C.QDataStream_Device(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQIODeviceFromPointer(C.QDataStream_Device(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QDataStream) FloatingPointPrecision() QDataStream__FloatingPointPrecision {
 	if ptr.Pointer() != nil {
-		return QDataStream__FloatingPointPrecision(C.QDataStream_FloatingPointPrecision(C.QtObjectPtr(ptr.Pointer())))
+		return QDataStream__FloatingPointPrecision(C.QDataStream_FloatingPointPrecision(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDataStream) ReadRawData(s string, len int) int {
 	if ptr.Pointer() != nil {
-		return int(C.QDataStream_ReadRawData(C.QtObjectPtr(ptr.Pointer()), C.CString(s), C.int(len)))
+		return int(C.QDataStream_ReadRawData(ptr.Pointer(), C.CString(s), C.int(len)))
 	}
 	return 0
 }
 
 func (ptr *QDataStream) ResetStatus() {
 	if ptr.Pointer() != nil {
-		C.QDataStream_ResetStatus(C.QtObjectPtr(ptr.Pointer()))
+		C.QDataStream_ResetStatus(ptr.Pointer())
 	}
 }
 
 func (ptr *QDataStream) SetByteOrder(bo QDataStream__ByteOrder) {
 	if ptr.Pointer() != nil {
-		C.QDataStream_SetByteOrder(C.QtObjectPtr(ptr.Pointer()), C.int(bo))
+		C.QDataStream_SetByteOrder(ptr.Pointer(), C.int(bo))
 	}
 }
 
-func (ptr *QDataStream) SetDevice(d QIODeviceITF) {
+func (ptr *QDataStream) SetDevice(d QIODevice_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDataStream_SetDevice(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQIODevice(d)))
+		C.QDataStream_SetDevice(ptr.Pointer(), PointerFromQIODevice(d))
 	}
 }
 
 func (ptr *QDataStream) SetFloatingPointPrecision(precision QDataStream__FloatingPointPrecision) {
 	if ptr.Pointer() != nil {
-		C.QDataStream_SetFloatingPointPrecision(C.QtObjectPtr(ptr.Pointer()), C.int(precision))
+		C.QDataStream_SetFloatingPointPrecision(ptr.Pointer(), C.int(precision))
 	}
 }
 
 func (ptr *QDataStream) SetStatus(status QDataStream__Status) {
 	if ptr.Pointer() != nil {
-		C.QDataStream_SetStatus(C.QtObjectPtr(ptr.Pointer()), C.int(status))
+		C.QDataStream_SetStatus(ptr.Pointer(), C.int(status))
 	}
 }
 
 func (ptr *QDataStream) SetVersion(v int) {
 	if ptr.Pointer() != nil {
-		C.QDataStream_SetVersion(C.QtObjectPtr(ptr.Pointer()), C.int(v))
+		C.QDataStream_SetVersion(ptr.Pointer(), C.int(v))
 	}
 }
 
 func (ptr *QDataStream) SkipRawData(len int) int {
 	if ptr.Pointer() != nil {
-		return int(C.QDataStream_SkipRawData(C.QtObjectPtr(ptr.Pointer()), C.int(len)))
+		return int(C.QDataStream_SkipRawData(ptr.Pointer(), C.int(len)))
 	}
 	return 0
 }
 
 func (ptr *QDataStream) Status() QDataStream__Status {
 	if ptr.Pointer() != nil {
-		return QDataStream__Status(C.QDataStream_Status(C.QtObjectPtr(ptr.Pointer())))
+		return QDataStream__Status(C.QDataStream_Status(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDataStream) Version() int {
 	if ptr.Pointer() != nil {
-		return int(C.QDataStream_Version(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QDataStream_Version(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDataStream) WriteRawData(s string, len int) int {
 	if ptr.Pointer() != nil {
-		return int(C.QDataStream_WriteRawData(C.QtObjectPtr(ptr.Pointer()), C.CString(s), C.int(len)))
+		return int(C.QDataStream_WriteRawData(ptr.Pointer(), C.CString(s), C.int(len)))
 	}
 	return 0
 }
 
 func (ptr *QDataStream) DestroyQDataStream() {
 	if ptr.Pointer() != nil {
-		C.QDataStream_DestroyQDataStream(C.QtObjectPtr(ptr.Pointer()))
+		C.QDataStream_DestroyQDataStream(ptr.Pointer())
 	}
 }

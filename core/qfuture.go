@@ -10,8 +10,8 @@ type QFuture struct {
 	ptr unsafe.Pointer
 }
 
-type QFutureITF interface {
-	QFuturePTR() *QFuture
+type QFuture_ITF interface {
+	QFuture_PTR() *QFuture
 }
 
 func (p *QFuture) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QFuture) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQFuture(ptr QFutureITF) unsafe.Pointer {
+func PointerFromQFuture(ptr QFuture_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QFuturePTR().Pointer()
+		return ptr.QFuture_PTR().Pointer()
 	}
 	return nil
 }
 
-func QFutureFromPointer(ptr unsafe.Pointer) *QFuture {
+func NewQFutureFromPointer(ptr unsafe.Pointer) *QFuture {
 	var n = new(QFuture)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QFuture) QFuturePTR() *QFuture {
+func (ptr *QFuture) QFuture_PTR() *QFuture {
 	return ptr
 }

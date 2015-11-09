@@ -1,33 +1,34 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QMetaObject_QMetaObject_ConnectSlotsByName(QtObjectPtr object);
-int QMetaObject_QMetaObject_CheckConnectArgs2(QtObjectPtr signal, QtObjectPtr method);
+void QMetaObject_QMetaObject_ConnectSlotsByName(void* object);
+int QMetaObject_QMetaObject_CheckConnectArgs2(void* signal, void* method);
 int QMetaObject_QMetaObject_CheckConnectArgs(char* signal, char* method);
-int QMetaObject_ClassInfoCount(QtObjectPtr ptr);
-int QMetaObject_ClassInfoOffset(QtObjectPtr ptr);
-int QMetaObject_ConstructorCount(QtObjectPtr ptr);
-int QMetaObject_EnumeratorCount(QtObjectPtr ptr);
-int QMetaObject_EnumeratorOffset(QtObjectPtr ptr);
-int QMetaObject_IndexOfClassInfo(QtObjectPtr ptr, char* name);
-int QMetaObject_IndexOfConstructor(QtObjectPtr ptr, char* constructor);
-int QMetaObject_IndexOfEnumerator(QtObjectPtr ptr, char* name);
-int QMetaObject_IndexOfMethod(QtObjectPtr ptr, char* method);
-int QMetaObject_IndexOfProperty(QtObjectPtr ptr, char* name);
-int QMetaObject_IndexOfSignal(QtObjectPtr ptr, char* signal);
-int QMetaObject_IndexOfSlot(QtObjectPtr ptr, char* slot);
-int QMetaObject_QMetaObject_InvokeMethod4(QtObjectPtr obj, char* member, QtObjectPtr val0, QtObjectPtr val1, QtObjectPtr val2, QtObjectPtr val3, QtObjectPtr val4, QtObjectPtr val5, QtObjectPtr val6, QtObjectPtr val7, QtObjectPtr val8, QtObjectPtr val9);
-int QMetaObject_QMetaObject_InvokeMethod2(QtObjectPtr obj, char* member, QtObjectPtr ret, QtObjectPtr val0, QtObjectPtr val1, QtObjectPtr val2, QtObjectPtr val3, QtObjectPtr val4, QtObjectPtr val5, QtObjectPtr val6, QtObjectPtr val7, QtObjectPtr val8, QtObjectPtr val9);
-int QMetaObject_QMetaObject_InvokeMethod3(QtObjectPtr obj, char* member, int ty, QtObjectPtr val0, QtObjectPtr val1, QtObjectPtr val2, QtObjectPtr val3, QtObjectPtr val4, QtObjectPtr val5, QtObjectPtr val6, QtObjectPtr val7, QtObjectPtr val8, QtObjectPtr val9);
-int QMetaObject_QMetaObject_InvokeMethod(QtObjectPtr obj, char* member, int ty, QtObjectPtr ret, QtObjectPtr val0, QtObjectPtr val1, QtObjectPtr val2, QtObjectPtr val3, QtObjectPtr val4, QtObjectPtr val5, QtObjectPtr val6, QtObjectPtr val7, QtObjectPtr val8, QtObjectPtr val9);
-int QMetaObject_MethodCount(QtObjectPtr ptr);
-int QMetaObject_MethodOffset(QtObjectPtr ptr);
-QtObjectPtr QMetaObject_NewInstance(QtObjectPtr ptr, QtObjectPtr val0, QtObjectPtr val1, QtObjectPtr val2, QtObjectPtr val3, QtObjectPtr val4, QtObjectPtr val5, QtObjectPtr val6, QtObjectPtr val7, QtObjectPtr val8, QtObjectPtr val9);
-int QMetaObject_PropertyCount(QtObjectPtr ptr);
-int QMetaObject_PropertyOffset(QtObjectPtr ptr);
-QtObjectPtr QMetaObject_SuperClass(QtObjectPtr ptr);
+int QMetaObject_ClassInfoCount(void* ptr);
+int QMetaObject_ClassInfoOffset(void* ptr);
+int QMetaObject_ConstructorCount(void* ptr);
+int QMetaObject_EnumeratorCount(void* ptr);
+int QMetaObject_EnumeratorOffset(void* ptr);
+int QMetaObject_IndexOfClassInfo(void* ptr, char* name);
+int QMetaObject_IndexOfConstructor(void* ptr, char* constructor);
+int QMetaObject_IndexOfEnumerator(void* ptr, char* name);
+int QMetaObject_IndexOfMethod(void* ptr, char* method);
+int QMetaObject_IndexOfProperty(void* ptr, char* name);
+int QMetaObject_IndexOfSignal(void* ptr, char* signal);
+int QMetaObject_IndexOfSlot(void* ptr, char* slot);
+int QMetaObject_QMetaObject_InvokeMethod4(void* obj, char* member, void* val0, void* val1, void* val2, void* val3, void* val4, void* val5, void* val6, void* val7, void* val8, void* val9);
+int QMetaObject_QMetaObject_InvokeMethod2(void* obj, char* member, void* ret, void* val0, void* val1, void* val2, void* val3, void* val4, void* val5, void* val6, void* val7, void* val8, void* val9);
+int QMetaObject_QMetaObject_InvokeMethod3(void* obj, char* member, int ty, void* val0, void* val1, void* val2, void* val3, void* val4, void* val5, void* val6, void* val7, void* val8, void* val9);
+int QMetaObject_QMetaObject_InvokeMethod(void* obj, char* member, int ty, void* ret, void* val0, void* val1, void* val2, void* val3, void* val4, void* val5, void* val6, void* val7, void* val8, void* val9);
+int QMetaObject_MethodCount(void* ptr);
+int QMetaObject_MethodOffset(void* ptr);
+void* QMetaObject_NewInstance(void* ptr, void* val0, void* val1, void* val2, void* val3, void* val4, void* val5, void* val6, void* val7, void* val8, void* val9);
+void* QMetaObject_QMetaObject_NormalizedSignature(char* method);
+void* QMetaObject_QMetaObject_NormalizedType(char* ty);
+int QMetaObject_PropertyCount(void* ptr);
+int QMetaObject_PropertyOffset(void* ptr);
+void* QMetaObject_SuperClass(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,8 +1,8 @@
 #include "qstyleoptionspinbox.h"
 #include <QUrl>
 #include <QModelIndex>
-#include <QStyle>
 #include <QStyleOption>
+#include <QStyle>
 #include <QString>
 #include <QVariant>
 #include <QStyleOptionSpinBox>
@@ -12,11 +12,11 @@ class MyQStyleOptionSpinBox: public QStyleOptionSpinBox {
 public:
 };
 
-QtObjectPtr QStyleOptionSpinBox_NewQStyleOptionSpinBox(){
+void* QStyleOptionSpinBox_NewQStyleOptionSpinBox(){
 	return new QStyleOptionSpinBox();
 }
 
-QtObjectPtr QStyleOptionSpinBox_NewQStyleOptionSpinBox2(QtObjectPtr other){
+void* QStyleOptionSpinBox_NewQStyleOptionSpinBox2(void* other){
 	return new QStyleOptionSpinBox(*static_cast<QStyleOptionSpinBox*>(other));
 }
 

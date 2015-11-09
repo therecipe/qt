@@ -11,139 +11,165 @@ type QGraphicsLinearLayout struct {
 	QGraphicsLayout
 }
 
-type QGraphicsLinearLayoutITF interface {
-	QGraphicsLayoutITF
-	QGraphicsLinearLayoutPTR() *QGraphicsLinearLayout
+type QGraphicsLinearLayout_ITF interface {
+	QGraphicsLayout_ITF
+	QGraphicsLinearLayout_PTR() *QGraphicsLinearLayout
 }
 
-func PointerFromQGraphicsLinearLayout(ptr QGraphicsLinearLayoutITF) unsafe.Pointer {
+func PointerFromQGraphicsLinearLayout(ptr QGraphicsLinearLayout_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsLinearLayoutPTR().Pointer()
+		return ptr.QGraphicsLinearLayout_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsLinearLayoutFromPointer(ptr unsafe.Pointer) *QGraphicsLinearLayout {
+func NewQGraphicsLinearLayoutFromPointer(ptr unsafe.Pointer) *QGraphicsLinearLayout {
 	var n = new(QGraphicsLinearLayout)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsLinearLayout) QGraphicsLinearLayoutPTR() *QGraphicsLinearLayout {
+func (ptr *QGraphicsLinearLayout) QGraphicsLinearLayout_PTR() *QGraphicsLinearLayout {
 	return ptr
 }
 
-func NewQGraphicsLinearLayout(parent QGraphicsLayoutItemITF) *QGraphicsLinearLayout {
-	return QGraphicsLinearLayoutFromPointer(unsafe.Pointer(C.QGraphicsLinearLayout_NewQGraphicsLinearLayout(C.QtObjectPtr(PointerFromQGraphicsLayoutItem(parent)))))
+func NewQGraphicsLinearLayout(parent QGraphicsLayoutItem_ITF) *QGraphicsLinearLayout {
+	return NewQGraphicsLinearLayoutFromPointer(C.QGraphicsLinearLayout_NewQGraphicsLinearLayout(PointerFromQGraphicsLayoutItem(parent)))
 }
 
-func NewQGraphicsLinearLayout2(orientation core.Qt__Orientation, parent QGraphicsLayoutItemITF) *QGraphicsLinearLayout {
-	return QGraphicsLinearLayoutFromPointer(unsafe.Pointer(C.QGraphicsLinearLayout_NewQGraphicsLinearLayout2(C.int(orientation), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(parent)))))
+func NewQGraphicsLinearLayout2(orientation core.Qt__Orientation, parent QGraphicsLayoutItem_ITF) *QGraphicsLinearLayout {
+	return NewQGraphicsLinearLayoutFromPointer(C.QGraphicsLinearLayout_NewQGraphicsLinearLayout2(C.int(orientation), PointerFromQGraphicsLayoutItem(parent)))
 }
 
-func (ptr *QGraphicsLinearLayout) AddItem(item QGraphicsLayoutItemITF) {
+func (ptr *QGraphicsLinearLayout) AddItem(item QGraphicsLayoutItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLinearLayout_AddItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(item)))
+		C.QGraphicsLinearLayout_AddItem(ptr.Pointer(), PointerFromQGraphicsLayoutItem(item))
 	}
 }
 
 func (ptr *QGraphicsLinearLayout) AddStretch(stretch int) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLinearLayout_AddStretch(C.QtObjectPtr(ptr.Pointer()), C.int(stretch))
+		C.QGraphicsLinearLayout_AddStretch(ptr.Pointer(), C.int(stretch))
 	}
 }
 
-func (ptr *QGraphicsLinearLayout) Alignment(item QGraphicsLayoutItemITF) core.Qt__AlignmentFlag {
+func (ptr *QGraphicsLinearLayout) Alignment(item QGraphicsLayoutItem_ITF) core.Qt__AlignmentFlag {
 	if ptr.Pointer() != nil {
-		return core.Qt__AlignmentFlag(C.QGraphicsLinearLayout_Alignment(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(item))))
+		return core.Qt__AlignmentFlag(C.QGraphicsLinearLayout_Alignment(ptr.Pointer(), PointerFromQGraphicsLayoutItem(item)))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsLinearLayout) Count() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsLinearLayout_Count(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGraphicsLinearLayout_Count(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QGraphicsLinearLayout) InsertItem(index int, item QGraphicsLayoutItemITF) {
+func (ptr *QGraphicsLinearLayout) InsertItem(index int, item QGraphicsLayoutItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLinearLayout_InsertItem(C.QtObjectPtr(ptr.Pointer()), C.int(index), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(item)))
+		C.QGraphicsLinearLayout_InsertItem(ptr.Pointer(), C.int(index), PointerFromQGraphicsLayoutItem(item))
 	}
 }
 
 func (ptr *QGraphicsLinearLayout) InsertStretch(index int, stretch int) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLinearLayout_InsertStretch(C.QtObjectPtr(ptr.Pointer()), C.int(index), C.int(stretch))
+		C.QGraphicsLinearLayout_InsertStretch(ptr.Pointer(), C.int(index), C.int(stretch))
 	}
 }
 
 func (ptr *QGraphicsLinearLayout) Invalidate() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLinearLayout_Invalidate(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsLinearLayout_Invalidate(ptr.Pointer())
 	}
 }
 
 func (ptr *QGraphicsLinearLayout) ItemAt(index int) *QGraphicsLayoutItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsLayoutItemFromPointer(unsafe.Pointer(C.QGraphicsLinearLayout_ItemAt(C.QtObjectPtr(ptr.Pointer()), C.int(index))))
+		return NewQGraphicsLayoutItemFromPointer(C.QGraphicsLinearLayout_ItemAt(ptr.Pointer(), C.int(index)))
 	}
 	return nil
 }
 
+func (ptr *QGraphicsLinearLayout) ItemSpacing(index int) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsLinearLayout_ItemSpacing(ptr.Pointer(), C.int(index)))
+	}
+	return 0
+}
+
 func (ptr *QGraphicsLinearLayout) Orientation() core.Qt__Orientation {
 	if ptr.Pointer() != nil {
-		return core.Qt__Orientation(C.QGraphicsLinearLayout_Orientation(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__Orientation(C.QGraphicsLinearLayout_Orientation(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsLinearLayout) RemoveAt(index int) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLinearLayout_RemoveAt(C.QtObjectPtr(ptr.Pointer()), C.int(index))
+		C.QGraphicsLinearLayout_RemoveAt(ptr.Pointer(), C.int(index))
 	}
 }
 
-func (ptr *QGraphicsLinearLayout) RemoveItem(item QGraphicsLayoutItemITF) {
+func (ptr *QGraphicsLinearLayout) RemoveItem(item QGraphicsLayoutItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLinearLayout_RemoveItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(item)))
+		C.QGraphicsLinearLayout_RemoveItem(ptr.Pointer(), PointerFromQGraphicsLayoutItem(item))
 	}
 }
 
-func (ptr *QGraphicsLinearLayout) SetAlignment(item QGraphicsLayoutItemITF, alignment core.Qt__AlignmentFlag) {
+func (ptr *QGraphicsLinearLayout) SetAlignment(item QGraphicsLayoutItem_ITF, alignment core.Qt__AlignmentFlag) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLinearLayout_SetAlignment(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(item)), C.int(alignment))
+		C.QGraphicsLinearLayout_SetAlignment(ptr.Pointer(), PointerFromQGraphicsLayoutItem(item), C.int(alignment))
 	}
 }
 
-func (ptr *QGraphicsLinearLayout) SetGeometry(rect core.QRectFITF) {
+func (ptr *QGraphicsLinearLayout) SetGeometry(rect core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLinearLayout_SetGeometry(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)))
+		C.QGraphicsLinearLayout_SetGeometry(ptr.Pointer(), core.PointerFromQRectF(rect))
+	}
+}
+
+func (ptr *QGraphicsLinearLayout) SetItemSpacing(index int, spacing float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsLinearLayout_SetItemSpacing(ptr.Pointer(), C.int(index), C.double(spacing))
 	}
 }
 
 func (ptr *QGraphicsLinearLayout) SetOrientation(orientation core.Qt__Orientation) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLinearLayout_SetOrientation(C.QtObjectPtr(ptr.Pointer()), C.int(orientation))
+		C.QGraphicsLinearLayout_SetOrientation(ptr.Pointer(), C.int(orientation))
 	}
 }
 
-func (ptr *QGraphicsLinearLayout) SetStretchFactor(item QGraphicsLayoutItemITF, stretch int) {
+func (ptr *QGraphicsLinearLayout) SetSpacing(spacing float64) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLinearLayout_SetStretchFactor(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(item)), C.int(stretch))
+		C.QGraphicsLinearLayout_SetSpacing(ptr.Pointer(), C.double(spacing))
 	}
 }
 
-func (ptr *QGraphicsLinearLayout) StretchFactor(item QGraphicsLayoutItemITF) int {
+func (ptr *QGraphicsLinearLayout) SetStretchFactor(item QGraphicsLayoutItem_ITF, stretch int) {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsLinearLayout_StretchFactor(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(item))))
+		C.QGraphicsLinearLayout_SetStretchFactor(ptr.Pointer(), PointerFromQGraphicsLayoutItem(item), C.int(stretch))
+	}
+}
+
+func (ptr *QGraphicsLinearLayout) Spacing() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsLinearLayout_Spacing(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsLinearLayout) StretchFactor(item QGraphicsLayoutItem_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(C.QGraphicsLinearLayout_StretchFactor(ptr.Pointer(), PointerFromQGraphicsLayoutItem(item)))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsLinearLayout) DestroyQGraphicsLinearLayout() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLinearLayout_DestroyQGraphicsLinearLayout(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsLinearLayout_DestroyQGraphicsLinearLayout(ptr.Pointer())
 	}
 }

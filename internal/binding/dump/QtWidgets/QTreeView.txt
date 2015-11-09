@@ -1,99 +1,99 @@
 ########################################			FUNCTIONS			########################################
-&{allColumnsShowFocus QTreeView::allColumnsShowFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool [] }
-&{autoExpandDelay QTreeView::autoExpandDelay commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  int [] }
-&{collapse QTreeView::collapse commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non slot false false  void [0xc821f02620] }
-&{expand QTreeView::expand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non slot false false  void [0xc821f029c0] }
-&{expandsOnDoubleClick QTreeView::expandsOnDoubleClick commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool [] }
-&{indentation QTreeView::indentation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  int [] }
-&{isAnimated QTreeView::isAnimated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool [] }
-&{isExpanded QTreeView::isExpanded commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool [0xc821f03400] }
-&{isHeaderHidden QTreeView::isHeaderHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool [] }
-&{isSortingEnabled QTreeView::isSortingEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool [] }
-&{itemsExpandable QTreeView::itemsExpandable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool [] }
-&{resetIndentation QTreeView::resetIndentation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void [] }
-&{rootIsDecorated QTreeView::rootIsDecorated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool [] }
-&{setAllColumnsShowFocus QTreeView::setAllColumnsShowFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void [0xc821f03f80] }
-&{setAnimated QTreeView::setAnimated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void [0xc821d36220] }
-&{setAutoExpandDelay QTreeView::setAutoExpandDelay commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void [0xc821d364c0] }
-&{setExpandsOnDoubleClick QTreeView::setExpandsOnDoubleClick commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void [0xc821d36720] }
-&{setHeaderHidden QTreeView::setHeaderHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void [0xc821d36980] }
-&{setIndentation QTreeView::setIndentation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void [0xc821d36c20] }
-&{setItemsExpandable QTreeView::setItemsExpandable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void [0xc821d36ec0] }
-&{setRootIsDecorated QTreeView::setRootIsDecorated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void [0xc821d37160] }
-&{setSortingEnabled QTreeView::setSortingEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void [0xc821d373e0] }
-&{setUniformRowHeights QTreeView::setUniformRowHeights commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void [0xc821d376a0] }
-&{setWordWrap QTreeView::setWordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void [0xc821d37900] }
-&{uniformRowHeights QTreeView::uniformRowHeights commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool [] }
-&{wordWrap QTreeView::wordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool [] }
-&{QTreeView QTreeView::QTreeView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non constructor false false   [0xc821d37ea0] }
-&{collapseAll QTreeView::collapseAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void [] }
-&{collapsed QTreeView::collapsed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non signal false false  void [0xc8224ea7a0] }
-&{columnAt QTreeView::columnAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  int [0xc8224eaa40] }
-&{columnCountChanged QTreeView::columnCountChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void [0xc8224eace0 0xc8224eadc0] }
-&{columnMoved QTreeView::columnMoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void [] }
-&{columnViewportPosition QTreeView::columnViewportPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  int [0xc8224eb100] }
-&{columnWidth QTreeView::columnWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  int [0xc8224eb300] }
-&{columnResized QTreeView::columnResized commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void [0xc8224eb960 0xc8224eb9e0 0xc8224eba60] }
-&{currentChanged QTreeView::currentChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc8224ebc40 0xc8224ebd20] }
-&{dataChanged QTreeView::dataChanged commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d3e000 0xc821d3e140 0xc821d3e260] }
-&{dragMoveEvent QTreeView::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d3e480] }
-&{drawBranches QTreeView::drawBranches commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d3e6c0 0xc821d3e740 0xc821d3e7e0] }
-&{drawRow QTreeView::drawRow commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d3ea40 0xc821d3eb20 0xc821d3ec20] }
-&{drawTree QTreeView::drawTree commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void [0xc821d3ee80 0xc821d3ef20] }
-&{expandAll QTreeView::expandAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void [] }
-&{expandToDepth QTreeView::expandToDepth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void [0xc821d3f280] }
-&{expanded QTreeView::expanded commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non signal false false  void [0xc821d3f4e0] }
-&{header QTreeView::header commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  QHeaderView * [] }
-&{hideColumn QTreeView::hideColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void [0xc821d3f8e0] }
-&{horizontalOffset QTreeView::horizontalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  int [] }
-&{indexAbove QTreeView::indexAbove commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  QModelIndex [0xc821d3fe80] }
-&{indexAt QTreeView::indexAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  QModelIndex [0xc821d46120] }
-&{indexBelow QTreeView::indexBelow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  QModelIndex [0xc821d46380] }
-&{indexRowSizeHint QTreeView::indexRowSizeHint commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  int [0xc821d46620] }
-&{isColumnHidden QTreeView::isColumnHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  bool [0xc821d468a0] }
-&{isFirstColumnSpanned QTreeView::isFirstColumnSpanned commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  bool [0xc821d46b40 0xc821d46c00] }
-&{isIndexHidden QTreeView::isIndexHidden commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  bool [0xc821d46ec0] }
-&{isRowHidden QTreeView::isRowHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  bool [0xc821d47140 0xc821d47220] }
-&{keyPressEvent QTreeView::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d474a0] }
-&{keyboardSearch QTreeView::keyboardSearch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d476c0] }
-&{mouseDoubleClickEvent QTreeView::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d47900] }
-&{mouseMoveEvent QTreeView::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d47b60] }
-&{mousePressEvent QTreeView::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d47d40] }
-&{mouseReleaseEvent QTreeView::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d47fe0] }
-&{moveCursor QTreeView::moveCursor commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  QModelIndex [0xc822d2c220 0xc822d2c320] }
-&{paintEvent QTreeView::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc822d2c580] }
-&{reset QTreeView::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [] }
-&{resizeColumnToContents QTreeView::resizeColumnToContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void [0xc822d2c820] }
-&{rowHeight QTreeView::rowHeight commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  int [0xc822d2caa0] }
-&{rowsAboutToBeRemoved QTreeView::rowsAboutToBeRemoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc822d2cd80 0xc822d2ce80 0xc822d2cf20] }
-&{rowsInserted QTreeView::rowsInserted commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc822d2d160 0xc822d2d260 0xc822d2d320] }
-&{rowsRemoved QTreeView::rowsRemoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void [0xc822d2d580 0xc822d2d660 0xc822d2d700] }
-&{scrollContentsBy QTreeView::scrollContentsBy commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc822d2d940 0xc822d2d9e0] }
-&{scrollTo QTreeView::scrollTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc822d2dc40 0xc822d2dd20] }
-&{selectAll QTreeView::selectAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [] }
-&{selectedIndexes QTreeView::selectedIndexes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  QModelIndexList [] }
-&{selectionChanged QTreeView::selectionChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d4c160 0xc821d4c280] }
-&{setColumnHidden QTreeView::setColumnHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void [0xc821d4c500 0xc821d4c5a0] }
-&{setColumnWidth QTreeView::setColumnWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void [0xc821d4c7a0 0xc821d4c820] }
-&{setExpanded QTreeView::setExpanded commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void [0xc821d4ca80 0xc821d4cb40] }
-&{setFirstColumnSpanned QTreeView::setFirstColumnSpanned commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void [0xc821d4cd80 0xc821d4ce60 0xc821d4cf40] }
-&{setHeader QTreeView::setHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void [0xc821d4d160] }
-&{setModel QTreeView::setModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d4d3a0] }
-&{setRootIndex QTreeView::setRootIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d4d640] }
-&{setRowHidden QTreeView::setRowHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void [0xc821d4d8e0 0xc821d4d9a0 0xc821d4daa0] }
-&{setSelection QTreeView::setSelection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d4dce0 0xc821d4dd80] }
-&{setSelectionModel QTreeView::setSelectionModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d56020] }
-&{setTreePosition QTreeView::setTreePosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void [0xc821d562a0] }
-&{showColumn QTreeView::showColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void [0xc821d56500] }
-&{sizeHintForColumn QTreeView::sizeHintForColumn commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  int [0xc821d567a0] }
-&{sortByColumn QTreeView::sortByColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void [0xc821d56c00 0xc821d56ca0] }
-&{timerEvent QTreeView::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [0xc821d56ea0] }
-&{treePosition QTreeView::treePosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  int [] }
-&{updateGeometries QTreeView::updateGeometries commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void [] }
-&{verticalOffset QTreeView::verticalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  int [] }
-&{viewportEvent QTreeView::viewportEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  bool [0xc821d57440] }
-&{viewportSizeHint QTreeView::viewportSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  QSize [] }
-&{visualRect QTreeView::visualRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  QRect [0xc821d577c0] }
-&{visualRegionForSelection QTreeView::visualRegionForSelection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  QRegion [0xc821d57a00] }
-&{~QTreeView QTreeView::~QTreeView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non destructor false false   [] }
+&{allColumnsShowFocus QTreeView::allColumnsShowFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool bool allColumnsShowFocus() const [] }
+&{autoExpandDelay QTreeView::autoExpandDelay commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  int int autoExpandDelay() const [] }
+&{collapse QTreeView::collapse commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non slot false false  void void collapse(const QModelIndex &index) [0xc8222e8660] }
+&{expand QTreeView::expand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non slot false false  void void expand(const QModelIndex &index) [0xc8222e88e0] }
+&{expandsOnDoubleClick QTreeView::expandsOnDoubleClick commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool bool expandsOnDoubleClick() const [] }
+&{indentation QTreeView::indentation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  int int indentation() const [] }
+&{isAnimated QTreeView::isAnimated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool bool isAnimated() const [] }
+&{isExpanded QTreeView::isExpanded commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool bool isExpanded(const QModelIndex &index) const [0xc8222e90a0] }
+&{isHeaderHidden QTreeView::isHeaderHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool bool isHeaderHidden() const [] }
+&{isSortingEnabled QTreeView::isSortingEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool bool isSortingEnabled() const [] }
+&{itemsExpandable QTreeView::itemsExpandable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool bool itemsExpandable() const [] }
+&{resetIndentation QTreeView::resetIndentation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void void resetIndentation() [] }
+&{rootIsDecorated QTreeView::rootIsDecorated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool bool rootIsDecorated() const [] }
+&{setAllColumnsShowFocus QTreeView::setAllColumnsShowFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void void setAllColumnsShowFocus(bool enable) [0xc8222e9b40] }
+&{setAnimated QTreeView::setAnimated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void void setAnimated(bool enable) [0xc8222e9de0] }
+&{setAutoExpandDelay QTreeView::setAutoExpandDelay commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void void setAutoExpandDelay(int delay) [0xc8222f4060] }
+&{setExpandsOnDoubleClick QTreeView::setExpandsOnDoubleClick commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void void setExpandsOnDoubleClick(bool enable) [0xc8222f42c0] }
+&{setHeaderHidden QTreeView::setHeaderHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void void setHeaderHidden(bool hide) [0xc8222f45e0] }
+&{setIndentation QTreeView::setIndentation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void void setIndentation(int i) [0xc8222f48c0] }
+&{setItemsExpandable QTreeView::setItemsExpandable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void void setItemsExpandable(bool enable) [0xc8222f4ba0] }
+&{setRootIsDecorated QTreeView::setRootIsDecorated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void void setRootIsDecorated(bool show) [0xc8222f4e60] }
+&{setSortingEnabled QTreeView::setSortingEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void void setSortingEnabled(bool enable) [0xc8222f5120] }
+&{setUniformRowHeights QTreeView::setUniformRowHeights commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void void setUniformRowHeights(bool uniform) [0xc8222f5420] }
+&{setWordWrap QTreeView::setWordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  void void setWordWrap(bool on) [0xc8222f5720] }
+&{uniformRowHeights QTreeView::uniformRowHeights commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool bool uniformRowHeights() const [] }
+&{wordWrap QTreeView::wordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.cpp non plain false false  bool bool wordWrap() const [] }
+&{QTreeView QTreeView::QTreeView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non constructor false false   QTreeView(QWidget *parent) [0xc8222f5dc0] }
+&{collapseAll QTreeView::collapseAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void void collapseAll() [] }
+&{collapsed QTreeView::collapsed commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non signal false false  void void collapsed(const QModelIndex &index) [0xc821efa760] }
+&{columnAt QTreeView::columnAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  int int columnAt(int x) const [0xc821efaa80] }
+&{columnCountChanged QTreeView::columnCountChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void void columnCountChanged(int oldCount, int newCount) [0xc821efad60 0xc821efae00] }
+&{columnMoved QTreeView::columnMoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void void columnMoved() [] }
+&{columnViewportPosition QTreeView::columnViewportPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  int int columnViewportPosition(int column) const [0xc821efb1e0] }
+&{columnWidth QTreeView::columnWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  int int columnWidth(int column) const [0xc821efb420] }
+&{columnResized QTreeView::columnResized commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void void columnResized(int column, int oldSize, int newSize) [0xc821efbc20 0xc821efbcc0 0xc821efbd80] }
+&{currentChanged QTreeView::currentChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void currentChanged(const QModelIndex &current, const QModelIndex &previous) [0xc821f08000 0xc821f08120] }
+&{dataChanged QTreeView::dataChanged commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles) [0xc821f08400 0xc821f08520 0xc821f08640] }
+&{dragMoveEvent QTreeView::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void dragMoveEvent(QDragMoveEvent *event) [0xc821f08900] }
+&{drawBranches QTreeView::drawBranches commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const [0xc821f08b40 0xc821f08c00 0xc821f08cc0] }
+&{drawRow QTreeView::drawRow commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void drawRow(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const [0xc821f08f80 0xc821f09060 0xc821f09180] }
+&{drawTree QTreeView::drawTree commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void void drawTree(QPainter *painter, const QRegion &region) const [0xc821f09420 0xc821f094e0] }
+&{expandAll QTreeView::expandAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void void expandAll() [] }
+&{expandToDepth QTreeView::expandToDepth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void void expandToDepth(int depth) [0xc821f098e0] }
+&{expanded QTreeView::expanded commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non signal false false  void void expanded(const QModelIndex &index) [0xc821f09b60] }
+&{header QTreeView::header commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  QHeaderView * QHeaderView * header() const [] }
+&{hideColumn QTreeView::hideColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void void hideColumn(int column) [0xc821f14020] }
+&{horizontalOffset QTreeView::horizontalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  int int horizontalOffset() const [] }
+&{indexAbove QTreeView::indexAbove commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  QModelIndex QModelIndex indexAbove(const QModelIndex &index) const [0xc821f14640] }
+&{indexAt QTreeView::indexAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  QModelIndex QModelIndex indexAt(const QPoint &point) const [0xc821f14840] }
+&{indexBelow QTreeView::indexBelow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  QModelIndex QModelIndex indexBelow(const QModelIndex &index) const [0xc821f14a20] }
+&{indexRowSizeHint QTreeView::indexRowSizeHint commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  int int indexRowSizeHint(const QModelIndex &index) const [0xc821f14c40] }
+&{isColumnHidden QTreeView::isColumnHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  bool bool isColumnHidden(int column) const [0xc821f14ea0] }
+&{isFirstColumnSpanned QTreeView::isFirstColumnSpanned commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  bool bool isFirstColumnSpanned(int row, const QModelIndex &parent) const [0xc821f15120 0xc821f15200] }
+&{isIndexHidden QTreeView::isIndexHidden commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  bool bool isIndexHidden(const QModelIndex &index) const [0xc821f154a0] }
+&{isRowHidden QTreeView::isRowHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  bool bool isRowHidden(int row, const QModelIndex &parent) const [0xc821f15760 0xc821f15800] }
+&{keyPressEvent QTreeView::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void keyPressEvent(QKeyEvent *event) [0xc821f15aa0] }
+&{keyboardSearch QTreeView::keyboardSearch commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void keyboardSearch(const QString &search) [0xc821f15ce0] }
+&{mouseDoubleClickEvent QTreeView::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void mouseDoubleClickEvent(QMouseEvent *event) [0xc821f15f60] }
+&{mouseMoveEvent QTreeView::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void mouseMoveEvent(QMouseEvent *event) [0xc821f2a220] }
+&{mousePressEvent QTreeView::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void mousePressEvent(QMouseEvent *event) [0xc821f2a420] }
+&{mouseReleaseEvent QTreeView::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *event) [0xc821f2a6c0] }
+&{moveCursor QTreeView::moveCursor commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  QModelIndex QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers) [0xc821f2a900 0xc821f2a9c0] }
+&{paintEvent QTreeView::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void paintEvent(QPaintEvent *event) [0xc821f2ac40] }
+&{reset QTreeView::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void reset() [] }
+&{resizeColumnToContents QTreeView::resizeColumnToContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void void resizeColumnToContents(int column) [0xc821f2aec0] }
+&{rowHeight QTreeView::rowHeight commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  int int rowHeight(const QModelIndex &index) const [0xc821f2b140] }
+&{rowsAboutToBeRemoved QTreeView::rowsAboutToBeRemoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void rowsAboutToBeRemoved(const QModelIndex &parent, int start, int end) [0xc821f2b440 0xc821f2b540 0xc821f2b5e0] }
+&{rowsInserted QTreeView::rowsInserted commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void rowsInserted(const QModelIndex &parent, int start, int end) [0xc821f2b820 0xc821f2b940 0xc821f2b9c0] }
+&{rowsRemoved QTreeView::rowsRemoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void void rowsRemoved(const QModelIndex &parent, int start, int end) [0xc821f2bc00 0xc821f2bd00 0xc821f2bda0] }
+&{scrollContentsBy QTreeView::scrollContentsBy commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void scrollContentsBy(int dx, int dy) [0xc821f2bfe0 0xc82262c060] }
+&{scrollTo QTreeView::scrollTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void scrollTo(const QModelIndex &index, ScrollHint hint) [0xc82262c300 0xc82262c3e0] }
+&{selectAll QTreeView::selectAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void selectAll() [] }
+&{selectedIndexes QTreeView::selectedIndexes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  QModelIndexList QModelIndexList selectedIndexes() const [] }
+&{selectionChanged QTreeView::selectionChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected) [0xc82262c8e0 0xc82262c9c0] }
+&{setColumnHidden QTreeView::setColumnHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void void setColumnHidden(int column, bool hide) [0xc82262cc80 0xc82262cd00] }
+&{setColumnWidth QTreeView::setColumnWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void void setColumnWidth(int column, int width) [0xc82262cf60 0xc82262d000] }
+&{setExpanded QTreeView::setExpanded commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void void setExpanded(const QModelIndex &index, bool expanded) [0xc82262d240 0xc82262d340] }
+&{setFirstColumnSpanned QTreeView::setFirstColumnSpanned commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void void setFirstColumnSpanned(int row, const QModelIndex &parent, bool span) [0xc82262d580 0xc82262d660 0xc82262d760] }
+&{setHeader QTreeView::setHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void void setHeader(QHeaderView *header) [0xc82262d960] }
+&{setModel QTreeView::setModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void setModel(QAbstractItemModel *model) [0xc82262dbc0] }
+&{setRootIndex QTreeView::setRootIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void setRootIndex(const QModelIndex &index) [0xc82262de60] }
+&{setRowHidden QTreeView::setRowHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void void setRowHidden(int row, const QModelIndex &parent, bool hide) [0xc821ee80c0 0xc821ee8160 0xc821ee8220] }
+&{setSelection QTreeView::setSelection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command) [0xc821ee83e0 0xc821ee8460] }
+&{setSelectionModel QTreeView::setSelectionModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void setSelectionModel(QItemSelectionModel *selectionModel) [0xc821ee86a0] }
+&{setTreePosition QTreeView::setTreePosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void void setTreePosition(int index) [0xc821ee8900] }
+&{showColumn QTreeView::showColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non slot false false  void void showColumn(int column) [0xc821ee8b20] }
+&{sizeHintForColumn QTreeView::sizeHintForColumn commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  int int sizeHintForColumn(int column) const [0xc821ee8d40] }
+&{sortByColumn QTreeView::sortByColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  void void sortByColumn(int column, Qt::SortOrder order) [0xc821ee9100 0xc821ee9180] }
+&{timerEvent QTreeView::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void timerEvent(QTimerEvent *event) [0xc821ee9340] }
+&{treePosition QTreeView::treePosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non plain false false  int int treePosition() const [] }
+&{updateGeometries QTreeView::updateGeometries commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  void void updateGeometries() [] }
+&{verticalOffset QTreeView::verticalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  int int verticalOffset() const [] }
+&{viewportEvent QTreeView::viewportEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  bool bool viewportEvent(QEvent *event) [0xc821ee98c0] }
+&{viewportSizeHint QTreeView::viewportSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  QSize QSize viewportSizeHint() const [] }
+&{visualRect QTreeView::visualRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  QRect QRect visualRect(const QModelIndex &index) const [0xc821ee9be0] }
+&{visualRegionForSelection QTreeView::visualRegionForSelection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h impure plain false false  QRegion QRegion visualRegionForSelection(const QItemSelection &selection) const [0xc821ee9de0] }
+&{~QTreeView QTreeView::~QTreeView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtreeview.h non destructor false false   ~QTreeView() [] }
 ########################################			ENUMS			########################################

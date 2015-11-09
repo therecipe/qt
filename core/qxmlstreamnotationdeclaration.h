@@ -1,11 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration();
-QtObjectPtr QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration2(QtObjectPtr other);
-void QXmlStreamNotationDeclaration_DestroyQXmlStreamNotationDeclaration(QtObjectPtr ptr);
+void* QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration();
+void* QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration2(void* other);
+void* QXmlStreamNotationDeclaration_Name(void* ptr);
+void* QXmlStreamNotationDeclaration_PublicId(void* ptr);
+void* QXmlStreamNotationDeclaration_SystemId(void* ptr);
+void QXmlStreamNotationDeclaration_DestroyQXmlStreamNotationDeclaration(void* ptr);
 
 #ifdef __cplusplus
 }

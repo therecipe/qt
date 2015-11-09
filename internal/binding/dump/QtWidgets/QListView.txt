@@ -1,69 +1,69 @@
 ########################################			FUNCTIONS			########################################
-&{batchSize QListView::batchSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  int [] }
-&{flow QListView::flow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  Flow [] }
-&{gridSize QListView::gridSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  QSize [] }
-&{isSelectionRectVisible QListView::isSelectionRectVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  bool [] }
-&{isWrapping QListView::isWrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  bool [] }
-&{layoutMode QListView::layoutMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  LayoutMode [] }
-&{modelColumn QListView::modelColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  int [] }
-&{movement QListView::movement commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  Movement [] }
-&{resizeMode QListView::resizeMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  ResizeMode [] }
-&{setBatchSize QListView::setBatchSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc822b2ea80] }
-&{setFlow QListView::setFlow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc822b2ed00] }
-&{setGridSize QListView::setGridSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc822b2efa0] }
-&{setLayoutMode QListView::setLayoutMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc822b2f200] }
-&{setModelColumn QListView::setModelColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc822b2f4a0] }
-&{setMovement QListView::setMovement commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc822b2f720] }
-&{setResizeMode QListView::setResizeMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc822b2f980] }
-&{setSelectionRectVisible QListView::setSelectionRectVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc822b2fc20] }
-&{setSpacing QListView::setSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc822b2fec0] }
-&{setUniformItemSizes QListView::setUniformItemSizes commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc822882180] }
-&{setViewMode QListView::setViewMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc8228823e0] }
-&{setWordWrap QListView::setWordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc822882660] }
-&{setWrapping QListView::setWrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void [0xc822882920] }
-&{spacing QListView::spacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  int [] }
-&{uniformItemSizes QListView::uniformItemSizes commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  bool [] }
-&{viewMode QListView::viewMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  ViewMode [] }
-&{wordWrap QListView::wordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  bool [] }
-&{QListView QListView::QListView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non constructor false false   [0xc822896580] }
-&{clearPropertyFlags QListView::clearPropertyFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non plain false false  void [] }
-&{currentChanged QListView::currentChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc822897be0 0xc822897d40] }
-&{dataChanged QListView::dataChanged commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc8228a8020 0xc8228a8160 0xc8228a8260] }
-&{dragLeaveEvent QListView::dragLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc8228a8540] }
-&{dragMoveEvent QListView::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc8228a87c0] }
-&{dropEvent QListView::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc8228a8a00] }
-&{event QListView::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  bool [0xc8228a8be0] }
-&{horizontalOffset QListView::horizontalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  int [] }
-&{indexAt QListView::indexAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QModelIndex [0xc8228a8f60] }
-&{indexesMoved QListView::indexesMoved commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non signal false false  void [0xc8228a91e0] }
-&{isIndexHidden QListView::isIndexHidden commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  bool [0xc8228a94a0] }
-&{isRowHidden QListView::isRowHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non plain false false  bool [0xc8228a9720] }
-&{mouseMoveEvent QListView::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc8228a9960] }
-&{mouseReleaseEvent QListView::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc8228a9c20] }
-&{moveCursor QListView::moveCursor commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QModelIndex [0xc8228a9e60 0xc8228a9f20] }
-&{paintEvent QListView::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc8228c2280] }
-&{rectForIndex QListView::rectForIndex commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non plain false false  QRect [0xc8228c2660] }
-&{resizeEvent QListView::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc8228c2a20] }
-&{rowsAboutToBeRemoved QListView::rowsAboutToBeRemoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc8228c2dc0 0xc8228c2ea0 0xc8228c2f60] }
-&{rowsInserted QListView::rowsInserted commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc8228c31e0 0xc8228c32c0 0xc8228c3380] }
-&{scrollTo QListView::scrollTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc8228c35e0 0xc8228c36e0] }
-&{selectedIndexes QListView::selectedIndexes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QModelIndexList [] }
-&{selectionChanged QListView::selectionChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc8228c3bc0 0xc8228c3d60] }
-&{setPositionForIndex QListView::setPositionForIndex commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non plain false false  void [0xc822a98120 0xc822a98280] }
-&{setRowHidden QListView::setRowHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non plain false false  void [0xc822a98580 0xc822a98640] }
-&{setSelection QListView::setSelection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc822a98940 0xc822a98a20] }
-&{startDrag QListView::startDrag commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc822a98d20] }
-&{timerEvent QListView::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [0xc822a98fe0] }
-&{updateGeometries QListView::updateGeometries commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void [] }
-&{verticalOffset QListView::verticalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  int [] }
-&{viewOptions QListView::viewOptions commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QStyleOptionViewItem [] }
-&{viewportSizeHint QListView::viewportSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QSize [] }
-&{visualRect QListView::visualRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QRect [0xc822a99920] }
-&{visualRegionForSelection QListView::visualRegionForSelection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QRegion [0xc822a99c80] }
-&{~QListView QListView::~QListView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non destructor false false   [] }
+&{batchSize QListView::batchSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  int int batchSize() const [] }
+&{flow QListView::flow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  Flow Flow flow() const [] }
+&{gridSize QListView::gridSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  QSize QSize gridSize() const [] }
+&{isSelectionRectVisible QListView::isSelectionRectVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  bool bool isSelectionRectVisible() const [] }
+&{isWrapping QListView::isWrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  bool bool isWrapping() const [] }
+&{layoutMode QListView::layoutMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  LayoutMode LayoutMode layoutMode() const [] }
+&{modelColumn QListView::modelColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  int int modelColumn() const [] }
+&{movement QListView::movement commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  Movement Movement movement() const [] }
+&{resizeMode QListView::resizeMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  ResizeMode ResizeMode resizeMode() const [] }
+&{setBatchSize QListView::setBatchSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setBatchSize(int batchSize) [0xc82241c480] }
+&{setFlow QListView::setFlow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setFlow(Flow flow) [0xc82241c6c0] }
+&{setGridSize QListView::setGridSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setGridSize(const QSize &size) [0xc82241c900] }
+&{setLayoutMode QListView::setLayoutMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setLayoutMode(LayoutMode mode) [0xc82241cb40] }
+&{setModelColumn QListView::setModelColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setModelColumn(int column) [0xc82241ce00] }
+&{setMovement QListView::setMovement commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setMovement(Movement movement) [0xc82241cfe0] }
+&{setResizeMode QListView::setResizeMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setResizeMode(ResizeMode mode) [0xc82241d1c0] }
+&{setSelectionRectVisible QListView::setSelectionRectVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setSelectionRectVisible(bool show) [0xc82241d460] }
+&{setSpacing QListView::setSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setSpacing(int space) [0xc82241d700] }
+&{setUniformItemSizes QListView::setUniformItemSizes commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setUniformItemSizes(bool enable) [0xc82241d920] }
+&{setViewMode QListView::setViewMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setViewMode(ViewMode mode) [0xc82241db60] }
+&{setWordWrap QListView::setWordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setWordWrap(bool on) [0xc82241de40] }
+&{setWrapping QListView::setWrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  void void setWrapping(bool enable) [0xc822660100] }
+&{spacing QListView::spacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  int int spacing() const [] }
+&{uniformItemSizes QListView::uniformItemSizes commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  bool bool uniformItemSizes() const [] }
+&{viewMode QListView::viewMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  ViewMode ViewMode viewMode() const [] }
+&{wordWrap QListView::wordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.cpp non plain false false  bool bool wordWrap() const [] }
+&{QListView QListView::QListView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non constructor false false   QListView(QWidget *parent) [0xc822661c00] }
+&{clearPropertyFlags QListView::clearPropertyFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non plain false false  void void clearPropertyFlags() [] }
+&{currentChanged QListView::currentChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void currentChanged(const QModelIndex &current, const QModelIndex &previous) [0xc822430f60 0xc822431080] }
+&{dataChanged QListView::dataChanged commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles) [0xc822431360 0xc822431460 0xc8224315c0] }
+&{dragLeaveEvent QListView::dragLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void dragLeaveEvent(QDragLeaveEvent *e) [0xc822431860] }
+&{dragMoveEvent QListView::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void dragMoveEvent(QDragMoveEvent *e) [0xc822431b20] }
+&{dropEvent QListView::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void dropEvent(QDropEvent *e) [0xc822431dc0] }
+&{event QListView::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  bool bool event(QEvent *e) [0xc822442000] }
+&{horizontalOffset QListView::horizontalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  int int horizontalOffset() const [] }
+&{indexAt QListView::indexAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QModelIndex QModelIndex indexAt(const QPoint &p) const [0xc8224423e0] }
+&{indexesMoved QListView::indexesMoved commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non signal false false  void void indexesMoved(const QModelIndexList &indexes) [0xc822442660] }
+&{isIndexHidden QListView::isIndexHidden commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  bool bool isIndexHidden(const QModelIndex &index) const [0xc822442960] }
+&{isRowHidden QListView::isRowHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non plain false false  bool bool isRowHidden(int row) const [0xc822442c40] }
+&{mouseMoveEvent QListView::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc822442e80] }
+&{mouseReleaseEvent QListView::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *e) [0xc822443180] }
+&{moveCursor QListView::moveCursor commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QModelIndex QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers) [0xc822443380 0xc822443460] }
+&{paintEvent QListView::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void paintEvent(QPaintEvent *e) [0xc822443780] }
+&{rectForIndex QListView::rectForIndex commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non plain false false  QRect QRect rectForIndex(const QModelIndex &index) const [0xc822443980] }
+&{resizeEvent QListView::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void resizeEvent(QResizeEvent *e) [0xc822443c00] }
+&{rowsAboutToBeRemoved QListView::rowsAboutToBeRemoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void rowsAboutToBeRemoved(const QModelIndex &parent, int start, int end) [0xc822443e80 0xc822443f80 0xc822452020] }
+&{rowsInserted QListView::rowsInserted commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void rowsInserted(const QModelIndex &parent, int start, int end) [0xc822452260 0xc822452320 0xc8224523e0] }
+&{scrollTo QListView::scrollTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void scrollTo(const QModelIndex &index, ScrollHint hint) [0xc822452620 0xc822452700] }
+&{selectedIndexes QListView::selectedIndexes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QModelIndexList QModelIndexList selectedIndexes() const [] }
+&{selectionChanged QListView::selectionChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected) [0xc822452a20 0xc822452b60] }
+&{setPositionForIndex QListView::setPositionForIndex commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non plain false false  void void setPositionForIndex(const QPoint &position, const QModelIndex &index) [0xc822452de0 0xc822452ea0] }
+&{setRowHidden QListView::setRowHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non plain false false  void void setRowHidden(int row, bool hide) [0xc822453100 0xc822453180] }
+&{setSelection QListView::setSelection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command) [0xc8224533c0 0xc822453460] }
+&{startDrag QListView::startDrag commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void startDrag(Qt::DropActions supportedActions) [0xc822453660] }
+&{timerEvent QListView::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void timerEvent(QTimerEvent *e) [0xc8224538e0] }
+&{updateGeometries QListView::updateGeometries commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  void void updateGeometries() [] }
+&{verticalOffset QListView::verticalOffset commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  int int verticalOffset() const [] }
+&{viewOptions QListView::viewOptions commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QStyleOptionViewItem QStyleOptionViewItem viewOptions() const [] }
+&{viewportSizeHint QListView::viewportSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QSize QSize viewportSizeHint() const [] }
+&{visualRect QListView::visualRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QRect QRect visualRect(const QModelIndex &index) const [0xc8225d0080] }
+&{visualRegionForSelection QListView::visualRegionForSelection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h impure plain false false  QRegion QRegion visualRegionForSelection(const QItemSelection &selection) const [0xc8225d02e0] }
+&{~QListView QListView::~QListView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qlistview.h non destructor false false   ~QListView() [] }
 ########################################			ENUMS			########################################
-&{Flow QListView::Flow commendable public  [0xc8228833a0 0xc822883420]}
-&{LayoutMode QListView::LayoutMode commendable public  [0xc822883680 0xc822883720]}
-&{Movement QListView::Movement commendable public  [0xc822883940 0xc822883a00 0xc822883aa0]}
-&{ResizeMode QListView::ResizeMode commendable public  [0xc822883d40 0xc822883de0]}
-&{ViewMode QListView::ViewMode commendable public  [0xc822896140 0xc822896240]}
+&{Flow QListView::Flow commendable public  [0xc822660c60 0xc822660ce0] false}
+&{LayoutMode QListView::LayoutMode commendable public  [0xc822660f40 0xc822660fc0] false}
+&{Movement QListView::Movement commendable public  [0xc822661220 0xc8226612c0 0xc822661340] false}
+&{ResizeMode QListView::ResizeMode commendable public  [0xc8226615c0 0xc822661640] false}
+&{ViewMode QListView::ViewMode commendable public  [0xc8226618c0 0xc822661940] false}

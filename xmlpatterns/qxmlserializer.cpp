@@ -1,13 +1,13 @@
 #include "qxmlserializer.h"
-#include <QVariant>
-#include <QTextCodec>
+#include <QXmlName>
 #include <QString>
+#include <QTextCodec>
+#include <QStringRef>
+#include <QXmlQuery>
+#include <QIODevice>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QXmlName>
-#include <QIODevice>
-#include <QXmlQuery>
-#include <QStringRef>
 #include <QXmlSerializer>
 #include "_cgo_export.h"
 
@@ -15,63 +15,63 @@ class MyQXmlSerializer: public QXmlSerializer {
 public:
 };
 
-QtObjectPtr QXmlSerializer_NewQXmlSerializer(QtObjectPtr query, QtObjectPtr outputDevice){
+void* QXmlSerializer_NewQXmlSerializer(void* query, void* outputDevice){
 	return new QXmlSerializer(*static_cast<QXmlQuery*>(query), static_cast<QIODevice*>(outputDevice));
 }
 
-void QXmlSerializer_Attribute(QtObjectPtr ptr, QtObjectPtr name, QtObjectPtr value){
+void QXmlSerializer_Attribute(void* ptr, void* name, void* value){
 	static_cast<QXmlSerializer*>(ptr)->attribute(*static_cast<QXmlName*>(name), *static_cast<QStringRef*>(value));
 }
 
-void QXmlSerializer_Characters(QtObjectPtr ptr, QtObjectPtr value){
+void QXmlSerializer_Characters(void* ptr, void* value){
 	static_cast<QXmlSerializer*>(ptr)->characters(*static_cast<QStringRef*>(value));
 }
 
-void QXmlSerializer_Comment(QtObjectPtr ptr, char* value){
+void QXmlSerializer_Comment(void* ptr, char* value){
 	static_cast<QXmlSerializer*>(ptr)->comment(QString(value));
 }
 
-void QXmlSerializer_EndDocument(QtObjectPtr ptr){
+void QXmlSerializer_EndDocument(void* ptr){
 	static_cast<QXmlSerializer*>(ptr)->endDocument();
 }
 
-void QXmlSerializer_EndElement(QtObjectPtr ptr){
+void QXmlSerializer_EndElement(void* ptr){
 	static_cast<QXmlSerializer*>(ptr)->endElement();
 }
 
-QtObjectPtr QXmlSerializer_Codec(QtObjectPtr ptr){
+void* QXmlSerializer_Codec(void* ptr){
 	return const_cast<QTextCodec*>(static_cast<QXmlSerializer*>(ptr)->codec());
 }
 
-void QXmlSerializer_EndOfSequence(QtObjectPtr ptr){
+void QXmlSerializer_EndOfSequence(void* ptr){
 	static_cast<QXmlSerializer*>(ptr)->endOfSequence();
 }
 
-void QXmlSerializer_NamespaceBinding(QtObjectPtr ptr, QtObjectPtr nb){
+void QXmlSerializer_NamespaceBinding(void* ptr, void* nb){
 	static_cast<QXmlSerializer*>(ptr)->namespaceBinding(*static_cast<QXmlName*>(nb));
 }
 
-QtObjectPtr QXmlSerializer_OutputDevice(QtObjectPtr ptr){
+void* QXmlSerializer_OutputDevice(void* ptr){
 	return static_cast<QXmlSerializer*>(ptr)->outputDevice();
 }
 
-void QXmlSerializer_ProcessingInstruction(QtObjectPtr ptr, QtObjectPtr name, char* value){
+void QXmlSerializer_ProcessingInstruction(void* ptr, void* name, char* value){
 	static_cast<QXmlSerializer*>(ptr)->processingInstruction(*static_cast<QXmlName*>(name), QString(value));
 }
 
-void QXmlSerializer_SetCodec(QtObjectPtr ptr, QtObjectPtr outputCodec){
+void QXmlSerializer_SetCodec(void* ptr, void* outputCodec){
 	static_cast<QXmlSerializer*>(ptr)->setCodec(static_cast<QTextCodec*>(outputCodec));
 }
 
-void QXmlSerializer_StartDocument(QtObjectPtr ptr){
+void QXmlSerializer_StartDocument(void* ptr){
 	static_cast<QXmlSerializer*>(ptr)->startDocument();
 }
 
-void QXmlSerializer_StartElement(QtObjectPtr ptr, QtObjectPtr name){
+void QXmlSerializer_StartElement(void* ptr, void* name){
 	static_cast<QXmlSerializer*>(ptr)->startElement(*static_cast<QXmlName*>(name));
 }
 
-void QXmlSerializer_StartOfSequence(QtObjectPtr ptr){
+void QXmlSerializer_StartOfSequence(void* ptr){
 	static_cast<QXmlSerializer*>(ptr)->startOfSequence();
 }
 

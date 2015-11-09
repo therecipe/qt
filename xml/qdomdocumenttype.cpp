@@ -11,31 +11,31 @@ class MyQDomDocumentType: public QDomDocumentType {
 public:
 };
 
-QtObjectPtr QDomDocumentType_NewQDomDocumentType(){
+void* QDomDocumentType_NewQDomDocumentType(){
 	return new QDomDocumentType();
 }
 
-QtObjectPtr QDomDocumentType_NewQDomDocumentType2(QtObjectPtr n){
+void* QDomDocumentType_NewQDomDocumentType2(void* n){
 	return new QDomDocumentType(*static_cast<QDomDocumentType*>(n));
 }
 
-char* QDomDocumentType_InternalSubset(QtObjectPtr ptr){
+char* QDomDocumentType_InternalSubset(void* ptr){
 	return static_cast<QDomDocumentType*>(ptr)->internalSubset().toUtf8().data();
 }
 
-char* QDomDocumentType_Name(QtObjectPtr ptr){
+char* QDomDocumentType_Name(void* ptr){
 	return static_cast<QDomDocumentType*>(ptr)->name().toUtf8().data();
 }
 
-int QDomDocumentType_NodeType(QtObjectPtr ptr){
+int QDomDocumentType_NodeType(void* ptr){
 	return static_cast<QDomDocumentType*>(ptr)->nodeType();
 }
 
-char* QDomDocumentType_PublicId(QtObjectPtr ptr){
+char* QDomDocumentType_PublicId(void* ptr){
 	return static_cast<QDomDocumentType*>(ptr)->publicId().toUtf8().data();
 }
 
-char* QDomDocumentType_SystemId(QtObjectPtr ptr){
+char* QDomDocumentType_SystemId(void* ptr){
 	return static_cast<QDomDocumentType*>(ptr)->systemId().toUtf8().data();
 }
 

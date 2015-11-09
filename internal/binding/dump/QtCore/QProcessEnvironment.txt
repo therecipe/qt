@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
-&{QProcessEnvironment QProcessEnvironment::QProcessEnvironment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non constructor false false   [] }
-&{QProcessEnvironment QProcessEnvironment::QProcessEnvironment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non constructor false true 2  [0xc8202feda0] }
-&{clear QProcessEnvironment::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [] }
-&{contains QProcessEnvironment::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  bool [0xc8202ff060] }
-&{insert QProcessEnvironment::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false true 2 void [0xc8202ff240] }
-&{insert QProcessEnvironment::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc8202ff440 0xc8202ff500] }
-&{isEmpty QProcessEnvironment::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  bool [] }
-&{keys QProcessEnvironment::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QStringList [] }
-&{operator!= QProcessEnvironment::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  bool [0xc8202ff940] }
-&{operator= QProcessEnvironment::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QProcessEnvironment & [0xc8202ffba0] }
-&{operator== QProcessEnvironment::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  bool [0xc8202ffda0] }
-&{remove QProcessEnvironment::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc8202fffc0] }
-&{swap QProcessEnvironment::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void [0xc8202ec260] }
-&{toStringList QProcessEnvironment::toStringList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QStringList [] }
-&{value QProcessEnvironment::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QString [0xc8202ec560 0xc8202ec640] }
-&{~QProcessEnvironment QProcessEnvironment::~QProcessEnvironment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non destructor false false   [] }
-&{systemEnvironment QProcessEnvironment::systemEnvironment commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess_wince.cpp non plain true false  QProcessEnvironment [] }
+&{QProcessEnvironment QProcessEnvironment::QProcessEnvironment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non constructor false false   QProcessEnvironment() [] }
+&{QProcessEnvironment QProcessEnvironment::QProcessEnvironment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non constructor false true 2  QProcessEnvironment(const QProcessEnvironment &other) [0xc8202f74c0] }
+&{clear QProcessEnvironment::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void void clear() [] }
+&{contains QProcessEnvironment::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  bool bool contains(const QString &name) const [0xc8202f7880] }
+&{insert QProcessEnvironment::insert commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false true 2 void void insert(const QProcessEnvironment &e) [0xc8202f7a80] }
+&{insert QProcessEnvironment::insert commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void void insert(const QString &name, const QString &value) [0xc8202f7c80 0xc8202f7d00] }
+&{isEmpty QProcessEnvironment::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  bool bool isEmpty() const [] }
+&{keys QProcessEnvironment::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QStringList QStringList keys() const [] }
+&{operator!= QProcessEnvironment::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  bool bool operator!=(const QProcessEnvironment &other) const [0xc8202de1c0] }
+&{operator= QProcessEnvironment::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QProcessEnvironment & QProcessEnvironment & operator=(const QProcessEnvironment &other) [0xc8202de4a0] }
+&{operator== QProcessEnvironment::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  bool bool operator==(const QProcessEnvironment &other) const [0xc8202de740] }
+&{remove QProcessEnvironment::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void void remove(const QString &name) [0xc8202dea60] }
+&{swap QProcessEnvironment::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  void void swap(QProcessEnvironment &other) [0xc8202decc0] }
+&{toStringList QProcessEnvironment::toStringList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QStringList QStringList toStringList() const [] }
+&{value QProcessEnvironment::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non plain false false  QString QString value(const QString &name, const QString &defaultValue) const [0xc8202df080 0xc8202df100] }
+&{~QProcessEnvironment QProcessEnvironment::~QProcessEnvironment commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess.h non destructor false false   ~QProcessEnvironment() [] }
+&{systemEnvironment QProcessEnvironment::systemEnvironment commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qprocess_wince.cpp non plain true false  QProcessEnvironment QProcessEnvironment systemEnvironment() [] }
 ########################################			ENUMS			########################################

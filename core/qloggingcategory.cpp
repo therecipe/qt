@@ -10,27 +10,27 @@ class MyQLoggingCategory: public QLoggingCategory {
 public:
 };
 
-QtObjectPtr QLoggingCategory_NewQLoggingCategory(char* category){
+void* QLoggingCategory_NewQLoggingCategory(char* category){
 	return new QLoggingCategory(const_cast<const char*>(category));
 }
 
-QtObjectPtr QLoggingCategory_QLoggingCategory_DefaultCategory(){
+void* QLoggingCategory_QLoggingCategory_DefaultCategory(){
 	return QLoggingCategory::defaultCategory();
 }
 
-int QLoggingCategory_IsCriticalEnabled(QtObjectPtr ptr){
+int QLoggingCategory_IsCriticalEnabled(void* ptr){
 	return static_cast<QLoggingCategory*>(ptr)->isCriticalEnabled();
 }
 
-int QLoggingCategory_IsDebugEnabled(QtObjectPtr ptr){
+int QLoggingCategory_IsDebugEnabled(void* ptr){
 	return static_cast<QLoggingCategory*>(ptr)->isDebugEnabled();
 }
 
-int QLoggingCategory_IsInfoEnabled(QtObjectPtr ptr){
+int QLoggingCategory_IsInfoEnabled(void* ptr){
 	return static_cast<QLoggingCategory*>(ptr)->isInfoEnabled();
 }
 
-int QLoggingCategory_IsWarningEnabled(QtObjectPtr ptr){
+int QLoggingCategory_IsWarningEnabled(void* ptr){
 	return static_cast<QLoggingCategory*>(ptr)->isWarningEnabled();
 }
 
@@ -38,7 +38,7 @@ void QLoggingCategory_QLoggingCategory_SetFilterRules(char* rules){
 	QLoggingCategory::setFilterRules(QString(rules));
 }
 
-void QLoggingCategory_DestroyQLoggingCategory(QtObjectPtr ptr){
+void QLoggingCategory_DestroyQLoggingCategory(void* ptr){
 	static_cast<QLoggingCategory*>(ptr)->~QLoggingCategory();
 }
 

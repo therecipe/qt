@@ -1,17 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QBluetoothTransferReply_Abort(QtObjectPtr ptr);
-int QBluetoothTransferReply_Error(QtObjectPtr ptr);
-char* QBluetoothTransferReply_ErrorString(QtObjectPtr ptr);
-void QBluetoothTransferReply_ConnectFinished(QtObjectPtr ptr);
-void QBluetoothTransferReply_DisconnectFinished(QtObjectPtr ptr);
-int QBluetoothTransferReply_IsFinished(QtObjectPtr ptr);
-int QBluetoothTransferReply_IsRunning(QtObjectPtr ptr);
-QtObjectPtr QBluetoothTransferReply_Manager(QtObjectPtr ptr);
-void QBluetoothTransferReply_DestroyQBluetoothTransferReply(QtObjectPtr ptr);
+void QBluetoothTransferReply_Abort(void* ptr);
+int QBluetoothTransferReply_Error(void* ptr);
+char* QBluetoothTransferReply_ErrorString(void* ptr);
+void QBluetoothTransferReply_ConnectFinished(void* ptr);
+void QBluetoothTransferReply_DisconnectFinished(void* ptr);
+int QBluetoothTransferReply_IsFinished(void* ptr);
+int QBluetoothTransferReply_IsRunning(void* ptr);
+void* QBluetoothTransferReply_Manager(void* ptr);
+void QBluetoothTransferReply_DestroyQBluetoothTransferReply(void* ptr);
 
 #ifdef __cplusplus
 }

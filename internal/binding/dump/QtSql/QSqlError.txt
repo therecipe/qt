@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{QSqlError QSqlError::QSqlError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non constructor false true 3  [0xc82156e540] }
-&{QSqlError QSqlError::QSqlError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non constructor false false   [0xc82156e8e0 0xc82156e9a0 0xc82156eb00 0xc82156ec20] }
-&{databaseText QSqlError::databaseText commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QString [] }
-&{driverText QSqlError::driverText commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QString [] }
-&{isValid QSqlError::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  bool [] }
-&{nativeErrorCode QSqlError::nativeErrorCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QString [] }
-&{operator!= QSqlError::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  bool [0xc82156fc60] }
-&{operator= QSqlError::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QSqlError & [0xc821562060] }
-&{operator== QSqlError::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  bool [0xc821562420] }
-&{text QSqlError::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QString [] }
-&{type QSqlError::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  ErrorType [] }
-&{~QSqlError QSqlError::~QSqlError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non destructor false false   [] }
+&{QSqlError QSqlError::QSqlError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non constructor false true 3  QSqlError(const QSqlError &other) [0xc820c21020] }
+&{QSqlError QSqlError::QSqlError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non constructor false false   QSqlError(const QString &driverText, const QString &databaseText, ErrorType type, const QString &code) [0xc820c21580 0xc820c21740 0xc820c21920 0xc820c21a40] }
+&{databaseText QSqlError::databaseText commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QString QString databaseText() const [] }
+&{driverText QSqlError::driverText commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QString QString driverText() const [] }
+&{isValid QSqlError::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  bool bool isValid() const [] }
+&{nativeErrorCode QSqlError::nativeErrorCode commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QString QString nativeErrorCode() const [] }
+&{operator!= QSqlError::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  bool bool operator!=(const QSqlError &other) const [0xc820562ee0] }
+&{operator= QSqlError::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QSqlError & QSqlError & operator=(const QSqlError &other) [0xc820563300] }
+&{operator== QSqlError::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  bool bool operator==(const QSqlError &other) const [0xc8205636a0] }
+&{text QSqlError::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  QString QString text() const [] }
+&{type QSqlError::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non plain false false  ErrorType ErrorType type() const [] }
+&{~QSqlError QSqlError::~QSqlError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlerror.h non destructor false false   ~QSqlError() [] }
 ########################################			ENUMS			########################################
-&{ErrorType QSqlError::ErrorType commendable public  [0xc82157fd80 0xc82157fec0 0xc82157ff80 0xc82156e040 0xc82156e1a0]}
+&{ErrorType QSqlError::ErrorType commendable public  [0xc820c20400 0xc820c205e0 0xc820c20780 0xc820c208a0 0xc820c20ac0] false}

@@ -10,8 +10,8 @@ type QScriptValueIterator struct {
 	ptr unsafe.Pointer
 }
 
-type QScriptValueIteratorITF interface {
-	QScriptValueIteratorPTR() *QScriptValueIterator
+type QScriptValueIterator_ITF interface {
+	QScriptValueIterator_PTR() *QScriptValueIterator
 }
 
 func (p *QScriptValueIterator) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QScriptValueIterator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQScriptValueIterator(ptr QScriptValueIteratorITF) unsafe.Pointer {
+func PointerFromQScriptValueIterator(ptr QScriptValueIterator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScriptValueIteratorPTR().Pointer()
+		return ptr.QScriptValueIterator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScriptValueIteratorFromPointer(ptr unsafe.Pointer) *QScriptValueIterator {
+func NewQScriptValueIteratorFromPointer(ptr unsafe.Pointer) *QScriptValueIterator {
 	var n = new(QScriptValueIterator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QScriptValueIterator) QScriptValueIteratorPTR() *QScriptValueIterator {
+func (ptr *QScriptValueIterator) QScriptValueIterator_PTR() *QScriptValueIterator {
 	return ptr
 }

@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
-&{QAbstractNetworkCache QAbstractNetworkCache::QAbstractNetworkCache commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non constructor false false   [0xc822c56140] }
-&{cacheSize QAbstractNetworkCache::cacheSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  qint64 [] }
-&{clear QAbstractNetworkCache::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure slot false false  void [] }
-&{data QAbstractNetworkCache::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  QIODevice * [0xc822c568e0] }
-&{insert QAbstractNetworkCache::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  void [0xc822c56b20] }
-&{metaData QAbstractNetworkCache::metaData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  QNetworkCacheMetaData [0xc822c56d40] }
-&{prepare QAbstractNetworkCache::prepare commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  QIODevice * [0xc822c56f20] }
-&{remove QAbstractNetworkCache::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  bool [0xc822c57160] }
-&{updateMetaData QAbstractNetworkCache::updateMetaData commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  void [0xc822c572e0] }
-&{~QAbstractNetworkCache QAbstractNetworkCache::~QAbstractNetworkCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h impure destructor false false   [] }
+&{QAbstractNetworkCache QAbstractNetworkCache::QAbstractNetworkCache commendable protected /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h non constructor false false   QAbstractNetworkCache(QObject *parent) [0xc82363f140] }
+&{cacheSize QAbstractNetworkCache::cacheSize commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  qint64 qint64 cacheSize() const [] }
+&{clear QAbstractNetworkCache::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure slot false false  void void clear() [] }
+&{data QAbstractNetworkCache::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  QIODevice * QIODevice * data(const QUrl &url) [0xc82363fa20] }
+&{insert QAbstractNetworkCache::insert commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  void void insert(QIODevice *device) [0xc82363fcc0] }
+&{metaData QAbstractNetworkCache::metaData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  QNetworkCacheMetaData QNetworkCacheMetaData metaData(const QUrl &url) [0xc82363ff80] }
+&{prepare QAbstractNetworkCache::prepare commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  QIODevice * QIODevice * prepare(const QNetworkCacheMetaData &metaData) [0xc823624240] }
+&{remove QAbstractNetworkCache::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  bool bool remove(const QUrl &url) [0xc823624540] }
+&{updateMetaData QAbstractNetworkCache::updateMetaData commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h pure plain false false  void void updateMetaData(const QNetworkCacheMetaData &metaData) [0xc823624780] }
+&{~QAbstractNetworkCache QAbstractNetworkCache::~QAbstractNetworkCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qabstractnetworkcache.h impure destructor false false   ~QAbstractNetworkCache() [] }
 ########################################			ENUMS			########################################

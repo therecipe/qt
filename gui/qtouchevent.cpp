@@ -1,8 +1,8 @@
 #include "qtouchevent.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
+#include <QVariant>
 #include <QTouchEvent>
 #include "_cgo_export.h"
 
@@ -10,23 +10,23 @@ class MyQTouchEvent: public QTouchEvent {
 public:
 };
 
-QtObjectPtr QTouchEvent_Device(QtObjectPtr ptr){
+void* QTouchEvent_Device(void* ptr){
 	return static_cast<QTouchEvent*>(ptr)->device();
 }
 
-QtObjectPtr QTouchEvent_Target(QtObjectPtr ptr){
+void* QTouchEvent_Target(void* ptr){
 	return static_cast<QTouchEvent*>(ptr)->target();
 }
 
-int QTouchEvent_TouchPointStates(QtObjectPtr ptr){
+int QTouchEvent_TouchPointStates(void* ptr){
 	return static_cast<QTouchEvent*>(ptr)->touchPointStates();
 }
 
-QtObjectPtr QTouchEvent_Window(QtObjectPtr ptr){
+void* QTouchEvent_Window(void* ptr){
 	return static_cast<QTouchEvent*>(ptr)->window();
 }
 
-void QTouchEvent_DestroyQTouchEvent(QtObjectPtr ptr){
+void QTouchEvent_DestroyQTouchEvent(void* ptr){
 	static_cast<QTouchEvent*>(ptr)->~QTouchEvent();
 }
 

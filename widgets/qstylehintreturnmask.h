@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStyleHintReturnMask_NewQStyleHintReturnMask();
-void QStyleHintReturnMask_DestroyQStyleHintReturnMask(QtObjectPtr ptr);
+void* QStyleHintReturnMask_NewQStyleHintReturnMask();
+void QStyleHintReturnMask_DestroyQStyleHintReturnMask(void* ptr);
 
 #ifdef __cplusplus
 }

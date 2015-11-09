@@ -1,9 +1,11 @@
 #include "qtextencoder.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QTextCodec>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QChar>
+#include <QByteArray>
+#include <QTextCodec>
 #include <QTextEncoder>
 #include "_cgo_export.h"
 
@@ -11,15 +13,23 @@ class MyQTextEncoder: public QTextEncoder {
 public:
 };
 
-QtObjectPtr QTextEncoder_NewQTextEncoder(QtObjectPtr codec){
+void* QTextEncoder_NewQTextEncoder(void* codec){
 	return new QTextEncoder(static_cast<QTextCodec*>(codec));
 }
 
-QtObjectPtr QTextEncoder_NewQTextEncoder2(QtObjectPtr codec, int flags){
+void* QTextEncoder_NewQTextEncoder2(void* codec, int flags){
 	return new QTextEncoder(static_cast<QTextCodec*>(codec), static_cast<QTextCodec::ConversionFlag>(flags));
 }
 
-void QTextEncoder_DestroyQTextEncoder(QtObjectPtr ptr){
+void* QTextEncoder_FromUnicode2(void* ptr, void* uc, int len){
+	return new QByteArray(static_cast<QTextEncoder*>(ptr)->fromUnicode(static_cast<QChar*>(uc), len));
+}
+
+void* QTextEncoder_FromUnicode(void* ptr, char* str){
+	return new QByteArray(static_cast<QTextEncoder*>(ptr)->fromUnicode(QString(str)));
+}
+
+void QTextEncoder_DestroyQTextEncoder(void* ptr){
 	static_cast<QTextEncoder*>(ptr)->~QTextEncoder();
 }
 

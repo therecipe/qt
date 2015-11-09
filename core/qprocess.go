@@ -12,59 +12,59 @@ type QProcess struct {
 	QIODevice
 }
 
-type QProcessITF interface {
-	QIODeviceITF
-	QProcessPTR() *QProcess
+type QProcess_ITF interface {
+	QIODevice_ITF
+	QProcess_PTR() *QProcess
 }
 
-func PointerFromQProcess(ptr QProcessITF) unsafe.Pointer {
+func PointerFromQProcess(ptr QProcess_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QProcessPTR().Pointer()
+		return ptr.QProcess_PTR().Pointer()
 	}
 	return nil
 }
 
-func QProcessFromPointer(ptr unsafe.Pointer) *QProcess {
+func NewQProcessFromPointer(ptr unsafe.Pointer) *QProcess {
 	var n = new(QProcess)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QProcess_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QProcess) QProcessPTR() *QProcess {
+func (ptr *QProcess) QProcess_PTR() *QProcess {
 	return ptr
 }
 
 //QProcess::ExitStatus
-type QProcess__ExitStatus int
+type QProcess__ExitStatus int64
 
-var (
+const (
 	QProcess__NormalExit = QProcess__ExitStatus(0)
 	QProcess__CrashExit  = QProcess__ExitStatus(1)
 )
 
 //QProcess::InputChannelMode
-type QProcess__InputChannelMode int
+type QProcess__InputChannelMode int64
 
-var (
+const (
 	QProcess__ManagedInputChannel   = QProcess__InputChannelMode(0)
 	QProcess__ForwardedInputChannel = QProcess__InputChannelMode(1)
 )
 
 //QProcess::ProcessChannel
-type QProcess__ProcessChannel int
+type QProcess__ProcessChannel int64
 
-var (
+const (
 	QProcess__StandardOutput = QProcess__ProcessChannel(0)
 	QProcess__StandardError  = QProcess__ProcessChannel(1)
 )
 
 //QProcess::ProcessChannelMode
-type QProcess__ProcessChannelMode int
+type QProcess__ProcessChannelMode int64
 
-var (
+const (
 	QProcess__SeparateChannels       = QProcess__ProcessChannelMode(0)
 	QProcess__MergedChannels         = QProcess__ProcessChannelMode(1)
 	QProcess__ForwardedChannels      = QProcess__ProcessChannelMode(2)
@@ -73,9 +73,9 @@ var (
 )
 
 //QProcess::ProcessError
-type QProcess__ProcessError int
+type QProcess__ProcessError int64
 
-var (
+const (
 	QProcess__FailedToStart = QProcess__ProcessError(0)
 	QProcess__Crashed       = QProcess__ProcessError(1)
 	QProcess__Timedout      = QProcess__ProcessError(2)
@@ -85,60 +85,60 @@ var (
 )
 
 //QProcess::ProcessState
-type QProcess__ProcessState int
+type QProcess__ProcessState int64
 
-var (
+const (
 	QProcess__NotRunning = QProcess__ProcessState(0)
 	QProcess__Starting   = QProcess__ProcessState(1)
 	QProcess__Running    = QProcess__ProcessState(2)
 )
 
-func NewQProcess(parent QObjectITF) *QProcess {
-	return QProcessFromPointer(unsafe.Pointer(C.QProcess_NewQProcess(C.QtObjectPtr(PointerFromQObject(parent)))))
+func NewQProcess(parent QObject_ITF) *QProcess {
+	return NewQProcessFromPointer(C.QProcess_NewQProcess(PointerFromQObject(parent)))
 }
 
 func (ptr *QProcess) Arguments() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QProcess_Arguments(C.QtObjectPtr(ptr.Pointer()))), "|")
+		return strings.Split(C.GoString(C.QProcess_Arguments(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QProcess) AtEnd() bool {
 	if ptr.Pointer() != nil {
-		return C.QProcess_AtEnd(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QProcess_AtEnd(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QProcess) CanReadLine() bool {
 	if ptr.Pointer() != nil {
-		return C.QProcess_CanReadLine(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QProcess_CanReadLine(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QProcess) Close() {
 	if ptr.Pointer() != nil {
-		C.QProcess_Close(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QProcess) CloseReadChannel(channel QProcess__ProcessChannel) {
 	if ptr.Pointer() != nil {
-		C.QProcess_CloseReadChannel(C.QtObjectPtr(ptr.Pointer()), C.int(channel))
+		C.QProcess_CloseReadChannel(ptr.Pointer(), C.int(channel))
 	}
 }
 
 func (ptr *QProcess) CloseWriteChannel() {
 	if ptr.Pointer() != nil {
-		C.QProcess_CloseWriteChannel(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_CloseWriteChannel(ptr.Pointer())
 	}
 }
 
 func (ptr *QProcess) Error() QProcess__ProcessError {
 	if ptr.Pointer() != nil {
-		return QProcess__ProcessError(C.QProcess_Error(C.QtObjectPtr(ptr.Pointer())))
+		return QProcess__ProcessError(C.QProcess_Error(ptr.Pointer()))
 	}
 	return 0
 }
@@ -153,28 +153,28 @@ func QProcess_Execute(program string, arguments []string) int {
 
 func (ptr *QProcess) ExitCode() int {
 	if ptr.Pointer() != nil {
-		return int(C.QProcess_ExitCode(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QProcess_ExitCode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QProcess) ExitStatus() QProcess__ExitStatus {
 	if ptr.Pointer() != nil {
-		return QProcess__ExitStatus(C.QProcess_ExitStatus(C.QtObjectPtr(ptr.Pointer())))
+		return QProcess__ExitStatus(C.QProcess_ExitStatus(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QProcess) ConnectFinished(f func(exitCode int, exitStatus QProcess__ExitStatus)) {
 	if ptr.Pointer() != nil {
-		C.QProcess_ConnectFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_ConnectFinished(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "finished", f)
 	}
 }
 
 func (ptr *QProcess) DisconnectFinished() {
 	if ptr.Pointer() != nil {
-		C.QProcess_DisconnectFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_DisconnectFinished(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "finished")
 	}
 }
@@ -186,21 +186,21 @@ func callbackQProcessFinished(ptrName *C.char, exitCode C.int, exitStatus C.int)
 
 func (ptr *QProcess) InputChannelMode() QProcess__InputChannelMode {
 	if ptr.Pointer() != nil {
-		return QProcess__InputChannelMode(C.QProcess_InputChannelMode(C.QtObjectPtr(ptr.Pointer())))
+		return QProcess__InputChannelMode(C.QProcess_InputChannelMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QProcess) IsSequential() bool {
 	if ptr.Pointer() != nil {
-		return C.QProcess_IsSequential(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QProcess_IsSequential(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QProcess) Kill() {
 	if ptr.Pointer() != nil {
-		C.QProcess_Kill(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_Kill(ptr.Pointer())
 	}
 }
 
@@ -210,42 +210,56 @@ func QProcess_NullDevice() string {
 
 func (ptr *QProcess) Open(mode QIODevice__OpenModeFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QProcess_Open(C.QtObjectPtr(ptr.Pointer()), C.int(mode)) != 0
+		return C.QProcess_Open(ptr.Pointer(), C.int(mode)) != 0
 	}
 	return false
 }
 
 func (ptr *QProcess) ProcessChannelMode() QProcess__ProcessChannelMode {
 	if ptr.Pointer() != nil {
-		return QProcess__ProcessChannelMode(C.QProcess_ProcessChannelMode(C.QtObjectPtr(ptr.Pointer())))
+		return QProcess__ProcessChannelMode(C.QProcess_ProcessChannelMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QProcess) Program() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QProcess_Program(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QProcess_Program(ptr.Pointer()))
 	}
 	return ""
 }
 
+func (ptr *QProcess) ReadAllStandardError() *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QProcess_ReadAllStandardError(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QProcess) ReadAllStandardOutput() *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QProcess_ReadAllStandardOutput(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QProcess) ReadChannel() QProcess__ProcessChannel {
 	if ptr.Pointer() != nil {
-		return QProcess__ProcessChannel(C.QProcess_ReadChannel(C.QtObjectPtr(ptr.Pointer())))
+		return QProcess__ProcessChannel(C.QProcess_ReadChannel(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QProcess) ConnectReadyReadStandardError(f func()) {
 	if ptr.Pointer() != nil {
-		C.QProcess_ConnectReadyReadStandardError(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_ConnectReadyReadStandardError(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "readyReadStandardError", f)
 	}
 }
 
 func (ptr *QProcess) DisconnectReadyReadStandardError() {
 	if ptr.Pointer() != nil {
-		C.QProcess_DisconnectReadyReadStandardError(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_DisconnectReadyReadStandardError(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "readyReadStandardError")
 	}
 }
@@ -257,14 +271,14 @@ func callbackQProcessReadyReadStandardError(ptrName *C.char) {
 
 func (ptr *QProcess) ConnectReadyReadStandardOutput(f func()) {
 	if ptr.Pointer() != nil {
-		C.QProcess_ConnectReadyReadStandardOutput(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_ConnectReadyReadStandardOutput(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "readyReadStandardOutput", f)
 	}
 }
 
 func (ptr *QProcess) DisconnectReadyReadStandardOutput() {
 	if ptr.Pointer() != nil {
-		C.QProcess_DisconnectReadyReadStandardOutput(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_DisconnectReadyReadStandardOutput(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "readyReadStandardOutput")
 	}
 }
@@ -276,85 +290,85 @@ func callbackQProcessReadyReadStandardOutput(ptrName *C.char) {
 
 func (ptr *QProcess) SetArguments(arguments []string) {
 	if ptr.Pointer() != nil {
-		C.QProcess_SetArguments(C.QtObjectPtr(ptr.Pointer()), C.CString(strings.Join(arguments, "|")))
+		C.QProcess_SetArguments(ptr.Pointer(), C.CString(strings.Join(arguments, "|")))
 	}
 }
 
 func (ptr *QProcess) SetInputChannelMode(mode QProcess__InputChannelMode) {
 	if ptr.Pointer() != nil {
-		C.QProcess_SetInputChannelMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QProcess_SetInputChannelMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QProcess) SetProcessChannelMode(mode QProcess__ProcessChannelMode) {
 	if ptr.Pointer() != nil {
-		C.QProcess_SetProcessChannelMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QProcess_SetProcessChannelMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
-func (ptr *QProcess) SetProcessEnvironment(environment QProcessEnvironmentITF) {
+func (ptr *QProcess) SetProcessEnvironment(environment QProcessEnvironment_ITF) {
 	if ptr.Pointer() != nil {
-		C.QProcess_SetProcessEnvironment(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQProcessEnvironment(environment)))
+		C.QProcess_SetProcessEnvironment(ptr.Pointer(), PointerFromQProcessEnvironment(environment))
 	}
 }
 
 func (ptr *QProcess) SetProgram(program string) {
 	if ptr.Pointer() != nil {
-		C.QProcess_SetProgram(C.QtObjectPtr(ptr.Pointer()), C.CString(program))
+		C.QProcess_SetProgram(ptr.Pointer(), C.CString(program))
 	}
 }
 
 func (ptr *QProcess) SetReadChannel(channel QProcess__ProcessChannel) {
 	if ptr.Pointer() != nil {
-		C.QProcess_SetReadChannel(C.QtObjectPtr(ptr.Pointer()), C.int(channel))
+		C.QProcess_SetReadChannel(ptr.Pointer(), C.int(channel))
 	}
 }
 
 func (ptr *QProcess) SetStandardErrorFile(fileName string, mode QIODevice__OpenModeFlag) {
 	if ptr.Pointer() != nil {
-		C.QProcess_SetStandardErrorFile(C.QtObjectPtr(ptr.Pointer()), C.CString(fileName), C.int(mode))
+		C.QProcess_SetStandardErrorFile(ptr.Pointer(), C.CString(fileName), C.int(mode))
 	}
 }
 
 func (ptr *QProcess) SetStandardInputFile(fileName string) {
 	if ptr.Pointer() != nil {
-		C.QProcess_SetStandardInputFile(C.QtObjectPtr(ptr.Pointer()), C.CString(fileName))
+		C.QProcess_SetStandardInputFile(ptr.Pointer(), C.CString(fileName))
 	}
 }
 
 func (ptr *QProcess) SetStandardOutputFile(fileName string, mode QIODevice__OpenModeFlag) {
 	if ptr.Pointer() != nil {
-		C.QProcess_SetStandardOutputFile(C.QtObjectPtr(ptr.Pointer()), C.CString(fileName), C.int(mode))
+		C.QProcess_SetStandardOutputFile(ptr.Pointer(), C.CString(fileName), C.int(mode))
 	}
 }
 
-func (ptr *QProcess) SetStandardOutputProcess(destination QProcessITF) {
+func (ptr *QProcess) SetStandardOutputProcess(destination QProcess_ITF) {
 	if ptr.Pointer() != nil {
-		C.QProcess_SetStandardOutputProcess(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQProcess(destination)))
+		C.QProcess_SetStandardOutputProcess(ptr.Pointer(), PointerFromQProcess(destination))
 	}
 }
 
 func (ptr *QProcess) SetWorkingDirectory(dir string) {
 	if ptr.Pointer() != nil {
-		C.QProcess_SetWorkingDirectory(C.QtObjectPtr(ptr.Pointer()), C.CString(dir))
+		C.QProcess_SetWorkingDirectory(ptr.Pointer(), C.CString(dir))
 	}
 }
 
 func (ptr *QProcess) Start2(mode QIODevice__OpenModeFlag) {
 	if ptr.Pointer() != nil {
-		C.QProcess_Start2(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QProcess_Start2(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QProcess) Start3(command string, mode QIODevice__OpenModeFlag) {
 	if ptr.Pointer() != nil {
-		C.QProcess_Start3(C.QtObjectPtr(ptr.Pointer()), C.CString(command), C.int(mode))
+		C.QProcess_Start3(ptr.Pointer(), C.CString(command), C.int(mode))
 	}
 }
 
 func (ptr *QProcess) Start(program string, arguments []string, mode QIODevice__OpenModeFlag) {
 	if ptr.Pointer() != nil {
-		C.QProcess_Start(C.QtObjectPtr(ptr.Pointer()), C.CString(program), C.CString(strings.Join(arguments, "|")), C.int(mode))
+		C.QProcess_Start(ptr.Pointer(), C.CString(program), C.CString(strings.Join(arguments, "|")), C.int(mode))
 	}
 }
 
@@ -364,14 +378,14 @@ func QProcess_StartDetached2(command string) bool {
 
 func (ptr *QProcess) ConnectStarted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QProcess_ConnectStarted(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_ConnectStarted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "started", f)
 	}
 }
 
 func (ptr *QProcess) DisconnectStarted() {
 	if ptr.Pointer() != nil {
-		C.QProcess_DisconnectStarted(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_DisconnectStarted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "started")
 	}
 }
@@ -383,14 +397,14 @@ func callbackQProcessStarted(ptrName *C.char) {
 
 func (ptr *QProcess) ConnectStateChanged(f func(newState QProcess__ProcessState)) {
 	if ptr.Pointer() != nil {
-		C.QProcess_ConnectStateChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_ConnectStateChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "stateChanged", f)
 	}
 }
 
 func (ptr *QProcess) DisconnectStateChanged() {
 	if ptr.Pointer() != nil {
-		C.QProcess_DisconnectStateChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_DisconnectStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "stateChanged")
 	}
 }
@@ -406,48 +420,48 @@ func QProcess_SystemEnvironment() []string {
 
 func (ptr *QProcess) Terminate() {
 	if ptr.Pointer() != nil {
-		C.QProcess_Terminate(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_Terminate(ptr.Pointer())
 	}
 }
 
 func (ptr *QProcess) WaitForBytesWritten(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QProcess_WaitForBytesWritten(C.QtObjectPtr(ptr.Pointer()), C.int(msecs)) != 0
+		return C.QProcess_WaitForBytesWritten(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
 }
 
 func (ptr *QProcess) WaitForFinished(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QProcess_WaitForFinished(C.QtObjectPtr(ptr.Pointer()), C.int(msecs)) != 0
+		return C.QProcess_WaitForFinished(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
 }
 
 func (ptr *QProcess) WaitForReadyRead(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QProcess_WaitForReadyRead(C.QtObjectPtr(ptr.Pointer()), C.int(msecs)) != 0
+		return C.QProcess_WaitForReadyRead(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
 }
 
 func (ptr *QProcess) WaitForStarted(msecs int) bool {
 	if ptr.Pointer() != nil {
-		return C.QProcess_WaitForStarted(C.QtObjectPtr(ptr.Pointer()), C.int(msecs)) != 0
+		return C.QProcess_WaitForStarted(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
 }
 
 func (ptr *QProcess) WorkingDirectory() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QProcess_WorkingDirectory(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QProcess_WorkingDirectory(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QProcess) DestroyQProcess() {
 	if ptr.Pointer() != nil {
-		C.QProcess_DestroyQProcess(C.QtObjectPtr(ptr.Pointer()))
+		C.QProcess_DestroyQProcess(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

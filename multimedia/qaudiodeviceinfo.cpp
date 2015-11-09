@@ -1,9 +1,9 @@
 #include "qaudiodeviceinfo.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QAudioFormat>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QAudioDeviceInfo>
 #include "_cgo_export.h"
 
@@ -11,31 +11,31 @@ class MyQAudioDeviceInfo: public QAudioDeviceInfo {
 public:
 };
 
-QtObjectPtr QAudioDeviceInfo_NewQAudioDeviceInfo(){
+void* QAudioDeviceInfo_NewQAudioDeviceInfo(){
 	return new QAudioDeviceInfo();
 }
 
-QtObjectPtr QAudioDeviceInfo_NewQAudioDeviceInfo2(QtObjectPtr other){
+void* QAudioDeviceInfo_NewQAudioDeviceInfo2(void* other){
 	return new QAudioDeviceInfo(*static_cast<QAudioDeviceInfo*>(other));
 }
 
-char* QAudioDeviceInfo_DeviceName(QtObjectPtr ptr){
+char* QAudioDeviceInfo_DeviceName(void* ptr){
 	return static_cast<QAudioDeviceInfo*>(ptr)->deviceName().toUtf8().data();
 }
 
-int QAudioDeviceInfo_IsFormatSupported(QtObjectPtr ptr, QtObjectPtr settings){
+int QAudioDeviceInfo_IsFormatSupported(void* ptr, void* settings){
 	return static_cast<QAudioDeviceInfo*>(ptr)->isFormatSupported(*static_cast<QAudioFormat*>(settings));
 }
 
-int QAudioDeviceInfo_IsNull(QtObjectPtr ptr){
+int QAudioDeviceInfo_IsNull(void* ptr){
 	return static_cast<QAudioDeviceInfo*>(ptr)->isNull();
 }
 
-char* QAudioDeviceInfo_SupportedCodecs(QtObjectPtr ptr){
+char* QAudioDeviceInfo_SupportedCodecs(void* ptr){
 	return static_cast<QAudioDeviceInfo*>(ptr)->supportedCodecs().join("|").toUtf8().data();
 }
 
-void QAudioDeviceInfo_DestroyQAudioDeviceInfo(QtObjectPtr ptr){
+void QAudioDeviceInfo_DestroyQAudioDeviceInfo(void* ptr){
 	static_cast<QAudioDeviceInfo*>(ptr)->~QAudioDeviceInfo();
 }
 

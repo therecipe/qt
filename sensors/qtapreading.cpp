@@ -10,19 +10,19 @@ class MyQTapReading: public QTapReading {
 public:
 };
 
-int QTapReading_IsDoubleTap(QtObjectPtr ptr){
+int QTapReading_IsDoubleTap(void* ptr){
 	return static_cast<QTapReading*>(ptr)->isDoubleTap();
 }
 
-int QTapReading_TapDirection(QtObjectPtr ptr){
+int QTapReading_TapDirection(void* ptr){
 	return static_cast<QTapReading*>(ptr)->tapDirection();
 }
 
-void QTapReading_SetDoubleTap(QtObjectPtr ptr, int doubleTap){
+void QTapReading_SetDoubleTap(void* ptr, int doubleTap){
 	static_cast<QTapReading*>(ptr)->setDoubleTap(doubleTap != 0);
 }
 
-void QTapReading_SetTapDirection(QtObjectPtr ptr, int tapDirection){
+void QTapReading_SetTapDirection(void* ptr, int tapDirection){
 	static_cast<QTapReading*>(ptr)->setTapDirection(static_cast<QTapReading::TapDirection>(tapDirection));
 }
 

@@ -3,6 +3,7 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QByteArray>
 #include <QSslKey>
 #include "_cgo_export.h"
 
@@ -10,31 +11,39 @@ class MyQSslKey: public QSslKey {
 public:
 };
 
-QtObjectPtr QSslKey_NewQSslKey(){
+void* QSslKey_NewQSslKey(){
 	return new QSslKey();
 }
 
-QtObjectPtr QSslKey_NewQSslKey5(QtObjectPtr other){
+void* QSslKey_NewQSslKey5(void* other){
 	return new QSslKey(*static_cast<QSslKey*>(other));
 }
 
-void QSslKey_Clear(QtObjectPtr ptr){
+void QSslKey_Clear(void* ptr){
 	static_cast<QSslKey*>(ptr)->clear();
 }
 
-int QSslKey_IsNull(QtObjectPtr ptr){
+int QSslKey_IsNull(void* ptr){
 	return static_cast<QSslKey*>(ptr)->isNull();
 }
 
-int QSslKey_Length(QtObjectPtr ptr){
+int QSslKey_Length(void* ptr){
 	return static_cast<QSslKey*>(ptr)->length();
 }
 
-void QSslKey_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QSslKey_Swap(void* ptr, void* other){
 	static_cast<QSslKey*>(ptr)->swap(*static_cast<QSslKey*>(other));
 }
 
-void QSslKey_DestroyQSslKey(QtObjectPtr ptr){
+void* QSslKey_ToDer(void* ptr, void* passPhrase){
+	return new QByteArray(static_cast<QSslKey*>(ptr)->toDer(*static_cast<QByteArray*>(passPhrase)));
+}
+
+void* QSslKey_ToPem(void* ptr, void* passPhrase){
+	return new QByteArray(static_cast<QSslKey*>(ptr)->toPem(*static_cast<QByteArray*>(passPhrase)));
+}
+
+void QSslKey_DestroyQSslKey(void* ptr){
 	static_cast<QSslKey*>(ptr)->~QSslKey();
 }
 

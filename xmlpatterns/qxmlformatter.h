@@ -1,21 +1,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QXmlFormatter_NewQXmlFormatter(QtObjectPtr query, QtObjectPtr outputDevice);
-void QXmlFormatter_Attribute(QtObjectPtr ptr, QtObjectPtr name, QtObjectPtr value);
-void QXmlFormatter_Characters(QtObjectPtr ptr, QtObjectPtr value);
-void QXmlFormatter_Comment(QtObjectPtr ptr, char* value);
-void QXmlFormatter_EndDocument(QtObjectPtr ptr);
-void QXmlFormatter_EndElement(QtObjectPtr ptr);
-void QXmlFormatter_EndOfSequence(QtObjectPtr ptr);
-int QXmlFormatter_IndentationDepth(QtObjectPtr ptr);
-void QXmlFormatter_ProcessingInstruction(QtObjectPtr ptr, QtObjectPtr name, char* value);
-void QXmlFormatter_SetIndentationDepth(QtObjectPtr ptr, int depth);
-void QXmlFormatter_StartDocument(QtObjectPtr ptr);
-void QXmlFormatter_StartElement(QtObjectPtr ptr, QtObjectPtr name);
-void QXmlFormatter_StartOfSequence(QtObjectPtr ptr);
+void* QXmlFormatter_NewQXmlFormatter(void* query, void* outputDevice);
+void QXmlFormatter_Attribute(void* ptr, void* name, void* value);
+void QXmlFormatter_Characters(void* ptr, void* value);
+void QXmlFormatter_Comment(void* ptr, char* value);
+void QXmlFormatter_EndDocument(void* ptr);
+void QXmlFormatter_EndElement(void* ptr);
+void QXmlFormatter_EndOfSequence(void* ptr);
+int QXmlFormatter_IndentationDepth(void* ptr);
+void QXmlFormatter_ProcessingInstruction(void* ptr, void* name, char* value);
+void QXmlFormatter_SetIndentationDepth(void* ptr, int depth);
+void QXmlFormatter_StartDocument(void* ptr);
+void QXmlFormatter_StartElement(void* ptr, void* name);
+void QXmlFormatter_StartOfSequence(void* ptr);
 
 #ifdef __cplusplus
 }

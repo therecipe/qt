@@ -12,41 +12,41 @@ type QMaskGenerator struct {
 	core.QObject
 }
 
-type QMaskGeneratorITF interface {
-	core.QObjectITF
-	QMaskGeneratorPTR() *QMaskGenerator
+type QMaskGenerator_ITF interface {
+	core.QObject_ITF
+	QMaskGenerator_PTR() *QMaskGenerator
 }
 
-func PointerFromQMaskGenerator(ptr QMaskGeneratorITF) unsafe.Pointer {
+func PointerFromQMaskGenerator(ptr QMaskGenerator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMaskGeneratorPTR().Pointer()
+		return ptr.QMaskGenerator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMaskGeneratorFromPointer(ptr unsafe.Pointer) *QMaskGenerator {
+func NewQMaskGeneratorFromPointer(ptr unsafe.Pointer) *QMaskGenerator {
 	var n = new(QMaskGenerator)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMaskGenerator_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMaskGenerator) QMaskGeneratorPTR() *QMaskGenerator {
+func (ptr *QMaskGenerator) QMaskGenerator_PTR() *QMaskGenerator {
 	return ptr
 }
 
 func (ptr *QMaskGenerator) Seed() bool {
 	if ptr.Pointer() != nil {
-		return C.QMaskGenerator_Seed(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMaskGenerator_Seed(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMaskGenerator) DestroyQMaskGenerator() {
 	if ptr.Pointer() != nil {
-		C.QMaskGenerator_DestroyQMaskGenerator(C.QtObjectPtr(ptr.Pointer()))
+		C.QMaskGenerator_DestroyQMaskGenerator(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{QScriptExtensionPlugin QScriptExtensionPlugin::QScriptExtensionPlugin commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h non constructor false false   [0xc821bc6ee0] }
-&{initialize QScriptExtensionPlugin::initialize commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h pure plain false false  void [0xc821bc7040 0xc821bc70c0] }
-&{keys QScriptExtensionPlugin::keys commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h pure plain false false  QStringList [] }
-&{setupPackage QScriptExtensionPlugin::setupPackage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h non plain false false  QScriptValue [0xc821bc7380 0xc821bc7400] }
-&{~QScriptExtensionPlugin QScriptExtensionPlugin::~QScriptExtensionPlugin commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h non destructor false false   [] }
+&{QScriptExtensionPlugin QScriptExtensionPlugin::QScriptExtensionPlugin commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h non constructor false false   QScriptExtensionPlugin(QObject *parent) [0xc822e53600] }
+&{initialize QScriptExtensionPlugin::initialize commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h pure plain false false  void void initialize(const QString &key, QScriptEngine *engine) [0xc822e537a0 0xc822e53880] }
+&{keys QScriptExtensionPlugin::keys commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h pure plain false false  QStringList QStringList keys() const [] }
+&{setupPackage QScriptExtensionPlugin::setupPackage commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h non plain false false  QScriptValue QScriptValue setupPackage(const QString &key, QScriptEngine *engine) const [0xc822e53c00 0xc822e53c80] }
+&{~QScriptExtensionPlugin QScriptExtensionPlugin::~QScriptExtensionPlugin commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptextensionplugin.h non destructor false false   ~QScriptExtensionPlugin() [] }
 ########################################			ENUMS			########################################

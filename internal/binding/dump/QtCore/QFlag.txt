@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{QFlag QFlag::QFlag commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false false   [0xc82018cac0] }
-&{QFlag QFlag::QFlag commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 3  [0xc82018cc40] }
-&{QFlag QFlag::QFlag commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 2  [0xc82018cdc0] }
-&{QFlag QFlag::QFlag commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 4  [0xc82018cf40] }
-&{operator int QFlag::operator int commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false   [] }
-&{operator uint QFlag::operator uint commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false   [] }
+&{QFlag QFlag::QFlag commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false false   QFlag(int value) [0xc82018d860] }
+&{QFlag QFlag::QFlag commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 3  QFlag(short value) [0xc82018da20] }
+&{QFlag QFlag::QFlag commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 2  QFlag(uint value) [0xc82018dbe0] }
+&{QFlag QFlag::QFlag commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 4  QFlag(ushort value) [0xc8201a20c0] }
+&{operator int QFlag::operator int commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false   operator int() const [] }
+&{operator uint QFlag::operator uint commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false   operator uint() const [] }
 ########################################			ENUMS			########################################

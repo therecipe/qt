@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
 char* QDBusError_QDBusError_ErrorString(int error);
-int QDBusError_IsValid(QtObjectPtr ptr);
-char* QDBusError_Message(QtObjectPtr ptr);
-char* QDBusError_Name(QtObjectPtr ptr);
-int QDBusError_Type(QtObjectPtr ptr);
+int QDBusError_IsValid(void* ptr);
+char* QDBusError_Message(void* ptr);
+char* QDBusError_Name(void* ptr);
+int QDBusError_Type(void* ptr);
 
 #ifdef __cplusplus
 }

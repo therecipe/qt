@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{QErrorMessage QErrorMessage::QErrorMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h non constructor false false   [0xc823191d00] }
-&{changeEvent QErrorMessage::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h impure plain false false  void [0xc823191fa0] }
-&{done QErrorMessage::done commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h impure plain false false  void [0xc823182200] }
-&{qtHandler QErrorMessage::qtHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h non plain true false  QErrorMessage * [] }
-&{showMessage QErrorMessage::showMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h non slot false false  void [0xc8231826a0] }
-&{showMessage QErrorMessage::showMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h non slot false true 2 void [0xc823182960 0xc823182a60] }
-&{~QErrorMessage QErrorMessage::~QErrorMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h non destructor false false   [] }
+&{QErrorMessage QErrorMessage::QErrorMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h non constructor false false   QErrorMessage(QWidget *parent) [0xc8231bbc80] }
+&{changeEvent QErrorMessage::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h impure plain false false  void void changeEvent(QEvent *e) [0xc8231a8080] }
+&{done QErrorMessage::done commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h impure plain false false  void void done(int a) [0xc8231a8480] }
+&{qtHandler QErrorMessage::qtHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h non plain true false  QErrorMessage * QErrorMessage * qtHandler() [] }
+&{showMessage QErrorMessage::showMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h non slot false false  void void showMessage(const QString &message) [0xc8231a8a60] }
+&{showMessage QErrorMessage::showMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h non slot false true 2 void void showMessage(const QString &message, const QString &type) [0xc8231a8d80 0xc8231a8f40] }
+&{~QErrorMessage QErrorMessage::~QErrorMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qerrormessage.h non destructor false false   ~QErrorMessage() [] }
 ########################################			ENUMS			########################################

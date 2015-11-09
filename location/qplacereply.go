@@ -12,35 +12,35 @@ type QPlaceReply struct {
 	core.QObject
 }
 
-type QPlaceReplyITF interface {
-	core.QObjectITF
-	QPlaceReplyPTR() *QPlaceReply
+type QPlaceReply_ITF interface {
+	core.QObject_ITF
+	QPlaceReply_PTR() *QPlaceReply
 }
 
-func PointerFromQPlaceReply(ptr QPlaceReplyITF) unsafe.Pointer {
+func PointerFromQPlaceReply(ptr QPlaceReply_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceReplyPTR().Pointer()
+		return ptr.QPlaceReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceReplyFromPointer(ptr unsafe.Pointer) *QPlaceReply {
+func NewQPlaceReplyFromPointer(ptr unsafe.Pointer) *QPlaceReply {
 	var n = new(QPlaceReply)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QPlaceReply_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QPlaceReply) QPlaceReplyPTR() *QPlaceReply {
+func (ptr *QPlaceReply) QPlaceReply_PTR() *QPlaceReply {
 	return ptr
 }
 
 //QPlaceReply::Error
-type QPlaceReply__Error int
+type QPlaceReply__Error int64
 
-var (
+const (
 	QPlaceReply__NoError                   = QPlaceReply__Error(0)
 	QPlaceReply__PlaceDoesNotExistError    = QPlaceReply__Error(1)
 	QPlaceReply__CategoryDoesNotExistError = QPlaceReply__Error(2)
@@ -54,9 +54,9 @@ var (
 )
 
 //QPlaceReply::Type
-type QPlaceReply__Type int
+type QPlaceReply__Type int64
 
-var (
+const (
 	QPlaceReply__Reply                 = QPlaceReply__Type(0)
 	QPlaceReply__DetailsReply          = QPlaceReply__Type(1)
 	QPlaceReply__SearchReply           = QPlaceReply__Type(2)

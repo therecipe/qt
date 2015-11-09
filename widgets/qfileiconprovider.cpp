@@ -1,10 +1,10 @@
 #include "qfileiconprovider.h"
-#include <QFile>
-#include <QFileInfo>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QFile>
+#include <QFileInfo>
+#include <QString>
 #include <QFileIconProvider>
 #include "_cgo_export.h"
 
@@ -12,23 +12,23 @@ class MyQFileIconProvider: public QFileIconProvider {
 public:
 };
 
-QtObjectPtr QFileIconProvider_NewQFileIconProvider(){
+void* QFileIconProvider_NewQFileIconProvider(){
 	return new QFileIconProvider();
 }
 
-int QFileIconProvider_Options(QtObjectPtr ptr){
+int QFileIconProvider_Options(void* ptr){
 	return static_cast<QFileIconProvider*>(ptr)->options();
 }
 
-void QFileIconProvider_SetOptions(QtObjectPtr ptr, int options){
+void QFileIconProvider_SetOptions(void* ptr, int options){
 	static_cast<QFileIconProvider*>(ptr)->setOptions(static_cast<QFileIconProvider::Option>(options));
 }
 
-char* QFileIconProvider_Type(QtObjectPtr ptr, QtObjectPtr info){
+char* QFileIconProvider_Type(void* ptr, void* info){
 	return static_cast<QFileIconProvider*>(ptr)->type(*static_cast<QFileInfo*>(info)).toUtf8().data();
 }
 
-void QFileIconProvider_DestroyQFileIconProvider(QtObjectPtr ptr){
+void QFileIconProvider_DestroyQFileIconProvider(void* ptr){
 	static_cast<QFileIconProvider*>(ptr)->~QFileIconProvider();
 }
 

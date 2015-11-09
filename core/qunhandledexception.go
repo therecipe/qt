@@ -10,24 +10,24 @@ type QUnhandledException struct {
 	QException
 }
 
-type QUnhandledExceptionITF interface {
-	QExceptionITF
-	QUnhandledExceptionPTR() *QUnhandledException
+type QUnhandledException_ITF interface {
+	QException_ITF
+	QUnhandledException_PTR() *QUnhandledException
 }
 
-func PointerFromQUnhandledException(ptr QUnhandledExceptionITF) unsafe.Pointer {
+func PointerFromQUnhandledException(ptr QUnhandledException_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QUnhandledExceptionPTR().Pointer()
+		return ptr.QUnhandledException_PTR().Pointer()
 	}
 	return nil
 }
 
-func QUnhandledExceptionFromPointer(ptr unsafe.Pointer) *QUnhandledException {
+func NewQUnhandledExceptionFromPointer(ptr unsafe.Pointer) *QUnhandledException {
 	var n = new(QUnhandledException)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QUnhandledException) QUnhandledExceptionPTR() *QUnhandledException {
+func (ptr *QUnhandledException) QUnhandledException_PTR() *QUnhandledException {
 	return ptr
 }

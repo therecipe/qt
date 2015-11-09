@@ -10,24 +10,24 @@ type QPlaceImage struct {
 	QPlaceContent
 }
 
-type QPlaceImageITF interface {
-	QPlaceContentITF
-	QPlaceImagePTR() *QPlaceImage
+type QPlaceImage_ITF interface {
+	QPlaceContent_ITF
+	QPlaceImage_PTR() *QPlaceImage
 }
 
-func PointerFromQPlaceImage(ptr QPlaceImageITF) unsafe.Pointer {
+func PointerFromQPlaceImage(ptr QPlaceImage_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceImagePTR().Pointer()
+		return ptr.QPlaceImage_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceImageFromPointer(ptr unsafe.Pointer) *QPlaceImage {
+func NewQPlaceImageFromPointer(ptr unsafe.Pointer) *QPlaceImage {
 	var n = new(QPlaceImage)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPlaceImage) QPlaceImagePTR() *QPlaceImage {
+func (ptr *QPlaceImage) QPlaceImage_PTR() *QPlaceImage {
 	return ptr
 }

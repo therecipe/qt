@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QScriptSyntaxCheckResult_NewQScriptSyntaxCheckResult(QtObjectPtr other);
-int QScriptSyntaxCheckResult_ErrorColumnNumber(QtObjectPtr ptr);
-int QScriptSyntaxCheckResult_ErrorLineNumber(QtObjectPtr ptr);
-char* QScriptSyntaxCheckResult_ErrorMessage(QtObjectPtr ptr);
-void QScriptSyntaxCheckResult_DestroyQScriptSyntaxCheckResult(QtObjectPtr ptr);
+void* QScriptSyntaxCheckResult_NewQScriptSyntaxCheckResult(void* other);
+int QScriptSyntaxCheckResult_ErrorColumnNumber(void* ptr);
+int QScriptSyntaxCheckResult_ErrorLineNumber(void* ptr);
+char* QScriptSyntaxCheckResult_ErrorMessage(void* ptr);
+void QScriptSyntaxCheckResult_DestroyQScriptSyntaxCheckResult(void* ptr);
 
 #ifdef __cplusplus
 }

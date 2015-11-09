@@ -1,16 +1,15 @@
 #include "qgraphicssvgitem.h"
-#include <QSvgRenderer>
-#include <QSize>
-#include <QStyleOption>
-#include <QWidget>
-#include <QGraphicsItem>
-#include <QStyleOptionGraphicsItem>
 #include <QString>
+#include <QStyleOptionGraphicsItem>
+#include <QSize>
+#include <QSvgRenderer>
+#include <QStyle>
+#include <QPainter>
+#include <QStyleOption>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QStyle>
-#include <QPainter>
+#include <QWidget>
 #include <QGraphicsSvgItem>
 #include "_cgo_export.h"
 
@@ -18,39 +17,31 @@ class MyQGraphicsSvgItem: public QGraphicsSvgItem {
 public:
 };
 
-QtObjectPtr QGraphicsSvgItem_NewQGraphicsSvgItem(QtObjectPtr parent){
-	return new QGraphicsSvgItem(static_cast<QGraphicsItem*>(parent));
-}
-
-QtObjectPtr QGraphicsSvgItem_NewQGraphicsSvgItem2(char* fileName, QtObjectPtr parent){
-	return new QGraphicsSvgItem(QString(fileName), static_cast<QGraphicsItem*>(parent));
-}
-
-char* QGraphicsSvgItem_ElementId(QtObjectPtr ptr){
+char* QGraphicsSvgItem_ElementId(void* ptr){
 	return static_cast<QGraphicsSvgItem*>(ptr)->elementId().toUtf8().data();
 }
 
-void QGraphicsSvgItem_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr widget){
+void QGraphicsSvgItem_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<QGraphicsSvgItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
 
-QtObjectPtr QGraphicsSvgItem_Renderer(QtObjectPtr ptr){
+void* QGraphicsSvgItem_Renderer(void* ptr){
 	return static_cast<QGraphicsSvgItem*>(ptr)->renderer();
 }
 
-void QGraphicsSvgItem_SetElementId(QtObjectPtr ptr, char* id){
+void QGraphicsSvgItem_SetElementId(void* ptr, char* id){
 	static_cast<QGraphicsSvgItem*>(ptr)->setElementId(QString(id));
 }
 
-void QGraphicsSvgItem_SetMaximumCacheSize(QtObjectPtr ptr, QtObjectPtr size){
+void QGraphicsSvgItem_SetMaximumCacheSize(void* ptr, void* size){
 	static_cast<QGraphicsSvgItem*>(ptr)->setMaximumCacheSize(*static_cast<QSize*>(size));
 }
 
-void QGraphicsSvgItem_SetSharedRenderer(QtObjectPtr ptr, QtObjectPtr renderer){
+void QGraphicsSvgItem_SetSharedRenderer(void* ptr, void* renderer){
 	static_cast<QGraphicsSvgItem*>(ptr)->setSharedRenderer(static_cast<QSvgRenderer*>(renderer));
 }
 
-int QGraphicsSvgItem_Type(QtObjectPtr ptr){
+int QGraphicsSvgItem_Type(void* ptr){
 	return static_cast<QGraphicsSvgItem*>(ptr)->type();
 }
 

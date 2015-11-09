@@ -1,29 +1,27 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QNetworkProxyQuery_NewQNetworkProxyQuery();
-QtObjectPtr QNetworkProxyQuery_NewQNetworkProxyQuery7(QtObjectPtr networkConfiguration, char* hostname, int port, char* protocolTag, int queryType);
-QtObjectPtr QNetworkProxyQuery_NewQNetworkProxyQuery6(QtObjectPtr networkConfiguration, char* requestUrl, int queryType);
-QtObjectPtr QNetworkProxyQuery_NewQNetworkProxyQuery5(QtObjectPtr other);
-QtObjectPtr QNetworkProxyQuery_NewQNetworkProxyQuery3(char* hostname, int port, char* protocolTag, int queryType);
-QtObjectPtr QNetworkProxyQuery_NewQNetworkProxyQuery2(char* requestUrl, int queryType);
-int QNetworkProxyQuery_LocalPort(QtObjectPtr ptr);
-char* QNetworkProxyQuery_PeerHostName(QtObjectPtr ptr);
-int QNetworkProxyQuery_PeerPort(QtObjectPtr ptr);
-char* QNetworkProxyQuery_ProtocolTag(QtObjectPtr ptr);
-int QNetworkProxyQuery_QueryType(QtObjectPtr ptr);
-void QNetworkProxyQuery_SetLocalPort(QtObjectPtr ptr, int port);
-void QNetworkProxyQuery_SetNetworkConfiguration(QtObjectPtr ptr, QtObjectPtr networkConfiguration);
-void QNetworkProxyQuery_SetPeerHostName(QtObjectPtr ptr, char* hostname);
-void QNetworkProxyQuery_SetPeerPort(QtObjectPtr ptr, int port);
-void QNetworkProxyQuery_SetProtocolTag(QtObjectPtr ptr, char* protocolTag);
-void QNetworkProxyQuery_SetQueryType(QtObjectPtr ptr, int ty);
-void QNetworkProxyQuery_SetUrl(QtObjectPtr ptr, char* url);
-void QNetworkProxyQuery_Swap(QtObjectPtr ptr, QtObjectPtr other);
-char* QNetworkProxyQuery_Url(QtObjectPtr ptr);
-void QNetworkProxyQuery_DestroyQNetworkProxyQuery(QtObjectPtr ptr);
+void* QNetworkProxyQuery_NewQNetworkProxyQuery();
+void* QNetworkProxyQuery_NewQNetworkProxyQuery7(void* networkConfiguration, char* hostname, int port, char* protocolTag, int queryType);
+void* QNetworkProxyQuery_NewQNetworkProxyQuery6(void* networkConfiguration, void* requestUrl, int queryType);
+void* QNetworkProxyQuery_NewQNetworkProxyQuery5(void* other);
+void* QNetworkProxyQuery_NewQNetworkProxyQuery3(char* hostname, int port, char* protocolTag, int queryType);
+void* QNetworkProxyQuery_NewQNetworkProxyQuery2(void* requestUrl, int queryType);
+int QNetworkProxyQuery_LocalPort(void* ptr);
+char* QNetworkProxyQuery_PeerHostName(void* ptr);
+int QNetworkProxyQuery_PeerPort(void* ptr);
+char* QNetworkProxyQuery_ProtocolTag(void* ptr);
+int QNetworkProxyQuery_QueryType(void* ptr);
+void QNetworkProxyQuery_SetLocalPort(void* ptr, int port);
+void QNetworkProxyQuery_SetNetworkConfiguration(void* ptr, void* networkConfiguration);
+void QNetworkProxyQuery_SetPeerHostName(void* ptr, char* hostname);
+void QNetworkProxyQuery_SetPeerPort(void* ptr, int port);
+void QNetworkProxyQuery_SetProtocolTag(void* ptr, char* protocolTag);
+void QNetworkProxyQuery_SetQueryType(void* ptr, int ty);
+void QNetworkProxyQuery_SetUrl(void* ptr, void* url);
+void QNetworkProxyQuery_Swap(void* ptr, void* other);
+void QNetworkProxyQuery_DestroyQNetworkProxyQuery(void* ptr);
 
 #ifdef __cplusplus
 }

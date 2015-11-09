@@ -12,53 +12,53 @@ type QSGClipNode struct {
 	QSGBasicGeometryNode
 }
 
-type QSGClipNodeITF interface {
-	QSGBasicGeometryNodeITF
-	QSGClipNodePTR() *QSGClipNode
+type QSGClipNode_ITF interface {
+	QSGBasicGeometryNode_ITF
+	QSGClipNode_PTR() *QSGClipNode
 }
 
-func PointerFromQSGClipNode(ptr QSGClipNodeITF) unsafe.Pointer {
+func PointerFromQSGClipNode(ptr QSGClipNode_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSGClipNodePTR().Pointer()
+		return ptr.QSGClipNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSGClipNodeFromPointer(ptr unsafe.Pointer) *QSGClipNode {
+func NewQSGClipNodeFromPointer(ptr unsafe.Pointer) *QSGClipNode {
 	var n = new(QSGClipNode)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSGClipNode) QSGClipNodePTR() *QSGClipNode {
+func (ptr *QSGClipNode) QSGClipNode_PTR() *QSGClipNode {
 	return ptr
 }
 
 func NewQSGClipNode() *QSGClipNode {
-	return QSGClipNodeFromPointer(unsafe.Pointer(C.QSGClipNode_NewQSGClipNode()))
+	return NewQSGClipNodeFromPointer(C.QSGClipNode_NewQSGClipNode())
 }
 
 func (ptr *QSGClipNode) IsRectangular() bool {
 	if ptr.Pointer() != nil {
-		return C.QSGClipNode_IsRectangular(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSGClipNode_IsRectangular(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QSGClipNode) SetClipRect(rect core.QRectFITF) {
+func (ptr *QSGClipNode) SetClipRect(rect core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSGClipNode_SetClipRect(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)))
+		C.QSGClipNode_SetClipRect(ptr.Pointer(), core.PointerFromQRectF(rect))
 	}
 }
 
 func (ptr *QSGClipNode) SetIsRectangular(rectHint bool) {
 	if ptr.Pointer() != nil {
-		C.QSGClipNode_SetIsRectangular(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(rectHint)))
+		C.QSGClipNode_SetIsRectangular(ptr.Pointer(), C.int(qt.GoBoolToInt(rectHint)))
 	}
 }
 
 func (ptr *QSGClipNode) DestroyQSGClipNode() {
 	if ptr.Pointer() != nil {
-		C.QSGClipNode_DestroyQSGClipNode(C.QtObjectPtr(ptr.Pointer()))
+		C.QSGClipNode_DestroyQSGClipNode(ptr.Pointer())
 	}
 }

@@ -1,13 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QJSEngine_NewQJSEngine();
-QtObjectPtr QJSEngine_NewQJSEngine2(QtObjectPtr parent);
-void QJSEngine_CollectGarbage(QtObjectPtr ptr);
-void QJSEngine_InstallTranslatorFunctions(QtObjectPtr ptr, QtObjectPtr object);
-void QJSEngine_DestroyQJSEngine(QtObjectPtr ptr);
+void* QJSEngine_NewQJSEngine();
+void* QJSEngine_NewQJSEngine2(void* parent);
+void QJSEngine_CollectGarbage(void* ptr);
+void* QJSEngine_Evaluate(void* ptr, char* program, char* fileName, int lineNumber);
+void* QJSEngine_GlobalObject(void* ptr);
+void QJSEngine_InstallTranslatorFunctions(void* ptr, void* object);
+void* QJSEngine_NewObject(void* ptr);
+void* QJSEngine_NewQObject(void* ptr, void* object);
+void QJSEngine_DestroyQJSEngine(void* ptr);
 
 #ifdef __cplusplus
 }

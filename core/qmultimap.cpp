@@ -1,8 +1,8 @@
 #include "qmultimap.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QString>
 #include <QMultiMap>
 #include "_cgo_export.h"
 

@@ -10,31 +10,31 @@ type QRotationFilter struct {
 	QSensorFilter
 }
 
-type QRotationFilterITF interface {
-	QSensorFilterITF
-	QRotationFilterPTR() *QRotationFilter
+type QRotationFilter_ITF interface {
+	QSensorFilter_ITF
+	QRotationFilter_PTR() *QRotationFilter
 }
 
-func PointerFromQRotationFilter(ptr QRotationFilterITF) unsafe.Pointer {
+func PointerFromQRotationFilter(ptr QRotationFilter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QRotationFilterPTR().Pointer()
+		return ptr.QRotationFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QRotationFilterFromPointer(ptr unsafe.Pointer) *QRotationFilter {
+func NewQRotationFilterFromPointer(ptr unsafe.Pointer) *QRotationFilter {
 	var n = new(QRotationFilter)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QRotationFilter) QRotationFilterPTR() *QRotationFilter {
+func (ptr *QRotationFilter) QRotationFilter_PTR() *QRotationFilter {
 	return ptr
 }
 
-func (ptr *QRotationFilter) Filter(reading QRotationReadingITF) bool {
+func (ptr *QRotationFilter) Filter(reading QRotationReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRotationFilter_Filter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQRotationReading(reading))) != 0
+		return C.QRotationFilter_Filter(ptr.Pointer(), PointerFromQRotationReading(reading)) != 0
 	}
 	return false
 }

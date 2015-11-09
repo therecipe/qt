@@ -1,10 +1,10 @@
 #include "qiconengineplugin.h"
+#include <QModelIndex>
+#include <QIcon>
+#include <QIconEngine>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QIconEngine>
-#include <QIcon>
 #include <QIconEnginePlugin>
 #include "_cgo_export.h"
 

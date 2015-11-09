@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
-&{QFontInfo QFontInfo::QFontInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non constructor false false   [0xc8231c8ee0] }
-&{QFontInfo QFontInfo::QFontInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non constructor false true 2  [0xc8231c90e0] }
-&{bold QFontInfo::bold commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  bool [] }
-&{exactMatch QFontInfo::exactMatch commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  bool [] }
-&{family QFontInfo::family commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  QString [] }
-&{fixedPitch QFontInfo::fixedPitch commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  bool [] }
-&{italic QFontInfo::italic commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  bool [] }
-&{operator= QFontInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  QFontInfo & [0xc8231c97c0] }
-&{pixelSize QFontInfo::pixelSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  int [] }
-&{pointSize QFontInfo::pointSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  int [] }
-&{pointSizeF QFontInfo::pointSizeF commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  qreal [] }
-&{style QFontInfo::style commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  QFont::Style [] }
-&{styleName QFontInfo::styleName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  QString [] }
-&{swap QFontInfo::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  void [0xc8231c9e40] }
-&{styleHint QFontInfo::styleHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  QFont::StyleHint [] }
-&{weight QFontInfo::weight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  int [] }
-&{~QFontInfo QFontInfo::~QFontInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non destructor false false   [] }
+&{QFontInfo QFontInfo::QFontInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non constructor false false   QFontInfo(const QFont &font) [0xc822dbaca0] }
+&{QFontInfo QFontInfo::QFontInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non constructor false true 2  QFontInfo(const QFontInfo &fi) [0xc822dbaee0] }
+&{bold QFontInfo::bold commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  bool bool bold() const [] }
+&{exactMatch QFontInfo::exactMatch commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  bool bool exactMatch() const [] }
+&{family QFontInfo::family commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  QString QString family() const [] }
+&{fixedPitch QFontInfo::fixedPitch commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  bool bool fixedPitch() const [] }
+&{italic QFontInfo::italic commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  bool bool italic() const [] }
+&{operator= QFontInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  QFontInfo & QFontInfo & operator=(const QFontInfo &fi) [0xc822dbb700] }
+&{pixelSize QFontInfo::pixelSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  int int pixelSize() const [] }
+&{pointSize QFontInfo::pointSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  int int pointSize() const [] }
+&{pointSizeF QFontInfo::pointSizeF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  qreal qreal pointSizeF() const [] }
+&{style QFontInfo::style commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  QFont::Style QFont::Style style() const [] }
+&{styleName QFontInfo::styleName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  QString QString styleName() const [] }
+&{swap QFontInfo::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  void void swap(QFontInfo &other) [0xc822dbbf00] }
+&{styleHint QFontInfo::styleHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  QFont::StyleHint QFont::StyleHint styleHint() const [] }
+&{weight QFontInfo::weight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non plain false false  int int weight() const [] }
+&{~QFontInfo QFontInfo::~QFontInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qfontinfo.h non destructor false false   ~QFontInfo() [] }
 ########################################			ENUMS			########################################

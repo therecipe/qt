@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent2(QtObjectPtr iface, int position, char* text);
-QtObjectPtr QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent(QtObjectPtr object, int position, char* text);
-int QAccessibleTextRemoveEvent_ChangePosition(QtObjectPtr ptr);
-char* QAccessibleTextRemoveEvent_TextRemoved(QtObjectPtr ptr);
+void* QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent2(void* iface, int position, char* text);
+void* QAccessibleTextRemoveEvent_NewQAccessibleTextRemoveEvent(void* object, int position, char* text);
+int QAccessibleTextRemoveEvent_ChangePosition(void* ptr);
+char* QAccessibleTextRemoveEvent_TextRemoved(void* ptr);
 
 #ifdef __cplusplus
 }

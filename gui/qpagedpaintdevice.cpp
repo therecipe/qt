@@ -1,14 +1,14 @@
 #include "qpagedpaintdevice.h"
+#include <QSize>
+#include <QPageLayout>
 #include <QString>
+#include <QVariant>
+#include <QModelIndex>
 #include <QMargins>
 #include <QPageSize>
-#include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QPageLayout>
-#include <QMarginsF>
 #include <QSizeF>
-#include <QSize>
+#include <QMarginsF>
 #include <QPagedPaintDevice>
 #include "_cgo_export.h"
 
@@ -16,43 +16,43 @@ class MyQPagedPaintDevice: public QPagedPaintDevice {
 public:
 };
 
-int QPagedPaintDevice_NewPage(QtObjectPtr ptr){
+int QPagedPaintDevice_NewPage(void* ptr){
 	return static_cast<QPagedPaintDevice*>(ptr)->newPage();
 }
 
-int QPagedPaintDevice_PageSize(QtObjectPtr ptr){
+int QPagedPaintDevice_PageSize(void* ptr){
 	return static_cast<QPagedPaintDevice*>(ptr)->pageSize();
 }
 
-int QPagedPaintDevice_SetPageLayout(QtObjectPtr ptr, QtObjectPtr newPageLayout){
+int QPagedPaintDevice_SetPageLayout(void* ptr, void* newPageLayout){
 	return static_cast<QPagedPaintDevice*>(ptr)->setPageLayout(*static_cast<QPageLayout*>(newPageLayout));
 }
 
-int QPagedPaintDevice_SetPageMargins(QtObjectPtr ptr, QtObjectPtr margins){
+int QPagedPaintDevice_SetPageMargins(void* ptr, void* margins){
 	return static_cast<QPagedPaintDevice*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins));
 }
 
-int QPagedPaintDevice_SetPageMargins2(QtObjectPtr ptr, QtObjectPtr margins, int units){
+int QPagedPaintDevice_SetPageMargins2(void* ptr, void* margins, int units){
 	return static_cast<QPagedPaintDevice*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins), static_cast<QPageLayout::Unit>(units));
 }
 
-int QPagedPaintDevice_SetPageOrientation(QtObjectPtr ptr, int orientation){
+int QPagedPaintDevice_SetPageOrientation(void* ptr, int orientation){
 	return static_cast<QPagedPaintDevice*>(ptr)->setPageOrientation(static_cast<QPageLayout::Orientation>(orientation));
 }
 
-int QPagedPaintDevice_SetPageSize(QtObjectPtr ptr, QtObjectPtr pageSize){
+int QPagedPaintDevice_SetPageSize(void* ptr, void* pageSize){
 	return static_cast<QPagedPaintDevice*>(ptr)->setPageSize(*static_cast<QPageSize*>(pageSize));
 }
 
-void QPagedPaintDevice_SetPageSize2(QtObjectPtr ptr, int size){
+void QPagedPaintDevice_SetPageSize2(void* ptr, int size){
 	static_cast<QPagedPaintDevice*>(ptr)->setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
 }
 
-void QPagedPaintDevice_SetPageSizeMM(QtObjectPtr ptr, QtObjectPtr size){
+void QPagedPaintDevice_SetPageSizeMM(void* ptr, void* size){
 	static_cast<QPagedPaintDevice*>(ptr)->setPageSizeMM(*static_cast<QSizeF*>(size));
 }
 
-void QPagedPaintDevice_DestroyQPagedPaintDevice(QtObjectPtr ptr){
+void QPagedPaintDevice_DestroyQPagedPaintDevice(void* ptr){
 	static_cast<QPagedPaintDevice*>(ptr)->~QPagedPaintDevice();
 }
 

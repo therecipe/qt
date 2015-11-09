@@ -4,8 +4,8 @@
 #include <QUrl>
 #include <QModelIndex>
 #include <QWidget>
-#include <QObject>
 #include <QPoint>
+#include <QObject>
 #include <QDesktopWidget>
 #include "_cgo_export.h"
 
@@ -16,51 +16,51 @@ void Signal_ScreenCountChanged(int newCount){callbackQDesktopWidgetScreenCountCh
 void Signal_WorkAreaResized(int screen){callbackQDesktopWidgetWorkAreaResized(this->objectName().toUtf8().data(), screen);};
 };
 
-int QDesktopWidget_IsVirtualDesktop(QtObjectPtr ptr){
+int QDesktopWidget_IsVirtualDesktop(void* ptr){
 	return static_cast<QDesktopWidget*>(ptr)->isVirtualDesktop();
 }
 
-int QDesktopWidget_PrimaryScreen(QtObjectPtr ptr){
+int QDesktopWidget_PrimaryScreen(void* ptr){
 	return static_cast<QDesktopWidget*>(ptr)->primaryScreen();
 }
 
-QtObjectPtr QDesktopWidget_Screen(QtObjectPtr ptr, int screen){
+void* QDesktopWidget_Screen(void* ptr, int screen){
 	return static_cast<QDesktopWidget*>(ptr)->screen(screen);
 }
 
-int QDesktopWidget_ScreenNumber2(QtObjectPtr ptr, QtObjectPtr point){
+int QDesktopWidget_ScreenNumber2(void* ptr, void* point){
 	return static_cast<QDesktopWidget*>(ptr)->screenNumber(*static_cast<QPoint*>(point));
 }
 
-int QDesktopWidget_ScreenNumber(QtObjectPtr ptr, QtObjectPtr widget){
+int QDesktopWidget_ScreenNumber(void* ptr, void* widget){
 	return static_cast<QDesktopWidget*>(ptr)->screenNumber(static_cast<QWidget*>(widget));
 }
 
-void QDesktopWidget_ConnectResized(QtObjectPtr ptr){
+void QDesktopWidget_ConnectResized(void* ptr){
 	QObject::connect(static_cast<QDesktopWidget*>(ptr), static_cast<void (QDesktopWidget::*)(int)>(&QDesktopWidget::resized), static_cast<MyQDesktopWidget*>(ptr), static_cast<void (MyQDesktopWidget::*)(int)>(&MyQDesktopWidget::Signal_Resized));;
 }
 
-void QDesktopWidget_DisconnectResized(QtObjectPtr ptr){
+void QDesktopWidget_DisconnectResized(void* ptr){
 	QObject::disconnect(static_cast<QDesktopWidget*>(ptr), static_cast<void (QDesktopWidget::*)(int)>(&QDesktopWidget::resized), static_cast<MyQDesktopWidget*>(ptr), static_cast<void (MyQDesktopWidget::*)(int)>(&MyQDesktopWidget::Signal_Resized));;
 }
 
-int QDesktopWidget_ScreenCount(QtObjectPtr ptr){
+int QDesktopWidget_ScreenCount(void* ptr){
 	return static_cast<QDesktopWidget*>(ptr)->screenCount();
 }
 
-void QDesktopWidget_ConnectScreenCountChanged(QtObjectPtr ptr){
+void QDesktopWidget_ConnectScreenCountChanged(void* ptr){
 	QObject::connect(static_cast<QDesktopWidget*>(ptr), static_cast<void (QDesktopWidget::*)(int)>(&QDesktopWidget::screenCountChanged), static_cast<MyQDesktopWidget*>(ptr), static_cast<void (MyQDesktopWidget::*)(int)>(&MyQDesktopWidget::Signal_ScreenCountChanged));;
 }
 
-void QDesktopWidget_DisconnectScreenCountChanged(QtObjectPtr ptr){
+void QDesktopWidget_DisconnectScreenCountChanged(void* ptr){
 	QObject::disconnect(static_cast<QDesktopWidget*>(ptr), static_cast<void (QDesktopWidget::*)(int)>(&QDesktopWidget::screenCountChanged), static_cast<MyQDesktopWidget*>(ptr), static_cast<void (MyQDesktopWidget::*)(int)>(&MyQDesktopWidget::Signal_ScreenCountChanged));;
 }
 
-void QDesktopWidget_ConnectWorkAreaResized(QtObjectPtr ptr){
+void QDesktopWidget_ConnectWorkAreaResized(void* ptr){
 	QObject::connect(static_cast<QDesktopWidget*>(ptr), static_cast<void (QDesktopWidget::*)(int)>(&QDesktopWidget::workAreaResized), static_cast<MyQDesktopWidget*>(ptr), static_cast<void (MyQDesktopWidget::*)(int)>(&MyQDesktopWidget::Signal_WorkAreaResized));;
 }
 
-void QDesktopWidget_DisconnectWorkAreaResized(QtObjectPtr ptr){
+void QDesktopWidget_DisconnectWorkAreaResized(void* ptr){
 	QObject::disconnect(static_cast<QDesktopWidget*>(ptr), static_cast<void (QDesktopWidget::*)(int)>(&QDesktopWidget::workAreaResized), static_cast<MyQDesktopWidget*>(ptr), static_cast<void (MyQDesktopWidget::*)(int)>(&MyQDesktopWidget::Signal_WorkAreaResized));;
 }
 

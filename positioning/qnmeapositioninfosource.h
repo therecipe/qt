@@ -1,20 +1,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(int updateMode, QtObjectPtr parent);
-QtObjectPtr QNmeaPositionInfoSource_Device(QtObjectPtr ptr);
-int QNmeaPositionInfoSource_Error(QtObjectPtr ptr);
-int QNmeaPositionInfoSource_MinimumUpdateInterval(QtObjectPtr ptr);
-void QNmeaPositionInfoSource_RequestUpdate(QtObjectPtr ptr, int msec);
-void QNmeaPositionInfoSource_SetDevice(QtObjectPtr ptr, QtObjectPtr device);
-void QNmeaPositionInfoSource_SetUpdateInterval(QtObjectPtr ptr, int msec);
-void QNmeaPositionInfoSource_StartUpdates(QtObjectPtr ptr);
-void QNmeaPositionInfoSource_StopUpdates(QtObjectPtr ptr);
-int QNmeaPositionInfoSource_SupportedPositioningMethods(QtObjectPtr ptr);
-int QNmeaPositionInfoSource_UpdateMode(QtObjectPtr ptr);
-void QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(QtObjectPtr ptr);
+void* QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(int updateMode, void* parent);
+void* QNmeaPositionInfoSource_Device(void* ptr);
+int QNmeaPositionInfoSource_Error(void* ptr);
+int QNmeaPositionInfoSource_MinimumUpdateInterval(void* ptr);
+void QNmeaPositionInfoSource_RequestUpdate(void* ptr, int msec);
+void QNmeaPositionInfoSource_SetDevice(void* ptr, void* device);
+void QNmeaPositionInfoSource_SetUpdateInterval(void* ptr, int msec);
+void QNmeaPositionInfoSource_StartUpdates(void* ptr);
+void QNmeaPositionInfoSource_StopUpdates(void* ptr);
+int QNmeaPositionInfoSource_SupportedPositioningMethods(void* ptr);
+int QNmeaPositionInfoSource_UpdateMode(void* ptr);
+void QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(void* ptr);
 
 #ifdef __cplusplus
 }

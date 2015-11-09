@@ -1,9 +1,9 @@
 #include "qndefnfcurirecord.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QNdefRecord>
+#include <QString>
+#include <QVariant>
 #include <QNdefNfcUriRecord>
 #include "_cgo_export.h"
 
@@ -11,19 +11,15 @@ class MyQNdefNfcUriRecord: public QNdefNfcUriRecord {
 public:
 };
 
-QtObjectPtr QNdefNfcUriRecord_NewQNdefNfcUriRecord(){
+void* QNdefNfcUriRecord_NewQNdefNfcUriRecord(){
 	return new QNdefNfcUriRecord();
 }
 
-QtObjectPtr QNdefNfcUriRecord_NewQNdefNfcUriRecord2(QtObjectPtr other){
+void* QNdefNfcUriRecord_NewQNdefNfcUriRecord2(void* other){
 	return new QNdefNfcUriRecord(*static_cast<QNdefRecord*>(other));
 }
 
-void QNdefNfcUriRecord_SetUri(QtObjectPtr ptr, char* uri){
-	static_cast<QNdefNfcUriRecord*>(ptr)->setUri(QUrl(QString(uri)));
-}
-
-char* QNdefNfcUriRecord_Uri(QtObjectPtr ptr){
-	return static_cast<QNdefNfcUriRecord*>(ptr)->uri().toString().toUtf8().data();
+void QNdefNfcUriRecord_SetUri(void* ptr, void* uri){
+	static_cast<QNdefNfcUriRecord*>(ptr)->setUri(*static_cast<QUrl*>(uri));
 }
 

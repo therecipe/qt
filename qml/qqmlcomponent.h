@@ -1,30 +1,29 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QQmlComponent_Status(QtObjectPtr ptr);
-char* QQmlComponent_Url(QtObjectPtr ptr);
-QtObjectPtr QQmlComponent_NewQQmlComponent(QtObjectPtr engine, QtObjectPtr parent);
-QtObjectPtr QQmlComponent_NewQQmlComponent4(QtObjectPtr engine, char* fileName, int mode, QtObjectPtr parent);
-QtObjectPtr QQmlComponent_NewQQmlComponent3(QtObjectPtr engine, char* fileName, QtObjectPtr parent);
-QtObjectPtr QQmlComponent_NewQQmlComponent6(QtObjectPtr engine, char* url, int mode, QtObjectPtr parent);
-QtObjectPtr QQmlComponent_NewQQmlComponent5(QtObjectPtr engine, char* url, QtObjectPtr parent);
-QtObjectPtr QQmlComponent_BeginCreate(QtObjectPtr ptr, QtObjectPtr publicContext);
-void QQmlComponent_CompleteCreate(QtObjectPtr ptr);
-QtObjectPtr QQmlComponent_Create(QtObjectPtr ptr, QtObjectPtr context);
-void QQmlComponent_Create2(QtObjectPtr ptr, QtObjectPtr incubator, QtObjectPtr context, QtObjectPtr forContext);
-QtObjectPtr QQmlComponent_CreationContext(QtObjectPtr ptr);
-int QQmlComponent_IsError(QtObjectPtr ptr);
-int QQmlComponent_IsLoading(QtObjectPtr ptr);
-int QQmlComponent_IsNull(QtObjectPtr ptr);
-int QQmlComponent_IsReady(QtObjectPtr ptr);
-void QQmlComponent_LoadUrl(QtObjectPtr ptr, char* url);
-void QQmlComponent_LoadUrl2(QtObjectPtr ptr, char* url, int mode);
-void QQmlComponent_SetData(QtObjectPtr ptr, QtObjectPtr data, char* url);
-void QQmlComponent_ConnectStatusChanged(QtObjectPtr ptr);
-void QQmlComponent_DisconnectStatusChanged(QtObjectPtr ptr);
-void QQmlComponent_DestroyQQmlComponent(QtObjectPtr ptr);
+double QQmlComponent_Progress(void* ptr);
+int QQmlComponent_Status(void* ptr);
+void* QQmlComponent_NewQQmlComponent(void* engine, void* parent);
+void* QQmlComponent_NewQQmlComponent4(void* engine, char* fileName, int mode, void* parent);
+void* QQmlComponent_NewQQmlComponent3(void* engine, char* fileName, void* parent);
+void* QQmlComponent_NewQQmlComponent6(void* engine, void* url, int mode, void* parent);
+void* QQmlComponent_NewQQmlComponent5(void* engine, void* url, void* parent);
+void* QQmlComponent_BeginCreate(void* ptr, void* publicContext);
+void QQmlComponent_CompleteCreate(void* ptr);
+void* QQmlComponent_Create(void* ptr, void* context);
+void QQmlComponent_Create2(void* ptr, void* incubator, void* context, void* forContext);
+void* QQmlComponent_CreationContext(void* ptr);
+int QQmlComponent_IsError(void* ptr);
+int QQmlComponent_IsLoading(void* ptr);
+int QQmlComponent_IsNull(void* ptr);
+int QQmlComponent_IsReady(void* ptr);
+void QQmlComponent_LoadUrl(void* ptr, void* url);
+void QQmlComponent_LoadUrl2(void* ptr, void* url, int mode);
+void QQmlComponent_SetData(void* ptr, void* data, void* url);
+void QQmlComponent_ConnectStatusChanged(void* ptr);
+void QQmlComponent_DisconnectStatusChanged(void* ptr);
+void QQmlComponent_DestroyQQmlComponent(void* ptr);
 
 #ifdef __cplusplus
 }

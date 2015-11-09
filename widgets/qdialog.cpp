@@ -1,12 +1,12 @@
 #include "qdialog.h"
+#include <QModelIndex>
+#include <QMetaObject>
+#include <QWidget>
+#include <QObject>
+#include <QDial>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QWidget>
-#include <QMetaObject>
-#include <QDial>
-#include <QObject>
 #include <QDialog>
 #include "_cgo_export.h"
 
@@ -17,79 +17,79 @@ void Signal_Finished(int result){callbackQDialogFinished(this->objectName().toUt
 void Signal_Rejected(){callbackQDialogRejected(this->objectName().toUtf8().data());};
 };
 
-int QDialog_IsSizeGripEnabled(QtObjectPtr ptr){
+int QDialog_IsSizeGripEnabled(void* ptr){
 	return static_cast<QDialog*>(ptr)->isSizeGripEnabled();
 }
 
-void QDialog_SetModal(QtObjectPtr ptr, int modal){
+void QDialog_SetModal(void* ptr, int modal){
 	static_cast<QDialog*>(ptr)->setModal(modal != 0);
 }
 
-void QDialog_SetResult(QtObjectPtr ptr, int i){
+void QDialog_SetResult(void* ptr, int i){
 	static_cast<QDialog*>(ptr)->setResult(i);
 }
 
-void QDialog_SetSizeGripEnabled(QtObjectPtr ptr, int v){
+void QDialog_SetSizeGripEnabled(void* ptr, int v){
 	static_cast<QDialog*>(ptr)->setSizeGripEnabled(v != 0);
 }
 
-QtObjectPtr QDialog_NewQDialog(QtObjectPtr parent, int f){
+void* QDialog_NewQDialog(void* parent, int f){
 	return new QDialog(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
 }
 
-void QDialog_Accept(QtObjectPtr ptr){
+void QDialog_Accept(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "accept");
 }
 
-void QDialog_ConnectAccepted(QtObjectPtr ptr){
+void QDialog_ConnectAccepted(void* ptr){
 	QObject::connect(static_cast<QDialog*>(ptr), static_cast<void (QDialog::*)()>(&QDialog::accepted), static_cast<MyQDialog*>(ptr), static_cast<void (MyQDialog::*)()>(&MyQDialog::Signal_Accepted));;
 }
 
-void QDialog_DisconnectAccepted(QtObjectPtr ptr){
+void QDialog_DisconnectAccepted(void* ptr){
 	QObject::disconnect(static_cast<QDialog*>(ptr), static_cast<void (QDialog::*)()>(&QDialog::accepted), static_cast<MyQDialog*>(ptr), static_cast<void (MyQDialog::*)()>(&MyQDialog::Signal_Accepted));;
 }
 
-void QDialog_Done(QtObjectPtr ptr, int r){
+void QDialog_Done(void* ptr, int r){
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "done", Q_ARG(int, r));
 }
 
-int QDialog_Exec(QtObjectPtr ptr){
+int QDialog_Exec(void* ptr){
 	return QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "exec");
 }
 
-void QDialog_ConnectFinished(QtObjectPtr ptr){
+void QDialog_ConnectFinished(void* ptr){
 	QObject::connect(static_cast<QDialog*>(ptr), static_cast<void (QDialog::*)(int)>(&QDialog::finished), static_cast<MyQDialog*>(ptr), static_cast<void (MyQDialog::*)(int)>(&MyQDialog::Signal_Finished));;
 }
 
-void QDialog_DisconnectFinished(QtObjectPtr ptr){
+void QDialog_DisconnectFinished(void* ptr){
 	QObject::disconnect(static_cast<QDialog*>(ptr), static_cast<void (QDialog::*)(int)>(&QDialog::finished), static_cast<MyQDialog*>(ptr), static_cast<void (MyQDialog::*)(int)>(&MyQDialog::Signal_Finished));;
 }
 
-void QDialog_Open(QtObjectPtr ptr){
+void QDialog_Open(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "open");
 }
 
-void QDialog_Reject(QtObjectPtr ptr){
+void QDialog_Reject(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "reject");
 }
 
-void QDialog_ConnectRejected(QtObjectPtr ptr){
+void QDialog_ConnectRejected(void* ptr){
 	QObject::connect(static_cast<QDialog*>(ptr), static_cast<void (QDialog::*)()>(&QDialog::rejected), static_cast<MyQDialog*>(ptr), static_cast<void (MyQDialog::*)()>(&MyQDialog::Signal_Rejected));;
 }
 
-void QDialog_DisconnectRejected(QtObjectPtr ptr){
+void QDialog_DisconnectRejected(void* ptr){
 	QObject::disconnect(static_cast<QDialog*>(ptr), static_cast<void (QDialog::*)()>(&QDialog::rejected), static_cast<MyQDialog*>(ptr), static_cast<void (MyQDialog::*)()>(&MyQDialog::Signal_Rejected));;
 }
 
-int QDialog_Result(QtObjectPtr ptr){
+int QDialog_Result(void* ptr){
 	return static_cast<QDialog*>(ptr)->result();
 }
 
-void QDialog_SetVisible(QtObjectPtr ptr, int visible){
+void QDialog_SetVisible(void* ptr, int visible){
 	static_cast<QDialog*>(ptr)->setVisible(visible != 0);
 }
 
-void QDialog_DestroyQDialog(QtObjectPtr ptr){
+void QDialog_DestroyQDialog(void* ptr){
 	static_cast<QDialog*>(ptr)->~QDialog();
 }
 

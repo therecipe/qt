@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QMoveEvent QMoveEvent::QMoveEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc82084d780 0xc82084d8a0] }
-&{oldPos QMoveEvent::oldPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & [] }
-&{pos QMoveEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & [] }
+&{QMoveEvent QMoveEvent::QMoveEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QMoveEvent(const QPoint &pos, const QPoint &oldPos) [0xc8208e9920 0xc8208e99e0] }
+&{oldPos QMoveEvent::oldPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & const QPoint & oldPos() const [] }
+&{pos QMoveEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & const QPoint & pos() const [] }
 ########################################			ENUMS			########################################

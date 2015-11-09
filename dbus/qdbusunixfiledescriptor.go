@@ -10,8 +10,8 @@ type QDBusUnixFileDescriptor struct {
 	ptr unsafe.Pointer
 }
 
-type QDBusUnixFileDescriptorITF interface {
-	QDBusUnixFileDescriptorPTR() *QDBusUnixFileDescriptor
+type QDBusUnixFileDescriptor_ITF interface {
+	QDBusUnixFileDescriptor_PTR() *QDBusUnixFileDescriptor
 }
 
 func (p *QDBusUnixFileDescriptor) Pointer() unsafe.Pointer {
@@ -22,38 +22,38 @@ func (p *QDBusUnixFileDescriptor) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQDBusUnixFileDescriptor(ptr QDBusUnixFileDescriptorITF) unsafe.Pointer {
+func PointerFromQDBusUnixFileDescriptor(ptr QDBusUnixFileDescriptor_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDBusUnixFileDescriptorPTR().Pointer()
+		return ptr.QDBusUnixFileDescriptor_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDBusUnixFileDescriptorFromPointer(ptr unsafe.Pointer) *QDBusUnixFileDescriptor {
+func NewQDBusUnixFileDescriptorFromPointer(ptr unsafe.Pointer) *QDBusUnixFileDescriptor {
 	var n = new(QDBusUnixFileDescriptor)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDBusUnixFileDescriptor) QDBusUnixFileDescriptorPTR() *QDBusUnixFileDescriptor {
+func (ptr *QDBusUnixFileDescriptor) QDBusUnixFileDescriptor_PTR() *QDBusUnixFileDescriptor {
 	return ptr
 }
 
 func NewQDBusUnixFileDescriptor() *QDBusUnixFileDescriptor {
-	return QDBusUnixFileDescriptorFromPointer(unsafe.Pointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor()))
+	return NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor())
 }
 
-func NewQDBusUnixFileDescriptor3(other QDBusUnixFileDescriptorITF) *QDBusUnixFileDescriptor {
-	return QDBusUnixFileDescriptorFromPointer(unsafe.Pointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor3(C.QtObjectPtr(PointerFromQDBusUnixFileDescriptor(other)))))
+func NewQDBusUnixFileDescriptor3(other QDBusUnixFileDescriptor_ITF) *QDBusUnixFileDescriptor {
+	return NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor3(PointerFromQDBusUnixFileDescriptor(other)))
 }
 
 func NewQDBusUnixFileDescriptor2(fileDescriptor int) *QDBusUnixFileDescriptor {
-	return QDBusUnixFileDescriptorFromPointer(unsafe.Pointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor2(C.int(fileDescriptor))))
+	return NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor2(C.int(fileDescriptor)))
 }
 
 func (ptr *QDBusUnixFileDescriptor) FileDescriptor() int {
 	if ptr.Pointer() != nil {
-		return int(C.QDBusUnixFileDescriptor_FileDescriptor(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QDBusUnixFileDescriptor_FileDescriptor(ptr.Pointer()))
 	}
 	return 0
 }
@@ -64,25 +64,25 @@ func QDBusUnixFileDescriptor_IsSupported() bool {
 
 func (ptr *QDBusUnixFileDescriptor) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusUnixFileDescriptor_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QDBusUnixFileDescriptor_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QDBusUnixFileDescriptor) SetFileDescriptor(fileDescriptor int) {
 	if ptr.Pointer() != nil {
-		C.QDBusUnixFileDescriptor_SetFileDescriptor(C.QtObjectPtr(ptr.Pointer()), C.int(fileDescriptor))
+		C.QDBusUnixFileDescriptor_SetFileDescriptor(ptr.Pointer(), C.int(fileDescriptor))
 	}
 }
 
-func (ptr *QDBusUnixFileDescriptor) Swap(other QDBusUnixFileDescriptorITF) {
+func (ptr *QDBusUnixFileDescriptor) Swap(other QDBusUnixFileDescriptor_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDBusUnixFileDescriptor_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQDBusUnixFileDescriptor(other)))
+		C.QDBusUnixFileDescriptor_Swap(ptr.Pointer(), PointerFromQDBusUnixFileDescriptor(other))
 	}
 }
 
 func (ptr *QDBusUnixFileDescriptor) DestroyQDBusUnixFileDescriptor() {
 	if ptr.Pointer() != nil {
-		C.QDBusUnixFileDescriptor_DestroyQDBusUnixFileDescriptor(C.QtObjectPtr(ptr.Pointer()))
+		C.QDBusUnixFileDescriptor_DestroyQDBusUnixFileDescriptor(ptr.Pointer())
 	}
 }

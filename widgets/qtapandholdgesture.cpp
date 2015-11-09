@@ -12,7 +12,7 @@ class MyQTapAndHoldGesture: public QTapAndHoldGesture {
 public:
 };
 
-void QTapAndHoldGesture_SetPosition(QtObjectPtr ptr, QtObjectPtr pos){
+void QTapAndHoldGesture_SetPosition(void* ptr, void* pos){
 	static_cast<QTapAndHoldGesture*>(ptr)->setPosition(*static_cast<QPointF*>(pos));
 }
 
@@ -24,7 +24,7 @@ int QTapAndHoldGesture_QTapAndHoldGesture_Timeout(){
 	return QTapAndHoldGesture::timeout();
 }
 
-void QTapAndHoldGesture_DestroyQTapAndHoldGesture(QtObjectPtr ptr){
+void QTapAndHoldGesture_DestroyQTapAndHoldGesture(void* ptr){
 	static_cast<QTapAndHoldGesture*>(ptr)->~QTapAndHoldGesture();
 }
 

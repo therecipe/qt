@@ -12,45 +12,45 @@ type QAmbientLightSensor struct {
 	QSensor
 }
 
-type QAmbientLightSensorITF interface {
-	QSensorITF
-	QAmbientLightSensorPTR() *QAmbientLightSensor
+type QAmbientLightSensor_ITF interface {
+	QSensor_ITF
+	QAmbientLightSensor_PTR() *QAmbientLightSensor
 }
 
-func PointerFromQAmbientLightSensor(ptr QAmbientLightSensorITF) unsafe.Pointer {
+func PointerFromQAmbientLightSensor(ptr QAmbientLightSensor_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAmbientLightSensorPTR().Pointer()
+		return ptr.QAmbientLightSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAmbientLightSensorFromPointer(ptr unsafe.Pointer) *QAmbientLightSensor {
+func NewQAmbientLightSensorFromPointer(ptr unsafe.Pointer) *QAmbientLightSensor {
 	var n = new(QAmbientLightSensor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAmbientLightSensor_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAmbientLightSensor) QAmbientLightSensorPTR() *QAmbientLightSensor {
+func (ptr *QAmbientLightSensor) QAmbientLightSensor_PTR() *QAmbientLightSensor {
 	return ptr
 }
 
 func (ptr *QAmbientLightSensor) Reading() *QAmbientLightReading {
 	if ptr.Pointer() != nil {
-		return QAmbientLightReadingFromPointer(unsafe.Pointer(C.QAmbientLightSensor_Reading(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAmbientLightReadingFromPointer(C.QAmbientLightSensor_Reading(ptr.Pointer()))
 	}
 	return nil
 }
 
-func NewQAmbientLightSensor(parent core.QObjectITF) *QAmbientLightSensor {
-	return QAmbientLightSensorFromPointer(unsafe.Pointer(C.QAmbientLightSensor_NewQAmbientLightSensor(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQAmbientLightSensor(parent core.QObject_ITF) *QAmbientLightSensor {
+	return NewQAmbientLightSensorFromPointer(C.QAmbientLightSensor_NewQAmbientLightSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensor() {
 	if ptr.Pointer() != nil {
-		C.QAmbientLightSensor_DestroyQAmbientLightSensor(C.QtObjectPtr(ptr.Pointer()))
+		C.QAmbientLightSensor_DestroyQAmbientLightSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

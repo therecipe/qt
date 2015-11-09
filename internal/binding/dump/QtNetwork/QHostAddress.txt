@@ -1,38 +1,38 @@
 ########################################			FUNCTIONS			########################################
-&{QHostAddress QHostAddress::QHostAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false false   [] }
-&{QHostAddress QHostAddress::QHostAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 9  [0xc8232b5180] }
-&{QHostAddress QHostAddress::QHostAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 8  [0xc8232b5400] }
-&{QHostAddress QHostAddress::QHostAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 7  [0xc8232b56a0] }
-&{QHostAddress QHostAddress::QHostAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 5  [0xc8232b5920] }
-&{QHostAddress QHostAddress::QHostAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 4  [0xc8232b5bc0] }
-&{QHostAddress QHostAddress::QHostAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 6  [0xc8232b5e00] }
-&{QHostAddress QHostAddress::QHostAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 2  [0xc82329c040] }
-&{QHostAddress QHostAddress::QHostAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 3  [0xc82329c2c0] }
-&{clear QHostAddress::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  void [] }
-&{isInSubnet QHostAddress::isInSubnet commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  bool [0xc82329c5e0 0xc82329c6c0] }
-&{isInSubnet QHostAddress::isInSubnet commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 2 bool [0xc82329c8e0] }
-&{isLoopback QHostAddress::isLoopback commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  bool [] }
-&{isNull QHostAddress::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  bool [] }
-&{operator!= QHostAddress::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 2 bool [0xc82329cdc0] }
-&{operator!= QHostAddress::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  bool [0xc82329cf80] }
-&{operator= QHostAddress::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  QHostAddress & [0xc82329d240] }
-&{operator= QHostAddress::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 2 QHostAddress & [0xc82329d4a0] }
-&{operator== QHostAddress::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 2 bool [0xc82329d660] }
-&{operator== QHostAddress::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  bool [0xc82329d8c0] }
-&{parseSubnet QHostAddress::parseSubnet commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain true false  QPair<QHostAddress, int> [0xc82329dc00] }
-&{protocol QHostAddress::protocol commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  QAbstractSocket::NetworkLayerProtocol [] }
-&{scopeId QHostAddress::scopeId commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  QString [] }
-&{setAddress QHostAddress::setAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 5 bool [0xc823288080] }
-&{setAddress QHostAddress::setAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 4 void [0xc8232882a0] }
-&{setAddress QHostAddress::setAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 3 void [0xc823288560] }
-&{setAddress QHostAddress::setAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 6 void [0xc823288760] }
-&{setAddress QHostAddress::setAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  void [0xc823288a00] }
-&{setAddress QHostAddress::setAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 2 void [0xc823288be0] }
-&{setScopeId QHostAddress::setScopeId commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  void [0xc823288e20] }
-&{toIPv4Address QHostAddress::toIPv4Address commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  quint32 [] }
-&{toIPv4Address QHostAddress::toIPv4Address commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 2 quint32 [0xc8232891c0] }
-&{toIPv6Address QHostAddress::toIPv6Address commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  Q_IPV6ADDR [] }
-&{toString QHostAddress::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  QString [] }
-&{~QHostAddress QHostAddress::~QHostAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non destructor false false   [] }
+&{QHostAddress QHostAddress::QHostAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false false   QHostAddress() [] }
+&{QHostAddress QHostAddress::QHostAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 9  QHostAddress(SpecialAddress address) [0xc8233e2900] }
+&{QHostAddress QHostAddress::QHostAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 8  QHostAddress(const QHostAddress &address) [0xc8233e2b80] }
+&{QHostAddress QHostAddress::QHostAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 7  QHostAddress(const QString &address) [0xc8233e2e20] }
+&{QHostAddress QHostAddress::QHostAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 5  QHostAddress(const Q_IPV6ADDR &ip6Addr) [0xc8233e30e0] }
+&{QHostAddress QHostAddress::QHostAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 4  QHostAddress(const quint8 *ip6Addr) [0xc8233e3340] }
+&{QHostAddress QHostAddress::QHostAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 6  QHostAddress(const sockaddr *sockaddr) [0xc8233e3580] }
+&{QHostAddress QHostAddress::QHostAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 2  QHostAddress(quint32 ip4Addr) [0xc8233e3820] }
+&{QHostAddress QHostAddress::QHostAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non constructor false true 3  QHostAddress(quint8 *ip6Addr) [0xc8233e3b20] }
+&{clear QHostAddress::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  void void clear() [] }
+&{isInSubnet QHostAddress::isInSubnet commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  bool bool isInSubnet(const QHostAddress &subnet, int netmask) const [0xc8233e3e40 0xc8233e3f00] }
+&{isInSubnet QHostAddress::isInSubnet commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 2 bool bool isInSubnet(const QPair<QHostAddress, int> &subnet) const [0xc8233ce0e0] }
+&{isLoopback QHostAddress::isLoopback commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  bool bool isLoopback() const [] }
+&{isNull QHostAddress::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  bool bool isNull() const [] }
+&{operator!= QHostAddress::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 2 bool bool operator!=(SpecialAddress other) const [0xc8233ce600] }
+&{operator!= QHostAddress::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  bool bool operator!=(const QHostAddress &other) const [0xc8233ce840] }
+&{operator= QHostAddress::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  QHostAddress & QHostAddress & operator=(const QHostAddress &address) [0xc8233ceb20] }
+&{operator= QHostAddress::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 2 QHostAddress & QHostAddress & operator=(const QString &address) [0xc8233ceda0] }
+&{operator== QHostAddress::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 2 bool bool operator==(SpecialAddress other) const [0xc8233cefc0] }
+&{operator== QHostAddress::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  bool bool operator==(const QHostAddress &other) const [0xc8233cf240] }
+&{parseSubnet QHostAddress::parseSubnet commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain true false  QPair<QHostAddress, int> QPair<QHostAddress, int> parseSubnet(const QString &subnet) [0xc8233cf580] }
+&{protocol QHostAddress::protocol commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  QAbstractSocket::NetworkLayerProtocol QAbstractSocket::NetworkLayerProtocol protocol() const [] }
+&{scopeId QHostAddress::scopeId commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  QString QString scopeId() const [] }
+&{setAddress QHostAddress::setAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 5 bool bool setAddress(const QString &address) [0xc8233cfa40] }
+&{setAddress QHostAddress::setAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 4 void void setAddress(const Q_IPV6ADDR &ip6Addr) [0xc8233cfca0] }
+&{setAddress QHostAddress::setAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 3 void void setAddress(const quint8 *ip6Addr) [0xc8233cff60] }
+&{setAddress QHostAddress::setAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 6 void void setAddress(const sockaddr *sockaddr) [0xc8233b81e0] }
+&{setAddress QHostAddress::setAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  void void setAddress(quint32 ip4Addr) [0xc8233b8460] }
+&{setAddress QHostAddress::setAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 2 void void setAddress(quint8 *ip6Addr) [0xc8233b8700] }
+&{setScopeId QHostAddress::setScopeId commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  void void setScopeId(const QString &id) [0xc8233b8900] }
+&{toIPv4Address QHostAddress::toIPv4Address commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  quint32 quint32 toIPv4Address() const [] }
+&{toIPv4Address QHostAddress::toIPv4Address commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false true 2 quint32 quint32 toIPv4Address(bool *ok) const [0xc8233b8ca0] }
+&{toIPv6Address QHostAddress::toIPv6Address commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  Q_IPV6ADDR Q_IPV6ADDR toIPv6Address() const [] }
+&{toString QHostAddress::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non plain false false  QString QString toString() const [] }
+&{~QHostAddress QHostAddress::~QHostAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostaddress.h non destructor false false   ~QHostAddress() [] }
 ########################################			ENUMS			########################################
-&{SpecialAddress QHostAddress::SpecialAddress commendable public  [0xc8232b49a0 0xc8232b4a80 0xc8232b4b20 0xc8232b4bc0 0xc8232b4c60 0xc8232b4d40 0xc8232b4de0]}
+&{SpecialAddress QHostAddress::SpecialAddress commendable public  [0xc8233e2140 0xc8233e21e0 0xc8233e2280 0xc8233e2320 0xc8233e2420 0xc8233e24c0 0xc8233e2540] false}

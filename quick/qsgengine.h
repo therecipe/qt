@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSGEngine_NewQSGEngine(QtObjectPtr parent);
-QtObjectPtr QSGEngine_CreateRenderer(QtObjectPtr ptr);
-QtObjectPtr QSGEngine_CreateTextureFromImage(QtObjectPtr ptr, QtObjectPtr image, int options);
-void QSGEngine_Initialize(QtObjectPtr ptr, QtObjectPtr context);
-void QSGEngine_Invalidate(QtObjectPtr ptr);
-void QSGEngine_DestroyQSGEngine(QtObjectPtr ptr);
+void* QSGEngine_NewQSGEngine(void* parent);
+void* QSGEngine_CreateRenderer(void* ptr);
+void* QSGEngine_CreateTextureFromImage(void* ptr, void* image, int options);
+void QSGEngine_Initialize(void* ptr, void* context);
+void QSGEngine_Invalidate(void* ptr);
+void QSGEngine_DestroyQSGEngine(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,18 +1,18 @@
 ########################################			FUNCTIONS			########################################
-&{QXmlSerializer QXmlSerializer::QXmlSerializer commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h non constructor false false   [0xc8234b2980 0xc8234b2a40] }
-&{atomicValue QXmlSerializer::atomicValue commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void [0xc8234b3220] }
-&{attribute QXmlSerializer::attribute commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void [0xc8234b3420 0xc8234b34c0] }
-&{characters QXmlSerializer::characters commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void [0xc8234b3780] }
-&{comment QXmlSerializer::comment commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void [0xc8234b39e0] }
-&{endDocument QXmlSerializer::endDocument commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void [] }
-&{endElement QXmlSerializer::endElement commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void [] }
-&{codec QXmlSerializer::codec commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h non plain false false  const QTextCodec * [] }
-&{endOfSequence QXmlSerializer::endOfSequence commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void [] }
-&{namespaceBinding QXmlSerializer::namespaceBinding commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void [0xc822502620] }
-&{outputDevice QXmlSerializer::outputDevice commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h non plain false false  QIODevice * [] }
-&{processingInstruction QXmlSerializer::processingInstruction commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void [0xc8225028c0 0xc822502940] }
-&{setCodec QXmlSerializer::setCodec commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h non plain false false  void [0xc822502b40] }
-&{startDocument QXmlSerializer::startDocument commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void [] }
-&{startElement QXmlSerializer::startElement commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void [0xc822502f20] }
-&{startOfSequence QXmlSerializer::startOfSequence commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void [] }
+&{QXmlSerializer QXmlSerializer::QXmlSerializer commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h non constructor false false   QXmlSerializer(const QXmlQuery &query, QIODevice *outputDevice) [0xc82363e020 0xc82363e1c0] }
+&{atomicValue QXmlSerializer::atomicValue commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void void atomicValue(const QVariant &value) [0xc82363eb60] }
+&{attribute QXmlSerializer::attribute commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void void attribute(const QXmlName &name, const QStringRef &value) [0xc82363eee0 0xc82363f060] }
+&{characters QXmlSerializer::characters commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void void characters(const QStringRef &value) [0xc82363f500] }
+&{comment QXmlSerializer::comment commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void void comment(const QString &value) [0xc82363f8a0] }
+&{endDocument QXmlSerializer::endDocument commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void void endDocument() [] }
+&{endElement QXmlSerializer::endElement commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void void endElement() [] }
+&{codec QXmlSerializer::codec commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h non plain false false  const QTextCodec * const QTextCodec * codec() const [] }
+&{endOfSequence QXmlSerializer::endOfSequence commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void void endOfSequence() [] }
+&{namespaceBinding QXmlSerializer::namespaceBinding commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void void namespaceBinding(const QXmlName &nb) [0xc8236258a0] }
+&{outputDevice QXmlSerializer::outputDevice commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h non plain false false  QIODevice * QIODevice * outputDevice() const [] }
+&{processingInstruction QXmlSerializer::processingInstruction commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void void processingInstruction(const QXmlName &name, const QString &value) [0xc823625f00 0xc823616000] }
+&{setCodec QXmlSerializer::setCodec commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h non plain false false  void void setCodec(const QTextCodec *outputCodec) [0xc823616400] }
+&{startDocument QXmlSerializer::startDocument commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void void startDocument() [] }
+&{startElement QXmlSerializer::startElement commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void void startElement(const QXmlName &name) [0xc823616be0] }
+&{startOfSequence QXmlSerializer::startOfSequence commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlserializer.h impure plain false false  void void startOfSequence() [] }
 ########################################			ENUMS			########################################

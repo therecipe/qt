@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{horizontalDirection QSwipeGesture::horizontalDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  SwipeDirection [] }
-&{setSwipeAngle QSwipeGesture::setSwipeAngle commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822ce00c0] }
-&{swipeAngle QSwipeGesture::swipeAngle commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal [] }
-&{verticalDirection QSwipeGesture::verticalDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  SwipeDirection [] }
-&{~QSwipeGesture QSwipeGesture::~QSwipeGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   [] }
+&{horizontalDirection QSwipeGesture::horizontalDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  SwipeDirection SwipeDirection horizontalDirection() const [] }
+&{setSwipeAngle QSwipeGesture::setSwipeAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setSwipeAngle(qreal value) [0xc8226648c0] }
+&{swipeAngle QSwipeGesture::swipeAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal qreal swipeAngle() const [] }
+&{verticalDirection QSwipeGesture::verticalDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  SwipeDirection SwipeDirection verticalDirection() const [] }
+&{~QSwipeGesture QSwipeGesture::~QSwipeGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   ~QSwipeGesture() [] }
 ########################################			ENUMS			########################################
-&{SwipeDirection QSwipeGesture::SwipeDirection commendable public  [0xc822ce0640 0xc822ce0720 0xc822ce0860 0xc822ce0920 0xc822ce0a20]}
+&{SwipeDirection QSwipeGesture::SwipeDirection commendable public  [0xc822664e40 0xc822664f20 0xc822664fc0 0xc822665060 0xc822665100] false}

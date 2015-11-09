@@ -1,17 +1,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGeoPositionInfo_NewQGeoPositionInfo();
-QtObjectPtr QGeoPositionInfo_NewQGeoPositionInfo2(QtObjectPtr coordinate, QtObjectPtr timestamp);
-QtObjectPtr QGeoPositionInfo_NewQGeoPositionInfo3(QtObjectPtr other);
-int QGeoPositionInfo_HasAttribute(QtObjectPtr ptr, int attribute);
-int QGeoPositionInfo_IsValid(QtObjectPtr ptr);
-void QGeoPositionInfo_RemoveAttribute(QtObjectPtr ptr, int attribute);
-void QGeoPositionInfo_SetCoordinate(QtObjectPtr ptr, QtObjectPtr coordinate);
-void QGeoPositionInfo_SetTimestamp(QtObjectPtr ptr, QtObjectPtr timestamp);
-void QGeoPositionInfo_DestroyQGeoPositionInfo(QtObjectPtr ptr);
+void* QGeoPositionInfo_NewQGeoPositionInfo();
+void* QGeoPositionInfo_NewQGeoPositionInfo2(void* coordinate, void* timestamp);
+void* QGeoPositionInfo_NewQGeoPositionInfo3(void* other);
+double QGeoPositionInfo_Attribute(void* ptr, int attribute);
+int QGeoPositionInfo_HasAttribute(void* ptr, int attribute);
+int QGeoPositionInfo_IsValid(void* ptr);
+void QGeoPositionInfo_RemoveAttribute(void* ptr, int attribute);
+void QGeoPositionInfo_SetAttribute(void* ptr, int attribute, double value);
+void QGeoPositionInfo_SetCoordinate(void* ptr, void* coordinate);
+void QGeoPositionInfo_SetTimestamp(void* ptr, void* timestamp);
+void* QGeoPositionInfo_Timestamp(void* ptr);
+void QGeoPositionInfo_DestroyQGeoPositionInfo(void* ptr);
 
 #ifdef __cplusplus
 }

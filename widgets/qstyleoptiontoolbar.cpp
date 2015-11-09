@@ -1,10 +1,10 @@
 #include "qstyleoptiontoolbar.h"
+#include <QVariant>
+#include <QUrl>
 #include <QModelIndex>
 #include <QStyleOption>
 #include <QStyle>
 #include <QString>
-#include <QVariant>
-#include <QUrl>
 #include <QStyleOptionToolBar>
 #include "_cgo_export.h"
 
@@ -12,11 +12,11 @@ class MyQStyleOptionToolBar: public QStyleOptionToolBar {
 public:
 };
 
-QtObjectPtr QStyleOptionToolBar_NewQStyleOptionToolBar(){
+void* QStyleOptionToolBar_NewQStyleOptionToolBar(){
 	return new QStyleOptionToolBar();
 }
 
-QtObjectPtr QStyleOptionToolBar_NewQStyleOptionToolBar2(QtObjectPtr other){
+void* QStyleOptionToolBar_NewQStyleOptionToolBar2(void* other){
 	return new QStyleOptionToolBar(*static_cast<QStyleOptionToolBar*>(other));
 }
 

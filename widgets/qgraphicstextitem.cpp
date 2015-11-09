@@ -1,21 +1,21 @@
 #include "qgraphicstextitem.h"
-#include <QGraphicsItem>
-#include <QStyleOptionGraphicsItem>
-#include <QStyle>
-#include <QObject>
 #include <QWidget>
-#include <QTextCursor>
-#include <QString>
-#include <QColor>
 #include <QTextDocument>
-#include <QStyleOption>
-#include <QFont>
+#include <QGraphicsItem>
+#include <QString>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPoint>
-#include <QPointF>
-#include <QVariant>
 #include <QPainter>
+#include <QPointF>
+#include <QStyleOptionGraphicsItem>
+#include <QColor>
+#include <QObject>
+#include <QVariant>
+#include <QStyle>
+#include <QTextCursor>
+#include <QPoint>
+#include <QFont>
+#include <QStyleOption>
 #include <QGraphicsTextItem>
 #include "_cgo_export.h"
 
@@ -25,111 +25,115 @@ void Signal_LinkActivated(const QString & link){callbackQGraphicsTextItemLinkAct
 void Signal_LinkHovered(const QString & link){callbackQGraphicsTextItemLinkHovered(this->objectName().toUtf8().data(), link.toUtf8().data());};
 };
 
-int QGraphicsTextItem_OpenExternalLinks(QtObjectPtr ptr){
+int QGraphicsTextItem_OpenExternalLinks(void* ptr){
 	return static_cast<QGraphicsTextItem*>(ptr)->openExternalLinks();
 }
 
-void QGraphicsTextItem_SetOpenExternalLinks(QtObjectPtr ptr, int open){
+void QGraphicsTextItem_SetOpenExternalLinks(void* ptr, int open){
 	static_cast<QGraphicsTextItem*>(ptr)->setOpenExternalLinks(open != 0);
 }
 
-void QGraphicsTextItem_SetTextCursor(QtObjectPtr ptr, QtObjectPtr cursor){
+void QGraphicsTextItem_SetTextCursor(void* ptr, void* cursor){
 	static_cast<QGraphicsTextItem*>(ptr)->setTextCursor(*static_cast<QTextCursor*>(cursor));
 }
 
-QtObjectPtr QGraphicsTextItem_NewQGraphicsTextItem(QtObjectPtr parent){
-	return new QGraphicsTextItem(static_cast<QGraphicsItem*>(parent));
-}
-
-QtObjectPtr QGraphicsTextItem_NewQGraphicsTextItem2(char* text, QtObjectPtr parent){
-	return new QGraphicsTextItem(QString(text), static_cast<QGraphicsItem*>(parent));
-}
-
-void QGraphicsTextItem_AdjustSize(QtObjectPtr ptr){
+void QGraphicsTextItem_AdjustSize(void* ptr){
 	static_cast<QGraphicsTextItem*>(ptr)->adjustSize();
 }
 
-int QGraphicsTextItem_Contains(QtObjectPtr ptr, QtObjectPtr point){
+int QGraphicsTextItem_Contains(void* ptr, void* point){
 	return static_cast<QGraphicsTextItem*>(ptr)->contains(*static_cast<QPointF*>(point));
 }
 
-QtObjectPtr QGraphicsTextItem_Document(QtObjectPtr ptr){
+void* QGraphicsTextItem_DefaultTextColor(void* ptr){
+	return new QColor(static_cast<QGraphicsTextItem*>(ptr)->defaultTextColor());
+}
+
+void* QGraphicsTextItem_Document(void* ptr){
 	return static_cast<QGraphicsTextItem*>(ptr)->document();
 }
 
-int QGraphicsTextItem_IsObscuredBy(QtObjectPtr ptr, QtObjectPtr item){
+int QGraphicsTextItem_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QGraphicsTextItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
 }
 
-void QGraphicsTextItem_ConnectLinkActivated(QtObjectPtr ptr){
+void QGraphicsTextItem_ConnectLinkActivated(void* ptr){
 	QObject::connect(static_cast<QGraphicsTextItem*>(ptr), static_cast<void (QGraphicsTextItem::*)(const QString &)>(&QGraphicsTextItem::linkActivated), static_cast<MyQGraphicsTextItem*>(ptr), static_cast<void (MyQGraphicsTextItem::*)(const QString &)>(&MyQGraphicsTextItem::Signal_LinkActivated));;
 }
 
-void QGraphicsTextItem_DisconnectLinkActivated(QtObjectPtr ptr){
+void QGraphicsTextItem_DisconnectLinkActivated(void* ptr){
 	QObject::disconnect(static_cast<QGraphicsTextItem*>(ptr), static_cast<void (QGraphicsTextItem::*)(const QString &)>(&QGraphicsTextItem::linkActivated), static_cast<MyQGraphicsTextItem*>(ptr), static_cast<void (MyQGraphicsTextItem::*)(const QString &)>(&MyQGraphicsTextItem::Signal_LinkActivated));;
 }
 
-void QGraphicsTextItem_ConnectLinkHovered(QtObjectPtr ptr){
+void QGraphicsTextItem_ConnectLinkHovered(void* ptr){
 	QObject::connect(static_cast<QGraphicsTextItem*>(ptr), static_cast<void (QGraphicsTextItem::*)(const QString &)>(&QGraphicsTextItem::linkHovered), static_cast<MyQGraphicsTextItem*>(ptr), static_cast<void (MyQGraphicsTextItem::*)(const QString &)>(&MyQGraphicsTextItem::Signal_LinkHovered));;
 }
 
-void QGraphicsTextItem_DisconnectLinkHovered(QtObjectPtr ptr){
+void QGraphicsTextItem_DisconnectLinkHovered(void* ptr){
 	QObject::disconnect(static_cast<QGraphicsTextItem*>(ptr), static_cast<void (QGraphicsTextItem::*)(const QString &)>(&QGraphicsTextItem::linkHovered), static_cast<MyQGraphicsTextItem*>(ptr), static_cast<void (MyQGraphicsTextItem::*)(const QString &)>(&MyQGraphicsTextItem::Signal_LinkHovered));;
 }
 
-void QGraphicsTextItem_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr widget){
+void QGraphicsTextItem_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<QGraphicsTextItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
 
-void QGraphicsTextItem_SetDefaultTextColor(QtObjectPtr ptr, QtObjectPtr col){
+void QGraphicsTextItem_SetDefaultTextColor(void* ptr, void* col){
 	static_cast<QGraphicsTextItem*>(ptr)->setDefaultTextColor(*static_cast<QColor*>(col));
 }
 
-void QGraphicsTextItem_SetDocument(QtObjectPtr ptr, QtObjectPtr document){
+void QGraphicsTextItem_SetDocument(void* ptr, void* document){
 	static_cast<QGraphicsTextItem*>(ptr)->setDocument(static_cast<QTextDocument*>(document));
 }
 
-void QGraphicsTextItem_SetFont(QtObjectPtr ptr, QtObjectPtr font){
+void QGraphicsTextItem_SetFont(void* ptr, void* font){
 	static_cast<QGraphicsTextItem*>(ptr)->setFont(*static_cast<QFont*>(font));
 }
 
-void QGraphicsTextItem_SetHtml(QtObjectPtr ptr, char* text){
+void QGraphicsTextItem_SetHtml(void* ptr, char* text){
 	static_cast<QGraphicsTextItem*>(ptr)->setHtml(QString(text));
 }
 
-void QGraphicsTextItem_SetPlainText(QtObjectPtr ptr, char* text){
+void QGraphicsTextItem_SetPlainText(void* ptr, char* text){
 	static_cast<QGraphicsTextItem*>(ptr)->setPlainText(QString(text));
 }
 
-void QGraphicsTextItem_SetTabChangesFocus(QtObjectPtr ptr, int b){
+void QGraphicsTextItem_SetTabChangesFocus(void* ptr, int b){
 	static_cast<QGraphicsTextItem*>(ptr)->setTabChangesFocus(b != 0);
 }
 
-void QGraphicsTextItem_SetTextInteractionFlags(QtObjectPtr ptr, int flags){
+void QGraphicsTextItem_SetTextInteractionFlags(void* ptr, int flags){
 	static_cast<QGraphicsTextItem*>(ptr)->setTextInteractionFlags(static_cast<Qt::TextInteractionFlag>(flags));
 }
 
-int QGraphicsTextItem_TabChangesFocus(QtObjectPtr ptr){
+void QGraphicsTextItem_SetTextWidth(void* ptr, double width){
+	static_cast<QGraphicsTextItem*>(ptr)->setTextWidth(static_cast<qreal>(width));
+}
+
+int QGraphicsTextItem_TabChangesFocus(void* ptr){
 	return static_cast<QGraphicsTextItem*>(ptr)->tabChangesFocus();
 }
 
-int QGraphicsTextItem_TextInteractionFlags(QtObjectPtr ptr){
+int QGraphicsTextItem_TextInteractionFlags(void* ptr){
 	return static_cast<QGraphicsTextItem*>(ptr)->textInteractionFlags();
 }
 
-char* QGraphicsTextItem_ToHtml(QtObjectPtr ptr){
+double QGraphicsTextItem_TextWidth(void* ptr){
+	return static_cast<double>(static_cast<QGraphicsTextItem*>(ptr)->textWidth());
+}
+
+char* QGraphicsTextItem_ToHtml(void* ptr){
 	return static_cast<QGraphicsTextItem*>(ptr)->toHtml().toUtf8().data();
 }
 
-char* QGraphicsTextItem_ToPlainText(QtObjectPtr ptr){
+char* QGraphicsTextItem_ToPlainText(void* ptr){
 	return static_cast<QGraphicsTextItem*>(ptr)->toPlainText().toUtf8().data();
 }
 
-int QGraphicsTextItem_Type(QtObjectPtr ptr){
+int QGraphicsTextItem_Type(void* ptr){
 	return static_cast<QGraphicsTextItem*>(ptr)->type();
 }
 
-void QGraphicsTextItem_DestroyQGraphicsTextItem(QtObjectPtr ptr){
+void QGraphicsTextItem_DestroyQGraphicsTextItem(void* ptr){
 	static_cast<QGraphicsTextItem*>(ptr)->~QGraphicsTextItem();
 }
 

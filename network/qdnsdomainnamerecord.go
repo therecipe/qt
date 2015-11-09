@@ -10,8 +10,8 @@ type QDnsDomainNameRecord struct {
 	ptr unsafe.Pointer
 }
 
-type QDnsDomainNameRecordITF interface {
-	QDnsDomainNameRecordPTR() *QDnsDomainNameRecord
+type QDnsDomainNameRecord_ITF interface {
+	QDnsDomainNameRecord_PTR() *QDnsDomainNameRecord
 }
 
 func (p *QDnsDomainNameRecord) Pointer() unsafe.Pointer {
@@ -22,53 +22,53 @@ func (p *QDnsDomainNameRecord) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQDnsDomainNameRecord(ptr QDnsDomainNameRecordITF) unsafe.Pointer {
+func PointerFromQDnsDomainNameRecord(ptr QDnsDomainNameRecord_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDnsDomainNameRecordPTR().Pointer()
+		return ptr.QDnsDomainNameRecord_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDnsDomainNameRecordFromPointer(ptr unsafe.Pointer) *QDnsDomainNameRecord {
+func NewQDnsDomainNameRecordFromPointer(ptr unsafe.Pointer) *QDnsDomainNameRecord {
 	var n = new(QDnsDomainNameRecord)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDnsDomainNameRecord) QDnsDomainNameRecordPTR() *QDnsDomainNameRecord {
+func (ptr *QDnsDomainNameRecord) QDnsDomainNameRecord_PTR() *QDnsDomainNameRecord {
 	return ptr
 }
 
 func NewQDnsDomainNameRecord() *QDnsDomainNameRecord {
-	return QDnsDomainNameRecordFromPointer(unsafe.Pointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord()))
+	return NewQDnsDomainNameRecordFromPointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord())
 }
 
-func NewQDnsDomainNameRecord2(other QDnsDomainNameRecordITF) *QDnsDomainNameRecord {
-	return QDnsDomainNameRecordFromPointer(unsafe.Pointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord2(C.QtObjectPtr(PointerFromQDnsDomainNameRecord(other)))))
+func NewQDnsDomainNameRecord2(other QDnsDomainNameRecord_ITF) *QDnsDomainNameRecord {
+	return NewQDnsDomainNameRecordFromPointer(C.QDnsDomainNameRecord_NewQDnsDomainNameRecord2(PointerFromQDnsDomainNameRecord(other)))
 }
 
 func (ptr *QDnsDomainNameRecord) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDnsDomainNameRecord_Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QDnsDomainNameRecord_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QDnsDomainNameRecord) Swap(other QDnsDomainNameRecordITF) {
+func (ptr *QDnsDomainNameRecord) Swap(other QDnsDomainNameRecord_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDnsDomainNameRecord_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQDnsDomainNameRecord(other)))
+		C.QDnsDomainNameRecord_Swap(ptr.Pointer(), PointerFromQDnsDomainNameRecord(other))
 	}
 }
 
 func (ptr *QDnsDomainNameRecord) Value() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDnsDomainNameRecord_Value(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QDnsDomainNameRecord_Value(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDnsDomainNameRecord) DestroyQDnsDomainNameRecord() {
 	if ptr.Pointer() != nil {
-		C.QDnsDomainNameRecord_DestroyQDnsDomainNameRecord(C.QtObjectPtr(ptr.Pointer()))
+		C.QDnsDomainNameRecord_DestroyQDnsDomainNameRecord(ptr.Pointer())
 	}
 }

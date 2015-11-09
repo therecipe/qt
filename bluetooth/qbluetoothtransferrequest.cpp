@@ -1,9 +1,9 @@
 #include "qbluetoothtransferrequest.h"
+#include <QModelIndex>
+#include <QBluetoothAddress>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QBluetoothAddress>
 #include <QBluetoothTransferRequest>
 #include "_cgo_export.h"
 
@@ -11,23 +11,23 @@ class MyQBluetoothTransferRequest: public QBluetoothTransferRequest {
 public:
 };
 
-QtObjectPtr QBluetoothTransferRequest_NewQBluetoothTransferRequest(QtObjectPtr address){
+void* QBluetoothTransferRequest_NewQBluetoothTransferRequest(void* address){
 	return new QBluetoothTransferRequest(*static_cast<QBluetoothAddress*>(address));
 }
 
-QtObjectPtr QBluetoothTransferRequest_NewQBluetoothTransferRequest2(QtObjectPtr other){
+void* QBluetoothTransferRequest_NewQBluetoothTransferRequest2(void* other){
 	return new QBluetoothTransferRequest(*static_cast<QBluetoothTransferRequest*>(other));
 }
 
-char* QBluetoothTransferRequest_Attribute(QtObjectPtr ptr, int code, char* defaultValue){
-	return static_cast<QBluetoothTransferRequest*>(ptr)->attribute(static_cast<QBluetoothTransferRequest::Attribute>(code), QVariant(defaultValue)).toString().toUtf8().data();
+void* QBluetoothTransferRequest_Attribute(void* ptr, int code, void* defaultValue){
+	return new QVariant(static_cast<QBluetoothTransferRequest*>(ptr)->attribute(static_cast<QBluetoothTransferRequest::Attribute>(code), *static_cast<QVariant*>(defaultValue)));
 }
 
-void QBluetoothTransferRequest_SetAttribute(QtObjectPtr ptr, int code, char* value){
-	static_cast<QBluetoothTransferRequest*>(ptr)->setAttribute(static_cast<QBluetoothTransferRequest::Attribute>(code), QVariant(value));
+void QBluetoothTransferRequest_SetAttribute(void* ptr, int code, void* value){
+	static_cast<QBluetoothTransferRequest*>(ptr)->setAttribute(static_cast<QBluetoothTransferRequest::Attribute>(code), *static_cast<QVariant*>(value));
 }
 
-void QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(QtObjectPtr ptr){
+void QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(void* ptr){
 	static_cast<QBluetoothTransferRequest*>(ptr)->~QBluetoothTransferRequest();
 }
 

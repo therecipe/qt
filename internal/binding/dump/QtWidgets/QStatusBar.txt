@@ -1,21 +1,21 @@
 ########################################			FUNCTIONS			########################################
-&{isSizeGripEnabled QStatusBar::isSizeGripEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.cpp non plain false false  bool [] }
-&{paintEvent QStatusBar::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.cpp impure plain false false  void [0xc821d83700] }
-&{setSizeGripEnabled QStatusBar::setSizeGripEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.cpp non plain false false  void [0xc821d83b80] }
-&{QStatusBar QStatusBar::QStatusBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non constructor false false   [0xc821d83f20] }
-&{addPermanentWidget QStatusBar::addPermanentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  void [0xc821398300 0xc8213983a0] }
-&{addWidget QStatusBar::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  void [0xc821398660 0xc821398760] }
-&{clearMessage QStatusBar::clearMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non slot false false  void [] }
-&{currentMessage QStatusBar::currentMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  QString [] }
-&{event QStatusBar::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h impure plain false false  bool [0xc821398da0] }
-&{hideOrShow QStatusBar::hideOrShow commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  void [] }
-&{insertPermanentWidget QStatusBar::insertPermanentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  int [0xc8213991a0 0xc821399260 0xc821399320] }
-&{insertWidget QStatusBar::insertWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  int [0xc8213995a0 0xc821399680 0xc821399700] }
-&{messageChanged QStatusBar::messageChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non signal false false  void [0xc8213999e0] }
-&{reformat QStatusBar::reformat commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  void [] }
-&{removeWidget QStatusBar::removeWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  void [0xc821399e60] }
-&{resizeEvent QStatusBar::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h impure plain false false  void [0xc821eda160] }
-&{showEvent QStatusBar::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h impure plain false false  void [0xc821eda480] }
-&{showMessage QStatusBar::showMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non slot false false  void [0xc821eda7e0 0xc821eda960] }
-&{~QStatusBar QStatusBar::~QStatusBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h impure destructor false false   [] }
+&{isSizeGripEnabled QStatusBar::isSizeGripEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.cpp non plain false false  bool bool isSizeGripEnabled() const [] }
+&{paintEvent QStatusBar::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.cpp impure plain false false  void void paintEvent(QPaintEvent *event) [0xc820dc5300] }
+&{setSizeGripEnabled QStatusBar::setSizeGripEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.cpp non plain false false  void void setSizeGripEnabled(bool ) [0xc820dc5620] }
+&{QStatusBar QStatusBar::QStatusBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non constructor false false   QStatusBar(QWidget *parent) [0xc820dc58a0] }
+&{addPermanentWidget QStatusBar::addPermanentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  void void addPermanentWidget(QWidget *widget, int stretch) [0xc820dc5b40 0xc820dc5bc0] }
+&{addWidget QStatusBar::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  void void addWidget(QWidget *widget, int stretch) [0xc820dc5d80 0xc820dc5e20] }
+&{clearMessage QStatusBar::clearMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non slot false false  void void clearMessage() [] }
+&{currentMessage QStatusBar::currentMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  QString QString currentMessage() const [] }
+&{event QStatusBar::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h impure plain false false  bool bool event(QEvent *e) [0xc820bca440] }
+&{hideOrShow QStatusBar::hideOrShow commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  void void hideOrShow() [] }
+&{insertPermanentWidget QStatusBar::insertPermanentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  int int insertPermanentWidget(int index, QWidget *widget, int stretch) [0xc820bca820 0xc820bca8a0 0xc820bca940] }
+&{insertWidget QStatusBar::insertWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  int int insertWidget(int index, QWidget *widget, int stretch) [0xc820bcab80 0xc820bcac40 0xc820bcacc0] }
+&{messageChanged QStatusBar::messageChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non signal false false  void void messageChanged(const QString &message) [0xc820bcaf20] }
+&{reformat QStatusBar::reformat commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  void void reformat() [] }
+&{removeWidget QStatusBar::removeWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non plain false false  void void removeWidget(QWidget *widget) [0xc820bcb280] }
+&{resizeEvent QStatusBar::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h impure plain false false  void void resizeEvent(QResizeEvent *e) [0xc820bcb500] }
+&{showEvent QStatusBar::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h impure plain false false  void void showEvent(QShowEvent *) [0xc820bcb7c0] }
+&{showMessage QStatusBar::showMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h non slot false false  void void showMessage(const QString &message, int timeout) [0xc820bcb9e0 0xc820bcba80] }
+&{~QStatusBar QStatusBar::~QStatusBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstatusbar.h impure destructor false false   ~QStatusBar() [] }
 ########################################			ENUMS			########################################

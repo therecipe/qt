@@ -1,19 +1,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QHistoryState_NewQHistoryState2(int ty, QtObjectPtr parent);
-QtObjectPtr QHistoryState_NewQHistoryState(QtObjectPtr parent);
-QtObjectPtr QHistoryState_DefaultState(QtObjectPtr ptr);
-void QHistoryState_ConnectDefaultStateChanged(QtObjectPtr ptr);
-void QHistoryState_DisconnectDefaultStateChanged(QtObjectPtr ptr);
-int QHistoryState_HistoryType(QtObjectPtr ptr);
-void QHistoryState_ConnectHistoryTypeChanged(QtObjectPtr ptr);
-void QHistoryState_DisconnectHistoryTypeChanged(QtObjectPtr ptr);
-void QHistoryState_SetDefaultState(QtObjectPtr ptr, QtObjectPtr state);
-void QHistoryState_SetHistoryType(QtObjectPtr ptr, int ty);
-void QHistoryState_DestroyQHistoryState(QtObjectPtr ptr);
+void* QHistoryState_NewQHistoryState2(int ty, void* parent);
+void* QHistoryState_NewQHistoryState(void* parent);
+void* QHistoryState_DefaultState(void* ptr);
+void QHistoryState_ConnectDefaultStateChanged(void* ptr);
+void QHistoryState_DisconnectDefaultStateChanged(void* ptr);
+int QHistoryState_HistoryType(void* ptr);
+void QHistoryState_ConnectHistoryTypeChanged(void* ptr);
+void QHistoryState_DisconnectHistoryTypeChanged(void* ptr);
+void QHistoryState_SetDefaultState(void* ptr, void* state);
+void QHistoryState_SetHistoryType(void* ptr, int ty);
+void QHistoryState_DestroyQHistoryState(void* ptr);
 
 #ifdef __cplusplus
 }

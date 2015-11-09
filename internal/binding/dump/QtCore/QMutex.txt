@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{lock QMutex::lock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.cpp non plain false false  void [] }
-&{tryLock QMutex::tryLock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.cpp non plain false false  bool [0xc820700b40] }
-&{unlock QMutex::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.cpp non plain false false  void [] }
-&{QMutex QMutex::QMutex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.h non constructor false false   [0xc820700fc0] }
-&{isRecursive QMutex::isRecursive commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.h non plain false false  bool [] }
+&{lock QMutex::lock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.cpp non plain false false  void void lock() [] }
+&{tryLock QMutex::tryLock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.cpp non plain false false  bool bool tryLock(int timeout) [0xc8207541a0] }
+&{unlock QMutex::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.cpp non plain false false  void void unlock() [] }
+&{QMutex QMutex::QMutex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.h non constructor false false   QMutex(RecursionMode mode) [0xc820754660] }
+&{isRecursive QMutex::isRecursive commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.h non plain false false  bool bool isRecursive() [] }
 ########################################			ENUMS			########################################
-&{RecursionMode QMutex::RecursionMode commendable public  [0xc820700dc0 0xc820700e40]}
+&{RecursionMode QMutex::RecursionMode commendable public  [0xc820754420 0xc8207544a0] false}

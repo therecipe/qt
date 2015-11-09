@@ -1,24 +1,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDrag_NewQDrag(QtObjectPtr dragSource);
-void QDrag_ConnectActionChanged(QtObjectPtr ptr);
-void QDrag_DisconnectActionChanged(QtObjectPtr ptr);
-int QDrag_Exec(QtObjectPtr ptr, int supportedActions);
-int QDrag_Exec2(QtObjectPtr ptr, int supportedActions, int defaultDropAction);
-QtObjectPtr QDrag_MimeData(QtObjectPtr ptr);
-void QDrag_SetDragCursor(QtObjectPtr ptr, QtObjectPtr cursor, int action);
-void QDrag_SetHotSpot(QtObjectPtr ptr, QtObjectPtr hotspot);
-void QDrag_SetMimeData(QtObjectPtr ptr, QtObjectPtr data);
-void QDrag_SetPixmap(QtObjectPtr ptr, QtObjectPtr pixmap);
-QtObjectPtr QDrag_Source(QtObjectPtr ptr);
-int QDrag_SupportedActions(QtObjectPtr ptr);
-QtObjectPtr QDrag_Target(QtObjectPtr ptr);
-void QDrag_ConnectTargetChanged(QtObjectPtr ptr);
-void QDrag_DisconnectTargetChanged(QtObjectPtr ptr);
-void QDrag_DestroyQDrag(QtObjectPtr ptr);
+void* QDrag_NewQDrag(void* dragSource);
+void QDrag_ConnectActionChanged(void* ptr);
+void QDrag_DisconnectActionChanged(void* ptr);
+int QDrag_Exec(void* ptr, int supportedActions);
+int QDrag_Exec2(void* ptr, int supportedActions, int defaultDropAction);
+void* QDrag_MimeData(void* ptr);
+void QDrag_SetDragCursor(void* ptr, void* cursor, int action);
+void QDrag_SetHotSpot(void* ptr, void* hotspot);
+void QDrag_SetMimeData(void* ptr, void* data);
+void QDrag_SetPixmap(void* ptr, void* pixmap);
+void* QDrag_Source(void* ptr);
+int QDrag_SupportedActions(void* ptr);
+void* QDrag_Target(void* ptr);
+void QDrag_ConnectTargetChanged(void* ptr);
+void QDrag_DisconnectTargetChanged(void* ptr);
+void QDrag_DestroyQDrag(void* ptr);
 
 #ifdef __cplusplus
 }

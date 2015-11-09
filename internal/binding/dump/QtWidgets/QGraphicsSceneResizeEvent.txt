@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QGraphicsSceneResizeEvent QGraphicsSceneResizeEvent::QGraphicsSceneResizeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non constructor false false   [] }
-&{newSize QGraphicsSceneResizeEvent::newSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QSizeF [] }
-&{oldSize QGraphicsSceneResizeEvent::oldSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QSizeF [] }
-&{~QGraphicsSceneResizeEvent QGraphicsSceneResizeEvent::~QGraphicsSceneResizeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   [] }
+&{QGraphicsSceneResizeEvent QGraphicsSceneResizeEvent::QGraphicsSceneResizeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non constructor false false   QGraphicsSceneResizeEvent() [] }
+&{newSize QGraphicsSceneResizeEvent::newSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QSizeF QSizeF newSize() const [] }
+&{oldSize QGraphicsSceneResizeEvent::oldSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QSizeF QSizeF oldSize() const [] }
+&{~QGraphicsSceneResizeEvent QGraphicsSceneResizeEvent::~QGraphicsSceneResizeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   ~QGraphicsSceneResizeEvent() [] }
 ########################################			ENUMS			########################################

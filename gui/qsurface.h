@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QSurface_SupportsOpenGL(QtObjectPtr ptr);
-int QSurface_SurfaceClass(QtObjectPtr ptr);
-int QSurface_SurfaceType(QtObjectPtr ptr);
-void QSurface_DestroyQSurface(QtObjectPtr ptr);
+int QSurface_SupportsOpenGL(void* ptr);
+int QSurface_SurfaceClass(void* ptr);
+int QSurface_SurfaceType(void* ptr);
+void QSurface_DestroyQSurface(void* ptr);
 
 #ifdef __cplusplus
 }

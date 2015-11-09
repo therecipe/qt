@@ -1,12 +1,12 @@
 package qt
 
 import (
-	"C"
-	"crypto/rand"
-	"encoding/base64"
 	"fmt"
 	"runtime"
 	"strings"
+	"time"
+
+	_ "github.com/therecipe/qt/internal/android/cgo"
 )
 
 var signalTable = make(map[string]interface{})
@@ -14,21 +14,21 @@ var signalTable = make(map[string]interface{})
 func init() { runtime.LockOSThread() }
 
 func ConnectSignal(name string, signal string, function interface{}) {
-	signalTable[name+":"+signal] = function
+	signalTable[fmt.Sprintf("%v:%v", name, signal)] = function
 }
 
 func GetSignal(name string, signal string) interface{} {
 	if signal == "destroyed" {
-		defer disconnectAllSignals(name)
+		defer DisconnectAllSignals(name)
 	}
-	return signalTable[name+":"+signal]
+	return signalTable[fmt.Sprintf("%v:%v", name, signal)]
 }
 
 func DisconnectSignal(name string, signal string) {
-	delete(signalTable, name+":"+signal)
+	delete(signalTable, fmt.Sprintf("%v:%v", name, signal))
 }
 
-func disconnectAllSignals(name string) {
+func DisconnectAllSignals(name string) {
 	for entry := range signalTable {
 		if strings.Contains(entry, name) {
 			delete(signalTable, entry)
@@ -37,20 +37,15 @@ func disconnectAllSignals(name string) {
 }
 
 func RandomIdentifier() string {
-	var (
-		length = 15
-		b      = make([]byte, length)
-	)
-	rand.Read(b)
-	return base64.URLEncoding.EncodeToString(b)[:length]
+	return fmt.Sprint(time.Now().UnixNano())
 }
 
 func DumpSignalTable() {
-	fmt.Println("************ DUMP-SIGNALTABLE ************")
+	println("##############################\tDUMP_SIGNALTABLE_START\t##############################")
 	for entry := range signalTable {
-		fmt.Println(entry)
+		println(entry)
 	}
-	fmt.Println("************ DUMP-SIGNALTABLE ************")
+	println("##############################\tDUMP_SIGNALTABLE_END\t##############################")
 }
 
 func GoBoolToInt(b bool) int {

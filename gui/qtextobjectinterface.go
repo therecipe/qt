@@ -11,8 +11,8 @@ type QTextObjectInterface struct {
 	ptr unsafe.Pointer
 }
 
-type QTextObjectInterfaceITF interface {
-	QTextObjectInterfacePTR() *QTextObjectInterface
+type QTextObjectInterface_ITF interface {
+	QTextObjectInterface_PTR() *QTextObjectInterface
 }
 
 func (p *QTextObjectInterface) Pointer() unsafe.Pointer {
@@ -23,31 +23,31 @@ func (p *QTextObjectInterface) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQTextObjectInterface(ptr QTextObjectInterfaceITF) unsafe.Pointer {
+func PointerFromQTextObjectInterface(ptr QTextObjectInterface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTextObjectInterfacePTR().Pointer()
+		return ptr.QTextObjectInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTextObjectInterfaceFromPointer(ptr unsafe.Pointer) *QTextObjectInterface {
+func NewQTextObjectInterfaceFromPointer(ptr unsafe.Pointer) *QTextObjectInterface {
 	var n = new(QTextObjectInterface)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QTextObjectInterface) QTextObjectInterfacePTR() *QTextObjectInterface {
+func (ptr *QTextObjectInterface) QTextObjectInterface_PTR() *QTextObjectInterface {
 	return ptr
 }
 
-func (ptr *QTextObjectInterface) DrawObject(painter QPainterITF, rect core.QRectFITF, doc QTextDocumentITF, posInDocument int, format QTextFormatITF) {
+func (ptr *QTextObjectInterface) DrawObject(painter QPainter_ITF, rect core.QRectF_ITF, doc QTextDocument_ITF, posInDocument int, format QTextFormat_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTextObjectInterface_DrawObject(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPainter(painter)), C.QtObjectPtr(core.PointerFromQRectF(rect)), C.QtObjectPtr(PointerFromQTextDocument(doc)), C.int(posInDocument), C.QtObjectPtr(PointerFromQTextFormat(format)))
+		C.QTextObjectInterface_DrawObject(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQRectF(rect), PointerFromQTextDocument(doc), C.int(posInDocument), PointerFromQTextFormat(format))
 	}
 }
 
 func (ptr *QTextObjectInterface) DestroyQTextObjectInterface() {
 	if ptr.Pointer() != nil {
-		C.QTextObjectInterface_DestroyQTextObjectInterface(C.QtObjectPtr(ptr.Pointer()))
+		C.QTextObjectInterface_DestroyQTextObjectInterface(ptr.Pointer())
 	}
 }

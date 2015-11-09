@@ -12,35 +12,35 @@ type QAccelerometer struct {
 	QSensor
 }
 
-type QAccelerometerITF interface {
-	QSensorITF
-	QAccelerometerPTR() *QAccelerometer
+type QAccelerometer_ITF interface {
+	QSensor_ITF
+	QAccelerometer_PTR() *QAccelerometer
 }
 
-func PointerFromQAccelerometer(ptr QAccelerometerITF) unsafe.Pointer {
+func PointerFromQAccelerometer(ptr QAccelerometer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAccelerometerPTR().Pointer()
+		return ptr.QAccelerometer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAccelerometerFromPointer(ptr unsafe.Pointer) *QAccelerometer {
+func NewQAccelerometerFromPointer(ptr unsafe.Pointer) *QAccelerometer {
 	var n = new(QAccelerometer)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAccelerometer_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAccelerometer) QAccelerometerPTR() *QAccelerometer {
+func (ptr *QAccelerometer) QAccelerometer_PTR() *QAccelerometer {
 	return ptr
 }
 
 //QAccelerometer::AccelerationMode
-type QAccelerometer__AccelerationMode int
+type QAccelerometer__AccelerationMode int64
 
-var (
+const (
 	QAccelerometer__Combined = QAccelerometer__AccelerationMode(0)
 	QAccelerometer__Gravity  = QAccelerometer__AccelerationMode(1)
 	QAccelerometer__User     = QAccelerometer__AccelerationMode(2)
@@ -48,32 +48,32 @@ var (
 
 func (ptr *QAccelerometer) AccelerationMode() QAccelerometer__AccelerationMode {
 	if ptr.Pointer() != nil {
-		return QAccelerometer__AccelerationMode(C.QAccelerometer_AccelerationMode(C.QtObjectPtr(ptr.Pointer())))
+		return QAccelerometer__AccelerationMode(C.QAccelerometer_AccelerationMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAccelerometer) Reading() *QAccelerometerReading {
 	if ptr.Pointer() != nil {
-		return QAccelerometerReadingFromPointer(unsafe.Pointer(C.QAccelerometer_Reading(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAccelerometerReadingFromPointer(C.QAccelerometer_Reading(ptr.Pointer()))
 	}
 	return nil
 }
 
-func NewQAccelerometer(parent core.QObjectITF) *QAccelerometer {
-	return QAccelerometerFromPointer(unsafe.Pointer(C.QAccelerometer_NewQAccelerometer(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQAccelerometer(parent core.QObject_ITF) *QAccelerometer {
+	return NewQAccelerometerFromPointer(C.QAccelerometer_NewQAccelerometer(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAccelerometer) ConnectAccelerationModeChanged(f func(accelerationMode QAccelerometer__AccelerationMode)) {
 	if ptr.Pointer() != nil {
-		C.QAccelerometer_ConnectAccelerationModeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAccelerometer_ConnectAccelerationModeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "accelerationModeChanged", f)
 	}
 }
 
 func (ptr *QAccelerometer) DisconnectAccelerationModeChanged() {
 	if ptr.Pointer() != nil {
-		C.QAccelerometer_DisconnectAccelerationModeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAccelerometer_DisconnectAccelerationModeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "accelerationModeChanged")
 	}
 }
@@ -85,13 +85,13 @@ func callbackQAccelerometerAccelerationModeChanged(ptrName *C.char, acceleration
 
 func (ptr *QAccelerometer) SetAccelerationMode(accelerationMode QAccelerometer__AccelerationMode) {
 	if ptr.Pointer() != nil {
-		C.QAccelerometer_SetAccelerationMode(C.QtObjectPtr(ptr.Pointer()), C.int(accelerationMode))
+		C.QAccelerometer_SetAccelerationMode(ptr.Pointer(), C.int(accelerationMode))
 	}
 }
 
 func (ptr *QAccelerometer) DestroyQAccelerometer() {
 	if ptr.Pointer() != nil {
-		C.QAccelerometer_DestroyQAccelerometer(C.QtObjectPtr(ptr.Pointer()))
+		C.QAccelerometer_DestroyQAccelerometer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

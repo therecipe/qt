@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QAbstractButton>
 #include <QObject>
+#include <QAbstractButton>
 #include <QButtonGroup>
 #include "_cgo_export.h"
 
@@ -16,79 +16,79 @@ void Signal_ButtonReleased(QAbstractButton * button){callbackQButtonGroupButtonR
 void Signal_ButtonToggled(QAbstractButton * button, bool checked){callbackQButtonGroupButtonToggled(this->objectName().toUtf8().data(), button, checked);};
 };
 
-QtObjectPtr QButtonGroup_NewQButtonGroup(QtObjectPtr parent){
+void* QButtonGroup_NewQButtonGroup(void* parent){
 	return new QButtonGroup(static_cast<QObject*>(parent));
 }
 
-void QButtonGroup_AddButton(QtObjectPtr ptr, QtObjectPtr button, int id){
+void QButtonGroup_AddButton(void* ptr, void* button, int id){
 	static_cast<QButtonGroup*>(ptr)->addButton(static_cast<QAbstractButton*>(button), id);
 }
 
-QtObjectPtr QButtonGroup_Button(QtObjectPtr ptr, int id){
+void* QButtonGroup_Button(void* ptr, int id){
 	return static_cast<QButtonGroup*>(ptr)->button(id);
 }
 
-QtObjectPtr QButtonGroup_CheckedButton(QtObjectPtr ptr){
+void* QButtonGroup_CheckedButton(void* ptr){
 	return static_cast<QButtonGroup*>(ptr)->checkedButton();
 }
 
-int QButtonGroup_CheckedId(QtObjectPtr ptr){
+int QButtonGroup_CheckedId(void* ptr){
 	return static_cast<QButtonGroup*>(ptr)->checkedId();
 }
 
-int QButtonGroup_Exclusive(QtObjectPtr ptr){
+int QButtonGroup_Exclusive(void* ptr){
 	return static_cast<QButtonGroup*>(ptr)->exclusive();
 }
 
-int QButtonGroup_Id(QtObjectPtr ptr, QtObjectPtr button){
+int QButtonGroup_Id(void* ptr, void* button){
 	return static_cast<QButtonGroup*>(ptr)->id(static_cast<QAbstractButton*>(button));
 }
 
-void QButtonGroup_RemoveButton(QtObjectPtr ptr, QtObjectPtr button){
+void QButtonGroup_RemoveButton(void* ptr, void* button){
 	static_cast<QButtonGroup*>(ptr)->removeButton(static_cast<QAbstractButton*>(button));
 }
 
-void QButtonGroup_SetExclusive(QtObjectPtr ptr, int v){
+void QButtonGroup_SetExclusive(void* ptr, int v){
 	static_cast<QButtonGroup*>(ptr)->setExclusive(v != 0);
 }
 
-void QButtonGroup_SetId(QtObjectPtr ptr, QtObjectPtr button, int id){
+void QButtonGroup_SetId(void* ptr, void* button, int id){
 	static_cast<QButtonGroup*>(ptr)->setId(static_cast<QAbstractButton*>(button), id);
 }
 
-void QButtonGroup_DestroyQButtonGroup(QtObjectPtr ptr){
+void QButtonGroup_DestroyQButtonGroup(void* ptr){
 	static_cast<QButtonGroup*>(ptr)->~QButtonGroup();
 }
 
-void QButtonGroup_ConnectButtonClicked(QtObjectPtr ptr){
+void QButtonGroup_ConnectButtonClicked(void* ptr){
 	QObject::connect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonClicked), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *)>(&MyQButtonGroup::Signal_ButtonClicked));;
 }
 
-void QButtonGroup_DisconnectButtonClicked(QtObjectPtr ptr){
+void QButtonGroup_DisconnectButtonClicked(void* ptr){
 	QObject::disconnect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonClicked), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *)>(&MyQButtonGroup::Signal_ButtonClicked));;
 }
 
-void QButtonGroup_ConnectButtonPressed(QtObjectPtr ptr){
+void QButtonGroup_ConnectButtonPressed(void* ptr){
 	QObject::connect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonPressed), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *)>(&MyQButtonGroup::Signal_ButtonPressed));;
 }
 
-void QButtonGroup_DisconnectButtonPressed(QtObjectPtr ptr){
+void QButtonGroup_DisconnectButtonPressed(void* ptr){
 	QObject::disconnect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonPressed), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *)>(&MyQButtonGroup::Signal_ButtonPressed));;
 }
 
-void QButtonGroup_ConnectButtonReleased(QtObjectPtr ptr){
+void QButtonGroup_ConnectButtonReleased(void* ptr){
 	QObject::connect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonReleased), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *)>(&MyQButtonGroup::Signal_ButtonReleased));;
 }
 
-void QButtonGroup_DisconnectButtonReleased(QtObjectPtr ptr){
+void QButtonGroup_DisconnectButtonReleased(void* ptr){
 	QObject::disconnect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonReleased), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *)>(&MyQButtonGroup::Signal_ButtonReleased));;
 }
 
-void QButtonGroup_ConnectButtonToggled(QtObjectPtr ptr){
+void QButtonGroup_ConnectButtonToggled(void* ptr){
 	QObject::connect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *, bool)>(&QButtonGroup::buttonToggled), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *, bool)>(&MyQButtonGroup::Signal_ButtonToggled));;
 }
 
-void QButtonGroup_DisconnectButtonToggled(QtObjectPtr ptr){
+void QButtonGroup_DisconnectButtonToggled(void* ptr){
 	QObject::disconnect(static_cast<QButtonGroup*>(ptr), static_cast<void (QButtonGroup::*)(QAbstractButton *, bool)>(&QButtonGroup::buttonToggled), static_cast<MyQButtonGroup*>(ptr), static_cast<void (MyQButtonGroup::*)(QAbstractButton *, bool)>(&MyQButtonGroup::Signal_ButtonToggled));;
 }
 

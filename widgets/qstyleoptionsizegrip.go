@@ -10,46 +10,46 @@ type QStyleOptionSizeGrip struct {
 	QStyleOptionComplex
 }
 
-type QStyleOptionSizeGripITF interface {
-	QStyleOptionComplexITF
-	QStyleOptionSizeGripPTR() *QStyleOptionSizeGrip
+type QStyleOptionSizeGrip_ITF interface {
+	QStyleOptionComplex_ITF
+	QStyleOptionSizeGrip_PTR() *QStyleOptionSizeGrip
 }
 
-func PointerFromQStyleOptionSizeGrip(ptr QStyleOptionSizeGripITF) unsafe.Pointer {
+func PointerFromQStyleOptionSizeGrip(ptr QStyleOptionSizeGrip_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionSizeGripPTR().Pointer()
+		return ptr.QStyleOptionSizeGrip_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionSizeGripFromPointer(ptr unsafe.Pointer) *QStyleOptionSizeGrip {
+func NewQStyleOptionSizeGripFromPointer(ptr unsafe.Pointer) *QStyleOptionSizeGrip {
 	var n = new(QStyleOptionSizeGrip)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionSizeGrip) QStyleOptionSizeGripPTR() *QStyleOptionSizeGrip {
+func (ptr *QStyleOptionSizeGrip) QStyleOptionSizeGrip_PTR() *QStyleOptionSizeGrip {
 	return ptr
 }
 
 //QStyleOptionSizeGrip::StyleOptionType
-type QStyleOptionSizeGrip__StyleOptionType int
+type QStyleOptionSizeGrip__StyleOptionType int64
 
 var (
 	QStyleOptionSizeGrip__Type = QStyleOptionSizeGrip__StyleOptionType(QStyleOption__SO_SizeGrip)
 )
 
 //QStyleOptionSizeGrip::StyleOptionVersion
-type QStyleOptionSizeGrip__StyleOptionVersion int
+type QStyleOptionSizeGrip__StyleOptionVersion int64
 
 var (
 	QStyleOptionSizeGrip__Version = QStyleOptionSizeGrip__StyleOptionVersion(1)
 )
 
 func NewQStyleOptionSizeGrip() *QStyleOptionSizeGrip {
-	return QStyleOptionSizeGripFromPointer(unsafe.Pointer(C.QStyleOptionSizeGrip_NewQStyleOptionSizeGrip()))
+	return NewQStyleOptionSizeGripFromPointer(C.QStyleOptionSizeGrip_NewQStyleOptionSizeGrip())
 }
 
-func NewQStyleOptionSizeGrip2(other QStyleOptionSizeGripITF) *QStyleOptionSizeGrip {
-	return QStyleOptionSizeGripFromPointer(unsafe.Pointer(C.QStyleOptionSizeGrip_NewQStyleOptionSizeGrip2(C.QtObjectPtr(PointerFromQStyleOptionSizeGrip(other)))))
+func NewQStyleOptionSizeGrip2(other QStyleOptionSizeGrip_ITF) *QStyleOptionSizeGrip {
+	return NewQStyleOptionSizeGripFromPointer(C.QStyleOptionSizeGrip_NewQStyleOptionSizeGrip2(PointerFromQStyleOptionSizeGrip(other)))
 }

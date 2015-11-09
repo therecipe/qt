@@ -10,8 +10,8 @@ type QUuid struct {
 	ptr unsafe.Pointer
 }
 
-type QUuidITF interface {
-	QUuidPTR() *QUuid
+type QUuid_ITF interface {
+	QUuid_PTR() *QUuid
 }
 
 func (p *QUuid) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QUuid) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQUuid(ptr QUuidITF) unsafe.Pointer {
+func PointerFromQUuid(ptr QUuid_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QUuidPTR().Pointer()
+		return ptr.QUuid_PTR().Pointer()
 	}
 	return nil
 }
 
-func QUuidFromPointer(ptr unsafe.Pointer) *QUuid {
+func NewQUuidFromPointer(ptr unsafe.Pointer) *QUuid {
 	var n = new(QUuid)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QUuid) QUuidPTR() *QUuid {
+func (ptr *QUuid) QUuid_PTR() *QUuid {
 	return ptr
 }
 
 //QUuid::Variant
-type QUuid__Variant int
+type QUuid__Variant int64
 
-var (
+const (
 	QUuid__VarUnknown = QUuid__Variant(-1)
 	QUuid__NCS        = QUuid__Variant(0)
 	QUuid__DCE        = QUuid__Variant(2)
@@ -51,9 +51,9 @@ var (
 )
 
 //QUuid::Version
-type QUuid__Version int
+type QUuid__Version int64
 
-var (
+const (
 	QUuid__VerUnknown    = QUuid__Version(-1)
 	QUuid__Time          = QUuid__Version(1)
 	QUuid__EmbeddedPOSIX = QUuid__Version(2)
@@ -65,40 +65,54 @@ var (
 
 func (ptr *QUuid) Variant() QUuid__Variant {
 	if ptr.Pointer() != nil {
-		return QUuid__Variant(C.QUuid_Variant(C.QtObjectPtr(ptr.Pointer())))
+		return QUuid__Variant(C.QUuid_Variant(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QUuid) Version() QUuid__Version {
 	if ptr.Pointer() != nil {
-		return QUuid__Version(C.QUuid_Version(C.QtObjectPtr(ptr.Pointer())))
+		return QUuid__Version(C.QUuid_Version(ptr.Pointer()))
 	}
 	return 0
 }
 
 func NewQUuid() *QUuid {
-	return QUuidFromPointer(unsafe.Pointer(C.QUuid_NewQUuid()))
+	return NewQUuidFromPointer(C.QUuid_NewQUuid())
 }
 
-func NewQUuid5(text QByteArrayITF) *QUuid {
-	return QUuidFromPointer(unsafe.Pointer(C.QUuid_NewQUuid5(C.QtObjectPtr(PointerFromQByteArray(text)))))
+func NewQUuid5(text QByteArray_ITF) *QUuid {
+	return NewQUuidFromPointer(C.QUuid_NewQUuid5(PointerFromQByteArray(text)))
 }
 
 func NewQUuid3(text string) *QUuid {
-	return QUuidFromPointer(unsafe.Pointer(C.QUuid_NewQUuid3(C.CString(text))))
+	return NewQUuidFromPointer(C.QUuid_NewQUuid3(C.CString(text)))
 }
 
 func (ptr *QUuid) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QUuid_IsNull(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QUuid_IsNull(ptr.Pointer()) != 0
 	}
 	return false
 }
 
+func (ptr *QUuid) ToByteArray() *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QUuid_ToByteArray(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QUuid) ToRfc4122() *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QUuid_ToRfc4122(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QUuid) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QUuid_ToString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QUuid_ToString(ptr.Pointer()))
 	}
 	return ""
 }

@@ -1,9 +1,9 @@
 #include "qfocusframe.h"
-#include <QWidget>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QWidget>
+#include <QString>
 #include <QFocusFrame>
 #include "_cgo_export.h"
 
@@ -11,19 +11,19 @@ class MyQFocusFrame: public QFocusFrame {
 public:
 };
 
-QtObjectPtr QFocusFrame_NewQFocusFrame(QtObjectPtr parent){
+void* QFocusFrame_NewQFocusFrame(void* parent){
 	return new QFocusFrame(static_cast<QWidget*>(parent));
 }
 
-void QFocusFrame_SetWidget(QtObjectPtr ptr, QtObjectPtr widget){
+void QFocusFrame_SetWidget(void* ptr, void* widget){
 	static_cast<QFocusFrame*>(ptr)->setWidget(static_cast<QWidget*>(widget));
 }
 
-QtObjectPtr QFocusFrame_Widget(QtObjectPtr ptr){
+void* QFocusFrame_Widget(void* ptr){
 	return static_cast<QFocusFrame*>(ptr)->widget();
 }
 
-void QFocusFrame_DestroyQFocusFrame(QtObjectPtr ptr){
+void QFocusFrame_DestroyQFocusFrame(void* ptr){
 	static_cast<QFocusFrame*>(ptr)->~QFocusFrame();
 }
 

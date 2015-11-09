@@ -10,8 +10,8 @@ type QSensorBackendFactory struct {
 	ptr unsafe.Pointer
 }
 
-type QSensorBackendFactoryITF interface {
-	QSensorBackendFactoryPTR() *QSensorBackendFactory
+type QSensorBackendFactory_ITF interface {
+	QSensorBackendFactory_PTR() *QSensorBackendFactory
 }
 
 func (p *QSensorBackendFactory) Pointer() unsafe.Pointer {
@@ -22,26 +22,26 @@ func (p *QSensorBackendFactory) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSensorBackendFactory(ptr QSensorBackendFactoryITF) unsafe.Pointer {
+func PointerFromQSensorBackendFactory(ptr QSensorBackendFactory_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSensorBackendFactoryPTR().Pointer()
+		return ptr.QSensorBackendFactory_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSensorBackendFactoryFromPointer(ptr unsafe.Pointer) *QSensorBackendFactory {
+func NewQSensorBackendFactoryFromPointer(ptr unsafe.Pointer) *QSensorBackendFactory {
 	var n = new(QSensorBackendFactory)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSensorBackendFactory) QSensorBackendFactoryPTR() *QSensorBackendFactory {
+func (ptr *QSensorBackendFactory) QSensorBackendFactory_PTR() *QSensorBackendFactory {
 	return ptr
 }
 
-func (ptr *QSensorBackendFactory) CreateBackend(sensor QSensorITF) *QSensorBackend {
+func (ptr *QSensorBackendFactory) CreateBackend(sensor QSensor_ITF) *QSensorBackend {
 	if ptr.Pointer() != nil {
-		return QSensorBackendFromPointer(unsafe.Pointer(C.QSensorBackendFactory_CreateBackend(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSensor(sensor)))))
+		return NewQSensorBackendFromPointer(C.QSensorBackendFactory_CreateBackend(ptr.Pointer(), PointerFromQSensor(sensor)))
 	}
 	return nil
 }

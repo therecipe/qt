@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{reading QAltimeter::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaltimeter.cpp non plain false false  QAltimeterReading * [] }
-&{QAltimeter QAltimeter::QAltimeter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaltimeter.h non constructor false false   [0xc822ee50c0] }
-&{~QAltimeter QAltimeter::~QAltimeter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaltimeter.h non destructor false false   [] }
+&{reading QAltimeter::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaltimeter.cpp non plain false false  QAltimeterReading * QAltimeterReading * reading() const [] }
+&{QAltimeter QAltimeter::QAltimeter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaltimeter.h non constructor false false   QAltimeter(QObject *parent) [0xc8233108c0] }
+&{~QAltimeter QAltimeter::~QAltimeter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaltimeter.h non destructor false false   ~QAltimeter() [] }
 ########################################			ENUMS			########################################

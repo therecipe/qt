@@ -10,8 +10,8 @@ type QLibraryInfo struct {
 	ptr unsafe.Pointer
 }
 
-type QLibraryInfoITF interface {
-	QLibraryInfoPTR() *QLibraryInfo
+type QLibraryInfo_ITF interface {
+	QLibraryInfo_PTR() *QLibraryInfo
 }
 
 func (p *QLibraryInfo) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QLibraryInfo) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQLibraryInfo(ptr QLibraryInfoITF) unsafe.Pointer {
+func PointerFromQLibraryInfo(ptr QLibraryInfo_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QLibraryInfoPTR().Pointer()
+		return ptr.QLibraryInfo_PTR().Pointer()
 	}
 	return nil
 }
 
-func QLibraryInfoFromPointer(ptr unsafe.Pointer) *QLibraryInfo {
+func NewQLibraryInfoFromPointer(ptr unsafe.Pointer) *QLibraryInfo {
 	var n = new(QLibraryInfo)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QLibraryInfo) QLibraryInfoPTR() *QLibraryInfo {
+func (ptr *QLibraryInfo) QLibraryInfo_PTR() *QLibraryInfo {
 	return ptr
 }
 
 //QLibraryInfo::LibraryLocation
-type QLibraryInfo__LibraryLocation int
+type QLibraryInfo__LibraryLocation int64
 
-var (
+const (
 	QLibraryInfo__PrefixPath             = QLibraryInfo__LibraryLocation(0)
 	QLibraryInfo__DocumentationPath      = QLibraryInfo__LibraryLocation(1)
 	QLibraryInfo__HeadersPath            = QLibraryInfo__LibraryLocation(2)

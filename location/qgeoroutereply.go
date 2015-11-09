@@ -12,35 +12,35 @@ type QGeoRouteReply struct {
 	core.QObject
 }
 
-type QGeoRouteReplyITF interface {
-	core.QObjectITF
-	QGeoRouteReplyPTR() *QGeoRouteReply
+type QGeoRouteReply_ITF interface {
+	core.QObject_ITF
+	QGeoRouteReply_PTR() *QGeoRouteReply
 }
 
-func PointerFromQGeoRouteReply(ptr QGeoRouteReplyITF) unsafe.Pointer {
+func PointerFromQGeoRouteReply(ptr QGeoRouteReply_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGeoRouteReplyPTR().Pointer()
+		return ptr.QGeoRouteReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGeoRouteReplyFromPointer(ptr unsafe.Pointer) *QGeoRouteReply {
+func NewQGeoRouteReplyFromPointer(ptr unsafe.Pointer) *QGeoRouteReply {
 	var n = new(QGeoRouteReply)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGeoRouteReply_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGeoRouteReply) QGeoRouteReplyPTR() *QGeoRouteReply {
+func (ptr *QGeoRouteReply) QGeoRouteReply_PTR() *QGeoRouteReply {
 	return ptr
 }
 
 //QGeoRouteReply::Error
-type QGeoRouteReply__Error int
+type QGeoRouteReply__Error int64
 
-var (
+const (
 	QGeoRouteReply__NoError                = QGeoRouteReply__Error(0)
 	QGeoRouteReply__EngineNotSetError      = QGeoRouteReply__Error(1)
 	QGeoRouteReply__CommunicationError     = QGeoRouteReply__Error(2)
@@ -49,40 +49,40 @@ var (
 	QGeoRouteReply__UnknownError           = QGeoRouteReply__Error(5)
 )
 
-func NewQGeoRouteReply(error QGeoRouteReply__Error, errorString string, parent core.QObjectITF) *QGeoRouteReply {
-	return QGeoRouteReplyFromPointer(unsafe.Pointer(C.QGeoRouteReply_NewQGeoRouteReply(C.int(error), C.CString(errorString), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQGeoRouteReply(error QGeoRouteReply__Error, errorString string, parent core.QObject_ITF) *QGeoRouteReply {
+	return NewQGeoRouteReplyFromPointer(C.QGeoRouteReply_NewQGeoRouteReply(C.int(error), C.CString(errorString), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QGeoRouteReply) Abort() {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteReply_Abort(C.QtObjectPtr(ptr.Pointer()))
+		C.QGeoRouteReply_Abort(ptr.Pointer())
 	}
 }
 
 func (ptr *QGeoRouteReply) Error() QGeoRouteReply__Error {
 	if ptr.Pointer() != nil {
-		return QGeoRouteReply__Error(C.QGeoRouteReply_Error(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoRouteReply__Error(C.QGeoRouteReply_Error(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoRouteReply) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGeoRouteReply_ErrorString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QGeoRouteReply_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QGeoRouteReply) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteReply_ConnectFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QGeoRouteReply_ConnectFinished(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "finished", f)
 	}
 }
 
 func (ptr *QGeoRouteReply) DisconnectFinished() {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteReply_DisconnectFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QGeoRouteReply_DisconnectFinished(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "finished")
 	}
 }
@@ -94,14 +94,14 @@ func callbackQGeoRouteReplyFinished(ptrName *C.char) {
 
 func (ptr *QGeoRouteReply) IsFinished() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRouteReply_IsFinished(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QGeoRouteReply_IsFinished(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QGeoRouteReply) DestroyQGeoRouteReply() {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteReply_DestroyQGeoRouteReply(C.QtObjectPtr(ptr.Pointer()))
+		C.QGeoRouteReply_DestroyQGeoRouteReply(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

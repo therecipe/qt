@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QHolsterSensor_Reading(QtObjectPtr ptr);
-QtObjectPtr QHolsterSensor_NewQHolsterSensor(QtObjectPtr parent);
-void QHolsterSensor_DestroyQHolsterSensor(QtObjectPtr ptr);
+void* QHolsterSensor_Reading(void* ptr);
+void* QHolsterSensor_NewQHolsterSensor(void* parent);
+void QHolsterSensor_DestroyQHolsterSensor(void* ptr);
 
 #ifdef __cplusplus
 }

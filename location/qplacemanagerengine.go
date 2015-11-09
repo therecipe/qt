@@ -12,27 +12,27 @@ type QPlaceManagerEngine struct {
 	core.QObject
 }
 
-type QPlaceManagerEngineITF interface {
-	core.QObjectITF
-	QPlaceManagerEnginePTR() *QPlaceManagerEngine
+type QPlaceManagerEngine_ITF interface {
+	core.QObject_ITF
+	QPlaceManagerEngine_PTR() *QPlaceManagerEngine
 }
 
-func PointerFromQPlaceManagerEngine(ptr QPlaceManagerEngineITF) unsafe.Pointer {
+func PointerFromQPlaceManagerEngine(ptr QPlaceManagerEngine_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceManagerEnginePTR().Pointer()
+		return ptr.QPlaceManagerEngine_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceManagerEngineFromPointer(ptr unsafe.Pointer) *QPlaceManagerEngine {
+func NewQPlaceManagerEngineFromPointer(ptr unsafe.Pointer) *QPlaceManagerEngine {
 	var n = new(QPlaceManagerEngine)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QPlaceManagerEngine_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QPlaceManagerEngine) QPlaceManagerEnginePTR() *QPlaceManagerEngine {
+func (ptr *QPlaceManagerEngine) QPlaceManagerEngine_PTR() *QPlaceManagerEngine {
 	return ptr
 }

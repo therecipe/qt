@@ -10,43 +10,43 @@ class MyQLockFile: public QLockFile {
 public:
 };
 
-QtObjectPtr QLockFile_NewQLockFile(char* fileName){
+void* QLockFile_NewQLockFile(char* fileName){
 	return new QLockFile(QString(fileName));
 }
 
-int QLockFile_Error(QtObjectPtr ptr){
+int QLockFile_Error(void* ptr){
 	return static_cast<QLockFile*>(ptr)->error();
 }
 
-int QLockFile_IsLocked(QtObjectPtr ptr){
+int QLockFile_IsLocked(void* ptr){
 	return static_cast<QLockFile*>(ptr)->isLocked();
 }
 
-int QLockFile_Lock(QtObjectPtr ptr){
+int QLockFile_Lock(void* ptr){
 	return static_cast<QLockFile*>(ptr)->lock();
 }
 
-int QLockFile_RemoveStaleLockFile(QtObjectPtr ptr){
+int QLockFile_RemoveStaleLockFile(void* ptr){
 	return static_cast<QLockFile*>(ptr)->removeStaleLockFile();
 }
 
-void QLockFile_SetStaleLockTime(QtObjectPtr ptr, int staleLockTime){
+void QLockFile_SetStaleLockTime(void* ptr, int staleLockTime){
 	static_cast<QLockFile*>(ptr)->setStaleLockTime(staleLockTime);
 }
 
-int QLockFile_StaleLockTime(QtObjectPtr ptr){
+int QLockFile_StaleLockTime(void* ptr){
 	return static_cast<QLockFile*>(ptr)->staleLockTime();
 }
 
-int QLockFile_TryLock(QtObjectPtr ptr, int timeout){
+int QLockFile_TryLock(void* ptr, int timeout){
 	return static_cast<QLockFile*>(ptr)->tryLock(timeout);
 }
 
-void QLockFile_DestroyQLockFile(QtObjectPtr ptr){
+void QLockFile_DestroyQLockFile(void* ptr){
 	static_cast<QLockFile*>(ptr)->~QLockFile();
 }
 
-void QLockFile_Unlock(QtObjectPtr ptr){
+void QLockFile_Unlock(void* ptr){
 	static_cast<QLockFile*>(ptr)->unlock();
 }
 

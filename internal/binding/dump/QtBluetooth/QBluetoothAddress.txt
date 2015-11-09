@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{QBluetoothAddress QBluetoothAddress::QBluetoothAddress commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non constructor false false   [] }
-&{QBluetoothAddress QBluetoothAddress::QBluetoothAddress commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non constructor false true 4  [0xc8218f93e0] }
-&{QBluetoothAddress QBluetoothAddress::QBluetoothAddress commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non constructor false true 3  [0xc8218f97c0] }
-&{QBluetoothAddress QBluetoothAddress::QBluetoothAddress commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non constructor false true 2  [0xc8218f9ac0] }
-&{clear QBluetoothAddress::clear commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  void [] }
-&{isNull QBluetoothAddress::isNull commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  bool [] }
-&{operator!= QBluetoothAddress::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  bool [0xc8219b6260] }
-&{operator< QBluetoothAddress::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  bool [0xc8219b6680] }
-&{operator= QBluetoothAddress::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  QBluetoothAddress & [0xc8219b6bc0] }
-&{operator== QBluetoothAddress::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  bool [0xc8219b6fa0] }
-&{toString QBluetoothAddress::toString commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  QString [] }
-&{toUInt64 QBluetoothAddress::toUInt64 commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  quint64 [] }
-&{~QBluetoothAddress QBluetoothAddress::~QBluetoothAddress commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non destructor false false   [] }
+&{QBluetoothAddress QBluetoothAddress::QBluetoothAddress commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non constructor false false   QBluetoothAddress() [] }
+&{QBluetoothAddress QBluetoothAddress::QBluetoothAddress commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non constructor false true 4  QBluetoothAddress(const QBluetoothAddress &other) [0xc8209d43e0] }
+&{QBluetoothAddress QBluetoothAddress::QBluetoothAddress commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non constructor false true 3  QBluetoothAddress(const QString &address) [0xc8209d4760] }
+&{QBluetoothAddress QBluetoothAddress::QBluetoothAddress commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non constructor false true 2  QBluetoothAddress(quint64 address) [0xc8209d4a00] }
+&{clear QBluetoothAddress::clear commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  void void clear() [] }
+&{isNull QBluetoothAddress::isNull commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  bool bool isNull() const [] }
+&{operator!= QBluetoothAddress::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  bool bool operator!=(const QBluetoothAddress &other) const [0xc8209d5240] }
+&{operator< QBluetoothAddress::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  bool bool operator<(const QBluetoothAddress &other) const [0xc8209d5720] }
+&{operator= QBluetoothAddress::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  QBluetoothAddress & QBluetoothAddress & operator=(const QBluetoothAddress &other) [0xc8209d5cc0] }
+&{operator== QBluetoothAddress::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  bool bool operator==(const QBluetoothAddress &other) const [0xc821ec8140] }
+&{toString QBluetoothAddress::toString commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  QString QString toString() const [] }
+&{toUInt64 QBluetoothAddress::toUInt64 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non plain false false  quint64 quint64 toUInt64() const [] }
+&{~QBluetoothAddress QBluetoothAddress::~QBluetoothAddress commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothaddress.h non destructor false false   ~QBluetoothAddress() [] }
 ########################################			ENUMS			########################################

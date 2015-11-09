@@ -1,4 +1,5 @@
 #include "qlowenergydescriptor.h"
+#include <QByteArray>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
@@ -10,27 +11,31 @@ class MyQLowEnergyDescriptor: public QLowEnergyDescriptor {
 public:
 };
 
-QtObjectPtr QLowEnergyDescriptor_NewQLowEnergyDescriptor(){
+void* QLowEnergyDescriptor_NewQLowEnergyDescriptor(){
 	return new QLowEnergyDescriptor();
 }
 
-QtObjectPtr QLowEnergyDescriptor_NewQLowEnergyDescriptor2(QtObjectPtr other){
+void* QLowEnergyDescriptor_NewQLowEnergyDescriptor2(void* other){
 	return new QLowEnergyDescriptor(*static_cast<QLowEnergyDescriptor*>(other));
 }
 
-int QLowEnergyDescriptor_IsValid(QtObjectPtr ptr){
+int QLowEnergyDescriptor_IsValid(void* ptr){
 	return static_cast<QLowEnergyDescriptor*>(ptr)->isValid();
 }
 
-char* QLowEnergyDescriptor_Name(QtObjectPtr ptr){
+char* QLowEnergyDescriptor_Name(void* ptr){
 	return static_cast<QLowEnergyDescriptor*>(ptr)->name().toUtf8().data();
 }
 
-int QLowEnergyDescriptor_Type(QtObjectPtr ptr){
+int QLowEnergyDescriptor_Type(void* ptr){
 	return static_cast<QLowEnergyDescriptor*>(ptr)->type();
 }
 
-void QLowEnergyDescriptor_DestroyQLowEnergyDescriptor(QtObjectPtr ptr){
+void* QLowEnergyDescriptor_Value(void* ptr){
+	return new QByteArray(static_cast<QLowEnergyDescriptor*>(ptr)->value());
+}
+
+void QLowEnergyDescriptor_DestroyQLowEnergyDescriptor(void* ptr){
 	static_cast<QLowEnergyDescriptor*>(ptr)->~QLowEnergyDescriptor();
 }
 

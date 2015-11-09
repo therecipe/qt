@@ -14,35 +14,35 @@ type QQuickWindow struct {
 	gui.QWindow
 }
 
-type QQuickWindowITF interface {
-	gui.QWindowITF
-	QQuickWindowPTR() *QQuickWindow
+type QQuickWindow_ITF interface {
+	gui.QWindow_ITF
+	QQuickWindow_PTR() *QQuickWindow
 }
 
-func PointerFromQQuickWindow(ptr QQuickWindowITF) unsafe.Pointer {
+func PointerFromQQuickWindow(ptr QQuickWindow_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QQuickWindowPTR().Pointer()
+		return ptr.QQuickWindow_PTR().Pointer()
 	}
 	return nil
 }
 
-func QQuickWindowFromPointer(ptr unsafe.Pointer) *QQuickWindow {
+func NewQQuickWindowFromPointer(ptr unsafe.Pointer) *QQuickWindow {
 	var n = new(QQuickWindow)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QQuickWindow_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QQuickWindow) QQuickWindowPTR() *QQuickWindow {
+func (ptr *QQuickWindow) QQuickWindow_PTR() *QQuickWindow {
 	return ptr
 }
 
 //QQuickWindow::CreateTextureOption
-type QQuickWindow__CreateTextureOption int
+type QQuickWindow__CreateTextureOption int64
 
-var (
+const (
 	QQuickWindow__TextureHasAlphaChannel = QQuickWindow__CreateTextureOption(0x0001)
 	QQuickWindow__TextureHasMipmaps      = QQuickWindow__CreateTextureOption(0x0002)
 	QQuickWindow__TextureOwnsGLTexture   = QQuickWindow__CreateTextureOption(0x0004)
@@ -50,9 +50,9 @@ var (
 )
 
 //QQuickWindow::RenderStage
-type QQuickWindow__RenderStage int
+type QQuickWindow__RenderStage int64
 
-var (
+const (
 	QQuickWindow__BeforeSynchronizingStage = QQuickWindow__RenderStage(0)
 	QQuickWindow__AfterSynchronizingStage  = QQuickWindow__RenderStage(1)
 	QQuickWindow__BeforeRenderingStage     = QQuickWindow__RenderStage(2)
@@ -61,53 +61,60 @@ var (
 )
 
 //QQuickWindow::SceneGraphError
-type QQuickWindow__SceneGraphError int
+type QQuickWindow__SceneGraphError int64
 
-var (
+const (
 	QQuickWindow__ContextNotAvailable = QQuickWindow__SceneGraphError(1)
 )
 
 func (ptr *QQuickWindow) ActiveFocusItem() *QQuickItem {
 	if ptr.Pointer() != nil {
-		return QQuickItemFromPointer(unsafe.Pointer(C.QQuickWindow_ActiveFocusItem(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQQuickItemFromPointer(C.QQuickWindow_ActiveFocusItem(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QQuickWindow) Color() *gui.QColor {
+	if ptr.Pointer() != nil {
+		return gui.NewQColorFromPointer(C.QQuickWindow_Color(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QQuickWindow) ContentItem() *QQuickItem {
 	if ptr.Pointer() != nil {
-		return QQuickItemFromPointer(unsafe.Pointer(C.QQuickWindow_ContentItem(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQQuickItemFromPointer(C.QQuickWindow_ContentItem(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QQuickWindow) SetColor(color gui.QColorITF) {
+func (ptr *QQuickWindow) SetColor(color gui.QColor_ITF) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_SetColor(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQColor(color)))
+		C.QQuickWindow_SetColor(ptr.Pointer(), gui.PointerFromQColor(color))
 	}
 }
 
-func NewQQuickWindow(parent gui.QWindowITF) *QQuickWindow {
-	return QQuickWindowFromPointer(unsafe.Pointer(C.QQuickWindow_NewQQuickWindow(C.QtObjectPtr(gui.PointerFromQWindow(parent)))))
+func NewQQuickWindow(parent gui.QWindow_ITF) *QQuickWindow {
+	return NewQQuickWindowFromPointer(C.QQuickWindow_NewQQuickWindow(gui.PointerFromQWindow(parent)))
 }
 
 func (ptr *QQuickWindow) AccessibleRoot() *gui.QAccessibleInterface {
 	if ptr.Pointer() != nil {
-		return gui.QAccessibleInterfaceFromPointer(unsafe.Pointer(C.QQuickWindow_AccessibleRoot(C.QtObjectPtr(ptr.Pointer()))))
+		return gui.NewQAccessibleInterfaceFromPointer(C.QQuickWindow_AccessibleRoot(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QQuickWindow) ConnectActiveFocusItemChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ConnectActiveFocusItemChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ConnectActiveFocusItemChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "activeFocusItemChanged", f)
 	}
 }
 
 func (ptr *QQuickWindow) DisconnectActiveFocusItemChanged() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DisconnectActiveFocusItemChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DisconnectActiveFocusItemChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "activeFocusItemChanged")
 	}
 }
@@ -119,14 +126,14 @@ func callbackQQuickWindowActiveFocusItemChanged(ptrName *C.char) {
 
 func (ptr *QQuickWindow) ConnectAfterAnimating(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ConnectAfterAnimating(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ConnectAfterAnimating(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "afterAnimating", f)
 	}
 }
 
 func (ptr *QQuickWindow) DisconnectAfterAnimating() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DisconnectAfterAnimating(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DisconnectAfterAnimating(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "afterAnimating")
 	}
 }
@@ -138,14 +145,14 @@ func callbackQQuickWindowAfterAnimating(ptrName *C.char) {
 
 func (ptr *QQuickWindow) ConnectAfterRendering(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ConnectAfterRendering(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ConnectAfterRendering(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "afterRendering", f)
 	}
 }
 
 func (ptr *QQuickWindow) DisconnectAfterRendering() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DisconnectAfterRendering(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DisconnectAfterRendering(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "afterRendering")
 	}
 }
@@ -157,14 +164,14 @@ func callbackQQuickWindowAfterRendering(ptrName *C.char) {
 
 func (ptr *QQuickWindow) ConnectAfterSynchronizing(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ConnectAfterSynchronizing(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ConnectAfterSynchronizing(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "afterSynchronizing", f)
 	}
 }
 
 func (ptr *QQuickWindow) DisconnectAfterSynchronizing() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DisconnectAfterSynchronizing(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DisconnectAfterSynchronizing(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "afterSynchronizing")
 	}
 }
@@ -176,14 +183,14 @@ func callbackQQuickWindowAfterSynchronizing(ptrName *C.char) {
 
 func (ptr *QQuickWindow) ConnectBeforeRendering(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ConnectBeforeRendering(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ConnectBeforeRendering(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "beforeRendering", f)
 	}
 }
 
 func (ptr *QQuickWindow) DisconnectBeforeRendering() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DisconnectBeforeRendering(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DisconnectBeforeRendering(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "beforeRendering")
 	}
 }
@@ -195,14 +202,14 @@ func callbackQQuickWindowBeforeRendering(ptrName *C.char) {
 
 func (ptr *QQuickWindow) ConnectBeforeSynchronizing(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ConnectBeforeSynchronizing(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ConnectBeforeSynchronizing(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "beforeSynchronizing", f)
 	}
 }
 
 func (ptr *QQuickWindow) DisconnectBeforeSynchronizing() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DisconnectBeforeSynchronizing(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DisconnectBeforeSynchronizing(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "beforeSynchronizing")
 	}
 }
@@ -214,35 +221,61 @@ func callbackQQuickWindowBeforeSynchronizing(ptrName *C.char) {
 
 func (ptr *QQuickWindow) ClearBeforeRendering() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWindow_ClearBeforeRendering(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QQuickWindow_ClearBeforeRendering(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QQuickWindow) CreateTextureFromImage2(image gui.QImageITF) *QSGTexture {
+func (ptr *QQuickWindow) ConnectColorChanged(f func(v *gui.QColor)) {
 	if ptr.Pointer() != nil {
-		return QSGTextureFromPointer(unsafe.Pointer(C.QQuickWindow_CreateTextureFromImage2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQImage(image)))))
+		C.QQuickWindow_ConnectColorChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "colorChanged", f)
+	}
+}
+
+func (ptr *QQuickWindow) DisconnectColorChanged() {
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_DisconnectColorChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "colorChanged")
+	}
+}
+
+//export callbackQQuickWindowColorChanged
+func callbackQQuickWindowColorChanged(ptrName *C.char, v unsafe.Pointer) {
+	qt.GetSignal(C.GoString(ptrName), "colorChanged").(func(*gui.QColor))(gui.NewQColorFromPointer(v))
+}
+
+func (ptr *QQuickWindow) CreateTextureFromImage2(image gui.QImage_ITF) *QSGTexture {
+	if ptr.Pointer() != nil {
+		return NewQSGTextureFromPointer(C.QQuickWindow_CreateTextureFromImage2(ptr.Pointer(), gui.PointerFromQImage(image)))
 	}
 	return nil
 }
 
-func (ptr *QQuickWindow) CreateTextureFromImage(image gui.QImageITF, options QQuickWindow__CreateTextureOption) *QSGTexture {
+func (ptr *QQuickWindow) CreateTextureFromImage(image gui.QImage_ITF, options QQuickWindow__CreateTextureOption) *QSGTexture {
 	if ptr.Pointer() != nil {
-		return QSGTextureFromPointer(unsafe.Pointer(C.QQuickWindow_CreateTextureFromImage(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQImage(image)), C.int(options))))
+		return NewQSGTextureFromPointer(C.QQuickWindow_CreateTextureFromImage(ptr.Pointer(), gui.PointerFromQImage(image), C.int(options)))
 	}
 	return nil
+}
+
+func (ptr *QQuickWindow) EffectiveDevicePixelRatio() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QQuickWindow_EffectiveDevicePixelRatio(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QQuickWindow) ConnectFrameSwapped(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ConnectFrameSwapped(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ConnectFrameSwapped(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "frameSwapped", f)
 	}
 }
 
 func (ptr *QQuickWindow) DisconnectFrameSwapped() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DisconnectFrameSwapped(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DisconnectFrameSwapped(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "frameSwapped")
 	}
 }
@@ -258,94 +291,94 @@ func QQuickWindow_HasDefaultAlphaBuffer() bool {
 
 func (ptr *QQuickWindow) IncubationController() *qml.QQmlIncubationController {
 	if ptr.Pointer() != nil {
-		return qml.QQmlIncubationControllerFromPointer(unsafe.Pointer(C.QQuickWindow_IncubationController(C.QtObjectPtr(ptr.Pointer()))))
+		return qml.NewQQmlIncubationControllerFromPointer(C.QQuickWindow_IncubationController(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QQuickWindow) IsPersistentOpenGLContext() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWindow_IsPersistentOpenGLContext(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QQuickWindow_IsPersistentOpenGLContext(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickWindow) IsPersistentSceneGraph() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWindow_IsPersistentSceneGraph(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QQuickWindow_IsPersistentSceneGraph(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickWindow) IsSceneGraphInitialized() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWindow_IsSceneGraphInitialized(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QQuickWindow_IsSceneGraphInitialized(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickWindow) MouseGrabberItem() *QQuickItem {
 	if ptr.Pointer() != nil {
-		return QQuickItemFromPointer(unsafe.Pointer(C.QQuickWindow_MouseGrabberItem(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQQuickItemFromPointer(C.QQuickWindow_MouseGrabberItem(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QQuickWindow) OpenglContext() *gui.QOpenGLContext {
 	if ptr.Pointer() != nil {
-		return gui.QOpenGLContextFromPointer(unsafe.Pointer(C.QQuickWindow_OpenglContext(C.QtObjectPtr(ptr.Pointer()))))
+		return gui.NewQOpenGLContextFromPointer(C.QQuickWindow_OpenglContext(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QQuickWindow) ConnectOpenglContextCreated(f func(context gui.QOpenGLContextITF)) {
+func (ptr *QQuickWindow) ConnectOpenglContextCreated(f func(context *gui.QOpenGLContext)) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ConnectOpenglContextCreated(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ConnectOpenglContextCreated(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "openglContextCreated", f)
 	}
 }
 
 func (ptr *QQuickWindow) DisconnectOpenglContextCreated() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DisconnectOpenglContextCreated(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DisconnectOpenglContextCreated(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "openglContextCreated")
 	}
 }
 
 //export callbackQQuickWindowOpenglContextCreated
 func callbackQQuickWindowOpenglContextCreated(ptrName *C.char, context unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "openglContextCreated").(func(*gui.QOpenGLContext))(gui.QOpenGLContextFromPointer(context))
+	qt.GetSignal(C.GoString(ptrName), "openglContextCreated").(func(*gui.QOpenGLContext))(gui.NewQOpenGLContextFromPointer(context))
 }
 
 func (ptr *QQuickWindow) ReleaseResources() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ReleaseResources(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ReleaseResources(ptr.Pointer())
 	}
 }
 
 func (ptr *QQuickWindow) RenderTarget() *gui.QOpenGLFramebufferObject {
 	if ptr.Pointer() != nil {
-		return gui.QOpenGLFramebufferObjectFromPointer(unsafe.Pointer(C.QQuickWindow_RenderTarget(C.QtObjectPtr(ptr.Pointer()))))
+		return gui.NewQOpenGLFramebufferObjectFromPointer(C.QQuickWindow_RenderTarget(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QQuickWindow) ResetOpenGLState() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ResetOpenGLState(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ResetOpenGLState(ptr.Pointer())
 	}
 }
 
 func (ptr *QQuickWindow) ConnectSceneGraphAboutToStop(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ConnectSceneGraphAboutToStop(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ConnectSceneGraphAboutToStop(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "sceneGraphAboutToStop", f)
 	}
 }
 
 func (ptr *QQuickWindow) DisconnectSceneGraphAboutToStop() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DisconnectSceneGraphAboutToStop(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DisconnectSceneGraphAboutToStop(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "sceneGraphAboutToStop")
 	}
 }
@@ -357,14 +390,14 @@ func callbackQQuickWindowSceneGraphAboutToStop(ptrName *C.char) {
 
 func (ptr *QQuickWindow) ConnectSceneGraphError(f func(error QQuickWindow__SceneGraphError, message string)) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ConnectSceneGraphError(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ConnectSceneGraphError(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "sceneGraphError", f)
 	}
 }
 
 func (ptr *QQuickWindow) DisconnectSceneGraphError() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DisconnectSceneGraphError(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DisconnectSceneGraphError(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "sceneGraphError")
 	}
 }
@@ -376,14 +409,14 @@ func callbackQQuickWindowSceneGraphError(ptrName *C.char, error C.int, message *
 
 func (ptr *QQuickWindow) ConnectSceneGraphInitialized(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ConnectSceneGraphInitialized(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ConnectSceneGraphInitialized(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "sceneGraphInitialized", f)
 	}
 }
 
 func (ptr *QQuickWindow) DisconnectSceneGraphInitialized() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DisconnectSceneGraphInitialized(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DisconnectSceneGraphInitialized(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "sceneGraphInitialized")
 	}
 }
@@ -395,14 +428,14 @@ func callbackQQuickWindowSceneGraphInitialized(ptrName *C.char) {
 
 func (ptr *QQuickWindow) ConnectSceneGraphInvalidated(f func()) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ConnectSceneGraphInvalidated(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_ConnectSceneGraphInvalidated(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "sceneGraphInvalidated", f)
 	}
 }
 
 func (ptr *QQuickWindow) DisconnectSceneGraphInvalidated() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DisconnectSceneGraphInvalidated(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DisconnectSceneGraphInvalidated(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "sceneGraphInvalidated")
 	}
 }
@@ -412,22 +445,22 @@ func callbackQQuickWindowSceneGraphInvalidated(ptrName *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "sceneGraphInvalidated").(func())()
 }
 
-func (ptr *QQuickWindow) ScheduleRenderJob(job core.QRunnableITF, stage QQuickWindow__RenderStage) {
+func (ptr *QQuickWindow) ScheduleRenderJob(job core.QRunnable_ITF, stage QQuickWindow__RenderStage) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_ScheduleRenderJob(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRunnable(job)), C.int(stage))
+		C.QQuickWindow_ScheduleRenderJob(ptr.Pointer(), core.PointerFromQRunnable(job), C.int(stage))
 	}
 }
 
-func (ptr *QQuickWindow) SendEvent(item QQuickItemITF, e core.QEventITF) bool {
+func (ptr *QQuickWindow) SendEvent(item QQuickItem_ITF, e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickWindow_SendEvent(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQQuickItem(item)), C.QtObjectPtr(core.PointerFromQEvent(e))) != 0
+		return C.QQuickWindow_SendEvent(ptr.Pointer(), PointerFromQQuickItem(item), core.PointerFromQEvent(e)) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickWindow) SetClearBeforeRendering(enabled bool) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_SetClearBeforeRendering(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enabled)))
+		C.QQuickWindow_SetClearBeforeRendering(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
 	}
 }
 
@@ -437,31 +470,31 @@ func QQuickWindow_SetDefaultAlphaBuffer(useAlpha bool) {
 
 func (ptr *QQuickWindow) SetPersistentOpenGLContext(persistent bool) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_SetPersistentOpenGLContext(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(persistent)))
+		C.QQuickWindow_SetPersistentOpenGLContext(ptr.Pointer(), C.int(qt.GoBoolToInt(persistent)))
 	}
 }
 
 func (ptr *QQuickWindow) SetPersistentSceneGraph(persistent bool) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_SetPersistentSceneGraph(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(persistent)))
+		C.QQuickWindow_SetPersistentSceneGraph(ptr.Pointer(), C.int(qt.GoBoolToInt(persistent)))
 	}
 }
 
-func (ptr *QQuickWindow) SetRenderTarget(fbo gui.QOpenGLFramebufferObjectITF) {
+func (ptr *QQuickWindow) SetRenderTarget(fbo gui.QOpenGLFramebufferObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_SetRenderTarget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQOpenGLFramebufferObject(fbo)))
+		C.QQuickWindow_SetRenderTarget(ptr.Pointer(), gui.PointerFromQOpenGLFramebufferObject(fbo))
 	}
 }
 
 func (ptr *QQuickWindow) Update() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_Update(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_Update(ptr.Pointer())
 	}
 }
 
 func (ptr *QQuickWindow) DestroyQQuickWindow() {
 	if ptr.Pointer() != nil {
-		C.QQuickWindow_DestroyQQuickWindow(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickWindow_DestroyQQuickWindow(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

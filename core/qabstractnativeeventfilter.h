@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(QtObjectPtr ptr);
+void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(void* ptr);
 
 #ifdef __cplusplus
 }

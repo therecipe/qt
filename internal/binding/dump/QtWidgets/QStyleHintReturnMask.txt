@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QStyleHintReturnMask QStyleHintReturnMask::QStyleHintReturnMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
-&{~QStyleHintReturnMask QStyleHintReturnMask::~QStyleHintReturnMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non destructor false false   [] }
+&{QStyleHintReturnMask QStyleHintReturnMask::QStyleHintReturnMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleHintReturnMask() [] }
+&{~QStyleHintReturnMask QStyleHintReturnMask::~QStyleHintReturnMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non destructor false false   ~QStyleHintReturnMask() [] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleHintReturnMask::StyleOptionType commendable public  [0xc82152aa00]}
-&{StyleOptionVersion QStyleHintReturnMask::StyleOptionVersion commendable public  [0xc82152ad40]}
+&{StyleOptionType QStyleHintReturnMask::StyleOptionType commendable public  [0xc822153fa0] false}
+&{StyleOptionVersion QStyleHintReturnMask::StyleOptionVersion commendable public  [0xc822154180] false}

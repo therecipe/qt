@@ -10,8 +10,8 @@ type QGestureRecognizer struct {
 	ptr unsafe.Pointer
 }
 
-type QGestureRecognizerITF interface {
-	QGestureRecognizerPTR() *QGestureRecognizer
+type QGestureRecognizer_ITF interface {
+	QGestureRecognizer_PTR() *QGestureRecognizer
 }
 
 func (p *QGestureRecognizer) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QGestureRecognizer) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQGestureRecognizer(ptr QGestureRecognizerITF) unsafe.Pointer {
+func PointerFromQGestureRecognizer(ptr QGestureRecognizer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGestureRecognizerPTR().Pointer()
+		return ptr.QGestureRecognizer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGestureRecognizerFromPointer(ptr unsafe.Pointer) *QGestureRecognizer {
+func NewQGestureRecognizerFromPointer(ptr unsafe.Pointer) *QGestureRecognizer {
 	var n = new(QGestureRecognizer)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGestureRecognizer) QGestureRecognizerPTR() *QGestureRecognizer {
+func (ptr *QGestureRecognizer) QGestureRecognizer_PTR() *QGestureRecognizer {
 	return ptr
 }
 
 //QGestureRecognizer::ResultFlag
-type QGestureRecognizer__ResultFlag int
+type QGestureRecognizer__ResultFlag int64
 
-var (
+const (
 	QGestureRecognizer__Ignore           = QGestureRecognizer__ResultFlag(0x0001)
 	QGestureRecognizer__MayBeGesture     = QGestureRecognizer__ResultFlag(0x0002)
 	QGestureRecognizer__TriggerGesture   = QGestureRecognizer__ResultFlag(0x0004)

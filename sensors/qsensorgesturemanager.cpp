@@ -1,12 +1,12 @@
 #include "qsensorgesturemanager.h"
-#include <QSensor>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QSensorGestureRecognizer>
-#include <QSensorGesture>
 #include <QObject>
+#include <QSensor>
+#include <QSensorGesture>
+#include <QString>
 #include <QSensorGestureManager>
 #include "_cgo_export.h"
 
@@ -15,35 +15,35 @@ public:
 void Signal_NewSensorGestureAvailable(){callbackQSensorGestureManagerNewSensorGestureAvailable(this->objectName().toUtf8().data());};
 };
 
-QtObjectPtr QSensorGestureManager_NewQSensorGestureManager(QtObjectPtr parent){
+void* QSensorGestureManager_NewQSensorGestureManager(void* parent){
 	return new QSensorGestureManager(static_cast<QObject*>(parent));
 }
 
-char* QSensorGestureManager_GestureIds(QtObjectPtr ptr){
+char* QSensorGestureManager_GestureIds(void* ptr){
 	return static_cast<QSensorGestureManager*>(ptr)->gestureIds().join("|").toUtf8().data();
 }
 
-void QSensorGestureManager_ConnectNewSensorGestureAvailable(QtObjectPtr ptr){
+void QSensorGestureManager_ConnectNewSensorGestureAvailable(void* ptr){
 	QObject::connect(static_cast<QSensorGestureManager*>(ptr), static_cast<void (QSensorGestureManager::*)()>(&QSensorGestureManager::newSensorGestureAvailable), static_cast<MyQSensorGestureManager*>(ptr), static_cast<void (MyQSensorGestureManager::*)()>(&MyQSensorGestureManager::Signal_NewSensorGestureAvailable));;
 }
 
-void QSensorGestureManager_DisconnectNewSensorGestureAvailable(QtObjectPtr ptr){
+void QSensorGestureManager_DisconnectNewSensorGestureAvailable(void* ptr){
 	QObject::disconnect(static_cast<QSensorGestureManager*>(ptr), static_cast<void (QSensorGestureManager::*)()>(&QSensorGestureManager::newSensorGestureAvailable), static_cast<MyQSensorGestureManager*>(ptr), static_cast<void (MyQSensorGestureManager::*)()>(&MyQSensorGestureManager::Signal_NewSensorGestureAvailable));;
 }
 
-char* QSensorGestureManager_RecognizerSignals(QtObjectPtr ptr, char* gestureId){
+char* QSensorGestureManager_RecognizerSignals(void* ptr, char* gestureId){
 	return static_cast<QSensorGestureManager*>(ptr)->recognizerSignals(QString(gestureId)).join("|").toUtf8().data();
 }
 
-int QSensorGestureManager_RegisterSensorGestureRecognizer(QtObjectPtr ptr, QtObjectPtr recognizer){
+int QSensorGestureManager_RegisterSensorGestureRecognizer(void* ptr, void* recognizer){
 	return static_cast<QSensorGestureManager*>(ptr)->registerSensorGestureRecognizer(static_cast<QSensorGestureRecognizer*>(recognizer));
 }
 
-QtObjectPtr QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(char* id){
+void* QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(char* id){
 	return QSensorGestureManager::sensorGestureRecognizer(QString(id));
 }
 
-void QSensorGestureManager_DestroyQSensorGestureManager(QtObjectPtr ptr){
+void QSensorGestureManager_DestroyQSensorGestureManager(void* ptr){
 	static_cast<QSensorGestureManager*>(ptr)->~QSensorGestureManager();
 }
 

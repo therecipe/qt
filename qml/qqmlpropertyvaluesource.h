@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QQmlPropertyValueSource_SetTarget(QtObjectPtr ptr, QtObjectPtr property);
-void QQmlPropertyValueSource_DestroyQQmlPropertyValueSource(QtObjectPtr ptr);
+void QQmlPropertyValueSource_SetTarget(void* ptr, void* property);
+void QQmlPropertyValueSource_DestroyQQmlPropertyValueSource(void* ptr);
 
 #ifdef __cplusplus
 }

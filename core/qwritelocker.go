@@ -10,8 +10,8 @@ type QWriteLocker struct {
 	ptr unsafe.Pointer
 }
 
-type QWriteLockerITF interface {
-	QWriteLockerPTR() *QWriteLocker
+type QWriteLocker_ITF interface {
+	QWriteLocker_PTR() *QWriteLocker
 }
 
 func (p *QWriteLocker) Pointer() unsafe.Pointer {
@@ -22,48 +22,48 @@ func (p *QWriteLocker) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQWriteLocker(ptr QWriteLockerITF) unsafe.Pointer {
+func PointerFromQWriteLocker(ptr QWriteLocker_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QWriteLockerPTR().Pointer()
+		return ptr.QWriteLocker_PTR().Pointer()
 	}
 	return nil
 }
 
-func QWriteLockerFromPointer(ptr unsafe.Pointer) *QWriteLocker {
+func NewQWriteLockerFromPointer(ptr unsafe.Pointer) *QWriteLocker {
 	var n = new(QWriteLocker)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QWriteLocker) QWriteLockerPTR() *QWriteLocker {
+func (ptr *QWriteLocker) QWriteLocker_PTR() *QWriteLocker {
 	return ptr
 }
 
-func NewQWriteLocker(lock QReadWriteLockITF) *QWriteLocker {
-	return QWriteLockerFromPointer(unsafe.Pointer(C.QWriteLocker_NewQWriteLocker(C.QtObjectPtr(PointerFromQReadWriteLock(lock)))))
+func NewQWriteLocker(lock QReadWriteLock_ITF) *QWriteLocker {
+	return NewQWriteLockerFromPointer(C.QWriteLocker_NewQWriteLocker(PointerFromQReadWriteLock(lock)))
 }
 
 func (ptr *QWriteLocker) ReadWriteLock() *QReadWriteLock {
 	if ptr.Pointer() != nil {
-		return QReadWriteLockFromPointer(unsafe.Pointer(C.QWriteLocker_ReadWriteLock(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQReadWriteLockFromPointer(C.QWriteLocker_ReadWriteLock(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QWriteLocker) Relock() {
 	if ptr.Pointer() != nil {
-		C.QWriteLocker_Relock(C.QtObjectPtr(ptr.Pointer()))
+		C.QWriteLocker_Relock(ptr.Pointer())
 	}
 }
 
 func (ptr *QWriteLocker) Unlock() {
 	if ptr.Pointer() != nil {
-		C.QWriteLocker_Unlock(C.QtObjectPtr(ptr.Pointer()))
+		C.QWriteLocker_Unlock(ptr.Pointer())
 	}
 }
 
 func (ptr *QWriteLocker) DestroyQWriteLocker() {
 	if ptr.Pointer() != nil {
-		C.QWriteLocker_DestroyQWriteLocker(C.QtObjectPtr(ptr.Pointer()))
+		C.QWriteLocker_DestroyQWriteLocker(ptr.Pointer())
 	}
 }

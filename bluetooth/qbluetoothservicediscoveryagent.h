@@ -1,23 +1,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QBluetoothServiceDiscoveryAgent_ConnectCanceled(QtObjectPtr ptr);
-void QBluetoothServiceDiscoveryAgent_DisconnectCanceled(QtObjectPtr ptr);
-void QBluetoothServiceDiscoveryAgent_ConnectFinished(QtObjectPtr ptr);
-void QBluetoothServiceDiscoveryAgent_DisconnectFinished(QtObjectPtr ptr);
-QtObjectPtr QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent(QtObjectPtr parent);
-QtObjectPtr QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent2(QtObjectPtr deviceAdapter, QtObjectPtr parent);
-void QBluetoothServiceDiscoveryAgent_Clear(QtObjectPtr ptr);
-int QBluetoothServiceDiscoveryAgent_Error(QtObjectPtr ptr);
-char* QBluetoothServiceDiscoveryAgent_ErrorString(QtObjectPtr ptr);
-int QBluetoothServiceDiscoveryAgent_IsActive(QtObjectPtr ptr);
-int QBluetoothServiceDiscoveryAgent_SetRemoteAddress(QtObjectPtr ptr, QtObjectPtr address);
-void QBluetoothServiceDiscoveryAgent_SetUuidFilter2(QtObjectPtr ptr, QtObjectPtr uuid);
-void QBluetoothServiceDiscoveryAgent_Start(QtObjectPtr ptr, int mode);
-void QBluetoothServiceDiscoveryAgent_Stop(QtObjectPtr ptr);
-void QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(QtObjectPtr ptr);
+void QBluetoothServiceDiscoveryAgent_ConnectCanceled(void* ptr);
+void QBluetoothServiceDiscoveryAgent_DisconnectCanceled(void* ptr);
+void QBluetoothServiceDiscoveryAgent_ConnectFinished(void* ptr);
+void QBluetoothServiceDiscoveryAgent_DisconnectFinished(void* ptr);
+void* QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent(void* parent);
+void* QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent2(void* deviceAdapter, void* parent);
+void QBluetoothServiceDiscoveryAgent_Clear(void* ptr);
+int QBluetoothServiceDiscoveryAgent_Error(void* ptr);
+char* QBluetoothServiceDiscoveryAgent_ErrorString(void* ptr);
+int QBluetoothServiceDiscoveryAgent_IsActive(void* ptr);
+int QBluetoothServiceDiscoveryAgent_SetRemoteAddress(void* ptr, void* address);
+void QBluetoothServiceDiscoveryAgent_SetUuidFilter2(void* ptr, void* uuid);
+void QBluetoothServiceDiscoveryAgent_Start(void* ptr, int mode);
+void QBluetoothServiceDiscoveryAgent_Stop(void* ptr);
+void QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(void* ptr);
 
 #ifdef __cplusplus
 }

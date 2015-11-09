@@ -11,82 +11,82 @@ type QWidgetItem struct {
 	QLayoutItem
 }
 
-type QWidgetItemITF interface {
-	QLayoutItemITF
-	QWidgetItemPTR() *QWidgetItem
+type QWidgetItem_ITF interface {
+	QLayoutItem_ITF
+	QWidgetItem_PTR() *QWidgetItem
 }
 
-func PointerFromQWidgetItem(ptr QWidgetItemITF) unsafe.Pointer {
+func PointerFromQWidgetItem(ptr QWidgetItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QWidgetItemPTR().Pointer()
+		return ptr.QWidgetItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QWidgetItemFromPointer(ptr unsafe.Pointer) *QWidgetItem {
+func NewQWidgetItemFromPointer(ptr unsafe.Pointer) *QWidgetItem {
 	var n = new(QWidgetItem)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QWidgetItem) QWidgetItemPTR() *QWidgetItem {
+func (ptr *QWidgetItem) QWidgetItem_PTR() *QWidgetItem {
 	return ptr
 }
 
-func NewQWidgetItem(widget QWidgetITF) *QWidgetItem {
-	return QWidgetItemFromPointer(unsafe.Pointer(C.QWidgetItem_NewQWidgetItem(C.QtObjectPtr(PointerFromQWidget(widget)))))
+func NewQWidgetItem(widget QWidget_ITF) *QWidgetItem {
+	return NewQWidgetItemFromPointer(C.QWidgetItem_NewQWidgetItem(PointerFromQWidget(widget)))
 }
 
 func (ptr *QWidgetItem) ControlTypes() QSizePolicy__ControlType {
 	if ptr.Pointer() != nil {
-		return QSizePolicy__ControlType(C.QWidgetItem_ControlTypes(C.QtObjectPtr(ptr.Pointer())))
+		return QSizePolicy__ControlType(C.QWidgetItem_ControlTypes(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QWidgetItem) ExpandingDirections() core.Qt__Orientation {
 	if ptr.Pointer() != nil {
-		return core.Qt__Orientation(C.QWidgetItem_ExpandingDirections(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__Orientation(C.QWidgetItem_ExpandingDirections(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QWidgetItem) HasHeightForWidth() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidgetItem_HasHeightForWidth(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QWidgetItem_HasHeightForWidth(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QWidgetItem) HeightForWidth(w int) int {
 	if ptr.Pointer() != nil {
-		return int(C.QWidgetItem_HeightForWidth(C.QtObjectPtr(ptr.Pointer()), C.int(w)))
+		return int(C.QWidgetItem_HeightForWidth(ptr.Pointer(), C.int(w)))
 	}
 	return 0
 }
 
 func (ptr *QWidgetItem) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QWidgetItem_IsEmpty(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QWidgetItem_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QWidgetItem) SetGeometry(rect core.QRectITF) {
+func (ptr *QWidgetItem) SetGeometry(rect core.QRect_ITF) {
 	if ptr.Pointer() != nil {
-		C.QWidgetItem_SetGeometry(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rect)))
+		C.QWidgetItem_SetGeometry(ptr.Pointer(), core.PointerFromQRect(rect))
 	}
 }
 
 func (ptr *QWidgetItem) Widget() *QWidget {
 	if ptr.Pointer() != nil {
-		return QWidgetFromPointer(unsafe.Pointer(C.QWidgetItem_Widget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQWidgetFromPointer(C.QWidgetItem_Widget(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QWidgetItem) DestroyQWidgetItem() {
 	if ptr.Pointer() != nil {
-		C.QWidgetItem_DestroyQWidgetItem(C.QtObjectPtr(ptr.Pointer()))
+		C.QWidgetItem_DestroyQWidgetItem(ptr.Pointer())
 	}
 }

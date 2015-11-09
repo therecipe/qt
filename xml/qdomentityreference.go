@@ -10,39 +10,39 @@ type QDomEntityReference struct {
 	QDomNode
 }
 
-type QDomEntityReferenceITF interface {
-	QDomNodeITF
-	QDomEntityReferencePTR() *QDomEntityReference
+type QDomEntityReference_ITF interface {
+	QDomNode_ITF
+	QDomEntityReference_PTR() *QDomEntityReference
 }
 
-func PointerFromQDomEntityReference(ptr QDomEntityReferenceITF) unsafe.Pointer {
+func PointerFromQDomEntityReference(ptr QDomEntityReference_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDomEntityReferencePTR().Pointer()
+		return ptr.QDomEntityReference_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDomEntityReferenceFromPointer(ptr unsafe.Pointer) *QDomEntityReference {
+func NewQDomEntityReferenceFromPointer(ptr unsafe.Pointer) *QDomEntityReference {
 	var n = new(QDomEntityReference)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDomEntityReference) QDomEntityReferencePTR() *QDomEntityReference {
+func (ptr *QDomEntityReference) QDomEntityReference_PTR() *QDomEntityReference {
 	return ptr
 }
 
 func NewQDomEntityReference() *QDomEntityReference {
-	return QDomEntityReferenceFromPointer(unsafe.Pointer(C.QDomEntityReference_NewQDomEntityReference()))
+	return NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference())
 }
 
-func NewQDomEntityReference2(x QDomEntityReferenceITF) *QDomEntityReference {
-	return QDomEntityReferenceFromPointer(unsafe.Pointer(C.QDomEntityReference_NewQDomEntityReference2(C.QtObjectPtr(PointerFromQDomEntityReference(x)))))
+func NewQDomEntityReference2(x QDomEntityReference_ITF) *QDomEntityReference {
+	return NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference2(PointerFromQDomEntityReference(x)))
 }
 
 func (ptr *QDomEntityReference) NodeType() QDomNode__NodeType {
 	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomEntityReference_NodeType(C.QtObjectPtr(ptr.Pointer())))
+		return QDomNode__NodeType(C.QDomEntityReference_NodeType(ptr.Pointer()))
 	}
 	return 0
 }

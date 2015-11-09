@@ -4,6 +4,7 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -11,35 +12,35 @@ type QCameraExposureControl struct {
 	QMediaControl
 }
 
-type QCameraExposureControlITF interface {
-	QMediaControlITF
-	QCameraExposureControlPTR() *QCameraExposureControl
+type QCameraExposureControl_ITF interface {
+	QMediaControl_ITF
+	QCameraExposureControl_PTR() *QCameraExposureControl
 }
 
-func PointerFromQCameraExposureControl(ptr QCameraExposureControlITF) unsafe.Pointer {
+func PointerFromQCameraExposureControl(ptr QCameraExposureControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCameraExposureControlPTR().Pointer()
+		return ptr.QCameraExposureControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCameraExposureControlFromPointer(ptr unsafe.Pointer) *QCameraExposureControl {
+func NewQCameraExposureControlFromPointer(ptr unsafe.Pointer) *QCameraExposureControl {
 	var n = new(QCameraExposureControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCameraExposureControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCameraExposureControl) QCameraExposureControlPTR() *QCameraExposureControl {
+func (ptr *QCameraExposureControl) QCameraExposureControl_PTR() *QCameraExposureControl {
 	return ptr
 }
 
 //QCameraExposureControl::ExposureParameter
-type QCameraExposureControl__ExposureParameter int
+type QCameraExposureControl__ExposureParameter int64
 
-var (
+const (
 	QCameraExposureControl__ISO                       = QCameraExposureControl__ExposureParameter(0)
 	QCameraExposureControl__Aperture                  = QCameraExposureControl__ExposureParameter(1)
 	QCameraExposureControl__ShutterSpeed              = QCameraExposureControl__ExposureParameter(2)
@@ -53,23 +54,23 @@ var (
 	QCameraExposureControl__ExtendedExposureParameter = QCameraExposureControl__ExposureParameter(1000)
 )
 
-func (ptr *QCameraExposureControl) ActualValue(parameter QCameraExposureControl__ExposureParameter) string {
+func (ptr *QCameraExposureControl) ActualValue(parameter QCameraExposureControl__ExposureParameter) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QCameraExposureControl_ActualValue(C.QtObjectPtr(ptr.Pointer()), C.int(parameter)))
+		return core.NewQVariantFromPointer(C.QCameraExposureControl_ActualValue(ptr.Pointer(), C.int(parameter)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QCameraExposureControl) ConnectActualValueChanged(f func(parameter int)) {
 	if ptr.Pointer() != nil {
-		C.QCameraExposureControl_ConnectActualValueChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposureControl_ConnectActualValueChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "actualValueChanged", f)
 	}
 }
 
 func (ptr *QCameraExposureControl) DisconnectActualValueChanged() {
 	if ptr.Pointer() != nil {
-		C.QCameraExposureControl_DisconnectActualValueChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposureControl_DisconnectActualValueChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "actualValueChanged")
 	}
 }
@@ -81,21 +82,21 @@ func callbackQCameraExposureControlActualValueChanged(ptrName *C.char, parameter
 
 func (ptr *QCameraExposureControl) IsParameterSupported(parameter QCameraExposureControl__ExposureParameter) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposureControl_IsParameterSupported(C.QtObjectPtr(ptr.Pointer()), C.int(parameter)) != 0
+		return C.QCameraExposureControl_IsParameterSupported(ptr.Pointer(), C.int(parameter)) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraExposureControl) ConnectParameterRangeChanged(f func(parameter int)) {
 	if ptr.Pointer() != nil {
-		C.QCameraExposureControl_ConnectParameterRangeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposureControl_ConnectParameterRangeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "parameterRangeChanged", f)
 	}
 }
 
 func (ptr *QCameraExposureControl) DisconnectParameterRangeChanged() {
 	if ptr.Pointer() != nil {
-		C.QCameraExposureControl_DisconnectParameterRangeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposureControl_DisconnectParameterRangeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "parameterRangeChanged")
 	}
 }
@@ -105,23 +106,23 @@ func callbackQCameraExposureControlParameterRangeChanged(ptrName *C.char, parame
 	qt.GetSignal(C.GoString(ptrName), "parameterRangeChanged").(func(int))(int(parameter))
 }
 
-func (ptr *QCameraExposureControl) RequestedValue(parameter QCameraExposureControl__ExposureParameter) string {
+func (ptr *QCameraExposureControl) RequestedValue(parameter QCameraExposureControl__ExposureParameter) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QCameraExposureControl_RequestedValue(C.QtObjectPtr(ptr.Pointer()), C.int(parameter)))
+		return core.NewQVariantFromPointer(C.QCameraExposureControl_RequestedValue(ptr.Pointer(), C.int(parameter)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QCameraExposureControl) ConnectRequestedValueChanged(f func(parameter int)) {
 	if ptr.Pointer() != nil {
-		C.QCameraExposureControl_ConnectRequestedValueChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposureControl_ConnectRequestedValueChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "requestedValueChanged", f)
 	}
 }
 
 func (ptr *QCameraExposureControl) DisconnectRequestedValueChanged() {
 	if ptr.Pointer() != nil {
-		C.QCameraExposureControl_DisconnectRequestedValueChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposureControl_DisconnectRequestedValueChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "requestedValueChanged")
 	}
 }
@@ -131,16 +132,16 @@ func callbackQCameraExposureControlRequestedValueChanged(ptrName *C.char, parame
 	qt.GetSignal(C.GoString(ptrName), "requestedValueChanged").(func(int))(int(parameter))
 }
 
-func (ptr *QCameraExposureControl) SetValue(parameter QCameraExposureControl__ExposureParameter, value string) bool {
+func (ptr *QCameraExposureControl) SetValue(parameter QCameraExposureControl__ExposureParameter, value core.QVariant_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposureControl_SetValue(C.QtObjectPtr(ptr.Pointer()), C.int(parameter), C.CString(value)) != 0
+		return C.QCameraExposureControl_SetValue(ptr.Pointer(), C.int(parameter), core.PointerFromQVariant(value)) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraExposureControl) DestroyQCameraExposureControl() {
 	if ptr.Pointer() != nil {
-		C.QCameraExposureControl_DestroyQCameraExposureControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposureControl_DestroyQCameraExposureControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

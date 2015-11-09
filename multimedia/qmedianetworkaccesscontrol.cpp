@@ -10,7 +10,7 @@ class MyQMediaNetworkAccessControl: public QMediaNetworkAccessControl {
 public:
 };
 
-void QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(QtObjectPtr ptr){
+void QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(void* ptr){
 	static_cast<QMediaNetworkAccessControl*>(ptr)->~QMediaNetworkAccessControl();
 }
 

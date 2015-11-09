@@ -11,8 +11,8 @@ type QRect struct {
 	ptr unsafe.Pointer
 }
 
-type QRectITF interface {
-	QRectPTR() *QRect
+type QRect_ITF interface {
+	QRect_PTR() *QRect
 }
 
 func (p *QRect) Pointer() unsafe.Pointer {
@@ -23,333 +23,333 @@ func (p *QRect) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQRect(ptr QRectITF) unsafe.Pointer {
+func PointerFromQRect(ptr QRect_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QRectPTR().Pointer()
+		return ptr.QRect_PTR().Pointer()
 	}
 	return nil
 }
 
-func QRectFromPointer(ptr unsafe.Pointer) *QRect {
+func NewQRectFromPointer(ptr unsafe.Pointer) *QRect {
 	var n = new(QRect)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QRect) QRectPTR() *QRect {
+func (ptr *QRect) QRect_PTR() *QRect {
 	return ptr
 }
 
-func (ptr *QRect) Contains(point QPointITF, proper bool) bool {
+func (ptr *QRect) Contains(point QPoint_ITF, proper bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_Contains(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPoint(point)), C.int(qt.GoBoolToInt(proper))) != 0
+		return C.QRect_Contains(ptr.Pointer(), PointerFromQPoint(point), C.int(qt.GoBoolToInt(proper))) != 0
 	}
 	return false
 }
 
-func (ptr *QRect) Contains4(rectangle QRectITF, proper bool) bool {
+func (ptr *QRect) Contains4(rectangle QRect_ITF, proper bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_Contains4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQRect(rectangle)), C.int(qt.GoBoolToInt(proper))) != 0
+		return C.QRect_Contains4(ptr.Pointer(), PointerFromQRect(rectangle), C.int(qt.GoBoolToInt(proper))) != 0
 	}
 	return false
 }
 
-func (ptr *QRect) Intersects(rectangle QRectITF) bool {
+func (ptr *QRect) Intersects(rectangle QRect_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_Intersects(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQRect(rectangle))) != 0
+		return C.QRect_Intersects(ptr.Pointer(), PointerFromQRect(rectangle)) != 0
 	}
 	return false
 }
 
 func NewQRect() *QRect {
-	return QRectFromPointer(unsafe.Pointer(C.QRect_NewQRect()))
+	return NewQRectFromPointer(C.QRect_NewQRect())
 }
 
-func NewQRect2(topLeft QPointITF, bottomRight QPointITF) *QRect {
-	return QRectFromPointer(unsafe.Pointer(C.QRect_NewQRect2(C.QtObjectPtr(PointerFromQPoint(topLeft)), C.QtObjectPtr(PointerFromQPoint(bottomRight)))))
+func NewQRect2(topLeft QPoint_ITF, bottomRight QPoint_ITF) *QRect {
+	return NewQRectFromPointer(C.QRect_NewQRect2(PointerFromQPoint(topLeft), PointerFromQPoint(bottomRight)))
 }
 
-func NewQRect3(topLeft QPointITF, size QSizeITF) *QRect {
-	return QRectFromPointer(unsafe.Pointer(C.QRect_NewQRect3(C.QtObjectPtr(PointerFromQPoint(topLeft)), C.QtObjectPtr(PointerFromQSize(size)))))
+func NewQRect3(topLeft QPoint_ITF, size QSize_ITF) *QRect {
+	return NewQRectFromPointer(C.QRect_NewQRect3(PointerFromQPoint(topLeft), PointerFromQSize(size)))
 }
 
 func NewQRect4(x int, y int, width int, height int) *QRect {
-	return QRectFromPointer(unsafe.Pointer(C.QRect_NewQRect4(C.int(x), C.int(y), C.int(width), C.int(height))))
+	return NewQRectFromPointer(C.QRect_NewQRect4(C.int(x), C.int(y), C.int(width), C.int(height)))
 }
 
 func (ptr *QRect) Adjust(dx1 int, dy1 int, dx2 int, dy2 int) {
 	if ptr.Pointer() != nil {
-		C.QRect_Adjust(C.QtObjectPtr(ptr.Pointer()), C.int(dx1), C.int(dy1), C.int(dx2), C.int(dy2))
+		C.QRect_Adjust(ptr.Pointer(), C.int(dx1), C.int(dy1), C.int(dx2), C.int(dy2))
 	}
 }
 
 func (ptr *QRect) Bottom() int {
 	if ptr.Pointer() != nil {
-		return int(C.QRect_Bottom(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QRect_Bottom(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QRect) Contains3(x int, y int) bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_Contains3(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y)) != 0
+		return C.QRect_Contains3(ptr.Pointer(), C.int(x), C.int(y)) != 0
 	}
 	return false
 }
 
 func (ptr *QRect) Contains2(x int, y int, proper bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_Contains2(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(qt.GoBoolToInt(proper))) != 0
+		return C.QRect_Contains2(ptr.Pointer(), C.int(x), C.int(y), C.int(qt.GoBoolToInt(proper))) != 0
 	}
 	return false
 }
 
 func (ptr *QRect) GetCoords(x1 int, y1 int, x2 int, y2 int) {
 	if ptr.Pointer() != nil {
-		C.QRect_GetCoords(C.QtObjectPtr(ptr.Pointer()), C.int(x1), C.int(y1), C.int(x2), C.int(y2))
+		C.QRect_GetCoords(ptr.Pointer(), C.int(x1), C.int(y1), C.int(x2), C.int(y2))
 	}
 }
 
 func (ptr *QRect) GetRect(x int, y int, width int, height int) {
 	if ptr.Pointer() != nil {
-		C.QRect_GetRect(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height))
+		C.QRect_GetRect(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height))
 	}
 }
 
 func (ptr *QRect) Height() int {
 	if ptr.Pointer() != nil {
-		return int(C.QRect_Height(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QRect_Height(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QRect) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_IsEmpty(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QRect_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QRect) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_IsNull(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QRect_IsNull(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QRect) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QRect_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QRect_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QRect) Left() int {
 	if ptr.Pointer() != nil {
-		return int(C.QRect_Left(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QRect_Left(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QRect) MoveBottom(y int) {
 	if ptr.Pointer() != nil {
-		C.QRect_MoveBottom(C.QtObjectPtr(ptr.Pointer()), C.int(y))
+		C.QRect_MoveBottom(ptr.Pointer(), C.int(y))
 	}
 }
 
-func (ptr *QRect) MoveBottomLeft(position QPointITF) {
+func (ptr *QRect) MoveBottomLeft(position QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRect_MoveBottomLeft(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPoint(position)))
+		C.QRect_MoveBottomLeft(ptr.Pointer(), PointerFromQPoint(position))
 	}
 }
 
-func (ptr *QRect) MoveBottomRight(position QPointITF) {
+func (ptr *QRect) MoveBottomRight(position QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRect_MoveBottomRight(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPoint(position)))
+		C.QRect_MoveBottomRight(ptr.Pointer(), PointerFromQPoint(position))
 	}
 }
 
-func (ptr *QRect) MoveCenter(position QPointITF) {
+func (ptr *QRect) MoveCenter(position QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRect_MoveCenter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPoint(position)))
+		C.QRect_MoveCenter(ptr.Pointer(), PointerFromQPoint(position))
 	}
 }
 
 func (ptr *QRect) MoveLeft(x int) {
 	if ptr.Pointer() != nil {
-		C.QRect_MoveLeft(C.QtObjectPtr(ptr.Pointer()), C.int(x))
+		C.QRect_MoveLeft(ptr.Pointer(), C.int(x))
 	}
 }
 
 func (ptr *QRect) MoveRight(x int) {
 	if ptr.Pointer() != nil {
-		C.QRect_MoveRight(C.QtObjectPtr(ptr.Pointer()), C.int(x))
+		C.QRect_MoveRight(ptr.Pointer(), C.int(x))
 	}
 }
 
-func (ptr *QRect) MoveTo2(position QPointITF) {
+func (ptr *QRect) MoveTo2(position QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRect_MoveTo2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPoint(position)))
+		C.QRect_MoveTo2(ptr.Pointer(), PointerFromQPoint(position))
 	}
 }
 
 func (ptr *QRect) MoveTo(x int, y int) {
 	if ptr.Pointer() != nil {
-		C.QRect_MoveTo(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y))
+		C.QRect_MoveTo(ptr.Pointer(), C.int(x), C.int(y))
 	}
 }
 
 func (ptr *QRect) MoveTop(y int) {
 	if ptr.Pointer() != nil {
-		C.QRect_MoveTop(C.QtObjectPtr(ptr.Pointer()), C.int(y))
+		C.QRect_MoveTop(ptr.Pointer(), C.int(y))
 	}
 }
 
-func (ptr *QRect) MoveTopLeft(position QPointITF) {
+func (ptr *QRect) MoveTopLeft(position QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRect_MoveTopLeft(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPoint(position)))
+		C.QRect_MoveTopLeft(ptr.Pointer(), PointerFromQPoint(position))
 	}
 }
 
-func (ptr *QRect) MoveTopRight(position QPointITF) {
+func (ptr *QRect) MoveTopRight(position QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRect_MoveTopRight(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPoint(position)))
+		C.QRect_MoveTopRight(ptr.Pointer(), PointerFromQPoint(position))
 	}
 }
 
 func (ptr *QRect) Right() int {
 	if ptr.Pointer() != nil {
-		return int(C.QRect_Right(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QRect_Right(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QRect) SetBottom(y int) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetBottom(C.QtObjectPtr(ptr.Pointer()), C.int(y))
+		C.QRect_SetBottom(ptr.Pointer(), C.int(y))
 	}
 }
 
-func (ptr *QRect) SetBottomLeft(position QPointITF) {
+func (ptr *QRect) SetBottomLeft(position QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetBottomLeft(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPoint(position)))
+		C.QRect_SetBottomLeft(ptr.Pointer(), PointerFromQPoint(position))
 	}
 }
 
-func (ptr *QRect) SetBottomRight(position QPointITF) {
+func (ptr *QRect) SetBottomRight(position QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetBottomRight(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPoint(position)))
+		C.QRect_SetBottomRight(ptr.Pointer(), PointerFromQPoint(position))
 	}
 }
 
 func (ptr *QRect) SetCoords(x1 int, y1 int, x2 int, y2 int) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetCoords(C.QtObjectPtr(ptr.Pointer()), C.int(x1), C.int(y1), C.int(x2), C.int(y2))
+		C.QRect_SetCoords(ptr.Pointer(), C.int(x1), C.int(y1), C.int(x2), C.int(y2))
 	}
 }
 
 func (ptr *QRect) SetHeight(height int) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetHeight(C.QtObjectPtr(ptr.Pointer()), C.int(height))
+		C.QRect_SetHeight(ptr.Pointer(), C.int(height))
 	}
 }
 
 func (ptr *QRect) SetLeft(x int) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetLeft(C.QtObjectPtr(ptr.Pointer()), C.int(x))
+		C.QRect_SetLeft(ptr.Pointer(), C.int(x))
 	}
 }
 
 func (ptr *QRect) SetRect(x int, y int, width int, height int) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetRect(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height))
+		C.QRect_SetRect(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height))
 	}
 }
 
 func (ptr *QRect) SetRight(x int) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetRight(C.QtObjectPtr(ptr.Pointer()), C.int(x))
+		C.QRect_SetRight(ptr.Pointer(), C.int(x))
 	}
 }
 
-func (ptr *QRect) SetSize(size QSizeITF) {
+func (ptr *QRect) SetSize(size QSize_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetSize(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSize(size)))
+		C.QRect_SetSize(ptr.Pointer(), PointerFromQSize(size))
 	}
 }
 
 func (ptr *QRect) SetTop(y int) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetTop(C.QtObjectPtr(ptr.Pointer()), C.int(y))
+		C.QRect_SetTop(ptr.Pointer(), C.int(y))
 	}
 }
 
-func (ptr *QRect) SetTopLeft(position QPointITF) {
+func (ptr *QRect) SetTopLeft(position QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetTopLeft(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPoint(position)))
+		C.QRect_SetTopLeft(ptr.Pointer(), PointerFromQPoint(position))
 	}
 }
 
-func (ptr *QRect) SetTopRight(position QPointITF) {
+func (ptr *QRect) SetTopRight(position QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetTopRight(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPoint(position)))
+		C.QRect_SetTopRight(ptr.Pointer(), PointerFromQPoint(position))
 	}
 }
 
 func (ptr *QRect) SetWidth(width int) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetWidth(C.QtObjectPtr(ptr.Pointer()), C.int(width))
+		C.QRect_SetWidth(ptr.Pointer(), C.int(width))
 	}
 }
 
 func (ptr *QRect) SetX(x int) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetX(C.QtObjectPtr(ptr.Pointer()), C.int(x))
+		C.QRect_SetX(ptr.Pointer(), C.int(x))
 	}
 }
 
 func (ptr *QRect) SetY(y int) {
 	if ptr.Pointer() != nil {
-		C.QRect_SetY(C.QtObjectPtr(ptr.Pointer()), C.int(y))
+		C.QRect_SetY(ptr.Pointer(), C.int(y))
 	}
 }
 
 func (ptr *QRect) Top() int {
 	if ptr.Pointer() != nil {
-		return int(C.QRect_Top(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QRect_Top(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QRect) Translate2(offset QPointITF) {
+func (ptr *QRect) Translate2(offset QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRect_Translate2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPoint(offset)))
+		C.QRect_Translate2(ptr.Pointer(), PointerFromQPoint(offset))
 	}
 }
 
 func (ptr *QRect) Translate(dx int, dy int) {
 	if ptr.Pointer() != nil {
-		C.QRect_Translate(C.QtObjectPtr(ptr.Pointer()), C.int(dx), C.int(dy))
+		C.QRect_Translate(ptr.Pointer(), C.int(dx), C.int(dy))
 	}
 }
 
 func (ptr *QRect) Width() int {
 	if ptr.Pointer() != nil {
-		return int(C.QRect_Width(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QRect_Width(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QRect) X() int {
 	if ptr.Pointer() != nil {
-		return int(C.QRect_X(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QRect_X(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QRect) Y() int {
 	if ptr.Pointer() != nil {
-		return int(C.QRect_Y(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QRect_Y(ptr.Pointer()))
 	}
 	return 0
 }

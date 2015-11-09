@@ -125,9 +125,11 @@ func findEnum(className, value string, byValue bool) (string, string) {
 	//Look in super classes
 	if c, exists := parser.ClassMap[className]; exists {
 		for _, s := range c.GetAllBases([]string{}) {
-			for _, e := range parser.ClassMap[s].Enums {
-				if outE, outT := findEnumH(e, value, byValue); outE != "" {
-					return outE, outT
+			if sc, exists := parser.ClassMap[s]; exists {
+				for _, e := range sc.Enums {
+					if outE, outT := findEnumH(e, value, byValue); outE != "" {
+						return outE, outT
+					}
 				}
 			}
 		}

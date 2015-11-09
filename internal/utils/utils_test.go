@@ -2,6 +2,7 @@ package utils
 
 import (
 	"io/ioutil"
+	"os"
 	"testing"
 )
 
@@ -27,5 +28,14 @@ func TestSaveLoad(t *testing.T) {
 
 	if output := Load(file); output != check {
 		t.Errorf("%v != %v", output, check)
+	}
+}
+
+func TestGetQtPath(t *testing.T) {
+	os.Setenv("GOPATH", "/Users/HOME/golang/")
+	var check = "/Users/HOME/golang/src/github.com/therecipe/qt"
+
+	if r := GetQtPkgPath(); r != check {
+		t.Errorf("%v != %v", r, check)
 	}
 }

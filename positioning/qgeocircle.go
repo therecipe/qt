@@ -10,55 +10,72 @@ type QGeoCircle struct {
 	QGeoShape
 }
 
-type QGeoCircleITF interface {
-	QGeoShapeITF
-	QGeoCirclePTR() *QGeoCircle
+type QGeoCircle_ITF interface {
+	QGeoShape_ITF
+	QGeoCircle_PTR() *QGeoCircle
 }
 
-func PointerFromQGeoCircle(ptr QGeoCircleITF) unsafe.Pointer {
+func PointerFromQGeoCircle(ptr QGeoCircle_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGeoCirclePTR().Pointer()
+		return ptr.QGeoCircle_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGeoCircleFromPointer(ptr unsafe.Pointer) *QGeoCircle {
+func NewQGeoCircleFromPointer(ptr unsafe.Pointer) *QGeoCircle {
 	var n = new(QGeoCircle)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGeoCircle) QGeoCirclePTR() *QGeoCircle {
+func (ptr *QGeoCircle) QGeoCircle_PTR() *QGeoCircle {
 	return ptr
 }
 
 func NewQGeoCircle() *QGeoCircle {
-	return QGeoCircleFromPointer(unsafe.Pointer(C.QGeoCircle_NewQGeoCircle()))
+	return NewQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle())
 }
 
-func NewQGeoCircle3(other QGeoCircleITF) *QGeoCircle {
-	return QGeoCircleFromPointer(unsafe.Pointer(C.QGeoCircle_NewQGeoCircle3(C.QtObjectPtr(PointerFromQGeoCircle(other)))))
+func NewQGeoCircle3(other QGeoCircle_ITF) *QGeoCircle {
+	return NewQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle3(PointerFromQGeoCircle(other)))
 }
 
-func NewQGeoCircle4(other QGeoShapeITF) *QGeoCircle {
-	return QGeoCircleFromPointer(unsafe.Pointer(C.QGeoCircle_NewQGeoCircle4(C.QtObjectPtr(PointerFromQGeoShape(other)))))
+func NewQGeoCircle2(center QGeoCoordinate_ITF, radius float64) *QGeoCircle {
+	return NewQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle2(PointerFromQGeoCoordinate(center), C.double(radius)))
 }
 
-func (ptr *QGeoCircle) SetCenter(center QGeoCoordinateITF) {
+func NewQGeoCircle4(other QGeoShape_ITF) *QGeoCircle {
+	return NewQGeoCircleFromPointer(C.QGeoCircle_NewQGeoCircle4(PointerFromQGeoShape(other)))
+}
+
+func (ptr *QGeoCircle) Radius() float64 {
 	if ptr.Pointer() != nil {
-		C.QGeoCircle_SetCenter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGeoCoordinate(center)))
+		return float64(C.QGeoCircle_Radius(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QGeoCircle) SetCenter(center QGeoCoordinate_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGeoCircle_SetCenter(ptr.Pointer(), PointerFromQGeoCoordinate(center))
+	}
+}
+
+func (ptr *QGeoCircle) SetRadius(radius float64) {
+	if ptr.Pointer() != nil {
+		C.QGeoCircle_SetRadius(ptr.Pointer(), C.double(radius))
 	}
 }
 
 func (ptr *QGeoCircle) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGeoCircle_ToString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QGeoCircle_ToString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QGeoCircle) DestroyQGeoCircle() {
 	if ptr.Pointer() != nil {
-		C.QGeoCircle_DestroyQGeoCircle(C.QtObjectPtr(ptr.Pointer()))
+		C.QGeoCircle_DestroyQGeoCircle(ptr.Pointer())
 	}
 }

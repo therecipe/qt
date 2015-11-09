@@ -1,10 +1,10 @@
 #include "qstyleoption.h"
+#include <QStyle>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QWidget>
-#include <QStyle>
 #include <QStyleOption>
 #include "_cgo_export.h"
 
@@ -40,19 +40,19 @@ int QStyleOption_SO_SizeGrip_Type(){
 	return QStyleOption::SO_SizeGrip;
 }
 
-QtObjectPtr QStyleOption_NewQStyleOption2(QtObjectPtr other){
+void* QStyleOption_NewQStyleOption2(void* other){
 	return new QStyleOption(*static_cast<QStyleOption*>(other));
 }
 
-QtObjectPtr QStyleOption_NewQStyleOption(int version, int ty){
+void* QStyleOption_NewQStyleOption(int version, int ty){
 	return new QStyleOption(version, ty);
 }
 
-void QStyleOption_InitFrom(QtObjectPtr ptr, QtObjectPtr widget){
+void QStyleOption_InitFrom(void* ptr, void* widget){
 	static_cast<QStyleOption*>(ptr)->initFrom(static_cast<QWidget*>(widget));
 }
 
-void QStyleOption_DestroyQStyleOption(QtObjectPtr ptr){
+void QStyleOption_DestroyQStyleOption(void* ptr){
 	static_cast<QStyleOption*>(ptr)->~QStyleOption();
 }
 

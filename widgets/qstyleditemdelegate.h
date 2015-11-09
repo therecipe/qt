@@ -1,18 +1,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStyledItemDelegate_NewQStyledItemDelegate(QtObjectPtr parent);
-QtObjectPtr QStyledItemDelegate_CreateEditor(QtObjectPtr ptr, QtObjectPtr parent, QtObjectPtr option, QtObjectPtr index);
-char* QStyledItemDelegate_DisplayText(QtObjectPtr ptr, char* value, QtObjectPtr locale);
-QtObjectPtr QStyledItemDelegate_ItemEditorFactory(QtObjectPtr ptr);
-void QStyledItemDelegate_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr index);
-void QStyledItemDelegate_SetEditorData(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr index);
-void QStyledItemDelegate_SetItemEditorFactory(QtObjectPtr ptr, QtObjectPtr factory);
-void QStyledItemDelegate_SetModelData(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr model, QtObjectPtr index);
-void QStyledItemDelegate_UpdateEditorGeometry(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr option, QtObjectPtr index);
-void QStyledItemDelegate_DestroyQStyledItemDelegate(QtObjectPtr ptr);
+void* QStyledItemDelegate_NewQStyledItemDelegate(void* parent);
+void* QStyledItemDelegate_CreateEditor(void* ptr, void* parent, void* option, void* index);
+char* QStyledItemDelegate_DisplayText(void* ptr, void* value, void* locale);
+void* QStyledItemDelegate_ItemEditorFactory(void* ptr);
+void QStyledItemDelegate_Paint(void* ptr, void* painter, void* option, void* index);
+void QStyledItemDelegate_SetEditorData(void* ptr, void* editor, void* index);
+void QStyledItemDelegate_SetItemEditorFactory(void* ptr, void* factory);
+void QStyledItemDelegate_SetModelData(void* ptr, void* editor, void* model, void* index);
+void QStyledItemDelegate_UpdateEditorGeometry(void* ptr, void* editor, void* option, void* index);
+void QStyledItemDelegate_DestroyQStyledItemDelegate(void* ptr);
 
 #ifdef __cplusplus
 }

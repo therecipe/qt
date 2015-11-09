@@ -12,48 +12,55 @@ type QRegExpValidator struct {
 	QValidator
 }
 
-type QRegExpValidatorITF interface {
-	QValidatorITF
-	QRegExpValidatorPTR() *QRegExpValidator
+type QRegExpValidator_ITF interface {
+	QValidator_ITF
+	QRegExpValidator_PTR() *QRegExpValidator
 }
 
-func PointerFromQRegExpValidator(ptr QRegExpValidatorITF) unsafe.Pointer {
+func PointerFromQRegExpValidator(ptr QRegExpValidator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QRegExpValidatorPTR().Pointer()
+		return ptr.QRegExpValidator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QRegExpValidatorFromPointer(ptr unsafe.Pointer) *QRegExpValidator {
+func NewQRegExpValidatorFromPointer(ptr unsafe.Pointer) *QRegExpValidator {
 	var n = new(QRegExpValidator)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QRegExpValidator_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QRegExpValidator) QRegExpValidatorPTR() *QRegExpValidator {
+func (ptr *QRegExpValidator) QRegExpValidator_PTR() *QRegExpValidator {
 	return ptr
 }
 
-func (ptr *QRegExpValidator) SetRegExp(rx core.QRegExpITF) {
+func (ptr *QRegExpValidator) SetRegExp(rx core.QRegExp_ITF) {
 	if ptr.Pointer() != nil {
-		C.QRegExpValidator_SetRegExp(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRegExp(rx)))
+		C.QRegExpValidator_SetRegExp(ptr.Pointer(), core.PointerFromQRegExp(rx))
 	}
 }
 
-func NewQRegExpValidator(parent core.QObjectITF) *QRegExpValidator {
-	return QRegExpValidatorFromPointer(unsafe.Pointer(C.QRegExpValidator_NewQRegExpValidator(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQRegExpValidator(parent core.QObject_ITF) *QRegExpValidator {
+	return NewQRegExpValidatorFromPointer(C.QRegExpValidator_NewQRegExpValidator(core.PointerFromQObject(parent)))
 }
 
-func NewQRegExpValidator2(rx core.QRegExpITF, parent core.QObjectITF) *QRegExpValidator {
-	return QRegExpValidatorFromPointer(unsafe.Pointer(C.QRegExpValidator_NewQRegExpValidator2(C.QtObjectPtr(core.PointerFromQRegExp(rx)), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQRegExpValidator2(rx core.QRegExp_ITF, parent core.QObject_ITF) *QRegExpValidator {
+	return NewQRegExpValidatorFromPointer(C.QRegExpValidator_NewQRegExpValidator2(core.PointerFromQRegExp(rx), core.PointerFromQObject(parent)))
+}
+
+func (ptr *QRegExpValidator) RegExp() *core.QRegExp {
+	if ptr.Pointer() != nil {
+		return core.NewQRegExpFromPointer(C.QRegExpValidator_RegExp(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QRegExpValidator) DestroyQRegExpValidator() {
 	if ptr.Pointer() != nil {
-		C.QRegExpValidator_DestroyQRegExpValidator(C.QtObjectPtr(ptr.Pointer()))
+		C.QRegExpValidator_DestroyQRegExpValidator(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

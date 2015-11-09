@@ -10,19 +10,19 @@ class MyQWaitCondition: public QWaitCondition {
 public:
 };
 
-QtObjectPtr QWaitCondition_NewQWaitCondition(){
+void* QWaitCondition_NewQWaitCondition(){
 	return new QWaitCondition();
 }
 
-void QWaitCondition_WakeAll(QtObjectPtr ptr){
+void QWaitCondition_WakeAll(void* ptr){
 	static_cast<QWaitCondition*>(ptr)->wakeAll();
 }
 
-void QWaitCondition_WakeOne(QtObjectPtr ptr){
+void QWaitCondition_WakeOne(void* ptr){
 	static_cast<QWaitCondition*>(ptr)->wakeOne();
 }
 
-void QWaitCondition_DestroyQWaitCondition(QtObjectPtr ptr){
+void QWaitCondition_DestroyQWaitCondition(void* ptr){
 	static_cast<QWaitCondition*>(ptr)->~QWaitCondition();
 }
 

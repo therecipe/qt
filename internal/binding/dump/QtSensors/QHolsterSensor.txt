@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{reading QHolsterSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qholstersensor.cpp non plain false false  QHolsterReading * [] }
-&{QHolsterSensor QHolsterSensor::QHolsterSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qholstersensor.h non constructor false false   [0xc822e90040] }
-&{~QHolsterSensor QHolsterSensor::~QHolsterSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qholstersensor.h non destructor false false   [] }
+&{reading QHolsterSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qholstersensor.cpp non plain false false  QHolsterReading * QHolsterReading * reading() const [] }
+&{QHolsterSensor QHolsterSensor::QHolsterSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qholstersensor.h non constructor false false   QHolsterSensor(QObject *parent) [0xc823652780] }
+&{~QHolsterSensor QHolsterSensor::~QHolsterSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qholstersensor.h non destructor false false   ~QHolsterSensor() [] }
 ########################################			ENUMS			########################################

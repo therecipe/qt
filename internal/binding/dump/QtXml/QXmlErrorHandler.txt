@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{error QXmlErrorHandler::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8222b54c0] }
-&{errorString QXmlErrorHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString [] }
-&{fatalError QXmlErrorHandler::fatalError commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8222b5860] }
-&{warning QXmlErrorHandler::warning commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8222b5ac0] }
-&{~QXmlErrorHandler QXmlErrorHandler::~QXmlErrorHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   [] }
+&{error QXmlErrorHandler::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool error(const QXmlParseException &exception) [0xc82188e960] }
+&{errorString QXmlErrorHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString QString errorString() const [] }
+&{fatalError QXmlErrorHandler::fatalError commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool fatalError(const QXmlParseException &exception) [0xc82188f080] }
+&{warning QXmlErrorHandler::warning commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool warning(const QXmlParseException &exception) [0xc82188f4c0] }
+&{~QXmlErrorHandler QXmlErrorHandler::~QXmlErrorHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   ~QXmlErrorHandler() [] }
 ########################################			ENUMS			########################################

@@ -1,12 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QAbstractGraphicsShapeItem_IsObscuredBy(QtObjectPtr ptr, QtObjectPtr item);
-void QAbstractGraphicsShapeItem_SetBrush(QtObjectPtr ptr, QtObjectPtr brush);
-void QAbstractGraphicsShapeItem_SetPen(QtObjectPtr ptr, QtObjectPtr pen);
-void QAbstractGraphicsShapeItem_DestroyQAbstractGraphicsShapeItem(QtObjectPtr ptr);
+void* QAbstractGraphicsShapeItem_Brush(void* ptr);
+int QAbstractGraphicsShapeItem_IsObscuredBy(void* ptr, void* item);
+void QAbstractGraphicsShapeItem_SetBrush(void* ptr, void* brush);
+void QAbstractGraphicsShapeItem_SetPen(void* ptr, void* pen);
+void QAbstractGraphicsShapeItem_DestroyQAbstractGraphicsShapeItem(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -10,91 +10,91 @@ class MyQSGNode: public QSGNode {
 public:
 };
 
-QtObjectPtr QSGNode_ChildAtIndex(QtObjectPtr ptr, int i){
+void* QSGNode_ChildAtIndex(void* ptr, int i){
 	return static_cast<QSGNode*>(ptr)->childAtIndex(i);
 }
 
-int QSGNode_ChildCount(QtObjectPtr ptr){
+int QSGNode_ChildCount(void* ptr){
 	return static_cast<QSGNode*>(ptr)->childCount();
 }
 
-QtObjectPtr QSGNode_NewQSGNode(){
+void* QSGNode_NewQSGNode(){
 	return new QSGNode();
 }
 
-void QSGNode_AppendChildNode(QtObjectPtr ptr, QtObjectPtr node){
+void QSGNode_AppendChildNode(void* ptr, void* node){
 	static_cast<QSGNode*>(ptr)->appendChildNode(static_cast<QSGNode*>(node));
 }
 
-QtObjectPtr QSGNode_FirstChild(QtObjectPtr ptr){
+void* QSGNode_FirstChild(void* ptr){
 	return static_cast<QSGNode*>(ptr)->firstChild();
 }
 
-int QSGNode_Flags(QtObjectPtr ptr){
+int QSGNode_Flags(void* ptr){
 	return static_cast<QSGNode*>(ptr)->flags();
 }
 
-void QSGNode_InsertChildNodeAfter(QtObjectPtr ptr, QtObjectPtr node, QtObjectPtr after){
+void QSGNode_InsertChildNodeAfter(void* ptr, void* node, void* after){
 	static_cast<QSGNode*>(ptr)->insertChildNodeAfter(static_cast<QSGNode*>(node), static_cast<QSGNode*>(after));
 }
 
-void QSGNode_InsertChildNodeBefore(QtObjectPtr ptr, QtObjectPtr node, QtObjectPtr before){
+void QSGNode_InsertChildNodeBefore(void* ptr, void* node, void* before){
 	static_cast<QSGNode*>(ptr)->insertChildNodeBefore(static_cast<QSGNode*>(node), static_cast<QSGNode*>(before));
 }
 
-int QSGNode_IsSubtreeBlocked(QtObjectPtr ptr){
+int QSGNode_IsSubtreeBlocked(void* ptr){
 	return static_cast<QSGNode*>(ptr)->isSubtreeBlocked();
 }
 
-QtObjectPtr QSGNode_LastChild(QtObjectPtr ptr){
+void* QSGNode_LastChild(void* ptr){
 	return static_cast<QSGNode*>(ptr)->lastChild();
 }
 
-void QSGNode_MarkDirty(QtObjectPtr ptr, int bits){
+void QSGNode_MarkDirty(void* ptr, int bits){
 	static_cast<QSGNode*>(ptr)->markDirty(static_cast<QSGNode::DirtyStateBit>(bits));
 }
 
-QtObjectPtr QSGNode_NextSibling(QtObjectPtr ptr){
+void* QSGNode_NextSibling(void* ptr){
 	return static_cast<QSGNode*>(ptr)->nextSibling();
 }
 
-QtObjectPtr QSGNode_Parent(QtObjectPtr ptr){
+void* QSGNode_Parent(void* ptr){
 	return static_cast<QSGNode*>(ptr)->parent();
 }
 
-void QSGNode_PrependChildNode(QtObjectPtr ptr, QtObjectPtr node){
+void QSGNode_PrependChildNode(void* ptr, void* node){
 	static_cast<QSGNode*>(ptr)->prependChildNode(static_cast<QSGNode*>(node));
 }
 
-void QSGNode_Preprocess(QtObjectPtr ptr){
+void QSGNode_Preprocess(void* ptr){
 	static_cast<QSGNode*>(ptr)->preprocess();
 }
 
-QtObjectPtr QSGNode_PreviousSibling(QtObjectPtr ptr){
+void* QSGNode_PreviousSibling(void* ptr){
 	return static_cast<QSGNode*>(ptr)->previousSibling();
 }
 
-void QSGNode_RemoveAllChildNodes(QtObjectPtr ptr){
+void QSGNode_RemoveAllChildNodes(void* ptr){
 	static_cast<QSGNode*>(ptr)->removeAllChildNodes();
 }
 
-void QSGNode_RemoveChildNode(QtObjectPtr ptr, QtObjectPtr node){
+void QSGNode_RemoveChildNode(void* ptr, void* node){
 	static_cast<QSGNode*>(ptr)->removeChildNode(static_cast<QSGNode*>(node));
 }
 
-void QSGNode_SetFlag(QtObjectPtr ptr, int f, int enabled){
+void QSGNode_SetFlag(void* ptr, int f, int enabled){
 	static_cast<QSGNode*>(ptr)->setFlag(static_cast<QSGNode::Flag>(f), enabled != 0);
 }
 
-void QSGNode_SetFlags(QtObjectPtr ptr, int f, int enabled){
+void QSGNode_SetFlags(void* ptr, int f, int enabled){
 	static_cast<QSGNode*>(ptr)->setFlags(static_cast<QSGNode::Flag>(f), enabled != 0);
 }
 
-int QSGNode_Type(QtObjectPtr ptr){
+int QSGNode_Type(void* ptr){
 	return static_cast<QSGNode*>(ptr)->type();
 }
 
-void QSGNode_DestroyQSGNode(QtObjectPtr ptr){
+void QSGNode_DestroyQSGNode(void* ptr){
 	static_cast<QSGNode*>(ptr)->~QSGNode();
 }
 

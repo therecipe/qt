@@ -11,41 +11,41 @@ type QMediaVideoProbeControl struct {
 	QMediaControl
 }
 
-type QMediaVideoProbeControlITF interface {
-	QMediaControlITF
-	QMediaVideoProbeControlPTR() *QMediaVideoProbeControl
+type QMediaVideoProbeControl_ITF interface {
+	QMediaControl_ITF
+	QMediaVideoProbeControl_PTR() *QMediaVideoProbeControl
 }
 
-func PointerFromQMediaVideoProbeControl(ptr QMediaVideoProbeControlITF) unsafe.Pointer {
+func PointerFromQMediaVideoProbeControl(ptr QMediaVideoProbeControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaVideoProbeControlPTR().Pointer()
+		return ptr.QMediaVideoProbeControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaVideoProbeControlFromPointer(ptr unsafe.Pointer) *QMediaVideoProbeControl {
+func NewQMediaVideoProbeControlFromPointer(ptr unsafe.Pointer) *QMediaVideoProbeControl {
 	var n = new(QMediaVideoProbeControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMediaVideoProbeControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMediaVideoProbeControl) QMediaVideoProbeControlPTR() *QMediaVideoProbeControl {
+func (ptr *QMediaVideoProbeControl) QMediaVideoProbeControl_PTR() *QMediaVideoProbeControl {
 	return ptr
 }
 
 func (ptr *QMediaVideoProbeControl) ConnectFlush(f func()) {
 	if ptr.Pointer() != nil {
-		C.QMediaVideoProbeControl_ConnectFlush(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaVideoProbeControl_ConnectFlush(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "flush", f)
 	}
 }
 
 func (ptr *QMediaVideoProbeControl) DisconnectFlush() {
 	if ptr.Pointer() != nil {
-		C.QMediaVideoProbeControl_DisconnectFlush(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaVideoProbeControl_DisconnectFlush(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "flush")
 	}
 }
@@ -57,7 +57,7 @@ func callbackQMediaVideoProbeControlFlush(ptrName *C.char) {
 
 func (ptr *QMediaVideoProbeControl) DestroyQMediaVideoProbeControl() {
 	if ptr.Pointer() != nil {
-		C.QMediaVideoProbeControl_DestroyQMediaVideoProbeControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaVideoProbeControl_DestroyQMediaVideoProbeControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

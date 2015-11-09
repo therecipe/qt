@@ -1,29 +1,29 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QBrush_NewQBrush4(int color, int style);
-void QBrush_SetColor(QtObjectPtr ptr, QtObjectPtr color);
-QtObjectPtr QBrush_NewQBrush();
-QtObjectPtr QBrush_NewQBrush2(int style);
-QtObjectPtr QBrush_NewQBrush6(int color, QtObjectPtr pixmap);
-QtObjectPtr QBrush_NewQBrush9(QtObjectPtr other);
-QtObjectPtr QBrush_NewQBrush3(QtObjectPtr color, int style);
-QtObjectPtr QBrush_NewQBrush5(QtObjectPtr color, QtObjectPtr pixmap);
-QtObjectPtr QBrush_NewQBrush10(QtObjectPtr gradient);
-QtObjectPtr QBrush_NewQBrush8(QtObjectPtr image);
-QtObjectPtr QBrush_NewQBrush7(QtObjectPtr pixmap);
-QtObjectPtr QBrush_Gradient(QtObjectPtr ptr);
-int QBrush_IsOpaque(QtObjectPtr ptr);
-void QBrush_SetColor2(QtObjectPtr ptr, int color);
-void QBrush_SetStyle(QtObjectPtr ptr, int style);
-void QBrush_SetTexture(QtObjectPtr ptr, QtObjectPtr pixmap);
-void QBrush_SetTextureImage(QtObjectPtr ptr, QtObjectPtr image);
-void QBrush_SetTransform(QtObjectPtr ptr, QtObjectPtr matrix);
-int QBrush_Style(QtObjectPtr ptr);
-void QBrush_Swap(QtObjectPtr ptr, QtObjectPtr other);
-void QBrush_DestroyQBrush(QtObjectPtr ptr);
+void* QBrush_NewQBrush4(int color, int style);
+void QBrush_SetColor(void* ptr, void* color);
+void* QBrush_NewQBrush();
+void* QBrush_NewQBrush2(int style);
+void* QBrush_NewQBrush6(int color, void* pixmap);
+void* QBrush_NewQBrush9(void* other);
+void* QBrush_NewQBrush3(void* color, int style);
+void* QBrush_NewQBrush5(void* color, void* pixmap);
+void* QBrush_NewQBrush10(void* gradient);
+void* QBrush_NewQBrush8(void* image);
+void* QBrush_NewQBrush7(void* pixmap);
+void* QBrush_Color(void* ptr);
+void* QBrush_Gradient(void* ptr);
+int QBrush_IsOpaque(void* ptr);
+void QBrush_SetColor2(void* ptr, int color);
+void QBrush_SetStyle(void* ptr, int style);
+void QBrush_SetTexture(void* ptr, void* pixmap);
+void QBrush_SetTextureImage(void* ptr, void* image);
+void QBrush_SetTransform(void* ptr, void* matrix);
+int QBrush_Style(void* ptr);
+void QBrush_Swap(void* ptr, void* other);
+void QBrush_DestroyQBrush(void* ptr);
 
 #ifdef __cplusplus
 }

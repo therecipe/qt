@@ -1,14 +1,14 @@
 #include "qgeoroutingmanager.h"
-#include <QObject>
-#include <QGeoRouteReply>
-#include <QVariant>
-#include <QModelIndex>
-#include <QGeoRouteRequest>
-#include <QLocale>
-#include <QGeoCoordinate>
 #include <QString>
 #include <QUrl>
+#include <QGeoRouteReply>
+#include <QGeoCoordinate>
+#include <QLocale>
+#include <QGeoRouteRequest>
+#include <QVariant>
+#include <QModelIndex>
 #include <QGeoRoute>
+#include <QObject>
 #include <QGeoRoutingManager>
 #include "_cgo_export.h"
 
@@ -18,75 +18,75 @@ void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString e
 void Signal_Finished(QGeoRouteReply * reply){callbackQGeoRoutingManagerFinished(this->objectName().toUtf8().data(), reply);};
 };
 
-QtObjectPtr QGeoRoutingManager_CalculateRoute(QtObjectPtr ptr, QtObjectPtr request){
+void* QGeoRoutingManager_CalculateRoute(void* ptr, void* request){
 	return static_cast<QGeoRoutingManager*>(ptr)->calculateRoute(*static_cast<QGeoRouteRequest*>(request));
 }
 
-void QGeoRoutingManager_ConnectError(QtObjectPtr ptr){
+void QGeoRoutingManager_ConnectError(void* ptr){
 	QObject::connect(static_cast<QGeoRoutingManager*>(ptr), static_cast<void (QGeoRoutingManager::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&QGeoRoutingManager::error), static_cast<MyQGeoRoutingManager*>(ptr), static_cast<void (MyQGeoRoutingManager::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&MyQGeoRoutingManager::Signal_Error));;
 }
 
-void QGeoRoutingManager_DisconnectError(QtObjectPtr ptr){
+void QGeoRoutingManager_DisconnectError(void* ptr){
 	QObject::disconnect(static_cast<QGeoRoutingManager*>(ptr), static_cast<void (QGeoRoutingManager::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&QGeoRoutingManager::error), static_cast<MyQGeoRoutingManager*>(ptr), static_cast<void (MyQGeoRoutingManager::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&MyQGeoRoutingManager::Signal_Error));;
 }
 
-void QGeoRoutingManager_ConnectFinished(QtObjectPtr ptr){
+void QGeoRoutingManager_ConnectFinished(void* ptr){
 	QObject::connect(static_cast<QGeoRoutingManager*>(ptr), static_cast<void (QGeoRoutingManager::*)(QGeoRouteReply *)>(&QGeoRoutingManager::finished), static_cast<MyQGeoRoutingManager*>(ptr), static_cast<void (MyQGeoRoutingManager::*)(QGeoRouteReply *)>(&MyQGeoRoutingManager::Signal_Finished));;
 }
 
-void QGeoRoutingManager_DisconnectFinished(QtObjectPtr ptr){
+void QGeoRoutingManager_DisconnectFinished(void* ptr){
 	QObject::disconnect(static_cast<QGeoRoutingManager*>(ptr), static_cast<void (QGeoRoutingManager::*)(QGeoRouteReply *)>(&QGeoRoutingManager::finished), static_cast<MyQGeoRoutingManager*>(ptr), static_cast<void (MyQGeoRoutingManager::*)(QGeoRouteReply *)>(&MyQGeoRoutingManager::Signal_Finished));;
 }
 
-char* QGeoRoutingManager_ManagerName(QtObjectPtr ptr){
+char* QGeoRoutingManager_ManagerName(void* ptr){
 	return static_cast<QGeoRoutingManager*>(ptr)->managerName().toUtf8().data();
 }
 
-int QGeoRoutingManager_ManagerVersion(QtObjectPtr ptr){
+int QGeoRoutingManager_ManagerVersion(void* ptr){
 	return static_cast<QGeoRoutingManager*>(ptr)->managerVersion();
 }
 
-int QGeoRoutingManager_MeasurementSystem(QtObjectPtr ptr){
+int QGeoRoutingManager_MeasurementSystem(void* ptr){
 	return static_cast<QGeoRoutingManager*>(ptr)->measurementSystem();
 }
 
-void QGeoRoutingManager_SetLocale(QtObjectPtr ptr, QtObjectPtr locale){
+void QGeoRoutingManager_SetLocale(void* ptr, void* locale){
 	static_cast<QGeoRoutingManager*>(ptr)->setLocale(*static_cast<QLocale*>(locale));
 }
 
-void QGeoRoutingManager_SetMeasurementSystem(QtObjectPtr ptr, int system){
+void QGeoRoutingManager_SetMeasurementSystem(void* ptr, int system){
 	static_cast<QGeoRoutingManager*>(ptr)->setMeasurementSystem(static_cast<QLocale::MeasurementSystem>(system));
 }
 
-int QGeoRoutingManager_SupportedFeatureTypes(QtObjectPtr ptr){
+int QGeoRoutingManager_SupportedFeatureTypes(void* ptr){
 	return static_cast<QGeoRoutingManager*>(ptr)->supportedFeatureTypes();
 }
 
-int QGeoRoutingManager_SupportedFeatureWeights(QtObjectPtr ptr){
+int QGeoRoutingManager_SupportedFeatureWeights(void* ptr){
 	return static_cast<QGeoRoutingManager*>(ptr)->supportedFeatureWeights();
 }
 
-int QGeoRoutingManager_SupportedManeuverDetails(QtObjectPtr ptr){
+int QGeoRoutingManager_SupportedManeuverDetails(void* ptr){
 	return static_cast<QGeoRoutingManager*>(ptr)->supportedManeuverDetails();
 }
 
-int QGeoRoutingManager_SupportedRouteOptimizations(QtObjectPtr ptr){
+int QGeoRoutingManager_SupportedRouteOptimizations(void* ptr){
 	return static_cast<QGeoRoutingManager*>(ptr)->supportedRouteOptimizations();
 }
 
-int QGeoRoutingManager_SupportedSegmentDetails(QtObjectPtr ptr){
+int QGeoRoutingManager_SupportedSegmentDetails(void* ptr){
 	return static_cast<QGeoRoutingManager*>(ptr)->supportedSegmentDetails();
 }
 
-int QGeoRoutingManager_SupportedTravelModes(QtObjectPtr ptr){
+int QGeoRoutingManager_SupportedTravelModes(void* ptr){
 	return static_cast<QGeoRoutingManager*>(ptr)->supportedTravelModes();
 }
 
-QtObjectPtr QGeoRoutingManager_UpdateRoute(QtObjectPtr ptr, QtObjectPtr route, QtObjectPtr position){
+void* QGeoRoutingManager_UpdateRoute(void* ptr, void* route, void* position){
 	return static_cast<QGeoRoutingManager*>(ptr)->updateRoute(*static_cast<QGeoRoute*>(route), *static_cast<QGeoCoordinate*>(position));
 }
 
-void QGeoRoutingManager_DestroyQGeoRoutingManager(QtObjectPtr ptr){
+void QGeoRoutingManager_DestroyQGeoRoutingManager(void* ptr){
 	static_cast<QGeoRoutingManager*>(ptr)->~QGeoRoutingManager();
 }
 

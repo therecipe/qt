@@ -1,16 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QByteArrayMatcher_NewQByteArrayMatcher();
-QtObjectPtr QByteArrayMatcher_NewQByteArrayMatcher2(QtObjectPtr pattern);
-QtObjectPtr QByteArrayMatcher_NewQByteArrayMatcher4(QtObjectPtr other);
-QtObjectPtr QByteArrayMatcher_NewQByteArrayMatcher3(char* pattern, int length);
-int QByteArrayMatcher_IndexIn(QtObjectPtr ptr, QtObjectPtr ba, int from);
-int QByteArrayMatcher_IndexIn2(QtObjectPtr ptr, char* str, int len, int from);
-void QByteArrayMatcher_SetPattern(QtObjectPtr ptr, QtObjectPtr pattern);
-void QByteArrayMatcher_DestroyQByteArrayMatcher(QtObjectPtr ptr);
+void* QByteArrayMatcher_NewQByteArrayMatcher();
+void* QByteArrayMatcher_NewQByteArrayMatcher2(void* pattern);
+void* QByteArrayMatcher_NewQByteArrayMatcher4(void* other);
+void* QByteArrayMatcher_NewQByteArrayMatcher3(char* pattern, int length);
+int QByteArrayMatcher_IndexIn(void* ptr, void* ba, int from);
+int QByteArrayMatcher_IndexIn2(void* ptr, char* str, int len, int from);
+void* QByteArrayMatcher_Pattern(void* ptr);
+void QByteArrayMatcher_SetPattern(void* ptr, void* pattern);
+void QByteArrayMatcher_DestroyQByteArrayMatcher(void* ptr);
 
 #ifdef __cplusplus
 }

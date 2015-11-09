@@ -1,8 +1,8 @@
 #include "qexception.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QString>
-#include <QVariant>
 #include <QException>
 #include "_cgo_export.h"
 
@@ -10,11 +10,11 @@ class MyQException: public QException {
 public:
 };
 
-QtObjectPtr QException_Clone(QtObjectPtr ptr){
+void* QException_Clone(void* ptr){
 	return static_cast<QException*>(ptr)->clone();
 }
 
-void QException_Raise(QtObjectPtr ptr){
+void QException_Raise(void* ptr){
 	static_cast<QException*>(ptr)->raise();
 }
 

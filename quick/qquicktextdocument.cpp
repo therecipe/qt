@@ -1,9 +1,9 @@
 #include "qquicktextdocument.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QQuickItem>
-#include <QString>
 #include <QQuickTextDocument>
 #include "_cgo_export.h"
 
@@ -11,11 +11,11 @@ class MyQQuickTextDocument: public QQuickTextDocument {
 public:
 };
 
-QtObjectPtr QQuickTextDocument_NewQQuickTextDocument(QtObjectPtr parent){
+void* QQuickTextDocument_NewQQuickTextDocument(void* parent){
 	return new QQuickTextDocument(static_cast<QQuickItem*>(parent));
 }
 
-QtObjectPtr QQuickTextDocument_TextDocument(QtObjectPtr ptr){
+void* QQuickTextDocument_TextDocument(void* ptr){
 	return static_cast<QQuickTextDocument*>(ptr)->textDocument();
 }
 

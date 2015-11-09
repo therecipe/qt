@@ -1,10 +1,10 @@
 #include "qeventlooplocker.h"
 #include <QThread>
-#include <QEventLoop>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QEventLoop>
 #include <QEvent>
 #include <QEventLoopLocker>
 #include "_cgo_export.h"
@@ -13,19 +13,19 @@ class MyQEventLoopLocker: public QEventLoopLocker {
 public:
 };
 
-QtObjectPtr QEventLoopLocker_NewQEventLoopLocker(){
+void* QEventLoopLocker_NewQEventLoopLocker(){
 	return new QEventLoopLocker();
 }
 
-QtObjectPtr QEventLoopLocker_NewQEventLoopLocker2(QtObjectPtr loop){
+void* QEventLoopLocker_NewQEventLoopLocker2(void* loop){
 	return new QEventLoopLocker(static_cast<QEventLoop*>(loop));
 }
 
-QtObjectPtr QEventLoopLocker_NewQEventLoopLocker3(QtObjectPtr thread){
+void* QEventLoopLocker_NewQEventLoopLocker3(void* thread){
 	return new QEventLoopLocker(static_cast<QThread*>(thread));
 }
 
-void QEventLoopLocker_DestroyQEventLoopLocker(QtObjectPtr ptr){
+void QEventLoopLocker_DestroyQEventLoopLocker(void* ptr){
 	static_cast<QEventLoopLocker*>(ptr)->~QEventLoopLocker();
 }
 

@@ -1,16 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QGraphicsPolygonItem_Contains(QtObjectPtr ptr, QtObjectPtr point);
-int QGraphicsPolygonItem_FillRule(QtObjectPtr ptr);
-int QGraphicsPolygonItem_IsObscuredBy(QtObjectPtr ptr, QtObjectPtr item);
-void QGraphicsPolygonItem_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr widget);
-void QGraphicsPolygonItem_SetFillRule(QtObjectPtr ptr, int rule);
-void QGraphicsPolygonItem_SetPolygon(QtObjectPtr ptr, QtObjectPtr polygon);
-int QGraphicsPolygonItem_Type(QtObjectPtr ptr);
-void QGraphicsPolygonItem_DestroyQGraphicsPolygonItem(QtObjectPtr ptr);
+int QGraphicsPolygonItem_Contains(void* ptr, void* point);
+int QGraphicsPolygonItem_FillRule(void* ptr);
+int QGraphicsPolygonItem_IsObscuredBy(void* ptr, void* item);
+void QGraphicsPolygonItem_Paint(void* ptr, void* painter, void* option, void* widget);
+void QGraphicsPolygonItem_SetFillRule(void* ptr, int rule);
+void QGraphicsPolygonItem_SetPolygon(void* ptr, void* polygon);
+int QGraphicsPolygonItem_Type(void* ptr);
+void QGraphicsPolygonItem_DestroyQGraphicsPolygonItem(void* ptr);
 
 #ifdef __cplusplus
 }

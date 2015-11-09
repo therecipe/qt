@@ -1,26 +1,26 @@
 ########################################			FUNCTIONS			########################################
-&{remainingTime QTimer::remainingTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.cpp non plain false false  int [] }
-&{setInterval QTimer::setInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.cpp non plain false false  void [0xc8202d1260] }
-&{QTimer QTimer::QTimer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non constructor false false   [0xc8202d14c0] }
-&{interval QTimer::interval commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  int [] }
-&{isActive QTimer::isActive commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  bool [] }
-&{isSingleShot QTimer::isSingleShot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  bool [] }
-&{setSingleShot QTimer::setSingleShot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  void [0xc8202d1ea0] }
-&{setTimerType QTimer::setTimerType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  void [0xc8202c21e0] }
-&{singleShot QTimer::singleShot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 5 void [0xc8202c24a0 0xc8202c25a0] }
-&{singleShot QTimer::singleShot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 6 void [0xc8202c2860 0xc8202c2900 0xc8202c29c0] }
-&{singleShot QTimer::singleShot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 8 void [0xc8202c2c00 0xc8202c2ca0 0xc8202c2d40 0xc8202c2e00] }
-&{singleShot QTimer::singleShot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 4 void [0xc8202c3040 0xc8202c30e0 0xc8202c31c0 0xc8202c32e0] }
-&{singleShot QTimer::singleShot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 2 void [0xc8202c3600 0xc8202c3700 0xc8202c37a0 0xc8202c3880] }
-&{singleShot QTimer::singleShot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 7 void [0xc8202c3b40 0xc8202c3c20 0xc8202c3d00] }
-&{singleShot QTimer::singleShot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 3 void [0xc8202c3fc0 0xc8202b20a0 0xc8202b2140] }
-&{singleShot QTimer::singleShot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true false  void [0xc8202b24a0 0xc8202b2540 0xc8202b25c0] }
-&{start QTimer::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non slot false true 2 void [] }
-&{start QTimer::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non slot false false  void [0xc8202b3180] }
-&{stop QTimer::stop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non slot false false  void [] }
-&{timeout QTimer::timeout commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non signal false false  void [] }
-&{timerEvent QTimer::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h impure plain false false  void [0xc8202b35a0] }
-&{timerId QTimer::timerId commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  int [] }
-&{timerType QTimer::timerType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  Qt::TimerType [] }
-&{~QTimer QTimer::~QTimer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non destructor false false   [] }
+&{remainingTime QTimer::remainingTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.cpp non plain false false  int int remainingTime() const [] }
+&{setInterval QTimer::setInterval commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.cpp non plain false false  void void setInterval(int msec) [0xc820287620] }
+&{QTimer QTimer::QTimer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non constructor false false   QTimer(QObject *parent) [0xc820287940] }
+&{interval QTimer::interval commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  int int interval() const [] }
+&{isActive QTimer::isActive commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  bool bool isActive() const [] }
+&{isSingleShot QTimer::isSingleShot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  bool bool isSingleShot() const [] }
+&{setSingleShot QTimer::setSingleShot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  void void setSingleShot(bool singleShot) [0xc820278640] }
+&{setTimerType QTimer::setTimerType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  void void setTimerType(Qt::TimerType atype) [0xc8202789c0] }
+&{singleShot QTimer::singleShot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 5 void void singleShot(int msec, Functor functor) [0xc820278ce0 0xc820278dc0] }
+&{singleShot QTimer::singleShot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 6 void void singleShot(int msec, Qt::TimerType timerType, Functor functor) [0xc820279060 0xc820279100 0xc820279240] }
+&{singleShot QTimer::singleShot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 8 void void singleShot(int msec, Qt::TimerType timerType, const QObject *context, Functor functor) [0xc820279500 0xc820279640 0xc8202796e0 0xc820279760] }
+&{singleShot QTimer::singleShot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 4 void void singleShot(int msec, Qt::TimerType timerType, const QObject *receiver, PointerToMemberFunction method) [0xc8202799e0 0xc820279a80 0xc820279b20 0xc820279c20] }
+&{singleShot QTimer::singleShot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 2 void void singleShot(int msec, Qt::TimerType timerType, const QObject *receiver, const char *member) [0xc820279ec0 0xc820279f60 0xc820272000 0xc820272100] }
+&{singleShot QTimer::singleShot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 7 void void singleShot(int msec, const QObject *context, Functor functor) [0xc820272460 0xc820272520 0xc820272600] }
+&{singleShot QTimer::singleShot commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true true 3 void void singleShot(int msec, const QObject *receiver, PointerToMemberFunction method) [0xc8202728e0 0xc8202729e0 0xc820272aa0] }
+&{singleShot QTimer::singleShot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain true false  void void singleShot(int msec, const QObject *receiver, const char *member) [0xc820272e20 0xc820272f20 0xc820272fa0] }
+&{start QTimer::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non slot false true 2 void void start() [] }
+&{start QTimer::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non slot false false  void void start(int msec) [0xc820273ca0] }
+&{stop QTimer::stop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non slot false false  void void stop() [] }
+&{timeout QTimer::timeout commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non signal false false  void void timeout() [] }
+&{timerEvent QTimer::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h impure plain false false  void void timerEvent(QTimerEvent *e) [0xc82026a160] }
+&{timerId QTimer::timerId commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  int int timerId() const [] }
+&{timerType QTimer::timerType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non plain false false  Qt::TimerType Qt::TimerType timerType() const [] }
+&{~QTimer QTimer::~QTimer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtimer.h non destructor false false   ~QTimer() [] }
 ########################################			ENUMS			########################################

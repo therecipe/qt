@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QCameraInfoControl QCameraInfoControl::QCameraInfoControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerainfocontrol.h non constructor false false   [0xc821c90c20] }
-&{cameraOrientation QCameraInfoControl::cameraOrientation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerainfocontrol.h pure plain false false  int [0xc821c90f40] }
-&{cameraPosition QCameraInfoControl::cameraPosition commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerainfocontrol.h pure plain false false  QCamera::Position [0xc821c91340] }
-&{~QCameraInfoControl QCameraInfoControl::~QCameraInfoControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerainfocontrol.h impure destructor false false   [] }
+&{QCameraInfoControl QCameraInfoControl::QCameraInfoControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerainfocontrol.h non constructor false false   QCameraInfoControl(QObject *parent) [0xc822527fe0] }
+&{cameraOrientation QCameraInfoControl::cameraOrientation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerainfocontrol.h pure plain false false  int int cameraOrientation(const QString &deviceName) const [0xc822532260] }
+&{cameraPosition QCameraInfoControl::cameraPosition commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerainfocontrol.h pure plain false false  QCamera::Position QCamera::Position cameraPosition(const QString &deviceName) const [0xc8225325c0] }
+&{~QCameraInfoControl QCameraInfoControl::~QCameraInfoControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qcamerainfocontrol.h impure destructor false false   ~QCameraInfoControl() [] }
 ########################################			ENUMS			########################################

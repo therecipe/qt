@@ -10,8 +10,8 @@ type QCameraFocusZone struct {
 	ptr unsafe.Pointer
 }
 
-type QCameraFocusZoneITF interface {
-	QCameraFocusZonePTR() *QCameraFocusZone
+type QCameraFocusZone_ITF interface {
+	QCameraFocusZone_PTR() *QCameraFocusZone
 }
 
 func (p *QCameraFocusZone) Pointer() unsafe.Pointer {
@@ -22,53 +22,53 @@ func (p *QCameraFocusZone) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQCameraFocusZone(ptr QCameraFocusZoneITF) unsafe.Pointer {
+func PointerFromQCameraFocusZone(ptr QCameraFocusZone_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCameraFocusZonePTR().Pointer()
+		return ptr.QCameraFocusZone_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCameraFocusZoneFromPointer(ptr unsafe.Pointer) *QCameraFocusZone {
+func NewQCameraFocusZoneFromPointer(ptr unsafe.Pointer) *QCameraFocusZone {
 	var n = new(QCameraFocusZone)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QCameraFocusZone) QCameraFocusZonePTR() *QCameraFocusZone {
+func (ptr *QCameraFocusZone) QCameraFocusZone_PTR() *QCameraFocusZone {
 	return ptr
 }
 
 //QCameraFocusZone::FocusZoneStatus
-type QCameraFocusZone__FocusZoneStatus int
+type QCameraFocusZone__FocusZoneStatus int64
 
-var (
+const (
 	QCameraFocusZone__Invalid  = QCameraFocusZone__FocusZoneStatus(0)
 	QCameraFocusZone__Unused   = QCameraFocusZone__FocusZoneStatus(1)
 	QCameraFocusZone__Selected = QCameraFocusZone__FocusZoneStatus(2)
 	QCameraFocusZone__Focused  = QCameraFocusZone__FocusZoneStatus(3)
 )
 
-func NewQCameraFocusZone(other QCameraFocusZoneITF) *QCameraFocusZone {
-	return QCameraFocusZoneFromPointer(unsafe.Pointer(C.QCameraFocusZone_NewQCameraFocusZone(C.QtObjectPtr(PointerFromQCameraFocusZone(other)))))
+func NewQCameraFocusZone(other QCameraFocusZone_ITF) *QCameraFocusZone {
+	return NewQCameraFocusZoneFromPointer(C.QCameraFocusZone_NewQCameraFocusZone(PointerFromQCameraFocusZone(other)))
 }
 
 func (ptr *QCameraFocusZone) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFocusZone_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QCameraFocusZone_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraFocusZone) Status() QCameraFocusZone__FocusZoneStatus {
 	if ptr.Pointer() != nil {
-		return QCameraFocusZone__FocusZoneStatus(C.QCameraFocusZone_Status(C.QtObjectPtr(ptr.Pointer())))
+		return QCameraFocusZone__FocusZoneStatus(C.QCameraFocusZone_Status(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QCameraFocusZone) DestroyQCameraFocusZone() {
 	if ptr.Pointer() != nil {
-		C.QCameraFocusZone_DestroyQCameraFocusZone(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraFocusZone_DestroyQCameraFocusZone(ptr.Pointer())
 	}
 }

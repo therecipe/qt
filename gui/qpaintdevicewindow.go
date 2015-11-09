@@ -13,55 +13,55 @@ type QPaintDeviceWindow struct {
 	QPaintDevice
 }
 
-type QPaintDeviceWindowITF interface {
-	QWindowITF
-	QPaintDeviceITF
-	QPaintDeviceWindowPTR() *QPaintDeviceWindow
+type QPaintDeviceWindow_ITF interface {
+	QWindow_ITF
+	QPaintDevice_ITF
+	QPaintDeviceWindow_PTR() *QPaintDeviceWindow
 }
 
 func (p *QPaintDeviceWindow) Pointer() unsafe.Pointer {
-	return p.QWindowPTR().Pointer()
+	return p.QWindow_PTR().Pointer()
 }
 
 func (p *QPaintDeviceWindow) SetPointer(ptr unsafe.Pointer) {
-	p.QWindowPTR().SetPointer(ptr)
-	p.QPaintDevicePTR().SetPointer(ptr)
+	p.QWindow_PTR().SetPointer(ptr)
+	p.QPaintDevice_PTR().SetPointer(ptr)
 }
 
-func PointerFromQPaintDeviceWindow(ptr QPaintDeviceWindowITF) unsafe.Pointer {
+func PointerFromQPaintDeviceWindow(ptr QPaintDeviceWindow_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPaintDeviceWindowPTR().Pointer()
+		return ptr.QPaintDeviceWindow_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPaintDeviceWindowFromPointer(ptr unsafe.Pointer) *QPaintDeviceWindow {
+func NewQPaintDeviceWindowFromPointer(ptr unsafe.Pointer) *QPaintDeviceWindow {
 	var n = new(QPaintDeviceWindow)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QPaintDeviceWindow_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QPaintDeviceWindow) QPaintDeviceWindowPTR() *QPaintDeviceWindow {
+func (ptr *QPaintDeviceWindow) QPaintDeviceWindow_PTR() *QPaintDeviceWindow {
 	return ptr
 }
 
 func (ptr *QPaintDeviceWindow) Update3() {
 	if ptr.Pointer() != nil {
-		C.QPaintDeviceWindow_Update3(C.QtObjectPtr(ptr.Pointer()))
+		C.QPaintDeviceWindow_Update3(ptr.Pointer())
 	}
 }
 
-func (ptr *QPaintDeviceWindow) Update(rect core.QRectITF) {
+func (ptr *QPaintDeviceWindow) Update(rect core.QRect_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPaintDeviceWindow_Update(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rect)))
+		C.QPaintDeviceWindow_Update(ptr.Pointer(), core.PointerFromQRect(rect))
 	}
 }
 
-func (ptr *QPaintDeviceWindow) Update2(region QRegionITF) {
+func (ptr *QPaintDeviceWindow) Update2(region QRegion_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPaintDeviceWindow_Update2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQRegion(region)))
+		C.QPaintDeviceWindow_Update2(ptr.Pointer(), PointerFromQRegion(region))
 	}
 }

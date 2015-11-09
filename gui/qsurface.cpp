@@ -1,8 +1,8 @@
 #include "qsurface.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QString>
-#include <QVariant>
 #include <QSurface>
 #include "_cgo_export.h"
 
@@ -10,19 +10,19 @@ class MyQSurface: public QSurface {
 public:
 };
 
-int QSurface_SupportsOpenGL(QtObjectPtr ptr){
+int QSurface_SupportsOpenGL(void* ptr){
 	return static_cast<QSurface*>(ptr)->supportsOpenGL();
 }
 
-int QSurface_SurfaceClass(QtObjectPtr ptr){
+int QSurface_SurfaceClass(void* ptr){
 	return static_cast<QSurface*>(ptr)->surfaceClass();
 }
 
-int QSurface_SurfaceType(QtObjectPtr ptr){
+int QSurface_SurfaceType(void* ptr){
 	return static_cast<QSurface*>(ptr)->surfaceType();
 }
 
-void QSurface_DestroyQSurface(QtObjectPtr ptr){
+void QSurface_DestroyQSurface(void* ptr){
 	static_cast<QSurface*>(ptr)->~QSurface();
 }
 

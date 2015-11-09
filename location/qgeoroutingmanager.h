@@ -1,26 +1,25 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGeoRoutingManager_CalculateRoute(QtObjectPtr ptr, QtObjectPtr request);
-void QGeoRoutingManager_ConnectError(QtObjectPtr ptr);
-void QGeoRoutingManager_DisconnectError(QtObjectPtr ptr);
-void QGeoRoutingManager_ConnectFinished(QtObjectPtr ptr);
-void QGeoRoutingManager_DisconnectFinished(QtObjectPtr ptr);
-char* QGeoRoutingManager_ManagerName(QtObjectPtr ptr);
-int QGeoRoutingManager_ManagerVersion(QtObjectPtr ptr);
-int QGeoRoutingManager_MeasurementSystem(QtObjectPtr ptr);
-void QGeoRoutingManager_SetLocale(QtObjectPtr ptr, QtObjectPtr locale);
-void QGeoRoutingManager_SetMeasurementSystem(QtObjectPtr ptr, int system);
-int QGeoRoutingManager_SupportedFeatureTypes(QtObjectPtr ptr);
-int QGeoRoutingManager_SupportedFeatureWeights(QtObjectPtr ptr);
-int QGeoRoutingManager_SupportedManeuverDetails(QtObjectPtr ptr);
-int QGeoRoutingManager_SupportedRouteOptimizations(QtObjectPtr ptr);
-int QGeoRoutingManager_SupportedSegmentDetails(QtObjectPtr ptr);
-int QGeoRoutingManager_SupportedTravelModes(QtObjectPtr ptr);
-QtObjectPtr QGeoRoutingManager_UpdateRoute(QtObjectPtr ptr, QtObjectPtr route, QtObjectPtr position);
-void QGeoRoutingManager_DestroyQGeoRoutingManager(QtObjectPtr ptr);
+void* QGeoRoutingManager_CalculateRoute(void* ptr, void* request);
+void QGeoRoutingManager_ConnectError(void* ptr);
+void QGeoRoutingManager_DisconnectError(void* ptr);
+void QGeoRoutingManager_ConnectFinished(void* ptr);
+void QGeoRoutingManager_DisconnectFinished(void* ptr);
+char* QGeoRoutingManager_ManagerName(void* ptr);
+int QGeoRoutingManager_ManagerVersion(void* ptr);
+int QGeoRoutingManager_MeasurementSystem(void* ptr);
+void QGeoRoutingManager_SetLocale(void* ptr, void* locale);
+void QGeoRoutingManager_SetMeasurementSystem(void* ptr, int system);
+int QGeoRoutingManager_SupportedFeatureTypes(void* ptr);
+int QGeoRoutingManager_SupportedFeatureWeights(void* ptr);
+int QGeoRoutingManager_SupportedManeuverDetails(void* ptr);
+int QGeoRoutingManager_SupportedRouteOptimizations(void* ptr);
+int QGeoRoutingManager_SupportedSegmentDetails(void* ptr);
+int QGeoRoutingManager_SupportedTravelModes(void* ptr);
+void* QGeoRoutingManager_UpdateRoute(void* ptr, void* route, void* position);
+void QGeoRoutingManager_DestroyQGeoRoutingManager(void* ptr);
 
 #ifdef __cplusplus
 }

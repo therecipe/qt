@@ -1,26 +1,26 @@
 ########################################			FUNCTIONS			########################################
-&{cleanText QDoubleSpinBox::cleanText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString [] }
-&{decimals QDoubleSpinBox::decimals commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int [] }
-&{maximum QDoubleSpinBox::maximum commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  double [] }
-&{minimum QDoubleSpinBox::minimum commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  double [] }
-&{prefix QDoubleSpinBox::prefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString [] }
-&{setDecimals QDoubleSpinBox::setDecimals commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc822d8be40] }
-&{setMaximum QDoubleSpinBox::setMaximum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc822d78400] }
-&{setMinimum QDoubleSpinBox::setMinimum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc822d789e0] }
-&{setPrefix QDoubleSpinBox::setPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc822d78ee0] }
-&{setSingleStep QDoubleSpinBox::setSingleStep commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc822d793a0] }
-&{setSuffix QDoubleSpinBox::setSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc822d79760] }
-&{setValue QDoubleSpinBox::setValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non slot false false  void [0xc822d79c00] }
-&{singleStep QDoubleSpinBox::singleStep commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  double [] }
-&{suffix QDoubleSpinBox::suffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString [] }
-&{value QDoubleSpinBox::value commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  double [] }
-&{QDoubleSpinBox QDoubleSpinBox::QDoubleSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non constructor false false   [0xc822d6e940] }
-&{fixup QDoubleSpinBox::fixup commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  void [0xc822d6ee40] }
-&{setRange QDoubleSpinBox::setRange commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non plain false false  void [0xc822d6f340 0xc822d6f5e0] }
-&{textFromValue QDoubleSpinBox::textFromValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  QString [0xc822d6fa60] }
-&{validate QDoubleSpinBox::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  QValidator::State [0xc822d4e160 0xc822d4e240] }
-&{valueChanged QDoubleSpinBox::valueChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non signal false true 2 void [0xc822d4e7c0] }
-&{valueChanged QDoubleSpinBox::valueChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non signal false false  void [0xc822d4edc0] }
-&{valueFromText QDoubleSpinBox::valueFromText commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  double [0xc822d4f220] }
-&{~QDoubleSpinBox QDoubleSpinBox::~QDoubleSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non destructor false false   [] }
+&{cleanText QDoubleSpinBox::cleanText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString QString cleanText() const [] }
+&{decimals QDoubleSpinBox::decimals commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int int decimals() const [] }
+&{maximum QDoubleSpinBox::maximum commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  double double maximum() const [] }
+&{minimum QDoubleSpinBox::minimum commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  double double minimum() const [] }
+&{prefix QDoubleSpinBox::prefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString QString prefix() const [] }
+&{setDecimals QDoubleSpinBox::setDecimals commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void void setDecimals(int prec) [0xc826c35ec0] }
+&{setMaximum QDoubleSpinBox::setMaximum commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void void setMaximum(double max) [0xc826c223a0] }
+&{setMinimum QDoubleSpinBox::setMinimum commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void void setMinimum(double min) [0xc826c228e0] }
+&{setPrefix QDoubleSpinBox::setPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void void setPrefix(const QString &prefix) [0xc826c22de0] }
+&{setSingleStep QDoubleSpinBox::setSingleStep commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void void setSingleStep(double val) [0xc826c23260] }
+&{setSuffix QDoubleSpinBox::setSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void void setSuffix(const QString &suffix) [0xc826c23720] }
+&{setValue QDoubleSpinBox::setValue commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non slot false false  void void setValue(double val) [0xc826c23cc0] }
+&{singleStep QDoubleSpinBox::singleStep commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  double double singleStep() const [] }
+&{suffix QDoubleSpinBox::suffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString QString suffix() const [] }
+&{value QDoubleSpinBox::value commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  double double value() const [] }
+&{QDoubleSpinBox QDoubleSpinBox::QDoubleSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non constructor false false   QDoubleSpinBox(QWidget *parent) [0xc826c12bc0] }
+&{fixup QDoubleSpinBox::fixup commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  void void fixup(QString &input) const [0xc826c131e0] }
+&{setRange QDoubleSpinBox::setRange commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non plain false false  void void setRange(double minimum, double maximum) [0xc826c13600 0xc826c137e0] }
+&{textFromValue QDoubleSpinBox::textFromValue commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  QString QString textFromValue(double value) const [0xc826c13c00] }
+&{validate QDoubleSpinBox::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  QValidator::State QValidator::State validate(QString &text, int &pos) const [0xc821e4c080 0xc821e4c120] }
+&{valueChanged QDoubleSpinBox::valueChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non signal false true 2 void void valueChanged(const QString &text) [0xc821e4c3a0] }
+&{valueChanged QDoubleSpinBox::valueChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non signal false false  void void valueChanged(double d) [0xc821e4c680] }
+&{valueFromText QDoubleSpinBox::valueFromText commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  double double valueFromText(const QString &text) const [0xc821e4c880] }
+&{~QDoubleSpinBox QDoubleSpinBox::~QDoubleSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non destructor false false   ~QDoubleSpinBox() [] }
 ########################################			ENUMS			########################################

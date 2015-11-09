@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{ascent QTextItem::ascent commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  qreal [] }
-&{descent QTextItem::descent commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  qreal [] }
-&{font QTextItem::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  QFont [] }
-&{renderFlags QTextItem::renderFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  RenderFlags [] }
-&{text QTextItem::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  QString [] }
-&{width QTextItem::width commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  qreal [] }
+&{ascent QTextItem::ascent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  qreal qreal ascent() const [] }
+&{descent QTextItem::descent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  qreal qreal descent() const [] }
+&{font QTextItem::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  QFont QFont font() const [] }
+&{renderFlags QTextItem::renderFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  RenderFlags RenderFlags renderFlags() const [] }
+&{text QTextItem::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  QString QString text() const [] }
+&{width QTextItem::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  qreal qreal width() const [] }
 ########################################			ENUMS			########################################
-&{RenderFlag QTextItem::RenderFlag commendable public QTextItem::RenderFlags [0xc822c6be20 0xc822c6bea0 0xc822c6bf20 0xc822c6bfa0 0xc822c86040]}
+&{RenderFlag QTextItem::RenderFlag commendable public QTextItem::RenderFlags [0xc8220681a0 0xc822068220 0xc8220682a0 0xc822068320 0xc8220683c0] false}

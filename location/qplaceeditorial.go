@@ -10,24 +10,24 @@ type QPlaceEditorial struct {
 	QPlaceContent
 }
 
-type QPlaceEditorialITF interface {
-	QPlaceContentITF
-	QPlaceEditorialPTR() *QPlaceEditorial
+type QPlaceEditorial_ITF interface {
+	QPlaceContent_ITF
+	QPlaceEditorial_PTR() *QPlaceEditorial
 }
 
-func PointerFromQPlaceEditorial(ptr QPlaceEditorialITF) unsafe.Pointer {
+func PointerFromQPlaceEditorial(ptr QPlaceEditorial_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceEditorialPTR().Pointer()
+		return ptr.QPlaceEditorial_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceEditorialFromPointer(ptr unsafe.Pointer) *QPlaceEditorial {
+func NewQPlaceEditorialFromPointer(ptr unsafe.Pointer) *QPlaceEditorial {
 	var n = new(QPlaceEditorial)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPlaceEditorial) QPlaceEditorialPTR() *QPlaceEditorial {
+func (ptr *QPlaceEditorial) QPlaceEditorial_PTR() *QPlaceEditorial {
 	return ptr
 }

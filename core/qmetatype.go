@@ -10,8 +10,8 @@ type QMetaType struct {
 	ptr unsafe.Pointer
 }
 
-type QMetaTypeITF interface {
-	QMetaTypePTR() *QMetaType
+type QMetaType_ITF interface {
+	QMetaType_PTR() *QMetaType
 }
 
 func (p *QMetaType) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QMetaType) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMetaType(ptr QMetaTypeITF) unsafe.Pointer {
+func PointerFromQMetaType(ptr QMetaType_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMetaTypePTR().Pointer()
+		return ptr.QMetaType_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMetaTypeFromPointer(ptr unsafe.Pointer) *QMetaType {
+func NewQMetaTypeFromPointer(ptr unsafe.Pointer) *QMetaType {
 	var n = new(QMetaType)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMetaType) QMetaTypePTR() *QMetaType {
+func (ptr *QMetaType) QMetaType_PTR() *QMetaType {
 	return ptr
 }
 
 //QMetaType::Type
-type QMetaType__Type int
+type QMetaType__Type int64
 
-var (
+const (
 	QMetaType__UnknownType           = QMetaType__Type(0)
 	QMetaType__Bool                  = QMetaType__Type(1)
 	QMetaType__Int                   = QMetaType__Type(2)
@@ -122,9 +122,9 @@ var (
 )
 
 //QMetaType::TypeFlag
-type QMetaType__TypeFlag int
+type QMetaType__TypeFlag int64
 
-var (
+const (
 	QMetaType__NeedsConstruction        = QMetaType__TypeFlag(0x1)
 	QMetaType__NeedsDestruction         = QMetaType__TypeFlag(0x2)
 	QMetaType__MovableType              = QMetaType__TypeFlag(0x4)
@@ -138,12 +138,12 @@ var (
 )
 
 func NewQMetaType(typeId int) *QMetaType {
-	return QMetaTypeFromPointer(unsafe.Pointer(C.QMetaType_NewQMetaType(C.int(typeId))))
+	return NewQMetaTypeFromPointer(C.QMetaType_NewQMetaType(C.int(typeId)))
 }
 
 func (ptr *QMetaType) Flags() QMetaType__TypeFlag {
 	if ptr.Pointer() != nil {
-		return QMetaType__TypeFlag(C.QMetaType_Flags(C.QtObjectPtr(ptr.Pointer())))
+		return QMetaType__TypeFlag(C.QMetaType_Flags(ptr.Pointer()))
 	}
 	return 0
 }
@@ -154,27 +154,27 @@ func QMetaType_IsRegistered(ty int) bool {
 
 func (ptr *QMetaType) IsRegistered2() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaType_IsRegistered2(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMetaType_IsRegistered2(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaType) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QMetaType_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMetaType_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMetaType) MetaObject() *QMetaObject {
 	if ptr.Pointer() != nil {
-		return QMetaObjectFromPointer(unsafe.Pointer(C.QMetaType_MetaObject(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQMetaObjectFromPointer(C.QMetaType_MetaObject(ptr.Pointer()))
 	}
 	return nil
 }
 
 func QMetaType_MetaObjectForType(ty int) *QMetaObject {
-	return QMetaObjectFromPointer(unsafe.Pointer(C.QMetaType_QMetaType_MetaObjectForType(C.int(ty))))
+	return NewQMetaObjectFromPointer(C.QMetaType_QMetaType_MetaObjectForType(C.int(ty)))
 }
 
 func QMetaType_SizeOf(ty int) int {
@@ -183,13 +183,13 @@ func QMetaType_SizeOf(ty int) int {
 
 func (ptr *QMetaType) SizeOf2() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMetaType_SizeOf2(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMetaType_SizeOf2(ptr.Pointer()))
 	}
 	return 0
 }
 
-func QMetaType_Type2(typeName QByteArrayITF) int {
-	return int(C.QMetaType_QMetaType_Type2(C.QtObjectPtr(PointerFromQByteArray(typeName))))
+func QMetaType_Type2(typeName QByteArray_ITF) int {
+	return int(C.QMetaType_QMetaType_Type2(PointerFromQByteArray(typeName)))
 }
 
 func QMetaType_Type(typeName string) int {
@@ -202,6 +202,6 @@ func QMetaType_TypeFlags(ty int) QMetaType__TypeFlag {
 
 func (ptr *QMetaType) DestroyQMetaType() {
 	if ptr.Pointer() != nil {
-		C.QMetaType_DestroyQMetaType(C.QtObjectPtr(ptr.Pointer()))
+		C.QMetaType_DestroyQMetaType(ptr.Pointer())
 	}
 }

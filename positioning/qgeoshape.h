@@ -1,17 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGeoShape_NewQGeoShape();
-QtObjectPtr QGeoShape_NewQGeoShape2(QtObjectPtr other);
-int QGeoShape_Contains(QtObjectPtr ptr, QtObjectPtr coordinate);
-void QGeoShape_ExtendShape(QtObjectPtr ptr, QtObjectPtr coordinate);
-int QGeoShape_IsEmpty(QtObjectPtr ptr);
-int QGeoShape_IsValid(QtObjectPtr ptr);
-char* QGeoShape_ToString(QtObjectPtr ptr);
-int QGeoShape_Type(QtObjectPtr ptr);
-void QGeoShape_DestroyQGeoShape(QtObjectPtr ptr);
+void* QGeoShape_NewQGeoShape();
+void* QGeoShape_NewQGeoShape2(void* other);
+int QGeoShape_Contains(void* ptr, void* coordinate);
+void QGeoShape_ExtendShape(void* ptr, void* coordinate);
+int QGeoShape_IsEmpty(void* ptr);
+int QGeoShape_IsValid(void* ptr);
+char* QGeoShape_ToString(void* ptr);
+int QGeoShape_Type(void* ptr);
+void QGeoShape_DestroyQGeoShape(void* ptr);
 
 #ifdef __cplusplus
 }

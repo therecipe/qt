@@ -1,11 +1,11 @@
 #include "qqmlexpression.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QQmlScriptString>
 #include <QQmlContext>
 #include <QObject>
+#include <QQmlScriptString>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QQmlExpression>
 #include "_cgo_export.h"
 
@@ -14,83 +14,83 @@ public:
 void Signal_ValueChanged(){callbackQQmlExpressionValueChanged(this->objectName().toUtf8().data());};
 };
 
-QtObjectPtr QQmlExpression_NewQQmlExpression(){
+void* QQmlExpression_NewQQmlExpression(){
 	return new QQmlExpression();
 }
 
-QtObjectPtr QQmlExpression_NewQQmlExpression2(QtObjectPtr ctxt, QtObjectPtr scope, char* expression, QtObjectPtr parent){
+void* QQmlExpression_NewQQmlExpression2(void* ctxt, void* scope, char* expression, void* parent){
 	return new QQmlExpression(static_cast<QQmlContext*>(ctxt), static_cast<QObject*>(scope), QString(expression), static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QQmlExpression_NewQQmlExpression3(QtObjectPtr script, QtObjectPtr ctxt, QtObjectPtr scope, QtObjectPtr parent){
+void* QQmlExpression_NewQQmlExpression3(void* script, void* ctxt, void* scope, void* parent){
 	return new QQmlExpression(*static_cast<QQmlScriptString*>(script), static_cast<QQmlContext*>(ctxt), static_cast<QObject*>(scope), static_cast<QObject*>(parent));
 }
 
-void QQmlExpression_ClearError(QtObjectPtr ptr){
+void QQmlExpression_ClearError(void* ptr){
 	static_cast<QQmlExpression*>(ptr)->clearError();
 }
 
-int QQmlExpression_ColumnNumber(QtObjectPtr ptr){
+int QQmlExpression_ColumnNumber(void* ptr){
 	return static_cast<QQmlExpression*>(ptr)->columnNumber();
 }
 
-QtObjectPtr QQmlExpression_Context(QtObjectPtr ptr){
+void* QQmlExpression_Context(void* ptr){
 	return static_cast<QQmlExpression*>(ptr)->context();
 }
 
-QtObjectPtr QQmlExpression_Engine(QtObjectPtr ptr){
+void* QQmlExpression_Engine(void* ptr){
 	return static_cast<QQmlExpression*>(ptr)->engine();
 }
 
-char* QQmlExpression_Evaluate(QtObjectPtr ptr, int valueIsUndefined){
-	return static_cast<QQmlExpression*>(ptr)->evaluate(NULL).toString().toUtf8().data();
+void* QQmlExpression_Evaluate(void* ptr, int valueIsUndefined){
+	return new QVariant(static_cast<QQmlExpression*>(ptr)->evaluate(NULL));
 }
 
-char* QQmlExpression_Expression(QtObjectPtr ptr){
+char* QQmlExpression_Expression(void* ptr){
 	return static_cast<QQmlExpression*>(ptr)->expression().toUtf8().data();
 }
 
-int QQmlExpression_HasError(QtObjectPtr ptr){
+int QQmlExpression_HasError(void* ptr){
 	return static_cast<QQmlExpression*>(ptr)->hasError();
 }
 
-int QQmlExpression_LineNumber(QtObjectPtr ptr){
+int QQmlExpression_LineNumber(void* ptr){
 	return static_cast<QQmlExpression*>(ptr)->lineNumber();
 }
 
-int QQmlExpression_NotifyOnValueChanged(QtObjectPtr ptr){
+int QQmlExpression_NotifyOnValueChanged(void* ptr){
 	return static_cast<QQmlExpression*>(ptr)->notifyOnValueChanged();
 }
 
-QtObjectPtr QQmlExpression_ScopeObject(QtObjectPtr ptr){
+void* QQmlExpression_ScopeObject(void* ptr){
 	return static_cast<QQmlExpression*>(ptr)->scopeObject();
 }
 
-void QQmlExpression_SetExpression(QtObjectPtr ptr, char* expression){
+void QQmlExpression_SetExpression(void* ptr, char* expression){
 	static_cast<QQmlExpression*>(ptr)->setExpression(QString(expression));
 }
 
-void QQmlExpression_SetNotifyOnValueChanged(QtObjectPtr ptr, int notifyOnChange){
+void QQmlExpression_SetNotifyOnValueChanged(void* ptr, int notifyOnChange){
 	static_cast<QQmlExpression*>(ptr)->setNotifyOnValueChanged(notifyOnChange != 0);
 }
 
-void QQmlExpression_SetSourceLocation(QtObjectPtr ptr, char* url, int line, int column){
+void QQmlExpression_SetSourceLocation(void* ptr, char* url, int line, int column){
 	static_cast<QQmlExpression*>(ptr)->setSourceLocation(QString(url), line, column);
 }
 
-char* QQmlExpression_SourceFile(QtObjectPtr ptr){
+char* QQmlExpression_SourceFile(void* ptr){
 	return static_cast<QQmlExpression*>(ptr)->sourceFile().toUtf8().data();
 }
 
-void QQmlExpression_ConnectValueChanged(QtObjectPtr ptr){
+void QQmlExpression_ConnectValueChanged(void* ptr){
 	QObject::connect(static_cast<QQmlExpression*>(ptr), static_cast<void (QQmlExpression::*)()>(&QQmlExpression::valueChanged), static_cast<MyQQmlExpression*>(ptr), static_cast<void (MyQQmlExpression::*)()>(&MyQQmlExpression::Signal_ValueChanged));;
 }
 
-void QQmlExpression_DisconnectValueChanged(QtObjectPtr ptr){
+void QQmlExpression_DisconnectValueChanged(void* ptr){
 	QObject::disconnect(static_cast<QQmlExpression*>(ptr), static_cast<void (QQmlExpression::*)()>(&QQmlExpression::valueChanged), static_cast<MyQQmlExpression*>(ptr), static_cast<void (MyQQmlExpression::*)()>(&MyQQmlExpression::Signal_ValueChanged));;
 }
 
-void QQmlExpression_DestroyQQmlExpression(QtObjectPtr ptr){
+void QQmlExpression_DestroyQQmlExpression(void* ptr){
 	static_cast<QQmlExpression*>(ptr)->~QQmlExpression();
 }
 

@@ -12,70 +12,77 @@ type QHttpMultiPart struct {
 	core.QObject
 }
 
-type QHttpMultiPartITF interface {
-	core.QObjectITF
-	QHttpMultiPartPTR() *QHttpMultiPart
+type QHttpMultiPart_ITF interface {
+	core.QObject_ITF
+	QHttpMultiPart_PTR() *QHttpMultiPart
 }
 
-func PointerFromQHttpMultiPart(ptr QHttpMultiPartITF) unsafe.Pointer {
+func PointerFromQHttpMultiPart(ptr QHttpMultiPart_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHttpMultiPartPTR().Pointer()
+		return ptr.QHttpMultiPart_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHttpMultiPartFromPointer(ptr unsafe.Pointer) *QHttpMultiPart {
+func NewQHttpMultiPartFromPointer(ptr unsafe.Pointer) *QHttpMultiPart {
 	var n = new(QHttpMultiPart)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QHttpMultiPart_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QHttpMultiPart) QHttpMultiPartPTR() *QHttpMultiPart {
+func (ptr *QHttpMultiPart) QHttpMultiPart_PTR() *QHttpMultiPart {
 	return ptr
 }
 
 //QHttpMultiPart::ContentType
-type QHttpMultiPart__ContentType int
+type QHttpMultiPart__ContentType int64
 
-var (
+const (
 	QHttpMultiPart__MixedType       = QHttpMultiPart__ContentType(0)
 	QHttpMultiPart__RelatedType     = QHttpMultiPart__ContentType(1)
 	QHttpMultiPart__FormDataType    = QHttpMultiPart__ContentType(2)
 	QHttpMultiPart__AlternativeType = QHttpMultiPart__ContentType(3)
 )
 
-func NewQHttpMultiPart2(contentType QHttpMultiPart__ContentType, parent core.QObjectITF) *QHttpMultiPart {
-	return QHttpMultiPartFromPointer(unsafe.Pointer(C.QHttpMultiPart_NewQHttpMultiPart2(C.int(contentType), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQHttpMultiPart2(contentType QHttpMultiPart__ContentType, parent core.QObject_ITF) *QHttpMultiPart {
+	return NewQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart2(C.int(contentType), core.PointerFromQObject(parent)))
 }
 
-func NewQHttpMultiPart(parent core.QObjectITF) *QHttpMultiPart {
-	return QHttpMultiPartFromPointer(unsafe.Pointer(C.QHttpMultiPart_NewQHttpMultiPart(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQHttpMultiPart(parent core.QObject_ITF) *QHttpMultiPart {
+	return NewQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart(core.PointerFromQObject(parent)))
 }
 
-func (ptr *QHttpMultiPart) Append(httpPart QHttpPartITF) {
+func (ptr *QHttpMultiPart) Append(httpPart QHttpPart_ITF) {
 	if ptr.Pointer() != nil {
-		C.QHttpMultiPart_Append(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQHttpPart(httpPart)))
+		C.QHttpMultiPart_Append(ptr.Pointer(), PointerFromQHttpPart(httpPart))
 	}
 }
 
-func (ptr *QHttpMultiPart) SetBoundary(boundary core.QByteArrayITF) {
+func (ptr *QHttpMultiPart) Boundary() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		C.QHttpMultiPart_SetBoundary(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(boundary)))
+		return core.NewQByteArrayFromPointer(C.QHttpMultiPart_Boundary(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QHttpMultiPart) SetBoundary(boundary core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHttpMultiPart_SetBoundary(ptr.Pointer(), core.PointerFromQByteArray(boundary))
 	}
 }
 
 func (ptr *QHttpMultiPart) SetContentType(contentType QHttpMultiPart__ContentType) {
 	if ptr.Pointer() != nil {
-		C.QHttpMultiPart_SetContentType(C.QtObjectPtr(ptr.Pointer()), C.int(contentType))
+		C.QHttpMultiPart_SetContentType(ptr.Pointer(), C.int(contentType))
 	}
 }
 
 func (ptr *QHttpMultiPart) DestroyQHttpMultiPart() {
 	if ptr.Pointer() != nil {
-		C.QHttpMultiPart_DestroyQHttpMultiPart(C.QtObjectPtr(ptr.Pointer()))
+		C.QHttpMultiPart_DestroyQHttpMultiPart(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

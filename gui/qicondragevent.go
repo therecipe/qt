@@ -11,28 +11,28 @@ type QIconDragEvent struct {
 	core.QEvent
 }
 
-type QIconDragEventITF interface {
-	core.QEventITF
-	QIconDragEventPTR() *QIconDragEvent
+type QIconDragEvent_ITF interface {
+	core.QEvent_ITF
+	QIconDragEvent_PTR() *QIconDragEvent
 }
 
-func PointerFromQIconDragEvent(ptr QIconDragEventITF) unsafe.Pointer {
+func PointerFromQIconDragEvent(ptr QIconDragEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QIconDragEventPTR().Pointer()
+		return ptr.QIconDragEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QIconDragEventFromPointer(ptr unsafe.Pointer) *QIconDragEvent {
+func NewQIconDragEventFromPointer(ptr unsafe.Pointer) *QIconDragEvent {
 	var n = new(QIconDragEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QIconDragEvent) QIconDragEventPTR() *QIconDragEvent {
+func (ptr *QIconDragEvent) QIconDragEvent_PTR() *QIconDragEvent {
 	return ptr
 }
 
 func NewQIconDragEvent() *QIconDragEvent {
-	return QIconDragEventFromPointer(unsafe.Pointer(C.QIconDragEvent_NewQIconDragEvent()))
+	return NewQIconDragEventFromPointer(C.QIconDragEvent_NewQIconDragEvent())
 }

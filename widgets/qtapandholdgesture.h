@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QTapAndHoldGesture_SetPosition(QtObjectPtr ptr, QtObjectPtr pos);
+void QTapAndHoldGesture_SetPosition(void* ptr, void* pos);
 void QTapAndHoldGesture_QTapAndHoldGesture_SetTimeout(int msecs);
 int QTapAndHoldGesture_QTapAndHoldGesture_Timeout();
-void QTapAndHoldGesture_DestroyQTapAndHoldGesture(QtObjectPtr ptr);
+void QTapAndHoldGesture_DestroyQTapAndHoldGesture(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,7 +1,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
 int QStyle_PM_MdiSubWindowMinimizedWidth_Type();
 int QStyle_PM_HeaderMargin_Type();
@@ -207,26 +206,26 @@ int QStyle_SE_TabBarTabRightButton_Type();
 int QStyle_SE_TabBarTabText_Type();
 int QStyle_SE_ShapedFrameContents_Type();
 int QStyle_SE_ToolBarHandle_Type();
-void QStyle_DrawItemPixmap(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr rectangle, int alignment, QtObjectPtr pixmap);
-void QStyle_DrawItemText(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr rectangle, int alignment, QtObjectPtr palette, int enabled, char* text, int textRole);
-void QStyle_Polish2(QtObjectPtr ptr, QtObjectPtr application);
-void QStyle_Polish3(QtObjectPtr ptr, QtObjectPtr palette);
-QtObjectPtr QStyle_Proxy(QtObjectPtr ptr);
+void QStyle_DrawItemPixmap(void* ptr, void* painter, void* rectangle, int alignment, void* pixmap);
+void QStyle_DrawItemText(void* ptr, void* painter, void* rectangle, int alignment, void* palette, int enabled, char* text, int textRole);
+void QStyle_Polish2(void* ptr, void* application);
+void QStyle_Polish3(void* ptr, void* palette);
+void* QStyle_Proxy(void* ptr);
 int QStyle_QStyle_SliderValueFromPosition(int min, int max, int position, int span, int upsideDown);
-void QStyle_Unpolish2(QtObjectPtr ptr, QtObjectPtr application);
-int QStyle_CombinedLayoutSpacing(QtObjectPtr ptr, int controls1, int controls2, int orientation, QtObjectPtr option, QtObjectPtr widget);
-void QStyle_DrawComplexControl(QtObjectPtr ptr, int control, QtObjectPtr option, QtObjectPtr painter, QtObjectPtr widget);
-void QStyle_DrawControl(QtObjectPtr ptr, int element, QtObjectPtr option, QtObjectPtr painter, QtObjectPtr widget);
-void QStyle_DrawPrimitive(QtObjectPtr ptr, int element, QtObjectPtr option, QtObjectPtr painter, QtObjectPtr widget);
-int QStyle_HitTestComplexControl(QtObjectPtr ptr, int control, QtObjectPtr option, QtObjectPtr position, QtObjectPtr widget);
-int QStyle_LayoutSpacing(QtObjectPtr ptr, int control1, int control2, int orientation, QtObjectPtr option, QtObjectPtr widget);
-int QStyle_PixelMetric(QtObjectPtr ptr, int metric, QtObjectPtr option, QtObjectPtr widget);
-void QStyle_Polish(QtObjectPtr ptr, QtObjectPtr widget);
+void QStyle_Unpolish2(void* ptr, void* application);
+int QStyle_CombinedLayoutSpacing(void* ptr, int controls1, int controls2, int orientation, void* option, void* widget);
+void QStyle_DrawComplexControl(void* ptr, int control, void* option, void* painter, void* widget);
+void QStyle_DrawControl(void* ptr, int element, void* option, void* painter, void* widget);
+void QStyle_DrawPrimitive(void* ptr, int element, void* option, void* painter, void* widget);
+int QStyle_HitTestComplexControl(void* ptr, int control, void* option, void* position, void* widget);
+int QStyle_LayoutSpacing(void* ptr, int control1, int control2, int orientation, void* option, void* widget);
+int QStyle_PixelMetric(void* ptr, int metric, void* option, void* widget);
+void QStyle_Polish(void* ptr, void* widget);
 int QStyle_QStyle_SliderPositionFromValue(int min, int max, int logicalValue, int span, int upsideDown);
-int QStyle_StyleHint(QtObjectPtr ptr, int hint, QtObjectPtr option, QtObjectPtr widget, QtObjectPtr returnData);
-void QStyle_Unpolish(QtObjectPtr ptr, QtObjectPtr widget);
+int QStyle_StyleHint(void* ptr, int hint, void* option, void* widget, void* returnData);
+void QStyle_Unpolish(void* ptr, void* widget);
 int QStyle_QStyle_VisualAlignment(int direction, int alignment);
-void QStyle_DestroyQStyle(QtObjectPtr ptr);
+void QStyle_DestroyQStyle(void* ptr);
 
 #ifdef __cplusplus
 }

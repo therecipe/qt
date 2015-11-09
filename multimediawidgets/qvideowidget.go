@@ -15,133 +15,133 @@ type QVideoWidget struct {
 	widgets.QWidget
 }
 
-type QVideoWidgetITF interface {
-	multimedia.QMediaBindableInterfaceITF
-	widgets.QWidgetITF
-	QVideoWidgetPTR() *QVideoWidget
+type QVideoWidget_ITF interface {
+	multimedia.QMediaBindableInterface_ITF
+	widgets.QWidget_ITF
+	QVideoWidget_PTR() *QVideoWidget
 }
 
 func (p *QVideoWidget) Pointer() unsafe.Pointer {
-	return p.QMediaBindableInterfacePTR().Pointer()
+	return p.QMediaBindableInterface_PTR().Pointer()
 }
 
 func (p *QVideoWidget) SetPointer(ptr unsafe.Pointer) {
-	p.QMediaBindableInterfacePTR().SetPointer(ptr)
-	p.QWidgetPTR().SetPointer(ptr)
+	p.QMediaBindableInterface_PTR().SetPointer(ptr)
+	p.QWidget_PTR().SetPointer(ptr)
 }
 
-func PointerFromQVideoWidget(ptr QVideoWidgetITF) unsafe.Pointer {
+func PointerFromQVideoWidget(ptr QVideoWidget_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QVideoWidgetPTR().Pointer()
+		return ptr.QVideoWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func QVideoWidgetFromPointer(ptr unsafe.Pointer) *QVideoWidget {
+func NewQVideoWidgetFromPointer(ptr unsafe.Pointer) *QVideoWidget {
 	var n = new(QVideoWidget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QVideoWidget_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QVideoWidget) QVideoWidgetPTR() *QVideoWidget {
+func (ptr *QVideoWidget) QVideoWidget_PTR() *QVideoWidget {
 	return ptr
 }
 
 func (ptr *QVideoWidget) AspectRatioMode() core.Qt__AspectRatioMode {
 	if ptr.Pointer() != nil {
-		return core.Qt__AspectRatioMode(C.QVideoWidget_AspectRatioMode(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__AspectRatioMode(C.QVideoWidget_AspectRatioMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QVideoWidget) Brightness() int {
 	if ptr.Pointer() != nil {
-		return int(C.QVideoWidget_Brightness(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QVideoWidget_Brightness(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QVideoWidget) Contrast() int {
 	if ptr.Pointer() != nil {
-		return int(C.QVideoWidget_Contrast(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QVideoWidget_Contrast(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QVideoWidget) Hue() int {
 	if ptr.Pointer() != nil {
-		return int(C.QVideoWidget_Hue(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QVideoWidget_Hue(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QVideoWidget) MediaObject() *multimedia.QMediaObject {
 	if ptr.Pointer() != nil {
-		return multimedia.QMediaObjectFromPointer(unsafe.Pointer(C.QVideoWidget_MediaObject(C.QtObjectPtr(ptr.Pointer()))))
+		return multimedia.NewQMediaObjectFromPointer(C.QVideoWidget_MediaObject(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QVideoWidget) Saturation() int {
 	if ptr.Pointer() != nil {
-		return int(C.QVideoWidget_Saturation(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QVideoWidget_Saturation(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QVideoWidget) SetAspectRatioMode(mode core.Qt__AspectRatioMode) {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_SetAspectRatioMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QVideoWidget_SetAspectRatioMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QVideoWidget) SetBrightness(brightness int) {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_SetBrightness(C.QtObjectPtr(ptr.Pointer()), C.int(brightness))
+		C.QVideoWidget_SetBrightness(ptr.Pointer(), C.int(brightness))
 	}
 }
 
 func (ptr *QVideoWidget) SetContrast(contrast int) {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_SetContrast(C.QtObjectPtr(ptr.Pointer()), C.int(contrast))
+		C.QVideoWidget_SetContrast(ptr.Pointer(), C.int(contrast))
 	}
 }
 
 func (ptr *QVideoWidget) SetFullScreen(fullScreen bool) {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_SetFullScreen(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(fullScreen)))
+		C.QVideoWidget_SetFullScreen(ptr.Pointer(), C.int(qt.GoBoolToInt(fullScreen)))
 	}
 }
 
 func (ptr *QVideoWidget) SetHue(hue int) {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_SetHue(C.QtObjectPtr(ptr.Pointer()), C.int(hue))
+		C.QVideoWidget_SetHue(ptr.Pointer(), C.int(hue))
 	}
 }
 
 func (ptr *QVideoWidget) SetSaturation(saturation int) {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_SetSaturation(C.QtObjectPtr(ptr.Pointer()), C.int(saturation))
+		C.QVideoWidget_SetSaturation(ptr.Pointer(), C.int(saturation))
 	}
 }
 
-func NewQVideoWidget(parent widgets.QWidgetITF) *QVideoWidget {
-	return QVideoWidgetFromPointer(unsafe.Pointer(C.QVideoWidget_NewQVideoWidget(C.QtObjectPtr(widgets.PointerFromQWidget(parent)))))
+func NewQVideoWidget(parent widgets.QWidget_ITF) *QVideoWidget {
+	return NewQVideoWidgetFromPointer(C.QVideoWidget_NewQVideoWidget(widgets.PointerFromQWidget(parent)))
 }
 
 func (ptr *QVideoWidget) ConnectBrightnessChanged(f func(brightness int)) {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_ConnectBrightnessChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoWidget_ConnectBrightnessChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "brightnessChanged", f)
 	}
 }
 
 func (ptr *QVideoWidget) DisconnectBrightnessChanged() {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_DisconnectBrightnessChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoWidget_DisconnectBrightnessChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "brightnessChanged")
 	}
 }
@@ -153,14 +153,14 @@ func callbackQVideoWidgetBrightnessChanged(ptrName *C.char, brightness C.int) {
 
 func (ptr *QVideoWidget) ConnectContrastChanged(f func(contrast int)) {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_ConnectContrastChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoWidget_ConnectContrastChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "contrastChanged", f)
 	}
 }
 
 func (ptr *QVideoWidget) DisconnectContrastChanged() {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_DisconnectContrastChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoWidget_DisconnectContrastChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "contrastChanged")
 	}
 }
@@ -172,14 +172,14 @@ func callbackQVideoWidgetContrastChanged(ptrName *C.char, contrast C.int) {
 
 func (ptr *QVideoWidget) ConnectFullScreenChanged(f func(fullScreen bool)) {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_ConnectFullScreenChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoWidget_ConnectFullScreenChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "fullScreenChanged", f)
 	}
 }
 
 func (ptr *QVideoWidget) DisconnectFullScreenChanged() {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_DisconnectFullScreenChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoWidget_DisconnectFullScreenChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "fullScreenChanged")
 	}
 }
@@ -191,14 +191,14 @@ func callbackQVideoWidgetFullScreenChanged(ptrName *C.char, fullScreen C.int) {
 
 func (ptr *QVideoWidget) ConnectHueChanged(f func(hue int)) {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_ConnectHueChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoWidget_ConnectHueChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "hueChanged", f)
 	}
 }
 
 func (ptr *QVideoWidget) DisconnectHueChanged() {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_DisconnectHueChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoWidget_DisconnectHueChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "hueChanged")
 	}
 }
@@ -210,21 +210,21 @@ func callbackQVideoWidgetHueChanged(ptrName *C.char, hue C.int) {
 
 func (ptr *QVideoWidget) IsFullScreen() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoWidget_IsFullScreen(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QVideoWidget_IsFullScreen(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoWidget) ConnectSaturationChanged(f func(saturation int)) {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_ConnectSaturationChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoWidget_ConnectSaturationChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "saturationChanged", f)
 	}
 }
 
 func (ptr *QVideoWidget) DisconnectSaturationChanged() {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_DisconnectSaturationChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoWidget_DisconnectSaturationChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "saturationChanged")
 	}
 }
@@ -236,7 +236,7 @@ func callbackQVideoWidgetSaturationChanged(ptrName *C.char, saturation C.int) {
 
 func (ptr *QVideoWidget) DestroyQVideoWidget() {
 	if ptr.Pointer() != nil {
-		C.QVideoWidget_DestroyQVideoWidget(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoWidget_DestroyQVideoWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

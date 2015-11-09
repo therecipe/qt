@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QGraphicsTransform QGraphicsTransform::QGraphicsTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non constructor false false   [0xc821e66aa0] }
-&{applyTo QGraphicsTransform::applyTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h pure plain false false  void [0xc821e67020] }
-&{update QGraphicsTransform::update commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non slot false false  void [] }
-&{~QGraphicsTransform QGraphicsTransform::~QGraphicsTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non destructor false false   [] }
+&{QGraphicsTransform QGraphicsTransform::QGraphicsTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non constructor false false   QGraphicsTransform(QObject *parent) [0xc822615400] }
+&{applyTo QGraphicsTransform::applyTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h pure plain false false  void void applyTo(QMatrix4x4 *matrix) const [0xc822615a00] }
+&{update QGraphicsTransform::update commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non slot false false  void void update() [] }
+&{~QGraphicsTransform QGraphicsTransform::~QGraphicsTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non destructor false false   ~QGraphicsTransform() [] }
 ########################################			ENUMS			########################################

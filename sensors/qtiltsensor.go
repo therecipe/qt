@@ -12,51 +12,51 @@ type QTiltSensor struct {
 	QSensor
 }
 
-type QTiltSensorITF interface {
-	QSensorITF
-	QTiltSensorPTR() *QTiltSensor
+type QTiltSensor_ITF interface {
+	QSensor_ITF
+	QTiltSensor_PTR() *QTiltSensor
 }
 
-func PointerFromQTiltSensor(ptr QTiltSensorITF) unsafe.Pointer {
+func PointerFromQTiltSensor(ptr QTiltSensor_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTiltSensorPTR().Pointer()
+		return ptr.QTiltSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTiltSensorFromPointer(ptr unsafe.Pointer) *QTiltSensor {
+func NewQTiltSensorFromPointer(ptr unsafe.Pointer) *QTiltSensor {
 	var n = new(QTiltSensor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QTiltSensor_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QTiltSensor) QTiltSensorPTR() *QTiltSensor {
+func (ptr *QTiltSensor) QTiltSensor_PTR() *QTiltSensor {
 	return ptr
 }
 
-func NewQTiltSensor(parent core.QObjectITF) *QTiltSensor {
-	return QTiltSensorFromPointer(unsafe.Pointer(C.QTiltSensor_NewQTiltSensor(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQTiltSensor(parent core.QObject_ITF) *QTiltSensor {
+	return NewQTiltSensorFromPointer(C.QTiltSensor_NewQTiltSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QTiltSensor) Reading() *QTiltReading {
 	if ptr.Pointer() != nil {
-		return QTiltReadingFromPointer(unsafe.Pointer(C.QTiltSensor_Reading(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQTiltReadingFromPointer(C.QTiltSensor_Reading(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QTiltSensor) DestroyQTiltSensor() {
 	if ptr.Pointer() != nil {
-		C.QTiltSensor_DestroyQTiltSensor(C.QtObjectPtr(ptr.Pointer()))
+		C.QTiltSensor_DestroyQTiltSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 func (ptr *QTiltSensor) Calibrate() {
 	if ptr.Pointer() != nil {
-		C.QTiltSensor_Calibrate(C.QtObjectPtr(ptr.Pointer()))
+		C.QTiltSensor_Calibrate(ptr.Pointer())
 	}
 }

@@ -11,43 +11,43 @@ type QSharedMemory struct {
 	QObject
 }
 
-type QSharedMemoryITF interface {
-	QObjectITF
-	QSharedMemoryPTR() *QSharedMemory
+type QSharedMemory_ITF interface {
+	QObject_ITF
+	QSharedMemory_PTR() *QSharedMemory
 }
 
-func PointerFromQSharedMemory(ptr QSharedMemoryITF) unsafe.Pointer {
+func PointerFromQSharedMemory(ptr QSharedMemory_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSharedMemoryPTR().Pointer()
+		return ptr.QSharedMemory_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSharedMemoryFromPointer(ptr unsafe.Pointer) *QSharedMemory {
+func NewQSharedMemoryFromPointer(ptr unsafe.Pointer) *QSharedMemory {
 	var n = new(QSharedMemory)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QSharedMemory_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QSharedMemory) QSharedMemoryPTR() *QSharedMemory {
+func (ptr *QSharedMemory) QSharedMemory_PTR() *QSharedMemory {
 	return ptr
 }
 
 //QSharedMemory::AccessMode
-type QSharedMemory__AccessMode int
+type QSharedMemory__AccessMode int64
 
-var (
+const (
 	QSharedMemory__ReadOnly  = QSharedMemory__AccessMode(0)
 	QSharedMemory__ReadWrite = QSharedMemory__AccessMode(1)
 )
 
 //QSharedMemory::SharedMemoryError
-type QSharedMemory__SharedMemoryError int
+type QSharedMemory__SharedMemoryError int64
 
-var (
+const (
 	QSharedMemory__NoError          = QSharedMemory__SharedMemoryError(0)
 	QSharedMemory__PermissionDenied = QSharedMemory__SharedMemoryError(1)
 	QSharedMemory__InvalidSize      = QSharedMemory__SharedMemoryError(2)
@@ -59,124 +59,127 @@ var (
 	QSharedMemory__UnknownError     = QSharedMemory__SharedMemoryError(8)
 )
 
-func NewQSharedMemory2(parent QObjectITF) *QSharedMemory {
-	return QSharedMemoryFromPointer(unsafe.Pointer(C.QSharedMemory_NewQSharedMemory2(C.QtObjectPtr(PointerFromQObject(parent)))))
+func NewQSharedMemory2(parent QObject_ITF) *QSharedMemory {
+	return NewQSharedMemoryFromPointer(C.QSharedMemory_NewQSharedMemory2(PointerFromQObject(parent)))
 }
 
-func NewQSharedMemory(key string, parent QObjectITF) *QSharedMemory {
-	return QSharedMemoryFromPointer(unsafe.Pointer(C.QSharedMemory_NewQSharedMemory(C.CString(key), C.QtObjectPtr(PointerFromQObject(parent)))))
+func NewQSharedMemory(key string, parent QObject_ITF) *QSharedMemory {
+	return NewQSharedMemoryFromPointer(C.QSharedMemory_NewQSharedMemory(C.CString(key), PointerFromQObject(parent)))
 }
 
 func (ptr *QSharedMemory) Attach(mode QSharedMemory__AccessMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QSharedMemory_Attach(C.QtObjectPtr(ptr.Pointer()), C.int(mode)) != 0
+		return C.QSharedMemory_Attach(ptr.Pointer(), C.int(mode)) != 0
 	}
 	return false
 }
 
-func (ptr *QSharedMemory) ConstData() {
+func (ptr *QSharedMemory) ConstData() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		C.QSharedMemory_ConstData(C.QtObjectPtr(ptr.Pointer()))
+		return unsafe.Pointer(C.QSharedMemory_ConstData(ptr.Pointer()))
 	}
+	return nil
 }
 
 func (ptr *QSharedMemory) Create(size int, mode QSharedMemory__AccessMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QSharedMemory_Create(C.QtObjectPtr(ptr.Pointer()), C.int(size), C.int(mode)) != 0
+		return C.QSharedMemory_Create(ptr.Pointer(), C.int(size), C.int(mode)) != 0
 	}
 	return false
 }
 
-func (ptr *QSharedMemory) Data() {
+func (ptr *QSharedMemory) Data() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		C.QSharedMemory_Data(C.QtObjectPtr(ptr.Pointer()))
+		return unsafe.Pointer(C.QSharedMemory_Data(ptr.Pointer()))
 	}
+	return nil
 }
 
-func (ptr *QSharedMemory) Data2() {
+func (ptr *QSharedMemory) Data2() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		C.QSharedMemory_Data2(C.QtObjectPtr(ptr.Pointer()))
+		return unsafe.Pointer(C.QSharedMemory_Data2(ptr.Pointer()))
 	}
+	return nil
 }
 
 func (ptr *QSharedMemory) Detach() bool {
 	if ptr.Pointer() != nil {
-		return C.QSharedMemory_Detach(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSharedMemory_Detach(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSharedMemory) Error() QSharedMemory__SharedMemoryError {
 	if ptr.Pointer() != nil {
-		return QSharedMemory__SharedMemoryError(C.QSharedMemory_Error(C.QtObjectPtr(ptr.Pointer())))
+		return QSharedMemory__SharedMemoryError(C.QSharedMemory_Error(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSharedMemory) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSharedMemory_ErrorString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSharedMemory_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSharedMemory) IsAttached() bool {
 	if ptr.Pointer() != nil {
-		return C.QSharedMemory_IsAttached(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSharedMemory_IsAttached(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSharedMemory) Key() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSharedMemory_Key(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSharedMemory_Key(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSharedMemory) Lock() bool {
 	if ptr.Pointer() != nil {
-		return C.QSharedMemory_Lock(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSharedMemory_Lock(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSharedMemory) NativeKey() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSharedMemory_NativeKey(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSharedMemory_NativeKey(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSharedMemory) SetKey(key string) {
 	if ptr.Pointer() != nil {
-		C.QSharedMemory_SetKey(C.QtObjectPtr(ptr.Pointer()), C.CString(key))
+		C.QSharedMemory_SetKey(ptr.Pointer(), C.CString(key))
 	}
 }
 
 func (ptr *QSharedMemory) SetNativeKey(key string) {
 	if ptr.Pointer() != nil {
-		C.QSharedMemory_SetNativeKey(C.QtObjectPtr(ptr.Pointer()), C.CString(key))
+		C.QSharedMemory_SetNativeKey(ptr.Pointer(), C.CString(key))
 	}
 }
 
 func (ptr *QSharedMemory) Size() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSharedMemory_Size(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSharedMemory_Size(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSharedMemory) Unlock() bool {
 	if ptr.Pointer() != nil {
-		return C.QSharedMemory_Unlock(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSharedMemory_Unlock(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSharedMemory) DestroyQSharedMemory() {
 	if ptr.Pointer() != nil {
-		C.QSharedMemory_DestroyQSharedMemory(C.QtObjectPtr(ptr.Pointer()))
+		C.QSharedMemory_DestroyQSharedMemory(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -1,10 +1,10 @@
 #include "qradiotunercontrol.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QObject>
-#include <QRadioTuner>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QRadioTuner>
 #include <QRadioTunerControl>
 #include "_cgo_export.h"
 
@@ -22,183 +22,183 @@ void Signal_StereoStatusChanged(bool stereo){callbackQRadioTunerControlStereoSta
 void Signal_VolumeChanged(int volume){callbackQRadioTunerControlVolumeChanged(this->objectName().toUtf8().data(), volume);};
 };
 
-void QRadioTunerControl_ConnectAntennaConnectedChanged(QtObjectPtr ptr){
+void QRadioTunerControl_ConnectAntennaConnectedChanged(void* ptr){
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(bool)>(&QRadioTunerControl::antennaConnectedChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(bool)>(&MyQRadioTunerControl::Signal_AntennaConnectedChanged));;
 }
 
-void QRadioTunerControl_DisconnectAntennaConnectedChanged(QtObjectPtr ptr){
+void QRadioTunerControl_DisconnectAntennaConnectedChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(bool)>(&QRadioTunerControl::antennaConnectedChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(bool)>(&MyQRadioTunerControl::Signal_AntennaConnectedChanged));;
 }
 
-int QRadioTunerControl_Band(QtObjectPtr ptr){
+int QRadioTunerControl_Band(void* ptr){
 	return static_cast<QRadioTunerControl*>(ptr)->band();
 }
 
-void QRadioTunerControl_ConnectBandChanged(QtObjectPtr ptr){
+void QRadioTunerControl_ConnectBandChanged(void* ptr){
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(QRadioTuner::Band)>(&QRadioTunerControl::bandChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(QRadioTuner::Band)>(&MyQRadioTunerControl::Signal_BandChanged));;
 }
 
-void QRadioTunerControl_DisconnectBandChanged(QtObjectPtr ptr){
+void QRadioTunerControl_DisconnectBandChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(QRadioTuner::Band)>(&QRadioTunerControl::bandChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(QRadioTuner::Band)>(&MyQRadioTunerControl::Signal_BandChanged));;
 }
 
-void QRadioTunerControl_CancelSearch(QtObjectPtr ptr){
+void QRadioTunerControl_CancelSearch(void* ptr){
 	static_cast<QRadioTunerControl*>(ptr)->cancelSearch();
 }
 
-int QRadioTunerControl_Error(QtObjectPtr ptr){
+int QRadioTunerControl_Error(void* ptr){
 	return static_cast<QRadioTunerControl*>(ptr)->error();
 }
 
-char* QRadioTunerControl_ErrorString(QtObjectPtr ptr){
+char* QRadioTunerControl_ErrorString(void* ptr){
 	return static_cast<QRadioTunerControl*>(ptr)->errorString().toUtf8().data();
 }
 
-int QRadioTunerControl_Frequency(QtObjectPtr ptr){
+int QRadioTunerControl_Frequency(void* ptr){
 	return static_cast<QRadioTunerControl*>(ptr)->frequency();
 }
 
-void QRadioTunerControl_ConnectFrequencyChanged(QtObjectPtr ptr){
+void QRadioTunerControl_ConnectFrequencyChanged(void* ptr){
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(int)>(&QRadioTunerControl::frequencyChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(int)>(&MyQRadioTunerControl::Signal_FrequencyChanged));;
 }
 
-void QRadioTunerControl_DisconnectFrequencyChanged(QtObjectPtr ptr){
+void QRadioTunerControl_DisconnectFrequencyChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(int)>(&QRadioTunerControl::frequencyChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(int)>(&MyQRadioTunerControl::Signal_FrequencyChanged));;
 }
 
-int QRadioTunerControl_FrequencyStep(QtObjectPtr ptr, int band){
+int QRadioTunerControl_FrequencyStep(void* ptr, int band){
 	return static_cast<QRadioTunerControl*>(ptr)->frequencyStep(static_cast<QRadioTuner::Band>(band));
 }
 
-int QRadioTunerControl_IsAntennaConnected(QtObjectPtr ptr){
+int QRadioTunerControl_IsAntennaConnected(void* ptr){
 	return static_cast<QRadioTunerControl*>(ptr)->isAntennaConnected();
 }
 
-int QRadioTunerControl_IsBandSupported(QtObjectPtr ptr, int band){
+int QRadioTunerControl_IsBandSupported(void* ptr, int band){
 	return static_cast<QRadioTunerControl*>(ptr)->isBandSupported(static_cast<QRadioTuner::Band>(band));
 }
 
-int QRadioTunerControl_IsMuted(QtObjectPtr ptr){
+int QRadioTunerControl_IsMuted(void* ptr){
 	return static_cast<QRadioTunerControl*>(ptr)->isMuted();
 }
 
-int QRadioTunerControl_IsSearching(QtObjectPtr ptr){
+int QRadioTunerControl_IsSearching(void* ptr){
 	return static_cast<QRadioTunerControl*>(ptr)->isSearching();
 }
 
-int QRadioTunerControl_IsStereo(QtObjectPtr ptr){
+int QRadioTunerControl_IsStereo(void* ptr){
 	return static_cast<QRadioTunerControl*>(ptr)->isStereo();
 }
 
-void QRadioTunerControl_ConnectMutedChanged(QtObjectPtr ptr){
+void QRadioTunerControl_ConnectMutedChanged(void* ptr){
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(bool)>(&QRadioTunerControl::mutedChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(bool)>(&MyQRadioTunerControl::Signal_MutedChanged));;
 }
 
-void QRadioTunerControl_DisconnectMutedChanged(QtObjectPtr ptr){
+void QRadioTunerControl_DisconnectMutedChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(bool)>(&QRadioTunerControl::mutedChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(bool)>(&MyQRadioTunerControl::Signal_MutedChanged));;
 }
 
-void QRadioTunerControl_SearchAllStations(QtObjectPtr ptr, int searchMode){
+void QRadioTunerControl_SearchAllStations(void* ptr, int searchMode){
 	static_cast<QRadioTunerControl*>(ptr)->searchAllStations(static_cast<QRadioTuner::SearchMode>(searchMode));
 }
 
-void QRadioTunerControl_SearchBackward(QtObjectPtr ptr){
+void QRadioTunerControl_SearchBackward(void* ptr){
 	static_cast<QRadioTunerControl*>(ptr)->searchBackward();
 }
 
-void QRadioTunerControl_SearchForward(QtObjectPtr ptr){
+void QRadioTunerControl_SearchForward(void* ptr){
 	static_cast<QRadioTunerControl*>(ptr)->searchForward();
 }
 
-void QRadioTunerControl_ConnectSearchingChanged(QtObjectPtr ptr){
+void QRadioTunerControl_ConnectSearchingChanged(void* ptr){
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(bool)>(&QRadioTunerControl::searchingChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(bool)>(&MyQRadioTunerControl::Signal_SearchingChanged));;
 }
 
-void QRadioTunerControl_DisconnectSearchingChanged(QtObjectPtr ptr){
+void QRadioTunerControl_DisconnectSearchingChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(bool)>(&QRadioTunerControl::searchingChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(bool)>(&MyQRadioTunerControl::Signal_SearchingChanged));;
 }
 
-void QRadioTunerControl_SetBand(QtObjectPtr ptr, int band){
+void QRadioTunerControl_SetBand(void* ptr, int band){
 	static_cast<QRadioTunerControl*>(ptr)->setBand(static_cast<QRadioTuner::Band>(band));
 }
 
-void QRadioTunerControl_SetFrequency(QtObjectPtr ptr, int frequency){
+void QRadioTunerControl_SetFrequency(void* ptr, int frequency){
 	static_cast<QRadioTunerControl*>(ptr)->setFrequency(frequency);
 }
 
-void QRadioTunerControl_SetMuted(QtObjectPtr ptr, int muted){
+void QRadioTunerControl_SetMuted(void* ptr, int muted){
 	static_cast<QRadioTunerControl*>(ptr)->setMuted(muted != 0);
 }
 
-void QRadioTunerControl_SetStereoMode(QtObjectPtr ptr, int mode){
+void QRadioTunerControl_SetStereoMode(void* ptr, int mode){
 	static_cast<QRadioTunerControl*>(ptr)->setStereoMode(static_cast<QRadioTuner::StereoMode>(mode));
 }
 
-void QRadioTunerControl_SetVolume(QtObjectPtr ptr, int volume){
+void QRadioTunerControl_SetVolume(void* ptr, int volume){
 	static_cast<QRadioTunerControl*>(ptr)->setVolume(volume);
 }
 
-int QRadioTunerControl_SignalStrength(QtObjectPtr ptr){
+int QRadioTunerControl_SignalStrength(void* ptr){
 	return static_cast<QRadioTunerControl*>(ptr)->signalStrength();
 }
 
-void QRadioTunerControl_ConnectSignalStrengthChanged(QtObjectPtr ptr){
+void QRadioTunerControl_ConnectSignalStrengthChanged(void* ptr){
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(int)>(&QRadioTunerControl::signalStrengthChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(int)>(&MyQRadioTunerControl::Signal_SignalStrengthChanged));;
 }
 
-void QRadioTunerControl_DisconnectSignalStrengthChanged(QtObjectPtr ptr){
+void QRadioTunerControl_DisconnectSignalStrengthChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(int)>(&QRadioTunerControl::signalStrengthChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(int)>(&MyQRadioTunerControl::Signal_SignalStrengthChanged));;
 }
 
-void QRadioTunerControl_Start(QtObjectPtr ptr){
+void QRadioTunerControl_Start(void* ptr){
 	static_cast<QRadioTunerControl*>(ptr)->start();
 }
 
-void QRadioTunerControl_ConnectStateChanged(QtObjectPtr ptr){
+void QRadioTunerControl_ConnectStateChanged(void* ptr){
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(QRadioTuner::State)>(&QRadioTunerControl::stateChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(QRadioTuner::State)>(&MyQRadioTunerControl::Signal_StateChanged));;
 }
 
-void QRadioTunerControl_DisconnectStateChanged(QtObjectPtr ptr){
+void QRadioTunerControl_DisconnectStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(QRadioTuner::State)>(&QRadioTunerControl::stateChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(QRadioTuner::State)>(&MyQRadioTunerControl::Signal_StateChanged));;
 }
 
-void QRadioTunerControl_ConnectStationFound(QtObjectPtr ptr){
+void QRadioTunerControl_ConnectStationFound(void* ptr){
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(int, QString)>(&QRadioTunerControl::stationFound), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(int, QString)>(&MyQRadioTunerControl::Signal_StationFound));;
 }
 
-void QRadioTunerControl_DisconnectStationFound(QtObjectPtr ptr){
+void QRadioTunerControl_DisconnectStationFound(void* ptr){
 	QObject::disconnect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(int, QString)>(&QRadioTunerControl::stationFound), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(int, QString)>(&MyQRadioTunerControl::Signal_StationFound));;
 }
 
-int QRadioTunerControl_StereoMode(QtObjectPtr ptr){
+int QRadioTunerControl_StereoMode(void* ptr){
 	return static_cast<QRadioTunerControl*>(ptr)->stereoMode();
 }
 
-void QRadioTunerControl_ConnectStereoStatusChanged(QtObjectPtr ptr){
+void QRadioTunerControl_ConnectStereoStatusChanged(void* ptr){
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(bool)>(&QRadioTunerControl::stereoStatusChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(bool)>(&MyQRadioTunerControl::Signal_StereoStatusChanged));;
 }
 
-void QRadioTunerControl_DisconnectStereoStatusChanged(QtObjectPtr ptr){
+void QRadioTunerControl_DisconnectStereoStatusChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(bool)>(&QRadioTunerControl::stereoStatusChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(bool)>(&MyQRadioTunerControl::Signal_StereoStatusChanged));;
 }
 
-void QRadioTunerControl_Stop(QtObjectPtr ptr){
+void QRadioTunerControl_Stop(void* ptr){
 	static_cast<QRadioTunerControl*>(ptr)->stop();
 }
 
-int QRadioTunerControl_Volume(QtObjectPtr ptr){
+int QRadioTunerControl_Volume(void* ptr){
 	return static_cast<QRadioTunerControl*>(ptr)->volume();
 }
 
-void QRadioTunerControl_ConnectVolumeChanged(QtObjectPtr ptr){
+void QRadioTunerControl_ConnectVolumeChanged(void* ptr){
 	QObject::connect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(int)>(&QRadioTunerControl::volumeChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(int)>(&MyQRadioTunerControl::Signal_VolumeChanged));;
 }
 
-void QRadioTunerControl_DisconnectVolumeChanged(QtObjectPtr ptr){
+void QRadioTunerControl_DisconnectVolumeChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioTunerControl*>(ptr), static_cast<void (QRadioTunerControl::*)(int)>(&QRadioTunerControl::volumeChanged), static_cast<MyQRadioTunerControl*>(ptr), static_cast<void (MyQRadioTunerControl::*)(int)>(&MyQRadioTunerControl::Signal_VolumeChanged));;
 }
 
-void QRadioTunerControl_DestroyQRadioTunerControl(QtObjectPtr ptr){
+void QRadioTunerControl_DestroyQRadioTunerControl(void* ptr){
 	static_cast<QRadioTunerControl*>(ptr)->~QRadioTunerControl();
 }
 

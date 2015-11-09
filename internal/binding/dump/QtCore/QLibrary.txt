@@ -1,23 +1,23 @@
 ########################################			FUNCTIONS			########################################
-&{fileName QLibrary::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.cpp non plain false false  QString [] }
-&{loadHints QLibrary::loadHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.cpp non plain false false  LoadHints [] }
-&{setFileName QLibrary::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.cpp non plain false false  void [0xc8201c5900] }
-&{setFileNameAndVersion QLibrary::setFileNameAndVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.cpp non plain false false  void [0xc8201c5ca0 0xc8201c5d20] }
-&{setLoadHints QLibrary::setLoadHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.cpp non plain false false  void [0xc8201b60a0] }
-&{QLibrary QLibrary::QLibrary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non constructor false false   [0xc8201b6cc0] }
-&{QLibrary QLibrary::QLibrary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non constructor false true 2  [0xc8201b6f20 0xc8201b6fc0] }
-&{QLibrary QLibrary::QLibrary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non constructor false true 4  [0xc8201b71c0 0xc8201b7260 0xc8201b7300] }
-&{QLibrary QLibrary::QLibrary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non constructor false true 3  [0xc8201b7620 0xc8201b76e0 0xc8201b7800] }
-&{errorString QLibrary::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain false false  QString [] }
-&{isLibrary QLibrary::isLibrary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain true false  bool [0xc8201b7c40] }
-&{isLoaded QLibrary::isLoaded commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain false false  bool [] }
-&{load QLibrary::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain false false  bool [] }
-&{resolve QLibrary::resolve commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain true true 4 QFunctionPointer [0xc8201ae240 0xc8201ae300 0xc8201ae3a0] }
-&{resolve QLibrary::resolve commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain true true 2 QFunctionPointer [0xc8201ae6a0 0xc8201ae720] }
-&{resolve QLibrary::resolve commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain true true 3 QFunctionPointer [0xc8201ae9e0 0xc8201aeaa0 0xc8201aeb60] }
-&{resolve QLibrary::resolve commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain false false  QFunctionPointer [0xc8201aee60] }
-&{setFileNameAndVersion QLibrary::setFileNameAndVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain false true 2 void [0xc8201af1c0 0xc8201af2e0] }
-&{unload QLibrary::unload commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain false false  bool [] }
-&{~QLibrary QLibrary::~QLibrary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non destructor false false   [] }
+&{fileName QLibrary::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.cpp non plain false false  QString QString fileName() const [] }
+&{loadHints QLibrary::loadHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.cpp non plain false false  LoadHints LoadHints loadHints() const [] }
+&{setFileName QLibrary::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.cpp non plain false false  void void setFileName(const QString &fileName) [0xc820148880] }
+&{setFileNameAndVersion QLibrary::setFileNameAndVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.cpp non plain false false  void void setFileNameAndVersion(const QString &fileName, int versionNumber) [0xc820148bc0 0xc820148c60] }
+&{setLoadHints QLibrary::setLoadHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.cpp non plain false false  void void setLoadHints(LoadHints hints) [0xc820149040] }
+&{QLibrary QLibrary::QLibrary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non constructor false false   QLibrary(QObject *parent) [0xc820149ea0] }
+&{QLibrary QLibrary::QLibrary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non constructor false true 2  QLibrary(const QString &fileName, QObject *parent) [0xc820132180 0xc820132220] }
+&{QLibrary QLibrary::QLibrary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non constructor false true 4  QLibrary(const QString &fileName, const QString &version, QObject *parent) [0xc820132420 0xc820132500 0xc8201325c0] }
+&{QLibrary QLibrary::QLibrary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non constructor false true 3  QLibrary(const QString &fileName, int verNum, QObject *parent) [0xc820132820 0xc8201328c0 0xc820132940] }
+&{errorString QLibrary::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain false false  QString QString errorString() const [] }
+&{isLibrary QLibrary::isLibrary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain true false  bool bool isLibrary(const QString &fileName) [0xc820132d40] }
+&{isLoaded QLibrary::isLoaded commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain false false  bool bool isLoaded() const [] }
+&{load QLibrary::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain false false  bool bool load() [] }
+&{resolve QLibrary::resolve commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain true true 4 QFunctionPointer QFunctionPointer resolve(const QString &fileName, const QString &version, const char *symbol) [0xc820133340 0xc8201333c0 0xc820133440] }
+&{resolve QLibrary::resolve commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain true true 2 QFunctionPointer QFunctionPointer resolve(const QString &fileName, const char *symbol) [0xc820133700 0xc8201337e0] }
+&{resolve QLibrary::resolve commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain true true 3 QFunctionPointer QFunctionPointer resolve(const QString &fileName, int verNum, const char *symbol) [0xc820133b00 0xc820133ba0 0xc820133c80] }
+&{resolve QLibrary::resolve commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain false false  QFunctionPointer QFunctionPointer resolve(const char *symbol) [0xc820133f80] }
+&{setFileNameAndVersion QLibrary::setFileNameAndVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain false true 2 void void setFileNameAndVersion(const QString &fileName, const QString &version) [0xc820126360 0xc8201263e0] }
+&{unload QLibrary::unload commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non plain false false  bool bool unload() [] }
+&{~QLibrary QLibrary::~QLibrary commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qlibrary.h non destructor false false   ~QLibrary() [] }
 ########################################			ENUMS			########################################
-&{LoadHint QLibrary::LoadHint commendable public QLibrary::LoadHints [0xc8201b6460 0xc8201b65e0 0xc8201b6780 0xc8201b6860 0xc8201b69a0]}
+&{LoadHint QLibrary::LoadHint commendable public QLibrary::LoadHints [0xc820149420 0xc8201495e0 0xc820149720 0xc8201498c0 0xc820149a60] false}

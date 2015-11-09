@@ -1,16 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QMetaDataReaderControl_AvailableMetaData(QtObjectPtr ptr);
-int QMetaDataReaderControl_IsMetaDataAvailable(QtObjectPtr ptr);
-char* QMetaDataReaderControl_MetaData(QtObjectPtr ptr, char* key);
-void QMetaDataReaderControl_ConnectMetaDataAvailableChanged(QtObjectPtr ptr);
-void QMetaDataReaderControl_DisconnectMetaDataAvailableChanged(QtObjectPtr ptr);
-void QMetaDataReaderControl_ConnectMetaDataChanged(QtObjectPtr ptr);
-void QMetaDataReaderControl_DisconnectMetaDataChanged(QtObjectPtr ptr);
-void QMetaDataReaderControl_DestroyQMetaDataReaderControl(QtObjectPtr ptr);
+char* QMetaDataReaderControl_AvailableMetaData(void* ptr);
+int QMetaDataReaderControl_IsMetaDataAvailable(void* ptr);
+void* QMetaDataReaderControl_MetaData(void* ptr, char* key);
+void QMetaDataReaderControl_ConnectMetaDataAvailableChanged(void* ptr);
+void QMetaDataReaderControl_DisconnectMetaDataAvailableChanged(void* ptr);
+void QMetaDataReaderControl_ConnectMetaDataChanged(void* ptr);
+void QMetaDataReaderControl_DisconnectMetaDataChanged(void* ptr);
+void QMetaDataReaderControl_DestroyQMetaDataReaderControl(void* ptr);
 
 #ifdef __cplusplus
 }

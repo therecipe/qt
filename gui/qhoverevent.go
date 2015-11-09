@@ -11,28 +11,28 @@ type QHoverEvent struct {
 	QInputEvent
 }
 
-type QHoverEventITF interface {
-	QInputEventITF
-	QHoverEventPTR() *QHoverEvent
+type QHoverEvent_ITF interface {
+	QInputEvent_ITF
+	QHoverEvent_PTR() *QHoverEvent
 }
 
-func PointerFromQHoverEvent(ptr QHoverEventITF) unsafe.Pointer {
+func PointerFromQHoverEvent(ptr QHoverEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHoverEventPTR().Pointer()
+		return ptr.QHoverEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHoverEventFromPointer(ptr unsafe.Pointer) *QHoverEvent {
+func NewQHoverEventFromPointer(ptr unsafe.Pointer) *QHoverEvent {
 	var n = new(QHoverEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QHoverEvent) QHoverEventPTR() *QHoverEvent {
+func (ptr *QHoverEvent) QHoverEvent_PTR() *QHoverEvent {
 	return ptr
 }
 
-func NewQHoverEvent(ty core.QEvent__Type, pos core.QPointFITF, oldPos core.QPointFITF, modifiers core.Qt__KeyboardModifier) *QHoverEvent {
-	return QHoverEventFromPointer(unsafe.Pointer(C.QHoverEvent_NewQHoverEvent(C.int(ty), C.QtObjectPtr(core.PointerFromQPointF(pos)), C.QtObjectPtr(core.PointerFromQPointF(oldPos)), C.int(modifiers))))
+func NewQHoverEvent(ty core.QEvent__Type, pos core.QPointF_ITF, oldPos core.QPointF_ITF, modifiers core.Qt__KeyboardModifier) *QHoverEvent {
+	return NewQHoverEventFromPointer(C.QHoverEvent_NewQHoverEvent(C.int(ty), core.PointerFromQPointF(pos), core.PointerFromQPointF(oldPos), C.int(modifiers)))
 }

@@ -11,11 +11,11 @@ class MyQMediaServiceProviderPlugin: public QMediaServiceProviderPlugin {
 public:
 };
 
-QtObjectPtr QMediaServiceProviderPlugin_Create(QtObjectPtr ptr, char* key){
+void* QMediaServiceProviderPlugin_Create(void* ptr, char* key){
 	return static_cast<QMediaServiceProviderPlugin*>(ptr)->create(QString(key));
 }
 
-void QMediaServiceProviderPlugin_Release(QtObjectPtr ptr, QtObjectPtr service){
+void QMediaServiceProviderPlugin_Release(void* ptr, void* service){
 	static_cast<QMediaServiceProviderPlugin*>(ptr)->release(static_cast<QMediaService*>(service));
 }
 

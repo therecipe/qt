@@ -10,11 +10,11 @@ class MyQAssociativeIterable: public QAssociativeIterable {
 public:
 };
 
-int QAssociativeIterable_Size(QtObjectPtr ptr){
+int QAssociativeIterable_Size(void* ptr){
 	return static_cast<QAssociativeIterable*>(ptr)->size();
 }
 
-char* QAssociativeIterable_Value(QtObjectPtr ptr, char* key){
-	return static_cast<QAssociativeIterable*>(ptr)->value(QVariant(key)).toString().toUtf8().data();
+void* QAssociativeIterable_Value(void* ptr, void* key){
+	return new QVariant(static_cast<QAssociativeIterable*>(ptr)->value(*static_cast<QVariant*>(key)));
 }
 

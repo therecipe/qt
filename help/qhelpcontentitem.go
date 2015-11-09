@@ -10,8 +10,8 @@ type QHelpContentItem struct {
 	ptr unsafe.Pointer
 }
 
-type QHelpContentItemITF interface {
-	QHelpContentItemPTR() *QHelpContentItem
+type QHelpContentItem_ITF interface {
+	QHelpContentItem_PTR() *QHelpContentItem
 }
 
 func (p *QHelpContentItem) Pointer() unsafe.Pointer {
@@ -22,74 +22,67 @@ func (p *QHelpContentItem) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQHelpContentItem(ptr QHelpContentItemITF) unsafe.Pointer {
+func PointerFromQHelpContentItem(ptr QHelpContentItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHelpContentItemPTR().Pointer()
+		return ptr.QHelpContentItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHelpContentItemFromPointer(ptr unsafe.Pointer) *QHelpContentItem {
+func NewQHelpContentItemFromPointer(ptr unsafe.Pointer) *QHelpContentItem {
 	var n = new(QHelpContentItem)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QHelpContentItem) QHelpContentItemPTR() *QHelpContentItem {
+func (ptr *QHelpContentItem) QHelpContentItem_PTR() *QHelpContentItem {
 	return ptr
 }
 
 func (ptr *QHelpContentItem) Child(row int) *QHelpContentItem {
 	if ptr.Pointer() != nil {
-		return QHelpContentItemFromPointer(unsafe.Pointer(C.QHelpContentItem_Child(C.QtObjectPtr(ptr.Pointer()), C.int(row))))
+		return NewQHelpContentItemFromPointer(C.QHelpContentItem_Child(ptr.Pointer(), C.int(row)))
 	}
 	return nil
 }
 
 func (ptr *QHelpContentItem) ChildCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QHelpContentItem_ChildCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QHelpContentItem_ChildCount(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QHelpContentItem) ChildPosition(child QHelpContentItemITF) int {
+func (ptr *QHelpContentItem) ChildPosition(child QHelpContentItem_ITF) int {
 	if ptr.Pointer() != nil {
-		return int(C.QHelpContentItem_ChildPosition(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQHelpContentItem(child))))
+		return int(C.QHelpContentItem_ChildPosition(ptr.Pointer(), PointerFromQHelpContentItem(child)))
 	}
 	return 0
 }
 
 func (ptr *QHelpContentItem) Parent() *QHelpContentItem {
 	if ptr.Pointer() != nil {
-		return QHelpContentItemFromPointer(unsafe.Pointer(C.QHelpContentItem_Parent(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQHelpContentItemFromPointer(C.QHelpContentItem_Parent(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QHelpContentItem) Row() int {
 	if ptr.Pointer() != nil {
-		return int(C.QHelpContentItem_Row(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QHelpContentItem_Row(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QHelpContentItem) Title() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QHelpContentItem_Title(C.QtObjectPtr(ptr.Pointer())))
-	}
-	return ""
-}
-
-func (ptr *QHelpContentItem) Url() string {
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QHelpContentItem_Url(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QHelpContentItem_Title(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QHelpContentItem) DestroyQHelpContentItem() {
 	if ptr.Pointer() != nil {
-		C.QHelpContentItem_DestroyQHelpContentItem(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpContentItem_DestroyQHelpContentItem(ptr.Pointer())
 	}
 }

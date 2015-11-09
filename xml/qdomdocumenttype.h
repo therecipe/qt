@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDomDocumentType_NewQDomDocumentType();
-QtObjectPtr QDomDocumentType_NewQDomDocumentType2(QtObjectPtr n);
-char* QDomDocumentType_InternalSubset(QtObjectPtr ptr);
-char* QDomDocumentType_Name(QtObjectPtr ptr);
-int QDomDocumentType_NodeType(QtObjectPtr ptr);
-char* QDomDocumentType_PublicId(QtObjectPtr ptr);
-char* QDomDocumentType_SystemId(QtObjectPtr ptr);
+void* QDomDocumentType_NewQDomDocumentType();
+void* QDomDocumentType_NewQDomDocumentType2(void* n);
+char* QDomDocumentType_InternalSubset(void* ptr);
+char* QDomDocumentType_Name(void* ptr);
+int QDomDocumentType_NodeType(void* ptr);
+char* QDomDocumentType_PublicId(void* ptr);
+char* QDomDocumentType_SystemId(void* ptr);
 
 #ifdef __cplusplus
 }

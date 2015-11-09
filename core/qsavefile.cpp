@@ -1,10 +1,10 @@
 #include "qsavefile.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
 #include <QIODevice>
-#include <QString>
+#include <QObject>
 #include <QSaveFile>
 #include "_cgo_export.h"
 
@@ -12,47 +12,47 @@ class MyQSaveFile: public QSaveFile {
 public:
 };
 
-QtObjectPtr QSaveFile_NewQSaveFile2(QtObjectPtr parent){
+void* QSaveFile_NewQSaveFile2(void* parent){
 	return new QSaveFile(static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QSaveFile_NewQSaveFile(char* name){
+void* QSaveFile_NewQSaveFile(char* name){
 	return new QSaveFile(QString(name));
 }
 
-QtObjectPtr QSaveFile_NewQSaveFile3(char* name, QtObjectPtr parent){
+void* QSaveFile_NewQSaveFile3(char* name, void* parent){
 	return new QSaveFile(QString(name), static_cast<QObject*>(parent));
 }
 
-void QSaveFile_CancelWriting(QtObjectPtr ptr){
+void QSaveFile_CancelWriting(void* ptr){
 	static_cast<QSaveFile*>(ptr)->cancelWriting();
 }
 
-int QSaveFile_Commit(QtObjectPtr ptr){
+int QSaveFile_Commit(void* ptr){
 	return static_cast<QSaveFile*>(ptr)->commit();
 }
 
-int QSaveFile_DirectWriteFallback(QtObjectPtr ptr){
+int QSaveFile_DirectWriteFallback(void* ptr){
 	return static_cast<QSaveFile*>(ptr)->directWriteFallback();
 }
 
-char* QSaveFile_FileName(QtObjectPtr ptr){
+char* QSaveFile_FileName(void* ptr){
 	return static_cast<QSaveFile*>(ptr)->fileName().toUtf8().data();
 }
 
-int QSaveFile_Open(QtObjectPtr ptr, int mode){
+int QSaveFile_Open(void* ptr, int mode){
 	return static_cast<QSaveFile*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
 }
 
-void QSaveFile_SetDirectWriteFallback(QtObjectPtr ptr, int enabled){
+void QSaveFile_SetDirectWriteFallback(void* ptr, int enabled){
 	static_cast<QSaveFile*>(ptr)->setDirectWriteFallback(enabled != 0);
 }
 
-void QSaveFile_SetFileName(QtObjectPtr ptr, char* name){
+void QSaveFile_SetFileName(void* ptr, char* name){
 	static_cast<QSaveFile*>(ptr)->setFileName(QString(name));
 }
 
-void QSaveFile_DestroyQSaveFile(QtObjectPtr ptr){
+void QSaveFile_DestroyQSaveFile(void* ptr){
 	static_cast<QSaveFile*>(ptr)->~QSaveFile();
 }
 

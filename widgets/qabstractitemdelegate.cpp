@@ -1,18 +1,18 @@
 #include "qabstractitemdelegate.h"
-#include <QPainter>
-#include <QObject>
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
-#include <QWidget>
-#include <QEvent>
 #include <QString>
-#include <QStyleOptionViewItem>
-#include <QAbstractItemModel>
+#include <QVariant>
+#include <QEvent>
+#include <QObject>
+#include <QUrl>
 #include <QHelpEvent>
+#include <QStyleOptionViewItem>
+#include <QWidget>
 #include <QStyle>
-#include <QStyleOption>
 #include <QAbstractItemView>
+#include <QAbstractItemModel>
+#include <QPainter>
+#include <QStyleOption>
 #include <QAbstractItemDelegate>
 #include "_cgo_export.h"
 
@@ -23,63 +23,63 @@ void Signal_CommitData(QWidget * editor){callbackQAbstractItemDelegateCommitData
 void Signal_SizeHintChanged(const QModelIndex & index){callbackQAbstractItemDelegateSizeHintChanged(this->objectName().toUtf8().data(), index.internalPointer());};
 };
 
-void QAbstractItemDelegate_ConnectCloseEditor(QtObjectPtr ptr){
+void QAbstractItemDelegate_ConnectCloseEditor(void* ptr){
 	QObject::connect(static_cast<QAbstractItemDelegate*>(ptr), static_cast<void (QAbstractItemDelegate::*)(QWidget *, QAbstractItemDelegate::EndEditHint)>(&QAbstractItemDelegate::closeEditor), static_cast<MyQAbstractItemDelegate*>(ptr), static_cast<void (MyQAbstractItemDelegate::*)(QWidget *, QAbstractItemDelegate::EndEditHint)>(&MyQAbstractItemDelegate::Signal_CloseEditor));;
 }
 
-void QAbstractItemDelegate_DisconnectCloseEditor(QtObjectPtr ptr){
+void QAbstractItemDelegate_DisconnectCloseEditor(void* ptr){
 	QObject::disconnect(static_cast<QAbstractItemDelegate*>(ptr), static_cast<void (QAbstractItemDelegate::*)(QWidget *, QAbstractItemDelegate::EndEditHint)>(&QAbstractItemDelegate::closeEditor), static_cast<MyQAbstractItemDelegate*>(ptr), static_cast<void (MyQAbstractItemDelegate::*)(QWidget *, QAbstractItemDelegate::EndEditHint)>(&MyQAbstractItemDelegate::Signal_CloseEditor));;
 }
 
-void QAbstractItemDelegate_ConnectCommitData(QtObjectPtr ptr){
+void QAbstractItemDelegate_ConnectCommitData(void* ptr){
 	QObject::connect(static_cast<QAbstractItemDelegate*>(ptr), static_cast<void (QAbstractItemDelegate::*)(QWidget *)>(&QAbstractItemDelegate::commitData), static_cast<MyQAbstractItemDelegate*>(ptr), static_cast<void (MyQAbstractItemDelegate::*)(QWidget *)>(&MyQAbstractItemDelegate::Signal_CommitData));;
 }
 
-void QAbstractItemDelegate_DisconnectCommitData(QtObjectPtr ptr){
+void QAbstractItemDelegate_DisconnectCommitData(void* ptr){
 	QObject::disconnect(static_cast<QAbstractItemDelegate*>(ptr), static_cast<void (QAbstractItemDelegate::*)(QWidget *)>(&QAbstractItemDelegate::commitData), static_cast<MyQAbstractItemDelegate*>(ptr), static_cast<void (MyQAbstractItemDelegate::*)(QWidget *)>(&MyQAbstractItemDelegate::Signal_CommitData));;
 }
 
-QtObjectPtr QAbstractItemDelegate_CreateEditor(QtObjectPtr ptr, QtObjectPtr parent, QtObjectPtr option, QtObjectPtr index){
+void* QAbstractItemDelegate_CreateEditor(void* ptr, void* parent, void* option, void* index){
 	return static_cast<QAbstractItemDelegate*>(ptr)->createEditor(static_cast<QWidget*>(parent), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
-void QAbstractItemDelegate_DestroyEditor(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr index){
+void QAbstractItemDelegate_DestroyEditor(void* ptr, void* editor, void* index){
 	static_cast<QAbstractItemDelegate*>(ptr)->destroyEditor(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
 }
 
-int QAbstractItemDelegate_EditorEvent(QtObjectPtr ptr, QtObjectPtr event, QtObjectPtr model, QtObjectPtr option, QtObjectPtr index){
+int QAbstractItemDelegate_EditorEvent(void* ptr, void* event, void* model, void* option, void* index){
 	return static_cast<QAbstractItemDelegate*>(ptr)->editorEvent(static_cast<QEvent*>(event), static_cast<QAbstractItemModel*>(model), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
-int QAbstractItemDelegate_HelpEvent(QtObjectPtr ptr, QtObjectPtr event, QtObjectPtr view, QtObjectPtr option, QtObjectPtr index){
+int QAbstractItemDelegate_HelpEvent(void* ptr, void* event, void* view, void* option, void* index){
 	return static_cast<QAbstractItemDelegate*>(ptr)->helpEvent(static_cast<QHelpEvent*>(event), static_cast<QAbstractItemView*>(view), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
-void QAbstractItemDelegate_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr index){
+void QAbstractItemDelegate_Paint(void* ptr, void* painter, void* option, void* index){
 	static_cast<QAbstractItemDelegate*>(ptr)->paint(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
-void QAbstractItemDelegate_SetEditorData(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr index){
+void QAbstractItemDelegate_SetEditorData(void* ptr, void* editor, void* index){
 	static_cast<QAbstractItemDelegate*>(ptr)->setEditorData(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
 }
 
-void QAbstractItemDelegate_SetModelData(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr model, QtObjectPtr index){
+void QAbstractItemDelegate_SetModelData(void* ptr, void* editor, void* model, void* index){
 	static_cast<QAbstractItemDelegate*>(ptr)->setModelData(static_cast<QWidget*>(editor), static_cast<QAbstractItemModel*>(model), *static_cast<QModelIndex*>(index));
 }
 
-void QAbstractItemDelegate_ConnectSizeHintChanged(QtObjectPtr ptr){
+void QAbstractItemDelegate_ConnectSizeHintChanged(void* ptr){
 	QObject::connect(static_cast<QAbstractItemDelegate*>(ptr), static_cast<void (QAbstractItemDelegate::*)(const QModelIndex &)>(&QAbstractItemDelegate::sizeHintChanged), static_cast<MyQAbstractItemDelegate*>(ptr), static_cast<void (MyQAbstractItemDelegate::*)(const QModelIndex &)>(&MyQAbstractItemDelegate::Signal_SizeHintChanged));;
 }
 
-void QAbstractItemDelegate_DisconnectSizeHintChanged(QtObjectPtr ptr){
+void QAbstractItemDelegate_DisconnectSizeHintChanged(void* ptr){
 	QObject::disconnect(static_cast<QAbstractItemDelegate*>(ptr), static_cast<void (QAbstractItemDelegate::*)(const QModelIndex &)>(&QAbstractItemDelegate::sizeHintChanged), static_cast<MyQAbstractItemDelegate*>(ptr), static_cast<void (MyQAbstractItemDelegate::*)(const QModelIndex &)>(&MyQAbstractItemDelegate::Signal_SizeHintChanged));;
 }
 
-void QAbstractItemDelegate_UpdateEditorGeometry(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr option, QtObjectPtr index){
+void QAbstractItemDelegate_UpdateEditorGeometry(void* ptr, void* editor, void* option, void* index){
 	static_cast<QAbstractItemDelegate*>(ptr)->updateEditorGeometry(static_cast<QWidget*>(editor), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
-void QAbstractItemDelegate_DestroyQAbstractItemDelegate(QtObjectPtr ptr){
+void QAbstractItemDelegate_DestroyQAbstractItemDelegate(void* ptr){
 	static_cast<QAbstractItemDelegate*>(ptr)->~QAbstractItemDelegate();
 }
 

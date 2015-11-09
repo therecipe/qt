@@ -1,20 +1,21 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSGSimpleTextureNode_NewQSGSimpleTextureNode();
-int QSGSimpleTextureNode_Filtering(QtObjectPtr ptr);
-int QSGSimpleTextureNode_OwnsTexture(QtObjectPtr ptr);
-void QSGSimpleTextureNode_SetFiltering(QtObjectPtr ptr, int filtering);
-void QSGSimpleTextureNode_SetOwnsTexture(QtObjectPtr ptr, int owns);
-void QSGSimpleTextureNode_SetRect(QtObjectPtr ptr, QtObjectPtr r);
-void QSGSimpleTextureNode_SetSourceRect(QtObjectPtr ptr, QtObjectPtr r);
-void QSGSimpleTextureNode_SetTexture(QtObjectPtr ptr, QtObjectPtr texture);
-void QSGSimpleTextureNode_SetTextureCoordinatesTransform(QtObjectPtr ptr, int mode);
-QtObjectPtr QSGSimpleTextureNode_Texture(QtObjectPtr ptr);
-int QSGSimpleTextureNode_TextureCoordinatesTransform(QtObjectPtr ptr);
-void QSGSimpleTextureNode_DestroyQSGSimpleTextureNode(QtObjectPtr ptr);
+void* QSGSimpleTextureNode_NewQSGSimpleTextureNode();
+int QSGSimpleTextureNode_Filtering(void* ptr);
+int QSGSimpleTextureNode_OwnsTexture(void* ptr);
+void QSGSimpleTextureNode_SetFiltering(void* ptr, int filtering);
+void QSGSimpleTextureNode_SetOwnsTexture(void* ptr, int owns);
+void QSGSimpleTextureNode_SetRect(void* ptr, void* r);
+void QSGSimpleTextureNode_SetRect2(void* ptr, double x, double y, double w, double h);
+void QSGSimpleTextureNode_SetSourceRect(void* ptr, void* r);
+void QSGSimpleTextureNode_SetSourceRect2(void* ptr, double x, double y, double w, double h);
+void QSGSimpleTextureNode_SetTexture(void* ptr, void* texture);
+void QSGSimpleTextureNode_SetTextureCoordinatesTransform(void* ptr, int mode);
+void* QSGSimpleTextureNode_Texture(void* ptr);
+int QSGSimpleTextureNode_TextureCoordinatesTransform(void* ptr);
+void QSGSimpleTextureNode_DestroyQSGSimpleTextureNode(void* ptr);
 
 #ifdef __cplusplus
 }

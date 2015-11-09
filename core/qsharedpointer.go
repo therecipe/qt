@@ -10,8 +10,8 @@ type QSharedPointer struct {
 	ptr unsafe.Pointer
 }
 
-type QSharedPointerITF interface {
-	QSharedPointerPTR() *QSharedPointer
+type QSharedPointer_ITF interface {
+	QSharedPointer_PTR() *QSharedPointer
 }
 
 func (p *QSharedPointer) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QSharedPointer) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSharedPointer(ptr QSharedPointerITF) unsafe.Pointer {
+func PointerFromQSharedPointer(ptr QSharedPointer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSharedPointerPTR().Pointer()
+		return ptr.QSharedPointer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSharedPointerFromPointer(ptr unsafe.Pointer) *QSharedPointer {
+func NewQSharedPointerFromPointer(ptr unsafe.Pointer) *QSharedPointer {
 	var n = new(QSharedPointer)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSharedPointer) QSharedPointerPTR() *QSharedPointer {
+func (ptr *QSharedPointer) QSharedPointer_PTR() *QSharedPointer {
 	return ptr
 }

@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{QTextBlockGroup QTextBlockGroup::QTextBlockGroup commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.cpp non constructor false false   [0xc82211d2e0] }
-&{blockFormatChanged QTextBlockGroup::blockFormatChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h impure plain false false  void [0xc82211d820] }
-&{blockInserted QTextBlockGroup::blockInserted commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h impure plain false false  void [0xc82211da80] }
-&{blockList QTextBlockGroup::blockList commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QList<QTextBlock> [] }
-&{blockRemoved QTextBlockGroup::blockRemoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h impure plain false false  void [0xc82211dea0] }
-&{~QTextBlockGroup QTextBlockGroup::~QTextBlockGroup commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non destructor false false   [] }
+&{QTextBlockGroup QTextBlockGroup::QTextBlockGroup commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.cpp non constructor false false   QTextBlockGroup(QTextDocument *document) [0xc8235c14c0] }
+&{blockFormatChanged QTextBlockGroup::blockFormatChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h impure plain false false  void void blockFormatChanged(const QTextBlock &block) [0xc8235c1900] }
+&{blockInserted QTextBlockGroup::blockInserted commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h impure plain false false  void void blockInserted(const QTextBlock &block) [0xc8235c1b00] }
+&{blockList QTextBlockGroup::blockList commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QList<QTextBlock> QList<QTextBlock> blockList() const [] }
+&{blockRemoved QTextBlockGroup::blockRemoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h impure plain false false  void void blockRemoved(const QTextBlock &block) [0xc8235c1e60] }
+&{~QTextBlockGroup QTextBlockGroup::~QTextBlockGroup commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non destructor false false   ~QTextBlockGroup() [] }
 ########################################			ENUMS			########################################

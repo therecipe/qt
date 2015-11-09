@@ -1,13 +1,13 @@
 #include "qbrush.h"
-#include <QTransform>
-#include <QPixmap>
-#include <QImage>
-#include <QColor>
+#include <QGradient>
 #include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QGradient>
+#include <QPixmap>
+#include <QColor>
+#include <QVariant>
+#include <QTransform>
+#include <QImage>
 #include <QBrush>
 #include "_cgo_export.h"
 
@@ -15,87 +15,91 @@ class MyQBrush: public QBrush {
 public:
 };
 
-QtObjectPtr QBrush_NewQBrush4(int color, int style){
+void* QBrush_NewQBrush4(int color, int style){
 	return new QBrush(static_cast<Qt::GlobalColor>(color), static_cast<Qt::BrushStyle>(style));
 }
 
-void QBrush_SetColor(QtObjectPtr ptr, QtObjectPtr color){
+void QBrush_SetColor(void* ptr, void* color){
 	static_cast<QBrush*>(ptr)->setColor(*static_cast<QColor*>(color));
 }
 
-QtObjectPtr QBrush_NewQBrush(){
+void* QBrush_NewQBrush(){
 	return new QBrush();
 }
 
-QtObjectPtr QBrush_NewQBrush2(int style){
+void* QBrush_NewQBrush2(int style){
 	return new QBrush(static_cast<Qt::BrushStyle>(style));
 }
 
-QtObjectPtr QBrush_NewQBrush6(int color, QtObjectPtr pixmap){
+void* QBrush_NewQBrush6(int color, void* pixmap){
 	return new QBrush(static_cast<Qt::GlobalColor>(color), *static_cast<QPixmap*>(pixmap));
 }
 
-QtObjectPtr QBrush_NewQBrush9(QtObjectPtr other){
+void* QBrush_NewQBrush9(void* other){
 	return new QBrush(*static_cast<QBrush*>(other));
 }
 
-QtObjectPtr QBrush_NewQBrush3(QtObjectPtr color, int style){
+void* QBrush_NewQBrush3(void* color, int style){
 	return new QBrush(*static_cast<QColor*>(color), static_cast<Qt::BrushStyle>(style));
 }
 
-QtObjectPtr QBrush_NewQBrush5(QtObjectPtr color, QtObjectPtr pixmap){
+void* QBrush_NewQBrush5(void* color, void* pixmap){
 	return new QBrush(*static_cast<QColor*>(color), *static_cast<QPixmap*>(pixmap));
 }
 
-QtObjectPtr QBrush_NewQBrush10(QtObjectPtr gradient){
+void* QBrush_NewQBrush10(void* gradient){
 	return new QBrush(*static_cast<QGradient*>(gradient));
 }
 
-QtObjectPtr QBrush_NewQBrush8(QtObjectPtr image){
+void* QBrush_NewQBrush8(void* image){
 	return new QBrush(*static_cast<QImage*>(image));
 }
 
-QtObjectPtr QBrush_NewQBrush7(QtObjectPtr pixmap){
+void* QBrush_NewQBrush7(void* pixmap){
 	return new QBrush(*static_cast<QPixmap*>(pixmap));
 }
 
-QtObjectPtr QBrush_Gradient(QtObjectPtr ptr){
+void* QBrush_Color(void* ptr){
+	return new QColor(static_cast<QBrush*>(ptr)->color());
+}
+
+void* QBrush_Gradient(void* ptr){
 	return const_cast<QGradient*>(static_cast<QBrush*>(ptr)->gradient());
 }
 
-int QBrush_IsOpaque(QtObjectPtr ptr){
+int QBrush_IsOpaque(void* ptr){
 	return static_cast<QBrush*>(ptr)->isOpaque();
 }
 
-void QBrush_SetColor2(QtObjectPtr ptr, int color){
+void QBrush_SetColor2(void* ptr, int color){
 	static_cast<QBrush*>(ptr)->setColor(static_cast<Qt::GlobalColor>(color));
 }
 
-void QBrush_SetStyle(QtObjectPtr ptr, int style){
+void QBrush_SetStyle(void* ptr, int style){
 	static_cast<QBrush*>(ptr)->setStyle(static_cast<Qt::BrushStyle>(style));
 }
 
-void QBrush_SetTexture(QtObjectPtr ptr, QtObjectPtr pixmap){
+void QBrush_SetTexture(void* ptr, void* pixmap){
 	static_cast<QBrush*>(ptr)->setTexture(*static_cast<QPixmap*>(pixmap));
 }
 
-void QBrush_SetTextureImage(QtObjectPtr ptr, QtObjectPtr image){
+void QBrush_SetTextureImage(void* ptr, void* image){
 	static_cast<QBrush*>(ptr)->setTextureImage(*static_cast<QImage*>(image));
 }
 
-void QBrush_SetTransform(QtObjectPtr ptr, QtObjectPtr matrix){
+void QBrush_SetTransform(void* ptr, void* matrix){
 	static_cast<QBrush*>(ptr)->setTransform(*static_cast<QTransform*>(matrix));
 }
 
-int QBrush_Style(QtObjectPtr ptr){
+int QBrush_Style(void* ptr){
 	return static_cast<QBrush*>(ptr)->style();
 }
 
-void QBrush_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QBrush_Swap(void* ptr, void* other){
 	static_cast<QBrush*>(ptr)->swap(*static_cast<QBrush*>(other));
 }
 
-void QBrush_DestroyQBrush(QtObjectPtr ptr){
+void QBrush_DestroyQBrush(void* ptr){
 	static_cast<QBrush*>(ptr)->~QBrush();
 }
 

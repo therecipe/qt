@@ -10,11 +10,11 @@ class MyQParallelAnimationGroup: public QParallelAnimationGroup {
 public:
 };
 
-int QParallelAnimationGroup_Duration(QtObjectPtr ptr){
+int QParallelAnimationGroup_Duration(void* ptr){
 	return static_cast<QParallelAnimationGroup*>(ptr)->duration();
 }
 
-void QParallelAnimationGroup_DestroyQParallelAnimationGroup(QtObjectPtr ptr){
+void QParallelAnimationGroup_DestroyQParallelAnimationGroup(void* ptr){
 	static_cast<QParallelAnimationGroup*>(ptr)->~QParallelAnimationGroup();
 }
 

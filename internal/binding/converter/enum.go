@@ -13,6 +13,7 @@ func GoEnum(n string, v string, e *parser.Enum) string {
 	switch {
 	case strings.ContainsAny(v, "()<>~+") || v == "":
 		{
+			e.NoConst = true
 			return fmt.Sprintf("C.%v_%v_Type()", strings.Split(e.Fullname, "::")[0], n)
 		}
 

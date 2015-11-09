@@ -12,53 +12,66 @@ type QGraphicsAnchor struct {
 	core.QObject
 }
 
-type QGraphicsAnchorITF interface {
-	core.QObjectITF
-	QGraphicsAnchorPTR() *QGraphicsAnchor
+type QGraphicsAnchor_ITF interface {
+	core.QObject_ITF
+	QGraphicsAnchor_PTR() *QGraphicsAnchor
 }
 
-func PointerFromQGraphicsAnchor(ptr QGraphicsAnchorITF) unsafe.Pointer {
+func PointerFromQGraphicsAnchor(ptr QGraphicsAnchor_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsAnchorPTR().Pointer()
+		return ptr.QGraphicsAnchor_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsAnchorFromPointer(ptr unsafe.Pointer) *QGraphicsAnchor {
+func NewQGraphicsAnchorFromPointer(ptr unsafe.Pointer) *QGraphicsAnchor {
 	var n = new(QGraphicsAnchor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGraphicsAnchor_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGraphicsAnchor) QGraphicsAnchorPTR() *QGraphicsAnchor {
+func (ptr *QGraphicsAnchor) QGraphicsAnchor_PTR() *QGraphicsAnchor {
 	return ptr
 }
 
 func (ptr *QGraphicsAnchor) SetSizePolicy(policy QSizePolicy__Policy) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsAnchor_SetSizePolicy(C.QtObjectPtr(ptr.Pointer()), C.int(policy))
+		C.QGraphicsAnchor_SetSizePolicy(ptr.Pointer(), C.int(policy))
+	}
+}
+
+func (ptr *QGraphicsAnchor) SetSpacing(spacing float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchor_SetSpacing(ptr.Pointer(), C.double(spacing))
 	}
 }
 
 func (ptr *QGraphicsAnchor) SizePolicy() QSizePolicy__Policy {
 	if ptr.Pointer() != nil {
-		return QSizePolicy__Policy(C.QGraphicsAnchor_SizePolicy(C.QtObjectPtr(ptr.Pointer())))
+		return QSizePolicy__Policy(C.QGraphicsAnchor_SizePolicy(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsAnchor) Spacing() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsAnchor_Spacing(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsAnchor) UnsetSpacing() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsAnchor_UnsetSpacing(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsAnchor_UnsetSpacing(ptr.Pointer())
 	}
 }
 
 func (ptr *QGraphicsAnchor) DestroyQGraphicsAnchor() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsAnchor_DestroyQGraphicsAnchor(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsAnchor_DestroyQGraphicsAnchor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

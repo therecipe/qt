@@ -1,10 +1,10 @@
 #include "qerrormessage.h"
-#include <QModelIndex>
-#include <QMetaObject>
-#include <QWidget>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QMetaObject>
+#include <QWidget>
 #include <QErrorMessage>
 #include "_cgo_export.h"
 
@@ -12,23 +12,23 @@ class MyQErrorMessage: public QErrorMessage {
 public:
 };
 
-QtObjectPtr QErrorMessage_NewQErrorMessage(QtObjectPtr parent){
+void* QErrorMessage_NewQErrorMessage(void* parent){
 	return new QErrorMessage(static_cast<QWidget*>(parent));
 }
 
-QtObjectPtr QErrorMessage_QErrorMessage_QtHandler(){
+void* QErrorMessage_QErrorMessage_QtHandler(){
 	return QErrorMessage::qtHandler();
 }
 
-void QErrorMessage_ShowMessage(QtObjectPtr ptr, char* message){
+void QErrorMessage_ShowMessage(void* ptr, char* message){
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showMessage", Q_ARG(QString, QString(message)));
 }
 
-void QErrorMessage_ShowMessage2(QtObjectPtr ptr, char* message, char* ty){
+void QErrorMessage_ShowMessage2(void* ptr, char* message, char* ty){
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showMessage", Q_ARG(QString, QString(message)), Q_ARG(QString, QString(ty)));
 }
 
-void QErrorMessage_DestroyQErrorMessage(QtObjectPtr ptr){
+void QErrorMessage_DestroyQErrorMessage(void* ptr){
 	static_cast<QErrorMessage*>(ptr)->~QErrorMessage();
 }
 

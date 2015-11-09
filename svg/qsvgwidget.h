@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSvgWidget_NewQSvgWidget(QtObjectPtr parent);
-QtObjectPtr QSvgWidget_NewQSvgWidget2(char* file, QtObjectPtr parent);
-void QSvgWidget_Load2(QtObjectPtr ptr, QtObjectPtr contents);
-void QSvgWidget_Load(QtObjectPtr ptr, char* file);
-QtObjectPtr QSvgWidget_Renderer(QtObjectPtr ptr);
-void QSvgWidget_DestroyQSvgWidget(QtObjectPtr ptr);
+void* QSvgWidget_NewQSvgWidget(void* parent);
+void* QSvgWidget_NewQSvgWidget2(char* file, void* parent);
+void QSvgWidget_Load2(void* ptr, void* contents);
+void QSvgWidget_Load(void* ptr, char* file);
+void* QSvgWidget_Renderer(void* ptr);
+void QSvgWidget_DestroyQSvgWidget(void* ptr);
 
 #ifdef __cplusplus
 }

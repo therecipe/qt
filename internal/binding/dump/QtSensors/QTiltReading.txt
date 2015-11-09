@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{xRotation QTiltReading::xRotation commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non plain false false  qreal [] }
-&{yRotation QTiltReading::yRotation commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non plain false false  qreal [] }
-&{setXRotation QTiltReading::setXRotation commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.h non plain false false  void [0xc822d4e660] }
-&{setYRotation QTiltReading::setYRotation commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.h non plain false false  void [0xc822d4e9a0] }
+&{xRotation QTiltReading::xRotation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non plain false false  qreal qreal xRotation() const [] }
+&{yRotation QTiltReading::yRotation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non plain false false  qreal qreal yRotation() const [] }
+&{setXRotation QTiltReading::setXRotation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.h non plain false false  void void setXRotation(qreal x) [0xc823458fe0] }
+&{setYRotation QTiltReading::setYRotation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.h non plain false false  void void setYRotation(qreal y) [0xc823459360] }
 ########################################			ENUMS			########################################

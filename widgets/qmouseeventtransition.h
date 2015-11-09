@@ -1,16 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QMouseEventTransition_NewQMouseEventTransition2(QtObjectPtr object, int ty, int button, QtObjectPtr sourceState);
-QtObjectPtr QMouseEventTransition_NewQMouseEventTransition(QtObjectPtr sourceState);
-int QMouseEventTransition_Button(QtObjectPtr ptr);
-int QMouseEventTransition_ModifierMask(QtObjectPtr ptr);
-void QMouseEventTransition_SetButton(QtObjectPtr ptr, int button);
-void QMouseEventTransition_SetHitTestPath(QtObjectPtr ptr, QtObjectPtr path);
-void QMouseEventTransition_SetModifierMask(QtObjectPtr ptr, int modifierMask);
-void QMouseEventTransition_DestroyQMouseEventTransition(QtObjectPtr ptr);
+void* QMouseEventTransition_NewQMouseEventTransition2(void* object, int ty, int button, void* sourceState);
+void* QMouseEventTransition_NewQMouseEventTransition(void* sourceState);
+int QMouseEventTransition_Button(void* ptr);
+int QMouseEventTransition_ModifierMask(void* ptr);
+void QMouseEventTransition_SetButton(void* ptr, int button);
+void QMouseEventTransition_SetHitTestPath(void* ptr, void* path);
+void QMouseEventTransition_SetModifierMask(void* ptr, int modifierMask);
+void QMouseEventTransition_DestroyQMouseEventTransition(void* ptr);
 
 #ifdef __cplusplus
 }

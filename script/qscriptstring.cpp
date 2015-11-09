@@ -10,23 +10,23 @@ class MyQScriptString: public QScriptString {
 public:
 };
 
-QtObjectPtr QScriptString_NewQScriptString(){
+void* QScriptString_NewQScriptString(){
 	return new QScriptString();
 }
 
-QtObjectPtr QScriptString_NewQScriptString2(QtObjectPtr other){
+void* QScriptString_NewQScriptString2(void* other){
 	return new QScriptString(*static_cast<QScriptString*>(other));
 }
 
-int QScriptString_IsValid(QtObjectPtr ptr){
+int QScriptString_IsValid(void* ptr){
 	return static_cast<QScriptString*>(ptr)->isValid();
 }
 
-char* QScriptString_ToString(QtObjectPtr ptr){
+char* QScriptString_ToString(void* ptr){
 	return static_cast<QScriptString*>(ptr)->toString().toUtf8().data();
 }
 
-void QScriptString_DestroyQScriptString(QtObjectPtr ptr){
+void QScriptString_DestroyQScriptString(void* ptr){
 	static_cast<QScriptString*>(ptr)->~QScriptString();
 }
 

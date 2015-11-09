@@ -11,35 +11,35 @@ type QThread struct {
 	QObject
 }
 
-type QThreadITF interface {
-	QObjectITF
-	QThreadPTR() *QThread
+type QThread_ITF interface {
+	QObject_ITF
+	QThread_PTR() *QThread
 }
 
-func PointerFromQThread(ptr QThreadITF) unsafe.Pointer {
+func PointerFromQThread(ptr QThread_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QThreadPTR().Pointer()
+		return ptr.QThread_PTR().Pointer()
 	}
 	return nil
 }
 
-func QThreadFromPointer(ptr unsafe.Pointer) *QThread {
+func NewQThreadFromPointer(ptr unsafe.Pointer) *QThread {
 	var n = new(QThread)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QThread_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QThread) QThreadPTR() *QThread {
+func (ptr *QThread) QThread_PTR() *QThread {
 	return ptr
 }
 
 //QThread::Priority
-type QThread__Priority int
+type QThread__Priority int64
 
-var (
+const (
 	QThread__IdlePriority         = QThread__Priority(0)
 	QThread__LowestPriority       = QThread__Priority(1)
 	QThread__LowPriority          = QThread__Priority(2)
@@ -52,48 +52,48 @@ var (
 
 func (ptr *QThread) SetPriority(priority QThread__Priority) {
 	if ptr.Pointer() != nil {
-		C.QThread_SetPriority(C.QtObjectPtr(ptr.Pointer()), C.int(priority))
+		C.QThread_SetPriority(ptr.Pointer(), C.int(priority))
 	}
 }
 
-func NewQThread(parent QObjectITF) *QThread {
-	return QThreadFromPointer(unsafe.Pointer(C.QThread_NewQThread(C.QtObjectPtr(PointerFromQObject(parent)))))
+func NewQThread(parent QObject_ITF) *QThread {
+	return NewQThreadFromPointer(C.QThread_NewQThread(PointerFromQObject(parent)))
 }
 
 func QThread_CurrentThread() *QThread {
-	return QThreadFromPointer(unsafe.Pointer(C.QThread_QThread_CurrentThread()))
+	return NewQThreadFromPointer(C.QThread_QThread_CurrentThread())
 }
 
-func (ptr *QThread) Event(event QEventITF) bool {
+func (ptr *QThread) Event(event QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QThread_Event(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQEvent(event))) != 0
+		return C.QThread_Event(ptr.Pointer(), PointerFromQEvent(event)) != 0
 	}
 	return false
 }
 
 func (ptr *QThread) EventDispatcher() *QAbstractEventDispatcher {
 	if ptr.Pointer() != nil {
-		return QAbstractEventDispatcherFromPointer(unsafe.Pointer(C.QThread_EventDispatcher(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAbstractEventDispatcherFromPointer(C.QThread_EventDispatcher(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QThread) Exit(returnCode int) {
 	if ptr.Pointer() != nil {
-		C.QThread_Exit(C.QtObjectPtr(ptr.Pointer()), C.int(returnCode))
+		C.QThread_Exit(ptr.Pointer(), C.int(returnCode))
 	}
 }
 
 func (ptr *QThread) ConnectFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QThread_ConnectFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QThread_ConnectFinished(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "finished", f)
 	}
 }
 
 func (ptr *QThread) DisconnectFinished() {
 	if ptr.Pointer() != nil {
-		C.QThread_DisconnectFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QThread_DisconnectFinished(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "finished")
 	}
 }
@@ -105,67 +105,67 @@ func callbackQThreadFinished(ptrName *C.char) {
 
 func (ptr *QThread) IsFinished() bool {
 	if ptr.Pointer() != nil {
-		return C.QThread_IsFinished(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QThread_IsFinished(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QThread) IsInterruptionRequested() bool {
 	if ptr.Pointer() != nil {
-		return C.QThread_IsInterruptionRequested(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QThread_IsInterruptionRequested(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QThread) IsRunning() bool {
 	if ptr.Pointer() != nil {
-		return C.QThread_IsRunning(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QThread_IsRunning(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QThread) LoopLevel() int {
 	if ptr.Pointer() != nil {
-		return int(C.QThread_LoopLevel(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QThread_LoopLevel(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QThread) Priority() QThread__Priority {
 	if ptr.Pointer() != nil {
-		return QThread__Priority(C.QThread_Priority(C.QtObjectPtr(ptr.Pointer())))
+		return QThread__Priority(C.QThread_Priority(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QThread) Quit() {
 	if ptr.Pointer() != nil {
-		C.QThread_Quit(C.QtObjectPtr(ptr.Pointer()))
+		C.QThread_Quit(ptr.Pointer())
 	}
 }
 
 func (ptr *QThread) RequestInterruption() {
 	if ptr.Pointer() != nil {
-		C.QThread_RequestInterruption(C.QtObjectPtr(ptr.Pointer()))
+		C.QThread_RequestInterruption(ptr.Pointer())
 	}
 }
 
-func (ptr *QThread) SetEventDispatcher(eventDispatcher QAbstractEventDispatcherITF) {
+func (ptr *QThread) SetEventDispatcher(eventDispatcher QAbstractEventDispatcher_ITF) {
 	if ptr.Pointer() != nil {
-		C.QThread_SetEventDispatcher(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractEventDispatcher(eventDispatcher)))
+		C.QThread_SetEventDispatcher(ptr.Pointer(), PointerFromQAbstractEventDispatcher(eventDispatcher))
 	}
 }
 
 func (ptr *QThread) ConnectStarted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QThread_ConnectStarted(C.QtObjectPtr(ptr.Pointer()))
+		C.QThread_ConnectStarted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "started", f)
 	}
 }
 
 func (ptr *QThread) DisconnectStarted() {
 	if ptr.Pointer() != nil {
-		C.QThread_DisconnectStarted(C.QtObjectPtr(ptr.Pointer()))
+		C.QThread_DisconnectStarted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "started")
 	}
 }
@@ -177,7 +177,7 @@ func callbackQThreadStarted(ptrName *C.char) {
 
 func (ptr *QThread) DestroyQThread() {
 	if ptr.Pointer() != nil {
-		C.QThread_DestroyQThread(C.QtObjectPtr(ptr.Pointer()))
+		C.QThread_DestroyQThread(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -188,13 +188,13 @@ func QThread_IdealThreadCount() int {
 
 func (ptr *QThread) Start(priority QThread__Priority) {
 	if ptr.Pointer() != nil {
-		C.QThread_Start(C.QtObjectPtr(ptr.Pointer()), C.int(priority))
+		C.QThread_Start(ptr.Pointer(), C.int(priority))
 	}
 }
 
 func (ptr *QThread) Terminate() {
 	if ptr.Pointer() != nil {
-		C.QThread_Terminate(C.QtObjectPtr(ptr.Pointer()))
+		C.QThread_Terminate(ptr.Pointer())
 	}
 }
 

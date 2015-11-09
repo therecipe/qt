@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{QStyleOptionMenuItem QStyleOptionMenuItem::QStyleOptionMenuItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
-&{QStyleOptionMenuItem QStyleOptionMenuItem::QStyleOptionMenuItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc821442e00] }
+&{QStyleOptionMenuItem QStyleOptionMenuItem::QStyleOptionMenuItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionMenuItem() [] }
+&{QStyleOptionMenuItem QStyleOptionMenuItem::QStyleOptionMenuItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionMenuItem(const QStyleOptionMenuItem &other) [0xc821d02200] }
 ########################################			ENUMS			########################################
-&{CheckType QStyleOptionMenuItem::CheckType commendable public  [0xc821451580 0xc8214516e0 0xc8214518a0]}
-&{MenuItemType QStyleOptionMenuItem::MenuItemType commendable public  [0xc821451b40 0xc821451d00 0xc821451e40 0xc821451f20 0xc821442080 0xc8214421c0 0xc821442240 0xc821442380]}
-&{StyleOptionType QStyleOptionMenuItem::StyleOptionType commendable public  [0xc8214425a0]}
-&{StyleOptionVersion QStyleOptionMenuItem::StyleOptionVersion commendable public  [0xc821442840]}
+&{CheckType QStyleOptionMenuItem::CheckType commendable public  [0xc8221a8f80 0xc8221a9040 0xc8221a90c0] false}
+&{MenuItemType QStyleOptionMenuItem::MenuItemType commendable public  [0xc8221a9300 0xc8221a93e0 0xc8221a9480 0xc8221a9560 0xc8221a9640 0xc8221a9720 0xc8221a9820 0xc8221a98e0] false}
+&{StyleOptionType QStyleOptionMenuItem::StyleOptionType commendable public  [0xc8221a9ae0] false}
+&{StyleOptionVersion QStyleOptionMenuItem::StyleOptionVersion commendable public  [0xc8221a9d80] false}

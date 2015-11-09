@@ -1,32 +1,32 @@
 ########################################			FUNCTIONS			########################################
-&{QPixelFormat QPixelFormat::QPixelFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non constructor false false   [] }
-&{QPixelFormat QPixelFormat::QPixelFormat commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non constructor false true 2  [0xc82098c940 0xc82098ca00 0xc82098ca80 0xc82098cb00 0xc82098cba0 0xc82098cc40 0xc82098ccc0 0xc82098cd40 0xc82098ce40 0xc82098cee0 0xc82098cfe0 0xc82098d160 0xc82098d1e0] }
-&{alphaPosition QPixelFormat::alphaPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  AlphaPosition [] }
-&{alphaSize QPixelFormat::alphaSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{alphaUsage QPixelFormat::alphaUsage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  AlphaUsage [] }
-&{bitsPerPixel QPixelFormat::bitsPerPixel commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{blackSize QPixelFormat::blackSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{blueSize QPixelFormat::blueSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{brightnessSize QPixelFormat::brightnessSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{byteOrder QPixelFormat::byteOrder commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  ByteOrder [] }
-&{channelCount QPixelFormat::channelCount commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{colorModel QPixelFormat::colorModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  ColorModel [] }
-&{cyanSize QPixelFormat::cyanSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{hueSize QPixelFormat::hueSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{lightnessSize QPixelFormat::lightnessSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{magentaSize QPixelFormat::magentaSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{redSize QPixelFormat::redSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{saturationSize QPixelFormat::saturationSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{greenSize QPixelFormat::greenSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{premultiplied QPixelFormat::premultiplied commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  AlphaPremultiplied [] }
-&{typeInterpretation QPixelFormat::typeInterpretation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  TypeInterpretation [] }
-&{yellowSize QPixelFormat::yellowSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar [] }
-&{yuvLayout QPixelFormat::yuvLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  YUVLayout [] }
+&{QPixelFormat QPixelFormat::QPixelFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non constructor false false   QPixelFormat() [] }
+&{QPixelFormat QPixelFormat::QPixelFormat commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non constructor false true 2  QPixelFormat(ColorModel colorModel, uchar firstSize, uchar secondSize, uchar thirdSize, uchar fourthSize, uchar fifthSize, uchar alphaSize, AlphaUsage alphaUsage, AlphaPosition alphaPosition, AlphaPremultiplied premultiplied, TypeInterpretation typeInterpretation, ByteOrder byteOrder, uchar subEnum) [0xc82054dd80 0xc82054de00 0xc82054dee0 0xc82054df80 0xc82053c060 0xc82053c1c0 0xc82053c280 0xc82053c300 0xc82053c3e0 0xc82053c500 0xc82053c6c0 0xc82053c820 0xc82053c8a0] }
+&{alphaPosition QPixelFormat::alphaPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  AlphaPosition AlphaPosition alphaPosition() const [] }
+&{alphaSize QPixelFormat::alphaSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar alphaSize() const [] }
+&{alphaUsage QPixelFormat::alphaUsage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  AlphaUsage AlphaUsage alphaUsage() const [] }
+&{bitsPerPixel QPixelFormat::bitsPerPixel commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar bitsPerPixel() const [] }
+&{blackSize QPixelFormat::blackSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar blackSize() const [] }
+&{blueSize QPixelFormat::blueSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar blueSize() const [] }
+&{brightnessSize QPixelFormat::brightnessSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar brightnessSize() const [] }
+&{byteOrder QPixelFormat::byteOrder commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  ByteOrder ByteOrder byteOrder() const [] }
+&{channelCount QPixelFormat::channelCount commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar channelCount() const [] }
+&{colorModel QPixelFormat::colorModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  ColorModel ColorModel colorModel() const [] }
+&{cyanSize QPixelFormat::cyanSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar cyanSize() const [] }
+&{hueSize QPixelFormat::hueSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar hueSize() const [] }
+&{lightnessSize QPixelFormat::lightnessSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar lightnessSize() const [] }
+&{magentaSize QPixelFormat::magentaSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar magentaSize() const [] }
+&{redSize QPixelFormat::redSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar redSize() const [] }
+&{saturationSize QPixelFormat::saturationSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar saturationSize() const [] }
+&{greenSize QPixelFormat::greenSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar greenSize() const [] }
+&{premultiplied QPixelFormat::premultiplied commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  AlphaPremultiplied AlphaPremultiplied premultiplied() const [] }
+&{typeInterpretation QPixelFormat::typeInterpretation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  TypeInterpretation TypeInterpretation typeInterpretation() const [] }
+&{yellowSize QPixelFormat::yellowSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  uchar uchar yellowSize() const [] }
+&{yuvLayout QPixelFormat::yuvLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpixelformat.h non plain false false  YUVLayout YUVLayout yuvLayout() const [] }
 ########################################			ENUMS			########################################
-&{AlphaPosition QPixelFormat::AlphaPosition commendable public  [0xc82072d200 0xc82072d2a0]}
-&{AlphaPremultiplied QPixelFormat::AlphaPremultiplied commendable public  [0xc82072d5e0 0xc82072d660]}
-&{AlphaUsage QPixelFormat::AlphaUsage commendable public  [0xc82072d8a0 0xc82072d9c0]}
-&{ByteOrder QPixelFormat::ByteOrder commendable public  [0xc82072dcc0 0xc82072dd80 0xc82072de80]}
-&{ColorModel QPixelFormat::ColorModel commendable public  [0xc820700260 0xc820700300 0xc820700420 0xc820700520 0xc8207005e0 0xc8207006e0 0xc8207007a0 0xc820700860 0xc820700980]}
-&{TypeInterpretation QPixelFormat::TypeInterpretation commendable public  [0xc820701bc0 0xc820701c60 0xc820701d40 0xc820701e40]}
-&{YUVLayout QPixelFormat::YUVLayout commendable public  [0xc8206e8140 0xc8206e81c0 0xc8206e82c0 0xc8206e8360 0xc8206e8460 0xc8206e8580 0xc8206e8600 0xc8206e86c0 0xc8206e8760 0xc8206e8860 0xc8206e8900 0xc8206e89a0 0xc8206e8a40 0xc8206e8b20 0xc8206e8bc0 0xc8206e8ca0]}
+&{AlphaPosition QPixelFormat::AlphaPosition commendable public  [0xc8209cb3a0 0xc8209cb440] false}
+&{AlphaPremultiplied QPixelFormat::AlphaPremultiplied commendable public  [0xc8209cb680 0xc8209cb700] false}
+&{AlphaUsage QPixelFormat::AlphaUsage commendable public  [0xc8209cb8c0 0xc8209cb980] false}
+&{ByteOrder QPixelFormat::ByteOrder commendable public  [0xc8209cbb80 0xc8209cbc00 0xc8209cbcc0] false}
+&{ColorModel QPixelFormat::ColorModel commendable public  [0xc8209cbf20 0xc8209cbfa0 0xc820ab2020 0xc820ab20c0 0xc820ab2180 0xc820ab2240 0xc820ab22c0 0xc820ab2340 0xc820ab23e0] false}
+&{TypeInterpretation QPixelFormat::TypeInterpretation commendable public  [0xc820ab32e0 0xc820ab3380 0xc820ab3420 0xc820ab34e0] false}
+&{YUVLayout QPixelFormat::YUVLayout commendable public  [0xc820ab36a0 0xc820ab3740 0xc820ab37c0 0xc820ab3840 0xc820ab3900 0xc820ab3980 0xc820ab3a00 0xc820ab3a80 0xc820ab3b80 0xc820ab3c20 0xc820ab3ca0 0xc820ab3d20 0xc820ab3dc0 0xc820ab3e80 0xc820ab3f20 0xc820ab3fa0] false}

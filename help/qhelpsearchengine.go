@@ -12,64 +12,64 @@ type QHelpSearchEngine struct {
 	core.QObject
 }
 
-type QHelpSearchEngineITF interface {
-	core.QObjectITF
-	QHelpSearchEnginePTR() *QHelpSearchEngine
+type QHelpSearchEngine_ITF interface {
+	core.QObject_ITF
+	QHelpSearchEngine_PTR() *QHelpSearchEngine
 }
 
-func PointerFromQHelpSearchEngine(ptr QHelpSearchEngineITF) unsafe.Pointer {
+func PointerFromQHelpSearchEngine(ptr QHelpSearchEngine_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHelpSearchEnginePTR().Pointer()
+		return ptr.QHelpSearchEngine_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHelpSearchEngineFromPointer(ptr unsafe.Pointer) *QHelpSearchEngine {
+func NewQHelpSearchEngineFromPointer(ptr unsafe.Pointer) *QHelpSearchEngine {
 	var n = new(QHelpSearchEngine)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QHelpSearchEngine_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QHelpSearchEngine) QHelpSearchEnginePTR() *QHelpSearchEngine {
+func (ptr *QHelpSearchEngine) QHelpSearchEngine_PTR() *QHelpSearchEngine {
 	return ptr
 }
 
-func NewQHelpSearchEngine(helpEngine QHelpEngineCoreITF, parent core.QObjectITF) *QHelpSearchEngine {
-	return QHelpSearchEngineFromPointer(unsafe.Pointer(C.QHelpSearchEngine_NewQHelpSearchEngine(C.QtObjectPtr(PointerFromQHelpEngineCore(helpEngine)), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_ITF) *QHelpSearchEngine {
+	return NewQHelpSearchEngineFromPointer(C.QHelpSearchEngine_NewQHelpSearchEngine(PointerFromQHelpEngineCore(helpEngine), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHelpSearchEngine) CancelIndexing() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_CancelIndexing(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchEngine_CancelIndexing(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchEngine) CancelSearching() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_CancelSearching(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchEngine_CancelSearching(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchEngine) HitCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QHelpSearchEngine_HitCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QHelpSearchEngine_HitCount(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QHelpSearchEngine) ConnectIndexingFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_ConnectIndexingFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchEngine_ConnectIndexingFinished(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "indexingFinished", f)
 	}
 }
 
 func (ptr *QHelpSearchEngine) DisconnectIndexingFinished() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_DisconnectIndexingFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchEngine_DisconnectIndexingFinished(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "indexingFinished")
 	}
 }
@@ -81,14 +81,14 @@ func callbackQHelpSearchEngineIndexingFinished(ptrName *C.char) {
 
 func (ptr *QHelpSearchEngine) ConnectIndexingStarted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_ConnectIndexingStarted(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchEngine_ConnectIndexingStarted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "indexingStarted", f)
 	}
 }
 
 func (ptr *QHelpSearchEngine) DisconnectIndexingStarted() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_DisconnectIndexingStarted(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchEngine_DisconnectIndexingStarted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "indexingStarted")
 	}
 }
@@ -100,34 +100,34 @@ func callbackQHelpSearchEngineIndexingStarted(ptrName *C.char) {
 
 func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
 	if ptr.Pointer() != nil {
-		return QHelpSearchQueryWidgetFromPointer(unsafe.Pointer(C.QHelpSearchEngine_QueryWidget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchEngine_QueryWidget(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QHelpSearchEngine) ReindexDocumentation() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_ReindexDocumentation(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchEngine_ReindexDocumentation(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchEngine) ResultWidget() *QHelpSearchResultWidget {
 	if ptr.Pointer() != nil {
-		return QHelpSearchResultWidgetFromPointer(unsafe.Pointer(C.QHelpSearchEngine_ResultWidget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQHelpSearchResultWidgetFromPointer(C.QHelpSearchEngine_ResultWidget(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QHelpSearchEngine) ConnectSearchingFinished(f func(hits int)) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_ConnectSearchingFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchEngine_ConnectSearchingFinished(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "searchingFinished", f)
 	}
 }
 
 func (ptr *QHelpSearchEngine) DisconnectSearchingFinished() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_DisconnectSearchingFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchEngine_DisconnectSearchingFinished(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "searchingFinished")
 	}
 }
@@ -139,14 +139,14 @@ func callbackQHelpSearchEngineSearchingFinished(ptrName *C.char, hits C.int) {
 
 func (ptr *QHelpSearchEngine) ConnectSearchingStarted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_ConnectSearchingStarted(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchEngine_ConnectSearchingStarted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "searchingStarted", f)
 	}
 }
 
 func (ptr *QHelpSearchEngine) DisconnectSearchingStarted() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_DisconnectSearchingStarted(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchEngine_DisconnectSearchingStarted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "searchingStarted")
 	}
 }
@@ -158,7 +158,7 @@ func callbackQHelpSearchEngineSearchingStarted(ptrName *C.char) {
 
 func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngine() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchEngine_DestroyQHelpSearchEngine(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchEngine_DestroyQHelpSearchEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{position QTapGesture::position commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF [] }
-&{setPosition QTapGesture::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822cf0b00] }
-&{~QTapGesture QTapGesture::~QTapGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   [] }
+&{position QTapGesture::position commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF QPointF position() const [] }
+&{setPosition QTapGesture::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setPosition(const QPointF &pos) [0xc822676ce0] }
+&{~QTapGesture QTapGesture::~QTapGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   ~QTapGesture() [] }
 ########################################			ENUMS			########################################

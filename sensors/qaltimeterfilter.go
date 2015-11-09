@@ -10,31 +10,31 @@ type QAltimeterFilter struct {
 	QSensorFilter
 }
 
-type QAltimeterFilterITF interface {
-	QSensorFilterITF
-	QAltimeterFilterPTR() *QAltimeterFilter
+type QAltimeterFilter_ITF interface {
+	QSensorFilter_ITF
+	QAltimeterFilter_PTR() *QAltimeterFilter
 }
 
-func PointerFromQAltimeterFilter(ptr QAltimeterFilterITF) unsafe.Pointer {
+func PointerFromQAltimeterFilter(ptr QAltimeterFilter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAltimeterFilterPTR().Pointer()
+		return ptr.QAltimeterFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAltimeterFilterFromPointer(ptr unsafe.Pointer) *QAltimeterFilter {
+func NewQAltimeterFilterFromPointer(ptr unsafe.Pointer) *QAltimeterFilter {
 	var n = new(QAltimeterFilter)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAltimeterFilter) QAltimeterFilterPTR() *QAltimeterFilter {
+func (ptr *QAltimeterFilter) QAltimeterFilter_PTR() *QAltimeterFilter {
 	return ptr
 }
 
-func (ptr *QAltimeterFilter) Filter(reading QAltimeterReadingITF) bool {
+func (ptr *QAltimeterFilter) Filter(reading QAltimeterReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAltimeterFilter_Filter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAltimeterReading(reading))) != 0
+		return C.QAltimeterFilter_Filter(ptr.Pointer(), PointerFromQAltimeterReading(reading)) != 0
 	}
 	return false
 }

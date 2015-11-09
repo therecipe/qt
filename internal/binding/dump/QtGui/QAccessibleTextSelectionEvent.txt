@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{QAccessibleTextSelectionEvent QAccessibleTextSelectionEvent::QAccessibleTextSelectionEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  [0xc820c2c700 0xc820c2c820 0xc820c2c8e0] }
-&{QAccessibleTextSelectionEvent QAccessibleTextSelectionEvent::QAccessibleTextSelectionEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   [0xc820c2cb00 0xc820c2cbc0 0xc820c2cc60] }
-&{selectionEnd QAccessibleTextSelectionEvent::selectionEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int [] }
-&{selectionStart QAccessibleTextSelectionEvent::selectionStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int [] }
-&{setSelection QAccessibleTextSelectionEvent::setSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  void [0xc820c2d020 0xc820c2d140] }
+&{QAccessibleTextSelectionEvent QAccessibleTextSelectionEvent::QAccessibleTextSelectionEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  QAccessibleTextSelectionEvent(QAccessibleInterface *iface, int start, int end) [0xc820cd6680 0xc820cd67e0 0xc820cd6880] }
+&{QAccessibleTextSelectionEvent QAccessibleTextSelectionEvent::QAccessibleTextSelectionEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   QAccessibleTextSelectionEvent(QObject *object, int start, int end) [0xc820cd6aa0 0xc820cd6b40 0xc820cd6bc0] }
+&{selectionEnd QAccessibleTextSelectionEvent::selectionEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int int selectionEnd() const [] }
+&{selectionStart QAccessibleTextSelectionEvent::selectionStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int int selectionStart() const [] }
+&{setSelection QAccessibleTextSelectionEvent::setSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  void void setSelection(int start, int end) [0xc820cd7000 0xc820cd70a0] }
 ########################################			ENUMS			########################################

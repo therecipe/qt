@@ -1,52 +1,51 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QFormLayout_FieldGrowthPolicy(QtObjectPtr ptr);
-int QFormLayout_FormAlignment(QtObjectPtr ptr);
-int QFormLayout_HorizontalSpacing(QtObjectPtr ptr);
-int QFormLayout_LabelAlignment(QtObjectPtr ptr);
-int QFormLayout_RowWrapPolicy(QtObjectPtr ptr);
-void QFormLayout_SetFieldGrowthPolicy(QtObjectPtr ptr, int policy);
-void QFormLayout_SetFormAlignment(QtObjectPtr ptr, int alignment);
-void QFormLayout_SetHorizontalSpacing(QtObjectPtr ptr, int spacing);
-void QFormLayout_SetLabelAlignment(QtObjectPtr ptr, int alignment);
-void QFormLayout_SetRowWrapPolicy(QtObjectPtr ptr, int policy);
-void QFormLayout_SetVerticalSpacing(QtObjectPtr ptr, int spacing);
-int QFormLayout_VerticalSpacing(QtObjectPtr ptr);
-QtObjectPtr QFormLayout_NewQFormLayout(QtObjectPtr parent);
-void QFormLayout_AddItem(QtObjectPtr ptr, QtObjectPtr item);
-void QFormLayout_AddRow6(QtObjectPtr ptr, QtObjectPtr layout);
-void QFormLayout_AddRow2(QtObjectPtr ptr, QtObjectPtr label, QtObjectPtr field);
-void QFormLayout_AddRow(QtObjectPtr ptr, QtObjectPtr label, QtObjectPtr field);
-void QFormLayout_AddRow5(QtObjectPtr ptr, QtObjectPtr widget);
-void QFormLayout_AddRow4(QtObjectPtr ptr, char* labelText, QtObjectPtr field);
-void QFormLayout_AddRow3(QtObjectPtr ptr, char* labelText, QtObjectPtr field);
-int QFormLayout_Count(QtObjectPtr ptr);
-int QFormLayout_ExpandingDirections(QtObjectPtr ptr);
-int QFormLayout_HasHeightForWidth(QtObjectPtr ptr);
-int QFormLayout_HeightForWidth(QtObjectPtr ptr, int width);
-void QFormLayout_InsertRow6(QtObjectPtr ptr, int row, QtObjectPtr layout);
-void QFormLayout_InsertRow2(QtObjectPtr ptr, int row, QtObjectPtr label, QtObjectPtr field);
-void QFormLayout_InsertRow(QtObjectPtr ptr, int row, QtObjectPtr label, QtObjectPtr field);
-void QFormLayout_InsertRow5(QtObjectPtr ptr, int row, QtObjectPtr widget);
-void QFormLayout_InsertRow4(QtObjectPtr ptr, int row, char* labelText, QtObjectPtr field);
-void QFormLayout_InsertRow3(QtObjectPtr ptr, int row, char* labelText, QtObjectPtr field);
-void QFormLayout_Invalidate(QtObjectPtr ptr);
-QtObjectPtr QFormLayout_ItemAt2(QtObjectPtr ptr, int index);
-QtObjectPtr QFormLayout_ItemAt(QtObjectPtr ptr, int row, int role);
-QtObjectPtr QFormLayout_LabelForField2(QtObjectPtr ptr, QtObjectPtr field);
-QtObjectPtr QFormLayout_LabelForField(QtObjectPtr ptr, QtObjectPtr field);
-int QFormLayout_RowCount(QtObjectPtr ptr);
-void QFormLayout_SetGeometry(QtObjectPtr ptr, QtObjectPtr rect);
-void QFormLayout_SetItem(QtObjectPtr ptr, int row, int role, QtObjectPtr item);
-void QFormLayout_SetLayout(QtObjectPtr ptr, int row, int role, QtObjectPtr layout);
-void QFormLayout_SetSpacing(QtObjectPtr ptr, int spacing);
-void QFormLayout_SetWidget(QtObjectPtr ptr, int row, int role, QtObjectPtr widget);
-int QFormLayout_Spacing(QtObjectPtr ptr);
-QtObjectPtr QFormLayout_TakeAt(QtObjectPtr ptr, int index);
-void QFormLayout_DestroyQFormLayout(QtObjectPtr ptr);
+int QFormLayout_FieldGrowthPolicy(void* ptr);
+int QFormLayout_FormAlignment(void* ptr);
+int QFormLayout_HorizontalSpacing(void* ptr);
+int QFormLayout_LabelAlignment(void* ptr);
+int QFormLayout_RowWrapPolicy(void* ptr);
+void QFormLayout_SetFieldGrowthPolicy(void* ptr, int policy);
+void QFormLayout_SetFormAlignment(void* ptr, int alignment);
+void QFormLayout_SetHorizontalSpacing(void* ptr, int spacing);
+void QFormLayout_SetLabelAlignment(void* ptr, int alignment);
+void QFormLayout_SetRowWrapPolicy(void* ptr, int policy);
+void QFormLayout_SetVerticalSpacing(void* ptr, int spacing);
+int QFormLayout_VerticalSpacing(void* ptr);
+void* QFormLayout_NewQFormLayout(void* parent);
+void QFormLayout_AddItem(void* ptr, void* item);
+void QFormLayout_AddRow6(void* ptr, void* layout);
+void QFormLayout_AddRow2(void* ptr, void* label, void* field);
+void QFormLayout_AddRow(void* ptr, void* label, void* field);
+void QFormLayout_AddRow5(void* ptr, void* widget);
+void QFormLayout_AddRow4(void* ptr, char* labelText, void* field);
+void QFormLayout_AddRow3(void* ptr, char* labelText, void* field);
+int QFormLayout_Count(void* ptr);
+int QFormLayout_ExpandingDirections(void* ptr);
+int QFormLayout_HasHeightForWidth(void* ptr);
+int QFormLayout_HeightForWidth(void* ptr, int width);
+void QFormLayout_InsertRow6(void* ptr, int row, void* layout);
+void QFormLayout_InsertRow2(void* ptr, int row, void* label, void* field);
+void QFormLayout_InsertRow(void* ptr, int row, void* label, void* field);
+void QFormLayout_InsertRow5(void* ptr, int row, void* widget);
+void QFormLayout_InsertRow4(void* ptr, int row, char* labelText, void* field);
+void QFormLayout_InsertRow3(void* ptr, int row, char* labelText, void* field);
+void QFormLayout_Invalidate(void* ptr);
+void* QFormLayout_ItemAt2(void* ptr, int index);
+void* QFormLayout_ItemAt(void* ptr, int row, int role);
+void* QFormLayout_LabelForField2(void* ptr, void* field);
+void* QFormLayout_LabelForField(void* ptr, void* field);
+int QFormLayout_RowCount(void* ptr);
+void QFormLayout_SetGeometry(void* ptr, void* rect);
+void QFormLayout_SetItem(void* ptr, int row, int role, void* item);
+void QFormLayout_SetLayout(void* ptr, int row, int role, void* layout);
+void QFormLayout_SetSpacing(void* ptr, int spacing);
+void QFormLayout_SetWidget(void* ptr, int row, int role, void* widget);
+int QFormLayout_Spacing(void* ptr);
+void* QFormLayout_TakeAt(void* ptr, int index);
+void QFormLayout_DestroyQFormLayout(void* ptr);
 
 #ifdef __cplusplus
 }

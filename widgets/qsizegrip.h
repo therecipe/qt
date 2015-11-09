@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSizeGrip_NewQSizeGrip(QtObjectPtr parent);
-void QSizeGrip_SetVisible(QtObjectPtr ptr, int visible);
-void QSizeGrip_DestroyQSizeGrip(QtObjectPtr ptr);
+void* QSizeGrip_NewQSizeGrip(void* parent);
+void QSizeGrip_SetVisible(void* ptr, int visible);
+void QSizeGrip_DestroyQSizeGrip(void* ptr);
 
 #ifdef __cplusplus
 }

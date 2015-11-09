@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QQuickFramebufferObject_SetTextureFollowsItemSize(QtObjectPtr ptr, int follows);
-int QQuickFramebufferObject_TextureFollowsItemSize(QtObjectPtr ptr);
-int QQuickFramebufferObject_IsTextureProvider(QtObjectPtr ptr);
-void QQuickFramebufferObject_ReleaseResources(QtObjectPtr ptr);
-void QQuickFramebufferObject_ConnectTextureFollowsItemSizeChanged(QtObjectPtr ptr);
-void QQuickFramebufferObject_DisconnectTextureFollowsItemSizeChanged(QtObjectPtr ptr);
-QtObjectPtr QQuickFramebufferObject_TextureProvider(QtObjectPtr ptr);
+void QQuickFramebufferObject_SetTextureFollowsItemSize(void* ptr, int follows);
+int QQuickFramebufferObject_TextureFollowsItemSize(void* ptr);
+int QQuickFramebufferObject_IsTextureProvider(void* ptr);
+void QQuickFramebufferObject_ReleaseResources(void* ptr);
+void QQuickFramebufferObject_ConnectTextureFollowsItemSizeChanged(void* ptr);
+void QQuickFramebufferObject_DisconnectTextureFollowsItemSizeChanged(void* ptr);
+void* QQuickFramebufferObject_TextureProvider(void* ptr);
 
 #ifdef __cplusplus
 }

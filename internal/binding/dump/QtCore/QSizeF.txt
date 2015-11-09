@@ -1,27 +1,27 @@
 ########################################			FUNCTIONS			########################################
-&{QSizeF QSizeF::QSizeF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non constructor false false   [] }
-&{QSizeF QSizeF::QSizeF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non constructor false true 2  [0xc820b190a0] }
-&{QSizeF QSizeF::QSizeF commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non constructor false true 3  [0xc820b19280 0xc820b19300] }
-&{boundedTo QSizeF::boundedTo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF [0xc820b19560] }
-&{expandedTo QSizeF::expandedTo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF [0xc820b19780] }
-&{height QSizeF::height commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  qreal [] }
-&{isEmpty QSizeF::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  bool [] }
-&{isNull QSizeF::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  bool [] }
-&{isValid QSizeF::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  bool [] }
-&{operator*= QSizeF::operator*= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF & [0xc820b19dc0] }
-&{operator+= QSizeF::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF & [0xc820af00a0] }
-&{operator-= QSizeF::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF & [0xc820af02c0] }
-&{operator/= QSizeF::operator/= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF & [0xc820af04a0] }
-&{rheight QSizeF::rheight commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  qreal & [] }
-&{rwidth QSizeF::rwidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  qreal & [] }
-&{scale QSizeF::scale commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false true 2 void [0xc820af07a0 0xc820af0900] }
-&{scale QSizeF::scale commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  void [0xc820af0b60 0xc820af0ca0 0xc820af0da0] }
-&{scaled QSizeF::scaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false true 2 QSizeF [0xc820af1020 0xc820af10e0] }
-&{scaled QSizeF::scaled commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF [0xc820af1340 0xc820af1400 0xc820af14c0] }
-&{setHeight QSizeF::setHeight commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  void [0xc820af18c0] }
-&{setWidth QSizeF::setWidth commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  void [0xc820af1ae0] }
-&{toSize QSizeF::toSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSize [] }
-&{transpose QSizeF::transpose commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  void [] }
-&{transposed QSizeF::transposed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF [] }
-&{width QSizeF::width commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  qreal [] }
+&{QSizeF QSizeF::QSizeF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non constructor false false   QSizeF() [] }
+&{QSizeF QSizeF::QSizeF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non constructor false true 2  QSizeF(const QSize &size) [0xc820c21f00] }
+&{QSizeF QSizeF::QSizeF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non constructor false true 3  QSizeF(qreal width, qreal height) [0xc820c0c0a0 0xc820c0c120] }
+&{boundedTo QSizeF::boundedTo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF QSizeF boundedTo(const QSizeF &otherSize) const [0xc820c0c360] }
+&{expandedTo QSizeF::expandedTo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF QSizeF expandedTo(const QSizeF &otherSize) const [0xc820c0c5c0] }
+&{height QSizeF::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  qreal qreal height() const [] }
+&{isEmpty QSizeF::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  bool bool isEmpty() const [] }
+&{isNull QSizeF::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  bool bool isNull() const [] }
+&{isValid QSizeF::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  bool bool isValid() const [] }
+&{operator*= QSizeF::operator*= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF & QSizeF & operator*=(qreal factor) [0xc820c0cc80] }
+&{operator+= QSizeF::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF & QSizeF & operator+=(const QSizeF &size) [0xc820c0cea0] }
+&{operator-= QSizeF::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF & QSizeF & operator-=(const QSizeF &size) [0xc820c0d0a0] }
+&{operator/= QSizeF::operator/= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF & QSizeF & operator/=(qreal divisor) [0xc820c0d300] }
+&{rheight QSizeF::rheight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  qreal & qreal & rheight() [] }
+&{rwidth QSizeF::rwidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  qreal & qreal & rwidth() [] }
+&{scale QSizeF::scale commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false true 2 void void scale(const QSizeF &size, Qt::AspectRatioMode mode) [0xc820c0d660 0xc820c0d720] }
+&{scale QSizeF::scale commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  void void scale(qreal width, qreal height, Qt::AspectRatioMode mode) [0xc820c0d980 0xc820c0da00 0xc820c0dac0] }
+&{scaled QSizeF::scaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false true 2 QSizeF QSizeF scaled(const QSizeF &s, Qt::AspectRatioMode mode) const [0xc820c0dcc0 0xc820c0dd60] }
+&{scaled QSizeF::scaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF QSizeF scaled(qreal width, qreal height, Qt::AspectRatioMode mode) const [0xc820c0dfa0 0xc820bfa020 0xc820bfa100] }
+&{setHeight QSizeF::setHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  void void setHeight(qreal height) [0xc820bfa3e0] }
+&{setWidth QSizeF::setWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  void void setWidth(qreal width) [0xc820bfa640] }
+&{toSize QSizeF::toSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSize QSize toSize() const [] }
+&{transpose QSizeF::transpose commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  void void transpose() [] }
+&{transposed QSizeF::transposed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  QSizeF QSizeF transposed() const [] }
+&{width QSizeF::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qsize.h non plain false false  qreal qreal width() const [] }
 ########################################			ENUMS			########################################

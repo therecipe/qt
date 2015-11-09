@@ -1,11 +1,11 @@
 #include "qnearfieldsharetarget.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QNdefMessage>
-#include <QObject>
-#include <QNearFieldShareManager>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QNearFieldShareManager>
 #include <QNearFieldShareTarget>
 #include "_cgo_export.h"
 
@@ -15,43 +15,43 @@ void Signal_Error(QNearFieldShareManager::ShareError error){callbackQNearFieldSh
 void Signal_ShareFinished(){callbackQNearFieldShareTargetShareFinished(this->objectName().toUtf8().data());};
 };
 
-void QNearFieldShareTarget_Cancel(QtObjectPtr ptr){
+void QNearFieldShareTarget_Cancel(void* ptr){
 	static_cast<QNearFieldShareTarget*>(ptr)->cancel();
 }
 
-void QNearFieldShareTarget_ConnectError(QtObjectPtr ptr){
+void QNearFieldShareTarget_ConnectError(void* ptr){
 	QObject::connect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareTarget::error), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareTarget::Signal_Error));;
 }
 
-void QNearFieldShareTarget_DisconnectError(QtObjectPtr ptr){
+void QNearFieldShareTarget_DisconnectError(void* ptr){
 	QObject::disconnect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareTarget::error), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareTarget::Signal_Error));;
 }
 
-int QNearFieldShareTarget_IsShareInProgress(QtObjectPtr ptr){
+int QNearFieldShareTarget_IsShareInProgress(void* ptr){
 	return static_cast<QNearFieldShareTarget*>(ptr)->isShareInProgress();
 }
 
-int QNearFieldShareTarget_Share(QtObjectPtr ptr, QtObjectPtr message){
+int QNearFieldShareTarget_Share(void* ptr, void* message){
 	return static_cast<QNearFieldShareTarget*>(ptr)->share(*static_cast<QNdefMessage*>(message));
 }
 
-int QNearFieldShareTarget_ShareError(QtObjectPtr ptr){
+int QNearFieldShareTarget_ShareError(void* ptr){
 	return static_cast<QNearFieldShareTarget*>(ptr)->shareError();
 }
 
-void QNearFieldShareTarget_ConnectShareFinished(QtObjectPtr ptr){
+void QNearFieldShareTarget_ConnectShareFinished(void* ptr){
 	QObject::connect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)()>(&QNearFieldShareTarget::shareFinished), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)()>(&MyQNearFieldShareTarget::Signal_ShareFinished));;
 }
 
-void QNearFieldShareTarget_DisconnectShareFinished(QtObjectPtr ptr){
+void QNearFieldShareTarget_DisconnectShareFinished(void* ptr){
 	QObject::disconnect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)()>(&QNearFieldShareTarget::shareFinished), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)()>(&MyQNearFieldShareTarget::Signal_ShareFinished));;
 }
 
-int QNearFieldShareTarget_ShareModes(QtObjectPtr ptr){
+int QNearFieldShareTarget_ShareModes(void* ptr){
 	return static_cast<QNearFieldShareTarget*>(ptr)->shareModes();
 }
 
-void QNearFieldShareTarget_DestroyQNearFieldShareTarget(QtObjectPtr ptr){
+void QNearFieldShareTarget_DestroyQNearFieldShareTarget(void* ptr){
 	static_cast<QNearFieldShareTarget*>(ptr)->~QNearFieldShareTarget();
 }
 

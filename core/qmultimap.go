@@ -10,24 +10,24 @@ type QMultiMap struct {
 	QMap
 }
 
-type QMultiMapITF interface {
-	QMapITF
-	QMultiMapPTR() *QMultiMap
+type QMultiMap_ITF interface {
+	QMap_ITF
+	QMultiMap_PTR() *QMultiMap
 }
 
-func PointerFromQMultiMap(ptr QMultiMapITF) unsafe.Pointer {
+func PointerFromQMultiMap(ptr QMultiMap_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMultiMapPTR().Pointer()
+		return ptr.QMultiMap_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMultiMapFromPointer(ptr unsafe.Pointer) *QMultiMap {
+func NewQMultiMapFromPointer(ptr unsafe.Pointer) *QMultiMap {
 	var n = new(QMultiMap)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMultiMap) QMultiMapPTR() *QMultiMap {
+func (ptr *QMultiMap) QMultiMap_PTR() *QMultiMap {
 	return ptr
 }

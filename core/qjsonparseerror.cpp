@@ -10,7 +10,7 @@ class MyQJsonParseError: public QJsonParseError {
 public:
 };
 
-char* QJsonParseError_ErrorString(QtObjectPtr ptr){
+char* QJsonParseError_ErrorString(void* ptr){
 	return static_cast<QJsonParseError*>(ptr)->errorString().toUtf8().data();
 }
 

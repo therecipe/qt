@@ -12,51 +12,51 @@ public:
 void Signal_NewConnection(){callbackQLocalServerNewConnection(this->objectName().toUtf8().data());};
 };
 
-void QLocalServer_SetSocketOptions(QtObjectPtr ptr, int options){
+void QLocalServer_SetSocketOptions(void* ptr, int options){
 	static_cast<QLocalServer*>(ptr)->setSocketOptions(static_cast<QLocalServer::SocketOption>(options));
 }
 
-QtObjectPtr QLocalServer_NewQLocalServer(QtObjectPtr parent){
+void* QLocalServer_NewQLocalServer(void* parent){
 	return new QLocalServer(static_cast<QObject*>(parent));
 }
 
-void QLocalServer_Close(QtObjectPtr ptr){
+void QLocalServer_Close(void* ptr){
 	static_cast<QLocalServer*>(ptr)->close();
 }
 
-char* QLocalServer_ErrorString(QtObjectPtr ptr){
+char* QLocalServer_ErrorString(void* ptr){
 	return static_cast<QLocalServer*>(ptr)->errorString().toUtf8().data();
 }
 
-char* QLocalServer_FullServerName(QtObjectPtr ptr){
+char* QLocalServer_FullServerName(void* ptr){
 	return static_cast<QLocalServer*>(ptr)->fullServerName().toUtf8().data();
 }
 
-int QLocalServer_HasPendingConnections(QtObjectPtr ptr){
+int QLocalServer_HasPendingConnections(void* ptr){
 	return static_cast<QLocalServer*>(ptr)->hasPendingConnections();
 }
 
-int QLocalServer_IsListening(QtObjectPtr ptr){
+int QLocalServer_IsListening(void* ptr){
 	return static_cast<QLocalServer*>(ptr)->isListening();
 }
 
-int QLocalServer_Listen(QtObjectPtr ptr, char* name){
+int QLocalServer_Listen(void* ptr, char* name){
 	return static_cast<QLocalServer*>(ptr)->listen(QString(name));
 }
 
-int QLocalServer_MaxPendingConnections(QtObjectPtr ptr){
+int QLocalServer_MaxPendingConnections(void* ptr){
 	return static_cast<QLocalServer*>(ptr)->maxPendingConnections();
 }
 
-void QLocalServer_ConnectNewConnection(QtObjectPtr ptr){
+void QLocalServer_ConnectNewConnection(void* ptr){
 	QObject::connect(static_cast<QLocalServer*>(ptr), static_cast<void (QLocalServer::*)()>(&QLocalServer::newConnection), static_cast<MyQLocalServer*>(ptr), static_cast<void (MyQLocalServer::*)()>(&MyQLocalServer::Signal_NewConnection));;
 }
 
-void QLocalServer_DisconnectNewConnection(QtObjectPtr ptr){
+void QLocalServer_DisconnectNewConnection(void* ptr){
 	QObject::disconnect(static_cast<QLocalServer*>(ptr), static_cast<void (QLocalServer::*)()>(&QLocalServer::newConnection), static_cast<MyQLocalServer*>(ptr), static_cast<void (MyQLocalServer::*)()>(&MyQLocalServer::Signal_NewConnection));;
 }
 
-QtObjectPtr QLocalServer_NextPendingConnection(QtObjectPtr ptr){
+void* QLocalServer_NextPendingConnection(void* ptr){
 	return static_cast<QLocalServer*>(ptr)->nextPendingConnection();
 }
 
@@ -64,27 +64,27 @@ int QLocalServer_QLocalServer_RemoveServer(char* name){
 	return QLocalServer::removeServer(QString(name));
 }
 
-int QLocalServer_ServerError(QtObjectPtr ptr){
+int QLocalServer_ServerError(void* ptr){
 	return static_cast<QLocalServer*>(ptr)->serverError();
 }
 
-char* QLocalServer_ServerName(QtObjectPtr ptr){
+char* QLocalServer_ServerName(void* ptr){
 	return static_cast<QLocalServer*>(ptr)->serverName().toUtf8().data();
 }
 
-void QLocalServer_SetMaxPendingConnections(QtObjectPtr ptr, int numConnections){
+void QLocalServer_SetMaxPendingConnections(void* ptr, int numConnections){
 	static_cast<QLocalServer*>(ptr)->setMaxPendingConnections(numConnections);
 }
 
-int QLocalServer_SocketOptions(QtObjectPtr ptr){
+int QLocalServer_SocketOptions(void* ptr){
 	return static_cast<QLocalServer*>(ptr)->socketOptions();
 }
 
-int QLocalServer_WaitForNewConnection(QtObjectPtr ptr, int msec, int timedOut){
+int QLocalServer_WaitForNewConnection(void* ptr, int msec, int timedOut){
 	return static_cast<QLocalServer*>(ptr)->waitForNewConnection(msec, NULL);
 }
 
-void QLocalServer_DestroyQLocalServer(QtObjectPtr ptr){
+void QLocalServer_DestroyQLocalServer(void* ptr){
 	static_cast<QLocalServer*>(ptr)->~QLocalServer();
 }
 

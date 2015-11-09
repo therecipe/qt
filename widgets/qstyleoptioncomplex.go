@@ -10,46 +10,46 @@ type QStyleOptionComplex struct {
 	QStyleOption
 }
 
-type QStyleOptionComplexITF interface {
-	QStyleOptionITF
-	QStyleOptionComplexPTR() *QStyleOptionComplex
+type QStyleOptionComplex_ITF interface {
+	QStyleOption_ITF
+	QStyleOptionComplex_PTR() *QStyleOptionComplex
 }
 
-func PointerFromQStyleOptionComplex(ptr QStyleOptionComplexITF) unsafe.Pointer {
+func PointerFromQStyleOptionComplex(ptr QStyleOptionComplex_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionComplexPTR().Pointer()
+		return ptr.QStyleOptionComplex_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionComplexFromPointer(ptr unsafe.Pointer) *QStyleOptionComplex {
+func NewQStyleOptionComplexFromPointer(ptr unsafe.Pointer) *QStyleOptionComplex {
 	var n = new(QStyleOptionComplex)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionComplex) QStyleOptionComplexPTR() *QStyleOptionComplex {
+func (ptr *QStyleOptionComplex) QStyleOptionComplex_PTR() *QStyleOptionComplex {
 	return ptr
 }
 
 //QStyleOptionComplex::StyleOptionType
-type QStyleOptionComplex__StyleOptionType int
+type QStyleOptionComplex__StyleOptionType int64
 
 var (
 	QStyleOptionComplex__Type = QStyleOptionComplex__StyleOptionType(QStyleOption__SO_Complex)
 )
 
 //QStyleOptionComplex::StyleOptionVersion
-type QStyleOptionComplex__StyleOptionVersion int
+type QStyleOptionComplex__StyleOptionVersion int64
 
 var (
 	QStyleOptionComplex__Version = QStyleOptionComplex__StyleOptionVersion(1)
 )
 
-func NewQStyleOptionComplex2(other QStyleOptionComplexITF) *QStyleOptionComplex {
-	return QStyleOptionComplexFromPointer(unsafe.Pointer(C.QStyleOptionComplex_NewQStyleOptionComplex2(C.QtObjectPtr(PointerFromQStyleOptionComplex(other)))))
+func NewQStyleOptionComplex2(other QStyleOptionComplex_ITF) *QStyleOptionComplex {
+	return NewQStyleOptionComplexFromPointer(C.QStyleOptionComplex_NewQStyleOptionComplex2(PointerFromQStyleOptionComplex(other)))
 }
 
 func NewQStyleOptionComplex(version int, ty int) *QStyleOptionComplex {
-	return QStyleOptionComplexFromPointer(unsafe.Pointer(C.QStyleOptionComplex_NewQStyleOptionComplex(C.int(version), C.int(ty))))
+	return NewQStyleOptionComplexFromPointer(C.QStyleOptionComplex_NewQStyleOptionComplex(C.int(version), C.int(ty)))
 }

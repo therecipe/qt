@@ -11,38 +11,38 @@ type QFinalState struct {
 	QAbstractState
 }
 
-type QFinalStateITF interface {
-	QAbstractStateITF
-	QFinalStatePTR() *QFinalState
+type QFinalState_ITF interface {
+	QAbstractState_ITF
+	QFinalState_PTR() *QFinalState
 }
 
-func PointerFromQFinalState(ptr QFinalStateITF) unsafe.Pointer {
+func PointerFromQFinalState(ptr QFinalState_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QFinalStatePTR().Pointer()
+		return ptr.QFinalState_PTR().Pointer()
 	}
 	return nil
 }
 
-func QFinalStateFromPointer(ptr unsafe.Pointer) *QFinalState {
+func NewQFinalStateFromPointer(ptr unsafe.Pointer) *QFinalState {
 	var n = new(QFinalState)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QFinalState_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QFinalState) QFinalStatePTR() *QFinalState {
+func (ptr *QFinalState) QFinalState_PTR() *QFinalState {
 	return ptr
 }
 
-func NewQFinalState(parent QStateITF) *QFinalState {
-	return QFinalStateFromPointer(unsafe.Pointer(C.QFinalState_NewQFinalState(C.QtObjectPtr(PointerFromQState(parent)))))
+func NewQFinalState(parent QState_ITF) *QFinalState {
+	return NewQFinalStateFromPointer(C.QFinalState_NewQFinalState(PointerFromQState(parent)))
 }
 
 func (ptr *QFinalState) DestroyQFinalState() {
 	if ptr.Pointer() != nil {
-		C.QFinalState_DestroyQFinalState(C.QtObjectPtr(ptr.Pointer()))
+		C.QFinalState_DestroyQFinalState(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

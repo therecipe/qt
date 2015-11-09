@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QBitmap_Clear(QtObjectPtr ptr);
-void QBitmap_Swap(QtObjectPtr ptr, QtObjectPtr other);
-void QBitmap_DestroyQBitmap(QtObjectPtr ptr);
+void QBitmap_Clear(void* ptr);
+void QBitmap_Swap(void* ptr, void* other);
+void QBitmap_DestroyQBitmap(void* ptr);
 
 #ifdef __cplusplus
 }

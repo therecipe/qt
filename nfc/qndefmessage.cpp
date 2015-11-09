@@ -3,6 +3,7 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QByteArray>
 #include <QNdefRecord>
 #include <QNdefMessage>
 #include "_cgo_export.h"
@@ -11,15 +12,19 @@ class MyQNdefMessage: public QNdefMessage {
 public:
 };
 
-QtObjectPtr QNdefMessage_NewQNdefMessage(){
+void* QNdefMessage_NewQNdefMessage(){
 	return new QNdefMessage();
 }
 
-QtObjectPtr QNdefMessage_NewQNdefMessage3(QtObjectPtr message){
+void* QNdefMessage_NewQNdefMessage3(void* message){
 	return new QNdefMessage(*static_cast<QNdefMessage*>(message));
 }
 
-QtObjectPtr QNdefMessage_NewQNdefMessage2(QtObjectPtr record){
+void* QNdefMessage_NewQNdefMessage2(void* record){
 	return new QNdefMessage(*static_cast<QNdefRecord*>(record));
+}
+
+void* QNdefMessage_ToByteArray(void* ptr){
+	return new QByteArray(static_cast<QNdefMessage*>(ptr)->toByteArray());
 }
 

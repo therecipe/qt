@@ -1,17 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor();
-QtObjectPtr QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor3(QtObjectPtr other);
-QtObjectPtr QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor2(int fileDescriptor);
-int QDBusUnixFileDescriptor_FileDescriptor(QtObjectPtr ptr);
+void* QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor();
+void* QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor3(void* other);
+void* QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor2(int fileDescriptor);
+int QDBusUnixFileDescriptor_FileDescriptor(void* ptr);
 int QDBusUnixFileDescriptor_QDBusUnixFileDescriptor_IsSupported();
-int QDBusUnixFileDescriptor_IsValid(QtObjectPtr ptr);
-void QDBusUnixFileDescriptor_SetFileDescriptor(QtObjectPtr ptr, int fileDescriptor);
-void QDBusUnixFileDescriptor_Swap(QtObjectPtr ptr, QtObjectPtr other);
-void QDBusUnixFileDescriptor_DestroyQDBusUnixFileDescriptor(QtObjectPtr ptr);
+int QDBusUnixFileDescriptor_IsValid(void* ptr);
+void QDBusUnixFileDescriptor_SetFileDescriptor(void* ptr, int fileDescriptor);
+void QDBusUnixFileDescriptor_Swap(void* ptr, void* other);
+void QDBusUnixFileDescriptor_DestroyQDBusUnixFileDescriptor(void* ptr);
 
 #ifdef __cplusplus
 }

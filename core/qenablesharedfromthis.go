@@ -10,8 +10,8 @@ type QEnableSharedFromThis struct {
 	ptr unsafe.Pointer
 }
 
-type QEnableSharedFromThisITF interface {
-	QEnableSharedFromThisPTR() *QEnableSharedFromThis
+type QEnableSharedFromThis_ITF interface {
+	QEnableSharedFromThis_PTR() *QEnableSharedFromThis
 }
 
 func (p *QEnableSharedFromThis) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QEnableSharedFromThis) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQEnableSharedFromThis(ptr QEnableSharedFromThisITF) unsafe.Pointer {
+func PointerFromQEnableSharedFromThis(ptr QEnableSharedFromThis_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QEnableSharedFromThisPTR().Pointer()
+		return ptr.QEnableSharedFromThis_PTR().Pointer()
 	}
 	return nil
 }
 
-func QEnableSharedFromThisFromPointer(ptr unsafe.Pointer) *QEnableSharedFromThis {
+func NewQEnableSharedFromThisFromPointer(ptr unsafe.Pointer) *QEnableSharedFromThis {
 	var n = new(QEnableSharedFromThis)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QEnableSharedFromThis) QEnableSharedFromThisPTR() *QEnableSharedFromThis {
+func (ptr *QEnableSharedFromThis) QEnableSharedFromThis_PTR() *QEnableSharedFromThis {
 	return ptr
 }

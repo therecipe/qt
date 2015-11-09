@@ -1,13 +1,13 @@
 #include "qqmllistreference.h"
 #include <QList>
+#include <QList>
 #include <QQmlEngine>
+#include <QObject>
+#include <QMetaObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QMetaObject>
-#include <QObject>
-#include <QList>
 #include <QQmlListReference>
 #include "_cgo_export.h"
 
@@ -15,63 +15,63 @@ class MyQQmlListReference: public QQmlListReference {
 public:
 };
 
-QtObjectPtr QQmlListReference_NewQQmlListReference(){
+void* QQmlListReference_NewQQmlListReference(){
 	return new QQmlListReference();
 }
 
-QtObjectPtr QQmlListReference_NewQQmlListReference2(QtObjectPtr object, char* property, QtObjectPtr engine){
+void* QQmlListReference_NewQQmlListReference2(void* object, char* property, void* engine){
 	return new QQmlListReference(static_cast<QObject*>(object), const_cast<const char*>(property), static_cast<QQmlEngine*>(engine));
 }
 
-int QQmlListReference_Append(QtObjectPtr ptr, QtObjectPtr object){
+int QQmlListReference_Append(void* ptr, void* object){
 	return static_cast<QQmlListReference*>(ptr)->append(static_cast<QObject*>(object));
 }
 
-QtObjectPtr QQmlListReference_At(QtObjectPtr ptr, int index){
+void* QQmlListReference_At(void* ptr, int index){
 	return static_cast<QQmlListReference*>(ptr)->at(index);
 }
 
-int QQmlListReference_CanAppend(QtObjectPtr ptr){
+int QQmlListReference_CanAppend(void* ptr){
 	return static_cast<QQmlListReference*>(ptr)->canAppend();
 }
 
-int QQmlListReference_CanAt(QtObjectPtr ptr){
+int QQmlListReference_CanAt(void* ptr){
 	return static_cast<QQmlListReference*>(ptr)->canAt();
 }
 
-int QQmlListReference_CanClear(QtObjectPtr ptr){
+int QQmlListReference_CanClear(void* ptr){
 	return static_cast<QQmlListReference*>(ptr)->canClear();
 }
 
-int QQmlListReference_CanCount(QtObjectPtr ptr){
+int QQmlListReference_CanCount(void* ptr){
 	return static_cast<QQmlListReference*>(ptr)->canCount();
 }
 
-int QQmlListReference_Clear(QtObjectPtr ptr){
+int QQmlListReference_Clear(void* ptr){
 	return static_cast<QQmlListReference*>(ptr)->clear();
 }
 
-int QQmlListReference_Count(QtObjectPtr ptr){
+int QQmlListReference_Count(void* ptr){
 	return static_cast<QQmlListReference*>(ptr)->count();
 }
 
-int QQmlListReference_IsManipulable(QtObjectPtr ptr){
+int QQmlListReference_IsManipulable(void* ptr){
 	return static_cast<QQmlListReference*>(ptr)->isManipulable();
 }
 
-int QQmlListReference_IsReadable(QtObjectPtr ptr){
+int QQmlListReference_IsReadable(void* ptr){
 	return static_cast<QQmlListReference*>(ptr)->isReadable();
 }
 
-int QQmlListReference_IsValid(QtObjectPtr ptr){
+int QQmlListReference_IsValid(void* ptr){
 	return static_cast<QQmlListReference*>(ptr)->isValid();
 }
 
-QtObjectPtr QQmlListReference_ListElementType(QtObjectPtr ptr){
+void* QQmlListReference_ListElementType(void* ptr){
 	return const_cast<QMetaObject*>(static_cast<QQmlListReference*>(ptr)->listElementType());
 }
 
-QtObjectPtr QQmlListReference_Object(QtObjectPtr ptr){
+void* QQmlListReference_Object(void* ptr){
 	return static_cast<QQmlListReference*>(ptr)->object();
 }
 

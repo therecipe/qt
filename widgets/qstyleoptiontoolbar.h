@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStyleOptionToolBar_NewQStyleOptionToolBar();
-QtObjectPtr QStyleOptionToolBar_NewQStyleOptionToolBar2(QtObjectPtr other);
+void* QStyleOptionToolBar_NewQStyleOptionToolBar();
+void* QStyleOptionToolBar_NewQStyleOptionToolBar2(void* other);
 
 #ifdef __cplusplus
 }

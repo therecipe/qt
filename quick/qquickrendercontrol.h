@@ -1,22 +1,21 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QQuickRenderControl_NewQQuickRenderControl(QtObjectPtr parent);
-void QQuickRenderControl_Initialize(QtObjectPtr ptr, QtObjectPtr gl);
-void QQuickRenderControl_Invalidate(QtObjectPtr ptr);
-void QQuickRenderControl_PolishItems(QtObjectPtr ptr);
-void QQuickRenderControl_PrepareThread(QtObjectPtr ptr, QtObjectPtr targetThread);
-void QQuickRenderControl_Render(QtObjectPtr ptr);
-void QQuickRenderControl_ConnectRenderRequested(QtObjectPtr ptr);
-void QQuickRenderControl_DisconnectRenderRequested(QtObjectPtr ptr);
-QtObjectPtr QQuickRenderControl_RenderWindow(QtObjectPtr ptr, QtObjectPtr offset);
-QtObjectPtr QQuickRenderControl_QQuickRenderControl_RenderWindowFor(QtObjectPtr win, QtObjectPtr offset);
-void QQuickRenderControl_ConnectSceneChanged(QtObjectPtr ptr);
-void QQuickRenderControl_DisconnectSceneChanged(QtObjectPtr ptr);
-int QQuickRenderControl_Sync(QtObjectPtr ptr);
-void QQuickRenderControl_DestroyQQuickRenderControl(QtObjectPtr ptr);
+void* QQuickRenderControl_NewQQuickRenderControl(void* parent);
+void QQuickRenderControl_Initialize(void* ptr, void* gl);
+void QQuickRenderControl_Invalidate(void* ptr);
+void QQuickRenderControl_PolishItems(void* ptr);
+void QQuickRenderControl_PrepareThread(void* ptr, void* targetThread);
+void QQuickRenderControl_Render(void* ptr);
+void QQuickRenderControl_ConnectRenderRequested(void* ptr);
+void QQuickRenderControl_DisconnectRenderRequested(void* ptr);
+void* QQuickRenderControl_RenderWindow(void* ptr, void* offset);
+void* QQuickRenderControl_QQuickRenderControl_RenderWindowFor(void* win, void* offset);
+void QQuickRenderControl_ConnectSceneChanged(void* ptr);
+void QQuickRenderControl_DisconnectSceneChanged(void* ptr);
+int QQuickRenderControl_Sync(void* ptr);
+void QQuickRenderControl_DestroyQQuickRenderControl(void* ptr);
 
 #ifdef __cplusplus
 }

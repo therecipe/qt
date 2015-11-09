@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
-&{QOpenGLPaintDevice QOpenGLPaintDevice::QOpenGLPaintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non constructor false false   [] }
-&{QOpenGLPaintDevice QOpenGLPaintDevice::QOpenGLPaintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non constructor false true 2  [0xc822abd0e0] }
-&{QOpenGLPaintDevice QOpenGLPaintDevice::QOpenGLPaintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non constructor false true 3  [0xc822abd2a0 0xc822abd320] }
-&{context QOpenGLPaintDevice::context commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  QOpenGLContext * [] }
-&{dotsPerMeterX QOpenGLPaintDevice::dotsPerMeterX commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  qreal [] }
-&{dotsPerMeterY QOpenGLPaintDevice::dotsPerMeterY commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  qreal [] }
-&{ensureActiveTarget QOpenGLPaintDevice::ensureActiveTarget commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h impure plain false false  void [] }
-&{metric QOpenGLPaintDevice::metric commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h impure plain false false  int [0xc822abdc00] }
-&{paintEngine QOpenGLPaintDevice::paintEngine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h impure plain false false  QPaintEngine * [] }
-&{paintFlipped QOpenGLPaintDevice::paintFlipped commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  bool [] }
-&{setDevicePixelRatio QOpenGLPaintDevice::setDevicePixelRatio commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  void [0xc822abdfe0] }
-&{setDotsPerMeterX QOpenGLPaintDevice::setDotsPerMeterX commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  void [0xc822acc140] }
-&{setDotsPerMeterY QOpenGLPaintDevice::setDotsPerMeterY commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  void [0xc822acc2a0] }
-&{setPaintFlipped QOpenGLPaintDevice::setPaintFlipped commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  void [0xc822acc400] }
-&{setSize QOpenGLPaintDevice::setSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  void [0xc822acc620] }
-&{size QOpenGLPaintDevice::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  QSize [] }
-&{~QOpenGLPaintDevice QOpenGLPaintDevice::~QOpenGLPaintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h impure destructor false false   [] }
+&{QOpenGLPaintDevice QOpenGLPaintDevice::QOpenGLPaintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non constructor false false   QOpenGLPaintDevice() [] }
+&{QOpenGLPaintDevice QOpenGLPaintDevice::QOpenGLPaintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non constructor false true 2  QOpenGLPaintDevice(const QSize &size) [0xc822acada0] }
+&{QOpenGLPaintDevice QOpenGLPaintDevice::QOpenGLPaintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non constructor false true 3  QOpenGLPaintDevice(int width, int height) [0xc822acaf60 0xc822acafe0] }
+&{context QOpenGLPaintDevice::context commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  QOpenGLContext * QOpenGLContext * context() const [] }
+&{dotsPerMeterX QOpenGLPaintDevice::dotsPerMeterX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  qreal qreal dotsPerMeterX() const [] }
+&{dotsPerMeterY QOpenGLPaintDevice::dotsPerMeterY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  qreal qreal dotsPerMeterY() const [] }
+&{ensureActiveTarget QOpenGLPaintDevice::ensureActiveTarget commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h impure plain false false  void void ensureActiveTarget() [] }
+&{metric QOpenGLPaintDevice::metric commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h impure plain false false  int int metric(QPaintDevice::PaintDeviceMetric metric) const [0xc822acba00] }
+&{paintEngine QOpenGLPaintDevice::paintEngine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h impure plain false false  QPaintEngine * QPaintEngine * paintEngine() const [] }
+&{paintFlipped QOpenGLPaintDevice::paintFlipped commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  bool bool paintFlipped() const [] }
+&{setDevicePixelRatio QOpenGLPaintDevice::setDevicePixelRatio commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  void void setDevicePixelRatio(qreal devicePixelRatio) [0xc822acbe20] }
+&{setDotsPerMeterX QOpenGLPaintDevice::setDotsPerMeterX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  void void setDotsPerMeterX(qreal dpmx) [0xc822acbf80] }
+&{setDotsPerMeterY QOpenGLPaintDevice::setDotsPerMeterY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  void void setDotsPerMeterY(qreal dpmy) [0xc8226d60e0] }
+&{setPaintFlipped QOpenGLPaintDevice::setPaintFlipped commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  void void setPaintFlipped(bool flipped) [0xc8226d6240] }
+&{setSize QOpenGLPaintDevice::setSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  void void setSize(const QSize &size) [0xc8226d64a0] }
+&{size QOpenGLPaintDevice::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h non plain false false  QSize QSize size() const [] }
+&{~QOpenGLPaintDevice QOpenGLPaintDevice::~QOpenGLPaintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglpaintdevice.h impure destructor false false   ~QOpenGLPaintDevice() [] }
 ########################################			ENUMS			########################################

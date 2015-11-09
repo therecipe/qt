@@ -10,8 +10,8 @@ type QQmlListProperty struct {
 	ptr unsafe.Pointer
 }
 
-type QQmlListPropertyITF interface {
-	QQmlListPropertyPTR() *QQmlListProperty
+type QQmlListProperty_ITF interface {
+	QQmlListProperty_PTR() *QQmlListProperty
 }
 
 func (p *QQmlListProperty) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QQmlListProperty) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQQmlListProperty(ptr QQmlListPropertyITF) unsafe.Pointer {
+func PointerFromQQmlListProperty(ptr QQmlListProperty_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QQmlListPropertyPTR().Pointer()
+		return ptr.QQmlListProperty_PTR().Pointer()
 	}
 	return nil
 }
 
-func QQmlListPropertyFromPointer(ptr unsafe.Pointer) *QQmlListProperty {
+func NewQQmlListPropertyFromPointer(ptr unsafe.Pointer) *QQmlListProperty {
 	var n = new(QQmlListProperty)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QQmlListProperty) QQmlListPropertyPTR() *QQmlListProperty {
+func (ptr *QQmlListProperty) QQmlListProperty_PTR() *QQmlListProperty {
 	return ptr
 }

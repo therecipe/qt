@@ -10,8 +10,8 @@ type QSurface struct {
 	ptr unsafe.Pointer
 }
 
-type QSurfaceITF interface {
-	QSurfacePTR() *QSurface
+type QSurface_ITF interface {
+	QSurface_PTR() *QSurface
 }
 
 func (p *QSurface) Pointer() unsafe.Pointer {
@@ -22,35 +22,35 @@ func (p *QSurface) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSurface(ptr QSurfaceITF) unsafe.Pointer {
+func PointerFromQSurface(ptr QSurface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSurfacePTR().Pointer()
+		return ptr.QSurface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSurfaceFromPointer(ptr unsafe.Pointer) *QSurface {
+func NewQSurfaceFromPointer(ptr unsafe.Pointer) *QSurface {
 	var n = new(QSurface)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSurface) QSurfacePTR() *QSurface {
+func (ptr *QSurface) QSurface_PTR() *QSurface {
 	return ptr
 }
 
 //QSurface::SurfaceClass
-type QSurface__SurfaceClass int
+type QSurface__SurfaceClass int64
 
-var (
+const (
 	QSurface__Window    = QSurface__SurfaceClass(0)
 	QSurface__Offscreen = QSurface__SurfaceClass(1)
 )
 
 //QSurface::SurfaceType
-type QSurface__SurfaceType int
+type QSurface__SurfaceType int64
 
-var (
+const (
 	QSurface__RasterSurface   = QSurface__SurfaceType(0)
 	QSurface__OpenGLSurface   = QSurface__SurfaceType(1)
 	QSurface__RasterGLSurface = QSurface__SurfaceType(2)
@@ -58,27 +58,27 @@ var (
 
 func (ptr *QSurface) SupportsOpenGL() bool {
 	if ptr.Pointer() != nil {
-		return C.QSurface_SupportsOpenGL(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSurface_SupportsOpenGL(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSurface) SurfaceClass() QSurface__SurfaceClass {
 	if ptr.Pointer() != nil {
-		return QSurface__SurfaceClass(C.QSurface_SurfaceClass(C.QtObjectPtr(ptr.Pointer())))
+		return QSurface__SurfaceClass(C.QSurface_SurfaceClass(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSurface) SurfaceType() QSurface__SurfaceType {
 	if ptr.Pointer() != nil {
-		return QSurface__SurfaceType(C.QSurface_SurfaceType(C.QtObjectPtr(ptr.Pointer())))
+		return QSurface__SurfaceType(C.QSurface_SurfaceType(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSurface) DestroyQSurface() {
 	if ptr.Pointer() != nil {
-		C.QSurface_DestroyQSurface(C.QtObjectPtr(ptr.Pointer()))
+		C.QSurface_DestroyQSurface(ptr.Pointer())
 	}
 }

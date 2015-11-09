@@ -1,12 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QLinearGradient_NewQLinearGradient();
-QtObjectPtr QLinearGradient_NewQLinearGradient2(QtObjectPtr start, QtObjectPtr finalStop);
-void QLinearGradient_SetFinalStop(QtObjectPtr ptr, QtObjectPtr stop);
-void QLinearGradient_SetStart(QtObjectPtr ptr, QtObjectPtr start);
+void* QLinearGradient_NewQLinearGradient3(double x1, double y1, double x2, double y2);
+void* QLinearGradient_NewQLinearGradient();
+void* QLinearGradient_NewQLinearGradient2(void* start, void* finalStop);
+void QLinearGradient_SetFinalStop(void* ptr, void* stop);
+void QLinearGradient_SetFinalStop2(void* ptr, double x, double y);
+void QLinearGradient_SetStart(void* ptr, void* start);
+void QLinearGradient_SetStart2(void* ptr, double x, double y);
 
 #ifdef __cplusplus
 }

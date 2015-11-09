@@ -1,35 +1,33 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QWebSocketServer_NewQWebSocketServer(char* serverName, int secureMode, QtObjectPtr parent);
-void QWebSocketServer_ConnectAcceptError(QtObjectPtr ptr);
-void QWebSocketServer_DisconnectAcceptError(QtObjectPtr ptr);
-void QWebSocketServer_Close(QtObjectPtr ptr);
-void QWebSocketServer_ConnectClosed(QtObjectPtr ptr);
-void QWebSocketServer_DisconnectClosed(QtObjectPtr ptr);
-char* QWebSocketServer_ErrorString(QtObjectPtr ptr);
-int QWebSocketServer_HasPendingConnections(QtObjectPtr ptr);
-int QWebSocketServer_IsListening(QtObjectPtr ptr);
-int QWebSocketServer_MaxPendingConnections(QtObjectPtr ptr);
-void QWebSocketServer_ConnectNewConnection(QtObjectPtr ptr);
-void QWebSocketServer_DisconnectNewConnection(QtObjectPtr ptr);
-QtObjectPtr QWebSocketServer_NextPendingConnection(QtObjectPtr ptr);
-void QWebSocketServer_ConnectOriginAuthenticationRequired(QtObjectPtr ptr);
-void QWebSocketServer_DisconnectOriginAuthenticationRequired(QtObjectPtr ptr);
-void QWebSocketServer_PauseAccepting(QtObjectPtr ptr);
-void QWebSocketServer_ResumeAccepting(QtObjectPtr ptr);
-int QWebSocketServer_SecureMode(QtObjectPtr ptr);
-char* QWebSocketServer_ServerName(QtObjectPtr ptr);
-char* QWebSocketServer_ServerUrl(QtObjectPtr ptr);
-void QWebSocketServer_SetMaxPendingConnections(QtObjectPtr ptr, int numConnections);
-void QWebSocketServer_SetProxy(QtObjectPtr ptr, QtObjectPtr networkProxy);
-void QWebSocketServer_SetServerName(QtObjectPtr ptr, char* serverName);
-int QWebSocketServer_SetSocketDescriptor(QtObjectPtr ptr, int socketDescriptor);
-void QWebSocketServer_SetSslConfiguration(QtObjectPtr ptr, QtObjectPtr sslConfiguration);
-int QWebSocketServer_SocketDescriptor(QtObjectPtr ptr);
-void QWebSocketServer_DestroyQWebSocketServer(QtObjectPtr ptr);
+void* QWebSocketServer_NewQWebSocketServer(char* serverName, int secureMode, void* parent);
+void QWebSocketServer_ConnectAcceptError(void* ptr);
+void QWebSocketServer_DisconnectAcceptError(void* ptr);
+void QWebSocketServer_Close(void* ptr);
+void QWebSocketServer_ConnectClosed(void* ptr);
+void QWebSocketServer_DisconnectClosed(void* ptr);
+char* QWebSocketServer_ErrorString(void* ptr);
+int QWebSocketServer_HasPendingConnections(void* ptr);
+int QWebSocketServer_IsListening(void* ptr);
+int QWebSocketServer_MaxPendingConnections(void* ptr);
+void QWebSocketServer_ConnectNewConnection(void* ptr);
+void QWebSocketServer_DisconnectNewConnection(void* ptr);
+void* QWebSocketServer_NextPendingConnection(void* ptr);
+void QWebSocketServer_ConnectOriginAuthenticationRequired(void* ptr);
+void QWebSocketServer_DisconnectOriginAuthenticationRequired(void* ptr);
+void QWebSocketServer_PauseAccepting(void* ptr);
+void QWebSocketServer_ResumeAccepting(void* ptr);
+int QWebSocketServer_SecureMode(void* ptr);
+char* QWebSocketServer_ServerName(void* ptr);
+void QWebSocketServer_SetMaxPendingConnections(void* ptr, int numConnections);
+void QWebSocketServer_SetProxy(void* ptr, void* networkProxy);
+void QWebSocketServer_SetServerName(void* ptr, char* serverName);
+int QWebSocketServer_SetSocketDescriptor(void* ptr, int socketDescriptor);
+void QWebSocketServer_SetSslConfiguration(void* ptr, void* sslConfiguration);
+int QWebSocketServer_SocketDescriptor(void* ptr);
+void QWebSocketServer_DestroyQWebSocketServer(void* ptr);
 
 #ifdef __cplusplus
 }

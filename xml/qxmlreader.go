@@ -11,8 +11,8 @@ type QXmlReader struct {
 	ptr unsafe.Pointer
 }
 
-type QXmlReaderITF interface {
-	QXmlReaderPTR() *QXmlReader
+type QXmlReader_ITF interface {
+	QXmlReader_PTR() *QXmlReader
 }
 
 func (p *QXmlReader) Pointer() unsafe.Pointer {
@@ -23,143 +23,144 @@ func (p *QXmlReader) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQXmlReader(ptr QXmlReaderITF) unsafe.Pointer {
+func PointerFromQXmlReader(ptr QXmlReader_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QXmlReaderPTR().Pointer()
+		return ptr.QXmlReader_PTR().Pointer()
 	}
 	return nil
 }
 
-func QXmlReaderFromPointer(ptr unsafe.Pointer) *QXmlReader {
+func NewQXmlReaderFromPointer(ptr unsafe.Pointer) *QXmlReader {
 	var n = new(QXmlReader)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QXmlReader) QXmlReaderPTR() *QXmlReader {
+func (ptr *QXmlReader) QXmlReader_PTR() *QXmlReader {
 	return ptr
 }
 
 func (ptr *QXmlReader) DTDHandler() *QXmlDTDHandler {
 	if ptr.Pointer() != nil {
-		return QXmlDTDHandlerFromPointer(unsafe.Pointer(C.QXmlReader_DTDHandler(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQXmlDTDHandlerFromPointer(C.QXmlReader_DTDHandler(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QXmlReader) ContentHandler() *QXmlContentHandler {
 	if ptr.Pointer() != nil {
-		return QXmlContentHandlerFromPointer(unsafe.Pointer(C.QXmlReader_ContentHandler(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQXmlContentHandlerFromPointer(C.QXmlReader_ContentHandler(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QXmlReader) DeclHandler() *QXmlDeclHandler {
 	if ptr.Pointer() != nil {
-		return QXmlDeclHandlerFromPointer(unsafe.Pointer(C.QXmlReader_DeclHandler(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQXmlDeclHandlerFromPointer(C.QXmlReader_DeclHandler(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QXmlReader) EntityResolver() *QXmlEntityResolver {
 	if ptr.Pointer() != nil {
-		return QXmlEntityResolverFromPointer(unsafe.Pointer(C.QXmlReader_EntityResolver(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQXmlEntityResolverFromPointer(C.QXmlReader_EntityResolver(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QXmlReader) ErrorHandler() *QXmlErrorHandler {
 	if ptr.Pointer() != nil {
-		return QXmlErrorHandlerFromPointer(unsafe.Pointer(C.QXmlReader_ErrorHandler(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQXmlErrorHandlerFromPointer(C.QXmlReader_ErrorHandler(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QXmlReader) Feature(name string, ok bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlReader_Feature(C.QtObjectPtr(ptr.Pointer()), C.CString(name), C.int(qt.GoBoolToInt(ok))) != 0
+		return C.QXmlReader_Feature(ptr.Pointer(), C.CString(name), C.int(qt.GoBoolToInt(ok))) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlReader) HasFeature(name string) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlReader_HasFeature(C.QtObjectPtr(ptr.Pointer()), C.CString(name)) != 0
+		return C.QXmlReader_HasFeature(ptr.Pointer(), C.CString(name)) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlReader) HasProperty(name string) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlReader_HasProperty(C.QtObjectPtr(ptr.Pointer()), C.CString(name)) != 0
+		return C.QXmlReader_HasProperty(ptr.Pointer(), C.CString(name)) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlReader) LexicalHandler() *QXmlLexicalHandler {
 	if ptr.Pointer() != nil {
-		return QXmlLexicalHandlerFromPointer(unsafe.Pointer(C.QXmlReader_LexicalHandler(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQXmlLexicalHandlerFromPointer(C.QXmlReader_LexicalHandler(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QXmlReader) Parse(input QXmlInputSourceITF) bool {
+func (ptr *QXmlReader) Parse(input QXmlInputSource_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlReader_Parse(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlInputSource(input))) != 0
+		return C.QXmlReader_Parse(ptr.Pointer(), PointerFromQXmlInputSource(input)) != 0
 	}
 	return false
 }
 
-func (ptr *QXmlReader) Property(name string, ok bool) {
+func (ptr *QXmlReader) Property(name string, ok bool) unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		C.QXmlReader_Property(C.QtObjectPtr(ptr.Pointer()), C.CString(name), C.int(qt.GoBoolToInt(ok)))
+		return unsafe.Pointer(C.QXmlReader_Property(ptr.Pointer(), C.CString(name), C.int(qt.GoBoolToInt(ok))))
+	}
+	return nil
+}
+
+func (ptr *QXmlReader) SetContentHandler(handler QXmlContentHandler_ITF) {
+	if ptr.Pointer() != nil {
+		C.QXmlReader_SetContentHandler(ptr.Pointer(), PointerFromQXmlContentHandler(handler))
 	}
 }
 
-func (ptr *QXmlReader) SetContentHandler(handler QXmlContentHandlerITF) {
+func (ptr *QXmlReader) SetDTDHandler(handler QXmlDTDHandler_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlReader_SetContentHandler(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlContentHandler(handler)))
+		C.QXmlReader_SetDTDHandler(ptr.Pointer(), PointerFromQXmlDTDHandler(handler))
 	}
 }
 
-func (ptr *QXmlReader) SetDTDHandler(handler QXmlDTDHandlerITF) {
+func (ptr *QXmlReader) SetDeclHandler(handler QXmlDeclHandler_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlReader_SetDTDHandler(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlDTDHandler(handler)))
+		C.QXmlReader_SetDeclHandler(ptr.Pointer(), PointerFromQXmlDeclHandler(handler))
 	}
 }
 
-func (ptr *QXmlReader) SetDeclHandler(handler QXmlDeclHandlerITF) {
+func (ptr *QXmlReader) SetEntityResolver(handler QXmlEntityResolver_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlReader_SetDeclHandler(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlDeclHandler(handler)))
+		C.QXmlReader_SetEntityResolver(ptr.Pointer(), PointerFromQXmlEntityResolver(handler))
 	}
 }
 
-func (ptr *QXmlReader) SetEntityResolver(handler QXmlEntityResolverITF) {
+func (ptr *QXmlReader) SetErrorHandler(handler QXmlErrorHandler_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlReader_SetEntityResolver(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlEntityResolver(handler)))
-	}
-}
-
-func (ptr *QXmlReader) SetErrorHandler(handler QXmlErrorHandlerITF) {
-	if ptr.Pointer() != nil {
-		C.QXmlReader_SetErrorHandler(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlErrorHandler(handler)))
+		C.QXmlReader_SetErrorHandler(ptr.Pointer(), PointerFromQXmlErrorHandler(handler))
 	}
 }
 
 func (ptr *QXmlReader) SetFeature(name string, value bool) {
 	if ptr.Pointer() != nil {
-		C.QXmlReader_SetFeature(C.QtObjectPtr(ptr.Pointer()), C.CString(name), C.int(qt.GoBoolToInt(value)))
+		C.QXmlReader_SetFeature(ptr.Pointer(), C.CString(name), C.int(qt.GoBoolToInt(value)))
 	}
 }
 
-func (ptr *QXmlReader) SetLexicalHandler(handler QXmlLexicalHandlerITF) {
+func (ptr *QXmlReader) SetLexicalHandler(handler QXmlLexicalHandler_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlReader_SetLexicalHandler(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlLexicalHandler(handler)))
+		C.QXmlReader_SetLexicalHandler(ptr.Pointer(), PointerFromQXmlLexicalHandler(handler))
 	}
 }
 
 func (ptr *QXmlReader) DestroyQXmlReader() {
 	if ptr.Pointer() != nil {
-		C.QXmlReader_DestroyQXmlReader(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlReader_DestroyQXmlReader(ptr.Pointer())
 	}
 }

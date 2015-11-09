@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QCameraViewfinder_NewQCameraViewfinder(QtObjectPtr parent);
-QtObjectPtr QCameraViewfinder_MediaObject(QtObjectPtr ptr);
-void QCameraViewfinder_DestroyQCameraViewfinder(QtObjectPtr ptr);
+void* QCameraViewfinder_NewQCameraViewfinder(void* parent);
+void* QCameraViewfinder_MediaObject(void* ptr);
+void QCameraViewfinder_DestroyQCameraViewfinder(void* ptr);
 
 #ifdef __cplusplus
 }

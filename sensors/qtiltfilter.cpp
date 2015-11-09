@@ -11,7 +11,7 @@ class MyQTiltFilter: public QTiltFilter {
 public:
 };
 
-int QTiltFilter_Filter(QtObjectPtr ptr, QtObjectPtr reading){
+int QTiltFilter_Filter(void* ptr, void* reading){
 	return static_cast<QTiltFilter*>(ptr)->filter(static_cast<QTiltReading*>(reading));
 }
 

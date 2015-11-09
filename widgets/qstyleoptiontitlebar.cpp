@@ -1,10 +1,10 @@
 #include "qstyleoptiontitlebar.h"
-#include <QModelIndex>
-#include <QStyleOption>
-#include <QStyle>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QStyle>
+#include <QStyleOption>
 #include <QStyleOptionTitleBar>
 #include "_cgo_export.h"
 
@@ -12,11 +12,11 @@ class MyQStyleOptionTitleBar: public QStyleOptionTitleBar {
 public:
 };
 
-QtObjectPtr QStyleOptionTitleBar_NewQStyleOptionTitleBar(){
+void* QStyleOptionTitleBar_NewQStyleOptionTitleBar(){
 	return new QStyleOptionTitleBar();
 }
 
-QtObjectPtr QStyleOptionTitleBar_NewQStyleOptionTitleBar2(QtObjectPtr other){
+void* QStyleOptionTitleBar_NewQStyleOptionTitleBar2(void* other){
 	return new QStyleOptionTitleBar(*static_cast<QStyleOptionTitleBar*>(other));
 }
 

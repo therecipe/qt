@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
-&{QConicalGradient QConicalGradient::QConicalGradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false false   [] }
-&{QConicalGradient QConicalGradient::QConicalGradient commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 2  [0xc822518ca0 0xc822518d20] }
-&{QConicalGradient QConicalGradient::QConicalGradient commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 3  [0xc822518e60 0xc822518ee0 0xc822518f60] }
-&{angle QConicalGradient::angle commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  qreal [] }
-&{center QConicalGradient::center commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  QPointF [] }
-&{setAngle QConicalGradient::setAngle commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc822519360] }
-&{setCenter QConicalGradient::setCenter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void [0xc822519520] }
-&{setCenter QConicalGradient::setCenter commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false true 2 void [0xc8225196e0 0xc822519760] }
+&{QConicalGradient QConicalGradient::QConicalGradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false false   QConicalGradient() [] }
+&{QConicalGradient QConicalGradient::QConicalGradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 2  QConicalGradient(const QPointF &center, qreal angle) [0xc821d4a3a0 0xc821d4a420] }
+&{QConicalGradient QConicalGradient::QConicalGradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 3  QConicalGradient(qreal cx, qreal cy, qreal angle) [0xc821d4a560 0xc821d4a5e0 0xc821d4a660] }
+&{angle QConicalGradient::angle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  qreal qreal angle() const [] }
+&{center QConicalGradient::center commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  QPointF QPointF center() const [] }
+&{setAngle QConicalGradient::setAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void void setAngle(qreal angle) [0xc821d4ab20] }
+&{setCenter QConicalGradient::setCenter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void void setCenter(const QPointF &center) [0xc821d4ace0] }
+&{setCenter QConicalGradient::setCenter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false true 2 void void setCenter(qreal x, qreal y) [0xc821d4aee0 0xc821d4af60] }
 ########################################			ENUMS			########################################

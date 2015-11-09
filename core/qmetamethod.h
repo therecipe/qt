@@ -1,20 +1,21 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QMetaMethod_Access(QtObjectPtr ptr);
-int QMetaMethod_Invoke4(QtObjectPtr ptr, QtObjectPtr object, QtObjectPtr val0, QtObjectPtr val1, QtObjectPtr val2, QtObjectPtr val3, QtObjectPtr val4, QtObjectPtr val5, QtObjectPtr val6, QtObjectPtr val7, QtObjectPtr val8, QtObjectPtr val9);
-int QMetaMethod_Invoke2(QtObjectPtr ptr, QtObjectPtr object, QtObjectPtr returnValue, QtObjectPtr val0, QtObjectPtr val1, QtObjectPtr val2, QtObjectPtr val3, QtObjectPtr val4, QtObjectPtr val5, QtObjectPtr val6, QtObjectPtr val7, QtObjectPtr val8, QtObjectPtr val9);
-int QMetaMethod_Invoke3(QtObjectPtr ptr, QtObjectPtr object, int connectionType, QtObjectPtr val0, QtObjectPtr val1, QtObjectPtr val2, QtObjectPtr val3, QtObjectPtr val4, QtObjectPtr val5, QtObjectPtr val6, QtObjectPtr val7, QtObjectPtr val8, QtObjectPtr val9);
-int QMetaMethod_Invoke(QtObjectPtr ptr, QtObjectPtr object, int connectionType, QtObjectPtr returnValue, QtObjectPtr val0, QtObjectPtr val1, QtObjectPtr val2, QtObjectPtr val3, QtObjectPtr val4, QtObjectPtr val5, QtObjectPtr val6, QtObjectPtr val7, QtObjectPtr val8, QtObjectPtr val9);
-int QMetaMethod_IsValid(QtObjectPtr ptr);
-int QMetaMethod_MethodIndex(QtObjectPtr ptr);
-int QMetaMethod_MethodType(QtObjectPtr ptr);
-int QMetaMethod_ParameterCount(QtObjectPtr ptr);
-int QMetaMethod_ParameterType(QtObjectPtr ptr, int index);
-int QMetaMethod_ReturnType(QtObjectPtr ptr);
-int QMetaMethod_Revision(QtObjectPtr ptr);
+int QMetaMethod_Access(void* ptr);
+int QMetaMethod_Invoke4(void* ptr, void* object, void* val0, void* val1, void* val2, void* val3, void* val4, void* val5, void* val6, void* val7, void* val8, void* val9);
+int QMetaMethod_Invoke2(void* ptr, void* object, void* returnValue, void* val0, void* val1, void* val2, void* val3, void* val4, void* val5, void* val6, void* val7, void* val8, void* val9);
+int QMetaMethod_Invoke3(void* ptr, void* object, int connectionType, void* val0, void* val1, void* val2, void* val3, void* val4, void* val5, void* val6, void* val7, void* val8, void* val9);
+int QMetaMethod_Invoke(void* ptr, void* object, int connectionType, void* returnValue, void* val0, void* val1, void* val2, void* val3, void* val4, void* val5, void* val6, void* val7, void* val8, void* val9);
+int QMetaMethod_IsValid(void* ptr);
+int QMetaMethod_MethodIndex(void* ptr);
+void* QMetaMethod_MethodSignature(void* ptr);
+int QMetaMethod_MethodType(void* ptr);
+void* QMetaMethod_Name(void* ptr);
+int QMetaMethod_ParameterCount(void* ptr);
+int QMetaMethod_ParameterType(void* ptr, int index);
+int QMetaMethod_ReturnType(void* ptr);
+int QMetaMethod_Revision(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -10,24 +10,24 @@ type QStandardItemEditorCreator struct {
 	QItemEditorCreatorBase
 }
 
-type QStandardItemEditorCreatorITF interface {
-	QItemEditorCreatorBaseITF
-	QStandardItemEditorCreatorPTR() *QStandardItemEditorCreator
+type QStandardItemEditorCreator_ITF interface {
+	QItemEditorCreatorBase_ITF
+	QStandardItemEditorCreator_PTR() *QStandardItemEditorCreator
 }
 
-func PointerFromQStandardItemEditorCreator(ptr QStandardItemEditorCreatorITF) unsafe.Pointer {
+func PointerFromQStandardItemEditorCreator(ptr QStandardItemEditorCreator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStandardItemEditorCreatorPTR().Pointer()
+		return ptr.QStandardItemEditorCreator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStandardItemEditorCreatorFromPointer(ptr unsafe.Pointer) *QStandardItemEditorCreator {
+func NewQStandardItemEditorCreatorFromPointer(ptr unsafe.Pointer) *QStandardItemEditorCreator {
 	var n = new(QStandardItemEditorCreator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStandardItemEditorCreator) QStandardItemEditorCreatorPTR() *QStandardItemEditorCreator {
+func (ptr *QStandardItemEditorCreator) QStandardItemEditorCreator_PTR() *QStandardItemEditorCreator {
 	return ptr
 }

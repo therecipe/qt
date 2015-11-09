@@ -10,8 +10,8 @@ type QSysInfo struct {
 	ptr unsafe.Pointer
 }
 
-type QSysInfoITF interface {
-	QSysInfoPTR() *QSysInfo
+type QSysInfo_ITF interface {
+	QSysInfo_PTR() *QSysInfo
 }
 
 func (p *QSysInfo) Pointer() unsafe.Pointer {
@@ -22,33 +22,33 @@ func (p *QSysInfo) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSysInfo(ptr QSysInfoITF) unsafe.Pointer {
+func PointerFromQSysInfo(ptr QSysInfo_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSysInfoPTR().Pointer()
+		return ptr.QSysInfo_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSysInfoFromPointer(ptr unsafe.Pointer) *QSysInfo {
+func NewQSysInfoFromPointer(ptr unsafe.Pointer) *QSysInfo {
 	var n = new(QSysInfo)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSysInfo) QSysInfoPTR() *QSysInfo {
+func (ptr *QSysInfo) QSysInfo_PTR() *QSysInfo {
 	return ptr
 }
 
 //QSysInfo::Endian
-type QSysInfo__Endian int
+type QSysInfo__Endian int64
 
-var (
+const (
 	QSysInfo__BigEndian    = QSysInfo__Endian(0)
 	QSysInfo__LittleEndian = QSysInfo__Endian(1)
 )
 
 //QSysInfo::MacVersion
-type QSysInfo__MacVersion int
+type QSysInfo__MacVersion int64
 
 var (
 	QSysInfo__MV_None         = QSysInfo__MacVersion(0xffff)
@@ -95,16 +95,16 @@ var (
 )
 
 //QSysInfo::Sizes
-type QSysInfo__Sizes int
+type QSysInfo__Sizes int64
 
 var (
 	QSysInfo__WordSize = QSysInfo__Sizes(C.QSysInfo_WordSize_Type())
 )
 
 //QSysInfo::WinVersion
-type QSysInfo__WinVersion int
+type QSysInfo__WinVersion int64
 
-var (
+const (
 	QSysInfo__WV_None       = QSysInfo__WinVersion(0x0000)
 	QSysInfo__WV_32s        = QSysInfo__WinVersion(0x0001)
 	QSysInfo__WV_95         = QSysInfo__WinVersion(0x0002)

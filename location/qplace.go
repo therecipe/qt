@@ -10,8 +10,8 @@ type QPlace struct {
 	ptr unsafe.Pointer
 }
 
-type QPlaceITF interface {
-	QPlacePTR() *QPlace
+type QPlace_ITF interface {
+	QPlace_PTR() *QPlace
 }
 
 func (p *QPlace) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QPlace) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPlace(ptr QPlaceITF) unsafe.Pointer {
+func PointerFromQPlace(ptr QPlace_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlacePTR().Pointer()
+		return ptr.QPlace_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceFromPointer(ptr unsafe.Pointer) *QPlace {
+func NewQPlaceFromPointer(ptr unsafe.Pointer) *QPlace {
 	var n = new(QPlace)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPlace) QPlacePTR() *QPlace {
+func (ptr *QPlace) QPlace_PTR() *QPlace {
 	return ptr
 }

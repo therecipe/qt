@@ -1,26 +1,26 @@
 ########################################			FUNCTIONS			########################################
-&{QFlags QFlags::QFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 2  [0xc8201a4360] }
-&{QFlags QFlags::QFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 4  [0xc8201a44e0] }
-&{QFlags QFlags::QFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 3  [0xc8201a4660] }
-&{QFlags QFlags::QFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false false   [0xc8201a47e0] }
-&{QFlags QFlags::QFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 5  [0xc8201a4980] }
-&{operator Int QFlags::operator Int commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false   [] }
-&{operator! QFlags::operator! commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  bool [] }
-&{operator& QFlags::operator& commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 3 QFlags [0xc8201a5180] }
-&{operator& QFlags::operator& commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags [0xc8201a5360] }
-&{operator& QFlags::operator& commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 2 QFlags [0xc8201a5520] }
-&{operator&= QFlags::operator&= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 3 QFlags & [0xc8201a5700] }
-&{operator&= QFlags::operator&= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags & [0xc8201a58e0] }
-&{operator&= QFlags::operator&= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 2 QFlags & [0xc8201a5ac0] }
-&{operator= QFlags::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags & [0xc8201a5c80] }
-&{operator^ QFlags::operator^ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 2 QFlags [0xc8201a5e60] }
-&{operator^ QFlags::operator^ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags [0xc820162020] }
-&{operator^= QFlags::operator^= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 2 QFlags & [0xc820162280] }
-&{operator^= QFlags::operator^= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags & [0xc8201624a0] }
-&{operator| QFlags::operator| commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 2 QFlags [0xc8201626e0] }
-&{operator| QFlags::operator| commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags [0xc820162940] }
-&{operator|= QFlags::operator|= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 2 QFlags & [0xc820162b60] }
-&{operator|= QFlags::operator|= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags & [0xc820162da0] }
-&{operator~ QFlags::operator~ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags [] }
-&{testFlag QFlags::testFlag commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  bool [0xc8201630e0] }
+&{QFlags QFlags::QFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 2  QFlags(Enum flag) [0xc82000e5c0] }
+&{QFlags QFlags::QFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 4  QFlags(QFlag value) [0xc82000e780] }
+&{QFlags QFlags::QFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 3  QFlags(Zero zero) [0xc82000e940] }
+&{QFlags QFlags::QFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false false   QFlags(const QFlags &other) [0xc82000eb00] }
+&{QFlags QFlags::QFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 5  QFlags(std::initializer_list<Enum> flags) [0xc82000eca0] }
+&{operator Int QFlags::operator Int commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false   operator Int() const [] }
+&{operator! QFlags::operator! commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  bool bool operator!() const [] }
+&{operator& QFlags::operator& commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 3 QFlags QFlags operator&(Enum mask) const [0xc82000f560] }
+&{operator& QFlags::operator& commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags QFlags operator&(int mask) const [0xc82000f7e0] }
+&{operator& QFlags::operator& commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 2 QFlags QFlags operator&(uint mask) const [0xc82000f9e0] }
+&{operator&= QFlags::operator&= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 3 QFlags & QFlags & operator&=(Enum mask) [0xc82000fc80] }
+&{operator&= QFlags::operator&= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags & QFlags & operator&=(int mask) [0xc82000ff00] }
+&{operator&= QFlags::operator&= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 2 QFlags & QFlags & operator&=(uint mask) [0xc8201701a0] }
+&{operator= QFlags::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags & QFlags & operator=(const QFlags &other) [0xc8201703a0] }
+&{operator^ QFlags::operator^ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 2 QFlags QFlags operator^(Enum other) const [0xc8201705a0] }
+&{operator^ QFlags::operator^ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags QFlags operator^(QFlags other) const [0xc820170760] }
+&{operator^= QFlags::operator^= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 2 QFlags & QFlags & operator^=(Enum other) [0xc820170980] }
+&{operator^= QFlags::operator^= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags & QFlags & operator^=(QFlags other) [0xc820170b40] }
+&{operator| QFlags::operator| commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 2 QFlags QFlags operator|(Enum other) const [0xc820170d00] }
+&{operator| QFlags::operator| commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags QFlags operator|(QFlags other) const [0xc820170ec0] }
+&{operator|= QFlags::operator|= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false true 2 QFlags & QFlags & operator|=(Enum other) [0xc8201710e0] }
+&{operator|= QFlags::operator|= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags & QFlags & operator|=(QFlags other) [0xc8201712a0] }
+&{operator~ QFlags::operator~ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  QFlags QFlags operator~() const [] }
+&{testFlag QFlags::testFlag commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false  bool bool testFlag(Enum flag) const [0xc8201715a0] }
 ########################################			ENUMS			########################################

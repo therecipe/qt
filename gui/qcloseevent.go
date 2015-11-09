@@ -11,28 +11,28 @@ type QCloseEvent struct {
 	core.QEvent
 }
 
-type QCloseEventITF interface {
-	core.QEventITF
-	QCloseEventPTR() *QCloseEvent
+type QCloseEvent_ITF interface {
+	core.QEvent_ITF
+	QCloseEvent_PTR() *QCloseEvent
 }
 
-func PointerFromQCloseEvent(ptr QCloseEventITF) unsafe.Pointer {
+func PointerFromQCloseEvent(ptr QCloseEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCloseEventPTR().Pointer()
+		return ptr.QCloseEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCloseEventFromPointer(ptr unsafe.Pointer) *QCloseEvent {
+func NewQCloseEventFromPointer(ptr unsafe.Pointer) *QCloseEvent {
 	var n = new(QCloseEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QCloseEvent) QCloseEventPTR() *QCloseEvent {
+func (ptr *QCloseEvent) QCloseEvent_PTR() *QCloseEvent {
 	return ptr
 }
 
 func NewQCloseEvent() *QCloseEvent {
-	return QCloseEventFromPointer(unsafe.Pointer(C.QCloseEvent_NewQCloseEvent()))
+	return NewQCloseEventFromPointer(C.QCloseEvent_NewQCloseEvent())
 }

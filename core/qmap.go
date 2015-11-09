@@ -10,8 +10,8 @@ type QMap struct {
 	ptr unsafe.Pointer
 }
 
-type QMapITF interface {
-	QMapPTR() *QMap
+type QMap_ITF interface {
+	QMap_PTR() *QMap
 }
 
 func (p *QMap) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QMap) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMap(ptr QMapITF) unsafe.Pointer {
+func PointerFromQMap(ptr QMap_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMapPTR().Pointer()
+		return ptr.QMap_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMapFromPointer(ptr unsafe.Pointer) *QMap {
+func NewQMapFromPointer(ptr unsafe.Pointer) *QMap {
 	var n = new(QMap)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMap) QMapPTR() *QMap {
+func (ptr *QMap) QMap_PTR() *QMap {
 	return ptr
 }

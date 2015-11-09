@@ -11,7 +11,7 @@ class MyQDistanceFilter: public QDistanceFilter {
 public:
 };
 
-int QDistanceFilter_Filter(QtObjectPtr ptr, QtObjectPtr reading){
+int QDistanceFilter_Filter(void* ptr, void* reading){
 	return static_cast<QDistanceFilter*>(ptr)->filter(static_cast<QDistanceReading*>(reading));
 }
 

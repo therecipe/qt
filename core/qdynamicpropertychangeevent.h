@@ -1,9 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(QtObjectPtr name);
+void* QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(void* name);
+void* QDynamicPropertyChangeEvent_PropertyName(void* ptr);
 
 #ifdef __cplusplus
 }

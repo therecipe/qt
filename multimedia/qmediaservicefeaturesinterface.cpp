@@ -11,7 +11,7 @@ class MyQMediaServiceFeaturesInterface: public QMediaServiceFeaturesInterface {
 public:
 };
 
-void QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(QtObjectPtr ptr){
+void QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(void* ptr){
 	static_cast<QMediaServiceFeaturesInterface*>(ptr)->~QMediaServiceFeaturesInterface();
 }
 

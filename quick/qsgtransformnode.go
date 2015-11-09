@@ -11,40 +11,40 @@ type QSGTransformNode struct {
 	QSGNode
 }
 
-type QSGTransformNodeITF interface {
-	QSGNodeITF
-	QSGTransformNodePTR() *QSGTransformNode
+type QSGTransformNode_ITF interface {
+	QSGNode_ITF
+	QSGTransformNode_PTR() *QSGTransformNode
 }
 
-func PointerFromQSGTransformNode(ptr QSGTransformNodeITF) unsafe.Pointer {
+func PointerFromQSGTransformNode(ptr QSGTransformNode_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSGTransformNodePTR().Pointer()
+		return ptr.QSGTransformNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSGTransformNodeFromPointer(ptr unsafe.Pointer) *QSGTransformNode {
+func NewQSGTransformNodeFromPointer(ptr unsafe.Pointer) *QSGTransformNode {
 	var n = new(QSGTransformNode)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSGTransformNode) QSGTransformNodePTR() *QSGTransformNode {
+func (ptr *QSGTransformNode) QSGTransformNode_PTR() *QSGTransformNode {
 	return ptr
 }
 
 func NewQSGTransformNode() *QSGTransformNode {
-	return QSGTransformNodeFromPointer(unsafe.Pointer(C.QSGTransformNode_NewQSGTransformNode()))
+	return NewQSGTransformNodeFromPointer(C.QSGTransformNode_NewQSGTransformNode())
 }
 
-func (ptr *QSGTransformNode) SetMatrix(matrix gui.QMatrix4x4ITF) {
+func (ptr *QSGTransformNode) SetMatrix(matrix gui.QMatrix4x4_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSGTransformNode_SetMatrix(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQMatrix4x4(matrix)))
+		C.QSGTransformNode_SetMatrix(ptr.Pointer(), gui.PointerFromQMatrix4x4(matrix))
 	}
 }
 
 func (ptr *QSGTransformNode) DestroyQSGTransformNode() {
 	if ptr.Pointer() != nil {
-		C.QSGTransformNode_DestroyQSGTransformNode(C.QtObjectPtr(ptr.Pointer()))
+		C.QSGTransformNode_DestroyQSGTransformNode(ptr.Pointer())
 	}
 }

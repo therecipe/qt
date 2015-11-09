@@ -10,8 +10,8 @@ type QMutableSetIterator struct {
 	ptr unsafe.Pointer
 }
 
-type QMutableSetIteratorITF interface {
-	QMutableSetIteratorPTR() *QMutableSetIterator
+type QMutableSetIterator_ITF interface {
+	QMutableSetIterator_PTR() *QMutableSetIterator
 }
 
 func (p *QMutableSetIterator) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QMutableSetIterator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMutableSetIterator(ptr QMutableSetIteratorITF) unsafe.Pointer {
+func PointerFromQMutableSetIterator(ptr QMutableSetIterator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMutableSetIteratorPTR().Pointer()
+		return ptr.QMutableSetIterator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMutableSetIteratorFromPointer(ptr unsafe.Pointer) *QMutableSetIterator {
+func NewQMutableSetIteratorFromPointer(ptr unsafe.Pointer) *QMutableSetIterator {
 	var n = new(QMutableSetIterator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMutableSetIterator) QMutableSetIteratorPTR() *QMutableSetIterator {
+func (ptr *QMutableSetIterator) QMutableSetIterator_PTR() *QMutableSetIterator {
 	return ptr
 }

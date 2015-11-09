@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{QOpenGLTimeMonitor QOpenGLTimeMonitor::QOpenGLTimeMonitor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non constructor false false   [0xc8224bcde0] }
-&{create QOpenGLTimeMonitor::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool [] }
-&{destroy QOpenGLTimeMonitor::destroy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void [] }
-&{isCreated QOpenGLTimeMonitor::isCreated commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool [] }
-&{isResultAvailable QOpenGLTimeMonitor::isResultAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool [] }
-&{objectIds QOpenGLTimeMonitor::objectIds commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  QVector<GLuint> [] }
-&{recordSample QOpenGLTimeMonitor::recordSample commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  int [] }
-&{reset QOpenGLTimeMonitor::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void [] }
-&{sampleCount QOpenGLTimeMonitor::sampleCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  int [] }
-&{setSampleCount QOpenGLTimeMonitor::setSampleCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void [0xc8224bd760] }
-&{waitForIntervals QOpenGLTimeMonitor::waitForIntervals commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  QVector<GLuint64> [] }
-&{waitForSamples QOpenGLTimeMonitor::waitForSamples commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  QVector<GLuint64> [] }
-&{~QOpenGLTimeMonitor QOpenGLTimeMonitor::~QOpenGLTimeMonitor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non destructor false false   [] }
+&{QOpenGLTimeMonitor QOpenGLTimeMonitor::QOpenGLTimeMonitor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non constructor false false   QOpenGLTimeMonitor(QObject *parent) [0xc822443a20] }
+&{create QOpenGLTimeMonitor::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool bool create() [] }
+&{destroy QOpenGLTimeMonitor::destroy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void void destroy() [] }
+&{isCreated QOpenGLTimeMonitor::isCreated commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool bool isCreated() const [] }
+&{isResultAvailable QOpenGLTimeMonitor::isResultAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool bool isResultAvailable() const [] }
+&{objectIds QOpenGLTimeMonitor::objectIds commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  QVector<GLuint> QVector<GLuint> objectIds() const [] }
+&{recordSample QOpenGLTimeMonitor::recordSample commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  int int recordSample() [] }
+&{reset QOpenGLTimeMonitor::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void void reset() [] }
+&{sampleCount QOpenGLTimeMonitor::sampleCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  int int sampleCount() const [] }
+&{setSampleCount QOpenGLTimeMonitor::setSampleCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void void setSampleCount(int sampleCount) [0xc8224524a0] }
+&{waitForIntervals QOpenGLTimeMonitor::waitForIntervals commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  QVector<GLuint64> QVector<GLuint64> waitForIntervals() const [] }
+&{waitForSamples QOpenGLTimeMonitor::waitForSamples commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  QVector<GLuint64> QVector<GLuint64> waitForSamples() const [] }
+&{~QOpenGLTimeMonitor QOpenGLTimeMonitor::~QOpenGLTimeMonitor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non destructor false false   ~QOpenGLTimeMonitor() [] }
 ########################################			ENUMS			########################################

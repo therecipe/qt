@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{QWriteLocker QWriteLocker::QWriteLocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non constructor false false   [0xc820716e40] }
-&{readWriteLock QWriteLocker::readWriteLock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  QReadWriteLock * [] }
-&{relock QWriteLocker::relock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  void [] }
-&{unlock QWriteLocker::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  void [] }
-&{~QWriteLocker QWriteLocker::~QWriteLocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non destructor false false   [] }
+&{QWriteLocker QWriteLocker::QWriteLocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non constructor false false   QWriteLocker(QReadWriteLock *lock) [0xc82076a720] }
+&{readWriteLock QWriteLocker::readWriteLock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  QReadWriteLock * QReadWriteLock * readWriteLock() const [] }
+&{relock QWriteLocker::relock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  void void relock() [] }
+&{unlock QWriteLocker::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  void void unlock() [] }
+&{~QWriteLocker QWriteLocker::~QWriteLocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non destructor false false   ~QWriteLocker() [] }
 ########################################			ENUMS			########################################

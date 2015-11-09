@@ -1,7 +1,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
 int QPixmapCache_QPixmapCache_CacheLimit();
 void QPixmapCache_QPixmapCache_Clear();

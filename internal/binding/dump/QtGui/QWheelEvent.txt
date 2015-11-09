@@ -1,18 +1,18 @@
 ########################################			FUNCTIONS			########################################
-&{QWheelEvent QWheelEvent::QWheelEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc8207f97c0 0xc8207f9840 0xc8207f98c0 0xc8207f9940 0xc8207f99e0 0xc8207f9a60 0xc8207f9b00 0xc8207f9bc0] }
-&{QWheelEvent QWheelEvent::QWheelEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 4  [0xc8207f9ea0 0xc8207f9fa0 0xc820740060 0xc820740180 0xc8207402a0 0xc820740380 0xc820740440 0xc820740520 0xc820740660] }
-&{QWheelEvent QWheelEvent::QWheelEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 5  [0xc820740860 0xc820740900 0xc8207409e0 0xc820740a60 0xc820740ba0 0xc820740c20 0xc820740d20 0xc820740e00 0xc820740fa0 0xc820741040] }
-&{angleDelta QWheelEvent::angleDelta commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
-&{buttons QWheelEvent::buttons commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseButtons [] }
-&{globalPos QWheelEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
-&{globalPosF QWheelEvent::globalPosF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
-&{globalX QWheelEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{globalY QWheelEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{phase QWheelEvent::phase commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::ScrollPhase [] }
-&{pixelDelta QWheelEvent::pixelDelta commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
-&{pos QWheelEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
-&{posF QWheelEvent::posF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
-&{source QWheelEvent::source commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseEventSource [] }
-&{x QWheelEvent::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{y QWheelEvent::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{QWheelEvent QWheelEvent::QWheelEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QWheelEvent(const QPointF &pos, const QPointF &globalPos, QPoint pixelDelta, QPoint angleDelta, int qt4Delta, Qt::Orientation qt4Orientation, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers) [0xc8207b83a0 0xc8207b8440 0xc8207b8500 0xc8207b8600 0xc8207b86c0 0xc8207b8780 0xc8207b8820 0xc8207b8900] }
+&{QWheelEvent QWheelEvent::QWheelEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 4  QWheelEvent(const QPointF &pos, const QPointF &globalPos, QPoint pixelDelta, QPoint angleDelta, int qt4Delta, Qt::Orientation qt4Orientation, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, Qt::ScrollPhase phase) [0xc8207b8c00 0xc8207b8c80 0xc8207b8d80 0xc8207b8e80 0xc8207b8f20 0xc8207b9000 0xc8207b90e0 0xc8207b9200 0xc8207b9300] }
+&{QWheelEvent QWheelEvent::QWheelEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 5  QWheelEvent(const QPointF &pos, const QPointF &globalPos, QPoint pixelDelta, QPoint angleDelta, int qt4Delta, Qt::Orientation qt4Orientation, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, Qt::ScrollPhase phase, Qt::MouseEventSource source) [0xc8207b95c0 0xc8207b96a0 0xc8207b9740 0xc8207b97c0 0xc8207b9900 0xc8207b99a0 0xc8207b9a40 0xc8207b9b00 0xc8207b9c80 0xc8207b9d60] }
+&{angleDelta QWheelEvent::angleDelta commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint QPoint angleDelta() const [] }
+&{buttons QWheelEvent::buttons commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseButtons Qt::MouseButtons buttons() const [] }
+&{globalPos QWheelEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint QPoint globalPos() const [] }
+&{globalPosF QWheelEvent::globalPosF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & const QPointF & globalPosF() const [] }
+&{globalX QWheelEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalX() const [] }
+&{globalY QWheelEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalY() const [] }
+&{phase QWheelEvent::phase commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::ScrollPhase Qt::ScrollPhase phase() const [] }
+&{pixelDelta QWheelEvent::pixelDelta commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint QPoint pixelDelta() const [] }
+&{pos QWheelEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint QPoint pos() const [] }
+&{posF QWheelEvent::posF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & const QPointF & posF() const [] }
+&{source QWheelEvent::source commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseEventSource Qt::MouseEventSource source() const [] }
+&{x QWheelEvent::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int x() const [] }
+&{y QWheelEvent::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int y() const [] }
 ########################################			ENUMS			########################################

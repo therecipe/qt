@@ -11,8 +11,8 @@ type QMediaServiceSupportedDevicesInterface struct {
 	ptr unsafe.Pointer
 }
 
-type QMediaServiceSupportedDevicesInterfaceITF interface {
-	QMediaServiceSupportedDevicesInterfacePTR() *QMediaServiceSupportedDevicesInterface
+type QMediaServiceSupportedDevicesInterface_ITF interface {
+	QMediaServiceSupportedDevicesInterface_PTR() *QMediaServiceSupportedDevicesInterface
 }
 
 func (p *QMediaServiceSupportedDevicesInterface) Pointer() unsafe.Pointer {
@@ -23,32 +23,32 @@ func (p *QMediaServiceSupportedDevicesInterface) SetPointer(ptr unsafe.Pointer) 
 	p.ptr = ptr
 }
 
-func PointerFromQMediaServiceSupportedDevicesInterface(ptr QMediaServiceSupportedDevicesInterfaceITF) unsafe.Pointer {
+func PointerFromQMediaServiceSupportedDevicesInterface(ptr QMediaServiceSupportedDevicesInterface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceSupportedDevicesInterfacePTR().Pointer()
+		return ptr.QMediaServiceSupportedDevicesInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaServiceSupportedDevicesInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceSupportedDevicesInterface {
+func NewQMediaServiceSupportedDevicesInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceSupportedDevicesInterface {
 	var n = new(QMediaServiceSupportedDevicesInterface)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMediaServiceSupportedDevicesInterface) QMediaServiceSupportedDevicesInterfacePTR() *QMediaServiceSupportedDevicesInterface {
+func (ptr *QMediaServiceSupportedDevicesInterface) QMediaServiceSupportedDevicesInterface_PTR() *QMediaServiceSupportedDevicesInterface {
 	return ptr
 }
 
-func (ptr *QMediaServiceSupportedDevicesInterface) DeviceDescription(service core.QByteArrayITF, device core.QByteArrayITF) string {
+func (ptr *QMediaServiceSupportedDevicesInterface) DeviceDescription(service core.QByteArray_ITF, device core.QByteArray_ITF) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMediaServiceSupportedDevicesInterface_DeviceDescription(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(service)), C.QtObjectPtr(core.PointerFromQByteArray(device))))
+		return C.GoString(C.QMediaServiceSupportedDevicesInterface_DeviceDescription(ptr.Pointer(), core.PointerFromQByteArray(service), core.PointerFromQByteArray(device)))
 	}
 	return ""
 }
 
 func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupportedDevicesInterface() {
 	if ptr.Pointer() != nil {
-		C.QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(ptr.Pointer())
 	}
 }

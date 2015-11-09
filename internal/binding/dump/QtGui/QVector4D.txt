@@ -1,39 +1,39 @@
 ########################################			FUNCTIONS			########################################
-&{QVector4D QVector4D::QVector4D commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false false   [] }
-&{QVector4D QVector4D::QVector4D commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 4  [0xc820a0aa40] }
-&{QVector4D QVector4D::QVector4D commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 5  [0xc820a0ac20] }
-&{QVector4D QVector4D::QVector4D commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 6  [0xc820a0ae00] }
-&{QVector4D QVector4D::QVector4D commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 7  [0xc820a0b040 0xc820a0b100 0xc820a0b180] }
-&{QVector4D QVector4D::QVector4D commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 8  [0xc820a0b360] }
-&{QVector4D QVector4D::QVector4D commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 9  [0xc820a0b580 0xc820a0b640] }
-&{QVector4D QVector4D::QVector4D commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 3  [0xc820a0b800 0xc820a0b880 0xc820a0b900 0xc820a0b980] }
-&{dotProduct QVector4D::dotProduct commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain true false  float [0xc820a0bdc0 0xc820a0bea0] }
-&{isNull QVector4D::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  bool [] }
-&{length QVector4D::length commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float [] }
-&{lengthSquared QVector4D::lengthSquared commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float [] }
-&{normalize QVector4D::normalize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  void [] }
-&{normalized QVector4D::normalized commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector4D [] }
-&{operator QVariant QVector4D::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false   [] }
-&{operator*= QVector4D::operator*= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false true 2 QVector4D & [0xc8201f4c40] }
-&{operator*= QVector4D::operator*= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector4D & [0xc8201f5020] }
-&{operator+= QVector4D::operator+= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector4D & [0xc8201f52e0] }
-&{operator-= QVector4D::operator-= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector4D & [0xc8201f56c0] }
-&{operator/= QVector4D::operator/= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false true 2 QVector4D & [0xc8201f5b60] }
-&{operator/= QVector4D::operator/= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector4D & [0xc8201f5fa0] }
-&{operator[] QVector4D::operator[] commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float & [0xc8201dc420] }
-&{operator[] QVector4D::operator[] commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false true 2 float [0xc8201dc900] }
-&{setW QVector4D::setW commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  void [0xc8201dcbc0] }
-&{setX QVector4D::setX commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  void [0xc8201dcf40] }
-&{setY QVector4D::setY commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  void [0xc8201dd240] }
-&{setZ QVector4D::setZ commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  void [0xc8201dd5e0] }
-&{toPoint QVector4D::toPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QPoint [] }
-&{toPointF QVector4D::toPointF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QPointF [] }
-&{toVector2D QVector4D::toVector2D commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector2D [] }
-&{toVector2DAffine QVector4D::toVector2DAffine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector2D [] }
-&{toVector3D QVector4D::toVector3D commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector3D [] }
-&{toVector3DAffine QVector4D::toVector3DAffine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector3D [] }
-&{w QVector4D::w commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float [] }
-&{x QVector4D::x commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float [] }
-&{y QVector4D::y commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float [] }
-&{z QVector4D::z commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float [] }
+&{QVector4D QVector4D::QVector4D commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false false   QVector4D() [] }
+&{QVector4D QVector4D::QVector4D commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 4  QVector4D(const QPoint &point) [0xc820958640] }
+&{QVector4D QVector4D::QVector4D commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 5  QVector4D(const QPointF &point) [0xc8209588a0] }
+&{QVector4D QVector4D::QVector4D commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 6  QVector4D(const QVector2D &vector) [0xc820958ae0] }
+&{QVector4D QVector4D::QVector4D commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 7  QVector4D(const QVector2D &vector, float zpos, float wpos) [0xc820958dc0 0xc820958ec0 0xc820958f40] }
+&{QVector4D QVector4D::QVector4D commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 8  QVector4D(const QVector3D &vector) [0xc820959160] }
+&{QVector4D QVector4D::QVector4D commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 9  QVector4D(const QVector3D &vector, float wpos) [0xc8209593a0 0xc8209594c0] }
+&{QVector4D QVector4D::QVector4D commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non constructor false true 3  QVector4D(float xpos, float ypos, float zpos, float wpos) [0xc8209596a0 0xc820959740 0xc8209597c0 0xc820959880] }
+&{dotProduct QVector4D::dotProduct commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain true false  float float dotProduct(const QVector4D &v1, const QVector4D &v2) [0xc820959e00 0xc820959f40] }
+&{isNull QVector4D::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  bool bool isNull() const [] }
+&{length QVector4D::length commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float float length() const [] }
+&{lengthSquared QVector4D::lengthSquared commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float float lengthSquared() const [] }
+&{normalize QVector4D::normalize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  void void normalize() [] }
+&{normalized QVector4D::normalized commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector4D QVector4D normalized() const [] }
+&{operator QVariant QVector4D::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false   operator QVariant() const [] }
+&{operator*= QVector4D::operator*= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false true 2 QVector4D & QVector4D & operator*=(const QVector4D &vector) [0xc8201e9f80] }
+&{operator*= QVector4D::operator*= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector4D & QVector4D & operator*=(float factor) [0xc8205782e0] }
+&{operator+= QVector4D::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector4D & QVector4D & operator+=(const QVector4D &vector) [0xc8205785a0] }
+&{operator-= QVector4D::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector4D & QVector4D & operator-=(const QVector4D &vector) [0xc820578880] }
+&{operator/= QVector4D::operator/= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false true 2 QVector4D & QVector4D & operator/=(const QVector4D &vector) [0xc820578b00] }
+&{operator/= QVector4D::operator/= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector4D & QVector4D & operator/=(float divisor) [0xc820578d80] }
+&{operator[] QVector4D::operator[] commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float & float & operator[](int i) [0xc820579000] }
+&{operator[] QVector4D::operator[] commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false true 2 float float operator[](int i) const [0xc8205792a0] }
+&{setW QVector4D::setW commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  void void setW(float w) [0xc8205794a0] }
+&{setX QVector4D::setX commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  void void setX(float x) [0xc820579660] }
+&{setY QVector4D::setY commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  void void setY(float y) [0xc8205798a0] }
+&{setZ QVector4D::setZ commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  void void setZ(float z) [0xc820579ae0] }
+&{toPoint QVector4D::toPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QPoint QPoint toPoint() const [] }
+&{toPointF QVector4D::toPointF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QPointF QPointF toPointF() const [] }
+&{toVector2D QVector4D::toVector2D commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector2D QVector2D toVector2D() const [] }
+&{toVector2DAffine QVector4D::toVector2DAffine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector2D QVector2D toVector2DAffine() const [] }
+&{toVector3D QVector4D::toVector3D commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector3D QVector3D toVector3D() const [] }
+&{toVector3DAffine QVector4D::toVector3DAffine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  QVector3D QVector3D toVector3DAffine() const [] }
+&{w QVector4D::w commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float float w() const [] }
+&{x QVector4D::x commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float float x() const [] }
+&{y QVector4D::y commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float float y() const [] }
+&{z QVector4D::z commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/math3d/qvector4d.h non plain false false  float float z() const [] }
 ########################################			ENUMS			########################################

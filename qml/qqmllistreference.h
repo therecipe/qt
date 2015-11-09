@@ -1,23 +1,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QQmlListReference_NewQQmlListReference();
-QtObjectPtr QQmlListReference_NewQQmlListReference2(QtObjectPtr object, char* property, QtObjectPtr engine);
-int QQmlListReference_Append(QtObjectPtr ptr, QtObjectPtr object);
-QtObjectPtr QQmlListReference_At(QtObjectPtr ptr, int index);
-int QQmlListReference_CanAppend(QtObjectPtr ptr);
-int QQmlListReference_CanAt(QtObjectPtr ptr);
-int QQmlListReference_CanClear(QtObjectPtr ptr);
-int QQmlListReference_CanCount(QtObjectPtr ptr);
-int QQmlListReference_Clear(QtObjectPtr ptr);
-int QQmlListReference_Count(QtObjectPtr ptr);
-int QQmlListReference_IsManipulable(QtObjectPtr ptr);
-int QQmlListReference_IsReadable(QtObjectPtr ptr);
-int QQmlListReference_IsValid(QtObjectPtr ptr);
-QtObjectPtr QQmlListReference_ListElementType(QtObjectPtr ptr);
-QtObjectPtr QQmlListReference_Object(QtObjectPtr ptr);
+void* QQmlListReference_NewQQmlListReference();
+void* QQmlListReference_NewQQmlListReference2(void* object, char* property, void* engine);
+int QQmlListReference_Append(void* ptr, void* object);
+void* QQmlListReference_At(void* ptr, int index);
+int QQmlListReference_CanAppend(void* ptr);
+int QQmlListReference_CanAt(void* ptr);
+int QQmlListReference_CanClear(void* ptr);
+int QQmlListReference_CanCount(void* ptr);
+int QQmlListReference_Clear(void* ptr);
+int QQmlListReference_Count(void* ptr);
+int QQmlListReference_IsManipulable(void* ptr);
+int QQmlListReference_IsReadable(void* ptr);
+int QQmlListReference_IsValid(void* ptr);
+void* QQmlListReference_ListElementType(void* ptr);
+void* QQmlListReference_Object(void* ptr);
 
 #ifdef __cplusplus
 }

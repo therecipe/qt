@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QXmlNamespaceSupport QXmlNamespaceSupport::QXmlNamespaceSupport commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false false   [] }
-&{popContext QXmlNamespaceSupport::popContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [] }
-&{prefix QXmlNamespaceSupport::prefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString [0xc821f02f20] }
-&{prefixes QXmlNamespaceSupport::prefixes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QStringList [] }
-&{prefixes QXmlNamespaceSupport::prefixes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 2 QStringList [0xc821f032e0] }
-&{processName QXmlNamespaceSupport::processName commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [0xc821f03480 0xc821f03560 0xc821f035e0 0xc821f03660] }
-&{pushContext QXmlNamespaceSupport::pushContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [] }
-&{reset QXmlNamespaceSupport::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [] }
-&{setPrefix QXmlNamespaceSupport::setPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [0xc821f039e0 0xc821f03a80] }
-&{splitName QXmlNamespaceSupport::splitName commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void [0xc821f03c80 0xc821f03d20 0xc821f03dc0] }
-&{uri QXmlNamespaceSupport::uri commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString [0xc822912040] }
-&{~QXmlNamespaceSupport QXmlNamespaceSupport::~QXmlNamespaceSupport commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non destructor false false   [] }
+&{QXmlNamespaceSupport QXmlNamespaceSupport::QXmlNamespaceSupport commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false false   QXmlNamespaceSupport() [] }
+&{popContext QXmlNamespaceSupport::popContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void void popContext() [] }
+&{prefix QXmlNamespaceSupport::prefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString prefix(const QString &uri) const [0xc821b02820] }
+&{prefixes QXmlNamespaceSupport::prefixes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QStringList QStringList prefixes() const [] }
+&{prefixes QXmlNamespaceSupport::prefixes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 2 QStringList QStringList prefixes(const QString &uri) const [0xc821b02da0] }
+&{processName QXmlNamespaceSupport::processName commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void void processName(const QString &qname, bool isAttribute, QString &nsuri, QString &localname) const [0xc821b03040 0xc821b03100 0xc821b03200 0xc821b032e0] }
+&{pushContext QXmlNamespaceSupport::pushContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void void pushContext() [] }
+&{reset QXmlNamespaceSupport::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void void reset() [] }
+&{setPrefix QXmlNamespaceSupport::setPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void void setPrefix(const QString &pre, const QString &uri) [0xc821b038a0 0xc821b03a00] }
+&{splitName QXmlNamespaceSupport::splitName commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void void splitName(const QString &qname, QString &prefix, QString &localname) const [0xc821b03cc0 0xc821b03d60 0xc821b03e80] }
+&{uri QXmlNamespaceSupport::uri commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString uri(const QString &prefix) const [0xc821c08200] }
+&{~QXmlNamespaceSupport QXmlNamespaceSupport::~QXmlNamespaceSupport commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non destructor false false   ~QXmlNamespaceSupport() [] }
 ########################################			ENUMS			########################################

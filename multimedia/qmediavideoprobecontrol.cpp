@@ -1,9 +1,9 @@
 #include "qmediavideoprobecontrol.h"
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
 #include <QMediaVideoProbeControl>
 #include "_cgo_export.h"
 
@@ -12,15 +12,15 @@ public:
 void Signal_Flush(){callbackQMediaVideoProbeControlFlush(this->objectName().toUtf8().data());};
 };
 
-void QMediaVideoProbeControl_ConnectFlush(QtObjectPtr ptr){
+void QMediaVideoProbeControl_ConnectFlush(void* ptr){
 	QObject::connect(static_cast<QMediaVideoProbeControl*>(ptr), static_cast<void (QMediaVideoProbeControl::*)()>(&QMediaVideoProbeControl::flush), static_cast<MyQMediaVideoProbeControl*>(ptr), static_cast<void (MyQMediaVideoProbeControl::*)()>(&MyQMediaVideoProbeControl::Signal_Flush));;
 }
 
-void QMediaVideoProbeControl_DisconnectFlush(QtObjectPtr ptr){
+void QMediaVideoProbeControl_DisconnectFlush(void* ptr){
 	QObject::disconnect(static_cast<QMediaVideoProbeControl*>(ptr), static_cast<void (QMediaVideoProbeControl::*)()>(&QMediaVideoProbeControl::flush), static_cast<MyQMediaVideoProbeControl*>(ptr), static_cast<void (MyQMediaVideoProbeControl::*)()>(&MyQMediaVideoProbeControl::Signal_Flush));;
 }
 
-void QMediaVideoProbeControl_DestroyQMediaVideoProbeControl(QtObjectPtr ptr){
+void QMediaVideoProbeControl_DestroyQMediaVideoProbeControl(void* ptr){
 	static_cast<QMediaVideoProbeControl*>(ptr)->~QMediaVideoProbeControl();
 }
 

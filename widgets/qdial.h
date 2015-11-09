@@ -1,15 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QDial_NotchSize(QtObjectPtr ptr);
-int QDial_NotchesVisible(QtObjectPtr ptr);
-void QDial_SetNotchesVisible(QtObjectPtr ptr, int visible);
-void QDial_SetWrapping(QtObjectPtr ptr, int on);
-int QDial_Wrapping(QtObjectPtr ptr);
-QtObjectPtr QDial_NewQDial(QtObjectPtr parent);
-void QDial_DestroyQDial(QtObjectPtr ptr);
+int QDial_NotchSize(void* ptr);
+double QDial_NotchTarget(void* ptr);
+int QDial_NotchesVisible(void* ptr);
+void QDial_SetNotchesVisible(void* ptr, int visible);
+void QDial_SetWrapping(void* ptr, int on);
+int QDial_Wrapping(void* ptr);
+void* QDial_NewQDial(void* parent);
+void QDial_DestroyQDial(void* ptr);
 
 #ifdef __cplusplus
 }

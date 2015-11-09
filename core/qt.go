@@ -5,9 +5,9 @@ import "C"
 import ()
 
 //Qt::AlignmentFlag
-type Qt__AlignmentFlag int
+type Qt__AlignmentFlag int64
 
-var (
+const (
 	Qt__AlignLeft            = Qt__AlignmentFlag(0x0001)
 	Qt__AlignLeading         = Qt__AlignmentFlag(Qt__AlignLeft)
 	Qt__AlignRight           = Qt__AlignmentFlag(0x0002)
@@ -25,9 +25,9 @@ var (
 )
 
 //Qt::AnchorPoint
-type Qt__AnchorPoint int
+type Qt__AnchorPoint int64
 
-var (
+const (
 	Qt__AnchorLeft             = Qt__AnchorPoint(0)
 	Qt__AnchorHorizontalCenter = Qt__AnchorPoint(1)
 	Qt__AnchorRight            = Qt__AnchorPoint(2)
@@ -37,9 +37,9 @@ var (
 )
 
 //Qt::ApplicationAttribute
-type Qt__ApplicationAttribute int
+type Qt__ApplicationAttribute int64
 
-var (
+const (
 	Qt__AA_ImmediateWidgetCreation                = Qt__ApplicationAttribute(0)
 	Qt__AA_MSWindowsUseDirect3DByDefault          = Qt__ApplicationAttribute(1)
 	Qt__AA_DontShowIconsInMenus                   = Qt__ApplicationAttribute(2)
@@ -63,9 +63,9 @@ var (
 )
 
 //Qt::ApplicationState
-type Qt__ApplicationState int
+type Qt__ApplicationState int64
 
-var (
+const (
 	Qt__ApplicationSuspended = Qt__ApplicationState(0x00000000)
 	Qt__ApplicationHidden    = Qt__ApplicationState(0x00000001)
 	Qt__ApplicationInactive  = Qt__ApplicationState(0x00000002)
@@ -73,9 +73,9 @@ var (
 )
 
 //Qt::ArrowType
-type Qt__ArrowType int
+type Qt__ArrowType int64
 
-var (
+const (
 	Qt__NoArrow    = Qt__ArrowType(0)
 	Qt__UpArrow    = Qt__ArrowType(1)
 	Qt__DownArrow  = Qt__ArrowType(2)
@@ -84,33 +84,33 @@ var (
 )
 
 //Qt::AspectRatioMode
-type Qt__AspectRatioMode int
+type Qt__AspectRatioMode int64
 
-var (
+const (
 	Qt__IgnoreAspectRatio          = Qt__AspectRatioMode(0)
 	Qt__KeepAspectRatio            = Qt__AspectRatioMode(1)
 	Qt__KeepAspectRatioByExpanding = Qt__AspectRatioMode(2)
 )
 
 //Qt::Axis
-type Qt__Axis int
+type Qt__Axis int64
 
-var (
+const (
 	Qt__XAxis = Qt__Axis(0)
 	Qt__YAxis = Qt__Axis(1)
 	Qt__ZAxis = Qt__Axis(2)
 )
 
 //Qt::BGMode
-type Qt__BGMode int
+type Qt__BGMode int64
 
-var (
+const (
 	Qt__TransparentMode = Qt__BGMode(0)
 	Qt__OpaqueMode      = Qt__BGMode(1)
 )
 
 //Qt::BrushStyle
-type Qt__BrushStyle int
+type Qt__BrushStyle int64
 
 var (
 	Qt__NoBrush                = Qt__BrushStyle(0)
@@ -135,35 +135,35 @@ var (
 )
 
 //Qt::CaseSensitivity
-type Qt__CaseSensitivity int
+type Qt__CaseSensitivity int64
 
-var (
+const (
 	Qt__CaseInsensitive = Qt__CaseSensitivity(0)
 	Qt__CaseSensitive   = Qt__CaseSensitivity(1)
 )
 
 //Qt::CheckState
-type Qt__CheckState int
+type Qt__CheckState int64
 
-var (
+const (
 	Qt__Unchecked        = Qt__CheckState(0)
 	Qt__PartiallyChecked = Qt__CheckState(1)
 	Qt__Checked          = Qt__CheckState(2)
 )
 
 //Qt::ClipOperation
-type Qt__ClipOperation int
+type Qt__ClipOperation int64
 
-var (
+const (
 	Qt__NoClip        = Qt__ClipOperation(0)
 	Qt__ReplaceClip   = Qt__ClipOperation(1)
 	Qt__IntersectClip = Qt__ClipOperation(2)
 )
 
 //Qt::ConnectionType
-type Qt__ConnectionType int
+type Qt__ConnectionType int64
 
-var (
+const (
 	Qt__AutoConnection           = Qt__ConnectionType(0)
 	Qt__DirectConnection         = Qt__ConnectionType(1)
 	Qt__QueuedConnection         = Qt__ConnectionType(2)
@@ -172,9 +172,9 @@ var (
 )
 
 //Qt::ContextMenuPolicy
-type Qt__ContextMenuPolicy int
+type Qt__ContextMenuPolicy int64
 
-var (
+const (
 	Qt__NoContextMenu      = Qt__ContextMenuPolicy(0)
 	Qt__DefaultContextMenu = Qt__ContextMenuPolicy(1)
 	Qt__ActionsContextMenu = Qt__ContextMenuPolicy(2)
@@ -183,17 +183,17 @@ var (
 )
 
 //Qt::CoordinateSystem
-type Qt__CoordinateSystem int
+type Qt__CoordinateSystem int64
 
-var (
+const (
 	Qt__DeviceCoordinates  = Qt__CoordinateSystem(0)
 	Qt__LogicalCoordinates = Qt__CoordinateSystem(1)
 )
 
 //Qt::Corner
-type Qt__Corner int
+type Qt__Corner int64
 
-var (
+const (
 	Qt__TopLeftCorner     = Qt__Corner(0x00000)
 	Qt__TopRightCorner    = Qt__Corner(0x00001)
 	Qt__BottomLeftCorner  = Qt__Corner(0x00002)
@@ -201,7 +201,7 @@ var (
 )
 
 //Qt::CursorMoveStyle
-type Qt__CursorMoveStyle int
+type Qt__CursorMoveStyle int64
 
 var (
 	Qt__LogicalMoveStyle = Qt__CursorMoveStyle(0)
@@ -209,9 +209,9 @@ var (
 )
 
 //Qt::CursorShape
-type Qt__CursorShape int
+type Qt__CursorShape int64
 
-var (
+const (
 	Qt__ArrowCursor        = Qt__CursorShape(0)
 	Qt__UpArrowCursor      = Qt__CursorShape(1)
 	Qt__CrossCursor        = Qt__CursorShape(2)
@@ -240,7 +240,7 @@ var (
 )
 
 //Qt::DateFormat
-type Qt__DateFormat int
+type Qt__DateFormat int64
 
 var (
 	Qt__TextDate               = Qt__DateFormat(0)
@@ -256,9 +256,9 @@ var (
 )
 
 //Qt::DayOfWeek
-type Qt__DayOfWeek int
+type Qt__DayOfWeek int64
 
-var (
+const (
 	Qt__Monday    = Qt__DayOfWeek(1)
 	Qt__Tuesday   = Qt__DayOfWeek(2)
 	Qt__Wednesday = Qt__DayOfWeek(3)
@@ -269,9 +269,9 @@ var (
 )
 
 //Qt::DockWidgetArea
-type Qt__DockWidgetArea int
+type Qt__DockWidgetArea int64
 
-var (
+const (
 	Qt__LeftDockWidgetArea   = Qt__DockWidgetArea(0x1)
 	Qt__RightDockWidgetArea  = Qt__DockWidgetArea(0x2)
 	Qt__TopDockWidgetArea    = Qt__DockWidgetArea(0x4)
@@ -282,9 +282,9 @@ var (
 )
 
 //Qt::DropAction
-type Qt__DropAction int
+type Qt__DropAction int64
 
-var (
+const (
 	Qt__CopyAction       = Qt__DropAction(0x1)
 	Qt__MoveAction       = Qt__DropAction(0x2)
 	Qt__LinkAction       = Qt__DropAction(0x4)
@@ -294,9 +294,9 @@ var (
 )
 
 //Qt::Edge
-type Qt__Edge int
+type Qt__Edge int64
 
-var (
+const (
 	Qt__TopEdge    = Qt__Edge(0x00001)
 	Qt__LeftEdge   = Qt__Edge(0x00002)
 	Qt__RightEdge  = Qt__Edge(0x00004)
@@ -304,34 +304,34 @@ var (
 )
 
 //Qt::EventPriority
-type Qt__EventPriority int
+type Qt__EventPriority int64
 
-var (
+const (
 	Qt__HighEventPriority   = Qt__EventPriority(1)
 	Qt__NormalEventPriority = Qt__EventPriority(0)
 	Qt__LowEventPriority    = Qt__EventPriority(-1)
 )
 
 //Qt::FillRule
-type Qt__FillRule int
+type Qt__FillRule int64
 
-var (
+const (
 	Qt__OddEvenFill = Qt__FillRule(0)
 	Qt__WindingFill = Qt__FillRule(1)
 )
 
 //Qt::FindChildOption
-type Qt__FindChildOption int
+type Qt__FindChildOption int64
 
-var (
+const (
 	Qt__FindDirectChildrenOnly  = Qt__FindChildOption(0x0)
 	Qt__FindChildrenRecursively = Qt__FindChildOption(0x1)
 )
 
 //Qt::FocusPolicy
-type Qt__FocusPolicy int
+type Qt__FocusPolicy int64
 
-var (
+const (
 	Qt__NoFocus     = Qt__FocusPolicy(0)
 	Qt__TabFocus    = Qt__FocusPolicy(0x1)
 	Qt__ClickFocus  = Qt__FocusPolicy(0x2)
@@ -340,9 +340,9 @@ var (
 )
 
 //Qt::FocusReason
-type Qt__FocusReason int
+type Qt__FocusReason int64
 
-var (
+const (
 	Qt__MouseFocusReason        = Qt__FocusReason(0)
 	Qt__TabFocusReason          = Qt__FocusReason(1)
 	Qt__BacktabFocusReason      = Qt__FocusReason(2)
@@ -355,18 +355,18 @@ var (
 )
 
 //Qt::GestureFlag
-type Qt__GestureFlag int
+type Qt__GestureFlag int64
 
-var (
+const (
 	Qt__DontStartGestureOnChildren       = Qt__GestureFlag(0x01)
 	Qt__ReceivePartialGestures           = Qt__GestureFlag(0x02)
 	Qt__IgnoredGesturesPropagateToParent = Qt__GestureFlag(0x04)
 )
 
 //Qt::GestureState
-type Qt__GestureState int
+type Qt__GestureState int64
 
-var (
+const (
 	Qt__NoGesture       = Qt__GestureState(0)
 	Qt__GestureStarted  = Qt__GestureState(1)
 	Qt__GestureUpdated  = Qt__GestureState(2)
@@ -375,7 +375,7 @@ var (
 )
 
 //Qt::GestureType
-type Qt__GestureType int
+type Qt__GestureType int64
 
 var (
 	Qt__TapGesture        = Qt__GestureType(1)
@@ -388,9 +388,9 @@ var (
 )
 
 //Qt::GlobalColor
-type Qt__GlobalColor int
+type Qt__GlobalColor int64
 
-var (
+const (
 	Qt__color0      = Qt__GlobalColor(0)
 	Qt__color1      = Qt__GlobalColor(1)
 	Qt__black       = Qt__GlobalColor(2)
@@ -414,17 +414,17 @@ var (
 )
 
 //Qt::HitTestAccuracy
-type Qt__HitTestAccuracy int
+type Qt__HitTestAccuracy int64
 
-var (
+const (
 	Qt__ExactHit = Qt__HitTestAccuracy(0)
 	Qt__FuzzyHit = Qt__HitTestAccuracy(1)
 )
 
 //Qt::ImageConversionFlag
-type Qt__ImageConversionFlag int
+type Qt__ImageConversionFlag int64
 
-var (
+const (
 	Qt__ColorMode_Mask       = Qt__ImageConversionFlag(0x00000003)
 	Qt__AutoColor            = Qt__ImageConversionFlag(0x00000000)
 	Qt__ColorOnly            = Qt__ImageConversionFlag(0x00000003)
@@ -447,9 +447,9 @@ var (
 )
 
 //Qt::InputMethodHint
-type Qt__InputMethodHint int
+type Qt__InputMethodHint int64
 
-var (
+const (
 	Qt__ImhNone                   = Qt__InputMethodHint(0x0)
 	Qt__ImhHiddenText             = Qt__InputMethodHint(0x1)
 	Qt__ImhSensitiveData          = Qt__InputMethodHint(0x2)
@@ -474,9 +474,9 @@ var (
 )
 
 //Qt::InputMethodQuery
-type Qt__InputMethodQuery int
+type Qt__InputMethodQuery int64
 
-var (
+const (
 	Qt__ImEnabled           = Qt__InputMethodQuery(0x1)
 	Qt__ImCursorRectangle   = Qt__InputMethodQuery(0x2)
 	Qt__ImMicroFocus        = Qt__InputMethodQuery(0x2)
@@ -497,9 +497,9 @@ var (
 )
 
 //Qt::ItemDataRole
-type Qt__ItemDataRole int
+type Qt__ItemDataRole int64
 
-var (
+const (
 	Qt__DisplayRole               = Qt__ItemDataRole(0)
 	Qt__DecorationRole            = Qt__ItemDataRole(1)
 	Qt__EditRole                  = Qt__ItemDataRole(2)
@@ -526,9 +526,9 @@ var (
 )
 
 //Qt::ItemFlag
-type Qt__ItemFlag int
+type Qt__ItemFlag int64
 
-var (
+const (
 	Qt__NoItemFlags          = Qt__ItemFlag(0)
 	Qt__ItemIsSelectable     = Qt__ItemFlag(1)
 	Qt__ItemIsEditable       = Qt__ItemFlag(2)
@@ -542,9 +542,9 @@ var (
 )
 
 //Qt::ItemSelectionMode
-type Qt__ItemSelectionMode int
+type Qt__ItemSelectionMode int64
 
-var (
+const (
 	Qt__ContainsItemShape          = Qt__ItemSelectionMode(0x0)
 	Qt__IntersectsItemShape        = Qt__ItemSelectionMode(0x1)
 	Qt__ContainsItemBoundingRect   = Qt__ItemSelectionMode(0x2)
@@ -552,17 +552,17 @@ var (
 )
 
 //Qt::ItemSelectionOperation
-type Qt__ItemSelectionOperation int
+type Qt__ItemSelectionOperation int64
 
-var (
+const (
 	Qt__ReplaceSelection = Qt__ItemSelectionOperation(0)
 	Qt__AddToSelection   = Qt__ItemSelectionOperation(1)
 )
 
 //Qt::Key
-type Qt__Key int
+type Qt__Key int64
 
-var (
+const (
 	Qt__Key_Escape                 = Qt__Key(0x01000000)
 	Qt__Key_Tab                    = Qt__Key(0x01000001)
 	Qt__Key_Backtab                = Qt__Key(0x01000002)
@@ -1005,9 +1005,9 @@ var (
 )
 
 //Qt::KeyboardModifier
-type Qt__KeyboardModifier int
+type Qt__KeyboardModifier int64
 
-var (
+const (
 	Qt__NoModifier           = Qt__KeyboardModifier(0x00000000)
 	Qt__ShiftModifier        = Qt__KeyboardModifier(0x02000000)
 	Qt__ControlModifier      = Qt__KeyboardModifier(0x04000000)
@@ -1019,26 +1019,26 @@ var (
 )
 
 //Qt::LayoutDirection
-type Qt__LayoutDirection int
+type Qt__LayoutDirection int64
 
-var (
+const (
 	Qt__LeftToRight         = Qt__LayoutDirection(0)
 	Qt__RightToLeft         = Qt__LayoutDirection(1)
 	Qt__LayoutDirectionAuto = Qt__LayoutDirection(2)
 )
 
 //Qt::MaskMode
-type Qt__MaskMode int
+type Qt__MaskMode int64
 
-var (
+const (
 	Qt__MaskInColor  = Qt__MaskMode(0)
 	Qt__MaskOutColor = Qt__MaskMode(1)
 )
 
 //Qt::MatchFlag
-type Qt__MatchFlag int
+type Qt__MatchFlag int64
 
-var (
+const (
 	Qt__MatchExactly       = Qt__MatchFlag(0)
 	Qt__MatchContains      = Qt__MatchFlag(1)
 	Qt__MatchStartsWith    = Qt__MatchFlag(2)
@@ -1052,9 +1052,9 @@ var (
 )
 
 //Qt::Modifier
-type Qt__Modifier int
+type Qt__Modifier int64
 
-var (
+const (
 	Qt__META          = Qt__Modifier(Qt__MetaModifier)
 	Qt__SHIFT         = Qt__Modifier(Qt__ShiftModifier)
 	Qt__CTRL          = Qt__Modifier(Qt__ControlModifier)
@@ -1064,9 +1064,9 @@ var (
 )
 
 //Qt::MouseButton
-type Qt__MouseButton int
+type Qt__MouseButton int64
 
-var (
+const (
 	Qt__NoButton        = Qt__MouseButton(0x00000000)
 	Qt__LeftButton      = Qt__MouseButton(0x00000001)
 	Qt__RightButton     = Qt__MouseButton(0x00000002)
@@ -1107,26 +1107,26 @@ var (
 )
 
 //Qt::MouseEventFlag
-type Qt__MouseEventFlag int
+type Qt__MouseEventFlag int64
 
-var (
+const (
 	Qt__MouseEventCreatedDoubleClick = Qt__MouseEventFlag(0x01)
 	Qt__MouseEventFlagMask           = Qt__MouseEventFlag(0xFF)
 )
 
 //Qt::MouseEventSource
-type Qt__MouseEventSource int
+type Qt__MouseEventSource int64
 
-var (
+const (
 	Qt__MouseEventNotSynthesized      = Qt__MouseEventSource(0)
 	Qt__MouseEventSynthesizedBySystem = Qt__MouseEventSource(1)
 	Qt__MouseEventSynthesizedByQt     = Qt__MouseEventSource(2)
 )
 
 //Qt::NativeGestureType
-type Qt__NativeGestureType int
+type Qt__NativeGestureType int64
 
-var (
+const (
 	Qt__BeginNativeGesture     = Qt__NativeGestureType(0)
 	Qt__EndNativeGesture       = Qt__NativeGestureType(1)
 	Qt__PanNativeGesture       = Qt__NativeGestureType(2)
@@ -1137,9 +1137,9 @@ var (
 )
 
 //Qt::NavigationMode
-type Qt__NavigationMode int
+type Qt__NavigationMode int64
 
-var (
+const (
 	Qt__NavigationModeNone               = Qt__NavigationMode(0)
 	Qt__NavigationModeKeypadTabOrder     = Qt__NavigationMode(1)
 	Qt__NavigationModeKeypadDirectional  = Qt__NavigationMode(2)
@@ -1148,15 +1148,15 @@ var (
 )
 
 //Qt::Orientation
-type Qt__Orientation int
+type Qt__Orientation int64
 
-var (
+const (
 	Qt__Horizontal = Qt__Orientation(0x1)
 	Qt__Vertical   = Qt__Orientation(0x2)
 )
 
 //Qt::PenCapStyle
-type Qt__PenCapStyle int
+type Qt__PenCapStyle int64
 
 var (
 	Qt__FlatCap      = Qt__PenCapStyle(0x00)
@@ -1166,7 +1166,7 @@ var (
 )
 
 //Qt::PenJoinStyle
-type Qt__PenJoinStyle int
+type Qt__PenJoinStyle int64
 
 var (
 	Qt__MiterJoin     = Qt__PenJoinStyle(0x00)
@@ -1177,7 +1177,7 @@ var (
 )
 
 //Qt::PenStyle
-type Qt__PenStyle int
+type Qt__PenStyle int64
 
 var (
 	Qt__NoPen          = Qt__PenStyle(0)
@@ -1191,9 +1191,9 @@ var (
 )
 
 //Qt::ScreenOrientation
-type Qt__ScreenOrientation int
+type Qt__ScreenOrientation int64
 
-var (
+const (
 	Qt__PrimaryOrientation           = Qt__ScreenOrientation(0x00000000)
 	Qt__PortraitOrientation          = Qt__ScreenOrientation(0x00000001)
 	Qt__LandscapeOrientation         = Qt__ScreenOrientation(0x00000002)
@@ -1202,27 +1202,27 @@ var (
 )
 
 //Qt::ScrollBarPolicy
-type Qt__ScrollBarPolicy int
+type Qt__ScrollBarPolicy int64
 
-var (
+const (
 	Qt__ScrollBarAsNeeded  = Qt__ScrollBarPolicy(0)
 	Qt__ScrollBarAlwaysOff = Qt__ScrollBarPolicy(1)
 	Qt__ScrollBarAlwaysOn  = Qt__ScrollBarPolicy(2)
 )
 
 //Qt::ScrollPhase
-type Qt__ScrollPhase int
+type Qt__ScrollPhase int64
 
-var (
+const (
 	Qt__ScrollBegin  = Qt__ScrollPhase(1)
 	Qt__ScrollUpdate = Qt__ScrollPhase(2)
 	Qt__ScrollEnd    = Qt__ScrollPhase(3)
 )
 
 //Qt::ShortcutContext
-type Qt__ShortcutContext int
+type Qt__ShortcutContext int64
 
-var (
+const (
 	Qt__WidgetShortcut             = Qt__ShortcutContext(0)
 	Qt__WindowShortcut             = Qt__ShortcutContext(1)
 	Qt__ApplicationShortcut        = Qt__ShortcutContext(2)
@@ -1230,9 +1230,9 @@ var (
 )
 
 //Qt::SizeHint
-type Qt__SizeHint int
+type Qt__SizeHint int64
 
-var (
+const (
 	Qt__MinimumSize    = Qt__SizeHint(0)
 	Qt__PreferredSize  = Qt__SizeHint(1)
 	Qt__MaximumSize    = Qt__SizeHint(2)
@@ -1241,25 +1241,25 @@ var (
 )
 
 //Qt::SizeMode
-type Qt__SizeMode int
+type Qt__SizeMode int64
 
-var (
+const (
 	Qt__AbsoluteSize = Qt__SizeMode(0)
 	Qt__RelativeSize = Qt__SizeMode(1)
 )
 
 //Qt::SortOrder
-type Qt__SortOrder int
+type Qt__SortOrder int64
 
-var (
+const (
 	Qt__AscendingOrder  = Qt__SortOrder(0)
 	Qt__DescendingOrder = Qt__SortOrder(1)
 )
 
 //Qt::TabFocusBehavior
-type Qt__TabFocusBehavior int
+type Qt__TabFocusBehavior int64
 
-var (
+const (
 	Qt__NoTabFocus           = Qt__TabFocusBehavior(0x00)
 	Qt__TabFocusTextControls = Qt__TabFocusBehavior(0x01)
 	Qt__TabFocusListControls = Qt__TabFocusBehavior(0x02)
@@ -1267,9 +1267,9 @@ var (
 )
 
 //Qt::TextElideMode
-type Qt__TextElideMode int
+type Qt__TextElideMode int64
 
-var (
+const (
 	Qt__ElideLeft   = Qt__TextElideMode(0)
 	Qt__ElideRight  = Qt__TextElideMode(1)
 	Qt__ElideMiddle = Qt__TextElideMode(2)
@@ -1277,9 +1277,9 @@ var (
 )
 
 //Qt::TextFlag
-type Qt__TextFlag int
+type Qt__TextFlag int64
 
-var (
+const (
 	Qt__TextSingleLine            = Qt__TextFlag(0x0100)
 	Qt__TextDontClip              = Qt__TextFlag(0x0200)
 	Qt__TextExpandTabs            = Qt__TextFlag(0x0400)
@@ -1297,18 +1297,18 @@ var (
 )
 
 //Qt::TextFormat
-type Qt__TextFormat int
+type Qt__TextFormat int64
 
-var (
+const (
 	Qt__PlainText = Qt__TextFormat(0)
 	Qt__RichText  = Qt__TextFormat(1)
 	Qt__AutoText  = Qt__TextFormat(2)
 )
 
 //Qt::TextInteractionFlag
-type Qt__TextInteractionFlag int
+type Qt__TextInteractionFlag int64
 
-var (
+const (
 	Qt__NoTextInteraction         = Qt__TextInteractionFlag(0)
 	Qt__TextSelectableByMouse     = Qt__TextInteractionFlag(1)
 	Qt__TextSelectableByKeyboard  = Qt__TextInteractionFlag(2)
@@ -1320,18 +1320,18 @@ var (
 )
 
 //Qt::TileRule
-type Qt__TileRule int
+type Qt__TileRule int64
 
-var (
+const (
 	Qt__StretchTile = Qt__TileRule(0)
 	Qt__RepeatTile  = Qt__TileRule(1)
 	Qt__RoundTile   = Qt__TileRule(2)
 )
 
 //Qt::TimeSpec
-type Qt__TimeSpec int
+type Qt__TimeSpec int64
 
-var (
+const (
 	Qt__LocalTime     = Qt__TimeSpec(0)
 	Qt__UTC           = Qt__TimeSpec(1)
 	Qt__OffsetFromUTC = Qt__TimeSpec(2)
@@ -1339,18 +1339,18 @@ var (
 )
 
 //Qt::TimerType
-type Qt__TimerType int
+type Qt__TimerType int64
 
-var (
+const (
 	Qt__PreciseTimer    = Qt__TimerType(0)
 	Qt__CoarseTimer     = Qt__TimerType(1)
 	Qt__VeryCoarseTimer = Qt__TimerType(2)
 )
 
 //Qt::ToolBarArea
-type Qt__ToolBarArea int
+type Qt__ToolBarArea int64
 
-var (
+const (
 	Qt__LeftToolBarArea   = Qt__ToolBarArea(0x1)
 	Qt__RightToolBarArea  = Qt__ToolBarArea(0x2)
 	Qt__TopToolBarArea    = Qt__ToolBarArea(0x4)
@@ -1361,7 +1361,7 @@ var (
 )
 
 //Qt::ToolButtonStyle
-type Qt__ToolButtonStyle int
+type Qt__ToolButtonStyle int64
 
 var (
 	Qt__ToolButtonIconOnly       = Qt__ToolButtonStyle(0)
@@ -1372,9 +1372,9 @@ var (
 )
 
 //Qt::TouchPointState
-type Qt__TouchPointState int
+type Qt__TouchPointState int64
 
-var (
+const (
 	Qt__TouchPointPressed    = Qt__TouchPointState(0x01)
 	Qt__TouchPointMoved      = Qt__TouchPointState(0x02)
 	Qt__TouchPointStationary = Qt__TouchPointState(0x04)
@@ -1382,17 +1382,17 @@ var (
 )
 
 //Qt::TransformationMode
-type Qt__TransformationMode int
+type Qt__TransformationMode int64
 
-var (
+const (
 	Qt__FastTransformation   = Qt__TransformationMode(0)
 	Qt__SmoothTransformation = Qt__TransformationMode(1)
 )
 
 //Qt::UIEffect
-type Qt__UIEffect int
+type Qt__UIEffect int64
 
-var (
+const (
 	Qt__UI_General        = Qt__UIEffect(0)
 	Qt__UI_AnimateMenu    = Qt__UIEffect(1)
 	Qt__UI_FadeMenu       = Qt__UIEffect(2)
@@ -1403,9 +1403,9 @@ var (
 )
 
 //Qt::WhiteSpaceMode
-type Qt__WhiteSpaceMode int
+type Qt__WhiteSpaceMode int64
 
-var (
+const (
 	Qt__WhiteSpaceNormal        = Qt__WhiteSpaceMode(0)
 	Qt__WhiteSpacePre           = Qt__WhiteSpaceMode(1)
 	Qt__WhiteSpaceNoWrap        = Qt__WhiteSpaceMode(2)
@@ -1413,9 +1413,9 @@ var (
 )
 
 //Qt::WidgetAttribute
-type Qt__WidgetAttribute int
+type Qt__WidgetAttribute int64
 
-var (
+const (
 	Qt__WA_Disabled                        = Qt__WidgetAttribute(0)
 	Qt__WA_UnderMouse                      = Qt__WidgetAttribute(1)
 	Qt__WA_MouseTracking                   = Qt__WidgetAttribute(2)
@@ -1531,9 +1531,9 @@ var (
 )
 
 //Qt::WindowFrameSection
-type Qt__WindowFrameSection int
+type Qt__WindowFrameSection int64
 
-var (
+const (
 	Qt__NoSection          = Qt__WindowFrameSection(0)
 	Qt__LeftSection        = Qt__WindowFrameSection(1)
 	Qt__TopLeftSection     = Qt__WindowFrameSection(2)
@@ -1547,18 +1547,18 @@ var (
 )
 
 //Qt::WindowModality
-type Qt__WindowModality int
+type Qt__WindowModality int64
 
-var (
+const (
 	Qt__NonModal         = Qt__WindowModality(0)
 	Qt__WindowModal      = Qt__WindowModality(1)
 	Qt__ApplicationModal = Qt__WindowModality(2)
 )
 
 //Qt::WindowState
-type Qt__WindowState int
+type Qt__WindowState int64
 
-var (
+const (
 	Qt__WindowNoState    = Qt__WindowState(0x00000000)
 	Qt__WindowMinimized  = Qt__WindowState(0x00000001)
 	Qt__WindowMaximized  = Qt__WindowState(0x00000002)
@@ -1567,9 +1567,9 @@ var (
 )
 
 //Qt::WindowType
-type Qt__WindowType int
+type Qt__WindowType int64
 
-var (
+const (
 	Qt__Widget                              = Qt__WindowType(0x00000000)
 	Qt__Window                              = Qt__WindowType(0x00000001)
 	Qt__Dialog                              = Qt__WindowType(0x00000002 | Qt__Window)

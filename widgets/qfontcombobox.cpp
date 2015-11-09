@@ -1,12 +1,12 @@
 #include "qfontcombobox.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QWidget>
 #include <QFont>
-#include <QFontDatabase>
-#include <QMetaObject>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QMetaObject>
+#include <QWidget>
+#include <QFontDatabase>
 #include <QFontComboBox>
 #include "_cgo_export.h"
 
@@ -14,31 +14,31 @@ class MyQFontComboBox: public QFontComboBox {
 public:
 };
 
-int QFontComboBox_FontFilters(QtObjectPtr ptr){
+int QFontComboBox_FontFilters(void* ptr){
 	return static_cast<QFontComboBox*>(ptr)->fontFilters();
 }
 
-void QFontComboBox_SetCurrentFont(QtObjectPtr ptr, QtObjectPtr font){
+void QFontComboBox_SetCurrentFont(void* ptr, void* font){
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setCurrentFont", Q_ARG(QFont, *static_cast<QFont*>(font)));
 }
 
-void QFontComboBox_SetFontFilters(QtObjectPtr ptr, int filters){
+void QFontComboBox_SetFontFilters(void* ptr, int filters){
 	static_cast<QFontComboBox*>(ptr)->setFontFilters(static_cast<QFontComboBox::FontFilter>(filters));
 }
 
-void QFontComboBox_SetWritingSystem(QtObjectPtr ptr, int script){
+void QFontComboBox_SetWritingSystem(void* ptr, int script){
 	static_cast<QFontComboBox*>(ptr)->setWritingSystem(static_cast<QFontDatabase::WritingSystem>(script));
 }
 
-int QFontComboBox_WritingSystem(QtObjectPtr ptr){
+int QFontComboBox_WritingSystem(void* ptr){
 	return static_cast<QFontComboBox*>(ptr)->writingSystem();
 }
 
-QtObjectPtr QFontComboBox_NewQFontComboBox(QtObjectPtr parent){
+void* QFontComboBox_NewQFontComboBox(void* parent){
 	return new QFontComboBox(static_cast<QWidget*>(parent));
 }
 
-void QFontComboBox_DestroyQFontComboBox(QtObjectPtr ptr){
+void QFontComboBox_DestroyQFontComboBox(void* ptr){
 	static_cast<QFontComboBox*>(ptr)->~QFontComboBox();
 }
 

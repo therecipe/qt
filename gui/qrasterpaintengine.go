@@ -10,24 +10,24 @@ type QRasterPaintEngine struct {
 	QPaintEngine
 }
 
-type QRasterPaintEngineITF interface {
-	QPaintEngineITF
-	QRasterPaintEnginePTR() *QRasterPaintEngine
+type QRasterPaintEngine_ITF interface {
+	QPaintEngine_ITF
+	QRasterPaintEngine_PTR() *QRasterPaintEngine
 }
 
-func PointerFromQRasterPaintEngine(ptr QRasterPaintEngineITF) unsafe.Pointer {
+func PointerFromQRasterPaintEngine(ptr QRasterPaintEngine_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QRasterPaintEnginePTR().Pointer()
+		return ptr.QRasterPaintEngine_PTR().Pointer()
 	}
 	return nil
 }
 
-func QRasterPaintEngineFromPointer(ptr unsafe.Pointer) *QRasterPaintEngine {
+func NewQRasterPaintEngineFromPointer(ptr unsafe.Pointer) *QRasterPaintEngine {
 	var n = new(QRasterPaintEngine)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QRasterPaintEngine) QRasterPaintEnginePTR() *QRasterPaintEngine {
+func (ptr *QRasterPaintEngine) QRasterPaintEngine_PTR() *QRasterPaintEngine {
 	return ptr
 }

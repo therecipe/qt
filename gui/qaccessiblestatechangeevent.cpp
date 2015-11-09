@@ -1,9 +1,9 @@
 #include "qaccessiblestatechangeevent.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QAccessible>
-#include <QString>
 #include <QAccessibleStateChangeEvent>
 #include "_cgo_export.h"
 

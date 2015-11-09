@@ -1,37 +1,37 @@
 ########################################			FUNCTIONS			########################################
-&{append QContiguousCache::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void [0xc820740e80] }
-&{QContiguousCache QContiguousCache::QContiguousCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non constructor false true 2  [0xc820741b20] }
-&{QContiguousCache QContiguousCache::QContiguousCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non constructor false false   [0xc820741d60] }
-&{areIndexesValid QContiguousCache::areIndexesValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  bool [] }
-&{at QContiguousCache::at commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  const T & [0xc82072c0c0] }
-&{available QContiguousCache::available commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  int [] }
-&{capacity QContiguousCache::capacity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  int [] }
-&{clear QContiguousCache::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void [] }
-&{containsIndex QContiguousCache::containsIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  bool [0xc82072c720] }
-&{count QContiguousCache::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  int [] }
-&{first QContiguousCache::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  T & [] }
-&{first QContiguousCache::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false true 2 const T & [] }
-&{firstIndex QContiguousCache::firstIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  int [] }
-&{insert QContiguousCache::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void [0xc82072cf40 0xc82072cfc0] }
-&{isEmpty QContiguousCache::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  bool [] }
-&{isFull QContiguousCache::isFull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  bool [] }
-&{last QContiguousCache::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  T & [] }
-&{last QContiguousCache::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false true 2 const T & [] }
-&{lastIndex QContiguousCache::lastIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  int [] }
-&{normalizeIndexes QContiguousCache::normalizeIndexes commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void [] }
-&{operator!= QContiguousCache::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  bool [0xc82072d940] }
-&{operator= QContiguousCache::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false true 2 QContiguousCache<T> & [0xc82072dc40] }
-&{operator= QContiguousCache::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  QContiguousCache<T> & [0xc82072df20] }
-&{operator== QContiguousCache::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  bool [0xc8207161a0] }
-&{operator[] QContiguousCache::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  T & [0xc820716460] }
-&{operator[] QContiguousCache::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false true 2 const T & [0xc820716660] }
-&{prepend QContiguousCache::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void [0xc8207168e0] }
-&{removeFirst QContiguousCache::removeFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void [] }
-&{removeLast QContiguousCache::removeLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void [] }
-&{setCapacity QContiguousCache::setCapacity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void [0xc820716d80] }
-&{size QContiguousCache::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  int [] }
-&{swap QContiguousCache::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void [0xc820717120] }
-&{takeFirst QContiguousCache::takeFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  T [] }
-&{takeLast QContiguousCache::takeLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  T [] }
-&{~QContiguousCache QContiguousCache::~QContiguousCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non destructor false false   [] }
+&{append QContiguousCache::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void void append(const T &value) [0xc8206fe180] }
+&{QContiguousCache QContiguousCache::QContiguousCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non constructor false true 2  QContiguousCache(const QContiguousCache<T> &other) [0xc8206fee20] }
+&{QContiguousCache QContiguousCache::QContiguousCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non constructor false false   QContiguousCache(int capacity) [0xc8206ff020] }
+&{areIndexesValid QContiguousCache::areIndexesValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  bool bool areIndexesValid() const [] }
+&{at QContiguousCache::at commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  const T & const T & at(int i) const [0xc8206ff340] }
+&{available QContiguousCache::available commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  int int available() const [] }
+&{capacity QContiguousCache::capacity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  int int capacity() const [] }
+&{clear QContiguousCache::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void void clear() [] }
+&{containsIndex QContiguousCache::containsIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  bool bool containsIndex(int i) const [0xc8206ff940] }
+&{count QContiguousCache::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  int int count() const [] }
+&{first QContiguousCache::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  T & T & first() [] }
+&{first QContiguousCache::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false true 2 const T & const T & first() const [] }
+&{firstIndex QContiguousCache::firstIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  int int firstIndex() const [] }
+&{insert QContiguousCache::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void void insert(int i, const T &value) [0xc8206f2220 0xc8206f22a0] }
+&{isEmpty QContiguousCache::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  bool bool isEmpty() const [] }
+&{isFull QContiguousCache::isFull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  bool bool isFull() const [] }
+&{last QContiguousCache::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  T & T & last() [] }
+&{last QContiguousCache::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false true 2 const T & const T & last() const [] }
+&{lastIndex QContiguousCache::lastIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  int int lastIndex() const [] }
+&{normalizeIndexes QContiguousCache::normalizeIndexes commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void void normalizeIndexes() [] }
+&{operator!= QContiguousCache::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  bool bool operator!=(const QContiguousCache<T> &other) const [0xc8206f2e80] }
+&{operator= QContiguousCache::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false true 2 QContiguousCache<T> & QContiguousCache<T> & operator=(QContiguousCache<T> &&other) [0xc8206f3180] }
+&{operator= QContiguousCache::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  QContiguousCache<T> & QContiguousCache<T> & operator=(const QContiguousCache<T> &other) [0xc8206f3500] }
+&{operator== QContiguousCache::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  bool bool operator==(const QContiguousCache<T> &other) const [0xc8206f37a0] }
+&{operator[] QContiguousCache::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  T & T & operator[](int i) [0xc8206f3b20] }
+&{operator[] QContiguousCache::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false true 2 const T & const T & operator[](int i) const [0xc8206f3d60] }
+&{prepend QContiguousCache::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void void prepend(const T &value) [0xc8206de020] }
+&{removeFirst QContiguousCache::removeFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void void removeFirst() [] }
+&{removeLast QContiguousCache::removeLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void void removeLast() [] }
+&{setCapacity QContiguousCache::setCapacity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void void setCapacity(int size) [0xc8206de660] }
+&{size QContiguousCache::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  int int size() const [] }
+&{swap QContiguousCache::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  void void swap(QContiguousCache<T> &other) [0xc8206dea60] }
+&{takeFirst QContiguousCache::takeFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  T T takeFirst() [] }
+&{takeLast QContiguousCache::takeLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non plain false false  T T takeLast() [] }
+&{~QContiguousCache QContiguousCache::~QContiguousCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcontiguouscache.h non destructor false false   ~QContiguousCache() [] }
 ########################################			ENUMS			########################################

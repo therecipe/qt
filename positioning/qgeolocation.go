@@ -10,8 +10,8 @@ type QGeoLocation struct {
 	ptr unsafe.Pointer
 }
 
-type QGeoLocationITF interface {
-	QGeoLocationPTR() *QGeoLocation
+type QGeoLocation_ITF interface {
+	QGeoLocation_PTR() *QGeoLocation
 }
 
 func (p *QGeoLocation) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QGeoLocation) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQGeoLocation(ptr QGeoLocationITF) unsafe.Pointer {
+func PointerFromQGeoLocation(ptr QGeoLocation_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGeoLocationPTR().Pointer()
+		return ptr.QGeoLocation_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGeoLocationFromPointer(ptr unsafe.Pointer) *QGeoLocation {
+func NewQGeoLocationFromPointer(ptr unsafe.Pointer) *QGeoLocation {
 	var n = new(QGeoLocation)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGeoLocation) QGeoLocationPTR() *QGeoLocation {
+func (ptr *QGeoLocation) QGeoLocation_PTR() *QGeoLocation {
 	return ptr
 }

@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{QDBusContext QDBusContext::QDBusContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non constructor false false   [] }
-&{calledFromDBus QDBusContext::calledFromDBus commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false false  bool [] }
-&{connection QDBusContext::connection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false false  QDBusConnection [] }
-&{isDelayedReply QDBusContext::isDelayedReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false false  bool [] }
-&{message QDBusContext::message commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false false  const QDBusMessage & [] }
-&{sendErrorReply QDBusContext::sendErrorReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false true 2 void [0xc8217c9180 0xc8217c9240] }
-&{sendErrorReply QDBusContext::sendErrorReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false false  void [0xc8217c9400 0xc8217c9480] }
-&{setDelayedReply QDBusContext::setDelayedReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false false  void [0xc8217c9620] }
-&{~QDBusContext QDBusContext::~QDBusContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non destructor false false   [] }
+&{QDBusContext QDBusContext::QDBusContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non constructor false false   QDBusContext() [] }
+&{calledFromDBus QDBusContext::calledFromDBus commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false false  bool bool calledFromDBus() const [] }
+&{connection QDBusContext::connection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false false  QDBusConnection QDBusConnection connection() const [] }
+&{isDelayedReply QDBusContext::isDelayedReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false false  bool bool isDelayedReply() const [] }
+&{message QDBusContext::message commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false false  const QDBusMessage & const QDBusMessage & message() const [] }
+&{sendErrorReply QDBusContext::sendErrorReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false true 2 void void sendErrorReply(QDBusError::ErrorType type, const QString &msg) const [0xc8221cf2e0 0xc8221cf3a0] }
+&{sendErrorReply QDBusContext::sendErrorReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false false  void void sendErrorReply(const QString &name, const QString &msg) const [0xc8221cf560 0xc8221cf5e0] }
+&{setDelayedReply QDBusContext::setDelayedReply commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non plain false false  void void setDelayedReply(bool enable) const [0xc8221cf780] }
+&{~QDBusContext QDBusContext::~QDBusContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuscontext.h non destructor false false   ~QDBusContext() [] }
 ########################################			ENUMS			########################################

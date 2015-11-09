@@ -1,22 +1,21 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QGeoSatelliteInfoSource_SetUpdateInterval(QtObjectPtr ptr, int msec);
-int QGeoSatelliteInfoSource_UpdateInterval(QtObjectPtr ptr);
+void QGeoSatelliteInfoSource_SetUpdateInterval(void* ptr, int msec);
+int QGeoSatelliteInfoSource_UpdateInterval(void* ptr);
 char* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources();
-QtObjectPtr QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateDefaultSource(QtObjectPtr parent);
-QtObjectPtr QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(char* sourceName, QtObjectPtr parent);
-int QGeoSatelliteInfoSource_Error(QtObjectPtr ptr);
-int QGeoSatelliteInfoSource_MinimumUpdateInterval(QtObjectPtr ptr);
-void QGeoSatelliteInfoSource_ConnectRequestTimeout(QtObjectPtr ptr);
-void QGeoSatelliteInfoSource_DisconnectRequestTimeout(QtObjectPtr ptr);
-void QGeoSatelliteInfoSource_RequestUpdate(QtObjectPtr ptr, int timeout);
-char* QGeoSatelliteInfoSource_SourceName(QtObjectPtr ptr);
-void QGeoSatelliteInfoSource_StartUpdates(QtObjectPtr ptr);
-void QGeoSatelliteInfoSource_StopUpdates(QtObjectPtr ptr);
-void QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSource(QtObjectPtr ptr);
+void* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateDefaultSource(void* parent);
+void* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(char* sourceName, void* parent);
+int QGeoSatelliteInfoSource_Error(void* ptr);
+int QGeoSatelliteInfoSource_MinimumUpdateInterval(void* ptr);
+void QGeoSatelliteInfoSource_ConnectRequestTimeout(void* ptr);
+void QGeoSatelliteInfoSource_DisconnectRequestTimeout(void* ptr);
+void QGeoSatelliteInfoSource_RequestUpdate(void* ptr, int timeout);
+char* QGeoSatelliteInfoSource_SourceName(void* ptr);
+void QGeoSatelliteInfoSource_StartUpdates(void* ptr);
+void QGeoSatelliteInfoSource_StopUpdates(void* ptr);
+void QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSource(void* ptr);
 
 #ifdef __cplusplus
 }

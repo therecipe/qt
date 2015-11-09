@@ -2,7 +2,6 @@ package templater
 
 import (
 	"fmt"
-	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/converter"
@@ -10,11 +9,6 @@ import (
 )
 
 func goFunction(f *parser.Function) string {
-
-	if f.Name == "exec" && runtime.GOOS == "linux" {
-		f.Output = "void"
-	}
-
 	if f.Meta == "signal" && !f.Overload {
 		var tmp string
 		for _, signalMode := range []string{"Connect", "Disconnect", "callback"} {

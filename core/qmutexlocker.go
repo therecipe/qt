@@ -10,8 +10,8 @@ type QMutexLocker struct {
 	ptr unsafe.Pointer
 }
 
-type QMutexLockerITF interface {
-	QMutexLockerPTR() *QMutexLocker
+type QMutexLocker_ITF interface {
+	QMutexLocker_PTR() *QMutexLocker
 }
 
 func (p *QMutexLocker) Pointer() unsafe.Pointer {
@@ -22,48 +22,48 @@ func (p *QMutexLocker) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMutexLocker(ptr QMutexLockerITF) unsafe.Pointer {
+func PointerFromQMutexLocker(ptr QMutexLocker_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMutexLockerPTR().Pointer()
+		return ptr.QMutexLocker_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMutexLockerFromPointer(ptr unsafe.Pointer) *QMutexLocker {
+func NewQMutexLockerFromPointer(ptr unsafe.Pointer) *QMutexLocker {
 	var n = new(QMutexLocker)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMutexLocker) QMutexLockerPTR() *QMutexLocker {
+func (ptr *QMutexLocker) QMutexLocker_PTR() *QMutexLocker {
 	return ptr
 }
 
-func NewQMutexLocker(mutex QMutexITF) *QMutexLocker {
-	return QMutexLockerFromPointer(unsafe.Pointer(C.QMutexLocker_NewQMutexLocker(C.QtObjectPtr(PointerFromQMutex(mutex)))))
+func NewQMutexLocker(mutex QMutex_ITF) *QMutexLocker {
+	return NewQMutexLockerFromPointer(C.QMutexLocker_NewQMutexLocker(PointerFromQMutex(mutex)))
 }
 
 func (ptr *QMutexLocker) Mutex() *QMutex {
 	if ptr.Pointer() != nil {
-		return QMutexFromPointer(unsafe.Pointer(C.QMutexLocker_Mutex(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQMutexFromPointer(C.QMutexLocker_Mutex(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QMutexLocker) Relock() {
 	if ptr.Pointer() != nil {
-		C.QMutexLocker_Relock(C.QtObjectPtr(ptr.Pointer()))
+		C.QMutexLocker_Relock(ptr.Pointer())
 	}
 }
 
 func (ptr *QMutexLocker) Unlock() {
 	if ptr.Pointer() != nil {
-		C.QMutexLocker_Unlock(C.QtObjectPtr(ptr.Pointer()))
+		C.QMutexLocker_Unlock(ptr.Pointer())
 	}
 }
 
 func (ptr *QMutexLocker) DestroyQMutexLocker() {
 	if ptr.Pointer() != nil {
-		C.QMutexLocker_DestroyQMutexLocker(C.QtObjectPtr(ptr.Pointer()))
+		C.QMutexLocker_DestroyQMutexLocker(ptr.Pointer())
 	}
 }

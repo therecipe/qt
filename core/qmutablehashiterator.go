@@ -10,8 +10,8 @@ type QMutableHashIterator struct {
 	ptr unsafe.Pointer
 }
 
-type QMutableHashIteratorITF interface {
-	QMutableHashIteratorPTR() *QMutableHashIterator
+type QMutableHashIterator_ITF interface {
+	QMutableHashIterator_PTR() *QMutableHashIterator
 }
 
 func (p *QMutableHashIterator) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QMutableHashIterator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMutableHashIterator(ptr QMutableHashIteratorITF) unsafe.Pointer {
+func PointerFromQMutableHashIterator(ptr QMutableHashIterator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMutableHashIteratorPTR().Pointer()
+		return ptr.QMutableHashIterator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMutableHashIteratorFromPointer(ptr unsafe.Pointer) *QMutableHashIterator {
+func NewQMutableHashIteratorFromPointer(ptr unsafe.Pointer) *QMutableHashIterator {
 	var n = new(QMutableHashIterator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMutableHashIterator) QMutableHashIteratorPTR() *QMutableHashIterator {
+func (ptr *QMutableHashIterator) QMutableHashIterator_PTR() *QMutableHashIterator {
 	return ptr
 }

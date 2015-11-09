@@ -12,45 +12,45 @@ type QProximitySensor struct {
 	QSensor
 }
 
-type QProximitySensorITF interface {
-	QSensorITF
-	QProximitySensorPTR() *QProximitySensor
+type QProximitySensor_ITF interface {
+	QSensor_ITF
+	QProximitySensor_PTR() *QProximitySensor
 }
 
-func PointerFromQProximitySensor(ptr QProximitySensorITF) unsafe.Pointer {
+func PointerFromQProximitySensor(ptr QProximitySensor_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QProximitySensorPTR().Pointer()
+		return ptr.QProximitySensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func QProximitySensorFromPointer(ptr unsafe.Pointer) *QProximitySensor {
+func NewQProximitySensorFromPointer(ptr unsafe.Pointer) *QProximitySensor {
 	var n = new(QProximitySensor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QProximitySensor_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QProximitySensor) QProximitySensorPTR() *QProximitySensor {
+func (ptr *QProximitySensor) QProximitySensor_PTR() *QProximitySensor {
 	return ptr
 }
 
 func (ptr *QProximitySensor) Reading() *QProximityReading {
 	if ptr.Pointer() != nil {
-		return QProximityReadingFromPointer(unsafe.Pointer(C.QProximitySensor_Reading(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQProximityReadingFromPointer(C.QProximitySensor_Reading(ptr.Pointer()))
 	}
 	return nil
 }
 
-func NewQProximitySensor(parent core.QObjectITF) *QProximitySensor {
-	return QProximitySensorFromPointer(unsafe.Pointer(C.QProximitySensor_NewQProximitySensor(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQProximitySensor(parent core.QObject_ITF) *QProximitySensor {
+	return NewQProximitySensorFromPointer(C.QProximitySensor_NewQProximitySensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QProximitySensor) DestroyQProximitySensor() {
 	if ptr.Pointer() != nil {
-		C.QProximitySensor_DestroyQProximitySensor(C.QtObjectPtr(ptr.Pointer()))
+		C.QProximitySensor_DestroyQProximitySensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

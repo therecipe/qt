@@ -1,44 +1,44 @@
 ########################################			FUNCTIONS			########################################
-&{QSettings QSettings::QSettings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non constructor false true 3  [0xc8202b2860 0xc8202b28e0 0xc8202b29a0 0xc8202b2a20 0xc8202b2ac0] }
-&{QSettings QSettings::QSettings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non constructor false true 5  [0xc8202b2d20] }
-&{QSettings QSettings::QSettings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non constructor false true 2  [0xc8202b2f80 0xc8202b3000 0xc8202b3080 0xc8202b3160] }
-&{QSettings QSettings::QSettings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non constructor false true 4  [0xc8202b3380 0xc8202b3400 0xc8202b3480] }
-&{QSettings QSettings::QSettings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non constructor false false   [0xc8202b36e0 0xc8202b3780 0xc8202b3800] }
-&{allKeys QSettings::allKeys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QStringList [] }
-&{applicationName QSettings::applicationName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QString [] }
-&{beginGroup QSettings::beginGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void [0xc8202b3c20] }
-&{beginReadArray QSettings::beginReadArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  int [0xc8202b3e60] }
-&{beginWriteArray QSettings::beginWriteArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void [0xc82029a0e0 0xc82029a180] }
-&{childGroups QSettings::childGroups commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QStringList [] }
-&{childKeys QSettings::childKeys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QStringList [] }
-&{clear QSettings::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void [] }
-&{contains QSettings::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  bool [0xc82029a720] }
-&{defaultFormat QSettings::defaultFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain true false  Format [] }
-&{endArray QSettings::endArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void [] }
-&{endGroup QSettings::endGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void [] }
-&{event QSettings::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h impure plain false false  bool [0xc82029ace0] }
-&{fallbacksEnabled QSettings::fallbacksEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  bool [] }
-&{fileName QSettings::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QString [] }
-&{format QSettings::format commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  Format [] }
-&{group QSettings::group commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QString [] }
-&{iniCodec QSettings::iniCodec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QTextCodec * [] }
-&{isWritable QSettings::isWritable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  bool [] }
-&{organizationName QSettings::organizationName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QString [] }
-&{registerFormat QSettings::registerFormat commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain true false  Format [0xc82029b6c0 0xc82029b760 0xc82029b7e0 0xc82029b8c0] }
-&{remove QSettings::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void [0xc82029bb20] }
-&{scope QSettings::scope commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  Scope [] }
-&{setArrayIndex QSettings::setArrayIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void [0xc82029be00] }
-&{setDefaultFormat QSettings::setDefaultFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain true false  void [0xc820290020] }
-&{setFallbacksEnabled QSettings::setFallbacksEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void [0xc8202902a0] }
-&{setIniCodec QSettings::setIniCodec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void [0xc820290520] }
-&{setIniCodec QSettings::setIniCodec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false true 2 void [0xc820290760] }
-&{setPath QSettings::setPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain true false  void [0xc8202909a0 0xc820290a60 0xc820290b00] }
-&{setValue QSettings::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void [0xc8202911a0 0xc820291240] }
-&{status QSettings::status commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  Status [] }
-&{sync QSettings::sync commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void [] }
-&{value QSettings::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QVariant [0xc820291620 0xc8202916c0] }
-&{~QSettings QSettings::~QSettings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non destructor false false   [] }
+&{QSettings QSettings::QSettings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non constructor false true 3  QSettings(Format format, Scope scope, const QString &organization, const QString &application, QObject *parent) [0xc8202a59c0 0xc8202a5a40 0xc8202a5ac0 0xc8202a5ba0 0xc8202a5c60] }
+&{QSettings QSettings::QSettings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non constructor false true 5  QSettings(QObject *parent) [0xc8202a5f00] }
+&{QSettings QSettings::QSettings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non constructor false true 2  QSettings(Scope scope, const QString &organization, const QString &application, QObject *parent) [0xc82029a140 0xc82029a200 0xc82029a2a0 0xc82029a340] }
+&{QSettings QSettings::QSettings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non constructor false true 4  QSettings(const QString &fileName, Format format, QObject *parent) [0xc82029a5a0 0xc82029a640 0xc82029a6e0] }
+&{QSettings QSettings::QSettings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non constructor false false   QSettings(const QString &organization, const QString &application, QObject *parent) [0xc82029a960 0xc82029aa20 0xc82029aac0] }
+&{allKeys QSettings::allKeys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QStringList QStringList allKeys() const [] }
+&{applicationName QSettings::applicationName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QString QString applicationName() const [] }
+&{beginGroup QSettings::beginGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void void beginGroup(const QString &prefix) [0xc82029b040] }
+&{beginReadArray QSettings::beginReadArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  int int beginReadArray(const QString &prefix) [0xc82029b280] }
+&{beginWriteArray QSettings::beginWriteArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void void beginWriteArray(const QString &prefix, int size) [0xc82029b4e0 0xc82029b580] }
+&{childGroups QSettings::childGroups commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QStringList QStringList childGroups() const [] }
+&{childKeys QSettings::childKeys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QStringList QStringList childKeys() const [] }
+&{clear QSettings::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void void clear() [] }
+&{contains QSettings::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  bool bool contains(const QString &key) const [0xc82029bbc0] }
+&{defaultFormat QSettings::defaultFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain true false  Format Format defaultFormat() [] }
+&{endArray QSettings::endArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void void endArray() [] }
+&{endGroup QSettings::endGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void void endGroup() [] }
+&{event QSettings::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h impure plain false false  bool bool event(QEvent *event) [0xc8202861a0] }
+&{fallbacksEnabled QSettings::fallbacksEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  bool bool fallbacksEnabled() const [] }
+&{fileName QSettings::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QString QString fileName() const [] }
+&{format QSettings::format commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  Format Format format() const [] }
+&{group QSettings::group commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QString QString group() const [] }
+&{iniCodec QSettings::iniCodec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QTextCodec * QTextCodec * iniCodec() const [] }
+&{isWritable QSettings::isWritable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  bool bool isWritable() const [] }
+&{organizationName QSettings::organizationName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QString QString organizationName() const [] }
+&{registerFormat QSettings::registerFormat commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain true false  Format Format registerFormat(const QString &extension, ReadFunc readFunc, WriteFunc writeFunc, Qt::CaseSensitivity caseSensitivity) [0xc820286bc0 0xc820286c40 0xc820286cc0 0xc820286d80] }
+&{remove QSettings::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void void remove(const QString &key) [0xc820286fe0] }
+&{scope QSettings::scope commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  Scope Scope scope() const [] }
+&{setArrayIndex QSettings::setArrayIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void void setArrayIndex(int i) [0xc8202872e0] }
+&{setDefaultFormat QSettings::setDefaultFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain true false  void void setDefaultFormat(Format format) [0xc8202874c0] }
+&{setFallbacksEnabled QSettings::setFallbacksEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void void setFallbacksEnabled(bool b) [0xc820287820] }
+&{setIniCodec QSettings::setIniCodec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void void setIniCodec(QTextCodec *codec) [0xc820287a40] }
+&{setIniCodec QSettings::setIniCodec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false true 2 void void setIniCodec(const char *codecName) [0xc820287ca0] }
+&{setPath QSettings::setPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain true false  void void setPath(Format format, Scope scope, const QString &path) [0xc820287f00 0xc820287fa0 0xc820278060] }
+&{setValue QSettings::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void void setValue(const QString &key, const QVariant &value) [0xc820278740 0xc820278800] }
+&{status QSettings::status commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  Status Status status() const [] }
+&{sync QSettings::sync commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  void void sync() [] }
+&{value QSettings::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non plain false false  QVariant QVariant value(const QString &key, const QVariant &defaultValue) const [0xc820278c60 0xc820278d20] }
+&{~QSettings QSettings::~QSettings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsettings.h non destructor false false   ~QSettings() [] }
 ########################################			ENUMS			########################################
-&{Format QSettings::Format commendable public  [0xc8202c32a0 0xc8202c3340 0xc8202c3400 0xc8202c3480 0xc8202c3540 0xc8202c35c0 0xc8202c3660 0xc8202c3720 0xc8202c37c0 0xc8202c3860 0xc8202c3940 0xc8202c39c0 0xc8202c3a40 0xc8202c3ae0 0xc8202c3b80 0xc8202c3c00 0xc8202c3ce0 0xc8202c3d60 0xc8202c3e40]}
-&{Scope QSettings::Scope commendable public  [0xc8202b2000 0xc8202b2080]}
-&{Status QSettings::Status commendable public  [0xc8202b2280 0xc8202b2300 0xc8202b2380]}
+&{Format QSettings::Format commendable public  [0xc8202a4400 0xc8202a44a0 0xc8202a4540 0xc8202a4600 0xc8202a46a0 0xc8202a4760 0xc8202a47e0 0xc8202a48a0 0xc8202a4940 0xc8202a4a20 0xc8202a4aa0 0xc8202a4b60 0xc8202a4be0 0xc8202a4ca0 0xc8202a4d20 0xc8202a4de0 0xc8202a4e80 0xc8202a4f00 0xc8202a4f80] false}
+&{Scope QSettings::Scope commendable public  [0xc8202a5140 0xc8202a51c0] false}
+&{Status QSettings::Status commendable public  [0xc8202a53e0 0xc8202a54a0 0xc8202a5560] false}

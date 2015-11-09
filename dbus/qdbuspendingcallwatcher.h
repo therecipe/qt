@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QDBusPendingCallWatcher_WaitForFinished(QtObjectPtr ptr);
-QtObjectPtr QDBusPendingCallWatcher_NewQDBusPendingCallWatcher(QtObjectPtr call, QtObjectPtr parent);
-void QDBusPendingCallWatcher_ConnectFinished(QtObjectPtr ptr);
-void QDBusPendingCallWatcher_DisconnectFinished(QtObjectPtr ptr);
-int QDBusPendingCallWatcher_IsFinished(QtObjectPtr ptr);
-void QDBusPendingCallWatcher_DestroyQDBusPendingCallWatcher(QtObjectPtr ptr);
+void QDBusPendingCallWatcher_WaitForFinished(void* ptr);
+void* QDBusPendingCallWatcher_NewQDBusPendingCallWatcher(void* call, void* parent);
+void QDBusPendingCallWatcher_ConnectFinished(void* ptr);
+void QDBusPendingCallWatcher_DisconnectFinished(void* ptr);
+int QDBusPendingCallWatcher_IsFinished(void* ptr);
+void QDBusPendingCallWatcher_DestroyQDBusPendingCallWatcher(void* ptr);
 
 #ifdef __cplusplus
 }

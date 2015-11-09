@@ -10,8 +10,8 @@ type QDebug struct {
 	ptr unsafe.Pointer
 }
 
-type QDebugITF interface {
-	QDebugPTR() *QDebug
+type QDebug_ITF interface {
+	QDebug_PTR() *QDebug
 }
 
 func (p *QDebug) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QDebug) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQDebug(ptr QDebugITF) unsafe.Pointer {
+func PointerFromQDebug(ptr QDebug_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDebugPTR().Pointer()
+		return ptr.QDebug_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDebugFromPointer(ptr unsafe.Pointer) *QDebug {
+func NewQDebugFromPointer(ptr unsafe.Pointer) *QDebug {
 	var n = new(QDebug)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDebug) QDebugPTR() *QDebug {
+func (ptr *QDebug) QDebug_PTR() *QDebug {
 	return ptr
 }

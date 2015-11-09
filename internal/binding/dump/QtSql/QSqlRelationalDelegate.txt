@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QSqlRelationalDelegate QSqlRelationalDelegate::QSqlRelationalDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaldelegate.h non constructor false false   [0xc821119160] }
-&{createEditor QSqlRelationalDelegate::createEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaldelegate.h non plain false false  QWidget * [0xc8211193e0 0xc821119660 0xc821119820] }
-&{setModelData QSqlRelationalDelegate::setModelData commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaldelegate.h non plain false false  void [0xc821119c80 0xc821119e20 0xc8210f8080] }
-&{~QSqlRelationalDelegate QSqlRelationalDelegate::~QSqlRelationalDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaldelegate.h non destructor false false   [] }
+&{QSqlRelationalDelegate QSqlRelationalDelegate::QSqlRelationalDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaldelegate.h non constructor false false   QSqlRelationalDelegate(QObject *parent) [0xc826b079e0] }
+&{createEditor QSqlRelationalDelegate::createEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaldelegate.h non plain false false  QWidget * QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const [0xc826b07c80 0xc826b07e00 0xc826b07f80] }
+&{setModelData QSqlRelationalDelegate::setModelData commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaldelegate.h non plain false false  void void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const [0xc820742440 0xc820742680 0xc820742960] }
+&{~QSqlRelationalDelegate QSqlRelationalDelegate::~QSqlRelationalDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaldelegate.h non destructor false false   ~QSqlRelationalDelegate() [] }
 ########################################			ENUMS			########################################

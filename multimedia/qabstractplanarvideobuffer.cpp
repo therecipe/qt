@@ -10,7 +10,7 @@ class MyQAbstractPlanarVideoBuffer: public QAbstractPlanarVideoBuffer {
 public:
 };
 
-void QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(QtObjectPtr ptr){
+void QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(void* ptr){
 	static_cast<QAbstractPlanarVideoBuffer*>(ptr)->~QAbstractPlanarVideoBuffer();
 }
 

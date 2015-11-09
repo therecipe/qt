@@ -1,49 +1,49 @@
 ########################################			FUNCTIONS			########################################
-&{addDatabase QSqlDatabase::addDatabase commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.cpp non plain true true 2 QSqlDatabase [0xc8216be5c0 0xc8216be700] }
-&{addDatabase QSqlDatabase::addDatabase commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.cpp non plain true false  QSqlDatabase [0xc8216beb00 0xc8216bebe0] }
-&{QSqlDatabase QSqlDatabase::QSqlDatabase commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non constructor false false   [] }
-&{QSqlDatabase QSqlDatabase::QSqlDatabase commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non constructor false true 2  [0xc8216bf220] }
-&{QSqlDatabase QSqlDatabase::QSqlDatabase commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non constructor false true 4  [0xc8216bf7e0] }
-&{QSqlDatabase QSqlDatabase::QSqlDatabase commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non constructor false true 3  [0xc8216bfba0] }
-&{cloneDatabase QSqlDatabase::cloneDatabase commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  QSqlDatabase [0xc8216800c0 0xc821680200] }
-&{close QSqlDatabase::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void [] }
-&{commit QSqlDatabase::commit commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool [] }
-&{connectOptions QSqlDatabase::connectOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString [] }
-&{connectionName QSqlDatabase::connectionName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString [] }
-&{connectionNames QSqlDatabase::connectionNames commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  QStringList [] }
-&{contains QSqlDatabase::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  bool [0xc821680ec0] }
-&{database QSqlDatabase::database commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  QSqlDatabase [0xc8216811a0 0xc8216812e0] }
-&{databaseName QSqlDatabase::databaseName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString [] }
-&{driver QSqlDatabase::driver commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSqlDriver * [] }
-&{driverName QSqlDatabase::driverName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString [] }
-&{drivers QSqlDatabase::drivers commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  QStringList [] }
-&{exec QSqlDatabase::exec commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSqlQuery [0xc821681e40] }
-&{hostName QSqlDatabase::hostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString [] }
-&{isDriverAvailable QSqlDatabase::isDriverAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  bool [0xc82165e340] }
-&{isOpen QSqlDatabase::isOpen commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool [] }
-&{isOpenError QSqlDatabase::isOpenError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool [] }
-&{isValid QSqlDatabase::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool [] }
-&{lastError QSqlDatabase::lastError commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSqlError [] }
-&{numericalPrecisionPolicy QSqlDatabase::numericalPrecisionPolicy commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSql::NumericalPrecisionPolicy [] }
-&{open QSqlDatabase::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool [] }
-&{open QSqlDatabase::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false true 2 bool [0xc82165f280 0xc82165f340] }
-&{operator= QSqlDatabase::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSqlDatabase & [0xc82165f780] }
-&{password QSqlDatabase::password commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString [] }
-&{port QSqlDatabase::port commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  int [] }
-&{primaryIndex QSqlDatabase::primaryIndex commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSqlIndex [0xc82165ffa0] }
-&{record QSqlDatabase::record commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSqlRecord [0xc8226ee2c0] }
-&{registerSqlDriver QSqlDatabase::registerSqlDriver commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  void [0xc8226ee5a0 0xc8226ee6c0] }
-&{removeDatabase QSqlDatabase::removeDatabase commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  void [0xc8226ee9a0] }
-&{rollback QSqlDatabase::rollback commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool [] }
-&{setConnectOptions QSqlDatabase::setConnectOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void [0xc8226eee20] }
-&{setDatabaseName QSqlDatabase::setDatabaseName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void [0xc8226ef0a0] }
-&{setHostName QSqlDatabase::setHostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void [0xc8226ef360] }
-&{setNumericalPrecisionPolicy QSqlDatabase::setNumericalPrecisionPolicy commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void [0xc8226ef620] }
-&{setPassword QSqlDatabase::setPassword commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void [0xc8226ef940] }
-&{setPort QSqlDatabase::setPort commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void [0xc8226efc00] }
-&{setUserName QSqlDatabase::setUserName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void [0xc8226eff00] }
-&{tables QSqlDatabase::tables commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QStringList [0xc8216242a0] }
-&{transaction QSqlDatabase::transaction commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool [] }
-&{userName QSqlDatabase::userName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString [] }
-&{~QSqlDatabase QSqlDatabase::~QSqlDatabase commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non destructor false false   [] }
+&{addDatabase QSqlDatabase::addDatabase commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.cpp non plain true true 2 QSqlDatabase QSqlDatabase addDatabase(QSqlDriver *driver, const QString &connectionName) [0xc820d18520 0xc820d18640] }
+&{addDatabase QSqlDatabase::addDatabase commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.cpp non plain true false  QSqlDatabase QSqlDatabase addDatabase(const QString &type, const QString &connectionName) [0xc820d18c80 0xc820d18fa0] }
+&{QSqlDatabase QSqlDatabase::QSqlDatabase commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non constructor false false   QSqlDatabase() [] }
+&{QSqlDatabase QSqlDatabase::QSqlDatabase commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non constructor false true 2  QSqlDatabase(const QSqlDatabase &other) [0xc820d19ac0] }
+&{QSqlDatabase QSqlDatabase::QSqlDatabase commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non constructor false true 4  QSqlDatabase(QSqlDriver *driver) [0xc820d06220] }
+&{QSqlDatabase QSqlDatabase::QSqlDatabase commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non constructor false true 3  QSqlDatabase(const QString &type) [0xc820d06960] }
+&{cloneDatabase QSqlDatabase::cloneDatabase commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  QSqlDatabase QSqlDatabase cloneDatabase(const QSqlDatabase &other, const QString &connectionName) [0xc820d071a0 0xc820d07560] }
+&{close QSqlDatabase::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void void close() [] }
+&{commit QSqlDatabase::commit commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool bool commit() [] }
+&{connectOptions QSqlDatabase::connectOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString QString connectOptions() const [] }
+&{connectionName QSqlDatabase::connectionName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString QString connectionName() const [] }
+&{connectionNames QSqlDatabase::connectionNames commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  QStringList QStringList connectionNames() [] }
+&{contains QSqlDatabase::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  bool bool contains(const QString &connectionName) [0xc820cef5e0] }
+&{database QSqlDatabase::database commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  QSqlDatabase QSqlDatabase database(const QString &connectionName, bool open) [0xc820cd6000 0xc820cd61e0] }
+&{databaseName QSqlDatabase::databaseName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString QString databaseName() const [] }
+&{driver QSqlDatabase::driver commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSqlDriver * QSqlDriver * driver() const [] }
+&{driverName QSqlDatabase::driverName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString QString driverName() const [] }
+&{drivers QSqlDatabase::drivers commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  QStringList QStringList drivers() [] }
+&{exec QSqlDatabase::exec commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSqlQuery QSqlQuery exec(const QString &query) const [0xc820cd7e80] }
+&{hostName QSqlDatabase::hostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString QString hostName() const [] }
+&{isDriverAvailable QSqlDatabase::isDriverAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  bool bool isDriverAvailable(const QString &name) [0xc820dcc620] }
+&{isOpen QSqlDatabase::isOpen commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool bool isOpen() const [] }
+&{isOpenError QSqlDatabase::isOpenError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool bool isOpenError() const [] }
+&{isValid QSqlDatabase::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool bool isValid() const [] }
+&{lastError QSqlDatabase::lastError commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSqlError QSqlError lastError() const [] }
+&{numericalPrecisionPolicy QSqlDatabase::numericalPrecisionPolicy commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSql::NumericalPrecisionPolicy QSql::NumericalPrecisionPolicy numericalPrecisionPolicy() const [] }
+&{open QSqlDatabase::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool bool open() [] }
+&{open QSqlDatabase::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false true 2 bool bool open(const QString &user, const QString &password) [0xc820dcdb20 0xc820dcdbe0] }
+&{operator= QSqlDatabase::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSqlDatabase & QSqlDatabase & operator=(const QSqlDatabase &other) [0xc820cc20a0] }
+&{password QSqlDatabase::password commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString QString password() const [] }
+&{port QSqlDatabase::port commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  int int port() const [] }
+&{primaryIndex QSqlDatabase::primaryIndex commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSqlIndex QSqlIndex primaryIndex(const QString &tablename) const [0xc820cc3380] }
+&{record QSqlDatabase::record commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QSqlRecord QSqlRecord record(const QString &tablename) const [0xc820cc3a00] }
+&{registerSqlDriver QSqlDatabase::registerSqlDriver commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  void void registerSqlDriver(const QString &name, QSqlDriverCreatorBase *creator) [0xc820cb8320 0xc820cb85c0] }
+&{removeDatabase QSqlDatabase::removeDatabase commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain true false  void void removeDatabase(const QString &connectionName) [0xc820cb8f80] }
+&{rollback QSqlDatabase::rollback commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool bool rollback() [] }
+&{setConnectOptions QSqlDatabase::setConnectOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void void setConnectOptions(const QString &options) [0xc820cb9be0] }
+&{setDatabaseName QSqlDatabase::setDatabaseName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void void setDatabaseName(const QString &name) [0xc820cae0c0] }
+&{setHostName QSqlDatabase::setHostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void void setHostName(const QString &host) [0xc820cae4e0] }
+&{setNumericalPrecisionPolicy QSqlDatabase::setNumericalPrecisionPolicy commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void void setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy precisionPolicy) [0xc820caea00] }
+&{setPassword QSqlDatabase::setPassword commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void void setPassword(const QString &password) [0xc820caef40] }
+&{setPort QSqlDatabase::setPort commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void void setPort(int port) [0xc820caf440] }
+&{setUserName QSqlDatabase::setUserName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  void void setUserName(const QString &name) [0xc820caf9c0] }
+&{tables QSqlDatabase::tables commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QStringList QStringList tables(QSql::TableType type) const [0xc820ca8000] }
+&{transaction QSqlDatabase::transaction commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  bool bool transaction() [] }
+&{userName QSqlDatabase::userName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non plain false false  QString QString userName() const [] }
+&{~QSqlDatabase QSqlDatabase::~QSqlDatabase commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldatabase.h non destructor false false   ~QSqlDatabase() [] }
 ########################################			ENUMS			########################################

@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSGClipNode_NewQSGClipNode();
-int QSGClipNode_IsRectangular(QtObjectPtr ptr);
-void QSGClipNode_SetClipRect(QtObjectPtr ptr, QtObjectPtr rect);
-void QSGClipNode_SetIsRectangular(QtObjectPtr ptr, int rectHint);
-void QSGClipNode_DestroyQSGClipNode(QtObjectPtr ptr);
+void* QSGClipNode_NewQSGClipNode();
+int QSGClipNode_IsRectangular(void* ptr);
+void QSGClipNode_SetClipRect(void* ptr, void* rect);
+void QSGClipNode_SetIsRectangular(void* ptr, int rectHint);
+void QSGClipNode_DestroyQSGClipNode(void* ptr);
 
 #ifdef __cplusplus
 }

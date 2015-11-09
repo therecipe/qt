@@ -1,15 +1,17 @@
 #include "qcoreapplication.h"
-#include <QVariant>
-#include <QEvent>
-#include <QObject>
-#include <QTranslator>
+#include <QEventLoop>
 #include <QAbstractEventDispatcher>
+#include <QEvent>
+#include <QVariant>
+#include <QByteArray>
 #include <QAbstractNativeEventFilter>
+#include <QList>
+#include <QMetaObject>
 #include <QString>
 #include <QUrl>
 #include <QModelIndex>
-#include <QMetaObject>
-#include <QEventLoop>
+#include <QTranslator>
+#include <QObject>
 #include <QCoreApplication>
 #include "_cgo_export.h"
 
@@ -50,15 +52,21 @@ void QCoreApplication_QCoreApplication_SetOrganizationName(char* orgName){
 	QCoreApplication::setOrganizationName(QString(orgName));
 }
 
-QtObjectPtr QCoreApplication_NewQCoreApplication(int argc, char* argv){
-	return new QCoreApplication(argc, &argv);
+void* QCoreApplication_NewQCoreApplication(int argc, char* argv){
+	QList<QByteArray> aList = QByteArray(argv).split('|');
+	char *argvs[argc];
+	static int argcs = argc;
+	for (int i = 0; i < argc; i++)
+		argvs[i] = aList[i].data();
+
+	return new QCoreApplication(argcs, argvs);
 }
 
-void QCoreApplication_ConnectAboutToQuit(QtObjectPtr ptr){
+void QCoreApplication_ConnectAboutToQuit(void* ptr){
 	QObject::connect(static_cast<QCoreApplication*>(ptr), &QCoreApplication::aboutToQuit, static_cast<MyQCoreApplication*>(ptr), static_cast<void (MyQCoreApplication::*)()>(&MyQCoreApplication::Signal_AboutToQuit));;
 }
 
-void QCoreApplication_DisconnectAboutToQuit(QtObjectPtr ptr){
+void QCoreApplication_DisconnectAboutToQuit(void* ptr){
 	QObject::disconnect(static_cast<QCoreApplication*>(ptr), &QCoreApplication::aboutToQuit, static_cast<MyQCoreApplication*>(ptr), static_cast<void (MyQCoreApplication::*)()>(&MyQCoreApplication::Signal_AboutToQuit));;
 }
 
@@ -82,7 +90,7 @@ int QCoreApplication_QCoreApplication_ClosingDown(){
 	return QCoreApplication::closingDown();
 }
 
-QtObjectPtr QCoreApplication_QCoreApplication_EventDispatcher(){
+void* QCoreApplication_QCoreApplication_EventDispatcher(){
 	return QCoreApplication::eventDispatcher();
 }
 
@@ -98,15 +106,15 @@ void QCoreApplication_QCoreApplication_Flush(){
 	QCoreApplication::flush();
 }
 
-void QCoreApplication_InstallNativeEventFilter(QtObjectPtr ptr, QtObjectPtr filterObj){
+void QCoreApplication_InstallNativeEventFilter(void* ptr, void* filterObj){
 	static_cast<QCoreApplication*>(ptr)->installNativeEventFilter(static_cast<QAbstractNativeEventFilter*>(filterObj));
 }
 
-int QCoreApplication_QCoreApplication_InstallTranslator(QtObjectPtr translationFile){
+int QCoreApplication_QCoreApplication_InstallTranslator(void* translationFile){
 	return QCoreApplication::installTranslator(static_cast<QTranslator*>(translationFile));
 }
 
-QtObjectPtr QCoreApplication_QCoreApplication_Instance(){
+void* QCoreApplication_QCoreApplication_Instance(){
 	return QCoreApplication::instance();
 }
 
@@ -122,11 +130,11 @@ char* QCoreApplication_QCoreApplication_LibraryPaths(){
 	return QCoreApplication::libraryPaths().join("|").toUtf8().data();
 }
 
-int QCoreApplication_Notify(QtObjectPtr ptr, QtObjectPtr receiver, QtObjectPtr event){
+int QCoreApplication_Notify(void* ptr, void* receiver, void* event){
 	return static_cast<QCoreApplication*>(ptr)->notify(static_cast<QObject*>(receiver), static_cast<QEvent*>(event));
 }
 
-void QCoreApplication_QCoreApplication_PostEvent(QtObjectPtr receiver, QtObjectPtr event, int priority){
+void QCoreApplication_QCoreApplication_PostEvent(void* receiver, void* event, int priority){
 	QCoreApplication::postEvent(static_cast<QObject*>(receiver), static_cast<QEvent*>(event), priority);
 }
 
@@ -146,23 +154,23 @@ void QCoreApplication_QCoreApplication_RemoveLibraryPath(char* path){
 	QCoreApplication::removeLibraryPath(QString(path));
 }
 
-void QCoreApplication_RemoveNativeEventFilter(QtObjectPtr ptr, QtObjectPtr filterObject){
+void QCoreApplication_RemoveNativeEventFilter(void* ptr, void* filterObject){
 	static_cast<QCoreApplication*>(ptr)->removeNativeEventFilter(static_cast<QAbstractNativeEventFilter*>(filterObject));
 }
 
-void QCoreApplication_QCoreApplication_RemovePostedEvents(QtObjectPtr receiver, int eventType){
+void QCoreApplication_QCoreApplication_RemovePostedEvents(void* receiver, int eventType){
 	QCoreApplication::removePostedEvents(static_cast<QObject*>(receiver), eventType);
 }
 
-int QCoreApplication_QCoreApplication_RemoveTranslator(QtObjectPtr translationFile){
+int QCoreApplication_QCoreApplication_RemoveTranslator(void* translationFile){
 	return QCoreApplication::removeTranslator(static_cast<QTranslator*>(translationFile));
 }
 
-int QCoreApplication_QCoreApplication_SendEvent(QtObjectPtr receiver, QtObjectPtr event){
+int QCoreApplication_QCoreApplication_SendEvent(void* receiver, void* event){
 	return QCoreApplication::sendEvent(static_cast<QObject*>(receiver), static_cast<QEvent*>(event));
 }
 
-void QCoreApplication_QCoreApplication_SendPostedEvents(QtObjectPtr receiver, int event_type){
+void QCoreApplication_QCoreApplication_SendPostedEvents(void* receiver, int event_type){
 	QCoreApplication::sendPostedEvents(static_cast<QObject*>(receiver), event_type);
 }
 
@@ -170,7 +178,7 @@ void QCoreApplication_QCoreApplication_SetAttribute(int attribute, int on){
 	QCoreApplication::setAttribute(static_cast<Qt::ApplicationAttribute>(attribute), on != 0);
 }
 
-void QCoreApplication_QCoreApplication_SetEventDispatcher(QtObjectPtr eventDispatcher){
+void QCoreApplication_QCoreApplication_SetEventDispatcher(void* eventDispatcher){
 	QCoreApplication::setEventDispatcher(static_cast<QAbstractEventDispatcher*>(eventDispatcher));
 }
 
@@ -198,7 +206,7 @@ char* QCoreApplication_QCoreApplication_Translate(char* context, char* sourceTex
 	return QCoreApplication::translate(const_cast<const char*>(context), const_cast<const char*>(sourceText), const_cast<const char*>(disambiguation), n).toUtf8().data();
 }
 
-void QCoreApplication_DestroyQCoreApplication(QtObjectPtr ptr){
+void QCoreApplication_DestroyQCoreApplication(void* ptr){
 	static_cast<QCoreApplication*>(ptr)->~QCoreApplication();
 }
 

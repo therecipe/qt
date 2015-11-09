@@ -10,24 +10,24 @@ type QPlaceReview struct {
 	QPlaceContent
 }
 
-type QPlaceReviewITF interface {
-	QPlaceContentITF
-	QPlaceReviewPTR() *QPlaceReview
+type QPlaceReview_ITF interface {
+	QPlaceContent_ITF
+	QPlaceReview_PTR() *QPlaceReview
 }
 
-func PointerFromQPlaceReview(ptr QPlaceReviewITF) unsafe.Pointer {
+func PointerFromQPlaceReview(ptr QPlaceReview_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceReviewPTR().Pointer()
+		return ptr.QPlaceReview_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceReviewFromPointer(ptr unsafe.Pointer) *QPlaceReview {
+func NewQPlaceReviewFromPointer(ptr unsafe.Pointer) *QPlaceReview {
 	var n = new(QPlaceReview)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPlaceReview) QPlaceReviewPTR() *QPlaceReview {
+func (ptr *QPlaceReview) QPlaceReview_PTR() *QPlaceReview {
 	return ptr
 }

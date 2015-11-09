@@ -1,38 +1,38 @@
 ########################################			FUNCTIONS			########################################
-&{openExternalLinks QTextBrowser::openExternalLinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  bool [] }
-&{openLinks QTextBrowser::openLinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  bool [] }
-&{searchPaths QTextBrowser::searchPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  QStringList [] }
-&{setOpenExternalLinks QTextBrowser::setOpenExternalLinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  void [0xc821f54be0] }
-&{setOpenLinks QTextBrowser::setOpenLinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  void [0xc821f54f20] }
-&{setSearchPaths QTextBrowser::setSearchPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  void [0xc821f55220] }
-&{setSource QTextBrowser::setSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp impure slot false false  void [0xc821f555c0] }
-&{source QTextBrowser::source commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  QUrl [] }
-&{QTextBrowser QTextBrowser::QTextBrowser commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non constructor false false   [0xc821f55b00] }
-&{anchorClicked QTextBrowser::anchorClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false false  void [0xc821f62100] }
-&{backward QTextBrowser::backward commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure slot false false  void [] }
-&{backwardAvailable QTextBrowser::backwardAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false false  void [0xc821f62620] }
-&{backwardHistoryCount QTextBrowser::backwardHistoryCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  int [] }
-&{clearHistory QTextBrowser::clearHistory commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  void [] }
-&{event QTextBrowser::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  bool [0xc821f62e00] }
-&{focusNextPrevChild QTextBrowser::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  bool [0xc821f63200] }
-&{focusOutEvent QTextBrowser::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  void [0xc821f635c0] }
-&{forward QTextBrowser::forward commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure slot false false  void [] }
-&{forwardAvailable QTextBrowser::forwardAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false false  void [0xc821f63ac0] }
-&{forwardHistoryCount QTextBrowser::forwardHistoryCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  int [] }
-&{highlighted QTextBrowser::highlighted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false true 2 void [0xc821f72060] }
-&{highlighted QTextBrowser::highlighted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false false  void [0xc821f723e0] }
-&{historyChanged QTextBrowser::historyChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false false  void [] }
-&{historyTitle QTextBrowser::historyTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  QString [0xc821f728c0] }
-&{historyUrl QTextBrowser::historyUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  QUrl [0xc821f72d20] }
-&{home QTextBrowser::home commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure slot false false  void [] }
-&{isBackwardAvailable QTextBrowser::isBackwardAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  bool [] }
-&{isForwardAvailable QTextBrowser::isForwardAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  bool [] }
-&{keyPressEvent QTextBrowser::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  void [0xc821f736a0] }
-&{loadResource QTextBrowser::loadResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  QVariant [0xc821f73a20 0xc821f73b00] }
-&{mouseMoveEvent QTextBrowser::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  void [0xc821f73e80] }
-&{mousePressEvent QTextBrowser::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  void [0xc822a541a0] }
-&{mouseReleaseEvent QTextBrowser::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  void [0xc822a54600] }
-&{paintEvent QTextBrowser::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  void [0xc822a54960] }
-&{reload QTextBrowser::reload commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure slot false false  void [] }
-&{sourceChanged QTextBrowser::sourceChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false false  void [0xc822a54dc0] }
+&{openExternalLinks QTextBrowser::openExternalLinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  bool bool openExternalLinks() const [] }
+&{openLinks QTextBrowser::openLinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  bool bool openLinks() const [] }
+&{searchPaths QTextBrowser::searchPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  QStringList QStringList searchPaths() const [] }
+&{setOpenExternalLinks QTextBrowser::setOpenExternalLinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  void void setOpenExternalLinks(bool open) [0xc826a859a0] }
+&{setOpenLinks QTextBrowser::setOpenLinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  void void setOpenLinks(bool open) [0xc826a85dc0] }
+&{setSearchPaths QTextBrowser::setSearchPaths commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  void void setSearchPaths(const QStringList &paths) [0xc8206d8180] }
+&{setSource QTextBrowser::setSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp impure slot false false  void void setSource(const QUrl &name) [0xc8206d8640] }
+&{source QTextBrowser::source commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.cpp non plain false false  QUrl QUrl source() const [] }
+&{QTextBrowser QTextBrowser::QTextBrowser commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non constructor false false   QTextBrowser(QWidget *parent) [0xc8206d8cc0] }
+&{anchorClicked QTextBrowser::anchorClicked commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false false  void void anchorClicked(const QUrl &link) [0xc8206d9460] }
+&{backward QTextBrowser::backward commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure slot false false  void void backward() [] }
+&{backwardAvailable QTextBrowser::backwardAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false false  void void backwardAvailable(bool available) [0xc8206d99a0] }
+&{backwardHistoryCount QTextBrowser::backwardHistoryCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  int int backwardHistoryCount() const [] }
+&{clearHistory QTextBrowser::clearHistory commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  void void clearHistory() [] }
+&{event QTextBrowser::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  bool bool event(QEvent *e) [0xc826b58200] }
+&{focusNextPrevChild QTextBrowser::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  bool bool focusNextPrevChild(bool next) [0xc826b585e0] }
+&{focusOutEvent QTextBrowser::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  void void focusOutEvent(QFocusEvent *ev) [0xc826b589c0] }
+&{forward QTextBrowser::forward commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure slot false false  void void forward() [] }
+&{forwardAvailable QTextBrowser::forwardAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false false  void void forwardAvailable(bool available) [0xc826b58e80] }
+&{forwardHistoryCount QTextBrowser::forwardHistoryCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  int int forwardHistoryCount() const [] }
+&{highlighted QTextBrowser::highlighted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false true 2 void void highlighted(const QString &link) [0xc826b59420] }
+&{highlighted QTextBrowser::highlighted commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false false  void void highlighted(const QUrl &link) [0xc826b597a0] }
+&{historyChanged QTextBrowser::historyChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false false  void void historyChanged() [] }
+&{historyTitle QTextBrowser::historyTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  QString QString historyTitle(int i) const [0xc826b59ce0] }
+&{historyUrl QTextBrowser::historyUrl commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  QUrl QUrl historyUrl(int i) const [0xc821054180] }
+&{home QTextBrowser::home commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure slot false false  void void home() [] }
+&{isBackwardAvailable QTextBrowser::isBackwardAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  bool bool isBackwardAvailable() const [] }
+&{isForwardAvailable QTextBrowser::isForwardAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non plain false false  bool bool isForwardAvailable() const [] }
+&{keyPressEvent QTextBrowser::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  void void keyPressEvent(QKeyEvent *ev) [0xc821054b80] }
+&{loadResource QTextBrowser::loadResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  QVariant QVariant loadResource(int type, const QUrl &name) [0xc821054ec0 0xc821054f80] }
+&{mouseMoveEvent QTextBrowser::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc8210552a0] }
+&{mousePressEvent QTextBrowser::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  void void mousePressEvent(QMouseEvent *e) [0xc8210555c0] }
+&{mouseReleaseEvent QTextBrowser::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *e) [0xc8210559a0] }
+&{paintEvent QTextBrowser::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure plain false false  void void paintEvent(QPaintEvent *e) [0xc821055d20] }
+&{reload QTextBrowser::reload commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h impure slot false false  void void reload() [] }
+&{sourceChanged QTextBrowser::sourceChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtextbrowser.h non signal false false  void void sourceChanged(const QUrl &src) [0xc820e00260] }
 ########################################			ENUMS			########################################

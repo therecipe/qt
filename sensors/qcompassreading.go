@@ -11,27 +11,53 @@ type QCompassReading struct {
 	QSensorReading
 }
 
-type QCompassReadingITF interface {
-	QSensorReadingITF
-	QCompassReadingPTR() *QCompassReading
+type QCompassReading_ITF interface {
+	QSensorReading_ITF
+	QCompassReading_PTR() *QCompassReading
 }
 
-func PointerFromQCompassReading(ptr QCompassReadingITF) unsafe.Pointer {
+func PointerFromQCompassReading(ptr QCompassReading_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCompassReadingPTR().Pointer()
+		return ptr.QCompassReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCompassReadingFromPointer(ptr unsafe.Pointer) *QCompassReading {
+func NewQCompassReadingFromPointer(ptr unsafe.Pointer) *QCompassReading {
 	var n = new(QCompassReading)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCompassReading_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCompassReading) QCompassReadingPTR() *QCompassReading {
+func (ptr *QCompassReading) QCompassReading_PTR() *QCompassReading {
 	return ptr
+}
+
+func (ptr *QCompassReading) Azimuth() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCompassReading_Azimuth(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QCompassReading) CalibrationLevel() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCompassReading_CalibrationLevel(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QCompassReading) SetAzimuth(azimuth float64) {
+	if ptr.Pointer() != nil {
+		C.QCompassReading_SetAzimuth(ptr.Pointer(), C.double(azimuth))
+	}
+}
+
+func (ptr *QCompassReading) SetCalibrationLevel(calibrationLevel float64) {
+	if ptr.Pointer() != nil {
+		C.QCompassReading_SetCalibrationLevel(ptr.Pointer(), C.double(calibrationLevel))
+	}
 }

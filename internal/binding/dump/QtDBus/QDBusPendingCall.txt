@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{QDBusPendingCall QDBusPendingCall::QDBusPendingCall commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non constructor false false   [0xc82217c460] }
-&{fromCompletedCall QDBusPendingCall::fromCompletedCall commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non plain true false  QDBusPendingCall [0xc82217c8e0] }
-&{fromError QDBusPendingCall::fromError commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non plain true false  QDBusPendingCall [0xc82217cba0] }
-&{operator= QDBusPendingCall::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non plain false false  QDBusPendingCall & [0xc82217cec0] }
-&{swap QDBusPendingCall::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non plain false false  void [0xc82217d1c0] }
-&{~QDBusPendingCall QDBusPendingCall::~QDBusPendingCall commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non destructor false false   [] }
+&{QDBusPendingCall QDBusPendingCall::QDBusPendingCall commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non constructor false false   QDBusPendingCall(const QDBusPendingCall &other) [0xc8214fb360] }
+&{fromCompletedCall QDBusPendingCall::fromCompletedCall commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non plain true false  QDBusPendingCall QDBusPendingCall fromCompletedCall(const QDBusMessage &msg) [0xc8214fb820] }
+&{fromError QDBusPendingCall::fromError commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non plain true false  QDBusPendingCall QDBusPendingCall fromError(const QDBusError &error) [0xc8214fba80] }
+&{operator= QDBusPendingCall::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non plain false false  QDBusPendingCall & QDBusPendingCall & operator=(const QDBusPendingCall &other) [0xc8214fbd00] }
+&{swap QDBusPendingCall::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non plain false false  void void swap(QDBusPendingCall &other) [0xc8214fbf40] }
+&{~QDBusPendingCall QDBusPendingCall::~QDBusPendingCall commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non destructor false false   ~QDBusPendingCall() [] }
 ########################################			ENUMS			########################################

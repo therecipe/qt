@@ -12,35 +12,35 @@ type QGraphicsBlurEffect struct {
 	QGraphicsEffect
 }
 
-type QGraphicsBlurEffectITF interface {
-	QGraphicsEffectITF
-	QGraphicsBlurEffectPTR() *QGraphicsBlurEffect
+type QGraphicsBlurEffect_ITF interface {
+	QGraphicsEffect_ITF
+	QGraphicsBlurEffect_PTR() *QGraphicsBlurEffect
 }
 
-func PointerFromQGraphicsBlurEffect(ptr QGraphicsBlurEffectITF) unsafe.Pointer {
+func PointerFromQGraphicsBlurEffect(ptr QGraphicsBlurEffect_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsBlurEffectPTR().Pointer()
+		return ptr.QGraphicsBlurEffect_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsBlurEffectFromPointer(ptr unsafe.Pointer) *QGraphicsBlurEffect {
+func NewQGraphicsBlurEffectFromPointer(ptr unsafe.Pointer) *QGraphicsBlurEffect {
 	var n = new(QGraphicsBlurEffect)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGraphicsBlurEffect_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGraphicsBlurEffect) QGraphicsBlurEffectPTR() *QGraphicsBlurEffect {
+func (ptr *QGraphicsBlurEffect) QGraphicsBlurEffect_PTR() *QGraphicsBlurEffect {
 	return ptr
 }
 
 //QGraphicsBlurEffect::BlurHint
-type QGraphicsBlurEffect__BlurHint int
+type QGraphicsBlurEffect__BlurHint int64
 
-var (
+const (
 	QGraphicsBlurEffect__PerformanceHint = QGraphicsBlurEffect__BlurHint(0x00)
 	QGraphicsBlurEffect__QualityHint     = QGraphicsBlurEffect__BlurHint(0x01)
 	QGraphicsBlurEffect__AnimationHint   = QGraphicsBlurEffect__BlurHint(0x02)
@@ -48,31 +48,44 @@ var (
 
 func (ptr *QGraphicsBlurEffect) BlurHints() QGraphicsBlurEffect__BlurHint {
 	if ptr.Pointer() != nil {
-		return QGraphicsBlurEffect__BlurHint(C.QGraphicsBlurEffect_BlurHints(C.QtObjectPtr(ptr.Pointer())))
+		return QGraphicsBlurEffect__BlurHint(C.QGraphicsBlurEffect_BlurHints(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsBlurEffect) BlurRadius() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsBlurEffect_BlurRadius(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsBlurEffect) SetBlurHints(hints QGraphicsBlurEffect__BlurHint) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsBlurEffect_SetBlurHints(C.QtObjectPtr(ptr.Pointer()), C.int(hints))
+		C.QGraphicsBlurEffect_SetBlurHints(ptr.Pointer(), C.int(hints))
 	}
 }
 
-func NewQGraphicsBlurEffect(parent core.QObjectITF) *QGraphicsBlurEffect {
-	return QGraphicsBlurEffectFromPointer(unsafe.Pointer(C.QGraphicsBlurEffect_NewQGraphicsBlurEffect(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func (ptr *QGraphicsBlurEffect) SetBlurRadius(blurRadius float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsBlurEffect_SetBlurRadius(ptr.Pointer(), C.double(blurRadius))
+	}
+}
+
+func NewQGraphicsBlurEffect(parent core.QObject_ITF) *QGraphicsBlurEffect {
+	return NewQGraphicsBlurEffectFromPointer(C.QGraphicsBlurEffect_NewQGraphicsBlurEffect(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QGraphicsBlurEffect) ConnectBlurHintsChanged(f func(hints QGraphicsBlurEffect__BlurHint)) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsBlurEffect_ConnectBlurHintsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsBlurEffect_ConnectBlurHintsChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "blurHintsChanged", f)
 	}
 }
 
 func (ptr *QGraphicsBlurEffect) DisconnectBlurHintsChanged() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsBlurEffect_DisconnectBlurHintsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsBlurEffect_DisconnectBlurHintsChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "blurHintsChanged")
 	}
 }
@@ -84,7 +97,7 @@ func callbackQGraphicsBlurEffectBlurHintsChanged(ptrName *C.char, hints C.int) {
 
 func (ptr *QGraphicsBlurEffect) DestroyQGraphicsBlurEffect() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsBlurEffect_DestroyQGraphicsBlurEffect(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsBlurEffect_DestroyQGraphicsBlurEffect(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

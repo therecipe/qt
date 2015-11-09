@@ -1,53 +1,53 @@
 ########################################			FUNCTIONS			########################################
-&{brush QPalette::brush commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.cpp non plain false false  const QBrush & [0xc820796b40 0xc820796bc0] }
-&{isEqual QPalette::isEqual commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.cpp non plain false false  bool [0xc820796f80 0xc820797060] }
-&{setBrush QPalette::setBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.cpp non plain false true 2 void [0xc8207973c0 0xc820797440 0xc820797580] }
-&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false false   [] }
-&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false true 8  [0xc820ae7740] }
-&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false true 3  [0xc820ae79c0] }
-&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false true 5  [0xc820ae7c20 0xc820ae7cc0 0xc820ae7d80 0xc820ae7e20 0xc820ae7f00 0xc820ae7fa0 0xc820780040 0xc820780100 0xc820780200] }
-&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false true 2  [0xc820780420] }
-&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false true 4  [0xc8207806c0 0xc820780740] }
-&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false true 7  [0xc820781160] }
-&{alternateBase QPalette::alternateBase commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{base QPalette::base commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{brightText QPalette::brightText commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{brush QPalette::brush commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false true 2 const QBrush & [0xc820781820] }
-&{button QPalette::button commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{buttonText QPalette::buttonText commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{cacheKey QPalette::cacheKey commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  qint64 [] }
-&{color QPalette::color commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QColor & [0xc820781e80 0xc820781fa0] }
-&{color QPalette::color commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false true 2 const QColor & [0xc8207681a0] }
-&{currentColorGroup QPalette::currentColorGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  ColorGroup [] }
-&{dark QPalette::dark commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{highlight QPalette::highlight commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{highlightedText QPalette::highlightedText commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{isBrushSet QPalette::isBrushSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  bool [0xc820768d60 0xc820768e20] }
-&{isCopyOf QPalette::isCopyOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  bool [0xc820769120] }
-&{light QPalette::light commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{link QPalette::link commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{linkVisited QPalette::linkVisited commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{mid QPalette::mid commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{midlight QPalette::midlight commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{operator QVariant QPalette::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false   [] }
-&{operator!= QPalette::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  bool [0xc820769c40] }
-&{operator= QPalette::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false true 2 QPalette & [0xc820769e80] }
-&{operator= QPalette::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  QPalette & [0xc820758080] }
-&{operator== QPalette::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  bool [0xc8207583a0] }
-&{resolve QPalette::resolve commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  QPalette [0xc8207586a0] }
-&{setBrush QPalette::setBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  void [0xc820759000 0xc820759100] }
-&{setColor QPalette::setColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  void [0xc8207593e0 0xc820759480 0xc820759540] }
-&{setColor QPalette::setColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false true 2 void [0xc820759880 0xc820759920] }
-&{setColorGroup QPalette::setColorGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  void [0xc820759c60 0xc820759d60 0xc820759de0 0xc820759ee0 0xc8209f2040 0xc8209f20c0 0xc8209f2140 0xc8209f21e0 0xc8209f22c0 0xc8209f2360] }
-&{setCurrentColorGroup QPalette::setCurrentColorGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  void [0xc8209f3ee0] }
-&{shadow QPalette::shadow commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{swap QPalette::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  void [0xc82072c220] }
-&{text QPalette::text commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{toolTipBase QPalette::toolTipBase commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{toolTipText QPalette::toolTipText commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{window QPalette::window commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{windowText QPalette::windowText commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & [] }
-&{~QPalette QPalette::~QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non destructor false false   [] }
+&{brush QPalette::brush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.cpp non plain false false  const QBrush & const QBrush & brush(ColorGroup group, ColorRole role) const [0xc8205ccd00 0xc8205ccdc0] }
+&{isEqual QPalette::isEqual commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.cpp non plain false false  bool bool isEqual(ColorGroup cg1, ColorGroup cg2) const [0xc8205cd020 0xc8205cd0e0] }
+&{setBrush QPalette::setBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.cpp non plain false true 2 void void setBrush(ColorGroup group, ColorRole role, const QBrush &brush) [0xc8205cd400 0xc8205cd4c0 0xc8205cd600] }
+&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false false   QPalette() [] }
+&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false true 8  QPalette(QPalette &&other) [0xc8205a8680] }
+&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false true 3  QPalette(Qt::GlobalColor button) [0xc8205a8aa0] }
+&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false true 5  QPalette(const QBrush &windowText, const QBrush &button, const QBrush &light, const QBrush &dark, const QBrush &mid, const QBrush &text, const QBrush &bright_text, const QBrush &base, const QBrush &window) [0xc8205a8e80 0xc8205a9060 0xc8205a9140 0xc8205a9260 0xc8205a93e0 0xc8205a9500 0xc8205a9600 0xc8205a96e0 0xc8205a9800] }
+&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false true 2  QPalette(const QColor &button) [0xc8205a9d40] }
+&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false true 4  QPalette(const QColor &button, const QColor &window) [0xc8209ba060 0xc8209ba0e0] }
+&{QPalette QPalette::QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non constructor false true 7  QPalette(const QPalette &p) [0xc8209ba8c0] }
+&{alternateBase QPalette::alternateBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & alternateBase() const [] }
+&{base QPalette::base commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & base() const [] }
+&{brightText QPalette::brightText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & brightText() const [] }
+&{brush QPalette::brush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false true 2 const QBrush & const QBrush & brush(ColorRole role) const [0xc8209bae20] }
+&{button QPalette::button commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & button() const [] }
+&{buttonText QPalette::buttonText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & buttonText() const [] }
+&{cacheKey QPalette::cacheKey commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  qint64 qint64 cacheKey() const [] }
+&{color QPalette::color commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QColor & const QColor & color(ColorGroup group, ColorRole role) const [0xc8209bb300 0xc8209bb380] }
+&{color QPalette::color commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false true 2 const QColor & const QColor & color(ColorRole role) const [0xc8209bb520] }
+&{currentColorGroup QPalette::currentColorGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  ColorGroup ColorGroup currentColorGroup() const [] }
+&{dark QPalette::dark commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & dark() const [] }
+&{highlight QPalette::highlight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & highlight() const [] }
+&{highlightedText QPalette::highlightedText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & highlightedText() const [] }
+&{isBrushSet QPalette::isBrushSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  bool bool isBrushSet(ColorGroup cg, ColorRole cr) const [0xc8209bbde0 0xc8209bbe60] }
+&{isCopyOf QPalette::isCopyOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  bool bool isCopyOf(const QPalette &p) const [0xc820592120] }
+&{light QPalette::light commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & light() const [] }
+&{link QPalette::link commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & link() const [] }
+&{linkVisited QPalette::linkVisited commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & linkVisited() const [] }
+&{mid QPalette::mid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & mid() const [] }
+&{midlight QPalette::midlight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & midlight() const [] }
+&{operator QVariant QPalette::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false   operator QVariant() const [] }
+&{operator!= QPalette::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  bool bool operator!=(const QPalette &p) const [0xc820593380] }
+&{operator= QPalette::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false true 2 QPalette & QPalette & operator=(QPalette &&other) [0xc820593780] }
+&{operator= QPalette::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  QPalette & QPalette & operator=(const QPalette &p) [0xc820593b60] }
+&{operator== QPalette::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  bool bool operator==(const QPalette &p) const [0xc820593f80] }
+&{resolve QPalette::resolve commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  QPalette QPalette resolve(const QPalette &other) const [0xc82057e2c0] }
+&{setBrush QPalette::setBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  void void setBrush(ColorRole role, const QBrush &brush) [0xc82057ed00 0xc82057ee20] }
+&{setColor QPalette::setColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  void void setColor(ColorGroup group, ColorRole role, const QColor &color) [0xc82057f200 0xc82057f320 0xc82057f440] }
+&{setColor QPalette::setColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false true 2 void void setColor(ColorRole role, const QColor &color) [0xc82057f680 0xc82057f780] }
+&{setColorGroup QPalette::setColorGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  void void setColorGroup(ColorGroup cg, const QBrush &windowText, const QBrush &button, const QBrush &light, const QBrush &dark, const QBrush &mid, const QBrush &text, const QBrush &bright_text, const QBrush &base, const QBrush &window) [0xc82057fb00 0xc82057fb80 0xc82057fc60 0xc82057fd20 0xc82057fe00 0xc82057fec0 0xc82057ffc0 0xc8205680a0 0xc820568140 0xc8205681c0] }
+&{setCurrentColorGroup QPalette::setCurrentColorGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  void void setCurrentColorGroup(ColorGroup cg) [0xc8209ca400] }
+&{shadow QPalette::shadow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & shadow() const [] }
+&{swap QPalette::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  void void swap(QPalette &other) [0xc8209ca740] }
+&{text QPalette::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & text() const [] }
+&{toolTipBase QPalette::toolTipBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & toolTipBase() const [] }
+&{toolTipText QPalette::toolTipText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & toolTipText() const [] }
+&{window QPalette::window commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & window() const [] }
+&{windowText QPalette::windowText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non plain false false  const QBrush & const QBrush & windowText() const [] }
+&{~QPalette QPalette::~QPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qpalette.h non destructor false false   ~QPalette() [] }
 ########################################			ENUMS			########################################
-&{ColorGroup QPalette::ColorGroup commendable public  [0xc820797cc0 0xc820797e00 0xc820797f60 0xc820ae6040 0xc820ae6100 0xc820ae6180 0xc820ae6220]}
-&{ColorRole QPalette::ColorRole commendable public  [0xc820ae6460 0xc820ae6520 0xc820ae65c0 0xc820ae6660 0xc820ae6740 0xc820ae67e0 0xc820ae6880 0xc820ae6940 0xc820ae6a00 0xc820ae6aa0 0xc820ae6b60 0xc820ae6c00 0xc820ae6ca0 0xc820ae6d60 0xc820ae6e00 0xc820ae6ea0 0xc820ae6f80 0xc820ae7020 0xc820ae70e0 0xc820ae7180 0xc820ae7220 0xc820ae72c0 0xc820ae7380]}
+&{ColorGroup QPalette::ColorGroup commendable public  [0xc8205cdea0 0xc8205cdf80 0xc8205b60e0 0xc8205b6260 0xc8205b6400 0xc8205b6500 0xc8205b6620] false}
+&{ColorRole QPalette::ColorRole commendable public  [0xc8205b6ae0 0xc8205b6b80 0xc8205b6c00 0xc8205b6ca0 0xc8205b6d60 0xc8205b6e80 0xc8205b7040 0xc8205b7180 0xc8205b7340 0xc8205b73c0 0xc8205b7460 0xc8205b7560 0xc8205b7660 0xc8205b76e0 0xc8205b7820 0xc8205b78a0 0xc8205b79e0 0xc8205b7ae0 0xc8205b7c00 0xc8205b7cc0 0xc8205b7dc0 0xc8205b7f00 0xc8205a8000] true}

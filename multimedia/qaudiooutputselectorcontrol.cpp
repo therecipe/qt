@@ -1,11 +1,11 @@
 #include "qaudiooutputselectorcontrol.h"
-#include <QObject>
-#include <QAudioOutput>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
 #include <QMetaObject>
+#include <QAudioOutput>
 #include <QAudioOutputSelectorControl>
 #include "_cgo_export.h"
 
@@ -15,39 +15,39 @@ void Signal_ActiveOutputChanged(const QString & name){callbackQAudioOutputSelect
 void Signal_AvailableOutputsChanged(){callbackQAudioOutputSelectorControlAvailableOutputsChanged(this->objectName().toUtf8().data());};
 };
 
-char* QAudioOutputSelectorControl_ActiveOutput(QtObjectPtr ptr){
+char* QAudioOutputSelectorControl_ActiveOutput(void* ptr){
 	return static_cast<QAudioOutputSelectorControl*>(ptr)->activeOutput().toUtf8().data();
 }
 
-void QAudioOutputSelectorControl_ConnectActiveOutputChanged(QtObjectPtr ptr){
+void QAudioOutputSelectorControl_ConnectActiveOutputChanged(void* ptr){
 	QObject::connect(static_cast<QAudioOutputSelectorControl*>(ptr), static_cast<void (QAudioOutputSelectorControl::*)(const QString &)>(&QAudioOutputSelectorControl::activeOutputChanged), static_cast<MyQAudioOutputSelectorControl*>(ptr), static_cast<void (MyQAudioOutputSelectorControl::*)(const QString &)>(&MyQAudioOutputSelectorControl::Signal_ActiveOutputChanged));;
 }
 
-void QAudioOutputSelectorControl_DisconnectActiveOutputChanged(QtObjectPtr ptr){
+void QAudioOutputSelectorControl_DisconnectActiveOutputChanged(void* ptr){
 	QObject::disconnect(static_cast<QAudioOutputSelectorControl*>(ptr), static_cast<void (QAudioOutputSelectorControl::*)(const QString &)>(&QAudioOutputSelectorControl::activeOutputChanged), static_cast<MyQAudioOutputSelectorControl*>(ptr), static_cast<void (MyQAudioOutputSelectorControl::*)(const QString &)>(&MyQAudioOutputSelectorControl::Signal_ActiveOutputChanged));;
 }
 
-void QAudioOutputSelectorControl_ConnectAvailableOutputsChanged(QtObjectPtr ptr){
+void QAudioOutputSelectorControl_ConnectAvailableOutputsChanged(void* ptr){
 	QObject::connect(static_cast<QAudioOutputSelectorControl*>(ptr), static_cast<void (QAudioOutputSelectorControl::*)()>(&QAudioOutputSelectorControl::availableOutputsChanged), static_cast<MyQAudioOutputSelectorControl*>(ptr), static_cast<void (MyQAudioOutputSelectorControl::*)()>(&MyQAudioOutputSelectorControl::Signal_AvailableOutputsChanged));;
 }
 
-void QAudioOutputSelectorControl_DisconnectAvailableOutputsChanged(QtObjectPtr ptr){
+void QAudioOutputSelectorControl_DisconnectAvailableOutputsChanged(void* ptr){
 	QObject::disconnect(static_cast<QAudioOutputSelectorControl*>(ptr), static_cast<void (QAudioOutputSelectorControl::*)()>(&QAudioOutputSelectorControl::availableOutputsChanged), static_cast<MyQAudioOutputSelectorControl*>(ptr), static_cast<void (MyQAudioOutputSelectorControl::*)()>(&MyQAudioOutputSelectorControl::Signal_AvailableOutputsChanged));;
 }
 
-char* QAudioOutputSelectorControl_DefaultOutput(QtObjectPtr ptr){
+char* QAudioOutputSelectorControl_DefaultOutput(void* ptr){
 	return static_cast<QAudioOutputSelectorControl*>(ptr)->defaultOutput().toUtf8().data();
 }
 
-char* QAudioOutputSelectorControl_OutputDescription(QtObjectPtr ptr, char* name){
+char* QAudioOutputSelectorControl_OutputDescription(void* ptr, char* name){
 	return static_cast<QAudioOutputSelectorControl*>(ptr)->outputDescription(QString(name)).toUtf8().data();
 }
 
-void QAudioOutputSelectorControl_SetActiveOutput(QtObjectPtr ptr, char* name){
+void QAudioOutputSelectorControl_SetActiveOutput(void* ptr, char* name){
 	QMetaObject::invokeMethod(static_cast<QAudioOutputSelectorControl*>(ptr), "setActiveOutput", Q_ARG(QString, QString(name)));
 }
 
-void QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(QtObjectPtr ptr){
+void QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(void* ptr){
 	static_cast<QAudioOutputSelectorControl*>(ptr)->~QAudioOutputSelectorControl();
 }
 

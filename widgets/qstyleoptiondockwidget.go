@@ -10,46 +10,46 @@ type QStyleOptionDockWidget struct {
 	QStyleOption
 }
 
-type QStyleOptionDockWidgetITF interface {
-	QStyleOptionITF
-	QStyleOptionDockWidgetPTR() *QStyleOptionDockWidget
+type QStyleOptionDockWidget_ITF interface {
+	QStyleOption_ITF
+	QStyleOptionDockWidget_PTR() *QStyleOptionDockWidget
 }
 
-func PointerFromQStyleOptionDockWidget(ptr QStyleOptionDockWidgetITF) unsafe.Pointer {
+func PointerFromQStyleOptionDockWidget(ptr QStyleOptionDockWidget_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionDockWidgetPTR().Pointer()
+		return ptr.QStyleOptionDockWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionDockWidgetFromPointer(ptr unsafe.Pointer) *QStyleOptionDockWidget {
+func NewQStyleOptionDockWidgetFromPointer(ptr unsafe.Pointer) *QStyleOptionDockWidget {
 	var n = new(QStyleOptionDockWidget)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionDockWidget) QStyleOptionDockWidgetPTR() *QStyleOptionDockWidget {
+func (ptr *QStyleOptionDockWidget) QStyleOptionDockWidget_PTR() *QStyleOptionDockWidget {
 	return ptr
 }
 
 //QStyleOptionDockWidget::StyleOptionType
-type QStyleOptionDockWidget__StyleOptionType int
+type QStyleOptionDockWidget__StyleOptionType int64
 
 var (
 	QStyleOptionDockWidget__Type = QStyleOptionDockWidget__StyleOptionType(QStyleOption__SO_DockWidget)
 )
 
 //QStyleOptionDockWidget::StyleOptionVersion
-type QStyleOptionDockWidget__StyleOptionVersion int
+type QStyleOptionDockWidget__StyleOptionVersion int64
 
 var (
 	QStyleOptionDockWidget__Version = QStyleOptionDockWidget__StyleOptionVersion(2)
 )
 
 func NewQStyleOptionDockWidget() *QStyleOptionDockWidget {
-	return QStyleOptionDockWidgetFromPointer(unsafe.Pointer(C.QStyleOptionDockWidget_NewQStyleOptionDockWidget()))
+	return NewQStyleOptionDockWidgetFromPointer(C.QStyleOptionDockWidget_NewQStyleOptionDockWidget())
 }
 
-func NewQStyleOptionDockWidget2(other QStyleOptionDockWidgetITF) *QStyleOptionDockWidget {
-	return QStyleOptionDockWidgetFromPointer(unsafe.Pointer(C.QStyleOptionDockWidget_NewQStyleOptionDockWidget2(C.QtObjectPtr(PointerFromQStyleOptionDockWidget(other)))))
+func NewQStyleOptionDockWidget2(other QStyleOptionDockWidget_ITF) *QStyleOptionDockWidget {
+	return NewQStyleOptionDockWidgetFromPointer(C.QStyleOptionDockWidget_NewQStyleOptionDockWidget2(PointerFromQStyleOptionDockWidget(other)))
 }

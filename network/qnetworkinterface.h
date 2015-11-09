@@ -1,18 +1,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QNetworkInterface_NewQNetworkInterface();
-QtObjectPtr QNetworkInterface_NewQNetworkInterface2(QtObjectPtr other);
-int QNetworkInterface_Flags(QtObjectPtr ptr);
-char* QNetworkInterface_HardwareAddress(QtObjectPtr ptr);
-char* QNetworkInterface_HumanReadableName(QtObjectPtr ptr);
-int QNetworkInterface_Index(QtObjectPtr ptr);
-int QNetworkInterface_IsValid(QtObjectPtr ptr);
-char* QNetworkInterface_Name(QtObjectPtr ptr);
-void QNetworkInterface_Swap(QtObjectPtr ptr, QtObjectPtr other);
-void QNetworkInterface_DestroyQNetworkInterface(QtObjectPtr ptr);
+void* QNetworkInterface_NewQNetworkInterface();
+void* QNetworkInterface_NewQNetworkInterface2(void* other);
+int QNetworkInterface_Flags(void* ptr);
+char* QNetworkInterface_HardwareAddress(void* ptr);
+char* QNetworkInterface_HumanReadableName(void* ptr);
+int QNetworkInterface_Index(void* ptr);
+int QNetworkInterface_IsValid(void* ptr);
+char* QNetworkInterface_Name(void* ptr);
+void QNetworkInterface_Swap(void* ptr, void* other);
+void QNetworkInterface_DestroyQNetworkInterface(void* ptr);
 
 #ifdef __cplusplus
 }

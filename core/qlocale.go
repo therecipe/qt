@@ -12,8 +12,8 @@ type QLocale struct {
 	ptr unsafe.Pointer
 }
 
-type QLocaleITF interface {
-	QLocalePTR() *QLocale
+type QLocale_ITF interface {
+	QLocale_PTR() *QLocale
 }
 
 func (p *QLocale) Pointer() unsafe.Pointer {
@@ -24,27 +24,27 @@ func (p *QLocale) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQLocale(ptr QLocaleITF) unsafe.Pointer {
+func PointerFromQLocale(ptr QLocale_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QLocalePTR().Pointer()
+		return ptr.QLocale_PTR().Pointer()
 	}
 	return nil
 }
 
-func QLocaleFromPointer(ptr unsafe.Pointer) *QLocale {
+func NewQLocaleFromPointer(ptr unsafe.Pointer) *QLocale {
 	var n = new(QLocale)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QLocale) QLocalePTR() *QLocale {
+func (ptr *QLocale) QLocale_PTR() *QLocale {
 	return ptr
 }
 
 //QLocale::Country
-type QLocale__Country int
+type QLocale__Country int64
 
-var (
+const (
 	QLocale__AnyCountry                             = QLocale__Country(0)
 	QLocale__Afghanistan                            = QLocale__Country(1)
 	QLocale__Albania                                = QLocale__Country(2)
@@ -313,27 +313,27 @@ var (
 )
 
 //QLocale::CurrencySymbolFormat
-type QLocale__CurrencySymbolFormat int
+type QLocale__CurrencySymbolFormat int64
 
-var (
+const (
 	QLocale__CurrencyIsoCode     = QLocale__CurrencySymbolFormat(0)
 	QLocale__CurrencySymbol      = QLocale__CurrencySymbolFormat(1)
 	QLocale__CurrencyDisplayName = QLocale__CurrencySymbolFormat(2)
 )
 
 //QLocale::FormatType
-type QLocale__FormatType int
+type QLocale__FormatType int64
 
-var (
+const (
 	QLocale__LongFormat   = QLocale__FormatType(0)
 	QLocale__ShortFormat  = QLocale__FormatType(1)
 	QLocale__NarrowFormat = QLocale__FormatType(2)
 )
 
 //QLocale::Language
-type QLocale__Language int
+type QLocale__Language int64
 
-var (
+const (
 	QLocale__AnyLanguage               = QLocale__Language(0)
 	QLocale__C                         = QLocale__Language(1)
 	QLocale__Abkhazian                 = QLocale__Language(2)
@@ -692,9 +692,9 @@ var (
 )
 
 //QLocale::MeasurementSystem
-type QLocale__MeasurementSystem int
+type QLocale__MeasurementSystem int64
 
-var (
+const (
 	QLocale__MetricSystem     = QLocale__MeasurementSystem(0)
 	QLocale__ImperialUSSystem = QLocale__MeasurementSystem(1)
 	QLocale__ImperialUKSystem = QLocale__MeasurementSystem(2)
@@ -702,15 +702,15 @@ var (
 )
 
 //QLocale::NumberOption
-type QLocale__NumberOption int
+type QLocale__NumberOption int64
 
-var (
+const (
 	QLocale__OmitGroupSeparator   = QLocale__NumberOption(0x01)
 	QLocale__RejectGroupSeparator = QLocale__NumberOption(0x02)
 )
 
 //QLocale::QuotationStyle
-type QLocale__QuotationStyle int
+type QLocale__QuotationStyle int64
 
 var (
 	QLocale__StandardQuotation  = QLocale__QuotationStyle(0)
@@ -718,9 +718,9 @@ var (
 )
 
 //QLocale::Script
-type QLocale__Script int
+type QLocale__Script int64
 
-var (
+const (
 	QLocale__AnyScript                   = QLocale__Script(0)
 	QLocale__ArabicScript                = QLocale__Script(1)
 	QLocale__CyrillicScript              = QLocale__Script(2)
@@ -855,42 +855,42 @@ var (
 )
 
 func NewQLocale() *QLocale {
-	return QLocaleFromPointer(unsafe.Pointer(C.QLocale_NewQLocale()))
+	return NewQLocaleFromPointer(C.QLocale_NewQLocale())
 }
 
 func NewQLocale3(language QLocale__Language, country QLocale__Country) *QLocale {
-	return QLocaleFromPointer(unsafe.Pointer(C.QLocale_NewQLocale3(C.int(language), C.int(country))))
+	return NewQLocaleFromPointer(C.QLocale_NewQLocale3(C.int(language), C.int(country)))
 }
 
 func NewQLocale4(language QLocale__Language, script QLocale__Script, country QLocale__Country) *QLocale {
-	return QLocaleFromPointer(unsafe.Pointer(C.QLocale_NewQLocale4(C.int(language), C.int(script), C.int(country))))
+	return NewQLocaleFromPointer(C.QLocale_NewQLocale4(C.int(language), C.int(script), C.int(country)))
 }
 
-func NewQLocale5(other QLocaleITF) *QLocale {
-	return QLocaleFromPointer(unsafe.Pointer(C.QLocale_NewQLocale5(C.QtObjectPtr(PointerFromQLocale(other)))))
+func NewQLocale5(other QLocale_ITF) *QLocale {
+	return NewQLocaleFromPointer(C.QLocale_NewQLocale5(PointerFromQLocale(other)))
 }
 
 func NewQLocale2(name string) *QLocale {
-	return QLocaleFromPointer(unsafe.Pointer(C.QLocale_NewQLocale2(C.CString(name))))
+	return NewQLocaleFromPointer(C.QLocale_NewQLocale2(C.CString(name)))
 }
 
 func (ptr *QLocale) AmText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_AmText(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QLocale_AmText(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QLocale) Bcp47Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_Bcp47Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QLocale_Bcp47Name(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QLocale) Country() QLocale__Country {
 	if ptr.Pointer() != nil {
-		return QLocale__Country(C.QLocale_Country(C.QtObjectPtr(ptr.Pointer())))
+		return QLocale__Country(C.QLocale_Country(ptr.Pointer()))
 	}
 	return 0
 }
@@ -901,49 +901,49 @@ func QLocale_CountryToString(country QLocale__Country) string {
 
 func (ptr *QLocale) CreateSeparatedList(list []string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_CreateSeparatedList(C.QtObjectPtr(ptr.Pointer()), C.CString(strings.Join(list, "|"))))
+		return C.GoString(C.QLocale_CreateSeparatedList(ptr.Pointer(), C.CString(strings.Join(list, "|"))))
 	}
 	return ""
 }
 
 func (ptr *QLocale) CurrencySymbol(format QLocale__CurrencySymbolFormat) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_CurrencySymbol(C.QtObjectPtr(ptr.Pointer()), C.int(format)))
+		return C.GoString(C.QLocale_CurrencySymbol(ptr.Pointer(), C.int(format)))
 	}
 	return ""
 }
 
 func (ptr *QLocale) DateFormat(format QLocale__FormatType) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_DateFormat(C.QtObjectPtr(ptr.Pointer()), C.int(format)))
+		return C.GoString(C.QLocale_DateFormat(ptr.Pointer(), C.int(format)))
 	}
 	return ""
 }
 
 func (ptr *QLocale) DateTimeFormat(format QLocale__FormatType) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_DateTimeFormat(C.QtObjectPtr(ptr.Pointer()), C.int(format)))
+		return C.GoString(C.QLocale_DateTimeFormat(ptr.Pointer(), C.int(format)))
 	}
 	return ""
 }
 
 func (ptr *QLocale) DayName(day int, ty QLocale__FormatType) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_DayName(C.QtObjectPtr(ptr.Pointer()), C.int(day), C.int(ty)))
+		return C.GoString(C.QLocale_DayName(ptr.Pointer(), C.int(day), C.int(ty)))
 	}
 	return ""
 }
 
 func (ptr *QLocale) FirstDayOfWeek() Qt__DayOfWeek {
 	if ptr.Pointer() != nil {
-		return Qt__DayOfWeek(C.QLocale_FirstDayOfWeek(C.QtObjectPtr(ptr.Pointer())))
+		return Qt__DayOfWeek(C.QLocale_FirstDayOfWeek(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QLocale) Language() QLocale__Language {
 	if ptr.Pointer() != nil {
-		return QLocale__Language(C.QLocale_Language(C.QtObjectPtr(ptr.Pointer())))
+		return QLocale__Language(C.QLocale_Language(ptr.Pointer()))
 	}
 	return 0
 }
@@ -954,70 +954,70 @@ func QLocale_LanguageToString(language QLocale__Language) string {
 
 func (ptr *QLocale) MeasurementSystem() QLocale__MeasurementSystem {
 	if ptr.Pointer() != nil {
-		return QLocale__MeasurementSystem(C.QLocale_MeasurementSystem(C.QtObjectPtr(ptr.Pointer())))
+		return QLocale__MeasurementSystem(C.QLocale_MeasurementSystem(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QLocale) MonthName(month int, ty QLocale__FormatType) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_MonthName(C.QtObjectPtr(ptr.Pointer()), C.int(month), C.int(ty)))
+		return C.GoString(C.QLocale_MonthName(ptr.Pointer(), C.int(month), C.int(ty)))
 	}
 	return ""
 }
 
 func (ptr *QLocale) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QLocale_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QLocale) NativeCountryName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_NativeCountryName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QLocale_NativeCountryName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QLocale) NativeLanguageName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_NativeLanguageName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QLocale_NativeLanguageName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QLocale) NumberOptions() QLocale__NumberOption {
 	if ptr.Pointer() != nil {
-		return QLocale__NumberOption(C.QLocale_NumberOptions(C.QtObjectPtr(ptr.Pointer())))
+		return QLocale__NumberOption(C.QLocale_NumberOptions(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QLocale) PmText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_PmText(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QLocale_PmText(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QLocale) QuoteString(str string, style QLocale__QuotationStyle) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_QuoteString(C.QtObjectPtr(ptr.Pointer()), C.CString(str), C.int(style)))
+		return C.GoString(C.QLocale_QuoteString(ptr.Pointer(), C.CString(str), C.int(style)))
 	}
 	return ""
 }
 
-func (ptr *QLocale) QuoteString2(str QStringRefITF, style QLocale__QuotationStyle) string {
+func (ptr *QLocale) QuoteString2(str QStringRef_ITF, style QLocale__QuotationStyle) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_QuoteString2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQStringRef(str)), C.int(style)))
+		return C.GoString(C.QLocale_QuoteString2(ptr.Pointer(), PointerFromQStringRef(str), C.int(style)))
 	}
 	return ""
 }
 
 func (ptr *QLocale) Script() QLocale__Script {
 	if ptr.Pointer() != nil {
-		return QLocale__Script(C.QLocale_Script(C.QtObjectPtr(ptr.Pointer())))
+		return QLocale__Script(C.QLocale_Script(ptr.Pointer()))
 	}
 	return 0
 }
@@ -1026,137 +1026,151 @@ func QLocale_ScriptToString(script QLocale__Script) string {
 	return C.GoString(C.QLocale_QLocale_ScriptToString(C.int(script)))
 }
 
-func QLocale_SetDefault(locale QLocaleITF) {
-	C.QLocale_QLocale_SetDefault(C.QtObjectPtr(PointerFromQLocale(locale)))
+func QLocale_SetDefault(locale QLocale_ITF) {
+	C.QLocale_QLocale_SetDefault(PointerFromQLocale(locale))
 }
 
 func (ptr *QLocale) SetNumberOptions(options QLocale__NumberOption) {
 	if ptr.Pointer() != nil {
-		C.QLocale_SetNumberOptions(C.QtObjectPtr(ptr.Pointer()), C.int(options))
+		C.QLocale_SetNumberOptions(ptr.Pointer(), C.int(options))
 	}
 }
 
 func (ptr *QLocale) StandaloneDayName(day int, ty QLocale__FormatType) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_StandaloneDayName(C.QtObjectPtr(ptr.Pointer()), C.int(day), C.int(ty)))
+		return C.GoString(C.QLocale_StandaloneDayName(ptr.Pointer(), C.int(day), C.int(ty)))
 	}
 	return ""
 }
 
 func (ptr *QLocale) StandaloneMonthName(month int, ty QLocale__FormatType) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_StandaloneMonthName(C.QtObjectPtr(ptr.Pointer()), C.int(month), C.int(ty)))
+		return C.GoString(C.QLocale_StandaloneMonthName(ptr.Pointer(), C.int(month), C.int(ty)))
 	}
 	return ""
 }
 
 func (ptr *QLocale) TextDirection() Qt__LayoutDirection {
 	if ptr.Pointer() != nil {
-		return Qt__LayoutDirection(C.QLocale_TextDirection(C.QtObjectPtr(ptr.Pointer())))
+		return Qt__LayoutDirection(C.QLocale_TextDirection(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QLocale) TimeFormat(format QLocale__FormatType) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_TimeFormat(C.QtObjectPtr(ptr.Pointer()), C.int(format)))
+		return C.GoString(C.QLocale_TimeFormat(ptr.Pointer(), C.int(format)))
 	}
 	return ""
 }
 
 func (ptr *QLocale) ToCurrencyString6(value int, symbol string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToCurrencyString6(C.QtObjectPtr(ptr.Pointer()), C.int(value), C.CString(symbol)))
+		return C.GoString(C.QLocale_ToCurrencyString6(ptr.Pointer(), C.int(value), C.CString(symbol)))
 	}
 	return ""
 }
 
+func (ptr *QLocale) ToDateTime(stri string, format QLocale__FormatType) *QDateTime {
+	if ptr.Pointer() != nil {
+		return NewQDateTimeFromPointer(C.QLocale_ToDateTime(ptr.Pointer(), C.CString(stri), C.int(format)))
+	}
+	return nil
+}
+
+func (ptr *QLocale) ToDateTime2(stri string, format string) *QDateTime {
+	if ptr.Pointer() != nil {
+		return NewQDateTimeFromPointer(C.QLocale_ToDateTime2(ptr.Pointer(), C.CString(stri), C.CString(format)))
+	}
+	return nil
+}
+
 func (ptr *QLocale) ToInt(s string, ok bool) int {
 	if ptr.Pointer() != nil {
-		return int(C.QLocale_ToInt(C.QtObjectPtr(ptr.Pointer()), C.CString(s), C.int(qt.GoBoolToInt(ok))))
+		return int(C.QLocale_ToInt(ptr.Pointer(), C.CString(s), C.int(qt.GoBoolToInt(ok))))
 	}
 	return 0
 }
 
-func (ptr *QLocale) ToInt2(s QStringRefITF, ok bool) int {
+func (ptr *QLocale) ToInt2(s QStringRef_ITF, ok bool) int {
 	if ptr.Pointer() != nil {
-		return int(C.QLocale_ToInt2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQStringRef(s)), C.int(qt.GoBoolToInt(ok))))
+		return int(C.QLocale_ToInt2(ptr.Pointer(), PointerFromQStringRef(s), C.int(qt.GoBoolToInt(ok))))
 	}
 	return 0
 }
 
 func (ptr *QLocale) ToLower(str string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToLower(C.QtObjectPtr(ptr.Pointer()), C.CString(str)))
+		return C.GoString(C.QLocale_ToLower(ptr.Pointer(), C.CString(str)))
 	}
 	return ""
 }
 
-func (ptr *QLocale) ToString3(date QDateITF, format QLocale__FormatType) string {
+func (ptr *QLocale) ToString3(date QDate_ITF, format QLocale__FormatType) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToString3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQDate(date)), C.int(format)))
+		return C.GoString(C.QLocale_ToString3(ptr.Pointer(), PointerFromQDate(date), C.int(format)))
 	}
 	return ""
 }
 
-func (ptr *QLocale) ToString2(date QDateITF, format string) string {
+func (ptr *QLocale) ToString2(date QDate_ITF, format string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToString2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQDate(date)), C.CString(format)))
+		return C.GoString(C.QLocale_ToString2(ptr.Pointer(), PointerFromQDate(date), C.CString(format)))
 	}
 	return ""
 }
 
-func (ptr *QLocale) ToString6(dateTime QDateTimeITF, format QLocale__FormatType) string {
+func (ptr *QLocale) ToString6(dateTime QDateTime_ITF, format QLocale__FormatType) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToString6(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQDateTime(dateTime)), C.int(format)))
+		return C.GoString(C.QLocale_ToString6(ptr.Pointer(), PointerFromQDateTime(dateTime), C.int(format)))
 	}
 	return ""
 }
 
-func (ptr *QLocale) ToString7(dateTime QDateTimeITF, format string) string {
+func (ptr *QLocale) ToString7(dateTime QDateTime_ITF, format string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToString7(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQDateTime(dateTime)), C.CString(format)))
+		return C.GoString(C.QLocale_ToString7(ptr.Pointer(), PointerFromQDateTime(dateTime), C.CString(format)))
 	}
 	return ""
 }
 
-func (ptr *QLocale) ToString5(time QTimeITF, format QLocale__FormatType) string {
+func (ptr *QLocale) ToString5(time QTime_ITF, format QLocale__FormatType) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToString5(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTime(time)), C.int(format)))
+		return C.GoString(C.QLocale_ToString5(ptr.Pointer(), PointerFromQTime(time), C.int(format)))
 	}
 	return ""
 }
 
-func (ptr *QLocale) ToString4(time QTimeITF, format string) string {
+func (ptr *QLocale) ToString4(time QTime_ITF, format string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToString4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTime(time)), C.CString(format)))
+		return C.GoString(C.QLocale_ToString4(ptr.Pointer(), PointerFromQTime(time), C.CString(format)))
 	}
 	return ""
 }
 
 func (ptr *QLocale) ToString12(i int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToString12(C.QtObjectPtr(ptr.Pointer()), C.int(i)))
+		return C.GoString(C.QLocale_ToString12(ptr.Pointer(), C.int(i)))
 	}
 	return ""
 }
 
 func (ptr *QLocale) ToUpper(str string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToUpper(C.QtObjectPtr(ptr.Pointer()), C.CString(str)))
+		return C.GoString(C.QLocale_ToUpper(ptr.Pointer(), C.CString(str)))
 	}
 	return ""
 }
 
 func (ptr *QLocale) UiLanguages() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QLocale_UiLanguages(C.QtObjectPtr(ptr.Pointer()))), "|")
+		return strings.Split(C.GoString(C.QLocale_UiLanguages(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QLocale) DestroyQLocale() {
 	if ptr.Pointer() != nil {
-		C.QLocale_DestroyQLocale(C.QtObjectPtr(ptr.Pointer()))
+		C.QLocale_DestroyQLocale(ptr.Pointer())
 	}
 }

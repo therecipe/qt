@@ -1,18 +1,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QTableWidgetSelectionRange_NewQTableWidgetSelectionRange();
-QtObjectPtr QTableWidgetSelectionRange_NewQTableWidgetSelectionRange3(QtObjectPtr other);
-QtObjectPtr QTableWidgetSelectionRange_NewQTableWidgetSelectionRange2(int top, int left, int bottom, int right);
-int QTableWidgetSelectionRange_BottomRow(QtObjectPtr ptr);
-int QTableWidgetSelectionRange_ColumnCount(QtObjectPtr ptr);
-int QTableWidgetSelectionRange_LeftColumn(QtObjectPtr ptr);
-int QTableWidgetSelectionRange_RightColumn(QtObjectPtr ptr);
-int QTableWidgetSelectionRange_RowCount(QtObjectPtr ptr);
-int QTableWidgetSelectionRange_TopRow(QtObjectPtr ptr);
-void QTableWidgetSelectionRange_DestroyQTableWidgetSelectionRange(QtObjectPtr ptr);
+void* QTableWidgetSelectionRange_NewQTableWidgetSelectionRange();
+void* QTableWidgetSelectionRange_NewQTableWidgetSelectionRange3(void* other);
+void* QTableWidgetSelectionRange_NewQTableWidgetSelectionRange2(int top, int left, int bottom, int right);
+int QTableWidgetSelectionRange_BottomRow(void* ptr);
+int QTableWidgetSelectionRange_ColumnCount(void* ptr);
+int QTableWidgetSelectionRange_LeftColumn(void* ptr);
+int QTableWidgetSelectionRange_RightColumn(void* ptr);
+int QTableWidgetSelectionRange_RowCount(void* ptr);
+int QTableWidgetSelectionRange_TopRow(void* ptr);
+void QTableWidgetSelectionRange_DestroyQTableWidgetSelectionRange(void* ptr);
 
 #ifdef __cplusplus
 }

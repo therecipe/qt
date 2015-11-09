@@ -1,47 +1,47 @@
 ########################################			FUNCTIONS			########################################
-&{caseSensitivity QCompleter::caseSensitivity commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  Qt::CaseSensitivity [] }
-&{completionColumn QCompleter::completionColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  int [] }
-&{completionMode QCompleter::completionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  CompletionMode [] }
-&{completionPrefix QCompleter::completionPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  QString [] }
-&{completionRole QCompleter::completionRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  int [] }
-&{filterMode QCompleter::filterMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  Qt::MatchFlags [] }
-&{maxVisibleItems QCompleter::maxVisibleItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  int [] }
-&{modelSorting QCompleter::modelSorting commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  ModelSorting [] }
-&{setCaseSensitivity QCompleter::setCaseSensitivity commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void [0xc821351520] }
-&{setCompletionColumn QCompleter::setCompletionColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void [0xc821351980] }
-&{setCompletionMode QCompleter::setCompletionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void [0xc821351da0] }
-&{setCompletionPrefix QCompleter::setCompletionPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non slot false false  void [0xc8213401a0] }
-&{setCompletionRole QCompleter::setCompletionRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void [0xc821340600] }
-&{setFilterMode QCompleter::setFilterMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void [0xc821340980] }
-&{setMaxVisibleItems QCompleter::setMaxVisibleItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void [0xc821340da0] }
-&{setModelSorting QCompleter::setModelSorting commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void [0xc8213410a0] }
-&{setWrapAround QCompleter::setWrapAround commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non slot false false  void [0xc821341500] }
-&{wrapAround QCompleter::wrapAround commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  bool [] }
-&{QCompleter QCompleter::QCompleter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non constructor false true 2  [0xc82132c740 0xc82132c880] }
-&{QCompleter QCompleter::QCompleter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non constructor false false   [0xc82132cbe0] }
-&{QCompleter QCompleter::QCompleter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non constructor false true 3  [0xc82132cf80 0xc82132d140] }
-&{activated QCompleter::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non signal false true 2 void [0xc82132d7e0] }
-&{activated QCompleter::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non signal false false  void [0xc82132db80] }
-&{complete QCompleter::complete commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non slot false false  void [0xc82132df00] }
-&{completionCount QCompleter::completionCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  int [] }
-&{completionModel QCompleter::completionModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  QAbstractItemModel * [] }
-&{currentCompletion QCompleter::currentCompletion commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  QString [] }
-&{currentIndex QCompleter::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  QModelIndex [] }
-&{currentRow QCompleter::currentRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  int [] }
-&{event QCompleter::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h impure plain false false  bool [0xc82131cca0] }
-&{eventFilter QCompleter::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h impure plain false false  bool [0xc82131cfe0 0xc82131d0e0] }
-&{highlighted QCompleter::highlighted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non signal false true 2 void [0xc82131d4a0] }
-&{highlighted QCompleter::highlighted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non signal false false  void [0xc82131d820] }
-&{model QCompleter::model commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  QAbstractItemModel * [] }
-&{pathFromIndex QCompleter::pathFromIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h impure plain false false  QString [0xc82131dd80] }
-&{popup QCompleter::popup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  QAbstractItemView * [] }
-&{setCurrentRow QCompleter::setCurrentRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  bool [0xc821308500] }
-&{setModel QCompleter::setModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  void [0xc821308960] }
-&{setPopup QCompleter::setPopup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  void [0xc821308e00] }
-&{setWidget QCompleter::setWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  void [0xc821309300] }
-&{splitPath QCompleter::splitPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h impure plain false false  QStringList [0xc821309700] }
-&{widget QCompleter::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  QWidget * [] }
-&{~QCompleter QCompleter::~QCompleter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non destructor false false   [] }
+&{caseSensitivity QCompleter::caseSensitivity commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  Qt::CaseSensitivity Qt::CaseSensitivity caseSensitivity() const [] }
+&{completionColumn QCompleter::completionColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  int int completionColumn() const [] }
+&{completionMode QCompleter::completionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  CompletionMode CompletionMode completionMode() const [] }
+&{completionPrefix QCompleter::completionPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  QString QString completionPrefix() const [] }
+&{completionRole QCompleter::completionRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  int int completionRole() const [] }
+&{filterMode QCompleter::filterMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  Qt::MatchFlags Qt::MatchFlags filterMode() const [] }
+&{maxVisibleItems QCompleter::maxVisibleItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  int int maxVisibleItems() const [] }
+&{modelSorting QCompleter::modelSorting commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  ModelSorting ModelSorting modelSorting() const [] }
+&{setCaseSensitivity QCompleter::setCaseSensitivity commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void void setCaseSensitivity(Qt::CaseSensitivity caseSensitivity) [0xc821c1de40] }
+&{setCompletionColumn QCompleter::setCompletionColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void void setCompletionColumn(int column) [0xc821c06220] }
+&{setCompletionMode QCompleter::setCompletionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void void setCompletionMode(CompletionMode mode) [0xc821c064a0] }
+&{setCompletionPrefix QCompleter::setCompletionPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non slot false false  void void setCompletionPrefix(const QString &prefix) [0xc821c067a0] }
+&{setCompletionRole QCompleter::setCompletionRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void void setCompletionRole(int role) [0xc821c06ba0] }
+&{setFilterMode QCompleter::setFilterMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void void setFilterMode(Qt::MatchFlags filterMode) [0xc821c06ea0] }
+&{setMaxVisibleItems QCompleter::setMaxVisibleItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void void setMaxVisibleItems(int maxItems) [0xc821c072c0] }
+&{setModelSorting QCompleter::setModelSorting commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  void void setModelSorting(ModelSorting sorting) [0xc821c075e0] }
+&{setWrapAround QCompleter::setWrapAround commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non slot false false  void void setWrapAround(bool wrap) [0xc821c07a80] }
+&{wrapAround QCompleter::wrapAround commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.cpp non plain false false  bool bool wrapAround() const [] }
+&{QCompleter QCompleter::QCompleter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non constructor false true 2  QCompleter(QAbstractItemModel *model, QObject *parent) [0xc821bfe8e0 0xc821bfea00] }
+&{QCompleter QCompleter::QCompleter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non constructor false false   QCompleter(QObject *parent) [0xc821bfecc0] }
+&{QCompleter QCompleter::QCompleter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non constructor false true 3  QCompleter(const QStringList &list, QObject *parent) [0xc821bfeea0 0xc821bfef60] }
+&{activated QCompleter::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non signal false true 2 void void activated(const QModelIndex &index) [0xc821bff3e0] }
+&{activated QCompleter::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non signal false false  void void activated(const QString &text) [0xc821bff660] }
+&{complete QCompleter::complete commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non slot false false  void void complete(const QRect &rect) [0xc821bff920] }
+&{completionCount QCompleter::completionCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  int int completionCount() const [] }
+&{completionModel QCompleter::completionModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  QAbstractItemModel * QAbstractItemModel * completionModel() const [] }
+&{currentCompletion QCompleter::currentCompletion commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  QString QString currentCompletion() const [] }
+&{currentIndex QCompleter::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  QModelIndex QModelIndex currentIndex() const [] }
+&{currentRow QCompleter::currentRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  int int currentRow() const [] }
+&{event QCompleter::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h impure plain false false  bool bool event(QEvent *ev) [0xc821bf4680] }
+&{eventFilter QCompleter::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h impure plain false false  bool bool eventFilter(QObject *o, QEvent *e) [0xc821bf4ac0 0xc821bf4c00] }
+&{highlighted QCompleter::highlighted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non signal false true 2 void void highlighted(const QModelIndex &index) [0xc821bf5100] }
+&{highlighted QCompleter::highlighted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non signal false false  void void highlighted(const QString &text) [0xc821bf55a0] }
+&{model QCompleter::model commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  QAbstractItemModel * QAbstractItemModel * model() const [] }
+&{pathFromIndex QCompleter::pathFromIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h impure plain false false  QString QString pathFromIndex(const QModelIndex &index) const [0xc821bf5d20] }
+&{popup QCompleter::popup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  QAbstractItemView * QAbstractItemView * popup() const [] }
+&{setCurrentRow QCompleter::setCurrentRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  bool bool setCurrentRow(int row) [0xc821be25c0] }
+&{setModel QCompleter::setModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  void void setModel(QAbstractItemModel *model) [0xc821be2b20] }
+&{setPopup QCompleter::setPopup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  void void setPopup(QAbstractItemView *popup) [0xc821be3040] }
+&{setWidget QCompleter::setWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  void void setWidget(QWidget *widget) [0xc821be3600] }
+&{splitPath QCompleter::splitPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h impure plain false false  QStringList QStringList splitPath(const QString &path) const [0xc821be3a80] }
+&{widget QCompleter::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non plain false false  QWidget * QWidget * widget() const [] }
+&{~QCompleter QCompleter::~QCompleter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcompleter.h non destructor false false   ~QCompleter() [] }
 ########################################			ENUMS			########################################
-&{CompletionMode QCompleter::CompletionMode commendable public  [0xc821341aa0 0xc821341ba0 0xc821341d00]}
-&{ModelSorting QCompleter::ModelSorting commendable public  [0xc82132c020 0xc82132c1c0 0xc82132c340]}
+&{CompletionMode QCompleter::CompletionMode commendable public  [0xc821bfe020 0xc821bfe0e0 0xc821bfe220] false}
+&{ModelSorting QCompleter::ModelSorting commendable public  [0xc821bfe4e0 0xc821bfe580 0xc821bfe680] false}

@@ -10,7 +10,7 @@ import (
 func goEnum(e *parser.Enum) (o string) {
 	var t string
 
-	o += fmt.Sprintf("//%v\ntype %v int\nvar (\n", e.Fullname, strings.Replace(e.Fullname, ":", "_", -1))
+	o += fmt.Sprintf("//%v\ntype %v int64\nconst (\n", e.Fullname, strings.Replace(e.Fullname, ":", "_", -1))
 
 	for _, v := range e.Values {
 		switch v.Name {
@@ -32,5 +32,8 @@ func goEnum(e *parser.Enum) (o string) {
 
 	o += ")"
 
+	if e.NoConst || strings.Contains(e.Name, "Style") {
+		return strings.Replace(o, "const (", "var (", -1)
+	}
 	return
 }

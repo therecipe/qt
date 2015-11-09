@@ -1,8 +1,8 @@
 #include "qstandardpaths.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QString>
 #include <QStandardPaths>
 #include "_cgo_export.h"
 

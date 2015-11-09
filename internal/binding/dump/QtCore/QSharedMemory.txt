@@ -1,23 +1,23 @@
 ########################################			FUNCTIONS			########################################
-&{QSharedMemory QSharedMemory::QSharedMemory commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non constructor false true 2  [0xc820344060] }
-&{QSharedMemory QSharedMemory::QSharedMemory commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non constructor false false   [0xc820344300 0xc8203443e0] }
-&{attach QSharedMemory::attach commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  bool [0xc820344700] }
-&{constData QSharedMemory::constData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  const void * [] }
-&{create QSharedMemory::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  bool [0xc820344a40 0xc820344ae0] }
-&{data QSharedMemory::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  void * [] }
-&{data QSharedMemory::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false true 2 const void * [] }
-&{detach QSharedMemory::detach commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  bool [] }
-&{error QSharedMemory::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  SharedMemoryError [] }
-&{errorString QSharedMemory::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  QString [] }
-&{isAttached QSharedMemory::isAttached commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  bool [] }
-&{key QSharedMemory::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  QString [] }
-&{lock QSharedMemory::lock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  bool [] }
-&{nativeKey QSharedMemory::nativeKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  QString [] }
-&{setKey QSharedMemory::setKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  void [0xc820345b40] }
-&{setNativeKey QSharedMemory::setNativeKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  void [0xc820345e20] }
-&{size QSharedMemory::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  int [] }
-&{unlock QSharedMemory::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  bool [] }
-&{~QSharedMemory QSharedMemory::~QSharedMemory commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non destructor false false   [] }
+&{QSharedMemory QSharedMemory::QSharedMemory commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non constructor false true 2  QSharedMemory(QObject *parent) [0xc8202df0c0] }
+&{QSharedMemory QSharedMemory::QSharedMemory commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non constructor false false   QSharedMemory(const QString &key, QObject *parent) [0xc8202df360 0xc8202df420] }
+&{attach QSharedMemory::attach commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  bool bool attach(AccessMode mode) [0xc8202df740] }
+&{constData QSharedMemory::constData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  const void * const void * constData() const [] }
+&{create QSharedMemory::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  bool bool create(int size, AccessMode mode) [0xc8202dfc80 0xc8202dfd20] }
+&{data QSharedMemory::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  void * void * data() [] }
+&{data QSharedMemory::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false true 2 const void * const void * data() const [] }
+&{detach QSharedMemory::detach commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  bool bool detach() [] }
+&{error QSharedMemory::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  SharedMemoryError SharedMemoryError error() const [] }
+&{errorString QSharedMemory::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  QString QString errorString() const [] }
+&{isAttached QSharedMemory::isAttached commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  bool bool isAttached() const [] }
+&{key QSharedMemory::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  QString QString key() const [] }
+&{lock QSharedMemory::lock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  bool bool lock() [] }
+&{nativeKey QSharedMemory::nativeKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  QString QString nativeKey() const [] }
+&{setKey QSharedMemory::setKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  void void setKey(const QString &key) [0xc8202cd260] }
+&{setNativeKey QSharedMemory::setNativeKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  void void setNativeKey(const QString &key) [0xc8202cd520] }
+&{size QSharedMemory::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  int int size() const [] }
+&{unlock QSharedMemory::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non plain false false  bool bool unlock() [] }
+&{~QSharedMemory QSharedMemory::~QSharedMemory commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsharedmemory.h non destructor false false   ~QSharedMemory() [] }
 ########################################			ENUMS			########################################
-&{AccessMode QSharedMemory::AccessMode commendable public  [0xc820357320 0xc820357420]}
-&{SharedMemoryError QSharedMemory::SharedMemoryError commendable public  [0xc8203576a0 0xc820357720 0xc820357880 0xc820357900 0xc8203579e0 0xc820357a60 0xc820357b40 0xc820357c20 0xc820357d00]}
+&{AccessMode QSharedMemory::AccessMode commendable public  [0xc8202de120 0xc8202de240] false}
+&{SharedMemoryError QSharedMemory::SharedMemoryError commendable public  [0xc8202de5a0 0xc8202de640 0xc8202de760 0xc8202de860 0xc8202de900 0xc8202dea20 0xc8202deae0 0xc8202debc0 0xc8202dece0] false}

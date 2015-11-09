@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
-&{QGeoRouteSegment QGeoRouteSegment::QGeoRouteSegment commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non constructor false false   [] }
-&{QGeoRouteSegment QGeoRouteSegment::QGeoRouteSegment commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non constructor false true 2  [0xc8229c8360] }
-&{distance QGeoRouteSegment::distance commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  qreal [] }
-&{isValid QGeoRouteSegment::isValid commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  bool [] }
-&{maneuver QGeoRouteSegment::maneuver commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  QGeoManeuver [] }
-&{nextRouteSegment QGeoRouteSegment::nextRouteSegment commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  QGeoRouteSegment [] }
-&{operator!= QGeoRouteSegment::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  bool [0xc8229c92a0] }
-&{operator= QGeoRouteSegment::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  QGeoRouteSegment & [0xc8229c9700] }
-&{operator== QGeoRouteSegment::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  bool [0xc8229c9a60] }
-&{path QGeoRouteSegment::path commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  QList<QGeoCoordinate> [] }
-&{setDistance QGeoRouteSegment::setDistance commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  void [0xc8229d8040] }
-&{setManeuver QGeoRouteSegment::setManeuver commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  void [0xc8229d82c0] }
-&{setNextRouteSegment QGeoRouteSegment::setNextRouteSegment commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  void [0xc8229d8620] }
-&{setPath QGeoRouteSegment::setPath commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  void [0xc8229d8a00] }
-&{setTravelTime QGeoRouteSegment::setTravelTime commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  void [0xc8229d8d40] }
-&{travelTime QGeoRouteSegment::travelTime commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  int [] }
-&{~QGeoRouteSegment QGeoRouteSegment::~QGeoRouteSegment commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non destructor false false   [] }
+&{QGeoRouteSegment QGeoRouteSegment::QGeoRouteSegment commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non constructor false false   QGeoRouteSegment() [] }
+&{QGeoRouteSegment QGeoRouteSegment::QGeoRouteSegment commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non constructor false true 2  QGeoRouteSegment(const QGeoRouteSegment &other) [0xc820aab100] }
+&{distance QGeoRouteSegment::distance commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  qreal qreal distance() const [] }
+&{isValid QGeoRouteSegment::isValid commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  bool bool isValid() const [] }
+&{maneuver QGeoRouteSegment::maneuver commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  QGeoManeuver QGeoManeuver maneuver() const [] }
+&{nextRouteSegment QGeoRouteSegment::nextRouteSegment commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  QGeoRouteSegment QGeoRouteSegment nextRouteSegment() const [] }
+&{operator!= QGeoRouteSegment::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  bool bool operator!=(const QGeoRouteSegment &other) const [0xc820aab940] }
+&{operator= QGeoRouteSegment::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  QGeoRouteSegment & QGeoRouteSegment & operator=(const QGeoRouteSegment &other) [0xc820aabbe0] }
+&{operator== QGeoRouteSegment::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  bool bool operator==(const QGeoRouteSegment &other) const [0xc820aabe00] }
+&{path QGeoRouteSegment::path commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  QList<QGeoCoordinate> QList<QGeoCoordinate> path() const [] }
+&{setDistance QGeoRouteSegment::setDistance commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  void void setDistance(qreal distance) [0xc820c3e1c0] }
+&{setManeuver QGeoRouteSegment::setManeuver commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  void void setManeuver(const QGeoManeuver &maneuver) [0xc820c3e3a0] }
+&{setNextRouteSegment QGeoRouteSegment::setNextRouteSegment commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  void void setNextRouteSegment(const QGeoRouteSegment &routeSegment) [0xc820c3e5c0] }
+&{setPath QGeoRouteSegment::setPath commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  void void setPath(const QList<QGeoCoordinate> &path) [0xc820c3e800] }
+&{setTravelTime QGeoRouteSegment::setTravelTime commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  void void setTravelTime(int secs) [0xc820c3ea60] }
+&{travelTime QGeoRouteSegment::travelTime commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non plain false false  int int travelTime() const [] }
+&{~QGeoRouteSegment QGeoRouteSegment::~QGeoRouteSegment commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutesegment.h non destructor false false   ~QGeoRouteSegment() [] }
 ########################################			ENUMS			########################################

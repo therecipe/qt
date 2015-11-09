@@ -11,109 +11,129 @@ type QVariantAnimation struct {
 	QAbstractAnimation
 }
 
-type QVariantAnimationITF interface {
-	QAbstractAnimationITF
-	QVariantAnimationPTR() *QVariantAnimation
+type QVariantAnimation_ITF interface {
+	QAbstractAnimation_ITF
+	QVariantAnimation_PTR() *QVariantAnimation
 }
 
-func PointerFromQVariantAnimation(ptr QVariantAnimationITF) unsafe.Pointer {
+func PointerFromQVariantAnimation(ptr QVariantAnimation_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QVariantAnimationPTR().Pointer()
+		return ptr.QVariantAnimation_PTR().Pointer()
 	}
 	return nil
 }
 
-func QVariantAnimationFromPointer(ptr unsafe.Pointer) *QVariantAnimation {
+func NewQVariantAnimationFromPointer(ptr unsafe.Pointer) *QVariantAnimation {
 	var n = new(QVariantAnimation)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QVariantAnimation_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QVariantAnimation) QVariantAnimationPTR() *QVariantAnimation {
+func (ptr *QVariantAnimation) QVariantAnimation_PTR() *QVariantAnimation {
 	return ptr
 }
 
-func (ptr *QVariantAnimation) CurrentValue() string {
+func (ptr *QVariantAnimation) CurrentValue() *QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QVariantAnimation_CurrentValue(C.QtObjectPtr(ptr.Pointer())))
+		return NewQVariantFromPointer(C.QVariantAnimation_CurrentValue(ptr.Pointer()))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QVariantAnimation) Duration() int {
 	if ptr.Pointer() != nil {
-		return int(C.QVariantAnimation_Duration(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QVariantAnimation_Duration(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QVariantAnimation) EndValue() string {
+func (ptr *QVariantAnimation) EasingCurve() *QEasingCurve {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QVariantAnimation_EndValue(C.QtObjectPtr(ptr.Pointer())))
+		return NewQEasingCurveFromPointer(C.QVariantAnimation_EasingCurve(ptr.Pointer()))
 	}
-	return ""
+	return nil
+}
+
+func (ptr *QVariantAnimation) EndValue() *QVariant {
+	if ptr.Pointer() != nil {
+		return NewQVariantFromPointer(C.QVariantAnimation_EndValue(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QVariantAnimation) SetDuration(msecs int) {
 	if ptr.Pointer() != nil {
-		C.QVariantAnimation_SetDuration(C.QtObjectPtr(ptr.Pointer()), C.int(msecs))
+		C.QVariantAnimation_SetDuration(ptr.Pointer(), C.int(msecs))
 	}
 }
 
-func (ptr *QVariantAnimation) SetEasingCurve(easing QEasingCurveITF) {
+func (ptr *QVariantAnimation) SetEasingCurve(easing QEasingCurve_ITF) {
 	if ptr.Pointer() != nil {
-		C.QVariantAnimation_SetEasingCurve(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQEasingCurve(easing)))
+		C.QVariantAnimation_SetEasingCurve(ptr.Pointer(), PointerFromQEasingCurve(easing))
 	}
 }
 
-func (ptr *QVariantAnimation) SetEndValue(value string) {
+func (ptr *QVariantAnimation) SetEndValue(value QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QVariantAnimation_SetEndValue(C.QtObjectPtr(ptr.Pointer()), C.CString(value))
+		C.QVariantAnimation_SetEndValue(ptr.Pointer(), PointerFromQVariant(value))
 	}
 }
 
-func (ptr *QVariantAnimation) SetStartValue(value string) {
+func (ptr *QVariantAnimation) SetStartValue(value QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QVariantAnimation_SetStartValue(C.QtObjectPtr(ptr.Pointer()), C.CString(value))
+		C.QVariantAnimation_SetStartValue(ptr.Pointer(), PointerFromQVariant(value))
 	}
 }
 
-func (ptr *QVariantAnimation) StartValue() string {
+func (ptr *QVariantAnimation) StartValue() *QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QVariantAnimation_StartValue(C.QtObjectPtr(ptr.Pointer())))
+		return NewQVariantFromPointer(C.QVariantAnimation_StartValue(ptr.Pointer()))
 	}
-	return ""
+	return nil
 }
 
-func NewQVariantAnimation(parent QObjectITF) *QVariantAnimation {
-	return QVariantAnimationFromPointer(unsafe.Pointer(C.QVariantAnimation_NewQVariantAnimation(C.QtObjectPtr(PointerFromQObject(parent)))))
+func NewQVariantAnimation(parent QObject_ITF) *QVariantAnimation {
+	return NewQVariantAnimationFromPointer(C.QVariantAnimation_NewQVariantAnimation(PointerFromQObject(parent)))
 }
 
-func (ptr *QVariantAnimation) ConnectValueChanged(f func(value string)) {
+func (ptr *QVariantAnimation) KeyValueAt(step float64) *QVariant {
 	if ptr.Pointer() != nil {
-		C.QVariantAnimation_ConnectValueChanged(C.QtObjectPtr(ptr.Pointer()))
+		return NewQVariantFromPointer(C.QVariantAnimation_KeyValueAt(ptr.Pointer(), C.double(step)))
+	}
+	return nil
+}
+
+func (ptr *QVariantAnimation) SetKeyValueAt(step float64, value QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_SetKeyValueAt(ptr.Pointer(), C.double(step), PointerFromQVariant(value))
+	}
+}
+
+func (ptr *QVariantAnimation) ConnectValueChanged(f func(value *QVariant)) {
+	if ptr.Pointer() != nil {
+		C.QVariantAnimation_ConnectValueChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "valueChanged", f)
 	}
 }
 
 func (ptr *QVariantAnimation) DisconnectValueChanged() {
 	if ptr.Pointer() != nil {
-		C.QVariantAnimation_DisconnectValueChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QVariantAnimation_DisconnectValueChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "valueChanged")
 	}
 }
 
 //export callbackQVariantAnimationValueChanged
-func callbackQVariantAnimationValueChanged(ptrName *C.char, value *C.char) {
-	qt.GetSignal(C.GoString(ptrName), "valueChanged").(func(string))(C.GoString(value))
+func callbackQVariantAnimationValueChanged(ptrName *C.char, value unsafe.Pointer) {
+	qt.GetSignal(C.GoString(ptrName), "valueChanged").(func(*QVariant))(NewQVariantFromPointer(value))
 }
 
 func (ptr *QVariantAnimation) DestroyQVariantAnimation() {
 	if ptr.Pointer() != nil {
-		C.QVariantAnimation_DestroyQVariantAnimation(C.QtObjectPtr(ptr.Pointer()))
+		C.QVariantAnimation_DestroyQVariantAnimation(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

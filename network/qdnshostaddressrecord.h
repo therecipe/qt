@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDnsHostAddressRecord_NewQDnsHostAddressRecord();
-QtObjectPtr QDnsHostAddressRecord_NewQDnsHostAddressRecord2(QtObjectPtr other);
-char* QDnsHostAddressRecord_Name(QtObjectPtr ptr);
-void QDnsHostAddressRecord_Swap(QtObjectPtr ptr, QtObjectPtr other);
-void QDnsHostAddressRecord_DestroyQDnsHostAddressRecord(QtObjectPtr ptr);
+void* QDnsHostAddressRecord_NewQDnsHostAddressRecord();
+void* QDnsHostAddressRecord_NewQDnsHostAddressRecord2(void* other);
+char* QDnsHostAddressRecord_Name(void* ptr);
+void QDnsHostAddressRecord_Swap(void* ptr, void* other);
+void QDnsHostAddressRecord_DestroyQDnsHostAddressRecord(void* ptr);
 
 #ifdef __cplusplus
 }

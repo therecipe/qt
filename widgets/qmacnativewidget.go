@@ -11,34 +11,34 @@ type QMacNativeWidget struct {
 	QWidget
 }
 
-type QMacNativeWidgetITF interface {
-	QWidgetITF
-	QMacNativeWidgetPTR() *QMacNativeWidget
+type QMacNativeWidget_ITF interface {
+	QWidget_ITF
+	QMacNativeWidget_PTR() *QMacNativeWidget
 }
 
-func PointerFromQMacNativeWidget(ptr QMacNativeWidgetITF) unsafe.Pointer {
+func PointerFromQMacNativeWidget(ptr QMacNativeWidget_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMacNativeWidgetPTR().Pointer()
+		return ptr.QMacNativeWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMacNativeWidgetFromPointer(ptr unsafe.Pointer) *QMacNativeWidget {
+func NewQMacNativeWidgetFromPointer(ptr unsafe.Pointer) *QMacNativeWidget {
 	var n = new(QMacNativeWidget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMacNativeWidget_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMacNativeWidget) QMacNativeWidgetPTR() *QMacNativeWidget {
+func (ptr *QMacNativeWidget) QMacNativeWidget_PTR() *QMacNativeWidget {
 	return ptr
 }
 
 func (ptr *QMacNativeWidget) DestroyQMacNativeWidget() {
 	if ptr.Pointer() != nil {
-		C.QMacNativeWidget_DestroyQMacNativeWidget(C.QtObjectPtr(ptr.Pointer()))
+		C.QMacNativeWidget_DestroyQMacNativeWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

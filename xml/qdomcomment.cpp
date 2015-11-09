@@ -1,8 +1,8 @@
 #include "qdomcomment.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
+#include <QVariant>
 #include <QDomComment>
 #include "_cgo_export.h"
 
@@ -10,15 +10,15 @@ class MyQDomComment: public QDomComment {
 public:
 };
 
-QtObjectPtr QDomComment_NewQDomComment(){
+void* QDomComment_NewQDomComment(){
 	return new QDomComment();
 }
 
-QtObjectPtr QDomComment_NewQDomComment2(QtObjectPtr x){
+void* QDomComment_NewQDomComment2(void* x){
 	return new QDomComment(*static_cast<QDomComment*>(x));
 }
 
-int QDomComment_NodeType(QtObjectPtr ptr){
+int QDomComment_NodeType(void* ptr){
 	return static_cast<QDomComment*>(ptr)->nodeType();
 }
 

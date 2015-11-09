@@ -11,47 +11,47 @@ type QVideoRendererControl struct {
 	QMediaControl
 }
 
-type QVideoRendererControlITF interface {
-	QMediaControlITF
-	QVideoRendererControlPTR() *QVideoRendererControl
+type QVideoRendererControl_ITF interface {
+	QMediaControl_ITF
+	QVideoRendererControl_PTR() *QVideoRendererControl
 }
 
-func PointerFromQVideoRendererControl(ptr QVideoRendererControlITF) unsafe.Pointer {
+func PointerFromQVideoRendererControl(ptr QVideoRendererControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QVideoRendererControlPTR().Pointer()
+		return ptr.QVideoRendererControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QVideoRendererControlFromPointer(ptr unsafe.Pointer) *QVideoRendererControl {
+func NewQVideoRendererControlFromPointer(ptr unsafe.Pointer) *QVideoRendererControl {
 	var n = new(QVideoRendererControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QVideoRendererControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QVideoRendererControl) QVideoRendererControlPTR() *QVideoRendererControl {
+func (ptr *QVideoRendererControl) QVideoRendererControl_PTR() *QVideoRendererControl {
 	return ptr
 }
 
-func (ptr *QVideoRendererControl) SetSurface(surface QAbstractVideoSurfaceITF) {
+func (ptr *QVideoRendererControl) SetSurface(surface QAbstractVideoSurface_ITF) {
 	if ptr.Pointer() != nil {
-		C.QVideoRendererControl_SetSurface(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractVideoSurface(surface)))
+		C.QVideoRendererControl_SetSurface(ptr.Pointer(), PointerFromQAbstractVideoSurface(surface))
 	}
 }
 
 func (ptr *QVideoRendererControl) Surface() *QAbstractVideoSurface {
 	if ptr.Pointer() != nil {
-		return QAbstractVideoSurfaceFromPointer(unsafe.Pointer(C.QVideoRendererControl_Surface(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAbstractVideoSurfaceFromPointer(C.QVideoRendererControl_Surface(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QVideoRendererControl) DestroyQVideoRendererControl() {
 	if ptr.Pointer() != nil {
-		C.QVideoRendererControl_DestroyQVideoRendererControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoRendererControl_DestroyQVideoRendererControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

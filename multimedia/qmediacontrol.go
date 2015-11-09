@@ -12,34 +12,34 @@ type QMediaControl struct {
 	core.QObject
 }
 
-type QMediaControlITF interface {
-	core.QObjectITF
-	QMediaControlPTR() *QMediaControl
+type QMediaControl_ITF interface {
+	core.QObject_ITF
+	QMediaControl_PTR() *QMediaControl
 }
 
-func PointerFromQMediaControl(ptr QMediaControlITF) unsafe.Pointer {
+func PointerFromQMediaControl(ptr QMediaControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaControlPTR().Pointer()
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaControlFromPointer(ptr unsafe.Pointer) *QMediaControl {
+func NewQMediaControlFromPointer(ptr unsafe.Pointer) *QMediaControl {
 	var n = new(QMediaControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMediaControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMediaControl) QMediaControlPTR() *QMediaControl {
+func (ptr *QMediaControl) QMediaControl_PTR() *QMediaControl {
 	return ptr
 }
 
 func (ptr *QMediaControl) DestroyQMediaControl() {
 	if ptr.Pointer() != nil {
-		C.QMediaControl_DestroyQMediaControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaControl_DestroyQMediaControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

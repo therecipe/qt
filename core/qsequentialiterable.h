@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QSequentialIterable_At(QtObjectPtr ptr, int idx);
-int QSequentialIterable_CanReverseIterate(QtObjectPtr ptr);
-int QSequentialIterable_Size(QtObjectPtr ptr);
+void* QSequentialIterable_At(void* ptr, int idx);
+int QSequentialIterable_CanReverseIterate(void* ptr);
+int QSequentialIterable_Size(void* ptr);
 
 #ifdef __cplusplus
 }

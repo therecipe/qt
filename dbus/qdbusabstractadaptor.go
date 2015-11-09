@@ -12,34 +12,34 @@ type QDBusAbstractAdaptor struct {
 	core.QObject
 }
 
-type QDBusAbstractAdaptorITF interface {
-	core.QObjectITF
-	QDBusAbstractAdaptorPTR() *QDBusAbstractAdaptor
+type QDBusAbstractAdaptor_ITF interface {
+	core.QObject_ITF
+	QDBusAbstractAdaptor_PTR() *QDBusAbstractAdaptor
 }
 
-func PointerFromQDBusAbstractAdaptor(ptr QDBusAbstractAdaptorITF) unsafe.Pointer {
+func PointerFromQDBusAbstractAdaptor(ptr QDBusAbstractAdaptor_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDBusAbstractAdaptorPTR().Pointer()
+		return ptr.QDBusAbstractAdaptor_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDBusAbstractAdaptorFromPointer(ptr unsafe.Pointer) *QDBusAbstractAdaptor {
+func NewQDBusAbstractAdaptorFromPointer(ptr unsafe.Pointer) *QDBusAbstractAdaptor {
 	var n = new(QDBusAbstractAdaptor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QDBusAbstractAdaptor_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QDBusAbstractAdaptor) QDBusAbstractAdaptorPTR() *QDBusAbstractAdaptor {
+func (ptr *QDBusAbstractAdaptor) QDBusAbstractAdaptor_PTR() *QDBusAbstractAdaptor {
 	return ptr
 }
 
 func (ptr *QDBusAbstractAdaptor) DestroyQDBusAbstractAdaptor() {
 	if ptr.Pointer() != nil {
-		C.QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(C.QtObjectPtr(ptr.Pointer()))
+		C.QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

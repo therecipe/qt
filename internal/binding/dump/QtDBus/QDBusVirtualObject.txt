@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QDBusVirtualObject QDBusVirtualObject::QDBusVirtualObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusvirtualobject.h non constructor false false   [0xc82227aec0] }
-&{handleMessage QDBusVirtualObject::handleMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusvirtualobject.h pure plain false false  bool [0xc82227b0a0 0xc82227b1c0] }
-&{introspect QDBusVirtualObject::introspect commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusvirtualobject.h pure plain false false  QString [0xc822a28100] }
-&{~QDBusVirtualObject QDBusVirtualObject::~QDBusVirtualObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusvirtualobject.h impure destructor false false   [] }
+&{QDBusVirtualObject QDBusVirtualObject::QDBusVirtualObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusvirtualobject.h non constructor false false   QDBusVirtualObject(QObject *parent) [0xc821320fa0] }
+&{handleMessage QDBusVirtualObject::handleMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusvirtualobject.h pure plain false false  bool bool handleMessage(const QDBusMessage &message, const QDBusConnection &connection) [0xc821321120 0xc821321200] }
+&{introspect QDBusVirtualObject::introspect commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusvirtualobject.h pure plain false false  QString QString introspect(const QString &path) const [0xc821321400] }
+&{~QDBusVirtualObject QDBusVirtualObject::~QDBusVirtualObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusvirtualobject.h impure destructor false false   ~QDBusVirtualObject() [] }
 ########################################			ENUMS			########################################

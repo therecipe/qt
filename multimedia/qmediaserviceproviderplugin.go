@@ -12,40 +12,40 @@ type QMediaServiceProviderPlugin struct {
 	core.QObject
 }
 
-type QMediaServiceProviderPluginITF interface {
-	core.QObjectITF
-	QMediaServiceProviderPluginPTR() *QMediaServiceProviderPlugin
+type QMediaServiceProviderPlugin_ITF interface {
+	core.QObject_ITF
+	QMediaServiceProviderPlugin_PTR() *QMediaServiceProviderPlugin
 }
 
-func PointerFromQMediaServiceProviderPlugin(ptr QMediaServiceProviderPluginITF) unsafe.Pointer {
+func PointerFromQMediaServiceProviderPlugin(ptr QMediaServiceProviderPlugin_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceProviderPluginPTR().Pointer()
+		return ptr.QMediaServiceProviderPlugin_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaServiceProviderPluginFromPointer(ptr unsafe.Pointer) *QMediaServiceProviderPlugin {
+func NewQMediaServiceProviderPluginFromPointer(ptr unsafe.Pointer) *QMediaServiceProviderPlugin {
 	var n = new(QMediaServiceProviderPlugin)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMediaServiceProviderPlugin_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMediaServiceProviderPlugin) QMediaServiceProviderPluginPTR() *QMediaServiceProviderPlugin {
+func (ptr *QMediaServiceProviderPlugin) QMediaServiceProviderPlugin_PTR() *QMediaServiceProviderPlugin {
 	return ptr
 }
 
 func (ptr *QMediaServiceProviderPlugin) Create(key string) *QMediaService {
 	if ptr.Pointer() != nil {
-		return QMediaServiceFromPointer(unsafe.Pointer(C.QMediaServiceProviderPlugin_Create(C.QtObjectPtr(ptr.Pointer()), C.CString(key))))
+		return NewQMediaServiceFromPointer(C.QMediaServiceProviderPlugin_Create(ptr.Pointer(), C.CString(key)))
 	}
 	return nil
 }
 
-func (ptr *QMediaServiceProviderPlugin) Release(service QMediaServiceITF) {
+func (ptr *QMediaServiceProviderPlugin) Release(service QMediaService_ITF) {
 	if ptr.Pointer() != nil {
-		C.QMediaServiceProviderPlugin_Release(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQMediaService(service)))
+		C.QMediaServiceProviderPlugin_Release(ptr.Pointer(), PointerFromQMediaService(service))
 	}
 }

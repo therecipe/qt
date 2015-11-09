@@ -1,17 +1,17 @@
 ########################################			FUNCTIONS			########################################
-&{QModelIndex QModelIndex::QModelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non constructor false false   [] }
-&{child QModelIndex::child commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  QModelIndex [0xc82017fae0 0xc82017fb60] }
-&{column QModelIndex::column commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  int [] }
-&{data QModelIndex::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  QVariant [0xc82017ff80] }
-&{flags QModelIndex::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  Qt::ItemFlags [] }
-&{internalId QModelIndex::internalId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  quintptr [] }
-&{internalPointer QModelIndex::internalPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  void * [] }
-&{isValid QModelIndex::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  bool [] }
-&{model QModelIndex::model commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  const QAbstractItemModel * [] }
-&{operator!= QModelIndex::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  bool [0xc820070980] }
-&{operator< QModelIndex::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  bool [0xc820070c40] }
-&{operator== QModelIndex::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  bool [0xc820070f20] }
-&{parent QModelIndex::parent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  QModelIndex [] }
-&{row QModelIndex::row commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  int [] }
-&{sibling QModelIndex::sibling commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  QModelIndex [0xc820071480 0xc820071500] }
+&{QModelIndex QModelIndex::QModelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non constructor false false   QModelIndex() [] }
+&{child QModelIndex::child commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  QModelIndex QModelIndex child(int row, int column) const [0xc8203ffd20 0xc8203ffda0] }
+&{column QModelIndex::column commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  int int column() const [] }
+&{data QModelIndex::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  QVariant QVariant data(int role) const [0xc8204153c0] }
+&{flags QModelIndex::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  Qt::ItemFlags Qt::ItemFlags flags() const [] }
+&{internalId QModelIndex::internalId commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  quintptr quintptr internalId() const [] }
+&{internalPointer QModelIndex::internalPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  void * void * internalPointer() const [] }
+&{isValid QModelIndex::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  bool bool isValid() const [] }
+&{model QModelIndex::model commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  const QAbstractItemModel * const QAbstractItemModel * model() const [] }
+&{operator!= QModelIndex::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  bool bool operator!=(const QModelIndex &other) const [0xc820415cc0] }
+&{operator< QModelIndex::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  bool bool operator<(const QModelIndex &other) const [0xc820415f00] }
+&{operator== QModelIndex::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  bool bool operator==(const QModelIndex &other) const [0xc82040e1e0] }
+&{parent QModelIndex::parent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  QModelIndex QModelIndex parent() const [] }
+&{row QModelIndex::row commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  int int row() const [] }
+&{sibling QModelIndex::sibling commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qabstractitemmodel.h non plain false false  QModelIndex QModelIndex sibling(int row, int column) const [0xc82040e620 0xc82040e6a0] }
 ########################################			ENUMS			########################################

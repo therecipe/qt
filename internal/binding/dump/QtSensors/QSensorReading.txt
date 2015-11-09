@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{setTimestamp QSensorReading::setTimestamp commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  void [0xc822d9d5c0] }
-&{timestamp QSensorReading::timestamp commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  quint64 [] }
-&{value QSensorReading::value commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  QVariant [0xc822d9da80] }
-&{valueCount QSensorReading::valueCount commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  int [] }
+&{setTimestamp QSensorReading::setTimestamp commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  void void setTimestamp(quint64 timestamp) [0xc8234be2c0] }
+&{timestamp QSensorReading::timestamp commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  quint64 quint64 timestamp() const [] }
+&{value QSensorReading::value commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  QVariant QVariant value(int index) const [0xc8234bea40] }
+&{valueCount QSensorReading::valueCount commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h non plain false false  int int valueCount() const [] }
 ########################################			ENUMS			########################################

@@ -1,11 +1,11 @@
 #include "qaccessibleevent.h"
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QAccessible>
-#include <QObject>
 #include <QAccessibleInterface>
+#include <QAccessible>
 #include <QAccessibleEvent>
 #include "_cgo_export.h"
 
@@ -13,35 +13,35 @@ class MyQAccessibleEvent: public QAccessibleEvent {
 public:
 };
 
-QtObjectPtr QAccessibleEvent_NewQAccessibleEvent2(QtObjectPtr interfa, int ty){
+void* QAccessibleEvent_NewQAccessibleEvent2(void* interfa, int ty){
 	return new QAccessibleEvent(static_cast<QAccessibleInterface*>(interfa), static_cast<QAccessible::Event>(ty));
 }
 
-QtObjectPtr QAccessibleEvent_NewQAccessibleEvent(QtObjectPtr object, int ty){
+void* QAccessibleEvent_NewQAccessibleEvent(void* object, int ty){
 	return new QAccessibleEvent(static_cast<QObject*>(object), static_cast<QAccessible::Event>(ty));
 }
 
-QtObjectPtr QAccessibleEvent_AccessibleInterface(QtObjectPtr ptr){
+void* QAccessibleEvent_AccessibleInterface(void* ptr){
 	return static_cast<QAccessibleEvent*>(ptr)->accessibleInterface();
 }
 
-int QAccessibleEvent_Child(QtObjectPtr ptr){
+int QAccessibleEvent_Child(void* ptr){
 	return static_cast<QAccessibleEvent*>(ptr)->child();
 }
 
-QtObjectPtr QAccessibleEvent_Object(QtObjectPtr ptr){
+void* QAccessibleEvent_Object(void* ptr){
 	return static_cast<QAccessibleEvent*>(ptr)->object();
 }
 
-void QAccessibleEvent_SetChild(QtObjectPtr ptr, int child){
+void QAccessibleEvent_SetChild(void* ptr, int child){
 	static_cast<QAccessibleEvent*>(ptr)->setChild(child);
 }
 
-int QAccessibleEvent_Type(QtObjectPtr ptr){
+int QAccessibleEvent_Type(void* ptr){
 	return static_cast<QAccessibleEvent*>(ptr)->type();
 }
 
-void QAccessibleEvent_DestroyQAccessibleEvent(QtObjectPtr ptr){
+void QAccessibleEvent_DestroyQAccessibleEvent(void* ptr){
 	static_cast<QAccessibleEvent*>(ptr)->~QAccessibleEvent();
 }
 

@@ -1,31 +1,30 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSqlRecord_NewQSqlRecord();
-QtObjectPtr QSqlRecord_NewQSqlRecord2(QtObjectPtr other);
-void QSqlRecord_Append(QtObjectPtr ptr, QtObjectPtr field);
-void QSqlRecord_Clear(QtObjectPtr ptr);
-void QSqlRecord_ClearValues(QtObjectPtr ptr);
-int QSqlRecord_Contains(QtObjectPtr ptr, char* name);
-int QSqlRecord_Count(QtObjectPtr ptr);
-char* QSqlRecord_FieldName(QtObjectPtr ptr, int index);
-int QSqlRecord_IndexOf(QtObjectPtr ptr, char* name);
-int QSqlRecord_IsEmpty(QtObjectPtr ptr);
-int QSqlRecord_IsGenerated(QtObjectPtr ptr, char* name);
-int QSqlRecord_IsGenerated2(QtObjectPtr ptr, int index);
-int QSqlRecord_IsNull(QtObjectPtr ptr, char* name);
-int QSqlRecord_IsNull2(QtObjectPtr ptr, int index);
-void QSqlRecord_SetGenerated(QtObjectPtr ptr, char* name, int generated);
-void QSqlRecord_SetGenerated2(QtObjectPtr ptr, int index, int generated);
-void QSqlRecord_SetNull2(QtObjectPtr ptr, char* name);
-void QSqlRecord_SetNull(QtObjectPtr ptr, int index);
-void QSqlRecord_SetValue2(QtObjectPtr ptr, char* name, char* val);
-void QSqlRecord_SetValue(QtObjectPtr ptr, int index, char* val);
-char* QSqlRecord_Value2(QtObjectPtr ptr, char* name);
-char* QSqlRecord_Value(QtObjectPtr ptr, int index);
-void QSqlRecord_DestroyQSqlRecord(QtObjectPtr ptr);
+void* QSqlRecord_NewQSqlRecord();
+void* QSqlRecord_NewQSqlRecord2(void* other);
+void QSqlRecord_Append(void* ptr, void* field);
+void QSqlRecord_Clear(void* ptr);
+void QSqlRecord_ClearValues(void* ptr);
+int QSqlRecord_Contains(void* ptr, char* name);
+int QSqlRecord_Count(void* ptr);
+char* QSqlRecord_FieldName(void* ptr, int index);
+int QSqlRecord_IndexOf(void* ptr, char* name);
+int QSqlRecord_IsEmpty(void* ptr);
+int QSqlRecord_IsGenerated(void* ptr, char* name);
+int QSqlRecord_IsGenerated2(void* ptr, int index);
+int QSqlRecord_IsNull(void* ptr, char* name);
+int QSqlRecord_IsNull2(void* ptr, int index);
+void QSqlRecord_SetGenerated(void* ptr, char* name, int generated);
+void QSqlRecord_SetGenerated2(void* ptr, int index, int generated);
+void QSqlRecord_SetNull2(void* ptr, char* name);
+void QSqlRecord_SetNull(void* ptr, int index);
+void QSqlRecord_SetValue2(void* ptr, char* name, void* val);
+void QSqlRecord_SetValue(void* ptr, int index, void* val);
+void* QSqlRecord_Value2(void* ptr, char* name);
+void* QSqlRecord_Value(void* ptr, int index);
+void QSqlRecord_DestroyQSqlRecord(void* ptr);
 
 #ifdef __cplusplus
 }

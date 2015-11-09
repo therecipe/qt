@@ -1,26 +1,26 @@
 ########################################			FUNCTIONS			########################################
-&{centerPoint QPinchGesture::centerPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF [] }
-&{changeFlags QPinchGesture::changeFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  ChangeFlags [] }
-&{lastCenterPoint QPinchGesture::lastCenterPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF [] }
-&{lastRotationAngle QPinchGesture::lastRotationAngle commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal [] }
-&{lastScaleFactor QPinchGesture::lastScaleFactor commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal [] }
-&{rotationAngle QPinchGesture::rotationAngle commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal [] }
-&{scaleFactor QPinchGesture::scaleFactor commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal [] }
-&{setCenterPoint QPinchGesture::setCenterPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822cbc940] }
-&{setChangeFlags QPinchGesture::setChangeFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822cbcb40] }
-&{setLastCenterPoint QPinchGesture::setLastCenterPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822cbcd40] }
-&{setLastRotationAngle QPinchGesture::setLastRotationAngle commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822cbcf60] }
-&{setLastScaleFactor QPinchGesture::setLastScaleFactor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822cbd160] }
-&{setRotationAngle QPinchGesture::setRotationAngle commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822cbd380] }
-&{setScaleFactor QPinchGesture::setScaleFactor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822cbd600] }
-&{setStartCenterPoint QPinchGesture::setStartCenterPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822cbd840] }
-&{setTotalChangeFlags QPinchGesture::setTotalChangeFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822cbda60] }
-&{setTotalRotationAngle QPinchGesture::setTotalRotationAngle commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822cbdca0] }
-&{setTotalScaleFactor QPinchGesture::setTotalScaleFactor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void [0xc822cbde60] }
-&{startCenterPoint QPinchGesture::startCenterPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF [] }
-&{totalChangeFlags QPinchGesture::totalChangeFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  ChangeFlags [] }
-&{totalRotationAngle QPinchGesture::totalRotationAngle commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal [] }
-&{totalScaleFactor QPinchGesture::totalScaleFactor commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal [] }
-&{~QPinchGesture QPinchGesture::~QPinchGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   [] }
+&{centerPoint QPinchGesture::centerPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF QPointF centerPoint() const [] }
+&{changeFlags QPinchGesture::changeFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  ChangeFlags ChangeFlags changeFlags() const [] }
+&{lastCenterPoint QPinchGesture::lastCenterPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF QPointF lastCenterPoint() const [] }
+&{lastRotationAngle QPinchGesture::lastRotationAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal qreal lastRotationAngle() const [] }
+&{lastScaleFactor QPinchGesture::lastScaleFactor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal qreal lastScaleFactor() const [] }
+&{rotationAngle QPinchGesture::rotationAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal qreal rotationAngle() const [] }
+&{scaleFactor QPinchGesture::scaleFactor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal qreal scaleFactor() const [] }
+&{setCenterPoint QPinchGesture::setCenterPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setCenterPoint(const QPointF &value) [0xc822068b80] }
+&{setChangeFlags QPinchGesture::setChangeFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setChangeFlags(ChangeFlags value) [0xc822068d80] }
+&{setLastCenterPoint QPinchGesture::setLastCenterPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setLastCenterPoint(const QPointF &value) [0xc822068fa0] }
+&{setLastRotationAngle QPinchGesture::setLastRotationAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setLastRotationAngle(qreal value) [0xc8220691e0] }
+&{setLastScaleFactor QPinchGesture::setLastScaleFactor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setLastScaleFactor(qreal value) [0xc8220693a0] }
+&{setRotationAngle QPinchGesture::setRotationAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setRotationAngle(qreal value) [0xc822069560] }
+&{setScaleFactor QPinchGesture::setScaleFactor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setScaleFactor(qreal value) [0xc822069780] }
+&{setStartCenterPoint QPinchGesture::setStartCenterPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setStartCenterPoint(const QPointF &value) [0xc822069940] }
+&{setTotalChangeFlags QPinchGesture::setTotalChangeFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setTotalChangeFlags(ChangeFlags value) [0xc822069b00] }
+&{setTotalRotationAngle QPinchGesture::setTotalRotationAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setTotalRotationAngle(qreal value) [0xc822069d00] }
+&{setTotalScaleFactor QPinchGesture::setTotalScaleFactor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setTotalScaleFactor(qreal value) [0xc822069ec0] }
+&{startCenterPoint QPinchGesture::startCenterPoint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF QPointF startCenterPoint() const [] }
+&{totalChangeFlags QPinchGesture::totalChangeFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  ChangeFlags ChangeFlags totalChangeFlags() const [] }
+&{totalRotationAngle QPinchGesture::totalRotationAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal qreal totalRotationAngle() const [] }
+&{totalScaleFactor QPinchGesture::totalScaleFactor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal qreal totalScaleFactor() const [] }
+&{~QPinchGesture QPinchGesture::~QPinchGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   ~QPinchGesture() [] }
 ########################################			ENUMS			########################################
-&{ChangeFlag QPinchGesture::ChangeFlag commendable public QPinchGesture::ChangeFlags [0xc822cd04c0 0xc822cd05a0 0xc822cd0680]}
+&{ChangeFlag QPinchGesture::ChangeFlag commendable public QPinchGesture::ChangeFlags [0xc8222ae7a0 0xc8222ae880 0xc8222ae9c0] false}

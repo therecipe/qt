@@ -10,8 +10,8 @@ type QChar struct {
 	ptr unsafe.Pointer
 }
 
-type QCharITF interface {
-	QCharPTR() *QChar
+type QChar_ITF interface {
+	QChar_PTR() *QChar
 }
 
 func (p *QChar) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QChar) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQChar(ptr QCharITF) unsafe.Pointer {
+func PointerFromQChar(ptr QChar_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCharPTR().Pointer()
+		return ptr.QChar_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCharFromPointer(ptr unsafe.Pointer) *QChar {
+func NewQCharFromPointer(ptr unsafe.Pointer) *QChar {
 	var n = new(QChar)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QChar) QCharPTR() *QChar {
+func (ptr *QChar) QChar_PTR() *QChar {
 	return ptr
 }
 
 //QChar::Category
-type QChar__Category int
+type QChar__Category int64
 
-var (
+const (
 	QChar__Mark_NonSpacing          = QChar__Category(0)
 	QChar__Mark_SpacingCombining    = QChar__Category(1)
 	QChar__Mark_Enclosing           = QChar__Category(2)
@@ -76,9 +76,9 @@ var (
 )
 
 //QChar::Decomposition
-type QChar__Decomposition int
+type QChar__Decomposition int64
 
-var (
+const (
 	QChar__NoDecomposition = QChar__Decomposition(0)
 	QChar__Canonical       = QChar__Decomposition(1)
 	QChar__Font            = QChar__Decomposition(2)
@@ -100,9 +100,9 @@ var (
 )
 
 //QChar::Direction
-type QChar__Direction int
+type QChar__Direction int64
 
-var (
+const (
 	QChar__DirL   = QChar__Direction(0)
 	QChar__DirR   = QChar__Direction(1)
 	QChar__DirEN  = QChar__Direction(2)
@@ -129,9 +129,9 @@ var (
 )
 
 //QChar::JoiningType
-type QChar__JoiningType int
+type QChar__JoiningType int64
 
-var (
+const (
 	QChar__Joining_None        = QChar__JoiningType(0)
 	QChar__Joining_Causing     = QChar__JoiningType(1)
 	QChar__Joining_Dual        = QChar__JoiningType(2)
@@ -141,9 +141,9 @@ var (
 )
 
 //QChar::Script
-type QChar__Script int
+type QChar__Script int64
 
-var (
+const (
 	QChar__Script_Unknown               = QChar__Script(0)
 	QChar__Script_Inherited             = QChar__Script(1)
 	QChar__Script_Common                = QChar__Script(2)
@@ -274,9 +274,9 @@ var (
 )
 
 //QChar::SpecialCharacter
-type QChar__SpecialCharacter int
+type QChar__SpecialCharacter int64
 
-var (
+const (
 	QChar__Null                       = QChar__SpecialCharacter(0x0000)
 	QChar__Tabulation                 = QChar__SpecialCharacter(0x0009)
 	QChar__LineFeed                   = QChar__SpecialCharacter(0x000a)
@@ -294,9 +294,9 @@ var (
 )
 
 //QChar::UnicodeVersion
-type QChar__UnicodeVersion int
+type QChar__UnicodeVersion int64
 
-var (
+const (
 	QChar__Unicode_Unassigned = QChar__UnicodeVersion(0)
 	QChar__Unicode_1_1        = QChar__UnicodeVersion(1)
 	QChar__Unicode_2_0        = QChar__UnicodeVersion(2)
@@ -317,28 +317,28 @@ var (
 )
 
 func NewQChar() *QChar {
-	return QCharFromPointer(unsafe.Pointer(C.QChar_NewQChar()))
+	return NewQCharFromPointer(C.QChar_NewQChar())
 }
 
-func NewQChar8(ch QLatin1CharITF) *QChar {
-	return QCharFromPointer(unsafe.Pointer(C.QChar_NewQChar8(C.QtObjectPtr(PointerFromQLatin1Char(ch)))))
+func NewQChar8(ch QLatin1Char_ITF) *QChar {
+	return NewQCharFromPointer(C.QChar_NewQChar8(PointerFromQLatin1Char(ch)))
 }
 
 func NewQChar7(ch QChar__SpecialCharacter) *QChar {
-	return QCharFromPointer(unsafe.Pointer(C.QChar_NewQChar7(C.int(ch))))
+	return NewQCharFromPointer(C.QChar_NewQChar7(C.int(ch)))
 }
 
 func NewQChar9(ch string) *QChar {
-	return QCharFromPointer(unsafe.Pointer(C.QChar_NewQChar9(C.CString(ch))))
+	return NewQCharFromPointer(C.QChar_NewQChar9(C.CString(ch)))
 }
 
 func NewQChar6(code int) *QChar {
-	return QCharFromPointer(unsafe.Pointer(C.QChar_NewQChar6(C.int(code))))
+	return NewQCharFromPointer(C.QChar_NewQChar6(C.int(code)))
 }
 
 func (ptr *QChar) Category() QChar__Category {
 	if ptr.Pointer() != nil {
-		return QChar__Category(C.QChar_Category(C.QtObjectPtr(ptr.Pointer())))
+		return QChar__Category(C.QChar_Category(ptr.Pointer()))
 	}
 	return 0
 }
@@ -349,175 +349,175 @@ func QChar_CurrentUnicodeVersion() QChar__UnicodeVersion {
 
 func (ptr *QChar) Decomposition() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QChar_Decomposition(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QChar_Decomposition(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QChar) DecompositionTag() QChar__Decomposition {
 	if ptr.Pointer() != nil {
-		return QChar__Decomposition(C.QChar_DecompositionTag(C.QtObjectPtr(ptr.Pointer())))
+		return QChar__Decomposition(C.QChar_DecompositionTag(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QChar) DigitValue() int {
 	if ptr.Pointer() != nil {
-		return int(C.QChar_DigitValue(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QChar_DigitValue(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QChar) Direction() QChar__Direction {
 	if ptr.Pointer() != nil {
-		return QChar__Direction(C.QChar_Direction(C.QtObjectPtr(ptr.Pointer())))
+		return QChar__Direction(C.QChar_Direction(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QChar) HasMirrored() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_HasMirrored(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_HasMirrored(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsDigit() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsDigit(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsDigit(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsHighSurrogate() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsHighSurrogate(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsHighSurrogate(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsLetter() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsLetter(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsLetter(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsLetterOrNumber() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsLetterOrNumber(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsLetterOrNumber(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsLower() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsLower(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsLower(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsLowSurrogate() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsLowSurrogate(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsLowSurrogate(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsMark() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsMark(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsMark(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsNonCharacter() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsNonCharacter(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsNonCharacter(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsNull(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsNull(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsNumber() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsNumber(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsNumber(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsPrint() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsPrint(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsPrint(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsPunct() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsPunct(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsPunct(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsSpace() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsSpace(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsSpace(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsSurrogate() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsSurrogate(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsSurrogate(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsSymbol() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsSymbol(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsSymbol(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsTitleCase() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsTitleCase(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsTitleCase(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) IsUpper() bool {
 	if ptr.Pointer() != nil {
-		return C.QChar_IsUpper(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChar_IsUpper(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChar) JoiningType() QChar__JoiningType {
 	if ptr.Pointer() != nil {
-		return QChar__JoiningType(C.QChar_JoiningType(C.QtObjectPtr(ptr.Pointer())))
+		return QChar__JoiningType(C.QChar_JoiningType(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QChar) Script() QChar__Script {
 	if ptr.Pointer() != nil {
-		return QChar__Script(C.QChar_Script(C.QtObjectPtr(ptr.Pointer())))
+		return QChar__Script(C.QChar_Script(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QChar) UnicodeVersion() QChar__UnicodeVersion {
 	if ptr.Pointer() != nil {
-		return QChar__UnicodeVersion(C.QChar_UnicodeVersion(C.QtObjectPtr(ptr.Pointer())))
+		return QChar__UnicodeVersion(C.QChar_UnicodeVersion(ptr.Pointer()))
 	}
 	return 0
 }

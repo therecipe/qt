@@ -12,54 +12,54 @@ type QAudioEncoderSettingsControl struct {
 	QMediaControl
 }
 
-type QAudioEncoderSettingsControlITF interface {
-	QMediaControlITF
-	QAudioEncoderSettingsControlPTR() *QAudioEncoderSettingsControl
+type QAudioEncoderSettingsControl_ITF interface {
+	QMediaControl_ITF
+	QAudioEncoderSettingsControl_PTR() *QAudioEncoderSettingsControl
 }
 
-func PointerFromQAudioEncoderSettingsControl(ptr QAudioEncoderSettingsControlITF) unsafe.Pointer {
+func PointerFromQAudioEncoderSettingsControl(ptr QAudioEncoderSettingsControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAudioEncoderSettingsControlPTR().Pointer()
+		return ptr.QAudioEncoderSettingsControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAudioEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QAudioEncoderSettingsControl {
+func NewQAudioEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QAudioEncoderSettingsControl {
 	var n = new(QAudioEncoderSettingsControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAudioEncoderSettingsControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAudioEncoderSettingsControl) QAudioEncoderSettingsControlPTR() *QAudioEncoderSettingsControl {
+func (ptr *QAudioEncoderSettingsControl) QAudioEncoderSettingsControl_PTR() *QAudioEncoderSettingsControl {
 	return ptr
 }
 
 func (ptr *QAudioEncoderSettingsControl) CodecDescription(codec string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAudioEncoderSettingsControl_CodecDescription(C.QtObjectPtr(ptr.Pointer()), C.CString(codec)))
+		return C.GoString(C.QAudioEncoderSettingsControl_CodecDescription(ptr.Pointer(), C.CString(codec)))
 	}
 	return ""
 }
 
-func (ptr *QAudioEncoderSettingsControl) SetAudioSettings(settings QAudioEncoderSettingsITF) {
+func (ptr *QAudioEncoderSettingsControl) SetAudioSettings(settings QAudioEncoderSettings_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAudioEncoderSettingsControl_SetAudioSettings(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAudioEncoderSettings(settings)))
+		C.QAudioEncoderSettingsControl_SetAudioSettings(ptr.Pointer(), PointerFromQAudioEncoderSettings(settings))
 	}
 }
 
 func (ptr *QAudioEncoderSettingsControl) SupportedAudioCodecs() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QAudioEncoderSettingsControl_SupportedAudioCodecs(C.QtObjectPtr(ptr.Pointer()))), "|")
+		return strings.Split(C.GoString(C.QAudioEncoderSettingsControl_SupportedAudioCodecs(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QAudioEncoderSettingsControl) DestroyQAudioEncoderSettingsControl() {
 	if ptr.Pointer() != nil {
-		C.QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

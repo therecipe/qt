@@ -11,35 +11,35 @@ type QCameraFeedbackControl struct {
 	QMediaControl
 }
 
-type QCameraFeedbackControlITF interface {
-	QMediaControlITF
-	QCameraFeedbackControlPTR() *QCameraFeedbackControl
+type QCameraFeedbackControl_ITF interface {
+	QMediaControl_ITF
+	QCameraFeedbackControl_PTR() *QCameraFeedbackControl
 }
 
-func PointerFromQCameraFeedbackControl(ptr QCameraFeedbackControlITF) unsafe.Pointer {
+func PointerFromQCameraFeedbackControl(ptr QCameraFeedbackControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCameraFeedbackControlPTR().Pointer()
+		return ptr.QCameraFeedbackControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCameraFeedbackControlFromPointer(ptr unsafe.Pointer) *QCameraFeedbackControl {
+func NewQCameraFeedbackControlFromPointer(ptr unsafe.Pointer) *QCameraFeedbackControl {
 	var n = new(QCameraFeedbackControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCameraFeedbackControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCameraFeedbackControl) QCameraFeedbackControlPTR() *QCameraFeedbackControl {
+func (ptr *QCameraFeedbackControl) QCameraFeedbackControl_PTR() *QCameraFeedbackControl {
 	return ptr
 }
 
 //QCameraFeedbackControl::EventType
-type QCameraFeedbackControl__EventType int
+type QCameraFeedbackControl__EventType int64
 
-var (
+const (
 	QCameraFeedbackControl__ViewfinderStarted   = QCameraFeedbackControl__EventType(1)
 	QCameraFeedbackControl__ViewfinderStopped   = QCameraFeedbackControl__EventType(2)
 	QCameraFeedbackControl__ImageCaptured       = QCameraFeedbackControl__EventType(3)
@@ -55,41 +55,41 @@ var (
 
 func (ptr *QCameraFeedbackControl) IsEventFeedbackEnabled(event QCameraFeedbackControl__EventType) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFeedbackControl_IsEventFeedbackEnabled(C.QtObjectPtr(ptr.Pointer()), C.int(event)) != 0
+		return C.QCameraFeedbackControl_IsEventFeedbackEnabled(ptr.Pointer(), C.int(event)) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraFeedbackControl) IsEventFeedbackLocked(event QCameraFeedbackControl__EventType) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFeedbackControl_IsEventFeedbackLocked(C.QtObjectPtr(ptr.Pointer()), C.int(event)) != 0
+		return C.QCameraFeedbackControl_IsEventFeedbackLocked(ptr.Pointer(), C.int(event)) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraFeedbackControl) ResetEventFeedback(event QCameraFeedbackControl__EventType) {
 	if ptr.Pointer() != nil {
-		C.QCameraFeedbackControl_ResetEventFeedback(C.QtObjectPtr(ptr.Pointer()), C.int(event))
+		C.QCameraFeedbackControl_ResetEventFeedback(ptr.Pointer(), C.int(event))
 	}
 }
 
 func (ptr *QCameraFeedbackControl) SetEventFeedbackEnabled(event QCameraFeedbackControl__EventType, enabled bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFeedbackControl_SetEventFeedbackEnabled(C.QtObjectPtr(ptr.Pointer()), C.int(event), C.int(qt.GoBoolToInt(enabled))) != 0
+		return C.QCameraFeedbackControl_SetEventFeedbackEnabled(ptr.Pointer(), C.int(event), C.int(qt.GoBoolToInt(enabled))) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraFeedbackControl) SetEventFeedbackSound(event QCameraFeedbackControl__EventType, filePath string) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFeedbackControl_SetEventFeedbackSound(C.QtObjectPtr(ptr.Pointer()), C.int(event), C.CString(filePath)) != 0
+		return C.QCameraFeedbackControl_SetEventFeedbackSound(ptr.Pointer(), C.int(event), C.CString(filePath)) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraFeedbackControl) DestroyQCameraFeedbackControl() {
 	if ptr.Pointer() != nil {
-		C.QCameraFeedbackControl_DestroyQCameraFeedbackControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraFeedbackControl_DestroyQCameraFeedbackControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

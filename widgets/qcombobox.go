@@ -14,35 +14,35 @@ type QComboBox struct {
 	QWidget
 }
 
-type QComboBoxITF interface {
-	QWidgetITF
-	QComboBoxPTR() *QComboBox
+type QComboBox_ITF interface {
+	QWidget_ITF
+	QComboBox_PTR() *QComboBox
 }
 
-func PointerFromQComboBox(ptr QComboBoxITF) unsafe.Pointer {
+func PointerFromQComboBox(ptr QComboBox_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QComboBoxPTR().Pointer()
+		return ptr.QComboBox_PTR().Pointer()
 	}
 	return nil
 }
 
-func QComboBoxFromPointer(ptr unsafe.Pointer) *QComboBox {
+func NewQComboBoxFromPointer(ptr unsafe.Pointer) *QComboBox {
 	var n = new(QComboBox)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QComboBox_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QComboBox) QComboBoxPTR() *QComboBox {
+func (ptr *QComboBox) QComboBox_PTR() *QComboBox {
 	return ptr
 }
 
 //QComboBox::InsertPolicy
-type QComboBox__InsertPolicy int
+type QComboBox__InsertPolicy int64
 
-var (
+const (
 	QComboBox__NoInsert             = QComboBox__InsertPolicy(0)
 	QComboBox__InsertAtTop          = QComboBox__InsertPolicy(1)
 	QComboBox__InsertAtCurrent      = QComboBox__InsertPolicy(2)
@@ -53,9 +53,9 @@ var (
 )
 
 //QComboBox::SizeAdjustPolicy
-type QComboBox__SizeAdjustPolicy int
+type QComboBox__SizeAdjustPolicy int64
 
-var (
+const (
 	QComboBox__AdjustToContents                      = QComboBox__SizeAdjustPolicy(0)
 	QComboBox__AdjustToContentsOnFirstShow           = QComboBox__SizeAdjustPolicy(1)
 	QComboBox__AdjustToMinimumContentsLength         = QComboBox__SizeAdjustPolicy(2)
@@ -64,193 +64,193 @@ var (
 
 func (ptr *QComboBox) Count() int {
 	if ptr.Pointer() != nil {
-		return int(C.QComboBox_Count(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QComboBox_Count(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QComboBox) CurrentData(role int) string {
+func (ptr *QComboBox) CurrentData(role int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QComboBox_CurrentData(C.QtObjectPtr(ptr.Pointer()), C.int(role)))
+		return core.NewQVariantFromPointer(C.QComboBox_CurrentData(ptr.Pointer(), C.int(role)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QComboBox) CurrentIndex() int {
 	if ptr.Pointer() != nil {
-		return int(C.QComboBox_CurrentIndex(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QComboBox_CurrentIndex(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QComboBox) CurrentText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QComboBox_CurrentText(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QComboBox_CurrentText(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QComboBox) DuplicatesEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QComboBox_DuplicatesEnabled(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QComboBox_DuplicatesEnabled(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QComboBox) HasFrame() bool {
 	if ptr.Pointer() != nil {
-		return C.QComboBox_HasFrame(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QComboBox_HasFrame(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QComboBox) InsertPolicy() QComboBox__InsertPolicy {
 	if ptr.Pointer() != nil {
-		return QComboBox__InsertPolicy(C.QComboBox_InsertPolicy(C.QtObjectPtr(ptr.Pointer())))
+		return QComboBox__InsertPolicy(C.QComboBox_InsertPolicy(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QComboBox) IsEditable() bool {
 	if ptr.Pointer() != nil {
-		return C.QComboBox_IsEditable(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QComboBox_IsEditable(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QComboBox) MaxCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QComboBox_MaxCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QComboBox_MaxCount(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QComboBox) MaxVisibleItems() int {
 	if ptr.Pointer() != nil {
-		return int(C.QComboBox_MaxVisibleItems(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QComboBox_MaxVisibleItems(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QComboBox) MinimumContentsLength() int {
 	if ptr.Pointer() != nil {
-		return int(C.QComboBox_MinimumContentsLength(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QComboBox_MinimumContentsLength(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QComboBox) ModelColumn() int {
 	if ptr.Pointer() != nil {
-		return int(C.QComboBox_ModelColumn(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QComboBox_ModelColumn(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QComboBox) SetCompleter(completer QCompleterITF) {
+func (ptr *QComboBox) SetCompleter(completer QCompleter_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetCompleter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQCompleter(completer)))
+		C.QComboBox_SetCompleter(ptr.Pointer(), PointerFromQCompleter(completer))
 	}
 }
 
 func (ptr *QComboBox) SetCurrentIndex(index int) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetCurrentIndex(C.QtObjectPtr(ptr.Pointer()), C.int(index))
+		C.QComboBox_SetCurrentIndex(ptr.Pointer(), C.int(index))
 	}
 }
 
 func (ptr *QComboBox) SetCurrentText(text string) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetCurrentText(C.QtObjectPtr(ptr.Pointer()), C.CString(text))
+		C.QComboBox_SetCurrentText(ptr.Pointer(), C.CString(text))
 	}
 }
 
 func (ptr *QComboBox) SetDuplicatesEnabled(enable bool) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetDuplicatesEnabled(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enable)))
+		C.QComboBox_SetDuplicatesEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
 func (ptr *QComboBox) SetEditable(editable bool) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetEditable(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(editable)))
+		C.QComboBox_SetEditable(ptr.Pointer(), C.int(qt.GoBoolToInt(editable)))
 	}
 }
 
 func (ptr *QComboBox) SetFrame(v bool) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetFrame(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(v)))
+		C.QComboBox_SetFrame(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
 	}
 }
 
-func (ptr *QComboBox) SetIconSize(size core.QSizeITF) {
+func (ptr *QComboBox) SetIconSize(size core.QSize_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetIconSize(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQSize(size)))
+		C.QComboBox_SetIconSize(ptr.Pointer(), core.PointerFromQSize(size))
 	}
 }
 
 func (ptr *QComboBox) SetInsertPolicy(policy QComboBox__InsertPolicy) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetInsertPolicy(C.QtObjectPtr(ptr.Pointer()), C.int(policy))
+		C.QComboBox_SetInsertPolicy(ptr.Pointer(), C.int(policy))
 	}
 }
 
 func (ptr *QComboBox) SetMaxCount(max int) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetMaxCount(C.QtObjectPtr(ptr.Pointer()), C.int(max))
+		C.QComboBox_SetMaxCount(ptr.Pointer(), C.int(max))
 	}
 }
 
 func (ptr *QComboBox) SetMaxVisibleItems(maxItems int) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetMaxVisibleItems(C.QtObjectPtr(ptr.Pointer()), C.int(maxItems))
+		C.QComboBox_SetMaxVisibleItems(ptr.Pointer(), C.int(maxItems))
 	}
 }
 
 func (ptr *QComboBox) SetMinimumContentsLength(characters int) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetMinimumContentsLength(C.QtObjectPtr(ptr.Pointer()), C.int(characters))
+		C.QComboBox_SetMinimumContentsLength(ptr.Pointer(), C.int(characters))
 	}
 }
 
 func (ptr *QComboBox) SetModelColumn(visibleColumn int) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetModelColumn(C.QtObjectPtr(ptr.Pointer()), C.int(visibleColumn))
+		C.QComboBox_SetModelColumn(ptr.Pointer(), C.int(visibleColumn))
 	}
 }
 
 func (ptr *QComboBox) SetSizeAdjustPolicy(policy QComboBox__SizeAdjustPolicy) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetSizeAdjustPolicy(C.QtObjectPtr(ptr.Pointer()), C.int(policy))
+		C.QComboBox_SetSizeAdjustPolicy(ptr.Pointer(), C.int(policy))
 	}
 }
 
-func (ptr *QComboBox) SetValidator(validator gui.QValidatorITF) {
+func (ptr *QComboBox) SetValidator(validator gui.QValidator_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetValidator(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQValidator(validator)))
+		C.QComboBox_SetValidator(ptr.Pointer(), gui.PointerFromQValidator(validator))
 	}
 }
 
 func (ptr *QComboBox) SizeAdjustPolicy() QComboBox__SizeAdjustPolicy {
 	if ptr.Pointer() != nil {
-		return QComboBox__SizeAdjustPolicy(C.QComboBox_SizeAdjustPolicy(C.QtObjectPtr(ptr.Pointer())))
+		return QComboBox__SizeAdjustPolicy(C.QComboBox_SizeAdjustPolicy(ptr.Pointer()))
 	}
 	return 0
 }
 
-func NewQComboBox(parent QWidgetITF) *QComboBox {
-	return QComboBoxFromPointer(unsafe.Pointer(C.QComboBox_NewQComboBox(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQComboBox(parent QWidget_ITF) *QComboBox {
+	return NewQComboBoxFromPointer(C.QComboBox_NewQComboBox(PointerFromQWidget(parent)))
 }
 
 func (ptr *QComboBox) ConnectActivated(f func(index int)) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_ConnectActivated(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_ConnectActivated(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "activated", f)
 	}
 }
 
 func (ptr *QComboBox) DisconnectActivated() {
 	if ptr.Pointer() != nil {
-		C.QComboBox_DisconnectActivated(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_DisconnectActivated(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "activated")
 	}
 }
@@ -260,53 +260,53 @@ func callbackQComboBoxActivated(ptrName *C.char, index C.int) {
 	qt.GetSignal(C.GoString(ptrName), "activated").(func(int))(int(index))
 }
 
-func (ptr *QComboBox) AddItem2(icon gui.QIconITF, text string, userData string) {
+func (ptr *QComboBox) AddItem2(icon gui.QIcon_ITF, text string, userData core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_AddItem2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQIcon(icon)), C.CString(text), C.CString(userData))
+		C.QComboBox_AddItem2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text), core.PointerFromQVariant(userData))
 	}
 }
 
-func (ptr *QComboBox) AddItem(text string, userData string) {
+func (ptr *QComboBox) AddItem(text string, userData core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_AddItem(C.QtObjectPtr(ptr.Pointer()), C.CString(text), C.CString(userData))
+		C.QComboBox_AddItem(ptr.Pointer(), C.CString(text), core.PointerFromQVariant(userData))
 	}
 }
 
 func (ptr *QComboBox) AddItems(texts []string) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_AddItems(C.QtObjectPtr(ptr.Pointer()), C.CString(strings.Join(texts, "|")))
+		C.QComboBox_AddItems(ptr.Pointer(), C.CString(strings.Join(texts, "|")))
 	}
 }
 
 func (ptr *QComboBox) Clear() {
 	if ptr.Pointer() != nil {
-		C.QComboBox_Clear(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QComboBox) ClearEditText() {
 	if ptr.Pointer() != nil {
-		C.QComboBox_ClearEditText(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_ClearEditText(ptr.Pointer())
 	}
 }
 
 func (ptr *QComboBox) Completer() *QCompleter {
 	if ptr.Pointer() != nil {
-		return QCompleterFromPointer(unsafe.Pointer(C.QComboBox_Completer(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQCompleterFromPointer(C.QComboBox_Completer(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QComboBox) ConnectCurrentIndexChanged(f func(index int)) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_ConnectCurrentIndexChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_ConnectCurrentIndexChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "currentIndexChanged", f)
 	}
 }
 
 func (ptr *QComboBox) DisconnectCurrentIndexChanged() {
 	if ptr.Pointer() != nil {
-		C.QComboBox_DisconnectCurrentIndexChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_DisconnectCurrentIndexChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "currentIndexChanged")
 	}
 }
@@ -318,14 +318,14 @@ func callbackQComboBoxCurrentIndexChanged(ptrName *C.char, index C.int) {
 
 func (ptr *QComboBox) ConnectCurrentTextChanged(f func(text string)) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_ConnectCurrentTextChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_ConnectCurrentTextChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "currentTextChanged", f)
 	}
 }
 
 func (ptr *QComboBox) DisconnectCurrentTextChanged() {
 	if ptr.Pointer() != nil {
-		C.QComboBox_DisconnectCurrentTextChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_DisconnectCurrentTextChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "currentTextChanged")
 	}
 }
@@ -337,14 +337,14 @@ func callbackQComboBoxCurrentTextChanged(ptrName *C.char, text *C.char) {
 
 func (ptr *QComboBox) ConnectEditTextChanged(f func(text string)) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_ConnectEditTextChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_ConnectEditTextChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "editTextChanged", f)
 	}
 }
 
 func (ptr *QComboBox) DisconnectEditTextChanged() {
 	if ptr.Pointer() != nil {
-		C.QComboBox_DisconnectEditTextChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_DisconnectEditTextChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "editTextChanged")
 	}
 }
@@ -354,43 +354,43 @@ func callbackQComboBoxEditTextChanged(ptrName *C.char, text *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "editTextChanged").(func(string))(C.GoString(text))
 }
 
-func (ptr *QComboBox) Event(event core.QEventITF) bool {
+func (ptr *QComboBox) Event(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QComboBox_Event(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQEvent(event))) != 0
+		return C.QComboBox_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
 	}
 	return false
 }
 
-func (ptr *QComboBox) FindData(data string, role int, flags core.Qt__MatchFlag) int {
+func (ptr *QComboBox) FindData(data core.QVariant_ITF, role int, flags core.Qt__MatchFlag) int {
 	if ptr.Pointer() != nil {
-		return int(C.QComboBox_FindData(C.QtObjectPtr(ptr.Pointer()), C.CString(data), C.int(role), C.int(flags)))
+		return int(C.QComboBox_FindData(ptr.Pointer(), core.PointerFromQVariant(data), C.int(role), C.int(flags)))
 	}
 	return 0
 }
 
 func (ptr *QComboBox) FindText(text string, flags core.Qt__MatchFlag) int {
 	if ptr.Pointer() != nil {
-		return int(C.QComboBox_FindText(C.QtObjectPtr(ptr.Pointer()), C.CString(text), C.int(flags)))
+		return int(C.QComboBox_FindText(ptr.Pointer(), C.CString(text), C.int(flags)))
 	}
 	return 0
 }
 
 func (ptr *QComboBox) HidePopup() {
 	if ptr.Pointer() != nil {
-		C.QComboBox_HidePopup(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_HidePopup(ptr.Pointer())
 	}
 }
 
 func (ptr *QComboBox) ConnectHighlighted(f func(index int)) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_ConnectHighlighted(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_ConnectHighlighted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "highlighted", f)
 	}
 }
 
 func (ptr *QComboBox) DisconnectHighlighted() {
 	if ptr.Pointer() != nil {
-		C.QComboBox_DisconnectHighlighted(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_DisconnectHighlighted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "highlighted")
 	}
 }
@@ -400,162 +400,162 @@ func callbackQComboBoxHighlighted(ptrName *C.char, index C.int) {
 	qt.GetSignal(C.GoString(ptrName), "highlighted").(func(int))(int(index))
 }
 
-func (ptr *QComboBox) InputMethodQuery(query core.Qt__InputMethodQuery) string {
+func (ptr *QComboBox) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QComboBox_InputMethodQuery(C.QtObjectPtr(ptr.Pointer()), C.int(query)))
+		return core.NewQVariantFromPointer(C.QComboBox_InputMethodQuery(ptr.Pointer(), C.int(query)))
 	}
-	return ""
+	return nil
 }
 
-func (ptr *QComboBox) InsertItem2(index int, icon gui.QIconITF, text string, userData string) {
+func (ptr *QComboBox) InsertItem2(index int, icon gui.QIcon_ITF, text string, userData core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_InsertItem2(C.QtObjectPtr(ptr.Pointer()), C.int(index), C.QtObjectPtr(gui.PointerFromQIcon(icon)), C.CString(text), C.CString(userData))
+		C.QComboBox_InsertItem2(ptr.Pointer(), C.int(index), gui.PointerFromQIcon(icon), C.CString(text), core.PointerFromQVariant(userData))
 	}
 }
 
-func (ptr *QComboBox) InsertItem(index int, text string, userData string) {
+func (ptr *QComboBox) InsertItem(index int, text string, userData core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_InsertItem(C.QtObjectPtr(ptr.Pointer()), C.int(index), C.CString(text), C.CString(userData))
+		C.QComboBox_InsertItem(ptr.Pointer(), C.int(index), C.CString(text), core.PointerFromQVariant(userData))
 	}
 }
 
 func (ptr *QComboBox) InsertItems(index int, list []string) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_InsertItems(C.QtObjectPtr(ptr.Pointer()), C.int(index), C.CString(strings.Join(list, "|")))
+		C.QComboBox_InsertItems(ptr.Pointer(), C.int(index), C.CString(strings.Join(list, "|")))
 	}
 }
 
 func (ptr *QComboBox) InsertSeparator(index int) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_InsertSeparator(C.QtObjectPtr(ptr.Pointer()), C.int(index))
+		C.QComboBox_InsertSeparator(ptr.Pointer(), C.int(index))
 	}
 }
 
-func (ptr *QComboBox) ItemData(index int, role int) string {
+func (ptr *QComboBox) ItemData(index int, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QComboBox_ItemData(C.QtObjectPtr(ptr.Pointer()), C.int(index), C.int(role)))
+		return core.NewQVariantFromPointer(C.QComboBox_ItemData(ptr.Pointer(), C.int(index), C.int(role)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QComboBox) ItemDelegate() *QAbstractItemDelegate {
 	if ptr.Pointer() != nil {
-		return QAbstractItemDelegateFromPointer(unsafe.Pointer(C.QComboBox_ItemDelegate(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAbstractItemDelegateFromPointer(C.QComboBox_ItemDelegate(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QComboBox) ItemText(index int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QComboBox_ItemText(C.QtObjectPtr(ptr.Pointer()), C.int(index)))
+		return C.GoString(C.QComboBox_ItemText(ptr.Pointer(), C.int(index)))
 	}
 	return ""
 }
 
 func (ptr *QComboBox) LineEdit() *QLineEdit {
 	if ptr.Pointer() != nil {
-		return QLineEditFromPointer(unsafe.Pointer(C.QComboBox_LineEdit(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQLineEditFromPointer(C.QComboBox_LineEdit(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QComboBox) Model() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		return core.QAbstractItemModelFromPointer(unsafe.Pointer(C.QComboBox_Model(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQAbstractItemModelFromPointer(C.QComboBox_Model(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QComboBox) RemoveItem(index int) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_RemoveItem(C.QtObjectPtr(ptr.Pointer()), C.int(index))
+		C.QComboBox_RemoveItem(ptr.Pointer(), C.int(index))
 	}
 }
 
 func (ptr *QComboBox) RootModelIndex() *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		return core.QModelIndexFromPointer(unsafe.Pointer(C.QComboBox_RootModelIndex(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQModelIndexFromPointer(C.QComboBox_RootModelIndex(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QComboBox) SetEditText(text string) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetEditText(C.QtObjectPtr(ptr.Pointer()), C.CString(text))
+		C.QComboBox_SetEditText(ptr.Pointer(), C.CString(text))
 	}
 }
 
-func (ptr *QComboBox) SetItemData(index int, value string, role int) {
+func (ptr *QComboBox) SetItemData(index int, value core.QVariant_ITF, role int) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetItemData(C.QtObjectPtr(ptr.Pointer()), C.int(index), C.CString(value), C.int(role))
+		C.QComboBox_SetItemData(ptr.Pointer(), C.int(index), core.PointerFromQVariant(value), C.int(role))
 	}
 }
 
-func (ptr *QComboBox) SetItemDelegate(delegate QAbstractItemDelegateITF) {
+func (ptr *QComboBox) SetItemDelegate(delegate QAbstractItemDelegate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetItemDelegate(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractItemDelegate(delegate)))
+		C.QComboBox_SetItemDelegate(ptr.Pointer(), PointerFromQAbstractItemDelegate(delegate))
 	}
 }
 
-func (ptr *QComboBox) SetItemIcon(index int, icon gui.QIconITF) {
+func (ptr *QComboBox) SetItemIcon(index int, icon gui.QIcon_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetItemIcon(C.QtObjectPtr(ptr.Pointer()), C.int(index), C.QtObjectPtr(gui.PointerFromQIcon(icon)))
+		C.QComboBox_SetItemIcon(ptr.Pointer(), C.int(index), gui.PointerFromQIcon(icon))
 	}
 }
 
 func (ptr *QComboBox) SetItemText(index int, text string) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetItemText(C.QtObjectPtr(ptr.Pointer()), C.int(index), C.CString(text))
+		C.QComboBox_SetItemText(ptr.Pointer(), C.int(index), C.CString(text))
 	}
 }
 
-func (ptr *QComboBox) SetLineEdit(edit QLineEditITF) {
+func (ptr *QComboBox) SetLineEdit(edit QLineEdit_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetLineEdit(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQLineEdit(edit)))
+		C.QComboBox_SetLineEdit(ptr.Pointer(), PointerFromQLineEdit(edit))
 	}
 }
 
-func (ptr *QComboBox) SetModel(model core.QAbstractItemModelITF) {
+func (ptr *QComboBox) SetModel(model core.QAbstractItemModel_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetModel(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQAbstractItemModel(model)))
+		C.QComboBox_SetModel(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
 	}
 }
 
-func (ptr *QComboBox) SetRootModelIndex(index core.QModelIndexITF) {
+func (ptr *QComboBox) SetRootModelIndex(index core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetRootModelIndex(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQModelIndex(index)))
+		C.QComboBox_SetRootModelIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
-func (ptr *QComboBox) SetView(itemView QAbstractItemViewITF) {
+func (ptr *QComboBox) SetView(itemView QAbstractItemView_ITF) {
 	if ptr.Pointer() != nil {
-		C.QComboBox_SetView(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractItemView(itemView)))
+		C.QComboBox_SetView(ptr.Pointer(), PointerFromQAbstractItemView(itemView))
 	}
 }
 
 func (ptr *QComboBox) ShowPopup() {
 	if ptr.Pointer() != nil {
-		C.QComboBox_ShowPopup(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_ShowPopup(ptr.Pointer())
 	}
 }
 
 func (ptr *QComboBox) Validator() *gui.QValidator {
 	if ptr.Pointer() != nil {
-		return gui.QValidatorFromPointer(unsafe.Pointer(C.QComboBox_Validator(C.QtObjectPtr(ptr.Pointer()))))
+		return gui.NewQValidatorFromPointer(C.QComboBox_Validator(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QComboBox) View() *QAbstractItemView {
 	if ptr.Pointer() != nil {
-		return QAbstractItemViewFromPointer(unsafe.Pointer(C.QComboBox_View(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAbstractItemViewFromPointer(C.QComboBox_View(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QComboBox) DestroyQComboBox() {
 	if ptr.Pointer() != nil {
-		C.QComboBox_DestroyQComboBox(C.QtObjectPtr(ptr.Pointer()))
+		C.QComboBox_DestroyQComboBox(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

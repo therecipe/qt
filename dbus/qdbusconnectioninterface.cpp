@@ -1,10 +1,10 @@
 #include "qdbusconnectioninterface.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QDBusConnection>
 #include <QObject>
+#include <QDBusConnection>
+#include <QString>
 #include <QDBusConnectionInterface>
 #include "_cgo_export.h"
 
@@ -14,19 +14,19 @@ void Signal_ServiceRegistered(const QString & serviceName){callbackQDBusConnecti
 void Signal_ServiceUnregistered(const QString & serviceName){callbackQDBusConnectionInterfaceServiceUnregistered(this->objectName().toUtf8().data(), serviceName.toUtf8().data());};
 };
 
-void QDBusConnectionInterface_ConnectServiceRegistered(QtObjectPtr ptr){
+void QDBusConnectionInterface_ConnectServiceRegistered(void* ptr){
 	QObject::connect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceRegistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceRegistered));;
 }
 
-void QDBusConnectionInterface_DisconnectServiceRegistered(QtObjectPtr ptr){
+void QDBusConnectionInterface_DisconnectServiceRegistered(void* ptr){
 	QObject::disconnect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceRegistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceRegistered));;
 }
 
-void QDBusConnectionInterface_ConnectServiceUnregistered(QtObjectPtr ptr){
+void QDBusConnectionInterface_ConnectServiceUnregistered(void* ptr){
 	QObject::connect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceUnregistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceUnregistered));;
 }
 
-void QDBusConnectionInterface_DisconnectServiceUnregistered(QtObjectPtr ptr){
+void QDBusConnectionInterface_DisconnectServiceUnregistered(void* ptr){
 	QObject::disconnect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QString &)>(&QDBusConnectionInterface::serviceUnregistered), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QString &)>(&MyQDBusConnectionInterface::Signal_ServiceUnregistered));;
 }
 

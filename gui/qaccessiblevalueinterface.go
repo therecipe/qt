@@ -3,6 +3,7 @@ package gui
 //#include "qaccessiblevalueinterface.h"
 import "C"
 import (
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -10,8 +11,8 @@ type QAccessibleValueInterface struct {
 	ptr unsafe.Pointer
 }
 
-type QAccessibleValueInterfaceITF interface {
-	QAccessibleValueInterfacePTR() *QAccessibleValueInterface
+type QAccessibleValueInterface_ITF interface {
+	QAccessibleValueInterface_PTR() *QAccessibleValueInterface
 }
 
 func (p *QAccessibleValueInterface) Pointer() unsafe.Pointer {
@@ -22,59 +23,59 @@ func (p *QAccessibleValueInterface) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQAccessibleValueInterface(ptr QAccessibleValueInterfaceITF) unsafe.Pointer {
+func PointerFromQAccessibleValueInterface(ptr QAccessibleValueInterface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAccessibleValueInterfacePTR().Pointer()
+		return ptr.QAccessibleValueInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAccessibleValueInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleValueInterface {
+func NewQAccessibleValueInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleValueInterface {
 	var n = new(QAccessibleValueInterface)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAccessibleValueInterface) QAccessibleValueInterfacePTR() *QAccessibleValueInterface {
+func (ptr *QAccessibleValueInterface) QAccessibleValueInterface_PTR() *QAccessibleValueInterface {
 	return ptr
 }
 
-func (ptr *QAccessibleValueInterface) CurrentValue() string {
+func (ptr *QAccessibleValueInterface) CurrentValue() *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleValueInterface_CurrentValue(C.QtObjectPtr(ptr.Pointer())))
+		return core.NewQVariantFromPointer(C.QAccessibleValueInterface_CurrentValue(ptr.Pointer()))
 	}
-	return ""
+	return nil
 }
 
-func (ptr *QAccessibleValueInterface) MaximumValue() string {
+func (ptr *QAccessibleValueInterface) MaximumValue() *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleValueInterface_MaximumValue(C.QtObjectPtr(ptr.Pointer())))
+		return core.NewQVariantFromPointer(C.QAccessibleValueInterface_MaximumValue(ptr.Pointer()))
 	}
-	return ""
+	return nil
 }
 
-func (ptr *QAccessibleValueInterface) MinimumStepSize() string {
+func (ptr *QAccessibleValueInterface) MinimumStepSize() *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleValueInterface_MinimumStepSize(C.QtObjectPtr(ptr.Pointer())))
+		return core.NewQVariantFromPointer(C.QAccessibleValueInterface_MinimumStepSize(ptr.Pointer()))
 	}
-	return ""
+	return nil
 }
 
-func (ptr *QAccessibleValueInterface) MinimumValue() string {
+func (ptr *QAccessibleValueInterface) MinimumValue() *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleValueInterface_MinimumValue(C.QtObjectPtr(ptr.Pointer())))
+		return core.NewQVariantFromPointer(C.QAccessibleValueInterface_MinimumValue(ptr.Pointer()))
 	}
-	return ""
+	return nil
 }
 
-func (ptr *QAccessibleValueInterface) SetCurrentValue(value string) {
+func (ptr *QAccessibleValueInterface) SetCurrentValue(value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAccessibleValueInterface_SetCurrentValue(C.QtObjectPtr(ptr.Pointer()), C.CString(value))
+		C.QAccessibleValueInterface_SetCurrentValue(ptr.Pointer(), core.PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QAccessibleValueInterface) DestroyQAccessibleValueInterface() {
 	if ptr.Pointer() != nil {
-		C.QAccessibleValueInterface_DestroyQAccessibleValueInterface(C.QtObjectPtr(ptr.Pointer()))
+		C.QAccessibleValueInterface_DestroyQAccessibleValueInterface(ptr.Pointer())
 	}
 }

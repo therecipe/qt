@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QAbstractVideoFilter_IsActive(QtObjectPtr ptr);
-void QAbstractVideoFilter_SetActive(QtObjectPtr ptr, int v);
-void QAbstractVideoFilter_ConnectActiveChanged(QtObjectPtr ptr);
-void QAbstractVideoFilter_DisconnectActiveChanged(QtObjectPtr ptr);
-QtObjectPtr QAbstractVideoFilter_CreateFilterRunnable(QtObjectPtr ptr);
+int QAbstractVideoFilter_IsActive(void* ptr);
+void QAbstractVideoFilter_SetActive(void* ptr, int v);
+void QAbstractVideoFilter_ConnectActiveChanged(void* ptr);
+void QAbstractVideoFilter_DisconnectActiveChanged(void* ptr);
+void* QAbstractVideoFilter_CreateFilterRunnable(void* ptr);
 
 #ifdef __cplusplus
 }

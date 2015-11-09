@@ -1,21 +1,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QPersistentModelIndex_NewQPersistentModelIndex3(QtObjectPtr other);
-int QPersistentModelIndex_Column(QtObjectPtr ptr);
-int QPersistentModelIndex_IsValid(QtObjectPtr ptr);
-int QPersistentModelIndex_Row(QtObjectPtr ptr);
-QtObjectPtr QPersistentModelIndex_NewQPersistentModelIndex4(QtObjectPtr other);
-QtObjectPtr QPersistentModelIndex_NewQPersistentModelIndex(QtObjectPtr index);
-QtObjectPtr QPersistentModelIndex_Child(QtObjectPtr ptr, int row, int column);
-char* QPersistentModelIndex_Data(QtObjectPtr ptr, int role);
-int QPersistentModelIndex_Flags(QtObjectPtr ptr);
-QtObjectPtr QPersistentModelIndex_Model(QtObjectPtr ptr);
-QtObjectPtr QPersistentModelIndex_Parent(QtObjectPtr ptr);
-QtObjectPtr QPersistentModelIndex_Sibling(QtObjectPtr ptr, int row, int column);
-void QPersistentModelIndex_Swap(QtObjectPtr ptr, QtObjectPtr other);
+void* QPersistentModelIndex_NewQPersistentModelIndex3(void* other);
+int QPersistentModelIndex_Column(void* ptr);
+int QPersistentModelIndex_IsValid(void* ptr);
+int QPersistentModelIndex_Row(void* ptr);
+void* QPersistentModelIndex_NewQPersistentModelIndex4(void* other);
+void* QPersistentModelIndex_NewQPersistentModelIndex(void* index);
+void* QPersistentModelIndex_Child(void* ptr, int row, int column);
+void* QPersistentModelIndex_Data(void* ptr, int role);
+int QPersistentModelIndex_Flags(void* ptr);
+void* QPersistentModelIndex_Model(void* ptr);
+void* QPersistentModelIndex_Parent(void* ptr);
+void* QPersistentModelIndex_Sibling(void* ptr, int row, int column);
+void QPersistentModelIndex_Swap(void* ptr, void* other);
 
 #ifdef __cplusplus
 }

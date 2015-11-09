@@ -3,6 +3,7 @@ package bluetooth
 //#include "qbluetoothtransferrequest.h"
 import "C"
 import (
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -10,8 +11,8 @@ type QBluetoothTransferRequest struct {
 	ptr unsafe.Pointer
 }
 
-type QBluetoothTransferRequestITF interface {
-	QBluetoothTransferRequestPTR() *QBluetoothTransferRequest
+type QBluetoothTransferRequest_ITF interface {
+	QBluetoothTransferRequest_PTR() *QBluetoothTransferRequest
 }
 
 func (p *QBluetoothTransferRequest) Pointer() unsafe.Pointer {
@@ -22,27 +23,27 @@ func (p *QBluetoothTransferRequest) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQBluetoothTransferRequest(ptr QBluetoothTransferRequestITF) unsafe.Pointer {
+func PointerFromQBluetoothTransferRequest(ptr QBluetoothTransferRequest_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QBluetoothTransferRequestPTR().Pointer()
+		return ptr.QBluetoothTransferRequest_PTR().Pointer()
 	}
 	return nil
 }
 
-func QBluetoothTransferRequestFromPointer(ptr unsafe.Pointer) *QBluetoothTransferRequest {
+func NewQBluetoothTransferRequestFromPointer(ptr unsafe.Pointer) *QBluetoothTransferRequest {
 	var n = new(QBluetoothTransferRequest)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QBluetoothTransferRequest) QBluetoothTransferRequestPTR() *QBluetoothTransferRequest {
+func (ptr *QBluetoothTransferRequest) QBluetoothTransferRequest_PTR() *QBluetoothTransferRequest {
 	return ptr
 }
 
 //QBluetoothTransferRequest::Attribute
-type QBluetoothTransferRequest__Attribute int
+type QBluetoothTransferRequest__Attribute int64
 
-var (
+const (
 	QBluetoothTransferRequest__DescriptionAttribute = QBluetoothTransferRequest__Attribute(0)
 	QBluetoothTransferRequest__TimeAttribute        = QBluetoothTransferRequest__Attribute(1)
 	QBluetoothTransferRequest__TypeAttribute        = QBluetoothTransferRequest__Attribute(2)
@@ -50,29 +51,29 @@ var (
 	QBluetoothTransferRequest__NameAttribute        = QBluetoothTransferRequest__Attribute(4)
 )
 
-func NewQBluetoothTransferRequest(address QBluetoothAddressITF) *QBluetoothTransferRequest {
-	return QBluetoothTransferRequestFromPointer(unsafe.Pointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest(C.QtObjectPtr(PointerFromQBluetoothAddress(address)))))
+func NewQBluetoothTransferRequest(address QBluetoothAddress_ITF) *QBluetoothTransferRequest {
+	return NewQBluetoothTransferRequestFromPointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest(PointerFromQBluetoothAddress(address)))
 }
 
-func NewQBluetoothTransferRequest2(other QBluetoothTransferRequestITF) *QBluetoothTransferRequest {
-	return QBluetoothTransferRequestFromPointer(unsafe.Pointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest2(C.QtObjectPtr(PointerFromQBluetoothTransferRequest(other)))))
+func NewQBluetoothTransferRequest2(other QBluetoothTransferRequest_ITF) *QBluetoothTransferRequest {
+	return NewQBluetoothTransferRequestFromPointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest2(PointerFromQBluetoothTransferRequest(other)))
 }
 
-func (ptr *QBluetoothTransferRequest) Attribute(code QBluetoothTransferRequest__Attribute, defaultValue string) string {
+func (ptr *QBluetoothTransferRequest) Attribute(code QBluetoothTransferRequest__Attribute, defaultValue core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QBluetoothTransferRequest_Attribute(C.QtObjectPtr(ptr.Pointer()), C.int(code), C.CString(defaultValue)))
+		return core.NewQVariantFromPointer(C.QBluetoothTransferRequest_Attribute(ptr.Pointer(), C.int(code), core.PointerFromQVariant(defaultValue)))
 	}
-	return ""
+	return nil
 }
 
-func (ptr *QBluetoothTransferRequest) SetAttribute(code QBluetoothTransferRequest__Attribute, value string) {
+func (ptr *QBluetoothTransferRequest) SetAttribute(code QBluetoothTransferRequest__Attribute, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothTransferRequest_SetAttribute(C.QtObjectPtr(ptr.Pointer()), C.int(code), C.CString(value))
+		C.QBluetoothTransferRequest_SetAttribute(ptr.Pointer(), C.int(code), core.PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QBluetoothTransferRequest) DestroyQBluetoothTransferRequest() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(C.QtObjectPtr(ptr.Pointer()))
+		C.QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(ptr.Pointer())
 	}
 }

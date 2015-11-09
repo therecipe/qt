@@ -1,16 +1,16 @@
 ########################################			FUNCTIONS			########################################
-&{notation QDoubleValidator::notation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  Notation [] }
-&{setBottom QDoubleValidator::setBottom commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void [0xc822de08a0] }
-&{setDecimals QDoubleValidator::setDecimals commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void [0xc822de0b80] }
-&{setNotation QDoubleValidator::setNotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void [0xc822de0ea0] }
-&{setTop QDoubleValidator::setTop commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void [0xc822de1240] }
-&{validate QDoubleValidator::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp impure plain false false  QValidator::State [0xc822de15a0 0xc822de1660] }
-&{QDoubleValidator QDoubleValidator::QDoubleValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false false   [0xc822de1d20] }
-&{QDoubleValidator QDoubleValidator::QDoubleValidator commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false true 2  [0xc822de1f00 0xc822de1fe0 0xc822ef20c0 0xc822ef21c0] }
-&{bottom QDoubleValidator::bottom commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  double [] }
-&{decimals QDoubleValidator::decimals commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  int [] }
-&{setRange QDoubleValidator::setRange commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h impure plain false false  void [0xc822ef3260 0xc822ef3360 0xc822ef3400] }
-&{top QDoubleValidator::top commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  double [] }
-&{~QDoubleValidator QDoubleValidator::~QDoubleValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non destructor false false   [] }
+&{notation QDoubleValidator::notation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  Notation Notation notation() const [] }
+&{setBottom QDoubleValidator::setBottom commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void void setBottom(double ) [0xc8200fe5c0] }
+&{setDecimals QDoubleValidator::setDecimals commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void void setDecimals(int ) [0xc8200fedc0] }
+&{setNotation QDoubleValidator::setNotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void void setNotation(Notation ) [0xc8200ff720] }
+&{setTop QDoubleValidator::setTop commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void void setTop(double ) [0xc82015c4c0] }
+&{validate QDoubleValidator::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp impure plain false false  QValidator::State QValidator::State validate(QString &input, int &pos) const [0xc82015d1a0 0xc82015d6c0] }
+&{QDoubleValidator QDoubleValidator::QDoubleValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false false   QDoubleValidator(QObject *parent) [0xc82018cdc0] }
+&{QDoubleValidator QDoubleValidator::QDoubleValidator commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false true 2  QDoubleValidator(double bottom, double top, int decimals, QObject *parent) [0xc82018d480 0xc82018d8a0 0xc82018db20 0xc82018df00] }
+&{bottom QDoubleValidator::bottom commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  double double bottom() const [] }
+&{decimals QDoubleValidator::decimals commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  int int decimals() const [] }
+&{setRange QDoubleValidator::setRange commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h impure plain false false  void void setRange(double minimum, double maximum, int decimals) [0xc820278360 0xc820278540 0xc8202788c0] }
+&{top QDoubleValidator::top commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  double double top() const [] }
+&{~QDoubleValidator QDoubleValidator::~QDoubleValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non destructor false false   ~QDoubleValidator() [] }
 ########################################			ENUMS			########################################
-&{Notation QDoubleValidator::Notation commendable public  [0xc822de19a0 0xc822de1ac0]}
+&{Notation QDoubleValidator::Notation commendable public  [0xc82018c140 0xc82018c540] false}

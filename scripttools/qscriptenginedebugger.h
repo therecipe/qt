@@ -1,23 +1,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QScriptEngineDebugger_NewQScriptEngineDebugger(QtObjectPtr parent);
-QtObjectPtr QScriptEngineDebugger_Action(QtObjectPtr ptr, int action);
-void QScriptEngineDebugger_AttachTo(QtObjectPtr ptr, QtObjectPtr engine);
-int QScriptEngineDebugger_AutoShowStandardWindow(QtObjectPtr ptr);
-QtObjectPtr QScriptEngineDebugger_CreateStandardMenu(QtObjectPtr ptr, QtObjectPtr parent);
-QtObjectPtr QScriptEngineDebugger_CreateStandardToolBar(QtObjectPtr ptr, QtObjectPtr parent);
-void QScriptEngineDebugger_Detach(QtObjectPtr ptr);
-void QScriptEngineDebugger_ConnectEvaluationResumed(QtObjectPtr ptr);
-void QScriptEngineDebugger_DisconnectEvaluationResumed(QtObjectPtr ptr);
-void QScriptEngineDebugger_ConnectEvaluationSuspended(QtObjectPtr ptr);
-void QScriptEngineDebugger_DisconnectEvaluationSuspended(QtObjectPtr ptr);
-void QScriptEngineDebugger_SetAutoShowStandardWindow(QtObjectPtr ptr, int autoShow);
-QtObjectPtr QScriptEngineDebugger_StandardWindow(QtObjectPtr ptr);
-QtObjectPtr QScriptEngineDebugger_Widget(QtObjectPtr ptr, int widget);
-void QScriptEngineDebugger_DestroyQScriptEngineDebugger(QtObjectPtr ptr);
+void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent);
+void* QScriptEngineDebugger_Action(void* ptr, int action);
+void QScriptEngineDebugger_AttachTo(void* ptr, void* engine);
+int QScriptEngineDebugger_AutoShowStandardWindow(void* ptr);
+void* QScriptEngineDebugger_CreateStandardMenu(void* ptr, void* parent);
+void* QScriptEngineDebugger_CreateStandardToolBar(void* ptr, void* parent);
+void QScriptEngineDebugger_Detach(void* ptr);
+void QScriptEngineDebugger_ConnectEvaluationResumed(void* ptr);
+void QScriptEngineDebugger_DisconnectEvaluationResumed(void* ptr);
+void QScriptEngineDebugger_ConnectEvaluationSuspended(void* ptr);
+void QScriptEngineDebugger_DisconnectEvaluationSuspended(void* ptr);
+void QScriptEngineDebugger_SetAutoShowStandardWindow(void* ptr, int autoShow);
+void* QScriptEngineDebugger_StandardWindow(void* ptr);
+void* QScriptEngineDebugger_Widget(void* ptr, int widget);
+void QScriptEngineDebugger_DestroyQScriptEngineDebugger(void* ptr);
 
 #ifdef __cplusplus
 }

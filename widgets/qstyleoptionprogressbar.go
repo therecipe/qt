@@ -10,46 +10,46 @@ type QStyleOptionProgressBar struct {
 	QStyleOption
 }
 
-type QStyleOptionProgressBarITF interface {
-	QStyleOptionITF
-	QStyleOptionProgressBarPTR() *QStyleOptionProgressBar
+type QStyleOptionProgressBar_ITF interface {
+	QStyleOption_ITF
+	QStyleOptionProgressBar_PTR() *QStyleOptionProgressBar
 }
 
-func PointerFromQStyleOptionProgressBar(ptr QStyleOptionProgressBarITF) unsafe.Pointer {
+func PointerFromQStyleOptionProgressBar(ptr QStyleOptionProgressBar_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionProgressBarPTR().Pointer()
+		return ptr.QStyleOptionProgressBar_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionProgressBarFromPointer(ptr unsafe.Pointer) *QStyleOptionProgressBar {
+func NewQStyleOptionProgressBarFromPointer(ptr unsafe.Pointer) *QStyleOptionProgressBar {
 	var n = new(QStyleOptionProgressBar)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionProgressBar) QStyleOptionProgressBarPTR() *QStyleOptionProgressBar {
+func (ptr *QStyleOptionProgressBar) QStyleOptionProgressBar_PTR() *QStyleOptionProgressBar {
 	return ptr
 }
 
 //QStyleOptionProgressBar::StyleOptionType
-type QStyleOptionProgressBar__StyleOptionType int
+type QStyleOptionProgressBar__StyleOptionType int64
 
 var (
 	QStyleOptionProgressBar__Type = QStyleOptionProgressBar__StyleOptionType(QStyleOption__SO_ProgressBar)
 )
 
 //QStyleOptionProgressBar::StyleOptionVersion
-type QStyleOptionProgressBar__StyleOptionVersion int
+type QStyleOptionProgressBar__StyleOptionVersion int64
 
 var (
 	QStyleOptionProgressBar__Version = QStyleOptionProgressBar__StyleOptionVersion(2)
 )
 
 func NewQStyleOptionProgressBar() *QStyleOptionProgressBar {
-	return QStyleOptionProgressBarFromPointer(unsafe.Pointer(C.QStyleOptionProgressBar_NewQStyleOptionProgressBar()))
+	return NewQStyleOptionProgressBarFromPointer(C.QStyleOptionProgressBar_NewQStyleOptionProgressBar())
 }
 
-func NewQStyleOptionProgressBar2(other QStyleOptionProgressBarITF) *QStyleOptionProgressBar {
-	return QStyleOptionProgressBarFromPointer(unsafe.Pointer(C.QStyleOptionProgressBar_NewQStyleOptionProgressBar2(C.QtObjectPtr(PointerFromQStyleOptionProgressBar(other)))))
+func NewQStyleOptionProgressBar2(other QStyleOptionProgressBar_ITF) *QStyleOptionProgressBar {
+	return NewQStyleOptionProgressBarFromPointer(C.QStyleOptionProgressBar_NewQStyleOptionProgressBar2(PointerFromQStyleOptionProgressBar(other)))
 }

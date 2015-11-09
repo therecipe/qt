@@ -1,9 +1,9 @@
 #include "qsizepolicy.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QSize>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QSizePolicy>
 #include "_cgo_export.h"
 
@@ -11,83 +11,83 @@ class MyQSizePolicy: public QSizePolicy {
 public:
 };
 
-QtObjectPtr QSizePolicy_NewQSizePolicy(){
+void* QSizePolicy_NewQSizePolicy(){
 	return new QSizePolicy();
 }
 
-QtObjectPtr QSizePolicy_NewQSizePolicy2(int horizontal, int vertical, int ty){
+void* QSizePolicy_NewQSizePolicy2(int horizontal, int vertical, int ty){
 	return new QSizePolicy(static_cast<QSizePolicy::Policy>(horizontal), static_cast<QSizePolicy::Policy>(vertical), static_cast<QSizePolicy::ControlType>(ty));
 }
 
-int QSizePolicy_ControlType(QtObjectPtr ptr){
+int QSizePolicy_ControlType(void* ptr){
 	return static_cast<QSizePolicy*>(ptr)->controlType();
 }
 
-int QSizePolicy_ExpandingDirections(QtObjectPtr ptr){
+int QSizePolicy_ExpandingDirections(void* ptr){
 	return static_cast<QSizePolicy*>(ptr)->expandingDirections();
 }
 
-int QSizePolicy_HasHeightForWidth(QtObjectPtr ptr){
+int QSizePolicy_HasHeightForWidth(void* ptr){
 	return static_cast<QSizePolicy*>(ptr)->hasHeightForWidth();
 }
 
-int QSizePolicy_HasWidthForHeight(QtObjectPtr ptr){
+int QSizePolicy_HasWidthForHeight(void* ptr){
 	return static_cast<QSizePolicy*>(ptr)->hasWidthForHeight();
 }
 
-int QSizePolicy_HorizontalPolicy(QtObjectPtr ptr){
+int QSizePolicy_HorizontalPolicy(void* ptr){
 	return static_cast<QSizePolicy*>(ptr)->horizontalPolicy();
 }
 
-int QSizePolicy_HorizontalStretch(QtObjectPtr ptr){
+int QSizePolicy_HorizontalStretch(void* ptr){
 	return static_cast<QSizePolicy*>(ptr)->horizontalStretch();
 }
 
-int QSizePolicy_RetainSizeWhenHidden(QtObjectPtr ptr){
+int QSizePolicy_RetainSizeWhenHidden(void* ptr){
 	return static_cast<QSizePolicy*>(ptr)->retainSizeWhenHidden();
 }
 
-void QSizePolicy_SetControlType(QtObjectPtr ptr, int ty){
+void QSizePolicy_SetControlType(void* ptr, int ty){
 	static_cast<QSizePolicy*>(ptr)->setControlType(static_cast<QSizePolicy::ControlType>(ty));
 }
 
-void QSizePolicy_SetHeightForWidth(QtObjectPtr ptr, int dependent){
+void QSizePolicy_SetHeightForWidth(void* ptr, int dependent){
 	static_cast<QSizePolicy*>(ptr)->setHeightForWidth(dependent != 0);
 }
 
-void QSizePolicy_SetHorizontalPolicy(QtObjectPtr ptr, int policy){
+void QSizePolicy_SetHorizontalPolicy(void* ptr, int policy){
 	static_cast<QSizePolicy*>(ptr)->setHorizontalPolicy(static_cast<QSizePolicy::Policy>(policy));
 }
 
-void QSizePolicy_SetHorizontalStretch(QtObjectPtr ptr, int stretchFactor){
+void QSizePolicy_SetHorizontalStretch(void* ptr, int stretchFactor){
 	static_cast<QSizePolicy*>(ptr)->setHorizontalStretch(stretchFactor);
 }
 
-void QSizePolicy_SetRetainSizeWhenHidden(QtObjectPtr ptr, int retainSize){
+void QSizePolicy_SetRetainSizeWhenHidden(void* ptr, int retainSize){
 	static_cast<QSizePolicy*>(ptr)->setRetainSizeWhenHidden(retainSize != 0);
 }
 
-void QSizePolicy_SetVerticalPolicy(QtObjectPtr ptr, int policy){
+void QSizePolicy_SetVerticalPolicy(void* ptr, int policy){
 	static_cast<QSizePolicy*>(ptr)->setVerticalPolicy(static_cast<QSizePolicy::Policy>(policy));
 }
 
-void QSizePolicy_SetVerticalStretch(QtObjectPtr ptr, int stretchFactor){
+void QSizePolicy_SetVerticalStretch(void* ptr, int stretchFactor){
 	static_cast<QSizePolicy*>(ptr)->setVerticalStretch(stretchFactor);
 }
 
-void QSizePolicy_SetWidthForHeight(QtObjectPtr ptr, int dependent){
+void QSizePolicy_SetWidthForHeight(void* ptr, int dependent){
 	static_cast<QSizePolicy*>(ptr)->setWidthForHeight(dependent != 0);
 }
 
-void QSizePolicy_Transpose(QtObjectPtr ptr){
+void QSizePolicy_Transpose(void* ptr){
 	static_cast<QSizePolicy*>(ptr)->transpose();
 }
 
-int QSizePolicy_VerticalPolicy(QtObjectPtr ptr){
+int QSizePolicy_VerticalPolicy(void* ptr){
 	return static_cast<QSizePolicy*>(ptr)->verticalPolicy();
 }
 
-int QSizePolicy_VerticalStretch(QtObjectPtr ptr){
+int QSizePolicy_VerticalStretch(void* ptr){
 	return static_cast<QSizePolicy*>(ptr)->verticalStretch();
 }
 

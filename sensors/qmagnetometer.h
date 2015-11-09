@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QMagnetometer_Reading(QtObjectPtr ptr);
-int QMagnetometer_ReturnGeoValues(QtObjectPtr ptr);
-void QMagnetometer_SetReturnGeoValues(QtObjectPtr ptr, int returnGeoValues);
-QtObjectPtr QMagnetometer_NewQMagnetometer(QtObjectPtr parent);
-void QMagnetometer_ConnectReturnGeoValuesChanged(QtObjectPtr ptr);
-void QMagnetometer_DisconnectReturnGeoValuesChanged(QtObjectPtr ptr);
-void QMagnetometer_DestroyQMagnetometer(QtObjectPtr ptr);
+void* QMagnetometer_Reading(void* ptr);
+int QMagnetometer_ReturnGeoValues(void* ptr);
+void QMagnetometer_SetReturnGeoValues(void* ptr, int returnGeoValues);
+void* QMagnetometer_NewQMagnetometer(void* parent);
+void QMagnetometer_ConnectReturnGeoValuesChanged(void* ptr);
+void QMagnetometer_DisconnectReturnGeoValuesChanged(void* ptr);
+void QMagnetometer_DestroyQMagnetometer(void* ptr);
 
 #ifdef __cplusplus
 }

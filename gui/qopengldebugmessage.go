@@ -10,8 +10,8 @@ type QOpenGLDebugMessage struct {
 	ptr unsafe.Pointer
 }
 
-type QOpenGLDebugMessageITF interface {
-	QOpenGLDebugMessagePTR() *QOpenGLDebugMessage
+type QOpenGLDebugMessage_ITF interface {
+	QOpenGLDebugMessage_PTR() *QOpenGLDebugMessage
 }
 
 func (p *QOpenGLDebugMessage) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QOpenGLDebugMessage) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQOpenGLDebugMessage(ptr QOpenGLDebugMessageITF) unsafe.Pointer {
+func PointerFromQOpenGLDebugMessage(ptr QOpenGLDebugMessage_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QOpenGLDebugMessagePTR().Pointer()
+		return ptr.QOpenGLDebugMessage_PTR().Pointer()
 	}
 	return nil
 }
 
-func QOpenGLDebugMessageFromPointer(ptr unsafe.Pointer) *QOpenGLDebugMessage {
+func NewQOpenGLDebugMessageFromPointer(ptr unsafe.Pointer) *QOpenGLDebugMessage {
 	var n = new(QOpenGLDebugMessage)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QOpenGLDebugMessage) QOpenGLDebugMessagePTR() *QOpenGLDebugMessage {
+func (ptr *QOpenGLDebugMessage) QOpenGLDebugMessage_PTR() *QOpenGLDebugMessage {
 	return ptr
 }
 
 //QOpenGLDebugMessage::Severity
-type QOpenGLDebugMessage__Severity int
+type QOpenGLDebugMessage__Severity int64
 
-var (
+const (
 	QOpenGLDebugMessage__InvalidSeverity      = QOpenGLDebugMessage__Severity(0x00000000)
 	QOpenGLDebugMessage__HighSeverity         = QOpenGLDebugMessage__Severity(0x00000001)
 	QOpenGLDebugMessage__MediumSeverity       = QOpenGLDebugMessage__Severity(0x00000002)
@@ -53,9 +53,9 @@ var (
 )
 
 //QOpenGLDebugMessage::Source
-type QOpenGLDebugMessage__Source int
+type QOpenGLDebugMessage__Source int64
 
-var (
+const (
 	QOpenGLDebugMessage__InvalidSource        = QOpenGLDebugMessage__Source(0x00000000)
 	QOpenGLDebugMessage__APISource            = QOpenGLDebugMessage__Source(0x00000001)
 	QOpenGLDebugMessage__WindowSystemSource   = QOpenGLDebugMessage__Source(0x00000002)
@@ -68,9 +68,9 @@ var (
 )
 
 //QOpenGLDebugMessage::Type
-type QOpenGLDebugMessage__Type int
+type QOpenGLDebugMessage__Type int64
 
-var (
+const (
 	QOpenGLDebugMessage__InvalidType            = QOpenGLDebugMessage__Type(0x00000000)
 	QOpenGLDebugMessage__ErrorType              = QOpenGLDebugMessage__Type(0x00000001)
 	QOpenGLDebugMessage__DeprecatedBehaviorType = QOpenGLDebugMessage__Type(0x00000002)
@@ -84,51 +84,3 @@ var (
 	QOpenGLDebugMessage__LastType               = QOpenGLDebugMessage__Type(QOpenGLDebugMessage__GroupPopType)
 	QOpenGLDebugMessage__AnyType                = QOpenGLDebugMessage__Type(0xffffffff)
 )
-
-func NewQOpenGLDebugMessage() *QOpenGLDebugMessage {
-	return QOpenGLDebugMessageFromPointer(unsafe.Pointer(C.QOpenGLDebugMessage_NewQOpenGLDebugMessage()))
-}
-
-func NewQOpenGLDebugMessage2(debugMessage QOpenGLDebugMessageITF) *QOpenGLDebugMessage {
-	return QOpenGLDebugMessageFromPointer(unsafe.Pointer(C.QOpenGLDebugMessage_NewQOpenGLDebugMessage2(C.QtObjectPtr(PointerFromQOpenGLDebugMessage(debugMessage)))))
-}
-
-func (ptr *QOpenGLDebugMessage) Message() string {
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QOpenGLDebugMessage_Message(C.QtObjectPtr(ptr.Pointer())))
-	}
-	return ""
-}
-
-func (ptr *QOpenGLDebugMessage) Severity() QOpenGLDebugMessage__Severity {
-	if ptr.Pointer() != nil {
-		return QOpenGLDebugMessage__Severity(C.QOpenGLDebugMessage_Severity(C.QtObjectPtr(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QOpenGLDebugMessage) Source() QOpenGLDebugMessage__Source {
-	if ptr.Pointer() != nil {
-		return QOpenGLDebugMessage__Source(C.QOpenGLDebugMessage_Source(C.QtObjectPtr(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QOpenGLDebugMessage) Swap(debugMessage QOpenGLDebugMessageITF) {
-	if ptr.Pointer() != nil {
-		C.QOpenGLDebugMessage_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQOpenGLDebugMessage(debugMessage)))
-	}
-}
-
-func (ptr *QOpenGLDebugMessage) Type() QOpenGLDebugMessage__Type {
-	if ptr.Pointer() != nil {
-		return QOpenGLDebugMessage__Type(C.QOpenGLDebugMessage_Type(C.QtObjectPtr(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QOpenGLDebugMessage) DestroyQOpenGLDebugMessage() {
-	if ptr.Pointer() != nil {
-		C.QOpenGLDebugMessage_DestroyQOpenGLDebugMessage(C.QtObjectPtr(ptr.Pointer()))
-	}
-}

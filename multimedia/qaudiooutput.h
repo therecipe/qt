@@ -1,27 +1,28 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QAudioOutput_NewQAudioOutput2(QtObjectPtr audioDevice, QtObjectPtr format, QtObjectPtr parent);
-QtObjectPtr QAudioOutput_NewQAudioOutput(QtObjectPtr format, QtObjectPtr parent);
-int QAudioOutput_BufferSize(QtObjectPtr ptr);
-int QAudioOutput_BytesFree(QtObjectPtr ptr);
-char* QAudioOutput_Category(QtObjectPtr ptr);
-void QAudioOutput_ConnectNotify(QtObjectPtr ptr);
-void QAudioOutput_DisconnectNotify(QtObjectPtr ptr);
-int QAudioOutput_NotifyInterval(QtObjectPtr ptr);
-int QAudioOutput_PeriodSize(QtObjectPtr ptr);
-void QAudioOutput_Reset(QtObjectPtr ptr);
-void QAudioOutput_Resume(QtObjectPtr ptr);
-void QAudioOutput_SetBufferSize(QtObjectPtr ptr, int value);
-void QAudioOutput_SetCategory(QtObjectPtr ptr, char* category);
-void QAudioOutput_SetNotifyInterval(QtObjectPtr ptr, int ms);
-QtObjectPtr QAudioOutput_Start2(QtObjectPtr ptr);
-void QAudioOutput_Start(QtObjectPtr ptr, QtObjectPtr device);
-void QAudioOutput_Stop(QtObjectPtr ptr);
-void QAudioOutput_Suspend(QtObjectPtr ptr);
-void QAudioOutput_DestroyQAudioOutput(QtObjectPtr ptr);
+void* QAudioOutput_NewQAudioOutput2(void* audioDevice, void* format, void* parent);
+void* QAudioOutput_NewQAudioOutput(void* format, void* parent);
+int QAudioOutput_BufferSize(void* ptr);
+int QAudioOutput_BytesFree(void* ptr);
+char* QAudioOutput_Category(void* ptr);
+void QAudioOutput_ConnectNotify(void* ptr);
+void QAudioOutput_DisconnectNotify(void* ptr);
+int QAudioOutput_NotifyInterval(void* ptr);
+int QAudioOutput_PeriodSize(void* ptr);
+void QAudioOutput_Reset(void* ptr);
+void QAudioOutput_Resume(void* ptr);
+void QAudioOutput_SetBufferSize(void* ptr, int value);
+void QAudioOutput_SetCategory(void* ptr, char* category);
+void QAudioOutput_SetNotifyInterval(void* ptr, int ms);
+void QAudioOutput_SetVolume(void* ptr, double volume);
+void* QAudioOutput_Start2(void* ptr);
+void QAudioOutput_Start(void* ptr, void* device);
+void QAudioOutput_Stop(void* ptr);
+void QAudioOutput_Suspend(void* ptr);
+double QAudioOutput_Volume(void* ptr);
+void QAudioOutput_DestroyQAudioOutput(void* ptr);
 
 #ifdef __cplusplus
 }

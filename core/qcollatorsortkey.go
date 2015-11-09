@@ -10,8 +10,8 @@ type QCollatorSortKey struct {
 	ptr unsafe.Pointer
 }
 
-type QCollatorSortKeyITF interface {
-	QCollatorSortKeyPTR() *QCollatorSortKey
+type QCollatorSortKey_ITF interface {
+	QCollatorSortKey_PTR() *QCollatorSortKey
 }
 
 func (p *QCollatorSortKey) Pointer() unsafe.Pointer {
@@ -22,42 +22,42 @@ func (p *QCollatorSortKey) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQCollatorSortKey(ptr QCollatorSortKeyITF) unsafe.Pointer {
+func PointerFromQCollatorSortKey(ptr QCollatorSortKey_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCollatorSortKeyPTR().Pointer()
+		return ptr.QCollatorSortKey_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCollatorSortKeyFromPointer(ptr unsafe.Pointer) *QCollatorSortKey {
+func NewQCollatorSortKeyFromPointer(ptr unsafe.Pointer) *QCollatorSortKey {
 	var n = new(QCollatorSortKey)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QCollatorSortKey) QCollatorSortKeyPTR() *QCollatorSortKey {
+func (ptr *QCollatorSortKey) QCollatorSortKey_PTR() *QCollatorSortKey {
 	return ptr
 }
 
-func NewQCollatorSortKey(other QCollatorSortKeyITF) *QCollatorSortKey {
-	return QCollatorSortKeyFromPointer(unsafe.Pointer(C.QCollatorSortKey_NewQCollatorSortKey(C.QtObjectPtr(PointerFromQCollatorSortKey(other)))))
+func NewQCollatorSortKey(other QCollatorSortKey_ITF) *QCollatorSortKey {
+	return NewQCollatorSortKeyFromPointer(C.QCollatorSortKey_NewQCollatorSortKey(PointerFromQCollatorSortKey(other)))
 }
 
-func (ptr *QCollatorSortKey) Swap(other QCollatorSortKeyITF) {
+func (ptr *QCollatorSortKey) Swap(other QCollatorSortKey_ITF) {
 	if ptr.Pointer() != nil {
-		C.QCollatorSortKey_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQCollatorSortKey(other)))
+		C.QCollatorSortKey_Swap(ptr.Pointer(), PointerFromQCollatorSortKey(other))
 	}
 }
 
 func (ptr *QCollatorSortKey) DestroyQCollatorSortKey() {
 	if ptr.Pointer() != nil {
-		C.QCollatorSortKey_DestroyQCollatorSortKey(C.QtObjectPtr(ptr.Pointer()))
+		C.QCollatorSortKey_DestroyQCollatorSortKey(ptr.Pointer())
 	}
 }
 
-func (ptr *QCollatorSortKey) Compare(otherKey QCollatorSortKeyITF) int {
+func (ptr *QCollatorSortKey) Compare(otherKey QCollatorSortKey_ITF) int {
 	if ptr.Pointer() != nil {
-		return int(C.QCollatorSortKey_Compare(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQCollatorSortKey(otherKey))))
+		return int(C.QCollatorSortKey_Compare(ptr.Pointer(), PointerFromQCollatorSortKey(otherKey)))
 	}
 	return 0
 }

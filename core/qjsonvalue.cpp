@@ -1,11 +1,11 @@
 #include "qjsonvalue.h"
+#include <QModelIndex>
+#include <QLatin1String>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QLatin1String>
-#include <QString>
 #include <QJsonValue>
 #include "_cgo_export.h"
 
@@ -13,91 +13,107 @@ class MyQJsonValue: public QJsonValue {
 public:
 };
 
-QtObjectPtr QJsonValue_NewQJsonValue5(QtObjectPtr s){
+void* QJsonValue_NewQJsonValue5(void* s){
 	return new QJsonValue(*static_cast<QLatin1String*>(s));
 }
 
-QtObjectPtr QJsonValue_NewQJsonValue(int ty){
+void* QJsonValue_NewQJsonValue(int ty){
 	return new QJsonValue(static_cast<QJsonValue::Type>(ty));
 }
 
-QtObjectPtr QJsonValue_NewQJsonValue2(int b){
+void* QJsonValue_NewQJsonValue2(int b){
 	return new QJsonValue(b != 0);
 }
 
-QtObjectPtr QJsonValue_NewQJsonValue7(QtObjectPtr a){
+void* QJsonValue_NewQJsonValue7(void* a){
 	return new QJsonValue(*static_cast<QJsonArray*>(a));
 }
 
-QtObjectPtr QJsonValue_NewQJsonValue8(QtObjectPtr o){
+void* QJsonValue_NewQJsonValue8(void* o){
 	return new QJsonValue(*static_cast<QJsonObject*>(o));
 }
 
-QtObjectPtr QJsonValue_NewQJsonValue9(QtObjectPtr other){
+void* QJsonValue_NewQJsonValue9(void* other){
 	return new QJsonValue(*static_cast<QJsonValue*>(other));
 }
 
-QtObjectPtr QJsonValue_NewQJsonValue4(char* s){
+void* QJsonValue_NewQJsonValue4(char* s){
 	return new QJsonValue(QString(s));
 }
 
-QtObjectPtr QJsonValue_NewQJsonValue6(char* s){
+void* QJsonValue_NewQJsonValue6(char* s){
 	return new QJsonValue(const_cast<const char*>(s));
 }
 
-QtObjectPtr QJsonValue_NewQJsonValue12(int n){
+void* QJsonValue_NewQJsonValue12(int n){
 	return new QJsonValue(n);
 }
 
-int QJsonValue_IsArray(QtObjectPtr ptr){
+int QJsonValue_IsArray(void* ptr){
 	return static_cast<QJsonValue*>(ptr)->isArray();
 }
 
-int QJsonValue_IsBool(QtObjectPtr ptr){
+int QJsonValue_IsBool(void* ptr){
 	return static_cast<QJsonValue*>(ptr)->isBool();
 }
 
-int QJsonValue_IsDouble(QtObjectPtr ptr){
+int QJsonValue_IsDouble(void* ptr){
 	return static_cast<QJsonValue*>(ptr)->isDouble();
 }
 
-int QJsonValue_IsNull(QtObjectPtr ptr){
+int QJsonValue_IsNull(void* ptr){
 	return static_cast<QJsonValue*>(ptr)->isNull();
 }
 
-int QJsonValue_IsObject(QtObjectPtr ptr){
+int QJsonValue_IsObject(void* ptr){
 	return static_cast<QJsonValue*>(ptr)->isObject();
 }
 
-int QJsonValue_IsString(QtObjectPtr ptr){
+int QJsonValue_IsString(void* ptr){
 	return static_cast<QJsonValue*>(ptr)->isString();
 }
 
-int QJsonValue_IsUndefined(QtObjectPtr ptr){
+int QJsonValue_IsUndefined(void* ptr){
 	return static_cast<QJsonValue*>(ptr)->isUndefined();
 }
 
-int QJsonValue_ToBool(QtObjectPtr ptr, int defaultValue){
+void* QJsonValue_ToArray2(void* ptr){
+	return new QJsonArray(static_cast<QJsonValue*>(ptr)->toArray());
+}
+
+void* QJsonValue_ToArray(void* ptr, void* defaultValue){
+	return new QJsonArray(static_cast<QJsonValue*>(ptr)->toArray(*static_cast<QJsonArray*>(defaultValue)));
+}
+
+int QJsonValue_ToBool(void* ptr, int defaultValue){
 	return static_cast<QJsonValue*>(ptr)->toBool(defaultValue != 0);
 }
 
-int QJsonValue_ToInt(QtObjectPtr ptr, int defaultValue){
+int QJsonValue_ToInt(void* ptr, int defaultValue){
 	return static_cast<QJsonValue*>(ptr)->toInt(defaultValue);
 }
 
-char* QJsonValue_ToString(QtObjectPtr ptr, char* defaultValue){
+void* QJsonValue_ToObject2(void* ptr){
+	return new QJsonObject(static_cast<QJsonValue*>(ptr)->toObject());
+}
+
+void* QJsonValue_ToObject(void* ptr, void* defaultValue){
+	return new QJsonObject(static_cast<QJsonValue*>(ptr)->toObject(*static_cast<QJsonObject*>(defaultValue)));
+}
+
+char* QJsonValue_ToString(void* ptr, char* defaultValue){
 	return static_cast<QJsonValue*>(ptr)->toString(QString(defaultValue)).toUtf8().data();
 }
 
-char* QJsonValue_ToVariant(QtObjectPtr ptr){
-	return static_cast<QJsonValue*>(ptr)->toVariant().toString().toUtf8().data();
+void* QJsonValue_ToVariant(void* ptr){
+	return new QVariant(static_cast<QJsonValue*>(ptr)->toVariant());
 }
 
-int QJsonValue_Type(QtObjectPtr ptr){
+int QJsonValue_Type(void* ptr){
 	return static_cast<QJsonValue*>(ptr)->type();
 }
 
-void QJsonValue_DestroyQJsonValue(QtObjectPtr ptr){
+void QJsonValue_DestroyQJsonValue(void* ptr){
 	static_cast<QJsonValue*>(ptr)->~QJsonValue();
 }
 

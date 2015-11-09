@@ -10,8 +10,8 @@ type QScriptString struct {
 	ptr unsafe.Pointer
 }
 
-type QScriptStringITF interface {
-	QScriptStringPTR() *QScriptString
+type QScriptString_ITF interface {
+	QScriptString_PTR() *QScriptString
 }
 
 func (p *QScriptString) Pointer() unsafe.Pointer {
@@ -22,47 +22,47 @@ func (p *QScriptString) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQScriptString(ptr QScriptStringITF) unsafe.Pointer {
+func PointerFromQScriptString(ptr QScriptString_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScriptStringPTR().Pointer()
+		return ptr.QScriptString_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScriptStringFromPointer(ptr unsafe.Pointer) *QScriptString {
+func NewQScriptStringFromPointer(ptr unsafe.Pointer) *QScriptString {
 	var n = new(QScriptString)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QScriptString) QScriptStringPTR() *QScriptString {
+func (ptr *QScriptString) QScriptString_PTR() *QScriptString {
 	return ptr
 }
 
 func NewQScriptString() *QScriptString {
-	return QScriptStringFromPointer(unsafe.Pointer(C.QScriptString_NewQScriptString()))
+	return NewQScriptStringFromPointer(C.QScriptString_NewQScriptString())
 }
 
-func NewQScriptString2(other QScriptStringITF) *QScriptString {
-	return QScriptStringFromPointer(unsafe.Pointer(C.QScriptString_NewQScriptString2(C.QtObjectPtr(PointerFromQScriptString(other)))))
+func NewQScriptString2(other QScriptString_ITF) *QScriptString {
+	return NewQScriptStringFromPointer(C.QScriptString_NewQScriptString2(PointerFromQScriptString(other)))
 }
 
 func (ptr *QScriptString) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptString_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QScriptString_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptString) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptString_ToString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QScriptString_ToString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QScriptString) DestroyQScriptString() {
 	if ptr.Pointer() != nil {
-		C.QScriptString_DestroyQScriptString(C.QtObjectPtr(ptr.Pointer()))
+		C.QScriptString_DestroyQScriptString(ptr.Pointer())
 	}
 }

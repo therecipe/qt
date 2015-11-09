@@ -10,8 +10,8 @@ type QScriptClassPropertyIterator struct {
 	ptr unsafe.Pointer
 }
 
-type QScriptClassPropertyIteratorITF interface {
-	QScriptClassPropertyIteratorPTR() *QScriptClassPropertyIterator
+type QScriptClassPropertyIterator_ITF interface {
+	QScriptClassPropertyIterator_PTR() *QScriptClassPropertyIterator
 }
 
 func (p *QScriptClassPropertyIterator) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QScriptClassPropertyIterator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQScriptClassPropertyIterator(ptr QScriptClassPropertyIteratorITF) unsafe.Pointer {
+func PointerFromQScriptClassPropertyIterator(ptr QScriptClassPropertyIterator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScriptClassPropertyIteratorPTR().Pointer()
+		return ptr.QScriptClassPropertyIterator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScriptClassPropertyIteratorFromPointer(ptr unsafe.Pointer) *QScriptClassPropertyIterator {
+func NewQScriptClassPropertyIteratorFromPointer(ptr unsafe.Pointer) *QScriptClassPropertyIterator {
 	var n = new(QScriptClassPropertyIterator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QScriptClassPropertyIterator) QScriptClassPropertyIteratorPTR() *QScriptClassPropertyIterator {
+func (ptr *QScriptClassPropertyIterator) QScriptClassPropertyIterator_PTR() *QScriptClassPropertyIterator {
 	return ptr
 }

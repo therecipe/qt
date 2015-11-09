@@ -11,48 +11,48 @@ type QAudioInputSelectorControl struct {
 	QMediaControl
 }
 
-type QAudioInputSelectorControlITF interface {
-	QMediaControlITF
-	QAudioInputSelectorControlPTR() *QAudioInputSelectorControl
+type QAudioInputSelectorControl_ITF interface {
+	QMediaControl_ITF
+	QAudioInputSelectorControl_PTR() *QAudioInputSelectorControl
 }
 
-func PointerFromQAudioInputSelectorControl(ptr QAudioInputSelectorControlITF) unsafe.Pointer {
+func PointerFromQAudioInputSelectorControl(ptr QAudioInputSelectorControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAudioInputSelectorControlPTR().Pointer()
+		return ptr.QAudioInputSelectorControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAudioInputSelectorControlFromPointer(ptr unsafe.Pointer) *QAudioInputSelectorControl {
+func NewQAudioInputSelectorControlFromPointer(ptr unsafe.Pointer) *QAudioInputSelectorControl {
 	var n = new(QAudioInputSelectorControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAudioInputSelectorControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAudioInputSelectorControl) QAudioInputSelectorControlPTR() *QAudioInputSelectorControl {
+func (ptr *QAudioInputSelectorControl) QAudioInputSelectorControl_PTR() *QAudioInputSelectorControl {
 	return ptr
 }
 
 func (ptr *QAudioInputSelectorControl) ActiveInput() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAudioInputSelectorControl_ActiveInput(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QAudioInputSelectorControl_ActiveInput(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QAudioInputSelectorControl) ConnectActiveInputChanged(f func(name string)) {
 	if ptr.Pointer() != nil {
-		C.QAudioInputSelectorControl_ConnectActiveInputChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioInputSelectorControl_ConnectActiveInputChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "activeInputChanged", f)
 	}
 }
 
 func (ptr *QAudioInputSelectorControl) DisconnectActiveInputChanged() {
 	if ptr.Pointer() != nil {
-		C.QAudioInputSelectorControl_DisconnectActiveInputChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioInputSelectorControl_DisconnectActiveInputChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "activeInputChanged")
 	}
 }
@@ -64,14 +64,14 @@ func callbackQAudioInputSelectorControlActiveInputChanged(ptrName *C.char, name 
 
 func (ptr *QAudioInputSelectorControl) ConnectAvailableInputsChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QAudioInputSelectorControl_ConnectAvailableInputsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioInputSelectorControl_ConnectAvailableInputsChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "availableInputsChanged", f)
 	}
 }
 
 func (ptr *QAudioInputSelectorControl) DisconnectAvailableInputsChanged() {
 	if ptr.Pointer() != nil {
-		C.QAudioInputSelectorControl_DisconnectAvailableInputsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioInputSelectorControl_DisconnectAvailableInputsChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "availableInputsChanged")
 	}
 }
@@ -83,27 +83,27 @@ func callbackQAudioInputSelectorControlAvailableInputsChanged(ptrName *C.char) {
 
 func (ptr *QAudioInputSelectorControl) DefaultInput() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAudioInputSelectorControl_DefaultInput(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QAudioInputSelectorControl_DefaultInput(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QAudioInputSelectorControl) InputDescription(name string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAudioInputSelectorControl_InputDescription(C.QtObjectPtr(ptr.Pointer()), C.CString(name)))
+		return C.GoString(C.QAudioInputSelectorControl_InputDescription(ptr.Pointer(), C.CString(name)))
 	}
 	return ""
 }
 
 func (ptr *QAudioInputSelectorControl) SetActiveInput(name string) {
 	if ptr.Pointer() != nil {
-		C.QAudioInputSelectorControl_SetActiveInput(C.QtObjectPtr(ptr.Pointer()), C.CString(name))
+		C.QAudioInputSelectorControl_SetActiveInput(ptr.Pointer(), C.CString(name))
 	}
 }
 
 func (ptr *QAudioInputSelectorControl) DestroyQAudioInputSelectorControl() {
 	if ptr.Pointer() != nil {
-		C.QAudioInputSelectorControl_DestroyQAudioInputSelectorControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioInputSelectorControl_DestroyQAudioInputSelectorControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

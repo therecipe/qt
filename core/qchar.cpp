@@ -1,9 +1,9 @@
 #include "qchar.h"
+#include <QLatin1Char>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QLatin1Char>
 #include <QChar>
 #include "_cgo_export.h"
 
@@ -11,27 +11,27 @@ class MyQChar: public QChar {
 public:
 };
 
-QtObjectPtr QChar_NewQChar(){
+void* QChar_NewQChar(){
 	return new QChar();
 }
 
-QtObjectPtr QChar_NewQChar8(QtObjectPtr ch){
+void* QChar_NewQChar8(void* ch){
 	return new QChar(*static_cast<QLatin1Char*>(ch));
 }
 
-QtObjectPtr QChar_NewQChar7(int ch){
+void* QChar_NewQChar7(int ch){
 	return new QChar(static_cast<QChar::SpecialCharacter>(ch));
 }
 
-QtObjectPtr QChar_NewQChar9(char* ch){
+void* QChar_NewQChar9(char* ch){
 	return new QChar(*ch);
 }
 
-QtObjectPtr QChar_NewQChar6(int code){
+void* QChar_NewQChar6(int code){
 	return new QChar(code);
 }
 
-int QChar_Category(QtObjectPtr ptr){
+int QChar_Category(void* ptr){
 	return static_cast<QChar*>(ptr)->category();
 }
 
@@ -39,103 +39,103 @@ int QChar_QChar_CurrentUnicodeVersion(){
 	return QChar::currentUnicodeVersion();
 }
 
-char* QChar_Decomposition(QtObjectPtr ptr){
+char* QChar_Decomposition(void* ptr){
 	return static_cast<QChar*>(ptr)->decomposition().toUtf8().data();
 }
 
-int QChar_DecompositionTag(QtObjectPtr ptr){
+int QChar_DecompositionTag(void* ptr){
 	return static_cast<QChar*>(ptr)->decompositionTag();
 }
 
-int QChar_DigitValue(QtObjectPtr ptr){
+int QChar_DigitValue(void* ptr){
 	return static_cast<QChar*>(ptr)->digitValue();
 }
 
-int QChar_Direction(QtObjectPtr ptr){
+int QChar_Direction(void* ptr){
 	return static_cast<QChar*>(ptr)->direction();
 }
 
-int QChar_HasMirrored(QtObjectPtr ptr){
+int QChar_HasMirrored(void* ptr){
 	return static_cast<QChar*>(ptr)->hasMirrored();
 }
 
-int QChar_IsDigit(QtObjectPtr ptr){
+int QChar_IsDigit(void* ptr){
 	return static_cast<QChar*>(ptr)->isDigit();
 }
 
-int QChar_IsHighSurrogate(QtObjectPtr ptr){
+int QChar_IsHighSurrogate(void* ptr){
 	return static_cast<QChar*>(ptr)->isHighSurrogate();
 }
 
-int QChar_IsLetter(QtObjectPtr ptr){
+int QChar_IsLetter(void* ptr){
 	return static_cast<QChar*>(ptr)->isLetter();
 }
 
-int QChar_IsLetterOrNumber(QtObjectPtr ptr){
+int QChar_IsLetterOrNumber(void* ptr){
 	return static_cast<QChar*>(ptr)->isLetterOrNumber();
 }
 
-int QChar_IsLower(QtObjectPtr ptr){
+int QChar_IsLower(void* ptr){
 	return static_cast<QChar*>(ptr)->isLower();
 }
 
-int QChar_IsLowSurrogate(QtObjectPtr ptr){
+int QChar_IsLowSurrogate(void* ptr){
 	return static_cast<QChar*>(ptr)->isLowSurrogate();
 }
 
-int QChar_IsMark(QtObjectPtr ptr){
+int QChar_IsMark(void* ptr){
 	return static_cast<QChar*>(ptr)->isMark();
 }
 
-int QChar_IsNonCharacter(QtObjectPtr ptr){
+int QChar_IsNonCharacter(void* ptr){
 	return static_cast<QChar*>(ptr)->isNonCharacter();
 }
 
-int QChar_IsNull(QtObjectPtr ptr){
+int QChar_IsNull(void* ptr){
 	return static_cast<QChar*>(ptr)->isNull();
 }
 
-int QChar_IsNumber(QtObjectPtr ptr){
+int QChar_IsNumber(void* ptr){
 	return static_cast<QChar*>(ptr)->isNumber();
 }
 
-int QChar_IsPrint(QtObjectPtr ptr){
+int QChar_IsPrint(void* ptr){
 	return static_cast<QChar*>(ptr)->isPrint();
 }
 
-int QChar_IsPunct(QtObjectPtr ptr){
+int QChar_IsPunct(void* ptr){
 	return static_cast<QChar*>(ptr)->isPunct();
 }
 
-int QChar_IsSpace(QtObjectPtr ptr){
+int QChar_IsSpace(void* ptr){
 	return static_cast<QChar*>(ptr)->isSpace();
 }
 
-int QChar_IsSurrogate(QtObjectPtr ptr){
+int QChar_IsSurrogate(void* ptr){
 	return static_cast<QChar*>(ptr)->isSurrogate();
 }
 
-int QChar_IsSymbol(QtObjectPtr ptr){
+int QChar_IsSymbol(void* ptr){
 	return static_cast<QChar*>(ptr)->isSymbol();
 }
 
-int QChar_IsTitleCase(QtObjectPtr ptr){
+int QChar_IsTitleCase(void* ptr){
 	return static_cast<QChar*>(ptr)->isTitleCase();
 }
 
-int QChar_IsUpper(QtObjectPtr ptr){
+int QChar_IsUpper(void* ptr){
 	return static_cast<QChar*>(ptr)->isUpper();
 }
 
-int QChar_JoiningType(QtObjectPtr ptr){
+int QChar_JoiningType(void* ptr){
 	return static_cast<QChar*>(ptr)->joiningType();
 }
 
-int QChar_Script(QtObjectPtr ptr){
+int QChar_Script(void* ptr){
 	return static_cast<QChar*>(ptr)->script();
 }
 
-int QChar_UnicodeVersion(QtObjectPtr ptr){
+int QChar_UnicodeVersion(void* ptr){
 	return static_cast<QChar*>(ptr)->unicodeVersion();
 }
 

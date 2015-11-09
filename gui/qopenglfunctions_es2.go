@@ -10,24 +10,24 @@ type QOpenGLFunctions_ES2 struct {
 	QAbstractOpenGLFunctions
 }
 
-type QOpenGLFunctions_ES2ITF interface {
-	QAbstractOpenGLFunctionsITF
-	QOpenGLFunctions_ES2PTR() *QOpenGLFunctions_ES2
+type QOpenGLFunctions_ES2_ITF interface {
+	QAbstractOpenGLFunctions_ITF
+	QOpenGLFunctions_ES2_PTR() *QOpenGLFunctions_ES2
 }
 
-func PointerFromQOpenGLFunctions_ES2(ptr QOpenGLFunctions_ES2ITF) unsafe.Pointer {
+func PointerFromQOpenGLFunctions_ES2(ptr QOpenGLFunctions_ES2_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QOpenGLFunctions_ES2PTR().Pointer()
+		return ptr.QOpenGLFunctions_ES2_PTR().Pointer()
 	}
 	return nil
 }
 
-func QOpenGLFunctions_ES2FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_ES2 {
+func NewQOpenGLFunctions_ES2FromPointer(ptr unsafe.Pointer) *QOpenGLFunctions_ES2 {
 	var n = new(QOpenGLFunctions_ES2)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QOpenGLFunctions_ES2) QOpenGLFunctions_ES2PTR() *QOpenGLFunctions_ES2 {
+func (ptr *QOpenGLFunctions_ES2) QOpenGLFunctions_ES2_PTR() *QOpenGLFunctions_ES2 {
 	return ptr
 }

@@ -1,36 +1,36 @@
 ########################################			FUNCTIONS			########################################
-&{QImageWriter QImageWriter::QImageWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non constructor false false   [] }
-&{QImageWriter QImageWriter::QImageWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non constructor false true 2  [0xc820b7e980 0xc820b7ea40] }
-&{QImageWriter QImageWriter::QImageWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non constructor false true 3  [0xc820b7ec60 0xc820b7ed20] }
-&{canWrite QImageWriter::canWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  bool [] }
-&{compression QImageWriter::compression commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  int [] }
-&{device QImageWriter::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QIODevice * [] }
-&{error QImageWriter::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  ImageWriterError [] }
-&{errorString QImageWriter::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QString [] }
-&{fileName QImageWriter::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QString [] }
-&{format QImageWriter::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QByteArray [] }
-&{gamma QImageWriter::gamma commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  float [] }
-&{optimizedWrite QImageWriter::optimizedWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  bool [] }
-&{progressiveScanWrite QImageWriter::progressiveScanWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  bool [] }
-&{quality QImageWriter::quality commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  int [] }
-&{setCompression QImageWriter::setCompression commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void [0xc820b7fd80] }
-&{setDevice QImageWriter::setDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void [0xc820b66180] }
-&{setFileName QImageWriter::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void [0xc820b66360] }
-&{setFormat QImageWriter::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void [0xc820b665c0] }
-&{setGamma QImageWriter::setGamma commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void [0xc820b66840] }
-&{setOptimizedWrite QImageWriter::setOptimizedWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void [0xc820b66ac0] }
-&{setProgressiveScanWrite QImageWriter::setProgressiveScanWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void [0xc820b66ca0] }
-&{setQuality QImageWriter::setQuality commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void [0xc820b66ec0] }
-&{setSubType QImageWriter::setSubType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void [0xc820b67160] }
-&{setText QImageWriter::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void [0xc820b673c0 0xc820b67460] }
-&{setTransformation QImageWriter::setTransformation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void [0xc820b676e0] }
-&{subType QImageWriter::subType commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QByteArray [] }
-&{supportedImageFormats QImageWriter::supportedImageFormats commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain true false  QList<QByteArray> [] }
-&{supportedMimeTypes QImageWriter::supportedMimeTypes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain true false  QList<QByteArray> [] }
-&{supportedSubTypes QImageWriter::supportedSubTypes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QList<QByteArray> [] }
-&{supportsOption QImageWriter::supportsOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  bool [0xc820b67fa0] }
-&{transformation QImageWriter::transformation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QImageIOHandler::Transformations [] }
-&{write QImageWriter::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  bool [0xc820b56340] }
-&{~QImageWriter QImageWriter::~QImageWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non destructor false false   [] }
+&{QImageWriter QImageWriter::QImageWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non constructor false false   QImageWriter() [] }
+&{QImageWriter QImageWriter::QImageWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non constructor false true 2  QImageWriter(QIODevice *device, const QByteArray &format) [0xc820c50f00 0xc820c50fa0] }
+&{QImageWriter QImageWriter::QImageWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non constructor false true 3  QImageWriter(const QString &fileName, const QByteArray &format) [0xc820c51240 0xc820c512e0] }
+&{canWrite QImageWriter::canWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  bool bool canWrite() const [] }
+&{compression QImageWriter::compression commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  int int compression() const [] }
+&{device QImageWriter::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QIODevice * QIODevice * device() const [] }
+&{error QImageWriter::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  ImageWriterError ImageWriterError error() const [] }
+&{errorString QImageWriter::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QString QString errorString() const [] }
+&{fileName QImageWriter::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QString QString fileName() const [] }
+&{format QImageWriter::format commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QByteArray QByteArray format() const [] }
+&{gamma QImageWriter::gamma commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  float float gamma() const [] }
+&{optimizedWrite QImageWriter::optimizedWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  bool bool optimizedWrite() const [] }
+&{progressiveScanWrite QImageWriter::progressiveScanWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  bool bool progressiveScanWrite() const [] }
+&{quality QImageWriter::quality commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  int int quality() const [] }
+&{setCompression QImageWriter::setCompression commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void void setCompression(int compression) [0xc820c36660] }
+&{setDevice QImageWriter::setDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void void setDevice(QIODevice *device) [0xc820c369e0] }
+&{setFileName QImageWriter::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void void setFileName(const QString &fileName) [0xc820c36ba0] }
+&{setFormat QImageWriter::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void void setFormat(const QByteArray &format) [0xc820c36d80] }
+&{setGamma QImageWriter::setGamma commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void void setGamma(float gamma) [0xc820c36fe0] }
+&{setOptimizedWrite QImageWriter::setOptimizedWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void void setOptimizedWrite(bool optimize) [0xc820c371e0] }
+&{setProgressiveScanWrite QImageWriter::setProgressiveScanWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void void setProgressiveScanWrite(bool progressive) [0xc820c37380] }
+&{setQuality QImageWriter::setQuality commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void void setQuality(int quality) [0xc820c37620] }
+&{setSubType QImageWriter::setSubType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void void setSubType(const QByteArray &type) [0xc820c37840] }
+&{setText QImageWriter::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void void setText(const QString &key, const QString &text) [0xc820c37ac0 0xc820c37b40] }
+&{setTransformation QImageWriter::setTransformation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  void void setTransformation(QImageIOHandler::Transformations transform) [0xc820c37dc0] }
+&{subType QImageWriter::subType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QByteArray QByteArray subType() const [] }
+&{supportedImageFormats QImageWriter::supportedImageFormats commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain true false  QList<QByteArray> QList<QByteArray> supportedImageFormats() [] }
+&{supportedMimeTypes QImageWriter::supportedMimeTypes commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain true false  QList<QByteArray> QList<QByteArray> supportedMimeTypes() [] }
+&{supportedSubTypes QImageWriter::supportedSubTypes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QList<QByteArray> QList<QByteArray> supportedSubTypes() const [] }
+&{supportsOption QImageWriter::supportsOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  bool bool supportsOption(QImageIOHandler::ImageOption option) const [0xc820c206e0] }
+&{transformation QImageWriter::transformation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  QImageIOHandler::Transformations QImageIOHandler::Transformations transformation() const [] }
+&{write QImageWriter::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non plain false false  bool bool write(const QImage &image) [0xc820c20b60] }
+&{~QImageWriter QImageWriter::~QImageWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagewriter.h non destructor false false   ~QImageWriter() [] }
 ########################################			ENUMS			########################################
-&{ImageWriterError QImageWriter::ImageWriterError commendable public  [0xc820b7e400 0xc820b7e4e0 0xc820b7e580]}
+&{ImageWriterError QImageWriter::ImageWriterError commendable public  [0xc820c509e0 0xc820c50a60 0xc820c50b40] false}

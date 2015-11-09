@@ -1,27 +1,27 @@
 ########################################			FUNCTIONS			########################################
-&{cleanText QSpinBox::cleanText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString [] }
-&{displayIntegerBase QSpinBox::displayIntegerBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int [] }
-&{maximum QSpinBox::maximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int [] }
-&{minimum QSpinBox::minimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int [] }
-&{prefix QSpinBox::prefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString [] }
-&{setDisplayIntegerBase QSpinBox::setDisplayIntegerBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc821ac8c80] }
-&{setMaximum QSpinBox::setMaximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc821ac90a0] }
-&{setMinimum QSpinBox::setMinimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc821ac9460] }
-&{setPrefix QSpinBox::setPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc821ac97e0] }
-&{setSingleStep QSpinBox::setSingleStep commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc821ac9b80] }
-&{setSuffix QSpinBox::setSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void [0xc821ac9ea0] }
-&{setValue QSpinBox::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non slot false false  void [0xc82191e1a0] }
-&{singleStep QSpinBox::singleStep commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int [] }
-&{suffix QSpinBox::suffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString [] }
-&{value QSpinBox::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int [] }
-&{valueFromText QSpinBox::valueFromText commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp impure plain false false  int [0xc82191e900] }
-&{QSpinBox QSpinBox::QSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non constructor false false   [0xc82191ec20] }
-&{event QSpinBox::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  bool [0xc82191eea0] }
-&{fixup QSpinBox::fixup commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  void [0xc82191f120] }
-&{setRange QSpinBox::setRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non plain false false  void [0xc82191f3e0 0xc82191f480] }
-&{textFromValue QSpinBox::textFromValue commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  QString [0xc82191f780] }
-&{validate QSpinBox::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  QValidator::State [0xc82191fc40 0xc82191fd40] }
-&{valueChanged QSpinBox::valueChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non signal false true 2 void [0xc82182a0a0] }
-&{valueChanged QSpinBox::valueChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non signal false false  void [0xc82182a440] }
-&{~QSpinBox QSpinBox::~QSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non destructor false false   [] }
+&{cleanText QSpinBox::cleanText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString QString cleanText() const [] }
+&{displayIntegerBase QSpinBox::displayIntegerBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int int displayIntegerBase() const [] }
+&{maximum QSpinBox::maximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int int maximum() const [] }
+&{minimum QSpinBox::minimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int int minimum() const [] }
+&{prefix QSpinBox::prefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString QString prefix() const [] }
+&{setDisplayIntegerBase QSpinBox::setDisplayIntegerBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void void setDisplayIntegerBase(int base) [0xc826c00fa0] }
+&{setMaximum QSpinBox::setMaximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void void setMaximum(int max) [0xc826c01580] }
+&{setMinimum QSpinBox::setMinimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void void setMinimum(int min) [0xc826c01ac0] }
+&{setPrefix QSpinBox::setPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void void setPrefix(const QString &prefix) [0xc826bec040] }
+&{setSingleStep QSpinBox::setSingleStep commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void void setSingleStep(int val) [0xc826bec4e0] }
+&{setSuffix QSpinBox::setSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  void void setSuffix(const QString &suffix) [0xc826bec960] }
+&{setValue QSpinBox::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non slot false false  void void setValue(int val) [0xc826becf40] }
+&{singleStep QSpinBox::singleStep commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int int singleStep() const [] }
+&{suffix QSpinBox::suffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  QString QString suffix() const [] }
+&{value QSpinBox::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp non plain false false  int int value() const [] }
+&{valueFromText QSpinBox::valueFromText commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.cpp impure plain false false  int int valueFromText(const QString &text) const [0xc826bedb00] }
+&{QSpinBox QSpinBox::QSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non constructor false false   QSpinBox(QWidget *parent) [0xc826bdc0c0] }
+&{event QSpinBox::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  bool bool event(QEvent *event) [0xc826bdc520] }
+&{fixup QSpinBox::fixup commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  void void fixup(QString &input) const [0xc826bdca00] }
+&{setRange QSpinBox::setRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non plain false false  void void setRange(int minimum, int maximum) [0xc826bdce00 0xc826bdcfa0] }
+&{textFromValue QSpinBox::textFromValue commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  QString QString textFromValue(int value) const [0xc826bdd3a0] }
+&{validate QSpinBox::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h impure plain false false  QValidator::State QValidator::State validate(QString &text, int &pos) const [0xc826bdd8c0 0xc826bdd980] }
+&{valueChanged QSpinBox::valueChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non signal false true 2 void void valueChanged(const QString &text) [0xc826bdde80] }
+&{valueChanged QSpinBox::valueChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non signal false false  void void valueChanged(int i) [0xc826bcc620] }
+&{~QSpinBox QSpinBox::~QSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qspinbox.h non destructor false false   ~QSpinBox() [] }
 ########################################			ENUMS			########################################

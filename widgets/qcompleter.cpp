@@ -1,14 +1,14 @@
 #include "qcompleter.h"
-#include <QString>
+#include <QAbstractItemModel>
+#include <QRect>
 #include <QVariant>
 #include <QUrl>
-#include <QAbstractItemModel>
-#include <QObject>
-#include <QRect>
-#include <QAbstractItemView>
 #include <QModelIndex>
-#include <QMetaObject>
 #include <QWidget>
+#include <QObject>
+#include <QString>
+#include <QMetaObject>
+#include <QAbstractItemView>
 #include <QCompleter>
 #include "_cgo_export.h"
 
@@ -18,167 +18,167 @@ void Signal_Activated(const QString & text){callbackQCompleterActivated(this->ob
 void Signal_Highlighted(const QString & text){callbackQCompleterHighlighted(this->objectName().toUtf8().data(), text.toUtf8().data());};
 };
 
-int QCompleter_CaseSensitivity(QtObjectPtr ptr){
+int QCompleter_CaseSensitivity(void* ptr){
 	return static_cast<QCompleter*>(ptr)->caseSensitivity();
 }
 
-int QCompleter_CompletionColumn(QtObjectPtr ptr){
+int QCompleter_CompletionColumn(void* ptr){
 	return static_cast<QCompleter*>(ptr)->completionColumn();
 }
 
-int QCompleter_CompletionMode(QtObjectPtr ptr){
+int QCompleter_CompletionMode(void* ptr){
 	return static_cast<QCompleter*>(ptr)->completionMode();
 }
 
-char* QCompleter_CompletionPrefix(QtObjectPtr ptr){
+char* QCompleter_CompletionPrefix(void* ptr){
 	return static_cast<QCompleter*>(ptr)->completionPrefix().toUtf8().data();
 }
 
-int QCompleter_CompletionRole(QtObjectPtr ptr){
+int QCompleter_CompletionRole(void* ptr){
 	return static_cast<QCompleter*>(ptr)->completionRole();
 }
 
-int QCompleter_FilterMode(QtObjectPtr ptr){
+int QCompleter_FilterMode(void* ptr){
 	return static_cast<QCompleter*>(ptr)->filterMode();
 }
 
-int QCompleter_MaxVisibleItems(QtObjectPtr ptr){
+int QCompleter_MaxVisibleItems(void* ptr){
 	return static_cast<QCompleter*>(ptr)->maxVisibleItems();
 }
 
-int QCompleter_ModelSorting(QtObjectPtr ptr){
+int QCompleter_ModelSorting(void* ptr){
 	return static_cast<QCompleter*>(ptr)->modelSorting();
 }
 
-void QCompleter_SetCaseSensitivity(QtObjectPtr ptr, int caseSensitivity){
+void QCompleter_SetCaseSensitivity(void* ptr, int caseSensitivity){
 	static_cast<QCompleter*>(ptr)->setCaseSensitivity(static_cast<Qt::CaseSensitivity>(caseSensitivity));
 }
 
-void QCompleter_SetCompletionColumn(QtObjectPtr ptr, int column){
+void QCompleter_SetCompletionColumn(void* ptr, int column){
 	static_cast<QCompleter*>(ptr)->setCompletionColumn(column);
 }
 
-void QCompleter_SetCompletionMode(QtObjectPtr ptr, int mode){
+void QCompleter_SetCompletionMode(void* ptr, int mode){
 	static_cast<QCompleter*>(ptr)->setCompletionMode(static_cast<QCompleter::CompletionMode>(mode));
 }
 
-void QCompleter_SetCompletionPrefix(QtObjectPtr ptr, char* prefix){
+void QCompleter_SetCompletionPrefix(void* ptr, char* prefix){
 	QMetaObject::invokeMethod(static_cast<QCompleter*>(ptr), "setCompletionPrefix", Q_ARG(QString, QString(prefix)));
 }
 
-void QCompleter_SetCompletionRole(QtObjectPtr ptr, int role){
+void QCompleter_SetCompletionRole(void* ptr, int role){
 	static_cast<QCompleter*>(ptr)->setCompletionRole(role);
 }
 
-void QCompleter_SetFilterMode(QtObjectPtr ptr, int filterMode){
+void QCompleter_SetFilterMode(void* ptr, int filterMode){
 	static_cast<QCompleter*>(ptr)->setFilterMode(static_cast<Qt::MatchFlag>(filterMode));
 }
 
-void QCompleter_SetMaxVisibleItems(QtObjectPtr ptr, int maxItems){
+void QCompleter_SetMaxVisibleItems(void* ptr, int maxItems){
 	static_cast<QCompleter*>(ptr)->setMaxVisibleItems(maxItems);
 }
 
-void QCompleter_SetModelSorting(QtObjectPtr ptr, int sorting){
+void QCompleter_SetModelSorting(void* ptr, int sorting){
 	static_cast<QCompleter*>(ptr)->setModelSorting(static_cast<QCompleter::ModelSorting>(sorting));
 }
 
-void QCompleter_SetWrapAround(QtObjectPtr ptr, int wrap){
+void QCompleter_SetWrapAround(void* ptr, int wrap){
 	QMetaObject::invokeMethod(static_cast<QCompleter*>(ptr), "setWrapAround", Q_ARG(bool, wrap != 0));
 }
 
-int QCompleter_WrapAround(QtObjectPtr ptr){
+int QCompleter_WrapAround(void* ptr){
 	return static_cast<QCompleter*>(ptr)->wrapAround();
 }
 
-QtObjectPtr QCompleter_NewQCompleter2(QtObjectPtr model, QtObjectPtr parent){
+void* QCompleter_NewQCompleter2(void* model, void* parent){
 	return new QCompleter(static_cast<QAbstractItemModel*>(model), static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QCompleter_NewQCompleter(QtObjectPtr parent){
+void* QCompleter_NewQCompleter(void* parent){
 	return new QCompleter(static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QCompleter_NewQCompleter3(char* list, QtObjectPtr parent){
+void* QCompleter_NewQCompleter3(char* list, void* parent){
 	return new QCompleter(QString(list).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
 }
 
-void QCompleter_ConnectActivated(QtObjectPtr ptr){
+void QCompleter_ConnectActivated(void* ptr){
 	QObject::connect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QString &)>(&QCompleter::activated), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QString &)>(&MyQCompleter::Signal_Activated));;
 }
 
-void QCompleter_DisconnectActivated(QtObjectPtr ptr){
+void QCompleter_DisconnectActivated(void* ptr){
 	QObject::disconnect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QString &)>(&QCompleter::activated), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QString &)>(&MyQCompleter::Signal_Activated));;
 }
 
-void QCompleter_Complete(QtObjectPtr ptr, QtObjectPtr rect){
+void QCompleter_Complete(void* ptr, void* rect){
 	QMetaObject::invokeMethod(static_cast<QCompleter*>(ptr), "complete", Q_ARG(QRect, *static_cast<QRect*>(rect)));
 }
 
-int QCompleter_CompletionCount(QtObjectPtr ptr){
+int QCompleter_CompletionCount(void* ptr){
 	return static_cast<QCompleter*>(ptr)->completionCount();
 }
 
-QtObjectPtr QCompleter_CompletionModel(QtObjectPtr ptr){
+void* QCompleter_CompletionModel(void* ptr){
 	return static_cast<QCompleter*>(ptr)->completionModel();
 }
 
-char* QCompleter_CurrentCompletion(QtObjectPtr ptr){
+char* QCompleter_CurrentCompletion(void* ptr){
 	return static_cast<QCompleter*>(ptr)->currentCompletion().toUtf8().data();
 }
 
-QtObjectPtr QCompleter_CurrentIndex(QtObjectPtr ptr){
+void* QCompleter_CurrentIndex(void* ptr){
 	return static_cast<QCompleter*>(ptr)->currentIndex().internalPointer();
 }
 
-int QCompleter_CurrentRow(QtObjectPtr ptr){
+int QCompleter_CurrentRow(void* ptr){
 	return static_cast<QCompleter*>(ptr)->currentRow();
 }
 
-void QCompleter_ConnectHighlighted(QtObjectPtr ptr){
+void QCompleter_ConnectHighlighted(void* ptr){
 	QObject::connect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QString &)>(&QCompleter::highlighted), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QString &)>(&MyQCompleter::Signal_Highlighted));;
 }
 
-void QCompleter_DisconnectHighlighted(QtObjectPtr ptr){
+void QCompleter_DisconnectHighlighted(void* ptr){
 	QObject::disconnect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QString &)>(&QCompleter::highlighted), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QString &)>(&MyQCompleter::Signal_Highlighted));;
 }
 
-QtObjectPtr QCompleter_Model(QtObjectPtr ptr){
+void* QCompleter_Model(void* ptr){
 	return static_cast<QCompleter*>(ptr)->model();
 }
 
-char* QCompleter_PathFromIndex(QtObjectPtr ptr, QtObjectPtr index){
+char* QCompleter_PathFromIndex(void* ptr, void* index){
 	return static_cast<QCompleter*>(ptr)->pathFromIndex(*static_cast<QModelIndex*>(index)).toUtf8().data();
 }
 
-QtObjectPtr QCompleter_Popup(QtObjectPtr ptr){
+void* QCompleter_Popup(void* ptr){
 	return static_cast<QCompleter*>(ptr)->popup();
 }
 
-int QCompleter_SetCurrentRow(QtObjectPtr ptr, int row){
+int QCompleter_SetCurrentRow(void* ptr, int row){
 	return static_cast<QCompleter*>(ptr)->setCurrentRow(row);
 }
 
-void QCompleter_SetModel(QtObjectPtr ptr, QtObjectPtr model){
+void QCompleter_SetModel(void* ptr, void* model){
 	static_cast<QCompleter*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
 }
 
-void QCompleter_SetPopup(QtObjectPtr ptr, QtObjectPtr popup){
+void QCompleter_SetPopup(void* ptr, void* popup){
 	static_cast<QCompleter*>(ptr)->setPopup(static_cast<QAbstractItemView*>(popup));
 }
 
-void QCompleter_SetWidget(QtObjectPtr ptr, QtObjectPtr widget){
+void QCompleter_SetWidget(void* ptr, void* widget){
 	static_cast<QCompleter*>(ptr)->setWidget(static_cast<QWidget*>(widget));
 }
 
-char* QCompleter_SplitPath(QtObjectPtr ptr, char* path){
+char* QCompleter_SplitPath(void* ptr, char* path){
 	return static_cast<QCompleter*>(ptr)->splitPath(QString(path)).join("|").toUtf8().data();
 }
 
-QtObjectPtr QCompleter_Widget(QtObjectPtr ptr){
+void* QCompleter_Widget(void* ptr){
 	return static_cast<QCompleter*>(ptr)->widget();
 }
 
-void QCompleter_DestroyQCompleter(QtObjectPtr ptr){
+void QCompleter_DestroyQCompleter(void* ptr){
 	static_cast<QCompleter*>(ptr)->~QCompleter();
 }
 

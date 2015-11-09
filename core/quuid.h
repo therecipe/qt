@@ -1,15 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QUuid_Variant(QtObjectPtr ptr);
-int QUuid_Version(QtObjectPtr ptr);
-QtObjectPtr QUuid_NewQUuid();
-QtObjectPtr QUuid_NewQUuid5(QtObjectPtr text);
-QtObjectPtr QUuid_NewQUuid3(char* text);
-int QUuid_IsNull(QtObjectPtr ptr);
-char* QUuid_ToString(QtObjectPtr ptr);
+int QUuid_Variant(void* ptr);
+int QUuid_Version(void* ptr);
+void* QUuid_NewQUuid();
+void* QUuid_NewQUuid5(void* text);
+void* QUuid_NewQUuid3(char* text);
+int QUuid_IsNull(void* ptr);
+void* QUuid_ToByteArray(void* ptr);
+void* QUuid_ToRfc4122(void* ptr);
+char* QUuid_ToString(void* ptr);
 
 #ifdef __cplusplus
 }

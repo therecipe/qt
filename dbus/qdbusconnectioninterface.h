@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QDBusConnectionInterface_ConnectServiceRegistered(QtObjectPtr ptr);
-void QDBusConnectionInterface_DisconnectServiceRegistered(QtObjectPtr ptr);
-void QDBusConnectionInterface_ConnectServiceUnregistered(QtObjectPtr ptr);
-void QDBusConnectionInterface_DisconnectServiceUnregistered(QtObjectPtr ptr);
+void QDBusConnectionInterface_ConnectServiceRegistered(void* ptr);
+void QDBusConnectionInterface_DisconnectServiceRegistered(void* ptr);
+void QDBusConnectionInterface_ConnectServiceUnregistered(void* ptr);
+void QDBusConnectionInterface_DisconnectServiceUnregistered(void* ptr);
 
 #ifdef __cplusplus
 }

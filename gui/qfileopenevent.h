@@ -1,11 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QFileOpenEvent_OpenFile(QtObjectPtr ptr, QtObjectPtr file, int flags);
-char* QFileOpenEvent_File(QtObjectPtr ptr);
-char* QFileOpenEvent_Url(QtObjectPtr ptr);
+int QFileOpenEvent_OpenFile(void* ptr, void* file, int flags);
+char* QFileOpenEvent_File(void* ptr);
 
 #ifdef __cplusplus
 }

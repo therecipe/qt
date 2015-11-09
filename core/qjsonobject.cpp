@@ -10,35 +10,35 @@ class MyQJsonObject: public QJsonObject {
 public:
 };
 
-int QJsonObject_Contains(QtObjectPtr ptr, char* key){
+int QJsonObject_Contains(void* ptr, char* key){
 	return static_cast<QJsonObject*>(ptr)->contains(QString(key));
 }
 
-int QJsonObject_Count(QtObjectPtr ptr){
+int QJsonObject_Count(void* ptr){
 	return static_cast<QJsonObject*>(ptr)->count();
 }
 
-int QJsonObject_Empty(QtObjectPtr ptr){
+int QJsonObject_Empty(void* ptr){
 	return static_cast<QJsonObject*>(ptr)->empty();
 }
 
-int QJsonObject_IsEmpty(QtObjectPtr ptr){
+int QJsonObject_IsEmpty(void* ptr){
 	return static_cast<QJsonObject*>(ptr)->isEmpty();
 }
 
-char* QJsonObject_Keys(QtObjectPtr ptr){
+char* QJsonObject_Keys(void* ptr){
 	return static_cast<QJsonObject*>(ptr)->keys().join("|").toUtf8().data();
 }
 
-int QJsonObject_Length(QtObjectPtr ptr){
+int QJsonObject_Length(void* ptr){
 	return static_cast<QJsonObject*>(ptr)->length();
 }
 
-int QJsonObject_Size(QtObjectPtr ptr){
+int QJsonObject_Size(void* ptr){
 	return static_cast<QJsonObject*>(ptr)->size();
 }
 
-void QJsonObject_DestroyQJsonObject(QtObjectPtr ptr){
+void QJsonObject_DestroyQJsonObject(void* ptr){
 	static_cast<QJsonObject*>(ptr)->~QJsonObject();
 }
 

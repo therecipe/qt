@@ -11,28 +11,28 @@ type QShowEvent struct {
 	core.QEvent
 }
 
-type QShowEventITF interface {
-	core.QEventITF
-	QShowEventPTR() *QShowEvent
+type QShowEvent_ITF interface {
+	core.QEvent_ITF
+	QShowEvent_PTR() *QShowEvent
 }
 
-func PointerFromQShowEvent(ptr QShowEventITF) unsafe.Pointer {
+func PointerFromQShowEvent(ptr QShowEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QShowEventPTR().Pointer()
+		return ptr.QShowEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QShowEventFromPointer(ptr unsafe.Pointer) *QShowEvent {
+func NewQShowEventFromPointer(ptr unsafe.Pointer) *QShowEvent {
 	var n = new(QShowEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QShowEvent) QShowEventPTR() *QShowEvent {
+func (ptr *QShowEvent) QShowEvent_PTR() *QShowEvent {
 	return ptr
 }
 
 func NewQShowEvent() *QShowEvent {
-	return QShowEventFromPointer(unsafe.Pointer(C.QShowEvent_NewQShowEvent()))
+	return NewQShowEventFromPointer(C.QShowEvent_NewQShowEvent())
 }

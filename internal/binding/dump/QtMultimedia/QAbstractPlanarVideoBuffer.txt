@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QAbstractPlanarVideoBuffer QAbstractPlanarVideoBuffer::QAbstractPlanarVideoBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h non constructor false false   [0xc820e1d2e0] }
-&{map QAbstractPlanarVideoBuffer::map commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h pure plain false false  int [0xc820e1d880 0xc820e1d9a0 0xc820e1db20 0xc820e1dd00] }
-&{~QAbstractPlanarVideoBuffer QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h impure destructor false false   [] }
+&{QAbstractPlanarVideoBuffer QAbstractPlanarVideoBuffer::QAbstractPlanarVideoBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h non constructor false false   QAbstractPlanarVideoBuffer(HandleType type) [0xc822cce1a0] }
+&{map QAbstractPlanarVideoBuffer::map commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h pure plain false false  int int map(MapMode mode, int *numBytes, int[4] bytesPerLine, uchar *[4] data) [0xc822cce560 0xc822cce600 0xc822cce700 0xc822cce7c0] }
+&{~QAbstractPlanarVideoBuffer QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h impure destructor false false   ~QAbstractPlanarVideoBuffer() [] }
 ########################################			ENUMS			########################################

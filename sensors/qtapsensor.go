@@ -12,65 +12,65 @@ type QTapSensor struct {
 	QSensor
 }
 
-type QTapSensorITF interface {
-	QSensorITF
-	QTapSensorPTR() *QTapSensor
+type QTapSensor_ITF interface {
+	QSensor_ITF
+	QTapSensor_PTR() *QTapSensor
 }
 
-func PointerFromQTapSensor(ptr QTapSensorITF) unsafe.Pointer {
+func PointerFromQTapSensor(ptr QTapSensor_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTapSensorPTR().Pointer()
+		return ptr.QTapSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTapSensorFromPointer(ptr unsafe.Pointer) *QTapSensor {
+func NewQTapSensorFromPointer(ptr unsafe.Pointer) *QTapSensor {
 	var n = new(QTapSensor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QTapSensor_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QTapSensor) QTapSensorPTR() *QTapSensor {
+func (ptr *QTapSensor) QTapSensor_PTR() *QTapSensor {
 	return ptr
 }
 
 func (ptr *QTapSensor) Reading() *QTapReading {
 	if ptr.Pointer() != nil {
-		return QTapReadingFromPointer(unsafe.Pointer(C.QTapSensor_Reading(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQTapReadingFromPointer(C.QTapSensor_Reading(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QTapSensor) ReturnDoubleTapEvents() bool {
 	if ptr.Pointer() != nil {
-		return C.QTapSensor_ReturnDoubleTapEvents(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTapSensor_ReturnDoubleTapEvents(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTapSensor) SetReturnDoubleTapEvents(returnDoubleTapEvents bool) {
 	if ptr.Pointer() != nil {
-		C.QTapSensor_SetReturnDoubleTapEvents(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(returnDoubleTapEvents)))
+		C.QTapSensor_SetReturnDoubleTapEvents(ptr.Pointer(), C.int(qt.GoBoolToInt(returnDoubleTapEvents)))
 	}
 }
 
-func NewQTapSensor(parent core.QObjectITF) *QTapSensor {
-	return QTapSensorFromPointer(unsafe.Pointer(C.QTapSensor_NewQTapSensor(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQTapSensor(parent core.QObject_ITF) *QTapSensor {
+	return NewQTapSensorFromPointer(C.QTapSensor_NewQTapSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QTapSensor) ConnectReturnDoubleTapEventsChanged(f func(returnDoubleTapEvents bool)) {
 	if ptr.Pointer() != nil {
-		C.QTapSensor_ConnectReturnDoubleTapEventsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QTapSensor_ConnectReturnDoubleTapEventsChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "returnDoubleTapEventsChanged", f)
 	}
 }
 
 func (ptr *QTapSensor) DisconnectReturnDoubleTapEventsChanged() {
 	if ptr.Pointer() != nil {
-		C.QTapSensor_DisconnectReturnDoubleTapEventsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QTapSensor_DisconnectReturnDoubleTapEventsChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "returnDoubleTapEventsChanged")
 	}
 }
@@ -82,7 +82,7 @@ func callbackQTapSensorReturnDoubleTapEventsChanged(ptrName *C.char, returnDoubl
 
 func (ptr *QTapSensor) DestroyQTapSensor() {
 	if ptr.Pointer() != nil {
-		C.QTapSensor_DestroyQTapSensor(C.QtObjectPtr(ptr.Pointer()))
+		C.QTapSensor_DestroyQTapSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

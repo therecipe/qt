@@ -1,39 +1,39 @@
 ########################################			FUNCTIONS			########################################
-&{childrenCollapsible QSplitter::childrenCollapsible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  bool [] }
-&{handleWidth QSplitter::handleWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  int [] }
-&{indexOf QSplitter::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  int [0xc821c7d320] }
-&{opaqueResize QSplitter::opaqueResize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  bool [] }
-&{orientation QSplitter::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  Qt::Orientation [] }
-&{setChildrenCollapsible QSplitter::setChildrenCollapsible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  void [0xc821c7dba0] }
-&{setHandleWidth QSplitter::setHandleWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  void [0xc821c7df80] }
-&{setOpaqueResize QSplitter::setOpaqueResize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  void [0xc8219ba3a0] }
-&{setOrientation QSplitter::setOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  void [0xc8219ba740] }
-&{QSplitter QSplitter::QSplitter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non constructor false false   [0xc8219baba0] }
-&{QSplitter QSplitter::QSplitter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non constructor false true 2  [0xc8219baea0 0xc8219bafa0] }
-&{addWidget QSplitter::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void [0xc8219bb2e0] }
-&{changeEvent QSplitter::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  void [0xc8219bb680] }
-&{childEvent QSplitter::childEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  void [0xc8219bba00] }
-&{closestLegalPosition QSplitter::closestLegalPosition commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  int [0xc8219bbd80 0xc8219bbe80] }
-&{count QSplitter::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  int [] }
-&{createHandle QSplitter::createHandle commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  QSplitterHandle * [] }
-&{event QSplitter::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  bool [0xc8217b6400] }
-&{getRange QSplitter::getRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void [0xc8217b66c0 0xc8217b67c0 0xc8217b68a0] }
-&{handle QSplitter::handle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  QSplitterHandle * [0xc8217b6b80] }
-&{insertWidget QSplitter::insertWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void [0xc8217b6de0 0xc8217b6ea0] }
-&{isCollapsible QSplitter::isCollapsible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  bool [0xc8217b7180] }
-&{minimumSizeHint QSplitter::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  QSize [] }
-&{moveSplitter QSplitter::moveSplitter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void [0xc8217b7540 0xc8217b75c0] }
-&{refresh QSplitter::refresh commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void [] }
-&{resizeEvent QSplitter::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  void [0xc8217b79c0] }
-&{restoreState QSplitter::restoreState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  bool [0xc8217b7c20] }
-&{saveState QSplitter::saveState commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  QByteArray [] }
-&{setCollapsible QSplitter::setCollapsible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void [0xc8217b7fe0 0xc821704080] }
-&{setRubberBand QSplitter::setRubberBand commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void [0xc8217042e0] }
-&{setSizes QSplitter::setSizes commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void [0xc821704540] }
-&{setStretchFactor QSplitter::setStretchFactor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void [0xc821704880 0xc821704980] }
-&{sizeHint QSplitter::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  QSize [] }
-&{sizes QSplitter::sizes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  QList<int> [] }
-&{splitterMoved QSplitter::splitterMoved commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non signal false false  void [0xc821704e80 0xc821704f80] }
-&{widget QSplitter::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  QWidget * [0xc821705320] }
-&{~QSplitter QSplitter::~QSplitter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non destructor false false   [] }
+&{childrenCollapsible QSplitter::childrenCollapsible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  bool bool childrenCollapsible() const [] }
+&{handleWidth QSplitter::handleWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  int int handleWidth() const [] }
+&{indexOf QSplitter::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  int int indexOf(QWidget *widget) const [0xc826baca60] }
+&{opaqueResize QSplitter::opaqueResize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  bool bool opaqueResize() const [] }
+&{orientation QSplitter::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  Qt::Orientation Qt::Orientation orientation() const [] }
+&{setChildrenCollapsible QSplitter::setChildrenCollapsible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  void void setChildrenCollapsible(bool ) [0xc826bad500] }
+&{setHandleWidth QSplitter::setHandleWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  void void setHandleWidth(int ) [0xc826badaa0] }
+&{setOpaqueResize QSplitter::setOpaqueResize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  void void setOpaqueResize(bool opaque) [0xc826badf80] }
+&{setOrientation QSplitter::setOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.cpp non plain false false  void void setOrientation(Qt::Orientation ) [0xc826b9e1a0] }
+&{QSplitter QSplitter::QSplitter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non constructor false false   QSplitter(QWidget *parent) [0xc826b9e460] }
+&{QSplitter QSplitter::QSplitter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non constructor false true 2  QSplitter(Qt::Orientation orientation, QWidget *parent) [0xc826b9e660 0xc826b9e740] }
+&{addWidget QSplitter::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void void addWidget(QWidget *widget) [0xc826b9e9c0] }
+&{changeEvent QSplitter::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  void void changeEvent(QEvent *ev) [0xc826b9ec80] }
+&{childEvent QSplitter::childEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  void void childEvent(QChildEvent *c) [0xc826b9eee0] }
+&{closestLegalPosition QSplitter::closestLegalPosition commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  int int closestLegalPosition(int pos, int index) [0xc826b9f100 0xc826b9f1c0] }
+&{count QSplitter::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  int int count() const [] }
+&{createHandle QSplitter::createHandle commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  QSplitterHandle * QSplitterHandle * createHandle() [] }
+&{event QSplitter::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  bool bool event(QEvent *e) [0xc826b9f720] }
+&{getRange QSplitter::getRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void void getRange(int index, int *min, int *max) const [0xc826b9f900 0xc826b9f980 0xc826b9fa00] }
+&{handle QSplitter::handle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  QSplitterHandle * QSplitterHandle * handle(int index) const [0xc826b9fce0] }
+&{insertWidget QSplitter::insertWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void void insertWidget(int index, QWidget *widget) [0xc826b9ff00 0xc826b9ffc0] }
+&{isCollapsible QSplitter::isCollapsible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  bool bool isCollapsible(int index) const [0xc826b983e0] }
+&{minimumSizeHint QSplitter::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  QSize QSize minimumSizeHint() const [] }
+&{moveSplitter QSplitter::moveSplitter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void void moveSplitter(int pos, int index) [0xc826b98b40 0xc826b98c00] }
+&{refresh QSplitter::refresh commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void void refresh() [] }
+&{resizeEvent QSplitter::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  void void resizeEvent(QResizeEvent *) [0xc826b99320] }
+&{restoreState QSplitter::restoreState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  bool bool restoreState(const QByteArray &state) [0xc826b997c0] }
+&{saveState QSplitter::saveState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  QByteArray QByteArray saveState() const [] }
+&{setCollapsible QSplitter::setCollapsible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void void setCollapsible(int index, bool collapse) [0xc826b8a000 0xc826b8a1c0] }
+&{setRubberBand QSplitter::setRubberBand commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void void setRubberBand(int pos) [0xc826b8a6e0] }
+&{setSizes QSplitter::setSizes commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void void setSizes(const QList<int> &list) [0xc826b8aa40] }
+&{setStretchFactor QSplitter::setStretchFactor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  void void setStretchFactor(int index, int stretch) [0xc826b8ae00 0xc826b8af40] }
+&{sizeHint QSplitter::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h impure plain false false  QSize QSize sizeHint() const [] }
+&{sizes QSplitter::sizes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  QList<int> QList<int> sizes() const [] }
+&{splitterMoved QSplitter::splitterMoved commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non signal false false  void void splitterMoved(int pos, int index) [0xc826b8b8a0 0xc826b8b960] }
+&{widget QSplitter::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non plain false false  QWidget * QWidget * widget(int index) const [0xc826b8bd60] }
+&{~QSplitter QSplitter::~QSplitter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qsplitter.h non destructor false false   ~QSplitter() [] }
 ########################################			ENUMS			########################################

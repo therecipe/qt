@@ -10,8 +10,8 @@ type QPlaceContentRequest struct {
 	ptr unsafe.Pointer
 }
 
-type QPlaceContentRequestITF interface {
-	QPlaceContentRequestPTR() *QPlaceContentRequest
+type QPlaceContentRequest_ITF interface {
+	QPlaceContentRequest_PTR() *QPlaceContentRequest
 }
 
 func (p *QPlaceContentRequest) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QPlaceContentRequest) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPlaceContentRequest(ptr QPlaceContentRequestITF) unsafe.Pointer {
+func PointerFromQPlaceContentRequest(ptr QPlaceContentRequest_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceContentRequestPTR().Pointer()
+		return ptr.QPlaceContentRequest_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceContentRequestFromPointer(ptr unsafe.Pointer) *QPlaceContentRequest {
+func NewQPlaceContentRequestFromPointer(ptr unsafe.Pointer) *QPlaceContentRequest {
 	var n = new(QPlaceContentRequest)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPlaceContentRequest) QPlaceContentRequestPTR() *QPlaceContentRequest {
+func (ptr *QPlaceContentRequest) QPlaceContentRequest_PTR() *QPlaceContentRequest {
 	return ptr
 }

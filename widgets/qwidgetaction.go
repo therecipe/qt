@@ -12,64 +12,64 @@ type QWidgetAction struct {
 	QAction
 }
 
-type QWidgetActionITF interface {
-	QActionITF
-	QWidgetActionPTR() *QWidgetAction
+type QWidgetAction_ITF interface {
+	QAction_ITF
+	QWidgetAction_PTR() *QWidgetAction
 }
 
-func PointerFromQWidgetAction(ptr QWidgetActionITF) unsafe.Pointer {
+func PointerFromQWidgetAction(ptr QWidgetAction_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QWidgetActionPTR().Pointer()
+		return ptr.QWidgetAction_PTR().Pointer()
 	}
 	return nil
 }
 
-func QWidgetActionFromPointer(ptr unsafe.Pointer) *QWidgetAction {
+func NewQWidgetActionFromPointer(ptr unsafe.Pointer) *QWidgetAction {
 	var n = new(QWidgetAction)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QWidgetAction_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QWidgetAction) QWidgetActionPTR() *QWidgetAction {
+func (ptr *QWidgetAction) QWidgetAction_PTR() *QWidgetAction {
 	return ptr
 }
 
-func NewQWidgetAction(parent core.QObjectITF) *QWidgetAction {
-	return QWidgetActionFromPointer(unsafe.Pointer(C.QWidgetAction_NewQWidgetAction(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQWidgetAction(parent core.QObject_ITF) *QWidgetAction {
+	return NewQWidgetActionFromPointer(C.QWidgetAction_NewQWidgetAction(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QWidgetAction) DefaultWidget() *QWidget {
 	if ptr.Pointer() != nil {
-		return QWidgetFromPointer(unsafe.Pointer(C.QWidgetAction_DefaultWidget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQWidgetFromPointer(C.QWidgetAction_DefaultWidget(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QWidgetAction) ReleaseWidget(widget QWidgetITF) {
+func (ptr *QWidgetAction) ReleaseWidget(widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QWidgetAction_ReleaseWidget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QWidgetAction_ReleaseWidget(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
-func (ptr *QWidgetAction) RequestWidget(parent QWidgetITF) *QWidget {
+func (ptr *QWidgetAction) RequestWidget(parent QWidget_ITF) *QWidget {
 	if ptr.Pointer() != nil {
-		return QWidgetFromPointer(unsafe.Pointer(C.QWidgetAction_RequestWidget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(parent)))))
+		return NewQWidgetFromPointer(C.QWidgetAction_RequestWidget(ptr.Pointer(), PointerFromQWidget(parent)))
 	}
 	return nil
 }
 
-func (ptr *QWidgetAction) SetDefaultWidget(widget QWidgetITF) {
+func (ptr *QWidgetAction) SetDefaultWidget(widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QWidgetAction_SetDefaultWidget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QWidgetAction_SetDefaultWidget(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QWidgetAction) DestroyQWidgetAction() {
 	if ptr.Pointer() != nil {
-		C.QWidgetAction_DestroyQWidgetAction(C.QtObjectPtr(ptr.Pointer()))
+		C.QWidgetAction_DestroyQWidgetAction(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

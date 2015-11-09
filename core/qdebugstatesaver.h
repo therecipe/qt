@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDebugStateSaver_NewQDebugStateSaver(QtObjectPtr dbg);
-void QDebugStateSaver_DestroyQDebugStateSaver(QtObjectPtr ptr);
+void* QDebugStateSaver_NewQDebugStateSaver(void* dbg);
+void QDebugStateSaver_DestroyQDebugStateSaver(void* ptr);
 
 #ifdef __cplusplus
 }

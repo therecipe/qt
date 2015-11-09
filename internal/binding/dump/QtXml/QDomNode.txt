@@ -1,72 +1,72 @@
 ########################################			FUNCTIONS			########################################
-&{QDomNode QDomNode::QDomNode commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   [] }
-&{QDomNode QDomNode::QDomNode commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  [0xc826a79d80] }
-&{appendChild QDomNode::appendChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc826aea660] }
-&{attributes QDomNode::attributes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNamedNodeMap [] }
-&{childNodes QDomNode::childNodes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNodeList [] }
-&{clear QDomNode::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void [] }
-&{cloneNode QDomNode::cloneNode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc826aeb140] }
-&{columnNumber QDomNode::columnNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int [] }
-&{firstChild QDomNode::firstChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [] }
-&{firstChildElement QDomNode::firstChildElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement [0xc826aebb00] }
-&{hasAttributes QDomNode::hasAttributes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{hasChildNodes QDomNode::hasChildNodes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{insertAfter QDomNode::insertAfter commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc820f6e3e0 0xc820f6e500] }
-&{insertBefore QDomNode::insertBefore commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc820f6e900 0xc820f6e9e0] }
-&{isAttr QDomNode::isAttr commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isCDATASection QDomNode::isCDATASection commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isCharacterData QDomNode::isCharacterData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isComment QDomNode::isComment commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isDocument QDomNode::isDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isDocumentFragment QDomNode::isDocumentFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isDocumentType QDomNode::isDocumentType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isElement QDomNode::isElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isEntity QDomNode::isEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isEntityReference QDomNode::isEntityReference commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isNotation QDomNode::isNotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isNull QDomNode::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isProcessingInstruction QDomNode::isProcessingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{isSupported QDomNode::isSupported commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [0xc821043100 0xc821043220] }
-&{isText QDomNode::isText commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [] }
-&{lastChild QDomNode::lastChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [] }
-&{lastChildElement QDomNode::lastChildElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement [0xc821043d00] }
-&{lineNumber QDomNode::lineNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int [] }
-&{localName QDomNode::localName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
-&{namedItem QDomNode::namedItem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc8210e46c0] }
-&{namespaceURI QDomNode::namespaceURI commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
-&{nextSibling QDomNode::nextSibling commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [] }
-&{nextSiblingElement QDomNode::nextSiblingElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement [0xc8210e5100] }
-&{nodeName QDomNode::nodeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
-&{nodeType QDomNode::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  NodeType [] }
-&{nodeValue QDomNode::nodeValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
-&{normalize QDomNode::normalize commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void [] }
-&{operator!= QDomNode::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [0xc8210e5f40] }
-&{operator= QDomNode::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode & [0xc821274240] }
-&{operator== QDomNode::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool [0xc821274600] }
-&{ownerDocument QDomNode::ownerDocument commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocument [] }
-&{parentNode QDomNode::parentNode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [] }
-&{prefix QDomNode::prefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
-&{previousSibling QDomNode::previousSibling commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [] }
-&{previousSiblingElement QDomNode::previousSiblingElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement [0xc821275040] }
-&{removeChild QDomNode::removeChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc821275380] }
-&{replaceChild QDomNode::replaceChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode [0xc8212756e0 0xc821275780] }
-&{save QDomNode::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void [0xc821275aa0 0xc821275b80 0xc821275d00] }
-&{setNodeValue QDomNode::setNodeValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void [0xc8213de060] }
-&{setPrefix QDomNode::setPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void [0xc8213de360] }
-&{toAttr QDomNode::toAttr commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomAttr [] }
-&{toCDATASection QDomNode::toCDATASection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomCDATASection [] }
-&{toCharacterData QDomNode::toCharacterData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomCharacterData [] }
-&{toComment QDomNode::toComment commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomComment [] }
-&{toDocument QDomNode::toDocument commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocument [] }
-&{toDocumentFragment QDomNode::toDocumentFragment commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocumentFragment [] }
-&{toDocumentType QDomNode::toDocumentType commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocumentType [] }
-&{toElement QDomNode::toElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement [] }
-&{toEntity QDomNode::toEntity commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomEntity [] }
-&{toEntityReference QDomNode::toEntityReference commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomEntityReference [] }
-&{toNotation QDomNode::toNotation commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNotation [] }
-&{toProcessingInstruction QDomNode::toProcessingInstruction commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomProcessingInstruction [] }
-&{toText QDomNode::toText commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomText [] }
-&{~QDomNode QDomNode::~QDomNode commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non destructor false false   [] }
+&{QDomNode QDomNode::QDomNode commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   QDomNode() [] }
+&{QDomNode QDomNode::QDomNode commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomNode(const QDomNode &n) [0xc8205f9b60] }
+&{appendChild QDomNode::appendChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode appendChild(const QDomNode &newChild) [0xc820644fc0] }
+&{attributes QDomNode::attributes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNamedNodeMap QDomNamedNodeMap attributes() const [] }
+&{childNodes QDomNode::childNodes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNodeList QDomNodeList childNodes() const [] }
+&{clear QDomNode::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void clear() [] }
+&{cloneNode QDomNode::cloneNode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode cloneNode(bool deep) const [0xc820645c60] }
+&{columnNumber QDomNode::columnNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int int columnNumber() const [] }
+&{firstChild QDomNode::firstChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode firstChild() const [] }
+&{firstChildElement QDomNode::firstChildElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement firstChildElement(const QString &tagName) const [0xc820de4600] }
+&{hasAttributes QDomNode::hasAttributes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool hasAttributes() const [] }
+&{hasChildNodes QDomNode::hasChildNodes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool hasChildNodes() const [] }
+&{insertAfter QDomNode::insertAfter commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode insertAfter(const QDomNode &newChild, const QDomNode &refChild) [0xc820de4e60 0xc820de4f80] }
+&{insertBefore QDomNode::insertBefore commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode insertBefore(const QDomNode &newChild, const QDomNode &refChild) [0xc820de52c0 0xc820de53a0] }
+&{isAttr QDomNode::isAttr commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isAttr() const [] }
+&{isCDATASection QDomNode::isCDATASection commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isCDATASection() const [] }
+&{isCharacterData QDomNode::isCharacterData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isCharacterData() const [] }
+&{isComment QDomNode::isComment commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isComment() const [] }
+&{isDocument QDomNode::isDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isDocument() const [] }
+&{isDocumentFragment QDomNode::isDocumentFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isDocumentFragment() const [] }
+&{isDocumentType QDomNode::isDocumentType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isDocumentType() const [] }
+&{isElement QDomNode::isElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isElement() const [] }
+&{isEntity QDomNode::isEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isEntity() const [] }
+&{isEntityReference QDomNode::isEntityReference commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isEntityReference() const [] }
+&{isNotation QDomNode::isNotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isNotation() const [] }
+&{isNull QDomNode::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isNull() const [] }
+&{isProcessingInstruction QDomNode::isProcessingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isProcessingInstruction() const [] }
+&{isSupported QDomNode::isSupported commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isSupported(const QString &feature, const QString &version) const [0xc820b08000 0xc820b080e0] }
+&{isText QDomNode::isText commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isText() const [] }
+&{lastChild QDomNode::lastChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode lastChild() const [] }
+&{lastChildElement QDomNode::lastChildElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement lastChildElement(const QString &tagName) const [0xc820b08700] }
+&{lineNumber QDomNode::lineNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int int lineNumber() const [] }
+&{localName QDomNode::localName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString localName() const [] }
+&{namedItem QDomNode::namedItem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode namedItem(const QString &name) const [0xc820b08d80] }
+&{namespaceURI QDomNode::namespaceURI commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString namespaceURI() const [] }
+&{nextSibling QDomNode::nextSibling commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode nextSibling() const [] }
+&{nextSiblingElement QDomNode::nextSiblingElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement nextSiblingElement(const QString &tagName) const [0xc820b09460] }
+&{nodeName QDomNode::nodeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString nodeName() const [] }
+&{nodeType QDomNode::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  NodeType NodeType nodeType() const [] }
+&{nodeValue QDomNode::nodeValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString nodeValue() const [] }
+&{normalize QDomNode::normalize commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void normalize() [] }
+&{operator!= QDomNode::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool operator!=(const QDomNode &n) const [0xc820b09e40] }
+&{operator= QDomNode::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode & QDomNode & operator=(const QDomNode &n) [0xc820686100] }
+&{operator== QDomNode::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool operator==(const QDomNode &n) const [0xc8206863e0] }
+&{ownerDocument QDomNode::ownerDocument commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocument QDomDocument ownerDocument() const [] }
+&{parentNode QDomNode::parentNode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode parentNode() const [] }
+&{prefix QDomNode::prefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString prefix() const [] }
+&{previousSibling QDomNode::previousSibling commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode previousSibling() const [] }
+&{previousSiblingElement QDomNode::previousSiblingElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement previousSiblingElement(const QString &tagName) const [0xc820686ce0] }
+&{removeChild QDomNode::removeChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode removeChild(const QDomNode &oldChild) [0xc820686fc0] }
+&{replaceChild QDomNode::replaceChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode replaceChild(const QDomNode &newChild, const QDomNode &oldChild) [0xc820687280 0xc820687320] }
+&{save QDomNode::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void save(QTextStream &stream, int indent, EncodingPolicy encodingPolicy) const [0xc8206874c0 0xc8206875e0 0xc8206876a0] }
+&{setNodeValue QDomNode::setNodeValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void setNodeValue(const QString &v) [0xc820687960] }
+&{setPrefix QDomNode::setPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void setPrefix(const QString &pre) [0xc820687be0] }
+&{toAttr QDomNode::toAttr commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomAttr QDomAttr toAttr() const [] }
+&{toCDATASection QDomNode::toCDATASection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomCDATASection QDomCDATASection toCDATASection() const [] }
+&{toCharacterData QDomNode::toCharacterData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomCharacterData QDomCharacterData toCharacterData() const [] }
+&{toComment QDomNode::toComment commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomComment QDomComment toComment() const [] }
+&{toDocument QDomNode::toDocument commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocument QDomDocument toDocument() const [] }
+&{toDocumentFragment QDomNode::toDocumentFragment commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocumentFragment QDomDocumentFragment toDocumentFragment() const [] }
+&{toDocumentType QDomNode::toDocumentType commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocumentType QDomDocumentType toDocumentType() const [] }
+&{toElement QDomNode::toElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement toElement() const [] }
+&{toEntity QDomNode::toEntity commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomEntity QDomEntity toEntity() const [] }
+&{toEntityReference QDomNode::toEntityReference commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomEntityReference QDomEntityReference toEntityReference() const [] }
+&{toNotation QDomNode::toNotation commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNotation QDomNotation toNotation() const [] }
+&{toProcessingInstruction QDomNode::toProcessingInstruction commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomProcessingInstruction QDomProcessingInstruction toProcessingInstruction() const [] }
+&{toText QDomNode::toText commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomText QDomText toText() const [] }
+&{~QDomNode QDomNode::~QDomNode commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non destructor false false   ~QDomNode() [] }
 ########################################			ENUMS			########################################
-&{EncodingPolicy QDomNode::EncodingPolicy commendable public  [0xc820d637a0 0xc820d63b60]}
-&{NodeType QDomNode::NodeType commendable public  [0xc826a78280 0xc826a783e0 0xc826a784e0 0xc826a78680 0xc826a787e0 0xc826a789a0 0xc826a78ae0 0xc826a78ca0 0xc826a78e00 0xc826a78fe0 0xc826a79100 0xc826a79300 0xc826a793a0 0xc826a79520]}
+&{EncodingPolicy QDomNode::EncodingPolicy commendable public  [0xc820ab30e0 0xc820ab3200] false}
+&{NodeType QDomNode::NodeType commendable public  [0xc820ab3680 0xc820ab37a0 0xc820ab3860 0xc820ab39c0 0xc820ab3b20 0xc820ab3ce0 0xc820ab3ec0 0xc8205f8060 0xc8205f8220 0xc8205f8320 0xc8205f85a0 0xc8205f8920 0xc8205f8ba0 0xc8205f8ca0] false}

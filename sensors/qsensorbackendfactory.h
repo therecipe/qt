@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSensorBackendFactory_CreateBackend(QtObjectPtr ptr, QtObjectPtr sensor);
+void* QSensorBackendFactory_CreateBackend(void* ptr, void* sensor);
 
 #ifdef __cplusplus
 }

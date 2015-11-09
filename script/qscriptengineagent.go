@@ -3,6 +3,7 @@ package script
 //#include "qscriptengineagent.h"
 import "C"
 import (
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -10,8 +11,8 @@ type QScriptEngineAgent struct {
 	ptr unsafe.Pointer
 }
 
-type QScriptEngineAgentITF interface {
-	QScriptEngineAgentPTR() *QScriptEngineAgent
+type QScriptEngineAgent_ITF interface {
+	QScriptEngineAgent_PTR() *QScriptEngineAgent
 }
 
 func (p *QScriptEngineAgent) Pointer() unsafe.Pointer {
@@ -22,69 +23,69 @@ func (p *QScriptEngineAgent) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQScriptEngineAgent(ptr QScriptEngineAgentITF) unsafe.Pointer {
+func PointerFromQScriptEngineAgent(ptr QScriptEngineAgent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScriptEngineAgentPTR().Pointer()
+		return ptr.QScriptEngineAgent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScriptEngineAgentFromPointer(ptr unsafe.Pointer) *QScriptEngineAgent {
+func NewQScriptEngineAgentFromPointer(ptr unsafe.Pointer) *QScriptEngineAgent {
 	var n = new(QScriptEngineAgent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QScriptEngineAgent) QScriptEngineAgentPTR() *QScriptEngineAgent {
+func (ptr *QScriptEngineAgent) QScriptEngineAgent_PTR() *QScriptEngineAgent {
 	return ptr
 }
 
 //QScriptEngineAgent::Extension
-type QScriptEngineAgent__Extension int
+type QScriptEngineAgent__Extension int64
 
-var (
+const (
 	QScriptEngineAgent__DebuggerInvocationRequest = QScriptEngineAgent__Extension(0)
 )
 
-func NewQScriptEngineAgent(engine QScriptEngineITF) *QScriptEngineAgent {
-	return QScriptEngineAgentFromPointer(unsafe.Pointer(C.QScriptEngineAgent_NewQScriptEngineAgent(C.QtObjectPtr(PointerFromQScriptEngine(engine)))))
+func NewQScriptEngineAgent(engine QScriptEngine_ITF) *QScriptEngineAgent {
+	return NewQScriptEngineAgentFromPointer(C.QScriptEngineAgent_NewQScriptEngineAgent(PointerFromQScriptEngine(engine)))
 }
 
 func (ptr *QScriptEngineAgent) ContextPop() {
 	if ptr.Pointer() != nil {
-		C.QScriptEngineAgent_ContextPop(C.QtObjectPtr(ptr.Pointer()))
+		C.QScriptEngineAgent_ContextPop(ptr.Pointer())
 	}
 }
 
 func (ptr *QScriptEngineAgent) ContextPush() {
 	if ptr.Pointer() != nil {
-		C.QScriptEngineAgent_ContextPush(C.QtObjectPtr(ptr.Pointer()))
+		C.QScriptEngineAgent_ContextPush(ptr.Pointer())
 	}
 }
 
 func (ptr *QScriptEngineAgent) Engine() *QScriptEngine {
 	if ptr.Pointer() != nil {
-		return QScriptEngineFromPointer(unsafe.Pointer(C.QScriptEngineAgent_Engine(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQScriptEngineFromPointer(C.QScriptEngineAgent_Engine(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QScriptEngineAgent) Extension(extension QScriptEngineAgent__Extension, argument string) string {
+func (ptr *QScriptEngineAgent) Extension(extension QScriptEngineAgent__Extension, argument core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptEngineAgent_Extension(C.QtObjectPtr(ptr.Pointer()), C.int(extension), C.CString(argument)))
+		return core.NewQVariantFromPointer(C.QScriptEngineAgent_Extension(ptr.Pointer(), C.int(extension), core.PointerFromQVariant(argument)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QScriptEngineAgent) SupportsExtension(extension QScriptEngineAgent__Extension) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptEngineAgent_SupportsExtension(C.QtObjectPtr(ptr.Pointer()), C.int(extension)) != 0
+		return C.QScriptEngineAgent_SupportsExtension(ptr.Pointer(), C.int(extension)) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptEngineAgent) DestroyQScriptEngineAgent() {
 	if ptr.Pointer() != nil {
-		C.QScriptEngineAgent_DestroyQScriptEngineAgent(C.QtObjectPtr(ptr.Pointer()))
+		C.QScriptEngineAgent_DestroyQScriptEngineAgent(ptr.Pointer())
 	}
 }

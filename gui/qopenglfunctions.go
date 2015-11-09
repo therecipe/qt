@@ -10,8 +10,8 @@ type QOpenGLFunctions struct {
 	ptr unsafe.Pointer
 }
 
-type QOpenGLFunctionsITF interface {
-	QOpenGLFunctionsPTR() *QOpenGLFunctions
+type QOpenGLFunctions_ITF interface {
+	QOpenGLFunctions_PTR() *QOpenGLFunctions
 }
 
 func (p *QOpenGLFunctions) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QOpenGLFunctions) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQOpenGLFunctions(ptr QOpenGLFunctionsITF) unsafe.Pointer {
+func PointerFromQOpenGLFunctions(ptr QOpenGLFunctions_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QOpenGLFunctionsPTR().Pointer()
+		return ptr.QOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func QOpenGLFunctionsFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions {
+func NewQOpenGLFunctionsFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions {
 	var n = new(QOpenGLFunctions)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QOpenGLFunctions) QOpenGLFunctionsPTR() *QOpenGLFunctions {
+func (ptr *QOpenGLFunctions) QOpenGLFunctions_PTR() *QOpenGLFunctions {
 	return ptr
 }
 
 //QOpenGLFunctions::OpenGLFeature
-type QOpenGLFunctions__OpenGLFeature int
+type QOpenGLFunctions__OpenGLFeature int64
 
-var (
+const (
 	QOpenGLFunctions__Multitexture          = QOpenGLFunctions__OpenGLFeature(0x0001)
 	QOpenGLFunctions__Shaders               = QOpenGLFunctions__OpenGLFeature(0x0002)
 	QOpenGLFunctions__Buffers               = QOpenGLFunctions__OpenGLFeature(0x0004)
@@ -60,55 +60,3 @@ var (
 	QOpenGLFunctions__FixedFunctionPipeline = QOpenGLFunctions__OpenGLFeature(0x4000)
 	QOpenGLFunctions__TextureRGFormats      = QOpenGLFunctions__OpenGLFeature(0x8000)
 )
-
-func NewQOpenGLFunctions() *QOpenGLFunctions {
-	return QOpenGLFunctionsFromPointer(unsafe.Pointer(C.QOpenGLFunctions_NewQOpenGLFunctions()))
-}
-
-func NewQOpenGLFunctions2(context QOpenGLContextITF) *QOpenGLFunctions {
-	return QOpenGLFunctionsFromPointer(unsafe.Pointer(C.QOpenGLFunctions_NewQOpenGLFunctions2(C.QtObjectPtr(PointerFromQOpenGLContext(context)))))
-}
-
-func (ptr *QOpenGLFunctions) GlFinish() {
-	if ptr.Pointer() != nil {
-		C.QOpenGLFunctions_GlFinish(C.QtObjectPtr(ptr.Pointer()))
-	}
-}
-
-func (ptr *QOpenGLFunctions) GlFlush() {
-	if ptr.Pointer() != nil {
-		C.QOpenGLFunctions_GlFlush(C.QtObjectPtr(ptr.Pointer()))
-	}
-}
-
-func (ptr *QOpenGLFunctions) GlReleaseShaderCompiler() {
-	if ptr.Pointer() != nil {
-		C.QOpenGLFunctions_GlReleaseShaderCompiler(C.QtObjectPtr(ptr.Pointer()))
-	}
-}
-
-func (ptr *QOpenGLFunctions) HasOpenGLFeature(feature QOpenGLFunctions__OpenGLFeature) bool {
-	if ptr.Pointer() != nil {
-		return C.QOpenGLFunctions_HasOpenGLFeature(C.QtObjectPtr(ptr.Pointer()), C.int(feature)) != 0
-	}
-	return false
-}
-
-func (ptr *QOpenGLFunctions) InitializeOpenGLFunctions() {
-	if ptr.Pointer() != nil {
-		C.QOpenGLFunctions_InitializeOpenGLFunctions(C.QtObjectPtr(ptr.Pointer()))
-	}
-}
-
-func (ptr *QOpenGLFunctions) OpenGLFeatures() QOpenGLFunctions__OpenGLFeature {
-	if ptr.Pointer() != nil {
-		return QOpenGLFunctions__OpenGLFeature(C.QOpenGLFunctions_OpenGLFeatures(C.QtObjectPtr(ptr.Pointer())))
-	}
-	return 0
-}
-
-func (ptr *QOpenGLFunctions) DestroyQOpenGLFunctions() {
-	if ptr.Pointer() != nil {
-		C.QOpenGLFunctions_DestroyQOpenGLFunctions(C.QtObjectPtr(ptr.Pointer()))
-	}
-}

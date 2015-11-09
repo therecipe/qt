@@ -10,31 +10,31 @@ class MyQNdefFilter: public QNdefFilter {
 public:
 };
 
-QtObjectPtr QNdefFilter_NewQNdefFilter(){
+void* QNdefFilter_NewQNdefFilter(){
 	return new QNdefFilter();
 }
 
-QtObjectPtr QNdefFilter_NewQNdefFilter2(QtObjectPtr other){
+void* QNdefFilter_NewQNdefFilter2(void* other){
 	return new QNdefFilter(*static_cast<QNdefFilter*>(other));
 }
 
-void QNdefFilter_Clear(QtObjectPtr ptr){
+void QNdefFilter_Clear(void* ptr){
 	static_cast<QNdefFilter*>(ptr)->clear();
 }
 
-int QNdefFilter_OrderMatch(QtObjectPtr ptr){
+int QNdefFilter_OrderMatch(void* ptr){
 	return static_cast<QNdefFilter*>(ptr)->orderMatch();
 }
 
-int QNdefFilter_RecordCount(QtObjectPtr ptr){
+int QNdefFilter_RecordCount(void* ptr){
 	return static_cast<QNdefFilter*>(ptr)->recordCount();
 }
 
-void QNdefFilter_SetOrderMatch(QtObjectPtr ptr, int on){
+void QNdefFilter_SetOrderMatch(void* ptr, int on){
 	static_cast<QNdefFilter*>(ptr)->setOrderMatch(on != 0);
 }
 
-void QNdefFilter_DestroyQNdefFilter(QtObjectPtr ptr){
+void QNdefFilter_DestroyQNdefFilter(void* ptr){
 	static_cast<QNdefFilter*>(ptr)->~QNdefFilter();
 }
 

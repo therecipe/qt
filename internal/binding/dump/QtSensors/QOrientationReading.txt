@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{orientation QOrientationReading::orientation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qorientationsensor.cpp non plain false false  Orientation [] }
-&{setOrientation QOrientationReading::setOrientation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qorientationsensor.h non plain false false  void [0xc822e537c0] }
+&{orientation QOrientationReading::orientation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qorientationsensor.cpp non plain false false  Orientation Orientation orientation() const [] }
+&{setOrientation QOrientationReading::setOrientation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qorientationsensor.h non plain false false  void void setOrientation(Orientation orientation) [0xc8235ff680] }
 ########################################			ENUMS			########################################
-&{Orientation QOrientationReading::Orientation commendable public  [0xc822e52e00 0xc822e52ea0 0xc822e52f80 0xc822e53000 0xc822e53140 0xc822e531c0 0xc822e532e0]}
+&{Orientation QOrientationReading::Orientation commendable public  [0xc8235fec80 0xc8235fed00 0xc8235fee20 0xc8235fef00 0xc8235fefc0 0xc8235ff060 0xc8235ff160] false}

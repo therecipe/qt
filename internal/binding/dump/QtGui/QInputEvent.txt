@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{modifiers QInputEvent::modifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::KeyboardModifiers [] }
-&{timestamp QInputEvent::timestamp commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  ulong [] }
+&{modifiers QInputEvent::modifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::KeyboardModifiers Qt::KeyboardModifiers modifiers() const [] }
+&{timestamp QInputEvent::timestamp commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  ulong ulong timestamp() const [] }
 ########################################			ENUMS			########################################

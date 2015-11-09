@@ -1,38 +1,38 @@
 ########################################			FUNCTIONS			########################################
-&{isValid QTextBlock::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.cpp non plain false false  bool [] }
-&{QTextBlock QTextBlock::QTextBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non constructor false false   [0xc822686460] }
-&{begin QTextBlock::begin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  iterator [] }
-&{blockFormat QTextBlock::blockFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextBlockFormat [] }
-&{blockFormatIndex QTextBlock::blockFormatIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
-&{charFormat QTextBlock::charFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextCharFormat [] }
-&{charFormatIndex QTextBlock::charFormatIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
-&{clearLayout QTextBlock::clearLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void [] }
-&{contains QTextBlock::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool [0xc822687240] }
-&{blockNumber QTextBlock::blockNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
-&{document QTextBlock::document commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  const QTextDocument * [] }
-&{end QTextBlock::end commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  iterator [] }
-&{firstLineNumber QTextBlock::firstLineNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
-&{isVisible QTextBlock::isVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool [] }
-&{layout QTextBlock::layout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextLayout * [] }
-&{length QTextBlock::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
-&{lineCount QTextBlock::lineCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
-&{next QTextBlock::next commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextBlock [] }
-&{operator!= QTextBlock::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool [0xc82256aa80] }
-&{operator< QTextBlock::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool [0xc82256ae20] }
-&{operator= QTextBlock::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextBlock & [0xc82256b160] }
-&{operator== QTextBlock::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool [0xc82256b4c0] }
-&{position QTextBlock::position commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
-&{previous QTextBlock::previous commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextBlock [] }
-&{revision QTextBlock::revision commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
-&{setLineCount QTextBlock::setLineCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void [0xc82256bd40] }
-&{setRevision QTextBlock::setRevision commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void [0xc82211c000] }
-&{setUserData QTextBlock::setUserData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void [0xc82211c2a0] }
-&{setUserState QTextBlock::setUserState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void [0xc82211c560] }
-&{setVisible QTextBlock::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void [0xc82211c7e0] }
-&{text QTextBlock::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QString [] }
-&{textDirection QTextBlock::textDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  Qt::LayoutDirection [] }
-&{textFormats QTextBlock::textFormats commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QVector<QTextLayout::FormatRange> [] }
-&{textList QTextBlock::textList commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextList * [] }
-&{userData QTextBlock::userData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextBlockUserData * [] }
-&{userState QTextBlock::userState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int [] }
+&{isValid QTextBlock::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.cpp non plain false false  bool bool isValid() const [] }
+&{QTextBlock QTextBlock::QTextBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non constructor false false   QTextBlock(const QTextBlock &other) [0xc823599ac0] }
+&{begin QTextBlock::begin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  iterator iterator begin() const [] }
+&{blockFormat QTextBlock::blockFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextBlockFormat QTextBlockFormat blockFormat() const [] }
+&{blockFormatIndex QTextBlock::blockFormatIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int blockFormatIndex() const [] }
+&{charFormat QTextBlock::charFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextCharFormat QTextCharFormat charFormat() const [] }
+&{charFormatIndex QTextBlock::charFormatIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int charFormatIndex() const [] }
+&{clearLayout QTextBlock::clearLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void void clearLayout() [] }
+&{contains QTextBlock::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool contains(int position) const [0xc8235a84a0] }
+&{blockNumber QTextBlock::blockNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int blockNumber() const [] }
+&{document QTextBlock::document commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  const QTextDocument * const QTextDocument * document() const [] }
+&{end QTextBlock::end commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  iterator iterator end() const [] }
+&{firstLineNumber QTextBlock::firstLineNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int firstLineNumber() const [] }
+&{isVisible QTextBlock::isVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool isVisible() const [] }
+&{layout QTextBlock::layout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextLayout * QTextLayout * layout() const [] }
+&{length QTextBlock::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int length() const [] }
+&{lineCount QTextBlock::lineCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int lineCount() const [] }
+&{next QTextBlock::next commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextBlock QTextBlock next() const [] }
+&{operator!= QTextBlock::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool operator!=(const QTextBlock &other) const [0xc8235a9640] }
+&{operator< QTextBlock::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool operator<(const QTextBlock &other) const [0xc8235a9860] }
+&{operator= QTextBlock::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextBlock & QTextBlock & operator=(const QTextBlock &other) [0xc8235a9a80] }
+&{operator== QTextBlock::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool operator==(const QTextBlock &other) const [0xc8235a9ca0] }
+&{position QTextBlock::position commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int position() const [] }
+&{previous QTextBlock::previous commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextBlock QTextBlock previous() const [] }
+&{revision QTextBlock::revision commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int revision() const [] }
+&{setLineCount QTextBlock::setLineCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void void setLineCount(int count) [0xc8235c02c0] }
+&{setRevision QTextBlock::setRevision commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void void setRevision(int rev) [0xc8235c04e0] }
+&{setUserData QTextBlock::setUserData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void void setUserData(QTextBlockUserData *data) [0xc8235c06c0] }
+&{setUserState QTextBlock::setUserState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void void setUserState(int state) [0xc8235c0940] }
+&{setVisible QTextBlock::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void void setVisible(bool visible) [0xc8235c0b60] }
+&{text QTextBlock::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QString QString text() const [] }
+&{textDirection QTextBlock::textDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  Qt::LayoutDirection Qt::LayoutDirection textDirection() const [] }
+&{textFormats QTextBlock::textFormats commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QVector<QTextLayout::FormatRange> QVector<QTextLayout::FormatRange> textFormats() const [] }
+&{textList QTextBlock::textList commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextList * QTextList * textList() const [] }
+&{userData QTextBlock::userData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextBlockUserData * QTextBlockUserData * userData() const [] }
+&{userState QTextBlock::userState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int userState() const [] }
 ########################################			ENUMS			########################################

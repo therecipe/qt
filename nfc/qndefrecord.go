@@ -11,8 +11,8 @@ type QNdefRecord struct {
 	ptr unsafe.Pointer
 }
 
-type QNdefRecordITF interface {
-	QNdefRecordPTR() *QNdefRecord
+type QNdefRecord_ITF interface {
+	QNdefRecord_PTR() *QNdefRecord
 }
 
 func (p *QNdefRecord) Pointer() unsafe.Pointer {
@@ -23,27 +23,27 @@ func (p *QNdefRecord) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQNdefRecord(ptr QNdefRecordITF) unsafe.Pointer {
+func PointerFromQNdefRecord(ptr QNdefRecord_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNdefRecordPTR().Pointer()
+		return ptr.QNdefRecord_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNdefRecordFromPointer(ptr unsafe.Pointer) *QNdefRecord {
+func NewQNdefRecordFromPointer(ptr unsafe.Pointer) *QNdefRecord {
 	var n = new(QNdefRecord)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QNdefRecord) QNdefRecordPTR() *QNdefRecord {
+func (ptr *QNdefRecord) QNdefRecord_PTR() *QNdefRecord {
 	return ptr
 }
 
 //QNdefRecord::TypeNameFormat
-type QNdefRecord__TypeNameFormat int
+type QNdefRecord__TypeNameFormat int64
 
-var (
+const (
 	QNdefRecord__Empty       = QNdefRecord__TypeNameFormat(0x00)
 	QNdefRecord__NfcRtd      = QNdefRecord__TypeNameFormat(0x01)
 	QNdefRecord__Mime        = QNdefRecord__TypeNameFormat(0x02)
@@ -53,53 +53,74 @@ var (
 )
 
 func NewQNdefRecord() *QNdefRecord {
-	return QNdefRecordFromPointer(unsafe.Pointer(C.QNdefRecord_NewQNdefRecord()))
+	return NewQNdefRecordFromPointer(C.QNdefRecord_NewQNdefRecord())
 }
 
-func NewQNdefRecord2(other QNdefRecordITF) *QNdefRecord {
-	return QNdefRecordFromPointer(unsafe.Pointer(C.QNdefRecord_NewQNdefRecord2(C.QtObjectPtr(PointerFromQNdefRecord(other)))))
+func NewQNdefRecord2(other QNdefRecord_ITF) *QNdefRecord {
+	return NewQNdefRecordFromPointer(C.QNdefRecord_NewQNdefRecord2(PointerFromQNdefRecord(other)))
+}
+
+func (ptr *QNdefRecord) Id() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		return core.NewQByteArrayFromPointer(C.QNdefRecord_Id(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QNdefRecord) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QNdefRecord_IsEmpty(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QNdefRecord_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QNdefRecord) SetId(id core.QByteArrayITF) {
+func (ptr *QNdefRecord) Payload() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		C.QNdefRecord_SetId(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(id)))
+		return core.NewQByteArrayFromPointer(C.QNdefRecord_Payload(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QNdefRecord) SetId(id core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNdefRecord_SetId(ptr.Pointer(), core.PointerFromQByteArray(id))
 	}
 }
 
-func (ptr *QNdefRecord) SetPayload(payload core.QByteArrayITF) {
+func (ptr *QNdefRecord) SetPayload(payload core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNdefRecord_SetPayload(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(payload)))
+		C.QNdefRecord_SetPayload(ptr.Pointer(), core.PointerFromQByteArray(payload))
 	}
 }
 
-func (ptr *QNdefRecord) SetType(ty core.QByteArrayITF) {
+func (ptr *QNdefRecord) SetType(ty core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNdefRecord_SetType(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(ty)))
+		C.QNdefRecord_SetType(ptr.Pointer(), core.PointerFromQByteArray(ty))
 	}
 }
 
 func (ptr *QNdefRecord) SetTypeNameFormat(typeNameFormat QNdefRecord__TypeNameFormat) {
 	if ptr.Pointer() != nil {
-		C.QNdefRecord_SetTypeNameFormat(C.QtObjectPtr(ptr.Pointer()), C.int(typeNameFormat))
+		C.QNdefRecord_SetTypeNameFormat(ptr.Pointer(), C.int(typeNameFormat))
 	}
+}
+
+func (ptr *QNdefRecord) Type() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		return core.NewQByteArrayFromPointer(C.QNdefRecord_Type(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QNdefRecord) TypeNameFormat() QNdefRecord__TypeNameFormat {
 	if ptr.Pointer() != nil {
-		return QNdefRecord__TypeNameFormat(C.QNdefRecord_TypeNameFormat(C.QtObjectPtr(ptr.Pointer())))
+		return QNdefRecord__TypeNameFormat(C.QNdefRecord_TypeNameFormat(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNdefRecord) DestroyQNdefRecord() {
 	if ptr.Pointer() != nil {
-		C.QNdefRecord_DestroyQNdefRecord(C.QtObjectPtr(ptr.Pointer()))
+		C.QNdefRecord_DestroyQNdefRecord(ptr.Pointer())
 	}
 }

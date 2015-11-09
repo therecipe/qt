@@ -13,107 +13,107 @@ type QMenu struct {
 	QWidget
 }
 
-type QMenuITF interface {
-	QWidgetITF
-	QMenuPTR() *QMenu
+type QMenu_ITF interface {
+	QWidget_ITF
+	QMenu_PTR() *QMenu
 }
 
-func PointerFromQMenu(ptr QMenuITF) unsafe.Pointer {
+func PointerFromQMenu(ptr QMenu_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMenuPTR().Pointer()
+		return ptr.QMenu_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMenuFromPointer(ptr unsafe.Pointer) *QMenu {
+func NewQMenuFromPointer(ptr unsafe.Pointer) *QMenu {
 	var n = new(QMenu)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMenu_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMenu) QMenuPTR() *QMenu {
+func (ptr *QMenu) QMenu_PTR() *QMenu {
 	return ptr
 }
 
 func (ptr *QMenu) IsTearOffEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QMenu_IsTearOffEnabled(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMenu_IsTearOffEnabled(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMenu) SeparatorsCollapsible() bool {
 	if ptr.Pointer() != nil {
-		return C.QMenu_SeparatorsCollapsible(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMenu_SeparatorsCollapsible(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QMenu) SetIcon(icon gui.QIconITF) {
+func (ptr *QMenu) SetIcon(icon gui.QIcon_ITF) {
 	if ptr.Pointer() != nil {
-		C.QMenu_SetIcon(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQIcon(icon)))
+		C.QMenu_SetIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
 	}
 }
 
 func (ptr *QMenu) SetSeparatorsCollapsible(collapse bool) {
 	if ptr.Pointer() != nil {
-		C.QMenu_SetSeparatorsCollapsible(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(collapse)))
+		C.QMenu_SetSeparatorsCollapsible(ptr.Pointer(), C.int(qt.GoBoolToInt(collapse)))
 	}
 }
 
 func (ptr *QMenu) SetTearOffEnabled(v bool) {
 	if ptr.Pointer() != nil {
-		C.QMenu_SetTearOffEnabled(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(v)))
+		C.QMenu_SetTearOffEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
 	}
 }
 
 func (ptr *QMenu) SetTitle(title string) {
 	if ptr.Pointer() != nil {
-		C.QMenu_SetTitle(C.QtObjectPtr(ptr.Pointer()), C.CString(title))
+		C.QMenu_SetTitle(ptr.Pointer(), C.CString(title))
 	}
 }
 
 func (ptr *QMenu) SetToolTipsVisible(visible bool) {
 	if ptr.Pointer() != nil {
-		C.QMenu_SetToolTipsVisible(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(visible)))
+		C.QMenu_SetToolTipsVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
 	}
 }
 
 func (ptr *QMenu) Title() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMenu_Title(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QMenu_Title(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QMenu) ToolTipsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QMenu_ToolTipsVisible(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMenu_ToolTipsVisible(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func NewQMenu(parent QWidgetITF) *QMenu {
-	return QMenuFromPointer(unsafe.Pointer(C.QMenu_NewQMenu(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQMenu(parent QWidget_ITF) *QMenu {
+	return NewQMenuFromPointer(C.QMenu_NewQMenu(PointerFromQWidget(parent)))
 }
 
-func NewQMenu2(title string, parent QWidgetITF) *QMenu {
-	return QMenuFromPointer(unsafe.Pointer(C.QMenu_NewQMenu2(C.CString(title), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQMenu2(title string, parent QWidget_ITF) *QMenu {
+	return NewQMenuFromPointer(C.QMenu_NewQMenu2(C.CString(title), PointerFromQWidget(parent)))
 }
 
 func (ptr *QMenu) ConnectAboutToHide(f func()) {
 	if ptr.Pointer() != nil {
-		C.QMenu_ConnectAboutToHide(C.QtObjectPtr(ptr.Pointer()))
+		C.QMenu_ConnectAboutToHide(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "aboutToHide", f)
 	}
 }
 
 func (ptr *QMenu) DisconnectAboutToHide() {
 	if ptr.Pointer() != nil {
-		C.QMenu_DisconnectAboutToHide(C.QtObjectPtr(ptr.Pointer()))
+		C.QMenu_DisconnectAboutToHide(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "aboutToHide")
 	}
 }
@@ -125,14 +125,14 @@ func callbackQMenuAboutToHide(ptrName *C.char) {
 
 func (ptr *QMenu) ConnectAboutToShow(f func()) {
 	if ptr.Pointer() != nil {
-		C.QMenu_ConnectAboutToShow(C.QtObjectPtr(ptr.Pointer()))
+		C.QMenu_ConnectAboutToShow(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "aboutToShow", f)
 	}
 }
 
 func (ptr *QMenu) DisconnectAboutToShow() {
 	if ptr.Pointer() != nil {
-		C.QMenu_DisconnectAboutToShow(C.QtObjectPtr(ptr.Pointer()))
+		C.QMenu_DisconnectAboutToShow(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "aboutToShow")
 	}
 }
@@ -142,218 +142,218 @@ func callbackQMenuAboutToShow(ptrName *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "aboutToShow").(func())()
 }
 
-func (ptr *QMenu) ActionAt(pt core.QPointITF) *QAction {
+func (ptr *QMenu) ActionAt(pt core.QPoint_ITF) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_ActionAt(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(pt)))))
+		return NewQActionFromPointer(C.QMenu_ActionAt(ptr.Pointer(), core.PointerFromQPoint(pt)))
 	}
 	return nil
 }
 
 func (ptr *QMenu) ActiveAction() *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_ActiveAction(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQActionFromPointer(C.QMenu_ActiveAction(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QMenu) AddAction2(icon gui.QIconITF, text string) *QAction {
+func (ptr *QMenu) AddAction2(icon gui.QIcon_ITF, text string) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_AddAction2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQIcon(icon)), C.CString(text))))
+		return NewQActionFromPointer(C.QMenu_AddAction2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text)))
 	}
 	return nil
 }
 
-func (ptr *QMenu) AddAction4(icon gui.QIconITF, text string, receiver core.QObjectITF, member string, shortcut gui.QKeySequenceITF) *QAction {
+func (ptr *QMenu) AddAction4(icon gui.QIcon_ITF, text string, receiver core.QObject_ITF, member string, shortcut gui.QKeySequence_ITF) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_AddAction4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQIcon(icon)), C.CString(text), C.QtObjectPtr(core.PointerFromQObject(receiver)), C.CString(member), C.QtObjectPtr(gui.PointerFromQKeySequence(shortcut)))))
+		return NewQActionFromPointer(C.QMenu_AddAction4(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text), core.PointerFromQObject(receiver), C.CString(member), gui.PointerFromQKeySequence(shortcut)))
 	}
 	return nil
 }
 
 func (ptr *QMenu) AddAction(text string) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_AddAction(C.QtObjectPtr(ptr.Pointer()), C.CString(text))))
+		return NewQActionFromPointer(C.QMenu_AddAction(ptr.Pointer(), C.CString(text)))
 	}
 	return nil
 }
 
-func (ptr *QMenu) AddAction3(text string, receiver core.QObjectITF, member string, shortcut gui.QKeySequenceITF) *QAction {
+func (ptr *QMenu) AddAction3(text string, receiver core.QObject_ITF, member string, shortcut gui.QKeySequence_ITF) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_AddAction3(C.QtObjectPtr(ptr.Pointer()), C.CString(text), C.QtObjectPtr(core.PointerFromQObject(receiver)), C.CString(member), C.QtObjectPtr(gui.PointerFromQKeySequence(shortcut)))))
+		return NewQActionFromPointer(C.QMenu_AddAction3(ptr.Pointer(), C.CString(text), core.PointerFromQObject(receiver), C.CString(member), gui.PointerFromQKeySequence(shortcut)))
 	}
 	return nil
 }
 
-func (ptr *QMenu) AddMenu(menu QMenuITF) *QAction {
+func (ptr *QMenu) AddMenu(menu QMenu_ITF) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_AddMenu(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQMenu(menu)))))
+		return NewQActionFromPointer(C.QMenu_AddMenu(ptr.Pointer(), PointerFromQMenu(menu)))
 	}
 	return nil
 }
 
-func (ptr *QMenu) AddMenu3(icon gui.QIconITF, title string) *QMenu {
+func (ptr *QMenu) AddMenu3(icon gui.QIcon_ITF, title string) *QMenu {
 	if ptr.Pointer() != nil {
-		return QMenuFromPointer(unsafe.Pointer(C.QMenu_AddMenu3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQIcon(icon)), C.CString(title))))
+		return NewQMenuFromPointer(C.QMenu_AddMenu3(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(title)))
 	}
 	return nil
 }
 
 func (ptr *QMenu) AddMenu2(title string) *QMenu {
 	if ptr.Pointer() != nil {
-		return QMenuFromPointer(unsafe.Pointer(C.QMenu_AddMenu2(C.QtObjectPtr(ptr.Pointer()), C.CString(title))))
+		return NewQMenuFromPointer(C.QMenu_AddMenu2(ptr.Pointer(), C.CString(title)))
 	}
 	return nil
 }
 
-func (ptr *QMenu) AddSection2(icon gui.QIconITF, text string) *QAction {
+func (ptr *QMenu) AddSection2(icon gui.QIcon_ITF, text string) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_AddSection2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQIcon(icon)), C.CString(text))))
+		return NewQActionFromPointer(C.QMenu_AddSection2(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text)))
 	}
 	return nil
 }
 
 func (ptr *QMenu) AddSection(text string) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_AddSection(C.QtObjectPtr(ptr.Pointer()), C.CString(text))))
+		return NewQActionFromPointer(C.QMenu_AddSection(ptr.Pointer(), C.CString(text)))
 	}
 	return nil
 }
 
 func (ptr *QMenu) AddSeparator() *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_AddSeparator(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQActionFromPointer(C.QMenu_AddSeparator(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QMenu) Clear() {
 	if ptr.Pointer() != nil {
-		C.QMenu_Clear(C.QtObjectPtr(ptr.Pointer()))
+		C.QMenu_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QMenu) Exec() *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_Exec(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQActionFromPointer(C.QMenu_Exec(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QMenu) Exec2(p core.QPointITF, action QActionITF) *QAction {
+func (ptr *QMenu) Exec2(p core.QPoint_ITF, action QAction_ITF) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_Exec2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(p)), C.QtObjectPtr(PointerFromQAction(action)))))
+		return NewQActionFromPointer(C.QMenu_Exec2(ptr.Pointer(), core.PointerFromQPoint(p), PointerFromQAction(action)))
 	}
 	return nil
 }
 
 func (ptr *QMenu) HideTearOffMenu() {
 	if ptr.Pointer() != nil {
-		C.QMenu_HideTearOffMenu(C.QtObjectPtr(ptr.Pointer()))
+		C.QMenu_HideTearOffMenu(ptr.Pointer())
 	}
 }
 
-func (ptr *QMenu) ConnectHovered(f func(action QActionITF)) {
+func (ptr *QMenu) ConnectHovered(f func(action *QAction)) {
 	if ptr.Pointer() != nil {
-		C.QMenu_ConnectHovered(C.QtObjectPtr(ptr.Pointer()))
+		C.QMenu_ConnectHovered(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "hovered", f)
 	}
 }
 
 func (ptr *QMenu) DisconnectHovered() {
 	if ptr.Pointer() != nil {
-		C.QMenu_DisconnectHovered(C.QtObjectPtr(ptr.Pointer()))
+		C.QMenu_DisconnectHovered(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "hovered")
 	}
 }
 
 //export callbackQMenuHovered
 func callbackQMenuHovered(ptrName *C.char, action unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "hovered").(func(*QAction))(QActionFromPointer(action))
+	qt.GetSignal(C.GoString(ptrName), "hovered").(func(*QAction))(NewQActionFromPointer(action))
 }
 
-func (ptr *QMenu) InsertMenu(before QActionITF, menu QMenuITF) *QAction {
+func (ptr *QMenu) InsertMenu(before QAction_ITF, menu QMenu_ITF) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_InsertMenu(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAction(before)), C.QtObjectPtr(PointerFromQMenu(menu)))))
+		return NewQActionFromPointer(C.QMenu_InsertMenu(ptr.Pointer(), PointerFromQAction(before), PointerFromQMenu(menu)))
 	}
 	return nil
 }
 
-func (ptr *QMenu) InsertSection2(before QActionITF, icon gui.QIconITF, text string) *QAction {
+func (ptr *QMenu) InsertSection2(before QAction_ITF, icon gui.QIcon_ITF, text string) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_InsertSection2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAction(before)), C.QtObjectPtr(gui.PointerFromQIcon(icon)), C.CString(text))))
+		return NewQActionFromPointer(C.QMenu_InsertSection2(ptr.Pointer(), PointerFromQAction(before), gui.PointerFromQIcon(icon), C.CString(text)))
 	}
 	return nil
 }
 
-func (ptr *QMenu) InsertSection(before QActionITF, text string) *QAction {
+func (ptr *QMenu) InsertSection(before QAction_ITF, text string) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_InsertSection(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAction(before)), C.CString(text))))
+		return NewQActionFromPointer(C.QMenu_InsertSection(ptr.Pointer(), PointerFromQAction(before), C.CString(text)))
 	}
 	return nil
 }
 
-func (ptr *QMenu) InsertSeparator(before QActionITF) *QAction {
+func (ptr *QMenu) InsertSeparator(before QAction_ITF) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_InsertSeparator(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAction(before)))))
+		return NewQActionFromPointer(C.QMenu_InsertSeparator(ptr.Pointer(), PointerFromQAction(before)))
 	}
 	return nil
 }
 
 func (ptr *QMenu) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QMenu_IsEmpty(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMenu_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMenu) IsTearOffMenuVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QMenu_IsTearOffMenuVisible(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMenu_IsTearOffMenuVisible(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMenu) MenuAction() *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QMenu_MenuAction(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQActionFromPointer(C.QMenu_MenuAction(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QMenu) Popup(p core.QPointITF, atAction QActionITF) {
+func (ptr *QMenu) Popup(p core.QPoint_ITF, atAction QAction_ITF) {
 	if ptr.Pointer() != nil {
-		C.QMenu_Popup(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(p)), C.QtObjectPtr(PointerFromQAction(atAction)))
+		C.QMenu_Popup(ptr.Pointer(), core.PointerFromQPoint(p), PointerFromQAction(atAction))
 	}
 }
 
-func (ptr *QMenu) SetActiveAction(act QActionITF) {
+func (ptr *QMenu) SetActiveAction(act QAction_ITF) {
 	if ptr.Pointer() != nil {
-		C.QMenu_SetActiveAction(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAction(act)))
+		C.QMenu_SetActiveAction(ptr.Pointer(), PointerFromQAction(act))
 	}
 }
 
-func (ptr *QMenu) ConnectTriggered(f func(action QActionITF)) {
+func (ptr *QMenu) ConnectTriggered(f func(action *QAction)) {
 	if ptr.Pointer() != nil {
-		C.QMenu_ConnectTriggered(C.QtObjectPtr(ptr.Pointer()))
+		C.QMenu_ConnectTriggered(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "triggered", f)
 	}
 }
 
 func (ptr *QMenu) DisconnectTriggered() {
 	if ptr.Pointer() != nil {
-		C.QMenu_DisconnectTriggered(C.QtObjectPtr(ptr.Pointer()))
+		C.QMenu_DisconnectTriggered(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "triggered")
 	}
 }
 
 //export callbackQMenuTriggered
 func callbackQMenuTriggered(ptrName *C.char, action unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "triggered").(func(*QAction))(QActionFromPointer(action))
+	qt.GetSignal(C.GoString(ptrName), "triggered").(func(*QAction))(NewQActionFromPointer(action))
 }
 
 func (ptr *QMenu) DestroyQMenu() {
 	if ptr.Pointer() != nil {
-		C.QMenu_DestroyQMenu(C.QtObjectPtr(ptr.Pointer()))
+		C.QMenu_DestroyQMenu(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

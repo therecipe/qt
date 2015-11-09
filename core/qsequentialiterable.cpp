@@ -1,8 +1,8 @@
 #include "qsequentialiterable.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
+#include <QVariant>
 #include <QSequentialIterable>
 #include "_cgo_export.h"
 
@@ -10,15 +10,15 @@ class MyQSequentialIterable: public QSequentialIterable {
 public:
 };
 
-char* QSequentialIterable_At(QtObjectPtr ptr, int idx){
-	return static_cast<QSequentialIterable*>(ptr)->at(idx).toString().toUtf8().data();
+void* QSequentialIterable_At(void* ptr, int idx){
+	return new QVariant(static_cast<QSequentialIterable*>(ptr)->at(idx));
 }
 
-int QSequentialIterable_CanReverseIterate(QtObjectPtr ptr){
+int QSequentialIterable_CanReverseIterate(void* ptr){
 	return static_cast<QSequentialIterable*>(ptr)->canReverseIterate();
 }
 
-int QSequentialIterable_Size(QtObjectPtr ptr){
+int QSequentialIterable_Size(void* ptr){
 	return static_cast<QSequentialIterable*>(ptr)->size();
 }
 

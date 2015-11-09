@@ -1,34 +1,34 @@
 ########################################			FUNCTIONS			########################################
-&{setPriority QThread::setPriority commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.cpp non plain false false  void [0xc82072c760] }
-&{QThread QThread::QThread commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non constructor false false   [0xc82072cee0] }
-&{currentThread QThread::currentThread commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain true false  QThread * [] }
-&{event QThread::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h impure plain false false  bool [0xc82072d360] }
-&{eventDispatcher QThread::eventDispatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  QAbstractEventDispatcher * [] }
-&{exec QThread::exec commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  int [] }
-&{exit QThread::exit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  void [0xc82072d6a0] }
-&{finished QThread::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non signal false false  void [] }
-&{isFinished QThread::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  bool [] }
-&{isInterruptionRequested QThread::isInterruptionRequested commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  bool [] }
-&{isRunning QThread::isRunning commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  bool [] }
-&{loopLevel QThread::loopLevel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  int [] }
-&{priority QThread::priority commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  Priority [] }
-&{quit QThread::quit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non slot false false  void [] }
-&{requestInterruption QThread::requestInterruption commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  void [] }
-&{run QThread::run commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h impure plain false false  void [] }
-&{setEventDispatcher QThread::setEventDispatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  void [0xc820740160] }
-&{setStackSize QThread::setStackSize commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  void [0xc820740360] }
-&{stackSize QThread::stackSize commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  uint [] }
-&{started QThread::started commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non signal false false  void [] }
-&{~QThread QThread::~QThread commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non destructor false false   [] }
-&{currentThreadId QThread::currentThreadId commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  Qt::HANDLE [] }
-&{idealThreadCount QThread::idealThreadCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  int [] }
-&{msleep QThread::msleep commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  void [0xc820740940] }
-&{setTerminationEnabled QThread::setTerminationEnabled commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  void [0xc820740b40] }
-&{sleep QThread::sleep commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  void [0xc820740cc0] }
-&{start QThread::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non slot false false  void [0xc820740e40] }
-&{terminate QThread::terminate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non slot false false  void [] }
-&{usleep QThread::usleep commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  void [0xc8207410a0] }
-&{wait QThread::wait commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain false false  bool [0xc820741220] }
-&{yieldCurrentThread QThread::yieldCurrentThread commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  void [] }
+&{setPriority QThread::setPriority commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.cpp non plain false false  void void setPriority(Priority priority) [0xc82077c1c0] }
+&{QThread QThread::QThread commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non constructor false false   QThread(QObject *parent) [0xc82077c980] }
+&{currentThread QThread::currentThread commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain true false  QThread * QThread * currentThread() [] }
+&{event QThread::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h impure plain false false  bool bool event(QEvent *event) [0xc82077ce80] }
+&{eventDispatcher QThread::eventDispatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  QAbstractEventDispatcher * QAbstractEventDispatcher * eventDispatcher() const [] }
+&{exec QThread::exec commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  int int exec() [] }
+&{exit QThread::exit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  void void exit(int returnCode) [0xc82077d200] }
+&{finished QThread::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non signal false false  void void finished() [] }
+&{isFinished QThread::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  bool bool isFinished() const [] }
+&{isInterruptionRequested QThread::isInterruptionRequested commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  bool bool isInterruptionRequested() const [] }
+&{isRunning QThread::isRunning commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  bool bool isRunning() const [] }
+&{loopLevel QThread::loopLevel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  int int loopLevel() const [] }
+&{priority QThread::priority commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  Priority Priority priority() const [] }
+&{quit QThread::quit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non slot false false  void void quit() [] }
+&{requestInterruption QThread::requestInterruption commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  void void requestInterruption() [] }
+&{run QThread::run commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h impure plain false false  void void run() [] }
+&{setEventDispatcher QThread::setEventDispatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  void void setEventDispatcher(QAbstractEventDispatcher *eventDispatcher) [0xc82077de00] }
+&{setStackSize QThread::setStackSize commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  void void setStackSize(uint stackSize) [0xc820794000] }
+&{stackSize QThread::stackSize commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non plain false false  uint uint stackSize() const [] }
+&{started QThread::started commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non signal false false  void void started() [] }
+&{~QThread QThread::~QThread commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread.h non destructor false false   ~QThread() [] }
+&{currentThreadId QThread::currentThreadId commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  Qt::HANDLE Qt::HANDLE currentThreadId() [] }
+&{idealThreadCount QThread::idealThreadCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  int int idealThreadCount() [] }
+&{msleep QThread::msleep commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  void void msleep(unsigned long msecs) [0xc8207946e0] }
+&{setTerminationEnabled QThread::setTerminationEnabled commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  void void setTerminationEnabled(bool enabled) [0xc8207948e0] }
+&{sleep QThread::sleep commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  void void sleep(unsigned long secs) [0xc820794aa0] }
+&{start QThread::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non slot false false  void void start(Priority priority) [0xc820794c60] }
+&{terminate QThread::terminate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non slot false false  void void terminate() [] }
+&{usleep QThread::usleep commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  void void usleep(unsigned long usecs) [0xc820794f00] }
+&{wait QThread::wait commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain false false  bool bool wait(unsigned long time) [0xc8207950c0] }
+&{yieldCurrentThread QThread::yieldCurrentThread commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthread_win.cpp non plain true false  void void yieldCurrentThread() [] }
 ########################################			ENUMS			########################################
-&{Priority QThread::Priority commendable public  [0xc82072c960 0xc82072c9e0 0xc82072ca60 0xc82072cae0 0xc82072cb80 0xc82072cc00 0xc82072cca0 0xc82072cd60]}
+&{Priority QThread::Priority commendable public  [0xc82077c3c0 0xc82077c440 0xc82077c4c0 0xc82077c540 0xc82077c5e0 0xc82077c660 0xc82077c700 0xc82077c7c0] false}

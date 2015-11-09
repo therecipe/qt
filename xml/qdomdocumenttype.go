@@ -10,67 +10,67 @@ type QDomDocumentType struct {
 	QDomNode
 }
 
-type QDomDocumentTypeITF interface {
-	QDomNodeITF
-	QDomDocumentTypePTR() *QDomDocumentType
+type QDomDocumentType_ITF interface {
+	QDomNode_ITF
+	QDomDocumentType_PTR() *QDomDocumentType
 }
 
-func PointerFromQDomDocumentType(ptr QDomDocumentTypeITF) unsafe.Pointer {
+func PointerFromQDomDocumentType(ptr QDomDocumentType_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDomDocumentTypePTR().Pointer()
+		return ptr.QDomDocumentType_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDomDocumentTypeFromPointer(ptr unsafe.Pointer) *QDomDocumentType {
+func NewQDomDocumentTypeFromPointer(ptr unsafe.Pointer) *QDomDocumentType {
 	var n = new(QDomDocumentType)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDomDocumentType) QDomDocumentTypePTR() *QDomDocumentType {
+func (ptr *QDomDocumentType) QDomDocumentType_PTR() *QDomDocumentType {
 	return ptr
 }
 
 func NewQDomDocumentType() *QDomDocumentType {
-	return QDomDocumentTypeFromPointer(unsafe.Pointer(C.QDomDocumentType_NewQDomDocumentType()))
+	return NewQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType())
 }
 
-func NewQDomDocumentType2(n QDomDocumentTypeITF) *QDomDocumentType {
-	return QDomDocumentTypeFromPointer(unsafe.Pointer(C.QDomDocumentType_NewQDomDocumentType2(C.QtObjectPtr(PointerFromQDomDocumentType(n)))))
+func NewQDomDocumentType2(n QDomDocumentType_ITF) *QDomDocumentType {
+	return NewQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType2(PointerFromQDomDocumentType(n)))
 }
 
 func (ptr *QDomDocumentType) InternalSubset() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDomDocumentType_InternalSubset(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QDomDocumentType_InternalSubset(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDomDocumentType) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDomDocumentType_Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QDomDocumentType_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDomDocumentType) NodeType() QDomNode__NodeType {
 	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomDocumentType_NodeType(C.QtObjectPtr(ptr.Pointer())))
+		return QDomNode__NodeType(C.QDomDocumentType_NodeType(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDomDocumentType) PublicId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDomDocumentType_PublicId(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QDomDocumentType_PublicId(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDomDocumentType) SystemId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDomDocumentType_SystemId(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QDomDocumentType_SystemId(ptr.Pointer()))
 	}
 	return ""
 }

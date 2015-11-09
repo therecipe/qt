@@ -1,20 +1,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
 char* QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources();
-QtObjectPtr QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateDefaultSource(QtObjectPtr parent);
-QtObjectPtr QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(char* sourceName, QtObjectPtr parent);
-int QGeoAreaMonitorSource_Error(QtObjectPtr ptr);
-QtObjectPtr QGeoAreaMonitorSource_PositionInfoSource(QtObjectPtr ptr);
-int QGeoAreaMonitorSource_RequestUpdate(QtObjectPtr ptr, QtObjectPtr monitor, char* signal);
-void QGeoAreaMonitorSource_SetPositionInfoSource(QtObjectPtr ptr, QtObjectPtr newSource);
-char* QGeoAreaMonitorSource_SourceName(QtObjectPtr ptr);
-int QGeoAreaMonitorSource_StartMonitoring(QtObjectPtr ptr, QtObjectPtr monitor);
-int QGeoAreaMonitorSource_StopMonitoring(QtObjectPtr ptr, QtObjectPtr monitor);
-int QGeoAreaMonitorSource_SupportedAreaMonitorFeatures(QtObjectPtr ptr);
-void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(QtObjectPtr ptr);
+void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateDefaultSource(void* parent);
+void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(char* sourceName, void* parent);
+int QGeoAreaMonitorSource_Error(void* ptr);
+void* QGeoAreaMonitorSource_PositionInfoSource(void* ptr);
+int QGeoAreaMonitorSource_RequestUpdate(void* ptr, void* monitor, char* signal);
+void QGeoAreaMonitorSource_SetPositionInfoSource(void* ptr, void* newSource);
+char* QGeoAreaMonitorSource_SourceName(void* ptr);
+int QGeoAreaMonitorSource_StartMonitoring(void* ptr, void* monitor);
+int QGeoAreaMonitorSource_StopMonitoring(void* ptr, void* monitor);
+int QGeoAreaMonitorSource_SupportedAreaMonitorFeatures(void* ptr);
+void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,13 +1,13 @@
 #include "qqmlengine.h"
+#include <QString>
 #include <QObject>
+#include <QModelIndex>
 #include <QQmlImageProviderBase>
 #include <QQmlIncubationController>
 #include <QQmlNetworkAccessManagerFactory>
-#include <QString>
+#include <QQmlContext>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QQmlContext>
 #include <QQmlEngine>
 #include "_cgo_export.h"
 
@@ -16,127 +16,123 @@ public:
 void Signal_Quit(){callbackQQmlEngineQuit(this->objectName().toUtf8().data());};
 };
 
-char* QQmlEngine_OfflineStoragePath(QtObjectPtr ptr){
+char* QQmlEngine_OfflineStoragePath(void* ptr){
 	return static_cast<QQmlEngine*>(ptr)->offlineStoragePath().toUtf8().data();
 }
 
-void QQmlEngine_SetOfflineStoragePath(QtObjectPtr ptr, char* dir){
+void QQmlEngine_SetOfflineStoragePath(void* ptr, char* dir){
 	static_cast<QQmlEngine*>(ptr)->setOfflineStoragePath(QString(dir));
 }
 
-QtObjectPtr QQmlEngine_NewQQmlEngine(QtObjectPtr parent){
+void* QQmlEngine_NewQQmlEngine(void* parent){
 	return new QQmlEngine(static_cast<QObject*>(parent));
 }
 
-void QQmlEngine_AddImageProvider(QtObjectPtr ptr, char* providerId, QtObjectPtr provider){
+void QQmlEngine_AddImageProvider(void* ptr, char* providerId, void* provider){
 	static_cast<QQmlEngine*>(ptr)->addImageProvider(QString(providerId), static_cast<QQmlImageProviderBase*>(provider));
 }
 
-void QQmlEngine_AddImportPath(QtObjectPtr ptr, char* path){
+void QQmlEngine_AddImportPath(void* ptr, char* path){
 	static_cast<QQmlEngine*>(ptr)->addImportPath(QString(path));
 }
 
-void QQmlEngine_AddPluginPath(QtObjectPtr ptr, char* path){
+void QQmlEngine_AddPluginPath(void* ptr, char* path){
 	static_cast<QQmlEngine*>(ptr)->addPluginPath(QString(path));
 }
 
-char* QQmlEngine_BaseUrl(QtObjectPtr ptr){
-	return static_cast<QQmlEngine*>(ptr)->baseUrl().toString().toUtf8().data();
-}
-
-void QQmlEngine_ClearComponentCache(QtObjectPtr ptr){
+void QQmlEngine_ClearComponentCache(void* ptr){
 	static_cast<QQmlEngine*>(ptr)->clearComponentCache();
 }
 
-QtObjectPtr QQmlEngine_QQmlEngine_ContextForObject(QtObjectPtr object){
+void* QQmlEngine_QQmlEngine_ContextForObject(void* object){
 	return QQmlEngine::contextForObject(static_cast<QObject*>(object));
 }
 
-QtObjectPtr QQmlEngine_ImageProvider(QtObjectPtr ptr, char* providerId){
+void* QQmlEngine_ImageProvider(void* ptr, char* providerId){
 	return static_cast<QQmlEngine*>(ptr)->imageProvider(QString(providerId));
 }
 
-char* QQmlEngine_ImportPathList(QtObjectPtr ptr){
+char* QQmlEngine_ImportPathList(void* ptr){
 	return static_cast<QQmlEngine*>(ptr)->importPathList().join("|").toUtf8().data();
 }
 
-QtObjectPtr QQmlEngine_IncubationController(QtObjectPtr ptr){
+void* QQmlEngine_IncubationController(void* ptr){
 	return static_cast<QQmlEngine*>(ptr)->incubationController();
 }
 
-QtObjectPtr QQmlEngine_NetworkAccessManager(QtObjectPtr ptr){
+void* QQmlEngine_NetworkAccessManager(void* ptr){
 	return static_cast<QQmlEngine*>(ptr)->networkAccessManager();
 }
 
-QtObjectPtr QQmlEngine_NetworkAccessManagerFactory(QtObjectPtr ptr){
+void* QQmlEngine_NetworkAccessManagerFactory(void* ptr){
 	return static_cast<QQmlEngine*>(ptr)->networkAccessManagerFactory();
 }
 
-int QQmlEngine_QQmlEngine_ObjectOwnership(QtObjectPtr object){
+int QQmlEngine_QQmlEngine_ObjectOwnership(void* object){
 	return QQmlEngine::objectOwnership(static_cast<QObject*>(object));
 }
 
-int QQmlEngine_OutputWarningsToStandardError(QtObjectPtr ptr){
+int QQmlEngine_OutputWarningsToStandardError(void* ptr){
 	return static_cast<QQmlEngine*>(ptr)->outputWarningsToStandardError();
 }
 
-char* QQmlEngine_PluginPathList(QtObjectPtr ptr){
+char* QQmlEngine_PluginPathList(void* ptr){
 	return static_cast<QQmlEngine*>(ptr)->pluginPathList().join("|").toUtf8().data();
 }
 
-void QQmlEngine_ConnectQuit(QtObjectPtr ptr){
+void QQmlEngine_ConnectQuit(void* ptr){
 	QObject::connect(static_cast<QQmlEngine*>(ptr), static_cast<void (QQmlEngine::*)()>(&QQmlEngine::quit), static_cast<MyQQmlEngine*>(ptr), static_cast<void (MyQQmlEngine::*)()>(&MyQQmlEngine::Signal_Quit));;
 }
 
-void QQmlEngine_DisconnectQuit(QtObjectPtr ptr){
+void QQmlEngine_DisconnectQuit(void* ptr){
 	QObject::disconnect(static_cast<QQmlEngine*>(ptr), static_cast<void (QQmlEngine::*)()>(&QQmlEngine::quit), static_cast<MyQQmlEngine*>(ptr), static_cast<void (MyQQmlEngine::*)()>(&MyQQmlEngine::Signal_Quit));;
 }
 
-void QQmlEngine_RemoveImageProvider(QtObjectPtr ptr, char* providerId){
+void QQmlEngine_RemoveImageProvider(void* ptr, char* providerId){
 	static_cast<QQmlEngine*>(ptr)->removeImageProvider(QString(providerId));
 }
 
-QtObjectPtr QQmlEngine_RootContext(QtObjectPtr ptr){
+void* QQmlEngine_RootContext(void* ptr){
 	return static_cast<QQmlEngine*>(ptr)->rootContext();
 }
 
-void QQmlEngine_SetBaseUrl(QtObjectPtr ptr, char* url){
-	static_cast<QQmlEngine*>(ptr)->setBaseUrl(QUrl(QString(url)));
+void QQmlEngine_SetBaseUrl(void* ptr, void* url){
+	static_cast<QQmlEngine*>(ptr)->setBaseUrl(*static_cast<QUrl*>(url));
 }
 
-void QQmlEngine_QQmlEngine_SetContextForObject(QtObjectPtr object, QtObjectPtr context){
+void QQmlEngine_QQmlEngine_SetContextForObject(void* object, void* context){
 	QQmlEngine::setContextForObject(static_cast<QObject*>(object), static_cast<QQmlContext*>(context));
 }
 
-void QQmlEngine_SetImportPathList(QtObjectPtr ptr, char* paths){
+void QQmlEngine_SetImportPathList(void* ptr, char* paths){
 	static_cast<QQmlEngine*>(ptr)->setImportPathList(QString(paths).split("|", QString::SkipEmptyParts));
 }
 
-void QQmlEngine_SetIncubationController(QtObjectPtr ptr, QtObjectPtr controller){
+void QQmlEngine_SetIncubationController(void* ptr, void* controller){
 	static_cast<QQmlEngine*>(ptr)->setIncubationController(static_cast<QQmlIncubationController*>(controller));
 }
 
-void QQmlEngine_SetNetworkAccessManagerFactory(QtObjectPtr ptr, QtObjectPtr factory){
+void QQmlEngine_SetNetworkAccessManagerFactory(void* ptr, void* factory){
 	static_cast<QQmlEngine*>(ptr)->setNetworkAccessManagerFactory(static_cast<QQmlNetworkAccessManagerFactory*>(factory));
 }
 
-void QQmlEngine_QQmlEngine_SetObjectOwnership(QtObjectPtr object, int ownership){
+void QQmlEngine_QQmlEngine_SetObjectOwnership(void* object, int ownership){
 	QQmlEngine::setObjectOwnership(static_cast<QObject*>(object), static_cast<QQmlEngine::ObjectOwnership>(ownership));
 }
 
-void QQmlEngine_SetOutputWarningsToStandardError(QtObjectPtr ptr, int enabled){
+void QQmlEngine_SetOutputWarningsToStandardError(void* ptr, int enabled){
 	static_cast<QQmlEngine*>(ptr)->setOutputWarningsToStandardError(enabled != 0);
 }
 
-void QQmlEngine_SetPluginPathList(QtObjectPtr ptr, char* paths){
+void QQmlEngine_SetPluginPathList(void* ptr, char* paths){
 	static_cast<QQmlEngine*>(ptr)->setPluginPathList(QString(paths).split("|", QString::SkipEmptyParts));
 }
 
-void QQmlEngine_TrimComponentCache(QtObjectPtr ptr){
+void QQmlEngine_TrimComponentCache(void* ptr){
 	static_cast<QQmlEngine*>(ptr)->trimComponentCache();
 }
 
-void QQmlEngine_DestroyQQmlEngine(QtObjectPtr ptr){
+void QQmlEngine_DestroyQQmlEngine(void* ptr){
 	static_cast<QQmlEngine*>(ptr)->~QQmlEngine();
 }
 

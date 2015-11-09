@@ -1,14 +1,14 @@
 #include "qscrollprepareevent.h"
-#include <QUrl>
-#include <QSizeF>
-#include <QPoint>
-#include <QString>
-#include <QVariant>
 #include <QModelIndex>
 #include <QRect>
 #include <QRectF>
-#include <QPointF>
 #include <QSize>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QSizeF>
+#include <QPoint>
+#include <QPointF>
 #include <QScrollPrepareEvent>
 #include "_cgo_export.h"
 
@@ -16,23 +16,23 @@ class MyQScrollPrepareEvent: public QScrollPrepareEvent {
 public:
 };
 
-QtObjectPtr QScrollPrepareEvent_NewQScrollPrepareEvent(QtObjectPtr startPos){
+void* QScrollPrepareEvent_NewQScrollPrepareEvent(void* startPos){
 	return new QScrollPrepareEvent(*static_cast<QPointF*>(startPos));
 }
 
-void QScrollPrepareEvent_SetContentPos(QtObjectPtr ptr, QtObjectPtr pos){
+void QScrollPrepareEvent_SetContentPos(void* ptr, void* pos){
 	static_cast<QScrollPrepareEvent*>(ptr)->setContentPos(*static_cast<QPointF*>(pos));
 }
 
-void QScrollPrepareEvent_SetContentPosRange(QtObjectPtr ptr, QtObjectPtr rect){
+void QScrollPrepareEvent_SetContentPosRange(void* ptr, void* rect){
 	static_cast<QScrollPrepareEvent*>(ptr)->setContentPosRange(*static_cast<QRectF*>(rect));
 }
 
-void QScrollPrepareEvent_SetViewportSize(QtObjectPtr ptr, QtObjectPtr size){
+void QScrollPrepareEvent_SetViewportSize(void* ptr, void* size){
 	static_cast<QScrollPrepareEvent*>(ptr)->setViewportSize(*static_cast<QSizeF*>(size));
 }
 
-void QScrollPrepareEvent_DestroyQScrollPrepareEvent(QtObjectPtr ptr){
+void QScrollPrepareEvent_DestroyQScrollPrepareEvent(void* ptr){
 	static_cast<QScrollPrepareEvent*>(ptr)->~QScrollPrepareEvent();
 }
 

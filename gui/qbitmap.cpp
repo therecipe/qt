@@ -10,15 +10,15 @@ class MyQBitmap: public QBitmap {
 public:
 };
 
-void QBitmap_Clear(QtObjectPtr ptr){
+void QBitmap_Clear(void* ptr){
 	static_cast<QBitmap*>(ptr)->clear();
 }
 
-void QBitmap_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QBitmap_Swap(void* ptr, void* other){
 	static_cast<QBitmap*>(ptr)->swap(*static_cast<QBitmap*>(other));
 }
 
-void QBitmap_DestroyQBitmap(QtObjectPtr ptr){
+void QBitmap_DestroyQBitmap(void* ptr){
 	static_cast<QBitmap*>(ptr)->~QBitmap();
 }
 

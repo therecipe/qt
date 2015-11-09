@@ -1,21 +1,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QHostInfo_NewQHostInfo2(QtObjectPtr other);
-QtObjectPtr QHostInfo_NewQHostInfo(int id);
+void* QHostInfo_NewQHostInfo2(void* other);
+void* QHostInfo_NewQHostInfo(int id);
 void QHostInfo_QHostInfo_AbortHostLookup(int id);
-int QHostInfo_Error(QtObjectPtr ptr);
-char* QHostInfo_ErrorString(QtObjectPtr ptr);
-char* QHostInfo_HostName(QtObjectPtr ptr);
-int QHostInfo_QHostInfo_LookupHost(char* name, QtObjectPtr receiver, char* member);
-int QHostInfo_LookupId(QtObjectPtr ptr);
-void QHostInfo_SetError(QtObjectPtr ptr, int error);
-void QHostInfo_SetErrorString(QtObjectPtr ptr, char* str);
-void QHostInfo_SetHostName(QtObjectPtr ptr, char* hostName);
-void QHostInfo_SetLookupId(QtObjectPtr ptr, int id);
-void QHostInfo_DestroyQHostInfo(QtObjectPtr ptr);
+int QHostInfo_Error(void* ptr);
+char* QHostInfo_ErrorString(void* ptr);
+char* QHostInfo_HostName(void* ptr);
+int QHostInfo_QHostInfo_LookupHost(char* name, void* receiver, char* member);
+int QHostInfo_LookupId(void* ptr);
+void QHostInfo_SetError(void* ptr, int error);
+void QHostInfo_SetErrorString(void* ptr, char* str);
+void QHostInfo_SetHostName(void* ptr, char* hostName);
+void QHostInfo_SetLookupId(void* ptr, int id);
+void QHostInfo_DestroyQHostInfo(void* ptr);
 char* QHostInfo_QHostInfo_LocalHostName();
 char* QHostInfo_QHostInfo_LocalDomainName();
 

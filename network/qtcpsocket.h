@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QTcpSocket_NewQTcpSocket(QtObjectPtr parent);
-void QTcpSocket_DestroyQTcpSocket(QtObjectPtr ptr);
+void* QTcpSocket_NewQTcpSocket(void* parent);
+void QTcpSocket_DestroyQTcpSocket(void* ptr);
 
 #ifdef __cplusplus
 }

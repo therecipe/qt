@@ -1,20 +1,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QScrollArea_Alignment(QtObjectPtr ptr);
-void QScrollArea_SetAlignment(QtObjectPtr ptr, int v);
-void QScrollArea_SetWidget(QtObjectPtr ptr, QtObjectPtr widget);
-void QScrollArea_SetWidgetResizable(QtObjectPtr ptr, int resizable);
-int QScrollArea_WidgetResizable(QtObjectPtr ptr);
-QtObjectPtr QScrollArea_NewQScrollArea(QtObjectPtr parent);
-void QScrollArea_EnsureVisible(QtObjectPtr ptr, int x, int y, int xmargin, int ymargin);
-void QScrollArea_EnsureWidgetVisible(QtObjectPtr ptr, QtObjectPtr childWidget, int xmargin, int ymargin);
-int QScrollArea_FocusNextPrevChild(QtObjectPtr ptr, int next);
-QtObjectPtr QScrollArea_TakeWidget(QtObjectPtr ptr);
-QtObjectPtr QScrollArea_Widget(QtObjectPtr ptr);
-void QScrollArea_DestroyQScrollArea(QtObjectPtr ptr);
+int QScrollArea_Alignment(void* ptr);
+void QScrollArea_SetAlignment(void* ptr, int v);
+void QScrollArea_SetWidget(void* ptr, void* widget);
+void QScrollArea_SetWidgetResizable(void* ptr, int resizable);
+int QScrollArea_WidgetResizable(void* ptr);
+void* QScrollArea_NewQScrollArea(void* parent);
+void QScrollArea_EnsureVisible(void* ptr, int x, int y, int xmargin, int ymargin);
+void QScrollArea_EnsureWidgetVisible(void* ptr, void* childWidget, int xmargin, int ymargin);
+int QScrollArea_FocusNextPrevChild(void* ptr, int next);
+void* QScrollArea_TakeWidget(void* ptr);
+void* QScrollArea_Widget(void* ptr);
+void QScrollArea_DestroyQScrollArea(void* ptr);
 
 #ifdef __cplusplus
 }

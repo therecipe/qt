@@ -1,20 +1,21 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QVideoEncoderSettings_NewQVideoEncoderSettings();
-QtObjectPtr QVideoEncoderSettings_NewQVideoEncoderSettings2(QtObjectPtr other);
-int QVideoEncoderSettings_BitRate(QtObjectPtr ptr);
-char* QVideoEncoderSettings_Codec(QtObjectPtr ptr);
-char* QVideoEncoderSettings_EncodingOption(QtObjectPtr ptr, char* option);
-int QVideoEncoderSettings_IsNull(QtObjectPtr ptr);
-void QVideoEncoderSettings_SetBitRate(QtObjectPtr ptr, int value);
-void QVideoEncoderSettings_SetCodec(QtObjectPtr ptr, char* codec);
-void QVideoEncoderSettings_SetEncodingOption(QtObjectPtr ptr, char* option, char* value);
-void QVideoEncoderSettings_SetResolution(QtObjectPtr ptr, QtObjectPtr resolution);
-void QVideoEncoderSettings_SetResolution2(QtObjectPtr ptr, int width, int height);
-void QVideoEncoderSettings_DestroyQVideoEncoderSettings(QtObjectPtr ptr);
+void QVideoEncoderSettings_SetFrameRate(void* ptr, double rate);
+void* QVideoEncoderSettings_NewQVideoEncoderSettings();
+void* QVideoEncoderSettings_NewQVideoEncoderSettings2(void* other);
+int QVideoEncoderSettings_BitRate(void* ptr);
+char* QVideoEncoderSettings_Codec(void* ptr);
+void* QVideoEncoderSettings_EncodingOption(void* ptr, char* option);
+double QVideoEncoderSettings_FrameRate(void* ptr);
+int QVideoEncoderSettings_IsNull(void* ptr);
+void QVideoEncoderSettings_SetBitRate(void* ptr, int value);
+void QVideoEncoderSettings_SetCodec(void* ptr, char* codec);
+void QVideoEncoderSettings_SetEncodingOption(void* ptr, char* option, void* value);
+void QVideoEncoderSettings_SetResolution(void* ptr, void* resolution);
+void QVideoEncoderSettings_SetResolution2(void* ptr, int width, int height);
+void QVideoEncoderSettings_DestroyQVideoEncoderSettings(void* ptr);
 
 #ifdef __cplusplus
 }

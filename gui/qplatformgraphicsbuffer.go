@@ -12,35 +12,35 @@ type QPlatformGraphicsBuffer struct {
 	core.QObject
 }
 
-type QPlatformGraphicsBufferITF interface {
-	core.QObjectITF
-	QPlatformGraphicsBufferPTR() *QPlatformGraphicsBuffer
+type QPlatformGraphicsBuffer_ITF interface {
+	core.QObject_ITF
+	QPlatformGraphicsBuffer_PTR() *QPlatformGraphicsBuffer
 }
 
-func PointerFromQPlatformGraphicsBuffer(ptr QPlatformGraphicsBufferITF) unsafe.Pointer {
+func PointerFromQPlatformGraphicsBuffer(ptr QPlatformGraphicsBuffer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlatformGraphicsBufferPTR().Pointer()
+		return ptr.QPlatformGraphicsBuffer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlatformGraphicsBufferFromPointer(ptr unsafe.Pointer) *QPlatformGraphicsBuffer {
+func NewQPlatformGraphicsBufferFromPointer(ptr unsafe.Pointer) *QPlatformGraphicsBuffer {
 	var n = new(QPlatformGraphicsBuffer)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QPlatformGraphicsBuffer_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QPlatformGraphicsBuffer) QPlatformGraphicsBufferPTR() *QPlatformGraphicsBuffer {
+func (ptr *QPlatformGraphicsBuffer) QPlatformGraphicsBuffer_PTR() *QPlatformGraphicsBuffer {
 	return ptr
 }
 
 //QPlatformGraphicsBuffer::AccessType
-type QPlatformGraphicsBuffer__AccessType int
+type QPlatformGraphicsBuffer__AccessType int64
 
-var (
+const (
 	QPlatformGraphicsBuffer__None          = QPlatformGraphicsBuffer__AccessType(0x00)
 	QPlatformGraphicsBuffer__SWReadAccess  = QPlatformGraphicsBuffer__AccessType(0x01)
 	QPlatformGraphicsBuffer__SWWriteAccess = QPlatformGraphicsBuffer__AccessType(0x02)
@@ -49,9 +49,9 @@ var (
 )
 
 //QPlatformGraphicsBuffer::Origin
-type QPlatformGraphicsBuffer__Origin int
+type QPlatformGraphicsBuffer__Origin int64
 
-var (
+const (
 	QPlatformGraphicsBuffer__OriginBottomLeft = QPlatformGraphicsBuffer__Origin(0)
 	QPlatformGraphicsBuffer__OriginTopLeft    = QPlatformGraphicsBuffer__Origin(1)
 )

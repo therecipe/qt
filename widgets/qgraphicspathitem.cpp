@@ -1,17 +1,17 @@
 #include "qgraphicspathitem.h"
-#include <QStyleOptionGraphicsItem>
-#include <QStyle>
+#include <QUrl>
+#include <QGraphicsItem>
+#include <QPainter>
+#include <QStyleOption>
+#include <QPoint>
 #include <QPainterPath>
+#include <QStyle>
+#include <QString>
 #include <QVariant>
 #include <QModelIndex>
-#include <QStyleOption>
-#include <QPointF>
-#include <QGraphicsItem>
-#include <QPoint>
-#include <QString>
-#include <QUrl>
 #include <QWidget>
-#include <QPainter>
+#include <QStyleOptionGraphicsItem>
+#include <QPointF>
 #include <QGraphicsPathItem>
 #include "_cgo_export.h"
 
@@ -19,27 +19,27 @@ class MyQGraphicsPathItem: public QGraphicsPathItem {
 public:
 };
 
-int QGraphicsPathItem_Contains(QtObjectPtr ptr, QtObjectPtr point){
+int QGraphicsPathItem_Contains(void* ptr, void* point){
 	return static_cast<QGraphicsPathItem*>(ptr)->contains(*static_cast<QPointF*>(point));
 }
 
-int QGraphicsPathItem_IsObscuredBy(QtObjectPtr ptr, QtObjectPtr item){
+int QGraphicsPathItem_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QGraphicsPathItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
 }
 
-void QGraphicsPathItem_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr widget){
+void QGraphicsPathItem_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<QGraphicsPathItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
 
-void QGraphicsPathItem_SetPath(QtObjectPtr ptr, QtObjectPtr path){
+void QGraphicsPathItem_SetPath(void* ptr, void* path){
 	static_cast<QGraphicsPathItem*>(ptr)->setPath(*static_cast<QPainterPath*>(path));
 }
 
-int QGraphicsPathItem_Type(QtObjectPtr ptr){
+int QGraphicsPathItem_Type(void* ptr){
 	return static_cast<QGraphicsPathItem*>(ptr)->type();
 }
 
-void QGraphicsPathItem_DestroyQGraphicsPathItem(QtObjectPtr ptr){
+void QGraphicsPathItem_DestroyQGraphicsPathItem(void* ptr){
 	static_cast<QGraphicsPathItem*>(ptr)->~QGraphicsPathItem();
 }
 

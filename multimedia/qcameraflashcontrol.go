@@ -11,48 +11,48 @@ type QCameraFlashControl struct {
 	QMediaControl
 }
 
-type QCameraFlashControlITF interface {
-	QMediaControlITF
-	QCameraFlashControlPTR() *QCameraFlashControl
+type QCameraFlashControl_ITF interface {
+	QMediaControl_ITF
+	QCameraFlashControl_PTR() *QCameraFlashControl
 }
 
-func PointerFromQCameraFlashControl(ptr QCameraFlashControlITF) unsafe.Pointer {
+func PointerFromQCameraFlashControl(ptr QCameraFlashControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCameraFlashControlPTR().Pointer()
+		return ptr.QCameraFlashControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCameraFlashControlFromPointer(ptr unsafe.Pointer) *QCameraFlashControl {
+func NewQCameraFlashControlFromPointer(ptr unsafe.Pointer) *QCameraFlashControl {
 	var n = new(QCameraFlashControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCameraFlashControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCameraFlashControl) QCameraFlashControlPTR() *QCameraFlashControl {
+func (ptr *QCameraFlashControl) QCameraFlashControl_PTR() *QCameraFlashControl {
 	return ptr
 }
 
 func (ptr *QCameraFlashControl) FlashMode() QCameraExposure__FlashMode {
 	if ptr.Pointer() != nil {
-		return QCameraExposure__FlashMode(C.QCameraFlashControl_FlashMode(C.QtObjectPtr(ptr.Pointer())))
+		return QCameraExposure__FlashMode(C.QCameraFlashControl_FlashMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QCameraFlashControl) ConnectFlashReady(f func(ready bool)) {
 	if ptr.Pointer() != nil {
-		C.QCameraFlashControl_ConnectFlashReady(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraFlashControl_ConnectFlashReady(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "flashReady", f)
 	}
 }
 
 func (ptr *QCameraFlashControl) DisconnectFlashReady() {
 	if ptr.Pointer() != nil {
-		C.QCameraFlashControl_DisconnectFlashReady(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraFlashControl_DisconnectFlashReady(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "flashReady")
 	}
 }
@@ -64,27 +64,27 @@ func callbackQCameraFlashControlFlashReady(ptrName *C.char, ready C.int) {
 
 func (ptr *QCameraFlashControl) IsFlashModeSupported(mode QCameraExposure__FlashMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFlashControl_IsFlashModeSupported(C.QtObjectPtr(ptr.Pointer()), C.int(mode)) != 0
+		return C.QCameraFlashControl_IsFlashModeSupported(ptr.Pointer(), C.int(mode)) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraFlashControl) IsFlashReady() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraFlashControl_IsFlashReady(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QCameraFlashControl_IsFlashReady(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraFlashControl) SetFlashMode(mode QCameraExposure__FlashMode) {
 	if ptr.Pointer() != nil {
-		C.QCameraFlashControl_SetFlashMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QCameraFlashControl_SetFlashMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QCameraFlashControl) DestroyQCameraFlashControl() {
 	if ptr.Pointer() != nil {
-		C.QCameraFlashControl_DestroyQCameraFlashControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraFlashControl_DestroyQCameraFlashControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

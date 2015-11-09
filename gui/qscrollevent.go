@@ -11,50 +11,50 @@ type QScrollEvent struct {
 	core.QEvent
 }
 
-type QScrollEventITF interface {
-	core.QEventITF
-	QScrollEventPTR() *QScrollEvent
+type QScrollEvent_ITF interface {
+	core.QEvent_ITF
+	QScrollEvent_PTR() *QScrollEvent
 }
 
-func PointerFromQScrollEvent(ptr QScrollEventITF) unsafe.Pointer {
+func PointerFromQScrollEvent(ptr QScrollEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScrollEventPTR().Pointer()
+		return ptr.QScrollEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScrollEventFromPointer(ptr unsafe.Pointer) *QScrollEvent {
+func NewQScrollEventFromPointer(ptr unsafe.Pointer) *QScrollEvent {
 	var n = new(QScrollEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QScrollEvent) QScrollEventPTR() *QScrollEvent {
+func (ptr *QScrollEvent) QScrollEvent_PTR() *QScrollEvent {
 	return ptr
 }
 
 //QScrollEvent::ScrollState
-type QScrollEvent__ScrollState int
+type QScrollEvent__ScrollState int64
 
-var (
+const (
 	QScrollEvent__ScrollStarted  = QScrollEvent__ScrollState(0)
 	QScrollEvent__ScrollUpdated  = QScrollEvent__ScrollState(1)
 	QScrollEvent__ScrollFinished = QScrollEvent__ScrollState(2)
 )
 
-func NewQScrollEvent(contentPos core.QPointFITF, overshootDistance core.QPointFITF, scrollState QScrollEvent__ScrollState) *QScrollEvent {
-	return QScrollEventFromPointer(unsafe.Pointer(C.QScrollEvent_NewQScrollEvent(C.QtObjectPtr(core.PointerFromQPointF(contentPos)), C.QtObjectPtr(core.PointerFromQPointF(overshootDistance)), C.int(scrollState))))
+func NewQScrollEvent(contentPos core.QPointF_ITF, overshootDistance core.QPointF_ITF, scrollState QScrollEvent__ScrollState) *QScrollEvent {
+	return NewQScrollEventFromPointer(C.QScrollEvent_NewQScrollEvent(core.PointerFromQPointF(contentPos), core.PointerFromQPointF(overshootDistance), C.int(scrollState)))
 }
 
 func (ptr *QScrollEvent) ScrollState() QScrollEvent__ScrollState {
 	if ptr.Pointer() != nil {
-		return QScrollEvent__ScrollState(C.QScrollEvent_ScrollState(C.QtObjectPtr(ptr.Pointer())))
+		return QScrollEvent__ScrollState(C.QScrollEvent_ScrollState(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QScrollEvent) DestroyQScrollEvent() {
 	if ptr.Pointer() != nil {
-		C.QScrollEvent_DestroyQScrollEvent(C.QtObjectPtr(ptr.Pointer()))
+		C.QScrollEvent_DestroyQScrollEvent(ptr.Pointer())
 	}
 }

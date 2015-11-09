@@ -11,28 +11,35 @@ type QExposeEvent struct {
 	core.QEvent
 }
 
-type QExposeEventITF interface {
-	core.QEventITF
-	QExposeEventPTR() *QExposeEvent
+type QExposeEvent_ITF interface {
+	core.QEvent_ITF
+	QExposeEvent_PTR() *QExposeEvent
 }
 
-func PointerFromQExposeEvent(ptr QExposeEventITF) unsafe.Pointer {
+func PointerFromQExposeEvent(ptr QExposeEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QExposeEventPTR().Pointer()
+		return ptr.QExposeEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QExposeEventFromPointer(ptr unsafe.Pointer) *QExposeEvent {
+func NewQExposeEventFromPointer(ptr unsafe.Pointer) *QExposeEvent {
 	var n = new(QExposeEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QExposeEvent) QExposeEventPTR() *QExposeEvent {
+func (ptr *QExposeEvent) QExposeEvent_PTR() *QExposeEvent {
 	return ptr
 }
 
-func NewQExposeEvent(exposeRegion QRegionITF) *QExposeEvent {
-	return QExposeEventFromPointer(unsafe.Pointer(C.QExposeEvent_NewQExposeEvent(C.QtObjectPtr(PointerFromQRegion(exposeRegion)))))
+func NewQExposeEvent(exposeRegion QRegion_ITF) *QExposeEvent {
+	return NewQExposeEventFromPointer(C.QExposeEvent_NewQExposeEvent(PointerFromQRegion(exposeRegion)))
+}
+
+func (ptr *QExposeEvent) Region() *QRegion {
+	if ptr.Pointer() != nil {
+		return NewQRegionFromPointer(C.QExposeEvent_Region(ptr.Pointer()))
+	}
+	return nil
 }

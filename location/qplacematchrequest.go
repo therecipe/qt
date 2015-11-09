@@ -10,8 +10,8 @@ type QPlaceMatchRequest struct {
 	ptr unsafe.Pointer
 }
 
-type QPlaceMatchRequestITF interface {
-	QPlaceMatchRequestPTR() *QPlaceMatchRequest
+type QPlaceMatchRequest_ITF interface {
+	QPlaceMatchRequest_PTR() *QPlaceMatchRequest
 }
 
 func (p *QPlaceMatchRequest) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QPlaceMatchRequest) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPlaceMatchRequest(ptr QPlaceMatchRequestITF) unsafe.Pointer {
+func PointerFromQPlaceMatchRequest(ptr QPlaceMatchRequest_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceMatchRequestPTR().Pointer()
+		return ptr.QPlaceMatchRequest_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceMatchRequestFromPointer(ptr unsafe.Pointer) *QPlaceMatchRequest {
+func NewQPlaceMatchRequestFromPointer(ptr unsafe.Pointer) *QPlaceMatchRequest {
 	var n = new(QPlaceMatchRequest)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPlaceMatchRequest) QPlaceMatchRequestPTR() *QPlaceMatchRequest {
+func (ptr *QPlaceMatchRequest) QPlaceMatchRequest_PTR() *QPlaceMatchRequest {
 	return ptr
 }

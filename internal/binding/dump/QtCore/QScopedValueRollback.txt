@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QScopedValueRollback QScopedValueRollback::QScopedValueRollback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedvaluerollback.h non constructor false false   [0xc820c24f00] }
-&{QScopedValueRollback QScopedValueRollback::QScopedValueRollback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedvaluerollback.h non constructor false true 2  [0xc820c25160 0xc820c25200] }
-&{commit QScopedValueRollback::commit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedvaluerollback.h non plain false false  void [] }
-&{~QScopedValueRollback QScopedValueRollback::~QScopedValueRollback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedvaluerollback.h non destructor false false   [] }
+&{QScopedValueRollback QScopedValueRollback::QScopedValueRollback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedvaluerollback.h non constructor false false   QScopedValueRollback(T &var) [0xc820cc30e0] }
+&{QScopedValueRollback QScopedValueRollback::QScopedValueRollback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedvaluerollback.h non constructor false true 2  QScopedValueRollback(T &var, T value) [0xc820cc3340 0xc820cc33e0] }
+&{commit QScopedValueRollback::commit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedvaluerollback.h non plain false false  void void commit() [] }
+&{~QScopedValueRollback QScopedValueRollback::~QScopedValueRollback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedvaluerollback.h non destructor false false   ~QScopedValueRollback() [] }
 ########################################			ENUMS			########################################

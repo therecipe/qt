@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{QTimerEvent QTimerEvent::QTimerEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non constructor false false   [0xc820642920] }
-&{timerId QTimerEvent::timerId commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  int [] }
+&{QTimerEvent QTimerEvent::QTimerEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non constructor false false   QTimerEvent(int timerId) [0xc820621f40] }
+&{timerId QTimerEvent::timerId commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  int int timerId() const [] }
 ########################################			ENUMS			########################################

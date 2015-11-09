@@ -10,8 +10,8 @@ type QModulesPrivate struct {
 	ptr unsafe.Pointer
 }
 
-type QModulesPrivateITF interface {
-	QModulesPrivatePTR() *QModulesPrivate
+type QModulesPrivate_ITF interface {
+	QModulesPrivate_PTR() *QModulesPrivate
 }
 
 func (p *QModulesPrivate) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QModulesPrivate) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQModulesPrivate(ptr QModulesPrivateITF) unsafe.Pointer {
+func PointerFromQModulesPrivate(ptr QModulesPrivate_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QModulesPrivatePTR().Pointer()
+		return ptr.QModulesPrivate_PTR().Pointer()
 	}
 	return nil
 }
 
-func QModulesPrivateFromPointer(ptr unsafe.Pointer) *QModulesPrivate {
+func NewQModulesPrivateFromPointer(ptr unsafe.Pointer) *QModulesPrivate {
 	var n = new(QModulesPrivate)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QModulesPrivate) QModulesPrivatePTR() *QModulesPrivate {
+func (ptr *QModulesPrivate) QModulesPrivate_PTR() *QModulesPrivate {
 	return ptr
 }
 
 //QModulesPrivate::Names
-type QModulesPrivate__Names int
+type QModulesPrivate__Names int64
 
-var (
+const (
 	QModulesPrivate__Core         = QModulesPrivate__Names(0)
 	QModulesPrivate__Gui          = QModulesPrivate__Names(1)
 	QModulesPrivate__Widgets      = QModulesPrivate__Names(2)

@@ -10,8 +10,8 @@ type QScopedPointer struct {
 	ptr unsafe.Pointer
 }
 
-type QScopedPointerITF interface {
-	QScopedPointerPTR() *QScopedPointer
+type QScopedPointer_ITF interface {
+	QScopedPointer_PTR() *QScopedPointer
 }
 
 func (p *QScopedPointer) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QScopedPointer) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQScopedPointer(ptr QScopedPointerITF) unsafe.Pointer {
+func PointerFromQScopedPointer(ptr QScopedPointer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScopedPointerPTR().Pointer()
+		return ptr.QScopedPointer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScopedPointerFromPointer(ptr unsafe.Pointer) *QScopedPointer {
+func NewQScopedPointerFromPointer(ptr unsafe.Pointer) *QScopedPointer {
 	var n = new(QScopedPointer)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QScopedPointer) QScopedPointerPTR() *QScopedPointer {
+func (ptr *QScopedPointer) QScopedPointer_PTR() *QScopedPointer {
 	return ptr
 }

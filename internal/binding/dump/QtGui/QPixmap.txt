@@ -1,57 +1,57 @@
 ########################################			FUNCTIONS			########################################
-&{QPixmap QPixmap::QPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non constructor false true 3  [0xc820aaa180 0xc820aaa200] }
-&{copy QPixmap::copy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QPixmap [0xc820aaa360] }
-&{depth QPixmap::depth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  int [] }
-&{fromImage QPixmap::fromImage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain true false  QPixmap [0xc820aaa960 0xc820aaaa60] }
-&{fromImageReader QPixmap::fromImageReader commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain true false  QPixmap [0xc820aaac80 0xc820aaad20] }
-&{height QPixmap::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  int [] }
-&{isNull QPixmap::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  bool [] }
-&{isQBitmap QPixmap::isQBitmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  bool [] }
-&{loadFromData QPixmap::loadFromData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  bool [0xc820aab740 0xc820aab7e0 0xc820aab880 0xc820aab940] }
-&{mask QPixmap::mask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QBitmap [] }
-&{rect QPixmap::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QRect [] }
-&{scaled QPixmap::scaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QPixmap [0xc820aabc80 0xc820aabd60 0xc820aabea0] }
-&{scaledToHeight QPixmap::scaledToHeight commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QPixmap [0xc820a940e0 0xc820a941e0] }
-&{scaledToWidth QPixmap::scaledToWidth commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QPixmap [0xc820a94440 0xc820a94560] }
-&{size QPixmap::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QSize [] }
-&{trueMatrix QPixmap::trueMatrix commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain true false  QTransform [0xc820a948c0 0xc820a949a0 0xc820a94a60] }
-&{width QPixmap::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  int [] }
-&{QPixmap QPixmap::QPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non constructor false false   [] }
-&{QPixmap QPixmap::QPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non constructor false true 6  [0xc820a94ec0] }
-&{QPixmap QPixmap::QPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non constructor false true 8  [0xc820a950e0] }
-&{QPixmap QPixmap::QPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non constructor false true 4  [0xc820a95300 0xc820a953a0 0xc820a95480] }
-&{QPixmap QPixmap::QPixmap commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non constructor false true 5  [0xc820a956c0] }
-&{alphaChannel QPixmap::alphaChannel compat unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  QPixmap [] }
-&{cacheKey QPixmap::cacheKey commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  qint64 [] }
-&{convertFromImage QPixmap::convertFromImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  bool [0xc820a95da0 0xc820a95e40] }
-&{copy QPixmap::copy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 QPixmap [0xc820a95fe0 0xc820a7e060 0xc820a7e0e0 0xc820a7e160] }
-&{createHeuristicMask QPixmap::createHeuristicMask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  QBitmap [0xc820a7e3e0] }
-&{createMaskFromColor QPixmap::createMaskFromColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  QBitmap [0xc820a7e600 0xc820a7e680] }
-&{defaultDepth QPixmap::defaultDepth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain true false  int [] }
-&{detach QPixmap::detach commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void [] }
-&{devicePixelRatio QPixmap::devicePixelRatio commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  qreal [] }
-&{fill QPixmap::fill commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void [0xc820a7f840] }
-&{fromImage QPixmap::fromImage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain true true 2 QPixmap [0xc820a7ff00 0xc820a7ffa0] }
-&{hasAlpha QPixmap::hasAlpha commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  bool [] }
-&{hasAlphaChannel QPixmap::hasAlphaChannel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  bool [] }
-&{load QPixmap::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  bool [0xc820a6ca00 0xc820a6cac0 0xc820a6cb80] }
-&{loadFromData QPixmap::loadFromData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 bool [0xc820a6cde0 0xc820a6cea0 0xc820a6cf40] }
-&{operator QVariant QPixmap::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false   [] }
-&{operator! QPixmap::operator! commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  bool [] }
-&{operator= QPixmap::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 QPixmap & [0xc820a6d460] }
-&{operator= QPixmap::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  QPixmap & [0xc820a6d640] }
-&{save QPixmap::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 bool [0xc820a6d800 0xc820a6d880 0xc820a6d900] }
-&{save QPixmap::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  bool [0xc820a6da80 0xc820a6db40 0xc820a6dbc0] }
-&{scaled QPixmap::scaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 QPixmap [0xc820a6dd20 0xc820a6dda0 0xc820a6de60 0xc820a6df60] }
-&{scroll QPixmap::scroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 void [0xc820a5a100 0xc820a5a180 0xc820a5a200 0xc820a5a280] }
-&{scroll QPixmap::scroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void [0xc820a5a440 0xc820a5a4c0 0xc820a5a580 0xc820a5a620 0xc820a5a6e0 0xc820a5a760 0xc820a5a7e0] }
-&{setAlphaChannel QPixmap::setAlphaChannel compat public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void [0xc820a5ab00] }
-&{setDevicePixelRatio QPixmap::setDevicePixelRatio commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void [0xc820a5adc0] }
-&{setMask QPixmap::setMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void [0xc820a5af60] }
-&{swap QPixmap::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void [0xc820a5b120] }
-&{toImage QPixmap::toImage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  QImage [] }
-&{transformed QPixmap::transformed commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 QPixmap [0xc820a5b380 0xc820a5b440] }
-&{transformed QPixmap::transformed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  QPixmap [0xc820a5b660 0xc820a5b760] }
-&{trueMatrix QPixmap::trueMatrix commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain true true 2 QMatrix [0xc820a5b960 0xc820a5b9e0 0xc820a5ba60] }
-&{~QPixmap QPixmap::~QPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non destructor false false   [] }
+&{QPixmap QPixmap::QPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non constructor false true 3  QPixmap(int width, int height) [0xc820b96560 0xc820b96620] }
+&{copy QPixmap::copy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QPixmap QPixmap copy(const QRect &rectangle) const [0xc820b967c0] }
+&{depth QPixmap::depth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  int int depth() const [] }
+&{fromImage QPixmap::fromImage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain true false  QPixmap QPixmap fromImage(const QImage &image, Qt::ImageConversionFlags flags) [0xc820b96dc0 0xc820b96e60] }
+&{fromImageReader QPixmap::fromImageReader commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain true false  QPixmap QPixmap fromImageReader(QImageReader *imageReader, Qt::ImageConversionFlags flags) [0xc820b97060 0xc820b97100] }
+&{height QPixmap::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  int int height() const [] }
+&{isNull QPixmap::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  bool bool isNull() const [] }
+&{isQBitmap QPixmap::isQBitmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  bool bool isQBitmap() const [] }
+&{loadFromData QPixmap::loadFromData commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  bool bool loadFromData(const uchar *data, uint len, const char *format, Qt::ImageConversionFlags flags) [0xc820b97a60 0xc820b97ae0 0xc820b97b60 0xc820b97c00] }
+&{mask QPixmap::mask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QBitmap QBitmap mask() const [] }
+&{rect QPixmap::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QRect QRect rect() const [] }
+&{scaled QPixmap::scaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QPixmap QPixmap scaled(const QSize &size, Qt::AspectRatioMode aspectRatioMode, Qt::TransformationMode transformMode) const [0xc820b97f60 0xc820b80020 0xc820b80120] }
+&{scaledToHeight QPixmap::scaledToHeight commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QPixmap QPixmap scaledToHeight(int height, Qt::TransformationMode mode) const [0xc820b80320 0xc820b803e0] }
+&{scaledToWidth QPixmap::scaledToWidth commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QPixmap QPixmap scaledToWidth(int width, Qt::TransformationMode mode) const [0xc820b805e0 0xc820b806a0] }
+&{size QPixmap::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  QSize QSize size() const [] }
+&{trueMatrix QPixmap::trueMatrix commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain true false  QTransform QTransform trueMatrix(const QTransform &matrix, int width, int height) [0xc820b809c0 0xc820b80a80 0xc820b80b00] }
+&{width QPixmap::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.cpp non plain false false  int int width() const [] }
+&{QPixmap QPixmap::QPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non constructor false false   QPixmap() [] }
+&{QPixmap QPixmap::QPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non constructor false true 6  QPixmap(const QPixmap &pixmap) [0xc820b80ea0] }
+&{QPixmap QPixmap::QPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non constructor false true 8  QPixmap(const QSize &size) [0xc820b810c0] }
+&{QPixmap QPixmap::QPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non constructor false true 4  QPixmap(const QString &fileName, const char *format, Qt::ImageConversionFlags flags) [0xc820b81220 0xc820b812a0 0xc820b81340] }
+&{QPixmap QPixmap::QPixmap commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non constructor false true 5  QPixmap(const char * const[] xpm) [0xc820b81500] }
+&{alphaChannel QPixmap::alphaChannel compat unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  QPixmap QPixmap alphaChannel() const [] }
+&{cacheKey QPixmap::cacheKey commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  qint64 qint64 cacheKey() const [] }
+&{convertFromImage QPixmap::convertFromImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  bool bool convertFromImage(const QImage &image, Qt::ImageConversionFlags flags) [0xc820b81c00 0xc820b81d00] }
+&{copy QPixmap::copy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 QPixmap QPixmap copy(int x, int y, int width, int height) const [0xc820b81ec0 0xc820b81f40 0xc820b81fe0 0xc820b700a0] }
+&{createHeuristicMask QPixmap::createHeuristicMask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  QBitmap QBitmap createHeuristicMask(bool clipTight) const [0xc820b70340] }
+&{createMaskFromColor QPixmap::createMaskFromColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  QBitmap QBitmap createMaskFromColor(const QColor &maskColor, Qt::MaskMode mode) const [0xc820b705c0 0xc820b70660] }
+&{defaultDepth QPixmap::defaultDepth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain true false  int int defaultDepth() [] }
+&{detach QPixmap::detach commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void void detach() [] }
+&{devicePixelRatio QPixmap::devicePixelRatio commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  qreal qreal devicePixelRatio() const [] }
+&{fill QPixmap::fill commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void void fill(const QColor &color) [0xc820b71b60] }
+&{fromImage QPixmap::fromImage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain true true 2 QPixmap QPixmap fromImage(QImage &&image, Qt::ImageConversionFlags flags) [0xc820b5e340 0xc820b5e3e0] }
+&{hasAlpha QPixmap::hasAlpha commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  bool bool hasAlpha() const [] }
+&{hasAlphaChannel QPixmap::hasAlphaChannel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  bool bool hasAlphaChannel() const [] }
+&{load QPixmap::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  bool bool load(const QString &fileName, const char *format, Qt::ImageConversionFlags flags) [0xc820b5efa0 0xc820b5f020 0xc820b5f0c0] }
+&{loadFromData QPixmap::loadFromData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 bool bool loadFromData(const QByteArray &data, const char *format, Qt::ImageConversionFlags flags) [0xc820b5f360 0xc820b5f420 0xc820b5f4c0] }
+&{operator QVariant QPixmap::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false   operator QVariant() const [] }
+&{operator! QPixmap::operator! commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  bool bool operator!() const [] }
+&{operator= QPixmap::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 QPixmap & QPixmap & operator=(QPixmap &&other) [0xc820b5fa00] }
+&{operator= QPixmap::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  QPixmap & QPixmap & operator=(const QPixmap &pixmap) [0xc820b5fc00] }
+&{save QPixmap::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 bool bool save(QIODevice *device, const char *format, int quality) const [0xc820b5fdc0 0xc820b5fe40 0xc820b5fec0] }
+&{save QPixmap::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  bool bool save(const QString &fileName, const char *format, int quality) const [0xc820b46060 0xc820b460e0 0xc820b46160] }
+&{scaled QPixmap::scaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 QPixmap QPixmap scaled(int width, int height, Qt::AspectRatioMode aspectRatioMode, Qt::TransformationMode transformMode) const [0xc820b462e0 0xc820b46380 0xc820b46440 0xc820b46560] }
+&{scroll QPixmap::scroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 void void scroll(int dx, int dy, const QRect &rect, QRegion *exposed) [0xc820b46740 0xc820b467c0 0xc820b46860 0xc820b46920] }
+&{scroll QPixmap::scroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void void scroll(int dx, int dy, int x, int y, int width, int height, QRegion *exposed) [0xc820b46aa0 0xc820b46b20 0xc820b46c00 0xc820b46c80 0xc820b46d20 0xc820b46da0 0xc820b46e40] }
+&{setAlphaChannel QPixmap::setAlphaChannel compat unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void void setAlphaChannel(const QPixmap &p) [0xc820b47160] }
+&{setDevicePixelRatio QPixmap::setDevicePixelRatio commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void void setDevicePixelRatio(qreal scaleFactor) [0xc820b473e0] }
+&{setMask QPixmap::setMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void void setMask(const QBitmap &mask) [0xc820b47560] }
+&{swap QPixmap::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  void void swap(QPixmap &other) [0xc820b47720] }
+&{toImage QPixmap::toImage commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  QImage QImage toImage() const [] }
+&{transformed QPixmap::transformed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false true 2 QPixmap QPixmap transformed(const QMatrix &matrix, Qt::TransformationMode mode) const [0xc820b47a00 0xc820b47ac0] }
+&{transformed QPixmap::transformed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain false false  QPixmap QPixmap transformed(const QTransform &transform, Qt::TransformationMode mode) const [0xc820b47d20 0xc820b47e40] }
+&{trueMatrix QPixmap::trueMatrix commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non plain true true 2 QMatrix QMatrix trueMatrix(const QMatrix &m, int w, int h) [0xc820b380a0 0xc820b38120 0xc820b381a0] }
+&{~QPixmap QPixmap::~QPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmap.h non destructor false false   ~QPixmap() [] }
 ########################################			ENUMS			########################################

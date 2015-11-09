@@ -11,8 +11,8 @@ type QHelpSearchQuery struct {
 	ptr unsafe.Pointer
 }
 
-type QHelpSearchQueryITF interface {
-	QHelpSearchQueryPTR() *QHelpSearchQuery
+type QHelpSearchQuery_ITF interface {
+	QHelpSearchQuery_PTR() *QHelpSearchQuery
 }
 
 func (p *QHelpSearchQuery) Pointer() unsafe.Pointer {
@@ -23,27 +23,27 @@ func (p *QHelpSearchQuery) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQHelpSearchQuery(ptr QHelpSearchQueryITF) unsafe.Pointer {
+func PointerFromQHelpSearchQuery(ptr QHelpSearchQuery_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHelpSearchQueryPTR().Pointer()
+		return ptr.QHelpSearchQuery_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHelpSearchQueryFromPointer(ptr unsafe.Pointer) *QHelpSearchQuery {
+func NewQHelpSearchQueryFromPointer(ptr unsafe.Pointer) *QHelpSearchQuery {
 	var n = new(QHelpSearchQuery)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QHelpSearchQuery) QHelpSearchQueryPTR() *QHelpSearchQuery {
+func (ptr *QHelpSearchQuery) QHelpSearchQuery_PTR() *QHelpSearchQuery {
 	return ptr
 }
 
 //QHelpSearchQuery::FieldName
-type QHelpSearchQuery__FieldName int
+type QHelpSearchQuery__FieldName int64
 
-var (
+const (
 	QHelpSearchQuery__DEFAULT = QHelpSearchQuery__FieldName(0)
 	QHelpSearchQuery__FUZZY   = QHelpSearchQuery__FieldName(1)
 	QHelpSearchQuery__WITHOUT = QHelpSearchQuery__FieldName(2)
@@ -53,9 +53,9 @@ var (
 )
 
 func NewQHelpSearchQuery() *QHelpSearchQuery {
-	return QHelpSearchQueryFromPointer(unsafe.Pointer(C.QHelpSearchQuery_NewQHelpSearchQuery()))
+	return NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery())
 }
 
 func NewQHelpSearchQuery2(field QHelpSearchQuery__FieldName, wordList []string) *QHelpSearchQuery {
-	return QHelpSearchQueryFromPointer(unsafe.Pointer(C.QHelpSearchQuery_NewQHelpSearchQuery2(C.int(field), C.CString(strings.Join(wordList, "|")))))
+	return NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery2(C.int(field), C.CString(strings.Join(wordList, "|"))))
 }

@@ -14,80 +14,72 @@ type QGraphicsSvgItem struct {
 	widgets.QGraphicsObject
 }
 
-type QGraphicsSvgItemITF interface {
-	widgets.QGraphicsObjectITF
-	QGraphicsSvgItemPTR() *QGraphicsSvgItem
+type QGraphicsSvgItem_ITF interface {
+	widgets.QGraphicsObject_ITF
+	QGraphicsSvgItem_PTR() *QGraphicsSvgItem
 }
 
-func PointerFromQGraphicsSvgItem(ptr QGraphicsSvgItemITF) unsafe.Pointer {
+func PointerFromQGraphicsSvgItem(ptr QGraphicsSvgItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsSvgItemPTR().Pointer()
+		return ptr.QGraphicsSvgItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsSvgItemFromPointer(ptr unsafe.Pointer) *QGraphicsSvgItem {
+func NewQGraphicsSvgItemFromPointer(ptr unsafe.Pointer) *QGraphicsSvgItem {
 	var n = new(QGraphicsSvgItem)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGraphicsSvgItem_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGraphicsSvgItem) QGraphicsSvgItemPTR() *QGraphicsSvgItem {
+func (ptr *QGraphicsSvgItem) QGraphicsSvgItem_PTR() *QGraphicsSvgItem {
 	return ptr
-}
-
-func NewQGraphicsSvgItem(parent widgets.QGraphicsItemITF) *QGraphicsSvgItem {
-	return QGraphicsSvgItemFromPointer(unsafe.Pointer(C.QGraphicsSvgItem_NewQGraphicsSvgItem(C.QtObjectPtr(widgets.PointerFromQGraphicsItem(parent)))))
-}
-
-func NewQGraphicsSvgItem2(fileName string, parent widgets.QGraphicsItemITF) *QGraphicsSvgItem {
-	return QGraphicsSvgItemFromPointer(unsafe.Pointer(C.QGraphicsSvgItem_NewQGraphicsSvgItem2(C.CString(fileName), C.QtObjectPtr(widgets.PointerFromQGraphicsItem(parent)))))
 }
 
 func (ptr *QGraphicsSvgItem) ElementId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGraphicsSvgItem_ElementId(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QGraphicsSvgItem_ElementId(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QGraphicsSvgItem) Paint(painter gui.QPainterITF, option widgets.QStyleOptionGraphicsItemITF, widget widgets.QWidgetITF) {
+func (ptr *QGraphicsSvgItem) Paint(painter gui.QPainter_ITF, option widgets.QStyleOptionGraphicsItem_ITF, widget widgets.QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSvgItem_Paint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(widgets.PointerFromQStyleOptionGraphicsItem(option)), C.QtObjectPtr(widgets.PointerFromQWidget(widget)))
+		C.QGraphicsSvgItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionGraphicsItem(option), widgets.PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QGraphicsSvgItem) Renderer() *QSvgRenderer {
 	if ptr.Pointer() != nil {
-		return QSvgRendererFromPointer(unsafe.Pointer(C.QGraphicsSvgItem_Renderer(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQSvgRendererFromPointer(C.QGraphicsSvgItem_Renderer(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QGraphicsSvgItem) SetElementId(id string) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSvgItem_SetElementId(C.QtObjectPtr(ptr.Pointer()), C.CString(id))
+		C.QGraphicsSvgItem_SetElementId(ptr.Pointer(), C.CString(id))
 	}
 }
 
-func (ptr *QGraphicsSvgItem) SetMaximumCacheSize(size core.QSizeITF) {
+func (ptr *QGraphicsSvgItem) SetMaximumCacheSize(size core.QSize_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSvgItem_SetMaximumCacheSize(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQSize(size)))
+		C.QGraphicsSvgItem_SetMaximumCacheSize(ptr.Pointer(), core.PointerFromQSize(size))
 	}
 }
 
-func (ptr *QGraphicsSvgItem) SetSharedRenderer(renderer QSvgRendererITF) {
+func (ptr *QGraphicsSvgItem) SetSharedRenderer(renderer QSvgRenderer_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSvgItem_SetSharedRenderer(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSvgRenderer(renderer)))
+		C.QGraphicsSvgItem_SetSharedRenderer(ptr.Pointer(), PointerFromQSvgRenderer(renderer))
 	}
 }
 
 func (ptr *QGraphicsSvgItem) Type() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsSvgItem_Type(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGraphicsSvgItem_Type(ptr.Pointer()))
 	}
 	return 0
 }

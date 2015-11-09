@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QJsonParseError_ErrorString(QtObjectPtr ptr);
+char* QJsonParseError_ErrorString(void* ptr);
 
 #ifdef __cplusplus
 }

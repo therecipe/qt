@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{waitForFinished QDBusPendingCallWatcher::waitForFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.cpp non plain false false  void [] }
-&{QDBusPendingCallWatcher QDBusPendingCallWatcher::QDBusPendingCallWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non constructor false false   [0xc82217d960 0xc82217da20] }
-&{finished QDBusPendingCallWatcher::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non signal false false  void [0xc82217dda0] }
-&{isFinished QDBusPendingCallWatcher::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non plain false false  bool [] }
-&{~QDBusPendingCallWatcher QDBusPendingCallWatcher::~QDBusPendingCallWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non destructor false false   [] }
+&{waitForFinished QDBusPendingCallWatcher::waitForFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.cpp non plain false false  void void waitForFinished() [] }
+&{QDBusPendingCallWatcher QDBusPendingCallWatcher::QDBusPendingCallWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non constructor false false   QDBusPendingCallWatcher(const QDBusPendingCall &call, QObject *parent) [0xc82148a600 0xc82148a6c0] }
+&{finished QDBusPendingCallWatcher::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non signal false false  void void finished(QDBusPendingCallWatcher *self) [0xc82148aa00] }
+&{isFinished QDBusPendingCallWatcher::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non plain false false  bool bool isFinished() const [] }
+&{~QDBusPendingCallWatcher QDBusPendingCallWatcher::~QDBusPendingCallWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non destructor false false   ~QDBusPendingCallWatcher() [] }
 ########################################			ENUMS			########################################

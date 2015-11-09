@@ -1,20 +1,20 @@
 ########################################			FUNCTIONS			########################################
-&{QSslKey QSslKey::QSslKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non constructor false false   [] }
-&{QSslKey QSslKey::QSslKey commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non constructor false true 3  [0xc822fe9ce0 0xc822fe9e00 0xc822fe9f60 0xc822fd00c0 0xc822fd01c0] }
-&{QSslKey QSslKey::QSslKey commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non constructor false true 4  [0xc822fd0460 0xc822fd0580] }
-&{QSslKey QSslKey::QSslKey commendable unsupported_cppEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non constructor false true 2  [0xc822fd07c0 0xc822fd0940 0xc822fd0a80 0xc822fd0be0 0xc822fd0d00] }
-&{QSslKey QSslKey::QSslKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non constructor false true 5  [0xc822fd0fe0] }
-&{algorithm QSslKey::algorithm commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  QSsl::KeyAlgorithm [] }
-&{clear QSslKey::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  void [] }
-&{handle QSslKey::handle commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  Qt::HANDLE [] }
-&{isNull QSslKey::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  bool [] }
-&{length QSslKey::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  int [] }
-&{operator!= QSslKey::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  bool [0xc822fd1900] }
-&{operator= QSslKey::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  QSslKey & [0xc822fd1c00] }
-&{operator== QSslKey::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  bool [0xc822fd1ea0] }
-&{swap QSslKey::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  void [0xc822fc0140] }
-&{toDer QSslKey::toDer commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  QByteArray [0xc822fc03e0] }
-&{toPem QSslKey::toPem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  QByteArray [0xc822fc06c0] }
-&{type QSslKey::type commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  QSsl::KeyType [] }
-&{~QSslKey QSslKey::~QSslKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non destructor false false   [] }
+&{QSslKey QSslKey::QSslKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non constructor false false   QSslKey() [] }
+&{QSslKey QSslKey::QSslKey commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non constructor false true 3  QSslKey(QIODevice *device, QSsl::KeyAlgorithm algorithm, QSsl::EncodingFormat encoding, QSsl::KeyType type, const QByteArray &passPhrase) [0xc8230f5280 0xc8230f5380 0xc8230f54e0 0xc8230f5640 0xc8230f5780] }
+&{QSslKey QSslKey::QSslKey commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non constructor false true 4  QSslKey(Qt::HANDLE handle, QSsl::KeyType type) [0xc8230f59e0 0xc8230f5ac0] }
+&{QSslKey QSslKey::QSslKey commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non constructor false true 2  QSslKey(const QByteArray &encoded, QSsl::KeyAlgorithm algorithm, QSsl::EncodingFormat encoding, QSsl::KeyType type, const QByteArray &passPhrase) [0xc8230f5d60 0xc8230f5ec0 0xc8230e0000 0xc8230e0180 0xc8230e02a0] }
+&{QSslKey QSslKey::QSslKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non constructor false true 5  QSslKey(const QSslKey &other) [0xc8230e0620] }
+&{algorithm QSslKey::algorithm commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  QSsl::KeyAlgorithm QSsl::KeyAlgorithm algorithm() const [] }
+&{clear QSslKey::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  void void clear() [] }
+&{handle QSslKey::handle commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  Qt::HANDLE Qt::HANDLE handle() const [] }
+&{isNull QSslKey::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  bool bool isNull() const [] }
+&{length QSslKey::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  int int length() const [] }
+&{operator!= QSslKey::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  bool bool operator!=(const QSslKey &other) const [0xc8230e1080] }
+&{operator= QSslKey::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  QSslKey & QSslKey & operator=(const QSslKey &other) [0xc8230e1380] }
+&{operator== QSslKey::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  bool bool operator==(const QSslKey &other) const [0xc8230e1620] }
+&{swap QSslKey::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  void void swap(QSslKey &other) [0xc8230e1940] }
+&{toDer QSslKey::toDer commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  QByteArray QByteArray toDer(const QByteArray &passPhrase) const [0xc8230e1ba0] }
+&{toPem QSslKey::toPem commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  QByteArray QByteArray toPem(const QByteArray &passPhrase) const [0xc8230e1e60] }
+&{type QSslKey::type commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non plain false false  QSsl::KeyType QSsl::KeyType type() const [] }
+&{~QSslKey QSslKey::~QSslKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/ssl/qsslkey.h non destructor false false   ~QSslKey() [] }
 ########################################			ENUMS			########################################

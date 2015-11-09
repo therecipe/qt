@@ -1,9 +1,9 @@
 #include "qambienttemperaturesensor.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
-#include <QString>
-#include <QVariant>
 #include <QAmbientTemperatureSensor>
 #include "_cgo_export.h"
 
@@ -11,15 +11,15 @@ class MyQAmbientTemperatureSensor: public QAmbientTemperatureSensor {
 public:
 };
 
-QtObjectPtr QAmbientTemperatureSensor_Reading(QtObjectPtr ptr){
+void* QAmbientTemperatureSensor_Reading(void* ptr){
 	return static_cast<QAmbientTemperatureSensor*>(ptr)->reading();
 }
 
-QtObjectPtr QAmbientTemperatureSensor_NewQAmbientTemperatureSensor(QtObjectPtr parent){
+void* QAmbientTemperatureSensor_NewQAmbientTemperatureSensor(void* parent){
 	return new QAmbientTemperatureSensor(static_cast<QObject*>(parent));
 }
 
-void QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(QtObjectPtr ptr){
+void QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(void* ptr){
 	static_cast<QAmbientTemperatureSensor*>(ptr)->~QAmbientTemperatureSensor();
 }
 

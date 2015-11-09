@@ -10,8 +10,8 @@ type QSensorChangesInterface struct {
 	ptr unsafe.Pointer
 }
 
-type QSensorChangesInterfaceITF interface {
-	QSensorChangesInterfacePTR() *QSensorChangesInterface
+type QSensorChangesInterface_ITF interface {
+	QSensorChangesInterface_PTR() *QSensorChangesInterface
 }
 
 func (p *QSensorChangesInterface) Pointer() unsafe.Pointer {
@@ -22,25 +22,25 @@ func (p *QSensorChangesInterface) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSensorChangesInterface(ptr QSensorChangesInterfaceITF) unsafe.Pointer {
+func PointerFromQSensorChangesInterface(ptr QSensorChangesInterface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSensorChangesInterfacePTR().Pointer()
+		return ptr.QSensorChangesInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSensorChangesInterfaceFromPointer(ptr unsafe.Pointer) *QSensorChangesInterface {
+func NewQSensorChangesInterfaceFromPointer(ptr unsafe.Pointer) *QSensorChangesInterface {
 	var n = new(QSensorChangesInterface)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSensorChangesInterface) QSensorChangesInterfacePTR() *QSensorChangesInterface {
+func (ptr *QSensorChangesInterface) QSensorChangesInterface_PTR() *QSensorChangesInterface {
 	return ptr
 }
 
 func (ptr *QSensorChangesInterface) SensorsChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensorChangesInterface_SensorsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensorChangesInterface_SensorsChanged(ptr.Pointer())
 	}
 }

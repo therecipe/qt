@@ -1,94 +1,94 @@
 ########################################			FUNCTIONS			########################################
-&{count QComboBox::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  int [] }
-&{currentData QComboBox::currentData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  QVariant [0xc820beb060] }
-&{currentIndex QComboBox::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  int [] }
-&{currentText QComboBox::currentText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  QString [] }
-&{duplicatesEnabled QComboBox::duplicatesEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  bool [] }
-&{hasFrame QComboBox::hasFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  bool [] }
-&{iconSize QComboBox::iconSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  QSize [] }
-&{insertPolicy QComboBox::insertPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  InsertPolicy [] }
-&{isEditable QComboBox::isEditable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  bool [] }
-&{maxCount QComboBox::maxCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  int [] }
-&{maxVisibleItems QComboBox::maxVisibleItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  int [] }
-&{minimumContentsLength QComboBox::minimumContentsLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  int [] }
-&{modelColumn QComboBox::modelColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  int [] }
-&{setCompleter QComboBox::setCompleter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void [0xc820bc8620] }
-&{setCurrentIndex QComboBox::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non slot false false  void [0xc820bc8a60] }
-&{setCurrentText QComboBox::setCurrentText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non slot false false  void [0xc820bc8e20] }
-&{setDuplicatesEnabled QComboBox::setDuplicatesEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void [0xc820bc9280] }
-&{setEditable QComboBox::setEditable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void [0xc820bc96a0] }
-&{setFrame QComboBox::setFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void [0xc820bc9ac0] }
-&{setIconSize QComboBox::setIconSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void [0xc820bc9ea0] }
-&{setInsertPolicy QComboBox::setInsertPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void [0xc820e1c1c0] }
-&{setMaxCount QComboBox::setMaxCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void [0xc820e1c560] }
-&{setMaxVisibleItems QComboBox::setMaxVisibleItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void [0xc820e1ca00] }
-&{setMinimumContentsLength QComboBox::setMinimumContentsLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void [0xc820e1cd00] }
-&{setModelColumn QComboBox::setModelColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void [0xc820e1d0a0] }
-&{setSizeAdjustPolicy QComboBox::setSizeAdjustPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void [0xc820e1d4e0] }
-&{setValidator QComboBox::setValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void [0xc820e1d7a0] }
-&{sizeAdjustPolicy QComboBox::sizeAdjustPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  SizeAdjustPolicy [] }
-&{QComboBox QComboBox::QComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non constructor false false   [0xc820b8f140] }
-&{activated QComboBox::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false true 2 void [0xc820b8ff20] }
-&{activated QComboBox::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false false  void [0xc820b56280] }
-&{addItem QComboBox::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false true 2 void [0xc820b56680 0xc820b567c0 0xc820b56960] }
-&{addItem QComboBox::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820b56ec0 0xc820b56f80] }
-&{addItems QComboBox::addItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820b574e0] }
-&{changeEvent QComboBox::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820b57ee0] }
-&{clear QComboBox::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non slot false false  void [] }
-&{clearEditText QComboBox::clearEditText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non slot false false  void [] }
-&{completer QComboBox::completer commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QCompleter * [] }
-&{contextMenuEvent QComboBox::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820b34500] }
-&{currentIndexChanged QComboBox::currentIndexChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false true 2 void [0xc820b34840] }
-&{currentIndexChanged QComboBox::currentIndexChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false false  void [0xc820b34ae0] }
-&{currentTextChanged QComboBox::currentTextChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false false  void [0xc820b34da0] }
-&{editTextChanged QComboBox::editTextChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false false  void [0xc820b35000] }
-&{event QComboBox::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  bool [0xc820b351e0] }
-&{findData QComboBox::findData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  int [0xc820b35420 0xc820b354a0 0xc820b35580] }
-&{findText QComboBox::findText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  int [0xc820b357c0 0xc820b35840] }
-&{focusInEvent QComboBox::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820b35aa0] }
-&{focusOutEvent QComboBox::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820b35ce0] }
-&{hideEvent QComboBox::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820b35f20] }
-&{hidePopup QComboBox::hidePopup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [] }
-&{highlighted QComboBox::highlighted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false true 2 void [0xc820892280] }
-&{highlighted QComboBox::highlighted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false false  void [0xc8208924e0] }
-&{initStyleOption QComboBox::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820892740] }
-&{inputMethodEvent QComboBox::inputMethodEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc8208929e0] }
-&{inputMethodQuery QComboBox::inputMethodQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  QVariant [0xc820892c80] }
-&{insertItem QComboBox::insertItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false true 2 void [0xc820892f40 0xc820892fc0 0xc820893080 0xc820893100] }
-&{insertItem QComboBox::insertItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820893340 0xc820893400 0xc820893480] }
-&{insertItems QComboBox::insertItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc8208936c0 0xc8208937a0] }
-&{insertSeparator QComboBox::insertSeparator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820893a60] }
-&{itemData QComboBox::itemData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QVariant [0xc820893c60 0xc820893d40] }
-&{itemDelegate QComboBox::itemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QAbstractItemDelegate * [] }
-&{itemIcon QComboBox::itemIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QIcon [0xc820ade100] }
-&{itemText QComboBox::itemText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QString [0xc820ade380] }
-&{keyPressEvent QComboBox::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820ade5e0] }
-&{keyReleaseEvent QComboBox::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820c162a0] }
-&{lineEdit QComboBox::lineEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QLineEdit * [] }
-&{minimumSizeHint QComboBox::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  QSize [] }
-&{model QComboBox::model commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QAbstractItemModel * [] }
-&{mousePressEvent QComboBox::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820c176a0] }
-&{mouseReleaseEvent QComboBox::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820c17d60] }
-&{paintEvent QComboBox::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820ade820] }
-&{removeItem QComboBox::removeItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820adeac0] }
-&{resizeEvent QComboBox::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820aded00] }
-&{rootModelIndex QComboBox::rootModelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QModelIndex [] }
-&{setEditText QComboBox::setEditText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non slot false false  void [0xc820adf660] }
-&{setItemData QComboBox::setItemData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820adf960 0xc820adf9e0 0xc820adfac0] }
-&{setItemDelegate QComboBox::setItemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820adfd40] }
-&{setItemIcon QComboBox::setItemIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820adffc0 0xc820acc0a0] }
-&{setItemText QComboBox::setItemText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820acc320 0xc820acc400] }
-&{setLineEdit QComboBox::setLineEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820acc6c0] }
-&{setModel QComboBox::setModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820acc940] }
-&{setRootModelIndex QComboBox::setRootModelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820accd40] }
-&{setView QComboBox::setView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void [0xc820acd060] }
-&{showEvent QComboBox::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820acd420] }
-&{showPopup QComboBox::showPopup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [] }
-&{sizeHint QComboBox::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  QSize [] }
-&{validator QComboBox::validator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  const QValidator * [] }
-&{view QComboBox::view commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QAbstractItemView * [] }
-&{wheelEvent QComboBox::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void [0xc820acdd80] }
-&{~QComboBox QComboBox::~QComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non destructor false false   [] }
+&{count QComboBox::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  int int count() const [] }
+&{currentData QComboBox::currentData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  QVariant QVariant currentData(int role) const [0xc8217be560] }
+&{currentIndex QComboBox::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  int int currentIndex() const [] }
+&{currentText QComboBox::currentText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  QString QString currentText() const [] }
+&{duplicatesEnabled QComboBox::duplicatesEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  bool bool duplicatesEnabled() const [] }
+&{hasFrame QComboBox::hasFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  bool bool hasFrame() const [] }
+&{iconSize QComboBox::iconSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  QSize QSize iconSize() const [] }
+&{insertPolicy QComboBox::insertPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  InsertPolicy InsertPolicy insertPolicy() const [] }
+&{isEditable QComboBox::isEditable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  bool bool isEditable() const [] }
+&{maxCount QComboBox::maxCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  int int maxCount() const [] }
+&{maxVisibleItems QComboBox::maxVisibleItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  int int maxVisibleItems() const [] }
+&{minimumContentsLength QComboBox::minimumContentsLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  int int minimumContentsLength() const [] }
+&{modelColumn QComboBox::modelColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  int int modelColumn() const [] }
+&{setCompleter QComboBox::setCompleter commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void void setCompleter(QCompleter *completer) [0xc8217995c0] }
+&{setCurrentIndex QComboBox::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non slot false false  void void setCurrentIndex(int index) [0xc821799d80] }
+&{setCurrentText QComboBox::setCurrentText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non slot false false  void void setCurrentText(const QString &text) [0xc8217862c0] }
+&{setDuplicatesEnabled QComboBox::setDuplicatesEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void void setDuplicatesEnabled(bool enable) [0xc8217869e0] }
+&{setEditable QComboBox::setEditable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void void setEditable(bool editable) [0xc821787120] }
+&{setFrame QComboBox::setFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void void setFrame(bool ) [0xc821787900] }
+&{setIconSize QComboBox::setIconSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void void setIconSize(const QSize &size) [0xc821787e60] }
+&{setInsertPolicy QComboBox::setInsertPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void void setInsertPolicy(InsertPolicy policy) [0xc821772400] }
+&{setMaxCount QComboBox::setMaxCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void void setMaxCount(int max) [0xc821772aa0] }
+&{setMaxVisibleItems QComboBox::setMaxVisibleItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void void setMaxVisibleItems(int maxItems) [0xc8217731a0] }
+&{setMinimumContentsLength QComboBox::setMinimumContentsLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void void setMinimumContentsLength(int characters) [0xc821773760] }
+&{setModelColumn QComboBox::setModelColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void void setModelColumn(int visibleColumn) [0xc821773be0] }
+&{setSizeAdjustPolicy QComboBox::setSizeAdjustPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void void setSizeAdjustPolicy(SizeAdjustPolicy policy) [0xc82175c200] }
+&{setValidator QComboBox::setValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  void void setValidator(const QValidator *validator) [0xc82175c6a0] }
+&{sizeAdjustPolicy QComboBox::sizeAdjustPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.cpp non plain false false  SizeAdjustPolicy SizeAdjustPolicy sizeAdjustPolicy() const [] }
+&{QComboBox QComboBox::QComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non constructor false false   QComboBox(QWidget *parent) [0xc821747020] }
+&{activated QComboBox::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false true 2 void void activated(const QString &text) [0xc821dc8020] }
+&{activated QComboBox::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false false  void void activated(int index) [0xc821dc8420] }
+&{addItem QComboBox::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false true 2 void void addItem(const QIcon &icon, const QString &text, const QVariant &userData) [0xc821dc8760 0xc821dc8880 0xc821dc8980] }
+&{addItem QComboBox::addItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void addItem(const QString &text, const QVariant &userData) [0xc821dc8d40 0xc821dc8e40] }
+&{addItems QComboBox::addItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void addItems(const QStringList &texts) [0xc821dc9220] }
+&{changeEvent QComboBox::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void changeEvent(QEvent *e) [0xc821dc9e80] }
+&{clear QComboBox::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non slot false false  void void clear() [] }
+&{clearEditText QComboBox::clearEditText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non slot false false  void void clearEditText() [] }
+&{completer QComboBox::completer commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QCompleter * QCompleter * completer() const [] }
+&{contextMenuEvent QComboBox::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void contextMenuEvent(QContextMenuEvent *e) [0xc821736c00] }
+&{currentIndexChanged QComboBox::currentIndexChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false true 2 void void currentIndexChanged(const QString &text) [0xc8217373a0] }
+&{currentIndexChanged QComboBox::currentIndexChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false false  void void currentIndexChanged(int index) [0xc8217379c0] }
+&{currentTextChanged QComboBox::currentTextChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false false  void void currentTextChanged(const QString &text) [0xc821737f40] }
+&{editTextChanged QComboBox::editTextChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false false  void void editTextChanged(const QString &text) [0xc821724380] }
+&{event QComboBox::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  bool bool event(QEvent *event) [0xc821724840] }
+&{findData QComboBox::findData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  int int findData(const QVariant &data, int role, Qt::MatchFlags flags) const [0xc821724c40 0xc821724da0 0xc821724f60] }
+&{findText QComboBox::findText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  int int findText(const QString &text, Qt::MatchFlags flags) const [0xc821725300 0xc821725460] }
+&{focusInEvent QComboBox::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void focusInEvent(QFocusEvent *e) [0xc8217258e0] }
+&{focusOutEvent QComboBox::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void focusOutEvent(QFocusEvent *e) [0xc821725d00] }
+&{hideEvent QComboBox::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void hideEvent(QHideEvent *e) [0xc8217101a0] }
+&{hidePopup QComboBox::hidePopup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void hidePopup() [] }
+&{highlighted QComboBox::highlighted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false true 2 void void highlighted(const QString &text) [0xc821710860] }
+&{highlighted QComboBox::highlighted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non signal false false  void void highlighted(int index) [0xc821710d60] }
+&{initStyleOption QComboBox::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void initStyleOption(QStyleOptionComboBox *option) const [0xc8217112a0] }
+&{inputMethodEvent QComboBox::inputMethodEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void inputMethodEvent(QInputMethodEvent *e) [0xc8217117e0] }
+&{inputMethodQuery QComboBox::inputMethodQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  QVariant QVariant inputMethodQuery(Qt::InputMethodQuery query) const [0xc821711d00] }
+&{insertItem QComboBox::insertItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false true 2 void void insertItem(int index, const QIcon &icon, const QString &text, const QVariant &userData) [0xc8216f0340 0xc8216f0580 0xc8216f0720 0xc8216f07e0] }
+&{insertItem QComboBox::insertItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void insertItem(int index, const QString &text, const QVariant &userData) [0xc8216f0c40 0xc8216f0de0 0xc8216f0ee0] }
+&{insertItems QComboBox::insertItems commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void insertItems(int index, const QStringList &list) [0xc8216f1500 0xc8216f16e0] }
+&{insertSeparator QComboBox::insertSeparator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void insertSeparator(int index) [0xc8216f1f20] }
+&{itemData QComboBox::itemData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QVariant QVariant itemData(int index, int role) const [0xc822d84260 0xc822d842e0] }
+&{itemDelegate QComboBox::itemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QAbstractItemDelegate * QAbstractItemDelegate * itemDelegate() const [] }
+&{itemIcon QComboBox::itemIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QIcon QIcon itemIcon(int index) const [0xc822d84880] }
+&{itemText QComboBox::itemText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QString QString itemText(int index) const [0xc822d84b40] }
+&{keyPressEvent QComboBox::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void keyPressEvent(QKeyEvent *e) [0xc822d84e00] }
+&{keyReleaseEvent QComboBox::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void keyReleaseEvent(QKeyEvent *e) [0xc822d85000] }
+&{lineEdit QComboBox::lineEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QLineEdit * QLineEdit * lineEdit() const [] }
+&{minimumSizeHint QComboBox::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  QSize QSize minimumSizeHint() const [] }
+&{model QComboBox::model commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QAbstractItemModel * QAbstractItemModel * model() const [] }
+&{mousePressEvent QComboBox::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void mousePressEvent(QMouseEvent *e) [0xc822d856a0] }
+&{mouseReleaseEvent QComboBox::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *e) [0xc822d85940] }
+&{paintEvent QComboBox::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void paintEvent(QPaintEvent *e) [0xc822d85c80] }
+&{removeItem QComboBox::removeItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void removeItem(int index) [0xc822d85fc0] }
+&{resizeEvent QComboBox::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void resizeEvent(QResizeEvent *e) [0xc8216d6440] }
+&{rootModelIndex QComboBox::rootModelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QModelIndex QModelIndex rootModelIndex() const [] }
+&{setEditText QComboBox::setEditText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non slot false false  void void setEditText(const QString &text) [0xc8216d74e0] }
+&{setItemData QComboBox::setItemData commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void setItemData(int index, const QVariant &value, int role) [0xc8216d78c0 0xc8216d7a20 0xc8216d7b20] }
+&{setItemDelegate QComboBox::setItemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void setItemDelegate(QAbstractItemDelegate *delegate) [0xc8216d7fc0] }
+&{setItemIcon QComboBox::setItemIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void setItemIcon(int index, const QIcon &icon) [0xc821dd23e0 0xc821dd2500] }
+&{setItemText QComboBox::setItemText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void setItemText(int index, const QString &text) [0xc821dd2900 0xc821dd2a20] }
+&{setLineEdit QComboBox::setLineEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void setLineEdit(QLineEdit *edit) [0xc821dd2d40] }
+&{setModel QComboBox::setModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void setModel(QAbstractItemModel *model) [0xc821dd3020] }
+&{setRootModelIndex QComboBox::setRootModelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void setRootModelIndex(const QModelIndex &index) [0xc821dd34e0] }
+&{setView QComboBox::setView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  void void setView(QAbstractItemView *itemView) [0xc821dd38a0] }
+&{showEvent QComboBox::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void showEvent(QShowEvent *e) [0xc821dd3d60] }
+&{showPopup QComboBox::showPopup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void showPopup() [] }
+&{sizeHint QComboBox::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  QSize QSize sizeHint() const [] }
+&{validator QComboBox::validator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  const QValidator * const QValidator * validator() const [] }
+&{view QComboBox::view commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non plain false false  QAbstractItemView * QAbstractItemView * view() const [] }
+&{wheelEvent QComboBox::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h impure plain false false  void void wheelEvent(QWheelEvent *e) [0xc8216c4c80] }
+&{~QComboBox QComboBox::~QComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcombobox.h non destructor false false   ~QComboBox() [] }
 ########################################			ENUMS			########################################
-&{InsertPolicy QComboBox::InsertPolicy commendable public  [0xc820e1dd20 0xc820e1dde0 0xc820e1dee0 0xc820e1dfc0 0xc820b8e120 0xc820b8e360 0xc820b8e540]}
-&{SizeAdjustPolicy QComboBox::SizeAdjustPolicy commendable public  [0xc820b8e840 0xc820b8e9e0 0xc820b8eb80 0xc820b8ece0]}
+&{InsertPolicy QComboBox::InsertPolicy commendable public  [0xc82175d160 0xc82175d2a0 0xc82175d360 0xc82175d560 0xc82175d780 0xc82175d9a0 0xc82175dce0] false}
+&{SizeAdjustPolicy QComboBox::SizeAdjustPolicy commendable public  [0xc8217462c0 0xc8217463e0 0xc821746700 0xc821746900] false}

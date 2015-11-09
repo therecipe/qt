@@ -1,41 +1,40 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSqlDatabase_NewQSqlDatabase();
-QtObjectPtr QSqlDatabase_NewQSqlDatabase2(QtObjectPtr other);
-void QSqlDatabase_Close(QtObjectPtr ptr);
-int QSqlDatabase_Commit(QtObjectPtr ptr);
-char* QSqlDatabase_ConnectOptions(QtObjectPtr ptr);
-char* QSqlDatabase_ConnectionName(QtObjectPtr ptr);
+void* QSqlDatabase_NewQSqlDatabase();
+void* QSqlDatabase_NewQSqlDatabase2(void* other);
+void QSqlDatabase_Close(void* ptr);
+int QSqlDatabase_Commit(void* ptr);
+char* QSqlDatabase_ConnectOptions(void* ptr);
+char* QSqlDatabase_ConnectionName(void* ptr);
 char* QSqlDatabase_QSqlDatabase_ConnectionNames();
 int QSqlDatabase_QSqlDatabase_Contains(char* connectionName);
-char* QSqlDatabase_DatabaseName(QtObjectPtr ptr);
-QtObjectPtr QSqlDatabase_Driver(QtObjectPtr ptr);
-char* QSqlDatabase_DriverName(QtObjectPtr ptr);
+char* QSqlDatabase_DatabaseName(void* ptr);
+void* QSqlDatabase_Driver(void* ptr);
+char* QSqlDatabase_DriverName(void* ptr);
 char* QSqlDatabase_QSqlDatabase_Drivers();
-char* QSqlDatabase_HostName(QtObjectPtr ptr);
+char* QSqlDatabase_HostName(void* ptr);
 int QSqlDatabase_QSqlDatabase_IsDriverAvailable(char* name);
-int QSqlDatabase_IsOpen(QtObjectPtr ptr);
-int QSqlDatabase_IsOpenError(QtObjectPtr ptr);
-int QSqlDatabase_IsValid(QtObjectPtr ptr);
-int QSqlDatabase_Open(QtObjectPtr ptr);
-int QSqlDatabase_Open2(QtObjectPtr ptr, char* user, char* password);
-char* QSqlDatabase_Password(QtObjectPtr ptr);
-int QSqlDatabase_Port(QtObjectPtr ptr);
-void QSqlDatabase_QSqlDatabase_RegisterSqlDriver(char* name, QtObjectPtr creator);
+int QSqlDatabase_IsOpen(void* ptr);
+int QSqlDatabase_IsOpenError(void* ptr);
+int QSqlDatabase_IsValid(void* ptr);
+int QSqlDatabase_Open(void* ptr);
+int QSqlDatabase_Open2(void* ptr, char* user, char* password);
+char* QSqlDatabase_Password(void* ptr);
+int QSqlDatabase_Port(void* ptr);
+void QSqlDatabase_QSqlDatabase_RegisterSqlDriver(char* name, void* creator);
 void QSqlDatabase_QSqlDatabase_RemoveDatabase(char* connectionName);
-int QSqlDatabase_Rollback(QtObjectPtr ptr);
-void QSqlDatabase_SetConnectOptions(QtObjectPtr ptr, char* options);
-void QSqlDatabase_SetDatabaseName(QtObjectPtr ptr, char* name);
-void QSqlDatabase_SetHostName(QtObjectPtr ptr, char* host);
-void QSqlDatabase_SetPassword(QtObjectPtr ptr, char* password);
-void QSqlDatabase_SetPort(QtObjectPtr ptr, int port);
-void QSqlDatabase_SetUserName(QtObjectPtr ptr, char* name);
-int QSqlDatabase_Transaction(QtObjectPtr ptr);
-char* QSqlDatabase_UserName(QtObjectPtr ptr);
-void QSqlDatabase_DestroyQSqlDatabase(QtObjectPtr ptr);
+int QSqlDatabase_Rollback(void* ptr);
+void QSqlDatabase_SetConnectOptions(void* ptr, char* options);
+void QSqlDatabase_SetDatabaseName(void* ptr, char* name);
+void QSqlDatabase_SetHostName(void* ptr, char* host);
+void QSqlDatabase_SetPassword(void* ptr, char* password);
+void QSqlDatabase_SetPort(void* ptr, int port);
+void QSqlDatabase_SetUserName(void* ptr, char* name);
+int QSqlDatabase_Transaction(void* ptr);
+char* QSqlDatabase_UserName(void* ptr);
+void QSqlDatabase_DestroyQSqlDatabase(void* ptr);
 
 #ifdef __cplusplus
 }

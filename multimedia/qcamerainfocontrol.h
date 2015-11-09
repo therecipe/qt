@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QCameraInfoControl_CameraOrientation(QtObjectPtr ptr, char* deviceName);
-int QCameraInfoControl_CameraPosition(QtObjectPtr ptr, char* deviceName);
-void QCameraInfoControl_DestroyQCameraInfoControl(QtObjectPtr ptr);
+int QCameraInfoControl_CameraOrientation(void* ptr, char* deviceName);
+int QCameraInfoControl_CameraPosition(void* ptr, char* deviceName);
+void QCameraInfoControl_DestroyQCameraInfoControl(void* ptr);
 
 #ifdef __cplusplus
 }

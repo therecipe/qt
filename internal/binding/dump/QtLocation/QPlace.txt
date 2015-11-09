@@ -1,48 +1,48 @@
 ########################################			FUNCTIONS			########################################
-&{QPlace QPlace::QPlace commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non constructor false false   [] }
-&{QPlace QPlace::QPlace commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non constructor false true 2  [0xc8223ba7a0] }
-&{appendContactDetail QPlace::appendContactDetail commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223baca0 0xc8223bae00] }
-&{attribution QPlace::attribution commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QString [] }
-&{categories QPlace::categories commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QList<QPlaceCategory> [] }
-&{contactDetails QPlace::contactDetails commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QList<QPlaceContactDetail> [0xc8223bb680] }
-&{contactTypes QPlace::contactTypes commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QStringList [] }
-&{content QPlace::content commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QPlaceContent::Collection [0xc8223bbc40] }
-&{detailsFetched QPlace::detailsFetched commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  bool [] }
-&{extendedAttribute QPlace::extendedAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QPlaceAttribute [0xc82215a120] }
-&{extendedAttributeTypes QPlace::extendedAttributeTypes commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QStringList [] }
-&{icon QPlace::icon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QPlaceIcon [] }
-&{insertContent QPlace::insertContent commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc82215a520 0xc82215a5e0] }
-&{isEmpty QPlace::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  bool [] }
-&{location QPlace::location commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QGeoLocation [] }
-&{name QPlace::name commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QString [] }
-&{operator!= QPlace::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  bool [0xc82215aa80] }
-&{operator= QPlace::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QPlace & [0xc82215acc0] }
-&{operator== QPlace::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  bool [0xc82215aea0] }
-&{placeId QPlace::placeId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QString [] }
-&{primaryEmail QPlace::primaryEmail commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QString [] }
-&{primaryFax QPlace::primaryFax commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QString [] }
-&{primaryPhone QPlace::primaryPhone commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QString [] }
-&{primaryWebsite QPlace::primaryWebsite commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QUrl [] }
-&{ratings QPlace::ratings commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QPlaceRatings [] }
-&{removeContactDetails QPlace::removeContactDetails commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc82215b6c0] }
-&{removeExtendedAttribute QPlace::removeExtendedAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc82215b900] }
-&{setAttribution QPlace::setAttribution commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc82215bb60] }
-&{setCategories QPlace::setCategories commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc82215bd60] }
-&{setCategory QPlace::setCategory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc82215bfa0] }
-&{setContactDetails QPlace::setContactDetails commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223d02e0 0xc8223d0380] }
-&{setContent QPlace::setContent commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223d0620 0xc8223d0740] }
-&{setDetailsFetched QPlace::setDetailsFetched commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223d0ae0] }
-&{setExtendedAttribute QPlace::setExtendedAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223d0f60 0xc8223d1020] }
-&{setIcon QPlace::setIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223d1320] }
-&{setLocation QPlace::setLocation commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223d1640] }
-&{setName QPlace::setName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223d1940] }
-&{setPlaceId QPlace::setPlaceId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223d1d20] }
-&{setRatings QPlace::setRatings commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223e0060] }
-&{setSupplier QPlace::setSupplier commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223e04a0] }
-&{setTotalContentCount QPlace::setTotalContentCount commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223e0860 0xc8223e0960] }
-&{setVisibility QPlace::setVisibility commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void [0xc8223e0c00] }
-&{supplier QPlace::supplier commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QPlaceSupplier [] }
-&{totalContentCount QPlace::totalContentCount commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  int [0xc8223e11e0] }
-&{visibility QPlace::visibility commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QLocation::Visibility [] }
-&{~QPlace QPlace::~QPlace commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non destructor false false   [] }
+&{QPlace QPlace::QPlace commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non constructor false false   QPlace() [] }
+&{QPlace QPlace::QPlace commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non constructor false true 2  QPlace(const QPlace &other) [0xc822355180] }
+&{appendContactDetail QPlace::appendContactDetail commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void appendContactDetail(const QString &contactType, const QPlaceContactDetail &detail) [0xc8223554c0 0xc8223556e0] }
+&{attribution QPlace::attribution commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QString QString attribution() const [] }
+&{categories QPlace::categories commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QList<QPlaceCategory> QList<QPlaceCategory> categories() const [] }
+&{contactDetails QPlace::contactDetails commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QList<QPlaceContactDetail> QList<QPlaceContactDetail> contactDetails(const QString &contactType) const [0xc8226781a0] }
+&{contactTypes QPlace::contactTypes commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QStringList QStringList contactTypes() const [] }
+&{content QPlace::content commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QPlaceContent::Collection QPlaceContent::Collection content(QPlaceContent::Type type) const [0xc822678a80] }
+&{detailsFetched QPlace::detailsFetched commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  bool bool detailsFetched() const [] }
+&{extendedAttribute QPlace::extendedAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QPlaceAttribute QPlaceAttribute extendedAttribute(const QString &attributeType) const [0xc822679220] }
+&{extendedAttributeTypes QPlace::extendedAttributeTypes commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QStringList QStringList extendedAttributeTypes() const [] }
+&{icon QPlace::icon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QPlaceIcon QPlaceIcon icon() const [] }
+&{insertContent QPlace::insertContent commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void insertContent(QPlaceContent::Type type, const QPlaceContent::Collection &content) [0xc822679920 0xc822679a80] }
+&{isEmpty QPlace::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  bool bool isEmpty() const [] }
+&{location QPlace::location commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QGeoLocation QGeoLocation location() const [] }
+&{name QPlace::name commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QString QString name() const [] }
+&{operator!= QPlace::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  bool bool operator!=(const QPlace &other) const [0xc8224c0300] }
+&{operator= QPlace::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QPlace & QPlace & operator=(const QPlace &other) [0xc8224c0720] }
+&{operator== QPlace::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  bool bool operator==(const QPlace &other) const [0xc8224c0ae0] }
+&{placeId QPlace::placeId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QString QString placeId() const [] }
+&{primaryEmail QPlace::primaryEmail commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QString QString primaryEmail() const [] }
+&{primaryFax QPlace::primaryFax commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QString QString primaryFax() const [] }
+&{primaryPhone QPlace::primaryPhone commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QString QString primaryPhone() const [] }
+&{primaryWebsite QPlace::primaryWebsite commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QUrl QUrl primaryWebsite() const [] }
+&{ratings QPlace::ratings commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QPlaceRatings QPlaceRatings ratings() const [] }
+&{removeContactDetails QPlace::removeContactDetails commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void removeContactDetails(const QString &contactType) [0xc8224c1ce0] }
+&{removeExtendedAttribute QPlace::removeExtendedAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void removeExtendedAttribute(const QString &attributeType) [0xc8224c1fe0] }
+&{setAttribution QPlace::setAttribution commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setAttribution(const QString &attribution) [0xc8221ae340] }
+&{setCategories QPlace::setCategories commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setCategories(const QList<QPlaceCategory> &categories) [0xc8221ae700] }
+&{setCategory QPlace::setCategory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setCategory(const QPlaceCategory &category) [0xc8221aed00] }
+&{setContactDetails QPlace::setContactDetails commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setContactDetails(const QString &contactType, QList<QPlaceContactDetail> details) [0xc8221af340 0xc8221af540] }
+&{setContent QPlace::setContent commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setContent(QPlaceContent::Type type, const QPlaceContent::Collection &content) [0xc8221afac0 0xc8221afc00] }
+&{setDetailsFetched QPlace::setDetailsFetched commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setDetailsFetched(bool fetched) [0xc822e38080] }
+&{setExtendedAttribute QPlace::setExtendedAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setExtendedAttribute(const QString &attributeType, const QPlaceAttribute &attribute) [0xc822e38460 0xc822e38580] }
+&{setIcon QPlace::setIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setIcon(const QPlaceIcon &icon) [0xc822e38940] }
+&{setLocation QPlace::setLocation commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setLocation(const QGeoLocation &location) [0xc822e38d40] }
+&{setName QPlace::setName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setName(const QString &name) [0xc822e390c0] }
+&{setPlaceId QPlace::setPlaceId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setPlaceId(const QString &identifier) [0xc822e393c0] }
+&{setRatings QPlace::setRatings commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setRatings(const QPlaceRatings &rating) [0xc822e397e0] }
+&{setSupplier QPlace::setSupplier commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setSupplier(const QPlaceSupplier &supplier) [0xc822e39c00] }
+&{setTotalContentCount QPlace::setTotalContentCount commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setTotalContentCount(QPlaceContent::Type type, int totalCount) [0xc8213ea0a0 0xc8213ea280] }
+&{setVisibility QPlace::setVisibility commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  void void setVisibility(QLocation::Visibility visibility) [0xc8213ea620] }
+&{supplier QPlace::supplier commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QPlaceSupplier QPlaceSupplier supplier() const [] }
+&{totalContentCount QPlace::totalContentCount commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  int int totalContentCount(QPlaceContent::Type type) const [0xc8213ead00] }
+&{visibility QPlace::visibility commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non plain false false  QLocation::Visibility QLocation::Visibility visibility() const [] }
+&{~QPlace QPlace::~QPlace commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplace.h non destructor false false   ~QPlace() [] }
 ########################################			ENUMS			########################################

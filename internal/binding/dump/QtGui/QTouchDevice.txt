@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{QTouchDevice QTouchDevice::QTouchDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non constructor false false   [] }
-&{capabilities QTouchDevice::capabilities commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  Capabilities [] }
-&{devices QTouchDevice::devices commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain true false  QList<const QTouchDevice *> [] }
-&{maximumTouchPoints QTouchDevice::maximumTouchPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  int [] }
-&{name QTouchDevice::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  QString [] }
-&{setCapabilities QTouchDevice::setCapabilities commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  void [0xc82093d800] }
-&{setMaximumTouchPoints QTouchDevice::setMaximumTouchPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  void [0xc82093d9e0] }
-&{setName QTouchDevice::setName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  void [0xc82093dba0] }
-&{setType QTouchDevice::setType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  void [0xc82093dde0] }
-&{type QTouchDevice::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  DeviceType [] }
-&{~QTouchDevice QTouchDevice::~QTouchDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non destructor false false   [] }
+&{QTouchDevice QTouchDevice::QTouchDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non constructor false false   QTouchDevice() [] }
+&{capabilities QTouchDevice::capabilities commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  Capabilities Capabilities capabilities() const [] }
+&{devices QTouchDevice::devices commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain true false  QList<const QTouchDevice *> QList<const QTouchDevice *> devices() [] }
+&{maximumTouchPoints QTouchDevice::maximumTouchPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  int int maximumTouchPoints() const [] }
+&{name QTouchDevice::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  QString QString name() const [] }
+&{setCapabilities QTouchDevice::setCapabilities commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  void void setCapabilities(Capabilities caps) [0xc8200ffae0] }
+&{setMaximumTouchPoints QTouchDevice::setMaximumTouchPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  void void setMaximumTouchPoints(int max) [0xc8200ffea0] }
+&{setName QTouchDevice::setName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  void void setName(const QString &name) [0xc8200dc200] }
+&{setType QTouchDevice::setType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  void void setType(DeviceType devType) [0xc8200dc700] }
+&{type QTouchDevice::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non plain false false  DeviceType DeviceType type() const [] }
+&{~QTouchDevice QTouchDevice::~QTouchDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qtouchdevice.h non destructor false false   ~QTouchDevice() [] }
 ########################################			ENUMS			########################################
-&{CapabilityFlag QTouchDevice::CapabilityFlag commendable public QTouchDevice::Capabilities [0xc82093c8c0 0xc82093c940 0xc82093c9c0 0xc82093ca40 0xc82093cae0 0xc82093cb80 0xc82093cc40]}
-&{DeviceType QTouchDevice::DeviceType commendable public  [0xc82093cde0 0xc82093ce80]}
+&{CapabilityFlag QTouchDevice::CapabilityFlag commendable public QTouchDevice::Capabilities [0xc820117fc0 0xc8200fe060 0xc8200fe120 0xc8200fe240 0xc8200fe340 0xc8200fe460 0xc8200fe540] false}
+&{DeviceType QTouchDevice::DeviceType commendable public  [0xc8200fe7e0 0xc8200fe960] false}

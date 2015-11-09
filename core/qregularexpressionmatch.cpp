@@ -3,6 +3,7 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QStringRef>
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 #include "_cgo_export.h"
@@ -11,79 +12,91 @@ class MyQRegularExpressionMatch: public QRegularExpressionMatch {
 public:
 };
 
-QtObjectPtr QRegularExpressionMatch_NewQRegularExpressionMatch(){
+void* QRegularExpressionMatch_NewQRegularExpressionMatch(){
 	return new QRegularExpressionMatch();
 }
 
-QtObjectPtr QRegularExpressionMatch_NewQRegularExpressionMatch2(QtObjectPtr match){
+void* QRegularExpressionMatch_NewQRegularExpressionMatch2(void* match){
 	return new QRegularExpressionMatch(*static_cast<QRegularExpressionMatch*>(match));
 }
 
-char* QRegularExpressionMatch_Captured2(QtObjectPtr ptr, char* name){
+char* QRegularExpressionMatch_Captured2(void* ptr, char* name){
 	return static_cast<QRegularExpressionMatch*>(ptr)->captured(QString(name)).toUtf8().data();
 }
 
-char* QRegularExpressionMatch_Captured(QtObjectPtr ptr, int nth){
+char* QRegularExpressionMatch_Captured(void* ptr, int nth){
 	return static_cast<QRegularExpressionMatch*>(ptr)->captured(nth).toUtf8().data();
 }
 
-int QRegularExpressionMatch_CapturedEnd2(QtObjectPtr ptr, char* name){
+int QRegularExpressionMatch_CapturedEnd2(void* ptr, char* name){
 	return static_cast<QRegularExpressionMatch*>(ptr)->capturedEnd(QString(name));
 }
 
-int QRegularExpressionMatch_CapturedEnd(QtObjectPtr ptr, int nth){
+int QRegularExpressionMatch_CapturedEnd(void* ptr, int nth){
 	return static_cast<QRegularExpressionMatch*>(ptr)->capturedEnd(nth);
 }
 
-int QRegularExpressionMatch_CapturedLength2(QtObjectPtr ptr, char* name){
+int QRegularExpressionMatch_CapturedLength2(void* ptr, char* name){
 	return static_cast<QRegularExpressionMatch*>(ptr)->capturedLength(QString(name));
 }
 
-int QRegularExpressionMatch_CapturedLength(QtObjectPtr ptr, int nth){
+int QRegularExpressionMatch_CapturedLength(void* ptr, int nth){
 	return static_cast<QRegularExpressionMatch*>(ptr)->capturedLength(nth);
 }
 
-int QRegularExpressionMatch_CapturedStart2(QtObjectPtr ptr, char* name){
+void* QRegularExpressionMatch_CapturedRef2(void* ptr, char* name){
+	return new QStringRef(static_cast<QRegularExpressionMatch*>(ptr)->capturedRef(QString(name)));
+}
+
+void* QRegularExpressionMatch_CapturedRef(void* ptr, int nth){
+	return new QStringRef(static_cast<QRegularExpressionMatch*>(ptr)->capturedRef(nth));
+}
+
+int QRegularExpressionMatch_CapturedStart2(void* ptr, char* name){
 	return static_cast<QRegularExpressionMatch*>(ptr)->capturedStart(QString(name));
 }
 
-int QRegularExpressionMatch_CapturedStart(QtObjectPtr ptr, int nth){
+int QRegularExpressionMatch_CapturedStart(void* ptr, int nth){
 	return static_cast<QRegularExpressionMatch*>(ptr)->capturedStart(nth);
 }
 
-char* QRegularExpressionMatch_CapturedTexts(QtObjectPtr ptr){
+char* QRegularExpressionMatch_CapturedTexts(void* ptr){
 	return static_cast<QRegularExpressionMatch*>(ptr)->capturedTexts().join("|").toUtf8().data();
 }
 
-int QRegularExpressionMatch_HasMatch(QtObjectPtr ptr){
+int QRegularExpressionMatch_HasMatch(void* ptr){
 	return static_cast<QRegularExpressionMatch*>(ptr)->hasMatch();
 }
 
-int QRegularExpressionMatch_HasPartialMatch(QtObjectPtr ptr){
+int QRegularExpressionMatch_HasPartialMatch(void* ptr){
 	return static_cast<QRegularExpressionMatch*>(ptr)->hasPartialMatch();
 }
 
-int QRegularExpressionMatch_IsValid(QtObjectPtr ptr){
+int QRegularExpressionMatch_IsValid(void* ptr){
 	return static_cast<QRegularExpressionMatch*>(ptr)->isValid();
 }
 
-int QRegularExpressionMatch_LastCapturedIndex(QtObjectPtr ptr){
+int QRegularExpressionMatch_LastCapturedIndex(void* ptr){
 	return static_cast<QRegularExpressionMatch*>(ptr)->lastCapturedIndex();
 }
 
-int QRegularExpressionMatch_MatchOptions(QtObjectPtr ptr){
+int QRegularExpressionMatch_MatchOptions(void* ptr){
 	return static_cast<QRegularExpressionMatch*>(ptr)->matchOptions();
 }
 
-int QRegularExpressionMatch_MatchType(QtObjectPtr ptr){
+int QRegularExpressionMatch_MatchType(void* ptr){
 	return static_cast<QRegularExpressionMatch*>(ptr)->matchType();
 }
 
-void QRegularExpressionMatch_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void* QRegularExpressionMatch_RegularExpression(void* ptr){
+	return new QRegularExpression(static_cast<QRegularExpressionMatch*>(ptr)->regularExpression());
+}
+
+void QRegularExpressionMatch_Swap(void* ptr, void* other){
 	static_cast<QRegularExpressionMatch*>(ptr)->swap(*static_cast<QRegularExpressionMatch*>(other));
 }
 
-void QRegularExpressionMatch_DestroyQRegularExpressionMatch(QtObjectPtr ptr){
+void QRegularExpressionMatch_DestroyQRegularExpressionMatch(void* ptr){
 	static_cast<QRegularExpressionMatch*>(ptr)->~QRegularExpressionMatch();
 }
 

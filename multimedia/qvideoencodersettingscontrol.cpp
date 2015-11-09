@@ -11,19 +11,19 @@ class MyQVideoEncoderSettingsControl: public QVideoEncoderSettingsControl {
 public:
 };
 
-void QVideoEncoderSettingsControl_SetVideoSettings(QtObjectPtr ptr, QtObjectPtr settings){
+void QVideoEncoderSettingsControl_SetVideoSettings(void* ptr, void* settings){
 	static_cast<QVideoEncoderSettingsControl*>(ptr)->setVideoSettings(*static_cast<QVideoEncoderSettings*>(settings));
 }
 
-char* QVideoEncoderSettingsControl_SupportedVideoCodecs(QtObjectPtr ptr){
+char* QVideoEncoderSettingsControl_SupportedVideoCodecs(void* ptr){
 	return static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedVideoCodecs().join("|").toUtf8().data();
 }
 
-char* QVideoEncoderSettingsControl_VideoCodecDescription(QtObjectPtr ptr, char* codec){
+char* QVideoEncoderSettingsControl_VideoCodecDescription(void* ptr, char* codec){
 	return static_cast<QVideoEncoderSettingsControl*>(ptr)->videoCodecDescription(QString(codec)).toUtf8().data();
 }
 
-void QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(QtObjectPtr ptr){
+void QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(void* ptr){
 	static_cast<QVideoEncoderSettingsControl*>(ptr)->~QVideoEncoderSettingsControl();
 }
 

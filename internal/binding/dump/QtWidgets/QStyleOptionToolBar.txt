@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{QStyleOptionToolBar QStyleOptionToolBar::QStyleOptionToolBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
-&{QStyleOptionToolBar QStyleOptionToolBar::QStyleOptionToolBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8213c39e0] }
+&{QStyleOptionToolBar QStyleOptionToolBar::QStyleOptionToolBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionToolBar() [] }
+&{QStyleOptionToolBar QStyleOptionToolBar::QStyleOptionToolBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionToolBar(const QStyleOptionToolBar &other) [0xc821ca4580] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionToolBar::StyleOptionType commendable public  [0xc8213c2720]}
-&{StyleOptionVersion QStyleOptionToolBar::StyleOptionVersion commendable public  [0xc8213c2ae0]}
-&{ToolBarFeature QStyleOptionToolBar::ToolBarFeature commendable public QStyleOptionToolBar::ToolBarFeatures [0xc8213c2d00 0xc8213c2e20]}
-&{ToolBarPosition QStyleOptionToolBar::ToolBarPosition commendable public  [0xc8213c30a0 0xc8213c3180 0xc8213c3280 0xc8213c3380]}
+&{StyleOptionType QStyleOptionToolBar::StyleOptionType commendable public  [0xc8221b92c0] false}
+&{StyleOptionVersion QStyleOptionToolBar::StyleOptionVersion commendable public  [0xc8221b9620] false}
+&{ToolBarFeature QStyleOptionToolBar::ToolBarFeature commendable public QStyleOptionToolBar::ToolBarFeatures [0xc8221b9920 0xc8221b99a0] false}
+&{ToolBarPosition QStyleOptionToolBar::ToolBarPosition commendable public  [0xc8221b9c80 0xc8221b9d60 0xc8221b9ea0 0xc8221b9f80] false}

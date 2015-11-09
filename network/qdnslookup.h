@@ -1,28 +1,27 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDnsLookup_NewQDnsLookup3(int ty, char* name, QtObjectPtr nameserver, QtObjectPtr parent);
-int QDnsLookup_Error(QtObjectPtr ptr);
-char* QDnsLookup_ErrorString(QtObjectPtr ptr);
-char* QDnsLookup_Name(QtObjectPtr ptr);
-void QDnsLookup_SetName(QtObjectPtr ptr, char* name);
-void QDnsLookup_SetNameserver(QtObjectPtr ptr, QtObjectPtr nameserver);
-void QDnsLookup_SetType(QtObjectPtr ptr, int v);
-int QDnsLookup_Type(QtObjectPtr ptr);
-QtObjectPtr QDnsLookup_NewQDnsLookup(QtObjectPtr parent);
-QtObjectPtr QDnsLookup_NewQDnsLookup2(int ty, char* name, QtObjectPtr parent);
-void QDnsLookup_Abort(QtObjectPtr ptr);
-void QDnsLookup_ConnectFinished(QtObjectPtr ptr);
-void QDnsLookup_DisconnectFinished(QtObjectPtr ptr);
-int QDnsLookup_IsFinished(QtObjectPtr ptr);
-void QDnsLookup_Lookup(QtObjectPtr ptr);
-void QDnsLookup_ConnectNameChanged(QtObjectPtr ptr);
-void QDnsLookup_DisconnectNameChanged(QtObjectPtr ptr);
-void QDnsLookup_ConnectTypeChanged(QtObjectPtr ptr);
-void QDnsLookup_DisconnectTypeChanged(QtObjectPtr ptr);
-void QDnsLookup_DestroyQDnsLookup(QtObjectPtr ptr);
+void* QDnsLookup_NewQDnsLookup3(int ty, char* name, void* nameserver, void* parent);
+int QDnsLookup_Error(void* ptr);
+char* QDnsLookup_ErrorString(void* ptr);
+char* QDnsLookup_Name(void* ptr);
+void QDnsLookup_SetName(void* ptr, char* name);
+void QDnsLookup_SetNameserver(void* ptr, void* nameserver);
+void QDnsLookup_SetType(void* ptr, int v);
+int QDnsLookup_Type(void* ptr);
+void* QDnsLookup_NewQDnsLookup(void* parent);
+void* QDnsLookup_NewQDnsLookup2(int ty, char* name, void* parent);
+void QDnsLookup_Abort(void* ptr);
+void QDnsLookup_ConnectFinished(void* ptr);
+void QDnsLookup_DisconnectFinished(void* ptr);
+int QDnsLookup_IsFinished(void* ptr);
+void QDnsLookup_Lookup(void* ptr);
+void QDnsLookup_ConnectNameChanged(void* ptr);
+void QDnsLookup_DisconnectNameChanged(void* ptr);
+void QDnsLookup_ConnectTypeChanged(void* ptr);
+void QDnsLookup_DisconnectTypeChanged(void* ptr);
+void QDnsLookup_DestroyQDnsLookup(void* ptr);
 
 #ifdef __cplusplus
 }

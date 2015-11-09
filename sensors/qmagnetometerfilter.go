@@ -10,31 +10,31 @@ type QMagnetometerFilter struct {
 	QSensorFilter
 }
 
-type QMagnetometerFilterITF interface {
-	QSensorFilterITF
-	QMagnetometerFilterPTR() *QMagnetometerFilter
+type QMagnetometerFilter_ITF interface {
+	QSensorFilter_ITF
+	QMagnetometerFilter_PTR() *QMagnetometerFilter
 }
 
-func PointerFromQMagnetometerFilter(ptr QMagnetometerFilterITF) unsafe.Pointer {
+func PointerFromQMagnetometerFilter(ptr QMagnetometerFilter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMagnetometerFilterPTR().Pointer()
+		return ptr.QMagnetometerFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMagnetometerFilterFromPointer(ptr unsafe.Pointer) *QMagnetometerFilter {
+func NewQMagnetometerFilterFromPointer(ptr unsafe.Pointer) *QMagnetometerFilter {
 	var n = new(QMagnetometerFilter)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMagnetometerFilter) QMagnetometerFilterPTR() *QMagnetometerFilter {
+func (ptr *QMagnetometerFilter) QMagnetometerFilter_PTR() *QMagnetometerFilter {
 	return ptr
 }
 
-func (ptr *QMagnetometerFilter) Filter(reading QMagnetometerReadingITF) bool {
+func (ptr *QMagnetometerFilter) Filter(reading QMagnetometerReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMagnetometerFilter_Filter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQMagnetometerReading(reading))) != 0
+		return C.QMagnetometerFilter_Filter(ptr.Pointer(), PointerFromQMagnetometerReading(reading)) != 0
 	}
 	return false
 }

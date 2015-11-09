@@ -1,62 +1,62 @@
 ########################################			FUNCTIONS			########################################
-&{allWindows QGuiApplication::allWindows commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  QWindowList [] }
-&{applicationDisplayName QGuiApplication::applicationDisplayName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  QString [] }
-&{applicationState QGuiApplication::applicationState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  Qt::ApplicationState [] }
-&{isSavingSession QGuiApplication::isSavingSession commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain false false  bool [] }
-&{isSessionRestored QGuiApplication::isSessionRestored commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain false false  bool [] }
-&{layoutDirection QGuiApplication::layoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  Qt::LayoutDirection [] }
-&{overrideCursor QGuiApplication::overrideCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  QCursor * [] }
-&{platformName QGuiApplication::platformName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  QString [] }
-&{queryKeyboardModifiers QGuiApplication::queryKeyboardModifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  Qt::KeyboardModifiers [] }
-&{quitOnLastWindowClosed QGuiApplication::quitOnLastWindowClosed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  bool [] }
-&{restoreOverrideCursor QGuiApplication::restoreOverrideCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  void [] }
-&{sessionId QGuiApplication::sessionId commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain false false  QString [] }
-&{sessionKey QGuiApplication::sessionKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain false false  QString [] }
-&{setApplicationDisplayName QGuiApplication::setApplicationDisplayName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  void [0xc8206a77c0] }
-&{setLayoutDirection QGuiApplication::setLayoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  void [0xc8206a7b40] }
-&{setOverrideCursor QGuiApplication::setOverrideCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  void [0xc8206a7ec0] }
-&{setQuitOnLastWindowClosed QGuiApplication::setQuitOnLastWindowClosed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  void [0xc8208e4180] }
-&{setWindowIcon QGuiApplication::setWindowIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  void [0xc8208e4360] }
-&{topLevelWindows QGuiApplication::topLevelWindows commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  QWindowList [] }
-&{windowIcon QGuiApplication::windowIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  QIcon [] }
-&{QGuiApplication QGuiApplication::QGuiApplication commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non constructor false false   [0xc8208e47e0 0xc8208e4880] }
-&{applicationStateChanged QGuiApplication::applicationStateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void [0xc8208e52a0] }
-&{changeOverrideCursor QGuiApplication::changeOverrideCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  void [0xc8208e54c0] }
-&{clipboard QGuiApplication::clipboard commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QClipboard * [] }
-&{commitDataRequest QGuiApplication::commitDataRequest commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void [0xc8208e5840] }
-&{desktopSettingsAware QGuiApplication::desktopSettingsAware commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  bool [] }
-&{devicePixelRatio QGuiApplication::devicePixelRatio commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain false false  qreal [] }
-&{event QGuiApplication::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h impure plain false false  bool [0xc8208e5ce0] }
-&{exec QGuiApplication::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  int [] }
-&{focusObject QGuiApplication::focusObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QObject * [] }
-&{focusObjectChanged QGuiApplication::focusObjectChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void [0xc82061c260] }
-&{focusWindow QGuiApplication::focusWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QWindow * [] }
-&{focusWindowChanged QGuiApplication::focusWindowChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void [0xc82061c700] }
-&{font QGuiApplication::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QFont [] }
-&{fontDatabaseChanged QGuiApplication::fontDatabaseChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void [] }
-&{inputMethod QGuiApplication::inputMethod commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QInputMethod * [] }
-&{isLeftToRight QGuiApplication::isLeftToRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  bool [] }
-&{isRightToLeft QGuiApplication::isRightToLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  bool [] }
-&{keyboardModifiers QGuiApplication::keyboardModifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  Qt::KeyboardModifiers [] }
-&{lastWindowClosed QGuiApplication::lastWindowClosed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void [] }
-&{layoutDirectionChanged QGuiApplication::layoutDirectionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void [0xc82061d4e0] }
-&{modalWindow QGuiApplication::modalWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QWindow * [] }
-&{mouseButtons QGuiApplication::mouseButtons commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  Qt::MouseButtons [] }
-&{notify QGuiApplication::notify commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h impure plain false false  bool [0xc82061daa0 0xc82061db20] }
-&{palette QGuiApplication::palette commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QPalette [] }
-&{paletteChanged QGuiApplication::paletteChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void [0xc82061df00] }
-&{platformFunction QGuiApplication::platformFunction commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QFunctionPointer [0xc8205e0180] }
-&{platformNativeInterface QGuiApplication::platformNativeInterface commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QPlatformNativeInterface * [] }
-&{primaryScreen QGuiApplication::primaryScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QScreen * [] }
-&{saveStateRequest QGuiApplication::saveStateRequest commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void [0xc8205e0980] }
-&{screenAdded QGuiApplication::screenAdded commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void [0xc8205e0e20] }
-&{screenRemoved QGuiApplication::screenRemoved commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void [0xc8205e1240] }
-&{screens QGuiApplication::screens commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QList<QScreen *> [] }
-&{setDesktopSettingsAware QGuiApplication::setDesktopSettingsAware commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  void [0xc8205e16e0] }
-&{setFont QGuiApplication::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  void [0xc8205e1b80] }
-&{setPalette QGuiApplication::setPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  void [0xc8205e1fc0] }
-&{styleHints QGuiApplication::styleHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QStyleHints * [] }
-&{sync QGuiApplication::sync commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  void [] }
-&{topLevelAt QGuiApplication::topLevelAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QWindow * [0xc8205ac820] }
-&{~QGuiApplication QGuiApplication::~QGuiApplication commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h impure destructor false false   [] }
+&{allWindows QGuiApplication::allWindows commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  QWindowList QWindowList allWindows() [] }
+&{applicationDisplayName QGuiApplication::applicationDisplayName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  QString QString applicationDisplayName() [] }
+&{applicationState QGuiApplication::applicationState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  Qt::ApplicationState Qt::ApplicationState applicationState() [] }
+&{isSavingSession QGuiApplication::isSavingSession commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain false false  bool bool isSavingSession() const [] }
+&{isSessionRestored QGuiApplication::isSessionRestored commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain false false  bool bool isSessionRestored() const [] }
+&{layoutDirection QGuiApplication::layoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  Qt::LayoutDirection Qt::LayoutDirection layoutDirection() [] }
+&{overrideCursor QGuiApplication::overrideCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  QCursor * QCursor * overrideCursor() [] }
+&{platformName QGuiApplication::platformName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  QString QString platformName() [] }
+&{queryKeyboardModifiers QGuiApplication::queryKeyboardModifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  Qt::KeyboardModifiers Qt::KeyboardModifiers queryKeyboardModifiers() [] }
+&{quitOnLastWindowClosed QGuiApplication::quitOnLastWindowClosed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  bool bool quitOnLastWindowClosed() [] }
+&{restoreOverrideCursor QGuiApplication::restoreOverrideCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  void void restoreOverrideCursor() [] }
+&{sessionId QGuiApplication::sessionId commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain false false  QString QString sessionId() const [] }
+&{sessionKey QGuiApplication::sessionKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain false false  QString QString sessionKey() const [] }
+&{setApplicationDisplayName QGuiApplication::setApplicationDisplayName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  void void setApplicationDisplayName(const QString &name) [0xc82076ac00] }
+&{setLayoutDirection QGuiApplication::setLayoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  void void setLayoutDirection(Qt::LayoutDirection direction) [0xc82076aee0] }
+&{setOverrideCursor QGuiApplication::setOverrideCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  void void setOverrideCursor(const QCursor &cursor) [0xc82076b300] }
+&{setQuitOnLastWindowClosed QGuiApplication::setQuitOnLastWindowClosed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  void void setQuitOnLastWindowClosed(bool quit) [0xc82076b720] }
+&{setWindowIcon QGuiApplication::setWindowIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  void void setWindowIcon(const QIcon &icon) [0xc82076ba40] }
+&{topLevelWindows QGuiApplication::topLevelWindows commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  QWindowList QWindowList topLevelWindows() [] }
+&{windowIcon QGuiApplication::windowIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.cpp non plain true false  QIcon QIcon windowIcon() [] }
+&{QGuiApplication QGuiApplication::QGuiApplication commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non constructor false false   QGuiApplication(int &argc, char **argv) [0xc820754100 0xc820754240] }
+&{applicationStateChanged QGuiApplication::applicationStateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void void applicationStateChanged(Qt::ApplicationState state) [0xc820755300] }
+&{changeOverrideCursor QGuiApplication::changeOverrideCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  void void changeOverrideCursor(const QCursor &cursor) [0xc820755680] }
+&{clipboard QGuiApplication::clipboard commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QClipboard * QClipboard * clipboard() [] }
+&{commitDataRequest QGuiApplication::commitDataRequest commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void void commitDataRequest(QSessionManager &manager) [0xc820755d40] }
+&{desktopSettingsAware QGuiApplication::desktopSettingsAware commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  bool bool desktopSettingsAware() [] }
+&{devicePixelRatio QGuiApplication::devicePixelRatio commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain false false  qreal qreal devicePixelRatio() const [] }
+&{event QGuiApplication::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h impure plain false false  bool bool event(QEvent *e) [0xc820742620] }
+&{exec QGuiApplication::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  int int exec() [] }
+&{focusObject QGuiApplication::focusObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QObject * QObject * focusObject() [] }
+&{focusObjectChanged QGuiApplication::focusObjectChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void void focusObjectChanged(QObject *focusObject) [0xc820742ec0] }
+&{focusWindow QGuiApplication::focusWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QWindow * QWindow * focusWindow() [] }
+&{focusWindowChanged QGuiApplication::focusWindowChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void void focusWindowChanged(QWindow *focusWindow) [0xc820743560] }
+&{font QGuiApplication::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QFont QFont font() [] }
+&{fontDatabaseChanged QGuiApplication::fontDatabaseChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void void fontDatabaseChanged() [] }
+&{inputMethod QGuiApplication::inputMethod commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QInputMethod * QInputMethod * inputMethod() [] }
+&{isLeftToRight QGuiApplication::isLeftToRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  bool bool isLeftToRight() [] }
+&{isRightToLeft QGuiApplication::isRightToLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  bool bool isRightToLeft() [] }
+&{keyboardModifiers QGuiApplication::keyboardModifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  Qt::KeyboardModifiers Qt::KeyboardModifiers keyboardModifiers() [] }
+&{lastWindowClosed QGuiApplication::lastWindowClosed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void void lastWindowClosed() [] }
+&{layoutDirectionChanged QGuiApplication::layoutDirectionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void void layoutDirectionChanged(Qt::LayoutDirection direction) [0xc82072c9a0] }
+&{modalWindow QGuiApplication::modalWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QWindow * QWindow * modalWindow() [] }
+&{mouseButtons QGuiApplication::mouseButtons commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  Qt::MouseButtons Qt::MouseButtons mouseButtons() [] }
+&{notify QGuiApplication::notify commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h impure plain false false  bool bool notify(QObject *object, QEvent *event) [0xc82072d1a0 0xc82072d260] }
+&{palette QGuiApplication::palette commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QPalette QPalette palette() [] }
+&{paletteChanged QGuiApplication::paletteChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void void paletteChanged(const QPalette &palette) [0xc82072d840] }
+&{platformFunction QGuiApplication::platformFunction commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QFunctionPointer QFunctionPointer platformFunction(const QByteArray &function) [0xc82072da20] }
+&{platformNativeInterface QGuiApplication::platformNativeInterface commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QPlatformNativeInterface * QPlatformNativeInterface * platformNativeInterface() [] }
+&{primaryScreen QGuiApplication::primaryScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QScreen * QScreen * primaryScreen() [] }
+&{saveStateRequest QGuiApplication::saveStateRequest commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void void saveStateRequest(QSessionManager &manager) [0xc820ab8160] }
+&{screenAdded QGuiApplication::screenAdded commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void void screenAdded(QScreen *screen) [0xc820ab8380] }
+&{screenRemoved QGuiApplication::screenRemoved commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non signal false false  void void screenRemoved(QScreen *screen) [0xc820ab8540] }
+&{screens QGuiApplication::screens commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QList<QScreen *> QList<QScreen *> screens() [] }
+&{setDesktopSettingsAware QGuiApplication::setDesktopSettingsAware commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  void void setDesktopSettingsAware(bool on) [0xc820ab8920] }
+&{setFont QGuiApplication::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  void void setFont(const QFont &font) [0xc820ab8ba0] }
+&{setPalette QGuiApplication::setPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  void void setPalette(const QPalette &pal) [0xc820ab8d80] }
+&{styleHints QGuiApplication::styleHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QStyleHints * QStyleHints * styleHints() [] }
+&{sync QGuiApplication::sync commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  void void sync() [] }
+&{topLevelAt QGuiApplication::topLevelAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h non plain true false  QWindow * QWindow * topLevelAt(const QPoint &pos) [0xc820ab9280] }
+&{~QGuiApplication QGuiApplication::~QGuiApplication commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qguiapplication.h impure destructor false false   ~QGuiApplication() [] }
 ########################################			ENUMS			########################################

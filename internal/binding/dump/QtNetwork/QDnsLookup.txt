@@ -1,30 +1,30 @@
 ########################################			FUNCTIONS			########################################
-&{QDnsLookup QDnsLookup::QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non constructor false true 3  [0xc82330c3e0 0xc82330c460 0xc82330c520 0xc82330c600] }
-&{error QDnsLookup::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  Error [] }
-&{errorString QDnsLookup::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  QString [] }
-&{name QDnsLookup::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  QString [] }
-&{nameserver QDnsLookup::nameserver commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  QHostAddress [] }
-&{setName QDnsLookup::setName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  void [0xc82330cd20] }
-&{setNameserver QDnsLookup::setNameserver commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  void [0xc82330cfe0] }
-&{setType QDnsLookup::setType commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  void [0xc82330d240] }
-&{type QDnsLookup::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  Type [] }
-&{QDnsLookup QDnsLookup::QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false false   [0xc8232fc5e0] }
-&{QDnsLookup QDnsLookup::QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false true 2  [0xc8232fc800 0xc8232fc880 0xc8232fc960] }
-&{abort QDnsLookup::abort commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non slot false false  void [] }
-&{canonicalNameRecords QDnsLookup::canonicalNameRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsDomainNameRecord> [] }
-&{finished QDnsLookup::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void [] }
-&{hostAddressRecords QDnsLookup::hostAddressRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsHostAddressRecord> [] }
-&{isFinished QDnsLookup::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  bool [] }
-&{lookup QDnsLookup::lookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non slot false false  void [] }
-&{mailExchangeRecords QDnsLookup::mailExchangeRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsMailExchangeRecord> [] }
-&{nameChanged QDnsLookup::nameChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void [0xc8232fd8a0] }
-&{nameServerRecords QDnsLookup::nameServerRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsDomainNameRecord> [] }
-&{nameserverChanged QDnsLookup::nameserverChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void [0xc8232fddc0] }
-&{pointerRecords QDnsLookup::pointerRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsDomainNameRecord> [] }
-&{serviceRecords QDnsLookup::serviceRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsServiceRecord> [] }
-&{textRecords QDnsLookup::textRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsTextRecord> [] }
-&{typeChanged QDnsLookup::typeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void [0xc8232ce540] }
-&{~QDnsLookup QDnsLookup::~QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non destructor false false   [] }
+&{QDnsLookup QDnsLookup::QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non constructor false true 3  QDnsLookup(Type type, const QString &name, const QHostAddress &nameserver, QObject *parent) [0xc823441960 0xc8234419e0 0xc823441ac0 0xc823441ba0] }
+&{error QDnsLookup::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  Error Error error() const [] }
+&{errorString QDnsLookup::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  QString QString errorString() const [] }
+&{name QDnsLookup::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  QString QString name() const [] }
+&{nameserver QDnsLookup::nameserver commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  QHostAddress QHostAddress nameserver() const [] }
+&{setName QDnsLookup::setName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  void void setName(const QString &name) [0xc823430500] }
+&{setNameserver QDnsLookup::setNameserver commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  void void setNameserver(const QHostAddress &nameserver) [0xc823430780] }
+&{setType QDnsLookup::setType commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  void void setType(QDnsLookup::Type ) [0xc823430aa0] }
+&{type QDnsLookup::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  Type Type type() const [] }
+&{QDnsLookup QDnsLookup::QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false false   QDnsLookup(QObject *parent) [0xc823431f00] }
+&{QDnsLookup QDnsLookup::QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false true 2  QDnsLookup(Type type, const QString &name, QObject *parent) [0xc823418100 0xc823418180 0xc823418260] }
+&{abort QDnsLookup::abort commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non slot false false  void void abort() [] }
+&{canonicalNameRecords QDnsLookup::canonicalNameRecords commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsDomainNameRecord> QList<QDnsDomainNameRecord> canonicalNameRecords() const [] }
+&{finished QDnsLookup::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void void finished() [] }
+&{hostAddressRecords QDnsLookup::hostAddressRecords commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsHostAddressRecord> QList<QDnsHostAddressRecord> hostAddressRecords() const [] }
+&{isFinished QDnsLookup::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  bool bool isFinished() const [] }
+&{lookup QDnsLookup::lookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non slot false false  void void lookup() [] }
+&{mailExchangeRecords QDnsLookup::mailExchangeRecords commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsMailExchangeRecord> QList<QDnsMailExchangeRecord> mailExchangeRecords() const [] }
+&{nameChanged QDnsLookup::nameChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void void nameChanged(const QString &name) [0xc823419180] }
+&{nameServerRecords QDnsLookup::nameServerRecords commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsDomainNameRecord> QList<QDnsDomainNameRecord> nameServerRecords() const [] }
+&{nameserverChanged QDnsLookup::nameserverChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void void nameserverChanged(const QHostAddress &nameserver) [0xc823419660] }
+&{pointerRecords QDnsLookup::pointerRecords commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsDomainNameRecord> QList<QDnsDomainNameRecord> pointerRecords() const [] }
+&{serviceRecords QDnsLookup::serviceRecords commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsServiceRecord> QList<QDnsServiceRecord> serviceRecords() const [] }
+&{textRecords QDnsLookup::textRecords commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsTextRecord> QList<QDnsTextRecord> textRecords() const [] }
+&{typeChanged QDnsLookup::typeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void void typeChanged(Type type) [0xc823419e80] }
+&{~QDnsLookup QDnsLookup::~QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non destructor false false   ~QDnsLookup() [] }
 ########################################			ENUMS			########################################
-&{Error QDnsLookup::Error commendable public  [0xc82330d600 0xc82330d6a0 0xc82330d740 0xc82330d840 0xc82330d960 0xc82330da60 0xc82330dba0 0xc82330dc60]}
-&{Type QDnsLookup::Type commendable public  [0xc82330de20 0xc82330dea0 0xc82330df60 0xc8232fc020 0xc8232fc0c0 0xc8232fc160 0xc8232fc240 0xc8232fc2c0 0xc8232fc380]}
+&{Error QDnsLookup::Error commendable public  [0xc823430ee0 0xc823430fa0 0xc823431040 0xc823431160 0xc8234312a0 0xc8234313c0 0xc8234314a0 0xc8234315a0] false}
+&{Type QDnsLookup::Type commendable public  [0xc823431700 0xc823431780 0xc823431800 0xc823431880 0xc823431920 0xc8234319e0 0xc823431a60 0xc823431b20 0xc823431be0] false}

@@ -1,67 +1,67 @@
 ########################################			FUNCTIONS			########################################
-&{icon QMenu::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  QIcon [] }
-&{isTearOffEnabled QMenu::isTearOffEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  bool [] }
-&{separatorsCollapsible QMenu::separatorsCollapsible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  bool [] }
-&{setIcon QMenu::setIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  void [0xc8231dfdc0] }
-&{setSeparatorsCollapsible QMenu::setSeparatorsCollapsible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  void [0xc8231c8480] }
-&{setTearOffEnabled QMenu::setTearOffEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  void [0xc8231c8be0] }
-&{setTitle QMenu::setTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  void [0xc8231c8f60] }
-&{setToolTipsVisible QMenu::setToolTipsVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  void [0xc8231c9520] }
-&{title QMenu::title commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  QString [] }
-&{toolTipsVisible QMenu::toolTipsVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  bool [] }
-&{QMenu QMenu::QMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non constructor false false   [0xc8231c9ce0] }
-&{QMenu QMenu::QMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non constructor false true 2  [0xc8231ba100 0xc8231ba1e0] }
-&{aboutToHide QMenu::aboutToHide commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non signal false false  void [] }
-&{aboutToShow QMenu::aboutToShow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non signal false false  void [] }
-&{actionAt QMenu::actionAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * [0xc8231bb260] }
-&{actionEvent QMenu::actionEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void [0xc8231bb660] }
-&{actionGeometry QMenu::actionGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QRect [0xc8231bbae0] }
-&{activeAction QMenu::activeAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * [] }
-&{addAction QMenu::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 2 QAction * [0xc8231bbfc0 0xc8231aa080] }
-&{addAction QMenu::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 4 QAction * [0xc8231aa360 0xc8231aa400 0xc8231aa620 0xc8231aa6e0 0xc8231aa8a0] }
-&{addAction QMenu::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * [0xc8231aac40] }
-&{addAction QMenu::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 3 QAction * [0xc8231aaea0 0xc8231ab020 0xc8231ab1a0 0xc8231ab2a0] }
-&{addMenu QMenu::addMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * [0xc8231ab5e0] }
-&{addMenu QMenu::addMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 3 QMenu * [0xc8231ab8a0 0xc8231ab9a0] }
-&{addMenu QMenu::addMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 2 QMenu * [0xc8231abc20] }
-&{addSection QMenu::addSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 2 QAction * [0xc8231abf40 0xc823190020] }
-&{addSection QMenu::addSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * [0xc823190360] }
-&{addSeparator QMenu::addSeparator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * [] }
-&{changeEvent QMenu::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void [0xc8231907c0] }
-&{clear QMenu::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void [] }
-&{columnCount QMenu::columnCount commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  int [] }
-&{defaultAction QMenu::defaultAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * [] }
-&{enterEvent QMenu::enterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void [0xc823191020] }
-&{event QMenu::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  bool [0xc823191320] }
-&{exec QMenu::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * [] }
-&{exec QMenu::exec commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain true true 3 QAction * [0xc8231915a0 0xc8231916e0 0xc8231917a0 0xc8231918a0] }
-&{exec QMenu::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 2 QAction * [0xc823191b20 0xc823191c00] }
-&{focusNextPrevChild QMenu::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  bool [0xc823182040] }
-&{hideEvent QMenu::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void [0xc823182360] }
-&{hideTearOffMenu QMenu::hideTearOffMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void [] }
-&{hovered QMenu::hovered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non signal false false  void [0xc823182a00] }
-&{initStyleOption QMenu::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void [0xc823182e40 0xc823182fe0] }
-&{insertMenu QMenu::insertMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * [0xc823183440 0xc823183540] }
-&{insertSection QMenu::insertSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 2 QAction * [0xc823183920 0xc823183a20 0xc823183b40] }
-&{insertSection QMenu::insertSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * [0xc823183ea0 0xc823183f40] }
-&{insertSeparator QMenu::insertSeparator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * [0xc82316a3e0] }
-&{isEmpty QMenu::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  bool [] }
-&{isTearOffMenuVisible QMenu::isTearOffMenuVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  bool [] }
-&{keyPressEvent QMenu::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void [0xc82316af20] }
-&{leaveEvent QMenu::leaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void [0xc82316b360] }
-&{menuAction QMenu::menuAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * [] }
-&{mouseMoveEvent QMenu::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void [0xc82316b960] }
-&{mousePressEvent QMenu::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void [0xc82316bd00] }
-&{mouseReleaseEvent QMenu::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void [0xc82315a1c0] }
-&{paintEvent QMenu::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void [0xc82315a520] }
-&{setAsDockMenu QMenu::setAsDockMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void [] }
-&{setDefaultAction QMenu::setDefaultAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void [0xc82315aba0] }
-&{popup QMenu::popup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void [0xc82315b360 0xc82315b440] }
-&{setActiveAction QMenu::setActiveAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void [0xc82315b7e0] }
-&{sizeHint QMenu::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  QSize [] }
-&{timerEvent QMenu::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void [0xc82315bfe0] }
-&{toNSMenu QMenu::toNSMenu commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  NSMenu * [] }
-&{triggered QMenu::triggered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non signal false false  void [0xc82314a4e0] }
-&{wheelEvent QMenu::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void [0xc82314aec0] }
-&{~QMenu QMenu::~QMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non destructor false false   [] }
+&{icon QMenu::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  QIcon QIcon icon() const [] }
+&{isTearOffEnabled QMenu::isTearOffEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  bool bool isTearOffEnabled() const [] }
+&{separatorsCollapsible QMenu::separatorsCollapsible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  bool bool separatorsCollapsible() const [] }
+&{setIcon QMenu::setIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  void void setIcon(const QIcon &icon) [0xc82120ba60] }
+&{setSeparatorsCollapsible QMenu::setSeparatorsCollapsible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  void void setSeparatorsCollapsible(bool collapse) [0xc8211fa0a0] }
+&{setTearOffEnabled QMenu::setTearOffEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  void void setTearOffEnabled(bool ) [0xc8211fa580] }
+&{setTitle QMenu::setTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  void void setTitle(const QString &title) [0xc8211fa880] }
+&{setToolTipsVisible QMenu::setToolTipsVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  void void setToolTipsVisible(bool visible) [0xc8211face0] }
+&{title QMenu::title commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  QString QString title() const [] }
+&{toolTipsVisible QMenu::toolTipsVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.cpp non plain false false  bool bool toolTipsVisible() const [] }
+&{QMenu QMenu::QMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non constructor false false   QMenu(QWidget *parent) [0xc8211fb4a0] }
+&{QMenu QMenu::QMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non constructor false true 2  QMenu(const QString &title, QWidget *parent) [0xc8211fb760 0xc8211fb800] }
+&{aboutToHide QMenu::aboutToHide commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non signal false false  void void aboutToHide() [] }
+&{aboutToShow QMenu::aboutToShow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non signal false false  void void aboutToShow() [] }
+&{actionAt QMenu::actionAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * QAction * actionAt(const QPoint &pt) const [0xc8211ec700] }
+&{actionEvent QMenu::actionEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void void actionEvent(QActionEvent *e) [0xc8211eca00] }
+&{actionGeometry QMenu::actionGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QRect QRect actionGeometry(QAction *act) const [0xc8211ecda0] }
+&{activeAction QMenu::activeAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * QAction * activeAction() const [] }
+&{addAction QMenu::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 2 QAction * QAction * addAction(const QIcon &icon, const QString &text) [0xc8211ed280 0xc8211ed360] }
+&{addAction QMenu::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 4 QAction * QAction * addAction(const QIcon &icon, const QString &text, const QObject *receiver, const char *member, const QKeySequence &shortcut) [0xc8211ed620 0xc8211ed700 0xc8211ed800 0xc8211ed8a0 0xc8211edaa0] }
+&{addAction QMenu::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * QAction * addAction(const QString &text) [0xc8211eddc0] }
+&{addAction QMenu::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 3 QAction * QAction * addAction(const QString &text, const QObject *receiver, const char *member, const QKeySequence &shortcut) [0xc821e24060 0xc821e24100 0xc821e241a0 0xc821e24300] }
+&{addMenu QMenu::addMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * QAction * addMenu(QMenu *menu) [0xc821e24600] }
+&{addMenu QMenu::addMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 3 QMenu * QMenu * addMenu(const QIcon &icon, const QString &title) [0xc821e24880 0xc821e24920] }
+&{addMenu QMenu::addMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 2 QMenu * QMenu * addMenu(const QString &title) [0xc821e24ba0] }
+&{addSection QMenu::addSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 2 QAction * QAction * addSection(const QIcon &icon, const QString &text) [0xc821e24e60 0xc821e24f20] }
+&{addSection QMenu::addSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * QAction * addSection(const QString &text) [0xc821e251e0] }
+&{addSeparator QMenu::addSeparator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * QAction * addSeparator() [] }
+&{changeEvent QMenu::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void void changeEvent(QEvent *e) [0xc821e25780] }
+&{clear QMenu::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void void clear() [] }
+&{columnCount QMenu::columnCount commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  int int columnCount() const [] }
+&{defaultAction QMenu::defaultAction commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * QAction * defaultAction() const [] }
+&{enterEvent QMenu::enterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void void enterEvent(QEvent *) [0xc821e25fe0] }
+&{event QMenu::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  bool bool event(QEvent *e) [0xc822dde180] }
+&{exec QMenu::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * QAction * exec() [] }
+&{exec QMenu::exec commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain true true 3 QAction * QAction * exec(const QList<QAction *> &actions, const QPoint &pos, QAction *at, QWidget *parent) [0xc822dde420 0xc822dde520 0xc822dde5c0 0xc822dde640] }
+&{exec QMenu::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 2 QAction * QAction * exec(const QPoint &p, QAction *action) [0xc822dde800 0xc822dde8e0] }
+&{focusNextPrevChild QMenu::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  bool bool focusNextPrevChild(bool next) [0xc822ddeb80] }
+&{hideEvent QMenu::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void void hideEvent(QHideEvent *) [0xc822ddeda0] }
+&{hideTearOffMenu QMenu::hideTearOffMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void void hideTearOffMenu() [] }
+&{hovered QMenu::hovered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non signal false false  void void hovered(QAction *action) [0xc822ddf180] }
+&{initStyleOption QMenu::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void void initStyleOption(QStyleOptionMenuItem *option, const QAction *action) const [0xc822ddf3e0 0xc822ddf4e0] }
+&{insertMenu QMenu::insertMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * QAction * insertMenu(QAction *before, QMenu *menu) [0xc822ddf720 0xc822ddf7c0] }
+&{insertSection QMenu::insertSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false true 2 QAction * QAction * insertSection(QAction *before, const QIcon &icon, const QString &text) [0xc822ddfa20 0xc822ddfac0 0xc822ddfb40] }
+&{insertSection QMenu::insertSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * QAction * insertSection(QAction *before, const QString &text) [0xc822ddfd80 0xc822ddfe40] }
+&{insertSeparator QMenu::insertSeparator commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * QAction * insertSeparator(QAction *before) [0xc8211d80e0] }
+&{isEmpty QMenu::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  bool bool isEmpty() const [] }
+&{isTearOffMenuVisible QMenu::isTearOffMenuVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  bool bool isTearOffMenuVisible() const [] }
+&{keyPressEvent QMenu::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void void keyPressEvent(QKeyEvent *e) [0xc8211d8c80] }
+&{leaveEvent QMenu::leaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void void leaveEvent(QEvent *) [0xc8211d9000] }
+&{menuAction QMenu::menuAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  QAction * QAction * menuAction() const [] }
+&{mouseMoveEvent QMenu::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc8211d9640] }
+&{mousePressEvent QMenu::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void void mousePressEvent(QMouseEvent *e) [0xc8211d9900] }
+&{mouseReleaseEvent QMenu::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *e) [0xc8211d9d40] }
+&{paintEvent QMenu::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void void paintEvent(QPaintEvent *e) [0xc8211c6180] }
+&{setAsDockMenu QMenu::setAsDockMenu commendable unsupported_isBlocked_Android /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void void setAsDockMenu() [] }
+&{setDefaultAction QMenu::setDefaultAction commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void void setDefaultAction(QAction *act) [0xc8211c6720] }
+&{popup QMenu::popup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void void popup(const QPoint &p, QAction *atAction) [0xc8211c6fe0 0xc8211c7100] }
+&{setActiveAction QMenu::setActiveAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  void void setActiveAction(QAction *act) [0xc8211c74a0] }
+&{sizeHint QMenu::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  QSize QSize sizeHint() const [] }
+&{timerEvent QMenu::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void void timerEvent(QTimerEvent *e) [0xc8211c7e40] }
+&{toNSMenu QMenu::toNSMenu commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non plain false false  NSMenu * NSMenu * toNSMenu() [] }
+&{triggered QMenu::triggered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non signal false false  void void triggered(QAction *action) [0xc8211b0260] }
+&{wheelEvent QMenu::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h impure plain false false  void void wheelEvent(QWheelEvent *e) [0xc8211b07e0] }
+&{~QMenu QMenu::~QMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmenu.h non destructor false false   ~QMenu() [] }
 ########################################			ENUMS			########################################

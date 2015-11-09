@@ -12,77 +12,77 @@ type QNetworkDiskCache struct {
 	QAbstractNetworkCache
 }
 
-type QNetworkDiskCacheITF interface {
-	QAbstractNetworkCacheITF
-	QNetworkDiskCachePTR() *QNetworkDiskCache
+type QNetworkDiskCache_ITF interface {
+	QAbstractNetworkCache_ITF
+	QNetworkDiskCache_PTR() *QNetworkDiskCache
 }
 
-func PointerFromQNetworkDiskCache(ptr QNetworkDiskCacheITF) unsafe.Pointer {
+func PointerFromQNetworkDiskCache(ptr QNetworkDiskCache_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNetworkDiskCachePTR().Pointer()
+		return ptr.QNetworkDiskCache_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNetworkDiskCacheFromPointer(ptr unsafe.Pointer) *QNetworkDiskCache {
+func NewQNetworkDiskCacheFromPointer(ptr unsafe.Pointer) *QNetworkDiskCache {
 	var n = new(QNetworkDiskCache)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QNetworkDiskCache_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QNetworkDiskCache) QNetworkDiskCachePTR() *QNetworkDiskCache {
+func (ptr *QNetworkDiskCache) QNetworkDiskCache_PTR() *QNetworkDiskCache {
 	return ptr
 }
 
-func NewQNetworkDiskCache(parent core.QObjectITF) *QNetworkDiskCache {
-	return QNetworkDiskCacheFromPointer(unsafe.Pointer(C.QNetworkDiskCache_NewQNetworkDiskCache(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQNetworkDiskCache(parent core.QObject_ITF) *QNetworkDiskCache {
+	return NewQNetworkDiskCacheFromPointer(C.QNetworkDiskCache_NewQNetworkDiskCache(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNetworkDiskCache) CacheDirectory() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkDiskCache_CacheDirectory(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QNetworkDiskCache_CacheDirectory(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QNetworkDiskCache) Clear() {
 	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_Clear(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkDiskCache_Clear(ptr.Pointer())
 	}
 }
 
-func (ptr *QNetworkDiskCache) Data(url string) *core.QIODevice {
+func (ptr *QNetworkDiskCache) Data(url core.QUrl_ITF) *core.QIODevice {
 	if ptr.Pointer() != nil {
-		return core.QIODeviceFromPointer(unsafe.Pointer(C.QNetworkDiskCache_Data(C.QtObjectPtr(ptr.Pointer()), C.CString(url))))
+		return core.NewQIODeviceFromPointer(C.QNetworkDiskCache_Data(ptr.Pointer(), core.PointerFromQUrl(url)))
 	}
 	return nil
 }
 
-func (ptr *QNetworkDiskCache) Prepare(metaData QNetworkCacheMetaDataITF) *core.QIODevice {
+func (ptr *QNetworkDiskCache) Prepare(metaData QNetworkCacheMetaData_ITF) *core.QIODevice {
 	if ptr.Pointer() != nil {
-		return core.QIODeviceFromPointer(unsafe.Pointer(C.QNetworkDiskCache_Prepare(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQNetworkCacheMetaData(metaData)))))
+		return core.NewQIODeviceFromPointer(C.QNetworkDiskCache_Prepare(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData)))
 	}
 	return nil
 }
 
 func (ptr *QNetworkDiskCache) SetCacheDirectory(cacheDir string) {
 	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_SetCacheDirectory(C.QtObjectPtr(ptr.Pointer()), C.CString(cacheDir))
+		C.QNetworkDiskCache_SetCacheDirectory(ptr.Pointer(), C.CString(cacheDir))
 	}
 }
 
-func (ptr *QNetworkDiskCache) UpdateMetaData(metaData QNetworkCacheMetaDataITF) {
+func (ptr *QNetworkDiskCache) UpdateMetaData(metaData QNetworkCacheMetaData_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_UpdateMetaData(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQNetworkCacheMetaData(metaData)))
+		C.QNetworkDiskCache_UpdateMetaData(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData))
 	}
 }
 
 func (ptr *QNetworkDiskCache) DestroyQNetworkDiskCache() {
 	if ptr.Pointer() != nil {
-		C.QNetworkDiskCache_DestroyQNetworkDiskCache(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkDiskCache_DestroyQNetworkDiskCache(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

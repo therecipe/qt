@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QStyleOptionTitleBar QStyleOptionTitleBar::QStyleOptionTitleBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
-&{QStyleOptionTitleBar QStyleOptionTitleBar::QStyleOptionTitleBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8226fdbc0] }
+&{QStyleOptionTitleBar QStyleOptionTitleBar::QStyleOptionTitleBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionTitleBar() [] }
+&{QStyleOptionTitleBar QStyleOptionTitleBar::QStyleOptionTitleBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionTitleBar(const QStyleOptionTitleBar &other) [0xc8221b8580] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionTitleBar::StyleOptionType commendable public  [0xc8226fd480]}
-&{StyleOptionVersion QStyleOptionTitleBar::StyleOptionVersion commendable public  [0xc8226fd720]}
+&{StyleOptionType QStyleOptionTitleBar::StyleOptionType commendable public  [0xc821cb5b00] false}
+&{StyleOptionVersion QStyleOptionTitleBar::StyleOptionVersion commendable public  [0xc821cb5f20] false}

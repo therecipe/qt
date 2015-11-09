@@ -1,19 +1,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QUndoView_EmptyLabel(QtObjectPtr ptr);
-void QUndoView_SetCleanIcon(QtObjectPtr ptr, QtObjectPtr icon);
-void QUndoView_SetEmptyLabel(QtObjectPtr ptr, char* label);
-QtObjectPtr QUndoView_NewQUndoView3(QtObjectPtr group, QtObjectPtr parent);
-QtObjectPtr QUndoView_NewQUndoView2(QtObjectPtr stack, QtObjectPtr parent);
-QtObjectPtr QUndoView_NewQUndoView(QtObjectPtr parent);
-QtObjectPtr QUndoView_Group(QtObjectPtr ptr);
-void QUndoView_SetGroup(QtObjectPtr ptr, QtObjectPtr group);
-void QUndoView_SetStack(QtObjectPtr ptr, QtObjectPtr stack);
-QtObjectPtr QUndoView_Stack(QtObjectPtr ptr);
-void QUndoView_DestroyQUndoView(QtObjectPtr ptr);
+char* QUndoView_EmptyLabel(void* ptr);
+void QUndoView_SetCleanIcon(void* ptr, void* icon);
+void QUndoView_SetEmptyLabel(void* ptr, char* label);
+void* QUndoView_NewQUndoView3(void* group, void* parent);
+void* QUndoView_NewQUndoView2(void* stack, void* parent);
+void* QUndoView_NewQUndoView(void* parent);
+void* QUndoView_Group(void* ptr);
+void QUndoView_SetGroup(void* ptr, void* group);
+void QUndoView_SetStack(void* ptr, void* stack);
+void* QUndoView_Stack(void* ptr);
+void QUndoView_DestroyQUndoView(void* ptr);
 
 #ifdef __cplusplus
 }

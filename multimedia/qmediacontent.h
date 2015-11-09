@@ -1,18 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QMediaContent_NewQMediaContent();
-QtObjectPtr QMediaContent_NewQMediaContent7(QtObjectPtr playlist, char* contentUrl, int takeOwnership);
-QtObjectPtr QMediaContent_NewQMediaContent6(QtObjectPtr other);
-QtObjectPtr QMediaContent_NewQMediaContent4(QtObjectPtr resource);
-QtObjectPtr QMediaContent_NewQMediaContent3(QtObjectPtr request);
-QtObjectPtr QMediaContent_NewQMediaContent2(char* url);
-char* QMediaContent_CanonicalUrl(QtObjectPtr ptr);
-int QMediaContent_IsNull(QtObjectPtr ptr);
-QtObjectPtr QMediaContent_Playlist(QtObjectPtr ptr);
-void QMediaContent_DestroyQMediaContent(QtObjectPtr ptr);
+void* QMediaContent_NewQMediaContent();
+void* QMediaContent_NewQMediaContent7(void* playlist, void* contentUrl, int takeOwnership);
+void* QMediaContent_NewQMediaContent6(void* other);
+void* QMediaContent_NewQMediaContent4(void* resource);
+void* QMediaContent_NewQMediaContent3(void* request);
+void* QMediaContent_NewQMediaContent2(void* url);
+int QMediaContent_IsNull(void* ptr);
+void* QMediaContent_Playlist(void* ptr);
+void QMediaContent_DestroyQMediaContent(void* ptr);
 
 #ifdef __cplusplus
 }

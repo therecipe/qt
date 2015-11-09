@@ -10,8 +10,8 @@ type QFutureSynchronizer struct {
 	ptr unsafe.Pointer
 }
 
-type QFutureSynchronizerITF interface {
-	QFutureSynchronizerPTR() *QFutureSynchronizer
+type QFutureSynchronizer_ITF interface {
+	QFutureSynchronizer_PTR() *QFutureSynchronizer
 }
 
 func (p *QFutureSynchronizer) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QFutureSynchronizer) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQFutureSynchronizer(ptr QFutureSynchronizerITF) unsafe.Pointer {
+func PointerFromQFutureSynchronizer(ptr QFutureSynchronizer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QFutureSynchronizerPTR().Pointer()
+		return ptr.QFutureSynchronizer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QFutureSynchronizerFromPointer(ptr unsafe.Pointer) *QFutureSynchronizer {
+func NewQFutureSynchronizerFromPointer(ptr unsafe.Pointer) *QFutureSynchronizer {
 	var n = new(QFutureSynchronizer)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QFutureSynchronizer) QFutureSynchronizerPTR() *QFutureSynchronizer {
+func (ptr *QFutureSynchronizer) QFutureSynchronizer_PTR() *QFutureSynchronizer {
 	return ptr
 }

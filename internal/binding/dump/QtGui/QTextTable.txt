@@ -1,21 +1,21 @@
 ########################################			FUNCTIONS			########################################
-&{cellAt QTextTable::cellAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false true 3 QTextTableCell [0xc8229c8cc0] }
-&{cellAt QTextTable::cellAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  QTextTableCell [0xc8229c8f60 0xc8229c9000] }
-&{insertColumns QTextTable::insertColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  void [0xc8229c9240 0xc8229c9300] }
-&{insertRows QTextTable::insertRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  void [0xc8229c9540 0xc8229c95e0] }
-&{removeColumns QTextTable::removeColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  void [0xc8229c9820 0xc8229c9900] }
-&{removeRows QTextTable::removeRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  void [0xc8229c9b00 0xc8229c9be0] }
-&{resize QTextTable::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  void [0xc8229c9e00 0xc8229c9ea0] }
-&{rowEnd QTextTable::rowEnd commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  QTextCursor [0xc821f36140] }
-&{rowStart QTextTable::rowStart commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  QTextCursor [0xc821f36420] }
-&{setFormat QTextTable::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  void [0xc821f366e0] }
-&{appendColumns QTextTable::appendColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  void [0xc821f36bc0] }
-&{appendRows QTextTable::appendRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  void [0xc821f36e40] }
-&{cellAt QTextTable::cellAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false true 2 QTextTableCell [0xc821f37060] }
-&{columns QTextTable::columns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  int [] }
-&{format QTextTable::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  QTextTableFormat [] }
-&{mergeCells QTextTable::mergeCells commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false true 2 void [0xc821f37580] }
-&{mergeCells QTextTable::mergeCells commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  void [0xc821f37800 0xc821f37880 0xc821f37940 0xc821f379c0] }
-&{rows QTextTable::rows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  int [] }
-&{splitCell QTextTable::splitCell commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  void [0xc821f37ca0 0xc821f37d20 0xc821f37de0 0xc821f37e60] }
+&{cellAt QTextTable::cellAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false true 3 QTextTableCell QTextTableCell cellAt(const QTextCursor &cursor) const [0xc82363ebe0] }
+&{cellAt QTextTable::cellAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  QTextTableCell QTextTableCell cellAt(int row, int column) const [0xc82363ede0 0xc82363ee60] }
+&{insertColumns QTextTable::insertColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  void void insertColumns(int index, int columns) [0xc82363f020 0xc82363f0a0] }
+&{insertRows QTextTable::insertRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  void void insertRows(int index, int rows) [0xc82363f260 0xc82363f2e0] }
+&{removeColumns QTextTable::removeColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  void void removeColumns(int index, int columns) [0xc82363f4c0 0xc82363f540] }
+&{removeRows QTextTable::removeRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  void void removeRows(int index, int rows) [0xc82363f700 0xc82363f780] }
+&{resize QTextTable::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  void void resize(int rows, int columns) [0xc82363f940 0xc82363f9c0] }
+&{rowEnd QTextTable::rowEnd commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  QTextCursor QTextCursor rowEnd(const QTextCursor &cursor) const [0xc82363fba0] }
+&{rowStart QTextTable::rowStart commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  QTextCursor QTextCursor rowStart(const QTextCursor &cursor) const [0xc82363fde0] }
+&{setFormat QTextTable::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.cpp non plain false false  void void setFormat(const QTextTableFormat &format) [0xc823652000] }
+&{appendColumns QTextTable::appendColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  void void appendColumns(int count) [0xc823652480] }
+&{appendRows QTextTable::appendRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  void void appendRows(int count) [0xc8236526a0] }
+&{cellAt QTextTable::cellAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false true 2 QTextTableCell QTextTableCell cellAt(int position) const [0xc823652860] }
+&{columns QTextTable::columns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  int int columns() const [] }
+&{format QTextTable::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  QTextTableFormat QTextTableFormat format() const [] }
+&{mergeCells QTextTable::mergeCells commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false true 2 void void mergeCells(const QTextCursor &cursor) [0xc823652ce0] }
+&{mergeCells QTextTable::mergeCells commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  void void mergeCells(int row, int column, int numRows, int numCols) [0xc823652ee0 0xc823652f60 0xc823652fe0 0xc823653060] }
+&{rows QTextTable::rows commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  int int rows() const [] }
+&{splitCell QTextTable::splitCell commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtexttable.h non plain false false  void void splitCell(int row, int column, int numRows, int numCols) [0xc8236532a0 0xc823653320 0xc8236533a0 0xc823653420] }
 ########################################			ENUMS			########################################

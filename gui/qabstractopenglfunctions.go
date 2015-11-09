@@ -10,8 +10,8 @@ type QAbstractOpenGLFunctions struct {
 	ptr unsafe.Pointer
 }
 
-type QAbstractOpenGLFunctionsITF interface {
-	QAbstractOpenGLFunctionsPTR() *QAbstractOpenGLFunctions
+type QAbstractOpenGLFunctions_ITF interface {
+	QAbstractOpenGLFunctions_PTR() *QAbstractOpenGLFunctions
 }
 
 func (p *QAbstractOpenGLFunctions) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QAbstractOpenGLFunctions) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQAbstractOpenGLFunctions(ptr QAbstractOpenGLFunctionsITF) unsafe.Pointer {
+func PointerFromQAbstractOpenGLFunctions(ptr QAbstractOpenGLFunctions_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAbstractOpenGLFunctionsPTR().Pointer()
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAbstractOpenGLFunctionsFromPointer(ptr unsafe.Pointer) *QAbstractOpenGLFunctions {
+func NewQAbstractOpenGLFunctionsFromPointer(ptr unsafe.Pointer) *QAbstractOpenGLFunctions {
 	var n = new(QAbstractOpenGLFunctions)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAbstractOpenGLFunctions) QAbstractOpenGLFunctionsPTR() *QAbstractOpenGLFunctions {
+func (ptr *QAbstractOpenGLFunctions) QAbstractOpenGLFunctions_PTR() *QAbstractOpenGLFunctions {
 	return ptr
 }

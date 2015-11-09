@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QGraphicsSceneWheelEvent_Buttons(QtObjectPtr ptr);
-int QGraphicsSceneWheelEvent_Delta(QtObjectPtr ptr);
-int QGraphicsSceneWheelEvent_Modifiers(QtObjectPtr ptr);
-int QGraphicsSceneWheelEvent_Orientation(QtObjectPtr ptr);
-void QGraphicsSceneWheelEvent_DestroyQGraphicsSceneWheelEvent(QtObjectPtr ptr);
+int QGraphicsSceneWheelEvent_Buttons(void* ptr);
+int QGraphicsSceneWheelEvent_Delta(void* ptr);
+int QGraphicsSceneWheelEvent_Modifiers(void* ptr);
+int QGraphicsSceneWheelEvent_Orientation(void* ptr);
+void QGraphicsSceneWheelEvent_DestroyQGraphicsSceneWheelEvent(void* ptr);
 
 #ifdef __cplusplus
 }

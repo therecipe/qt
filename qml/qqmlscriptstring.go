@@ -11,8 +11,8 @@ type QQmlScriptString struct {
 	ptr unsafe.Pointer
 }
 
-type QQmlScriptStringITF interface {
-	QQmlScriptStringPTR() *QQmlScriptString
+type QQmlScriptString_ITF interface {
+	QQmlScriptString_PTR() *QQmlScriptString
 }
 
 func (p *QQmlScriptString) Pointer() unsafe.Pointer {
@@ -23,62 +23,69 @@ func (p *QQmlScriptString) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQQmlScriptString(ptr QQmlScriptStringITF) unsafe.Pointer {
+func PointerFromQQmlScriptString(ptr QQmlScriptString_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QQmlScriptStringPTR().Pointer()
+		return ptr.QQmlScriptString_PTR().Pointer()
 	}
 	return nil
 }
 
-func QQmlScriptStringFromPointer(ptr unsafe.Pointer) *QQmlScriptString {
+func NewQQmlScriptStringFromPointer(ptr unsafe.Pointer) *QQmlScriptString {
 	var n = new(QQmlScriptString)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QQmlScriptString) QQmlScriptStringPTR() *QQmlScriptString {
+func (ptr *QQmlScriptString) QQmlScriptString_PTR() *QQmlScriptString {
 	return ptr
 }
 
 func NewQQmlScriptString() *QQmlScriptString {
-	return QQmlScriptStringFromPointer(unsafe.Pointer(C.QQmlScriptString_NewQQmlScriptString()))
+	return NewQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString())
 }
 
-func NewQQmlScriptString2(other QQmlScriptStringITF) *QQmlScriptString {
-	return QQmlScriptStringFromPointer(unsafe.Pointer(C.QQmlScriptString_NewQQmlScriptString2(C.QtObjectPtr(PointerFromQQmlScriptString(other)))))
+func NewQQmlScriptString2(other QQmlScriptString_ITF) *QQmlScriptString {
+	return NewQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString2(PointerFromQQmlScriptString(other)))
 }
 
 func (ptr *QQmlScriptString) BooleanLiteral(ok bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlScriptString_BooleanLiteral(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(ok))) != 0
+		return C.QQmlScriptString_BooleanLiteral(ptr.Pointer(), C.int(qt.GoBoolToInt(ok))) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlScriptString) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlScriptString_IsEmpty(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QQmlScriptString_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlScriptString) IsNullLiteral() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlScriptString_IsNullLiteral(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QQmlScriptString_IsNullLiteral(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QQmlScriptString) IsUndefinedLiteral() bool {
 	if ptr.Pointer() != nil {
-		return C.QQmlScriptString_IsUndefinedLiteral(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QQmlScriptString_IsUndefinedLiteral(ptr.Pointer()) != 0
 	}
 	return false
 }
 
+func (ptr *QQmlScriptString) NumberLiteral(ok bool) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QQmlScriptString_NumberLiteral(ptr.Pointer(), C.int(qt.GoBoolToInt(ok))))
+	}
+	return 0
+}
+
 func (ptr *QQmlScriptString) StringLiteral() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QQmlScriptString_StringLiteral(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QQmlScriptString_StringLiteral(ptr.Pointer()))
 	}
 	return ""
 }

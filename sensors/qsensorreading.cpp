@@ -1,9 +1,9 @@
 #include "qsensorreading.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QSensor>
-#include <QString>
-#include <QVariant>
 #include <QSensorReading>
 #include "_cgo_export.h"
 
@@ -11,11 +11,11 @@ class MyQSensorReading: public QSensorReading {
 public:
 };
 
-char* QSensorReading_Value(QtObjectPtr ptr, int index){
-	return static_cast<QSensorReading*>(ptr)->value(index).toString().toUtf8().data();
+void* QSensorReading_Value(void* ptr, int index){
+	return new QVariant(static_cast<QSensorReading*>(ptr)->value(index));
 }
 
-int QSensorReading_ValueCount(QtObjectPtr ptr){
+int QSensorReading_ValueCount(void* ptr){
 	return static_cast<QSensorReading*>(ptr)->valueCount();
 }
 

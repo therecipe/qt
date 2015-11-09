@@ -1,10 +1,10 @@
 #include "qabstractscrollarea.h"
-#include <QModelIndex>
-#include <QScrollBar>
-#include <QWidget>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QWidget>
+#include <QScrollBar>
 #include <QAbstractScrollArea>
 #include "_cgo_export.h"
 
@@ -12,75 +12,75 @@ class MyQAbstractScrollArea: public QAbstractScrollArea {
 public:
 };
 
-int QAbstractScrollArea_HorizontalScrollBarPolicy(QtObjectPtr ptr){
+int QAbstractScrollArea_HorizontalScrollBarPolicy(void* ptr){
 	return static_cast<QAbstractScrollArea*>(ptr)->horizontalScrollBarPolicy();
 }
 
-void QAbstractScrollArea_SetHorizontalScrollBarPolicy(QtObjectPtr ptr, int v){
+void QAbstractScrollArea_SetHorizontalScrollBarPolicy(void* ptr, int v){
 	static_cast<QAbstractScrollArea*>(ptr)->setHorizontalScrollBarPolicy(static_cast<Qt::ScrollBarPolicy>(v));
 }
 
-void QAbstractScrollArea_SetSizeAdjustPolicy(QtObjectPtr ptr, int policy){
+void QAbstractScrollArea_SetSizeAdjustPolicy(void* ptr, int policy){
 	static_cast<QAbstractScrollArea*>(ptr)->setSizeAdjustPolicy(static_cast<QAbstractScrollArea::SizeAdjustPolicy>(policy));
 }
 
-void QAbstractScrollArea_SetVerticalScrollBarPolicy(QtObjectPtr ptr, int v){
+void QAbstractScrollArea_SetVerticalScrollBarPolicy(void* ptr, int v){
 	static_cast<QAbstractScrollArea*>(ptr)->setVerticalScrollBarPolicy(static_cast<Qt::ScrollBarPolicy>(v));
 }
 
-int QAbstractScrollArea_SizeAdjustPolicy(QtObjectPtr ptr){
+int QAbstractScrollArea_SizeAdjustPolicy(void* ptr){
 	return static_cast<QAbstractScrollArea*>(ptr)->sizeAdjustPolicy();
 }
 
-int QAbstractScrollArea_VerticalScrollBarPolicy(QtObjectPtr ptr){
+int QAbstractScrollArea_VerticalScrollBarPolicy(void* ptr){
 	return static_cast<QAbstractScrollArea*>(ptr)->verticalScrollBarPolicy();
 }
 
-QtObjectPtr QAbstractScrollArea_NewQAbstractScrollArea(QtObjectPtr parent){
+void* QAbstractScrollArea_NewQAbstractScrollArea(void* parent){
 	return new QAbstractScrollArea(static_cast<QWidget*>(parent));
 }
 
-void QAbstractScrollArea_AddScrollBarWidget(QtObjectPtr ptr, QtObjectPtr widget, int alignment){
+void QAbstractScrollArea_AddScrollBarWidget(void* ptr, void* widget, int alignment){
 	static_cast<QAbstractScrollArea*>(ptr)->addScrollBarWidget(static_cast<QWidget*>(widget), static_cast<Qt::AlignmentFlag>(alignment));
 }
 
-QtObjectPtr QAbstractScrollArea_CornerWidget(QtObjectPtr ptr){
+void* QAbstractScrollArea_CornerWidget(void* ptr){
 	return static_cast<QAbstractScrollArea*>(ptr)->cornerWidget();
 }
 
-QtObjectPtr QAbstractScrollArea_HorizontalScrollBar(QtObjectPtr ptr){
+void* QAbstractScrollArea_HorizontalScrollBar(void* ptr){
 	return static_cast<QAbstractScrollArea*>(ptr)->horizontalScrollBar();
 }
 
-void QAbstractScrollArea_SetCornerWidget(QtObjectPtr ptr, QtObjectPtr widget){
+void QAbstractScrollArea_SetCornerWidget(void* ptr, void* widget){
 	static_cast<QAbstractScrollArea*>(ptr)->setCornerWidget(static_cast<QWidget*>(widget));
 }
 
-void QAbstractScrollArea_SetHorizontalScrollBar(QtObjectPtr ptr, QtObjectPtr scrollBar){
+void QAbstractScrollArea_SetHorizontalScrollBar(void* ptr, void* scrollBar){
 	static_cast<QAbstractScrollArea*>(ptr)->setHorizontalScrollBar(static_cast<QScrollBar*>(scrollBar));
 }
 
-void QAbstractScrollArea_SetVerticalScrollBar(QtObjectPtr ptr, QtObjectPtr scrollBar){
+void QAbstractScrollArea_SetVerticalScrollBar(void* ptr, void* scrollBar){
 	static_cast<QAbstractScrollArea*>(ptr)->setVerticalScrollBar(static_cast<QScrollBar*>(scrollBar));
 }
 
-void QAbstractScrollArea_SetViewport(QtObjectPtr ptr, QtObjectPtr widget){
+void QAbstractScrollArea_SetViewport(void* ptr, void* widget){
 	static_cast<QAbstractScrollArea*>(ptr)->setViewport(static_cast<QWidget*>(widget));
 }
 
-void QAbstractScrollArea_SetupViewport(QtObjectPtr ptr, QtObjectPtr viewport){
+void QAbstractScrollArea_SetupViewport(void* ptr, void* viewport){
 	static_cast<QAbstractScrollArea*>(ptr)->setupViewport(static_cast<QWidget*>(viewport));
 }
 
-QtObjectPtr QAbstractScrollArea_VerticalScrollBar(QtObjectPtr ptr){
+void* QAbstractScrollArea_VerticalScrollBar(void* ptr){
 	return static_cast<QAbstractScrollArea*>(ptr)->verticalScrollBar();
 }
 
-QtObjectPtr QAbstractScrollArea_Viewport(QtObjectPtr ptr){
+void* QAbstractScrollArea_Viewport(void* ptr){
 	return static_cast<QAbstractScrollArea*>(ptr)->viewport();
 }
 
-void QAbstractScrollArea_DestroyQAbstractScrollArea(QtObjectPtr ptr){
+void QAbstractScrollArea_DestroyQAbstractScrollArea(void* ptr){
 	static_cast<QAbstractScrollArea*>(ptr)->~QAbstractScrollArea();
 }
 

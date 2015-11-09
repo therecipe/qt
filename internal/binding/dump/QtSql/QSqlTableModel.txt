@@ -1,51 +1,51 @@
 ########################################			FUNCTIONS			########################################
-&{QSqlTableModel QSqlTableModel::QSqlTableModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non constructor false false   [0xc8210f1300 0xc8210f1380] }
-&{beforeDelete QSqlTableModel::beforeDelete commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non signal false false  void [0xc8210f1860] }
-&{beforeInsert QSqlTableModel::beforeInsert commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non signal false false  void [0xc8210f1a20] }
-&{beforeUpdate QSqlTableModel::beforeUpdate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non signal false false  void [0xc8210f1c00 0xc8210f1c80] }
-&{clear QSqlTableModel::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void [] }
-&{data QSqlTableModel::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  QVariant [0xc8210f1f40 0xc8210d2000] }
-&{database QSqlTableModel::database commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  QSqlDatabase [] }
-&{deleteRowFromTable QSqlTableModel::deleteRowFromTable commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool [0xc8210d27a0] }
-&{editStrategy QSqlTableModel::editStrategy commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  EditStrategy [] }
-&{fieldIndex QSqlTableModel::fieldIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  int [0xc8210d2d40] }
-&{filter QSqlTableModel::filter commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  QString [] }
-&{flags QSqlTableModel::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  Qt::ItemFlags [0xc8210d3440] }
-&{headerData QSqlTableModel::headerData commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  QVariant [0xc8210d3920 0xc8210d3a20 0xc8210d3b80] }
-&{indexInQuery QSqlTableModel::indexInQuery commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  QModelIndex [0xc8210b4080] }
-&{insertRecord QSqlTableModel::insertRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  bool [0xc8210b4560 0xc8210b4760] }
-&{insertRowIntoTable QSqlTableModel::insertRowIntoTable commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool [0xc8210b4c60] }
-&{insertRows QSqlTableModel::insertRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool [0xc8210b5180 0xc8210b5240 0xc8210b5340] }
-&{isDirty QSqlTableModel::isDirty commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false true 2 bool [] }
-&{isDirty QSqlTableModel::isDirty commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  bool [0xc8210b5ba0] }
-&{orderByClause QSqlTableModel::orderByClause commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  QString [] }
-&{primaryKey QSqlTableModel::primaryKey commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  QSqlIndex [] }
-&{primaryValues QSqlTableModel::primaryValues commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  QSqlRecord [0xc82107e3e0] }
-&{primeInsert QSqlTableModel::primeInsert commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non signal false false  void [0xc82107e820 0xc82107e960] }
-&{record QSqlTableModel::record commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  QSqlRecord [] }
-&{record QSqlTableModel::record commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false true 2 QSqlRecord [0xc82107f000] }
-&{removeColumns QSqlTableModel::removeColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool [0xc82107f440 0xc82107f4e0 0xc82107f680] }
-&{removeRows QSqlTableModel::removeRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool [0xc82107fba0 0xc82107fca0 0xc82107fe80] }
-&{revert QSqlTableModel::revert commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure slot false false  void [] }
-&{revertAll QSqlTableModel::revertAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non slot false false  void [] }
-&{revertRow QSqlTableModel::revertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void [0xc8210727a0] }
-&{rowCount QSqlTableModel::rowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  int [0xc821072c80] }
-&{select QSqlTableModel::select commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure slot false false  bool [] }
-&{selectRow QSqlTableModel::selectRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure slot false false  bool [0xc821073440] }
-&{selectStatement QSqlTableModel::selectStatement commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  QString [] }
-&{setData QSqlTableModel::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool [0xc821073ac0 0xc821073c20 0xc821073de0] }
-&{setEditStrategy QSqlTableModel::setEditStrategy commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void [0xc821042240] }
-&{setFilter QSqlTableModel::setFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void [0xc821042660] }
-&{setPrimaryKey QSqlTableModel::setPrimaryKey commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  void [0xc821042aa0] }
-&{setQuery QSqlTableModel::setQuery commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  void [0xc821042f80] }
-&{setRecord QSqlTableModel::setRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  bool [0xc8210433e0 0xc8210435c0] }
-&{setSort QSqlTableModel::setSort commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void [0xc821043ae0 0xc821043c40] }
-&{setTable QSqlTableModel::setTable commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void [0xc821034020] }
-&{sort QSqlTableModel::sort commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void [0xc821034360 0xc821034460] }
-&{submit QSqlTableModel::submit commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure slot false false  bool [] }
-&{submitAll QSqlTableModel::submitAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non slot false false  bool [] }
-&{tableName QSqlTableModel::tableName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  QString [] }
-&{updateRowInTable QSqlTableModel::updateRowInTable commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool [0xc821034c80 0xc821034d60] }
-&{~QSqlTableModel QSqlTableModel::~QSqlTableModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure destructor false false   [] }
+&{QSqlTableModel QSqlTableModel::QSqlTableModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non constructor false false   QSqlTableModel(QObject *parent, QSqlDatabase db) [0xc82071a780 0xc82071a9a0] }
+&{beforeDelete QSqlTableModel::beforeDelete commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non signal false false  void void beforeDelete(int row) [0xc82071b920] }
+&{beforeInsert QSqlTableModel::beforeInsert commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non signal false false  void void beforeInsert(QSqlRecord &record) [0xc82071be60] }
+&{beforeUpdate QSqlTableModel::beforeUpdate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non signal false false  void void beforeUpdate(int row, QSqlRecord &record) [0xc8206fe2c0 0xc8206fe500] }
+&{clear QSqlTableModel::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void void clear() [] }
+&{data QSqlTableModel::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  QVariant QVariant data(const QModelIndex &index, int role) const [0xc8206febc0 0xc8206fece0] }
+&{database QSqlTableModel::database commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  QSqlDatabase QSqlDatabase database() const [] }
+&{deleteRowFromTable QSqlTableModel::deleteRowFromTable commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool bool deleteRowFromTable(int row) [0xc8206ff700] }
+&{editStrategy QSqlTableModel::editStrategy commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  EditStrategy EditStrategy editStrategy() const [] }
+&{fieldIndex QSqlTableModel::fieldIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  int int fieldIndex(const QString &fieldName) const [0xc8206ffe80] }
+&{filter QSqlTableModel::filter commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  QString QString filter() const [] }
+&{flags QSqlTableModel::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  Qt::ItemFlags Qt::ItemFlags flags(const QModelIndex &index) const [0xc8206f2740] }
+&{headerData QSqlTableModel::headerData commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  QVariant QVariant headerData(int section, Qt::Orientation orientation, int role) const [0xc8206f2bc0 0xc8206f2d80 0xc8206f2f00] }
+&{indexInQuery QSqlTableModel::indexInQuery commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  QModelIndex QModelIndex indexInQuery(const QModelIndex &item) const [0xc8206f33c0] }
+&{insertRecord QSqlTableModel::insertRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  bool bool insertRecord(int row, const QSqlRecord &record) [0xc8206f39c0 0xc8206f3b80] }
+&{insertRowIntoTable QSqlTableModel::insertRowIntoTable commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool bool insertRowIntoTable(const QSqlRecord &values) [0xc8206de340] }
+&{insertRows QSqlTableModel::insertRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool bool insertRows(int row, int count, const QModelIndex &parent) [0xc8206dea80 0xc8206dec20 0xc8206ded60] }
+&{isDirty QSqlTableModel::isDirty commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false true 2 bool bool isDirty() const [] }
+&{isDirty QSqlTableModel::isDirty commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  bool bool isDirty(const QModelIndex &index) const [0xc8206dfa40] }
+&{orderByClause QSqlTableModel::orderByClause commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  QString QString orderByClause() const [] }
+&{primaryKey QSqlTableModel::primaryKey commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  QSqlIndex QSqlIndex primaryKey() const [] }
+&{primaryValues QSqlTableModel::primaryValues commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  QSqlRecord QSqlRecord primaryValues(int row) const [0xc826a9c6e0] }
+&{primeInsert QSqlTableModel::primeInsert commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non signal false false  void void primeInsert(int row, QSqlRecord &record) [0xc826a9cbe0 0xc826a9cce0] }
+&{record QSqlTableModel::record commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  QSqlRecord QSqlRecord record() const [] }
+&{record QSqlTableModel::record commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false true 2 QSqlRecord QSqlRecord record(int row) const [0xc826a9d580] }
+&{removeColumns QSqlTableModel::removeColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool bool removeColumns(int column, int count, const QModelIndex &parent) [0xc826a9d9c0 0xc826a9db20 0xc826a9dc60] }
+&{removeRows QSqlTableModel::removeRows commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool bool removeRows(int row, int count, const QModelIndex &parent) [0xc8206ca200 0xc8206ca300 0xc8206ca4a0] }
+&{revert QSqlTableModel::revert commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure slot false false  void void revert() [] }
+&{revertAll QSqlTableModel::revertAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non slot false false  void void revertAll() [] }
+&{revertRow QSqlTableModel::revertRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void void revertRow(int row) [0xc8206cb3e0] }
+&{rowCount QSqlTableModel::rowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  int int rowCount(const QModelIndex &parent) const [0xc8206cba80] }
+&{select QSqlTableModel::select commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure slot false false  bool bool select() [] }
+&{selectRow QSqlTableModel::selectRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure slot false false  bool bool selectRow(int row) [0xc820de4300] }
+&{selectStatement QSqlTableModel::selectStatement commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  QString QString selectStatement() const [] }
+&{setData QSqlTableModel::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool bool setData(const QModelIndex &index, const QVariant &value, int role) [0xc820de47a0 0xc820de48e0 0xc820de49e0] }
+&{setEditStrategy QSqlTableModel::setEditStrategy commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void void setEditStrategy(EditStrategy strategy) [0xc820de4c20] }
+&{setFilter QSqlTableModel::setFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void void setFilter(const QString &filter) [0xc820de4ee0] }
+&{setPrimaryKey QSqlTableModel::setPrimaryKey commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  void void setPrimaryKey(const QSqlIndex &key) [0xc820de5180] }
+&{setQuery QSqlTableModel::setQuery commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  void void setQuery(const QSqlQuery &query) [0xc820de54c0] }
+&{setRecord QSqlTableModel::setRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  bool bool setRecord(int row, const QSqlRecord &values) [0xc820de57e0 0xc820de58c0] }
+&{setSort QSqlTableModel::setSort commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void void setSort(int column, Qt::SortOrder order) [0xc820de5bc0 0xc820de5ca0] }
+&{setTable QSqlTableModel::setTable commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void void setTable(const QString &tableName) [0xc820de5f60] }
+&{sort QSqlTableModel::sort commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  void void sort(int column, Qt::SortOrder order) [0xc8206b6540 0xc8206b6820] }
+&{submit QSqlTableModel::submit commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure slot false false  bool bool submit() [] }
+&{submitAll QSqlTableModel::submitAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non slot false false  bool bool submitAll() [] }
+&{tableName QSqlTableModel::tableName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h non plain false false  QString QString tableName() const [] }
+&{updateRowInTable QSqlTableModel::updateRowInTable commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure plain false false  bool bool updateRowInTable(int row, const QSqlRecord &values) [0xc8206b7700 0xc8206b78a0] }
+&{~QSqlTableModel QSqlTableModel::~QSqlTableModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqltablemodel.h impure destructor false false   ~QSqlTableModel() [] }
 ########################################			ENUMS			########################################
-&{EditStrategy QSqlTableModel::EditStrategy commendable public  [0xc8210f1000 0xc8210f1080 0xc8210f1100]}
+&{EditStrategy QSqlTableModel::EditStrategy commendable public  [0xc820ab9ea0 0xc820ab9f40 0xc82071a1e0] false}

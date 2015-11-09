@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{QWaitCondition QWaitCondition::QWaitCondition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non constructor false false   [] }
-&{wait QWaitCondition::wait commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non plain false false  bool [0xc820759c40 0xc820759cc0] }
-&{wait QWaitCondition::wait commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non plain false true 2 bool [0xc820759ec0 0xc820759f80] }
-&{wakeAll QWaitCondition::wakeAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non plain false false  void [] }
-&{wakeOne QWaitCondition::wakeOne commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non plain false false  void [] }
-&{~QWaitCondition QWaitCondition::~QWaitCondition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non destructor false false   [] }
+&{QWaitCondition QWaitCondition::QWaitCondition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non constructor false false   QWaitCondition() [] }
+&{wait QWaitCondition::wait commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non plain false false  bool bool wait(QMutex *lockedMutex, unsigned long time) [0xc8207a7ea0 0xc8207a7f20] }
+&{wait QWaitCondition::wait commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non plain false true 2 bool bool wait(QReadWriteLock *lockedReadWriteLock, unsigned long time) [0xc8207b8120 0xc8207b81e0] }
+&{wakeAll QWaitCondition::wakeAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non plain false false  void void wakeAll() [] }
+&{wakeOne QWaitCondition::wakeOne commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non plain false false  void void wakeOne() [] }
+&{~QWaitCondition QWaitCondition::~QWaitCondition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non destructor false false   ~QWaitCondition() [] }
 ########################################			ENUMS			########################################

@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSGBasicGeometryNode_Geometry2(QtObjectPtr ptr);
-QtObjectPtr QSGBasicGeometryNode_Geometry(QtObjectPtr ptr);
-void QSGBasicGeometryNode_SetGeometry(QtObjectPtr ptr, QtObjectPtr geometry);
-void QSGBasicGeometryNode_DestroyQSGBasicGeometryNode(QtObjectPtr ptr);
+void* QSGBasicGeometryNode_Geometry2(void* ptr);
+void* QSGBasicGeometryNode_Geometry(void* ptr);
+void QSGBasicGeometryNode_SetGeometry(void* ptr, void* geometry);
+void QSGBasicGeometryNode_DestroyQSGBasicGeometryNode(void* ptr);
 
 #ifdef __cplusplus
 }

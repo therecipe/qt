@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QCompass_Reading(QtObjectPtr ptr);
-QtObjectPtr QCompass_NewQCompass(QtObjectPtr parent);
-void QCompass_DestroyQCompass(QtObjectPtr ptr);
+void* QCompass_Reading(void* ptr);
+void* QCompass_NewQCompass(void* parent);
+void QCompass_DestroyQCompass(void* ptr);
 
 #ifdef __cplusplus
 }

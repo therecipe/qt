@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
-&{QDnsDomainNameRecord QDnsDomainNameRecord::QDnsDomainNameRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false false   [] }
-&{QDnsDomainNameRecord QDnsDomainNameRecord::QDnsDomainNameRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false true 2  [0xc823324620] }
-&{name QDnsDomainNameRecord::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QString [] }
-&{operator= QDnsDomainNameRecord::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QDnsDomainNameRecord & [0xc823324a40] }
-&{swap QDnsDomainNameRecord::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  void [0xc823324ce0] }
-&{timeToLive QDnsDomainNameRecord::timeToLive commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint32 [] }
-&{value QDnsDomainNameRecord::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QString [] }
-&{~QDnsDomainNameRecord QDnsDomainNameRecord::~QDnsDomainNameRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non destructor false false   [] }
+&{QDnsDomainNameRecord QDnsDomainNameRecord::QDnsDomainNameRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false false   QDnsDomainNameRecord() [] }
+&{QDnsDomainNameRecord QDnsDomainNameRecord::QDnsDomainNameRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false true 2  QDnsDomainNameRecord(const QDnsDomainNameRecord &other) [0xc823459800] }
+&{name QDnsDomainNameRecord::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QString QString name() const [] }
+&{operator= QDnsDomainNameRecord::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QDnsDomainNameRecord & QDnsDomainNameRecord & operator=(const QDnsDomainNameRecord &other) [0xc823459ce0] }
+&{swap QDnsDomainNameRecord::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  void void swap(QDnsDomainNameRecord &other) [0xc823459fc0] }
+&{timeToLive QDnsDomainNameRecord::timeToLive commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint32 quint32 timeToLive() const [] }
+&{value QDnsDomainNameRecord::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QString QString value() const [] }
+&{~QDnsDomainNameRecord QDnsDomainNameRecord::~QDnsDomainNameRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non destructor false false   ~QDnsDomainNameRecord() [] }
 ########################################			ENUMS			########################################

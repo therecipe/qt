@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QTextObject_Document(QtObjectPtr ptr);
-int QTextObject_FormatIndex(QtObjectPtr ptr);
-int QTextObject_ObjectIndex(QtObjectPtr ptr);
+void* QTextObject_Document(void* ptr);
+int QTextObject_FormatIndex(void* ptr);
+int QTextObject_ObjectIndex(void* ptr);
 
 #ifdef __cplusplus
 }

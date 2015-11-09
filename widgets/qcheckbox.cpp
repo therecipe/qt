@@ -1,10 +1,10 @@
 #include "qcheckbox.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QWidget>
 #include <QObject>
-#include <QString>
-#include <QVariant>
 #include <QCheckBox>
 #include "_cgo_export.h"
 
@@ -13,39 +13,39 @@ public:
 void Signal_StateChanged(int state){callbackQCheckBoxStateChanged(this->objectName().toUtf8().data(), state);};
 };
 
-int QCheckBox_IsTristate(QtObjectPtr ptr){
+int QCheckBox_IsTristate(void* ptr){
 	return static_cast<QCheckBox*>(ptr)->isTristate();
 }
 
-void QCheckBox_SetTristate(QtObjectPtr ptr, int y){
+void QCheckBox_SetTristate(void* ptr, int y){
 	static_cast<QCheckBox*>(ptr)->setTristate(y != 0);
 }
 
-QtObjectPtr QCheckBox_NewQCheckBox(QtObjectPtr parent){
+void* QCheckBox_NewQCheckBox(void* parent){
 	return new QCheckBox(static_cast<QWidget*>(parent));
 }
 
-QtObjectPtr QCheckBox_NewQCheckBox2(char* text, QtObjectPtr parent){
+void* QCheckBox_NewQCheckBox2(char* text, void* parent){
 	return new QCheckBox(QString(text), static_cast<QWidget*>(parent));
 }
 
-int QCheckBox_CheckState(QtObjectPtr ptr){
+int QCheckBox_CheckState(void* ptr){
 	return static_cast<QCheckBox*>(ptr)->checkState();
 }
 
-void QCheckBox_SetCheckState(QtObjectPtr ptr, int state){
+void QCheckBox_SetCheckState(void* ptr, int state){
 	static_cast<QCheckBox*>(ptr)->setCheckState(static_cast<Qt::CheckState>(state));
 }
 
-void QCheckBox_ConnectStateChanged(QtObjectPtr ptr){
+void QCheckBox_ConnectStateChanged(void* ptr){
 	QObject::connect(static_cast<QCheckBox*>(ptr), static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged), static_cast<MyQCheckBox*>(ptr), static_cast<void (MyQCheckBox::*)(int)>(&MyQCheckBox::Signal_StateChanged));;
 }
 
-void QCheckBox_DisconnectStateChanged(QtObjectPtr ptr){
+void QCheckBox_DisconnectStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QCheckBox*>(ptr), static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged), static_cast<MyQCheckBox*>(ptr), static_cast<void (MyQCheckBox::*)(int)>(&MyQCheckBox::Signal_StateChanged));;
 }
 
-void QCheckBox_DestroyQCheckBox(QtObjectPtr ptr){
+void QCheckBox_DestroyQCheckBox(void* ptr){
 	static_cast<QCheckBox*>(ptr)->~QCheckBox();
 }
 

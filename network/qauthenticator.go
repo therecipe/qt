@@ -3,6 +3,7 @@ package network
 //#include "qauthenticator.h"
 import "C"
 import (
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -10,8 +11,8 @@ type QAuthenticator struct {
 	ptr unsafe.Pointer
 }
 
-type QAuthenticatorITF interface {
-	QAuthenticatorPTR() *QAuthenticator
+type QAuthenticator_ITF interface {
+	QAuthenticator_PTR() *QAuthenticator
 }
 
 func (p *QAuthenticator) Pointer() unsafe.Pointer {
@@ -22,86 +23,86 @@ func (p *QAuthenticator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQAuthenticator(ptr QAuthenticatorITF) unsafe.Pointer {
+func PointerFromQAuthenticator(ptr QAuthenticator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAuthenticatorPTR().Pointer()
+		return ptr.QAuthenticator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAuthenticatorFromPointer(ptr unsafe.Pointer) *QAuthenticator {
+func NewQAuthenticatorFromPointer(ptr unsafe.Pointer) *QAuthenticator {
 	var n = new(QAuthenticator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAuthenticator) QAuthenticatorPTR() *QAuthenticator {
+func (ptr *QAuthenticator) QAuthenticator_PTR() *QAuthenticator {
 	return ptr
 }
 
 func NewQAuthenticator() *QAuthenticator {
-	return QAuthenticatorFromPointer(unsafe.Pointer(C.QAuthenticator_NewQAuthenticator()))
+	return NewQAuthenticatorFromPointer(C.QAuthenticator_NewQAuthenticator())
 }
 
-func NewQAuthenticator2(other QAuthenticatorITF) *QAuthenticator {
-	return QAuthenticatorFromPointer(unsafe.Pointer(C.QAuthenticator_NewQAuthenticator2(C.QtObjectPtr(PointerFromQAuthenticator(other)))))
+func NewQAuthenticator2(other QAuthenticator_ITF) *QAuthenticator {
+	return NewQAuthenticatorFromPointer(C.QAuthenticator_NewQAuthenticator2(PointerFromQAuthenticator(other)))
 }
 
 func (ptr *QAuthenticator) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QAuthenticator_IsNull(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QAuthenticator_IsNull(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QAuthenticator) Option(opt string) string {
+func (ptr *QAuthenticator) Option(opt string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAuthenticator_Option(C.QtObjectPtr(ptr.Pointer()), C.CString(opt)))
+		return core.NewQVariantFromPointer(C.QAuthenticator_Option(ptr.Pointer(), C.CString(opt)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QAuthenticator) Password() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAuthenticator_Password(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QAuthenticator_Password(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QAuthenticator) Realm() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAuthenticator_Realm(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QAuthenticator_Realm(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QAuthenticator) SetOption(opt string, value string) {
+func (ptr *QAuthenticator) SetOption(opt string, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAuthenticator_SetOption(C.QtObjectPtr(ptr.Pointer()), C.CString(opt), C.CString(value))
+		C.QAuthenticator_SetOption(ptr.Pointer(), C.CString(opt), core.PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QAuthenticator) SetPassword(password string) {
 	if ptr.Pointer() != nil {
-		C.QAuthenticator_SetPassword(C.QtObjectPtr(ptr.Pointer()), C.CString(password))
+		C.QAuthenticator_SetPassword(ptr.Pointer(), C.CString(password))
 	}
 }
 
 func (ptr *QAuthenticator) SetUser(user string) {
 	if ptr.Pointer() != nil {
-		C.QAuthenticator_SetUser(C.QtObjectPtr(ptr.Pointer()), C.CString(user))
+		C.QAuthenticator_SetUser(ptr.Pointer(), C.CString(user))
 	}
 }
 
 func (ptr *QAuthenticator) User() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAuthenticator_User(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QAuthenticator_User(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QAuthenticator) DestroyQAuthenticator() {
 	if ptr.Pointer() != nil {
-		C.QAuthenticator_DestroyQAuthenticator(C.QtObjectPtr(ptr.Pointer()))
+		C.QAuthenticator_DestroyQAuthenticator(ptr.Pointer())
 	}
 }

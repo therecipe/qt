@@ -12,139 +12,146 @@ type QStyleHints struct {
 	core.QObject
 }
 
-type QStyleHintsITF interface {
-	core.QObjectITF
-	QStyleHintsPTR() *QStyleHints
+type QStyleHints_ITF interface {
+	core.QObject_ITF
+	QStyleHints_PTR() *QStyleHints
 }
 
-func PointerFromQStyleHints(ptr QStyleHintsITF) unsafe.Pointer {
+func PointerFromQStyleHints(ptr QStyleHints_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleHintsPTR().Pointer()
+		return ptr.QStyleHints_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleHintsFromPointer(ptr unsafe.Pointer) *QStyleHints {
+func NewQStyleHintsFromPointer(ptr unsafe.Pointer) *QStyleHints {
 	var n = new(QStyleHints)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QStyleHints_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QStyleHints) QStyleHintsPTR() *QStyleHints {
+func (ptr *QStyleHints) QStyleHints_PTR() *QStyleHints {
 	return ptr
 }
 
 func (ptr *QStyleHints) CursorFlashTime() int {
 	if ptr.Pointer() != nil {
-		return int(C.QStyleHints_CursorFlashTime(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QStyleHints_CursorFlashTime(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QStyleHints) FontSmoothingGamma() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QStyleHints_FontSmoothingGamma(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QStyleHints) KeyboardAutoRepeatRate() int {
 	if ptr.Pointer() != nil {
-		return int(C.QStyleHints_KeyboardAutoRepeatRate(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QStyleHints_KeyboardAutoRepeatRate(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QStyleHints) KeyboardInputInterval() int {
 	if ptr.Pointer() != nil {
-		return int(C.QStyleHints_KeyboardInputInterval(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QStyleHints_KeyboardInputInterval(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QStyleHints) MouseDoubleClickInterval() int {
 	if ptr.Pointer() != nil {
-		return int(C.QStyleHints_MouseDoubleClickInterval(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QStyleHints_MouseDoubleClickInterval(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QStyleHints) MousePressAndHoldInterval() int {
 	if ptr.Pointer() != nil {
-		return int(C.QStyleHints_MousePressAndHoldInterval(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QStyleHints_MousePressAndHoldInterval(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QStyleHints) PasswordMaskDelay() int {
 	if ptr.Pointer() != nil {
-		return int(C.QStyleHints_PasswordMaskDelay(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QStyleHints_PasswordMaskDelay(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QStyleHints) SetFocusOnTouchRelease() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleHints_SetFocusOnTouchRelease(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QStyleHints_SetFocusOnTouchRelease(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QStyleHints) ShowIsFullScreen() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleHints_ShowIsFullScreen(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QStyleHints_ShowIsFullScreen(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QStyleHints) SingleClickActivation() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleHints_SingleClickActivation(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QStyleHints_SingleClickActivation(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QStyleHints) StartDragDistance() int {
 	if ptr.Pointer() != nil {
-		return int(C.QStyleHints_StartDragDistance(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QStyleHints_StartDragDistance(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QStyleHints) StartDragTime() int {
 	if ptr.Pointer() != nil {
-		return int(C.QStyleHints_StartDragTime(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QStyleHints_StartDragTime(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QStyleHints) StartDragVelocity() int {
 	if ptr.Pointer() != nil {
-		return int(C.QStyleHints_StartDragVelocity(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QStyleHints_StartDragVelocity(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QStyleHints) TabFocusBehavior() core.Qt__TabFocusBehavior {
 	if ptr.Pointer() != nil {
-		return core.Qt__TabFocusBehavior(C.QStyleHints_TabFocusBehavior(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__TabFocusBehavior(C.QStyleHints_TabFocusBehavior(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QStyleHints) UseRtlExtensions() bool {
 	if ptr.Pointer() != nil {
-		return C.QStyleHints_UseRtlExtensions(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QStyleHints_UseRtlExtensions(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QStyleHints) ConnectCursorFlashTimeChanged(f func(cursorFlashTime int)) {
 	if ptr.Pointer() != nil {
-		C.QStyleHints_ConnectCursorFlashTimeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleHints_ConnectCursorFlashTimeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "cursorFlashTimeChanged", f)
 	}
 }
 
 func (ptr *QStyleHints) DisconnectCursorFlashTimeChanged() {
 	if ptr.Pointer() != nil {
-		C.QStyleHints_DisconnectCursorFlashTimeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleHints_DisconnectCursorFlashTimeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "cursorFlashTimeChanged")
 	}
 }
@@ -156,14 +163,14 @@ func callbackQStyleHintsCursorFlashTimeChanged(ptrName *C.char, cursorFlashTime 
 
 func (ptr *QStyleHints) ConnectKeyboardInputIntervalChanged(f func(keyboardInputInterval int)) {
 	if ptr.Pointer() != nil {
-		C.QStyleHints_ConnectKeyboardInputIntervalChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleHints_ConnectKeyboardInputIntervalChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "keyboardInputIntervalChanged", f)
 	}
 }
 
 func (ptr *QStyleHints) DisconnectKeyboardInputIntervalChanged() {
 	if ptr.Pointer() != nil {
-		C.QStyleHints_DisconnectKeyboardInputIntervalChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleHints_DisconnectKeyboardInputIntervalChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "keyboardInputIntervalChanged")
 	}
 }
@@ -175,14 +182,14 @@ func callbackQStyleHintsKeyboardInputIntervalChanged(ptrName *C.char, keyboardIn
 
 func (ptr *QStyleHints) ConnectMouseDoubleClickIntervalChanged(f func(mouseDoubleClickInterval int)) {
 	if ptr.Pointer() != nil {
-		C.QStyleHints_ConnectMouseDoubleClickIntervalChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleHints_ConnectMouseDoubleClickIntervalChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickIntervalChanged", f)
 	}
 }
 
 func (ptr *QStyleHints) DisconnectMouseDoubleClickIntervalChanged() {
 	if ptr.Pointer() != nil {
-		C.QStyleHints_DisconnectMouseDoubleClickIntervalChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleHints_DisconnectMouseDoubleClickIntervalChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickIntervalChanged")
 	}
 }
@@ -194,14 +201,14 @@ func callbackQStyleHintsMouseDoubleClickIntervalChanged(ptrName *C.char, mouseDo
 
 func (ptr *QStyleHints) ConnectStartDragDistanceChanged(f func(startDragDistance int)) {
 	if ptr.Pointer() != nil {
-		C.QStyleHints_ConnectStartDragDistanceChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleHints_ConnectStartDragDistanceChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "startDragDistanceChanged", f)
 	}
 }
 
 func (ptr *QStyleHints) DisconnectStartDragDistanceChanged() {
 	if ptr.Pointer() != nil {
-		C.QStyleHints_DisconnectStartDragDistanceChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleHints_DisconnectStartDragDistanceChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "startDragDistanceChanged")
 	}
 }
@@ -213,14 +220,14 @@ func callbackQStyleHintsStartDragDistanceChanged(ptrName *C.char, startDragDista
 
 func (ptr *QStyleHints) ConnectStartDragTimeChanged(f func(startDragTime int)) {
 	if ptr.Pointer() != nil {
-		C.QStyleHints_ConnectStartDragTimeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleHints_ConnectStartDragTimeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "startDragTimeChanged", f)
 	}
 }
 
 func (ptr *QStyleHints) DisconnectStartDragTimeChanged() {
 	if ptr.Pointer() != nil {
-		C.QStyleHints_DisconnectStartDragTimeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleHints_DisconnectStartDragTimeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "startDragTimeChanged")
 	}
 }

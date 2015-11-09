@@ -10,31 +10,27 @@ class MyQSourceLocation: public QSourceLocation {
 public:
 };
 
-QtObjectPtr QSourceLocation_NewQSourceLocation(){
+void* QSourceLocation_NewQSourceLocation(){
 	return new QSourceLocation();
 }
 
-QtObjectPtr QSourceLocation_NewQSourceLocation2(QtObjectPtr other){
+void* QSourceLocation_NewQSourceLocation2(void* other){
 	return new QSourceLocation(*static_cast<QSourceLocation*>(other));
 }
 
-QtObjectPtr QSourceLocation_NewQSourceLocation3(char* u, int l, int c){
-	return new QSourceLocation(QUrl(QString(u)), l, c);
+void* QSourceLocation_NewQSourceLocation3(void* u, int l, int c){
+	return new QSourceLocation(*static_cast<QUrl*>(u), l, c);
 }
 
-int QSourceLocation_IsNull(QtObjectPtr ptr){
+int QSourceLocation_IsNull(void* ptr){
 	return static_cast<QSourceLocation*>(ptr)->isNull();
 }
 
-void QSourceLocation_SetUri(QtObjectPtr ptr, char* newUri){
-	static_cast<QSourceLocation*>(ptr)->setUri(QUrl(QString(newUri)));
+void QSourceLocation_SetUri(void* ptr, void* newUri){
+	static_cast<QSourceLocation*>(ptr)->setUri(*static_cast<QUrl*>(newUri));
 }
 
-char* QSourceLocation_Uri(QtObjectPtr ptr){
-	return static_cast<QSourceLocation*>(ptr)->uri().toString().toUtf8().data();
-}
-
-void QSourceLocation_DestroyQSourceLocation(QtObjectPtr ptr){
+void QSourceLocation_DestroyQSourceLocation(void* ptr){
 	static_cast<QSourceLocation*>(ptr)->~QSourceLocation();
 }
 

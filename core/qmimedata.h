@@ -1,28 +1,28 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QMimeData_NewQMimeData();
-void QMimeData_Clear(QtObjectPtr ptr);
-char* QMimeData_ColorData(QtObjectPtr ptr);
-char* QMimeData_Formats(QtObjectPtr ptr);
-int QMimeData_HasColor(QtObjectPtr ptr);
-int QMimeData_HasFormat(QtObjectPtr ptr, char* mimeType);
-int QMimeData_HasHtml(QtObjectPtr ptr);
-int QMimeData_HasImage(QtObjectPtr ptr);
-int QMimeData_HasText(QtObjectPtr ptr);
-int QMimeData_HasUrls(QtObjectPtr ptr);
-char* QMimeData_Html(QtObjectPtr ptr);
-char* QMimeData_ImageData(QtObjectPtr ptr);
-void QMimeData_RemoveFormat(QtObjectPtr ptr, char* mimeType);
-void QMimeData_SetColorData(QtObjectPtr ptr, char* color);
-void QMimeData_SetData(QtObjectPtr ptr, char* mimeType, QtObjectPtr data);
-void QMimeData_SetHtml(QtObjectPtr ptr, char* html);
-void QMimeData_SetImageData(QtObjectPtr ptr, char* image);
-void QMimeData_SetText(QtObjectPtr ptr, char* text);
-char* QMimeData_Text(QtObjectPtr ptr);
-void QMimeData_DestroyQMimeData(QtObjectPtr ptr);
+void* QMimeData_NewQMimeData();
+void QMimeData_Clear(void* ptr);
+void* QMimeData_ColorData(void* ptr);
+void* QMimeData_Data(void* ptr, char* mimeType);
+char* QMimeData_Formats(void* ptr);
+int QMimeData_HasColor(void* ptr);
+int QMimeData_HasFormat(void* ptr, char* mimeType);
+int QMimeData_HasHtml(void* ptr);
+int QMimeData_HasImage(void* ptr);
+int QMimeData_HasText(void* ptr);
+int QMimeData_HasUrls(void* ptr);
+char* QMimeData_Html(void* ptr);
+void* QMimeData_ImageData(void* ptr);
+void QMimeData_RemoveFormat(void* ptr, char* mimeType);
+void QMimeData_SetColorData(void* ptr, void* color);
+void QMimeData_SetData(void* ptr, char* mimeType, void* data);
+void QMimeData_SetHtml(void* ptr, char* html);
+void QMimeData_SetImageData(void* ptr, void* image);
+void QMimeData_SetText(void* ptr, char* text);
+char* QMimeData_Text(void* ptr);
+void QMimeData_DestroyQMimeData(void* ptr);
 
 #ifdef __cplusplus
 }

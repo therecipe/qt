@@ -1,21 +1,21 @@
 ########################################			FUNCTIONS			########################################
-&{notchSize QDial::notchSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  int [] }
-&{notchTarget QDial::notchTarget commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  qreal [] }
-&{notchesVisible QDial::notchesVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  bool [] }
-&{setNotchTarget QDial::setNotchTarget commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  void [0xc8210f8020] }
-&{setNotchesVisible QDial::setNotchesVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non slot false false  void [0xc8210f8720] }
-&{setWrapping QDial::setWrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non slot false false  void [0xc8210f8e40] }
-&{wrapping QDial::wrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  bool [] }
-&{QDial QDial::QDial commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h non constructor false false   [0xc8210f9620] }
-&{event QDial::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  bool [0xc8210f9a80] }
-&{initStyleOption QDial::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h non plain false false  void [0xc82117e100] }
-&{minimumSizeHint QDial::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  QSize [] }
-&{mouseMoveEvent QDial::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void [0xc82117e9e0] }
-&{mousePressEvent QDial::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void [0xc82117ef00] }
-&{mouseReleaseEvent QDial::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void [0xc82117f540] }
-&{paintEvent QDial::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void [0xc82117fa40] }
-&{resizeEvent QDial::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void [0xc82117fe00] }
-&{sizeHint QDial::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  QSize [] }
-&{sliderChange QDial::sliderChange commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void [0xc8212165e0] }
-&{~QDial QDial::~QDial commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h non destructor false false   [] }
+&{notchSize QDial::notchSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  int int notchSize() const [] }
+&{notchTarget QDial::notchTarget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  qreal qreal notchTarget() const [] }
+&{notchesVisible QDial::notchesVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  bool bool notchesVisible() const [] }
+&{setNotchTarget QDial::setNotchTarget commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  void void setNotchTarget(double target) [0xc8214be1e0] }
+&{setNotchesVisible QDial::setNotchesVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non slot false false  void void setNotchesVisible(bool visible) [0xc8214be600] }
+&{setWrapping QDial::setWrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non slot false false  void void setWrapping(bool on) [0xc8214beac0] }
+&{wrapping QDial::wrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  bool bool wrapping() const [] }
+&{QDial QDial::QDial commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h non constructor false false   QDial(QWidget *parent) [0xc8214befa0] }
+&{event QDial::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  bool bool event(QEvent *e) [0xc8214bf380] }
+&{initStyleOption QDial::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h non plain false false  void void initStyleOption(QStyleOptionSlider *option) const [0xc8214bf6e0] }
+&{minimumSizeHint QDial::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  QSize QSize minimumSizeHint() const [] }
+&{mouseMoveEvent QDial::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc8214bfd60] }
+&{mousePressEvent QDial::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void mousePressEvent(QMouseEvent *e) [0xc821df2040] }
+&{mouseReleaseEvent QDial::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *e) [0xc821df23a0] }
+&{paintEvent QDial::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void paintEvent(QPaintEvent *pe) [0xc821df26e0] }
+&{resizeEvent QDial::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void resizeEvent(QResizeEvent *e) [0xc821df29e0] }
+&{sizeHint QDial::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  QSize QSize sizeHint() const [] }
+&{sliderChange QDial::sliderChange commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void sliderChange(SliderChange change) [0xc821df2e60] }
+&{~QDial QDial::~QDial commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h non destructor false false   ~QDial() [] }
 ########################################			ENUMS			########################################

@@ -1,67 +1,67 @@
 ########################################			FUNCTIONS			########################################
-&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false false   [] }
-&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 10  [0xc821bad140] }
-&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 11  [0xc821bad540] }
-&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 16  [0xc821bad960] }
-&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 2  [0xc821bade80] }
-&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 15  [0xc821ba6120] }
-&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 17  [0xc821ba62e0] }
-&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 12  [0xc821ba64a0] }
-&{QScriptValue QScriptValue::QScriptValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 14  [0xc821ba6660] }
-&{QScriptValue QScriptValue::QScriptValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 13  [0xc821ba6840] }
-&{call QScriptValue::call commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 2 QScriptValue [0xc821ba70a0 0xc821ba7180] }
-&{call QScriptValue::call commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue [0xc821ba73a0 0xc821ba74a0] }
-&{construct QScriptValue::construct commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 2 QScriptValue [0xc821ba76c0] }
-&{construct QScriptValue::construct commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue [0xc821ba7900] }
-&{data QScriptValue::data commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue [] }
-&{engine QScriptValue::engine commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptEngine * [] }
-&{equals QScriptValue::equals commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [0xc821ba7d20] }
-&{instanceOf QScriptValue::instanceOf commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [0xc821ba7f40] }
-&{isArray QScriptValue::isArray commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isBool QScriptValue::isBool commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isDate QScriptValue::isDate commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isError QScriptValue::isError commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isFunction QScriptValue::isFunction commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isNull QScriptValue::isNull commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isNumber QScriptValue::isNumber commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isObject QScriptValue::isObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isQMetaObject QScriptValue::isQMetaObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isQObject QScriptValue::isQObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isRegExp QScriptValue::isRegExp commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isString QScriptValue::isString commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isUndefined QScriptValue::isUndefined commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isValid QScriptValue::isValid commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{isVariant QScriptValue::isVariant commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{lessThan QScriptValue::lessThan commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [0xc821b9d180] }
-&{operator= QScriptValue::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue & [0xc821b9d4a0] }
-&{property QScriptValue::property commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 2 QScriptValue [0xc821b9d6c0 0xc821b9d7a0] }
-&{property QScriptValue::property commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue [0xc821b9d9a0 0xc821b9da40] }
-&{property QScriptValue::property commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 3 QScriptValue [0xc821b9dc40 0xc821b9dce0] }
-&{propertyFlags QScriptValue::propertyFlags commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 2 QScriptValue::PropertyFlags [0xc821b9dfc0 0xc821b9a160] }
-&{propertyFlags QScriptValue::propertyFlags commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue::PropertyFlags [0xc821b9a5e0 0xc821b9a720] }
-&{prototype QScriptValue::prototype commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue [] }
-&{scriptClass QScriptValue::scriptClass commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptClass * [] }
-&{setData QScriptValue::setData commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  void [0xc821b9b500] }
-&{setProperty QScriptValue::setProperty commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 2 void [0xc821b9b960 0xc821b9bb40 0xc821b9bd00] }
-&{setProperty QScriptValue::setProperty commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  void [0xc821b94060 0xc821b94100 0xc821b94200] }
-&{setProperty QScriptValue::setProperty commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 3 void [0xc821b94400 0xc821b944a0 0xc821b945a0] }
-&{setPrototype QScriptValue::setPrototype commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  void [0xc821b947c0] }
-&{setScriptClass QScriptValue::setScriptClass commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  void [0xc821b949c0] }
-&{strictlyEquals QScriptValue::strictlyEquals commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [0xc821b94ba0] }
-&{toBool QScriptValue::toBool commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool [] }
-&{toDateTime QScriptValue::toDateTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QDateTime [] }
-&{toInt32 QScriptValue::toInt32 commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  qint32 [] }
-&{toInteger QScriptValue::toInteger commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  qsreal [] }
-&{toNumber QScriptValue::toNumber commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  qsreal [] }
-&{toQMetaObject QScriptValue::toQMetaObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  const QMetaObject * [] }
-&{toQObject QScriptValue::toQObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QObject * [] }
-&{toRegExp QScriptValue::toRegExp commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QRegExp [] }
-&{toString QScriptValue::toString commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QString [] }
-&{toUInt16 QScriptValue::toUInt16 commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  quint16 [] }
-&{toUInt32 QScriptValue::toUInt32 commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  quint32 [] }
-&{toVariant QScriptValue::toVariant commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QVariant [] }
-&{~QScriptValue QScriptValue::~QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non destructor false false   [] }
+&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false false   QScriptValue() [] }
+&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 10  QScriptValue(SpecialValue value) [0xc8212bb660] }
+&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 11  QScriptValue(bool value) [0xc8212bb900] }
+&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 16  QScriptValue(const QLatin1String &value) [0xc8212bbb20] }
+&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 2  QScriptValue(const QScriptValue &other) [0xc8212bbe00] }
+&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 15  QScriptValue(const QString &value) [0xc8223540a0] }
+&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 17  QScriptValue(const char *value) [0xc822354340] }
+&{QScriptValue QScriptValue::QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 12  QScriptValue(int value) [0xc8223545a0] }
+&{QScriptValue QScriptValue::QScriptValue commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 14  QScriptValue(qsreal value) [0xc822354820] }
+&{QScriptValue QScriptValue::QScriptValue commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non constructor false true 13  QScriptValue(uint value) [0xc822354ac0] }
+&{call QScriptValue::call commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 2 QScriptValue QScriptValue call(const QScriptValue &thisObject, const QScriptValue &arguments) [0xc822355520 0xc822355600] }
+&{call QScriptValue::call commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue QScriptValue call(const QScriptValue &thisObject, const QScriptValueList &args) [0xc8223558c0 0xc822355a00] }
+&{construct QScriptValue::construct commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 2 QScriptValue QScriptValue construct(const QScriptValue &arguments) [0xc822355cc0] }
+&{construct QScriptValue::construct commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue QScriptValue construct(const QScriptValueList &args) [0xc822355fc0] }
+&{data QScriptValue::data commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue QScriptValue data() const [] }
+&{engine QScriptValue::engine commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptEngine * QScriptEngine * engine() const [] }
+&{equals QScriptValue::equals commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool equals(const QScriptValue &other) const [0xc8226785a0] }
+&{instanceOf QScriptValue::instanceOf commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool instanceOf(const QScriptValue &other) const [0xc822678840] }
+&{isArray QScriptValue::isArray commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isArray() const [] }
+&{isBool QScriptValue::isBool commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isBool() const [] }
+&{isDate QScriptValue::isDate commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isDate() const [] }
+&{isError QScriptValue::isError commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isError() const [] }
+&{isFunction QScriptValue::isFunction commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isFunction() const [] }
+&{isNull QScriptValue::isNull commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isNull() const [] }
+&{isNumber QScriptValue::isNumber commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isNumber() const [] }
+&{isObject QScriptValue::isObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isObject() const [] }
+&{isQMetaObject QScriptValue::isQMetaObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isQMetaObject() const [] }
+&{isQObject QScriptValue::isQObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isQObject() const [] }
+&{isRegExp QScriptValue::isRegExp commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isRegExp() const [] }
+&{isString QScriptValue::isString commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isString() const [] }
+&{isUndefined QScriptValue::isUndefined commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isUndefined() const [] }
+&{isValid QScriptValue::isValid commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isValid() const [] }
+&{isVariant QScriptValue::isVariant commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool isVariant() const [] }
+&{lessThan QScriptValue::lessThan commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool lessThan(const QScriptValue &other) const [0xc8223b6400] }
+&{operator= QScriptValue::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue & QScriptValue & operator=(const QScriptValue &other) [0xc8223b67e0] }
+&{property QScriptValue::property commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 2 QScriptValue QScriptValue property(const QScriptString &name, const ResolveFlags &mode) const [0xc8223b6a40 0xc8223b6b40] }
+&{property QScriptValue::property commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue QScriptValue property(const QString &name, const ResolveFlags &mode) const [0xc8223b6de0 0xc8223b6e80] }
+&{property QScriptValue::property commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 3 QScriptValue QScriptValue property(quint32 arrayIndex, const ResolveFlags &mode) const [0xc8223b7140 0xc8223b7200] }
+&{propertyFlags QScriptValue::propertyFlags commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 2 QScriptValue::PropertyFlags QScriptValue::PropertyFlags propertyFlags(const QScriptString &name, const ResolveFlags &mode) const [0xc8223b74e0 0xc8223b7620] }
+&{propertyFlags QScriptValue::propertyFlags commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue::PropertyFlags QScriptValue::PropertyFlags propertyFlags(const QString &name, const ResolveFlags &mode) const [0xc8223b7900 0xc8223b7a00] }
+&{prototype QScriptValue::prototype commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptValue QScriptValue prototype() const [] }
+&{scriptClass QScriptValue::scriptClass commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QScriptClass * QScriptClass * scriptClass() const [] }
+&{setData QScriptValue::setData commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  void void setData(const QScriptValue &data) [0xc8224c0380] }
+&{setProperty QScriptValue::setProperty commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 2 void void setProperty(const QScriptString &name, const QScriptValue &value, const PropertyFlags &flags) [0xc8224c0660 0xc8224c0740 0xc8224c08a0] }
+&{setProperty QScriptValue::setProperty commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  void void setProperty(const QString &name, const QScriptValue &value, const PropertyFlags &flags) [0xc8224c0b40 0xc8224c0be0 0xc8224c0d60] }
+&{setProperty QScriptValue::setProperty commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false true 3 void void setProperty(quint32 arrayIndex, const QScriptValue &value, const PropertyFlags &flags) [0xc8224c0fe0 0xc8224c10c0 0xc8224c11e0] }
+&{setPrototype QScriptValue::setPrototype commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  void void setPrototype(const QScriptValue &prototype) [0xc8224c14a0] }
+&{setScriptClass QScriptValue::setScriptClass commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  void void setScriptClass(QScriptClass *scriptClass) [0xc8224c1740] }
+&{strictlyEquals QScriptValue::strictlyEquals commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool strictlyEquals(const QScriptValue &other) const [0xc8224c1980] }
+&{toBool QScriptValue::toBool commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  bool bool toBool() const [] }
+&{toDateTime QScriptValue::toDateTime commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QDateTime QDateTime toDateTime() const [] }
+&{toInt32 QScriptValue::toInt32 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  qint32 qint32 toInt32() const [] }
+&{toInteger QScriptValue::toInteger commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  qsreal qsreal toInteger() const [] }
+&{toNumber QScriptValue::toNumber commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  qsreal qsreal toNumber() const [] }
+&{toQMetaObject QScriptValue::toQMetaObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  const QMetaObject * const QMetaObject * toQMetaObject() const [] }
+&{toQObject QScriptValue::toQObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QObject * QObject * toQObject() const [] }
+&{toRegExp QScriptValue::toRegExp commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QRegExp QRegExp toRegExp() const [] }
+&{toString QScriptValue::toString commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QString QString toString() const [] }
+&{toUInt16 QScriptValue::toUInt16 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  quint16 quint16 toUInt16() const [] }
+&{toUInt32 QScriptValue::toUInt32 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  quint32 quint32 toUInt32() const [] }
+&{toVariant QScriptValue::toVariant commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non plain false false  QVariant QVariant toVariant() const [] }
+&{~QScriptValue QScriptValue::~QScriptValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptvalue.h non destructor false false   ~QScriptValue() [] }
 ########################################			ENUMS			########################################
-&{PropertyFlag QScriptValue::PropertyFlag commendable public QScriptValue::PropertyFlags [0xc821baf7a0 0xc821baf820 0xc821baf8c0 0xc821baf980 0xc821bafa20 0xc821bafaa0 0xc821bafb40 0xc821bafc00]}
-&{ResolveFlag QScriptValue::ResolveFlag commendable public QScriptValue::ResolveFlags [0xc821bafe00 0xc821bafe80 0xc821baff00 0xc821baffa0]}
-&{SpecialValue QScriptValue::SpecialValue commendable public  [0xc821bac380 0xc821bac4a0]}
+&{PropertyFlag QScriptValue::PropertyFlag commendable public QScriptValue::PropertyFlags [0xc8212ba0c0 0xc8212ba160 0xc8212ba200 0xc8212ba300 0xc8212ba3e0 0xc8212ba480 0xc8212ba540 0xc8212ba620] false}
+&{ResolveFlag QScriptValue::ResolveFlag commendable public QScriptValue::ResolveFlags [0xc8212ba8e0 0xc8212ba9a0 0xc8212baa40 0xc8212baae0] false}
+&{SpecialValue QScriptValue::SpecialValue commendable public  [0xc8212bad60 0xc8212bae00] false}

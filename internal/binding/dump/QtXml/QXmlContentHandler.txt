@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{characters QXmlContentHandler::characters commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821b838c0] }
-&{endDocument QXmlContentHandler::endDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [] }
-&{endElement QXmlContentHandler::endElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821b83de0 0xc821b83e80 0xc821b83f60] }
-&{endPrefixMapping QXmlContentHandler::endPrefixMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821c3e200] }
-&{errorString QXmlContentHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString [] }
-&{ignorableWhitespace QXmlContentHandler::ignorableWhitespace commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821c3e720] }
-&{processingInstruction QXmlContentHandler::processingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821c3ea20 0xc821c3eb00] }
-&{setDocumentLocator QXmlContentHandler::setDocumentLocator commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  void [0xc821c3ee40] }
-&{skippedEntity QXmlContentHandler::skippedEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821c3f120] }
-&{startDocument QXmlContentHandler::startDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [] }
-&{startElement QXmlContentHandler::startElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821c3f540 0xc821c3f620 0xc821c3f720 0xc821c3f840] }
-&{startPrefixMapping QXmlContentHandler::startPrefixMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc821c3fc20 0xc821c3fd40] }
-&{~QXmlContentHandler QXmlContentHandler::~QXmlContentHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   [] }
+&{characters QXmlContentHandler::characters commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool characters(const QString &ch) [0xc8212b33a0] }
+&{endDocument QXmlContentHandler::endDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool endDocument() [] }
+&{endElement QXmlContentHandler::endElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool endElement(const QString &namespaceURI, const QString &localName, const QString &qName) [0xc8212b38c0 0xc8212b3a00 0xc8212b3aa0] }
+&{endPrefixMapping QXmlContentHandler::endPrefixMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool endPrefixMapping(const QString &prefix) [0xc8212b3d60] }
+&{errorString QXmlContentHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString QString errorString() const [] }
+&{ignorableWhitespace QXmlContentHandler::ignorableWhitespace commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool ignorableWhitespace(const QString &ch) [0xc8213902e0] }
+&{processingInstruction QXmlContentHandler::processingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool processingInstruction(const QString &target, const QString &data) [0xc821390640 0xc821390740] }
+&{setDocumentLocator QXmlContentHandler::setDocumentLocator commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  void void setDocumentLocator(QXmlLocator *locator) [0xc821390ae0] }
+&{skippedEntity QXmlContentHandler::skippedEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool skippedEntity(const QString &name) [0xc821390d20] }
+&{startDocument QXmlContentHandler::startDocument commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool startDocument() [] }
+&{startElement QXmlContentHandler::startElement commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &atts) [0xc821391220 0xc821391320 0xc821391480 0xc8213915c0] }
+&{startPrefixMapping QXmlContentHandler::startPrefixMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool startPrefixMapping(const QString &prefix, const QString &uri) [0xc821391920 0xc8213919e0] }
+&{~QXmlContentHandler QXmlContentHandler::~QXmlContentHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   ~QXmlContentHandler() [] }
 ########################################			ENUMS			########################################

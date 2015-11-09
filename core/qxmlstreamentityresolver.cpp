@@ -10,11 +10,11 @@ class MyQXmlStreamEntityResolver: public QXmlStreamEntityResolver {
 public:
 };
 
-char* QXmlStreamEntityResolver_ResolveUndeclaredEntity(QtObjectPtr ptr, char* name){
+char* QXmlStreamEntityResolver_ResolveUndeclaredEntity(void* ptr, char* name){
 	return static_cast<QXmlStreamEntityResolver*>(ptr)->resolveUndeclaredEntity(QString(name)).toUtf8().data();
 }
 
-void QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(QtObjectPtr ptr){
+void QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(void* ptr){
 	static_cast<QXmlStreamEntityResolver*>(ptr)->~QXmlStreamEntityResolver();
 }
 

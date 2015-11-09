@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QGraphicsSceneMouseEvent_Button(QtObjectPtr ptr);
-int QGraphicsSceneMouseEvent_Buttons(QtObjectPtr ptr);
-int QGraphicsSceneMouseEvent_Flags(QtObjectPtr ptr);
-int QGraphicsSceneMouseEvent_Modifiers(QtObjectPtr ptr);
-int QGraphicsSceneMouseEvent_Source(QtObjectPtr ptr);
-void QGraphicsSceneMouseEvent_DestroyQGraphicsSceneMouseEvent(QtObjectPtr ptr);
+int QGraphicsSceneMouseEvent_Button(void* ptr);
+int QGraphicsSceneMouseEvent_Buttons(void* ptr);
+int QGraphicsSceneMouseEvent_Flags(void* ptr);
+int QGraphicsSceneMouseEvent_Modifiers(void* ptr);
+int QGraphicsSceneMouseEvent_Source(void* ptr);
+void QGraphicsSceneMouseEvent_DestroyQGraphicsSceneMouseEvent(void* ptr);
 
 #ifdef __cplusplus
 }

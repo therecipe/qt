@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QCameraViewfinder QCameraViewfinder::QCameraViewfinder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qcameraviewfinder.h non constructor false false   [0xc822a764e0] }
-&{mediaObject QCameraViewfinder::mediaObject commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qcameraviewfinder.h impure plain false false  QMediaObject * [] }
-&{setMediaObject QCameraViewfinder::setMediaObject commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qcameraviewfinder.h impure plain false false  bool [0xc822a76860] }
-&{~QCameraViewfinder QCameraViewfinder::~QCameraViewfinder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qcameraviewfinder.h non destructor false false   [] }
+&{QCameraViewfinder QCameraViewfinder::QCameraViewfinder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qcameraviewfinder.h non constructor false false   QCameraViewfinder(QWidget *parent) [0xc820bab8c0] }
+&{mediaObject QCameraViewfinder::mediaObject commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qcameraviewfinder.h impure plain false false  QMediaObject * QMediaObject * mediaObject() const [] }
+&{setMediaObject QCameraViewfinder::setMediaObject commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qcameraviewfinder.h impure plain false false  bool bool setMediaObject(QMediaObject *object) [0xc820babec0] }
+&{~QCameraViewfinder QCameraViewfinder::~QCameraViewfinder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qcameraviewfinder.h non destructor false false   ~QCameraViewfinder() [] }
 ########################################			ENUMS			########################################

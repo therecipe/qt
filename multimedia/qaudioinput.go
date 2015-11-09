@@ -12,63 +12,63 @@ type QAudioInput struct {
 	core.QObject
 }
 
-type QAudioInputITF interface {
-	core.QObjectITF
-	QAudioInputPTR() *QAudioInput
+type QAudioInput_ITF interface {
+	core.QObject_ITF
+	QAudioInput_PTR() *QAudioInput
 }
 
-func PointerFromQAudioInput(ptr QAudioInputITF) unsafe.Pointer {
+func PointerFromQAudioInput(ptr QAudioInput_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAudioInputPTR().Pointer()
+		return ptr.QAudioInput_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAudioInputFromPointer(ptr unsafe.Pointer) *QAudioInput {
+func NewQAudioInputFromPointer(ptr unsafe.Pointer) *QAudioInput {
 	var n = new(QAudioInput)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAudioInput_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAudioInput) QAudioInputPTR() *QAudioInput {
+func (ptr *QAudioInput) QAudioInput_PTR() *QAudioInput {
 	return ptr
 }
 
-func NewQAudioInput2(audioDevice QAudioDeviceInfoITF, format QAudioFormatITF, parent core.QObjectITF) *QAudioInput {
-	return QAudioInputFromPointer(unsafe.Pointer(C.QAudioInput_NewQAudioInput2(C.QtObjectPtr(PointerFromQAudioDeviceInfo(audioDevice)), C.QtObjectPtr(PointerFromQAudioFormat(format)), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQAudioInput2(audioDevice QAudioDeviceInfo_ITF, format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioInput {
+	return NewQAudioInputFromPointer(C.QAudioInput_NewQAudioInput2(PointerFromQAudioDeviceInfo(audioDevice), PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
 }
 
-func NewQAudioInput(format QAudioFormatITF, parent core.QObjectITF) *QAudioInput {
-	return QAudioInputFromPointer(unsafe.Pointer(C.QAudioInput_NewQAudioInput(C.QtObjectPtr(PointerFromQAudioFormat(format)), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQAudioInput(format QAudioFormat_ITF, parent core.QObject_ITF) *QAudioInput {
+	return NewQAudioInputFromPointer(C.QAudioInput_NewQAudioInput(PointerFromQAudioFormat(format), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAudioInput) BufferSize() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAudioInput_BufferSize(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAudioInput_BufferSize(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAudioInput) BytesReady() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAudioInput_BytesReady(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAudioInput_BytesReady(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAudioInput) ConnectNotify(f func()) {
 	if ptr.Pointer() != nil {
-		C.QAudioInput_ConnectNotify(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioInput_ConnectNotify(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "notify", f)
 	}
 }
 
 func (ptr *QAudioInput) DisconnectNotify() {
 	if ptr.Pointer() != nil {
-		C.QAudioInput_DisconnectNotify(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioInput_DisconnectNotify(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "notify")
 	}
 }
@@ -80,70 +80,83 @@ func callbackQAudioInputNotify(ptrName *C.char) {
 
 func (ptr *QAudioInput) NotifyInterval() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAudioInput_NotifyInterval(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAudioInput_NotifyInterval(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAudioInput) PeriodSize() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAudioInput_PeriodSize(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAudioInput_PeriodSize(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAudioInput) Reset() {
 	if ptr.Pointer() != nil {
-		C.QAudioInput_Reset(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioInput_Reset(ptr.Pointer())
 	}
 }
 
 func (ptr *QAudioInput) Resume() {
 	if ptr.Pointer() != nil {
-		C.QAudioInput_Resume(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioInput_Resume(ptr.Pointer())
 	}
 }
 
 func (ptr *QAudioInput) SetBufferSize(value int) {
 	if ptr.Pointer() != nil {
-		C.QAudioInput_SetBufferSize(C.QtObjectPtr(ptr.Pointer()), C.int(value))
+		C.QAudioInput_SetBufferSize(ptr.Pointer(), C.int(value))
 	}
 }
 
 func (ptr *QAudioInput) SetNotifyInterval(ms int) {
 	if ptr.Pointer() != nil {
-		C.QAudioInput_SetNotifyInterval(C.QtObjectPtr(ptr.Pointer()), C.int(ms))
+		C.QAudioInput_SetNotifyInterval(ptr.Pointer(), C.int(ms))
+	}
+}
+
+func (ptr *QAudioInput) SetVolume(volume float64) {
+	if ptr.Pointer() != nil {
+		C.QAudioInput_SetVolume(ptr.Pointer(), C.double(volume))
 	}
 }
 
 func (ptr *QAudioInput) Start2() *core.QIODevice {
 	if ptr.Pointer() != nil {
-		return core.QIODeviceFromPointer(unsafe.Pointer(C.QAudioInput_Start2(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQIODeviceFromPointer(C.QAudioInput_Start2(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QAudioInput) Start(device core.QIODeviceITF) {
+func (ptr *QAudioInput) Start(device core.QIODevice_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAudioInput_Start(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQIODevice(device)))
+		C.QAudioInput_Start(ptr.Pointer(), core.PointerFromQIODevice(device))
 	}
 }
 
 func (ptr *QAudioInput) Stop() {
 	if ptr.Pointer() != nil {
-		C.QAudioInput_Stop(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioInput_Stop(ptr.Pointer())
 	}
 }
 
 func (ptr *QAudioInput) Suspend() {
 	if ptr.Pointer() != nil {
-		C.QAudioInput_Suspend(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioInput_Suspend(ptr.Pointer())
 	}
+}
+
+func (ptr *QAudioInput) Volume() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QAudioInput_Volume(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QAudioInput) DestroyQAudioInput() {
 	if ptr.Pointer() != nil {
-		C.QAudioInput_DestroyQAudioInput(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioInput_DestroyQAudioInput(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

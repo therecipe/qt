@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QShortcutEvent_NewQShortcutEvent(QtObjectPtr key, int id, int ambiguous);
-int QShortcutEvent_IsAmbiguous(QtObjectPtr ptr);
-int QShortcutEvent_ShortcutId(QtObjectPtr ptr);
-void QShortcutEvent_DestroyQShortcutEvent(QtObjectPtr ptr);
+void* QShortcutEvent_NewQShortcutEvent(void* key, int id, int ambiguous);
+int QShortcutEvent_IsAmbiguous(void* ptr);
+int QShortcutEvent_ShortcutId(void* ptr);
+void QShortcutEvent_DestroyQShortcutEvent(void* ptr);
 
 #ifdef __cplusplus
 }

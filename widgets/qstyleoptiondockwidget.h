@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStyleOptionDockWidget_NewQStyleOptionDockWidget();
-QtObjectPtr QStyleOptionDockWidget_NewQStyleOptionDockWidget2(QtObjectPtr other);
+void* QStyleOptionDockWidget_NewQStyleOptionDockWidget();
+void* QStyleOptionDockWidget_NewQStyleOptionDockWidget2(void* other);
 
 #ifdef __cplusplus
 }

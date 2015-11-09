@@ -1,10 +1,10 @@
 #include "qscrollbar.h"
-#include <QWidget>
-#include <QEvent>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QEvent>
+#include <QWidget>
 #include <QScrollBar>
 #include "_cgo_export.h"
 
@@ -12,19 +12,19 @@ class MyQScrollBar: public QScrollBar {
 public:
 };
 
-QtObjectPtr QScrollBar_NewQScrollBar(QtObjectPtr parent){
+void* QScrollBar_NewQScrollBar(void* parent){
 	return new QScrollBar(static_cast<QWidget*>(parent));
 }
 
-QtObjectPtr QScrollBar_NewQScrollBar2(int orientation, QtObjectPtr parent){
+void* QScrollBar_NewQScrollBar2(int orientation, void* parent){
 	return new QScrollBar(static_cast<Qt::Orientation>(orientation), static_cast<QWidget*>(parent));
 }
 
-int QScrollBar_Event(QtObjectPtr ptr, QtObjectPtr event){
+int QScrollBar_Event(void* ptr, void* event){
 	return static_cast<QScrollBar*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
-void QScrollBar_DestroyQScrollBar(QtObjectPtr ptr){
+void QScrollBar_DestroyQScrollBar(void* ptr){
 	static_cast<QScrollBar*>(ptr)->~QScrollBar();
 }
 

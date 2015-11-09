@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QEventLoopLocker_NewQEventLoopLocker();
-QtObjectPtr QEventLoopLocker_NewQEventLoopLocker2(QtObjectPtr loop);
-QtObjectPtr QEventLoopLocker_NewQEventLoopLocker3(QtObjectPtr thread);
-void QEventLoopLocker_DestroyQEventLoopLocker(QtObjectPtr ptr);
+void* QEventLoopLocker_NewQEventLoopLocker();
+void* QEventLoopLocker_NewQEventLoopLocker2(void* loop);
+void* QEventLoopLocker_NewQEventLoopLocker3(void* thread);
+void QEventLoopLocker_DestroyQEventLoopLocker(void* ptr);
 
 #ifdef __cplusplus
 }

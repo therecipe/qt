@@ -11,35 +11,35 @@ type QTapReading struct {
 	QSensorReading
 }
 
-type QTapReadingITF interface {
-	QSensorReadingITF
-	QTapReadingPTR() *QTapReading
+type QTapReading_ITF interface {
+	QSensorReading_ITF
+	QTapReading_PTR() *QTapReading
 }
 
-func PointerFromQTapReading(ptr QTapReadingITF) unsafe.Pointer {
+func PointerFromQTapReading(ptr QTapReading_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTapReadingPTR().Pointer()
+		return ptr.QTapReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTapReadingFromPointer(ptr unsafe.Pointer) *QTapReading {
+func NewQTapReadingFromPointer(ptr unsafe.Pointer) *QTapReading {
 	var n = new(QTapReading)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QTapReading_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QTapReading) QTapReadingPTR() *QTapReading {
+func (ptr *QTapReading) QTapReading_PTR() *QTapReading {
 	return ptr
 }
 
 //QTapReading::TapDirection
-type QTapReading__TapDirection int
+type QTapReading__TapDirection int64
 
-var (
+const (
 	QTapReading__Undefined = QTapReading__TapDirection(0)
 	QTapReading__X         = QTapReading__TapDirection(0x0001)
 	QTapReading__Y         = QTapReading__TapDirection(0x0002)
@@ -57,26 +57,26 @@ var (
 
 func (ptr *QTapReading) IsDoubleTap() bool {
 	if ptr.Pointer() != nil {
-		return C.QTapReading_IsDoubleTap(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTapReading_IsDoubleTap(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTapReading) TapDirection() QTapReading__TapDirection {
 	if ptr.Pointer() != nil {
-		return QTapReading__TapDirection(C.QTapReading_TapDirection(C.QtObjectPtr(ptr.Pointer())))
+		return QTapReading__TapDirection(C.QTapReading_TapDirection(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTapReading) SetDoubleTap(doubleTap bool) {
 	if ptr.Pointer() != nil {
-		C.QTapReading_SetDoubleTap(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(doubleTap)))
+		C.QTapReading_SetDoubleTap(ptr.Pointer(), C.int(qt.GoBoolToInt(doubleTap)))
 	}
 }
 
 func (ptr *QTapReading) SetTapDirection(tapDirection QTapReading__TapDirection) {
 	if ptr.Pointer() != nil {
-		C.QTapReading_SetTapDirection(C.QtObjectPtr(ptr.Pointer()), C.int(tapDirection))
+		C.QTapReading_SetTapDirection(ptr.Pointer(), C.int(tapDirection))
 	}
 }

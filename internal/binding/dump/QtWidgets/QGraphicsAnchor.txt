@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{setSizePolicy QGraphicsAnchor::setSizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void [0xc822f43f60] }
-&{setSpacing QGraphicsAnchor::setSpacing commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void [0xc822f30520] }
-&{sizePolicy QGraphicsAnchor::sizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  QSizePolicy::Policy [] }
-&{spacing QGraphicsAnchor::spacing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  qreal [] }
-&{unsetSpacing QGraphicsAnchor::unsetSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void [] }
-&{~QGraphicsAnchor QGraphicsAnchor::~QGraphicsAnchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non destructor false false   [] }
+&{setSizePolicy QGraphicsAnchor::setSizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void void setSizePolicy(QSizePolicy::Policy policy) [0xc822ff7c20] }
+&{setSpacing QGraphicsAnchor::setSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void void setSpacing(qreal spacing) [0xc822fe6060] }
+&{sizePolicy QGraphicsAnchor::sizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  QSizePolicy::Policy QSizePolicy::Policy sizePolicy() const [] }
+&{spacing QGraphicsAnchor::spacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  qreal qreal spacing() const [] }
+&{unsetSpacing QGraphicsAnchor::unsetSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void void unsetSpacing() [] }
+&{~QGraphicsAnchor QGraphicsAnchor::~QGraphicsAnchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.h non destructor false false   ~QGraphicsAnchor() [] }
 ########################################			ENUMS			########################################

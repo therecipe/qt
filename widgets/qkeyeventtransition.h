@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QKeyEventTransition_NewQKeyEventTransition2(QtObjectPtr object, int ty, int key, QtObjectPtr sourceState);
-QtObjectPtr QKeyEventTransition_NewQKeyEventTransition(QtObjectPtr sourceState);
-int QKeyEventTransition_Key(QtObjectPtr ptr);
-int QKeyEventTransition_ModifierMask(QtObjectPtr ptr);
-void QKeyEventTransition_SetKey(QtObjectPtr ptr, int key);
-void QKeyEventTransition_SetModifierMask(QtObjectPtr ptr, int modifierMask);
-void QKeyEventTransition_DestroyQKeyEventTransition(QtObjectPtr ptr);
+void* QKeyEventTransition_NewQKeyEventTransition2(void* object, int ty, int key, void* sourceState);
+void* QKeyEventTransition_NewQKeyEventTransition(void* sourceState);
+int QKeyEventTransition_Key(void* ptr);
+int QKeyEventTransition_ModifierMask(void* ptr);
+void QKeyEventTransition_SetKey(void* ptr, int key);
+void QKeyEventTransition_SetModifierMask(void* ptr, int modifierMask);
+void QKeyEventTransition_DestroyQKeyEventTransition(void* ptr);
 
 #ifdef __cplusplus
 }

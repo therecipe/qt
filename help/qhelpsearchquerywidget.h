@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QHelpSearchQueryWidget_IsCompactMode(QtObjectPtr ptr);
-QtObjectPtr QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(QtObjectPtr parent);
-void QHelpSearchQueryWidget_CollapseExtendedSearch(QtObjectPtr ptr);
-void QHelpSearchQueryWidget_ExpandExtendedSearch(QtObjectPtr ptr);
-void QHelpSearchQueryWidget_ConnectSearch(QtObjectPtr ptr);
-void QHelpSearchQueryWidget_DisconnectSearch(QtObjectPtr ptr);
-void QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(QtObjectPtr ptr);
+int QHelpSearchQueryWidget_IsCompactMode(void* ptr);
+void* QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(void* parent);
+void QHelpSearchQueryWidget_CollapseExtendedSearch(void* ptr);
+void QHelpSearchQueryWidget_ExpandExtendedSearch(void* ptr);
+void QHelpSearchQueryWidget_ConnectSearch(void* ptr);
+void QHelpSearchQueryWidget_DisconnectSearch(void* ptr);
+void QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(void* ptr);
 
 #ifdef __cplusplus
 }

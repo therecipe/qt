@@ -1,100 +1,100 @@
 ########################################			FUNCTIONS			########################################
-&{colorCount QImage::colorCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  int [] }
-&{copy QImage::copy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QImage [0xc820d82840] }
-&{fill QImage::fill commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false true 2 void [0xc820d82a40] }
-&{fill QImage::fill commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false true 3 void [0xc820d82cc0] }
-&{fill QImage::fill commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  void [0xc820d82ee0] }
-&{fromData QImage::fromData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain true false  QImage [0xc820d83120 0xc820d83240 0xc820d83300] }
-&{height QImage::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  int [] }
-&{isNull QImage::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  bool [] }
-&{loadFromData QImage::loadFromData commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  bool [0xc820d837e0 0xc820d838a0 0xc820d83960] }
-&{offset QImage::offset commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QPoint [] }
-&{operator!= QImage::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  bool [0xc820d83c80] }
-&{operator== QImage::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  bool [0xc820d83ee0] }
-&{rect QImage::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QRect [] }
-&{scaled QImage::scaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QImage [0xc820d62200 0xc820d62320 0xc820d62480] }
-&{scaledToHeight QImage::scaledToHeight commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QImage [0xc820d62740 0xc820d62840] }
-&{scaledToWidth QImage::scaledToWidth commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QImage [0xc820d62b80 0xc820d62ca0] }
-&{setColor QImage::setColor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  void [0xc820d62f60 0xc820d63060] }
-&{setOffset QImage::setOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  void [0xc820d632a0] }
-&{setText QImage::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  void [0xc820d63500 0xc820d635c0] }
-&{size QImage::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QSize [] }
-&{trueMatrix QImage::trueMatrix commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain true false  QMatrix [0xc820d63980 0xc820d63a40 0xc820d63b40] }
-&{trueMatrix QImage::trueMatrix commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain true true 2 QTransform [0xc820d63f20 0xc820d50080 0xc820d501a0] }
-&{width QImage::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  int [] }
-&{QImage QImage::QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false false   [] }
-&{QImage QImage::QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 11  [0xc820d36be0] }
-&{QImage QImage::QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 10  [0xc820d36f00] }
-&{QImage QImage::QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 2  [0xc820d37160 0xc820d37280] }
-&{QImage QImage::QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 9  [0xc820d37520 0xc820d37640] }
-&{QImage QImage::QImage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 8  [0xc820d37880] }
-&{QImage QImage::QImage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 5  [0xc820d37bc0 0xc820d37c80 0xc820d37d80 0xc820d37ec0 0xc820d37fc0 0xc820d24240] }
-&{QImage QImage::QImage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 7  [0xc820d244a0 0xc820d245c0 0xc820d24740 0xc820d247e0 0xc820d24920 0xc820d24a60 0xc820d24b40] }
-&{QImage QImage::QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 3  [0xc820d24da0 0xc820d24f40 0xc820d24fe0] }
-&{QImage QImage::QImage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 4  [0xc820d252a0 0xc820d253e0 0xc820d254c0 0xc820d255a0 0xc820d256e0 0xc820d257e0] }
-&{QImage QImage::QImage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 6  [0xc820d259a0 0xc820d25a80 0xc820d25b40 0xc820d25cc0 0xc820d25e00 0xc820d25f00 0xc820d25fe0] }
-&{allGray QImage::allGray commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  bool [] }
-&{bitPlaneCount QImage::bitPlaneCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int [] }
-&{bits QImage::bits commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  uchar * [] }
-&{bits QImage::bits commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 const uchar * [] }
-&{byteCount QImage::byteCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int [] }
-&{bytesPerLine QImage::bytesPerLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int [] }
-&{cacheKey QImage::cacheKey commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  qint64 [] }
-&{color QImage::color commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QRgb [0xc820d0ae40] }
-&{colorTable QImage::colorTable commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QVector<QRgb> [] }
-&{constBits QImage::constBits commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  const uchar * [] }
-&{constScanLine QImage::constScanLine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  const uchar * [0xc820d0b3c0] }
-&{convertToFormat QImage::convertToFormat commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 QImage [0xc820d0b660 0xc820d0b760 0xc820d0b8a0] }
-&{copy QImage::copy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 QImage [0xc820cf4280 0xc820cf4340 0xc820cf4420 0xc820cf44e0] }
-&{createAlphaMask QImage::createAlphaMask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QImage [0xc820cf4800] }
-&{createHeuristicMask QImage::createHeuristicMask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QImage [0xc820cf4b00] }
-&{createMaskFromColor QImage::createMaskFromColor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QImage [0xc820cf4d80 0xc820cf4e40] }
-&{depth QImage::depth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int [] }
-&{devicePixelRatio QImage::devicePixelRatio commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  qreal [] }
-&{dotsPerMeterX QImage::dotsPerMeterX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int [] }
-&{dotsPerMeterY QImage::dotsPerMeterY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int [] }
-&{format QImage::format commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  Format [] }
-&{fromData QImage::fromData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain true true 2 QImage [0xc820cf5ba0 0xc820cf5d40] }
-&{hasAlphaChannel QImage::hasAlphaChannel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  bool [] }
-&{invertPixels QImage::invertPixels commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void [0xc820ca0120] }
-&{isGrayscale QImage::isGrayscale commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  bool [] }
-&{load QImage::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 bool [0xc820ca0800 0xc820ca0980] }
-&{load QImage::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  bool [0xc820ca0c00 0xc820ca0ce0] }
-&{loadFromData QImage::loadFromData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 bool [0xc820ca1060 0xc820ca11a0] }
-&{operator QVariant QImage::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false   [] }
-&{operator= QImage::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 QImage & [0xc820c8c1c0] }
-&{operator= QImage::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QImage & [0xc820c8c5a0] }
-&{pixel QImage::pixel commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QRgb [0xc820c8c7e0] }
-&{pixel QImage::pixel commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 QRgb [0xc820c8cb40 0xc820c8cca0] }
-&{pixelFormat QImage::pixelFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QPixelFormat [] }
-&{pixelIndex QImage::pixelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int [0xc820c8d1e0] }
-&{pixelIndex QImage::pixelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 int [0xc820c8d620 0xc820c8d760] }
-&{save QImage::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 bool [0xc820c8de60 0xc820c8df40 0xc820c760a0] }
-&{save QImage::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  bool [0xc820c76260 0xc820c76340 0xc820c763c0] }
-&{scaled QImage::scaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 QImage [0xc820c765e0 0xc820c76700 0xc820c76840 0xc820c76a80] }
-&{scanLine QImage::scanLine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  uchar * [0xc820c76de0] }
-&{scanLine QImage::scanLine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 const uchar * [0xc820c77120] }
-&{setColorCount QImage::setColorCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void [0xc820c77960] }
-&{setColorTable QImage::setColorTable commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void [0xc820c77dc0] }
-&{setDevicePixelRatio QImage::setDevicePixelRatio commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void [0xc820c62160] }
-&{setDotsPerMeterX QImage::setDotsPerMeterX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void [0xc820c62500] }
-&{setDotsPerMeterY QImage::setDotsPerMeterY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void [0xc820c628e0] }
-&{setPixel QImage::setPixel commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void [0xc820c62e40 0xc820c62ee0] }
-&{setPixel QImage::setPixel commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 void [0xc820c631a0 0xc820c63340 0xc820c63420] }
-&{smoothScaled QImage::smoothScaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QImage [0xc820c63ba0 0xc820c63c80] }
-&{swap QImage::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void [0xc820c63f40] }
-&{text QImage::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QString [0xc820c48660] }
-&{textKeys QImage::textKeys commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QStringList [] }
-&{toImageFormat QImage::toImageFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain true false  QImage::Format [0xc820c49040] }
-&{toPixelFormat QImage::toPixelFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain true false  QPixelFormat [0xc820c49380] }
-&{transformed QImage::transformed commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QImage [0xc820c495e0 0xc820c49700] }
-&{transformed QImage::transformed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 QImage [0xc820c49b40 0xc820c49ce0] }
-&{valid QImage::valid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  bool [0xc820c49fe0] }
-&{valid QImage::valid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 bool [0xc820c34360 0xc820c344c0] }
-&{~QImage QImage::~QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non destructor false false   [] }
-&{convertToFormat QImage::convertToFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage_compat.cpp non plain false false  QImage [0xc820c34900 0xc820c34ae0] }
-&{mirrored QImage::mirrored commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage_compat.cpp non plain false false  QImage [0xc820c34d80 0xc820c34e00] }
-&{rgbSwapped QImage::rgbSwapped commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage_compat.cpp non plain false false  QImage [] }
+&{colorCount QImage::colorCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  int int colorCount() const [] }
+&{copy QImage::copy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QImage QImage copy(const QRect &rectangle) const [0xc820e1c680] }
+&{fill QImage::fill commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false true 2 void void fill(Qt::GlobalColor color) [0xc820e1c960] }
+&{fill QImage::fill commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false true 3 void void fill(const QColor &color) [0xc820e1cc80] }
+&{fill QImage::fill commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  void void fill(uint pixelValue) [0xc820e1cf20] }
+&{fromData QImage::fromData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain true false  QImage QImage fromData(const uchar *data, int size, const char *format) [0xc820e1d0e0 0xc820e1d180 0xc820e1d220] }
+&{height QImage::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  int int height() const [] }
+&{isNull QImage::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  bool bool isNull() const [] }
+&{loadFromData QImage::loadFromData commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  bool bool loadFromData(const uchar *data, int len, const char *format) [0xc820e1d6e0 0xc820e1d7a0 0xc820e1d840] }
+&{offset QImage::offset commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QPoint QPoint offset() const [] }
+&{operator!= QImage::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  bool bool operator!=(const QImage &image) const [0xc820e1db80] }
+&{operator== QImage::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  bool bool operator==(const QImage &image) const [0xc820e1ddc0] }
+&{rect QImage::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QRect QRect rect() const [] }
+&{scaled QImage::scaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QImage QImage scaled(const QSize &size, Qt::AspectRatioMode aspectRatioMode, Qt::TransformationMode transformMode) const [0xc820e060a0 0xc820e061e0 0xc820e063c0] }
+&{scaledToHeight QImage::scaledToHeight commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QImage QImage scaledToHeight(int height, Qt::TransformationMode mode) const [0xc820e066a0 0xc820e067a0] }
+&{scaledToWidth QImage::scaledToWidth commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QImage QImage scaledToWidth(int width, Qt::TransformationMode mode) const [0xc820e06ae0 0xc820e06c00] }
+&{setColor QImage::setColor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  void void setColor(int index, QRgb colorValue) [0xc820e06f00 0xc820e07020] }
+&{setOffset QImage::setOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  void void setOffset(const QPoint &offset) [0xc820e07440] }
+&{setText QImage::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  void void setText(const QString &key, const QString &text) [0xc820e076c0 0xc820e07840] }
+&{size QImage::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  QSize QSize size() const [] }
+&{trueMatrix QImage::trueMatrix commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain true false  QMatrix QMatrix trueMatrix(const QMatrix &matrix, int width, int height) [0xc820e07d60 0xc820e07ec0 0xc820e07fa0] }
+&{trueMatrix QImage::trueMatrix commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain true true 2 QTransform QTransform trueMatrix(const QTransform &matrix, int width, int height) [0xc820df03a0 0xc820df0500 0xc820df0660] }
+&{width QImage::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.cpp non plain false false  int int width() const [] }
+&{QImage QImage::QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false false   QImage() [] }
+&{QImage QImage::QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 11  QImage(QImage &&other) [0xc820ddafa0] }
+&{QImage QImage::QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 10  QImage(const QImage &image) [0xc820ddb320] }
+&{QImage QImage::QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 2  QImage(const QSize &size, Format format) [0xc820ddb620 0xc820ddb740] }
+&{QImage QImage::QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 9  QImage(const QString &fileName, const char *format) [0xc820ddb9c0 0xc820ddbb20] }
+&{QImage QImage::QImage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 8  QImage(const char * const[] xpm) [0xc820ddbea0] }
+&{QImage QImage::QImage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 5  QImage(const uchar *data, int width, int height, Format format, QImageCleanupFunction cleanupFunction, void *cleanupInfo) [0xc820dbe180 0xc820dbe2e0 0xc820dbe3a0 0xc820dbe4e0 0xc820dbe5c0 0xc820dbe6e0] }
+&{QImage QImage::QImage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 7  QImage(const uchar *data, int width, int height, int bytesPerLine, Format format, QImageCleanupFunction cleanupFunction, void *cleanupInfo) [0xc820dbe900 0xc820dbe980 0xc820dbea40 0xc820dbeb20 0xc820dbec20 0xc820dbed60 0xc820dbee60] }
+&{QImage QImage::QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 3  QImage(int width, int height, Format format) [0xc820dbf080 0xc820dbf160 0xc820dbf220] }
+&{QImage QImage::QImage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 4  QImage(uchar *data, int width, int height, Format format, QImageCleanupFunction cleanupFunction, void *cleanupInfo) [0xc820dbf4e0 0xc820dbf560 0xc820dbf620 0xc820dbf6e0 0xc820dbf860 0xc820dbf940] }
+&{QImage QImage::QImage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non constructor false true 6  QImage(uchar *data, int width, int height, int bytesPerLine, Format format, QImageCleanupFunction cleanupFunction, void *cleanupInfo) [0xc820dbfb80 0xc820dbfc60 0xc820dbfce0 0xc820dbfe00 0xc820dbfee0 0xc820dbffa0 0xc820da8100] }
+&{allGray QImage::allGray commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  bool bool allGray() const [] }
+&{bitPlaneCount QImage::bitPlaneCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int int bitPlaneCount() const [] }
+&{bits QImage::bits commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  uchar * uchar * bits() [] }
+&{bits QImage::bits commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 const uchar * const uchar * bits() const [] }
+&{byteCount QImage::byteCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int int byteCount() const [] }
+&{bytesPerLine QImage::bytesPerLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int int bytesPerLine() const [] }
+&{cacheKey QImage::cacheKey commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  qint64 qint64 cacheKey() const [] }
+&{color QImage::color commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QRgb QRgb color(int i) const [0xc820da9280] }
+&{colorTable QImage::colorTable commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QVector<QRgb> QVector<QRgb> colorTable() const [] }
+&{constBits QImage::constBits commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  const uchar * const uchar * constBits() const [] }
+&{constScanLine QImage::constScanLine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  const uchar * const uchar * constScanLine(int i) const [0xc820da9a80] }
+&{convertToFormat QImage::convertToFormat commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 QImage QImage convertToFormat(Format format, const QVector<QRgb> &colorTable, Qt::ImageConversionFlags flags) const [0xc820da9ce0 0xc820da9e40 0xc820da9f80] }
+&{copy QImage::copy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 QImage QImage copy(int x, int y, int width, int height) const [0xc820d94d60 0xc820d94e60 0xc820d94f20 0xc820d95020] }
+&{createAlphaMask QImage::createAlphaMask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QImage QImage createAlphaMask(Qt::ImageConversionFlags flags) const [0xc820d95340] }
+&{createHeuristicMask QImage::createHeuristicMask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QImage QImage createHeuristicMask(bool clipTight) const [0xc820d95700] }
+&{createMaskFromColor QImage::createMaskFromColor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QImage QImage createMaskFromColor(QRgb color, Qt::MaskMode mode) const [0xc820d95b20 0xc820d95c80] }
+&{depth QImage::depth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int int depth() const [] }
+&{devicePixelRatio QImage::devicePixelRatio commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  qreal qreal devicePixelRatio() const [] }
+&{dotsPerMeterX QImage::dotsPerMeterX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int int dotsPerMeterX() const [] }
+&{dotsPerMeterY QImage::dotsPerMeterY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int int dotsPerMeterY() const [] }
+&{format QImage::format commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  Format Format format() const [] }
+&{fromData QImage::fromData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain true true 2 QImage QImage fromData(const QByteArray &data, const char *format) [0xc820d7ae60 0xc820d7b000] }
+&{hasAlphaChannel QImage::hasAlphaChannel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  bool bool hasAlphaChannel() const [] }
+&{invertPixels QImage::invertPixels commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void void invertPixels(InvertMode mode) [0xc820d7b4e0] }
+&{isGrayscale QImage::isGrayscale commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  bool bool isGrayscale() const [] }
+&{load QImage::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 bool bool load(QIODevice *device, const char *format) [0xc820d7ba60 0xc820d7bb00] }
+&{load QImage::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  bool bool load(const QString &fileName, const char *format) [0xc820d7bd00 0xc820d7bd80] }
+&{loadFromData QImage::loadFromData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 bool bool loadFromData(const QByteArray &data, const char *format) [0xc820d5e040 0xc820d5e160] }
+&{operator QVariant QImage::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false   operator QVariant() const [] }
+&{operator= QImage::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 QImage & QImage & operator=(QImage &&other) [0xc820d5f720] }
+&{operator= QImage::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QImage & QImage & operator=(const QImage &image) [0xc820d5f9c0] }
+&{pixel QImage::pixel commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QRgb QRgb pixel(const QPoint &position) const [0xc820d5fc20] }
+&{pixel QImage::pixel commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 QRgb QRgb pixel(int x, int y) const [0xc820d5ff60 0xc820d44000] }
+&{pixelFormat QImage::pixelFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QPixelFormat QPixelFormat pixelFormat() const [] }
+&{pixelIndex QImage::pixelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  int int pixelIndex(const QPoint &position) const [0xc820d44460] }
+&{pixelIndex QImage::pixelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 int int pixelIndex(int x, int y) const [0xc820d44740 0xc820d44800] }
+&{save QImage::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 bool bool save(QIODevice *device, const char *format, int quality) const [0xc820d44f80 0xc820d45080 0xc820d45100] }
+&{save QImage::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  bool bool save(const QString &fileName, const char *format, int quality) const [0xc820d45360 0xc820d45440 0xc820d454c0] }
+&{scaled QImage::scaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 QImage QImage scaled(int width, int height, Qt::AspectRatioMode aspectRatioMode, Qt::TransformationMode transformMode) const [0xc820d45760 0xc820d45800 0xc820d458e0 0xc820d45aa0] }
+&{scanLine QImage::scanLine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  uchar * uchar * scanLine(int i) [0xc820d45e20] }
+&{scanLine QImage::scanLine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 const uchar * const uchar * scanLine(int i) const [0xc820d2c060] }
+&{setColorCount QImage::setColorCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void void setColorCount(int colorCount) [0xc820d2c920] }
+&{setColorTable QImage::setColorTable commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void void setColorTable(const QVector<QRgb> &colors) [0xc820d2cd60] }
+&{setDevicePixelRatio QImage::setDevicePixelRatio commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void void setDevicePixelRatio(qreal scaleFactor) [0xc820d2d200] }
+&{setDotsPerMeterX QImage::setDotsPerMeterX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void void setDotsPerMeterX(int x) [0xc820d2d580] }
+&{setDotsPerMeterY QImage::setDotsPerMeterY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void void setDotsPerMeterY(int y) [0xc820d2da00] }
+&{setPixel QImage::setPixel commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void void setPixel(const QPoint &position, uint index_or_rgb) [0xc820d18020 0xc820d181a0] }
+&{setPixel QImage::setPixel commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 void void setPixel(int x, int y, uint index_or_rgb) [0xc820d183e0 0xc820d18480 0xc820d18540] }
+&{smoothScaled QImage::smoothScaled commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QImage QImage smoothScaled(int w, int h) const [0xc820d18e60 0xc820d18ee0] }
+&{swap QImage::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  void void swap(QImage &other) [0xc820d191e0] }
+&{text QImage::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QString QString text(const QString &key) const [0xc820d198c0] }
+&{textKeys QImage::textKeys commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QStringList QStringList textKeys() const [] }
+&{toImageFormat QImage::toImageFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain true false  QImage::Format QImage::Format toImageFormat(QPixelFormat format) [0xc820d06520] }
+&{toPixelFormat QImage::toPixelFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain true false  QPixelFormat QPixelFormat toPixelFormat(QImage::Format format) [0xc820d06860] }
+&{transformed QImage::transformed commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  QImage QImage transformed(const QMatrix &matrix, Qt::TransformationMode mode) const [0xc820d06b60 0xc820d06cc0] }
+&{transformed QImage::transformed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 QImage QImage transformed(const QTransform &matrix, Qt::TransformationMode mode) const [0xc820d07080 0xc820d072c0] }
+&{valid QImage::valid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false false  bool bool valid(const QPoint &pos) const [0xc820d075e0] }
+&{valid QImage::valid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non plain false true 2 bool bool valid(int x, int y) const [0xc820d07980 0xc820d07a00] }
+&{~QImage QImage::~QImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage.h non destructor false false   ~QImage() [] }
+&{convertToFormat QImage::convertToFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage_compat.cpp non plain false false  QImage QImage convertToFormat(Format format, Qt::ImageConversionFlags flags) const [0xc820d07e20 0xc820d07f80] }
+&{mirrored QImage::mirrored commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage_compat.cpp non plain false false  QImage QImage mirrored(bool horizontal, bool vertical) const [0xc820cee2a0 0xc820cee360] }
+&{rgbSwapped QImage::rgbSwapped commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimage_compat.cpp non plain false false  QImage QImage rgbSwapped() const [] }
 ########################################			ENUMS			########################################
-&{Format QImage::Format commendable public  [0xc820d505c0 0xc820d506c0 0xc820d507e0 0xc820d508e0 0xc820d50a40 0xc820d50b80 0xc820d50c60 0xc820d50e40 0xc820d50fc0 0xc820d510e0 0xc820d51200 0xc820d51380 0xc820d51480 0xc820d515a0 0xc820d51660 0xc820d51720 0xc820d518e0 0xc820d51980 0xc820d51ae0 0xc820d51be0 0xc820d51d00 0xc820d51e60 0xc820d51f40 0xc820d360a0 0xc820d361e0]}
-&{InvertMode QImage::InvertMode commendable public  [0xc820d365c0 0xc820d36740]}
+&{Format QImage::Format commendable public  [0xc820df0ae0 0xc820df0bc0 0xc820df0c80 0xc820df0d80 0xc820df0ec0 0xc820df0f80 0xc820df1040 0xc820df1180 0xc820df12e0 0xc820df13e0 0xc820df14e0 0xc820df1640 0xc820df1720 0xc820df1860 0xc820df1960 0xc820df1a40 0xc820df1be0 0xc820df1ca0 0xc820df1d40 0xc820df1e40 0xc820df1f20 0xc820dda040 0xc820dda1a0 0xc820dda3c0 0xc820dda520] false}
+&{InvertMode QImage::InvertMode commendable public  [0xc820dda8e0 0xc820dda980] false}

@@ -10,8 +10,8 @@ type QUnicodeTools struct {
 	ptr unsafe.Pointer
 }
 
-type QUnicodeToolsITF interface {
-	QUnicodeToolsPTR() *QUnicodeTools
+type QUnicodeTools_ITF interface {
+	QUnicodeTools_PTR() *QUnicodeTools
 }
 
 func (p *QUnicodeTools) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QUnicodeTools) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQUnicodeTools(ptr QUnicodeToolsITF) unsafe.Pointer {
+func PointerFromQUnicodeTools(ptr QUnicodeTools_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QUnicodeToolsPTR().Pointer()
+		return ptr.QUnicodeTools_PTR().Pointer()
 	}
 	return nil
 }
 
-func QUnicodeToolsFromPointer(ptr unsafe.Pointer) *QUnicodeTools {
+func NewQUnicodeToolsFromPointer(ptr unsafe.Pointer) *QUnicodeTools {
 	var n = new(QUnicodeTools)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QUnicodeTools) QUnicodeToolsPTR() *QUnicodeTools {
+func (ptr *QUnicodeTools) QUnicodeTools_PTR() *QUnicodeTools {
 	return ptr
 }
 
 //QUnicodeTools::CharAttributeOption
-type QUnicodeTools__CharAttributeOption int
+type QUnicodeTools__CharAttributeOption int64
 
-var (
+const (
 	QUnicodeTools__GraphemeBreaks       = QUnicodeTools__CharAttributeOption(0x01)
 	QUnicodeTools__WordBreaks           = QUnicodeTools__CharAttributeOption(0x02)
 	QUnicodeTools__SentenceBreaks       = QUnicodeTools__CharAttributeOption(0x04)

@@ -11,8 +11,8 @@ type QMediaServiceCameraInfoInterface struct {
 	ptr unsafe.Pointer
 }
 
-type QMediaServiceCameraInfoInterfaceITF interface {
-	QMediaServiceCameraInfoInterfacePTR() *QMediaServiceCameraInfoInterface
+type QMediaServiceCameraInfoInterface_ITF interface {
+	QMediaServiceCameraInfoInterface_PTR() *QMediaServiceCameraInfoInterface
 }
 
 func (p *QMediaServiceCameraInfoInterface) Pointer() unsafe.Pointer {
@@ -23,39 +23,39 @@ func (p *QMediaServiceCameraInfoInterface) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMediaServiceCameraInfoInterface(ptr QMediaServiceCameraInfoInterfaceITF) unsafe.Pointer {
+func PointerFromQMediaServiceCameraInfoInterface(ptr QMediaServiceCameraInfoInterface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaServiceCameraInfoInterfacePTR().Pointer()
+		return ptr.QMediaServiceCameraInfoInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaServiceCameraInfoInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceCameraInfoInterface {
+func NewQMediaServiceCameraInfoInterfaceFromPointer(ptr unsafe.Pointer) *QMediaServiceCameraInfoInterface {
 	var n = new(QMediaServiceCameraInfoInterface)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMediaServiceCameraInfoInterface) QMediaServiceCameraInfoInterfacePTR() *QMediaServiceCameraInfoInterface {
+func (ptr *QMediaServiceCameraInfoInterface) QMediaServiceCameraInfoInterface_PTR() *QMediaServiceCameraInfoInterface {
 	return ptr
 }
 
-func (ptr *QMediaServiceCameraInfoInterface) CameraOrientation(device core.QByteArrayITF) int {
+func (ptr *QMediaServiceCameraInfoInterface) CameraOrientation(device core.QByteArray_ITF) int {
 	if ptr.Pointer() != nil {
-		return int(C.QMediaServiceCameraInfoInterface_CameraOrientation(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(device))))
+		return int(C.QMediaServiceCameraInfoInterface_CameraOrientation(ptr.Pointer(), core.PointerFromQByteArray(device)))
 	}
 	return 0
 }
 
-func (ptr *QMediaServiceCameraInfoInterface) CameraPosition(device core.QByteArrayITF) QCamera__Position {
+func (ptr *QMediaServiceCameraInfoInterface) CameraPosition(device core.QByteArray_ITF) QCamera__Position {
 	if ptr.Pointer() != nil {
-		return QCamera__Position(C.QMediaServiceCameraInfoInterface_CameraPosition(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(device))))
+		return QCamera__Position(C.QMediaServiceCameraInfoInterface_CameraPosition(ptr.Pointer(), core.PointerFromQByteArray(device)))
 	}
 	return 0
 }
 
 func (ptr *QMediaServiceCameraInfoInterface) DestroyQMediaServiceCameraInfoInterface() {
 	if ptr.Pointer() != nil {
-		C.QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(ptr.Pointer())
 	}
 }

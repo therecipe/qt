@@ -11,8 +11,8 @@ type QPageLayout struct {
 	ptr unsafe.Pointer
 }
 
-type QPageLayoutITF interface {
-	QPageLayoutPTR() *QPageLayout
+type QPageLayout_ITF interface {
+	QPageLayout_PTR() *QPageLayout
 }
 
 func (p *QPageLayout) Pointer() unsafe.Pointer {
@@ -23,43 +23,43 @@ func (p *QPageLayout) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPageLayout(ptr QPageLayoutITF) unsafe.Pointer {
+func PointerFromQPageLayout(ptr QPageLayout_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPageLayoutPTR().Pointer()
+		return ptr.QPageLayout_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPageLayoutFromPointer(ptr unsafe.Pointer) *QPageLayout {
+func NewQPageLayoutFromPointer(ptr unsafe.Pointer) *QPageLayout {
 	var n = new(QPageLayout)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPageLayout) QPageLayoutPTR() *QPageLayout {
+func (ptr *QPageLayout) QPageLayout_PTR() *QPageLayout {
 	return ptr
 }
 
 //QPageLayout::Mode
-type QPageLayout__Mode int
+type QPageLayout__Mode int64
 
-var (
+const (
 	QPageLayout__StandardMode = QPageLayout__Mode(0)
 	QPageLayout__FullPageMode = QPageLayout__Mode(1)
 )
 
 //QPageLayout::Orientation
-type QPageLayout__Orientation int
+type QPageLayout__Orientation int64
 
-var (
+const (
 	QPageLayout__Portrait  = QPageLayout__Orientation(0)
 	QPageLayout__Landscape = QPageLayout__Orientation(1)
 )
 
 //QPageLayout::Unit
-type QPageLayout__Unit int
+type QPageLayout__Unit int64
 
-var (
+const (
 	QPageLayout__Millimeter = QPageLayout__Unit(0)
 	QPageLayout__Point      = QPageLayout__Unit(1)
 	QPageLayout__Inch       = QPageLayout__Unit(2)
@@ -69,97 +69,125 @@ var (
 )
 
 func NewQPageLayout() *QPageLayout {
-	return QPageLayoutFromPointer(unsafe.Pointer(C.QPageLayout_NewQPageLayout()))
+	return NewQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout())
 }
 
-func NewQPageLayout3(other QPageLayoutITF) *QPageLayout {
-	return QPageLayoutFromPointer(unsafe.Pointer(C.QPageLayout_NewQPageLayout3(C.QtObjectPtr(PointerFromQPageLayout(other)))))
+func NewQPageLayout3(other QPageLayout_ITF) *QPageLayout {
+	return NewQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout3(PointerFromQPageLayout(other)))
 }
 
-func NewQPageLayout2(pageSize QPageSizeITF, orientation QPageLayout__Orientation, margins core.QMarginsFITF, units QPageLayout__Unit, minMargins core.QMarginsFITF) *QPageLayout {
-	return QPageLayoutFromPointer(unsafe.Pointer(C.QPageLayout_NewQPageLayout2(C.QtObjectPtr(PointerFromQPageSize(pageSize)), C.int(orientation), C.QtObjectPtr(core.PointerFromQMarginsF(margins)), C.int(units), C.QtObjectPtr(core.PointerFromQMarginsF(minMargins)))))
+func NewQPageLayout2(pageSize QPageSize_ITF, orientation QPageLayout__Orientation, margins core.QMarginsF_ITF, units QPageLayout__Unit, minMargins core.QMarginsF_ITF) *QPageLayout {
+	return NewQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout2(PointerFromQPageSize(pageSize), C.int(orientation), core.PointerFromQMarginsF(margins), C.int(units), core.PointerFromQMarginsF(minMargins)))
 }
 
-func (ptr *QPageLayout) IsEquivalentTo(other QPageLayoutITF) bool {
+func (ptr *QPageLayout) IsEquivalentTo(other QPageLayout_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPageLayout_IsEquivalentTo(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPageLayout(other))) != 0
+		return C.QPageLayout_IsEquivalentTo(ptr.Pointer(), PointerFromQPageLayout(other)) != 0
 	}
 	return false
 }
 
 func (ptr *QPageLayout) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QPageLayout_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QPageLayout_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QPageLayout) Mode() QPageLayout__Mode {
 	if ptr.Pointer() != nil {
-		return QPageLayout__Mode(C.QPageLayout_Mode(C.QtObjectPtr(ptr.Pointer())))
+		return QPageLayout__Mode(C.QPageLayout_Mode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPageLayout) Orientation() QPageLayout__Orientation {
 	if ptr.Pointer() != nil {
-		return QPageLayout__Orientation(C.QPageLayout_Orientation(C.QtObjectPtr(ptr.Pointer())))
+		return QPageLayout__Orientation(C.QPageLayout_Orientation(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QPageLayout) SetMargins(margins core.QMarginsFITF) bool {
+func (ptr *QPageLayout) SetBottomMargin(bottomMargin float64) bool {
 	if ptr.Pointer() != nil {
-		return C.QPageLayout_SetMargins(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQMarginsF(margins))) != 0
+		return C.QPageLayout_SetBottomMargin(ptr.Pointer(), C.double(bottomMargin)) != 0
 	}
 	return false
 }
 
-func (ptr *QPageLayout) SetMinimumMargins(minMargins core.QMarginsFITF) {
+func (ptr *QPageLayout) SetLeftMargin(leftMargin float64) bool {
 	if ptr.Pointer() != nil {
-		C.QPageLayout_SetMinimumMargins(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQMarginsF(minMargins)))
+		return C.QPageLayout_SetLeftMargin(ptr.Pointer(), C.double(leftMargin)) != 0
+	}
+	return false
+}
+
+func (ptr *QPageLayout) SetMargins(margins core.QMarginsF_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPageLayout_SetMargins(ptr.Pointer(), core.PointerFromQMarginsF(margins)) != 0
+	}
+	return false
+}
+
+func (ptr *QPageLayout) SetMinimumMargins(minMargins core.QMarginsF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPageLayout_SetMinimumMargins(ptr.Pointer(), core.PointerFromQMarginsF(minMargins))
 	}
 }
 
 func (ptr *QPageLayout) SetMode(mode QPageLayout__Mode) {
 	if ptr.Pointer() != nil {
-		C.QPageLayout_SetMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QPageLayout_SetMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QPageLayout) SetOrientation(orientation QPageLayout__Orientation) {
 	if ptr.Pointer() != nil {
-		C.QPageLayout_SetOrientation(C.QtObjectPtr(ptr.Pointer()), C.int(orientation))
+		C.QPageLayout_SetOrientation(ptr.Pointer(), C.int(orientation))
 	}
 }
 
-func (ptr *QPageLayout) SetPageSize(pageSize QPageSizeITF, minMargins core.QMarginsFITF) {
+func (ptr *QPageLayout) SetPageSize(pageSize QPageSize_ITF, minMargins core.QMarginsF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPageLayout_SetPageSize(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPageSize(pageSize)), C.QtObjectPtr(core.PointerFromQMarginsF(minMargins)))
+		C.QPageLayout_SetPageSize(ptr.Pointer(), PointerFromQPageSize(pageSize), core.PointerFromQMarginsF(minMargins))
 	}
+}
+
+func (ptr *QPageLayout) SetRightMargin(rightMargin float64) bool {
+	if ptr.Pointer() != nil {
+		return C.QPageLayout_SetRightMargin(ptr.Pointer(), C.double(rightMargin)) != 0
+	}
+	return false
+}
+
+func (ptr *QPageLayout) SetTopMargin(topMargin float64) bool {
+	if ptr.Pointer() != nil {
+		return C.QPageLayout_SetTopMargin(ptr.Pointer(), C.double(topMargin)) != 0
+	}
+	return false
 }
 
 func (ptr *QPageLayout) SetUnits(units QPageLayout__Unit) {
 	if ptr.Pointer() != nil {
-		C.QPageLayout_SetUnits(C.QtObjectPtr(ptr.Pointer()), C.int(units))
+		C.QPageLayout_SetUnits(ptr.Pointer(), C.int(units))
 	}
 }
 
-func (ptr *QPageLayout) Swap(other QPageLayoutITF) {
+func (ptr *QPageLayout) Swap(other QPageLayout_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPageLayout_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPageLayout(other)))
+		C.QPageLayout_Swap(ptr.Pointer(), PointerFromQPageLayout(other))
 	}
 }
 
 func (ptr *QPageLayout) Units() QPageLayout__Unit {
 	if ptr.Pointer() != nil {
-		return QPageLayout__Unit(C.QPageLayout_Units(C.QtObjectPtr(ptr.Pointer())))
+		return QPageLayout__Unit(C.QPageLayout_Units(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPageLayout) DestroyQPageLayout() {
 	if ptr.Pointer() != nil {
-		C.QPageLayout_DestroyQPageLayout(C.QtObjectPtr(ptr.Pointer()))
+		C.QPageLayout_DestroyQPageLayout(ptr.Pointer())
 	}
 }

@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDomEntityReference_NewQDomEntityReference();
-QtObjectPtr QDomEntityReference_NewQDomEntityReference2(QtObjectPtr x);
-int QDomEntityReference_NodeType(QtObjectPtr ptr);
+void* QDomEntityReference_NewQDomEntityReference();
+void* QDomEntityReference_NewQDomEntityReference2(void* x);
+int QDomEntityReference_NodeType(void* ptr);
 
 #ifdef __cplusplus
 }

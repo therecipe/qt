@@ -1,21 +1,29 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QColorDialog_Options(QtObjectPtr ptr);
-void QColorDialog_SetCurrentColor(QtObjectPtr ptr, QtObjectPtr color);
-void QColorDialog_SetOptions(QtObjectPtr ptr, int options);
-QtObjectPtr QColorDialog_NewQColorDialog(QtObjectPtr parent);
-QtObjectPtr QColorDialog_NewQColorDialog2(QtObjectPtr initial, QtObjectPtr parent);
+void* QColorDialog_CurrentColor(void* ptr);
+int QColorDialog_Options(void* ptr);
+void QColorDialog_SetCurrentColor(void* ptr, void* color);
+void QColorDialog_SetOptions(void* ptr, int options);
+void* QColorDialog_NewQColorDialog(void* parent);
+void* QColorDialog_NewQColorDialog2(void* initial, void* parent);
+void QColorDialog_ConnectColorSelected(void* ptr);
+void QColorDialog_DisconnectColorSelected(void* ptr);
+void QColorDialog_ConnectCurrentColorChanged(void* ptr);
+void QColorDialog_DisconnectCurrentColorChanged(void* ptr);
+void* QColorDialog_QColorDialog_CustomColor(int index);
 int QColorDialog_QColorDialog_CustomCount();
-void QColorDialog_Open(QtObjectPtr ptr, QtObjectPtr receiver, char* member);
-void QColorDialog_QColorDialog_SetCustomColor(int index, QtObjectPtr color);
-void QColorDialog_SetOption(QtObjectPtr ptr, int option, int on);
-void QColorDialog_QColorDialog_SetStandardColor(int index, QtObjectPtr color);
-void QColorDialog_SetVisible(QtObjectPtr ptr, int visible);
-int QColorDialog_TestOption(QtObjectPtr ptr, int option);
-void QColorDialog_DestroyQColorDialog(QtObjectPtr ptr);
+void* QColorDialog_QColorDialog_GetColor(void* initial, void* parent, char* title, int options);
+void QColorDialog_Open(void* ptr, void* receiver, char* member);
+void* QColorDialog_SelectedColor(void* ptr);
+void QColorDialog_QColorDialog_SetCustomColor(int index, void* color);
+void QColorDialog_SetOption(void* ptr, int option, int on);
+void QColorDialog_QColorDialog_SetStandardColor(int index, void* color);
+void QColorDialog_SetVisible(void* ptr, int visible);
+void* QColorDialog_QColorDialog_StandardColor(int index);
+int QColorDialog_TestOption(void* ptr, int option);
+void QColorDialog_DestroyQColorDialog(void* ptr);
 
 #ifdef __cplusplus
 }

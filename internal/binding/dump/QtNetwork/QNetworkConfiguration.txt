@@ -1,24 +1,24 @@
 ########################################			FUNCTIONS			########################################
-&{QNetworkConfiguration QNetworkConfiguration::QNetworkConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non constructor false false   [] }
-&{QNetworkConfiguration QNetworkConfiguration::QNetworkConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non constructor false true 2  [0xc82338ee00] }
-&{bearerType QNetworkConfiguration::bearerType commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  BearerType [] }
-&{bearerTypeFamily QNetworkConfiguration::bearerTypeFamily commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  BearerType [] }
-&{bearerTypeName QNetworkConfiguration::bearerTypeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  QString [] }
-&{children QNetworkConfiguration::children commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  QList<QNetworkConfiguration> [] }
-&{identifier QNetworkConfiguration::identifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  QString [] }
-&{isRoamingAvailable QNetworkConfiguration::isRoamingAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  bool [] }
-&{isValid QNetworkConfiguration::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  bool [] }
-&{name QNetworkConfiguration::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  QString [] }
-&{operator!= QNetworkConfiguration::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  bool [0xc82338f980] }
-&{operator= QNetworkConfiguration::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  QNetworkConfiguration & [0xc82338fc60] }
-&{operator== QNetworkConfiguration::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  bool [0xc82338fec0] }
-&{purpose QNetworkConfiguration::purpose commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  Purpose [] }
-&{state QNetworkConfiguration::state commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  StateFlags [] }
-&{swap QNetworkConfiguration::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  void [0xc82337c440] }
-&{type QNetworkConfiguration::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  Type [] }
-&{~QNetworkConfiguration QNetworkConfiguration::~QNetworkConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non destructor false false   [] }
+&{QNetworkConfiguration QNetworkConfiguration::QNetworkConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non constructor false false   QNetworkConfiguration() [] }
+&{QNetworkConfiguration QNetworkConfiguration::QNetworkConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non constructor false true 2  QNetworkConfiguration(const QNetworkConfiguration &other) [0xc8234aaea0] }
+&{bearerType QNetworkConfiguration::bearerType commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  BearerType BearerType bearerType() const [] }
+&{bearerTypeFamily QNetworkConfiguration::bearerTypeFamily commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  BearerType BearerType bearerTypeFamily() const [] }
+&{bearerTypeName QNetworkConfiguration::bearerTypeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  QString QString bearerTypeName() const [] }
+&{children QNetworkConfiguration::children commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  QList<QNetworkConfiguration> QList<QNetworkConfiguration> children() const [] }
+&{identifier QNetworkConfiguration::identifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  QString QString identifier() const [] }
+&{isRoamingAvailable QNetworkConfiguration::isRoamingAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  bool bool isRoamingAvailable() const [] }
+&{isValid QNetworkConfiguration::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  bool bool isValid() const [] }
+&{name QNetworkConfiguration::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  QString QString name() const [] }
+&{operator!= QNetworkConfiguration::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  bool bool operator!=(const QNetworkConfiguration &other) const [0xc8234abbc0] }
+&{operator= QNetworkConfiguration::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  QNetworkConfiguration & QNetworkConfiguration & operator=(const QNetworkConfiguration &other) [0xc8234abf00] }
+&{operator== QNetworkConfiguration::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  bool bool operator==(const QNetworkConfiguration &other) const [0xc82349a160] }
+&{purpose QNetworkConfiguration::purpose commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  Purpose Purpose purpose() const [] }
+&{state QNetworkConfiguration::state commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  StateFlags StateFlags state() const [] }
+&{swap QNetworkConfiguration::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  void void swap(QNetworkConfiguration &other) [0xc82349a820] }
+&{type QNetworkConfiguration::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non plain false false  Type Type type() const [] }
+&{~QNetworkConfiguration QNetworkConfiguration::~QNetworkConfiguration commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworkconfiguration.h non destructor false false   ~QNetworkConfiguration() [] }
 ########################################			ENUMS			########################################
-&{BearerType QNetworkConfiguration::BearerType commendable public  [0xc82339f800 0xc82339f880 0xc82339f960 0xc82339fa00 0xc82339faa0 0xc82339fb40 0xc82339fbc0 0xc82339fc40 0xc82339fce0 0xc82339fd60 0xc82339fde0 0xc82339fe60 0xc82339fee0]}
-&{Purpose QNetworkConfiguration::Purpose commendable public  [0xc82338e0a0 0xc82338e120 0xc82338e1a0 0xc82338e240]}
-&{StateFlag QNetworkConfiguration::StateFlag commendable public QNetworkConfiguration::StateFlags [0xc82338e440 0xc82338e4c0 0xc82338e540 0xc82338e5c0]}
-&{Type QNetworkConfiguration::Type commendable public  [0xc82338e7a0 0xc82338e860 0xc82338e8e0 0xc82338e960]}
+&{BearerType QNetworkConfiguration::BearerType commendable public  [0xc8234bf520 0xc8234bf5c0 0xc8234bf640 0xc8234bf6c0 0xc8234bf780 0xc8234bf800 0xc8234bf880 0xc8234bf900 0xc8234bf9c0 0xc8234bfa60 0xc8234bfb00 0xc8234bfba0 0xc8234bfc40] false}
+&{Purpose QNetworkConfiguration::Purpose commendable public  [0xc8234bfea0 0xc8234bff20 0xc8234bffe0 0xc8234aa080] false}
+&{StateFlag QNetworkConfiguration::StateFlag commendable public QNetworkConfiguration::StateFlags [0xc8234aa300 0xc8234aa3c0 0xc8234aa440 0xc8234aa500] false}
+&{Type QNetworkConfiguration::Type commendable public  [0xc8234aa740 0xc8234aa840 0xc8234aa900 0xc8234aa980] false}

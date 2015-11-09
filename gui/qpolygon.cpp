@@ -1,10 +1,10 @@
 #include "qpolygon.h"
-#include <QPoint>
+#include <QRect>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QRect>
+#include <QPoint>
 #include <QPolygon>
 #include "_cgo_export.h"
 
@@ -12,59 +12,59 @@ class MyQPolygon: public QPolygon {
 public:
 };
 
-QtObjectPtr QPolygon_NewQPolygon5(QtObjectPtr rectangle, int closed){
+void* QPolygon_NewQPolygon5(void* rectangle, int closed){
 	return new QPolygon(*static_cast<QRect*>(rectangle), closed != 0);
 }
 
-int QPolygon_ContainsPoint(QtObjectPtr ptr, QtObjectPtr point, int fillRule){
+int QPolygon_ContainsPoint(void* ptr, void* point, int fillRule){
 	return static_cast<QPolygon*>(ptr)->containsPoint(*static_cast<QPoint*>(point), static_cast<Qt::FillRule>(fillRule));
 }
 
-void QPolygon_PutPoints3(QtObjectPtr ptr, int index, int nPoints, QtObjectPtr fromPolygon, int fromIndex){
+void QPolygon_PutPoints3(void* ptr, int index, int nPoints, void* fromPolygon, int fromIndex){
 	static_cast<QPolygon*>(ptr)->putPoints(index, nPoints, *static_cast<QPolygon*>(fromPolygon), fromIndex);
 }
 
-QtObjectPtr QPolygon_NewQPolygon(){
+void* QPolygon_NewQPolygon(){
 	return new QPolygon();
 }
 
-QtObjectPtr QPolygon_NewQPolygon3(QtObjectPtr polygon){
+void* QPolygon_NewQPolygon3(void* polygon){
 	return new QPolygon(*static_cast<QPolygon*>(polygon));
 }
 
-QtObjectPtr QPolygon_NewQPolygon2(int size){
+void* QPolygon_NewQPolygon2(int size){
 	return new QPolygon(size);
 }
 
-void QPolygon_Point(QtObjectPtr ptr, int index, int x, int y){
+void QPolygon_Point(void* ptr, int index, int x, int y){
 	static_cast<QPolygon*>(ptr)->point(index, &x, &y);
 }
 
-void QPolygon_SetPoint2(QtObjectPtr ptr, int index, QtObjectPtr point){
+void QPolygon_SetPoint2(void* ptr, int index, void* point){
 	static_cast<QPolygon*>(ptr)->setPoint(index, *static_cast<QPoint*>(point));
 }
 
-void QPolygon_SetPoint(QtObjectPtr ptr, int index, int x, int y){
+void QPolygon_SetPoint(void* ptr, int index, int x, int y){
 	static_cast<QPolygon*>(ptr)->setPoint(index, x, y);
 }
 
-void QPolygon_SetPoints(QtObjectPtr ptr, int nPoints, int points){
+void QPolygon_SetPoints(void* ptr, int nPoints, int points){
 	static_cast<QPolygon*>(ptr)->setPoints(nPoints, &points);
 }
 
-void QPolygon_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QPolygon_Swap(void* ptr, void* other){
 	static_cast<QPolygon*>(ptr)->swap(*static_cast<QPolygon*>(other));
 }
 
-void QPolygon_Translate2(QtObjectPtr ptr, QtObjectPtr offset){
+void QPolygon_Translate2(void* ptr, void* offset){
 	static_cast<QPolygon*>(ptr)->translate(*static_cast<QPoint*>(offset));
 }
 
-void QPolygon_Translate(QtObjectPtr ptr, int dx, int dy){
+void QPolygon_Translate(void* ptr, int dx, int dy){
 	static_cast<QPolygon*>(ptr)->translate(dx, dy);
 }
 
-void QPolygon_DestroyQPolygon(QtObjectPtr ptr){
+void QPolygon_DestroyQPolygon(void* ptr){
 	static_cast<QPolygon*>(ptr)->~QPolygon();
 }
 

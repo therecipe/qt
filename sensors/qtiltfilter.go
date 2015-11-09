@@ -10,31 +10,31 @@ type QTiltFilter struct {
 	QSensorFilter
 }
 
-type QTiltFilterITF interface {
-	QSensorFilterITF
-	QTiltFilterPTR() *QTiltFilter
+type QTiltFilter_ITF interface {
+	QSensorFilter_ITF
+	QTiltFilter_PTR() *QTiltFilter
 }
 
-func PointerFromQTiltFilter(ptr QTiltFilterITF) unsafe.Pointer {
+func PointerFromQTiltFilter(ptr QTiltFilter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTiltFilterPTR().Pointer()
+		return ptr.QTiltFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTiltFilterFromPointer(ptr unsafe.Pointer) *QTiltFilter {
+func NewQTiltFilterFromPointer(ptr unsafe.Pointer) *QTiltFilter {
 	var n = new(QTiltFilter)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QTiltFilter) QTiltFilterPTR() *QTiltFilter {
+func (ptr *QTiltFilter) QTiltFilter_PTR() *QTiltFilter {
 	return ptr
 }
 
-func (ptr *QTiltFilter) Filter(reading QTiltReadingITF) bool {
+func (ptr *QTiltFilter) Filter(reading QTiltReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTiltFilter_Filter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTiltReading(reading))) != 0
+		return C.QTiltFilter_Filter(ptr.Pointer(), PointerFromQTiltReading(reading)) != 0
 	}
 	return false
 }

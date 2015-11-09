@@ -12,65 +12,65 @@ type QMagnetometer struct {
 	QSensor
 }
 
-type QMagnetometerITF interface {
-	QSensorITF
-	QMagnetometerPTR() *QMagnetometer
+type QMagnetometer_ITF interface {
+	QSensor_ITF
+	QMagnetometer_PTR() *QMagnetometer
 }
 
-func PointerFromQMagnetometer(ptr QMagnetometerITF) unsafe.Pointer {
+func PointerFromQMagnetometer(ptr QMagnetometer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMagnetometerPTR().Pointer()
+		return ptr.QMagnetometer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMagnetometerFromPointer(ptr unsafe.Pointer) *QMagnetometer {
+func NewQMagnetometerFromPointer(ptr unsafe.Pointer) *QMagnetometer {
 	var n = new(QMagnetometer)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMagnetometer_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMagnetometer) QMagnetometerPTR() *QMagnetometer {
+func (ptr *QMagnetometer) QMagnetometer_PTR() *QMagnetometer {
 	return ptr
 }
 
 func (ptr *QMagnetometer) Reading() *QMagnetometerReading {
 	if ptr.Pointer() != nil {
-		return QMagnetometerReadingFromPointer(unsafe.Pointer(C.QMagnetometer_Reading(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQMagnetometerReadingFromPointer(C.QMagnetometer_Reading(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QMagnetometer) ReturnGeoValues() bool {
 	if ptr.Pointer() != nil {
-		return C.QMagnetometer_ReturnGeoValues(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMagnetometer_ReturnGeoValues(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMagnetometer) SetReturnGeoValues(returnGeoValues bool) {
 	if ptr.Pointer() != nil {
-		C.QMagnetometer_SetReturnGeoValues(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(returnGeoValues)))
+		C.QMagnetometer_SetReturnGeoValues(ptr.Pointer(), C.int(qt.GoBoolToInt(returnGeoValues)))
 	}
 }
 
-func NewQMagnetometer(parent core.QObjectITF) *QMagnetometer {
-	return QMagnetometerFromPointer(unsafe.Pointer(C.QMagnetometer_NewQMagnetometer(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQMagnetometer(parent core.QObject_ITF) *QMagnetometer {
+	return NewQMagnetometerFromPointer(C.QMagnetometer_NewQMagnetometer(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QMagnetometer) ConnectReturnGeoValuesChanged(f func(returnGeoValues bool)) {
 	if ptr.Pointer() != nil {
-		C.QMagnetometer_ConnectReturnGeoValuesChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMagnetometer_ConnectReturnGeoValuesChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "returnGeoValuesChanged", f)
 	}
 }
 
 func (ptr *QMagnetometer) DisconnectReturnGeoValuesChanged() {
 	if ptr.Pointer() != nil {
-		C.QMagnetometer_DisconnectReturnGeoValuesChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMagnetometer_DisconnectReturnGeoValuesChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "returnGeoValuesChanged")
 	}
 }
@@ -82,7 +82,7 @@ func callbackQMagnetometerReturnGeoValuesChanged(ptrName *C.char, returnGeoValue
 
 func (ptr *QMagnetometer) DestroyQMagnetometer() {
 	if ptr.Pointer() != nil {
-		C.QMagnetometer_DestroyQMagnetometer(C.QtObjectPtr(ptr.Pointer()))
+		C.QMagnetometer_DestroyQMagnetometer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

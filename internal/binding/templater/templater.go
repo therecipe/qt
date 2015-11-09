@@ -17,21 +17,29 @@ func isNotAbstractConstructor(c *parser.Class, f *parser.Function) bool {
 
 func hasPureVirtualFunctions(c string) bool {
 
+	if c == "QGraphicsObject" {
+		return true
+	}
+
 	if parser.AbstractMap[c] {
 		return true
 	}
 
-	if b := parser.ClassMap[c].Bases; b != "" && !strings.Contains(b, ",") {
-		if parser.AbstractMap[b] {
-			for _, fBase := range parser.ClassMap[b].Functions {
-				if fBase.Virtual == "pure" {
-					if !classHasRealFunction(c, fBase.Name) {
-						return true
+	if cl, exists := parser.ClassMap[c]; exists {
+		if b := cl.Bases; b != "" && !strings.Contains(b, ",") {
+			if parser.AbstractMap[b] {
+				if bl, exists := parser.ClassMap[b]; exists {
+					for _, fBase := range bl.Functions {
+						if fBase.Virtual == "pure" {
+							if !classHasRealFunction(c, fBase.Name) {
+								return true
+							}
+						}
 					}
 				}
+			} else {
+				return hasPureVirtualFunctions(b)
 			}
-		} else {
-			return hasPureVirtualFunctions(b)
 		}
 	}
 
@@ -40,9 +48,11 @@ func hasPureVirtualFunctions(c string) bool {
 
 func classHasRealFunction(c string, n string) bool {
 	if c != "" && c != "Qt" {
-		for _, f := range parser.ClassMap[c].Functions {
-			if f.Name == n {
-				return true
+		if cl, exists := parser.ClassMap[c]; exists {
+			for _, f := range cl.Functions {
+				if f.Name == n {
+					return true
+				}
 			}
 		}
 	}
@@ -50,22 +60,43 @@ func classHasRealFunction(c string, n string) bool {
 }
 
 func isBlocked(f *parser.Function) bool {
-	for _, n := range []string{"QPlaceProposedSearchResult", "evaluateTo", "detected", "isRecordType", "replace", "insert", "remove", "find", "changedStates", "state", "requestTexture", "draw", "setTabPositions", "setExtraSelections", "disconnect", "QJsonObject", "QJsonArray", "QAccessibleStateChangeEvent", "hitTest", "setupUi", "setEditFocus", "toUnicode", "registerConverter", "registerEqualsComparator", "registerComparators", "hasRegisteredConverterFunction", "hasRegisteredComparators", "setNavigationMode", "navigationMode", "setNativeArguments", "setAlphaChannel", "setDefaultAction", "unregisterEventNotifier", "QXmlStreamWriter", "hasEditFocus", "QVariant", "QTextStream", "QStringRef", "QSignalBlocker", "defaultAction", "canConvert", "queryItemValue", "hasQueryItem", "hasEncodedQueryItem", "hasLocalData", "registerEventNotifier", "registerTimer", "setYMD", "nativeArguments"} {
+	for _, n := range []string{"scriptValueFromQMetaObject", "fromScriptValue", "QPlaceProposedSearchResult", "evaluateTo", "detected", "isRecordType", "replace", "insert", "remove", "find", "changedStates", "state", "requestTexture", "draw", "setTabPositions", "setExtraSelections", "disconnect", "QJsonObject", "QJsonArray", "QAccessibleStateChangeEvent", "hitTest", "setupUi", "setEditFocus", "toUnicode", "registerConverter", "registerEqualsComparator", "registerComparators", "hasRegisteredConverterFunction", "hasRegisteredComparators", "setNavigationMode", "navigationMode", "setNativeArguments", "setAlphaChannel", "setDefaultAction", "unregisterEventNotifier", "QXmlStreamWriter", "hasEditFocus", "QTextStream", "QStringRef", "QSignalBlocker", "defaultAction", "canConvert", "queryItemValue", "hasQueryItem", "hasEncodedQueryItem", "hasLocalData", "registerEventNotifier", "registerTimer", "setYMD", "nativeArguments"} {
 		if f.Name == n {
+			f.Access = "unsupported_isBlocked"
 			return true
 		}
 	}
 
+	//Android Only
 	for _, blockedAndroid := range []string{"setAsDockMenu"} {
 		if f.Name == blockedAndroid {
+			f.Access = "unsupported_isBlocked_Android"
 			return true
 		}
 	}
+
+	if f.Name == "exec" && runtime.GOOS == "linux" && !strings.Contains(f.Class(), "Sql") {
+		f.Output = "void"
+	}
+
+	if f.Name == "value" && f.Class() == "QVariant" {
+		f.Access = "unsupported_goFunction"
+		return true
+	}
+
+	if f.Class() == "QAudioBuffer" && strings.Contains(f.Output, "T") {
+		f.Access = "unsupported_goFunction"
+		return true
+	}
+
 	return false
 }
 
 func isObjectSubClass(b string) bool {
-	return parser.ClassMap[b].IsQObjectSubClass()
+	if bl, exists := parser.ClassMap[b]; exists {
+		return bl.IsQObjectSubClass()
+	}
+	return false
 }
 
 func isNotTemplate(c *parser.Class) bool {
@@ -81,12 +112,18 @@ func isSupportedClass(c *parser.Class) bool {
 }
 
 func isBlockedClass(c *parser.Class) bool {
-	for _, n := range []string{"QPlaceContentRequest", "QPlaceContentReply", "QPlaceContent", "QPlaceContactDetail", "QPlaceCategory", "QPlaceAttribute", "QPlace", "QGeoCodingManagerEngine", "QGeoCodingManager", "QHash", "QGenericMatrix", "QContiguousCache", "QStringList", "QCache", "QUrl", "QString", "QItemEditorCreator", "QIODevice", "QImageIOPlugin", "QImageIOHandler", "QIconEnginePlugin", "QGraphicsTransform", "QGraphicsObject", "QGraphicsLayoutItem", "QGraphicsLayout", "QGraphicsItem", "QGraphicsEffect", "QGestureRecognizer", "QGenericPlugin", "QDebug", "QAnimationGroup", "QAccessiblePlugin", "QAccessibleObject", "QOpenGLFunctions_ES2", "Qt", "QSharedDataPointer", "QScopedValueRollback", "QScopedArrayPointer", "QQueue", "QMultiMap", "QWinEventNotifier", "QWeakPointer", "QVarLengthArray", "QThreadStorage", "QSharedPointer", "QScopedPointer", "QMutableHashIterator", "QMultiHash", "QMapIterator", "QListIterator", "QLinkedListIterator", "QHashIterator", "QGlobalStatic", "QFutureWatcher", "QFutureSynchronizer", "QFutureIterator", "QFuture", "QEnableSharedFromThis", "QExplicitlySharedDataPointer", "QFlags"} {
+	for _, n := range []string{"QPlaceContentRequest", "QPlaceContentReply", "QPlaceContent", "QPlaceContactDetail", "QPlaceCategory", "QPlaceAttribute", "QPlace", "QGeoCodingManagerEngine", "QGeoCodingManager", "QHash", "QGenericMatrix", "QContiguousCache", "QStringList", "QCache", "QString", "QItemEditorCreator", "QImageIOPlugin", "QImageIOHandler", "QIconEnginePlugin", "QGraphicsTransform", "QGraphicsLayoutItem", "QGraphicsLayout", "QGraphicsItem", "QGraphicsEffect", "QGestureRecognizer", "QGenericPlugin", "QDebug", "QAnimationGroup", "QAccessiblePlugin", "QOpenGLFunctions_ES2", "Qt", "QSharedDataPointer", "QScopedValueRollback", "QScopedArrayPointer", "QQueue", "QMultiMap", "QWinEventNotifier", "QWeakPointer", "QVarLengthArray", "QThreadStorage", "QSharedPointer", "QScopedPointer", "QMutableHashIterator", "QMultiHash", "QMapIterator", "QListIterator", "QLinkedListIterator", "QHashIterator", "QGlobalStatic", "QFutureWatcher", "QFutureSynchronizer", "QFutureIterator", "QFuture", "QEnableSharedFromThis", "QExplicitlySharedDataPointer", "QFlags"} {
 		if c.Name == n || strings.Contains(c.Name, "Iterator") {
 			return true
 		}
 	}
+
 	if strings.Contains(c.Name, "QPlace") {
+		return true
+	}
+
+	//Android Only
+	if strings.Contains(c.Name, "OpenGL") {
 		return true
 	}
 
@@ -111,7 +148,6 @@ func isSupportedFile(c *parser.Class) bool {
 		"QPlatformGraphicsBuffer",
 		"QAbstractOpenGLFunctions",
 		"QQmlListProperty",
-		"QQuickWidget",
 		"QSGSimpleMaterialShader",
 		"QSqlRelationalDelegate",
 		"QDBusPendingReply",
@@ -132,6 +168,11 @@ func isSupportedFile(c *parser.Class) bool {
 		return false
 	}
 
+	//Android Only
+	if strings.Contains(c.Name, "OpenGL") {
+		return false
+	}
+
 	return true
 }
 
@@ -141,6 +182,7 @@ func ShouldBuild(module string) bool {
 
 var Build = map[string]bool{
 	"Core":              false,
+	"AndroidExtras":     false,
 	"Gui":               false,
 	"Network":           false,
 	"Sql":               false,
@@ -159,15 +201,16 @@ var Build = map[string]bool{
 	"WebChannel":        false,
 	"Svg":               false,
 	"Multimedia":        false,
-	"Quick":             false,
+	"Quick":             true,
 	"Help":              false,
-	"Location":          true,
-	"ScriptTools":       true,
-	"MultimediaWidgets": true,
+	"Location":          false,
+	"ScriptTools":       false,
+	"MultimediaWidgets": false,
 }
 
 var Libs = []string{
 	"Core",
+	"AndroidExtras",
 	"Gui",
 	"Network",
 	"Sql",
@@ -199,7 +242,7 @@ func GetLibs() []string {
 		case
 			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
 			runtime.GOOS != "windows" && Libs[i] == "WinExtras",
-			runtime.GOOS != "android" && Libs[i] == "AndroidExtras":
+			runtime.GOOS != "android" && (Libs[i] == "AndroidExtras"):
 			{
 				Libs = append(Libs[:i], Libs[i+1:]...)
 			}
@@ -211,6 +254,7 @@ func GetLibs() []string {
 
 var LibDeps = map[string][]string{
 	"Core":              []string{},
+	"AndroidExtras":     []string{"Core"},
 	"Gui":               []string{"Core"},
 	"Network":           []string{"Core"},
 	"Sql":               []string{"Core"},
@@ -229,7 +273,7 @@ var LibDeps = map[string][]string{
 	"WebChannel":        []string{"Core", "Network", "Qml"},
 	"Svg":               []string{"Core", "Gui", "Widgets"},
 	"Multimedia":        []string{"Core", "Gui", "Network"},
-	"Quick":             []string{"Core", "Gui", "Network", "Qml"},
+	"Quick":             []string{"Core", "Gui", "Network", "Widgets", "Qml", "QuickWidgets"},
 	"Help":              []string{"Core", "Gui", "Network", "Sql", "CLucene", "Widgets"},
 	"Location":          []string{"Core", "Gui", "Network", "Positioning", "Qml", "Quick"},
 	"ScriptTools":       []string{"Core", "Gui", "Script", "Widgets"},
@@ -242,6 +286,5 @@ var LibDeps = map[string][]string{
 		Concurrent
 		WinExtras
 		UiTools
-		AndroidExtras
 	*/
 }

@@ -1,10 +1,10 @@
 #include "qmediaservicesupporteddevicesinterface.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMediaService>
 #include <QByteArray>
-#include <QString>
-#include <QVariant>
 #include <QMediaServiceSupportedDevicesInterface>
 #include "_cgo_export.h"
 
@@ -12,11 +12,11 @@ class MyQMediaServiceSupportedDevicesInterface: public QMediaServiceSupportedDev
 public:
 };
 
-char* QMediaServiceSupportedDevicesInterface_DeviceDescription(QtObjectPtr ptr, QtObjectPtr service, QtObjectPtr device){
+char* QMediaServiceSupportedDevicesInterface_DeviceDescription(void* ptr, void* service, void* device){
 	return static_cast<QMediaServiceSupportedDevicesInterface*>(ptr)->deviceDescription(*static_cast<QByteArray*>(service), *static_cast<QByteArray*>(device)).toUtf8().data();
 }
 
-void QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(QtObjectPtr ptr){
+void QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(void* ptr){
 	static_cast<QMediaServiceSupportedDevicesInterface*>(ptr)->~QMediaServiceSupportedDevicesInterface();
 }
 

@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QAbstractState QAbstractState::QAbstractState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non constructor false false   [0xc82013dcc0] }
-&{active QAbstractState::active commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non plain false false  bool [] }
-&{activeChanged QAbstractState::activeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non signal false false  void [0xc82012a5e0] }
-&{entered QAbstractState::entered commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non signal false false  void [] }
-&{event QAbstractState::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h impure plain false false  bool [0xc82012aa40] }
-&{exited QAbstractState::exited commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non signal false false  void [] }
-&{machine QAbstractState::machine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non plain false false  QStateMachine * [] }
-&{onEntry QAbstractState::onEntry commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h pure plain false false  void [0xc82012b0c0] }
-&{onExit QAbstractState::onExit commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h pure plain false false  void [0xc82012b340] }
-&{parentState QAbstractState::parentState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non plain false false  QState * [] }
-&{~QAbstractState QAbstractState::~QAbstractState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non destructor false false   [] }
+&{QAbstractState QAbstractState::QAbstractState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non constructor false false   QAbstractState(QState *parent) [0xc8215feb00] }
+&{active QAbstractState::active commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non plain false false  bool bool active() const [] }
+&{activeChanged QAbstractState::activeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non signal false false  void void activeChanged(bool active) [0xc8215ff680] }
+&{entered QAbstractState::entered commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non signal false false  void void entered() [] }
+&{event QAbstractState::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h impure plain false false  bool bool event(QEvent *e) [0xc8215ffbe0] }
+&{exited QAbstractState::exited commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non signal false false  void void exited() [] }
+&{machine QAbstractState::machine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non plain false false  QStateMachine * QStateMachine * machine() const [] }
+&{onEntry QAbstractState::onEntry commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h pure plain false false  void void onEntry(QEvent *event) [0xc820070580] }
+&{onExit QAbstractState::onExit commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h pure plain false false  void void onExit(QEvent *event) [0xc820070900] }
+&{parentState QAbstractState::parentState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non plain false false  QState * QState * parentState() const [] }
+&{~QAbstractState QAbstractState::~QAbstractState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qabstractstate.h non destructor false false   ~QAbstractState() [] }
 ########################################			ENUMS			########################################

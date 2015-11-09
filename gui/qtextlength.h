@@ -1,10 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QTextLength_NewQTextLength();
-int QTextLength_Type(QtObjectPtr ptr);
+void* QTextLength_NewQTextLength();
+void* QTextLength_NewQTextLength2(int ty, double value);
+double QTextLength_RawValue(void* ptr);
+int QTextLength_Type(void* ptr);
+double QTextLength_Value(void* ptr, double maximumLength);
 
 #ifdef __cplusplus
 }

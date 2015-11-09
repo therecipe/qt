@@ -1,10 +1,10 @@
 #include "qstyleoptionrubberband.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QStyle>
 #include <QStyleOption>
+#include <QStyle>
+#include <QString>
 #include <QStyleOptionRubberBand>
 #include "_cgo_export.h"
 
@@ -12,11 +12,11 @@ class MyQStyleOptionRubberBand: public QStyleOptionRubberBand {
 public:
 };
 
-QtObjectPtr QStyleOptionRubberBand_NewQStyleOptionRubberBand(){
+void* QStyleOptionRubberBand_NewQStyleOptionRubberBand(){
 	return new QStyleOptionRubberBand();
 }
 
-QtObjectPtr QStyleOptionRubberBand_NewQStyleOptionRubberBand2(QtObjectPtr other){
+void* QStyleOptionRubberBand_NewQStyleOptionRubberBand2(void* other){
 	return new QStyleOptionRubberBand(*static_cast<QStyleOptionRubberBand*>(other));
 }
 

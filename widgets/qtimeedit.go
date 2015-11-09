@@ -12,42 +12,42 @@ type QTimeEdit struct {
 	QDateTimeEdit
 }
 
-type QTimeEditITF interface {
-	QDateTimeEditITF
-	QTimeEditPTR() *QTimeEdit
+type QTimeEdit_ITF interface {
+	QDateTimeEdit_ITF
+	QTimeEdit_PTR() *QTimeEdit
 }
 
-func PointerFromQTimeEdit(ptr QTimeEditITF) unsafe.Pointer {
+func PointerFromQTimeEdit(ptr QTimeEdit_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTimeEditPTR().Pointer()
+		return ptr.QTimeEdit_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTimeEditFromPointer(ptr unsafe.Pointer) *QTimeEdit {
+func NewQTimeEditFromPointer(ptr unsafe.Pointer) *QTimeEdit {
 	var n = new(QTimeEdit)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QTimeEdit_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QTimeEdit) QTimeEditPTR() *QTimeEdit {
+func (ptr *QTimeEdit) QTimeEdit_PTR() *QTimeEdit {
 	return ptr
 }
 
-func NewQTimeEdit(parent QWidgetITF) *QTimeEdit {
-	return QTimeEditFromPointer(unsafe.Pointer(C.QTimeEdit_NewQTimeEdit(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQTimeEdit(parent QWidget_ITF) *QTimeEdit {
+	return NewQTimeEditFromPointer(C.QTimeEdit_NewQTimeEdit(PointerFromQWidget(parent)))
 }
 
-func NewQTimeEdit2(time core.QTimeITF, parent QWidgetITF) *QTimeEdit {
-	return QTimeEditFromPointer(unsafe.Pointer(C.QTimeEdit_NewQTimeEdit2(C.QtObjectPtr(core.PointerFromQTime(time)), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQTimeEdit2(time core.QTime_ITF, parent QWidget_ITF) *QTimeEdit {
+	return NewQTimeEditFromPointer(C.QTimeEdit_NewQTimeEdit2(core.PointerFromQTime(time), PointerFromQWidget(parent)))
 }
 
 func (ptr *QTimeEdit) DestroyQTimeEdit() {
 	if ptr.Pointer() != nil {
-		C.QTimeEdit_DestroyQTimeEdit(C.QtObjectPtr(ptr.Pointer()))
+		C.QTimeEdit_DestroyQTimeEdit(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -11,23 +11,23 @@ class MyQGraphicsSceneWheelEvent: public QGraphicsSceneWheelEvent {
 public:
 };
 
-int QGraphicsSceneWheelEvent_Buttons(QtObjectPtr ptr){
+int QGraphicsSceneWheelEvent_Buttons(void* ptr){
 	return static_cast<QGraphicsSceneWheelEvent*>(ptr)->buttons();
 }
 
-int QGraphicsSceneWheelEvent_Delta(QtObjectPtr ptr){
+int QGraphicsSceneWheelEvent_Delta(void* ptr){
 	return static_cast<QGraphicsSceneWheelEvent*>(ptr)->delta();
 }
 
-int QGraphicsSceneWheelEvent_Modifiers(QtObjectPtr ptr){
+int QGraphicsSceneWheelEvent_Modifiers(void* ptr){
 	return static_cast<QGraphicsSceneWheelEvent*>(ptr)->modifiers();
 }
 
-int QGraphicsSceneWheelEvent_Orientation(QtObjectPtr ptr){
+int QGraphicsSceneWheelEvent_Orientation(void* ptr){
 	return static_cast<QGraphicsSceneWheelEvent*>(ptr)->orientation();
 }
 
-void QGraphicsSceneWheelEvent_DestroyQGraphicsSceneWheelEvent(QtObjectPtr ptr){
+void QGraphicsSceneWheelEvent_DestroyQGraphicsSceneWheelEvent(void* ptr){
 	static_cast<QGraphicsSceneWheelEvent*>(ptr)->~QGraphicsSceneWheelEvent();
 }
 

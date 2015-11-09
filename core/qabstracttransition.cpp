@@ -1,11 +1,11 @@
 #include "qabstracttransition.h"
+#include <QUrl>
+#include <QModelIndex>
 #include <QAbstractAnimation>
+#include <QObject>
 #include <QAbstractState>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
 #include <QAbstractTransition>
 #include "_cgo_export.h"
 
@@ -16,63 +16,63 @@ void Signal_TargetStatesChanged(){callbackQAbstractTransitionTargetStatesChanged
 void Signal_Triggered(){callbackQAbstractTransitionTriggered(this->objectName().toUtf8().data());};
 };
 
-void QAbstractTransition_AddAnimation(QtObjectPtr ptr, QtObjectPtr animation){
+void QAbstractTransition_AddAnimation(void* ptr, void* animation){
 	static_cast<QAbstractTransition*>(ptr)->addAnimation(static_cast<QAbstractAnimation*>(animation));
 }
 
-QtObjectPtr QAbstractTransition_Machine(QtObjectPtr ptr){
+void* QAbstractTransition_Machine(void* ptr){
 	return static_cast<QAbstractTransition*>(ptr)->machine();
 }
 
-void QAbstractTransition_RemoveAnimation(QtObjectPtr ptr, QtObjectPtr animation){
+void QAbstractTransition_RemoveAnimation(void* ptr, void* animation){
 	static_cast<QAbstractTransition*>(ptr)->removeAnimation(static_cast<QAbstractAnimation*>(animation));
 }
 
-void QAbstractTransition_SetTargetState(QtObjectPtr ptr, QtObjectPtr target){
+void QAbstractTransition_SetTargetState(void* ptr, void* target){
 	static_cast<QAbstractTransition*>(ptr)->setTargetState(static_cast<QAbstractState*>(target));
 }
 
-void QAbstractTransition_SetTransitionType(QtObjectPtr ptr, int ty){
+void QAbstractTransition_SetTransitionType(void* ptr, int ty){
 	static_cast<QAbstractTransition*>(ptr)->setTransitionType(static_cast<QAbstractTransition::TransitionType>(ty));
 }
 
-QtObjectPtr QAbstractTransition_SourceState(QtObjectPtr ptr){
+void* QAbstractTransition_SourceState(void* ptr){
 	return static_cast<QAbstractTransition*>(ptr)->sourceState();
 }
 
-QtObjectPtr QAbstractTransition_TargetState(QtObjectPtr ptr){
+void* QAbstractTransition_TargetState(void* ptr){
 	return static_cast<QAbstractTransition*>(ptr)->targetState();
 }
 
-void QAbstractTransition_ConnectTargetStateChanged(QtObjectPtr ptr){
+void QAbstractTransition_ConnectTargetStateChanged(void* ptr){
 	QObject::connect(static_cast<QAbstractTransition*>(ptr), &QAbstractTransition::targetStateChanged, static_cast<MyQAbstractTransition*>(ptr), static_cast<void (MyQAbstractTransition::*)()>(&MyQAbstractTransition::Signal_TargetStateChanged));;
 }
 
-void QAbstractTransition_DisconnectTargetStateChanged(QtObjectPtr ptr){
+void QAbstractTransition_DisconnectTargetStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QAbstractTransition*>(ptr), &QAbstractTransition::targetStateChanged, static_cast<MyQAbstractTransition*>(ptr), static_cast<void (MyQAbstractTransition::*)()>(&MyQAbstractTransition::Signal_TargetStateChanged));;
 }
 
-void QAbstractTransition_ConnectTargetStatesChanged(QtObjectPtr ptr){
+void QAbstractTransition_ConnectTargetStatesChanged(void* ptr){
 	QObject::connect(static_cast<QAbstractTransition*>(ptr), &QAbstractTransition::targetStatesChanged, static_cast<MyQAbstractTransition*>(ptr), static_cast<void (MyQAbstractTransition::*)()>(&MyQAbstractTransition::Signal_TargetStatesChanged));;
 }
 
-void QAbstractTransition_DisconnectTargetStatesChanged(QtObjectPtr ptr){
+void QAbstractTransition_DisconnectTargetStatesChanged(void* ptr){
 	QObject::disconnect(static_cast<QAbstractTransition*>(ptr), &QAbstractTransition::targetStatesChanged, static_cast<MyQAbstractTransition*>(ptr), static_cast<void (MyQAbstractTransition::*)()>(&MyQAbstractTransition::Signal_TargetStatesChanged));;
 }
 
-int QAbstractTransition_TransitionType(QtObjectPtr ptr){
+int QAbstractTransition_TransitionType(void* ptr){
 	return static_cast<QAbstractTransition*>(ptr)->transitionType();
 }
 
-void QAbstractTransition_ConnectTriggered(QtObjectPtr ptr){
+void QAbstractTransition_ConnectTriggered(void* ptr){
 	QObject::connect(static_cast<QAbstractTransition*>(ptr), &QAbstractTransition::triggered, static_cast<MyQAbstractTransition*>(ptr), static_cast<void (MyQAbstractTransition::*)()>(&MyQAbstractTransition::Signal_Triggered));;
 }
 
-void QAbstractTransition_DisconnectTriggered(QtObjectPtr ptr){
+void QAbstractTransition_DisconnectTriggered(void* ptr){
 	QObject::disconnect(static_cast<QAbstractTransition*>(ptr), &QAbstractTransition::triggered, static_cast<MyQAbstractTransition*>(ptr), static_cast<void (MyQAbstractTransition::*)()>(&MyQAbstractTransition::Signal_Triggered));;
 }
 
-void QAbstractTransition_DestroyQAbstractTransition(QtObjectPtr ptr){
+void QAbstractTransition_DestroyQAbstractTransition(void* ptr){
 	static_cast<QAbstractTransition*>(ptr)->~QAbstractTransition();
 }
 

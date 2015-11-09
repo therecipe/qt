@@ -1,24 +1,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QLibrary_FileName(QtObjectPtr ptr);
-int QLibrary_LoadHints(QtObjectPtr ptr);
-void QLibrary_SetFileName(QtObjectPtr ptr, char* fileName);
-void QLibrary_SetFileNameAndVersion(QtObjectPtr ptr, char* fileName, int versionNumber);
-void QLibrary_SetLoadHints(QtObjectPtr ptr, int hints);
-QtObjectPtr QLibrary_NewQLibrary(QtObjectPtr parent);
-QtObjectPtr QLibrary_NewQLibrary2(char* fileName, QtObjectPtr parent);
-QtObjectPtr QLibrary_NewQLibrary4(char* fileName, char* version, QtObjectPtr parent);
-QtObjectPtr QLibrary_NewQLibrary3(char* fileName, int verNum, QtObjectPtr parent);
-char* QLibrary_ErrorString(QtObjectPtr ptr);
+char* QLibrary_FileName(void* ptr);
+int QLibrary_LoadHints(void* ptr);
+void QLibrary_SetFileName(void* ptr, char* fileName);
+void QLibrary_SetFileNameAndVersion(void* ptr, char* fileName, int versionNumber);
+void QLibrary_SetLoadHints(void* ptr, int hints);
+void* QLibrary_NewQLibrary(void* parent);
+void* QLibrary_NewQLibrary2(char* fileName, void* parent);
+void* QLibrary_NewQLibrary4(char* fileName, char* version, void* parent);
+void* QLibrary_NewQLibrary3(char* fileName, int verNum, void* parent);
+char* QLibrary_ErrorString(void* ptr);
 int QLibrary_QLibrary_IsLibrary(char* fileName);
-int QLibrary_IsLoaded(QtObjectPtr ptr);
-int QLibrary_Load(QtObjectPtr ptr);
-void QLibrary_SetFileNameAndVersion2(QtObjectPtr ptr, char* fileName, char* version);
-int QLibrary_Unload(QtObjectPtr ptr);
-void QLibrary_DestroyQLibrary(QtObjectPtr ptr);
+int QLibrary_IsLoaded(void* ptr);
+int QLibrary_Load(void* ptr);
+void QLibrary_SetFileNameAndVersion2(void* ptr, char* fileName, char* version);
+int QLibrary_Unload(void* ptr);
+void QLibrary_DestroyQLibrary(void* ptr);
 
 #ifdef __cplusplus
 }

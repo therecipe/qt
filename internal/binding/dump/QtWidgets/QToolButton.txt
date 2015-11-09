@@ -1,33 +1,33 @@
 ########################################			FUNCTIONS			########################################
-&{arrowType QToolButton::arrowType commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  Qt::ArrowType [] }
-&{autoRaise QToolButton::autoRaise commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  bool [] }
-&{paintEvent QToolButton::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp impure plain false false  void [0xc821de9500] }
-&{popupMode QToolButton::popupMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  ToolButtonPopupMode [] }
-&{setArrowType QToolButton::setArrowType commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  void [0xc821de9c20] }
-&{setAutoRaise QToolButton::setAutoRaise commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  void [0xc821df6020] }
-&{setPopupMode QToolButton::setPopupMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  void [0xc821df6500] }
-&{setToolButtonStyle QToolButton::setToolButtonStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non slot false false  void [0xc821df69a0] }
-&{toolButtonStyle QToolButton::toolButtonStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  Qt::ToolButtonStyle [] }
-&{QToolButton QToolButton::QToolButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non constructor false false   [0xc821df76e0] }
-&{actionEvent QToolButton::actionEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void [0xc821df7e00] }
-&{changeEvent QToolButton::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void [0xc821e161e0] }
-&{defaultAction QToolButton::defaultAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non plain false false  QAction * [] }
-&{enterEvent QToolButton::enterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void [0xc821e166e0] }
-&{event QToolButton::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  bool [0xc821e16940] }
-&{hitButton QToolButton::hitButton commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  bool [0xc821e16ba0] }
-&{initStyleOption QToolButton::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non plain false false  void [0xc821e16e20] }
-&{leaveEvent QToolButton::leaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void [0xc821e170c0] }
-&{menu QToolButton::menu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non plain false false  QMenu * [] }
-&{minimumSizeHint QToolButton::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  QSize [] }
-&{mousePressEvent QToolButton::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void [0xc821e17660] }
-&{mouseReleaseEvent QToolButton::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void [0xc821e17940] }
-&{nextCheckState QToolButton::nextCheckState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void [] }
-&{setDefaultAction QToolButton::setDefaultAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non slot false false  void [0xc821e17da0] }
-&{setMenu QToolButton::setMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non plain false false  void [0xc821e26060] }
-&{showMenu QToolButton::showMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non slot false false  void [] }
-&{sizeHint QToolButton::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  QSize [] }
-&{timerEvent QToolButton::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void [0xc821e26760] }
-&{triggered QToolButton::triggered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non signal false false  void [0xc821e26b80] }
-&{~QToolButton QToolButton::~QToolButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non destructor false false   [] }
+&{arrowType QToolButton::arrowType commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  Qt::ArrowType Qt::ArrowType arrowType() const [] }
+&{autoRaise QToolButton::autoRaise commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  bool bool autoRaise() const [] }
+&{paintEvent QToolButton::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp impure plain false false  void void paintEvent(QPaintEvent *event) [0xc821601a00] }
+&{popupMode QToolButton::popupMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  ToolButtonPopupMode ToolButtonPopupMode popupMode() const [] }
+&{setArrowType QToolButton::setArrowType commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  void void setArrowType(Qt::ArrowType type) [0xc821601f60] }
+&{setAutoRaise QToolButton::setAutoRaise commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  void void setAutoRaise(bool enable) [0xc826c52640] }
+&{setPopupMode QToolButton::setPopupMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  void void setPopupMode(ToolButtonPopupMode mode) [0xc826c52be0] }
+&{setToolButtonStyle QToolButton::setToolButtonStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non slot false false  void void setToolButtonStyle(Qt::ToolButtonStyle style) [0xc826c53360] }
+&{toolButtonStyle QToolButton::toolButtonStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.cpp non plain false false  Qt::ToolButtonStyle Qt::ToolButtonStyle toolButtonStyle() const [] }
+&{QToolButton QToolButton::QToolButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non constructor false false   QToolButton(QWidget *parent) [0xc821e445e0] }
+&{actionEvent QToolButton::actionEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void void actionEvent(QActionEvent *event) [0xc821e44e00] }
+&{changeEvent QToolButton::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void void changeEvent(QEvent *e) [0xc821e451e0] }
+&{defaultAction QToolButton::defaultAction commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non plain false false  QAction * QAction * defaultAction() const [] }
+&{enterEvent QToolButton::enterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void void enterEvent(QEvent *e) [0xc821e45920] }
+&{event QToolButton::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  bool bool event(QEvent *event) [0xc821e45d80] }
+&{hitButton QToolButton::hitButton commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  bool bool hitButton(const QPoint &pos) const [0xc8210262a0] }
+&{initStyleOption QToolButton::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non plain false false  void void initStyleOption(QStyleOptionToolButton *option) const [0xc821026740] }
+&{leaveEvent QToolButton::leaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void void leaveEvent(QEvent *e) [0xc821026d80] }
+&{menu QToolButton::menu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non plain false false  QMenu * QMenu * menu() const [] }
+&{minimumSizeHint QToolButton::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  QSize QSize minimumSizeHint() const [] }
+&{mousePressEvent QToolButton::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void void mousePressEvent(QMouseEvent *e) [0xc821027a60] }
+&{mouseReleaseEvent QToolButton::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *e) [0xc821e34060] }
+&{nextCheckState QToolButton::nextCheckState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void void nextCheckState() [] }
+&{setDefaultAction QToolButton::setDefaultAction commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non slot false false  void void setDefaultAction(QAction *action) [0xc821e346e0] }
+&{setMenu QToolButton::setMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non plain false false  void void setMenu(QMenu *menu) [0xc821e34b20] }
+&{showMenu QToolButton::showMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non slot false false  void void showMenu() [] }
+&{sizeHint QToolButton::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  QSize QSize sizeHint() const [] }
+&{timerEvent QToolButton::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h impure plain false false  void void timerEvent(QTimerEvent *e) [0xc821e353e0] }
+&{triggered QToolButton::triggered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non signal false false  void void triggered(QAction *action) [0xc821e35840] }
+&{~QToolButton QToolButton::~QToolButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtoolbutton.h non destructor false false   ~QToolButton() [] }
 ########################################			ENUMS			########################################
-&{ToolButtonPopupMode QToolButton::ToolButtonPopupMode commendable public  [0xc821df70c0 0xc821df7180 0xc821df72a0]}
+&{ToolButtonPopupMode QToolButton::ToolButtonPopupMode commendable public  [0xc826c53f60 0xc821e44040 0xc821e44140] false}

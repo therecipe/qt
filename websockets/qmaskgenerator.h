@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QMaskGenerator_Seed(QtObjectPtr ptr);
-void QMaskGenerator_DestroyQMaskGenerator(QtObjectPtr ptr);
+int QMaskGenerator_Seed(void* ptr);
+void QMaskGenerator_DestroyQMaskGenerator(void* ptr);
 
 #ifdef __cplusplus
 }

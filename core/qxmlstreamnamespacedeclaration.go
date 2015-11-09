@@ -10,8 +10,8 @@ type QXmlStreamNamespaceDeclaration struct {
 	ptr unsafe.Pointer
 }
 
-type QXmlStreamNamespaceDeclarationITF interface {
-	QXmlStreamNamespaceDeclarationPTR() *QXmlStreamNamespaceDeclaration
+type QXmlStreamNamespaceDeclaration_ITF interface {
+	QXmlStreamNamespaceDeclaration_PTR() *QXmlStreamNamespaceDeclaration
 }
 
 func (p *QXmlStreamNamespaceDeclaration) Pointer() unsafe.Pointer {
@@ -22,37 +22,51 @@ func (p *QXmlStreamNamespaceDeclaration) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQXmlStreamNamespaceDeclaration(ptr QXmlStreamNamespaceDeclarationITF) unsafe.Pointer {
+func PointerFromQXmlStreamNamespaceDeclaration(ptr QXmlStreamNamespaceDeclaration_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QXmlStreamNamespaceDeclarationPTR().Pointer()
+		return ptr.QXmlStreamNamespaceDeclaration_PTR().Pointer()
 	}
 	return nil
 }
 
-func QXmlStreamNamespaceDeclarationFromPointer(ptr unsafe.Pointer) *QXmlStreamNamespaceDeclaration {
+func NewQXmlStreamNamespaceDeclarationFromPointer(ptr unsafe.Pointer) *QXmlStreamNamespaceDeclaration {
 	var n = new(QXmlStreamNamespaceDeclaration)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QXmlStreamNamespaceDeclaration) QXmlStreamNamespaceDeclarationPTR() *QXmlStreamNamespaceDeclaration {
+func (ptr *QXmlStreamNamespaceDeclaration) QXmlStreamNamespaceDeclaration_PTR() *QXmlStreamNamespaceDeclaration {
 	return ptr
 }
 
 func NewQXmlStreamNamespaceDeclaration() *QXmlStreamNamespaceDeclaration {
-	return QXmlStreamNamespaceDeclarationFromPointer(unsafe.Pointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration()))
+	return NewQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration())
 }
 
 func NewQXmlStreamNamespaceDeclaration3(prefix string, namespaceUri string) *QXmlStreamNamespaceDeclaration {
-	return QXmlStreamNamespaceDeclarationFromPointer(unsafe.Pointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration3(C.CString(prefix), C.CString(namespaceUri))))
+	return NewQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration3(C.CString(prefix), C.CString(namespaceUri)))
 }
 
-func NewQXmlStreamNamespaceDeclaration2(other QXmlStreamNamespaceDeclarationITF) *QXmlStreamNamespaceDeclaration {
-	return QXmlStreamNamespaceDeclarationFromPointer(unsafe.Pointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration2(C.QtObjectPtr(PointerFromQXmlStreamNamespaceDeclaration(other)))))
+func NewQXmlStreamNamespaceDeclaration2(other QXmlStreamNamespaceDeclaration_ITF) *QXmlStreamNamespaceDeclaration {
+	return NewQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration2(PointerFromQXmlStreamNamespaceDeclaration(other)))
+}
+
+func (ptr *QXmlStreamNamespaceDeclaration) NamespaceUri() *QStringRef {
+	if ptr.Pointer() != nil {
+		return NewQStringRefFromPointer(C.QXmlStreamNamespaceDeclaration_NamespaceUri(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QXmlStreamNamespaceDeclaration) Prefix() *QStringRef {
+	if ptr.Pointer() != nil {
+		return NewQStringRefFromPointer(C.QXmlStreamNamespaceDeclaration_Prefix(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QXmlStreamNamespaceDeclaration) DestroyQXmlStreamNamespaceDeclaration() {
 	if ptr.Pointer() != nil {
-		C.QXmlStreamNamespaceDeclaration_DestroyQXmlStreamNamespaceDeclaration(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlStreamNamespaceDeclaration_DestroyQXmlStreamNamespaceDeclaration(ptr.Pointer())
 	}
 }

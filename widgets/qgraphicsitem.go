@@ -10,8 +10,8 @@ type QGraphicsItem struct {
 	ptr unsafe.Pointer
 }
 
-type QGraphicsItemITF interface {
-	QGraphicsItemPTR() *QGraphicsItem
+type QGraphicsItem_ITF interface {
+	QGraphicsItem_PTR() *QGraphicsItem
 }
 
 func (p *QGraphicsItem) Pointer() unsafe.Pointer {
@@ -22,36 +22,36 @@ func (p *QGraphicsItem) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQGraphicsItem(ptr QGraphicsItemITF) unsafe.Pointer {
+func PointerFromQGraphicsItem(ptr QGraphicsItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsItemPTR().Pointer()
+		return ptr.QGraphicsItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsItemFromPointer(ptr unsafe.Pointer) *QGraphicsItem {
+func NewQGraphicsItemFromPointer(ptr unsafe.Pointer) *QGraphicsItem {
 	var n = new(QGraphicsItem)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsItem) QGraphicsItemPTR() *QGraphicsItem {
+func (ptr *QGraphicsItem) QGraphicsItem_PTR() *QGraphicsItem {
 	return ptr
 }
 
 //QGraphicsItem::CacheMode
-type QGraphicsItem__CacheMode int
+type QGraphicsItem__CacheMode int64
 
-var (
+const (
 	QGraphicsItem__NoCache               = QGraphicsItem__CacheMode(0)
 	QGraphicsItem__ItemCoordinateCache   = QGraphicsItem__CacheMode(1)
 	QGraphicsItem__DeviceCoordinateCache = QGraphicsItem__CacheMode(2)
 )
 
 //QGraphicsItem::GraphicsItemChange
-type QGraphicsItem__GraphicsItemChange int
+type QGraphicsItem__GraphicsItemChange int64
 
-var (
+const (
 	QGraphicsItem__ItemPositionChange                 = QGraphicsItem__GraphicsItemChange(0)
 	QGraphicsItem__ItemMatrixChange                   = QGraphicsItem__GraphicsItemChange(1)
 	QGraphicsItem__ItemVisibleChange                  = QGraphicsItem__GraphicsItemChange(2)
@@ -89,9 +89,9 @@ var (
 )
 
 //QGraphicsItem::GraphicsItemFlag
-type QGraphicsItem__GraphicsItemFlag int
+type QGraphicsItem__GraphicsItemFlag int64
 
-var (
+const (
 	QGraphicsItem__ItemIsMovable                        = QGraphicsItem__GraphicsItemFlag(0x1)
 	QGraphicsItem__ItemIsSelectable                     = QGraphicsItem__GraphicsItemFlag(0x2)
 	QGraphicsItem__ItemIsFocusable                      = QGraphicsItem__GraphicsItemFlag(0x4)
@@ -115,9 +115,9 @@ var (
 )
 
 //QGraphicsItem::PanelModality
-type QGraphicsItem__PanelModality int
+type QGraphicsItem__PanelModality int64
 
-var (
+const (
 	QGraphicsItem__NonModal   = QGraphicsItem__PanelModality(0)
 	QGraphicsItem__PanelModal = QGraphicsItem__PanelModality(1)
 	QGraphicsItem__SceneModal = QGraphicsItem__PanelModality(2)

@@ -12,11 +12,11 @@ class MyQStyleHintReturnMask: public QStyleHintReturnMask {
 public:
 };
 
-QtObjectPtr QStyleHintReturnMask_NewQStyleHintReturnMask(){
+void* QStyleHintReturnMask_NewQStyleHintReturnMask(){
 	return new QStyleHintReturnMask();
 }
 
-void QStyleHintReturnMask_DestroyQStyleHintReturnMask(QtObjectPtr ptr){
+void QStyleHintReturnMask_DestroyQStyleHintReturnMask(void* ptr){
 	static_cast<QStyleHintReturnMask*>(ptr)->~QStyleHintReturnMask();
 }
 

@@ -1,9 +1,9 @@
 #include "qshortcutevent.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QKeySequence>
+#include <QString>
+#include <QVariant>
 #include <QShortcutEvent>
 #include "_cgo_export.h"
 
@@ -11,19 +11,19 @@ class MyQShortcutEvent: public QShortcutEvent {
 public:
 };
 
-QtObjectPtr QShortcutEvent_NewQShortcutEvent(QtObjectPtr key, int id, int ambiguous){
+void* QShortcutEvent_NewQShortcutEvent(void* key, int id, int ambiguous){
 	return new QShortcutEvent(*static_cast<QKeySequence*>(key), id, ambiguous != 0);
 }
 
-int QShortcutEvent_IsAmbiguous(QtObjectPtr ptr){
+int QShortcutEvent_IsAmbiguous(void* ptr){
 	return static_cast<QShortcutEvent*>(ptr)->isAmbiguous();
 }
 
-int QShortcutEvent_ShortcutId(QtObjectPtr ptr){
+int QShortcutEvent_ShortcutId(void* ptr){
 	return static_cast<QShortcutEvent*>(ptr)->shortcutId();
 }
 
-void QShortcutEvent_DestroyQShortcutEvent(QtObjectPtr ptr){
+void QShortcutEvent_DestroyQShortcutEvent(void* ptr){
 	static_cast<QShortcutEvent*>(ptr)->~QShortcutEvent();
 }
 

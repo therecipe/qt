@@ -1,22 +1,22 @@
 ########################################			FUNCTIONS			########################################
-&{QHostInfo QHostInfo::QHostInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non constructor false true 2  [0xc823278040] }
-&{QHostInfo QHostInfo::QHostInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non constructor false false   [0xc8232782c0] }
-&{abortHostLookup QHostInfo::abortHostLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain true false  void [0xc823278540] }
-&{addresses QHostInfo::addresses commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  QList<QHostAddress> [] }
-&{error QHostInfo::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  HostInfoError [] }
-&{errorString QHostInfo::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  QString [] }
-&{fromName QHostInfo::fromName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain true false  QHostInfo [0xc823278b60] }
-&{hostName QHostInfo::hostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  QString [] }
-&{lookupHost QHostInfo::lookupHost commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain true false  int [0xc823278f00 0xc823278fa0 0xc823279060] }
-&{lookupId QHostInfo::lookupId commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  int [] }
-&{operator= QHostInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  QHostInfo & [0xc8232793c0] }
-&{setAddresses QHostInfo::setAddresses commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  void [0xc823279640] }
-&{setError QHostInfo::setError commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  void [0xc8232798c0] }
-&{setErrorString QHostInfo::setErrorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  void [0xc823279b40] }
-&{setHostName QHostInfo::setHostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  void [0xc823279d40] }
-&{setLookupId QHostInfo::setLookupId commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  void [0xc823279f80] }
-&{~QHostInfo QHostInfo::~QHostInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non destructor false false   [] }
-&{localHostName QHostInfo::localHostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo_winrt.cpp non plain true false  QString [] }
-&{localDomainName QHostInfo::localDomainName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface_winrt.cpp non plain true false  QString [] }
+&{QHostInfo QHostInfo::QHostInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non constructor false true 2  QHostInfo(const QHostInfo &other) [0xc8233b9ca0] }
+&{QHostInfo QHostInfo::QHostInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non constructor false false   QHostInfo(int id) [0xc8233b9f80] }
+&{abortHostLookup QHostInfo::abortHostLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain true false  void void abortHostLookup(int id) [0xc8233a0280] }
+&{addresses QHostInfo::addresses commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  QList<QHostAddress> QList<QHostAddress> addresses() const [] }
+&{error QHostInfo::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  HostInfoError HostInfoError error() const [] }
+&{errorString QHostInfo::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  QString QString errorString() const [] }
+&{fromName QHostInfo::fromName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain true false  QHostInfo QHostInfo fromName(const QString &name) [0xc8233a08c0] }
+&{hostName QHostInfo::hostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  QString QString hostName() const [] }
+&{lookupHost QHostInfo::lookupHost commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain true false  int int lookupHost(const QString &name, QObject *receiver, const char *member) [0xc8233a0c60 0xc8233a0ce0 0xc8233a0d60] }
+&{lookupId QHostInfo::lookupId commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  int int lookupId() const [] }
+&{operator= QHostInfo::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  QHostInfo & QHostInfo & operator=(const QHostInfo &other) [0xc8233a1120] }
+&{setAddresses QHostInfo::setAddresses commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  void void setAddresses(const QList<QHostAddress> &addresses) [0xc8233a13c0] }
+&{setError QHostInfo::setError commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  void void setError(HostInfoError error) [0xc8233a1680] }
+&{setErrorString QHostInfo::setErrorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  void void setErrorString(const QString &str) [0xc8233a18c0] }
+&{setHostName QHostInfo::setHostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  void void setHostName(const QString &hostName) [0xc8233a1b00] }
+&{setLookupId QHostInfo::setLookupId commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non plain false false  void void setLookupId(int id) [0xc8233a1da0] }
+&{~QHostInfo QHostInfo::~QHostInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo.h non destructor false false   ~QHostInfo() [] }
+&{localHostName QHostInfo::localHostName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qhostinfo_winrt.cpp non plain true false  QString QString localHostName() [] }
+&{localDomainName QHostInfo::localDomainName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qnetworkinterface_winrt.cpp non plain true false  QString QString localDomainName() [] }
 ########################################			ENUMS			########################################
-&{HostInfoError QHostInfo::HostInfoError commendable public  [0xc823289ca0 0xc823289d20 0xc823289da0]}
+&{HostInfoError QHostInfo::HostInfoError commendable public  [0xc8233b9880 0xc8233b9920 0xc8233b99c0] false}

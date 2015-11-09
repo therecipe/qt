@@ -11,15 +11,15 @@ class MyQSGMaterialShader: public QSGMaterialShader {
 public:
 };
 
-void QSGMaterialShader_Activate(QtObjectPtr ptr){
+void QSGMaterialShader_Activate(void* ptr){
 	static_cast<QSGMaterialShader*>(ptr)->activate();
 }
 
-void QSGMaterialShader_Deactivate(QtObjectPtr ptr){
+void QSGMaterialShader_Deactivate(void* ptr){
 	static_cast<QSGMaterialShader*>(ptr)->deactivate();
 }
 
-QtObjectPtr QSGMaterialShader_Program(QtObjectPtr ptr){
+void* QSGMaterialShader_Program(void* ptr){
 	return static_cast<QSGMaterialShader*>(ptr)->program();
 }
 

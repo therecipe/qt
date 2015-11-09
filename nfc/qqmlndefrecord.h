@@ -1,21 +1,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QQmlNdefRecord_TypeNameFormat(QtObjectPtr ptr);
-QtObjectPtr QQmlNdefRecord_NewQQmlNdefRecord(QtObjectPtr parent);
-QtObjectPtr QQmlNdefRecord_NewQQmlNdefRecord2(QtObjectPtr record, QtObjectPtr parent);
-void QQmlNdefRecord_ConnectRecordChanged(QtObjectPtr ptr);
-void QQmlNdefRecord_DisconnectRecordChanged(QtObjectPtr ptr);
-void QQmlNdefRecord_SetRecord(QtObjectPtr ptr, QtObjectPtr record);
-void QQmlNdefRecord_SetType(QtObjectPtr ptr, char* newtype);
-void QQmlNdefRecord_SetTypeNameFormat(QtObjectPtr ptr, int newTypeNameFormat);
-char* QQmlNdefRecord_Type(QtObjectPtr ptr);
-void QQmlNdefRecord_ConnectTypeChanged(QtObjectPtr ptr);
-void QQmlNdefRecord_DisconnectTypeChanged(QtObjectPtr ptr);
-void QQmlNdefRecord_ConnectTypeNameFormatChanged(QtObjectPtr ptr);
-void QQmlNdefRecord_DisconnectTypeNameFormatChanged(QtObjectPtr ptr);
+int QQmlNdefRecord_TypeNameFormat(void* ptr);
+void* QQmlNdefRecord_NewQQmlNdefRecord(void* parent);
+void* QQmlNdefRecord_NewQQmlNdefRecord2(void* record, void* parent);
+void QQmlNdefRecord_ConnectRecordChanged(void* ptr);
+void QQmlNdefRecord_DisconnectRecordChanged(void* ptr);
+void QQmlNdefRecord_SetRecord(void* ptr, void* record);
+void QQmlNdefRecord_SetType(void* ptr, char* newtype);
+void QQmlNdefRecord_SetTypeNameFormat(void* ptr, int newTypeNameFormat);
+char* QQmlNdefRecord_Type(void* ptr);
+void QQmlNdefRecord_ConnectTypeChanged(void* ptr);
+void QQmlNdefRecord_DisconnectTypeChanged(void* ptr);
+void QQmlNdefRecord_ConnectTypeNameFormatChanged(void* ptr);
+void QQmlNdefRecord_DisconnectTypeNameFormatChanged(void* ptr);
 
 #ifdef __cplusplus
 }

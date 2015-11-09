@@ -10,8 +10,8 @@ type QListIterator struct {
 	ptr unsafe.Pointer
 }
 
-type QListIteratorITF interface {
-	QListIteratorPTR() *QListIterator
+type QListIterator_ITF interface {
+	QListIterator_PTR() *QListIterator
 }
 
 func (p *QListIterator) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QListIterator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQListIterator(ptr QListIteratorITF) unsafe.Pointer {
+func PointerFromQListIterator(ptr QListIterator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QListIteratorPTR().Pointer()
+		return ptr.QListIterator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QListIteratorFromPointer(ptr unsafe.Pointer) *QListIterator {
+func NewQListIteratorFromPointer(ptr unsafe.Pointer) *QListIterator {
 	var n = new(QListIterator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QListIterator) QListIteratorPTR() *QListIterator {
+func (ptr *QListIterator) QListIterator_PTR() *QListIterator {
 	return ptr
 }

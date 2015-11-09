@@ -1,9 +1,9 @@
 #include "qgraphicsscenemoveevent.h"
+#include <QUrl>
+#include <QModelIndex>
 #include <QGraphicsScene>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QGraphicsSceneMoveEvent>
 #include "_cgo_export.h"
 
@@ -11,11 +11,11 @@ class MyQGraphicsSceneMoveEvent: public QGraphicsSceneMoveEvent {
 public:
 };
 
-QtObjectPtr QGraphicsSceneMoveEvent_NewQGraphicsSceneMoveEvent(){
+void* QGraphicsSceneMoveEvent_NewQGraphicsSceneMoveEvent(){
 	return new QGraphicsSceneMoveEvent();
 }
 
-void QGraphicsSceneMoveEvent_DestroyQGraphicsSceneMoveEvent(QtObjectPtr ptr){
+void QGraphicsSceneMoveEvent_DestroyQGraphicsSceneMoveEvent(void* ptr){
 	static_cast<QGraphicsSceneMoveEvent*>(ptr)->~QGraphicsSceneMoveEvent();
 }
 

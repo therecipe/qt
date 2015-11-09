@@ -1,23 +1,23 @@
 ########################################			FUNCTIONS			########################################
-&{setSocketOptions QLocalServer::setSocketOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.cpp non plain false false  void [0xc82315a380] }
-&{QLocalServer QLocalServer::QLocalServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non constructor false false   [0xc82315aca0] }
-&{close QLocalServer::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  void [] }
-&{errorString QLocalServer::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  QString [] }
-&{fullServerName QLocalServer::fullServerName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  QString [] }
-&{hasPendingConnections QLocalServer::hasPendingConnections commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h impure plain false false  bool [] }
-&{incomingConnection QLocalServer::incomingConnection commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h impure plain false false  void [0xc82315b700] }
-&{isListening QLocalServer::isListening commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  bool [] }
-&{listen QLocalServer::listen commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  bool [0xc82315ba60] }
-&{listen QLocalServer::listen commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false true 2 bool [0xc82315bc80] }
-&{maxPendingConnections QLocalServer::maxPendingConnections commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  int [] }
-&{newConnection QLocalServer::newConnection commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non signal false false  void [] }
-&{nextPendingConnection QLocalServer::nextPendingConnection commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h impure plain false false  QLocalSocket * [] }
-&{removeServer QLocalServer::removeServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain true false  bool [0xc82314a240] }
-&{serverError QLocalServer::serverError commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  QAbstractSocket::SocketError [] }
-&{serverName QLocalServer::serverName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  QString [] }
-&{setMaxPendingConnections QLocalServer::setMaxPendingConnections commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  void [0xc82314a740] }
-&{socketOptions QLocalServer::socketOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  SocketOptions [] }
-&{waitForNewConnection QLocalServer::waitForNewConnection commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  bool [0xc82314aa80 0xc82314ab20] }
-&{~QLocalServer QLocalServer::~QLocalServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non destructor false false   [] }
+&{setSocketOptions QLocalServer::setSocketOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.cpp non plain false false  void void setSocketOptions(SocketOptions options) [0xc823284200] }
+&{QLocalServer QLocalServer::QLocalServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non constructor false false   QLocalServer(QObject *parent) [0xc823284ce0] }
+&{close QLocalServer::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  void void close() [] }
+&{errorString QLocalServer::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  QString QString errorString() const [] }
+&{fullServerName QLocalServer::fullServerName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  QString QString fullServerName() const [] }
+&{hasPendingConnections QLocalServer::hasPendingConnections commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h impure plain false false  bool bool hasPendingConnections() const [] }
+&{incomingConnection QLocalServer::incomingConnection commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h impure plain false false  void void incomingConnection(quintptr socketDescriptor) [0xc8232857a0] }
+&{isListening QLocalServer::isListening commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  bool bool isListening() const [] }
+&{listen QLocalServer::listen commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  bool bool listen(const QString &name) [0xc823285c40] }
+&{listen QLocalServer::listen commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false true 2 bool bool listen(qintptr socketDescriptor) [0xc823285ea0] }
+&{maxPendingConnections QLocalServer::maxPendingConnections commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  int int maxPendingConnections() const [] }
+&{newConnection QLocalServer::newConnection commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non signal false false  void void newConnection() [] }
+&{nextPendingConnection QLocalServer::nextPendingConnection commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h impure plain false false  QLocalSocket * QLocalSocket * nextPendingConnection() [] }
+&{removeServer QLocalServer::removeServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain true false  bool bool removeServer(const QString &name) [0xc82326c440] }
+&{serverError QLocalServer::serverError commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  QAbstractSocket::SocketError QAbstractSocket::SocketError serverError() const [] }
+&{serverName QLocalServer::serverName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  QString QString serverName() const [] }
+&{setMaxPendingConnections QLocalServer::setMaxPendingConnections commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  void void setMaxPendingConnections(int numConnections) [0xc82326c9c0] }
+&{socketOptions QLocalServer::socketOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  SocketOptions SocketOptions socketOptions() const [] }
+&{waitForNewConnection QLocalServer::waitForNewConnection commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non plain false false  bool bool waitForNewConnection(int msec, bool *timedOut) [0xc82326ccc0 0xc82326cda0] }
+&{~QLocalServer QLocalServer::~QLocalServer commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qlocalserver.h non destructor false false   ~QLocalServer() [] }
 ########################################			ENUMS			########################################
-&{SocketOption QLocalServer::SocketOption commendable public QLocalServer::SocketOptions [0xc82315a5e0 0xc82315a660 0xc82315a700 0xc82315a7e0 0xc82315a8e0]}
+&{SocketOption QLocalServer::SocketOption commendable public QLocalServer::SocketOptions [0xc8232844e0 0xc8232845a0 0xc823284660 0xc8232847c0 0xc823284920] false}

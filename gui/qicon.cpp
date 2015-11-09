@@ -1,13 +1,13 @@
 #include "qicon.h"
 #include <QSize>
 #include <QRect>
+#include <QIconEngine>
+#include <QPainter>
+#include <QPixmap>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPixmap>
-#include <QPainter>
-#include <QIconEngine>
 #include <QIcon>
 #include "_cgo_export.h"
 
@@ -15,35 +15,35 @@ class MyQIcon: public QIcon {
 public:
 };
 
-QtObjectPtr QIcon_NewQIcon(){
+void* QIcon_NewQIcon(){
 	return new QIcon();
 }
 
-QtObjectPtr QIcon_NewQIcon4(QtObjectPtr other){
+void* QIcon_NewQIcon4(void* other){
 	return new QIcon(*static_cast<QIcon*>(other));
 }
 
-QtObjectPtr QIcon_NewQIcon6(QtObjectPtr engine){
+void* QIcon_NewQIcon6(void* engine){
 	return new QIcon(static_cast<QIconEngine*>(engine));
 }
 
-QtObjectPtr QIcon_NewQIcon3(QtObjectPtr other){
+void* QIcon_NewQIcon3(void* other){
 	return new QIcon(*static_cast<QIcon*>(other));
 }
 
-QtObjectPtr QIcon_NewQIcon2(QtObjectPtr pixmap){
+void* QIcon_NewQIcon2(void* pixmap){
 	return new QIcon(*static_cast<QPixmap*>(pixmap));
 }
 
-QtObjectPtr QIcon_NewQIcon5(char* fileName){
+void* QIcon_NewQIcon5(char* fileName){
 	return new QIcon(QString(fileName));
 }
 
-void QIcon_AddFile(QtObjectPtr ptr, char* fileName, QtObjectPtr size, int mode, int state){
+void QIcon_AddFile(void* ptr, char* fileName, void* size, int mode, int state){
 	static_cast<QIcon*>(ptr)->addFile(QString(fileName), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
 }
 
-void QIcon_AddPixmap(QtObjectPtr ptr, QtObjectPtr pixmap, int mode, int state){
+void QIcon_AddPixmap(void* ptr, void* pixmap, int mode, int state){
 	static_cast<QIcon*>(ptr)->addPixmap(*static_cast<QPixmap*>(pixmap), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
 }
 
@@ -51,19 +51,19 @@ int QIcon_QIcon_HasThemeIcon(char* name){
 	return QIcon::hasThemeIcon(QString(name));
 }
 
-int QIcon_IsNull(QtObjectPtr ptr){
+int QIcon_IsNull(void* ptr){
 	return static_cast<QIcon*>(ptr)->isNull();
 }
 
-char* QIcon_Name(QtObjectPtr ptr){
+char* QIcon_Name(void* ptr){
 	return static_cast<QIcon*>(ptr)->name().toUtf8().data();
 }
 
-void QIcon_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr rect, int alignment, int mode, int state){
+void QIcon_Paint(void* ptr, void* painter, void* rect, int alignment, int mode, int state){
 	static_cast<QIcon*>(ptr)->paint(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), static_cast<Qt::AlignmentFlag>(alignment), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
 }
 
-void QIcon_Paint2(QtObjectPtr ptr, QtObjectPtr painter, int x, int y, int w, int h, int alignment, int mode, int state){
+void QIcon_Paint2(void* ptr, void* painter, int x, int y, int w, int h, int alignment, int mode, int state){
 	static_cast<QIcon*>(ptr)->paint(static_cast<QPainter*>(painter), x, y, w, h, static_cast<Qt::AlignmentFlag>(alignment), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
 }
 
@@ -75,7 +75,7 @@ void QIcon_QIcon_SetThemeSearchPaths(char* paths){
 	QIcon::setThemeSearchPaths(QString(paths).split("|", QString::SkipEmptyParts));
 }
 
-void QIcon_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QIcon_Swap(void* ptr, void* other){
 	static_cast<QIcon*>(ptr)->swap(*static_cast<QIcon*>(other));
 }
 
@@ -87,7 +87,7 @@ char* QIcon_QIcon_ThemeSearchPaths(){
 	return QIcon::themeSearchPaths().join("|").toUtf8().data();
 }
 
-void QIcon_DestroyQIcon(QtObjectPtr ptr){
+void QIcon_DestroyQIcon(void* ptr){
 	static_cast<QIcon*>(ptr)->~QIcon();
 }
 

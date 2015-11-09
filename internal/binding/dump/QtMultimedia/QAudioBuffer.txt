@@ -1,21 +1,21 @@
 ########################################			FUNCTIONS			########################################
-&{QAudioBuffer QAudioBuffer::QAudioBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non constructor false false   [] }
-&{QAudioBuffer QAudioBuffer::QAudioBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non constructor false true 3  [0xc8222997a0] }
-&{QAudioBuffer QAudioBuffer::QAudioBuffer commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non constructor false true 4  [0xc822299c00 0xc822299da0 0xc822299ea0] }
-&{QAudioBuffer QAudioBuffer::QAudioBuffer commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non constructor false true 5  [0xc8222aa180 0xc8222aa260 0xc8222aa360] }
-&{byteCount QAudioBuffer::byteCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  int [] }
-&{constData QAudioBuffer::constData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false true 2 const T * [] }
-&{constData QAudioBuffer::constData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  const void * [] }
-&{data QAudioBuffer::data commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false true 4 T * [] }
-&{data QAudioBuffer::data commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false true 2 void * [] }
-&{data QAudioBuffer::data commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false true 3 const T * [] }
-&{data QAudioBuffer::data commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  const void * [] }
-&{duration QAudioBuffer::duration commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  qint64 [] }
-&{format QAudioBuffer::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  QAudioFormat [] }
-&{frameCount QAudioBuffer::frameCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  int [] }
-&{isValid QAudioBuffer::isValid commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  bool [] }
-&{operator= QAudioBuffer::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  QAudioBuffer & [0xc8222b4940] }
-&{sampleCount QAudioBuffer::sampleCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  int [] }
-&{startTime QAudioBuffer::startTime commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  qint64 [] }
-&{~QAudioBuffer QAudioBuffer::~QAudioBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non destructor false false   [] }
+&{QAudioBuffer QAudioBuffer::QAudioBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non constructor false false   QAudioBuffer() [] }
+&{QAudioBuffer QAudioBuffer::QAudioBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non constructor false true 3  QAudioBuffer(const QAudioBuffer &other) [0xc822ab9a60] }
+&{QAudioBuffer QAudioBuffer::QAudioBuffer commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non constructor false true 4  QAudioBuffer(const QByteArray &data, const QAudioFormat &format, qint64 startTime) [0xc822ab9ec0 0xc822aca000 0xc822aca140] }
+&{QAudioBuffer QAudioBuffer::QAudioBuffer commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non constructor false true 5  QAudioBuffer(int numFrames, const QAudioFormat &format, qint64 startTime) [0xc822aca4a0 0xc822aca600 0xc822aca800] }
+&{byteCount QAudioBuffer::byteCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  int int byteCount() const [] }
+&{constData QAudioBuffer::constData commendable unsupported_goFunction /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false true 2 const T * const T * constData() const [] }
+&{constData QAudioBuffer::constData commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  const void * const void * constData() const [] }
+&{data QAudioBuffer::data commendable unsupported_goFunction /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false true 4 T * T * data() [] }
+&{data QAudioBuffer::data commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false true 2 void * void * data() [] }
+&{data QAudioBuffer::data commendable unsupported_goFunction /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false true 3 const T * const T * data() const [] }
+&{data QAudioBuffer::data commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  const void * const void * data() const [] }
+&{duration QAudioBuffer::duration commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  qint64 qint64 duration() const [] }
+&{format QAudioBuffer::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  QAudioFormat QAudioFormat format() const [] }
+&{frameCount QAudioBuffer::frameCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  int int frameCount() const [] }
+&{isValid QAudioBuffer::isValid commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  bool bool isValid() const [] }
+&{operator= QAudioBuffer::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  QAudioBuffer & QAudioBuffer & operator=(const QAudioBuffer &other) [0xc8226d6b40] }
+&{sampleCount QAudioBuffer::sampleCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  int int sampleCount() const [] }
+&{startTime QAudioBuffer::startTime commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non plain false false  qint64 qint64 startTime() const [] }
+&{~QAudioBuffer QAudioBuffer::~QAudioBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiobuffer.h non destructor false false   ~QAudioBuffer() [] }
 ########################################			ENUMS			########################################

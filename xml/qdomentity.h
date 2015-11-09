@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDomEntity_NewQDomEntity();
-QtObjectPtr QDomEntity_NewQDomEntity2(QtObjectPtr x);
-int QDomEntity_NodeType(QtObjectPtr ptr);
-char* QDomEntity_NotationName(QtObjectPtr ptr);
-char* QDomEntity_PublicId(QtObjectPtr ptr);
-char* QDomEntity_SystemId(QtObjectPtr ptr);
+void* QDomEntity_NewQDomEntity();
+void* QDomEntity_NewQDomEntity2(void* x);
+int QDomEntity_NodeType(void* ptr);
+char* QDomEntity_NotationName(void* ptr);
+char* QDomEntity_PublicId(void* ptr);
+char* QDomEntity_SystemId(void* ptr);
 
 #ifdef __cplusplus
 }

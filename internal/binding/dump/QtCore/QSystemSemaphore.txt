@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
-&{QSystemSemaphore QSystemSemaphore::QSystemSemaphore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non constructor false false   [0xc8202eda60 0xc8202edae0 0xc8202edbe0] }
-&{acquire QSystemSemaphore::acquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  bool [] }
-&{error QSystemSemaphore::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  SystemSemaphoreError [] }
-&{errorString QSystemSemaphore::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  QString [] }
-&{key QSystemSemaphore::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  QString [] }
-&{release QSystemSemaphore::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  bool [0xc8202d04c0] }
-&{setKey QSystemSemaphore::setKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  void [0xc8202d0760 0xc8202d0840 0xc8202d08e0] }
-&{~QSystemSemaphore QSystemSemaphore::~QSystemSemaphore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non destructor false false   [] }
+&{QSystemSemaphore QSystemSemaphore::QSystemSemaphore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non constructor false false   QSystemSemaphore(const QString &key, int initialValue, AccessMode mode) [0xc82029bea0 0xc82029bf60 0xc820286000] }
+&{acquire QSystemSemaphore::acquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  bool bool acquire() [] }
+&{error QSystemSemaphore::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  SystemSemaphoreError SystemSemaphoreError error() const [] }
+&{errorString QSystemSemaphore::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  QString QString errorString() const [] }
+&{key QSystemSemaphore::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  QString QString key() const [] }
+&{release QSystemSemaphore::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  bool bool release(int n) [0xc820286940] }
+&{setKey QSystemSemaphore::setKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  void void setKey(const QString &key, int initialValue, AccessMode mode) [0xc820286b80 0xc820286c60 0xc820286d00] }
+&{~QSystemSemaphore QSystemSemaphore::~QSystemSemaphore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non destructor false false   ~QSystemSemaphore() [] }
 ########################################			ENUMS			########################################
-&{AccessMode QSystemSemaphore::AccessMode commendable public  [0xc8202ecf00 0xc8202ecfc0]}
-&{SystemSemaphoreError QSystemSemaphore::SystemSemaphoreError commendable public  [0xc8202ed280 0xc8202ed3a0 0xc8202ed460 0xc8202ed520 0xc8202ed600 0xc8202ed720 0xc8202ed7a0]}
+&{AccessMode QSystemSemaphore::AccessMode commendable public  [0xc82029b340 0xc82029b3e0] false}
+&{SystemSemaphoreError QSystemSemaphore::SystemSemaphoreError commendable public  [0xc82029b6c0 0xc82029b7c0 0xc82029b880 0xc82029b980 0xc82029ba40 0xc82029bae0 0xc82029bc20] false}

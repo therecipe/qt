@@ -1,32 +1,32 @@
 ########################################			FUNCTIONS			########################################
-&{currentIndex QDataWidgetMapper::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.cpp non plain false false  int [] }
-&{orientation QDataWidgetMapper::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.cpp non plain false false  Qt::Orientation [] }
-&{setCurrentIndex QDataWidgetMapper::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.cpp impure slot false false  void [0xc822806fe0] }
-&{setOrientation QDataWidgetMapper::setOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.cpp non plain false false  void [0xc822807280] }
-&{setSubmitPolicy QDataWidgetMapper::setSubmitPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.cpp non plain false false  void [0xc8228074a0] }
-&{submitPolicy QDataWidgetMapper::submitPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.cpp non plain false false  SubmitPolicy [] }
-&{QDataWidgetMapper QDataWidgetMapper::QDataWidgetMapper commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non constructor false false   [0xc822807c80] }
-&{addMapping QDataWidgetMapper::addMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  void [0xc821da8180 0xc821da8200] }
-&{addMapping QDataWidgetMapper::addMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false true 2 void [0xc821da8420 0xc821da8500 0xc821da85a0] }
-&{clearMapping QDataWidgetMapper::clearMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  void [] }
-&{currentIndexChanged QDataWidgetMapper::currentIndexChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non signal false false  void [0xc821da89a0] }
-&{itemDelegate QDataWidgetMapper::itemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  QAbstractItemDelegate * [] }
-&{mappedPropertyName QDataWidgetMapper::mappedPropertyName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  QByteArray [0xc821da8ce0] }
-&{mappedSection QDataWidgetMapper::mappedSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  int [0xc821da8ee0] }
-&{mappedWidgetAt QDataWidgetMapper::mappedWidgetAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  QWidget * [0xc821da9080] }
-&{model QDataWidgetMapper::model commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  QAbstractItemModel * [] }
-&{removeMapping QDataWidgetMapper::removeMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  void [0xc821da9480] }
-&{revert QDataWidgetMapper::revert commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  void [] }
-&{rootIndex QDataWidgetMapper::rootIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  QModelIndex [] }
-&{setCurrentModelIndex QDataWidgetMapper::setCurrentModelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  void [0xc821da9940] }
-&{setItemDelegate QDataWidgetMapper::setItemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  void [0xc821da9b80] }
-&{setModel QDataWidgetMapper::setModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  void [0xc821da9e00] }
-&{setRootIndex QDataWidgetMapper::setRootIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  void [0xc8228160a0] }
-&{submit QDataWidgetMapper::submit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  bool [] }
-&{toFirst QDataWidgetMapper::toFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  void [] }
-&{toLast QDataWidgetMapper::toLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  void [] }
-&{toNext QDataWidgetMapper::toNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  void [] }
-&{toPrevious QDataWidgetMapper::toPrevious commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  void [] }
-&{~QDataWidgetMapper QDataWidgetMapper::~QDataWidgetMapper commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non destructor false false   [] }
+&{currentIndex QDataWidgetMapper::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.cpp non plain false false  int int currentIndex() const [] }
+&{orientation QDataWidgetMapper::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.cpp non plain false false  Qt::Orientation Qt::Orientation orientation() const [] }
+&{setCurrentIndex QDataWidgetMapper::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.cpp impure slot false false  void void setCurrentIndex(int index) [0xc82103fc20] }
+&{setOrientation QDataWidgetMapper::setOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.cpp non plain false false  void void setOrientation(Qt::Orientation aOrientation) [0xc82103fe00] }
+&{setSubmitPolicy QDataWidgetMapper::setSubmitPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.cpp non plain false false  void void setSubmitPolicy(SubmitPolicy policy) [0xc820f08000] }
+&{submitPolicy QDataWidgetMapper::submitPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.cpp non plain false false  SubmitPolicy SubmitPolicy submitPolicy() const [] }
+&{QDataWidgetMapper QDataWidgetMapper::QDataWidgetMapper commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non constructor false false   QDataWidgetMapper(QObject *parent) [0xc820f086e0] }
+&{addMapping QDataWidgetMapper::addMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  void void addMapping(QWidget *widget, int section) [0xc820f08ba0 0xc820f08c20] }
+&{addMapping QDataWidgetMapper::addMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false true 2 void void addMapping(QWidget *widget, int section, const QByteArray &propertyName) [0xc820f08e80 0xc820f08f00 0xc820f09000] }
+&{clearMapping QDataWidgetMapper::clearMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  void void clearMapping() [] }
+&{currentIndexChanged QDataWidgetMapper::currentIndexChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non signal false false  void void currentIndexChanged(int index) [0xc820f09440] }
+&{itemDelegate QDataWidgetMapper::itemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  QAbstractItemDelegate * QAbstractItemDelegate * itemDelegate() const [] }
+&{mappedPropertyName QDataWidgetMapper::mappedPropertyName commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  QByteArray QByteArray mappedPropertyName(QWidget *widget) const [0xc820f09800] }
+&{mappedSection QDataWidgetMapper::mappedSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  int int mappedSection(QWidget *widget) const [0xc820f09a40] }
+&{mappedWidgetAt QDataWidgetMapper::mappedWidgetAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  QWidget * QWidget * mappedWidgetAt(int section) const [0xc820f09c20] }
+&{model QDataWidgetMapper::model commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  QAbstractItemModel * QAbstractItemModel * model() const [] }
+&{removeMapping QDataWidgetMapper::removeMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  void void removeMapping(QWidget *widget) [0xc820664020] }
+&{revert QDataWidgetMapper::revert commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  void void revert() [] }
+&{rootIndex QDataWidgetMapper::rootIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  QModelIndex QModelIndex rootIndex() const [] }
+&{setCurrentModelIndex QDataWidgetMapper::setCurrentModelIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  void void setCurrentModelIndex(const QModelIndex &index) [0xc820664580] }
+&{setItemDelegate QDataWidgetMapper::setItemDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  void void setItemDelegate(QAbstractItemDelegate *delegate) [0xc8206647c0] }
+&{setModel QDataWidgetMapper::setModel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  void void setModel(QAbstractItemModel *model) [0xc820664aa0] }
+&{setRootIndex QDataWidgetMapper::setRootIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non plain false false  void void setRootIndex(const QModelIndex &index) [0xc820664d60] }
+&{submit QDataWidgetMapper::submit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  bool bool submit() [] }
+&{toFirst QDataWidgetMapper::toFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  void void toFirst() [] }
+&{toLast QDataWidgetMapper::toLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  void void toLast() [] }
+&{toNext QDataWidgetMapper::toNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  void void toNext() [] }
+&{toPrevious QDataWidgetMapper::toPrevious commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non slot false false  void void toPrevious() [] }
+&{~QDataWidgetMapper QDataWidgetMapper::~QDataWidgetMapper commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qdatawidgetmapper.h non destructor false false   ~QDataWidgetMapper() [] }
 ########################################			ENUMS			########################################
-&{SubmitPolicy QDataWidgetMapper::SubmitPolicy commendable public  [0xc822807920 0xc8228079a0]}
+&{SubmitPolicy QDataWidgetMapper::SubmitPolicy commendable public  [0xc820f08400 0xc820f08480] false}

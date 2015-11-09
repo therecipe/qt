@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
-&{restartHint QSessionManager::restartHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.cpp non plain false false  RestartHint [] }
-&{sessionKey QSessionManager::sessionKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.cpp non plain false false  QString [] }
-&{allowsErrorInteraction QSessionManager::allowsErrorInteraction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  bool [] }
-&{allowsInteraction QSessionManager::allowsInteraction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  bool [] }
-&{cancel QSessionManager::cancel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void [] }
-&{discardCommand QSessionManager::discardCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  QStringList [] }
-&{isPhase2 QSessionManager::isPhase2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  bool [] }
-&{release QSessionManager::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void [] }
-&{requestPhase2 QSessionManager::requestPhase2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void [] }
-&{restartCommand QSessionManager::restartCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  QStringList [] }
-&{sessionId QSessionManager::sessionId commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  QString [] }
-&{setDiscardCommand QSessionManager::setDiscardCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void [0xc8205c6f80] }
-&{setManagerProperty QSessionManager::setManagerProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false true 2 void [0xc8205c7300 0xc8205c7460] }
-&{setManagerProperty QSessionManager::setManagerProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void [0xc8205c76a0 0xc8205c77e0] }
-&{setRestartCommand QSessionManager::setRestartCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void [0xc8205c7b60] }
-&{setRestartHint QSessionManager::setRestartHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void [0xc8205c7f40] }
+&{restartHint QSessionManager::restartHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.cpp non plain false false  RestartHint RestartHint restartHint() const [] }
+&{sessionKey QSessionManager::sessionKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.cpp non plain false false  QString QString sessionKey() const [] }
+&{allowsErrorInteraction QSessionManager::allowsErrorInteraction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  bool bool allowsErrorInteraction() [] }
+&{allowsInteraction QSessionManager::allowsInteraction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  bool bool allowsInteraction() [] }
+&{cancel QSessionManager::cancel commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void void cancel() [] }
+&{discardCommand QSessionManager::discardCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  QStringList QStringList discardCommand() const [] }
+&{isPhase2 QSessionManager::isPhase2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  bool bool isPhase2() const [] }
+&{release QSessionManager::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void void release() [] }
+&{requestPhase2 QSessionManager::requestPhase2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void void requestPhase2() [] }
+&{restartCommand QSessionManager::restartCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  QStringList QStringList restartCommand() const [] }
+&{sessionId QSessionManager::sessionId commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  QString QString sessionId() const [] }
+&{setDiscardCommand QSessionManager::setDiscardCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void void setDiscardCommand(const QStringList &command) [0xc820a85c20] }
+&{setManagerProperty QSessionManager::setManagerProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false true 2 void void setManagerProperty(const QString &name, const QString &value) [0xc820a85e40 0xc820a85ee0] }
+&{setManagerProperty QSessionManager::setManagerProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void void setManagerProperty(const QString &name, const QStringList &value) [0xc82048a1c0 0xc82048a280] }
+&{setRestartCommand QSessionManager::setRestartCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void void setRestartCommand(const QStringList &command) [0xc82048a500] }
+&{setRestartHint QSessionManager::setRestartHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsessionmanager.h non plain false false  void void setRestartHint(RestartHint hint) [0xc82048a820] }
 ########################################			ENUMS			########################################
-&{RestartHint QSessionManager::RestartHint commendable public  [0xc8204a1b20 0xc8204a1be0 0xc8204a1c80 0xc8204a1d40]}
+&{RestartHint QSessionManager::RestartHint commendable public  [0xc820a84b40 0xc820a84be0 0xc820a84ce0 0xc820a84da0] false}

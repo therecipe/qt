@@ -11,44 +11,44 @@ type QSizeGrip struct {
 	QWidget
 }
 
-type QSizeGripITF interface {
-	QWidgetITF
-	QSizeGripPTR() *QSizeGrip
+type QSizeGrip_ITF interface {
+	QWidget_ITF
+	QSizeGrip_PTR() *QSizeGrip
 }
 
-func PointerFromQSizeGrip(ptr QSizeGripITF) unsafe.Pointer {
+func PointerFromQSizeGrip(ptr QSizeGrip_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSizeGripPTR().Pointer()
+		return ptr.QSizeGrip_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSizeGripFromPointer(ptr unsafe.Pointer) *QSizeGrip {
+func NewQSizeGripFromPointer(ptr unsafe.Pointer) *QSizeGrip {
 	var n = new(QSizeGrip)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QSizeGrip_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QSizeGrip) QSizeGripPTR() *QSizeGrip {
+func (ptr *QSizeGrip) QSizeGrip_PTR() *QSizeGrip {
 	return ptr
 }
 
-func NewQSizeGrip(parent QWidgetITF) *QSizeGrip {
-	return QSizeGripFromPointer(unsafe.Pointer(C.QSizeGrip_NewQSizeGrip(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQSizeGrip(parent QWidget_ITF) *QSizeGrip {
+	return NewQSizeGripFromPointer(C.QSizeGrip_NewQSizeGrip(PointerFromQWidget(parent)))
 }
 
 func (ptr *QSizeGrip) SetVisible(visible bool) {
 	if ptr.Pointer() != nil {
-		C.QSizeGrip_SetVisible(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(visible)))
+		C.QSizeGrip_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
 	}
 }
 
 func (ptr *QSizeGrip) DestroyQSizeGrip() {
 	if ptr.Pointer() != nil {
-		C.QSizeGrip_DestroyQSizeGrip(C.QtObjectPtr(ptr.Pointer()))
+		C.QSizeGrip_DestroyQSizeGrip(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

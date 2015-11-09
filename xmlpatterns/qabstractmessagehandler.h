@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QAbstractMessageHandler_DestroyQAbstractMessageHandler(QtObjectPtr ptr);
+void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr);
 
 #ifdef __cplusplus
 }

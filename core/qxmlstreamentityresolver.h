@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QXmlStreamEntityResolver_ResolveUndeclaredEntity(QtObjectPtr ptr, char* name);
-void QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(QtObjectPtr ptr);
+char* QXmlStreamEntityResolver_ResolveUndeclaredEntity(void* ptr, char* name);
+void QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(void* ptr);
 
 #ifdef __cplusplus
 }

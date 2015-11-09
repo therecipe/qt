@@ -10,11 +10,11 @@ class MyQTileRules: public QTileRules {
 public:
 };
 
-QtObjectPtr QTileRules_NewQTileRules(int horizontalRule, int verticalRule){
+void* QTileRules_NewQTileRules(int horizontalRule, int verticalRule){
 	return new QTileRules(static_cast<Qt::TileRule>(horizontalRule), static_cast<Qt::TileRule>(verticalRule));
 }
 
-QtObjectPtr QTileRules_NewQTileRules2(int rule){
+void* QTileRules_NewQTileRules2(int rule){
 	return new QTileRules(static_cast<Qt::TileRule>(rule));
 }
 

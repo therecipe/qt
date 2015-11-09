@@ -10,23 +10,23 @@ class MyQDomNotation: public QDomNotation {
 public:
 };
 
-QtObjectPtr QDomNotation_NewQDomNotation(){
+void* QDomNotation_NewQDomNotation(){
 	return new QDomNotation();
 }
 
-QtObjectPtr QDomNotation_NewQDomNotation2(QtObjectPtr x){
+void* QDomNotation_NewQDomNotation2(void* x){
 	return new QDomNotation(*static_cast<QDomNotation*>(x));
 }
 
-int QDomNotation_NodeType(QtObjectPtr ptr){
+int QDomNotation_NodeType(void* ptr){
 	return static_cast<QDomNotation*>(ptr)->nodeType();
 }
 
-char* QDomNotation_PublicId(QtObjectPtr ptr){
+char* QDomNotation_PublicId(void* ptr){
 	return static_cast<QDomNotation*>(ptr)->publicId().toUtf8().data();
 }
 
-char* QDomNotation_SystemId(QtObjectPtr ptr){
+char* QDomNotation_SystemId(void* ptr){
 	return static_cast<QDomNotation*>(ptr)->systemId().toUtf8().data();
 }
 

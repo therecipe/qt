@@ -14,45 +14,45 @@ type QMediaPlaylist struct {
 	QMediaBindableInterface
 }
 
-type QMediaPlaylistITF interface {
-	core.QObjectITF
-	QMediaBindableInterfaceITF
-	QMediaPlaylistPTR() *QMediaPlaylist
+type QMediaPlaylist_ITF interface {
+	core.QObject_ITF
+	QMediaBindableInterface_ITF
+	QMediaPlaylist_PTR() *QMediaPlaylist
 }
 
 func (p *QMediaPlaylist) Pointer() unsafe.Pointer {
-	return p.QObjectPTR().Pointer()
+	return p.QObject_PTR().Pointer()
 }
 
 func (p *QMediaPlaylist) SetPointer(ptr unsafe.Pointer) {
-	p.QObjectPTR().SetPointer(ptr)
-	p.QMediaBindableInterfacePTR().SetPointer(ptr)
+	p.QObject_PTR().SetPointer(ptr)
+	p.QMediaBindableInterface_PTR().SetPointer(ptr)
 }
 
-func PointerFromQMediaPlaylist(ptr QMediaPlaylistITF) unsafe.Pointer {
+func PointerFromQMediaPlaylist(ptr QMediaPlaylist_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaPlaylistPTR().Pointer()
+		return ptr.QMediaPlaylist_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaPlaylistFromPointer(ptr unsafe.Pointer) *QMediaPlaylist {
+func NewQMediaPlaylistFromPointer(ptr unsafe.Pointer) *QMediaPlaylist {
 	var n = new(QMediaPlaylist)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMediaPlaylist_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMediaPlaylist) QMediaPlaylistPTR() *QMediaPlaylist {
+func (ptr *QMediaPlaylist) QMediaPlaylist_PTR() *QMediaPlaylist {
 	return ptr
 }
 
 //QMediaPlaylist::Error
-type QMediaPlaylist__Error int
+type QMediaPlaylist__Error int64
 
-var (
+const (
 	QMediaPlaylist__NoError                 = QMediaPlaylist__Error(0)
 	QMediaPlaylist__FormatError             = QMediaPlaylist__Error(1)
 	QMediaPlaylist__FormatNotSupportedError = QMediaPlaylist__Error(2)
@@ -61,9 +61,9 @@ var (
 )
 
 //QMediaPlaylist::PlaybackMode
-type QMediaPlaylist__PlaybackMode int
+type QMediaPlaylist__PlaybackMode int64
 
-var (
+const (
 	QMediaPlaylist__CurrentItemOnce   = QMediaPlaylist__PlaybackMode(0)
 	QMediaPlaylist__CurrentItemInLoop = QMediaPlaylist__PlaybackMode(1)
 	QMediaPlaylist__Sequential        = QMediaPlaylist__PlaybackMode(2)
@@ -73,52 +73,52 @@ var (
 
 func (ptr *QMediaPlaylist) PlaybackMode() QMediaPlaylist__PlaybackMode {
 	if ptr.Pointer() != nil {
-		return QMediaPlaylist__PlaybackMode(C.QMediaPlaylist_PlaybackMode(C.QtObjectPtr(ptr.Pointer())))
+		return QMediaPlaylist__PlaybackMode(C.QMediaPlaylist_PlaybackMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QMediaPlaylist) SetPlaybackMode(mode QMediaPlaylist__PlaybackMode) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_SetPlaybackMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QMediaPlaylist_SetPlaybackMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
-func NewQMediaPlaylist(parent core.QObjectITF) *QMediaPlaylist {
-	return QMediaPlaylistFromPointer(unsafe.Pointer(C.QMediaPlaylist_NewQMediaPlaylist(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQMediaPlaylist(parent core.QObject_ITF) *QMediaPlaylist {
+	return NewQMediaPlaylistFromPointer(C.QMediaPlaylist_NewQMediaPlaylist(core.PointerFromQObject(parent)))
 }
 
-func (ptr *QMediaPlaylist) AddMedia(content QMediaContentITF) bool {
+func (ptr *QMediaPlaylist) AddMedia(content QMediaContent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_AddMedia(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQMediaContent(content))) != 0
+		return C.QMediaPlaylist_AddMedia(ptr.Pointer(), PointerFromQMediaContent(content)) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) Clear() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_Clear(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMediaPlaylist_Clear(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) CurrentIndex() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMediaPlaylist_CurrentIndex(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMediaPlaylist_CurrentIndex(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QMediaPlaylist) ConnectCurrentIndexChanged(f func(position int)) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_ConnectCurrentIndexChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_ConnectCurrentIndexChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "currentIndexChanged", f)
 	}
 }
 
 func (ptr *QMediaPlaylist) DisconnectCurrentIndexChanged() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_DisconnectCurrentIndexChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_DisconnectCurrentIndexChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "currentIndexChanged")
 	}
 }
@@ -130,67 +130,67 @@ func callbackQMediaPlaylistCurrentIndexChanged(ptrName *C.char, position C.int) 
 
 func (ptr *QMediaPlaylist) Error() QMediaPlaylist__Error {
 	if ptr.Pointer() != nil {
-		return QMediaPlaylist__Error(C.QMediaPlaylist_Error(C.QtObjectPtr(ptr.Pointer())))
+		return QMediaPlaylist__Error(C.QMediaPlaylist_Error(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QMediaPlaylist) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMediaPlaylist_ErrorString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QMediaPlaylist_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QMediaPlaylist) InsertMedia(pos int, content QMediaContentITF) bool {
+func (ptr *QMediaPlaylist) InsertMedia(pos int, content QMediaContent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_InsertMedia(C.QtObjectPtr(ptr.Pointer()), C.int(pos), C.QtObjectPtr(PointerFromQMediaContent(content))) != 0
+		return C.QMediaPlaylist_InsertMedia(ptr.Pointer(), C.int(pos), PointerFromQMediaContent(content)) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_IsEmpty(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMediaPlaylist_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_IsReadOnly(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMediaPlaylist_IsReadOnly(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QMediaPlaylist) Load3(device core.QIODeviceITF, format string) {
+func (ptr *QMediaPlaylist) Load3(device core.QIODevice_ITF, format string) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_Load3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQIODevice(device)), C.CString(format))
+		C.QMediaPlaylist_Load3(ptr.Pointer(), core.PointerFromQIODevice(device), C.CString(format))
 	}
 }
 
-func (ptr *QMediaPlaylist) Load(request network.QNetworkRequestITF, format string) {
+func (ptr *QMediaPlaylist) Load(request network.QNetworkRequest_ITF, format string) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_Load(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(network.PointerFromQNetworkRequest(request)), C.CString(format))
+		C.QMediaPlaylist_Load(ptr.Pointer(), network.PointerFromQNetworkRequest(request), C.CString(format))
 	}
 }
 
-func (ptr *QMediaPlaylist) Load2(location string, format string) {
+func (ptr *QMediaPlaylist) Load2(location core.QUrl_ITF, format string) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_Load2(C.QtObjectPtr(ptr.Pointer()), C.CString(location), C.CString(format))
+		C.QMediaPlaylist_Load2(ptr.Pointer(), core.PointerFromQUrl(location), C.CString(format))
 	}
 }
 
 func (ptr *QMediaPlaylist) ConnectLoadFailed(f func()) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_ConnectLoadFailed(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_ConnectLoadFailed(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "loadFailed", f)
 	}
 }
 
 func (ptr *QMediaPlaylist) DisconnectLoadFailed() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_DisconnectLoadFailed(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_DisconnectLoadFailed(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "loadFailed")
 	}
 }
@@ -202,14 +202,14 @@ func callbackQMediaPlaylistLoadFailed(ptrName *C.char) {
 
 func (ptr *QMediaPlaylist) ConnectLoaded(f func()) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_ConnectLoaded(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_ConnectLoaded(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "loaded", f)
 	}
 }
 
 func (ptr *QMediaPlaylist) DisconnectLoaded() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_DisconnectLoaded(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_DisconnectLoaded(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "loaded")
 	}
 }
@@ -221,14 +221,14 @@ func callbackQMediaPlaylistLoaded(ptrName *C.char) {
 
 func (ptr *QMediaPlaylist) ConnectMediaAboutToBeInserted(f func(start int, end int)) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_ConnectMediaAboutToBeInserted(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_ConnectMediaAboutToBeInserted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "mediaAboutToBeInserted", f)
 	}
 }
 
 func (ptr *QMediaPlaylist) DisconnectMediaAboutToBeInserted() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_DisconnectMediaAboutToBeInserted(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_DisconnectMediaAboutToBeInserted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "mediaAboutToBeInserted")
 	}
 }
@@ -240,14 +240,14 @@ func callbackQMediaPlaylistMediaAboutToBeInserted(ptrName *C.char, start C.int, 
 
 func (ptr *QMediaPlaylist) ConnectMediaAboutToBeRemoved(f func(start int, end int)) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_ConnectMediaAboutToBeRemoved(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_ConnectMediaAboutToBeRemoved(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "mediaAboutToBeRemoved", f)
 	}
 }
 
 func (ptr *QMediaPlaylist) DisconnectMediaAboutToBeRemoved() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_DisconnectMediaAboutToBeRemoved(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_DisconnectMediaAboutToBeRemoved(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "mediaAboutToBeRemoved")
 	}
 }
@@ -259,14 +259,14 @@ func callbackQMediaPlaylistMediaAboutToBeRemoved(ptrName *C.char, start C.int, e
 
 func (ptr *QMediaPlaylist) ConnectMediaChanged(f func(start int, end int)) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_ConnectMediaChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_ConnectMediaChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "mediaChanged", f)
 	}
 }
 
 func (ptr *QMediaPlaylist) DisconnectMediaChanged() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_DisconnectMediaChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_DisconnectMediaChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "mediaChanged")
 	}
 }
@@ -278,21 +278,21 @@ func callbackQMediaPlaylistMediaChanged(ptrName *C.char, start C.int, end C.int)
 
 func (ptr *QMediaPlaylist) MediaCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMediaPlaylist_MediaCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMediaPlaylist_MediaCount(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QMediaPlaylist) ConnectMediaInserted(f func(start int, end int)) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_ConnectMediaInserted(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_ConnectMediaInserted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "mediaInserted", f)
 	}
 }
 
 func (ptr *QMediaPlaylist) DisconnectMediaInserted() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_DisconnectMediaInserted(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_DisconnectMediaInserted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "mediaInserted")
 	}
 }
@@ -304,21 +304,21 @@ func callbackQMediaPlaylistMediaInserted(ptrName *C.char, start C.int, end C.int
 
 func (ptr *QMediaPlaylist) MediaObject() *QMediaObject {
 	if ptr.Pointer() != nil {
-		return QMediaObjectFromPointer(unsafe.Pointer(C.QMediaPlaylist_MediaObject(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQMediaObjectFromPointer(C.QMediaPlaylist_MediaObject(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QMediaPlaylist) ConnectMediaRemoved(f func(start int, end int)) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_ConnectMediaRemoved(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_ConnectMediaRemoved(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "mediaRemoved", f)
 	}
 }
 
 func (ptr *QMediaPlaylist) DisconnectMediaRemoved() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_DisconnectMediaRemoved(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_DisconnectMediaRemoved(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "mediaRemoved")
 	}
 }
@@ -330,27 +330,27 @@ func callbackQMediaPlaylistMediaRemoved(ptrName *C.char, start C.int, end C.int)
 
 func (ptr *QMediaPlaylist) Next() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_Next(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_Next(ptr.Pointer())
 	}
 }
 
 func (ptr *QMediaPlaylist) NextIndex(steps int) int {
 	if ptr.Pointer() != nil {
-		return int(C.QMediaPlaylist_NextIndex(C.QtObjectPtr(ptr.Pointer()), C.int(steps)))
+		return int(C.QMediaPlaylist_NextIndex(ptr.Pointer(), C.int(steps)))
 	}
 	return 0
 }
 
 func (ptr *QMediaPlaylist) ConnectPlaybackModeChanged(f func(mode QMediaPlaylist__PlaybackMode)) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_ConnectPlaybackModeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_ConnectPlaybackModeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "playbackModeChanged", f)
 	}
 }
 
 func (ptr *QMediaPlaylist) DisconnectPlaybackModeChanged() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_DisconnectPlaybackModeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_DisconnectPlaybackModeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "playbackModeChanged")
 	}
 }
@@ -362,60 +362,60 @@ func callbackQMediaPlaylistPlaybackModeChanged(ptrName *C.char, mode C.int) {
 
 func (ptr *QMediaPlaylist) Previous() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_Previous(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_Previous(ptr.Pointer())
 	}
 }
 
 func (ptr *QMediaPlaylist) PreviousIndex(steps int) int {
 	if ptr.Pointer() != nil {
-		return int(C.QMediaPlaylist_PreviousIndex(C.QtObjectPtr(ptr.Pointer()), C.int(steps)))
+		return int(C.QMediaPlaylist_PreviousIndex(ptr.Pointer(), C.int(steps)))
 	}
 	return 0
 }
 
 func (ptr *QMediaPlaylist) RemoveMedia(pos int) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_RemoveMedia(C.QtObjectPtr(ptr.Pointer()), C.int(pos)) != 0
+		return C.QMediaPlaylist_RemoveMedia(ptr.Pointer(), C.int(pos)) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) RemoveMedia2(start int, end int) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_RemoveMedia2(C.QtObjectPtr(ptr.Pointer()), C.int(start), C.int(end)) != 0
+		return C.QMediaPlaylist_RemoveMedia2(ptr.Pointer(), C.int(start), C.int(end)) != 0
 	}
 	return false
 }
 
-func (ptr *QMediaPlaylist) Save2(device core.QIODeviceITF, format string) bool {
+func (ptr *QMediaPlaylist) Save2(device core.QIODevice_ITF, format string) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_Save2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQIODevice(device)), C.CString(format)) != 0
+		return C.QMediaPlaylist_Save2(ptr.Pointer(), core.PointerFromQIODevice(device), C.CString(format)) != 0
 	}
 	return false
 }
 
-func (ptr *QMediaPlaylist) Save(location string, format string) bool {
+func (ptr *QMediaPlaylist) Save(location core.QUrl_ITF, format string) bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_Save(C.QtObjectPtr(ptr.Pointer()), C.CString(location), C.CString(format)) != 0
+		return C.QMediaPlaylist_Save(ptr.Pointer(), core.PointerFromQUrl(location), C.CString(format)) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaPlaylist) SetCurrentIndex(playlistPosition int) {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_SetCurrentIndex(C.QtObjectPtr(ptr.Pointer()), C.int(playlistPosition))
+		C.QMediaPlaylist_SetCurrentIndex(ptr.Pointer(), C.int(playlistPosition))
 	}
 }
 
 func (ptr *QMediaPlaylist) Shuffle() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_Shuffle(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_Shuffle(ptr.Pointer())
 	}
 }
 
 func (ptr *QMediaPlaylist) DestroyQMediaPlaylist() {
 	if ptr.Pointer() != nil {
-		C.QMediaPlaylist_DestroyQMediaPlaylist(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaPlaylist_DestroyQMediaPlaylist(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

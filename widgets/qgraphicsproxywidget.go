@@ -13,77 +13,77 @@ type QGraphicsProxyWidget struct {
 	QGraphicsWidget
 }
 
-type QGraphicsProxyWidgetITF interface {
-	QGraphicsWidgetITF
-	QGraphicsProxyWidgetPTR() *QGraphicsProxyWidget
+type QGraphicsProxyWidget_ITF interface {
+	QGraphicsWidget_ITF
+	QGraphicsProxyWidget_PTR() *QGraphicsProxyWidget
 }
 
-func PointerFromQGraphicsProxyWidget(ptr QGraphicsProxyWidgetITF) unsafe.Pointer {
+func PointerFromQGraphicsProxyWidget(ptr QGraphicsProxyWidget_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsProxyWidgetPTR().Pointer()
+		return ptr.QGraphicsProxyWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsProxyWidgetFromPointer(ptr unsafe.Pointer) *QGraphicsProxyWidget {
+func NewQGraphicsProxyWidgetFromPointer(ptr unsafe.Pointer) *QGraphicsProxyWidget {
 	var n = new(QGraphicsProxyWidget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGraphicsProxyWidget_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGraphicsProxyWidget) QGraphicsProxyWidgetPTR() *QGraphicsProxyWidget {
+func (ptr *QGraphicsProxyWidget) QGraphicsProxyWidget_PTR() *QGraphicsProxyWidget {
 	return ptr
 }
 
-func NewQGraphicsProxyWidget(parent QGraphicsItemITF, wFlags core.Qt__WindowType) *QGraphicsProxyWidget {
-	return QGraphicsProxyWidgetFromPointer(unsafe.Pointer(C.QGraphicsProxyWidget_NewQGraphicsProxyWidget(C.QtObjectPtr(PointerFromQGraphicsItem(parent)), C.int(wFlags))))
+func NewQGraphicsProxyWidget(parent QGraphicsItem_ITF, wFlags core.Qt__WindowType) *QGraphicsProxyWidget {
+	return NewQGraphicsProxyWidgetFromPointer(C.QGraphicsProxyWidget_NewQGraphicsProxyWidget(PointerFromQGraphicsItem(parent), C.int(wFlags)))
 }
 
-func (ptr *QGraphicsProxyWidget) CreateProxyForChildWidget(child QWidgetITF) *QGraphicsProxyWidget {
+func (ptr *QGraphicsProxyWidget) CreateProxyForChildWidget(child QWidget_ITF) *QGraphicsProxyWidget {
 	if ptr.Pointer() != nil {
-		return QGraphicsProxyWidgetFromPointer(unsafe.Pointer(C.QGraphicsProxyWidget_CreateProxyForChildWidget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(child)))))
+		return NewQGraphicsProxyWidgetFromPointer(C.QGraphicsProxyWidget_CreateProxyForChildWidget(ptr.Pointer(), PointerFromQWidget(child)))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsProxyWidget) Paint(painter gui.QPainterITF, option QStyleOptionGraphicsItemITF, widget QWidgetITF) {
+func (ptr *QGraphicsProxyWidget) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsProxyWidget_Paint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(PointerFromQStyleOptionGraphicsItem(option)), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QGraphicsProxyWidget_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
 	}
 }
 
-func (ptr *QGraphicsProxyWidget) SetGeometry(rect core.QRectFITF) {
+func (ptr *QGraphicsProxyWidget) SetGeometry(rect core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsProxyWidget_SetGeometry(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)))
+		C.QGraphicsProxyWidget_SetGeometry(ptr.Pointer(), core.PointerFromQRectF(rect))
 	}
 }
 
-func (ptr *QGraphicsProxyWidget) SetWidget(widget QWidgetITF) {
+func (ptr *QGraphicsProxyWidget) SetWidget(widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsProxyWidget_SetWidget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QGraphicsProxyWidget_SetWidget(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QGraphicsProxyWidget) Type() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsProxyWidget_Type(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGraphicsProxyWidget_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsProxyWidget) Widget() *QWidget {
 	if ptr.Pointer() != nil {
-		return QWidgetFromPointer(unsafe.Pointer(C.QGraphicsProxyWidget_Widget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQWidgetFromPointer(C.QGraphicsProxyWidget_Widget(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QGraphicsProxyWidget) DestroyQGraphicsProxyWidget() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsProxyWidget_DestroyQGraphicsProxyWidget(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsProxyWidget_DestroyQGraphicsProxyWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

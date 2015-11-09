@@ -10,8 +10,8 @@ type QUnicodeTables struct {
 	ptr unsafe.Pointer
 }
 
-type QUnicodeTablesITF interface {
-	QUnicodeTablesPTR() *QUnicodeTables
+type QUnicodeTables_ITF interface {
+	QUnicodeTables_PTR() *QUnicodeTables
 }
 
 func (p *QUnicodeTables) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QUnicodeTables) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQUnicodeTables(ptr QUnicodeTablesITF) unsafe.Pointer {
+func PointerFromQUnicodeTables(ptr QUnicodeTables_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QUnicodeTablesPTR().Pointer()
+		return ptr.QUnicodeTables_PTR().Pointer()
 	}
 	return nil
 }
 
-func QUnicodeTablesFromPointer(ptr unsafe.Pointer) *QUnicodeTables {
+func NewQUnicodeTablesFromPointer(ptr unsafe.Pointer) *QUnicodeTables {
 	var n = new(QUnicodeTables)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QUnicodeTables) QUnicodeTablesPTR() *QUnicodeTables {
+func (ptr *QUnicodeTables) QUnicodeTables_PTR() *QUnicodeTables {
 	return ptr
 }
 
 //QUnicodeTables::GraphemeBreakClass
-type QUnicodeTables__GraphemeBreakClass int
+type QUnicodeTables__GraphemeBreakClass int64
 
-var (
+const (
 	QUnicodeTables__GraphemeBreak_Other             = QUnicodeTables__GraphemeBreakClass(0)
 	QUnicodeTables__GraphemeBreak_CR                = QUnicodeTables__GraphemeBreakClass(1)
 	QUnicodeTables__GraphemeBreak_LF                = QUnicodeTables__GraphemeBreakClass(2)
@@ -59,9 +59,9 @@ var (
 )
 
 //QUnicodeTables::LineBreakClass
-type QUnicodeTables__LineBreakClass int
+type QUnicodeTables__LineBreakClass int64
 
-var (
+const (
 	QUnicodeTables__LineBreak_OP = QUnicodeTables__LineBreakClass(0)
 	QUnicodeTables__LineBreak_CL = QUnicodeTables__LineBreakClass(1)
 	QUnicodeTables__LineBreak_CP = QUnicodeTables__LineBreakClass(2)
@@ -101,9 +101,9 @@ var (
 )
 
 //QUnicodeTables::SentenceBreakClass
-type QUnicodeTables__SentenceBreakClass int
+type QUnicodeTables__SentenceBreakClass int64
 
-var (
+const (
 	QUnicodeTables__SentenceBreak_Other     = QUnicodeTables__SentenceBreakClass(0)
 	QUnicodeTables__SentenceBreak_CR        = QUnicodeTables__SentenceBreakClass(1)
 	QUnicodeTables__SentenceBreak_LF        = QUnicodeTables__SentenceBreakClass(2)
@@ -121,9 +121,9 @@ var (
 )
 
 //QUnicodeTables::WordBreakClass
-type QUnicodeTables__WordBreakClass int
+type QUnicodeTables__WordBreakClass int64
 
-var (
+const (
 	QUnicodeTables__WordBreak_Other             = QUnicodeTables__WordBreakClass(0)
 	QUnicodeTables__WordBreak_CR                = QUnicodeTables__WordBreakClass(1)
 	QUnicodeTables__WordBreak_LF                = QUnicodeTables__WordBreakClass(2)

@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QLockFile QLockFile::QLockFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non constructor false false   [0xc8203c7f60] }
-&{error QLockFile::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  LockError [] }
-&{getLockInfo QLockFile::getLockInfo commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  bool [0xc8203ae240 0xc8203ae2c0 0xc8203ae3a0] }
-&{isLocked QLockFile::isLocked commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  bool [] }
-&{lock QLockFile::lock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  bool [] }
-&{removeStaleLockFile QLockFile::removeStaleLockFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  bool [] }
-&{setStaleLockTime QLockFile::setStaleLockTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  void [0xc8203ae960] }
-&{staleLockTime QLockFile::staleLockTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  int [] }
-&{tryLock QLockFile::tryLock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  bool [0xc8203aed00] }
-&{~QLockFile QLockFile::~QLockFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non destructor false false   [] }
-&{unlock QLockFile::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile_win.cpp non plain false false  void [] }
+&{QLockFile QLockFile::QLockFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non constructor false false   QLockFile(const QString &fileName) [0xc8203b1720] }
+&{error QLockFile::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  LockError LockError error() const [] }
+&{getLockInfo QLockFile::getLockInfo commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  bool bool getLockInfo(qint64 *pid, QString *hostname, QString *appname) const [0xc8203b1a40 0xc8203b1ae0 0xc8203b1b60] }
+&{isLocked QLockFile::isLocked commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  bool bool isLocked() const [] }
+&{lock QLockFile::lock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  bool bool lock() [] }
+&{removeStaleLockFile QLockFile::removeStaleLockFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  bool bool removeStaleLockFile() [] }
+&{setStaleLockTime QLockFile::setStaleLockTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  void void setStaleLockTime(int staleLockTime) [0xc8203a0200] }
+&{staleLockTime QLockFile::staleLockTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  int int staleLockTime() const [] }
+&{tryLock QLockFile::tryLock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non plain false false  bool bool tryLock(int timeout) [0xc8203a0640] }
+&{~QLockFile QLockFile::~QLockFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile.h non destructor false false   ~QLockFile() [] }
+&{unlock QLockFile::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qlockfile_win.cpp non plain false false  void void unlock() [] }
 ########################################			ENUMS			########################################
-&{LockError QLockFile::LockError commendable public  [0xc8203c7aa0 0xc8203c7b60 0xc8203c7c00 0xc8203c7ca0]}
+&{LockError QLockFile::LockError commendable public  [0xc8203b12a0 0xc8203b1320 0xc8203b1400 0xc8203b1480] false}

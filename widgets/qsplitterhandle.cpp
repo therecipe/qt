@@ -1,9 +1,9 @@
 #include "qsplitterhandle.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QSplitter>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QSplitterHandle>
 #include "_cgo_export.h"
 
@@ -11,27 +11,27 @@ class MyQSplitterHandle: public QSplitterHandle {
 public:
 };
 
-QtObjectPtr QSplitterHandle_NewQSplitterHandle(int orientation, QtObjectPtr parent){
+void* QSplitterHandle_NewQSplitterHandle(int orientation, void* parent){
 	return new QSplitterHandle(static_cast<Qt::Orientation>(orientation), static_cast<QSplitter*>(parent));
 }
 
-int QSplitterHandle_OpaqueResize(QtObjectPtr ptr){
+int QSplitterHandle_OpaqueResize(void* ptr){
 	return static_cast<QSplitterHandle*>(ptr)->opaqueResize();
 }
 
-int QSplitterHandle_Orientation(QtObjectPtr ptr){
+int QSplitterHandle_Orientation(void* ptr){
 	return static_cast<QSplitterHandle*>(ptr)->orientation();
 }
 
-void QSplitterHandle_SetOrientation(QtObjectPtr ptr, int orientation){
+void QSplitterHandle_SetOrientation(void* ptr, int orientation){
 	static_cast<QSplitterHandle*>(ptr)->setOrientation(static_cast<Qt::Orientation>(orientation));
 }
 
-QtObjectPtr QSplitterHandle_Splitter(QtObjectPtr ptr){
+void* QSplitterHandle_Splitter(void* ptr){
 	return static_cast<QSplitterHandle*>(ptr)->splitter();
 }
 
-void QSplitterHandle_DestroyQSplitterHandle(QtObjectPtr ptr){
+void QSplitterHandle_DestroyQSplitterHandle(void* ptr){
 	static_cast<QSplitterHandle*>(ptr)->~QSplitterHandle();
 }
 

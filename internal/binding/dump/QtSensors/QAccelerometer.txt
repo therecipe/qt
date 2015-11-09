@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{accelerationMode QAccelerometer::accelerationMode commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.cpp non plain false false  AccelerationMode [] }
-&{reading QAccelerometer::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.cpp non plain false false  QAccelerometerReading * [] }
-&{QAccelerometer QAccelerometer::QAccelerometer commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non constructor false false   [0xc822f03a80] }
-&{accelerationModeChanged QAccelerometer::accelerationModeChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non signal false false  void [0xc822f03d40] }
-&{setAccelerationMode QAccelerometer::setAccelerationMode commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non plain false false  void [0xc822ef2020] }
-&{~QAccelerometer QAccelerometer::~QAccelerometer commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h impure destructor false false   [] }
+&{accelerationMode QAccelerometer::accelerationMode commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.cpp non plain false false  AccelerationMode AccelerationMode accelerationMode() const [] }
+&{reading QAccelerometer::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.cpp non plain false false  QAccelerometerReading * QAccelerometerReading * reading() const [] }
+&{QAccelerometer QAccelerometer::QAccelerometer commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non constructor false false   QAccelerometer(QObject *parent) [0xc8230f4640] }
+&{accelerationModeChanged QAccelerometer::accelerationModeChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non signal false false  void void accelerationModeChanged(AccelerationMode accelerationMode) [0xc8230f4a40] }
+&{setAccelerationMode QAccelerometer::setAccelerationMode commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non plain false false  void void setAccelerationMode(AccelerationMode accelerationMode) [0xc8230f4d80] }
+&{~QAccelerometer QAccelerometer::~QAccelerometer commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h impure destructor false false   ~QAccelerometer() [] }
 ########################################			ENUMS			########################################
-&{AccelerationMode QAccelerometer::AccelerationMode commendable public  [0xc822f035e0 0xc822f036e0 0xc822f03780]}
+&{AccelerationMode QAccelerometer::AccelerationMode commendable public  [0xc8230f4040 0xc8230f40e0 0xc8230f41e0] false}

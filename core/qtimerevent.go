@@ -10,35 +10,35 @@ type QTimerEvent struct {
 	QEvent
 }
 
-type QTimerEventITF interface {
-	QEventITF
-	QTimerEventPTR() *QTimerEvent
+type QTimerEvent_ITF interface {
+	QEvent_ITF
+	QTimerEvent_PTR() *QTimerEvent
 }
 
-func PointerFromQTimerEvent(ptr QTimerEventITF) unsafe.Pointer {
+func PointerFromQTimerEvent(ptr QTimerEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTimerEventPTR().Pointer()
+		return ptr.QTimerEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTimerEventFromPointer(ptr unsafe.Pointer) *QTimerEvent {
+func NewQTimerEventFromPointer(ptr unsafe.Pointer) *QTimerEvent {
 	var n = new(QTimerEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QTimerEvent) QTimerEventPTR() *QTimerEvent {
+func (ptr *QTimerEvent) QTimerEvent_PTR() *QTimerEvent {
 	return ptr
 }
 
 func NewQTimerEvent(timerId int) *QTimerEvent {
-	return QTimerEventFromPointer(unsafe.Pointer(C.QTimerEvent_NewQTimerEvent(C.int(timerId))))
+	return NewQTimerEventFromPointer(C.QTimerEvent_NewQTimerEvent(C.int(timerId)))
 }
 
 func (ptr *QTimerEvent) TimerId() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTimerEvent_TimerId(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTimerEvent_TimerId(ptr.Pointer()))
 	}
 	return 0
 }

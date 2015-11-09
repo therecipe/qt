@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QSignalBlocker_Reblock(QtObjectPtr ptr);
-void QSignalBlocker_Unblock(QtObjectPtr ptr);
-void QSignalBlocker_DestroyQSignalBlocker(QtObjectPtr ptr);
+void QSignalBlocker_Reblock(void* ptr);
+void QSignalBlocker_Unblock(void* ptr);
+void QSignalBlocker_DestroyQSignalBlocker(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QTouchEvent_Device(QtObjectPtr ptr);
-QtObjectPtr QTouchEvent_Target(QtObjectPtr ptr);
-int QTouchEvent_TouchPointStates(QtObjectPtr ptr);
-QtObjectPtr QTouchEvent_Window(QtObjectPtr ptr);
-void QTouchEvent_DestroyQTouchEvent(QtObjectPtr ptr);
+void* QTouchEvent_Device(void* ptr);
+void* QTouchEvent_Target(void* ptr);
+int QTouchEvent_TouchPointStates(void* ptr);
+void* QTouchEvent_Window(void* ptr);
+void QTouchEvent_DestroyQTouchEvent(void* ptr);
 
 #ifdef __cplusplus
 }

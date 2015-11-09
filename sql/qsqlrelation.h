@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSqlRelation_NewQSqlRelation();
-QtObjectPtr QSqlRelation_NewQSqlRelation2(char* tableName, char* indexColumn, char* displayColumn);
-char* QSqlRelation_DisplayColumn(QtObjectPtr ptr);
-char* QSqlRelation_IndexColumn(QtObjectPtr ptr);
-int QSqlRelation_IsValid(QtObjectPtr ptr);
-char* QSqlRelation_TableName(QtObjectPtr ptr);
+void* QSqlRelation_NewQSqlRelation();
+void* QSqlRelation_NewQSqlRelation2(char* tableName, char* indexColumn, char* displayColumn);
+char* QSqlRelation_DisplayColumn(void* ptr);
+char* QSqlRelation_IndexColumn(void* ptr);
+int QSqlRelation_IsValid(void* ptr);
+char* QSqlRelation_TableName(void* ptr);
 
 #ifdef __cplusplus
 }

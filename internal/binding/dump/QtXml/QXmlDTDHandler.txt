@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{errorString QXmlDTDHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString [] }
-&{notationDecl QXmlDTDHandler::notationDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8226a2460 0xc8226a2500 0xc8226a25e0] }
-&{unparsedEntityDecl QXmlDTDHandler::unparsedEntityDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8226a2860 0xc8226a2960 0xc8226a2a00 0xc8226a2aa0] }
-&{~QXmlDTDHandler QXmlDTDHandler::~QXmlDTDHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   [] }
+&{errorString QXmlDTDHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString QString errorString() const [] }
+&{notationDecl QXmlDTDHandler::notationDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool notationDecl(const QString &name, const QString &publicId, const QString &systemId) [0xc82148c400 0xc82148c560 0xc82148c640] }
+&{unparsedEntityDecl QXmlDTDHandler::unparsedEntityDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool unparsedEntityDecl(const QString &name, const QString &publicId, const QString &systemId, const QString &notationName) [0xc82148c920 0xc82148ca40 0xc82148cb20 0xc82148cc00] }
+&{~QXmlDTDHandler QXmlDTDHandler::~QXmlDTDHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   ~QXmlDTDHandler() [] }
 ########################################			ENUMS			########################################

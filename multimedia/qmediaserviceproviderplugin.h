@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QMediaServiceProviderPlugin_Create(QtObjectPtr ptr, char* key);
-void QMediaServiceProviderPlugin_Release(QtObjectPtr ptr, QtObjectPtr service);
+void* QMediaServiceProviderPlugin_Create(void* ptr, char* key);
+void QMediaServiceProviderPlugin_Release(void* ptr, void* service);
 
 #ifdef __cplusplus
 }

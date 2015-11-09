@@ -11,8 +11,8 @@ type QPainterPathStroker struct {
 	ptr unsafe.Pointer
 }
 
-type QPainterPathStrokerITF interface {
-	QPainterPathStrokerPTR() *QPainterPathStroker
+type QPainterPathStroker_ITF interface {
+	QPainterPathStroker_PTR() *QPainterPathStroker
 }
 
 func (p *QPainterPathStroker) Pointer() unsafe.Pointer {
@@ -23,65 +23,117 @@ func (p *QPainterPathStroker) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPainterPathStroker(ptr QPainterPathStrokerITF) unsafe.Pointer {
+func PointerFromQPainterPathStroker(ptr QPainterPathStroker_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPainterPathStrokerPTR().Pointer()
+		return ptr.QPainterPathStroker_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPainterPathStrokerFromPointer(ptr unsafe.Pointer) *QPainterPathStroker {
+func NewQPainterPathStrokerFromPointer(ptr unsafe.Pointer) *QPainterPathStroker {
 	var n = new(QPainterPathStroker)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPainterPathStroker) QPainterPathStrokerPTR() *QPainterPathStroker {
+func (ptr *QPainterPathStroker) QPainterPathStroker_PTR() *QPainterPathStroker {
 	return ptr
 }
 
 func NewQPainterPathStroker() *QPainterPathStroker {
-	return QPainterPathStrokerFromPointer(unsafe.Pointer(C.QPainterPathStroker_NewQPainterPathStroker()))
+	return NewQPainterPathStrokerFromPointer(C.QPainterPathStroker_NewQPainterPathStroker())
 }
 
-func NewQPainterPathStroker2(pen QPenITF) *QPainterPathStroker {
-	return QPainterPathStrokerFromPointer(unsafe.Pointer(C.QPainterPathStroker_NewQPainterPathStroker2(C.QtObjectPtr(PointerFromQPen(pen)))))
+func NewQPainterPathStroker2(pen QPen_ITF) *QPainterPathStroker {
+	return NewQPainterPathStrokerFromPointer(C.QPainterPathStroker_NewQPainterPathStroker2(PointerFromQPen(pen)))
 }
 
 func (ptr *QPainterPathStroker) CapStyle() core.Qt__PenCapStyle {
 	if ptr.Pointer() != nil {
-		return core.Qt__PenCapStyle(C.QPainterPathStroker_CapStyle(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__PenCapStyle(C.QPainterPathStroker_CapStyle(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPainterPathStroker) CurveThreshold() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QPainterPathStroker_CurveThreshold(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPainterPathStroker) DashOffset() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QPainterPathStroker_DashOffset(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPainterPathStroker) JoinStyle() core.Qt__PenJoinStyle {
 	if ptr.Pointer() != nil {
-		return core.Qt__PenJoinStyle(C.QPainterPathStroker_JoinStyle(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__PenJoinStyle(C.QPainterPathStroker_JoinStyle(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPainterPathStroker) MiterLimit() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QPainterPathStroker_MiterLimit(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPainterPathStroker) SetCapStyle(style core.Qt__PenCapStyle) {
 	if ptr.Pointer() != nil {
-		C.QPainterPathStroker_SetCapStyle(C.QtObjectPtr(ptr.Pointer()), C.int(style))
+		C.QPainterPathStroker_SetCapStyle(ptr.Pointer(), C.int(style))
+	}
+}
+
+func (ptr *QPainterPathStroker) SetCurveThreshold(threshold float64) {
+	if ptr.Pointer() != nil {
+		C.QPainterPathStroker_SetCurveThreshold(ptr.Pointer(), C.double(threshold))
+	}
+}
+
+func (ptr *QPainterPathStroker) SetDashOffset(offset float64) {
+	if ptr.Pointer() != nil {
+		C.QPainterPathStroker_SetDashOffset(ptr.Pointer(), C.double(offset))
 	}
 }
 
 func (ptr *QPainterPathStroker) SetDashPattern(style core.Qt__PenStyle) {
 	if ptr.Pointer() != nil {
-		C.QPainterPathStroker_SetDashPattern(C.QtObjectPtr(ptr.Pointer()), C.int(style))
+		C.QPainterPathStroker_SetDashPattern(ptr.Pointer(), C.int(style))
 	}
 }
 
 func (ptr *QPainterPathStroker) SetJoinStyle(style core.Qt__PenJoinStyle) {
 	if ptr.Pointer() != nil {
-		C.QPainterPathStroker_SetJoinStyle(C.QtObjectPtr(ptr.Pointer()), C.int(style))
+		C.QPainterPathStroker_SetJoinStyle(ptr.Pointer(), C.int(style))
 	}
+}
+
+func (ptr *QPainterPathStroker) SetMiterLimit(limit float64) {
+	if ptr.Pointer() != nil {
+		C.QPainterPathStroker_SetMiterLimit(ptr.Pointer(), C.double(limit))
+	}
+}
+
+func (ptr *QPainterPathStroker) SetWidth(width float64) {
+	if ptr.Pointer() != nil {
+		C.QPainterPathStroker_SetWidth(ptr.Pointer(), C.double(width))
+	}
+}
+
+func (ptr *QPainterPathStroker) Width() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QPainterPathStroker_Width(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QPainterPathStroker) DestroyQPainterPathStroker() {
 	if ptr.Pointer() != nil {
-		C.QPainterPathStroker_DestroyQPainterPathStroker(C.QtObjectPtr(ptr.Pointer()))
+		C.QPainterPathStroker_DestroyQPainterPathStroker(ptr.Pointer())
 	}
 }

@@ -12,46 +12,39 @@ type QQmlExtensionPlugin struct {
 	core.QObject
 }
 
-type QQmlExtensionPluginITF interface {
-	core.QObjectITF
-	QQmlExtensionPluginPTR() *QQmlExtensionPlugin
+type QQmlExtensionPlugin_ITF interface {
+	core.QObject_ITF
+	QQmlExtensionPlugin_PTR() *QQmlExtensionPlugin
 }
 
-func PointerFromQQmlExtensionPlugin(ptr QQmlExtensionPluginITF) unsafe.Pointer {
+func PointerFromQQmlExtensionPlugin(ptr QQmlExtensionPlugin_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QQmlExtensionPluginPTR().Pointer()
+		return ptr.QQmlExtensionPlugin_PTR().Pointer()
 	}
 	return nil
 }
 
-func QQmlExtensionPluginFromPointer(ptr unsafe.Pointer) *QQmlExtensionPlugin {
+func NewQQmlExtensionPluginFromPointer(ptr unsafe.Pointer) *QQmlExtensionPlugin {
 	var n = new(QQmlExtensionPlugin)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QQmlExtensionPlugin_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QQmlExtensionPlugin) QQmlExtensionPluginPTR() *QQmlExtensionPlugin {
+func (ptr *QQmlExtensionPlugin) QQmlExtensionPlugin_PTR() *QQmlExtensionPlugin {
 	return ptr
 }
 
-func (ptr *QQmlExtensionPlugin) InitializeEngine(engine QQmlEngineITF, uri string) {
+func (ptr *QQmlExtensionPlugin) InitializeEngine(engine QQmlEngine_ITF, uri string) {
 	if ptr.Pointer() != nil {
-		C.QQmlExtensionPlugin_InitializeEngine(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQQmlEngine(engine)), C.CString(uri))
+		C.QQmlExtensionPlugin_InitializeEngine(ptr.Pointer(), PointerFromQQmlEngine(engine), C.CString(uri))
 	}
-}
-
-func (ptr *QQmlExtensionPlugin) BaseUrl() string {
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QQmlExtensionPlugin_BaseUrl(C.QtObjectPtr(ptr.Pointer())))
-	}
-	return ""
 }
 
 func (ptr *QQmlExtensionPlugin) RegisterTypes(uri string) {
 	if ptr.Pointer() != nil {
-		C.QQmlExtensionPlugin_RegisterTypes(C.QtObjectPtr(ptr.Pointer()), C.CString(uri))
+		C.QQmlExtensionPlugin_RegisterTypes(ptr.Pointer(), C.CString(uri))
 	}
 }

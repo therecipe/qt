@@ -1,10 +1,11 @@
 #include "qstyleoptiongraphicsitem.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStyleOption>
+#include <QTransform>
 #include <QStyle>
-#include <QString>
 #include <QStyleOptionGraphicsItem>
 #include "_cgo_export.h"
 
@@ -12,11 +13,15 @@ class MyQStyleOptionGraphicsItem: public QStyleOptionGraphicsItem {
 public:
 };
 
-QtObjectPtr QStyleOptionGraphicsItem_NewQStyleOptionGraphicsItem(){
+void* QStyleOptionGraphicsItem_NewQStyleOptionGraphicsItem(){
 	return new QStyleOptionGraphicsItem();
 }
 
-QtObjectPtr QStyleOptionGraphicsItem_NewQStyleOptionGraphicsItem2(QtObjectPtr other){
+void* QStyleOptionGraphicsItem_NewQStyleOptionGraphicsItem2(void* other){
 	return new QStyleOptionGraphicsItem(*static_cast<QStyleOptionGraphicsItem*>(other));
+}
+
+double QStyleOptionGraphicsItem_QStyleOptionGraphicsItem_LevelOfDetailFromTransform(void* worldTransform){
+	return static_cast<double>(QStyleOptionGraphicsItem::levelOfDetailFromTransform(*static_cast<QTransform*>(worldTransform)));
 }
 

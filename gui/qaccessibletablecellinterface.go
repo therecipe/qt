@@ -10,8 +10,8 @@ type QAccessibleTableCellInterface struct {
 	ptr unsafe.Pointer
 }
 
-type QAccessibleTableCellInterfaceITF interface {
-	QAccessibleTableCellInterfacePTR() *QAccessibleTableCellInterface
+type QAccessibleTableCellInterface_ITF interface {
+	QAccessibleTableCellInterface_PTR() *QAccessibleTableCellInterface
 }
 
 func (p *QAccessibleTableCellInterface) Pointer() unsafe.Pointer {
@@ -22,67 +22,67 @@ func (p *QAccessibleTableCellInterface) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQAccessibleTableCellInterface(ptr QAccessibleTableCellInterfaceITF) unsafe.Pointer {
+func PointerFromQAccessibleTableCellInterface(ptr QAccessibleTableCellInterface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAccessibleTableCellInterfacePTR().Pointer()
+		return ptr.QAccessibleTableCellInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAccessibleTableCellInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleTableCellInterface {
+func NewQAccessibleTableCellInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleTableCellInterface {
 	var n = new(QAccessibleTableCellInterface)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAccessibleTableCellInterface) QAccessibleTableCellInterfacePTR() *QAccessibleTableCellInterface {
+func (ptr *QAccessibleTableCellInterface) QAccessibleTableCellInterface_PTR() *QAccessibleTableCellInterface {
 	return ptr
 }
 
 func (ptr *QAccessibleTableCellInterface) ColumnExtent() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAccessibleTableCellInterface_ColumnExtent(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAccessibleTableCellInterface_ColumnExtent(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAccessibleTableCellInterface) ColumnIndex() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAccessibleTableCellInterface_ColumnIndex(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAccessibleTableCellInterface_ColumnIndex(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAccessibleTableCellInterface) IsSelected() bool {
 	if ptr.Pointer() != nil {
-		return C.QAccessibleTableCellInterface_IsSelected(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QAccessibleTableCellInterface_IsSelected(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QAccessibleTableCellInterface) RowExtent() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAccessibleTableCellInterface_RowExtent(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAccessibleTableCellInterface_RowExtent(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAccessibleTableCellInterface) RowIndex() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAccessibleTableCellInterface_RowIndex(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAccessibleTableCellInterface_RowIndex(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAccessibleTableCellInterface) Table() *QAccessibleInterface {
 	if ptr.Pointer() != nil {
-		return QAccessibleInterfaceFromPointer(unsafe.Pointer(C.QAccessibleTableCellInterface_Table(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAccessibleInterfaceFromPointer(C.QAccessibleTableCellInterface_Table(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QAccessibleTableCellInterface) DestroyQAccessibleTableCellInterface() {
 	if ptr.Pointer() != nil {
-		C.QAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface(C.QtObjectPtr(ptr.Pointer()))
+		C.QAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface(ptr.Pointer())
 	}
 }

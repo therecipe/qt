@@ -1,7 +1,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
 int QSysInfo_ByteOrder_Type();
 int QSysInfo_MV_IOS_Type();

@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
-&{buttons QGraphicsSceneWheelEvent::buttons commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::MouseButtons [] }
-&{delta QGraphicsSceneWheelEvent::delta commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  int [] }
-&{modifiers QGraphicsSceneWheelEvent::modifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::KeyboardModifiers [] }
-&{orientation QGraphicsSceneWheelEvent::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::Orientation [] }
-&{pos QGraphicsSceneWheelEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
-&{scenePos QGraphicsSceneWheelEvent::scenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
-&{screenPos QGraphicsSceneWheelEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint [] }
-&{~QGraphicsSceneWheelEvent QGraphicsSceneWheelEvent::~QGraphicsSceneWheelEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   [] }
+&{buttons QGraphicsSceneWheelEvent::buttons commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::MouseButtons Qt::MouseButtons buttons() const [] }
+&{delta QGraphicsSceneWheelEvent::delta commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  int int delta() const [] }
+&{modifiers QGraphicsSceneWheelEvent::modifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::KeyboardModifiers Qt::KeyboardModifiers modifiers() const [] }
+&{orientation QGraphicsSceneWheelEvent::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::Orientation Qt::Orientation orientation() const [] }
+&{pos QGraphicsSceneWheelEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF QPointF pos() const [] }
+&{scenePos QGraphicsSceneWheelEvent::scenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF QPointF scenePos() const [] }
+&{screenPos QGraphicsSceneWheelEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint QPoint screenPos() const [] }
+&{~QGraphicsSceneWheelEvent QGraphicsSceneWheelEvent::~QGraphicsSceneWheelEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   ~QGraphicsSceneWheelEvent() [] }
 ########################################			ENUMS			########################################

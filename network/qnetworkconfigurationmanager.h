@@ -1,17 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QNetworkConfigurationManager_NewQNetworkConfigurationManager(QtObjectPtr parent);
-int QNetworkConfigurationManager_Capabilities(QtObjectPtr ptr);
-int QNetworkConfigurationManager_IsOnline(QtObjectPtr ptr);
-void QNetworkConfigurationManager_ConnectOnlineStateChanged(QtObjectPtr ptr);
-void QNetworkConfigurationManager_DisconnectOnlineStateChanged(QtObjectPtr ptr);
-void QNetworkConfigurationManager_ConnectUpdateCompleted(QtObjectPtr ptr);
-void QNetworkConfigurationManager_DisconnectUpdateCompleted(QtObjectPtr ptr);
-void QNetworkConfigurationManager_UpdateConfigurations(QtObjectPtr ptr);
-void QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(QtObjectPtr ptr);
+void* QNetworkConfigurationManager_NewQNetworkConfigurationManager(void* parent);
+int QNetworkConfigurationManager_Capabilities(void* ptr);
+int QNetworkConfigurationManager_IsOnline(void* ptr);
+void QNetworkConfigurationManager_ConnectOnlineStateChanged(void* ptr);
+void QNetworkConfigurationManager_DisconnectOnlineStateChanged(void* ptr);
+void QNetworkConfigurationManager_ConnectUpdateCompleted(void* ptr);
+void QNetworkConfigurationManager_DisconnectUpdateCompleted(void* ptr);
+void QNetworkConfigurationManager_UpdateConfigurations(void* ptr);
+void QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(void* ptr);
 
 #ifdef __cplusplus
 }

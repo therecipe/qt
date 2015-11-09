@@ -10,8 +10,8 @@ type QExplicitlySharedDataPointer struct {
 	ptr unsafe.Pointer
 }
 
-type QExplicitlySharedDataPointerITF interface {
-	QExplicitlySharedDataPointerPTR() *QExplicitlySharedDataPointer
+type QExplicitlySharedDataPointer_ITF interface {
+	QExplicitlySharedDataPointer_PTR() *QExplicitlySharedDataPointer
 }
 
 func (p *QExplicitlySharedDataPointer) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QExplicitlySharedDataPointer) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQExplicitlySharedDataPointer(ptr QExplicitlySharedDataPointerITF) unsafe.Pointer {
+func PointerFromQExplicitlySharedDataPointer(ptr QExplicitlySharedDataPointer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QExplicitlySharedDataPointerPTR().Pointer()
+		return ptr.QExplicitlySharedDataPointer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QExplicitlySharedDataPointerFromPointer(ptr unsafe.Pointer) *QExplicitlySharedDataPointer {
+func NewQExplicitlySharedDataPointerFromPointer(ptr unsafe.Pointer) *QExplicitlySharedDataPointer {
 	var n = new(QExplicitlySharedDataPointer)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QExplicitlySharedDataPointer) QExplicitlySharedDataPointerPTR() *QExplicitlySharedDataPointer {
+func (ptr *QExplicitlySharedDataPointer) QExplicitlySharedDataPointer_PTR() *QExplicitlySharedDataPointer {
 	return ptr
 }

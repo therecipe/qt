@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QMaskGenerator QMaskGenerator::QMaskGenerator commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qmaskgenerator.h non constructor false false   [0xc82274f2c0] }
-&{nextMask QMaskGenerator::nextMask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qmaskgenerator.h pure plain false false  quint32 [] }
-&{seed QMaskGenerator::seed commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qmaskgenerator.h pure plain false false  bool [] }
-&{~QMaskGenerator QMaskGenerator::~QMaskGenerator commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qmaskgenerator.h impure destructor false false   [] }
+&{QMaskGenerator QMaskGenerator::QMaskGenerator commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qmaskgenerator.h non constructor false false   QMaskGenerator(QObject *parent) [0xc82239f400] }
+&{nextMask QMaskGenerator::nextMask commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qmaskgenerator.h pure plain false false  quint32 quint32 nextMask() [] }
+&{seed QMaskGenerator::seed commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qmaskgenerator.h pure plain false false  bool bool seed() [] }
+&{~QMaskGenerator QMaskGenerator::~QMaskGenerator commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qmaskgenerator.h impure destructor false false   ~QMaskGenerator() [] }
 ########################################			ENUMS			########################################

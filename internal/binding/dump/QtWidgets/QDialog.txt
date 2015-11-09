@@ -1,28 +1,28 @@
 ########################################			FUNCTIONS			########################################
-&{isSizeGripEnabled QDialog::isSizeGripEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.cpp non plain false false  bool [] }
-&{setModal QDialog::setModal commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.cpp non plain false false  void [0xc8231ab0e0] }
-&{setResult QDialog::setResult commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.cpp non plain false false  void [0xc8231ab420] }
-&{setSizeGripEnabled QDialog::setSizeGripEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.cpp non plain false false  void [0xc8231ab760] }
-&{QDialog QDialog::QDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h non constructor false false   [0xc8231abd20 0xc8231abde0] }
-&{accept QDialog::accept commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure slot false false  void [] }
-&{accepted QDialog::accepted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h non signal false false  void [] }
-&{closeEvent QDialog::closeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  void [0xc82322ec40] }
-&{contextMenuEvent QDialog::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  void [0xc82322efc0] }
-&{done QDialog::done commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure slot false false  void [0xc82322f200] }
-&{event QDialog::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  bool [0xc82322f480] }
-&{eventFilter QDialog::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  bool [0xc82322f680 0xc82322f720] }
-&{exec QDialog::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure slot false false  int [] }
-&{finished QDialog::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h non signal false false  void [0xc82322fc60] }
-&{keyPressEvent QDialog::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  void [0xc82322ff00] }
-&{minimumSizeHint QDialog::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  QSize [] }
-&{open QDialog::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure slot false false  void [] }
-&{reject QDialog::reject commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure slot false false  void [] }
-&{rejected QDialog::rejected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h non signal false false  void [] }
-&{resizeEvent QDialog::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  void [0xc8231906a0] }
-&{result QDialog::result commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h non plain false false  int [] }
-&{setVisible QDialog::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  void [0xc823190e20] }
-&{showEvent QDialog::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  void [0xc823191080] }
-&{sizeHint QDialog::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  QSize [] }
-&{~QDialog QDialog::~QDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h non destructor false false   [] }
+&{isSizeGripEnabled QDialog::isSizeGripEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.cpp non plain false false  bool bool isSizeGripEnabled() const [] }
+&{setModal QDialog::setModal commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.cpp non plain false false  void void setModal(bool modal) [0xc823207ce0] }
+&{setResult QDialog::setResult commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.cpp non plain false false  void void setResult(int i) [0xc8231f41e0] }
+&{setSizeGripEnabled QDialog::setSizeGripEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.cpp non plain false false  void void setSizeGripEnabled(bool ) [0xc8231f46e0] }
+&{QDialog QDialog::QDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h non constructor false false   QDialog(QWidget *parent, Qt::WindowFlags f) [0xc8231f4fe0 0xc8231f50c0] }
+&{accept QDialog::accept commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure slot false false  void void accept() [] }
+&{accepted QDialog::accepted commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h non signal false false  void void accepted() [] }
+&{closeEvent QDialog::closeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  void void closeEvent(QCloseEvent *e) [0xc8231e6520] }
+&{contextMenuEvent QDialog::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  void void contextMenuEvent(QContextMenuEvent *e) [0xc8231e6860] }
+&{done QDialog::done commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure slot false false  void void done(int r) [0xc8231e6ac0] }
+&{event QDialog::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  bool bool event(QEvent *e) [0xc8231e6dc0] }
+&{eventFilter QDialog::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  bool bool eventFilter(QObject *o, QEvent *e) [0xc8231e70a0 0xc8231e7180] }
+&{exec QDialog::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure slot false false  int int exec() [] }
+&{finished QDialog::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h non signal false false  void void finished(int result) [0xc8231d0460] }
+&{keyPressEvent QDialog::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  void void keyPressEvent(QKeyEvent *e) [0xc8231d07c0] }
+&{minimumSizeHint QDialog::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  QSize QSize minimumSizeHint() const [] }
+&{open QDialog::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure slot false false  void void open() [] }
+&{reject QDialog::reject commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure slot false false  void void reject() [] }
+&{rejected QDialog::rejected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h non signal false false  void void rejected() [] }
+&{resizeEvent QDialog::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  void void resizeEvent(QResizeEvent *) [0xc8231d14a0] }
+&{result QDialog::result commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h non plain false false  int int result() const [] }
+&{setVisible QDialog::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  void void setVisible(bool visible) [0xc8231ba200] }
+&{showEvent QDialog::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  void void showEvent(QShowEvent *event) [0xc8231ba4c0] }
+&{sizeHint QDialog::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h impure plain false false  QSize QSize sizeHint() const [] }
+&{~QDialog QDialog::~QDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qdialog.h non destructor false false   ~QDialog() [] }
 ########################################			ENUMS			########################################
-&{DialogCode QDialog::DialogCode commendable public  [0xc8231aba00 0xc8231abb00]}
+&{DialogCode QDialog::DialogCode commendable public  [0xc8231f4ba0 0xc8231f4c40] false}

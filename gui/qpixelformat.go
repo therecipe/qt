@@ -10,8 +10,8 @@ type QPixelFormat struct {
 	ptr unsafe.Pointer
 }
 
-type QPixelFormatITF interface {
-	QPixelFormatPTR() *QPixelFormat
+type QPixelFormat_ITF interface {
+	QPixelFormat_PTR() *QPixelFormat
 }
 
 func (p *QPixelFormat) Pointer() unsafe.Pointer {
@@ -22,60 +22,60 @@ func (p *QPixelFormat) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPixelFormat(ptr QPixelFormatITF) unsafe.Pointer {
+func PointerFromQPixelFormat(ptr QPixelFormat_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPixelFormatPTR().Pointer()
+		return ptr.QPixelFormat_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPixelFormatFromPointer(ptr unsafe.Pointer) *QPixelFormat {
+func NewQPixelFormatFromPointer(ptr unsafe.Pointer) *QPixelFormat {
 	var n = new(QPixelFormat)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPixelFormat) QPixelFormatPTR() *QPixelFormat {
+func (ptr *QPixelFormat) QPixelFormat_PTR() *QPixelFormat {
 	return ptr
 }
 
 //QPixelFormat::AlphaPosition
-type QPixelFormat__AlphaPosition int
+type QPixelFormat__AlphaPosition int64
 
-var (
+const (
 	QPixelFormat__AtBeginning = QPixelFormat__AlphaPosition(0)
 	QPixelFormat__AtEnd       = QPixelFormat__AlphaPosition(1)
 )
 
 //QPixelFormat::AlphaPremultiplied
-type QPixelFormat__AlphaPremultiplied int
+type QPixelFormat__AlphaPremultiplied int64
 
-var (
+const (
 	QPixelFormat__NotPremultiplied = QPixelFormat__AlphaPremultiplied(0)
 	QPixelFormat__Premultiplied    = QPixelFormat__AlphaPremultiplied(1)
 )
 
 //QPixelFormat::AlphaUsage
-type QPixelFormat__AlphaUsage int
+type QPixelFormat__AlphaUsage int64
 
-var (
+const (
 	QPixelFormat__UsesAlpha    = QPixelFormat__AlphaUsage(0)
 	QPixelFormat__IgnoresAlpha = QPixelFormat__AlphaUsage(1)
 )
 
 //QPixelFormat::ByteOrder
-type QPixelFormat__ByteOrder int
+type QPixelFormat__ByteOrder int64
 
-var (
+const (
 	QPixelFormat__LittleEndian        = QPixelFormat__ByteOrder(0)
 	QPixelFormat__BigEndian           = QPixelFormat__ByteOrder(1)
 	QPixelFormat__CurrentSystemEndian = QPixelFormat__ByteOrder(2)
 )
 
 //QPixelFormat::ColorModel
-type QPixelFormat__ColorModel int
+type QPixelFormat__ColorModel int64
 
-var (
+const (
 	QPixelFormat__RGB       = QPixelFormat__ColorModel(0)
 	QPixelFormat__BGR       = QPixelFormat__ColorModel(1)
 	QPixelFormat__Indexed   = QPixelFormat__ColorModel(2)
@@ -88,9 +88,9 @@ var (
 )
 
 //QPixelFormat::TypeInterpretation
-type QPixelFormat__TypeInterpretation int
+type QPixelFormat__TypeInterpretation int64
 
-var (
+const (
 	QPixelFormat__UnsignedInteger = QPixelFormat__TypeInterpretation(0)
 	QPixelFormat__UnsignedShort   = QPixelFormat__TypeInterpretation(1)
 	QPixelFormat__UnsignedByte    = QPixelFormat__TypeInterpretation(2)
@@ -98,9 +98,9 @@ var (
 )
 
 //QPixelFormat::YUVLayout
-type QPixelFormat__YUVLayout int
+type QPixelFormat__YUVLayout int64
 
-var (
+const (
 	QPixelFormat__YUV444   = QPixelFormat__YUVLayout(0)
 	QPixelFormat__YUV422   = QPixelFormat__YUVLayout(1)
 	QPixelFormat__YUV411   = QPixelFormat__YUVLayout(2)
@@ -120,54 +120,54 @@ var (
 )
 
 func NewQPixelFormat() *QPixelFormat {
-	return QPixelFormatFromPointer(unsafe.Pointer(C.QPixelFormat_NewQPixelFormat()))
+	return NewQPixelFormatFromPointer(C.QPixelFormat_NewQPixelFormat())
 }
 
 func (ptr *QPixelFormat) AlphaPosition() QPixelFormat__AlphaPosition {
 	if ptr.Pointer() != nil {
-		return QPixelFormat__AlphaPosition(C.QPixelFormat_AlphaPosition(C.QtObjectPtr(ptr.Pointer())))
+		return QPixelFormat__AlphaPosition(C.QPixelFormat_AlphaPosition(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPixelFormat) AlphaUsage() QPixelFormat__AlphaUsage {
 	if ptr.Pointer() != nil {
-		return QPixelFormat__AlphaUsage(C.QPixelFormat_AlphaUsage(C.QtObjectPtr(ptr.Pointer())))
+		return QPixelFormat__AlphaUsage(C.QPixelFormat_AlphaUsage(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPixelFormat) ByteOrder() QPixelFormat__ByteOrder {
 	if ptr.Pointer() != nil {
-		return QPixelFormat__ByteOrder(C.QPixelFormat_ByteOrder(C.QtObjectPtr(ptr.Pointer())))
+		return QPixelFormat__ByteOrder(C.QPixelFormat_ByteOrder(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPixelFormat) ColorModel() QPixelFormat__ColorModel {
 	if ptr.Pointer() != nil {
-		return QPixelFormat__ColorModel(C.QPixelFormat_ColorModel(C.QtObjectPtr(ptr.Pointer())))
+		return QPixelFormat__ColorModel(C.QPixelFormat_ColorModel(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPixelFormat) Premultiplied() QPixelFormat__AlphaPremultiplied {
 	if ptr.Pointer() != nil {
-		return QPixelFormat__AlphaPremultiplied(C.QPixelFormat_Premultiplied(C.QtObjectPtr(ptr.Pointer())))
+		return QPixelFormat__AlphaPremultiplied(C.QPixelFormat_Premultiplied(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPixelFormat) TypeInterpretation() QPixelFormat__TypeInterpretation {
 	if ptr.Pointer() != nil {
-		return QPixelFormat__TypeInterpretation(C.QPixelFormat_TypeInterpretation(C.QtObjectPtr(ptr.Pointer())))
+		return QPixelFormat__TypeInterpretation(C.QPixelFormat_TypeInterpretation(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPixelFormat) YuvLayout() QPixelFormat__YUVLayout {
 	if ptr.Pointer() != nil {
-		return QPixelFormat__YUVLayout(C.QPixelFormat_YuvLayout(C.QtObjectPtr(ptr.Pointer())))
+		return QPixelFormat__YUVLayout(C.QPixelFormat_YuvLayout(ptr.Pointer()))
 	}
 	return 0
 }

@@ -12,41 +12,34 @@ type QAbstractUriResolver struct {
 	core.QObject
 }
 
-type QAbstractUriResolverITF interface {
-	core.QObjectITF
-	QAbstractUriResolverPTR() *QAbstractUriResolver
+type QAbstractUriResolver_ITF interface {
+	core.QObject_ITF
+	QAbstractUriResolver_PTR() *QAbstractUriResolver
 }
 
-func PointerFromQAbstractUriResolver(ptr QAbstractUriResolverITF) unsafe.Pointer {
+func PointerFromQAbstractUriResolver(ptr QAbstractUriResolver_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAbstractUriResolverPTR().Pointer()
+		return ptr.QAbstractUriResolver_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAbstractUriResolverFromPointer(ptr unsafe.Pointer) *QAbstractUriResolver {
+func NewQAbstractUriResolverFromPointer(ptr unsafe.Pointer) *QAbstractUriResolver {
 	var n = new(QAbstractUriResolver)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAbstractUriResolver_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAbstractUriResolver) QAbstractUriResolverPTR() *QAbstractUriResolver {
+func (ptr *QAbstractUriResolver) QAbstractUriResolver_PTR() *QAbstractUriResolver {
 	return ptr
-}
-
-func (ptr *QAbstractUriResolver) Resolve(relative string, baseURI string) string {
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QAbstractUriResolver_Resolve(C.QtObjectPtr(ptr.Pointer()), C.CString(relative), C.CString(baseURI)))
-	}
-	return ""
 }
 
 func (ptr *QAbstractUriResolver) DestroyQAbstractUriResolver() {
 	if ptr.Pointer() != nil {
-		C.QAbstractUriResolver_DestroyQAbstractUriResolver(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractUriResolver_DestroyQAbstractUriResolver(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

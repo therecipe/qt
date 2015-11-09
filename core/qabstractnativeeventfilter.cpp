@@ -10,7 +10,7 @@ class MyQAbstractNativeEventFilter: public QAbstractNativeEventFilter {
 public:
 };
 
-void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(QtObjectPtr ptr){
+void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(void* ptr){
 	static_cast<QAbstractNativeEventFilter*>(ptr)->~QAbstractNativeEventFilter();
 }
 

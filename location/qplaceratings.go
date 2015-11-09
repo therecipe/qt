@@ -10,8 +10,8 @@ type QPlaceRatings struct {
 	ptr unsafe.Pointer
 }
 
-type QPlaceRatingsITF interface {
-	QPlaceRatingsPTR() *QPlaceRatings
+type QPlaceRatings_ITF interface {
+	QPlaceRatings_PTR() *QPlaceRatings
 }
 
 func (p *QPlaceRatings) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QPlaceRatings) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPlaceRatings(ptr QPlaceRatingsITF) unsafe.Pointer {
+func PointerFromQPlaceRatings(ptr QPlaceRatings_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceRatingsPTR().Pointer()
+		return ptr.QPlaceRatings_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceRatingsFromPointer(ptr unsafe.Pointer) *QPlaceRatings {
+func NewQPlaceRatingsFromPointer(ptr unsafe.Pointer) *QPlaceRatings {
 	var n = new(QPlaceRatings)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPlaceRatings) QPlaceRatingsPTR() *QPlaceRatings {
+func (ptr *QPlaceRatings) QPlaceRatings_PTR() *QPlaceRatings {
 	return ptr
 }

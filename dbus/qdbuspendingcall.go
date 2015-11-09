@@ -10,8 +10,8 @@ type QDBusPendingCall struct {
 	ptr unsafe.Pointer
 }
 
-type QDBusPendingCallITF interface {
-	QDBusPendingCallPTR() *QDBusPendingCall
+type QDBusPendingCall_ITF interface {
+	QDBusPendingCall_PTR() *QDBusPendingCall
 }
 
 func (p *QDBusPendingCall) Pointer() unsafe.Pointer {
@@ -22,35 +22,35 @@ func (p *QDBusPendingCall) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQDBusPendingCall(ptr QDBusPendingCallITF) unsafe.Pointer {
+func PointerFromQDBusPendingCall(ptr QDBusPendingCall_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDBusPendingCallPTR().Pointer()
+		return ptr.QDBusPendingCall_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDBusPendingCallFromPointer(ptr unsafe.Pointer) *QDBusPendingCall {
+func NewQDBusPendingCallFromPointer(ptr unsafe.Pointer) *QDBusPendingCall {
 	var n = new(QDBusPendingCall)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDBusPendingCall) QDBusPendingCallPTR() *QDBusPendingCall {
+func (ptr *QDBusPendingCall) QDBusPendingCall_PTR() *QDBusPendingCall {
 	return ptr
 }
 
-func NewQDBusPendingCall(other QDBusPendingCallITF) *QDBusPendingCall {
-	return QDBusPendingCallFromPointer(unsafe.Pointer(C.QDBusPendingCall_NewQDBusPendingCall(C.QtObjectPtr(PointerFromQDBusPendingCall(other)))))
+func NewQDBusPendingCall(other QDBusPendingCall_ITF) *QDBusPendingCall {
+	return NewQDBusPendingCallFromPointer(C.QDBusPendingCall_NewQDBusPendingCall(PointerFromQDBusPendingCall(other)))
 }
 
-func (ptr *QDBusPendingCall) Swap(other QDBusPendingCallITF) {
+func (ptr *QDBusPendingCall) Swap(other QDBusPendingCall_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDBusPendingCall_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQDBusPendingCall(other)))
+		C.QDBusPendingCall_Swap(ptr.Pointer(), PointerFromQDBusPendingCall(other))
 	}
 }
 
 func (ptr *QDBusPendingCall) DestroyQDBusPendingCall() {
 	if ptr.Pointer() != nil {
-		C.QDBusPendingCall_DestroyQDBusPendingCall(C.QtObjectPtr(ptr.Pointer()))
+		C.QDBusPendingCall_DestroyQDBusPendingCall(ptr.Pointer())
 	}
 }

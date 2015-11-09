@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
-&{QMutableListIterator QMutableListIterator::QMutableListIterator commendable public qlist.h non constructor false false   [0xc8202c2a80] }
-&{findNext QMutableListIterator::findNext commendable public qlist.h non plain false false  bool [0xc8202c2e80] }
-&{findPrevious QMutableListIterator::findPrevious commendable public qlist.h non plain false false  bool [0xc8202c3260] }
-&{hasNext QMutableListIterator::hasNext commendable public qlist.h non plain false false  bool [] }
-&{hasPrevious QMutableListIterator::hasPrevious commendable public qlist.h non plain false false  bool [] }
-&{insert QMutableListIterator::insert commendable public qlist.h non plain false false  void [0xc8202c3cc0] }
-&{next QMutableListIterator::next commendable public qlist.h non plain false false  T & [] }
-&{operator= QMutableListIterator::operator= commendable public qlist.h non plain false false  QMutableListIterator & [0xc8202b25e0] }
-&{peekNext QMutableListIterator::peekNext commendable public qlist.h non plain false false  T & [] }
-&{peekPrevious QMutableListIterator::peekPrevious commendable public qlist.h non plain false false  T & [] }
-&{previous QMutableListIterator::previous commendable public qlist.h non plain false false  T & [] }
-&{remove QMutableListIterator::remove commendable public qlist.h non plain false false  void [] }
-&{setValue QMutableListIterator::setValue commendable public qlist.h non plain false false  void [0xc8202b33c0] }
-&{toBack QMutableListIterator::toBack commendable public qlist.h non plain false false  void [] }
-&{toFront QMutableListIterator::toFront commendable public qlist.h non plain false false  void [] }
-&{value QMutableListIterator::value commendable public qlist.h non plain false true 2 T & [] }
-&{value QMutableListIterator::value commendable public qlist.h non plain false false  const T & [] }
+&{QMutableListIterator QMutableListIterator::QMutableListIterator commendable public qlist.h non constructor false false   QMutableListIterator(QList<T> &list) [0xc82029acc0] }
+&{findNext QMutableListIterator::findNext commendable public qlist.h non plain false false  bool bool findNext(const T &value) [0xc82029b380] }
+&{findPrevious QMutableListIterator::findPrevious commendable public qlist.h non plain false false  bool bool findPrevious(const T &value) [0xc82029b800] }
+&{hasNext QMutableListIterator::hasNext commendable public qlist.h non plain false false  bool bool hasNext() const [] }
+&{hasPrevious QMutableListIterator::hasPrevious commendable public qlist.h non plain false false  bool bool hasPrevious() const [] }
+&{insert QMutableListIterator::insert commendable public qlist.h non plain false false  void void insert(const T &value) [0xc820286280] }
+&{next QMutableListIterator::next commendable public qlist.h non plain false false  T & T & next() [] }
+&{operator= QMutableListIterator::operator= commendable public qlist.h non plain false false  QMutableListIterator & QMutableListIterator & operator=(QList<T> &list) [0xc820286b20] }
+&{peekNext QMutableListIterator::peekNext commendable public qlist.h non plain false false  T & T & peekNext() const [] }
+&{peekPrevious QMutableListIterator::peekPrevious commendable public qlist.h non plain false false  T & T & peekPrevious() const [] }
+&{previous QMutableListIterator::previous commendable public qlist.h non plain false false  T & T & previous() [] }
+&{remove QMutableListIterator::remove commendable public qlist.h non plain false false  void void remove() [] }
+&{setValue QMutableListIterator::setValue commendable public qlist.h non plain false false  void void setValue(const T &value) const [0xc820287900] }
+&{toBack QMutableListIterator::toBack commendable public qlist.h non plain false false  void void toBack() [] }
+&{toFront QMutableListIterator::toFront commendable public qlist.h non plain false false  void void toFront() [] }
+&{value QMutableListIterator::value commendable public qlist.h non plain false true 2 T & T & value() [] }
+&{value QMutableListIterator::value commendable public qlist.h non plain false false  const T & const T & value() const [] }
 ########################################			ENUMS			########################################

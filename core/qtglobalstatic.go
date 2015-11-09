@@ -10,8 +10,8 @@ type QtGlobalStatic struct {
 	ptr unsafe.Pointer
 }
 
-type QtGlobalStaticITF interface {
-	QtGlobalStaticPTR() *QtGlobalStatic
+type QtGlobalStatic_ITF interface {
+	QtGlobalStatic_PTR() *QtGlobalStatic
 }
 
 func (p *QtGlobalStatic) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QtGlobalStatic) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQtGlobalStatic(ptr QtGlobalStaticITF) unsafe.Pointer {
+func PointerFromQtGlobalStatic(ptr QtGlobalStatic_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QtGlobalStaticPTR().Pointer()
+		return ptr.QtGlobalStatic_PTR().Pointer()
 	}
 	return nil
 }
 
-func QtGlobalStaticFromPointer(ptr unsafe.Pointer) *QtGlobalStatic {
+func NewQtGlobalStaticFromPointer(ptr unsafe.Pointer) *QtGlobalStatic {
 	var n = new(QtGlobalStatic)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QtGlobalStatic) QtGlobalStaticPTR() *QtGlobalStatic {
+func (ptr *QtGlobalStatic) QtGlobalStatic_PTR() *QtGlobalStatic {
 	return ptr
 }
 
 //QtGlobalStatic::GuardValues
-type QtGlobalStatic__GuardValues int
+type QtGlobalStatic__GuardValues int64
 
-var (
+const (
 	QtGlobalStatic__Destroyed     = QtGlobalStatic__GuardValues(-2)
 	QtGlobalStatic__Initialized   = QtGlobalStatic__GuardValues(-1)
 	QtGlobalStatic__Uninitialized = QtGlobalStatic__GuardValues(0)

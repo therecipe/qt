@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QMediaContainerControl_ContainerDescription(QtObjectPtr ptr, char* format);
-char* QMediaContainerControl_ContainerFormat(QtObjectPtr ptr);
-void QMediaContainerControl_SetContainerFormat(QtObjectPtr ptr, char* format);
-char* QMediaContainerControl_SupportedContainers(QtObjectPtr ptr);
-void QMediaContainerControl_DestroyQMediaContainerControl(QtObjectPtr ptr);
+char* QMediaContainerControl_ContainerDescription(void* ptr, char* format);
+char* QMediaContainerControl_ContainerFormat(void* ptr);
+void QMediaContainerControl_SetContainerFormat(void* ptr, char* format);
+char* QMediaContainerControl_SupportedContainers(void* ptr);
+void QMediaContainerControl_DestroyQMediaContainerControl(void* ptr);
 
 #ifdef __cplusplus
 }

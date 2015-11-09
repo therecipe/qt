@@ -12,41 +12,41 @@ type QSqlDriverPlugin struct {
 	core.QObject
 }
 
-type QSqlDriverPluginITF interface {
-	core.QObjectITF
-	QSqlDriverPluginPTR() *QSqlDriverPlugin
+type QSqlDriverPlugin_ITF interface {
+	core.QObject_ITF
+	QSqlDriverPlugin_PTR() *QSqlDriverPlugin
 }
 
-func PointerFromQSqlDriverPlugin(ptr QSqlDriverPluginITF) unsafe.Pointer {
+func PointerFromQSqlDriverPlugin(ptr QSqlDriverPlugin_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSqlDriverPluginPTR().Pointer()
+		return ptr.QSqlDriverPlugin_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSqlDriverPluginFromPointer(ptr unsafe.Pointer) *QSqlDriverPlugin {
+func NewQSqlDriverPluginFromPointer(ptr unsafe.Pointer) *QSqlDriverPlugin {
 	var n = new(QSqlDriverPlugin)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QSqlDriverPlugin_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QSqlDriverPlugin) QSqlDriverPluginPTR() *QSqlDriverPlugin {
+func (ptr *QSqlDriverPlugin) QSqlDriverPlugin_PTR() *QSqlDriverPlugin {
 	return ptr
 }
 
 func (ptr *QSqlDriverPlugin) Create(key string) *QSqlDriver {
 	if ptr.Pointer() != nil {
-		return QSqlDriverFromPointer(unsafe.Pointer(C.QSqlDriverPlugin_Create(C.QtObjectPtr(ptr.Pointer()), C.CString(key))))
+		return NewQSqlDriverFromPointer(C.QSqlDriverPlugin_Create(ptr.Pointer(), C.CString(key)))
 	}
 	return nil
 }
 
 func (ptr *QSqlDriverPlugin) DestroyQSqlDriverPlugin() {
 	if ptr.Pointer() != nil {
-		C.QSqlDriverPlugin_DestroyQSqlDriverPlugin(C.QtObjectPtr(ptr.Pointer()))
+		C.QSqlDriverPlugin_DestroyQSqlDriverPlugin(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

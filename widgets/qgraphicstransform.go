@@ -12,27 +12,27 @@ type QGraphicsTransform struct {
 	core.QObject
 }
 
-type QGraphicsTransformITF interface {
-	core.QObjectITF
-	QGraphicsTransformPTR() *QGraphicsTransform
+type QGraphicsTransform_ITF interface {
+	core.QObject_ITF
+	QGraphicsTransform_PTR() *QGraphicsTransform
 }
 
-func PointerFromQGraphicsTransform(ptr QGraphicsTransformITF) unsafe.Pointer {
+func PointerFromQGraphicsTransform(ptr QGraphicsTransform_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsTransformPTR().Pointer()
+		return ptr.QGraphicsTransform_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsTransformFromPointer(ptr unsafe.Pointer) *QGraphicsTransform {
+func NewQGraphicsTransformFromPointer(ptr unsafe.Pointer) *QGraphicsTransform {
 	var n = new(QGraphicsTransform)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGraphicsTransform_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGraphicsTransform) QGraphicsTransformPTR() *QGraphicsTransform {
+func (ptr *QGraphicsTransform) QGraphicsTransform_PTR() *QGraphicsTransform {
 	return ptr
 }

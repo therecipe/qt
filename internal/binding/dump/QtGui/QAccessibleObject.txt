@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{QAccessibleObject QAccessibleObject::QAccessibleObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h non constructor false false   [0xc820c25e00] }
-&{childAt QAccessibleObject::childAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  QAccessibleInterface * [0xc820c16160 0xc820c16220] }
-&{isValid QAccessibleObject::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  bool [] }
-&{object QAccessibleObject::object commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  QObject * [] }
-&{rect QAccessibleObject::rect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  QRect [] }
-&{setText QAccessibleObject::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  void [0xc820c16ae0 0xc820c16c00] }
-&{~QAccessibleObject QAccessibleObject::~QAccessibleObject commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure destructor false false   [] }
+&{QAccessibleObject QAccessibleObject::QAccessibleObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h non constructor false false   QAccessibleObject(QObject *object) [0xc820cc3f80] }
+&{childAt QAccessibleObject::childAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  QAccessibleInterface * QAccessibleInterface * childAt(int x, int y) const [0xc820cb8300 0xc820cb83c0] }
+&{isValid QAccessibleObject::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  bool bool isValid() const [] }
+&{object QAccessibleObject::object commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  QObject * QObject * object() const [] }
+&{rect QAccessibleObject::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  QRect QRect rect() const [] }
+&{setText QAccessibleObject::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  void void setText(QAccessible::Text t, const QString &text) [0xc820cb8e00 0xc820cb8f20] }
+&{~QAccessibleObject QAccessibleObject::~QAccessibleObject commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure destructor false false   ~QAccessibleObject() [] }
 ########################################			ENUMS			########################################

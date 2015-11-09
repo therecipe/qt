@@ -1,9 +1,9 @@
 #include "qambientlightsensor.h"
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
 #include <QAmbientLightSensor>
 #include "_cgo_export.h"
 
@@ -11,15 +11,15 @@ class MyQAmbientLightSensor: public QAmbientLightSensor {
 public:
 };
 
-QtObjectPtr QAmbientLightSensor_Reading(QtObjectPtr ptr){
+void* QAmbientLightSensor_Reading(void* ptr){
 	return static_cast<QAmbientLightSensor*>(ptr)->reading();
 }
 
-QtObjectPtr QAmbientLightSensor_NewQAmbientLightSensor(QtObjectPtr parent){
+void* QAmbientLightSensor_NewQAmbientLightSensor(void* parent){
 	return new QAmbientLightSensor(static_cast<QObject*>(parent));
 }
 
-void QAmbientLightSensor_DestroyQAmbientLightSensor(QtObjectPtr ptr){
+void QAmbientLightSensor_DestroyQAmbientLightSensor(void* ptr){
 	static_cast<QAmbientLightSensor*>(ptr)->~QAmbientLightSensor();
 }
 

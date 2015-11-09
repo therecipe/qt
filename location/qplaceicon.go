@@ -10,8 +10,8 @@ type QPlaceIcon struct {
 	ptr unsafe.Pointer
 }
 
-type QPlaceIconITF interface {
-	QPlaceIconPTR() *QPlaceIcon
+type QPlaceIcon_ITF interface {
+	QPlaceIcon_PTR() *QPlaceIcon
 }
 
 func (p *QPlaceIcon) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QPlaceIcon) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPlaceIcon(ptr QPlaceIconITF) unsafe.Pointer {
+func PointerFromQPlaceIcon(ptr QPlaceIcon_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceIconPTR().Pointer()
+		return ptr.QPlaceIcon_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceIconFromPointer(ptr unsafe.Pointer) *QPlaceIcon {
+func NewQPlaceIconFromPointer(ptr unsafe.Pointer) *QPlaceIcon {
 	var n = new(QPlaceIcon)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPlaceIcon) QPlaceIconPTR() *QPlaceIcon {
+func (ptr *QPlaceIcon) QPlaceIcon_PTR() *QPlaceIcon {
 	return ptr
 }

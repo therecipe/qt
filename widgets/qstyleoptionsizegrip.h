@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStyleOptionSizeGrip_NewQStyleOptionSizeGrip();
-QtObjectPtr QStyleOptionSizeGrip_NewQStyleOptionSizeGrip2(QtObjectPtr other);
+void* QStyleOptionSizeGrip_NewQStyleOptionSizeGrip();
+void* QStyleOptionSizeGrip_NewQStyleOptionSizeGrip2(void* other);
 
 #ifdef __cplusplus
 }

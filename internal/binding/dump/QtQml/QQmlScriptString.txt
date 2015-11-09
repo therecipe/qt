@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QQmlScriptString QQmlScriptString::QQmlScriptString commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non constructor false false   [] }
-&{QQmlScriptString QQmlScriptString::QQmlScriptString commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non constructor false true 2  [0xc821ecfa60] }
-&{booleanLiteral QQmlScriptString::booleanLiteral commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  bool [0xc821ecff40] }
-&{isEmpty QQmlScriptString::isEmpty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  bool [] }
-&{isNullLiteral QQmlScriptString::isNullLiteral commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  bool [] }
-&{isUndefinedLiteral QQmlScriptString::isUndefinedLiteral commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  bool [] }
-&{numberLiteral QQmlScriptString::numberLiteral commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  qreal [0xc821d666a0] }
-&{operator!= QQmlScriptString::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  bool [0xc821d66960] }
-&{operator= QQmlScriptString::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  QQmlScriptString & [0xc821d66e80] }
-&{operator== QQmlScriptString::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  bool [0xc821d67200] }
-&{stringLiteral QQmlScriptString::stringLiteral commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  QString [] }
+&{QQmlScriptString QQmlScriptString::QQmlScriptString commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non constructor false false   QQmlScriptString() [] }
+&{QQmlScriptString QQmlScriptString::QQmlScriptString commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non constructor false true 2  QQmlScriptString(const QQmlScriptString &other) [0xc820a093e0] }
+&{booleanLiteral QQmlScriptString::booleanLiteral commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  bool bool booleanLiteral(bool *ok) const [0xc820a09840] }
+&{isEmpty QQmlScriptString::isEmpty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  bool bool isEmpty() const [] }
+&{isNullLiteral QQmlScriptString::isNullLiteral commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  bool bool isNullLiteral() const [] }
+&{isUndefinedLiteral QQmlScriptString::isUndefinedLiteral commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  bool bool isUndefinedLiteral() const [] }
+&{numberLiteral QQmlScriptString::numberLiteral commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  qreal qreal numberLiteral(bool *ok) const [0xc820c4a480] }
+&{operator!= QQmlScriptString::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  bool bool operator!=(const QQmlScriptString &other) const [0xc820c4a880] }
+&{operator= QQmlScriptString::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  QQmlScriptString & QQmlScriptString & operator=(const QQmlScriptString &other) [0xc820c4ad00] }
+&{operator== QQmlScriptString::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  bool bool operator==(const QQmlScriptString &other) const [0xc820c4b120] }
+&{stringLiteral QQmlScriptString::stringLiteral commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlscriptstring.h non plain false false  QString QString stringLiteral() const [] }
 ########################################			ENUMS			########################################

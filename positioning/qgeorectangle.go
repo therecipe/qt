@@ -10,97 +10,97 @@ type QGeoRectangle struct {
 	QGeoShape
 }
 
-type QGeoRectangleITF interface {
-	QGeoShapeITF
-	QGeoRectanglePTR() *QGeoRectangle
+type QGeoRectangle_ITF interface {
+	QGeoShape_ITF
+	QGeoRectangle_PTR() *QGeoRectangle
 }
 
-func PointerFromQGeoRectangle(ptr QGeoRectangleITF) unsafe.Pointer {
+func PointerFromQGeoRectangle(ptr QGeoRectangle_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGeoRectanglePTR().Pointer()
+		return ptr.QGeoRectangle_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGeoRectangleFromPointer(ptr unsafe.Pointer) *QGeoRectangle {
+func NewQGeoRectangleFromPointer(ptr unsafe.Pointer) *QGeoRectangle {
 	var n = new(QGeoRectangle)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGeoRectangle) QGeoRectanglePTR() *QGeoRectangle {
+func (ptr *QGeoRectangle) QGeoRectangle_PTR() *QGeoRectangle {
 	return ptr
 }
 
 func NewQGeoRectangle() *QGeoRectangle {
-	return QGeoRectangleFromPointer(unsafe.Pointer(C.QGeoRectangle_NewQGeoRectangle()))
+	return NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle())
 }
 
-func NewQGeoRectangle3(topLeft QGeoCoordinateITF, bottomRight QGeoCoordinateITF) *QGeoRectangle {
-	return QGeoRectangleFromPointer(unsafe.Pointer(C.QGeoRectangle_NewQGeoRectangle3(C.QtObjectPtr(PointerFromQGeoCoordinate(topLeft)), C.QtObjectPtr(PointerFromQGeoCoordinate(bottomRight)))))
+func NewQGeoRectangle3(topLeft QGeoCoordinate_ITF, bottomRight QGeoCoordinate_ITF) *QGeoRectangle {
+	return NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle3(PointerFromQGeoCoordinate(topLeft), PointerFromQGeoCoordinate(bottomRight)))
 }
 
-func NewQGeoRectangle5(other QGeoRectangleITF) *QGeoRectangle {
-	return QGeoRectangleFromPointer(unsafe.Pointer(C.QGeoRectangle_NewQGeoRectangle5(C.QtObjectPtr(PointerFromQGeoRectangle(other)))))
+func NewQGeoRectangle5(other QGeoRectangle_ITF) *QGeoRectangle {
+	return NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle5(PointerFromQGeoRectangle(other)))
 }
 
-func NewQGeoRectangle6(other QGeoShapeITF) *QGeoRectangle {
-	return QGeoRectangleFromPointer(unsafe.Pointer(C.QGeoRectangle_NewQGeoRectangle6(C.QtObjectPtr(PointerFromQGeoShape(other)))))
+func NewQGeoRectangle6(other QGeoShape_ITF) *QGeoRectangle {
+	return NewQGeoRectangleFromPointer(C.QGeoRectangle_NewQGeoRectangle6(PointerFromQGeoShape(other)))
 }
 
-func (ptr *QGeoRectangle) Contains(rectangle QGeoRectangleITF) bool {
+func (ptr *QGeoRectangle) Contains(rectangle QGeoRectangle_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRectangle_Contains(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGeoRectangle(rectangle))) != 0
+		return C.QGeoRectangle_Contains(ptr.Pointer(), PointerFromQGeoRectangle(rectangle)) != 0
 	}
 	return false
 }
 
-func (ptr *QGeoRectangle) Intersects(rectangle QGeoRectangleITF) bool {
+func (ptr *QGeoRectangle) Intersects(rectangle QGeoRectangle_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoRectangle_Intersects(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGeoRectangle(rectangle))) != 0
+		return C.QGeoRectangle_Intersects(ptr.Pointer(), PointerFromQGeoRectangle(rectangle)) != 0
 	}
 	return false
 }
 
-func (ptr *QGeoRectangle) SetBottomLeft(bottomLeft QGeoCoordinateITF) {
+func (ptr *QGeoRectangle) SetBottomLeft(bottomLeft QGeoCoordinate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGeoRectangle_SetBottomLeft(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGeoCoordinate(bottomLeft)))
+		C.QGeoRectangle_SetBottomLeft(ptr.Pointer(), PointerFromQGeoCoordinate(bottomLeft))
 	}
 }
 
-func (ptr *QGeoRectangle) SetBottomRight(bottomRight QGeoCoordinateITF) {
+func (ptr *QGeoRectangle) SetBottomRight(bottomRight QGeoCoordinate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGeoRectangle_SetBottomRight(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGeoCoordinate(bottomRight)))
+		C.QGeoRectangle_SetBottomRight(ptr.Pointer(), PointerFromQGeoCoordinate(bottomRight))
 	}
 }
 
-func (ptr *QGeoRectangle) SetCenter(center QGeoCoordinateITF) {
+func (ptr *QGeoRectangle) SetCenter(center QGeoCoordinate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGeoRectangle_SetCenter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGeoCoordinate(center)))
+		C.QGeoRectangle_SetCenter(ptr.Pointer(), PointerFromQGeoCoordinate(center))
 	}
 }
 
-func (ptr *QGeoRectangle) SetTopLeft(topLeft QGeoCoordinateITF) {
+func (ptr *QGeoRectangle) SetTopLeft(topLeft QGeoCoordinate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGeoRectangle_SetTopLeft(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGeoCoordinate(topLeft)))
+		C.QGeoRectangle_SetTopLeft(ptr.Pointer(), PointerFromQGeoCoordinate(topLeft))
 	}
 }
 
-func (ptr *QGeoRectangle) SetTopRight(topRight QGeoCoordinateITF) {
+func (ptr *QGeoRectangle) SetTopRight(topRight QGeoCoordinate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGeoRectangle_SetTopRight(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGeoCoordinate(topRight)))
+		C.QGeoRectangle_SetTopRight(ptr.Pointer(), PointerFromQGeoCoordinate(topRight))
 	}
 }
 
 func (ptr *QGeoRectangle) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGeoRectangle_ToString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QGeoRectangle_ToString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QGeoRectangle) DestroyQGeoRectangle() {
 	if ptr.Pointer() != nil {
-		C.QGeoRectangle_DestroyQGeoRectangle(C.QtObjectPtr(ptr.Pointer()))
+		C.QGeoRectangle_DestroyQGeoRectangle(ptr.Pointer())
 	}
 }

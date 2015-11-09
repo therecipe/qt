@@ -1,16 +1,16 @@
 ########################################			FUNCTIONS			########################################
-&{QTextTableFormat QTextTableFormat::QTextTableFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non constructor false false   [] }
-&{alignment QTextTableFormat::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  Qt::Alignment [] }
-&{cellPadding QTextTableFormat::cellPadding commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
-&{cellSpacing QTextTableFormat::cellSpacing commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
-&{clearColumnWidthConstraints QTextTableFormat::clearColumnWidthConstraints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [] }
-&{columnWidthConstraints QTextTableFormat::columnWidthConstraints commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QVector<QTextLength> [] }
-&{columns QTextTableFormat::columns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int [] }
-&{headerRowCount QTextTableFormat::headerRowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int [] }
-&{isValid QTextTableFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
-&{setAlignment QTextTableFormat::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8211a4460] }
-&{setCellPadding QTextTableFormat::setCellPadding commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8211a4a60] }
-&{setCellSpacing QTextTableFormat::setCellSpacing commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8211a51e0] }
-&{setColumnWidthConstraints QTextTableFormat::setColumnWidthConstraints commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8211a58c0] }
-&{setHeaderRowCount QTextTableFormat::setHeaderRowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc82122e860] }
+&{QTextTableFormat QTextTableFormat::QTextTableFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non constructor false false   QTextTableFormat() [] }
+&{alignment QTextTableFormat::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  Qt::Alignment Qt::Alignment alignment() const [] }
+&{cellPadding QTextTableFormat::cellPadding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal qreal cellPadding() const [] }
+&{cellSpacing QTextTableFormat::cellSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal qreal cellSpacing() const [] }
+&{clearColumnWidthConstraints QTextTableFormat::clearColumnWidthConstraints commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void clearColumnWidthConstraints() [] }
+&{columnWidthConstraints QTextTableFormat::columnWidthConstraints commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QVector<QTextLength> QVector<QTextLength> columnWidthConstraints() const [] }
+&{columns QTextTableFormat::columns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int int columns() const [] }
+&{headerRowCount QTextTableFormat::headerRowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int int headerRowCount() const [] }
+&{isValid QTextTableFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool bool isValid() const [] }
+&{setAlignment QTextTableFormat::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setAlignment(Qt::Alignment alignment) [0xc8235247a0] }
+&{setCellPadding QTextTableFormat::setCellPadding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setCellPadding(qreal padding) [0xc823524940] }
+&{setCellSpacing QTextTableFormat::setCellSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setCellSpacing(qreal spacing) [0xc823524ae0] }
+&{setColumnWidthConstraints QTextTableFormat::setColumnWidthConstraints commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setColumnWidthConstraints(const QVector<QTextLength> &constraints) [0xc823524ca0] }
+&{setHeaderRowCount QTextTableFormat::setHeaderRowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setHeaderRowCount(int count) [0xc823525240] }
 ########################################			ENUMS			########################################

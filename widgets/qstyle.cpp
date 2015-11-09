@@ -1,20 +1,20 @@
 #include "qstyle.h"
+#include <QWidget>
+#include <QPoint>
+#include <QPainter>
+#include <QSizePolicy>
+#include <QStyleHintReturn>
+#include <QApplication>
+#include <QSize>
+#include <QString>
+#include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QPalette>
 #include <QRect>
 #include <QStyleOption>
-#include <QPixmap>
 #include <QStyleOptionComplex>
-#include <QString>
-#include <QVariant>
-#include <QPoint>
-#include <QApplication>
-#include <QPainter>
-#include <QWidget>
-#include <QSize>
-#include <QSizePolicy>
-#include <QStyleHintReturn>
+#include <QModelIndex>
+#include <QPixmap>
 #include <QStyle>
 #include "_cgo_export.h"
 
@@ -838,23 +838,23 @@ int QStyle_SE_ToolBarHandle_Type(){
 	return QStyle::SE_ToolBarHandle;
 }
 
-void QStyle_DrawItemPixmap(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr rectangle, int alignment, QtObjectPtr pixmap){
+void QStyle_DrawItemPixmap(void* ptr, void* painter, void* rectangle, int alignment, void* pixmap){
 	static_cast<QStyle*>(ptr)->drawItemPixmap(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap));
 }
 
-void QStyle_DrawItemText(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr rectangle, int alignment, QtObjectPtr palette, int enabled, char* text, int textRole){
+void QStyle_DrawItemText(void* ptr, void* painter, void* rectangle, int alignment, void* palette, int enabled, char* text, int textRole){
 	static_cast<QStyle*>(ptr)->drawItemText(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPalette*>(palette), enabled != 0, QString(text), static_cast<QPalette::ColorRole>(textRole));
 }
 
-void QStyle_Polish2(QtObjectPtr ptr, QtObjectPtr application){
+void QStyle_Polish2(void* ptr, void* application){
 	static_cast<QStyle*>(ptr)->polish(static_cast<QApplication*>(application));
 }
 
-void QStyle_Polish3(QtObjectPtr ptr, QtObjectPtr palette){
+void QStyle_Polish3(void* ptr, void* palette){
 	static_cast<QStyle*>(ptr)->polish(*static_cast<QPalette*>(palette));
 }
 
-QtObjectPtr QStyle_Proxy(QtObjectPtr ptr){
+void* QStyle_Proxy(void* ptr){
 	return const_cast<QStyle*>(static_cast<QStyle*>(ptr)->proxy());
 }
 
@@ -862,39 +862,39 @@ int QStyle_QStyle_SliderValueFromPosition(int min, int max, int position, int sp
 	return QStyle::sliderValueFromPosition(min, max, position, span, upsideDown != 0);
 }
 
-void QStyle_Unpolish2(QtObjectPtr ptr, QtObjectPtr application){
+void QStyle_Unpolish2(void* ptr, void* application){
 	static_cast<QStyle*>(ptr)->unpolish(static_cast<QApplication*>(application));
 }
 
-int QStyle_CombinedLayoutSpacing(QtObjectPtr ptr, int controls1, int controls2, int orientation, QtObjectPtr option, QtObjectPtr widget){
+int QStyle_CombinedLayoutSpacing(void* ptr, int controls1, int controls2, int orientation, void* option, void* widget){
 	return static_cast<QStyle*>(ptr)->combinedLayoutSpacing(static_cast<QSizePolicy::ControlType>(controls1), static_cast<QSizePolicy::ControlType>(controls2), static_cast<Qt::Orientation>(orientation), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget));
 }
 
-void QStyle_DrawComplexControl(QtObjectPtr ptr, int control, QtObjectPtr option, QtObjectPtr painter, QtObjectPtr widget){
+void QStyle_DrawComplexControl(void* ptr, int control, void* option, void* painter, void* widget){
 	static_cast<QStyle*>(ptr)->drawComplexControl(static_cast<QStyle::ComplexControl>(control), static_cast<QStyleOptionComplex*>(option), static_cast<QPainter*>(painter), static_cast<QWidget*>(widget));
 }
 
-void QStyle_DrawControl(QtObjectPtr ptr, int element, QtObjectPtr option, QtObjectPtr painter, QtObjectPtr widget){
+void QStyle_DrawControl(void* ptr, int element, void* option, void* painter, void* widget){
 	static_cast<QStyle*>(ptr)->drawControl(static_cast<QStyle::ControlElement>(element), static_cast<QStyleOption*>(option), static_cast<QPainter*>(painter), static_cast<QWidget*>(widget));
 }
 
-void QStyle_DrawPrimitive(QtObjectPtr ptr, int element, QtObjectPtr option, QtObjectPtr painter, QtObjectPtr widget){
+void QStyle_DrawPrimitive(void* ptr, int element, void* option, void* painter, void* widget){
 	static_cast<QStyle*>(ptr)->drawPrimitive(static_cast<QStyle::PrimitiveElement>(element), static_cast<QStyleOption*>(option), static_cast<QPainter*>(painter), static_cast<QWidget*>(widget));
 }
 
-int QStyle_HitTestComplexControl(QtObjectPtr ptr, int control, QtObjectPtr option, QtObjectPtr position, QtObjectPtr widget){
+int QStyle_HitTestComplexControl(void* ptr, int control, void* option, void* position, void* widget){
 	return static_cast<QStyle*>(ptr)->hitTestComplexControl(static_cast<QStyle::ComplexControl>(control), static_cast<QStyleOptionComplex*>(option), *static_cast<QPoint*>(position), static_cast<QWidget*>(widget));
 }
 
-int QStyle_LayoutSpacing(QtObjectPtr ptr, int control1, int control2, int orientation, QtObjectPtr option, QtObjectPtr widget){
+int QStyle_LayoutSpacing(void* ptr, int control1, int control2, int orientation, void* option, void* widget){
 	return static_cast<QStyle*>(ptr)->layoutSpacing(static_cast<QSizePolicy::ControlType>(control1), static_cast<QSizePolicy::ControlType>(control2), static_cast<Qt::Orientation>(orientation), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget));
 }
 
-int QStyle_PixelMetric(QtObjectPtr ptr, int metric, QtObjectPtr option, QtObjectPtr widget){
+int QStyle_PixelMetric(void* ptr, int metric, void* option, void* widget){
 	return static_cast<QStyle*>(ptr)->pixelMetric(static_cast<QStyle::PixelMetric>(metric), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget));
 }
 
-void QStyle_Polish(QtObjectPtr ptr, QtObjectPtr widget){
+void QStyle_Polish(void* ptr, void* widget){
 	static_cast<QStyle*>(ptr)->polish(static_cast<QWidget*>(widget));
 }
 
@@ -902,11 +902,11 @@ int QStyle_QStyle_SliderPositionFromValue(int min, int max, int logicalValue, in
 	return QStyle::sliderPositionFromValue(min, max, logicalValue, span, upsideDown != 0);
 }
 
-int QStyle_StyleHint(QtObjectPtr ptr, int hint, QtObjectPtr option, QtObjectPtr widget, QtObjectPtr returnData){
+int QStyle_StyleHint(void* ptr, int hint, void* option, void* widget, void* returnData){
 	return static_cast<QStyle*>(ptr)->styleHint(static_cast<QStyle::StyleHint>(hint), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget), static_cast<QStyleHintReturn*>(returnData));
 }
 
-void QStyle_Unpolish(QtObjectPtr ptr, QtObjectPtr widget){
+void QStyle_Unpolish(void* ptr, void* widget){
 	static_cast<QStyle*>(ptr)->unpolish(static_cast<QWidget*>(widget));
 }
 
@@ -914,7 +914,7 @@ int QStyle_QStyle_VisualAlignment(int direction, int alignment){
 	return QStyle::visualAlignment(static_cast<Qt::LayoutDirection>(direction), static_cast<Qt::AlignmentFlag>(alignment));
 }
 
-void QStyle_DestroyQStyle(QtObjectPtr ptr){
+void QStyle_DestroyQStyle(void* ptr){
 	static_cast<QStyle*>(ptr)->~QStyle();
 }
 

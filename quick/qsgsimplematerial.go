@@ -10,24 +10,24 @@ type QSGSimpleMaterial struct {
 	QSGMaterial
 }
 
-type QSGSimpleMaterialITF interface {
-	QSGMaterialITF
-	QSGSimpleMaterialPTR() *QSGSimpleMaterial
+type QSGSimpleMaterial_ITF interface {
+	QSGMaterial_ITF
+	QSGSimpleMaterial_PTR() *QSGSimpleMaterial
 }
 
-func PointerFromQSGSimpleMaterial(ptr QSGSimpleMaterialITF) unsafe.Pointer {
+func PointerFromQSGSimpleMaterial(ptr QSGSimpleMaterial_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSGSimpleMaterialPTR().Pointer()
+		return ptr.QSGSimpleMaterial_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSGSimpleMaterialFromPointer(ptr unsafe.Pointer) *QSGSimpleMaterial {
+func NewQSGSimpleMaterialFromPointer(ptr unsafe.Pointer) *QSGSimpleMaterial {
 	var n = new(QSGSimpleMaterial)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSGSimpleMaterial) QSGSimpleMaterialPTR() *QSGSimpleMaterial {
+func (ptr *QSGSimpleMaterial) QSGSimpleMaterial_PTR() *QSGSimpleMaterial {
 	return ptr
 }

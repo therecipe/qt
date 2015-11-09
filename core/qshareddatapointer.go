@@ -10,8 +10,8 @@ type QSharedDataPointer struct {
 	ptr unsafe.Pointer
 }
 
-type QSharedDataPointerITF interface {
-	QSharedDataPointerPTR() *QSharedDataPointer
+type QSharedDataPointer_ITF interface {
+	QSharedDataPointer_PTR() *QSharedDataPointer
 }
 
 func (p *QSharedDataPointer) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QSharedDataPointer) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSharedDataPointer(ptr QSharedDataPointerITF) unsafe.Pointer {
+func PointerFromQSharedDataPointer(ptr QSharedDataPointer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSharedDataPointerPTR().Pointer()
+		return ptr.QSharedDataPointer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSharedDataPointerFromPointer(ptr unsafe.Pointer) *QSharedDataPointer {
+func NewQSharedDataPointerFromPointer(ptr unsafe.Pointer) *QSharedDataPointer {
 	var n = new(QSharedDataPointer)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSharedDataPointer) QSharedDataPointerPTR() *QSharedDataPointer {
+func (ptr *QSharedDataPointer) QSharedDataPointer_PTR() *QSharedDataPointer {
 	return ptr
 }

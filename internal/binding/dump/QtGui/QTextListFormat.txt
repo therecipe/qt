@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QTextListFormat QTextListFormat::QTextListFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non constructor false false   [] }
-&{indent QTextListFormat::indent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int [] }
-&{isValid QTextListFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
-&{numberPrefix QTextListFormat::numberPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QString [] }
-&{numberSuffix QTextListFormat::numberSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QString [] }
-&{setIndent QTextListFormat::setIndent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820f1e5a0] }
-&{setNumberPrefix QTextListFormat::setNumberPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820f1ec60] }
-&{setNumberSuffix QTextListFormat::setNumberSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820f1f360] }
-&{setStyle QTextListFormat::setStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820f1fb80] }
-&{style QTextListFormat::style commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  Style [] }
+&{QTextListFormat QTextListFormat::QTextListFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non constructor false false   QTextListFormat() [] }
+&{indent QTextListFormat::indent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  int int indent() const [] }
+&{isValid QTextListFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool bool isValid() const [] }
+&{numberPrefix QTextListFormat::numberPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QString QString numberPrefix() const [] }
+&{numberSuffix QTextListFormat::numberSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QString QString numberSuffix() const [] }
+&{setIndent QTextListFormat::setIndent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setIndent(int indentation) [0xc823506400] }
+&{setNumberPrefix QTextListFormat::setNumberPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setNumberPrefix(const QString &numberPrefix) [0xc8235065a0] }
+&{setNumberSuffix QTextListFormat::setNumberSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setNumberSuffix(const QString &numberSuffix) [0xc823506760] }
+&{setStyle QTextListFormat::setStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setStyle(Style style) [0xc823506980] }
+&{style QTextListFormat::style commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  Style Style style() const [] }
 ########################################			ENUMS			########################################
-&{Style QTextListFormat::Style commendable public  [0xc826b1a320 0xc826b1a4c0 0xc826b1a720 0xc826b1a920 0xc826b1aa20 0xc826b1ad20 0xc826b1ae00 0xc826b1b0a0 0xc826b1b2e0]}
+&{Style QTextListFormat::Style commendable public  [0xc8234f9860 0xc8234f98e0 0xc8234f9960 0xc8234f99e0 0xc8234f9a80 0xc8234f9b00 0xc8234f9b80 0xc8234f9c00 0xc8234f9cc0] false}

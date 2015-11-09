@@ -11,15 +11,15 @@ class MyQPressureSensor: public QPressureSensor {
 public:
 };
 
-QtObjectPtr QPressureSensor_Reading(QtObjectPtr ptr){
+void* QPressureSensor_Reading(void* ptr){
 	return static_cast<QPressureSensor*>(ptr)->reading();
 }
 
-QtObjectPtr QPressureSensor_NewQPressureSensor(QtObjectPtr parent){
+void* QPressureSensor_NewQPressureSensor(void* parent){
 	return new QPressureSensor(static_cast<QObject*>(parent));
 }
 
-void QPressureSensor_DestroyQPressureSensor(QtObjectPtr ptr){
+void QPressureSensor_DestroyQPressureSensor(void* ptr){
 	static_cast<QPressureSensor*>(ptr)->~QPressureSensor();
 }
 

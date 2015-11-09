@@ -10,7 +10,7 @@ class MyQMacNativeWidget: public QMacNativeWidget {
 public:
 };
 
-void QMacNativeWidget_DestroyQMacNativeWidget(QtObjectPtr ptr){
+void QMacNativeWidget_DestroyQMacNativeWidget(void* ptr){
 	static_cast<QMacNativeWidget*>(ptr)->~QMacNativeWidget();
 }
 

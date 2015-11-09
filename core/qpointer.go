@@ -10,8 +10,8 @@ type QPointer struct {
 	ptr unsafe.Pointer
 }
 
-type QPointerITF interface {
-	QPointerPTR() *QPointer
+type QPointer_ITF interface {
+	QPointer_PTR() *QPointer
 }
 
 func (p *QPointer) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QPointer) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPointer(ptr QPointerITF) unsafe.Pointer {
+func PointerFromQPointer(ptr QPointer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPointerPTR().Pointer()
+		return ptr.QPointer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPointerFromPointer(ptr unsafe.Pointer) *QPointer {
+func NewQPointerFromPointer(ptr unsafe.Pointer) *QPointer {
 	var n = new(QPointer)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPointer) QPointerPTR() *QPointer {
+func (ptr *QPointer) QPointer_PTR() *QPointer {
 	return ptr
 }

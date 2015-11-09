@@ -10,8 +10,8 @@ type QPaintDevice struct {
 	ptr unsafe.Pointer
 }
 
-type QPaintDeviceITF interface {
-	QPaintDevicePTR() *QPaintDevice
+type QPaintDevice_ITF interface {
+	QPaintDevice_PTR() *QPaintDevice
 }
 
 func (p *QPaintDevice) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QPaintDevice) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPaintDevice(ptr QPaintDeviceITF) unsafe.Pointer {
+func PointerFromQPaintDevice(ptr QPaintDevice_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPaintDevicePTR().Pointer()
+		return ptr.QPaintDevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPaintDeviceFromPointer(ptr unsafe.Pointer) *QPaintDevice {
+func NewQPaintDeviceFromPointer(ptr unsafe.Pointer) *QPaintDevice {
 	var n = new(QPaintDevice)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPaintDevice) QPaintDevicePTR() *QPaintDevice {
+func (ptr *QPaintDevice) QPaintDevice_PTR() *QPaintDevice {
 	return ptr
 }
 
 //QPaintDevice::PaintDeviceMetric
-type QPaintDevice__PaintDeviceMetric int
+type QPaintDevice__PaintDeviceMetric int64
 
-var (
+const (
 	QPaintDevice__PdmWidth            = QPaintDevice__PaintDeviceMetric(1)
 	QPaintDevice__PdmHeight           = QPaintDevice__PaintDeviceMetric(2)
 	QPaintDevice__PdmWidthMM          = QPaintDevice__PaintDeviceMetric(3)
@@ -58,97 +58,97 @@ var (
 
 func (ptr *QPaintDevice) DestroyQPaintDevice() {
 	if ptr.Pointer() != nil {
-		C.QPaintDevice_DestroyQPaintDevice(C.QtObjectPtr(ptr.Pointer()))
+		C.QPaintDevice_DestroyQPaintDevice(ptr.Pointer())
 	}
 }
 
 func (ptr *QPaintDevice) ColorCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QPaintDevice_ColorCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QPaintDevice_ColorCount(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPaintDevice) Depth() int {
 	if ptr.Pointer() != nil {
-		return int(C.QPaintDevice_Depth(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QPaintDevice_Depth(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPaintDevice) DevicePixelRatio() int {
 	if ptr.Pointer() != nil {
-		return int(C.QPaintDevice_DevicePixelRatio(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QPaintDevice_DevicePixelRatio(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPaintDevice) Height() int {
 	if ptr.Pointer() != nil {
-		return int(C.QPaintDevice_Height(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QPaintDevice_Height(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPaintDevice) HeightMM() int {
 	if ptr.Pointer() != nil {
-		return int(C.QPaintDevice_HeightMM(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QPaintDevice_HeightMM(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPaintDevice) LogicalDpiX() int {
 	if ptr.Pointer() != nil {
-		return int(C.QPaintDevice_LogicalDpiX(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QPaintDevice_LogicalDpiX(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPaintDevice) LogicalDpiY() int {
 	if ptr.Pointer() != nil {
-		return int(C.QPaintDevice_LogicalDpiY(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QPaintDevice_LogicalDpiY(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPaintDevice) PaintEngine() *QPaintEngine {
 	if ptr.Pointer() != nil {
-		return QPaintEngineFromPointer(unsafe.Pointer(C.QPaintDevice_PaintEngine(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQPaintEngineFromPointer(C.QPaintDevice_PaintEngine(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QPaintDevice) PaintingActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QPaintDevice_PaintingActive(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QPaintDevice_PaintingActive(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QPaintDevice) PhysicalDpiX() int {
 	if ptr.Pointer() != nil {
-		return int(C.QPaintDevice_PhysicalDpiX(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QPaintDevice_PhysicalDpiX(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPaintDevice) PhysicalDpiY() int {
 	if ptr.Pointer() != nil {
-		return int(C.QPaintDevice_PhysicalDpiY(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QPaintDevice_PhysicalDpiY(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPaintDevice) Width() int {
 	if ptr.Pointer() != nil {
-		return int(C.QPaintDevice_Width(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QPaintDevice_Width(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPaintDevice) WidthMM() int {
 	if ptr.Pointer() != nil {
-		return int(C.QPaintDevice_WidthMM(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QPaintDevice_WidthMM(ptr.Pointer()))
 	}
 	return 0
 }

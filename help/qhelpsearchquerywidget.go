@@ -12,64 +12,64 @@ type QHelpSearchQueryWidget struct {
 	widgets.QWidget
 }
 
-type QHelpSearchQueryWidgetITF interface {
-	widgets.QWidgetITF
-	QHelpSearchQueryWidgetPTR() *QHelpSearchQueryWidget
+type QHelpSearchQueryWidget_ITF interface {
+	widgets.QWidget_ITF
+	QHelpSearchQueryWidget_PTR() *QHelpSearchQueryWidget
 }
 
-func PointerFromQHelpSearchQueryWidget(ptr QHelpSearchQueryWidgetITF) unsafe.Pointer {
+func PointerFromQHelpSearchQueryWidget(ptr QHelpSearchQueryWidget_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHelpSearchQueryWidgetPTR().Pointer()
+		return ptr.QHelpSearchQueryWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHelpSearchQueryWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchQueryWidget {
+func NewQHelpSearchQueryWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchQueryWidget {
 	var n = new(QHelpSearchQueryWidget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QHelpSearchQueryWidget_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QHelpSearchQueryWidget) QHelpSearchQueryWidgetPTR() *QHelpSearchQueryWidget {
+func (ptr *QHelpSearchQueryWidget) QHelpSearchQueryWidget_PTR() *QHelpSearchQueryWidget {
 	return ptr
 }
 
 func (ptr *QHelpSearchQueryWidget) IsCompactMode() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchQueryWidget_IsCompactMode(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QHelpSearchQueryWidget_IsCompactMode(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func NewQHelpSearchQueryWidget(parent widgets.QWidgetITF) *QHelpSearchQueryWidget {
-	return QHelpSearchQueryWidgetFromPointer(unsafe.Pointer(C.QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(C.QtObjectPtr(widgets.PointerFromQWidget(parent)))))
+func NewQHelpSearchQueryWidget(parent widgets.QWidget_ITF) *QHelpSearchQueryWidget {
+	return NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(widgets.PointerFromQWidget(parent)))
 }
 
 func (ptr *QHelpSearchQueryWidget) CollapseExtendedSearch() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_CollapseExtendedSearch(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchQueryWidget_CollapseExtendedSearch(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ExpandExtendedSearch() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_ExpandExtendedSearch(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchQueryWidget_ExpandExtendedSearch(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSearch(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_ConnectSearch(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchQueryWidget_ConnectSearch(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "search", f)
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectSearch() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_DisconnectSearch(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchQueryWidget_DisconnectSearch(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "search")
 	}
 }
@@ -81,7 +81,7 @@ func callbackQHelpSearchQueryWidgetSearch(ptrName *C.char) {
 
 func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidget() {
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

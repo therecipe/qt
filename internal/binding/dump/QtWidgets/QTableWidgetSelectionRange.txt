@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
-&{QTableWidgetSelectionRange QTableWidgetSelectionRange::QTableWidgetSelectionRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non constructor false false   [] }
-&{QTableWidgetSelectionRange QTableWidgetSelectionRange::QTableWidgetSelectionRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non constructor false true 3  [0xc821ef9000] }
-&{QTableWidgetSelectionRange QTableWidgetSelectionRange::QTableWidgetSelectionRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non constructor false true 2  [0xc821ef91c0 0xc821ef9260 0xc821ef9300 0xc821ef93a0] }
-&{bottomRow QTableWidgetSelectionRange::bottomRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
-&{columnCount QTableWidgetSelectionRange::columnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
-&{leftColumn QTableWidgetSelectionRange::leftColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
-&{rightColumn QTableWidgetSelectionRange::rightColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
-&{rowCount QTableWidgetSelectionRange::rowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
-&{topRow QTableWidgetSelectionRange::topRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int [] }
-&{~QTableWidgetSelectionRange QTableWidgetSelectionRange::~QTableWidgetSelectionRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non destructor false false   [] }
+&{QTableWidgetSelectionRange QTableWidgetSelectionRange::QTableWidgetSelectionRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non constructor false false   QTableWidgetSelectionRange() [] }
+&{QTableWidgetSelectionRange QTableWidgetSelectionRange::QTableWidgetSelectionRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non constructor false true 3  QTableWidgetSelectionRange(const QTableWidgetSelectionRange &other) [0xc8222def80] }
+&{QTableWidgetSelectionRange QTableWidgetSelectionRange::QTableWidgetSelectionRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non constructor false true 2  QTableWidgetSelectionRange(int top, int left, int bottom, int right) [0xc8222df160 0xc8222df1e0 0xc8222df280 0xc8222df340] }
+&{bottomRow QTableWidgetSelectionRange::bottomRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int int bottomRow() const [] }
+&{columnCount QTableWidgetSelectionRange::columnCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int int columnCount() const [] }
+&{leftColumn QTableWidgetSelectionRange::leftColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int int leftColumn() const [] }
+&{rightColumn QTableWidgetSelectionRange::rightColumn commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int int rightColumn() const [] }
+&{rowCount QTableWidgetSelectionRange::rowCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int int rowCount() const [] }
+&{topRow QTableWidgetSelectionRange::topRow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non plain false false  int int topRow() const [] }
+&{~QTableWidgetSelectionRange QTableWidgetSelectionRange::~QTableWidgetSelectionRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qtablewidget.h non destructor false false   ~QTableWidgetSelectionRange() [] }
 ########################################			ENUMS			########################################

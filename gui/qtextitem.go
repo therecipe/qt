@@ -10,8 +10,8 @@ type QTextItem struct {
 	ptr unsafe.Pointer
 }
 
-type QTextItemITF interface {
-	QTextItemPTR() *QTextItem
+type QTextItem_ITF interface {
+	QTextItem_PTR() *QTextItem
 }
 
 func (p *QTextItem) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QTextItem) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQTextItem(ptr QTextItemITF) unsafe.Pointer {
+func PointerFromQTextItem(ptr QTextItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTextItemPTR().Pointer()
+		return ptr.QTextItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTextItemFromPointer(ptr unsafe.Pointer) *QTextItem {
+func NewQTextItemFromPointer(ptr unsafe.Pointer) *QTextItem {
 	var n = new(QTextItem)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QTextItem) QTextItemPTR() *QTextItem {
+func (ptr *QTextItem) QTextItem_PTR() *QTextItem {
 	return ptr
 }
 
 //QTextItem::RenderFlag
-type QTextItem__RenderFlag int
+type QTextItem__RenderFlag int64
 
-var (
+const (
 	QTextItem__RightToLeft = QTextItem__RenderFlag(0x1)
 	QTextItem__Overline    = QTextItem__RenderFlag(0x10)
 	QTextItem__Underline   = QTextItem__RenderFlag(0x20)
@@ -50,16 +50,37 @@ var (
 	QTextItem__Dummy       = QTextItem__RenderFlag(0xffffffff)
 )
 
+func (ptr *QTextItem) Ascent() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QTextItem_Ascent(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QTextItem) Descent() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QTextItem_Descent(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QTextItem) RenderFlags() QTextItem__RenderFlag {
 	if ptr.Pointer() != nil {
-		return QTextItem__RenderFlag(C.QTextItem_RenderFlags(C.QtObjectPtr(ptr.Pointer())))
+		return QTextItem__RenderFlag(C.QTextItem_RenderFlags(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTextItem) Text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextItem_Text(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QTextItem_Text(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QTextItem) Width() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QTextItem_Width(ptr.Pointer()))
+	}
+	return 0
 }

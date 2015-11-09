@@ -12,84 +12,84 @@ type QUndoStack struct {
 	core.QObject
 }
 
-type QUndoStackITF interface {
-	core.QObjectITF
-	QUndoStackPTR() *QUndoStack
+type QUndoStack_ITF interface {
+	core.QObject_ITF
+	QUndoStack_PTR() *QUndoStack
 }
 
-func PointerFromQUndoStack(ptr QUndoStackITF) unsafe.Pointer {
+func PointerFromQUndoStack(ptr QUndoStack_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QUndoStackPTR().Pointer()
+		return ptr.QUndoStack_PTR().Pointer()
 	}
 	return nil
 }
 
-func QUndoStackFromPointer(ptr unsafe.Pointer) *QUndoStack {
+func NewQUndoStackFromPointer(ptr unsafe.Pointer) *QUndoStack {
 	var n = new(QUndoStack)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QUndoStack_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QUndoStack) QUndoStackPTR() *QUndoStack {
+func (ptr *QUndoStack) QUndoStack_PTR() *QUndoStack {
 	return ptr
 }
 
 func (ptr *QUndoStack) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoStack_IsActive(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QUndoStack_IsActive(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QUndoStack) SetActive(active bool) {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_SetActive(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(active)))
+		C.QUndoStack_SetActive(ptr.Pointer(), C.int(qt.GoBoolToInt(active)))
 	}
 }
 
 func (ptr *QUndoStack) SetUndoLimit(limit int) {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_SetUndoLimit(C.QtObjectPtr(ptr.Pointer()), C.int(limit))
+		C.QUndoStack_SetUndoLimit(ptr.Pointer(), C.int(limit))
 	}
 }
 
 func (ptr *QUndoStack) UndoLimit() int {
 	if ptr.Pointer() != nil {
-		return int(C.QUndoStack_UndoLimit(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QUndoStack_UndoLimit(ptr.Pointer()))
 	}
 	return 0
 }
 
-func NewQUndoStack(parent core.QObjectITF) *QUndoStack {
-	return QUndoStackFromPointer(unsafe.Pointer(C.QUndoStack_NewQUndoStack(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQUndoStack(parent core.QObject_ITF) *QUndoStack {
+	return NewQUndoStackFromPointer(C.QUndoStack_NewQUndoStack(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QUndoStack) BeginMacro(text string) {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_BeginMacro(C.QtObjectPtr(ptr.Pointer()), C.CString(text))
+		C.QUndoStack_BeginMacro(ptr.Pointer(), C.CString(text))
 	}
 }
 
 func (ptr *QUndoStack) CanRedo() bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoStack_CanRedo(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QUndoStack_CanRedo(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QUndoStack) ConnectCanRedoChanged(f func(canRedo bool)) {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_ConnectCanRedoChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_ConnectCanRedoChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "canRedoChanged", f)
 	}
 }
 
 func (ptr *QUndoStack) DisconnectCanRedoChanged() {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_DisconnectCanRedoChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_DisconnectCanRedoChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "canRedoChanged")
 	}
 }
@@ -101,21 +101,21 @@ func callbackQUndoStackCanRedoChanged(ptrName *C.char, canRedo C.int) {
 
 func (ptr *QUndoStack) CanUndo() bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoStack_CanUndo(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QUndoStack_CanUndo(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QUndoStack) ConnectCanUndoChanged(f func(canUndo bool)) {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_ConnectCanUndoChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_ConnectCanUndoChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "canUndoChanged", f)
 	}
 }
 
 func (ptr *QUndoStack) DisconnectCanUndoChanged() {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_DisconnectCanUndoChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_DisconnectCanUndoChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "canUndoChanged")
 	}
 }
@@ -127,14 +127,14 @@ func callbackQUndoStackCanUndoChanged(ptrName *C.char, canUndo C.int) {
 
 func (ptr *QUndoStack) ConnectCleanChanged(f func(clean bool)) {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_ConnectCleanChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_ConnectCleanChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "cleanChanged", f)
 	}
 }
 
 func (ptr *QUndoStack) DisconnectCleanChanged() {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_DisconnectCleanChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_DisconnectCleanChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "cleanChanged")
 	}
 }
@@ -146,68 +146,68 @@ func callbackQUndoStackCleanChanged(ptrName *C.char, clean C.int) {
 
 func (ptr *QUndoStack) CleanIndex() int {
 	if ptr.Pointer() != nil {
-		return int(C.QUndoStack_CleanIndex(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QUndoStack_CleanIndex(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QUndoStack) Clear() {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_Clear(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QUndoStack) Command(index int) *QUndoCommand {
 	if ptr.Pointer() != nil {
-		return QUndoCommandFromPointer(unsafe.Pointer(C.QUndoStack_Command(C.QtObjectPtr(ptr.Pointer()), C.int(index))))
+		return NewQUndoCommandFromPointer(C.QUndoStack_Command(ptr.Pointer(), C.int(index)))
 	}
 	return nil
 }
 
 func (ptr *QUndoStack) Count() int {
 	if ptr.Pointer() != nil {
-		return int(C.QUndoStack_Count(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QUndoStack_Count(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QUndoStack) CreateRedoAction(parent core.QObjectITF, prefix string) *QAction {
+func (ptr *QUndoStack) CreateRedoAction(parent core.QObject_ITF, prefix string) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QUndoStack_CreateRedoAction(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQObject(parent)), C.CString(prefix))))
+		return NewQActionFromPointer(C.QUndoStack_CreateRedoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.CString(prefix)))
 	}
 	return nil
 }
 
-func (ptr *QUndoStack) CreateUndoAction(parent core.QObjectITF, prefix string) *QAction {
+func (ptr *QUndoStack) CreateUndoAction(parent core.QObject_ITF, prefix string) *QAction {
 	if ptr.Pointer() != nil {
-		return QActionFromPointer(unsafe.Pointer(C.QUndoStack_CreateUndoAction(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQObject(parent)), C.CString(prefix))))
+		return NewQActionFromPointer(C.QUndoStack_CreateUndoAction(ptr.Pointer(), core.PointerFromQObject(parent), C.CString(prefix)))
 	}
 	return nil
 }
 
 func (ptr *QUndoStack) EndMacro() {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_EndMacro(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_EndMacro(ptr.Pointer())
 	}
 }
 
 func (ptr *QUndoStack) Index() int {
 	if ptr.Pointer() != nil {
-		return int(C.QUndoStack_Index(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QUndoStack_Index(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QUndoStack) ConnectIndexChanged(f func(idx int)) {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_ConnectIndexChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_ConnectIndexChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "indexChanged", f)
 	}
 }
 
 func (ptr *QUndoStack) DisconnectIndexChanged() {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_DisconnectIndexChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_DisconnectIndexChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "indexChanged")
 	}
 }
@@ -219,40 +219,40 @@ func callbackQUndoStackIndexChanged(ptrName *C.char, idx C.int) {
 
 func (ptr *QUndoStack) IsClean() bool {
 	if ptr.Pointer() != nil {
-		return C.QUndoStack_IsClean(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QUndoStack_IsClean(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QUndoStack) Push(cmd QUndoCommandITF) {
+func (ptr *QUndoStack) Push(cmd QUndoCommand_ITF) {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_Push(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQUndoCommand(cmd)))
+		C.QUndoStack_Push(ptr.Pointer(), PointerFromQUndoCommand(cmd))
 	}
 }
 
 func (ptr *QUndoStack) Redo() {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_Redo(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_Redo(ptr.Pointer())
 	}
 }
 
 func (ptr *QUndoStack) RedoText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QUndoStack_RedoText(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QUndoStack_RedoText(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QUndoStack) ConnectRedoTextChanged(f func(redoText string)) {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_ConnectRedoTextChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_ConnectRedoTextChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "redoTextChanged", f)
 	}
 }
 
 func (ptr *QUndoStack) DisconnectRedoTextChanged() {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_DisconnectRedoTextChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_DisconnectRedoTextChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "redoTextChanged")
 	}
 }
@@ -264,46 +264,46 @@ func callbackQUndoStackRedoTextChanged(ptrName *C.char, redoText *C.char) {
 
 func (ptr *QUndoStack) SetClean() {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_SetClean(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_SetClean(ptr.Pointer())
 	}
 }
 
 func (ptr *QUndoStack) SetIndex(idx int) {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_SetIndex(C.QtObjectPtr(ptr.Pointer()), C.int(idx))
+		C.QUndoStack_SetIndex(ptr.Pointer(), C.int(idx))
 	}
 }
 
 func (ptr *QUndoStack) Text(idx int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QUndoStack_Text(C.QtObjectPtr(ptr.Pointer()), C.int(idx)))
+		return C.GoString(C.QUndoStack_Text(ptr.Pointer(), C.int(idx)))
 	}
 	return ""
 }
 
 func (ptr *QUndoStack) Undo() {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_Undo(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_Undo(ptr.Pointer())
 	}
 }
 
 func (ptr *QUndoStack) UndoText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QUndoStack_UndoText(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QUndoStack_UndoText(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QUndoStack) ConnectUndoTextChanged(f func(undoText string)) {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_ConnectUndoTextChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_ConnectUndoTextChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "undoTextChanged", f)
 	}
 }
 
 func (ptr *QUndoStack) DisconnectUndoTextChanged() {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_DisconnectUndoTextChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_DisconnectUndoTextChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "undoTextChanged")
 	}
 }
@@ -315,7 +315,7 @@ func callbackQUndoStackUndoTextChanged(ptrName *C.char, undoText *C.char) {
 
 func (ptr *QUndoStack) DestroyQUndoStack() {
 	if ptr.Pointer() != nil {
-		C.QUndoStack_DestroyQUndoStack(C.QtObjectPtr(ptr.Pointer()))
+		C.QUndoStack_DestroyQUndoStack(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

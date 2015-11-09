@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QAmbientTemperatureFilter_Filter(QtObjectPtr ptr, QtObjectPtr reading);
+int QAmbientTemperatureFilter_Filter(void* ptr, void* reading);
 
 #ifdef __cplusplus
 }

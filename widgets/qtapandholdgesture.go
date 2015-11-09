@@ -12,34 +12,34 @@ type QTapAndHoldGesture struct {
 	QGesture
 }
 
-type QTapAndHoldGestureITF interface {
-	QGestureITF
-	QTapAndHoldGesturePTR() *QTapAndHoldGesture
+type QTapAndHoldGesture_ITF interface {
+	QGesture_ITF
+	QTapAndHoldGesture_PTR() *QTapAndHoldGesture
 }
 
-func PointerFromQTapAndHoldGesture(ptr QTapAndHoldGestureITF) unsafe.Pointer {
+func PointerFromQTapAndHoldGesture(ptr QTapAndHoldGesture_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTapAndHoldGesturePTR().Pointer()
+		return ptr.QTapAndHoldGesture_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTapAndHoldGestureFromPointer(ptr unsafe.Pointer) *QTapAndHoldGesture {
+func NewQTapAndHoldGestureFromPointer(ptr unsafe.Pointer) *QTapAndHoldGesture {
 	var n = new(QTapAndHoldGesture)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QTapAndHoldGesture_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QTapAndHoldGesture) QTapAndHoldGesturePTR() *QTapAndHoldGesture {
+func (ptr *QTapAndHoldGesture) QTapAndHoldGesture_PTR() *QTapAndHoldGesture {
 	return ptr
 }
 
-func (ptr *QTapAndHoldGesture) SetPosition(pos core.QPointFITF) {
+func (ptr *QTapAndHoldGesture) SetPosition(pos core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTapAndHoldGesture_SetPosition(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(pos)))
+		C.QTapAndHoldGesture_SetPosition(ptr.Pointer(), core.PointerFromQPointF(pos))
 	}
 }
 
@@ -53,7 +53,7 @@ func QTapAndHoldGesture_Timeout() int {
 
 func (ptr *QTapAndHoldGesture) DestroyQTapAndHoldGesture() {
 	if ptr.Pointer() != nil {
-		C.QTapAndHoldGesture_DestroyQTapAndHoldGesture(C.QtObjectPtr(ptr.Pointer()))
+		C.QTapAndHoldGesture_DestroyQTapAndHoldGesture(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

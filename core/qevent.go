@@ -11,8 +11,8 @@ type QEvent struct {
 	ptr unsafe.Pointer
 }
 
-type QEventITF interface {
-	QEventPTR() *QEvent
+type QEvent_ITF interface {
+	QEvent_PTR() *QEvent
 }
 
 func (p *QEvent) Pointer() unsafe.Pointer {
@@ -23,27 +23,27 @@ func (p *QEvent) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQEvent(ptr QEventITF) unsafe.Pointer {
+func PointerFromQEvent(ptr QEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QEventPTR().Pointer()
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QEventFromPointer(ptr unsafe.Pointer) *QEvent {
+func NewQEventFromPointer(ptr unsafe.Pointer) *QEvent {
 	var n = new(QEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QEvent) QEventPTR() *QEvent {
+func (ptr *QEvent) QEvent_PTR() *QEvent {
 	return ptr
 }
 
 //QEvent::Type
-type QEvent__Type int
+type QEvent__Type int64
 
-var (
+const (
 	QEvent__None                             = QEvent__Type(0)
 	QEvent__Timer                            = QEvent__Type(1)
 	QEvent__MouseButtonPress                 = QEvent__Type(2)
@@ -219,24 +219,24 @@ var (
 )
 
 func NewQEvent(ty QEvent__Type) *QEvent {
-	return QEventFromPointer(unsafe.Pointer(C.QEvent_NewQEvent(C.int(ty))))
+	return NewQEventFromPointer(C.QEvent_NewQEvent(C.int(ty)))
 }
 
 func (ptr *QEvent) Accept() {
 	if ptr.Pointer() != nil {
-		C.QEvent_Accept(C.QtObjectPtr(ptr.Pointer()))
+		C.QEvent_Accept(ptr.Pointer())
 	}
 }
 
 func (ptr *QEvent) Ignore() {
 	if ptr.Pointer() != nil {
-		C.QEvent_Ignore(C.QtObjectPtr(ptr.Pointer()))
+		C.QEvent_Ignore(ptr.Pointer())
 	}
 }
 
 func (ptr *QEvent) IsAccepted() bool {
 	if ptr.Pointer() != nil {
-		return C.QEvent_IsAccepted(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QEvent_IsAccepted(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -247,26 +247,26 @@ func QEvent_RegisterEventType(hint int) int {
 
 func (ptr *QEvent) SetAccepted(accepted bool) {
 	if ptr.Pointer() != nil {
-		C.QEvent_SetAccepted(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(accepted)))
+		C.QEvent_SetAccepted(ptr.Pointer(), C.int(qt.GoBoolToInt(accepted)))
 	}
 }
 
 func (ptr *QEvent) Spontaneous() bool {
 	if ptr.Pointer() != nil {
-		return C.QEvent_Spontaneous(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QEvent_Spontaneous(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QEvent) Type() QEvent__Type {
 	if ptr.Pointer() != nil {
-		return QEvent__Type(C.QEvent_Type(C.QtObjectPtr(ptr.Pointer())))
+		return QEvent__Type(C.QEvent_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QEvent) DestroyQEvent() {
 	if ptr.Pointer() != nil {
-		C.QEvent_DestroyQEvent(C.QtObjectPtr(ptr.Pointer()))
+		C.QEvent_DestroyQEvent(ptr.Pointer())
 	}
 }

@@ -4,6 +4,7 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
 	"unsafe"
 )
@@ -12,8 +13,8 @@ type QMediaContent struct {
 	ptr unsafe.Pointer
 }
 
-type QMediaContentITF interface {
-	QMediaContentPTR() *QMediaContent
+type QMediaContent_ITF interface {
+	QMediaContent_PTR() *QMediaContent
 }
 
 func (p *QMediaContent) Pointer() unsafe.Pointer {
@@ -24,70 +25,63 @@ func (p *QMediaContent) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMediaContent(ptr QMediaContentITF) unsafe.Pointer {
+func PointerFromQMediaContent(ptr QMediaContent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaContentPTR().Pointer()
+		return ptr.QMediaContent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaContentFromPointer(ptr unsafe.Pointer) *QMediaContent {
+func NewQMediaContentFromPointer(ptr unsafe.Pointer) *QMediaContent {
 	var n = new(QMediaContent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMediaContent) QMediaContentPTR() *QMediaContent {
+func (ptr *QMediaContent) QMediaContent_PTR() *QMediaContent {
 	return ptr
 }
 
 func NewQMediaContent() *QMediaContent {
-	return QMediaContentFromPointer(unsafe.Pointer(C.QMediaContent_NewQMediaContent()))
+	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent())
 }
 
-func NewQMediaContent7(playlist QMediaPlaylistITF, contentUrl string, takeOwnership bool) *QMediaContent {
-	return QMediaContentFromPointer(unsafe.Pointer(C.QMediaContent_NewQMediaContent7(C.QtObjectPtr(PointerFromQMediaPlaylist(playlist)), C.CString(contentUrl), C.int(qt.GoBoolToInt(takeOwnership)))))
+func NewQMediaContent7(playlist QMediaPlaylist_ITF, contentUrl core.QUrl_ITF, takeOwnership bool) *QMediaContent {
+	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent7(PointerFromQMediaPlaylist(playlist), core.PointerFromQUrl(contentUrl), C.int(qt.GoBoolToInt(takeOwnership))))
 }
 
-func NewQMediaContent6(other QMediaContentITF) *QMediaContent {
-	return QMediaContentFromPointer(unsafe.Pointer(C.QMediaContent_NewQMediaContent6(C.QtObjectPtr(PointerFromQMediaContent(other)))))
+func NewQMediaContent6(other QMediaContent_ITF) *QMediaContent {
+	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent6(PointerFromQMediaContent(other)))
 }
 
-func NewQMediaContent4(resource QMediaResourceITF) *QMediaContent {
-	return QMediaContentFromPointer(unsafe.Pointer(C.QMediaContent_NewQMediaContent4(C.QtObjectPtr(PointerFromQMediaResource(resource)))))
+func NewQMediaContent4(resource QMediaResource_ITF) *QMediaContent {
+	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent4(PointerFromQMediaResource(resource)))
 }
 
-func NewQMediaContent3(request network.QNetworkRequestITF) *QMediaContent {
-	return QMediaContentFromPointer(unsafe.Pointer(C.QMediaContent_NewQMediaContent3(C.QtObjectPtr(network.PointerFromQNetworkRequest(request)))))
+func NewQMediaContent3(request network.QNetworkRequest_ITF) *QMediaContent {
+	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent3(network.PointerFromQNetworkRequest(request)))
 }
 
-func NewQMediaContent2(url string) *QMediaContent {
-	return QMediaContentFromPointer(unsafe.Pointer(C.QMediaContent_NewQMediaContent2(C.CString(url))))
-}
-
-func (ptr *QMediaContent) CanonicalUrl() string {
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QMediaContent_CanonicalUrl(C.QtObjectPtr(ptr.Pointer())))
-	}
-	return ""
+func NewQMediaContent2(url core.QUrl_ITF) *QMediaContent {
+	return NewQMediaContentFromPointer(C.QMediaContent_NewQMediaContent2(core.PointerFromQUrl(url)))
 }
 
 func (ptr *QMediaContent) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaContent_IsNull(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMediaContent_IsNull(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaContent) Playlist() *QMediaPlaylist {
 	if ptr.Pointer() != nil {
-		return QMediaPlaylistFromPointer(unsafe.Pointer(C.QMediaContent_Playlist(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQMediaPlaylistFromPointer(C.QMediaContent_Playlist(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QMediaContent) DestroyQMediaContent() {
 	if ptr.Pointer() != nil {
-		C.QMediaContent_DestroyQMediaContent(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaContent_DestroyQMediaContent(ptr.Pointer())
 	}
 }

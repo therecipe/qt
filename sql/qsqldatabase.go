@@ -11,8 +11,8 @@ type QSqlDatabase struct {
 	ptr unsafe.Pointer
 }
 
-type QSqlDatabaseITF interface {
-	QSqlDatabasePTR() *QSqlDatabase
+type QSqlDatabase_ITF interface {
+	QSqlDatabase_PTR() *QSqlDatabase
 }
 
 func (p *QSqlDatabase) Pointer() unsafe.Pointer {
@@ -23,54 +23,54 @@ func (p *QSqlDatabase) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSqlDatabase(ptr QSqlDatabaseITF) unsafe.Pointer {
+func PointerFromQSqlDatabase(ptr QSqlDatabase_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSqlDatabasePTR().Pointer()
+		return ptr.QSqlDatabase_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSqlDatabaseFromPointer(ptr unsafe.Pointer) *QSqlDatabase {
+func NewQSqlDatabaseFromPointer(ptr unsafe.Pointer) *QSqlDatabase {
 	var n = new(QSqlDatabase)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSqlDatabase) QSqlDatabasePTR() *QSqlDatabase {
+func (ptr *QSqlDatabase) QSqlDatabase_PTR() *QSqlDatabase {
 	return ptr
 }
 
 func NewQSqlDatabase() *QSqlDatabase {
-	return QSqlDatabaseFromPointer(unsafe.Pointer(C.QSqlDatabase_NewQSqlDatabase()))
+	return NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase())
 }
 
-func NewQSqlDatabase2(other QSqlDatabaseITF) *QSqlDatabase {
-	return QSqlDatabaseFromPointer(unsafe.Pointer(C.QSqlDatabase_NewQSqlDatabase2(C.QtObjectPtr(PointerFromQSqlDatabase(other)))))
+func NewQSqlDatabase2(other QSqlDatabase_ITF) *QSqlDatabase {
+	return NewQSqlDatabaseFromPointer(C.QSqlDatabase_NewQSqlDatabase2(PointerFromQSqlDatabase(other)))
 }
 
 func (ptr *QSqlDatabase) Close() {
 	if ptr.Pointer() != nil {
-		C.QSqlDatabase_Close(C.QtObjectPtr(ptr.Pointer()))
+		C.QSqlDatabase_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QSqlDatabase) Commit() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_Commit(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSqlDatabase_Commit(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDatabase) ConnectOptions() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_ConnectOptions(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSqlDatabase_ConnectOptions(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlDatabase) ConnectionName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_ConnectionName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSqlDatabase_ConnectionName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -85,21 +85,21 @@ func QSqlDatabase_Contains(connectionName string) bool {
 
 func (ptr *QSqlDatabase) DatabaseName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_DatabaseName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSqlDatabase_DatabaseName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlDatabase) Driver() *QSqlDriver {
 	if ptr.Pointer() != nil {
-		return QSqlDriverFromPointer(unsafe.Pointer(C.QSqlDatabase_Driver(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQSqlDriverFromPointer(C.QSqlDatabase_Driver(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QSqlDatabase) DriverName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_DriverName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSqlDatabase_DriverName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -110,7 +110,7 @@ func QSqlDatabase_Drivers() []string {
 
 func (ptr *QSqlDatabase) HostName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_HostName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSqlDatabase_HostName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -121,55 +121,55 @@ func QSqlDatabase_IsDriverAvailable(name string) bool {
 
 func (ptr *QSqlDatabase) IsOpen() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_IsOpen(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSqlDatabase_IsOpen(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDatabase) IsOpenError() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_IsOpenError(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSqlDatabase_IsOpenError(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDatabase) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSqlDatabase_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDatabase) Open() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_Open(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSqlDatabase_Open(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDatabase) Open2(user string, password string) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_Open2(C.QtObjectPtr(ptr.Pointer()), C.CString(user), C.CString(password)) != 0
+		return C.QSqlDatabase_Open2(ptr.Pointer(), C.CString(user), C.CString(password)) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDatabase) Password() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_Password(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSqlDatabase_Password(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlDatabase) Port() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSqlDatabase_Port(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSqlDatabase_Port(ptr.Pointer()))
 	}
 	return 0
 }
 
-func QSqlDatabase_RegisterSqlDriver(name string, creator QSqlDriverCreatorBaseITF) {
-	C.QSqlDatabase_QSqlDatabase_RegisterSqlDriver(C.CString(name), C.QtObjectPtr(PointerFromQSqlDriverCreatorBase(creator)))
+func QSqlDatabase_RegisterSqlDriver(name string, creator QSqlDriverCreatorBase_ITF) {
+	C.QSqlDatabase_QSqlDatabase_RegisterSqlDriver(C.CString(name), PointerFromQSqlDriverCreatorBase(creator))
 }
 
 func QSqlDatabase_RemoveDatabase(connectionName string) {
@@ -178,63 +178,63 @@ func QSqlDatabase_RemoveDatabase(connectionName string) {
 
 func (ptr *QSqlDatabase) Rollback() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_Rollback(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSqlDatabase_Rollback(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDatabase) SetConnectOptions(options string) {
 	if ptr.Pointer() != nil {
-		C.QSqlDatabase_SetConnectOptions(C.QtObjectPtr(ptr.Pointer()), C.CString(options))
+		C.QSqlDatabase_SetConnectOptions(ptr.Pointer(), C.CString(options))
 	}
 }
 
 func (ptr *QSqlDatabase) SetDatabaseName(name string) {
 	if ptr.Pointer() != nil {
-		C.QSqlDatabase_SetDatabaseName(C.QtObjectPtr(ptr.Pointer()), C.CString(name))
+		C.QSqlDatabase_SetDatabaseName(ptr.Pointer(), C.CString(name))
 	}
 }
 
 func (ptr *QSqlDatabase) SetHostName(host string) {
 	if ptr.Pointer() != nil {
-		C.QSqlDatabase_SetHostName(C.QtObjectPtr(ptr.Pointer()), C.CString(host))
+		C.QSqlDatabase_SetHostName(ptr.Pointer(), C.CString(host))
 	}
 }
 
 func (ptr *QSqlDatabase) SetPassword(password string) {
 	if ptr.Pointer() != nil {
-		C.QSqlDatabase_SetPassword(C.QtObjectPtr(ptr.Pointer()), C.CString(password))
+		C.QSqlDatabase_SetPassword(ptr.Pointer(), C.CString(password))
 	}
 }
 
 func (ptr *QSqlDatabase) SetPort(port int) {
 	if ptr.Pointer() != nil {
-		C.QSqlDatabase_SetPort(C.QtObjectPtr(ptr.Pointer()), C.int(port))
+		C.QSqlDatabase_SetPort(ptr.Pointer(), C.int(port))
 	}
 }
 
 func (ptr *QSqlDatabase) SetUserName(name string) {
 	if ptr.Pointer() != nil {
-		C.QSqlDatabase_SetUserName(C.QtObjectPtr(ptr.Pointer()), C.CString(name))
+		C.QSqlDatabase_SetUserName(ptr.Pointer(), C.CString(name))
 	}
 }
 
 func (ptr *QSqlDatabase) Transaction() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDatabase_Transaction(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSqlDatabase_Transaction(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDatabase) UserName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_UserName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSqlDatabase_UserName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlDatabase) DestroyQSqlDatabase() {
 	if ptr.Pointer() != nil {
-		C.QSqlDatabase_DestroyQSqlDatabase(C.QtObjectPtr(ptr.Pointer()))
+		C.QSqlDatabase_DestroyQSqlDatabase(ptr.Pointer())
 	}
 }

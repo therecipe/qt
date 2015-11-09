@@ -1,16 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDomNamedNodeMap_NewQDomNamedNodeMap();
-QtObjectPtr QDomNamedNodeMap_NewQDomNamedNodeMap2(QtObjectPtr n);
-int QDomNamedNodeMap_Contains(QtObjectPtr ptr, char* name);
-int QDomNamedNodeMap_Count(QtObjectPtr ptr);
-int QDomNamedNodeMap_IsEmpty(QtObjectPtr ptr);
-int QDomNamedNodeMap_Length(QtObjectPtr ptr);
-int QDomNamedNodeMap_Size(QtObjectPtr ptr);
-void QDomNamedNodeMap_DestroyQDomNamedNodeMap(QtObjectPtr ptr);
+void* QDomNamedNodeMap_NewQDomNamedNodeMap();
+void* QDomNamedNodeMap_NewQDomNamedNodeMap2(void* n);
+int QDomNamedNodeMap_Contains(void* ptr, char* name);
+int QDomNamedNodeMap_Count(void* ptr);
+int QDomNamedNodeMap_IsEmpty(void* ptr);
+int QDomNamedNodeMap_Length(void* ptr);
+int QDomNamedNodeMap_Size(void* ptr);
+void QDomNamedNodeMap_DestroyQDomNamedNodeMap(void* ptr);
 
 #ifdef __cplusplus
 }

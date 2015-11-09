@@ -12,8 +12,8 @@ type QToolTip struct {
 	ptr unsafe.Pointer
 }
 
-type QToolTipITF interface {
-	QToolTipPTR() *QToolTip
+type QToolTip_ITF interface {
+	QToolTip_PTR() *QToolTip
 }
 
 func (p *QToolTip) Pointer() unsafe.Pointer {
@@ -24,20 +24,20 @@ func (p *QToolTip) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQToolTip(ptr QToolTipITF) unsafe.Pointer {
+func PointerFromQToolTip(ptr QToolTip_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QToolTipPTR().Pointer()
+		return ptr.QToolTip_PTR().Pointer()
 	}
 	return nil
 }
 
-func QToolTipFromPointer(ptr unsafe.Pointer) *QToolTip {
+func NewQToolTipFromPointer(ptr unsafe.Pointer) *QToolTip {
 	var n = new(QToolTip)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QToolTip) QToolTipPTR() *QToolTip {
+func (ptr *QToolTip) QToolTip_PTR() *QToolTip {
 	return ptr
 }
 
@@ -49,24 +49,24 @@ func QToolTip_IsVisible() bool {
 	return C.QToolTip_QToolTip_IsVisible() != 0
 }
 
-func QToolTip_SetFont(font gui.QFontITF) {
-	C.QToolTip_QToolTip_SetFont(C.QtObjectPtr(gui.PointerFromQFont(font)))
+func QToolTip_SetFont(font gui.QFont_ITF) {
+	C.QToolTip_QToolTip_SetFont(gui.PointerFromQFont(font))
 }
 
-func QToolTip_SetPalette(palette gui.QPaletteITF) {
-	C.QToolTip_QToolTip_SetPalette(C.QtObjectPtr(gui.PointerFromQPalette(palette)))
+func QToolTip_SetPalette(palette gui.QPalette_ITF) {
+	C.QToolTip_QToolTip_SetPalette(gui.PointerFromQPalette(palette))
 }
 
-func QToolTip_ShowText3(pos core.QPointITF, text string, w QWidgetITF) {
-	C.QToolTip_QToolTip_ShowText3(C.QtObjectPtr(core.PointerFromQPoint(pos)), C.CString(text), C.QtObjectPtr(PointerFromQWidget(w)))
+func QToolTip_ShowText3(pos core.QPoint_ITF, text string, w QWidget_ITF) {
+	C.QToolTip_QToolTip_ShowText3(core.PointerFromQPoint(pos), C.CString(text), PointerFromQWidget(w))
 }
 
-func QToolTip_ShowText(pos core.QPointITF, text string, w QWidgetITF, rect core.QRectITF) {
-	C.QToolTip_QToolTip_ShowText(C.QtObjectPtr(core.PointerFromQPoint(pos)), C.CString(text), C.QtObjectPtr(PointerFromQWidget(w)), C.QtObjectPtr(core.PointerFromQRect(rect)))
+func QToolTip_ShowText(pos core.QPoint_ITF, text string, w QWidget_ITF, rect core.QRect_ITF) {
+	C.QToolTip_QToolTip_ShowText(core.PointerFromQPoint(pos), C.CString(text), PointerFromQWidget(w), core.PointerFromQRect(rect))
 }
 
-func QToolTip_ShowText2(pos core.QPointITF, text string, w QWidgetITF, rect core.QRectITF, msecDisplayTime int) {
-	C.QToolTip_QToolTip_ShowText2(C.QtObjectPtr(core.PointerFromQPoint(pos)), C.CString(text), C.QtObjectPtr(PointerFromQWidget(w)), C.QtObjectPtr(core.PointerFromQRect(rect)), C.int(msecDisplayTime))
+func QToolTip_ShowText2(pos core.QPoint_ITF, text string, w QWidget_ITF, rect core.QRect_ITF, msecDisplayTime int) {
+	C.QToolTip_QToolTip_ShowText2(core.PointerFromQPoint(pos), C.CString(text), PointerFromQWidget(w), core.PointerFromQRect(rect), C.int(msecDisplayTime))
 }
 
 func QToolTip_Text() string {

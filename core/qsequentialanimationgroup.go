@@ -11,81 +11,81 @@ type QSequentialAnimationGroup struct {
 	QAnimationGroup
 }
 
-type QSequentialAnimationGroupITF interface {
-	QAnimationGroupITF
-	QSequentialAnimationGroupPTR() *QSequentialAnimationGroup
+type QSequentialAnimationGroup_ITF interface {
+	QAnimationGroup_ITF
+	QSequentialAnimationGroup_PTR() *QSequentialAnimationGroup
 }
 
-func PointerFromQSequentialAnimationGroup(ptr QSequentialAnimationGroupITF) unsafe.Pointer {
+func PointerFromQSequentialAnimationGroup(ptr QSequentialAnimationGroup_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSequentialAnimationGroupPTR().Pointer()
+		return ptr.QSequentialAnimationGroup_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSequentialAnimationGroupFromPointer(ptr unsafe.Pointer) *QSequentialAnimationGroup {
+func NewQSequentialAnimationGroupFromPointer(ptr unsafe.Pointer) *QSequentialAnimationGroup {
 	var n = new(QSequentialAnimationGroup)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QSequentialAnimationGroup_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QSequentialAnimationGroup) QSequentialAnimationGroupPTR() *QSequentialAnimationGroup {
+func (ptr *QSequentialAnimationGroup) QSequentialAnimationGroup_PTR() *QSequentialAnimationGroup {
 	return ptr
 }
 
 func (ptr *QSequentialAnimationGroup) CurrentAnimation() *QAbstractAnimation {
 	if ptr.Pointer() != nil {
-		return QAbstractAnimationFromPointer(unsafe.Pointer(C.QSequentialAnimationGroup_CurrentAnimation(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAbstractAnimationFromPointer(C.QSequentialAnimationGroup_CurrentAnimation(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QSequentialAnimationGroup) AddPause(msecs int) *QPauseAnimation {
 	if ptr.Pointer() != nil {
-		return QPauseAnimationFromPointer(unsafe.Pointer(C.QSequentialAnimationGroup_AddPause(C.QtObjectPtr(ptr.Pointer()), C.int(msecs))))
+		return NewQPauseAnimationFromPointer(C.QSequentialAnimationGroup_AddPause(ptr.Pointer(), C.int(msecs)))
 	}
 	return nil
 }
 
-func (ptr *QSequentialAnimationGroup) ConnectCurrentAnimationChanged(f func(current QAbstractAnimationITF)) {
+func (ptr *QSequentialAnimationGroup) ConnectCurrentAnimationChanged(f func(current *QAbstractAnimation)) {
 	if ptr.Pointer() != nil {
-		C.QSequentialAnimationGroup_ConnectCurrentAnimationChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSequentialAnimationGroup_ConnectCurrentAnimationChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "currentAnimationChanged", f)
 	}
 }
 
 func (ptr *QSequentialAnimationGroup) DisconnectCurrentAnimationChanged() {
 	if ptr.Pointer() != nil {
-		C.QSequentialAnimationGroup_DisconnectCurrentAnimationChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSequentialAnimationGroup_DisconnectCurrentAnimationChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "currentAnimationChanged")
 	}
 }
 
 //export callbackQSequentialAnimationGroupCurrentAnimationChanged
 func callbackQSequentialAnimationGroupCurrentAnimationChanged(ptrName *C.char, current unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "currentAnimationChanged").(func(*QAbstractAnimation))(QAbstractAnimationFromPointer(current))
+	qt.GetSignal(C.GoString(ptrName), "currentAnimationChanged").(func(*QAbstractAnimation))(NewQAbstractAnimationFromPointer(current))
 }
 
 func (ptr *QSequentialAnimationGroup) Duration() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSequentialAnimationGroup_Duration(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSequentialAnimationGroup_Duration(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSequentialAnimationGroup) InsertPause(index int, msecs int) *QPauseAnimation {
 	if ptr.Pointer() != nil {
-		return QPauseAnimationFromPointer(unsafe.Pointer(C.QSequentialAnimationGroup_InsertPause(C.QtObjectPtr(ptr.Pointer()), C.int(index), C.int(msecs))))
+		return NewQPauseAnimationFromPointer(C.QSequentialAnimationGroup_InsertPause(ptr.Pointer(), C.int(index), C.int(msecs)))
 	}
 	return nil
 }
 
 func (ptr *QSequentialAnimationGroup) DestroyQSequentialAnimationGroup() {
 	if ptr.Pointer() != nil {
-		C.QSequentialAnimationGroup_DestroyQSequentialAnimationGroup(C.QtObjectPtr(ptr.Pointer()))
+		C.QSequentialAnimationGroup_DestroyQSequentialAnimationGroup(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

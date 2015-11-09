@@ -12,35 +12,35 @@ type QMdiSubWindow struct {
 	QWidget
 }
 
-type QMdiSubWindowITF interface {
-	QWidgetITF
-	QMdiSubWindowPTR() *QMdiSubWindow
+type QMdiSubWindow_ITF interface {
+	QWidget_ITF
+	QMdiSubWindow_PTR() *QMdiSubWindow
 }
 
-func PointerFromQMdiSubWindow(ptr QMdiSubWindowITF) unsafe.Pointer {
+func PointerFromQMdiSubWindow(ptr QMdiSubWindow_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMdiSubWindowPTR().Pointer()
+		return ptr.QMdiSubWindow_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMdiSubWindowFromPointer(ptr unsafe.Pointer) *QMdiSubWindow {
+func NewQMdiSubWindowFromPointer(ptr unsafe.Pointer) *QMdiSubWindow {
 	var n = new(QMdiSubWindow)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMdiSubWindow_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMdiSubWindow) QMdiSubWindowPTR() *QMdiSubWindow {
+func (ptr *QMdiSubWindow) QMdiSubWindow_PTR() *QMdiSubWindow {
 	return ptr
 }
 
 //QMdiSubWindow::SubWindowOption
-type QMdiSubWindow__SubWindowOption int
+type QMdiSubWindow__SubWindowOption int64
 
-var (
+const (
 	QMdiSubWindow__AllowOutsideAreaHorizontally = QMdiSubWindow__SubWindowOption(0x1)
 	QMdiSubWindow__AllowOutsideAreaVertically   = QMdiSubWindow__SubWindowOption(0x2)
 	QMdiSubWindow__RubberBandResize             = QMdiSubWindow__SubWindowOption(0x4)
@@ -49,44 +49,44 @@ var (
 
 func (ptr *QMdiSubWindow) KeyboardPageStep() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMdiSubWindow_KeyboardPageStep(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMdiSubWindow_KeyboardPageStep(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QMdiSubWindow) KeyboardSingleStep() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMdiSubWindow_KeyboardSingleStep(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMdiSubWindow_KeyboardSingleStep(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QMdiSubWindow) SetKeyboardPageStep(step int) {
 	if ptr.Pointer() != nil {
-		C.QMdiSubWindow_SetKeyboardPageStep(C.QtObjectPtr(ptr.Pointer()), C.int(step))
+		C.QMdiSubWindow_SetKeyboardPageStep(ptr.Pointer(), C.int(step))
 	}
 }
 
 func (ptr *QMdiSubWindow) SetKeyboardSingleStep(step int) {
 	if ptr.Pointer() != nil {
-		C.QMdiSubWindow_SetKeyboardSingleStep(C.QtObjectPtr(ptr.Pointer()), C.int(step))
+		C.QMdiSubWindow_SetKeyboardSingleStep(ptr.Pointer(), C.int(step))
 	}
 }
 
-func NewQMdiSubWindow(parent QWidgetITF, flags core.Qt__WindowType) *QMdiSubWindow {
-	return QMdiSubWindowFromPointer(unsafe.Pointer(C.QMdiSubWindow_NewQMdiSubWindow(C.QtObjectPtr(PointerFromQWidget(parent)), C.int(flags))))
+func NewQMdiSubWindow(parent QWidget_ITF, flags core.Qt__WindowType) *QMdiSubWindow {
+	return NewQMdiSubWindowFromPointer(C.QMdiSubWindow_NewQMdiSubWindow(PointerFromQWidget(parent), C.int(flags)))
 }
 
 func (ptr *QMdiSubWindow) ConnectAboutToActivate(f func()) {
 	if ptr.Pointer() != nil {
-		C.QMdiSubWindow_ConnectAboutToActivate(C.QtObjectPtr(ptr.Pointer()))
+		C.QMdiSubWindow_ConnectAboutToActivate(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "aboutToActivate", f)
 	}
 }
 
 func (ptr *QMdiSubWindow) DisconnectAboutToActivate() {
 	if ptr.Pointer() != nil {
-		C.QMdiSubWindow_DisconnectAboutToActivate(C.QtObjectPtr(ptr.Pointer()))
+		C.QMdiSubWindow_DisconnectAboutToActivate(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "aboutToActivate")
 	}
 }
@@ -98,79 +98,79 @@ func callbackQMdiSubWindowAboutToActivate(ptrName *C.char) {
 
 func (ptr *QMdiSubWindow) IsShaded() bool {
 	if ptr.Pointer() != nil {
-		return C.QMdiSubWindow_IsShaded(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMdiSubWindow_IsShaded(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMdiSubWindow) MdiArea() *QMdiArea {
 	if ptr.Pointer() != nil {
-		return QMdiAreaFromPointer(unsafe.Pointer(C.QMdiSubWindow_MdiArea(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQMdiAreaFromPointer(C.QMdiSubWindow_MdiArea(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QMdiSubWindow) SetOption(option QMdiSubWindow__SubWindowOption, on bool) {
 	if ptr.Pointer() != nil {
-		C.QMdiSubWindow_SetOption(C.QtObjectPtr(ptr.Pointer()), C.int(option), C.int(qt.GoBoolToInt(on)))
+		C.QMdiSubWindow_SetOption(ptr.Pointer(), C.int(option), C.int(qt.GoBoolToInt(on)))
 	}
 }
 
-func (ptr *QMdiSubWindow) SetSystemMenu(systemMenu QMenuITF) {
+func (ptr *QMdiSubWindow) SetSystemMenu(systemMenu QMenu_ITF) {
 	if ptr.Pointer() != nil {
-		C.QMdiSubWindow_SetSystemMenu(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQMenu(systemMenu)))
+		C.QMdiSubWindow_SetSystemMenu(ptr.Pointer(), PointerFromQMenu(systemMenu))
 	}
 }
 
-func (ptr *QMdiSubWindow) SetWidget(widget QWidgetITF) {
+func (ptr *QMdiSubWindow) SetWidget(widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QMdiSubWindow_SetWidget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QMdiSubWindow_SetWidget(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QMdiSubWindow) ShowShaded() {
 	if ptr.Pointer() != nil {
-		C.QMdiSubWindow_ShowShaded(C.QtObjectPtr(ptr.Pointer()))
+		C.QMdiSubWindow_ShowShaded(ptr.Pointer())
 	}
 }
 
 func (ptr *QMdiSubWindow) ShowSystemMenu() {
 	if ptr.Pointer() != nil {
-		C.QMdiSubWindow_ShowSystemMenu(C.QtObjectPtr(ptr.Pointer()))
+		C.QMdiSubWindow_ShowSystemMenu(ptr.Pointer())
 	}
 }
 
 func (ptr *QMdiSubWindow) SystemMenu() *QMenu {
 	if ptr.Pointer() != nil {
-		return QMenuFromPointer(unsafe.Pointer(C.QMdiSubWindow_SystemMenu(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQMenuFromPointer(C.QMdiSubWindow_SystemMenu(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QMdiSubWindow) TestOption(option QMdiSubWindow__SubWindowOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QMdiSubWindow_TestOption(C.QtObjectPtr(ptr.Pointer()), C.int(option)) != 0
+		return C.QMdiSubWindow_TestOption(ptr.Pointer(), C.int(option)) != 0
 	}
 	return false
 }
 
 func (ptr *QMdiSubWindow) Widget() *QWidget {
 	if ptr.Pointer() != nil {
-		return QWidgetFromPointer(unsafe.Pointer(C.QMdiSubWindow_Widget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQWidgetFromPointer(C.QMdiSubWindow_Widget(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QMdiSubWindow) ConnectWindowStateChanged(f func(oldState core.Qt__WindowState, newState core.Qt__WindowState)) {
 	if ptr.Pointer() != nil {
-		C.QMdiSubWindow_ConnectWindowStateChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMdiSubWindow_ConnectWindowStateChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "windowStateChanged", f)
 	}
 }
 
 func (ptr *QMdiSubWindow) DisconnectWindowStateChanged() {
 	if ptr.Pointer() != nil {
-		C.QMdiSubWindow_DisconnectWindowStateChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QMdiSubWindow_DisconnectWindowStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "windowStateChanged")
 	}
 }
@@ -182,7 +182,7 @@ func callbackQMdiSubWindowWindowStateChanged(ptrName *C.char, oldState C.int, ne
 
 func (ptr *QMdiSubWindow) DestroyQMdiSubWindow() {
 	if ptr.Pointer() != nil {
-		C.QMdiSubWindow_DestroyQMdiSubWindow(C.QtObjectPtr(ptr.Pointer()))
+		C.QMdiSubWindow_DestroyQMdiSubWindow(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

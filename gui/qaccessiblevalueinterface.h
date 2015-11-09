@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QAccessibleValueInterface_CurrentValue(QtObjectPtr ptr);
-char* QAccessibleValueInterface_MaximumValue(QtObjectPtr ptr);
-char* QAccessibleValueInterface_MinimumStepSize(QtObjectPtr ptr);
-char* QAccessibleValueInterface_MinimumValue(QtObjectPtr ptr);
-void QAccessibleValueInterface_SetCurrentValue(QtObjectPtr ptr, char* value);
-void QAccessibleValueInterface_DestroyQAccessibleValueInterface(QtObjectPtr ptr);
+void* QAccessibleValueInterface_CurrentValue(void* ptr);
+void* QAccessibleValueInterface_MaximumValue(void* ptr);
+void* QAccessibleValueInterface_MinimumStepSize(void* ptr);
+void* QAccessibleValueInterface_MinimumValue(void* ptr);
+void QAccessibleValueInterface_SetCurrentValue(void* ptr, void* value);
+void QAccessibleValueInterface_DestroyQAccessibleValueInterface(void* ptr);
 
 #ifdef __cplusplus
 }

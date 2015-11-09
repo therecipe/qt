@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QAssociativeIterable_Size(QtObjectPtr ptr);
-char* QAssociativeIterable_Value(QtObjectPtr ptr, char* key);
+int QAssociativeIterable_Size(void* ptr);
+void* QAssociativeIterable_Value(void* ptr, void* key);
 
 #ifdef __cplusplus
 }

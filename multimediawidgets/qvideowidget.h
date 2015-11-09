@@ -1,33 +1,32 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QVideoWidget_AspectRatioMode(QtObjectPtr ptr);
-int QVideoWidget_Brightness(QtObjectPtr ptr);
-int QVideoWidget_Contrast(QtObjectPtr ptr);
-int QVideoWidget_Hue(QtObjectPtr ptr);
-QtObjectPtr QVideoWidget_MediaObject(QtObjectPtr ptr);
-int QVideoWidget_Saturation(QtObjectPtr ptr);
-void QVideoWidget_SetAspectRatioMode(QtObjectPtr ptr, int mode);
-void QVideoWidget_SetBrightness(QtObjectPtr ptr, int brightness);
-void QVideoWidget_SetContrast(QtObjectPtr ptr, int contrast);
-void QVideoWidget_SetFullScreen(QtObjectPtr ptr, int fullScreen);
-void QVideoWidget_SetHue(QtObjectPtr ptr, int hue);
-void QVideoWidget_SetSaturation(QtObjectPtr ptr, int saturation);
-QtObjectPtr QVideoWidget_NewQVideoWidget(QtObjectPtr parent);
-void QVideoWidget_ConnectBrightnessChanged(QtObjectPtr ptr);
-void QVideoWidget_DisconnectBrightnessChanged(QtObjectPtr ptr);
-void QVideoWidget_ConnectContrastChanged(QtObjectPtr ptr);
-void QVideoWidget_DisconnectContrastChanged(QtObjectPtr ptr);
-void QVideoWidget_ConnectFullScreenChanged(QtObjectPtr ptr);
-void QVideoWidget_DisconnectFullScreenChanged(QtObjectPtr ptr);
-void QVideoWidget_ConnectHueChanged(QtObjectPtr ptr);
-void QVideoWidget_DisconnectHueChanged(QtObjectPtr ptr);
-int QVideoWidget_IsFullScreen(QtObjectPtr ptr);
-void QVideoWidget_ConnectSaturationChanged(QtObjectPtr ptr);
-void QVideoWidget_DisconnectSaturationChanged(QtObjectPtr ptr);
-void QVideoWidget_DestroyQVideoWidget(QtObjectPtr ptr);
+int QVideoWidget_AspectRatioMode(void* ptr);
+int QVideoWidget_Brightness(void* ptr);
+int QVideoWidget_Contrast(void* ptr);
+int QVideoWidget_Hue(void* ptr);
+void* QVideoWidget_MediaObject(void* ptr);
+int QVideoWidget_Saturation(void* ptr);
+void QVideoWidget_SetAspectRatioMode(void* ptr, int mode);
+void QVideoWidget_SetBrightness(void* ptr, int brightness);
+void QVideoWidget_SetContrast(void* ptr, int contrast);
+void QVideoWidget_SetFullScreen(void* ptr, int fullScreen);
+void QVideoWidget_SetHue(void* ptr, int hue);
+void QVideoWidget_SetSaturation(void* ptr, int saturation);
+void* QVideoWidget_NewQVideoWidget(void* parent);
+void QVideoWidget_ConnectBrightnessChanged(void* ptr);
+void QVideoWidget_DisconnectBrightnessChanged(void* ptr);
+void QVideoWidget_ConnectContrastChanged(void* ptr);
+void QVideoWidget_DisconnectContrastChanged(void* ptr);
+void QVideoWidget_ConnectFullScreenChanged(void* ptr);
+void QVideoWidget_DisconnectFullScreenChanged(void* ptr);
+void QVideoWidget_ConnectHueChanged(void* ptr);
+void QVideoWidget_DisconnectHueChanged(void* ptr);
+int QVideoWidget_IsFullScreen(void* ptr);
+void QVideoWidget_ConnectSaturationChanged(void* ptr);
+void QVideoWidget_DisconnectSaturationChanged(void* ptr);
+void QVideoWidget_DestroyQVideoWidget(void* ptr);
 
 #ifdef __cplusplus
 }

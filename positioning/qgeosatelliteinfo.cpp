@@ -1,8 +1,8 @@
 #include "qgeosatelliteinfo.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
+#include <QVariant>
 #include <QGeoSatelliteInfo>
 #include "_cgo_export.h"
 
@@ -10,47 +10,55 @@ class MyQGeoSatelliteInfo: public QGeoSatelliteInfo {
 public:
 };
 
-QtObjectPtr QGeoSatelliteInfo_NewQGeoSatelliteInfo(){
+void* QGeoSatelliteInfo_NewQGeoSatelliteInfo(){
 	return new QGeoSatelliteInfo();
 }
 
-QtObjectPtr QGeoSatelliteInfo_NewQGeoSatelliteInfo2(QtObjectPtr other){
+void* QGeoSatelliteInfo_NewQGeoSatelliteInfo2(void* other){
 	return new QGeoSatelliteInfo(*static_cast<QGeoSatelliteInfo*>(other));
 }
 
-int QGeoSatelliteInfo_HasAttribute(QtObjectPtr ptr, int attribute){
+double QGeoSatelliteInfo_Attribute(void* ptr, int attribute){
+	return static_cast<double>(static_cast<QGeoSatelliteInfo*>(ptr)->attribute(static_cast<QGeoSatelliteInfo::Attribute>(attribute)));
+}
+
+int QGeoSatelliteInfo_HasAttribute(void* ptr, int attribute){
 	return static_cast<QGeoSatelliteInfo*>(ptr)->hasAttribute(static_cast<QGeoSatelliteInfo::Attribute>(attribute));
 }
 
-void QGeoSatelliteInfo_RemoveAttribute(QtObjectPtr ptr, int attribute){
+void QGeoSatelliteInfo_RemoveAttribute(void* ptr, int attribute){
 	static_cast<QGeoSatelliteInfo*>(ptr)->removeAttribute(static_cast<QGeoSatelliteInfo::Attribute>(attribute));
 }
 
-int QGeoSatelliteInfo_SatelliteIdentifier(QtObjectPtr ptr){
+int QGeoSatelliteInfo_SatelliteIdentifier(void* ptr){
 	return static_cast<QGeoSatelliteInfo*>(ptr)->satelliteIdentifier();
 }
 
-int QGeoSatelliteInfo_SatelliteSystem(QtObjectPtr ptr){
+int QGeoSatelliteInfo_SatelliteSystem(void* ptr){
 	return static_cast<QGeoSatelliteInfo*>(ptr)->satelliteSystem();
 }
 
-void QGeoSatelliteInfo_SetSatelliteIdentifier(QtObjectPtr ptr, int satId){
+void QGeoSatelliteInfo_SetAttribute(void* ptr, int attribute, double value){
+	static_cast<QGeoSatelliteInfo*>(ptr)->setAttribute(static_cast<QGeoSatelliteInfo::Attribute>(attribute), static_cast<qreal>(value));
+}
+
+void QGeoSatelliteInfo_SetSatelliteIdentifier(void* ptr, int satId){
 	static_cast<QGeoSatelliteInfo*>(ptr)->setSatelliteIdentifier(satId);
 }
 
-void QGeoSatelliteInfo_SetSatelliteSystem(QtObjectPtr ptr, int system){
+void QGeoSatelliteInfo_SetSatelliteSystem(void* ptr, int system){
 	static_cast<QGeoSatelliteInfo*>(ptr)->setSatelliteSystem(static_cast<QGeoSatelliteInfo::SatelliteSystem>(system));
 }
 
-void QGeoSatelliteInfo_SetSignalStrength(QtObjectPtr ptr, int signalStrength){
+void QGeoSatelliteInfo_SetSignalStrength(void* ptr, int signalStrength){
 	static_cast<QGeoSatelliteInfo*>(ptr)->setSignalStrength(signalStrength);
 }
 
-int QGeoSatelliteInfo_SignalStrength(QtObjectPtr ptr){
+int QGeoSatelliteInfo_SignalStrength(void* ptr){
 	return static_cast<QGeoSatelliteInfo*>(ptr)->signalStrength();
 }
 
-void QGeoSatelliteInfo_DestroyQGeoSatelliteInfo(QtObjectPtr ptr){
+void QGeoSatelliteInfo_DestroyQGeoSatelliteInfo(void* ptr){
 	static_cast<QGeoSatelliteInfo*>(ptr)->~QGeoSatelliteInfo();
 }
 

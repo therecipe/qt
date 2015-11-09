@@ -10,24 +10,24 @@ type QGenericReturnArgument struct {
 	QGenericArgument
 }
 
-type QGenericReturnArgumentITF interface {
-	QGenericArgumentITF
-	QGenericReturnArgumentPTR() *QGenericReturnArgument
+type QGenericReturnArgument_ITF interface {
+	QGenericArgument_ITF
+	QGenericReturnArgument_PTR() *QGenericReturnArgument
 }
 
-func PointerFromQGenericReturnArgument(ptr QGenericReturnArgumentITF) unsafe.Pointer {
+func PointerFromQGenericReturnArgument(ptr QGenericReturnArgument_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGenericReturnArgumentPTR().Pointer()
+		return ptr.QGenericReturnArgument_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGenericReturnArgumentFromPointer(ptr unsafe.Pointer) *QGenericReturnArgument {
+func NewQGenericReturnArgumentFromPointer(ptr unsafe.Pointer) *QGenericReturnArgument {
 	var n = new(QGenericReturnArgument)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGenericReturnArgument) QGenericReturnArgumentPTR() *QGenericReturnArgument {
+func (ptr *QGenericReturnArgument) QGenericReturnArgument_PTR() *QGenericReturnArgument {
 	return ptr
 }

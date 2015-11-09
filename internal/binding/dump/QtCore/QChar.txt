@@ -1,94 +1,94 @@
 ########################################			FUNCTIONS			########################################
-&{QChar QChar::QChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false false   [] }
-&{QChar QChar::QChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 8  [0xc82085e020] }
-&{QChar QChar::QChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 7  [0xc82085e200] }
-&{QChar QChar::QChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 9  [0xc82085e3e0] }
-&{QChar QChar::QChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 6  [0xc82085e5c0] }
-&{QChar QChar::QChar commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 4  [0xc82085e7a0] }
-&{QChar QChar::QChar commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 3  [0xc82085e980 0xc82085ea60] }
-&{QChar QChar::QChar commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 10  [0xc82085ec20] }
-&{QChar QChar::QChar commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 5  [0xc82085ee00] }
-&{QChar QChar::QChar commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 2  [0xc82085efe0] }
-&{category QChar::category commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 Category [0xc82085f1c0] }
-&{category QChar::category commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  Category [] }
-&{cell QChar::cell commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  uchar [] }
-&{combiningClass QChar::combiningClass commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 unsigned char [0xc82085f520] }
-&{combiningClass QChar::combiningClass commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  unsigned char [] }
-&{currentUnicodeVersion QChar::currentUnicodeVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true false  UnicodeVersion [] }
-&{decomposition QChar::decomposition commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 QString [0xc82085fa80] }
-&{decomposition QChar::decomposition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  QString [] }
-&{decompositionTag QChar::decompositionTag commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 Decomposition [0xc82085fe20] }
-&{decompositionTag QChar::decompositionTag commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  Decomposition [] }
-&{digitValue QChar::digitValue commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 int [0xc82084c1c0] }
-&{digitValue QChar::digitValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  int [] }
-&{direction QChar::direction commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 Direction [0xc82084c4c0] }
-&{direction QChar::direction commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  Direction [] }
-&{fromLatin1 QChar::fromLatin1 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true false  QChar [0xc82084c9e0] }
-&{hasMirrored QChar::hasMirrored commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc82084cc60] }
-&{hasMirrored QChar::hasMirrored commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{highSurrogate QChar::highSurrogate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true false  ushort [0xc82084cfe0] }
-&{isDigit QChar::isDigit commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc82084d1c0] }
-&{isDigit QChar::isDigit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isHighSurrogate QChar::isHighSurrogate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc82084d4e0] }
-&{isHighSurrogate QChar::isHighSurrogate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isLetter QChar::isLetter commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc82084d860] }
-&{isLetter QChar::isLetter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isLetterOrNumber QChar::isLetterOrNumber commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc82084db60] }
-&{isLetterOrNumber QChar::isLetterOrNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isLowSurrogate QChar::isLowSurrogate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc820838680] }
-&{isLower QChar::isLower commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc820838840] }
-&{isLower QChar::isLower commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isLowSurrogate QChar::isLowSurrogate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isMark QChar::isMark commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc820822780] }
-&{isMark QChar::isMark commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isNonCharacter QChar::isNonCharacter commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc820822ae0] }
-&{isNonCharacter QChar::isNonCharacter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isNull QChar::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isNumber QChar::isNumber commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc820822e80] }
-&{isNumber QChar::isNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isPrint QChar::isPrint commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc820823120] }
-&{isPrint QChar::isPrint commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isPunct QChar::isPunct commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc820823400] }
-&{isPunct QChar::isPunct commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isSpace QChar::isSpace commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc8208236a0] }
-&{isSpace QChar::isSpace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isSurrogate QChar::isSurrogate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc8208239e0] }
-&{isSurrogate QChar::isSurrogate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isSymbol QChar::isSymbol commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc820823d60] }
-&{isSymbol QChar::isSymbol commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isTitleCase QChar::isTitleCase commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc82080c0c0] }
-&{isTitleCase QChar::isTitleCase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{isUpper QChar::isUpper commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool [0xc82080c420] }
-&{isUpper QChar::isUpper commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool [] }
-&{joiningType QChar::joiningType commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 JoiningType [0xc82080c9e0] }
-&{joiningType QChar::joiningType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  JoiningType [] }
-&{lowSurrogate QChar::lowSurrogate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true false  ushort [0xc82080cd80] }
-&{mirroredChar QChar::mirroredChar commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 uint [0xc82080cfc0] }
-&{mirroredChar QChar::mirroredChar commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  QChar [] }
-&{requiresSurrogates QChar::requiresSurrogates commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true false  bool [0xc82080d340] }
-&{row QChar::row commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  uchar [] }
-&{script QChar::script commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 Script [0xc82080d5a0] }
-&{script QChar::script commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  Script [] }
-&{surrogateToUcs4 QChar::surrogateToUcs4 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 uint [0xc82080d840 0xc82080d8e0] }
-&{surrogateToUcs4 QChar::surrogateToUcs4 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true false  uint [0xc82080db00 0xc82080dbe0] }
-&{toCaseFolded QChar::toCaseFolded commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 uint [0xc82080dee0] }
-&{toCaseFolded QChar::toCaseFolded commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  QChar [] }
-&{toLatin1 QChar::toLatin1 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  char [] }
-&{toLower QChar::toLower commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 uint [0xc8207f8240] }
-&{toLower QChar::toLower commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  QChar [] }
-&{toTitleCase QChar::toTitleCase commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 uint [0xc8207f8540] }
-&{toTitleCase QChar::toTitleCase commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  QChar [] }
-&{toUpper QChar::toUpper commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 uint [0xc8207f88a0] }
-&{toUpper QChar::toUpper commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  QChar [] }
-&{unicode QChar::unicode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false true 2 ushort & [] }
-&{unicode QChar::unicode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  ushort [] }
-&{unicodeVersion QChar::unicodeVersion commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 UnicodeVersion [0xc8207f8ce0] }
-&{unicodeVersion QChar::unicodeVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  UnicodeVersion [] }
+&{QChar QChar::QChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false false   QChar() [] }
+&{QChar QChar::QChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 8  QChar(QLatin1Char ch) [0xc82084d760] }
+&{QChar QChar::QChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 7  QChar(SpecialCharacter ch) [0xc82084d980] }
+&{QChar QChar::QChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 9  QChar(char ch) [0xc82084db60] }
+&{QChar QChar::QChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 6  QChar(int code) [0xc82084dd40] }
+&{QChar QChar::QChar commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 4  QChar(short code) [0xc82084df80] }
+&{QChar QChar::QChar commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 3  QChar(uchar cell, uchar row) [0xc820836140 0xc8208361c0] }
+&{QChar QChar::QChar commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 10  QChar(uchar ch) [0xc820836320] }
+&{QChar QChar::QChar commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 5  QChar(uint code) [0xc8208364a0] }
+&{QChar QChar::QChar commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non constructor false true 2  QChar(ushort code) [0xc820836660] }
+&{category QChar::category commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 Category Category category(uint ucs4) [0xc820836840] }
+&{category QChar::category commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  Category Category category() const [] }
+&{cell QChar::cell commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  uchar uchar cell() const [] }
+&{combiningClass QChar::combiningClass commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 unsigned char unsigned char combiningClass(uint ucs4) [0xc820836c20] }
+&{combiningClass QChar::combiningClass commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  unsigned char unsigned char combiningClass() const [] }
+&{currentUnicodeVersion QChar::currentUnicodeVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true false  UnicodeVersion UnicodeVersion currentUnicodeVersion() [] }
+&{decomposition QChar::decomposition commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 QString QString decomposition(uint ucs4) [0xc820837180] }
+&{decomposition QChar::decomposition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  QString QString decomposition() const [] }
+&{decompositionTag QChar::decompositionTag commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 Decomposition Decomposition decompositionTag(uint ucs4) [0xc8208375a0] }
+&{decompositionTag QChar::decompositionTag commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  Decomposition Decomposition decompositionTag() const [] }
+&{digitValue QChar::digitValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 int int digitValue(uint ucs4) [0xc820837960] }
+&{digitValue QChar::digitValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  int int digitValue() const [] }
+&{direction QChar::direction commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 Direction Direction direction(uint ucs4) [0xc820837d60] }
+&{direction QChar::direction commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  Direction Direction direction() const [] }
+&{fromLatin1 QChar::fromLatin1 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true false  QChar QChar fromLatin1(char c) [0xc820824380] }
+&{hasMirrored QChar::hasMirrored commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool hasMirrored(uint ucs4) [0xc820824620] }
+&{hasMirrored QChar::hasMirrored commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool hasMirrored() const [] }
+&{highSurrogate QChar::highSurrogate commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true false  ushort ushort highSurrogate(uint ucs4) [0xc820824aa0] }
+&{isDigit QChar::isDigit commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isDigit(uint ucs4) [0xc820824ce0] }
+&{isDigit QChar::isDigit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isDigit() const [] }
+&{isHighSurrogate QChar::isHighSurrogate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isHighSurrogate(uint ucs4) [0xc820825100] }
+&{isHighSurrogate QChar::isHighSurrogate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isHighSurrogate() const [] }
+&{isLetter QChar::isLetter commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isLetter(uint ucs4) [0xc820825520] }
+&{isLetter QChar::isLetter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isLetter() const [] }
+&{isLetterOrNumber QChar::isLetterOrNumber commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isLetterOrNumber(uint ucs4) [0xc8208258a0] }
+&{isLetterOrNumber QChar::isLetterOrNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isLetterOrNumber() const [] }
+&{isLowSurrogate QChar::isLowSurrogate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isLowSurrogate(uint ucs4) [0xc8208124e0] }
+&{isLower QChar::isLower commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isLower(uint ucs4) [0xc820812700] }
+&{isLower QChar::isLower commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isLower() const [] }
+&{isLowSurrogate QChar::isLowSurrogate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isLowSurrogate() const [] }
+&{isMark QChar::isMark commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isMark(uint ucs4) [0xc8207fc680] }
+&{isMark QChar::isMark commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isMark() const [] }
+&{isNonCharacter QChar::isNonCharacter commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isNonCharacter(uint ucs4) [0xc8207fc980] }
+&{isNonCharacter QChar::isNonCharacter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isNonCharacter() const [] }
+&{isNull QChar::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isNull() const [] }
+&{isNumber QChar::isNumber commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isNumber(uint ucs4) [0xc8207fcd60] }
+&{isNumber QChar::isNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isNumber() const [] }
+&{isPrint QChar::isPrint commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isPrint(uint ucs4) [0xc8207fd000] }
+&{isPrint QChar::isPrint commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isPrint() const [] }
+&{isPunct QChar::isPunct commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isPunct(uint ucs4) [0xc8207fd2a0] }
+&{isPunct QChar::isPunct commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isPunct() const [] }
+&{isSpace QChar::isSpace commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isSpace(uint ucs4) [0xc8207fd540] }
+&{isSpace QChar::isSpace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isSpace() const [] }
+&{isSurrogate QChar::isSurrogate commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isSurrogate(uint ucs4) [0xc8207fd840] }
+&{isSurrogate QChar::isSurrogate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isSurrogate() const [] }
+&{isSymbol QChar::isSymbol commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isSymbol(uint ucs4) [0xc8207fdb40] }
+&{isSymbol QChar::isSymbol commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isSymbol() const [] }
+&{isTitleCase QChar::isTitleCase commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isTitleCase(uint ucs4) [0xc8207fde80] }
+&{isTitleCase QChar::isTitleCase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isTitleCase() const [] }
+&{isUpper QChar::isUpper commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 bool bool isUpper(uint ucs4) [0xc8207b82a0] }
+&{isUpper QChar::isUpper commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  bool bool isUpper() const [] }
+&{joiningType QChar::joiningType commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 JoiningType JoiningType joiningType(uint ucs4) [0xc8207b8860] }
+&{joiningType QChar::joiningType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  JoiningType JoiningType joiningType() const [] }
+&{lowSurrogate QChar::lowSurrogate commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true false  ushort ushort lowSurrogate(uint ucs4) [0xc8207b8bc0] }
+&{mirroredChar QChar::mirroredChar commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 uint uint mirroredChar(uint ucs4) [0xc8207b8de0] }
+&{mirroredChar QChar::mirroredChar commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  QChar QChar mirroredChar() const [] }
+&{requiresSurrogates QChar::requiresSurrogates commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true false  bool bool requiresSurrogates(uint ucs4) [0xc8207b9140] }
+&{row QChar::row commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  uchar uchar row() const [] }
+&{script QChar::script commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 Script Script script(uint ucs4) [0xc8207b93c0] }
+&{script QChar::script commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  Script Script script() const [] }
+&{surrogateToUcs4 QChar::surrogateToUcs4 commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 uint uint surrogateToUcs4(QChar high, QChar low) [0xc8207b9660 0xc8207b96e0] }
+&{surrogateToUcs4 QChar::surrogateToUcs4 commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true false  uint uint surrogateToUcs4(ushort high, ushort low) [0xc8207b98a0 0xc8207b9920] }
+&{toCaseFolded QChar::toCaseFolded commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 uint uint toCaseFolded(uint ucs4) [0xc8207b9c20] }
+&{toCaseFolded QChar::toCaseFolded commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  QChar QChar toCaseFolded() const [] }
+&{toLatin1 QChar::toLatin1 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  char char toLatin1() const [] }
+&{toLower QChar::toLower commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 uint uint toLower(uint ucs4) [0xc820794020] }
+&{toLower QChar::toLower commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  QChar QChar toLower() const [] }
+&{toTitleCase QChar::toTitleCase commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 uint uint toTitleCase(uint ucs4) [0xc820794380] }
+&{toTitleCase QChar::toTitleCase commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  QChar QChar toTitleCase() const [] }
+&{toUpper QChar::toUpper commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 uint uint toUpper(uint ucs4) [0xc820794760] }
+&{toUpper QChar::toUpper commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  QChar QChar toUpper() const [] }
+&{unicode QChar::unicode commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false true 2 ushort & ushort & unicode() [] }
+&{unicode QChar::unicode commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  ushort ushort unicode() const [] }
+&{unicodeVersion QChar::unicodeVersion commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain true true 2 UnicodeVersion UnicodeVersion unicodeVersion(uint ucs4) [0xc820794d00] }
+&{unicodeVersion QChar::unicodeVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qchar.h non plain false false  UnicodeVersion UnicodeVersion unicodeVersion() const [] }
 ########################################			ENUMS			########################################
-&{Category QChar::Category commendable public  [0xc820631080 0xc820631180 0xc820631260 0xc820631300 0xc820631460 0xc8206314e0 0xc820631560 0xc820631640 0xc820631740 0xc820631800 0xc8206318c0 0xc820631940 0xc8206319c0 0xc820631aa0 0xc820631b80 0xc820631c60 0xc820631d00 0xc820631d80 0xc820631e20 0xc820631f20 0xc820631fe0 0xc820768060 0xc820768120 0xc820768220 0xc820768320 0xc820768400 0xc8207684c0 0xc820768540 0xc8207685c0 0xc820768640]}
-&{Decomposition QChar::Decomposition commendable public  [0xc820768800 0xc820768880 0xc820768900 0xc820768980 0xc820768a20 0xc820768aa0 0xc820768b20 0xc820768ba0 0xc820768c40 0xc820768cc0 0xc820768d40 0xc820768dc0 0xc820768e40 0xc820768ec0 0xc820768f40 0xc820768fc0 0xc820769060 0xc8207690e0]}
-&{Direction QChar::Direction commendable public  [0xc820769240 0xc8207692c0 0xc820769340 0xc8207693c0 0xc820769460 0xc8207694e0 0xc820769560 0xc8207695e0 0xc820769680 0xc820769700 0xc820769780 0xc820769800 0xc820769880 0xc820769900 0xc820769980 0xc820769a00 0xc820769aa0 0xc820769b20 0xc820769ba0 0xc820769c20 0xc820769ca0 0xc820769d20 0xc820769da0]}
-&{JoiningType QChar::JoiningType commendable public  [0xc82089c2c0 0xc82089c380 0xc82089c400 0xc82089c4a0 0xc82089c560 0xc82089c640]}
-&{Script QChar::Script commendable public  [0xc82089c860 0xc82089c8e0 0xc82089c9c0 0xc82089ca40 0xc82089cae0 0xc82089cba0 0xc82089cc20 0xc82089ccc0 0xc82089cd80 0xc82089ce40 0xc82089cec0 0xc82089cf80 0xc82089d080 0xc82089d100 0xc82089d1e0 0xc82089d260 0xc82089d320 0xc82089d3a0 0xc82089d480 0xc82089d520 0xc82089d5a0 0xc82089d640 0xc82089d700 0xc82089d7a0 0xc82089d820 0xc82089d900 0xc82089d9a0 0xc82089da20 0xc82089dac0 0xc82089dbe0 0xc82089dce0 0xc82089dd80 0xc82089de20 0xc82089df00 0xc82089dfa0 0xc8208ae020 0xc8208ae0a0 0xc8208ae140 0xc8208ae1e0 0xc8208ae2c0 0xc8208ae340 0xc8208ae3c0 0xc8208ae4a0 0xc8208ae540 0xc8208ae5c0 0xc8208ae660 0xc8208ae740 0xc8208ae7c0 0xc8208ae840 0xc8208ae920 0xc8208ae9c0 0xc8208aea40 0xc8208aeae0 0xc8208aeba0 0xc8208aec20 0xc8208aecc0 0xc8208aed40 0xc8208aee40 0xc8208aef00 0xc8208af000 0xc8208af0e0 0xc8208af220 0xc8208af2e0 0xc8208af3c0 0xc8208af480 0xc8208af560 0xc8208af5e0 0xc8208af680 0xc8208af700 0xc8208af7a0 0xc8208af820 0xc8208af8e0 0xc8208af9c0 0xc8208afa40 0xc8208afae0 0xc8208afb60 0xc8208afc00 0xc8208afc80 0xc8208afd20 0xc8208afda0 0xc8208afe20 0xc8208afec0 0xc8208aff80 0xc820888000 0xc820888080 0xc820888120 0xc820888220 0xc820888340 0xc820888440 0xc820888560 0xc8208886a0 0xc820888760 0xc820888800 0xc8208888c0 0xc820888940 0xc8208889e0 0xc820888ac0 0xc820888b80 0xc820888c80 0xc820888da0 0xc820888e40 0xc820888ee0 0xc820889000 0xc8208890e0 0xc8208891a0 0xc820889280 0xc820889320 0xc8208893a0 0xc820889460 0xc820889580 0xc820889600 0xc8208896a0 0xc8208897a0 0xc820889880 0xc8208899c0 0xc820889a40 0xc820889b00 0xc820889c20 0xc820889ca0 0xc820889d40 0xc820889e00 0xc820889ec0 0xc820889fa0 0xc820876060 0xc820876100 0xc8208761e0 0xc8208762c0]}
-&{SpecialCharacter QChar::SpecialCharacter commendable public  [0xc820876500 0xc8208765c0 0xc820876640 0xc8208766e0 0xc8208767e0 0xc820876860 0xc820876900 0xc8208769e0 0xc820876b40 0xc820876c20 0xc820876ca0 0xc820876da0 0xc820876ea0 0xc820876f40]}
-&{UnicodeVersion QChar::UnicodeVersion commendable public  [0xc820877200 0xc820877320 0xc8208773a0 0xc820877440 0xc820877540 0xc820877600 0xc820877680 0xc820877720 0xc820877820 0xc8208778c0 0xc820877940 0xc8208779e0 0xc820877aa0 0xc820877b60 0xc820877be0 0xc820877c80 0xc820877d80]}
+&{Category QChar::Category commendable public  [0xc8208c3d40 0xc8208c3e00 0xc8208c3ee0 0xc8208c3fc0 0xc8208b00c0 0xc8208b0180 0xc8208b0220 0xc8208b02c0 0xc8208b03e0 0xc8208b04a0 0xc8208b0560 0xc8208b0620 0xc8208b06a0 0xc8208b0760 0xc8208b0880 0xc8208b0900 0xc8208b0a00 0xc8208b0a80 0xc8208b0b20 0xc8208b0c00 0xc8208b0ce0 0xc8208b0da0 0xc8208b0e40 0xc8208b0f80 0xc8208b10c0 0xc8208b11a0 0xc8208b12e0 0xc8208b1360 0xc8208b13e0 0xc8208b14c0] false}
+&{Decomposition QChar::Decomposition commendable public  [0xc8208b16e0 0xc8208b1760 0xc8208b1840 0xc8208b18c0 0xc8208b1980 0xc8208b1a40 0xc8208b1ac0 0xc8208b1b80 0xc8208b1c60 0xc8208b1ce0 0xc8208b1da0 0xc8208b1e60 0xc8208b1ee0 0xc8208b1f80 0xc82089a020 0xc82089a0c0 0xc82089a160 0xc82089a240] false}
+&{Direction QChar::Direction commendable public  [0xc82089a3e0 0xc82089a480 0xc82089a560 0xc82089a5e0 0xc82089a680 0xc82089a740 0xc82089a7c0 0xc82089a880 0xc82089a940 0xc82089aa20 0xc82089aaa0 0xc82089ab20 0xc82089ac00 0xc82089aca0 0xc82089ad20 0xc82089adc0 0xc82089aea0 0xc82089af20 0xc82089b000 0xc82089b0a0 0xc82089b140 0xc82089b1c0 0xc82089b280] false}
+&{JoiningType QChar::JoiningType commendable public  [0xc82089b8a0 0xc82089b940 0xc82089b9c0 0xc82089ba60 0xc82089bb60 0xc82089bc00] false}
+&{Script QChar::Script commendable public  [0xc82089be20 0xc82089bec0 0xc82089bf80 0xc82088a020 0xc82088a0c0 0xc82088a180 0xc82088a220 0xc82088a2a0 0xc82088a3a0 0xc82088a440 0xc82088a4c0 0xc82088a5c0 0xc82088a6c0 0xc82088a740 0xc82088a7e0 0xc82088a8c0 0xc82088a960 0xc82088aa20 0xc82088ab00 0xc82088aba0 0xc82088ac20 0xc82088aca0 0xc82088ad80 0xc82088ae20 0xc82088aea0 0xc82088af40 0xc82088b020 0xc82088b0a0 0xc82088b140 0xc82088b240 0xc82088b300 0xc82088b3a0 0xc82088b4a0 0xc82088b540 0xc82088b5c0 0xc82088b6a0 0xc82088b740 0xc82088b7c0 0xc82088b860 0xc82088b920 0xc82088b9c0 0xc82088ba40 0xc82088bb20 0xc82088bbc0 0xc82088bc60 0xc82088bce0 0xc82088bdc0 0xc82088be60 0xc82088bee0 0xc82088bf80 0xc820872040 0xc820872100 0xc820872180 0xc820872220 0xc8208722a0 0xc820872360 0xc8208723e0 0xc8208724c0 0xc8208725c0 0xc8208726a0 0xc8208727a0 0xc8208728e0 0xc820872a00 0xc820872a80 0xc820872b60 0xc820872c40 0xc820872d00 0xc820872dc0 0xc820872e40 0xc820872ee0 0xc820872fc0 0xc820873060 0xc8208731a0 0xc820873220 0xc8208732a0 0xc820873320 0xc8208733c0 0xc820873460 0xc8208734e0 0xc8208735a0 0xc820873640 0xc8208736e0 0xc820873800 0xc8208738c0 0xc820873940 0xc8208739e0 0xc820873a80 0xc820873ba0 0xc820873cc0 0xc820873e20 0xc820873f00 0xc82085c020 0xc82085c0e0 0xc82085c1a0 0xc82085c220 0xc82085c300 0xc82085c3a0 0xc82085c460 0xc82085c560 0xc82085c660 0xc82085c720 0xc82085c7c0 0xc82085c900 0xc82085c9a0 0xc82085cac0 0xc82085cb60 0xc82085cbe0 0xc82085cc60 0xc82085cd80 0xc82085ce60 0xc82085cee0 0xc82085cfa0 0xc82085d080 0xc82085d180 0xc82085d2a0 0xc82085d320 0xc82085d420 0xc82085d4e0 0xc82085d5c0 0xc82085d640 0xc82085d6e0 0xc82085d7e0 0xc82085d8a0 0xc82085d940 0xc82085da00 0xc82085daa0 0xc82085db80] false}
+&{SpecialCharacter QChar::SpecialCharacter commendable public  [0xc82085ddc0 0xc82085de40 0xc82085df00 0xc82085dfa0 0xc82084c080 0xc82084c140 0xc82084c200 0xc82084c2e0 0xc82084c420 0xc82084c4e0 0xc82084c560 0xc82084c600 0xc82084c6c0 0xc82084c760] false}
+&{UnicodeVersion QChar::UnicodeVersion commendable public  [0xc82084c980 0xc82084ca80 0xc82084cb00 0xc82084cb80 0xc82084cc20 0xc82084ccc0 0xc82084cda0 0xc82084ce40 0xc82084cee0 0xc82084cfc0 0xc82084d040 0xc82084d0e0 0xc82084d1c0 0xc82084d240 0xc82084d2e0 0xc82084d3c0 0xc82084d480] false}

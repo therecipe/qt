@@ -1,14 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QGraphicsRectItem_SetRect(QtObjectPtr ptr, QtObjectPtr rectangle);
-int QGraphicsRectItem_Contains(QtObjectPtr ptr, QtObjectPtr point);
-int QGraphicsRectItem_IsObscuredBy(QtObjectPtr ptr, QtObjectPtr item);
-void QGraphicsRectItem_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr widget);
-int QGraphicsRectItem_Type(QtObjectPtr ptr);
-void QGraphicsRectItem_DestroyQGraphicsRectItem(QtObjectPtr ptr);
+void QGraphicsRectItem_SetRect(void* ptr, void* rectangle);
+int QGraphicsRectItem_Contains(void* ptr, void* point);
+int QGraphicsRectItem_IsObscuredBy(void* ptr, void* item);
+void QGraphicsRectItem_Paint(void* ptr, void* painter, void* option, void* widget);
+void QGraphicsRectItem_SetRect2(void* ptr, double x, double y, double width, double height);
+int QGraphicsRectItem_Type(void* ptr);
+void QGraphicsRectItem_DestroyQGraphicsRectItem(void* ptr);
 
 #ifdef __cplusplus
 }

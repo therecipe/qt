@@ -10,8 +10,8 @@ type QHooks struct {
 	ptr unsafe.Pointer
 }
 
-type QHooksITF interface {
-	QHooksPTR() *QHooks
+type QHooks_ITF interface {
+	QHooks_PTR() *QHooks
 }
 
 func (p *QHooks) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QHooks) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQHooks(ptr QHooksITF) unsafe.Pointer {
+func PointerFromQHooks(ptr QHooks_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHooksPTR().Pointer()
+		return ptr.QHooks_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHooksFromPointer(ptr unsafe.Pointer) *QHooks {
+func NewQHooksFromPointer(ptr unsafe.Pointer) *QHooks {
 	var n = new(QHooks)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QHooks) QHooksPTR() *QHooks {
+func (ptr *QHooks) QHooks_PTR() *QHooks {
 	return ptr
 }
 
 //QHooks::HookIndex
-type QHooks__HookIndex int
+type QHooks__HookIndex int64
 
-var (
+const (
 	QHooks__HookDataVersion = QHooks__HookIndex(0)
 	QHooks__HookDataSize    = QHooks__HookIndex(1)
 	QHooks__QtVersion       = QHooks__HookIndex(2)

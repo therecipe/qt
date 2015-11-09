@@ -1,19 +1,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QOffscreenSurface_NewQOffscreenSurface(QtObjectPtr targetScreen);
-void QOffscreenSurface_Create(QtObjectPtr ptr);
-void QOffscreenSurface_Destroy(QtObjectPtr ptr);
-int QOffscreenSurface_IsValid(QtObjectPtr ptr);
-QtObjectPtr QOffscreenSurface_Screen(QtObjectPtr ptr);
-void QOffscreenSurface_ConnectScreenChanged(QtObjectPtr ptr);
-void QOffscreenSurface_DisconnectScreenChanged(QtObjectPtr ptr);
-void QOffscreenSurface_SetFormat(QtObjectPtr ptr, QtObjectPtr format);
-void QOffscreenSurface_SetScreen(QtObjectPtr ptr, QtObjectPtr newScreen);
-int QOffscreenSurface_SurfaceType(QtObjectPtr ptr);
-void QOffscreenSurface_DestroyQOffscreenSurface(QtObjectPtr ptr);
+void* QOffscreenSurface_NewQOffscreenSurface(void* targetScreen);
+void QOffscreenSurface_Create(void* ptr);
+void QOffscreenSurface_Destroy(void* ptr);
+int QOffscreenSurface_IsValid(void* ptr);
+void* QOffscreenSurface_Screen(void* ptr);
+void QOffscreenSurface_ConnectScreenChanged(void* ptr);
+void QOffscreenSurface_DisconnectScreenChanged(void* ptr);
+void QOffscreenSurface_SetFormat(void* ptr, void* format);
+void QOffscreenSurface_SetScreen(void* ptr, void* newScreen);
+int QOffscreenSurface_SurfaceType(void* ptr);
+void QOffscreenSurface_DestroyQOffscreenSurface(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -10,8 +10,8 @@ type QEasingCurve struct {
 	ptr unsafe.Pointer
 }
 
-type QEasingCurveITF interface {
-	QEasingCurvePTR() *QEasingCurve
+type QEasingCurve_ITF interface {
+	QEasingCurve_PTR() *QEasingCurve
 }
 
 func (p *QEasingCurve) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QEasingCurve) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQEasingCurve(ptr QEasingCurveITF) unsafe.Pointer {
+func PointerFromQEasingCurve(ptr QEasingCurve_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QEasingCurvePTR().Pointer()
+		return ptr.QEasingCurve_PTR().Pointer()
 	}
 	return nil
 }
 
-func QEasingCurveFromPointer(ptr unsafe.Pointer) *QEasingCurve {
+func NewQEasingCurveFromPointer(ptr unsafe.Pointer) *QEasingCurve {
 	var n = new(QEasingCurve)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QEasingCurve) QEasingCurvePTR() *QEasingCurve {
+func (ptr *QEasingCurve) QEasingCurve_PTR() *QEasingCurve {
 	return ptr
 }
 
 //QEasingCurve::Type
-type QEasingCurve__Type int
+type QEasingCurve__Type int64
 
-var (
+const (
 	QEasingCurve__Linear       = QEasingCurve__Type(0)
 	QEasingCurve__InQuad       = QEasingCurve__Type(1)
 	QEasingCurve__OutQuad      = QEasingCurve__Type(2)
@@ -94,45 +94,97 @@ var (
 	QEasingCurve__NCurveTypes  = QEasingCurve__Type(48)
 )
 
-func NewQEasingCurve3(other QEasingCurveITF) *QEasingCurve {
-	return QEasingCurveFromPointer(unsafe.Pointer(C.QEasingCurve_NewQEasingCurve3(C.QtObjectPtr(PointerFromQEasingCurve(other)))))
+func NewQEasingCurve3(other QEasingCurve_ITF) *QEasingCurve {
+	return NewQEasingCurveFromPointer(C.QEasingCurve_NewQEasingCurve3(PointerFromQEasingCurve(other)))
 }
 
 func NewQEasingCurve(ty QEasingCurve__Type) *QEasingCurve {
-	return QEasingCurveFromPointer(unsafe.Pointer(C.QEasingCurve_NewQEasingCurve(C.int(ty))))
+	return NewQEasingCurveFromPointer(C.QEasingCurve_NewQEasingCurve(C.int(ty)))
 }
 
-func NewQEasingCurve2(other QEasingCurveITF) *QEasingCurve {
-	return QEasingCurveFromPointer(unsafe.Pointer(C.QEasingCurve_NewQEasingCurve2(C.QtObjectPtr(PointerFromQEasingCurve(other)))))
+func NewQEasingCurve2(other QEasingCurve_ITF) *QEasingCurve {
+	return NewQEasingCurveFromPointer(C.QEasingCurve_NewQEasingCurve2(PointerFromQEasingCurve(other)))
 }
 
-func (ptr *QEasingCurve) AddCubicBezierSegment(c1 QPointFITF, c2 QPointFITF, endPoint QPointFITF) {
+func (ptr *QEasingCurve) AddCubicBezierSegment(c1 QPointF_ITF, c2 QPointF_ITF, endPoint QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QEasingCurve_AddCubicBezierSegment(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPointF(c1)), C.QtObjectPtr(PointerFromQPointF(c2)), C.QtObjectPtr(PointerFromQPointF(endPoint)))
+		C.QEasingCurve_AddCubicBezierSegment(ptr.Pointer(), PointerFromQPointF(c1), PointerFromQPointF(c2), PointerFromQPointF(endPoint))
+	}
+}
+
+func (ptr *QEasingCurve) AddTCBSegment(nextPoint QPointF_ITF, t float64, c float64, b float64) {
+	if ptr.Pointer() != nil {
+		C.QEasingCurve_AddTCBSegment(ptr.Pointer(), PointerFromQPointF(nextPoint), C.double(t), C.double(c), C.double(b))
+	}
+}
+
+func (ptr *QEasingCurve) Amplitude() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QEasingCurve_Amplitude(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QEasingCurve) Overshoot() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QEasingCurve_Overshoot(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QEasingCurve) Period() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QEasingCurve_Period(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QEasingCurve) SetAmplitude(amplitude float64) {
+	if ptr.Pointer() != nil {
+		C.QEasingCurve_SetAmplitude(ptr.Pointer(), C.double(amplitude))
+	}
+}
+
+func (ptr *QEasingCurve) SetOvershoot(overshoot float64) {
+	if ptr.Pointer() != nil {
+		C.QEasingCurve_SetOvershoot(ptr.Pointer(), C.double(overshoot))
+	}
+}
+
+func (ptr *QEasingCurve) SetPeriod(period float64) {
+	if ptr.Pointer() != nil {
+		C.QEasingCurve_SetPeriod(ptr.Pointer(), C.double(period))
 	}
 }
 
 func (ptr *QEasingCurve) SetType(ty QEasingCurve__Type) {
 	if ptr.Pointer() != nil {
-		C.QEasingCurve_SetType(C.QtObjectPtr(ptr.Pointer()), C.int(ty))
+		C.QEasingCurve_SetType(ptr.Pointer(), C.int(ty))
 	}
 }
 
-func (ptr *QEasingCurve) Swap(other QEasingCurveITF) {
+func (ptr *QEasingCurve) Swap(other QEasingCurve_ITF) {
 	if ptr.Pointer() != nil {
-		C.QEasingCurve_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQEasingCurve(other)))
+		C.QEasingCurve_Swap(ptr.Pointer(), PointerFromQEasingCurve(other))
 	}
 }
 
 func (ptr *QEasingCurve) Type() QEasingCurve__Type {
 	if ptr.Pointer() != nil {
-		return QEasingCurve__Type(C.QEasingCurve_Type(C.QtObjectPtr(ptr.Pointer())))
+		return QEasingCurve__Type(C.QEasingCurve_Type(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QEasingCurve) ValueForProgress(progress float64) float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QEasingCurve_ValueForProgress(ptr.Pointer(), C.double(progress)))
 	}
 	return 0
 }
 
 func (ptr *QEasingCurve) DestroyQEasingCurve() {
 	if ptr.Pointer() != nil {
-		C.QEasingCurve_DestroyQEasingCurve(C.QtObjectPtr(ptr.Pointer()))
+		C.QEasingCurve_DestroyQEasingCurve(ptr.Pointer())
 	}
 }

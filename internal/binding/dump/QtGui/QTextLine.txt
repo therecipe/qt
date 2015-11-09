@@ -1,32 +1,32 @@
 ########################################			FUNCTIONS			########################################
-&{draw QTextLine::draw commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.cpp non plain false false  void [0xc821872400 0xc821872600 0xc821872740] }
-&{xToCursor QTextLine::xToCursor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.cpp non plain false false  int [0xc821873420 0xc8218736a0] }
-&{QTextLine QTextLine::QTextLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non constructor false false   [] }
-&{ascent QTextLine::ascent commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
-&{cursorToX QTextLine::cursorToX commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [0xc8218e9420 0xc8218e9580] }
-&{cursorToX QTextLine::cursorToX commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false true 2 qreal [0xc8218e9a60 0xc8218e9c80] }
-&{descent QTextLine::descent commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
-&{glyphRuns QTextLine::glyphRuns commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QList<QGlyphRun> [0xc82198a620 0xc82198a880] }
-&{height QTextLine::height commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
-&{horizontalAdvance QTextLine::horizontalAdvance commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
-&{isValid QTextLine::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  bool [] }
-&{leading QTextLine::leading commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
-&{leadingIncluded QTextLine::leadingIncluded commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  bool [] }
-&{lineNumber QTextLine::lineNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int [] }
-&{naturalTextRect QTextLine::naturalTextRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QRectF [] }
-&{naturalTextWidth QTextLine::naturalTextWidth commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
-&{position QTextLine::position commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QPointF [] }
-&{rect QTextLine::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QRectF [] }
-&{setLeadingIncluded QTextLine::setLeadingIncluded commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc821a0ee00] }
-&{setLineWidth QTextLine::setLineWidth commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc821a0f260] }
-&{setNumColumns QTextLine::setNumColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc821a0f700] }
-&{setNumColumns QTextLine::setNumColumns commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false true 2 void [0xc821a0fc20 0xc821a0fce0] }
-&{setPosition QTextLine::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void [0xc821ad4180] }
-&{textLength QTextLine::textLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int [] }
-&{textStart QTextLine::textStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int [] }
-&{width QTextLine::width commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
-&{x QTextLine::x commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
-&{y QTextLine::y commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal [] }
+&{draw QTextLine::draw commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.cpp non plain false false  void void draw(QPainter *painter, const QPointF &position, const QTextLayout::FormatRange *selection) const [0xc82356e320 0xc82356e3a0 0xc82356e440] }
+&{xToCursor QTextLine::xToCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.cpp non plain false false  int int xToCursor(qreal x, CursorPosition cpos) const [0xc82356e800 0xc82356e8a0] }
+&{QTextLine QTextLine::QTextLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non constructor false false   QTextLine() [] }
+&{ascent QTextLine::ascent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal qreal ascent() const [] }
+&{cursorToX QTextLine::cursorToX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal qreal cursorToX(int *cursorPos, Edge edge) const [0xc82356f3e0 0xc82356f460] }
+&{cursorToX QTextLine::cursorToX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false true 2 qreal qreal cursorToX(int cursorPos, Edge edge) const [0xc82356f620 0xc82356f6a0] }
+&{descent QTextLine::descent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal qreal descent() const [] }
+&{glyphRuns QTextLine::glyphRuns commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QList<QGlyphRun> QList<QGlyphRun> glyphRuns(int from, int length) const [0xc82356f9c0 0xc82356fa40] }
+&{height QTextLine::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal qreal height() const [] }
+&{horizontalAdvance QTextLine::horizontalAdvance commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal qreal horizontalAdvance() const [] }
+&{isValid QTextLine::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  bool bool isValid() const [] }
+&{leading QTextLine::leading commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal qreal leading() const [] }
+&{leadingIncluded QTextLine::leadingIncluded commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  bool bool leadingIncluded() const [] }
+&{lineNumber QTextLine::lineNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int int lineNumber() const [] }
+&{naturalTextRect QTextLine::naturalTextRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QRectF QRectF naturalTextRect() const [] }
+&{naturalTextWidth QTextLine::naturalTextWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal qreal naturalTextWidth() const [] }
+&{position QTextLine::position commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QPointF QPointF position() const [] }
+&{rect QTextLine::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QRectF QRectF rect() const [] }
+&{setLeadingIncluded QTextLine::setLeadingIncluded commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void void setLeadingIncluded(bool included) [0xc8235828e0] }
+&{setLineWidth QTextLine::setLineWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void void setLineWidth(qreal width) [0xc823582b00] }
+&{setNumColumns QTextLine::setNumColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void void setNumColumns(int numColumns) [0xc823582cc0] }
+&{setNumColumns QTextLine::setNumColumns commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false true 2 void void setNumColumns(int numColumns, qreal alignmentWidth) [0xc823582e80 0xc823582f00] }
+&{setPosition QTextLine::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void void setPosition(const QPointF &pos) [0xc8235830c0] }
+&{textLength QTextLine::textLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int int textLength() const [] }
+&{textStart QTextLine::textStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int int textStart() const [] }
+&{width QTextLine::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal qreal width() const [] }
+&{x QTextLine::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal qreal x() const [] }
+&{y QTextLine::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal qreal y() const [] }
 ########################################			ENUMS			########################################
-&{CursorPosition QTextLine::CursorPosition commendable public  [0xc821873c60 0xc821873ec0]}
-&{Edge QTextLine::Edge commendable public  [0xc8218e8340 0xc8218e8520]}
+&{CursorPosition QTextLine::CursorPosition commendable public  [0xc82356eaa0 0xc82356eb80] false}
+&{Edge QTextLine::Edge commendable public  [0xc82356ed20 0xc82356eda0] false}

@@ -13,35 +13,35 @@ type QSqlDriver struct {
 	core.QObject
 }
 
-type QSqlDriverITF interface {
-	core.QObjectITF
-	QSqlDriverPTR() *QSqlDriver
+type QSqlDriver_ITF interface {
+	core.QObject_ITF
+	QSqlDriver_PTR() *QSqlDriver
 }
 
-func PointerFromQSqlDriver(ptr QSqlDriverITF) unsafe.Pointer {
+func PointerFromQSqlDriver(ptr QSqlDriver_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSqlDriverPTR().Pointer()
+		return ptr.QSqlDriver_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSqlDriverFromPointer(ptr unsafe.Pointer) *QSqlDriver {
+func NewQSqlDriverFromPointer(ptr unsafe.Pointer) *QSqlDriver {
 	var n = new(QSqlDriver)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QSqlDriver_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QSqlDriver) QSqlDriverPTR() *QSqlDriver {
+func (ptr *QSqlDriver) QSqlDriver_PTR() *QSqlDriver {
 	return ptr
 }
 
 //QSqlDriver::DbmsType
-type QSqlDriver__DbmsType int
+type QSqlDriver__DbmsType int64
 
-var (
+const (
 	QSqlDriver__UnknownDbms = QSqlDriver__DbmsType(0)
 	QSqlDriver__MSSqlServer = QSqlDriver__DbmsType(1)
 	QSqlDriver__MySqlServer = QSqlDriver__DbmsType(2)
@@ -54,9 +54,9 @@ var (
 )
 
 //QSqlDriver::DriverFeature
-type QSqlDriver__DriverFeature int
+type QSqlDriver__DriverFeature int64
 
-var (
+const (
 	QSqlDriver__Transactions           = QSqlDriver__DriverFeature(0)
 	QSqlDriver__QuerySize              = QSqlDriver__DriverFeature(1)
 	QSqlDriver__BLOB                   = QSqlDriver__DriverFeature(2)
@@ -75,26 +75,26 @@ var (
 )
 
 //QSqlDriver::IdentifierType
-type QSqlDriver__IdentifierType int
+type QSqlDriver__IdentifierType int64
 
-var (
+const (
 	QSqlDriver__FieldName = QSqlDriver__IdentifierType(0)
 	QSqlDriver__TableName = QSqlDriver__IdentifierType(1)
 )
 
 //QSqlDriver::NotificationSource
-type QSqlDriver__NotificationSource int
+type QSqlDriver__NotificationSource int64
 
-var (
+const (
 	QSqlDriver__UnknownSource = QSqlDriver__NotificationSource(0)
 	QSqlDriver__SelfSource    = QSqlDriver__NotificationSource(1)
 	QSqlDriver__OtherSource   = QSqlDriver__NotificationSource(2)
 )
 
 //QSqlDriver::StatementType
-type QSqlDriver__StatementType int
+type QSqlDriver__StatementType int64
 
-var (
+const (
 	QSqlDriver__WhereStatement  = QSqlDriver__StatementType(0)
 	QSqlDriver__SelectStatement = QSqlDriver__StatementType(1)
 	QSqlDriver__UpdateStatement = QSqlDriver__StatementType(2)
@@ -104,97 +104,97 @@ var (
 
 func (ptr *QSqlDriver) BeginTransaction() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_BeginTransaction(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSqlDriver_BeginTransaction(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) Close() {
 	if ptr.Pointer() != nil {
-		C.QSqlDriver_Close(C.QtObjectPtr(ptr.Pointer()))
+		C.QSqlDriver_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QSqlDriver) CommitTransaction() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_CommitTransaction(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSqlDriver_CommitTransaction(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) CreateResult() *QSqlResult {
 	if ptr.Pointer() != nil {
-		return QSqlResultFromPointer(unsafe.Pointer(C.QSqlDriver_CreateResult(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQSqlResultFromPointer(C.QSqlDriver_CreateResult(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QSqlDriver) DbmsType() QSqlDriver__DbmsType {
 	if ptr.Pointer() != nil {
-		return QSqlDriver__DbmsType(C.QSqlDriver_DbmsType(C.QtObjectPtr(ptr.Pointer())))
+		return QSqlDriver__DbmsType(C.QSqlDriver_DbmsType(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSqlDriver) EscapeIdentifier(identifier string, ty QSqlDriver__IdentifierType) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDriver_EscapeIdentifier(C.QtObjectPtr(ptr.Pointer()), C.CString(identifier), C.int(ty)))
+		return C.GoString(C.QSqlDriver_EscapeIdentifier(ptr.Pointer(), C.CString(identifier), C.int(ty)))
 	}
 	return ""
 }
 
-func (ptr *QSqlDriver) FormatValue(field QSqlFieldITF, trimStrings bool) string {
+func (ptr *QSqlDriver) FormatValue(field QSqlField_ITF, trimStrings bool) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDriver_FormatValue(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSqlField(field)), C.int(qt.GoBoolToInt(trimStrings))))
+		return C.GoString(C.QSqlDriver_FormatValue(ptr.Pointer(), PointerFromQSqlField(field), C.int(qt.GoBoolToInt(trimStrings))))
 	}
 	return ""
 }
 
-func (ptr *QSqlDriver) Handle() string {
+func (ptr *QSqlDriver) Handle() *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDriver_Handle(C.QtObjectPtr(ptr.Pointer())))
+		return core.NewQVariantFromPointer(C.QSqlDriver_Handle(ptr.Pointer()))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QSqlDriver) HasFeature(feature QSqlDriver__DriverFeature) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_HasFeature(C.QtObjectPtr(ptr.Pointer()), C.int(feature)) != 0
+		return C.QSqlDriver_HasFeature(ptr.Pointer(), C.int(feature)) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) IsIdentifierEscaped(identifier string, ty QSqlDriver__IdentifierType) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_IsIdentifierEscaped(C.QtObjectPtr(ptr.Pointer()), C.CString(identifier), C.int(ty)) != 0
+		return C.QSqlDriver_IsIdentifierEscaped(ptr.Pointer(), C.CString(identifier), C.int(ty)) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) IsOpen() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_IsOpen(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSqlDriver_IsOpen(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) IsOpenError() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_IsOpenError(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSqlDriver_IsOpenError(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) ConnectNotification(f func(name string)) {
 	if ptr.Pointer() != nil {
-		C.QSqlDriver_ConnectNotification(C.QtObjectPtr(ptr.Pointer()))
+		C.QSqlDriver_ConnectNotification(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "notification", f)
 	}
 }
 
 func (ptr *QSqlDriver) DisconnectNotification() {
 	if ptr.Pointer() != nil {
-		C.QSqlDriver_DisconnectNotification(C.QtObjectPtr(ptr.Pointer()))
+		C.QSqlDriver_DisconnectNotification(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "notification")
 	}
 }
@@ -206,56 +206,56 @@ func callbackQSqlDriverNotification(ptrName *C.char, name *C.char) {
 
 func (ptr *QSqlDriver) Open(db string, user string, password string, host string, port int, options string) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_Open(C.QtObjectPtr(ptr.Pointer()), C.CString(db), C.CString(user), C.CString(password), C.CString(host), C.int(port), C.CString(options)) != 0
+		return C.QSqlDriver_Open(ptr.Pointer(), C.CString(db), C.CString(user), C.CString(password), C.CString(host), C.int(port), C.CString(options)) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) RollbackTransaction() bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_RollbackTransaction(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSqlDriver_RollbackTransaction(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QSqlDriver) SqlStatement(ty QSqlDriver__StatementType, tableName string, rec QSqlRecordITF, preparedStatement bool) string {
+func (ptr *QSqlDriver) SqlStatement(ty QSqlDriver__StatementType, tableName string, rec QSqlRecord_ITF, preparedStatement bool) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDriver_SqlStatement(C.QtObjectPtr(ptr.Pointer()), C.int(ty), C.CString(tableName), C.QtObjectPtr(PointerFromQSqlRecord(rec)), C.int(qt.GoBoolToInt(preparedStatement))))
+		return C.GoString(C.QSqlDriver_SqlStatement(ptr.Pointer(), C.int(ty), C.CString(tableName), PointerFromQSqlRecord(rec), C.int(qt.GoBoolToInt(preparedStatement))))
 	}
 	return ""
 }
 
 func (ptr *QSqlDriver) StripDelimiters(identifier string, ty QSqlDriver__IdentifierType) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDriver_StripDelimiters(C.QtObjectPtr(ptr.Pointer()), C.CString(identifier), C.int(ty)))
+		return C.GoString(C.QSqlDriver_StripDelimiters(ptr.Pointer(), C.CString(identifier), C.int(ty)))
 	}
 	return ""
 }
 
 func (ptr *QSqlDriver) SubscribeToNotification(name string) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_SubscribeToNotification(C.QtObjectPtr(ptr.Pointer()), C.CString(name)) != 0
+		return C.QSqlDriver_SubscribeToNotification(ptr.Pointer(), C.CString(name)) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) SubscribedToNotifications() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSqlDriver_SubscribedToNotifications(C.QtObjectPtr(ptr.Pointer()))), "|")
+		return strings.Split(C.GoString(C.QSqlDriver_SubscribedToNotifications(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSqlDriver) UnsubscribeFromNotification(name string) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlDriver_UnsubscribeFromNotification(C.QtObjectPtr(ptr.Pointer()), C.CString(name)) != 0
+		return C.QSqlDriver_UnsubscribeFromNotification(ptr.Pointer(), C.CString(name)) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlDriver) DestroyQSqlDriver() {
 	if ptr.Pointer() != nil {
-		C.QSqlDriver_DestroyQSqlDriver(C.QtObjectPtr(ptr.Pointer()))
+		C.QSqlDriver_DestroyQSqlDriver(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

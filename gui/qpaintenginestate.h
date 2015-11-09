@@ -1,16 +1,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QPaintEngineState_BackgroundMode(QtObjectPtr ptr);
-int QPaintEngineState_BrushNeedsResolving(QtObjectPtr ptr);
-int QPaintEngineState_ClipOperation(QtObjectPtr ptr);
-int QPaintEngineState_CompositionMode(QtObjectPtr ptr);
-int QPaintEngineState_IsClipEnabled(QtObjectPtr ptr);
-QtObjectPtr QPaintEngineState_Painter(QtObjectPtr ptr);
-int QPaintEngineState_PenNeedsResolving(QtObjectPtr ptr);
-int QPaintEngineState_RenderHints(QtObjectPtr ptr);
+void* QPaintEngineState_BackgroundBrush(void* ptr);
+int QPaintEngineState_BackgroundMode(void* ptr);
+void* QPaintEngineState_Brush(void* ptr);
+int QPaintEngineState_BrushNeedsResolving(void* ptr);
+int QPaintEngineState_ClipOperation(void* ptr);
+void* QPaintEngineState_ClipRegion(void* ptr);
+int QPaintEngineState_CompositionMode(void* ptr);
+int QPaintEngineState_IsClipEnabled(void* ptr);
+double QPaintEngineState_Opacity(void* ptr);
+void* QPaintEngineState_Painter(void* ptr);
+int QPaintEngineState_PenNeedsResolving(void* ptr);
+int QPaintEngineState_RenderHints(void* ptr);
 
 #ifdef __cplusplus
 }

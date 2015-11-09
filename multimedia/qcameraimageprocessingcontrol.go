@@ -4,6 +4,7 @@ package multimedia
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -11,35 +12,35 @@ type QCameraImageProcessingControl struct {
 	QMediaControl
 }
 
-type QCameraImageProcessingControlITF interface {
-	QMediaControlITF
-	QCameraImageProcessingControlPTR() *QCameraImageProcessingControl
+type QCameraImageProcessingControl_ITF interface {
+	QMediaControl_ITF
+	QCameraImageProcessingControl_PTR() *QCameraImageProcessingControl
 }
 
-func PointerFromQCameraImageProcessingControl(ptr QCameraImageProcessingControlITF) unsafe.Pointer {
+func PointerFromQCameraImageProcessingControl(ptr QCameraImageProcessingControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCameraImageProcessingControlPTR().Pointer()
+		return ptr.QCameraImageProcessingControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCameraImageProcessingControlFromPointer(ptr unsafe.Pointer) *QCameraImageProcessingControl {
+func NewQCameraImageProcessingControlFromPointer(ptr unsafe.Pointer) *QCameraImageProcessingControl {
 	var n = new(QCameraImageProcessingControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCameraImageProcessingControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCameraImageProcessingControl) QCameraImageProcessingControlPTR() *QCameraImageProcessingControl {
+func (ptr *QCameraImageProcessingControl) QCameraImageProcessingControl_PTR() *QCameraImageProcessingControl {
 	return ptr
 }
 
 //QCameraImageProcessingControl::ProcessingParameter
-type QCameraImageProcessingControl__ProcessingParameter int
+type QCameraImageProcessingControl__ProcessingParameter int64
 
-var (
+const (
 	QCameraImageProcessingControl__WhiteBalancePreset   = QCameraImageProcessingControl__ProcessingParameter(0)
 	QCameraImageProcessingControl__ColorTemperature     = QCameraImageProcessingControl__ProcessingParameter(1)
 	QCameraImageProcessingControl__Contrast             = QCameraImageProcessingControl__ProcessingParameter(2)
@@ -58,34 +59,34 @@ var (
 
 func (ptr *QCameraImageProcessingControl) IsParameterSupported(parameter QCameraImageProcessingControl__ProcessingParameter) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageProcessingControl_IsParameterSupported(C.QtObjectPtr(ptr.Pointer()), C.int(parameter)) != 0
+		return C.QCameraImageProcessingControl_IsParameterSupported(ptr.Pointer(), C.int(parameter)) != 0
 	}
 	return false
 }
 
-func (ptr *QCameraImageProcessingControl) IsParameterValueSupported(parameter QCameraImageProcessingControl__ProcessingParameter, value string) bool {
+func (ptr *QCameraImageProcessingControl) IsParameterValueSupported(parameter QCameraImageProcessingControl__ProcessingParameter, value core.QVariant_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageProcessingControl_IsParameterValueSupported(C.QtObjectPtr(ptr.Pointer()), C.int(parameter), C.CString(value)) != 0
+		return C.QCameraImageProcessingControl_IsParameterValueSupported(ptr.Pointer(), C.int(parameter), core.PointerFromQVariant(value)) != 0
 	}
 	return false
 }
 
-func (ptr *QCameraImageProcessingControl) Parameter(parameter QCameraImageProcessingControl__ProcessingParameter) string {
+func (ptr *QCameraImageProcessingControl) Parameter(parameter QCameraImageProcessingControl__ProcessingParameter) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QCameraImageProcessingControl_Parameter(C.QtObjectPtr(ptr.Pointer()), C.int(parameter)))
+		return core.NewQVariantFromPointer(C.QCameraImageProcessingControl_Parameter(ptr.Pointer(), C.int(parameter)))
 	}
-	return ""
+	return nil
 }
 
-func (ptr *QCameraImageProcessingControl) SetParameter(parameter QCameraImageProcessingControl__ProcessingParameter, value string) {
+func (ptr *QCameraImageProcessingControl) SetParameter(parameter QCameraImageProcessingControl__ProcessingParameter, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QCameraImageProcessingControl_SetParameter(C.QtObjectPtr(ptr.Pointer()), C.int(parameter), C.CString(value))
+		C.QCameraImageProcessingControl_SetParameter(ptr.Pointer(), C.int(parameter), core.PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QCameraImageProcessingControl) DestroyQCameraImageProcessingControl() {
 	if ptr.Pointer() != nil {
-		C.QCameraImageProcessingControl_DestroyQCameraImageProcessingControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraImageProcessingControl_DestroyQCameraImageProcessingControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

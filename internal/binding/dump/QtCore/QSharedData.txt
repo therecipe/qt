@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{QSharedData QSharedData::QSharedData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false false   [] }
-&{QSharedData QSharedData::QSharedData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false true 2  [0xc820ba9fe0] }
+&{QSharedData QSharedData::QSharedData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false false   QSharedData() [] }
+&{QSharedData QSharedData::QSharedData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qshareddata.h non constructor false true 2  QSharedData(const QSharedData &other) [0xc820c89560] }
 ########################################			ENUMS			########################################

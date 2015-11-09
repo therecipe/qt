@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{flags QQmlImageProviderBase::flags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h pure plain false false  Flags [] }
-&{imageType QQmlImageProviderBase::imageType commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h pure plain false false  ImageType [] }
+&{flags QQmlImageProviderBase::flags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h pure plain false false  Flags Flags flags() const [] }
+&{imageType QQmlImageProviderBase::imageType commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h pure plain false false  ImageType ImageType imageType() const [] }
 ########################################			ENUMS			########################################
-&{Flag QQmlImageProviderBase::Flag commendable public QQmlImageProviderBase::Flags [0xc822d4fa80]}
-&{ImageType QQmlImageProviderBase::ImageType commendable public  [0xc822d4fda0 0xc822d4ff00 0xc822d40020 0xc822d400c0]}
+&{Flag QQmlImageProviderBase::Flag commendable public QQmlImageProviderBase::Flags [0xc822fc5260] false}
+&{ImageType QQmlImageProviderBase::ImageType commendable public  [0xc822fc5760 0xc822fc5840 0xc822fc5900 0xc822fc5ac0] false}

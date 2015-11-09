@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{cleanIcon QUndoView::cleanIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  QIcon [] }
-&{emptyLabel QUndoView::emptyLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  QString [] }
-&{setCleanIcon QUndoView::setCleanIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  void [0xc8211c2560] }
-&{setEmptyLabel QUndoView::setEmptyLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  void [0xc8211c2ac0] }
-&{QUndoView QUndoView::QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non constructor false true 3  [0xc8211c2e80 0xc8211c2fe0] }
-&{QUndoView QUndoView::QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non constructor false true 2  [0xc8211c3420 0xc8211c3560] }
-&{QUndoView QUndoView::QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non constructor false false   [0xc8211c3a00] }
-&{group QUndoView::group commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non plain false false  QUndoGroup * [] }
-&{setGroup QUndoView::setGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non slot false false  void [0xc8211c3fe0] }
-&{setStack QUndoView::setStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non slot false false  void [0xc8211b4460] }
-&{stack QUndoView::stack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non plain false false  QUndoStack * [] }
-&{~QUndoView QUndoView::~QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non destructor false false   [] }
+&{cleanIcon QUndoView::cleanIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  QIcon QIcon cleanIcon() const [] }
+&{emptyLabel QUndoView::emptyLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  QString QString emptyLabel() const [] }
+&{setCleanIcon QUndoView::setCleanIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  void void setCleanIcon(const QIcon &icon) [0xc821ae8f80] }
+&{setEmptyLabel QUndoView::setEmptyLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  void void setEmptyLabel(const QString &label) [0xc821ae9280] }
+&{QUndoView QUndoView::QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non constructor false true 3  QUndoView(QUndoGroup *group, QWidget *parent) [0xc821ae9580 0xc821ae9600] }
+&{QUndoView QUndoView::QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non constructor false true 2  QUndoView(QUndoStack *stack, QWidget *parent) [0xc821ae98e0 0xc821ae9960] }
+&{QUndoView QUndoView::QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non constructor false false   QUndoView(QWidget *parent) [0xc821ae9cc0] }
+&{group QUndoView::group commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non plain false false  QUndoGroup * QUndoGroup * group() const [] }
+&{setGroup QUndoView::setGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non slot false false  void void setGroup(QUndoGroup *group) [0xc821ae0120] }
+&{setStack QUndoView::setStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non slot false false  void void setStack(QUndoStack *stack) [0xc821ae05a0] }
+&{stack QUndoView::stack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non plain false false  QUndoStack * QUndoStack * stack() const [] }
+&{~QUndoView QUndoView::~QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non destructor false false   ~QUndoView() [] }
 ########################################			ENUMS			########################################

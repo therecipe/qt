@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QStyleOptionComboBox QStyleOptionComboBox::QStyleOptionComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
-&{QStyleOptionComboBox QStyleOptionComboBox::QStyleOptionComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8214d26c0] }
+&{QStyleOptionComboBox QStyleOptionComboBox::QStyleOptionComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionComboBox() [] }
+&{QStyleOptionComboBox QStyleOptionComboBox::QStyleOptionComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionComboBox(const QStyleOptionComboBox &other) [0xc822d21540] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionComboBox::StyleOptionType commendable public  [0xc8214e3d40]}
-&{StyleOptionVersion QStyleOptionComboBox::StyleOptionVersion commendable public  [0xc8214d20c0]}
+&{StyleOptionType QStyleOptionComboBox::StyleOptionType commendable public  [0xc822d20de0] false}
+&{StyleOptionVersion QStyleOptionComboBox::StyleOptionVersion commendable public  [0xc822d21020] false}

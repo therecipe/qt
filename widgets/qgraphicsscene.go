@@ -13,347 +13,419 @@ type QGraphicsScene struct {
 	core.QObject
 }
 
-type QGraphicsSceneITF interface {
-	core.QObjectITF
-	QGraphicsScenePTR() *QGraphicsScene
+type QGraphicsScene_ITF interface {
+	core.QObject_ITF
+	QGraphicsScene_PTR() *QGraphicsScene
 }
 
-func PointerFromQGraphicsScene(ptr QGraphicsSceneITF) unsafe.Pointer {
+func PointerFromQGraphicsScene(ptr QGraphicsScene_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsScenePTR().Pointer()
+		return ptr.QGraphicsScene_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsSceneFromPointer(ptr unsafe.Pointer) *QGraphicsScene {
+func NewQGraphicsSceneFromPointer(ptr unsafe.Pointer) *QGraphicsScene {
 	var n = new(QGraphicsScene)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGraphicsScene_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGraphicsScene) QGraphicsScenePTR() *QGraphicsScene {
+func (ptr *QGraphicsScene) QGraphicsScene_PTR() *QGraphicsScene {
 	return ptr
 }
 
 //QGraphicsScene::ItemIndexMethod
-type QGraphicsScene__ItemIndexMethod int
+type QGraphicsScene__ItemIndexMethod int64
 
-var (
+const (
 	QGraphicsScene__BspTreeIndex = QGraphicsScene__ItemIndexMethod(0)
 	QGraphicsScene__NoIndex      = QGraphicsScene__ItemIndexMethod(-1)
 )
 
 //QGraphicsScene::SceneLayer
-type QGraphicsScene__SceneLayer int
+type QGraphicsScene__SceneLayer int64
 
-var (
+const (
 	QGraphicsScene__ItemLayer       = QGraphicsScene__SceneLayer(0x1)
 	QGraphicsScene__BackgroundLayer = QGraphicsScene__SceneLayer(0x2)
 	QGraphicsScene__ForegroundLayer = QGraphicsScene__SceneLayer(0x4)
 	QGraphicsScene__AllLayers       = QGraphicsScene__SceneLayer(0xffff)
 )
 
+func (ptr *QGraphicsScene) BackgroundBrush() *gui.QBrush {
+	if ptr.Pointer() != nil {
+		return gui.NewQBrushFromPointer(C.QGraphicsScene_BackgroundBrush(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsScene) BspTreeDepth() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsScene_BspTreeDepth(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGraphicsScene_BspTreeDepth(ptr.Pointer()))
 	}
 	return 0
 }
 
+func (ptr *QGraphicsScene) ForegroundBrush() *gui.QBrush {
+	if ptr.Pointer() != nil {
+		return gui.NewQBrushFromPointer(C.QGraphicsScene_ForegroundBrush(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsScene) IsSortCacheEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_IsSortCacheEnabled(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QGraphicsScene_IsSortCacheEnabled(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsScene) ItemIndexMethod() QGraphicsScene__ItemIndexMethod {
 	if ptr.Pointer() != nil {
-		return QGraphicsScene__ItemIndexMethod(C.QGraphicsScene_ItemIndexMethod(C.QtObjectPtr(ptr.Pointer())))
+		return QGraphicsScene__ItemIndexMethod(C.QGraphicsScene_ItemIndexMethod(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QGraphicsScene) SetBackgroundBrush(brush gui.QBrushITF) {
+func (ptr *QGraphicsScene) MinimumRenderSize() float64 {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetBackgroundBrush(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQBrush(brush)))
+		return float64(C.QGraphicsScene_MinimumRenderSize(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsScene) SetBackgroundBrush(brush gui.QBrush_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene_SetBackgroundBrush(ptr.Pointer(), gui.PointerFromQBrush(brush))
 	}
 }
 
 func (ptr *QGraphicsScene) SetBspTreeDepth(depth int) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetBspTreeDepth(C.QtObjectPtr(ptr.Pointer()), C.int(depth))
+		C.QGraphicsScene_SetBspTreeDepth(ptr.Pointer(), C.int(depth))
 	}
 }
 
-func (ptr *QGraphicsScene) SetFont(font gui.QFontITF) {
+func (ptr *QGraphicsScene) SetFont(font gui.QFont_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetFont(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQFont(font)))
+		C.QGraphicsScene_SetFont(ptr.Pointer(), gui.PointerFromQFont(font))
 	}
 }
 
-func (ptr *QGraphicsScene) SetForegroundBrush(brush gui.QBrushITF) {
+func (ptr *QGraphicsScene) SetForegroundBrush(brush gui.QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetForegroundBrush(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQBrush(brush)))
+		C.QGraphicsScene_SetForegroundBrush(ptr.Pointer(), gui.PointerFromQBrush(brush))
 	}
 }
 
 func (ptr *QGraphicsScene) SetItemIndexMethod(method QGraphicsScene__ItemIndexMethod) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetItemIndexMethod(C.QtObjectPtr(ptr.Pointer()), C.int(method))
+		C.QGraphicsScene_SetItemIndexMethod(ptr.Pointer(), C.int(method))
 	}
 }
 
-func (ptr *QGraphicsScene) SetPalette(palette gui.QPaletteITF) {
+func (ptr *QGraphicsScene) SetMinimumRenderSize(minSize float64) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetPalette(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPalette(palette)))
+		C.QGraphicsScene_SetMinimumRenderSize(ptr.Pointer(), C.double(minSize))
 	}
 }
 
-func (ptr *QGraphicsScene) SetSceneRect(rect core.QRectFITF) {
+func (ptr *QGraphicsScene) SetPalette(palette gui.QPalette_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetSceneRect(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)))
+		C.QGraphicsScene_SetPalette(ptr.Pointer(), gui.PointerFromQPalette(palette))
+	}
+}
+
+func (ptr *QGraphicsScene) SetSceneRect(rect core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene_SetSceneRect(ptr.Pointer(), core.PointerFromQRectF(rect))
 	}
 }
 
 func (ptr *QGraphicsScene) SetSortCacheEnabled(enabled bool) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetSortCacheEnabled(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enabled)))
+		C.QGraphicsScene_SetSortCacheEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
 	}
 }
 
 func (ptr *QGraphicsScene) SetStickyFocus(enabled bool) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetStickyFocus(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enabled)))
+		C.QGraphicsScene_SetStickyFocus(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
 	}
 }
 
 func (ptr *QGraphicsScene) StickyFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_StickyFocus(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QGraphicsScene_StickyFocus(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QGraphicsScene) Update(rect core.QRectFITF) {
+func (ptr *QGraphicsScene) Update(rect core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_Update(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)))
+		C.QGraphicsScene_Update(ptr.Pointer(), core.PointerFromQRectF(rect))
 	}
 }
 
-func NewQGraphicsScene(parent core.QObjectITF) *QGraphicsScene {
-	return QGraphicsSceneFromPointer(unsafe.Pointer(C.QGraphicsScene_NewQGraphicsScene(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQGraphicsScene(parent core.QObject_ITF) *QGraphicsScene {
+	return NewQGraphicsSceneFromPointer(C.QGraphicsScene_NewQGraphicsScene(core.PointerFromQObject(parent)))
 }
 
-func NewQGraphicsScene2(sceneRect core.QRectFITF, parent core.QObjectITF) *QGraphicsScene {
-	return QGraphicsSceneFromPointer(unsafe.Pointer(C.QGraphicsScene_NewQGraphicsScene2(C.QtObjectPtr(core.PointerFromQRectF(sceneRect)), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQGraphicsScene2(sceneRect core.QRectF_ITF, parent core.QObject_ITF) *QGraphicsScene {
+	return NewQGraphicsSceneFromPointer(C.QGraphicsScene_NewQGraphicsScene2(core.PointerFromQRectF(sceneRect), core.PointerFromQObject(parent)))
+}
+
+func NewQGraphicsScene3(x float64, y float64, width float64, height float64, parent core.QObject_ITF) *QGraphicsScene {
+	return NewQGraphicsSceneFromPointer(C.QGraphicsScene_NewQGraphicsScene3(C.double(x), C.double(y), C.double(width), C.double(height), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QGraphicsScene) ActivePanel() *QGraphicsItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsItemFromPointer(unsafe.Pointer(C.QGraphicsScene_ActivePanel(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene_ActivePanel(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QGraphicsScene) ActiveWindow() *QGraphicsWidget {
 	if ptr.Pointer() != nil {
-		return QGraphicsWidgetFromPointer(unsafe.Pointer(C.QGraphicsScene_ActiveWindow(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQGraphicsWidgetFromPointer(C.QGraphicsScene_ActiveWindow(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsScene) AddEllipse(rect core.QRectFITF, pen gui.QPenITF, brush gui.QBrushITF) *QGraphicsEllipseItem {
+func (ptr *QGraphicsScene) AddEllipse(rect core.QRectF_ITF, pen gui.QPen_ITF, brush gui.QBrush_ITF) *QGraphicsEllipseItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsEllipseItemFromPointer(unsafe.Pointer(C.QGraphicsScene_AddEllipse(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)), C.QtObjectPtr(gui.PointerFromQPen(pen)), C.QtObjectPtr(gui.PointerFromQBrush(brush)))))
+		return NewQGraphicsEllipseItemFromPointer(C.QGraphicsScene_AddEllipse(ptr.Pointer(), core.PointerFromQRectF(rect), gui.PointerFromQPen(pen), gui.PointerFromQBrush(brush)))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsScene) AddItem(item QGraphicsItemITF) {
+func (ptr *QGraphicsScene) AddEllipse2(x float64, y float64, w float64, h float64, pen gui.QPen_ITF, brush gui.QBrush_ITF) *QGraphicsEllipseItem {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_AddItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItem(item)))
-	}
-}
-
-func (ptr *QGraphicsScene) AddLine(line core.QLineFITF, pen gui.QPenITF) *QGraphicsLineItem {
-	if ptr.Pointer() != nil {
-		return QGraphicsLineItemFromPointer(unsafe.Pointer(C.QGraphicsScene_AddLine(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQLineF(line)), C.QtObjectPtr(gui.PointerFromQPen(pen)))))
+		return NewQGraphicsEllipseItemFromPointer(C.QGraphicsScene_AddEllipse2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h), gui.PointerFromQPen(pen), gui.PointerFromQBrush(brush)))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsScene) AddPath(path gui.QPainterPathITF, pen gui.QPenITF, brush gui.QBrushITF) *QGraphicsPathItem {
+func (ptr *QGraphicsScene) AddItem(item QGraphicsItem_ITF) {
 	if ptr.Pointer() != nil {
-		return QGraphicsPathItemFromPointer(unsafe.Pointer(C.QGraphicsScene_AddPath(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainterPath(path)), C.QtObjectPtr(gui.PointerFromQPen(pen)), C.QtObjectPtr(gui.PointerFromQBrush(brush)))))
+		C.QGraphicsScene_AddItem(ptr.Pointer(), PointerFromQGraphicsItem(item))
+	}
+}
+
+func (ptr *QGraphicsScene) AddLine(line core.QLineF_ITF, pen gui.QPen_ITF) *QGraphicsLineItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsLineItemFromPointer(C.QGraphicsScene_AddLine(ptr.Pointer(), core.PointerFromQLineF(line), gui.PointerFromQPen(pen)))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsScene) AddPixmap(pixmap gui.QPixmapITF) *QGraphicsPixmapItem {
+func (ptr *QGraphicsScene) AddLine2(x1 float64, y1 float64, x2 float64, y2 float64, pen gui.QPen_ITF) *QGraphicsLineItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsPixmapItemFromPointer(unsafe.Pointer(C.QGraphicsScene_AddPixmap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPixmap(pixmap)))))
+		return NewQGraphicsLineItemFromPointer(C.QGraphicsScene_AddLine2(ptr.Pointer(), C.double(x1), C.double(y1), C.double(x2), C.double(y2), gui.PointerFromQPen(pen)))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsScene) AddPolygon(polygon gui.QPolygonFITF, pen gui.QPenITF, brush gui.QBrushITF) *QGraphicsPolygonItem {
+func (ptr *QGraphicsScene) AddPath(path gui.QPainterPath_ITF, pen gui.QPen_ITF, brush gui.QBrush_ITF) *QGraphicsPathItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsPolygonItemFromPointer(unsafe.Pointer(C.QGraphicsScene_AddPolygon(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPolygonF(polygon)), C.QtObjectPtr(gui.PointerFromQPen(pen)), C.QtObjectPtr(gui.PointerFromQBrush(brush)))))
+		return NewQGraphicsPathItemFromPointer(C.QGraphicsScene_AddPath(ptr.Pointer(), gui.PointerFromQPainterPath(path), gui.PointerFromQPen(pen), gui.PointerFromQBrush(brush)))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsScene) AddRect(rect core.QRectFITF, pen gui.QPenITF, brush gui.QBrushITF) *QGraphicsRectItem {
+func (ptr *QGraphicsScene) AddPixmap(pixmap gui.QPixmap_ITF) *QGraphicsPixmapItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsRectItemFromPointer(unsafe.Pointer(C.QGraphicsScene_AddRect(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)), C.QtObjectPtr(gui.PointerFromQPen(pen)), C.QtObjectPtr(gui.PointerFromQBrush(brush)))))
+		return NewQGraphicsPixmapItemFromPointer(C.QGraphicsScene_AddPixmap(ptr.Pointer(), gui.PointerFromQPixmap(pixmap)))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsScene) AddSimpleText(text string, font gui.QFontITF) *QGraphicsSimpleTextItem {
+func (ptr *QGraphicsScene) AddPolygon(polygon gui.QPolygonF_ITF, pen gui.QPen_ITF, brush gui.QBrush_ITF) *QGraphicsPolygonItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsSimpleTextItemFromPointer(unsafe.Pointer(C.QGraphicsScene_AddSimpleText(C.QtObjectPtr(ptr.Pointer()), C.CString(text), C.QtObjectPtr(gui.PointerFromQFont(font)))))
+		return NewQGraphicsPolygonItemFromPointer(C.QGraphicsScene_AddPolygon(ptr.Pointer(), gui.PointerFromQPolygonF(polygon), gui.PointerFromQPen(pen), gui.PointerFromQBrush(brush)))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsScene) AddText(text string, font gui.QFontITF) *QGraphicsTextItem {
+func (ptr *QGraphicsScene) AddRect(rect core.QRectF_ITF, pen gui.QPen_ITF, brush gui.QBrush_ITF) *QGraphicsRectItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsTextItemFromPointer(unsafe.Pointer(C.QGraphicsScene_AddText(C.QtObjectPtr(ptr.Pointer()), C.CString(text), C.QtObjectPtr(gui.PointerFromQFont(font)))))
+		return NewQGraphicsRectItemFromPointer(C.QGraphicsScene_AddRect(ptr.Pointer(), core.PointerFromQRectF(rect), gui.PointerFromQPen(pen), gui.PointerFromQBrush(brush)))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsScene) AddWidget(widget QWidgetITF, wFlags core.Qt__WindowType) *QGraphicsProxyWidget {
+func (ptr *QGraphicsScene) AddRect2(x float64, y float64, w float64, h float64, pen gui.QPen_ITF, brush gui.QBrush_ITF) *QGraphicsRectItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsProxyWidgetFromPointer(unsafe.Pointer(C.QGraphicsScene_AddWidget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget)), C.int(wFlags))))
+		return NewQGraphicsRectItemFromPointer(C.QGraphicsScene_AddRect2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h), gui.PointerFromQPen(pen), gui.PointerFromQBrush(brush)))
+	}
+	return nil
+}
+
+func (ptr *QGraphicsScene) AddSimpleText(text string, font gui.QFont_ITF) *QGraphicsSimpleTextItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsSimpleTextItemFromPointer(C.QGraphicsScene_AddSimpleText(ptr.Pointer(), C.CString(text), gui.PointerFromQFont(font)))
+	}
+	return nil
+}
+
+func (ptr *QGraphicsScene) AddText(text string, font gui.QFont_ITF) *QGraphicsTextItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsTextItemFromPointer(C.QGraphicsScene_AddText(ptr.Pointer(), C.CString(text), gui.PointerFromQFont(font)))
+	}
+	return nil
+}
+
+func (ptr *QGraphicsScene) AddWidget(widget QWidget_ITF, wFlags core.Qt__WindowType) *QGraphicsProxyWidget {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsProxyWidgetFromPointer(C.QGraphicsScene_AddWidget(ptr.Pointer(), PointerFromQWidget(widget), C.int(wFlags)))
 	}
 	return nil
 }
 
 func (ptr *QGraphicsScene) Advance() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_Advance(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsScene_Advance(ptr.Pointer())
 	}
 }
 
 func (ptr *QGraphicsScene) Clear() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_Clear(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsScene_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QGraphicsScene) ClearFocus() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_ClearFocus(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsScene_ClearFocus(ptr.Pointer())
 	}
 }
 
 func (ptr *QGraphicsScene) ClearSelection() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_ClearSelection(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsScene_ClearSelection(ptr.Pointer())
 	}
 }
 
-func (ptr *QGraphicsScene) DestroyItemGroup(group QGraphicsItemGroupITF) {
+func (ptr *QGraphicsScene) DestroyItemGroup(group QGraphicsItemGroup_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_DestroyItemGroup(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItemGroup(group)))
+		C.QGraphicsScene_DestroyItemGroup(ptr.Pointer(), PointerFromQGraphicsItemGroup(group))
 	}
 }
 
 func (ptr *QGraphicsScene) FocusItem() *QGraphicsItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsItemFromPointer(unsafe.Pointer(C.QGraphicsScene_FocusItem(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene_FocusItem(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsScene) ConnectFocusItemChanged(f func(newFocusItem QGraphicsItemITF, oldFocusItem QGraphicsItemITF, reason core.Qt__FocusReason)) {
+func (ptr *QGraphicsScene) ConnectFocusItemChanged(f func(newFocusItem *QGraphicsItem, oldFocusItem *QGraphicsItem, reason core.Qt__FocusReason)) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_ConnectFocusItemChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsScene_ConnectFocusItemChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "focusItemChanged", f)
 	}
 }
 
 func (ptr *QGraphicsScene) DisconnectFocusItemChanged() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_DisconnectFocusItemChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsScene_DisconnectFocusItemChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "focusItemChanged")
 	}
 }
 
 //export callbackQGraphicsSceneFocusItemChanged
 func callbackQGraphicsSceneFocusItemChanged(ptrName *C.char, newFocusItem unsafe.Pointer, oldFocusItem unsafe.Pointer, reason C.int) {
-	qt.GetSignal(C.GoString(ptrName), "focusItemChanged").(func(*QGraphicsItem, *QGraphicsItem, core.Qt__FocusReason))(QGraphicsItemFromPointer(newFocusItem), QGraphicsItemFromPointer(oldFocusItem), core.Qt__FocusReason(reason))
+	qt.GetSignal(C.GoString(ptrName), "focusItemChanged").(func(*QGraphicsItem, *QGraphicsItem, core.Qt__FocusReason))(NewQGraphicsItemFromPointer(newFocusItem), NewQGraphicsItemFromPointer(oldFocusItem), core.Qt__FocusReason(reason))
 }
 
 func (ptr *QGraphicsScene) HasFocus() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_HasFocus(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QGraphicsScene_HasFocus(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QGraphicsScene) InputMethodQuery(query core.Qt__InputMethodQuery) string {
+func (ptr *QGraphicsScene) Height() float64 {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGraphicsScene_InputMethodQuery(C.QtObjectPtr(ptr.Pointer()), C.int(query)))
+		return float64(C.QGraphicsScene_Height(ptr.Pointer()))
 	}
-	return ""
+	return 0
 }
 
-func (ptr *QGraphicsScene) Invalidate(rect core.QRectFITF, layers QGraphicsScene__SceneLayer) {
+func (ptr *QGraphicsScene) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_Invalidate(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)), C.int(layers))
+		return core.NewQVariantFromPointer(C.QGraphicsScene_InputMethodQuery(ptr.Pointer(), C.int(query)))
+	}
+	return nil
+}
+
+func (ptr *QGraphicsScene) Invalidate(rect core.QRectF_ITF, layers QGraphicsScene__SceneLayer) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene_Invalidate(ptr.Pointer(), core.PointerFromQRectF(rect), C.int(layers))
+	}
+}
+
+func (ptr *QGraphicsScene) Invalidate2(x float64, y float64, w float64, h float64, layers QGraphicsScene__SceneLayer) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene_Invalidate2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h), C.int(layers))
 	}
 }
 
 func (ptr *QGraphicsScene) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_IsActive(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QGraphicsScene_IsActive(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QGraphicsScene) ItemAt(position core.QPointFITF, deviceTransform gui.QTransformITF) *QGraphicsItem {
+func (ptr *QGraphicsScene) ItemAt(position core.QPointF_ITF, deviceTransform gui.QTransform_ITF) *QGraphicsItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsItemFromPointer(unsafe.Pointer(C.QGraphicsScene_ItemAt(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(position)), C.QtObjectPtr(gui.PointerFromQTransform(deviceTransform)))))
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene_ItemAt(ptr.Pointer(), core.PointerFromQPointF(position), gui.PointerFromQTransform(deviceTransform)))
+	}
+	return nil
+}
+
+func (ptr *QGraphicsScene) ItemAt3(x float64, y float64, deviceTransform gui.QTransform_ITF) *QGraphicsItem {
+	if ptr.Pointer() != nil {
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene_ItemAt3(ptr.Pointer(), C.double(x), C.double(y), gui.PointerFromQTransform(deviceTransform)))
 	}
 	return nil
 }
 
 func (ptr *QGraphicsScene) MouseGrabberItem() *QGraphicsItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsItemFromPointer(unsafe.Pointer(C.QGraphicsScene_MouseGrabberItem(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQGraphicsItemFromPointer(C.QGraphicsScene_MouseGrabberItem(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsScene) RemoveItem(item QGraphicsItemITF) {
+func (ptr *QGraphicsScene) RemoveItem(item QGraphicsItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_RemoveItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItem(item)))
+		C.QGraphicsScene_RemoveItem(ptr.Pointer(), PointerFromQGraphicsItem(item))
 	}
 }
 
-func (ptr *QGraphicsScene) Render(painter gui.QPainterITF, target core.QRectFITF, source core.QRectFITF, aspectRatioMode core.Qt__AspectRatioMode) {
+func (ptr *QGraphicsScene) Render(painter gui.QPainter_ITF, target core.QRectF_ITF, source core.QRectF_ITF, aspectRatioMode core.Qt__AspectRatioMode) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_Render(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(core.PointerFromQRectF(target)), C.QtObjectPtr(core.PointerFromQRectF(source)), C.int(aspectRatioMode))
+		C.QGraphicsScene_Render(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRectF(target), core.PointerFromQRectF(source), C.int(aspectRatioMode))
 	}
 }
 
 func (ptr *QGraphicsScene) ConnectSelectionChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_ConnectSelectionChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsScene_ConnectSelectionChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "selectionChanged", f)
 	}
 }
 
 func (ptr *QGraphicsScene) DisconnectSelectionChanged() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_DisconnectSelectionChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsScene_DisconnectSelectionChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "selectionChanged")
 	}
 }
@@ -363,71 +435,90 @@ func callbackQGraphicsSceneSelectionChanged(ptrName *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "selectionChanged").(func())()
 }
 
-func (ptr *QGraphicsScene) SendEvent(item QGraphicsItemITF, event core.QEventITF) bool {
+func (ptr *QGraphicsScene) SendEvent(item QGraphicsItem_ITF, event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsScene_SendEvent(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItem(item)), C.QtObjectPtr(core.PointerFromQEvent(event))) != 0
+		return C.QGraphicsScene_SendEvent(ptr.Pointer(), PointerFromQGraphicsItem(item), core.PointerFromQEvent(event)) != 0
 	}
 	return false
 }
 
-func (ptr *QGraphicsScene) SetActivePanel(item QGraphicsItemITF) {
+func (ptr *QGraphicsScene) SetActivePanel(item QGraphicsItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetActivePanel(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItem(item)))
+		C.QGraphicsScene_SetActivePanel(ptr.Pointer(), PointerFromQGraphicsItem(item))
 	}
 }
 
-func (ptr *QGraphicsScene) SetActiveWindow(widget QGraphicsWidgetITF) {
+func (ptr *QGraphicsScene) SetActiveWindow(widget QGraphicsWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetActiveWindow(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsWidget(widget)))
+		C.QGraphicsScene_SetActiveWindow(ptr.Pointer(), PointerFromQGraphicsWidget(widget))
 	}
 }
 
 func (ptr *QGraphicsScene) SetFocus(focusReason core.Qt__FocusReason) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetFocus(C.QtObjectPtr(ptr.Pointer()), C.int(focusReason))
+		C.QGraphicsScene_SetFocus(ptr.Pointer(), C.int(focusReason))
 	}
 }
 
-func (ptr *QGraphicsScene) SetFocusItem(item QGraphicsItemITF, focusReason core.Qt__FocusReason) {
+func (ptr *QGraphicsScene) SetFocusItem(item QGraphicsItem_ITF, focusReason core.Qt__FocusReason) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetFocusItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItem(item)), C.int(focusReason))
+		C.QGraphicsScene_SetFocusItem(ptr.Pointer(), PointerFromQGraphicsItem(item), C.int(focusReason))
 	}
 }
 
-func (ptr *QGraphicsScene) SetSelectionArea2(path gui.QPainterPathITF, mode core.Qt__ItemSelectionMode, deviceTransform gui.QTransformITF) {
+func (ptr *QGraphicsScene) SetSceneRect2(x float64, y float64, w float64, h float64) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetSelectionArea2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainterPath(path)), C.int(mode), C.QtObjectPtr(gui.PointerFromQTransform(deviceTransform)))
+		C.QGraphicsScene_SetSceneRect2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h))
 	}
 }
 
-func (ptr *QGraphicsScene) SetSelectionArea3(path gui.QPainterPathITF, selectionOperation core.Qt__ItemSelectionOperation, mode core.Qt__ItemSelectionMode, deviceTransform gui.QTransformITF) {
+func (ptr *QGraphicsScene) SetSelectionArea2(path gui.QPainterPath_ITF, mode core.Qt__ItemSelectionMode, deviceTransform gui.QTransform_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetSelectionArea3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainterPath(path)), C.int(selectionOperation), C.int(mode), C.QtObjectPtr(gui.PointerFromQTransform(deviceTransform)))
+		C.QGraphicsScene_SetSelectionArea2(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.int(mode), gui.PointerFromQTransform(deviceTransform))
 	}
 }
 
-func (ptr *QGraphicsScene) SetSelectionArea(path gui.QPainterPathITF, deviceTransform gui.QTransformITF) {
+func (ptr *QGraphicsScene) SetSelectionArea3(path gui.QPainterPath_ITF, selectionOperation core.Qt__ItemSelectionOperation, mode core.Qt__ItemSelectionMode, deviceTransform gui.QTransform_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetSelectionArea(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainterPath(path)), C.QtObjectPtr(gui.PointerFromQTransform(deviceTransform)))
+		C.QGraphicsScene_SetSelectionArea3(ptr.Pointer(), gui.PointerFromQPainterPath(path), C.int(selectionOperation), C.int(mode), gui.PointerFromQTransform(deviceTransform))
 	}
 }
 
-func (ptr *QGraphicsScene) SetStyle(style QStyleITF) {
+func (ptr *QGraphicsScene) SetSelectionArea(path gui.QPainterPath_ITF, deviceTransform gui.QTransform_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_SetStyle(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQStyle(style)))
+		C.QGraphicsScene_SetSelectionArea(ptr.Pointer(), gui.PointerFromQPainterPath(path), gui.PointerFromQTransform(deviceTransform))
+	}
+}
+
+func (ptr *QGraphicsScene) SetStyle(style QStyle_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene_SetStyle(ptr.Pointer(), PointerFromQStyle(style))
 	}
 }
 
 func (ptr *QGraphicsScene) Style() *QStyle {
 	if ptr.Pointer() != nil {
-		return QStyleFromPointer(unsafe.Pointer(C.QGraphicsScene_Style(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQStyleFromPointer(C.QGraphicsScene_Style(ptr.Pointer()))
 	}
 	return nil
 }
 
+func (ptr *QGraphicsScene) Update2(x float64, y float64, w float64, h float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsScene_Update2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h))
+	}
+}
+
+func (ptr *QGraphicsScene) Width() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsScene_Width(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QGraphicsScene) DestroyQGraphicsScene() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsScene_DestroyQGraphicsScene(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsScene_DestroyQGraphicsScene(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

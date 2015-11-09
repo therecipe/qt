@@ -11,8 +11,8 @@ type QSensorManager struct {
 	ptr unsafe.Pointer
 }
 
-type QSensorManagerITF interface {
-	QSensorManagerPTR() *QSensorManager
+type QSensorManager_ITF interface {
+	QSensorManager_PTR() *QSensorManager
 }
 
 func (p *QSensorManager) Pointer() unsafe.Pointer {
@@ -23,39 +23,39 @@ func (p *QSensorManager) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSensorManager(ptr QSensorManagerITF) unsafe.Pointer {
+func PointerFromQSensorManager(ptr QSensorManager_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSensorManagerPTR().Pointer()
+		return ptr.QSensorManager_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSensorManagerFromPointer(ptr unsafe.Pointer) *QSensorManager {
+func NewQSensorManagerFromPointer(ptr unsafe.Pointer) *QSensorManager {
 	var n = new(QSensorManager)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSensorManager) QSensorManagerPTR() *QSensorManager {
+func (ptr *QSensorManager) QSensorManager_PTR() *QSensorManager {
 	return ptr
 }
 
-func QSensorManager_CreateBackend(sensor QSensorITF) *QSensorBackend {
-	return QSensorBackendFromPointer(unsafe.Pointer(C.QSensorManager_QSensorManager_CreateBackend(C.QtObjectPtr(PointerFromQSensor(sensor)))))
+func QSensorManager_CreateBackend(sensor QSensor_ITF) *QSensorBackend {
+	return NewQSensorBackendFromPointer(C.QSensorManager_QSensorManager_CreateBackend(PointerFromQSensor(sensor)))
 }
 
-func QSensorManager_IsBackendRegistered(ty core.QByteArrayITF, identifier core.QByteArrayITF) bool {
-	return C.QSensorManager_QSensorManager_IsBackendRegistered(C.QtObjectPtr(core.PointerFromQByteArray(ty)), C.QtObjectPtr(core.PointerFromQByteArray(identifier))) != 0
+func QSensorManager_IsBackendRegistered(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) bool {
+	return C.QSensorManager_QSensorManager_IsBackendRegistered(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier)) != 0
 }
 
-func QSensorManager_RegisterBackend(ty core.QByteArrayITF, identifier core.QByteArrayITF, factory QSensorBackendFactoryITF) {
-	C.QSensorManager_QSensorManager_RegisterBackend(C.QtObjectPtr(core.PointerFromQByteArray(ty)), C.QtObjectPtr(core.PointerFromQByteArray(identifier)), C.QtObjectPtr(PointerFromQSensorBackendFactory(factory)))
+func QSensorManager_RegisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF, factory QSensorBackendFactory_ITF) {
+	C.QSensorManager_QSensorManager_RegisterBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier), PointerFromQSensorBackendFactory(factory))
 }
 
-func QSensorManager_SetDefaultBackend(ty core.QByteArrayITF, identifier core.QByteArrayITF) {
-	C.QSensorManager_QSensorManager_SetDefaultBackend(C.QtObjectPtr(core.PointerFromQByteArray(ty)), C.QtObjectPtr(core.PointerFromQByteArray(identifier)))
+func QSensorManager_SetDefaultBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) {
+	C.QSensorManager_QSensorManager_SetDefaultBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))
 }
 
-func QSensorManager_UnregisterBackend(ty core.QByteArrayITF, identifier core.QByteArrayITF) {
-	C.QSensorManager_QSensorManager_UnregisterBackend(C.QtObjectPtr(core.PointerFromQByteArray(ty)), C.QtObjectPtr(core.PointerFromQByteArray(identifier)))
+func QSensorManager_UnregisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) {
+	C.QSensorManager_QSensorManager_UnregisterBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))
 }

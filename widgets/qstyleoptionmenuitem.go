@@ -10,41 +10,41 @@ type QStyleOptionMenuItem struct {
 	QStyleOption
 }
 
-type QStyleOptionMenuItemITF interface {
-	QStyleOptionITF
-	QStyleOptionMenuItemPTR() *QStyleOptionMenuItem
+type QStyleOptionMenuItem_ITF interface {
+	QStyleOption_ITF
+	QStyleOptionMenuItem_PTR() *QStyleOptionMenuItem
 }
 
-func PointerFromQStyleOptionMenuItem(ptr QStyleOptionMenuItemITF) unsafe.Pointer {
+func PointerFromQStyleOptionMenuItem(ptr QStyleOptionMenuItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionMenuItemPTR().Pointer()
+		return ptr.QStyleOptionMenuItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionMenuItemFromPointer(ptr unsafe.Pointer) *QStyleOptionMenuItem {
+func NewQStyleOptionMenuItemFromPointer(ptr unsafe.Pointer) *QStyleOptionMenuItem {
 	var n = new(QStyleOptionMenuItem)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionMenuItem) QStyleOptionMenuItemPTR() *QStyleOptionMenuItem {
+func (ptr *QStyleOptionMenuItem) QStyleOptionMenuItem_PTR() *QStyleOptionMenuItem {
 	return ptr
 }
 
 //QStyleOptionMenuItem::CheckType
-type QStyleOptionMenuItem__CheckType int
+type QStyleOptionMenuItem__CheckType int64
 
-var (
+const (
 	QStyleOptionMenuItem__NotCheckable = QStyleOptionMenuItem__CheckType(0)
 	QStyleOptionMenuItem__Exclusive    = QStyleOptionMenuItem__CheckType(1)
 	QStyleOptionMenuItem__NonExclusive = QStyleOptionMenuItem__CheckType(2)
 )
 
 //QStyleOptionMenuItem::MenuItemType
-type QStyleOptionMenuItem__MenuItemType int
+type QStyleOptionMenuItem__MenuItemType int64
 
-var (
+const (
 	QStyleOptionMenuItem__Normal      = QStyleOptionMenuItem__MenuItemType(0)
 	QStyleOptionMenuItem__DefaultItem = QStyleOptionMenuItem__MenuItemType(1)
 	QStyleOptionMenuItem__Separator   = QStyleOptionMenuItem__MenuItemType(2)
@@ -56,23 +56,23 @@ var (
 )
 
 //QStyleOptionMenuItem::StyleOptionType
-type QStyleOptionMenuItem__StyleOptionType int
+type QStyleOptionMenuItem__StyleOptionType int64
 
 var (
 	QStyleOptionMenuItem__Type = QStyleOptionMenuItem__StyleOptionType(QStyleOption__SO_MenuItem)
 )
 
 //QStyleOptionMenuItem::StyleOptionVersion
-type QStyleOptionMenuItem__StyleOptionVersion int
+type QStyleOptionMenuItem__StyleOptionVersion int64
 
 var (
 	QStyleOptionMenuItem__Version = QStyleOptionMenuItem__StyleOptionVersion(1)
 )
 
 func NewQStyleOptionMenuItem() *QStyleOptionMenuItem {
-	return QStyleOptionMenuItemFromPointer(unsafe.Pointer(C.QStyleOptionMenuItem_NewQStyleOptionMenuItem()))
+	return NewQStyleOptionMenuItemFromPointer(C.QStyleOptionMenuItem_NewQStyleOptionMenuItem())
 }
 
-func NewQStyleOptionMenuItem2(other QStyleOptionMenuItemITF) *QStyleOptionMenuItem {
-	return QStyleOptionMenuItemFromPointer(unsafe.Pointer(C.QStyleOptionMenuItem_NewQStyleOptionMenuItem2(C.QtObjectPtr(PointerFromQStyleOptionMenuItem(other)))))
+func NewQStyleOptionMenuItem2(other QStyleOptionMenuItem_ITF) *QStyleOptionMenuItem {
+	return NewQStyleOptionMenuItemFromPointer(C.QStyleOptionMenuItem_NewQStyleOptionMenuItem2(PointerFromQStyleOptionMenuItem(other)))
 }

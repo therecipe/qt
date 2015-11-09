@@ -11,46 +11,46 @@ type QAccessibleTextInsertEvent struct {
 	QAccessibleTextCursorEvent
 }
 
-type QAccessibleTextInsertEventITF interface {
-	QAccessibleTextCursorEventITF
-	QAccessibleTextInsertEventPTR() *QAccessibleTextInsertEvent
+type QAccessibleTextInsertEvent_ITF interface {
+	QAccessibleTextCursorEvent_ITF
+	QAccessibleTextInsertEvent_PTR() *QAccessibleTextInsertEvent
 }
 
-func PointerFromQAccessibleTextInsertEvent(ptr QAccessibleTextInsertEventITF) unsafe.Pointer {
+func PointerFromQAccessibleTextInsertEvent(ptr QAccessibleTextInsertEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAccessibleTextInsertEventPTR().Pointer()
+		return ptr.QAccessibleTextInsertEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAccessibleTextInsertEventFromPointer(ptr unsafe.Pointer) *QAccessibleTextInsertEvent {
+func NewQAccessibleTextInsertEventFromPointer(ptr unsafe.Pointer) *QAccessibleTextInsertEvent {
 	var n = new(QAccessibleTextInsertEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAccessibleTextInsertEvent) QAccessibleTextInsertEventPTR() *QAccessibleTextInsertEvent {
+func (ptr *QAccessibleTextInsertEvent) QAccessibleTextInsertEvent_PTR() *QAccessibleTextInsertEvent {
 	return ptr
 }
 
-func NewQAccessibleTextInsertEvent2(iface QAccessibleInterfaceITF, position int, text string) *QAccessibleTextInsertEvent {
-	return QAccessibleTextInsertEventFromPointer(unsafe.Pointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent2(C.QtObjectPtr(PointerFromQAccessibleInterface(iface)), C.int(position), C.CString(text))))
+func NewQAccessibleTextInsertEvent2(iface QAccessibleInterface_ITF, position int, text string) *QAccessibleTextInsertEvent {
+	return NewQAccessibleTextInsertEventFromPointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent2(PointerFromQAccessibleInterface(iface), C.int(position), C.CString(text)))
 }
 
-func NewQAccessibleTextInsertEvent(object core.QObjectITF, position int, text string) *QAccessibleTextInsertEvent {
-	return QAccessibleTextInsertEventFromPointer(unsafe.Pointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent(C.QtObjectPtr(core.PointerFromQObject(object)), C.int(position), C.CString(text))))
+func NewQAccessibleTextInsertEvent(object core.QObject_ITF, position int, text string) *QAccessibleTextInsertEvent {
+	return NewQAccessibleTextInsertEventFromPointer(C.QAccessibleTextInsertEvent_NewQAccessibleTextInsertEvent(core.PointerFromQObject(object), C.int(position), C.CString(text)))
 }
 
 func (ptr *QAccessibleTextInsertEvent) ChangePosition() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAccessibleTextInsertEvent_ChangePosition(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAccessibleTextInsertEvent_ChangePosition(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAccessibleTextInsertEvent) TextInserted() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextInsertEvent_TextInserted(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QAccessibleTextInsertEvent_TextInserted(ptr.Pointer()))
 	}
 	return ""
 }

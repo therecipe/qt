@@ -10,34 +10,34 @@ type QGraphicsSceneMoveEvent struct {
 	QGraphicsSceneEvent
 }
 
-type QGraphicsSceneMoveEventITF interface {
-	QGraphicsSceneEventITF
-	QGraphicsSceneMoveEventPTR() *QGraphicsSceneMoveEvent
+type QGraphicsSceneMoveEvent_ITF interface {
+	QGraphicsSceneEvent_ITF
+	QGraphicsSceneMoveEvent_PTR() *QGraphicsSceneMoveEvent
 }
 
-func PointerFromQGraphicsSceneMoveEvent(ptr QGraphicsSceneMoveEventITF) unsafe.Pointer {
+func PointerFromQGraphicsSceneMoveEvent(ptr QGraphicsSceneMoveEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsSceneMoveEventPTR().Pointer()
+		return ptr.QGraphicsSceneMoveEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsSceneMoveEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneMoveEvent {
+func NewQGraphicsSceneMoveEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneMoveEvent {
 	var n = new(QGraphicsSceneMoveEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsSceneMoveEvent) QGraphicsSceneMoveEventPTR() *QGraphicsSceneMoveEvent {
+func (ptr *QGraphicsSceneMoveEvent) QGraphicsSceneMoveEvent_PTR() *QGraphicsSceneMoveEvent {
 	return ptr
 }
 
 func NewQGraphicsSceneMoveEvent() *QGraphicsSceneMoveEvent {
-	return QGraphicsSceneMoveEventFromPointer(unsafe.Pointer(C.QGraphicsSceneMoveEvent_NewQGraphicsSceneMoveEvent()))
+	return NewQGraphicsSceneMoveEventFromPointer(C.QGraphicsSceneMoveEvent_NewQGraphicsSceneMoveEvent())
 }
 
 func (ptr *QGraphicsSceneMoveEvent) DestroyQGraphicsSceneMoveEvent() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSceneMoveEvent_DestroyQGraphicsSceneMoveEvent(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsSceneMoveEvent_DestroyQGraphicsSceneMoveEvent(ptr.Pointer())
 	}
 }

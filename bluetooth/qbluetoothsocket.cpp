@@ -1,13 +1,13 @@
 #include "qbluetoothsocket.h"
 #include <QModelIndex>
-#include <QBluetoothServiceInfo>
-#include <QBluetoothAddress>
+#include <QBluetoothUuid>
 #include <QObject>
+#include <QBluetoothAddress>
+#include <QIODevice>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QIODevice>
-#include <QBluetoothUuid>
+#include <QBluetoothServiceInfo>
 #include <QBluetoothSocket>
 #include "_cgo_export.h"
 
@@ -18,95 +18,95 @@ void Signal_Disconnected(){callbackQBluetoothSocketDisconnected(this->objectName
 void Signal_StateChanged(QBluetoothSocket::SocketState state){callbackQBluetoothSocketStateChanged(this->objectName().toUtf8().data(), state);};
 };
 
-void QBluetoothSocket_ConnectConnected(QtObjectPtr ptr){
+void QBluetoothSocket_ConnectConnected(void* ptr){
 	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::connected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Connected));;
 }
 
-void QBluetoothSocket_DisconnectConnected(QtObjectPtr ptr){
+void QBluetoothSocket_DisconnectConnected(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::connected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Connected));;
 }
 
-void QBluetoothSocket_ConnectDisconnected(QtObjectPtr ptr){
+void QBluetoothSocket_ConnectDisconnected(void* ptr){
 	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::disconnected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Disconnected));;
 }
 
-void QBluetoothSocket_DisconnectDisconnected(QtObjectPtr ptr){
+void QBluetoothSocket_DisconnectDisconnected(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)()>(&QBluetoothSocket::disconnected), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)()>(&MyQBluetoothSocket::Signal_Disconnected));;
 }
 
-void QBluetoothSocket_ConnectStateChanged(QtObjectPtr ptr){
+void QBluetoothSocket_ConnectStateChanged(void* ptr){
 	QObject::connect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&QBluetoothSocket::stateChanged), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&MyQBluetoothSocket::Signal_StateChanged));;
 }
 
-void QBluetoothSocket_DisconnectStateChanged(QtObjectPtr ptr){
+void QBluetoothSocket_DisconnectStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QBluetoothSocket*>(ptr), static_cast<void (QBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&QBluetoothSocket::stateChanged), static_cast<MyQBluetoothSocket*>(ptr), static_cast<void (MyQBluetoothSocket::*)(QBluetoothSocket::SocketState)>(&MyQBluetoothSocket::Signal_StateChanged));;
 }
 
-QtObjectPtr QBluetoothSocket_NewQBluetoothSocket(int socketType, QtObjectPtr parent){
+void* QBluetoothSocket_NewQBluetoothSocket(int socketType, void* parent){
 	return new QBluetoothSocket(static_cast<QBluetoothServiceInfo::Protocol>(socketType), static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QBluetoothSocket_NewQBluetoothSocket2(QtObjectPtr parent){
+void* QBluetoothSocket_NewQBluetoothSocket2(void* parent){
 	return new QBluetoothSocket(static_cast<QObject*>(parent));
 }
 
-void QBluetoothSocket_Abort(QtObjectPtr ptr){
+void QBluetoothSocket_Abort(void* ptr){
 	static_cast<QBluetoothSocket*>(ptr)->abort();
 }
 
-int QBluetoothSocket_CanReadLine(QtObjectPtr ptr){
+int QBluetoothSocket_CanReadLine(void* ptr){
 	return static_cast<QBluetoothSocket*>(ptr)->canReadLine();
 }
 
-void QBluetoothSocket_Close(QtObjectPtr ptr){
+void QBluetoothSocket_Close(void* ptr){
 	static_cast<QBluetoothSocket*>(ptr)->close();
 }
 
-void QBluetoothSocket_ConnectToService2(QtObjectPtr ptr, QtObjectPtr address, QtObjectPtr uuid, int openMode){
+void QBluetoothSocket_ConnectToService2(void* ptr, void* address, void* uuid, int openMode){
 	static_cast<QBluetoothSocket*>(ptr)->connectToService(*static_cast<QBluetoothAddress*>(address), *static_cast<QBluetoothUuid*>(uuid), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
-void QBluetoothSocket_ConnectToService(QtObjectPtr ptr, QtObjectPtr service, int openMode){
+void QBluetoothSocket_ConnectToService(void* ptr, void* service, int openMode){
 	static_cast<QBluetoothSocket*>(ptr)->connectToService(*static_cast<QBluetoothServiceInfo*>(service), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
-void QBluetoothSocket_DisconnectFromService(QtObjectPtr ptr){
+void QBluetoothSocket_DisconnectFromService(void* ptr){
 	static_cast<QBluetoothSocket*>(ptr)->disconnectFromService();
 }
 
-int QBluetoothSocket_Error(QtObjectPtr ptr){
+int QBluetoothSocket_Error(void* ptr){
 	return static_cast<QBluetoothSocket*>(ptr)->error();
 }
 
-char* QBluetoothSocket_ErrorString(QtObjectPtr ptr){
+char* QBluetoothSocket_ErrorString(void* ptr){
 	return static_cast<QBluetoothSocket*>(ptr)->errorString().toUtf8().data();
 }
 
-int QBluetoothSocket_IsSequential(QtObjectPtr ptr){
+int QBluetoothSocket_IsSequential(void* ptr){
 	return static_cast<QBluetoothSocket*>(ptr)->isSequential();
 }
 
-char* QBluetoothSocket_LocalName(QtObjectPtr ptr){
+char* QBluetoothSocket_LocalName(void* ptr){
 	return static_cast<QBluetoothSocket*>(ptr)->localName().toUtf8().data();
 }
 
-char* QBluetoothSocket_PeerName(QtObjectPtr ptr){
+char* QBluetoothSocket_PeerName(void* ptr){
 	return static_cast<QBluetoothSocket*>(ptr)->peerName().toUtf8().data();
 }
 
-int QBluetoothSocket_SetSocketDescriptor(QtObjectPtr ptr, int socketDescriptor, int socketType, int socketState, int openMode){
+int QBluetoothSocket_SetSocketDescriptor(void* ptr, int socketDescriptor, int socketType, int socketState, int openMode){
 	return static_cast<QBluetoothSocket*>(ptr)->setSocketDescriptor(socketDescriptor, static_cast<QBluetoothServiceInfo::Protocol>(socketType), static_cast<QBluetoothSocket::SocketState>(socketState), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
-int QBluetoothSocket_SocketDescriptor(QtObjectPtr ptr){
+int QBluetoothSocket_SocketDescriptor(void* ptr){
 	return static_cast<QBluetoothSocket*>(ptr)->socketDescriptor();
 }
 
-int QBluetoothSocket_SocketType(QtObjectPtr ptr){
+int QBluetoothSocket_SocketType(void* ptr){
 	return static_cast<QBluetoothSocket*>(ptr)->socketType();
 }
 
-void QBluetoothSocket_DestroyQBluetoothSocket(QtObjectPtr ptr){
+void QBluetoothSocket_DestroyQBluetoothSocket(void* ptr){
 	static_cast<QBluetoothSocket*>(ptr)->~QBluetoothSocket();
 }
 

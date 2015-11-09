@@ -10,8 +10,8 @@ type QSensorPluginInterface struct {
 	ptr unsafe.Pointer
 }
 
-type QSensorPluginInterfaceITF interface {
-	QSensorPluginInterfacePTR() *QSensorPluginInterface
+type QSensorPluginInterface_ITF interface {
+	QSensorPluginInterface_PTR() *QSensorPluginInterface
 }
 
 func (p *QSensorPluginInterface) Pointer() unsafe.Pointer {
@@ -22,25 +22,25 @@ func (p *QSensorPluginInterface) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSensorPluginInterface(ptr QSensorPluginInterfaceITF) unsafe.Pointer {
+func PointerFromQSensorPluginInterface(ptr QSensorPluginInterface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSensorPluginInterfacePTR().Pointer()
+		return ptr.QSensorPluginInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSensorPluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorPluginInterface {
+func NewQSensorPluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorPluginInterface {
 	var n = new(QSensorPluginInterface)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSensorPluginInterface) QSensorPluginInterfacePTR() *QSensorPluginInterface {
+func (ptr *QSensorPluginInterface) QSensorPluginInterface_PTR() *QSensorPluginInterface {
 	return ptr
 }
 
 func (ptr *QSensorPluginInterface) RegisterSensors() {
 	if ptr.Pointer() != nil {
-		C.QSensorPluginInterface_RegisterSensors(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensorPluginInterface_RegisterSensors(ptr.Pointer())
 	}
 }

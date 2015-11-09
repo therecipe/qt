@@ -10,34 +10,34 @@ type QGraphicsSceneResizeEvent struct {
 	QGraphicsSceneEvent
 }
 
-type QGraphicsSceneResizeEventITF interface {
-	QGraphicsSceneEventITF
-	QGraphicsSceneResizeEventPTR() *QGraphicsSceneResizeEvent
+type QGraphicsSceneResizeEvent_ITF interface {
+	QGraphicsSceneEvent_ITF
+	QGraphicsSceneResizeEvent_PTR() *QGraphicsSceneResizeEvent
 }
 
-func PointerFromQGraphicsSceneResizeEvent(ptr QGraphicsSceneResizeEventITF) unsafe.Pointer {
+func PointerFromQGraphicsSceneResizeEvent(ptr QGraphicsSceneResizeEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsSceneResizeEventPTR().Pointer()
+		return ptr.QGraphicsSceneResizeEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsSceneResizeEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneResizeEvent {
+func NewQGraphicsSceneResizeEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneResizeEvent {
 	var n = new(QGraphicsSceneResizeEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsSceneResizeEvent) QGraphicsSceneResizeEventPTR() *QGraphicsSceneResizeEvent {
+func (ptr *QGraphicsSceneResizeEvent) QGraphicsSceneResizeEvent_PTR() *QGraphicsSceneResizeEvent {
 	return ptr
 }
 
 func NewQGraphicsSceneResizeEvent() *QGraphicsSceneResizeEvent {
-	return QGraphicsSceneResizeEventFromPointer(unsafe.Pointer(C.QGraphicsSceneResizeEvent_NewQGraphicsSceneResizeEvent()))
+	return NewQGraphicsSceneResizeEventFromPointer(C.QGraphicsSceneResizeEvent_NewQGraphicsSceneResizeEvent())
 }
 
 func (ptr *QGraphicsSceneResizeEvent) DestroyQGraphicsSceneResizeEvent() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSceneResizeEvent_DestroyQGraphicsSceneResizeEvent(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsSceneResizeEvent_DestroyQGraphicsSceneResizeEvent(ptr.Pointer())
 	}
 }

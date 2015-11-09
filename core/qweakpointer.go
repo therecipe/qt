@@ -10,8 +10,8 @@ type QWeakPointer struct {
 	ptr unsafe.Pointer
 }
 
-type QWeakPointerITF interface {
-	QWeakPointerPTR() *QWeakPointer
+type QWeakPointer_ITF interface {
+	QWeakPointer_PTR() *QWeakPointer
 }
 
 func (p *QWeakPointer) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QWeakPointer) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQWeakPointer(ptr QWeakPointerITF) unsafe.Pointer {
+func PointerFromQWeakPointer(ptr QWeakPointer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QWeakPointerPTR().Pointer()
+		return ptr.QWeakPointer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QWeakPointerFromPointer(ptr unsafe.Pointer) *QWeakPointer {
+func NewQWeakPointerFromPointer(ptr unsafe.Pointer) *QWeakPointer {
 	var n = new(QWeakPointer)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QWeakPointer) QWeakPointerPTR() *QWeakPointer {
+func (ptr *QWeakPointer) QWeakPointer_PTR() *QWeakPointer {
 	return ptr
 }

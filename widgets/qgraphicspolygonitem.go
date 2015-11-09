@@ -12,76 +12,76 @@ type QGraphicsPolygonItem struct {
 	QAbstractGraphicsShapeItem
 }
 
-type QGraphicsPolygonItemITF interface {
-	QAbstractGraphicsShapeItemITF
-	QGraphicsPolygonItemPTR() *QGraphicsPolygonItem
+type QGraphicsPolygonItem_ITF interface {
+	QAbstractGraphicsShapeItem_ITF
+	QGraphicsPolygonItem_PTR() *QGraphicsPolygonItem
 }
 
-func PointerFromQGraphicsPolygonItem(ptr QGraphicsPolygonItemITF) unsafe.Pointer {
+func PointerFromQGraphicsPolygonItem(ptr QGraphicsPolygonItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsPolygonItemPTR().Pointer()
+		return ptr.QGraphicsPolygonItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsPolygonItemFromPointer(ptr unsafe.Pointer) *QGraphicsPolygonItem {
+func NewQGraphicsPolygonItemFromPointer(ptr unsafe.Pointer) *QGraphicsPolygonItem {
 	var n = new(QGraphicsPolygonItem)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsPolygonItem) QGraphicsPolygonItemPTR() *QGraphicsPolygonItem {
+func (ptr *QGraphicsPolygonItem) QGraphicsPolygonItem_PTR() *QGraphicsPolygonItem {
 	return ptr
 }
 
-func (ptr *QGraphicsPolygonItem) Contains(point core.QPointFITF) bool {
+func (ptr *QGraphicsPolygonItem) Contains(point core.QPointF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsPolygonItem_Contains(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(point))) != 0
+		return C.QGraphicsPolygonItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsPolygonItem) FillRule() core.Qt__FillRule {
 	if ptr.Pointer() != nil {
-		return core.Qt__FillRule(C.QGraphicsPolygonItem_FillRule(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__FillRule(C.QGraphicsPolygonItem_FillRule(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QGraphicsPolygonItem) IsObscuredBy(item QGraphicsItemITF) bool {
+func (ptr *QGraphicsPolygonItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsPolygonItem_IsObscuredBy(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItem(item))) != 0
+		return C.QGraphicsPolygonItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
 	}
 	return false
 }
 
-func (ptr *QGraphicsPolygonItem) Paint(painter gui.QPainterITF, option QStyleOptionGraphicsItemITF, widget QWidgetITF) {
+func (ptr *QGraphicsPolygonItem) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsPolygonItem_Paint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(PointerFromQStyleOptionGraphicsItem(option)), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QGraphicsPolygonItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QGraphicsPolygonItem) SetFillRule(rule core.Qt__FillRule) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsPolygonItem_SetFillRule(C.QtObjectPtr(ptr.Pointer()), C.int(rule))
+		C.QGraphicsPolygonItem_SetFillRule(ptr.Pointer(), C.int(rule))
 	}
 }
 
-func (ptr *QGraphicsPolygonItem) SetPolygon(polygon gui.QPolygonFITF) {
+func (ptr *QGraphicsPolygonItem) SetPolygon(polygon gui.QPolygonF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsPolygonItem_SetPolygon(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPolygonF(polygon)))
+		C.QGraphicsPolygonItem_SetPolygon(ptr.Pointer(), gui.PointerFromQPolygonF(polygon))
 	}
 }
 
 func (ptr *QGraphicsPolygonItem) Type() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsPolygonItem_Type(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGraphicsPolygonItem_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsPolygonItem) DestroyQGraphicsPolygonItem() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsPolygonItem_DestroyQGraphicsPolygonItem(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsPolygonItem_DestroyQGraphicsPolygonItem(ptr.Pointer())
 	}
 }

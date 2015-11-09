@@ -3,6 +3,7 @@ package script
 //#include "qscriptclass.h"
 import "C"
 import (
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -10,8 +11,8 @@ type QScriptClass struct {
 	ptr unsafe.Pointer
 }
 
-type QScriptClassITF interface {
-	QScriptClassPTR() *QScriptClass
+type QScriptClass_ITF interface {
+	QScriptClass_PTR() *QScriptClass
 }
 
 func (p *QScriptClass) Pointer() unsafe.Pointer {
@@ -22,80 +23,87 @@ func (p *QScriptClass) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQScriptClass(ptr QScriptClassITF) unsafe.Pointer {
+func PointerFromQScriptClass(ptr QScriptClass_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScriptClassPTR().Pointer()
+		return ptr.QScriptClass_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScriptClassFromPointer(ptr unsafe.Pointer) *QScriptClass {
+func NewQScriptClassFromPointer(ptr unsafe.Pointer) *QScriptClass {
 	var n = new(QScriptClass)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QScriptClass) QScriptClassPTR() *QScriptClass {
+func (ptr *QScriptClass) QScriptClass_PTR() *QScriptClass {
 	return ptr
 }
 
 //QScriptClass::Extension
-type QScriptClass__Extension int
+type QScriptClass__Extension int64
 
-var (
+const (
 	QScriptClass__Callable    = QScriptClass__Extension(0)
 	QScriptClass__HasInstance = QScriptClass__Extension(1)
 )
 
 //QScriptClass::QueryFlag
-type QScriptClass__QueryFlag int
+type QScriptClass__QueryFlag int64
 
-var (
+const (
 	QScriptClass__HandlesReadAccess  = QScriptClass__QueryFlag(0x01)
 	QScriptClass__HandlesWriteAccess = QScriptClass__QueryFlag(0x02)
 )
 
-func NewQScriptClass(engine QScriptEngineITF) *QScriptClass {
-	return QScriptClassFromPointer(unsafe.Pointer(C.QScriptClass_NewQScriptClass(C.QtObjectPtr(PointerFromQScriptEngine(engine)))))
+func NewQScriptClass(engine QScriptEngine_ITF) *QScriptClass {
+	return NewQScriptClassFromPointer(C.QScriptClass_NewQScriptClass(PointerFromQScriptEngine(engine)))
 }
 
 func (ptr *QScriptClass) Engine() *QScriptEngine {
 	if ptr.Pointer() != nil {
-		return QScriptEngineFromPointer(unsafe.Pointer(C.QScriptClass_Engine(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQScriptEngineFromPointer(C.QScriptClass_Engine(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QScriptClass) Extension(extension QScriptClass__Extension, argument string) string {
+func (ptr *QScriptClass) Extension(extension QScriptClass__Extension, argument core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptClass_Extension(C.QtObjectPtr(ptr.Pointer()), C.int(extension), C.CString(argument)))
+		return core.NewQVariantFromPointer(C.QScriptClass_Extension(ptr.Pointer(), C.int(extension), core.PointerFromQVariant(argument)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QScriptClass) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptClass_Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QScriptClass_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QScriptClass) NewIterator(object QScriptValueITF) *QScriptClassPropertyIterator {
+func (ptr *QScriptClass) NewIterator(object QScriptValue_ITF) *QScriptClassPropertyIterator {
 	if ptr.Pointer() != nil {
-		return QScriptClassPropertyIteratorFromPointer(unsafe.Pointer(C.QScriptClass_NewIterator(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQScriptValue(object)))))
+		return NewQScriptClassPropertyIteratorFromPointer(C.QScriptClass_NewIterator(ptr.Pointer(), PointerFromQScriptValue(object)))
+	}
+	return nil
+}
+
+func (ptr *QScriptClass) Prototype() *QScriptValue {
+	if ptr.Pointer() != nil {
+		return NewQScriptValueFromPointer(C.QScriptClass_Prototype(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QScriptClass) SupportsExtension(extension QScriptClass__Extension) bool {
 	if ptr.Pointer() != nil {
-		return C.QScriptClass_SupportsExtension(C.QtObjectPtr(ptr.Pointer()), C.int(extension)) != 0
+		return C.QScriptClass_SupportsExtension(ptr.Pointer(), C.int(extension)) != 0
 	}
 	return false
 }
 
 func (ptr *QScriptClass) DestroyQScriptClass() {
 	if ptr.Pointer() != nil {
-		C.QScriptClass_DestroyQScriptClass(C.QtObjectPtr(ptr.Pointer()))
+		C.QScriptClass_DestroyQScriptClass(ptr.Pointer())
 	}
 }

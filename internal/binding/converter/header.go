@@ -94,7 +94,11 @@ func GoHeaderInput(f *parser.Function) (o string) {
 	for _, p := range f.Parameters {
 		if v := goType(f, p.Value); v != "" {
 			if isClass(v) {
-				o += fmt.Sprintf("%v %vITF, ", cleanName(p.Name), v)
+				if f.Meta == "signal" && f.SignalMode == "Connect" {
+					o += fmt.Sprintf("%v *%v, ", cleanName(p.Name), v)
+				} else {
+					o += fmt.Sprintf("%v %v_ITF, ", cleanName(p.Name), v)
+				}
 			} else {
 				o += fmt.Sprintf("%v %v, ", cleanName(p.Name), v)
 			}
@@ -139,7 +143,7 @@ func GoHeaderInputSignalFunction(f *parser.Function) (o string) {
 
 func CppHeaderInput(f *parser.Function) (o string) {
 	if !(f.Static || f.Meta == "constructor") {
-		o += "QtObjectPtr ptr, "
+		o += "void* ptr, "
 	}
 
 	if f.Meta == "signal" {

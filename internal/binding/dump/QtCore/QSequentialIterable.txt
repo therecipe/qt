@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{begin QSequentialIterable::begin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  const_iterator [] }
-&{at QSequentialIterable::at commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QVariant [0xc820274440] }
-&{canReverseIterate QSequentialIterable::canReverseIterate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool [] }
-&{end QSequentialIterable::end commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  const_iterator [] }
-&{size QSequentialIterable::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  int [] }
+&{begin QSequentialIterable::begin commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.cpp non plain false false  const_iterator const_iterator begin() const [] }
+&{at QSequentialIterable::at commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  QVariant QVariant at(int idx) const [0xc820244480] }
+&{canReverseIterate QSequentialIterable::canReverseIterate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  bool bool canReverseIterate() const [] }
+&{end QSequentialIterable::end commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  const_iterator const_iterator end() const [] }
+&{size QSequentialIterable::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qvariant.h non plain false false  int int size() const [] }
 ########################################			ENUMS			########################################

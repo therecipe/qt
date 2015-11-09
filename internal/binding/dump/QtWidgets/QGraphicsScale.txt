@@ -1,18 +1,18 @@
 ########################################			FUNCTIONS			########################################
-&{origin QGraphicsScale::origin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  QVector3D [] }
-&{setOrigin QGraphicsScale::setOrigin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void [0xc82275e000] }
-&{setXScale QGraphicsScale::setXScale commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void [0xc82275e320] }
-&{setYScale QGraphicsScale::setYScale commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void [0xc82275e5e0] }
-&{setZScale QGraphicsScale::setZScale commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void [0xc82275e8c0] }
-&{xScale QGraphicsScale::xScale commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  qreal [] }
-&{yScale QGraphicsScale::yScale commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  qreal [] }
-&{zScale QGraphicsScale::zScale commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  qreal [] }
-&{QGraphicsScale QGraphicsScale::QGraphicsScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non constructor false false   [0xc82275f040] }
-&{applyTo QGraphicsScale::applyTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h impure plain false false  void [0xc82275f2a0] }
-&{originChanged QGraphicsScale::originChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void [] }
-&{scaleChanged QGraphicsScale::scaleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void [] }
-&{xScaleChanged QGraphicsScale::xScaleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void [] }
-&{yScaleChanged QGraphicsScale::yScaleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void [] }
-&{zScaleChanged QGraphicsScale::zScaleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void [] }
-&{~QGraphicsScale QGraphicsScale::~QGraphicsScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non destructor false false   [] }
+&{origin QGraphicsScale::origin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  QVector3D QVector3D origin() const [] }
+&{setOrigin QGraphicsScale::setOrigin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void void setOrigin(const QVector3D &point) [0xc8225c2600] }
+&{setXScale QGraphicsScale::setXScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void void setXScale(qreal ) [0xc8225c2960] }
+&{setYScale QGraphicsScale::setYScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void void setYScale(qreal ) [0xc8225c2c80] }
+&{setZScale QGraphicsScale::setZScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void void setZScale(qreal ) [0xc8225c2fa0] }
+&{xScale QGraphicsScale::xScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  qreal qreal xScale() const [] }
+&{yScale QGraphicsScale::yScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  qreal qreal yScale() const [] }
+&{zScale QGraphicsScale::zScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  qreal qreal zScale() const [] }
+&{QGraphicsScale QGraphicsScale::QGraphicsScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non constructor false false   QGraphicsScale(QObject *parent) [0xc8225c3840] }
+&{applyTo QGraphicsScale::applyTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h impure plain false false  void void applyTo(QMatrix4x4 *matrix) const [0xc8225c3a80] }
+&{originChanged QGraphicsScale::originChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void void originChanged() [] }
+&{scaleChanged QGraphicsScale::scaleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void void scaleChanged() [] }
+&{xScaleChanged QGraphicsScale::xScaleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void void xScaleChanged() [] }
+&{yScaleChanged QGraphicsScale::yScaleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void void yScaleChanged() [] }
+&{zScaleChanged QGraphicsScale::zScaleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void void zScaleChanged() [] }
+&{~QGraphicsScale QGraphicsScale::~QGraphicsScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non destructor false false   ~QGraphicsScale() [] }
 ########################################			ENUMS			########################################

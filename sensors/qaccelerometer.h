@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QAccelerometer_AccelerationMode(QtObjectPtr ptr);
-QtObjectPtr QAccelerometer_Reading(QtObjectPtr ptr);
-QtObjectPtr QAccelerometer_NewQAccelerometer(QtObjectPtr parent);
-void QAccelerometer_ConnectAccelerationModeChanged(QtObjectPtr ptr);
-void QAccelerometer_DisconnectAccelerationModeChanged(QtObjectPtr ptr);
-void QAccelerometer_SetAccelerationMode(QtObjectPtr ptr, int accelerationMode);
-void QAccelerometer_DestroyQAccelerometer(QtObjectPtr ptr);
+int QAccelerometer_AccelerationMode(void* ptr);
+void* QAccelerometer_Reading(void* ptr);
+void* QAccelerometer_NewQAccelerometer(void* parent);
+void QAccelerometer_ConnectAccelerationModeChanged(void* ptr);
+void QAccelerometer_DisconnectAccelerationModeChanged(void* ptr);
+void QAccelerometer_SetAccelerationMode(void* ptr, int accelerationMode);
+void QAccelerometer_DestroyQAccelerometer(void* ptr);
 
 #ifdef __cplusplus
 }

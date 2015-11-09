@@ -10,24 +10,24 @@ type QDBusPendingReply struct {
 	QDBusPendingCall
 }
 
-type QDBusPendingReplyITF interface {
-	QDBusPendingCallITF
-	QDBusPendingReplyPTR() *QDBusPendingReply
+type QDBusPendingReply_ITF interface {
+	QDBusPendingCall_ITF
+	QDBusPendingReply_PTR() *QDBusPendingReply
 }
 
-func PointerFromQDBusPendingReply(ptr QDBusPendingReplyITF) unsafe.Pointer {
+func PointerFromQDBusPendingReply(ptr QDBusPendingReply_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDBusPendingReplyPTR().Pointer()
+		return ptr.QDBusPendingReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDBusPendingReplyFromPointer(ptr unsafe.Pointer) *QDBusPendingReply {
+func NewQDBusPendingReplyFromPointer(ptr unsafe.Pointer) *QDBusPendingReply {
 	var n = new(QDBusPendingReply)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDBusPendingReply) QDBusPendingReplyPTR() *QDBusPendingReply {
+func (ptr *QDBusPendingReply) QDBusPendingReply_PTR() *QDBusPendingReply {
 	return ptr
 }

@@ -10,39 +10,39 @@ type QDomDocumentFragment struct {
 	QDomNode
 }
 
-type QDomDocumentFragmentITF interface {
-	QDomNodeITF
-	QDomDocumentFragmentPTR() *QDomDocumentFragment
+type QDomDocumentFragment_ITF interface {
+	QDomNode_ITF
+	QDomDocumentFragment_PTR() *QDomDocumentFragment
 }
 
-func PointerFromQDomDocumentFragment(ptr QDomDocumentFragmentITF) unsafe.Pointer {
+func PointerFromQDomDocumentFragment(ptr QDomDocumentFragment_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDomDocumentFragmentPTR().Pointer()
+		return ptr.QDomDocumentFragment_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDomDocumentFragmentFromPointer(ptr unsafe.Pointer) *QDomDocumentFragment {
+func NewQDomDocumentFragmentFromPointer(ptr unsafe.Pointer) *QDomDocumentFragment {
 	var n = new(QDomDocumentFragment)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDomDocumentFragment) QDomDocumentFragmentPTR() *QDomDocumentFragment {
+func (ptr *QDomDocumentFragment) QDomDocumentFragment_PTR() *QDomDocumentFragment {
 	return ptr
 }
 
 func NewQDomDocumentFragment() *QDomDocumentFragment {
-	return QDomDocumentFragmentFromPointer(unsafe.Pointer(C.QDomDocumentFragment_NewQDomDocumentFragment()))
+	return NewQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment())
 }
 
-func NewQDomDocumentFragment2(x QDomDocumentFragmentITF) *QDomDocumentFragment {
-	return QDomDocumentFragmentFromPointer(unsafe.Pointer(C.QDomDocumentFragment_NewQDomDocumentFragment2(C.QtObjectPtr(PointerFromQDomDocumentFragment(x)))))
+func NewQDomDocumentFragment2(x QDomDocumentFragment_ITF) *QDomDocumentFragment {
+	return NewQDomDocumentFragmentFromPointer(C.QDomDocumentFragment_NewQDomDocumentFragment2(PointerFromQDomDocumentFragment(x)))
 }
 
 func (ptr *QDomDocumentFragment) NodeType() QDomNode__NodeType {
 	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomDocumentFragment_NodeType(C.QtObjectPtr(ptr.Pointer())))
+		return QDomNode__NodeType(C.QDomDocumentFragment_NodeType(ptr.Pointer()))
 	}
 	return 0
 }

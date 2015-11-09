@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QRadioButton_NewQRadioButton(QtObjectPtr parent);
-QtObjectPtr QRadioButton_NewQRadioButton2(char* text, QtObjectPtr parent);
-void QRadioButton_DestroyQRadioButton(QtObjectPtr ptr);
+void* QRadioButton_NewQRadioButton(void* parent);
+void* QRadioButton_NewQRadioButton2(char* text, void* parent);
+void QRadioButton_DestroyQRadioButton(void* ptr);
 
 #ifdef __cplusplus
 }

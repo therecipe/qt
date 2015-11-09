@@ -11,28 +11,28 @@ type QDragEnterEvent struct {
 	QDragMoveEvent
 }
 
-type QDragEnterEventITF interface {
-	QDragMoveEventITF
-	QDragEnterEventPTR() *QDragEnterEvent
+type QDragEnterEvent_ITF interface {
+	QDragMoveEvent_ITF
+	QDragEnterEvent_PTR() *QDragEnterEvent
 }
 
-func PointerFromQDragEnterEvent(ptr QDragEnterEventITF) unsafe.Pointer {
+func PointerFromQDragEnterEvent(ptr QDragEnterEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDragEnterEventPTR().Pointer()
+		return ptr.QDragEnterEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDragEnterEventFromPointer(ptr unsafe.Pointer) *QDragEnterEvent {
+func NewQDragEnterEventFromPointer(ptr unsafe.Pointer) *QDragEnterEvent {
 	var n = new(QDragEnterEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDragEnterEvent) QDragEnterEventPTR() *QDragEnterEvent {
+func (ptr *QDragEnterEvent) QDragEnterEvent_PTR() *QDragEnterEvent {
 	return ptr
 }
 
-func NewQDragEnterEvent(point core.QPointITF, actions core.Qt__DropAction, data core.QMimeDataITF, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QDragEnterEvent {
-	return QDragEnterEventFromPointer(unsafe.Pointer(C.QDragEnterEvent_NewQDragEnterEvent(C.QtObjectPtr(core.PointerFromQPoint(point)), C.int(actions), C.QtObjectPtr(core.PointerFromQMimeData(data)), C.int(buttons), C.int(modifiers))))
+func NewQDragEnterEvent(point core.QPoint_ITF, actions core.Qt__DropAction, data core.QMimeData_ITF, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QDragEnterEvent {
+	return NewQDragEnterEventFromPointer(C.QDragEnterEvent_NewQDragEnterEvent(core.PointerFromQPoint(point), C.int(actions), core.PointerFromQMimeData(data), C.int(buttons), C.int(modifiers)))
 }

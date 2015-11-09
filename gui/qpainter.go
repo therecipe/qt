@@ -12,8 +12,8 @@ type QPainter struct {
 	ptr unsafe.Pointer
 }
 
-type QPainterITF interface {
-	QPainterPTR() *QPainter
+type QPainter_ITF interface {
+	QPainter_PTR() *QPainter
 }
 
 func (p *QPainter) Pointer() unsafe.Pointer {
@@ -24,27 +24,27 @@ func (p *QPainter) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPainter(ptr QPainterITF) unsafe.Pointer {
+func PointerFromQPainter(ptr QPainter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPainterPTR().Pointer()
+		return ptr.QPainter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPainterFromPointer(ptr unsafe.Pointer) *QPainter {
+func NewQPainterFromPointer(ptr unsafe.Pointer) *QPainter {
 	var n = new(QPainter)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPainter) QPainterPTR() *QPainter {
+func (ptr *QPainter) QPainter_PTR() *QPainter {
 	return ptr
 }
 
 //QPainter::CompositionMode
-type QPainter__CompositionMode int
+type QPainter__CompositionMode int64
 
-var (
+const (
 	QPainter__CompositionMode_SourceOver          = QPainter__CompositionMode(0)
 	QPainter__CompositionMode_DestinationOver     = QPainter__CompositionMode(1)
 	QPainter__CompositionMode_Clear               = QPainter__CompositionMode(2)
@@ -86,16 +86,16 @@ var (
 )
 
 //QPainter::PixmapFragmentHint
-type QPainter__PixmapFragmentHint int
+type QPainter__PixmapFragmentHint int64
 
-var (
+const (
 	QPainter__OpaqueHint = QPainter__PixmapFragmentHint(0x01)
 )
 
 //QPainter::RenderHint
-type QPainter__RenderHint int
+type QPainter__RenderHint int64
 
-var (
+const (
 	QPainter__Antialiasing            = QPainter__RenderHint(0x01)
 	QPainter__TextAntialiasing        = QPainter__RenderHint(0x02)
 	QPainter__SmoothPixmapTransform   = QPainter__RenderHint(0x04)
@@ -104,929 +104,1011 @@ var (
 	QPainter__Qt4CompatiblePainting   = QPainter__RenderHint(0x20)
 )
 
-func NewQPainter2(device QPaintDeviceITF) *QPainter {
-	return QPainterFromPointer(unsafe.Pointer(C.QPainter_NewQPainter2(C.QtObjectPtr(PointerFromQPaintDevice(device)))))
+func NewQPainter2(device QPaintDevice_ITF) *QPainter {
+	return NewQPainterFromPointer(C.QPainter_NewQPainter2(PointerFromQPaintDevice(device)))
 }
 
-func (ptr *QPainter) Begin(device QPaintDeviceITF) bool {
+func (ptr *QPainter) Begin(device QPaintDevice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPainter_Begin(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPaintDevice(device))) != 0
+		return C.QPainter_Begin(ptr.Pointer(), PointerFromQPaintDevice(device)) != 0
 	}
 	return false
 }
 
-func (ptr *QPainter) DrawArc(rectangle core.QRectFITF, startAngle int, spanAngle int) {
+func (ptr *QPainter) DrawArc(rectangle core.QRectF_ITF, startAngle int, spanAngle int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawArc(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawArc(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
-func (ptr *QPainter) DrawChord(rectangle core.QRectFITF, startAngle int, spanAngle int) {
+func (ptr *QPainter) DrawChord(rectangle core.QRectF_ITF, startAngle int, spanAngle int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawChord(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawChord(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
-func (ptr *QPainter) DrawConvexPolygon2(points core.QPointITF, pointCount int) {
+func (ptr *QPainter) DrawConvexPolygon2(points core.QPoint_ITF, pointCount int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawConvexPolygon2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(points)), C.int(pointCount))
+		C.QPainter_DrawConvexPolygon2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount))
 	}
 }
 
-func (ptr *QPainter) DrawConvexPolygon(points core.QPointFITF, pointCount int) {
+func (ptr *QPainter) DrawConvexPolygon(points core.QPointF_ITF, pointCount int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawConvexPolygon(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(points)), C.int(pointCount))
+		C.QPainter_DrawConvexPolygon(ptr.Pointer(), core.PointerFromQPointF(points), C.int(pointCount))
 	}
 }
 
-func (ptr *QPainter) DrawEllipse2(rectangle core.QRectITF) {
+func (ptr *QPainter) DrawEllipse2(rectangle core.QRect_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawEllipse2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)))
+		C.QPainter_DrawEllipse2(ptr.Pointer(), core.PointerFromQRect(rectangle))
 	}
 }
 
-func (ptr *QPainter) DrawEllipse(rectangle core.QRectFITF) {
+func (ptr *QPainter) DrawEllipse(rectangle core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawEllipse(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)))
+		C.QPainter_DrawEllipse(ptr.Pointer(), core.PointerFromQRectF(rectangle))
 	}
 }
 
-func (ptr *QPainter) DrawGlyphRun(position core.QPointFITF, glyphs QGlyphRunITF) {
+func (ptr *QPainter) DrawGlyphRun(position core.QPointF_ITF, glyphs QGlyphRun_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawGlyphRun(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(position)), C.QtObjectPtr(PointerFromQGlyphRun(glyphs)))
+		C.QPainter_DrawGlyphRun(ptr.Pointer(), core.PointerFromQPointF(position), PointerFromQGlyphRun(glyphs))
 	}
 }
 
-func (ptr *QPainter) DrawImage3(point core.QPointFITF, image QImageITF) {
+func (ptr *QPainter) DrawImage3(point core.QPointF_ITF, image QImage_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(point)), C.QtObjectPtr(PointerFromQImage(image)))
+		C.QPainter_DrawImage3(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQImage(image))
 	}
 }
 
-func (ptr *QPainter) DrawImage(target core.QRectFITF, image QImageITF, source core.QRectFITF, flags core.Qt__ImageConversionFlag) {
+func (ptr *QPainter) DrawImage(target core.QRectF_ITF, image QImage_ITF, source core.QRectF_ITF, flags core.Qt__ImageConversionFlag) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(target)), C.QtObjectPtr(PointerFromQImage(image)), C.QtObjectPtr(core.PointerFromQRectF(source)), C.int(flags))
+		C.QPainter_DrawImage(ptr.Pointer(), core.PointerFromQRectF(target), PointerFromQImage(image), core.PointerFromQRectF(source), C.int(flags))
 	}
 }
 
-func (ptr *QPainter) DrawLines2(lines core.QLineITF, lineCount int) {
+func (ptr *QPainter) DrawLines2(lines core.QLine_ITF, lineCount int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLines2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQLine(lines)), C.int(lineCount))
+		C.QPainter_DrawLines2(ptr.Pointer(), core.PointerFromQLine(lines), C.int(lineCount))
 	}
 }
 
-func (ptr *QPainter) DrawPicture(point core.QPointFITF, picture QPictureITF) {
+func (ptr *QPainter) DrawPicture(point core.QPointF_ITF, picture QPicture_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPicture(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(point)), C.QtObjectPtr(PointerFromQPicture(picture)))
+		C.QPainter_DrawPicture(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQPicture(picture))
 	}
 }
 
-func (ptr *QPainter) DrawPie(rectangle core.QRectFITF, startAngle int, spanAngle int) {
+func (ptr *QPainter) DrawPie(rectangle core.QRectF_ITF, startAngle int, spanAngle int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPie(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawPie(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap5(point core.QPointFITF, pixmap QPixmapITF) {
+func (ptr *QPainter) DrawPixmap5(point core.QPointF_ITF, pixmap QPixmap_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap5(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(point)), C.QtObjectPtr(PointerFromQPixmap(pixmap)))
+		C.QPainter_DrawPixmap5(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQPixmap(pixmap))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap(target core.QRectFITF, pixmap QPixmapITF, source core.QRectFITF) {
+func (ptr *QPainter) DrawPixmap(target core.QRectF_ITF, pixmap QPixmap_ITF, source core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(target)), C.QtObjectPtr(PointerFromQPixmap(pixmap)), C.QtObjectPtr(core.PointerFromQRectF(source)))
+		C.QPainter_DrawPixmap(ptr.Pointer(), core.PointerFromQRectF(target), PointerFromQPixmap(pixmap), core.PointerFromQRectF(source))
 	}
 }
 
-func (ptr *QPainter) DrawRects2(rectangles core.QRectITF, rectCount int) {
+func (ptr *QPainter) DrawRects2(rectangles core.QRect_ITF, rectCount int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawRects2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangles)), C.int(rectCount))
+		C.QPainter_DrawRects2(ptr.Pointer(), core.PointerFromQRect(rectangles), C.int(rectCount))
 	}
 }
 
-func (ptr *QPainter) DrawRects(rectangles core.QRectFITF, rectCount int) {
+func (ptr *QPainter) DrawRects(rectangles core.QRectF_ITF, rectCount int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawRects(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangles)), C.int(rectCount))
+		C.QPainter_DrawRects(ptr.Pointer(), core.PointerFromQRectF(rectangles), C.int(rectCount))
 	}
 }
 
-func (ptr *QPainter) DrawText(position core.QPointFITF, text string) {
+func (ptr *QPainter) DrawText(position core.QPointF_ITF, text string) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawText(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(position)), C.CString(text))
+		C.QPainter_DrawText(ptr.Pointer(), core.PointerFromQPointF(position), C.CString(text))
 	}
 }
 
-func (ptr *QPainter) DrawText5(rectangle core.QRectITF, flags int, text string, boundingRect core.QRectITF) {
+func (ptr *QPainter) DrawText5(rectangle core.QRect_ITF, flags int, text string, boundingRect core.QRect_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawText5(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.int(flags), C.CString(text), C.QtObjectPtr(core.PointerFromQRect(boundingRect)))
+		C.QPainter_DrawText5(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(flags), C.CString(text), core.PointerFromQRect(boundingRect))
 	}
 }
 
-func (ptr *QPainter) DrawText8(rectangle core.QRectFITF, text string, option QTextOptionITF) {
+func (ptr *QPainter) DrawText8(rectangle core.QRectF_ITF, text string, option QTextOption_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawText8(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.CString(text), C.QtObjectPtr(PointerFromQTextOption(option)))
+		C.QPainter_DrawText8(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.CString(text), PointerFromQTextOption(option))
 	}
 }
 
-func (ptr *QPainter) DrawText4(rectangle core.QRectFITF, flags int, text string, boundingRect core.QRectFITF) {
+func (ptr *QPainter) DrawText4(rectangle core.QRectF_ITF, flags int, text string, boundingRect core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawText4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.int(flags), C.CString(text), C.QtObjectPtr(core.PointerFromQRectF(boundingRect)))
+		C.QPainter_DrawText4(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(flags), C.CString(text), core.PointerFromQRectF(boundingRect))
 	}
 }
 
-func (ptr *QPainter) DrawTiledPixmap(rectangle core.QRectFITF, pixmap QPixmapITF, position core.QPointFITF) {
+func (ptr *QPainter) DrawTiledPixmap(rectangle core.QRectF_ITF, pixmap QPixmap_ITF, position core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawTiledPixmap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.QtObjectPtr(PointerFromQPixmap(pixmap)), C.QtObjectPtr(core.PointerFromQPointF(position)))
+		C.QPainter_DrawTiledPixmap(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQPixmap(pixmap), core.PointerFromQPointF(position))
 	}
 }
 
-func (ptr *QPainter) EraseRect(rectangle core.QRectFITF) {
+func (ptr *QPainter) EraseRect(rectangle core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_EraseRect(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)))
+		C.QPainter_EraseRect(ptr.Pointer(), core.PointerFromQRectF(rectangle))
 	}
 }
 
-func (ptr *QPainter) FillRect5(rectangle core.QRectITF, brush QBrushITF) {
+func (ptr *QPainter) FillRect5(rectangle core.QRect_ITF, brush QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect5(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.QtObjectPtr(PointerFromQBrush(brush)))
+		C.QPainter_FillRect5(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQBrush(brush))
 	}
 }
 
-func (ptr *QPainter) FillRect6(rectangle core.QRectITF, color QColorITF) {
+func (ptr *QPainter) FillRect6(rectangle core.QRect_ITF, color QColor_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect6(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.QtObjectPtr(PointerFromQColor(color)))
+		C.QPainter_FillRect6(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQColor(color))
 	}
 }
 
-func (ptr *QPainter) FillRect(rectangle core.QRectFITF, brush QBrushITF) {
+func (ptr *QPainter) FillRect(rectangle core.QRectF_ITF, brush QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.QtObjectPtr(PointerFromQBrush(brush)))
+		C.QPainter_FillRect(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQBrush(brush))
 	}
 }
 
-func (ptr *QPainter) FillRect7(rectangle core.QRectFITF, color QColorITF) {
+func (ptr *QPainter) FillRect7(rectangle core.QRectF_ITF, color QColor_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect7(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.QtObjectPtr(PointerFromQColor(color)))
+		C.QPainter_FillRect7(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQColor(color))
 	}
 }
 
-func (ptr *QPainter) SetBackground(brush QBrushITF) {
+func (ptr *QPainter) Rotate(angle float64) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetBackground(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQBrush(brush)))
+		C.QPainter_Rotate(ptr.Pointer(), C.double(angle))
 	}
 }
 
-func (ptr *QPainter) SetBrushOrigin(position core.QPointFITF) {
+func (ptr *QPainter) SetBackground(brush QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetBrushOrigin(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(position)))
+		C.QPainter_SetBackground(ptr.Pointer(), PointerFromQBrush(brush))
 	}
 }
 
-func (ptr *QPainter) SetClipPath(path QPainterPathITF, operation core.Qt__ClipOperation) {
+func (ptr *QPainter) SetBrushOrigin(position core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetClipPath(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPainterPath(path)), C.int(operation))
+		C.QPainter_SetBrushOrigin(ptr.Pointer(), core.PointerFromQPointF(position))
 	}
 }
 
-func (ptr *QPainter) SetClipRect3(rectangle core.QRectITF, operation core.Qt__ClipOperation) {
+func (ptr *QPainter) SetClipPath(path QPainterPath_ITF, operation core.Qt__ClipOperation) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetClipRect3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.int(operation))
+		C.QPainter_SetClipPath(ptr.Pointer(), PointerFromQPainterPath(path), C.int(operation))
 	}
 }
 
-func (ptr *QPainter) SetClipRect(rectangle core.QRectFITF, operation core.Qt__ClipOperation) {
+func (ptr *QPainter) SetClipRect3(rectangle core.QRect_ITF, operation core.Qt__ClipOperation) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetClipRect(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.int(operation))
+		C.QPainter_SetClipRect3(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(operation))
 	}
 }
 
-func (ptr *QPainter) SetClipRegion(region QRegionITF, operation core.Qt__ClipOperation) {
+func (ptr *QPainter) SetClipRect(rectangle core.QRectF_ITF, operation core.Qt__ClipOperation) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetClipRegion(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQRegion(region)), C.int(operation))
+		C.QPainter_SetClipRect(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(operation))
 	}
 }
 
-func (ptr *QPainter) SetViewport(rectangle core.QRectITF) {
+func (ptr *QPainter) SetClipRegion(region QRegion_ITF, operation core.Qt__ClipOperation) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetViewport(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)))
+		C.QPainter_SetClipRegion(ptr.Pointer(), PointerFromQRegion(region), C.int(operation))
 	}
 }
 
-func (ptr *QPainter) SetWindow(rectangle core.QRectITF) {
+func (ptr *QPainter) SetViewport(rectangle core.QRect_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetWindow(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)))
+		C.QPainter_SetViewport(ptr.Pointer(), core.PointerFromQRect(rectangle))
+	}
+}
+
+func (ptr *QPainter) SetWindow(rectangle core.QRect_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_SetWindow(ptr.Pointer(), core.PointerFromQRect(rectangle))
 	}
 }
 
 func NewQPainter() *QPainter {
-	return QPainterFromPointer(unsafe.Pointer(C.QPainter_NewQPainter()))
+	return NewQPainterFromPointer(C.QPainter_NewQPainter())
+}
+
+func (ptr *QPainter) Background() *QBrush {
+	if ptr.Pointer() != nil {
+		return NewQBrushFromPointer(C.QPainter_Background(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QPainter) BackgroundMode() core.Qt__BGMode {
 	if ptr.Pointer() != nil {
-		return core.Qt__BGMode(C.QPainter_BackgroundMode(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__BGMode(C.QPainter_BackgroundMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPainter) BeginNativePainting() {
 	if ptr.Pointer() != nil {
-		C.QPainter_BeginNativePainting(C.QtObjectPtr(ptr.Pointer()))
+		C.QPainter_BeginNativePainting(ptr.Pointer())
 	}
+}
+
+func (ptr *QPainter) Brush() *QBrush {
+	if ptr.Pointer() != nil {
+		return NewQBrushFromPointer(C.QPainter_Brush(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPainter) ClipRegion() *QRegion {
+	if ptr.Pointer() != nil {
+		return NewQRegionFromPointer(C.QPainter_ClipRegion(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QPainter) CompositionMode() QPainter__CompositionMode {
 	if ptr.Pointer() != nil {
-		return QPainter__CompositionMode(C.QPainter_CompositionMode(C.QtObjectPtr(ptr.Pointer())))
+		return QPainter__CompositionMode(C.QPainter_CompositionMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPainter) Device() *QPaintDevice {
 	if ptr.Pointer() != nil {
-		return QPaintDeviceFromPointer(unsafe.Pointer(C.QPainter_Device(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQPaintDeviceFromPointer(C.QPainter_Device(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QPainter) DrawArc2(rectangle core.QRectITF, startAngle int, spanAngle int) {
+func (ptr *QPainter) DrawArc2(rectangle core.QRect_ITF, startAngle int, spanAngle int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawArc2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawArc2(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
 func (ptr *QPainter) DrawArc3(x int, y int, width int, height int, startAngle int, spanAngle int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawArc3(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawArc3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
-func (ptr *QPainter) DrawChord2(rectangle core.QRectITF, startAngle int, spanAngle int) {
+func (ptr *QPainter) DrawChord2(rectangle core.QRect_ITF, startAngle int, spanAngle int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawChord2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawChord2(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
 func (ptr *QPainter) DrawChord3(x int, y int, width int, height int, startAngle int, spanAngle int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawChord3(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawChord3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
-func (ptr *QPainter) DrawConvexPolygon4(polygon QPolygonITF) {
+func (ptr *QPainter) DrawConvexPolygon4(polygon QPolygon_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawConvexPolygon4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPolygon(polygon)))
+		C.QPainter_DrawConvexPolygon4(ptr.Pointer(), PointerFromQPolygon(polygon))
 	}
 }
 
-func (ptr *QPainter) DrawConvexPolygon3(polygon QPolygonFITF) {
+func (ptr *QPainter) DrawConvexPolygon3(polygon QPolygonF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawConvexPolygon3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPolygonF(polygon)))
+		C.QPainter_DrawConvexPolygon3(ptr.Pointer(), PointerFromQPolygonF(polygon))
 	}
 }
 
-func (ptr *QPainter) DrawEllipse5(center core.QPointITF, rx int, ry int) {
+func (ptr *QPainter) DrawEllipse5(center core.QPoint_ITF, rx int, ry int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawEllipse5(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(center)), C.int(rx), C.int(ry))
+		C.QPainter_DrawEllipse5(ptr.Pointer(), core.PointerFromQPoint(center), C.int(rx), C.int(ry))
+	}
+}
+
+func (ptr *QPainter) DrawEllipse4(center core.QPointF_ITF, rx float64, ry float64) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawEllipse4(ptr.Pointer(), core.PointerFromQPointF(center), C.double(rx), C.double(ry))
 	}
 }
 
 func (ptr *QPainter) DrawEllipse3(x int, y int, width int, height int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawEllipse3(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height))
+		C.QPainter_DrawEllipse3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height))
 	}
 }
 
-func (ptr *QPainter) DrawImage4(point core.QPointITF, image QImageITF) {
+func (ptr *QPainter) DrawImage4(point core.QPoint_ITF, image QImage_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(point)), C.QtObjectPtr(PointerFromQImage(image)))
+		C.QPainter_DrawImage4(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQImage(image))
 	}
 }
 
-func (ptr *QPainter) DrawImage6(point core.QPointITF, image QImageITF, source core.QRectITF, flags core.Qt__ImageConversionFlag) {
+func (ptr *QPainter) DrawImage6(point core.QPoint_ITF, image QImage_ITF, source core.QRect_ITF, flags core.Qt__ImageConversionFlag) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage6(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(point)), C.QtObjectPtr(PointerFromQImage(image)), C.QtObjectPtr(core.PointerFromQRect(source)), C.int(flags))
+		C.QPainter_DrawImage6(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQImage(image), core.PointerFromQRect(source), C.int(flags))
 	}
 }
 
-func (ptr *QPainter) DrawImage5(point core.QPointFITF, image QImageITF, source core.QRectFITF, flags core.Qt__ImageConversionFlag) {
+func (ptr *QPainter) DrawImage5(point core.QPointF_ITF, image QImage_ITF, source core.QRectF_ITF, flags core.Qt__ImageConversionFlag) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage5(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(point)), C.QtObjectPtr(PointerFromQImage(image)), C.QtObjectPtr(core.PointerFromQRectF(source)), C.int(flags))
+		C.QPainter_DrawImage5(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQImage(image), core.PointerFromQRectF(source), C.int(flags))
 	}
 }
 
-func (ptr *QPainter) DrawImage8(rectangle core.QRectITF, image QImageITF) {
+func (ptr *QPainter) DrawImage8(rectangle core.QRect_ITF, image QImage_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage8(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.QtObjectPtr(PointerFromQImage(image)))
+		C.QPainter_DrawImage8(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQImage(image))
 	}
 }
 
-func (ptr *QPainter) DrawImage2(target core.QRectITF, image QImageITF, source core.QRectITF, flags core.Qt__ImageConversionFlag) {
+func (ptr *QPainter) DrawImage2(target core.QRect_ITF, image QImage_ITF, source core.QRect_ITF, flags core.Qt__ImageConversionFlag) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(target)), C.QtObjectPtr(PointerFromQImage(image)), C.QtObjectPtr(core.PointerFromQRect(source)), C.int(flags))
+		C.QPainter_DrawImage2(ptr.Pointer(), core.PointerFromQRect(target), PointerFromQImage(image), core.PointerFromQRect(source), C.int(flags))
 	}
 }
 
-func (ptr *QPainter) DrawImage7(rectangle core.QRectFITF, image QImageITF) {
+func (ptr *QPainter) DrawImage7(rectangle core.QRectF_ITF, image QImage_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage7(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.QtObjectPtr(PointerFromQImage(image)))
+		C.QPainter_DrawImage7(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQImage(image))
 	}
 }
 
-func (ptr *QPainter) DrawImage9(x int, y int, image QImageITF, sx int, sy int, sw int, sh int, flags core.Qt__ImageConversionFlag) {
+func (ptr *QPainter) DrawImage9(x int, y int, image QImage_ITF, sx int, sy int, sw int, sh int, flags core.Qt__ImageConversionFlag) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage9(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.QtObjectPtr(PointerFromQImage(image)), C.int(sx), C.int(sy), C.int(sw), C.int(sh), C.int(flags))
+		C.QPainter_DrawImage9(ptr.Pointer(), C.int(x), C.int(y), PointerFromQImage(image), C.int(sx), C.int(sy), C.int(sw), C.int(sh), C.int(flags))
 	}
 }
 
-func (ptr *QPainter) DrawLine2(line core.QLineITF) {
+func (ptr *QPainter) DrawLine2(line core.QLine_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLine2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQLine(line)))
+		C.QPainter_DrawLine2(ptr.Pointer(), core.PointerFromQLine(line))
 	}
 }
 
-func (ptr *QPainter) DrawLine(line core.QLineFITF) {
+func (ptr *QPainter) DrawLine(line core.QLineF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLine(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQLineF(line)))
+		C.QPainter_DrawLine(ptr.Pointer(), core.PointerFromQLineF(line))
 	}
 }
 
-func (ptr *QPainter) DrawLine3(p1 core.QPointITF, p2 core.QPointITF) {
+func (ptr *QPainter) DrawLine3(p1 core.QPoint_ITF, p2 core.QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLine3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(p1)), C.QtObjectPtr(core.PointerFromQPoint(p2)))
+		C.QPainter_DrawLine3(ptr.Pointer(), core.PointerFromQPoint(p1), core.PointerFromQPoint(p2))
 	}
 }
 
-func (ptr *QPainter) DrawLine4(p1 core.QPointFITF, p2 core.QPointFITF) {
+func (ptr *QPainter) DrawLine4(p1 core.QPointF_ITF, p2 core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLine4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(p1)), C.QtObjectPtr(core.PointerFromQPointF(p2)))
+		C.QPainter_DrawLine4(ptr.Pointer(), core.PointerFromQPointF(p1), core.PointerFromQPointF(p2))
 	}
 }
 
 func (ptr *QPainter) DrawLine5(x1 int, y1 int, x2 int, y2 int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLine5(C.QtObjectPtr(ptr.Pointer()), C.int(x1), C.int(y1), C.int(x2), C.int(y2))
+		C.QPainter_DrawLine5(ptr.Pointer(), C.int(x1), C.int(y1), C.int(x2), C.int(y2))
 	}
 }
 
-func (ptr *QPainter) DrawLines(lines core.QLineFITF, lineCount int) {
+func (ptr *QPainter) DrawLines(lines core.QLineF_ITF, lineCount int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLines(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQLineF(lines)), C.int(lineCount))
+		C.QPainter_DrawLines(ptr.Pointer(), core.PointerFromQLineF(lines), C.int(lineCount))
 	}
 }
 
-func (ptr *QPainter) DrawLines4(pointPairs core.QPointITF, lineCount int) {
+func (ptr *QPainter) DrawLines4(pointPairs core.QPoint_ITF, lineCount int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLines4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(pointPairs)), C.int(lineCount))
+		C.QPainter_DrawLines4(ptr.Pointer(), core.PointerFromQPoint(pointPairs), C.int(lineCount))
 	}
 }
 
-func (ptr *QPainter) DrawLines3(pointPairs core.QPointFITF, lineCount int) {
+func (ptr *QPainter) DrawLines3(pointPairs core.QPointF_ITF, lineCount int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLines3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(pointPairs)), C.int(lineCount))
+		C.QPainter_DrawLines3(ptr.Pointer(), core.PointerFromQPointF(pointPairs), C.int(lineCount))
 	}
 }
 
-func (ptr *QPainter) DrawPath(path QPainterPathITF) {
+func (ptr *QPainter) DrawPath(path QPainterPath_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPath(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPainterPath(path)))
+		C.QPainter_DrawPath(ptr.Pointer(), PointerFromQPainterPath(path))
 	}
 }
 
-func (ptr *QPainter) DrawPicture2(point core.QPointITF, picture QPictureITF) {
+func (ptr *QPainter) DrawPicture2(point core.QPoint_ITF, picture QPicture_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPicture2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(point)), C.QtObjectPtr(PointerFromQPicture(picture)))
+		C.QPainter_DrawPicture2(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQPicture(picture))
 	}
 }
 
-func (ptr *QPainter) DrawPicture3(x int, y int, picture QPictureITF) {
+func (ptr *QPainter) DrawPicture3(x int, y int, picture QPicture_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPicture3(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.QtObjectPtr(PointerFromQPicture(picture)))
+		C.QPainter_DrawPicture3(ptr.Pointer(), C.int(x), C.int(y), PointerFromQPicture(picture))
 	}
 }
 
-func (ptr *QPainter) DrawPie2(rectangle core.QRectITF, startAngle int, spanAngle int) {
+func (ptr *QPainter) DrawPie2(rectangle core.QRect_ITF, startAngle int, spanAngle int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPie2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawPie2(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
 func (ptr *QPainter) DrawPie3(x int, y int, width int, height int, startAngle int, spanAngle int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPie3(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawPie3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap6(point core.QPointITF, pixmap QPixmapITF) {
+func (ptr *QPainter) DrawPixmap6(point core.QPoint_ITF, pixmap QPixmap_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap6(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(point)), C.QtObjectPtr(PointerFromQPixmap(pixmap)))
+		C.QPainter_DrawPixmap6(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQPixmap(pixmap))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap4(point core.QPointITF, pixmap QPixmapITF, source core.QRectITF) {
+func (ptr *QPainter) DrawPixmap4(point core.QPoint_ITF, pixmap QPixmap_ITF, source core.QRect_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(point)), C.QtObjectPtr(PointerFromQPixmap(pixmap)), C.QtObjectPtr(core.PointerFromQRect(source)))
+		C.QPainter_DrawPixmap4(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQPixmap(pixmap), core.PointerFromQRect(source))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap3(point core.QPointFITF, pixmap QPixmapITF, source core.QRectFITF) {
+func (ptr *QPainter) DrawPixmap3(point core.QPointF_ITF, pixmap QPixmap_ITF, source core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(point)), C.QtObjectPtr(PointerFromQPixmap(pixmap)), C.QtObjectPtr(core.PointerFromQRectF(source)))
+		C.QPainter_DrawPixmap3(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQPixmap(pixmap), core.PointerFromQRectF(source))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap8(rectangle core.QRectITF, pixmap QPixmapITF) {
+func (ptr *QPainter) DrawPixmap8(rectangle core.QRect_ITF, pixmap QPixmap_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap8(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.QtObjectPtr(PointerFromQPixmap(pixmap)))
+		C.QPainter_DrawPixmap8(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQPixmap(pixmap))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap2(target core.QRectITF, pixmap QPixmapITF, source core.QRectITF) {
+func (ptr *QPainter) DrawPixmap2(target core.QRect_ITF, pixmap QPixmap_ITF, source core.QRect_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(target)), C.QtObjectPtr(PointerFromQPixmap(pixmap)), C.QtObjectPtr(core.PointerFromQRect(source)))
+		C.QPainter_DrawPixmap2(ptr.Pointer(), core.PointerFromQRect(target), PointerFromQPixmap(pixmap), core.PointerFromQRect(source))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap7(x int, y int, pixmap QPixmapITF) {
+func (ptr *QPainter) DrawPixmap7(x int, y int, pixmap QPixmap_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap7(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.QtObjectPtr(PointerFromQPixmap(pixmap)))
+		C.QPainter_DrawPixmap7(ptr.Pointer(), C.int(x), C.int(y), PointerFromQPixmap(pixmap))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap11(x int, y int, pixmap QPixmapITF, sx int, sy int, sw int, sh int) {
+func (ptr *QPainter) DrawPixmap11(x int, y int, pixmap QPixmap_ITF, sx int, sy int, sw int, sh int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap11(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.QtObjectPtr(PointerFromQPixmap(pixmap)), C.int(sx), C.int(sy), C.int(sw), C.int(sh))
+		C.QPainter_DrawPixmap11(ptr.Pointer(), C.int(x), C.int(y), PointerFromQPixmap(pixmap), C.int(sx), C.int(sy), C.int(sw), C.int(sh))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap10(x int, y int, w int, h int, pixmap QPixmapITF, sx int, sy int, sw int, sh int) {
+func (ptr *QPainter) DrawPixmap10(x int, y int, w int, h int, pixmap QPixmap_ITF, sx int, sy int, sw int, sh int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap10(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(w), C.int(h), C.QtObjectPtr(PointerFromQPixmap(pixmap)), C.int(sx), C.int(sy), C.int(sw), C.int(sh))
+		C.QPainter_DrawPixmap10(ptr.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h), PointerFromQPixmap(pixmap), C.int(sx), C.int(sy), C.int(sw), C.int(sh))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap9(x int, y int, width int, height int, pixmap QPixmapITF) {
+func (ptr *QPainter) DrawPixmap9(x int, y int, width int, height int, pixmap QPixmap_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap9(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height), C.QtObjectPtr(PointerFromQPixmap(pixmap)))
+		C.QPainter_DrawPixmap9(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), PointerFromQPixmap(pixmap))
 	}
 }
 
-func (ptr *QPainter) DrawPoint2(position core.QPointITF) {
+func (ptr *QPainter) DrawPoint2(position core.QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPoint2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(position)))
+		C.QPainter_DrawPoint2(ptr.Pointer(), core.PointerFromQPoint(position))
 	}
 }
 
-func (ptr *QPainter) DrawPoint(position core.QPointFITF) {
+func (ptr *QPainter) DrawPoint(position core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPoint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(position)))
+		C.QPainter_DrawPoint(ptr.Pointer(), core.PointerFromQPointF(position))
 	}
 }
 
 func (ptr *QPainter) DrawPoint3(x int, y int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPoint3(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y))
+		C.QPainter_DrawPoint3(ptr.Pointer(), C.int(x), C.int(y))
 	}
 }
 
-func (ptr *QPainter) DrawPoints2(points core.QPointITF, pointCount int) {
+func (ptr *QPainter) DrawPoints2(points core.QPoint_ITF, pointCount int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPoints2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(points)), C.int(pointCount))
+		C.QPainter_DrawPoints2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount))
 	}
 }
 
-func (ptr *QPainter) DrawPoints(points core.QPointFITF, pointCount int) {
+func (ptr *QPainter) DrawPoints(points core.QPointF_ITF, pointCount int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPoints(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(points)), C.int(pointCount))
+		C.QPainter_DrawPoints(ptr.Pointer(), core.PointerFromQPointF(points), C.int(pointCount))
 	}
 }
 
-func (ptr *QPainter) DrawPoints4(points QPolygonITF) {
+func (ptr *QPainter) DrawPoints4(points QPolygon_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPoints4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPolygon(points)))
+		C.QPainter_DrawPoints4(ptr.Pointer(), PointerFromQPolygon(points))
 	}
 }
 
-func (ptr *QPainter) DrawPoints3(points QPolygonFITF) {
+func (ptr *QPainter) DrawPoints3(points QPolygonF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPoints3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPolygonF(points)))
+		C.QPainter_DrawPoints3(ptr.Pointer(), PointerFromQPolygonF(points))
 	}
 }
 
-func (ptr *QPainter) DrawPolygon2(points core.QPointITF, pointCount int, fillRule core.Qt__FillRule) {
+func (ptr *QPainter) DrawPolygon2(points core.QPoint_ITF, pointCount int, fillRule core.Qt__FillRule) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPolygon2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(points)), C.int(pointCount), C.int(fillRule))
+		C.QPainter_DrawPolygon2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount), C.int(fillRule))
 	}
 }
 
-func (ptr *QPainter) DrawPolygon(points core.QPointFITF, pointCount int, fillRule core.Qt__FillRule) {
+func (ptr *QPainter) DrawPolygon(points core.QPointF_ITF, pointCount int, fillRule core.Qt__FillRule) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPolygon(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(points)), C.int(pointCount), C.int(fillRule))
+		C.QPainter_DrawPolygon(ptr.Pointer(), core.PointerFromQPointF(points), C.int(pointCount), C.int(fillRule))
 	}
 }
 
-func (ptr *QPainter) DrawPolygon4(points QPolygonITF, fillRule core.Qt__FillRule) {
+func (ptr *QPainter) DrawPolygon4(points QPolygon_ITF, fillRule core.Qt__FillRule) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPolygon4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPolygon(points)), C.int(fillRule))
+		C.QPainter_DrawPolygon4(ptr.Pointer(), PointerFromQPolygon(points), C.int(fillRule))
 	}
 }
 
-func (ptr *QPainter) DrawPolygon3(points QPolygonFITF, fillRule core.Qt__FillRule) {
+func (ptr *QPainter) DrawPolygon3(points QPolygonF_ITF, fillRule core.Qt__FillRule) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPolygon3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPolygonF(points)), C.int(fillRule))
+		C.QPainter_DrawPolygon3(ptr.Pointer(), PointerFromQPolygonF(points), C.int(fillRule))
 	}
 }
 
-func (ptr *QPainter) DrawPolyline2(points core.QPointITF, pointCount int) {
+func (ptr *QPainter) DrawPolyline2(points core.QPoint_ITF, pointCount int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPolyline2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(points)), C.int(pointCount))
+		C.QPainter_DrawPolyline2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount))
 	}
 }
 
-func (ptr *QPainter) DrawPolyline(points core.QPointFITF, pointCount int) {
+func (ptr *QPainter) DrawPolyline(points core.QPointF_ITF, pointCount int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPolyline(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(points)), C.int(pointCount))
+		C.QPainter_DrawPolyline(ptr.Pointer(), core.PointerFromQPointF(points), C.int(pointCount))
 	}
 }
 
-func (ptr *QPainter) DrawPolyline4(points QPolygonITF) {
+func (ptr *QPainter) DrawPolyline4(points QPolygon_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPolyline4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPolygon(points)))
+		C.QPainter_DrawPolyline4(ptr.Pointer(), PointerFromQPolygon(points))
 	}
 }
 
-func (ptr *QPainter) DrawPolyline3(points QPolygonFITF) {
+func (ptr *QPainter) DrawPolyline3(points QPolygonF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPolyline3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPolygonF(points)))
+		C.QPainter_DrawPolyline3(ptr.Pointer(), PointerFromQPolygonF(points))
 	}
 }
 
-func (ptr *QPainter) DrawRect2(rectangle core.QRectITF) {
+func (ptr *QPainter) DrawRect2(rectangle core.QRect_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawRect2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)))
+		C.QPainter_DrawRect2(ptr.Pointer(), core.PointerFromQRect(rectangle))
 	}
 }
 
-func (ptr *QPainter) DrawRect(rectangle core.QRectFITF) {
+func (ptr *QPainter) DrawRect(rectangle core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawRect(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)))
+		C.QPainter_DrawRect(ptr.Pointer(), core.PointerFromQRectF(rectangle))
 	}
 }
 
 func (ptr *QPainter) DrawRect3(x int, y int, width int, height int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawRect3(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height))
+		C.QPainter_DrawRect3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height))
 	}
 }
 
-func (ptr *QPainter) DrawStaticText2(topLeftPosition core.QPointITF, staticText QStaticTextITF) {
+func (ptr *QPainter) DrawRoundedRect2(rect core.QRect_ITF, xRadius float64, yRadius float64, mode core.Qt__SizeMode) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawStaticText2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(topLeftPosition)), C.QtObjectPtr(PointerFromQStaticText(staticText)))
+		C.QPainter_DrawRoundedRect2(ptr.Pointer(), core.PointerFromQRect(rect), C.double(xRadius), C.double(yRadius), C.int(mode))
 	}
 }
 
-func (ptr *QPainter) DrawStaticText(topLeftPosition core.QPointFITF, staticText QStaticTextITF) {
+func (ptr *QPainter) DrawRoundedRect(rect core.QRectF_ITF, xRadius float64, yRadius float64, mode core.Qt__SizeMode) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawStaticText(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(topLeftPosition)), C.QtObjectPtr(PointerFromQStaticText(staticText)))
+		C.QPainter_DrawRoundedRect(ptr.Pointer(), core.PointerFromQRectF(rect), C.double(xRadius), C.double(yRadius), C.int(mode))
 	}
 }
 
-func (ptr *QPainter) DrawStaticText3(left int, top int, staticText QStaticTextITF) {
+func (ptr *QPainter) DrawRoundedRect3(x int, y int, w int, h int, xRadius float64, yRadius float64, mode core.Qt__SizeMode) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawStaticText3(C.QtObjectPtr(ptr.Pointer()), C.int(left), C.int(top), C.QtObjectPtr(PointerFromQStaticText(staticText)))
+		C.QPainter_DrawRoundedRect3(ptr.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h), C.double(xRadius), C.double(yRadius), C.int(mode))
 	}
 }
 
-func (ptr *QPainter) DrawText3(position core.QPointITF, text string) {
+func (ptr *QPainter) DrawStaticText2(topLeftPosition core.QPoint_ITF, staticText QStaticText_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawText3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(position)), C.CString(text))
+		C.QPainter_DrawStaticText2(ptr.Pointer(), core.PointerFromQPoint(topLeftPosition), PointerFromQStaticText(staticText))
+	}
+}
+
+func (ptr *QPainter) DrawStaticText(topLeftPosition core.QPointF_ITF, staticText QStaticText_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawStaticText(ptr.Pointer(), core.PointerFromQPointF(topLeftPosition), PointerFromQStaticText(staticText))
+	}
+}
+
+func (ptr *QPainter) DrawStaticText3(left int, top int, staticText QStaticText_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawStaticText3(ptr.Pointer(), C.int(left), C.int(top), PointerFromQStaticText(staticText))
+	}
+}
+
+func (ptr *QPainter) DrawText3(position core.QPoint_ITF, text string) {
+	if ptr.Pointer() != nil {
+		C.QPainter_DrawText3(ptr.Pointer(), core.PointerFromQPoint(position), C.CString(text))
 	}
 }
 
 func (ptr *QPainter) DrawText6(x int, y int, text string) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawText6(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.CString(text))
+		C.QPainter_DrawText6(ptr.Pointer(), C.int(x), C.int(y), C.CString(text))
 	}
 }
 
-func (ptr *QPainter) DrawText7(x int, y int, width int, height int, flags int, text string, boundingRect core.QRectITF) {
+func (ptr *QPainter) DrawText7(x int, y int, width int, height int, flags int, text string, boundingRect core.QRect_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawText7(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height), C.int(flags), C.CString(text), C.QtObjectPtr(core.PointerFromQRect(boundingRect)))
+		C.QPainter_DrawText7(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(flags), C.CString(text), core.PointerFromQRect(boundingRect))
 	}
 }
 
-func (ptr *QPainter) DrawTiledPixmap2(rectangle core.QRectITF, pixmap QPixmapITF, position core.QPointITF) {
+func (ptr *QPainter) DrawTiledPixmap2(rectangle core.QRect_ITF, pixmap QPixmap_ITF, position core.QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawTiledPixmap2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.QtObjectPtr(PointerFromQPixmap(pixmap)), C.QtObjectPtr(core.PointerFromQPoint(position)))
+		C.QPainter_DrawTiledPixmap2(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQPixmap(pixmap), core.PointerFromQPoint(position))
 	}
 }
 
-func (ptr *QPainter) DrawTiledPixmap3(x int, y int, width int, height int, pixmap QPixmapITF, sx int, sy int) {
+func (ptr *QPainter) DrawTiledPixmap3(x int, y int, width int, height int, pixmap QPixmap_ITF, sx int, sy int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawTiledPixmap3(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height), C.QtObjectPtr(PointerFromQPixmap(pixmap)), C.int(sx), C.int(sy))
+		C.QPainter_DrawTiledPixmap3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), PointerFromQPixmap(pixmap), C.int(sx), C.int(sy))
 	}
 }
 
 func (ptr *QPainter) End() bool {
 	if ptr.Pointer() != nil {
-		return C.QPainter_End(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QPainter_End(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QPainter) EndNativePainting() {
 	if ptr.Pointer() != nil {
-		C.QPainter_EndNativePainting(C.QtObjectPtr(ptr.Pointer()))
+		C.QPainter_EndNativePainting(ptr.Pointer())
 	}
 }
 
-func (ptr *QPainter) EraseRect2(rectangle core.QRectITF) {
+func (ptr *QPainter) EraseRect2(rectangle core.QRect_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_EraseRect2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)))
+		C.QPainter_EraseRect2(ptr.Pointer(), core.PointerFromQRect(rectangle))
 	}
 }
 
 func (ptr *QPainter) EraseRect3(x int, y int, width int, height int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_EraseRect3(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height))
+		C.QPainter_EraseRect3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height))
 	}
 }
 
-func (ptr *QPainter) FillPath(path QPainterPathITF, brush QBrushITF) {
+func (ptr *QPainter) FillPath(path QPainterPath_ITF, brush QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillPath(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPainterPath(path)), C.QtObjectPtr(PointerFromQBrush(brush)))
+		C.QPainter_FillPath(ptr.Pointer(), PointerFromQPainterPath(path), PointerFromQBrush(brush))
 	}
 }
 
-func (ptr *QPainter) FillRect3(rectangle core.QRectITF, style core.Qt__BrushStyle) {
+func (ptr *QPainter) FillRect3(rectangle core.QRect_ITF, style core.Qt__BrushStyle) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.int(style))
+		C.QPainter_FillRect3(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(style))
 	}
 }
 
-func (ptr *QPainter) FillRect11(rectangle core.QRectITF, color core.Qt__GlobalColor) {
+func (ptr *QPainter) FillRect11(rectangle core.QRect_ITF, color core.Qt__GlobalColor) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect11(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.int(color))
+		C.QPainter_FillRect11(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(color))
 	}
 }
 
-func (ptr *QPainter) FillRect4(rectangle core.QRectFITF, style core.Qt__BrushStyle) {
+func (ptr *QPainter) FillRect4(rectangle core.QRectF_ITF, style core.Qt__BrushStyle) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.int(style))
+		C.QPainter_FillRect4(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(style))
 	}
 }
 
-func (ptr *QPainter) FillRect12(rectangle core.QRectFITF, color core.Qt__GlobalColor) {
+func (ptr *QPainter) FillRect12(rectangle core.QRectF_ITF, color core.Qt__GlobalColor) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect12(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.int(color))
+		C.QPainter_FillRect12(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(color))
 	}
 }
 
 func (ptr *QPainter) FillRect2(x int, y int, width int, height int, style core.Qt__BrushStyle) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect2(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height), C.int(style))
+		C.QPainter_FillRect2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(style))
 	}
 }
 
 func (ptr *QPainter) FillRect10(x int, y int, width int, height int, color core.Qt__GlobalColor) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect10(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height), C.int(color))
+		C.QPainter_FillRect10(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(color))
 	}
 }
 
-func (ptr *QPainter) FillRect8(x int, y int, width int, height int, brush QBrushITF) {
+func (ptr *QPainter) FillRect8(x int, y int, width int, height int, brush QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect8(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height), C.QtObjectPtr(PointerFromQBrush(brush)))
+		C.QPainter_FillRect8(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), PointerFromQBrush(brush))
 	}
 }
 
-func (ptr *QPainter) FillRect9(x int, y int, width int, height int, color QColorITF) {
+func (ptr *QPainter) FillRect9(x int, y int, width int, height int, color QColor_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect9(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height), C.QtObjectPtr(PointerFromQColor(color)))
+		C.QPainter_FillRect9(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), PointerFromQColor(color))
 	}
 }
 
 func (ptr *QPainter) HasClipping() bool {
 	if ptr.Pointer() != nil {
-		return C.QPainter_HasClipping(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QPainter_HasClipping(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QPainter) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QPainter_IsActive(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QPainter_IsActive(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QPainter) LayoutDirection() core.Qt__LayoutDirection {
 	if ptr.Pointer() != nil {
-		return core.Qt__LayoutDirection(C.QPainter_LayoutDirection(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__LayoutDirection(C.QPainter_LayoutDirection(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPainter) Opacity() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QPainter_Opacity(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPainter) PaintEngine() *QPaintEngine {
 	if ptr.Pointer() != nil {
-		return QPaintEngineFromPointer(unsafe.Pointer(C.QPainter_PaintEngine(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQPaintEngineFromPointer(C.QPainter_PaintEngine(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QPainter) RenderHints() QPainter__RenderHint {
 	if ptr.Pointer() != nil {
-		return QPainter__RenderHint(C.QPainter_RenderHints(C.QtObjectPtr(ptr.Pointer())))
+		return QPainter__RenderHint(C.QPainter_RenderHints(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QPainter) ResetTransform() {
 	if ptr.Pointer() != nil {
-		C.QPainter_ResetTransform(C.QtObjectPtr(ptr.Pointer()))
+		C.QPainter_ResetTransform(ptr.Pointer())
 	}
 }
 
 func (ptr *QPainter) Restore() {
 	if ptr.Pointer() != nil {
-		C.QPainter_Restore(C.QtObjectPtr(ptr.Pointer()))
+		C.QPainter_Restore(ptr.Pointer())
 	}
 }
 
 func (ptr *QPainter) Save() {
 	if ptr.Pointer() != nil {
-		C.QPainter_Save(C.QtObjectPtr(ptr.Pointer()))
+		C.QPainter_Save(ptr.Pointer())
+	}
+}
+
+func (ptr *QPainter) Scale(sx float64, sy float64) {
+	if ptr.Pointer() != nil {
+		C.QPainter_Scale(ptr.Pointer(), C.double(sx), C.double(sy))
 	}
 }
 
 func (ptr *QPainter) SetBackgroundMode(mode core.Qt__BGMode) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetBackgroundMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QPainter_SetBackgroundMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QPainter) SetBrush2(style core.Qt__BrushStyle) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetBrush2(C.QtObjectPtr(ptr.Pointer()), C.int(style))
+		C.QPainter_SetBrush2(ptr.Pointer(), C.int(style))
 	}
 }
 
-func (ptr *QPainter) SetBrush(brush QBrushITF) {
+func (ptr *QPainter) SetBrush(brush QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetBrush(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQBrush(brush)))
+		C.QPainter_SetBrush(ptr.Pointer(), PointerFromQBrush(brush))
 	}
 }
 
-func (ptr *QPainter) SetBrushOrigin2(position core.QPointITF) {
+func (ptr *QPainter) SetBrushOrigin2(position core.QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetBrushOrigin2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(position)))
+		C.QPainter_SetBrushOrigin2(ptr.Pointer(), core.PointerFromQPoint(position))
 	}
 }
 
 func (ptr *QPainter) SetBrushOrigin3(x int, y int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetBrushOrigin3(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y))
+		C.QPainter_SetBrushOrigin3(ptr.Pointer(), C.int(x), C.int(y))
 	}
 }
 
 func (ptr *QPainter) SetClipRect2(x int, y int, width int, height int, operation core.Qt__ClipOperation) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetClipRect2(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height), C.int(operation))
+		C.QPainter_SetClipRect2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(operation))
 	}
 }
 
 func (ptr *QPainter) SetClipping(enable bool) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetClipping(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enable)))
+		C.QPainter_SetClipping(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
 func (ptr *QPainter) SetCompositionMode(mode QPainter__CompositionMode) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetCompositionMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QPainter_SetCompositionMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
-func (ptr *QPainter) SetFont(font QFontITF) {
+func (ptr *QPainter) SetFont(font QFont_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetFont(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQFont(font)))
+		C.QPainter_SetFont(ptr.Pointer(), PointerFromQFont(font))
 	}
 }
 
 func (ptr *QPainter) SetLayoutDirection(direction core.Qt__LayoutDirection) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetLayoutDirection(C.QtObjectPtr(ptr.Pointer()), C.int(direction))
+		C.QPainter_SetLayoutDirection(ptr.Pointer(), C.int(direction))
+	}
+}
+
+func (ptr *QPainter) SetOpacity(opacity float64) {
+	if ptr.Pointer() != nil {
+		C.QPainter_SetOpacity(ptr.Pointer(), C.double(opacity))
 	}
 }
 
 func (ptr *QPainter) SetPen3(style core.Qt__PenStyle) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetPen3(C.QtObjectPtr(ptr.Pointer()), C.int(style))
+		C.QPainter_SetPen3(ptr.Pointer(), C.int(style))
 	}
 }
 
-func (ptr *QPainter) SetPen2(color QColorITF) {
+func (ptr *QPainter) SetPen2(color QColor_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetPen2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQColor(color)))
+		C.QPainter_SetPen2(ptr.Pointer(), PointerFromQColor(color))
 	}
 }
 
-func (ptr *QPainter) SetPen(pen QPenITF) {
+func (ptr *QPainter) SetPen(pen QPen_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetPen(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPen(pen)))
+		C.QPainter_SetPen(ptr.Pointer(), PointerFromQPen(pen))
 	}
 }
 
 func (ptr *QPainter) SetRenderHint(hint QPainter__RenderHint, on bool) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetRenderHint(C.QtObjectPtr(ptr.Pointer()), C.int(hint), C.int(qt.GoBoolToInt(on)))
+		C.QPainter_SetRenderHint(ptr.Pointer(), C.int(hint), C.int(qt.GoBoolToInt(on)))
 	}
 }
 
 func (ptr *QPainter) SetRenderHints(hints QPainter__RenderHint, on bool) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetRenderHints(C.QtObjectPtr(ptr.Pointer()), C.int(hints), C.int(qt.GoBoolToInt(on)))
+		C.QPainter_SetRenderHints(ptr.Pointer(), C.int(hints), C.int(qt.GoBoolToInt(on)))
 	}
 }
 
-func (ptr *QPainter) SetTransform(transform QTransformITF, combine bool) {
+func (ptr *QPainter) SetTransform(transform QTransform_ITF, combine bool) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetTransform(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTransform(transform)), C.int(qt.GoBoolToInt(combine)))
+		C.QPainter_SetTransform(ptr.Pointer(), PointerFromQTransform(transform), C.int(qt.GoBoolToInt(combine)))
 	}
 }
 
 func (ptr *QPainter) SetViewTransformEnabled(enable bool) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetViewTransformEnabled(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enable)))
+		C.QPainter_SetViewTransformEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
 func (ptr *QPainter) SetViewport2(x int, y int, width int, height int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetViewport2(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height))
+		C.QPainter_SetViewport2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height))
 	}
 }
 
 func (ptr *QPainter) SetWindow2(x int, y int, width int, height int) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetWindow2(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y), C.int(width), C.int(height))
+		C.QPainter_SetWindow2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height))
 	}
 }
 
 func (ptr *QPainter) SetWorldMatrixEnabled(enable bool) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetWorldMatrixEnabled(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enable)))
+		C.QPainter_SetWorldMatrixEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
-func (ptr *QPainter) SetWorldTransform(matrix QTransformITF, combine bool) {
+func (ptr *QPainter) SetWorldTransform(matrix QTransform_ITF, combine bool) {
 	if ptr.Pointer() != nil {
-		C.QPainter_SetWorldTransform(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTransform(matrix)), C.int(qt.GoBoolToInt(combine)))
+		C.QPainter_SetWorldTransform(ptr.Pointer(), PointerFromQTransform(matrix), C.int(qt.GoBoolToInt(combine)))
 	}
 }
 
-func (ptr *QPainter) StrokePath(path QPainterPathITF, pen QPenITF) {
+func (ptr *QPainter) Shear(sh float64, sv float64) {
 	if ptr.Pointer() != nil {
-		C.QPainter_StrokePath(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPainterPath(path)), C.QtObjectPtr(PointerFromQPen(pen)))
+		C.QPainter_Shear(ptr.Pointer(), C.double(sh), C.double(sv))
+	}
+}
+
+func (ptr *QPainter) StrokePath(path QPainterPath_ITF, pen QPen_ITF) {
+	if ptr.Pointer() != nil {
+		C.QPainter_StrokePath(ptr.Pointer(), PointerFromQPainterPath(path), PointerFromQPen(pen))
 	}
 }
 
 func (ptr *QPainter) TestRenderHint(hint QPainter__RenderHint) bool {
 	if ptr.Pointer() != nil {
-		return C.QPainter_TestRenderHint(C.QtObjectPtr(ptr.Pointer()), C.int(hint)) != 0
+		return C.QPainter_TestRenderHint(ptr.Pointer(), C.int(hint)) != 0
 	}
 	return false
 }
 
-func (ptr *QPainter) Translate2(offset core.QPointITF) {
+func (ptr *QPainter) Translate2(offset core.QPoint_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_Translate2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(offset)))
+		C.QPainter_Translate2(ptr.Pointer(), core.PointerFromQPoint(offset))
 	}
 }
 
-func (ptr *QPainter) Translate(offset core.QPointFITF) {
+func (ptr *QPainter) Translate(offset core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPainter_Translate(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(offset)))
+		C.QPainter_Translate(ptr.Pointer(), core.PointerFromQPointF(offset))
+	}
+}
+
+func (ptr *QPainter) Translate3(dx float64, dy float64) {
+	if ptr.Pointer() != nil {
+		C.QPainter_Translate3(ptr.Pointer(), C.double(dx), C.double(dy))
 	}
 }
 
 func (ptr *QPainter) ViewTransformEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QPainter_ViewTransformEnabled(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QPainter_ViewTransformEnabled(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QPainter) WorldMatrixEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QPainter_WorldMatrixEnabled(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QPainter_WorldMatrixEnabled(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QPainter) DestroyQPainter() {
 	if ptr.Pointer() != nil {
-		C.QPainter_DestroyQPainter(C.QtObjectPtr(ptr.Pointer()))
+		C.QPainter_DestroyQPainter(ptr.Pointer())
 	}
 }

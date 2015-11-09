@@ -10,30 +10,30 @@ type QTextListFormat struct {
 	QTextFormat
 }
 
-type QTextListFormatITF interface {
-	QTextFormatITF
-	QTextListFormatPTR() *QTextListFormat
+type QTextListFormat_ITF interface {
+	QTextFormat_ITF
+	QTextListFormat_PTR() *QTextListFormat
 }
 
-func PointerFromQTextListFormat(ptr QTextListFormatITF) unsafe.Pointer {
+func PointerFromQTextListFormat(ptr QTextListFormat_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTextListFormatPTR().Pointer()
+		return ptr.QTextListFormat_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTextListFormatFromPointer(ptr unsafe.Pointer) *QTextListFormat {
+func NewQTextListFormatFromPointer(ptr unsafe.Pointer) *QTextListFormat {
 	var n = new(QTextListFormat)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QTextListFormat) QTextListFormatPTR() *QTextListFormat {
+func (ptr *QTextListFormat) QTextListFormat_PTR() *QTextListFormat {
 	return ptr
 }
 
 //QTextListFormat::Style
-type QTextListFormat__Style int
+type QTextListFormat__Style int64
 
 var (
 	QTextListFormat__ListDisc           = QTextListFormat__Style(-1)
@@ -48,64 +48,64 @@ var (
 )
 
 func NewQTextListFormat() *QTextListFormat {
-	return QTextListFormatFromPointer(unsafe.Pointer(C.QTextListFormat_NewQTextListFormat()))
+	return NewQTextListFormatFromPointer(C.QTextListFormat_NewQTextListFormat())
 }
 
 func (ptr *QTextListFormat) Indent() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTextListFormat_Indent(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTextListFormat_Indent(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTextListFormat) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextListFormat_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTextListFormat_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTextListFormat) NumberPrefix() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextListFormat_NumberPrefix(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QTextListFormat_NumberPrefix(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QTextListFormat) NumberSuffix() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextListFormat_NumberSuffix(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QTextListFormat_NumberSuffix(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QTextListFormat) SetIndent(indentation int) {
 	if ptr.Pointer() != nil {
-		C.QTextListFormat_SetIndent(C.QtObjectPtr(ptr.Pointer()), C.int(indentation))
+		C.QTextListFormat_SetIndent(ptr.Pointer(), C.int(indentation))
 	}
 }
 
 func (ptr *QTextListFormat) SetNumberPrefix(numberPrefix string) {
 	if ptr.Pointer() != nil {
-		C.QTextListFormat_SetNumberPrefix(C.QtObjectPtr(ptr.Pointer()), C.CString(numberPrefix))
+		C.QTextListFormat_SetNumberPrefix(ptr.Pointer(), C.CString(numberPrefix))
 	}
 }
 
 func (ptr *QTextListFormat) SetNumberSuffix(numberSuffix string) {
 	if ptr.Pointer() != nil {
-		C.QTextListFormat_SetNumberSuffix(C.QtObjectPtr(ptr.Pointer()), C.CString(numberSuffix))
+		C.QTextListFormat_SetNumberSuffix(ptr.Pointer(), C.CString(numberSuffix))
 	}
 }
 
 func (ptr *QTextListFormat) SetStyle(style QTextListFormat__Style) {
 	if ptr.Pointer() != nil {
-		C.QTextListFormat_SetStyle(C.QtObjectPtr(ptr.Pointer()), C.int(style))
+		C.QTextListFormat_SetStyle(ptr.Pointer(), C.int(style))
 	}
 }
 
 func (ptr *QTextListFormat) Style() QTextListFormat__Style {
 	if ptr.Pointer() != nil {
-		return QTextListFormat__Style(C.QTextListFormat_Style(C.QtObjectPtr(ptr.Pointer())))
+		return QTextListFormat__Style(C.QTextListFormat_Style(ptr.Pointer()))
 	}
 	return 0
 }

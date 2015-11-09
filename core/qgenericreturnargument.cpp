@@ -1,8 +1,8 @@
 #include "qgenericreturnargument.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
 #include <QGenericReturnArgument>
 #include "_cgo_export.h"
 

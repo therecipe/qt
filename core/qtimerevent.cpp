@@ -1,10 +1,10 @@
 #include "qtimerevent.h"
-#include <QModelIndex>
-#include <QTimer>
 #include <QTime>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QTimer>
 #include <QTimerEvent>
 #include "_cgo_export.h"
 
@@ -12,11 +12,11 @@ class MyQTimerEvent: public QTimerEvent {
 public:
 };
 
-QtObjectPtr QTimerEvent_NewQTimerEvent(int timerId){
+void* QTimerEvent_NewQTimerEvent(int timerId){
 	return new QTimerEvent(timerId);
 }
 
-int QTimerEvent_TimerId(QtObjectPtr ptr){
+int QTimerEvent_TimerId(void* ptr){
 	return static_cast<QTimerEvent*>(ptr)->timerId();
 }
 

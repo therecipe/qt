@@ -10,24 +10,24 @@ type QPlaceProposedSearchResult struct {
 	QPlaceSearchResult
 }
 
-type QPlaceProposedSearchResultITF interface {
-	QPlaceSearchResultITF
-	QPlaceProposedSearchResultPTR() *QPlaceProposedSearchResult
+type QPlaceProposedSearchResult_ITF interface {
+	QPlaceSearchResult_ITF
+	QPlaceProposedSearchResult_PTR() *QPlaceProposedSearchResult
 }
 
-func PointerFromQPlaceProposedSearchResult(ptr QPlaceProposedSearchResultITF) unsafe.Pointer {
+func PointerFromQPlaceProposedSearchResult(ptr QPlaceProposedSearchResult_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceProposedSearchResultPTR().Pointer()
+		return ptr.QPlaceProposedSearchResult_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceProposedSearchResultFromPointer(ptr unsafe.Pointer) *QPlaceProposedSearchResult {
+func NewQPlaceProposedSearchResultFromPointer(ptr unsafe.Pointer) *QPlaceProposedSearchResult {
 	var n = new(QPlaceProposedSearchResult)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPlaceProposedSearchResult) QPlaceProposedSearchResultPTR() *QPlaceProposedSearchResult {
+func (ptr *QPlaceProposedSearchResult) QPlaceProposedSearchResult_PTR() *QPlaceProposedSearchResult {
 	return ptr
 }

@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QHttpPart QHttpPart::QHttpPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non constructor false false   [] }
-&{QHttpPart QHttpPart::QHttpPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non constructor false true 2  [0xc8229135e0] }
-&{operator!= QHttpPart::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  bool [0xc8229138a0] }
-&{operator= QHttpPart::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  QHttpPart & [0xc822913b60] }
-&{operator== QHttpPart::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  bool [0xc822913e60] }
-&{setBody QHttpPart::setBody commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc822718140] }
-&{setBodyDevice QHttpPart::setBodyDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc8227183c0] }
-&{setHeader QHttpPart::setHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc822718620 0xc822718720] }
-&{setRawHeader QHttpPart::setRawHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc822718980 0xc822718ac0] }
-&{swap QHttpPart::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc822718d00] }
-&{~QHttpPart QHttpPart::~QHttpPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non destructor false false   [] }
+&{QHttpPart QHttpPart::QHttpPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non constructor false false   QHttpPart() [] }
+&{QHttpPart QHttpPart::QHttpPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non constructor false true 2  QHttpPart(const QHttpPart &other) [0xc8235fe900] }
+&{operator!= QHttpPart::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  bool bool operator!=(const QHttpPart &other) const [0xc8235feba0] }
+&{operator= QHttpPart::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  QHttpPart & QHttpPart & operator=(const QHttpPart &other) [0xc8235fee80] }
+&{operator== QHttpPart::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  bool bool operator==(const QHttpPart &other) const [0xc8235ff0e0] }
+&{setBody QHttpPart::setBody commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void void setBody(const QByteArray &body) [0xc8235ff3e0] }
+&{setBodyDevice QHttpPart::setBodyDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void void setBodyDevice(QIODevice *device) [0xc8235ff640] }
+&{setHeader QHttpPart::setHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void void setHeader(QNetworkRequest::KnownHeaders header, const QVariant &value) [0xc8235ff820 0xc8235ff8e0] }
+&{setRawHeader QHttpPart::setRawHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void void setRawHeader(const QByteArray &headerName, const QByteArray &headerValue) [0xc8235ffae0 0xc8235ffbc0] }
+&{swap QHttpPart::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void void swap(QHttpPart &other) [0xc8235ffdc0] }
+&{~QHttpPart QHttpPart::~QHttpPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non destructor false false   ~QHttpPart() [] }
 ########################################			ENUMS			########################################

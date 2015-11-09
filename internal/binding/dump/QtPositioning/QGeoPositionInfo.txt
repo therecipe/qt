@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
-&{QGeoPositionInfo QGeoPositionInfo::QGeoPositionInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non constructor false false   [] }
-&{QGeoPositionInfo QGeoPositionInfo::QGeoPositionInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non constructor false true 2  [0xc822f6fba0 0xc822f6fd40] }
-&{QGeoPositionInfo QGeoPositionInfo::QGeoPositionInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non constructor false true 3  [0xc822f5a000] }
-&{attribute QGeoPositionInfo::attribute commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  qreal [0xc822f5a400] }
-&{coordinate QGeoPositionInfo::coordinate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  QGeoCoordinate [] }
-&{hasAttribute QGeoPositionInfo::hasAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  bool [0xc822f5aa60] }
-&{isValid QGeoPositionInfo::isValid commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  bool [] }
-&{operator!= QGeoPositionInfo::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  bool [0xc822f5b020] }
-&{operator= QGeoPositionInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  QGeoPositionInfo & [0xc822f5b680] }
-&{operator== QGeoPositionInfo::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  bool [0xc822f5bae0] }
-&{removeAttribute QGeoPositionInfo::removeAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  void [0xc822f5be20] }
-&{setAttribute QGeoPositionInfo::setAttribute commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  void [0xc822f42200 0xc822f422e0] }
-&{setCoordinate QGeoPositionInfo::setCoordinate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  void [0xc822f42680] }
-&{setTimestamp QGeoPositionInfo::setTimestamp commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  void [0xc822f42b00] }
-&{timestamp QGeoPositionInfo::timestamp commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  QDateTime [] }
-&{~QGeoPositionInfo QGeoPositionInfo::~QGeoPositionInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non destructor false false   [] }
+&{QGeoPositionInfo QGeoPositionInfo::QGeoPositionInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non constructor false false   QGeoPositionInfo() [] }
+&{QGeoPositionInfo QGeoPositionInfo::QGeoPositionInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non constructor false true 2  QGeoPositionInfo(const QGeoCoordinate &coordinate, const QDateTime &timestamp) [0xc8218451c0 0xc8218453c0] }
+&{QGeoPositionInfo QGeoPositionInfo::QGeoPositionInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non constructor false true 3  QGeoPositionInfo(const QGeoPositionInfo &other) [0xc8218456e0] }
+&{attribute QGeoPositionInfo::attribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  qreal qreal attribute(Attribute attribute) const [0xc821845b40] }
+&{coordinate QGeoPositionInfo::coordinate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  QGeoCoordinate QGeoCoordinate coordinate() const [] }
+&{hasAttribute QGeoPositionInfo::hasAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  bool bool hasAttribute(Attribute attribute) const [0xc821db40e0] }
+&{isValid QGeoPositionInfo::isValid commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  bool bool isValid() const [] }
+&{operator!= QGeoPositionInfo::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  bool bool operator!=(const QGeoPositionInfo &other) const [0xc821db4640] }
+&{operator= QGeoPositionInfo::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  QGeoPositionInfo & QGeoPositionInfo & operator=(const QGeoPositionInfo &other) [0xc821db4a80] }
+&{operator== QGeoPositionInfo::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  bool bool operator==(const QGeoPositionInfo &other) const [0xc821db4e00] }
+&{removeAttribute QGeoPositionInfo::removeAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  void void removeAttribute(Attribute attribute) [0xc821db5080] }
+&{setAttribute QGeoPositionInfo::setAttribute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  void void setAttribute(Attribute attribute, qreal value) [0xc821db5300 0xc821db5440] }
+&{setCoordinate QGeoPositionInfo::setCoordinate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  void void setCoordinate(const QGeoCoordinate &coordinate) [0xc821db5700] }
+&{setTimestamp QGeoPositionInfo::setTimestamp commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  void void setTimestamp(const QDateTime &timestamp) [0xc821db5a80] }
+&{timestamp QGeoPositionInfo::timestamp commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non plain false false  QDateTime QDateTime timestamp() const [] }
+&{~QGeoPositionInfo QGeoPositionInfo::~QGeoPositionInfo commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeopositioninfo.h non destructor false false   ~QGeoPositionInfo() [] }
 ########################################			ENUMS			########################################
-&{Attribute QGeoPositionInfo::Attribute commendable public  [0xc822f6f2a0 0xc822f6f360 0xc822f6f400 0xc822f6f4e0 0xc822f6f6a0 0xc822f6f800]}
+&{Attribute QGeoPositionInfo::Attribute commendable public  [0xc8218444e0 0xc821844640 0xc8218447a0 0xc821844860 0xc821844ac0 0xc821844c80] false}

@@ -1,16 +1,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QPainterPathStroker_NewQPainterPathStroker();
-QtObjectPtr QPainterPathStroker_NewQPainterPathStroker2(QtObjectPtr pen);
-int QPainterPathStroker_CapStyle(QtObjectPtr ptr);
-int QPainterPathStroker_JoinStyle(QtObjectPtr ptr);
-void QPainterPathStroker_SetCapStyle(QtObjectPtr ptr, int style);
-void QPainterPathStroker_SetDashPattern(QtObjectPtr ptr, int style);
-void QPainterPathStroker_SetJoinStyle(QtObjectPtr ptr, int style);
-void QPainterPathStroker_DestroyQPainterPathStroker(QtObjectPtr ptr);
+void* QPainterPathStroker_NewQPainterPathStroker();
+void* QPainterPathStroker_NewQPainterPathStroker2(void* pen);
+int QPainterPathStroker_CapStyle(void* ptr);
+double QPainterPathStroker_CurveThreshold(void* ptr);
+double QPainterPathStroker_DashOffset(void* ptr);
+int QPainterPathStroker_JoinStyle(void* ptr);
+double QPainterPathStroker_MiterLimit(void* ptr);
+void QPainterPathStroker_SetCapStyle(void* ptr, int style);
+void QPainterPathStroker_SetCurveThreshold(void* ptr, double threshold);
+void QPainterPathStroker_SetDashOffset(void* ptr, double offset);
+void QPainterPathStroker_SetDashPattern(void* ptr, int style);
+void QPainterPathStroker_SetJoinStyle(void* ptr, int style);
+void QPainterPathStroker_SetMiterLimit(void* ptr, double limit);
+void QPainterPathStroker_SetWidth(void* ptr, double width);
+double QPainterPathStroker_Width(void* ptr);
+void QPainterPathStroker_DestroyQPainterPathStroker(void* ptr);
 
 #ifdef __cplusplus
 }

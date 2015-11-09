@@ -11,7 +11,7 @@ class MyQOrientationFilter: public QOrientationFilter {
 public:
 };
 
-int QOrientationFilter_Filter(QtObjectPtr ptr, QtObjectPtr reading){
+int QOrientationFilter_Filter(void* ptr, void* reading){
 	return static_cast<QOrientationFilter*>(ptr)->filter(static_cast<QOrientationReading*>(reading));
 }
 

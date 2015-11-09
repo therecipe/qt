@@ -1,9 +1,9 @@
 #include "qvboxlayout.h"
+#include <QModelIndex>
+#include <QWidget>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QWidget>
 #include <QVBoxLayout>
 #include "_cgo_export.h"
 
@@ -11,15 +11,15 @@ class MyQVBoxLayout: public QVBoxLayout {
 public:
 };
 
-QtObjectPtr QVBoxLayout_NewQVBoxLayout(){
+void* QVBoxLayout_NewQVBoxLayout(){
 	return new QVBoxLayout();
 }
 
-QtObjectPtr QVBoxLayout_NewQVBoxLayout2(QtObjectPtr parent){
+void* QVBoxLayout_NewQVBoxLayout2(void* parent){
 	return new QVBoxLayout(static_cast<QWidget*>(parent));
 }
 
-void QVBoxLayout_DestroyQVBoxLayout(QtObjectPtr ptr){
+void QVBoxLayout_DestroyQVBoxLayout(void* ptr){
 	static_cast<QVBoxLayout*>(ptr)->~QVBoxLayout();
 }
 

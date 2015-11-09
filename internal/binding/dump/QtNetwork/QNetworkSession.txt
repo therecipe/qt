@@ -1,34 +1,34 @@
 ########################################			FUNCTIONS			########################################
-&{QNetworkSession QNetworkSession::QNetworkSession commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non constructor false false   [0xc82337dba0 0xc82337dc60] }
-&{accept QNetworkSession::accept commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void [] }
-&{activeTime QNetworkSession::activeTime commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  quint64 [] }
-&{bytesReceived QNetworkSession::bytesReceived commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  quint64 [] }
-&{bytesWritten QNetworkSession::bytesWritten commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  quint64 [] }
-&{close QNetworkSession::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void [] }
-&{closed QNetworkSession::closed commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false false  void [] }
-&{configuration QNetworkSession::configuration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  QNetworkConfiguration [] }
-&{error QNetworkSession::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false true 2 void [0xc823364be0] }
-&{error QNetworkSession::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  SessionError [] }
-&{errorString QNetworkSession::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  QString [] }
-&{ignore QNetworkSession::ignore commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void [] }
-&{interface QNetworkSession::interface commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  QNetworkInterface [] }
-&{isOpen QNetworkSession::isOpen commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  bool [] }
-&{migrate QNetworkSession::migrate commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void [] }
-&{newConfigurationActivated QNetworkSession::newConfigurationActivated commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false false  void [] }
-&{open QNetworkSession::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void [] }
-&{opened QNetworkSession::opened commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false false  void [] }
-&{preferredConfigurationChanged QNetworkSession::preferredConfigurationChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false false  void [0xc823365b00 0xc823365be0] }
-&{reject QNetworkSession::reject commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void [] }
-&{sessionProperty QNetworkSession::sessionProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  QVariant [0xc823365f60] }
-&{setSessionProperty QNetworkSession::setSessionProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  void [0xc82334c180 0xc82334c220] }
-&{state QNetworkSession::state commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  State [] }
-&{stateChanged QNetworkSession::stateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false false  void [0xc82334c580] }
-&{stop QNetworkSession::stop commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void [] }
-&{usagePolicies QNetworkSession::usagePolicies commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  QNetworkSession::UsagePolicies [] }
-&{usagePoliciesChanged QNetworkSession::usagePoliciesChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false false  void [0xc82334cb40] }
-&{waitForOpened QNetworkSession::waitForOpened commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  bool [0xc82334ce00] }
-&{~QNetworkSession QNetworkSession::~QNetworkSession commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h impure destructor false false   [] }
+&{QNetworkSession QNetworkSession::QNetworkSession commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non constructor false false   QNetworkSession(const QNetworkConfiguration &connectionConfig, QObject *parent) [0xc823490220 0xc823490320] }
+&{accept QNetworkSession::accept commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void void accept() [] }
+&{activeTime QNetworkSession::activeTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  quint64 quint64 activeTime() const [] }
+&{bytesReceived QNetworkSession::bytesReceived commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  quint64 quint64 bytesReceived() const [] }
+&{bytesWritten QNetworkSession::bytesWritten commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  quint64 quint64 bytesWritten() const [] }
+&{close QNetworkSession::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void void close() [] }
+&{closed QNetworkSession::closed commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false false  void void closed() [] }
+&{configuration QNetworkSession::configuration commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  QNetworkConfiguration QNetworkConfiguration configuration() const [] }
+&{error QNetworkSession::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false true 2 void void error(QNetworkSession::SessionError error) [0xc823491680] }
+&{error QNetworkSession::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  SessionError SessionError error() const [] }
+&{errorString QNetworkSession::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  QString QString errorString() const [] }
+&{ignore QNetworkSession::ignore commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void void ignore() [] }
+&{interface QNetworkSession::interface commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  QNetworkInterface QNetworkInterface interface() const [] }
+&{isOpen QNetworkSession::isOpen commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  bool bool isOpen() const [] }
+&{migrate QNetworkSession::migrate commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void void migrate() [] }
+&{newConfigurationActivated QNetworkSession::newConfigurationActivated commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false false  void void newConfigurationActivated() [] }
+&{open QNetworkSession::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void void open() [] }
+&{opened QNetworkSession::opened commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false false  void void opened() [] }
+&{preferredConfigurationChanged QNetworkSession::preferredConfigurationChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false false  void void preferredConfigurationChanged(const QNetworkConfiguration &config, bool isSeamless) [0xc8234867c0 0xc8234868c0] }
+&{reject QNetworkSession::reject commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void void reject() [] }
+&{sessionProperty QNetworkSession::sessionProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  QVariant QVariant sessionProperty(const QString &key) const [0xc823486c60] }
+&{setSessionProperty QNetworkSession::setSessionProperty commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  void void setSessionProperty(const QString &key, const QVariant &value) [0xc823486e80 0xc823486f40] }
+&{state QNetworkSession::state commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  State State state() const [] }
+&{stateChanged QNetworkSession::stateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false false  void void stateChanged(QNetworkSession::State state) [0xc8234873a0] }
+&{stop QNetworkSession::stop commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non slot false false  void void stop() [] }
+&{usagePolicies QNetworkSession::usagePolicies commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  QNetworkSession::UsagePolicies QNetworkSession::UsagePolicies usagePolicies() const [] }
+&{usagePoliciesChanged QNetworkSession::usagePoliciesChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non signal false false  void void usagePoliciesChanged(QNetworkSession::UsagePolicies usagePolicies) [0xc823487920] }
+&{waitForOpened QNetworkSession::waitForOpened commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h non plain false false  bool bool waitForOpened(int msecs) [0xc823487c60] }
+&{~QNetworkSession QNetworkSession::~QNetworkSession commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/bearer/qnetworksession.h impure destructor false false   ~QNetworkSession() [] }
 ########################################			ENUMS			########################################
-&{SessionError QNetworkSession::SessionError commendable public  [0xc82337cb80 0xc82337cce0 0xc82337cda0 0xc82337ce60 0xc82337cf80]}
-&{State QNetworkSession::State commendable public  [0xc82337d260 0xc82337d2e0 0xc82337d380 0xc82337d420 0xc82337d4c0 0xc82337d540 0xc82337d5c0]}
-&{UsagePolicy QNetworkSession::UsagePolicy commendable public QNetworkSession::UsagePolicies [0xc82337d7e0 0xc82337d880]}
+&{SessionError QNetworkSession::SessionError commendable public  [0xc82349afa0 0xc82349b0e0 0xc82349b1a0 0xc82349b280 0xc82349b3c0] false}
+&{State QNetworkSession::State commendable public  [0xc82349b6a0 0xc82349b720 0xc82349b7c0 0xc82349b880 0xc82349b920 0xc82349b9e0 0xc82349ba60] false}
+&{UsagePolicy QNetworkSession::UsagePolicy commendable public QNetworkSession::UsagePolicies [0xc82349bd40 0xc82349bde0] false}

@@ -1,17 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QPicture_IsNull(QtObjectPtr ptr);
-int QPicture_Load2(QtObjectPtr ptr, QtObjectPtr dev, char* format);
-int QPicture_Load(QtObjectPtr ptr, char* fileName, char* format);
-int QPicture_Play(QtObjectPtr ptr, QtObjectPtr painter);
-int QPicture_Save2(QtObjectPtr ptr, QtObjectPtr dev, char* format);
-int QPicture_Save(QtObjectPtr ptr, char* fileName, char* format);
-void QPicture_SetBoundingRect(QtObjectPtr ptr, QtObjectPtr r);
-void QPicture_Swap(QtObjectPtr ptr, QtObjectPtr other);
-void QPicture_DestroyQPicture(QtObjectPtr ptr);
+int QPicture_IsNull(void* ptr);
+int QPicture_Load2(void* ptr, void* dev, char* format);
+int QPicture_Load(void* ptr, char* fileName, char* format);
+int QPicture_Play(void* ptr, void* painter);
+int QPicture_Save2(void* ptr, void* dev, char* format);
+int QPicture_Save(void* ptr, char* fileName, char* format);
+void QPicture_SetBoundingRect(void* ptr, void* r);
+void QPicture_Swap(void* ptr, void* other);
+void QPicture_DestroyQPicture(void* ptr);
 
 #ifdef __cplusplus
 }

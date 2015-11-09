@@ -1,8 +1,8 @@
 #include "qswipegesture.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QSwipeGesture>
 #include "_cgo_export.h"
 
@@ -10,15 +10,23 @@ class MyQSwipeGesture: public QSwipeGesture {
 public:
 };
 
-int QSwipeGesture_HorizontalDirection(QtObjectPtr ptr){
+int QSwipeGesture_HorizontalDirection(void* ptr){
 	return static_cast<QSwipeGesture*>(ptr)->horizontalDirection();
 }
 
-int QSwipeGesture_VerticalDirection(QtObjectPtr ptr){
+void QSwipeGesture_SetSwipeAngle(void* ptr, double value){
+	static_cast<QSwipeGesture*>(ptr)->setSwipeAngle(static_cast<qreal>(value));
+}
+
+double QSwipeGesture_SwipeAngle(void* ptr){
+	return static_cast<double>(static_cast<QSwipeGesture*>(ptr)->swipeAngle());
+}
+
+int QSwipeGesture_VerticalDirection(void* ptr){
 	return static_cast<QSwipeGesture*>(ptr)->verticalDirection();
 }
 
-void QSwipeGesture_DestroyQSwipeGesture(QtObjectPtr ptr){
+void QSwipeGesture_DestroyQSwipeGesture(void* ptr){
 	static_cast<QSwipeGesture*>(ptr)->~QSwipeGesture();
 }
 

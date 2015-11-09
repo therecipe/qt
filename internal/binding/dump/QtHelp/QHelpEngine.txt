@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{QHelpEngine QHelpEngine::QHelpEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non constructor false false   [0xc8222ce960 0xc8222ce9e0] }
-&{contentModel QHelpEngine::contentModel commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpContentModel * [] }
-&{contentWidget QHelpEngine::contentWidget commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpContentWidget * [] }
-&{indexModel QHelpEngine::indexModel commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpIndexModel * [] }
-&{indexWidget QHelpEngine::indexWidget commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpIndexWidget * [] }
-&{searchEngine QHelpEngine::searchEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpSearchEngine * [] }
-&{~QHelpEngine QHelpEngine::~QHelpEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non destructor false false   [] }
+&{QHelpEngine QHelpEngine::QHelpEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non constructor false false   QHelpEngine(const QString &collectionFile, QObject *parent) [0xc8234d1d80 0xc8234d1f60] }
+&{contentModel QHelpEngine::contentModel commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpContentModel * QHelpContentModel * contentModel() const [] }
+&{contentWidget QHelpEngine::contentWidget commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpContentWidget * QHelpContentWidget * contentWidget() [] }
+&{indexModel QHelpEngine::indexModel commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpIndexModel * QHelpIndexModel * indexModel() const [] }
+&{indexWidget QHelpEngine::indexWidget commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpIndexWidget * QHelpIndexWidget * indexWidget() [] }
+&{searchEngine QHelpEngine::searchEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpSearchEngine * QHelpSearchEngine * searchEngine() [] }
+&{~QHelpEngine QHelpEngine::~QHelpEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non destructor false false   ~QHelpEngine() [] }
 ########################################			ENUMS			########################################

@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QXmlItem_NewQXmlItem();
-QtObjectPtr QXmlItem_NewQXmlItem4(char* atomicValue);
-QtObjectPtr QXmlItem_NewQXmlItem2(QtObjectPtr other);
-QtObjectPtr QXmlItem_NewQXmlItem3(QtObjectPtr node);
-int QXmlItem_IsNode(QtObjectPtr ptr);
-int QXmlItem_IsNull(QtObjectPtr ptr);
-void QXmlItem_DestroyQXmlItem(QtObjectPtr ptr);
+void* QXmlItem_NewQXmlItem();
+void* QXmlItem_NewQXmlItem4(void* atomicValue);
+void* QXmlItem_NewQXmlItem2(void* other);
+void* QXmlItem_NewQXmlItem3(void* node);
+int QXmlItem_IsNode(void* ptr);
+int QXmlItem_IsNull(void* ptr);
+void QXmlItem_DestroyQXmlItem(void* ptr);
 
 #ifdef __cplusplus
 }

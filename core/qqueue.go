@@ -10,24 +10,24 @@ type QQueue struct {
 	QList
 }
 
-type QQueueITF interface {
-	QListITF
-	QQueuePTR() *QQueue
+type QQueue_ITF interface {
+	QList_ITF
+	QQueue_PTR() *QQueue
 }
 
-func PointerFromQQueue(ptr QQueueITF) unsafe.Pointer {
+func PointerFromQQueue(ptr QQueue_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QQueuePTR().Pointer()
+		return ptr.QQueue_PTR().Pointer()
 	}
 	return nil
 }
 
-func QQueueFromPointer(ptr unsafe.Pointer) *QQueue {
+func NewQQueueFromPointer(ptr unsafe.Pointer) *QQueue {
 	var n = new(QQueue)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QQueue) QQueuePTR() *QQueue {
+func (ptr *QQueue) QQueue_PTR() *QQueue {
 	return ptr
 }

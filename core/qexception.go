@@ -10,8 +10,8 @@ type QException struct {
 	ptr unsafe.Pointer
 }
 
-type QExceptionITF interface {
-	QExceptionPTR() *QException
+type QException_ITF interface {
+	QException_PTR() *QException
 }
 
 func (p *QException) Pointer() unsafe.Pointer {
@@ -22,32 +22,32 @@ func (p *QException) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQException(ptr QExceptionITF) unsafe.Pointer {
+func PointerFromQException(ptr QException_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QExceptionPTR().Pointer()
+		return ptr.QException_PTR().Pointer()
 	}
 	return nil
 }
 
-func QExceptionFromPointer(ptr unsafe.Pointer) *QException {
+func NewQExceptionFromPointer(ptr unsafe.Pointer) *QException {
 	var n = new(QException)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QException) QExceptionPTR() *QException {
+func (ptr *QException) QException_PTR() *QException {
 	return ptr
 }
 
 func (ptr *QException) Clone() *QException {
 	if ptr.Pointer() != nil {
-		return QExceptionFromPointer(unsafe.Pointer(C.QException_Clone(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQExceptionFromPointer(C.QException_Clone(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QException) Raise() {
 	if ptr.Pointer() != nil {
-		C.QException_Raise(C.QtObjectPtr(ptr.Pointer()))
+		C.QException_Raise(ptr.Pointer())
 	}
 }

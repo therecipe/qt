@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
-&{QDomDocumentType QDomDocumentType::QDomDocumentType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   [] }
-&{QDomDocumentType QDomDocumentType::QDomDocumentType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  [0xc8204bfde0] }
-&{entities QDomDocumentType::entities commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNamedNodeMap [] }
-&{internalSubset QDomDocumentType::internalSubset commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
-&{name QDomDocumentType::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
-&{nodeType QDomDocumentType::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType [] }
-&{notations QDomDocumentType::notations commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNamedNodeMap [] }
-&{operator= QDomDocumentType::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocumentType & [0xc820525f00] }
-&{publicId QDomDocumentType::publicId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
-&{systemId QDomDocumentType::systemId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
+&{QDomDocumentType QDomDocumentType::QDomDocumentType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   QDomDocumentType() [] }
+&{QDomDocumentType QDomDocumentType::QDomDocumentType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomDocumentType(const QDomDocumentType &n) [0xc821e69900] }
+&{entities QDomDocumentType::entities commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNamedNodeMap QDomNamedNodeMap entities() const [] }
+&{internalSubset QDomDocumentType::internalSubset commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString internalSubset() const [] }
+&{name QDomDocumentType::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString name() const [] }
+&{nodeType QDomDocumentType::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType QDomNode::NodeType nodeType() const [] }
+&{notations QDomDocumentType::notations commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNamedNodeMap QDomNamedNodeMap notations() const [] }
+&{operator= QDomDocumentType::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocumentType & QDomDocumentType & operator=(const QDomDocumentType &n) [0xc820672100] }
+&{publicId QDomDocumentType::publicId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString publicId() const [] }
+&{systemId QDomDocumentType::systemId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString systemId() const [] }
 ########################################			ENUMS			########################################

@@ -1,32 +1,32 @@
 ########################################			FUNCTIONS			########################################
-&{currentLoop QAbstractAnimation::currentLoop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  int [] }
-&{currentTime QAbstractAnimation::currentTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  int [] }
-&{direction QAbstractAnimation::direction commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  Direction [] }
-&{loopCount QAbstractAnimation::loopCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  int [] }
-&{setCurrentTime QAbstractAnimation::setCurrentTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non slot false false  void [0xc82000ffa0] }
-&{setDirection QAbstractAnimation::setDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  void [0xc8200a41e0] }
-&{setLoopCount QAbstractAnimation::setLoopCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  void [0xc8200a43e0] }
-&{state QAbstractAnimation::state commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  State [] }
-&{QAbstractAnimation QAbstractAnimation::QAbstractAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non constructor false false   [0xc8200a4fc0] }
-&{currentLoopChanged QAbstractAnimation::currentLoopChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non signal false false  void [0xc8200a5440] }
-&{currentLoopTime QAbstractAnimation::currentLoopTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non plain false false  int [] }
-&{directionChanged QAbstractAnimation::directionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non signal false false  void [0xc8200a5680] }
-&{duration QAbstractAnimation::duration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h pure plain false false  int [] }
-&{event QAbstractAnimation::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h impure plain false false  bool [0xc8200a59e0] }
-&{finished QAbstractAnimation::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non signal false false  void [] }
-&{group QAbstractAnimation::group commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non plain false false  QAnimationGroup * [] }
-&{pause QAbstractAnimation::pause commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non slot false false  void [] }
-&{resume QAbstractAnimation::resume commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non slot false false  void [] }
-&{setPaused QAbstractAnimation::setPaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non slot false false  void [0xc8200d2060] }
-&{start QAbstractAnimation::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non slot false false  void [0xc8200d2240] }
-&{stateChanged QAbstractAnimation::stateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non signal false false  void [0xc8200d2440 0xc8200d2520] }
-&{stop QAbstractAnimation::stop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non slot false false  void [] }
-&{totalDuration QAbstractAnimation::totalDuration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non plain false false  int [] }
-&{updateCurrentTime QAbstractAnimation::updateCurrentTime commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h pure plain false false  void [0xc8200d28c0] }
-&{updateDirection QAbstractAnimation::updateDirection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h impure plain false false  void [0xc8200d2a40] }
-&{updateState QAbstractAnimation::updateState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h impure plain false false  void [0xc8200d2c60 0xc8200d2d40] }
-&{~QAbstractAnimation QAbstractAnimation::~QAbstractAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h impure destructor false false   [] }
+&{currentLoop QAbstractAnimation::currentLoop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  int int currentLoop() const [] }
+&{currentTime QAbstractAnimation::currentTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  int int currentTime() const [] }
+&{direction QAbstractAnimation::direction commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  Direction Direction direction() const [] }
+&{loopCount QAbstractAnimation::loopCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  int int loopCount() const [] }
+&{setCurrentTime QAbstractAnimation::setCurrentTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non slot false false  void void setCurrentTime(int msecs) [0xc8215fe100] }
+&{setDirection QAbstractAnimation::setDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  void void setDirection(Direction direction) [0xc8215fe340] }
+&{setLoopCount QAbstractAnimation::setLoopCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  void void setLoopCount(int loopCount) [0xc8215fe580] }
+&{state QAbstractAnimation::state commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.cpp non plain false false  State State state() const [] }
+&{QAbstractAnimation QAbstractAnimation::QAbstractAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non constructor false false   QAbstractAnimation(QObject *parent) [0xc8215ff1a0] }
+&{currentLoopChanged QAbstractAnimation::currentLoopChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non signal false false  void void currentLoopChanged(int currentLoop) [0xc8215ff620] }
+&{currentLoopTime QAbstractAnimation::currentLoopTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non plain false false  int int currentLoopTime() const [] }
+&{directionChanged QAbstractAnimation::directionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non signal false false  void void directionChanged(QAbstractAnimation::Direction newDirection) [0xc8215ff8a0] }
+&{duration QAbstractAnimation::duration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h pure plain false false  int int duration() const [] }
+&{event QAbstractAnimation::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h impure plain false false  bool bool event(QEvent *event) [0xc8215ffc80] }
+&{finished QAbstractAnimation::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non signal false false  void void finished() [] }
+&{group QAbstractAnimation::group commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non plain false false  QAnimationGroup * QAnimationGroup * group() const [] }
+&{pause QAbstractAnimation::pause commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non slot false false  void void pause() [] }
+&{resume QAbstractAnimation::resume commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non slot false false  void void resume() [] }
+&{setPaused QAbstractAnimation::setPaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non slot false false  void void setPaused(bool paused) [0xc8200b2380] }
+&{start QAbstractAnimation::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non slot false false  void void start(QAbstractAnimation::DeletionPolicy policy) [0xc8200b2560] }
+&{stateChanged QAbstractAnimation::stateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non signal false false  void void stateChanged(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) [0xc8200b2760 0xc8200b2840] }
+&{stop QAbstractAnimation::stop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non slot false false  void void stop() [] }
+&{totalDuration QAbstractAnimation::totalDuration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h non plain false false  int int totalDuration() const [] }
+&{updateCurrentTime QAbstractAnimation::updateCurrentTime commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h pure plain false false  void void updateCurrentTime(int currentTime) [0xc8200b2c20] }
+&{updateDirection QAbstractAnimation::updateDirection commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h impure plain false false  void void updateDirection(QAbstractAnimation::Direction direction) [0xc8200b2da0] }
+&{updateState QAbstractAnimation::updateState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h impure plain false false  void void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) [0xc8200b2fc0 0xc8200b30a0] }
+&{~QAbstractAnimation QAbstractAnimation::~QAbstractAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qabstractanimation.h impure destructor false false   ~QAbstractAnimation() [] }
 ########################################			ENUMS			########################################
-&{DeletionPolicy QAbstractAnimation::DeletionPolicy commendable public  [0xc8200a47a0 0xc8200a48a0]}
-&{Direction QAbstractAnimation::Direction commendable public  [0xc8200a4aa0 0xc8200a4b20]}
-&{State QAbstractAnimation::State commendable public  [0xc8200a4ce0 0xc8200a4d60 0xc8200a4de0]}
+&{DeletionPolicy QAbstractAnimation::DeletionPolicy commendable public  [0xc8215fe980 0xc8215fea80] false}
+&{Direction QAbstractAnimation::Direction commendable public  [0xc8215fec80 0xc8215fed00] false}
+&{State QAbstractAnimation::State commendable public  [0xc8215feec0 0xc8215fef40 0xc8215fefc0] false}

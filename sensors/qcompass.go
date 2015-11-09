@@ -12,45 +12,45 @@ type QCompass struct {
 	QSensor
 }
 
-type QCompassITF interface {
-	QSensorITF
-	QCompassPTR() *QCompass
+type QCompass_ITF interface {
+	QSensor_ITF
+	QCompass_PTR() *QCompass
 }
 
-func PointerFromQCompass(ptr QCompassITF) unsafe.Pointer {
+func PointerFromQCompass(ptr QCompass_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCompassPTR().Pointer()
+		return ptr.QCompass_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCompassFromPointer(ptr unsafe.Pointer) *QCompass {
+func NewQCompassFromPointer(ptr unsafe.Pointer) *QCompass {
 	var n = new(QCompass)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCompass_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCompass) QCompassPTR() *QCompass {
+func (ptr *QCompass) QCompass_PTR() *QCompass {
 	return ptr
 }
 
 func (ptr *QCompass) Reading() *QCompassReading {
 	if ptr.Pointer() != nil {
-		return QCompassReadingFromPointer(unsafe.Pointer(C.QCompass_Reading(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQCompassReadingFromPointer(C.QCompass_Reading(ptr.Pointer()))
 	}
 	return nil
 }
 
-func NewQCompass(parent core.QObjectITF) *QCompass {
-	return QCompassFromPointer(unsafe.Pointer(C.QCompass_NewQCompass(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQCompass(parent core.QObject_ITF) *QCompass {
+	return NewQCompassFromPointer(C.QCompass_NewQCompass(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QCompass) DestroyQCompass() {
 	if ptr.Pointer() != nil {
-		C.QCompass_DestroyQCompass(C.QtObjectPtr(ptr.Pointer()))
+		C.QCompass_DestroyQCompass(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

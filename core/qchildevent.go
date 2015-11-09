@@ -10,56 +10,56 @@ type QChildEvent struct {
 	QEvent
 }
 
-type QChildEventITF interface {
-	QEventITF
-	QChildEventPTR() *QChildEvent
+type QChildEvent_ITF interface {
+	QEvent_ITF
+	QChildEvent_PTR() *QChildEvent
 }
 
-func PointerFromQChildEvent(ptr QChildEventITF) unsafe.Pointer {
+func PointerFromQChildEvent(ptr QChildEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QChildEventPTR().Pointer()
+		return ptr.QChildEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QChildEventFromPointer(ptr unsafe.Pointer) *QChildEvent {
+func NewQChildEventFromPointer(ptr unsafe.Pointer) *QChildEvent {
 	var n = new(QChildEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QChildEvent) QChildEventPTR() *QChildEvent {
+func (ptr *QChildEvent) QChildEvent_PTR() *QChildEvent {
 	return ptr
 }
 
-func NewQChildEvent(ty QEvent__Type, child QObjectITF) *QChildEvent {
-	return QChildEventFromPointer(unsafe.Pointer(C.QChildEvent_NewQChildEvent(C.int(ty), C.QtObjectPtr(PointerFromQObject(child)))))
+func NewQChildEvent(ty QEvent__Type, child QObject_ITF) *QChildEvent {
+	return NewQChildEventFromPointer(C.QChildEvent_NewQChildEvent(C.int(ty), PointerFromQObject(child)))
 }
 
 func (ptr *QChildEvent) Added() bool {
 	if ptr.Pointer() != nil {
-		return C.QChildEvent_Added(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChildEvent_Added(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChildEvent) Child() *QObject {
 	if ptr.Pointer() != nil {
-		return QObjectFromPointer(unsafe.Pointer(C.QChildEvent_Child(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQObjectFromPointer(C.QChildEvent_Child(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QChildEvent) Polished() bool {
 	if ptr.Pointer() != nil {
-		return C.QChildEvent_Polished(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChildEvent_Polished(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QChildEvent) Removed() bool {
 	if ptr.Pointer() != nil {
-		return C.QChildEvent_Removed(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QChildEvent_Removed(ptr.Pointer()) != 0
 	}
 	return false
 }

@@ -1,16 +1,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator();
-QtObjectPtr QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator2(QtObjectPtr authenticator);
-int QSslPreSharedKeyAuthenticator_MaximumIdentityLength(QtObjectPtr ptr);
-int QSslPreSharedKeyAuthenticator_MaximumPreSharedKeyLength(QtObjectPtr ptr);
-void QSslPreSharedKeyAuthenticator_SetIdentity(QtObjectPtr ptr, QtObjectPtr identity);
-void QSslPreSharedKeyAuthenticator_SetPreSharedKey(QtObjectPtr ptr, QtObjectPtr preSharedKey);
-void QSslPreSharedKeyAuthenticator_Swap(QtObjectPtr ptr, QtObjectPtr authenticator);
-void QSslPreSharedKeyAuthenticator_DestroyQSslPreSharedKeyAuthenticator(QtObjectPtr ptr);
+void* QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator();
+void* QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator2(void* authenticator);
+void* QSslPreSharedKeyAuthenticator_Identity(void* ptr);
+void* QSslPreSharedKeyAuthenticator_IdentityHint(void* ptr);
+int QSslPreSharedKeyAuthenticator_MaximumIdentityLength(void* ptr);
+int QSslPreSharedKeyAuthenticator_MaximumPreSharedKeyLength(void* ptr);
+void* QSslPreSharedKeyAuthenticator_PreSharedKey(void* ptr);
+void QSslPreSharedKeyAuthenticator_SetIdentity(void* ptr, void* identity);
+void QSslPreSharedKeyAuthenticator_SetPreSharedKey(void* ptr, void* preSharedKey);
+void QSslPreSharedKeyAuthenticator_Swap(void* ptr, void* authenticator);
+void QSslPreSharedKeyAuthenticator_DestroyQSslPreSharedKeyAuthenticator(void* ptr);
 
 #ifdef __cplusplus
 }

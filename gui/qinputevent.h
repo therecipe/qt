@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QInputEvent_Modifiers(QtObjectPtr ptr);
+int QInputEvent_Modifiers(void* ptr);
 
 #ifdef __cplusplus
 }

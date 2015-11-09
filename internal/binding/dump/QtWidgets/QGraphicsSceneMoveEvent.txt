@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QGraphicsSceneMoveEvent QGraphicsSceneMoveEvent::QGraphicsSceneMoveEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non constructor false false   [] }
-&{newPos QGraphicsSceneMoveEvent::newPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
-&{oldPos QGraphicsSceneMoveEvent::oldPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
-&{~QGraphicsSceneMoveEvent QGraphicsSceneMoveEvent::~QGraphicsSceneMoveEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   [] }
+&{QGraphicsSceneMoveEvent QGraphicsSceneMoveEvent::QGraphicsSceneMoveEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non constructor false false   QGraphicsSceneMoveEvent() [] }
+&{newPos QGraphicsSceneMoveEvent::newPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF QPointF newPos() const [] }
+&{oldPos QGraphicsSceneMoveEvent::oldPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF QPointF oldPos() const [] }
+&{~QGraphicsSceneMoveEvent QGraphicsSceneMoveEvent::~QGraphicsSceneMoveEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   ~QGraphicsSceneMoveEvent() [] }
 ########################################			ENUMS			########################################

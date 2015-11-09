@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{QWidgetItem QWidgetItem::QWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h non constructor false false   [0xc8223496e0] }
-&{controlTypes QWidgetItem::controlTypes commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSizePolicy::ControlTypes [] }
-&{expandingDirections QWidgetItem::expandingDirections commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  Qt::Orientations [] }
-&{geometry QWidgetItem::geometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QRect [] }
-&{hasHeightForWidth QWidgetItem::hasHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  bool [] }
-&{heightForWidth QWidgetItem::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  int [0xc822349f00] }
-&{isEmpty QWidgetItem::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  bool [] }
-&{maximumSize QWidgetItem::maximumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSize [] }
-&{minimumSize QWidgetItem::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSize [] }
-&{setGeometry QWidgetItem::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  void [0xc82235a520] }
-&{sizeHint QWidgetItem::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSize [] }
-&{widget QWidgetItem::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QWidget * [] }
-&{~QWidgetItem QWidgetItem::~QWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h non destructor false false   [] }
+&{QWidgetItem QWidgetItem::QWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h non constructor false false   QWidgetItem(QWidget *widget) [0xc822634ee0] }
+&{controlTypes QWidgetItem::controlTypes commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSizePolicy::ControlTypes QSizePolicy::ControlTypes controlTypes() const [] }
+&{expandingDirections QWidgetItem::expandingDirections commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  Qt::Orientations Qt::Orientations expandingDirections() const [] }
+&{geometry QWidgetItem::geometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QRect QRect geometry() const [] }
+&{hasHeightForWidth QWidgetItem::hasHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  bool bool hasHeightForWidth() const [] }
+&{heightForWidth QWidgetItem::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  int int heightForWidth(int w) const [0xc8226357c0] }
+&{isEmpty QWidgetItem::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  bool bool isEmpty() const [] }
+&{maximumSize QWidgetItem::maximumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSize QSize maximumSize() const [] }
+&{minimumSize QWidgetItem::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSize QSize minimumSize() const [] }
+&{setGeometry QWidgetItem::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  void void setGeometry(const QRect &rect) [0xc822635ee0] }
+&{sizeHint QWidgetItem::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QSize QSize sizeHint() const [] }
+&{widget QWidgetItem::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h impure plain false false  QWidget * QWidget * widget() [] }
+&{~QWidgetItem QWidgetItem::~QWidgetItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qlayoutitem.h non destructor false false   ~QWidgetItem() [] }
 ########################################			ENUMS			########################################

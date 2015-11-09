@@ -1,9 +1,11 @@
 #include "qpaintenginestate.h"
+#include <QPaintEngine>
+#include <QBrush>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPaintEngine>
+#include <QRegion>
 #include <QPaintEngineState>
 #include "_cgo_export.h"
 
@@ -11,35 +13,51 @@ class MyQPaintEngineState: public QPaintEngineState {
 public:
 };
 
-int QPaintEngineState_BackgroundMode(QtObjectPtr ptr){
+void* QPaintEngineState_BackgroundBrush(void* ptr){
+	return new QBrush(static_cast<QPaintEngineState*>(ptr)->backgroundBrush());
+}
+
+int QPaintEngineState_BackgroundMode(void* ptr){
 	return static_cast<QPaintEngineState*>(ptr)->backgroundMode();
 }
 
-int QPaintEngineState_BrushNeedsResolving(QtObjectPtr ptr){
+void* QPaintEngineState_Brush(void* ptr){
+	return new QBrush(static_cast<QPaintEngineState*>(ptr)->brush());
+}
+
+int QPaintEngineState_BrushNeedsResolving(void* ptr){
 	return static_cast<QPaintEngineState*>(ptr)->brushNeedsResolving();
 }
 
-int QPaintEngineState_ClipOperation(QtObjectPtr ptr){
+int QPaintEngineState_ClipOperation(void* ptr){
 	return static_cast<QPaintEngineState*>(ptr)->clipOperation();
 }
 
-int QPaintEngineState_CompositionMode(QtObjectPtr ptr){
+void* QPaintEngineState_ClipRegion(void* ptr){
+	return new QRegion(static_cast<QPaintEngineState*>(ptr)->clipRegion());
+}
+
+int QPaintEngineState_CompositionMode(void* ptr){
 	return static_cast<QPaintEngineState*>(ptr)->compositionMode();
 }
 
-int QPaintEngineState_IsClipEnabled(QtObjectPtr ptr){
+int QPaintEngineState_IsClipEnabled(void* ptr){
 	return static_cast<QPaintEngineState*>(ptr)->isClipEnabled();
 }
 
-QtObjectPtr QPaintEngineState_Painter(QtObjectPtr ptr){
+double QPaintEngineState_Opacity(void* ptr){
+	return static_cast<double>(static_cast<QPaintEngineState*>(ptr)->opacity());
+}
+
+void* QPaintEngineState_Painter(void* ptr){
 	return static_cast<QPaintEngineState*>(ptr)->painter();
 }
 
-int QPaintEngineState_PenNeedsResolving(QtObjectPtr ptr){
+int QPaintEngineState_PenNeedsResolving(void* ptr){
 	return static_cast<QPaintEngineState*>(ptr)->penNeedsResolving();
 }
 
-int QPaintEngineState_RenderHints(QtObjectPtr ptr){
+int QPaintEngineState_RenderHints(void* ptr){
 	return static_cast<QPaintEngineState*>(ptr)->renderHints();
 }
 

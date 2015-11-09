@@ -12,35 +12,35 @@ type QGraphicsEffect struct {
 	core.QObject
 }
 
-type QGraphicsEffectITF interface {
-	core.QObjectITF
-	QGraphicsEffectPTR() *QGraphicsEffect
+type QGraphicsEffect_ITF interface {
+	core.QObject_ITF
+	QGraphicsEffect_PTR() *QGraphicsEffect
 }
 
-func PointerFromQGraphicsEffect(ptr QGraphicsEffectITF) unsafe.Pointer {
+func PointerFromQGraphicsEffect(ptr QGraphicsEffect_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsEffectPTR().Pointer()
+		return ptr.QGraphicsEffect_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsEffectFromPointer(ptr unsafe.Pointer) *QGraphicsEffect {
+func NewQGraphicsEffectFromPointer(ptr unsafe.Pointer) *QGraphicsEffect {
 	var n = new(QGraphicsEffect)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGraphicsEffect_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGraphicsEffect) QGraphicsEffectPTR() *QGraphicsEffect {
+func (ptr *QGraphicsEffect) QGraphicsEffect_PTR() *QGraphicsEffect {
 	return ptr
 }
 
 //QGraphicsEffect::ChangeFlag
-type QGraphicsEffect__ChangeFlag int
+type QGraphicsEffect__ChangeFlag int64
 
-var (
+const (
 	QGraphicsEffect__SourceAttached            = QGraphicsEffect__ChangeFlag(0x1)
 	QGraphicsEffect__SourceDetached            = QGraphicsEffect__ChangeFlag(0x2)
 	QGraphicsEffect__SourceBoundingRectChanged = QGraphicsEffect__ChangeFlag(0x4)
@@ -48,9 +48,9 @@ var (
 )
 
 //QGraphicsEffect::PixmapPadMode
-type QGraphicsEffect__PixmapPadMode int
+type QGraphicsEffect__PixmapPadMode int64
 
-var (
+const (
 	QGraphicsEffect__NoPad                      = QGraphicsEffect__PixmapPadMode(0)
 	QGraphicsEffect__PadToTransparentBorder     = QGraphicsEffect__PixmapPadMode(1)
 	QGraphicsEffect__PadToEffectiveBoundingRect = QGraphicsEffect__PixmapPadMode(2)

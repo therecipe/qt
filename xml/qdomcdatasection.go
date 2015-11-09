@@ -10,39 +10,39 @@ type QDomCDATASection struct {
 	QDomText
 }
 
-type QDomCDATASectionITF interface {
-	QDomTextITF
-	QDomCDATASectionPTR() *QDomCDATASection
+type QDomCDATASection_ITF interface {
+	QDomText_ITF
+	QDomCDATASection_PTR() *QDomCDATASection
 }
 
-func PointerFromQDomCDATASection(ptr QDomCDATASectionITF) unsafe.Pointer {
+func PointerFromQDomCDATASection(ptr QDomCDATASection_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDomCDATASectionPTR().Pointer()
+		return ptr.QDomCDATASection_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDomCDATASectionFromPointer(ptr unsafe.Pointer) *QDomCDATASection {
+func NewQDomCDATASectionFromPointer(ptr unsafe.Pointer) *QDomCDATASection {
 	var n = new(QDomCDATASection)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDomCDATASection) QDomCDATASectionPTR() *QDomCDATASection {
+func (ptr *QDomCDATASection) QDomCDATASection_PTR() *QDomCDATASection {
 	return ptr
 }
 
 func NewQDomCDATASection() *QDomCDATASection {
-	return QDomCDATASectionFromPointer(unsafe.Pointer(C.QDomCDATASection_NewQDomCDATASection()))
+	return NewQDomCDATASectionFromPointer(C.QDomCDATASection_NewQDomCDATASection())
 }
 
-func NewQDomCDATASection2(x QDomCDATASectionITF) *QDomCDATASection {
-	return QDomCDATASectionFromPointer(unsafe.Pointer(C.QDomCDATASection_NewQDomCDATASection2(C.QtObjectPtr(PointerFromQDomCDATASection(x)))))
+func NewQDomCDATASection2(x QDomCDATASection_ITF) *QDomCDATASection {
+	return NewQDomCDATASectionFromPointer(C.QDomCDATASection_NewQDomCDATASection2(PointerFromQDomCDATASection(x)))
 }
 
 func (ptr *QDomCDATASection) NodeType() QDomNode__NodeType {
 	if ptr.Pointer() != nil {
-		return QDomNode__NodeType(C.QDomCDATASection_NodeType(C.QtObjectPtr(ptr.Pointer())))
+		return QDomNode__NodeType(C.QDomCDATASection_NodeType(ptr.Pointer()))
 	}
 	return 0
 }

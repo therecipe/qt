@@ -10,31 +10,31 @@ type QHolsterFilter struct {
 	QSensorFilter
 }
 
-type QHolsterFilterITF interface {
-	QSensorFilterITF
-	QHolsterFilterPTR() *QHolsterFilter
+type QHolsterFilter_ITF interface {
+	QSensorFilter_ITF
+	QHolsterFilter_PTR() *QHolsterFilter
 }
 
-func PointerFromQHolsterFilter(ptr QHolsterFilterITF) unsafe.Pointer {
+func PointerFromQHolsterFilter(ptr QHolsterFilter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHolsterFilterPTR().Pointer()
+		return ptr.QHolsterFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHolsterFilterFromPointer(ptr unsafe.Pointer) *QHolsterFilter {
+func NewQHolsterFilterFromPointer(ptr unsafe.Pointer) *QHolsterFilter {
 	var n = new(QHolsterFilter)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QHolsterFilter) QHolsterFilterPTR() *QHolsterFilter {
+func (ptr *QHolsterFilter) QHolsterFilter_PTR() *QHolsterFilter {
 	return ptr
 }
 
-func (ptr *QHolsterFilter) Filter(reading QHolsterReadingITF) bool {
+func (ptr *QHolsterFilter) Filter(reading QHolsterReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QHolsterFilter_Filter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQHolsterReading(reading))) != 0
+		return C.QHolsterFilter_Filter(ptr.Pointer(), PointerFromQHolsterReading(reading)) != 0
 	}
 	return false
 }

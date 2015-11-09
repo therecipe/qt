@@ -1,24 +1,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QUrlQuery_NewQUrlQuery();
-QtObjectPtr QUrlQuery_NewQUrlQuery3(char* queryString);
-QtObjectPtr QUrlQuery_NewQUrlQuery2(char* url);
-QtObjectPtr QUrlQuery_NewQUrlQuery4(QtObjectPtr other);
-void QUrlQuery_AddQueryItem(QtObjectPtr ptr, char* key, char* value);
-char* QUrlQuery_AllQueryItemValues(QtObjectPtr ptr, char* key, int encoding);
-void QUrlQuery_Clear(QtObjectPtr ptr);
-int QUrlQuery_IsEmpty(QtObjectPtr ptr);
-char* QUrlQuery_Query(QtObjectPtr ptr, int encoding);
-void QUrlQuery_RemoveAllQueryItems(QtObjectPtr ptr, char* key);
-void QUrlQuery_RemoveQueryItem(QtObjectPtr ptr, char* key);
-void QUrlQuery_SetQuery(QtObjectPtr ptr, char* queryString);
-void QUrlQuery_SetQueryDelimiters(QtObjectPtr ptr, QtObjectPtr valueDelimiter, QtObjectPtr pairDelimiter);
-void QUrlQuery_Swap(QtObjectPtr ptr, QtObjectPtr other);
-char* QUrlQuery_ToString(QtObjectPtr ptr, int encoding);
-void QUrlQuery_DestroyQUrlQuery(QtObjectPtr ptr);
+void* QUrlQuery_NewQUrlQuery();
+void* QUrlQuery_NewQUrlQuery3(char* queryString);
+void* QUrlQuery_NewQUrlQuery2(void* url);
+void* QUrlQuery_NewQUrlQuery4(void* other);
+void QUrlQuery_AddQueryItem(void* ptr, char* key, char* value);
+char* QUrlQuery_AllQueryItemValues(void* ptr, char* key, int encoding);
+void QUrlQuery_Clear(void* ptr);
+int QUrlQuery_IsEmpty(void* ptr);
+char* QUrlQuery_Query(void* ptr, int encoding);
+void QUrlQuery_RemoveAllQueryItems(void* ptr, char* key);
+void QUrlQuery_RemoveQueryItem(void* ptr, char* key);
+void QUrlQuery_SetQuery(void* ptr, char* queryString);
+void QUrlQuery_SetQueryDelimiters(void* ptr, void* valueDelimiter, void* pairDelimiter);
+void QUrlQuery_Swap(void* ptr, void* other);
+char* QUrlQuery_ToString(void* ptr, int encoding);
+void QUrlQuery_DestroyQUrlQuery(void* ptr);
 
 #ifdef __cplusplus
 }

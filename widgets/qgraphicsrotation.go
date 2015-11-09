@@ -13,63 +13,76 @@ type QGraphicsRotation struct {
 	QGraphicsTransform
 }
 
-type QGraphicsRotationITF interface {
-	QGraphicsTransformITF
-	QGraphicsRotationPTR() *QGraphicsRotation
+type QGraphicsRotation_ITF interface {
+	QGraphicsTransform_ITF
+	QGraphicsRotation_PTR() *QGraphicsRotation
 }
 
-func PointerFromQGraphicsRotation(ptr QGraphicsRotationITF) unsafe.Pointer {
+func PointerFromQGraphicsRotation(ptr QGraphicsRotation_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsRotationPTR().Pointer()
+		return ptr.QGraphicsRotation_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsRotationFromPointer(ptr unsafe.Pointer) *QGraphicsRotation {
+func NewQGraphicsRotationFromPointer(ptr unsafe.Pointer) *QGraphicsRotation {
 	var n = new(QGraphicsRotation)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGraphicsRotation_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGraphicsRotation) QGraphicsRotationPTR() *QGraphicsRotation {
+func (ptr *QGraphicsRotation) QGraphicsRotation_PTR() *QGraphicsRotation {
 	return ptr
+}
+
+func (ptr *QGraphicsRotation) Angle() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsRotation_Angle(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsRotation) SetAngle(v float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsRotation_SetAngle(ptr.Pointer(), C.double(v))
+	}
 }
 
 func (ptr *QGraphicsRotation) SetAxis2(axis core.Qt__Axis) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsRotation_SetAxis2(C.QtObjectPtr(ptr.Pointer()), C.int(axis))
+		C.QGraphicsRotation_SetAxis2(ptr.Pointer(), C.int(axis))
 	}
 }
 
-func (ptr *QGraphicsRotation) SetAxis(axis gui.QVector3DITF) {
+func (ptr *QGraphicsRotation) SetAxis(axis gui.QVector3D_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsRotation_SetAxis(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQVector3D(axis)))
+		C.QGraphicsRotation_SetAxis(ptr.Pointer(), gui.PointerFromQVector3D(axis))
 	}
 }
 
-func (ptr *QGraphicsRotation) SetOrigin(point gui.QVector3DITF) {
+func (ptr *QGraphicsRotation) SetOrigin(point gui.QVector3D_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsRotation_SetOrigin(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQVector3D(point)))
+		C.QGraphicsRotation_SetOrigin(ptr.Pointer(), gui.PointerFromQVector3D(point))
 	}
 }
 
-func NewQGraphicsRotation(parent core.QObjectITF) *QGraphicsRotation {
-	return QGraphicsRotationFromPointer(unsafe.Pointer(C.QGraphicsRotation_NewQGraphicsRotation(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQGraphicsRotation(parent core.QObject_ITF) *QGraphicsRotation {
+	return NewQGraphicsRotationFromPointer(C.QGraphicsRotation_NewQGraphicsRotation(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QGraphicsRotation) ConnectAngleChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsRotation_ConnectAngleChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsRotation_ConnectAngleChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "angleChanged", f)
 	}
 }
 
 func (ptr *QGraphicsRotation) DisconnectAngleChanged() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsRotation_DisconnectAngleChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsRotation_DisconnectAngleChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "angleChanged")
 	}
 }
@@ -79,22 +92,22 @@ func callbackQGraphicsRotationAngleChanged(ptrName *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "angleChanged").(func())()
 }
 
-func (ptr *QGraphicsRotation) ApplyTo(matrix gui.QMatrix4x4ITF) {
+func (ptr *QGraphicsRotation) ApplyTo(matrix gui.QMatrix4x4_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsRotation_ApplyTo(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQMatrix4x4(matrix)))
+		C.QGraphicsRotation_ApplyTo(ptr.Pointer(), gui.PointerFromQMatrix4x4(matrix))
 	}
 }
 
 func (ptr *QGraphicsRotation) ConnectAxisChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsRotation_ConnectAxisChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsRotation_ConnectAxisChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "axisChanged", f)
 	}
 }
 
 func (ptr *QGraphicsRotation) DisconnectAxisChanged() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsRotation_DisconnectAxisChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsRotation_DisconnectAxisChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "axisChanged")
 	}
 }
@@ -106,14 +119,14 @@ func callbackQGraphicsRotationAxisChanged(ptrName *C.char) {
 
 func (ptr *QGraphicsRotation) ConnectOriginChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsRotation_ConnectOriginChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsRotation_ConnectOriginChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "originChanged", f)
 	}
 }
 
 func (ptr *QGraphicsRotation) DisconnectOriginChanged() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsRotation_DisconnectOriginChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsRotation_DisconnectOriginChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "originChanged")
 	}
 }
@@ -125,7 +138,7 @@ func callbackQGraphicsRotationOriginChanged(ptrName *C.char) {
 
 func (ptr *QGraphicsRotation) DestroyQGraphicsRotation() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsRotation_DestroyQGraphicsRotation(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsRotation_DestroyQGraphicsRotation(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -11,8 +11,8 @@ type QTemporaryDir struct {
 	ptr unsafe.Pointer
 }
 
-type QTemporaryDirITF interface {
-	QTemporaryDirPTR() *QTemporaryDir
+type QTemporaryDir_ITF interface {
+	QTemporaryDir_PTR() *QTemporaryDir
 }
 
 func (p *QTemporaryDir) Pointer() unsafe.Pointer {
@@ -23,60 +23,60 @@ func (p *QTemporaryDir) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQTemporaryDir(ptr QTemporaryDirITF) unsafe.Pointer {
+func PointerFromQTemporaryDir(ptr QTemporaryDir_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTemporaryDirPTR().Pointer()
+		return ptr.QTemporaryDir_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTemporaryDirFromPointer(ptr unsafe.Pointer) *QTemporaryDir {
+func NewQTemporaryDirFromPointer(ptr unsafe.Pointer) *QTemporaryDir {
 	var n = new(QTemporaryDir)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QTemporaryDir) QTemporaryDirPTR() *QTemporaryDir {
+func (ptr *QTemporaryDir) QTemporaryDir_PTR() *QTemporaryDir {
 	return ptr
 }
 
 func NewQTemporaryDir() *QTemporaryDir {
-	return QTemporaryDirFromPointer(unsafe.Pointer(C.QTemporaryDir_NewQTemporaryDir()))
+	return NewQTemporaryDirFromPointer(C.QTemporaryDir_NewQTemporaryDir())
 }
 
 func NewQTemporaryDir2(templatePath string) *QTemporaryDir {
-	return QTemporaryDirFromPointer(unsafe.Pointer(C.QTemporaryDir_NewQTemporaryDir2(C.CString(templatePath))))
+	return NewQTemporaryDirFromPointer(C.QTemporaryDir_NewQTemporaryDir2(C.CString(templatePath)))
 }
 
 func (ptr *QTemporaryDir) AutoRemove() bool {
 	if ptr.Pointer() != nil {
-		return C.QTemporaryDir_AutoRemove(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTemporaryDir_AutoRemove(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTemporaryDir) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QTemporaryDir_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTemporaryDir_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTemporaryDir) Path() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTemporaryDir_Path(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QTemporaryDir_Path(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QTemporaryDir) SetAutoRemove(b bool) {
 	if ptr.Pointer() != nil {
-		C.QTemporaryDir_SetAutoRemove(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(b)))
+		C.QTemporaryDir_SetAutoRemove(ptr.Pointer(), C.int(qt.GoBoolToInt(b)))
 	}
 }
 
 func (ptr *QTemporaryDir) DestroyQTemporaryDir() {
 	if ptr.Pointer() != nil {
-		C.QTemporaryDir_DestroyQTemporaryDir(C.QtObjectPtr(ptr.Pointer()))
+		C.QTemporaryDir_DestroyQTemporaryDir(ptr.Pointer())
 	}
 }

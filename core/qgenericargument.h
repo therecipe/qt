@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QGenericArgument_Data(QtObjectPtr ptr);
+void* QGenericArgument_Data(void* ptr);
 
 #ifdef __cplusplus
 }

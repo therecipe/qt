@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
-&{QXmlParseException QXmlParseException::QXmlParseException commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false false   [0xc8229126a0 0xc822912720 0xc822912860 0xc822912920 0xc822912a00] }
-&{QXmlParseException QXmlParseException::QXmlParseException commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false true 2  [0xc822912d00] }
-&{columnNumber QXmlParseException::columnNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int [] }
-&{lineNumber QXmlParseException::lineNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int [] }
-&{message QXmlParseException::message commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString [] }
-&{publicId QXmlParseException::publicId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString [] }
-&{systemId QXmlParseException::systemId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString [] }
-&{~QXmlParseException QXmlParseException::~QXmlParseException commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non destructor false false   [] }
+&{QXmlParseException QXmlParseException::QXmlParseException commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false false   QXmlParseException(const QString &name, int c, int l, const QString &p, const QString &s) [0xc821c089c0 0xc821c08a80 0xc821c08b40 0xc821c08c40 0xc821c08d40] }
+&{QXmlParseException QXmlParseException::QXmlParseException commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false true 2  QXmlParseException(const QXmlParseException &other) [0xc821c090a0] }
+&{columnNumber QXmlParseException::columnNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int int columnNumber() const [] }
+&{lineNumber QXmlParseException::lineNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int int lineNumber() const [] }
+&{message QXmlParseException::message commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString message() const [] }
+&{publicId QXmlParseException::publicId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString publicId() const [] }
+&{systemId QXmlParseException::systemId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString systemId() const [] }
+&{~QXmlParseException QXmlParseException::~QXmlParseException commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non destructor false false   ~QXmlParseException() [] }
 ########################################			ENUMS			########################################

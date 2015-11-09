@@ -1,21 +1,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QScriptContextInfo_NewQScriptContextInfo3();
-QtObjectPtr QScriptContextInfo_NewQScriptContextInfo(QtObjectPtr context);
-QtObjectPtr QScriptContextInfo_NewQScriptContextInfo2(QtObjectPtr other);
-char* QScriptContextInfo_FileName(QtObjectPtr ptr);
-int QScriptContextInfo_FunctionEndLineNumber(QtObjectPtr ptr);
-int QScriptContextInfo_FunctionMetaIndex(QtObjectPtr ptr);
-char* QScriptContextInfo_FunctionName(QtObjectPtr ptr);
-char* QScriptContextInfo_FunctionParameterNames(QtObjectPtr ptr);
-int QScriptContextInfo_FunctionStartLineNumber(QtObjectPtr ptr);
-int QScriptContextInfo_FunctionType(QtObjectPtr ptr);
-int QScriptContextInfo_IsNull(QtObjectPtr ptr);
-int QScriptContextInfo_LineNumber(QtObjectPtr ptr);
-void QScriptContextInfo_DestroyQScriptContextInfo(QtObjectPtr ptr);
+void* QScriptContextInfo_NewQScriptContextInfo3();
+void* QScriptContextInfo_NewQScriptContextInfo(void* context);
+void* QScriptContextInfo_NewQScriptContextInfo2(void* other);
+char* QScriptContextInfo_FileName(void* ptr);
+int QScriptContextInfo_FunctionEndLineNumber(void* ptr);
+int QScriptContextInfo_FunctionMetaIndex(void* ptr);
+char* QScriptContextInfo_FunctionName(void* ptr);
+char* QScriptContextInfo_FunctionParameterNames(void* ptr);
+int QScriptContextInfo_FunctionStartLineNumber(void* ptr);
+int QScriptContextInfo_FunctionType(void* ptr);
+int QScriptContextInfo_IsNull(void* ptr);
+int QScriptContextInfo_LineNumber(void* ptr);
+void QScriptContextInfo_DestroyQScriptContextInfo(void* ptr);
 
 #ifdef __cplusplus
 }

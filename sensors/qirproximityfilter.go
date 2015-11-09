@@ -10,31 +10,31 @@ type QIRProximityFilter struct {
 	QSensorFilter
 }
 
-type QIRProximityFilterITF interface {
-	QSensorFilterITF
-	QIRProximityFilterPTR() *QIRProximityFilter
+type QIRProximityFilter_ITF interface {
+	QSensorFilter_ITF
+	QIRProximityFilter_PTR() *QIRProximityFilter
 }
 
-func PointerFromQIRProximityFilter(ptr QIRProximityFilterITF) unsafe.Pointer {
+func PointerFromQIRProximityFilter(ptr QIRProximityFilter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QIRProximityFilterPTR().Pointer()
+		return ptr.QIRProximityFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QIRProximityFilterFromPointer(ptr unsafe.Pointer) *QIRProximityFilter {
+func NewQIRProximityFilterFromPointer(ptr unsafe.Pointer) *QIRProximityFilter {
 	var n = new(QIRProximityFilter)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QIRProximityFilter) QIRProximityFilterPTR() *QIRProximityFilter {
+func (ptr *QIRProximityFilter) QIRProximityFilter_PTR() *QIRProximityFilter {
 	return ptr
 }
 
-func (ptr *QIRProximityFilter) Filter(reading QIRProximityReadingITF) bool {
+func (ptr *QIRProximityFilter) Filter(reading QIRProximityReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QIRProximityFilter_Filter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQIRProximityReading(reading))) != 0
+		return C.QIRProximityFilter_Filter(ptr.Pointer(), PointerFromQIRProximityReading(reading)) != 0
 	}
 	return false
 }

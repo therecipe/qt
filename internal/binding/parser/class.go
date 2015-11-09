@@ -17,9 +17,11 @@ type Class struct {
 	Brief     string      `xml:"brief,attr"`
 	Functions []*Function `xml:"function"`
 	Enums     []*Enum     `xml:"enum"`
+	DocModule string
 }
 
 func (c *Class) register(module string) {
+	c.DocModule = c.Module
 	c.Module = module
 	ClassMap[c.Name] = c
 }
@@ -94,16 +96,21 @@ func (c *Class) GetAllBases(input []string) []string {
 
 	case 1:
 		{
-			input = append(input, bases[0])
-			return ClassMap[bases[0]].GetAllBases(input)
+			if sb, exists := ClassMap[bases[0]]; exists {
+				input = append(input, bases[0])
+				return sb.GetAllBases(input)
+			}
+			return input
 		}
 
 	}
 
 	for _, b := range bases {
 		input = append(input, b)
-		for _, sb := range ClassMap[b].GetAllBases([]string{}) {
-			input = append(input, sb)
+		if bs, exists := ClassMap[b]; exists {
+			for _, sb := range bs.GetAllBases([]string{}) {
+				input = append(input, sb)
+			}
 		}
 	}
 	return input

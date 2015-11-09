@@ -8,6 +8,7 @@ import (
 )
 
 func goInput(name string, value string, f *parser.Function) string {
+	var vOld = value
 
 	name = cleanName(name)
 	value = cleanValue(value)
@@ -18,8 +19,11 @@ func goInput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
 		}
 
-	case "uchar", "char", "QString", "QUrl", "QVariant":
+	case "uchar", "char", "QString":
 		{
+			if strings.Contains(vOld, "**") {
+				return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
+			}
 			return fmt.Sprintf("C.CString(%v)", name)
 		}
 
@@ -32,6 +36,11 @@ func goInput(name string, value string, f *parser.Function) string {
 		{
 			return fmt.Sprintf("C.int(%v)", name)
 		}
+
+	case "qreal":
+		{
+			return fmt.Sprintf("C.double(%v)", name)
+		}
 	}
 
 	switch {
@@ -43,9 +52,9 @@ func goInput(name string, value string, f *parser.Function) string {
 	case isClass(value):
 		{
 			if m := module(parser.ClassMap[value].Module); m != module(f) {
-				return fmt.Sprintf("C.QtObjectPtr(%v.PointerFrom%v(%v))", m, strings.Title(value), name)
+				return fmt.Sprintf("%v.PointerFrom%v(%v)", m, strings.Title(value), name)
 			}
-			return fmt.Sprintf("C.QtObjectPtr(PointerFrom%v(%v))", strings.Title(value), name)
+			return fmt.Sprintf("PointerFrom%v(%v)", strings.Title(value), name)
 		}
 	}
 
@@ -65,7 +74,7 @@ func cppInput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("%v.split(\"|\", QString::SkipEmptyParts)", cppInput(name, "QString", f))
 		}
 
-	case "QString", "QVariant":
+	case "QString":
 		{
 			if strings.Contains(vOld, "&") {
 				if strings.Contains(vOld, "const") {
@@ -82,11 +91,6 @@ func cppInput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("%v(%v)", value, name)
 		}
 
-	case "QUrl":
-		{
-			return fmt.Sprintf("%v(%v)", value, cppInput(name, "QString", f))
-		}
-
 	case "bool":
 		{
 			if strings.Contains(vOld, "*") {
@@ -100,6 +104,11 @@ func cppInput(name string, value string, f *parser.Function) string {
 			if strings.Contains(vOld, "*") {
 				return fmt.Sprintf("&%v", name)
 			}
+
+			if strings.Contains(vOld, "&") && name == "argc" {
+				return "argcs"
+			}
+
 			return name
 		}
 
@@ -112,7 +121,8 @@ func cppInput(name string, value string, f *parser.Function) string {
 			}
 
 			if strings.Contains(vOld, "**") {
-				return fmt.Sprintf("&%v", name)
+				return "argvs"
+				//return "const_cast<char **>(argvs.data())"
 			}
 
 			if strings.Contains(vOld, "*") {
@@ -120,6 +130,17 @@ func cppInput(name string, value string, f *parser.Function) string {
 			}
 
 			return fmt.Sprintf("*%v", name)
+		}
+
+	case "qreal":
+		{
+			if strings.Contains(vOld, "*") {
+				f.Access = "unsupported_CppInput"
+				return f.Access
+				//return fmt.Sprintf("&static_cast<qreal>(%v)", name)
+			}
+
+			return fmt.Sprintf("static_cast<qreal>(%v)", name)
 		}
 	}
 

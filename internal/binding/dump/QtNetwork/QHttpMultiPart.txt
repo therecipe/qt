@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
-&{QHttpMultiPart QHttpMultiPart::QHttpMultiPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non constructor false true 2  [0xc822912520 0xc8229125c0] }
-&{QHttpMultiPart QHttpMultiPart::QHttpMultiPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non constructor false false   [0xc8229127e0] }
-&{append QHttpMultiPart::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc822912a60] }
-&{boundary QHttpMultiPart::boundary commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  QByteArray [] }
-&{setBoundary QHttpMultiPart::setBoundary commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc822912e60] }
-&{setContentType QHttpMultiPart::setContentType commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void [0xc8229130e0] }
-&{~QHttpMultiPart QHttpMultiPart::~QHttpMultiPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non destructor false false   [] }
+&{QHttpMultiPart QHttpMultiPart::QHttpMultiPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non constructor false true 2  QHttpMultiPart(ContentType contentType, QObject *parent) [0xc8236179e0 0xc823617a60] }
+&{QHttpMultiPart QHttpMultiPart::QHttpMultiPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non constructor false false   QHttpMultiPart(QObject *parent) [0xc823617c60] }
+&{append QHttpMultiPart::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void void append(const QHttpPart &httpPart) [0xc823617e40] }
+&{boundary QHttpMultiPart::boundary commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  QByteArray QByteArray boundary() const [] }
+&{setBoundary QHttpMultiPart::setBoundary commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void void setBoundary(const QByteArray &boundary) [0xc8235fe1e0] }
+&{setContentType QHttpMultiPart::setContentType commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non plain false false  void void setContentType(ContentType contentType) [0xc8235fe420] }
+&{~QHttpMultiPart QHttpMultiPart::~QHttpMultiPart commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/access/qhttpmultipart.h non destructor false false   ~QHttpMultiPart() [] }
 ########################################			ENUMS			########################################
-&{ContentType QHttpMultiPart::ContentType commendable public  [0xc8229120a0 0xc822912120 0xc822912200 0xc8229122a0]}
+&{ContentType QHttpMultiPart::ContentType commendable public  [0xc823617680 0xc823617700 0xc823617780 0xc823617800] false}

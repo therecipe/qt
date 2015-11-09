@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QColormap_NewQColormap(QtObjectPtr colormap);
-int QColormap_Depth(QtObjectPtr ptr);
-int QColormap_Mode(QtObjectPtr ptr);
-int QColormap_Size(QtObjectPtr ptr);
-void QColormap_DestroyQColormap(QtObjectPtr ptr);
+void* QColormap_NewQColormap(void* colormap);
+int QColormap_Depth(void* ptr);
+int QColormap_Mode(void* ptr);
+int QColormap_Size(void* ptr);
+void QColormap_DestroyQColormap(void* ptr);
 
 #ifdef __cplusplus
 }

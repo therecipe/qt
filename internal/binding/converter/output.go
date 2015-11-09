@@ -8,6 +8,7 @@ import (
 )
 
 func goOutput(name string, value string, f *parser.Function) string {
+	var vOld = value
 
 	name = cleanName(name)
 	value = cleanValue(value)
@@ -18,7 +19,7 @@ func goOutput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("strings.Split(%v, \"|\")", goOutput(name, "QString", f))
 		}
 
-	case "uchar", "char", "QString", "QUrl", "QVariant":
+	case "uchar", "char", "QString":
 		{
 			return fmt.Sprintf("C.GoString(%v)", name)
 		}
@@ -35,7 +36,20 @@ func goOutput(name string, value string, f *parser.Function) string {
 
 	case "void", "":
 		{
+			if strings.Contains(vOld, "*") {
+				return fmt.Sprintf("unsafe.Pointer(%v)", name)
+			}
 			return name
+		}
+
+	case "T":
+		{
+			return fmt.Sprintf("unsafe.Pointer(%v)", name)
+		}
+
+	case "qreal":
+		{
+			return fmt.Sprintf("float64(%v)", name)
 		}
 	}
 
@@ -51,9 +65,9 @@ func goOutput(name string, value string, f *parser.Function) string {
 	case isClass(value):
 		{
 			if m := module(parser.ClassMap[value].Module); m != module(f) {
-				return fmt.Sprintf("%v.%vFromPointer(unsafe.Pointer(%v))", m, value, name)
+				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, value, name)
 			}
-			return fmt.Sprintf("%vFromPointer(unsafe.Pointer(%v))", value, name)
+			return fmt.Sprintf("New%vFromPointer(%v)", value, name)
 		}
 	}
 
@@ -72,7 +86,7 @@ func cgoOutput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("strings.Split(%v, \"|\")", cgoOutput(name, "QString", f))
 		}
 
-	case "uchar", "char", "QString", "QUrl", "QVariant":
+	case "uchar", "char", "QString":
 		{
 			return fmt.Sprintf("C.GoString(%v)", name)
 		}
@@ -105,9 +119,9 @@ func cgoOutput(name string, value string, f *parser.Function) string {
 	case isClass(value):
 		{
 			if m := module(parser.ClassMap[value].Module); m != module(f) {
-				return fmt.Sprintf("%v.%vFromPointer(%v)", m, value, name)
+				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, value, name)
 			}
-			return fmt.Sprintf("%vFromPointer(%v)", value, name)
+			return fmt.Sprintf("New%vFromPointer(%v)", value, name)
 		}
 	}
 
@@ -136,14 +150,23 @@ func cppOutput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("%v.toUtf8().data()", name)
 		}
 
-	case "QUrl", "QVariant":
+	case "bool", "int", "void", "", "T":
 		{
-			return cppOutput(fmt.Sprintf("%v.toString()", name), "QString", f)
+			if value == "void" {
+				if strings.Contains(vOld, "*") {
+					if strings.Contains(vOld, "const") {
+						return fmt.Sprintf("const_cast<%v*>(%v)", value, name)
+					}
+					return name
+				}
+			}
+
+			return name
 		}
 
-	case "bool", "int", "void", "":
+	case "qreal":
 		{
-			return name
+			return fmt.Sprintf("static_cast<double>(%v)", name)
 		}
 	}
 
@@ -166,6 +189,10 @@ func cppOutput(name string, value string, f *parser.Function) string {
 			case "QModelIndex":
 				{
 					return fmt.Sprintf("%v.internalPointer()", name)
+				}
+			case "QJSValue", "QScriptValue", "QVariant", "QStringRef", "QDateTime", "QTimeZone", "QRegularExpressionMatchIterator", "QRegularExpressionMatch", "QRegularExpression", "QDir", "QByteArray", "QEasingCurve", "QCommandLineOption", "QRegExp", "QJsonObject", "QJsonArray", "QJsonDocument", "QRegion", "QBrush", "QColor":
+				{
+					return fmt.Sprintf("new %v(%v)", value, name)
 				}
 			}
 		}

@@ -1,26 +1,26 @@
 ########################################			FUNCTIONS			########################################
-&{QStorageInfo QStorageInfo::QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non constructor false false   [] }
-&{QStorageInfo QStorageInfo::QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non constructor false true 3  [0xc820274580] }
-&{QStorageInfo QStorageInfo::QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non constructor false true 4  [0xc820274800] }
-&{QStorageInfo QStorageInfo::QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non constructor false true 2  [0xc820274ac0] }
-&{bytesAvailable QStorageInfo::bytesAvailable commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  qint64 [] }
-&{bytesFree QStorageInfo::bytesFree commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  qint64 [] }
-&{bytesTotal QStorageInfo::bytesTotal commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  qint64 [] }
-&{device QStorageInfo::device commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QByteArray [] }
-&{displayName QStorageInfo::displayName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QString [] }
-&{fileSystemType QStorageInfo::fileSystemType commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QByteArray [] }
-&{isReadOnly QStorageInfo::isReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  bool [] }
-&{isReady QStorageInfo::isReady commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  bool [] }
-&{isRoot QStorageInfo::isRoot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  bool [] }
-&{isValid QStorageInfo::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  bool [] }
-&{mountedVolumes QStorageInfo::mountedVolumes commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain true false  QList<QStorageInfo> [] }
-&{name QStorageInfo::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QString [] }
-&{operator= QStorageInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false true 2 QStorageInfo & [0xc820275e60] }
-&{operator= QStorageInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QStorageInfo & [0xc82026a120] }
-&{refresh QStorageInfo::refresh commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  void [] }
-&{root QStorageInfo::root commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain true false  QStorageInfo [] }
-&{rootPath QStorageInfo::rootPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QString [] }
-&{setPath QStorageInfo::setPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  void [0xc82026a7e0] }
-&{swap QStorageInfo::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  void [0xc82026aa60] }
-&{~QStorageInfo QStorageInfo::~QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non destructor false false   [] }
+&{QStorageInfo QStorageInfo::QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non constructor false false   QStorageInfo() [] }
+&{QStorageInfo QStorageInfo::QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non constructor false true 3  QStorageInfo(const QDir &dir) [0xc82026a340] }
+&{QStorageInfo QStorageInfo::QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non constructor false true 4  QStorageInfo(const QStorageInfo &other) [0xc82026a5e0] }
+&{QStorageInfo QStorageInfo::QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non constructor false true 2  QStorageInfo(const QString &path) [0xc82026a8c0] }
+&{bytesAvailable QStorageInfo::bytesAvailable commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  qint64 qint64 bytesAvailable() const [] }
+&{bytesFree QStorageInfo::bytesFree commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  qint64 qint64 bytesFree() const [] }
+&{bytesTotal QStorageInfo::bytesTotal commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  qint64 qint64 bytesTotal() const [] }
+&{device QStorageInfo::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QByteArray QByteArray device() const [] }
+&{displayName QStorageInfo::displayName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QString QString displayName() const [] }
+&{fileSystemType QStorageInfo::fileSystemType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QByteArray QByteArray fileSystemType() const [] }
+&{isReadOnly QStorageInfo::isReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  bool bool isReadOnly() const [] }
+&{isReady QStorageInfo::isReady commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  bool bool isReady() const [] }
+&{isRoot QStorageInfo::isRoot commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  bool bool isRoot() const [] }
+&{isValid QStorageInfo::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  bool bool isValid() const [] }
+&{mountedVolumes QStorageInfo::mountedVolumes commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain true false  QList<QStorageInfo> QList<QStorageInfo> mountedVolumes() [] }
+&{name QStorageInfo::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QString QString name() const [] }
+&{operator= QStorageInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false true 2 QStorageInfo & QStorageInfo & operator=(QStorageInfo &&other) [0xc820264000] }
+&{operator= QStorageInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QStorageInfo & QStorageInfo & operator=(const QStorageInfo &other) [0xc820264280] }
+&{refresh QStorageInfo::refresh commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  void void refresh() [] }
+&{root QStorageInfo::root commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain true false  QStorageInfo QStorageInfo root() [] }
+&{rootPath QStorageInfo::rootPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  QString QString rootPath() const [] }
+&{setPath QStorageInfo::setPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  void void setPath(const QString &path) [0xc8202649e0] }
+&{swap QStorageInfo::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non plain false false  void void swap(QStorageInfo &other) [0xc820264ce0] }
+&{~QStorageInfo QStorageInfo::~QStorageInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qstorageinfo.h non destructor false false   ~QStorageInfo() [] }
 ########################################			ENUMS			########################################

@@ -1,12 +1,12 @@
 #include "qactiongroup.h"
-#include <QIcon>
-#include <QAction>
-#include <QMetaObject>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QMetaObject>
+#include <QIcon>
+#include <QAction>
 #include <QObject>
+#include <QString>
+#include <QVariant>
 #include <QActionGroup>
 #include "_cgo_export.h"
 
@@ -16,75 +16,75 @@ void Signal_Hovered(QAction * action){callbackQActionGroupHovered(this->objectNa
 void Signal_Triggered(QAction * action){callbackQActionGroupTriggered(this->objectName().toUtf8().data(), action);};
 };
 
-QtObjectPtr QActionGroup_AddAction(QtObjectPtr ptr, QtObjectPtr action){
+void* QActionGroup_AddAction(void* ptr, void* action){
 	return static_cast<QActionGroup*>(ptr)->addAction(static_cast<QAction*>(action));
 }
 
-int QActionGroup_IsEnabled(QtObjectPtr ptr){
+int QActionGroup_IsEnabled(void* ptr){
 	return static_cast<QActionGroup*>(ptr)->isEnabled();
 }
 
-int QActionGroup_IsExclusive(QtObjectPtr ptr){
+int QActionGroup_IsExclusive(void* ptr){
 	return static_cast<QActionGroup*>(ptr)->isExclusive();
 }
 
-int QActionGroup_IsVisible(QtObjectPtr ptr){
+int QActionGroup_IsVisible(void* ptr){
 	return static_cast<QActionGroup*>(ptr)->isVisible();
 }
 
-void QActionGroup_SetEnabled(QtObjectPtr ptr, int v){
+void QActionGroup_SetEnabled(void* ptr, int v){
 	QMetaObject::invokeMethod(static_cast<QActionGroup*>(ptr), "setEnabled", Q_ARG(bool, v != 0));
 }
 
-void QActionGroup_SetExclusive(QtObjectPtr ptr, int v){
+void QActionGroup_SetExclusive(void* ptr, int v){
 	QMetaObject::invokeMethod(static_cast<QActionGroup*>(ptr), "setExclusive", Q_ARG(bool, v != 0));
 }
 
-void QActionGroup_SetVisible(QtObjectPtr ptr, int v){
+void QActionGroup_SetVisible(void* ptr, int v){
 	QMetaObject::invokeMethod(static_cast<QActionGroup*>(ptr), "setVisible", Q_ARG(bool, v != 0));
 }
 
-QtObjectPtr QActionGroup_NewQActionGroup(QtObjectPtr parent){
+void* QActionGroup_NewQActionGroup(void* parent){
 	return new QActionGroup(static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QActionGroup_AddAction3(QtObjectPtr ptr, QtObjectPtr icon, char* text){
+void* QActionGroup_AddAction3(void* ptr, void* icon, char* text){
 	return static_cast<QActionGroup*>(ptr)->addAction(*static_cast<QIcon*>(icon), QString(text));
 }
 
-QtObjectPtr QActionGroup_AddAction2(QtObjectPtr ptr, char* text){
+void* QActionGroup_AddAction2(void* ptr, char* text){
 	return static_cast<QActionGroup*>(ptr)->addAction(QString(text));
 }
 
-QtObjectPtr QActionGroup_CheckedAction(QtObjectPtr ptr){
+void* QActionGroup_CheckedAction(void* ptr){
 	return static_cast<QActionGroup*>(ptr)->checkedAction();
 }
 
-void QActionGroup_ConnectHovered(QtObjectPtr ptr){
+void QActionGroup_ConnectHovered(void* ptr){
 	QObject::connect(static_cast<QActionGroup*>(ptr), static_cast<void (QActionGroup::*)(QAction *)>(&QActionGroup::hovered), static_cast<MyQActionGroup*>(ptr), static_cast<void (MyQActionGroup::*)(QAction *)>(&MyQActionGroup::Signal_Hovered));;
 }
 
-void QActionGroup_DisconnectHovered(QtObjectPtr ptr){
+void QActionGroup_DisconnectHovered(void* ptr){
 	QObject::disconnect(static_cast<QActionGroup*>(ptr), static_cast<void (QActionGroup::*)(QAction *)>(&QActionGroup::hovered), static_cast<MyQActionGroup*>(ptr), static_cast<void (MyQActionGroup::*)(QAction *)>(&MyQActionGroup::Signal_Hovered));;
 }
 
-void QActionGroup_RemoveAction(QtObjectPtr ptr, QtObjectPtr action){
+void QActionGroup_RemoveAction(void* ptr, void* action){
 	static_cast<QActionGroup*>(ptr)->removeAction(static_cast<QAction*>(action));
 }
 
-void QActionGroup_SetDisabled(QtObjectPtr ptr, int b){
+void QActionGroup_SetDisabled(void* ptr, int b){
 	QMetaObject::invokeMethod(static_cast<QActionGroup*>(ptr), "setDisabled", Q_ARG(bool, b != 0));
 }
 
-void QActionGroup_ConnectTriggered(QtObjectPtr ptr){
+void QActionGroup_ConnectTriggered(void* ptr){
 	QObject::connect(static_cast<QActionGroup*>(ptr), static_cast<void (QActionGroup::*)(QAction *)>(&QActionGroup::triggered), static_cast<MyQActionGroup*>(ptr), static_cast<void (MyQActionGroup::*)(QAction *)>(&MyQActionGroup::Signal_Triggered));;
 }
 
-void QActionGroup_DisconnectTriggered(QtObjectPtr ptr){
+void QActionGroup_DisconnectTriggered(void* ptr){
 	QObject::disconnect(static_cast<QActionGroup*>(ptr), static_cast<void (QActionGroup::*)(QAction *)>(&QActionGroup::triggered), static_cast<MyQActionGroup*>(ptr), static_cast<void (MyQActionGroup::*)(QAction *)>(&MyQActionGroup::Signal_Triggered));;
 }
 
-void QActionGroup_DestroyQActionGroup(QtObjectPtr ptr){
+void QActionGroup_DestroyQActionGroup(void* ptr){
 	static_cast<QActionGroup*>(ptr)->~QActionGroup();
 }
 

@@ -10,15 +10,15 @@ class MyQDBusPendingCall: public QDBusPendingCall {
 public:
 };
 
-QtObjectPtr QDBusPendingCall_NewQDBusPendingCall(QtObjectPtr other){
+void* QDBusPendingCall_NewQDBusPendingCall(void* other){
 	return new QDBusPendingCall(*static_cast<QDBusPendingCall*>(other));
 }
 
-void QDBusPendingCall_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QDBusPendingCall_Swap(void* ptr, void* other){
 	static_cast<QDBusPendingCall*>(ptr)->swap(*static_cast<QDBusPendingCall*>(other));
 }
 
-void QDBusPendingCall_DestroyQDBusPendingCall(QtObjectPtr ptr){
+void QDBusPendingCall_DestroyQDBusPendingCall(void* ptr){
 	static_cast<QDBusPendingCall*>(ptr)->~QDBusPendingCall();
 }
 

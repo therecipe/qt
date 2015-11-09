@@ -1,35 +1,35 @@
 ########################################			FUNCTIONS			########################################
-&{QOpenGLContext QOpenGLContext::QOpenGLContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non constructor false false   [0xc82018c800] }
-&{aboutToBeDestroyed QOpenGLContext::aboutToBeDestroyed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non signal false false  void [] }
-&{areSharing QOpenGLContext::areSharing commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  bool [0xc82018ce20 0xc82018cee0] }
-&{create QOpenGLContext::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool [] }
-&{currentContext QOpenGLContext::currentContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  QOpenGLContext * [] }
-&{defaultFramebufferObject QOpenGLContext::defaultFramebufferObject commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  GLuint [] }
-&{doneCurrent QOpenGLContext::doneCurrent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void [] }
-&{extensions QOpenGLContext::extensions commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QSet<QByteArray> [] }
-&{format QOpenGLContext::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QSurfaceFormat [] }
-&{functions QOpenGLContext::functions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QOpenGLFunctions * [] }
-&{getProcAddress QOpenGLContext::getProcAddress commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QFunctionPointer [0xc820162420] }
-&{globalShareContext QOpenGLContext::globalShareContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  QOpenGLContext * [] }
-&{hasExtension QOpenGLContext::hasExtension commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool [0xc820162a20] }
-&{isOpenGLES QOpenGLContext::isOpenGLES commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool [] }
-&{isValid QOpenGLContext::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool [] }
-&{makeCurrent QOpenGLContext::makeCurrent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool [0xc82012a2c0] }
-&{nativeHandle QOpenGLContext::nativeHandle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QVariant [] }
-&{openGLModuleHandle QOpenGLContext::openGLModuleHandle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  void * [] }
-&{openGLModuleType QOpenGLContext::openGLModuleType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  OpenGLModuleType [] }
-&{setFormat QOpenGLContext::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void [0xc82012b1a0] }
-&{setNativeHandle QOpenGLContext::setNativeHandle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void [0xc82012b560] }
-&{screen QOpenGLContext::screen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QScreen * [] }
-&{setScreen QOpenGLContext::setScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void [0xc8200ee3c0] }
-&{setShareContext QOpenGLContext::setShareContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void [0xc8200ee6e0] }
-&{shareContext QOpenGLContext::shareContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QOpenGLContext * [] }
-&{shareGroup QOpenGLContext::shareGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QOpenGLContextGroup * [] }
-&{supportsThreadedOpenGL QOpenGLContext::supportsThreadedOpenGL commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  bool [] }
-&{surface QOpenGLContext::surface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QSurface * [] }
-&{swapBuffers QOpenGLContext::swapBuffers commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void [0xc8200ef760] }
-&{versionFunctions QOpenGLContext::versionFunctions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QAbstractOpenGLFunctions * [0xc8200a42e0] }
-&{versionFunctions QOpenGLContext::versionFunctions commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false true 2 TYPE * [] }
-&{~QOpenGLContext QOpenGLContext::~QOpenGLContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non destructor false false   [] }
+&{QOpenGLContext QOpenGLContext::QOpenGLContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non constructor false false   QOpenGLContext(QObject *parent) [0xc82065a920] }
+&{aboutToBeDestroyed QOpenGLContext::aboutToBeDestroyed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non signal false false  void void aboutToBeDestroyed() [] }
+&{areSharing QOpenGLContext::areSharing commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  bool bool areSharing(QOpenGLContext *first, QOpenGLContext *second) [0xc82065af00 0xc82065afe0] }
+&{create QOpenGLContext::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool bool create() [] }
+&{currentContext QOpenGLContext::currentContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  QOpenGLContext * QOpenGLContext * currentContext() [] }
+&{defaultFramebufferObject QOpenGLContext::defaultFramebufferObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  GLuint GLuint defaultFramebufferObject() const [] }
+&{doneCurrent QOpenGLContext::doneCurrent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void void doneCurrent() [] }
+&{extensions QOpenGLContext::extensions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QSet<QByteArray> QSet<QByteArray> extensions() const [] }
+&{format QOpenGLContext::format commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QSurfaceFormat QSurfaceFormat format() const [] }
+&{functions QOpenGLContext::functions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QOpenGLFunctions * QOpenGLFunctions * functions() const [] }
+&{getProcAddress QOpenGLContext::getProcAddress commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QFunctionPointer QFunctionPointer getProcAddress(const QByteArray &procName) const [0xc8206444c0] }
+&{globalShareContext QOpenGLContext::globalShareContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  QOpenGLContext * QOpenGLContext * globalShareContext() [] }
+&{hasExtension QOpenGLContext::hasExtension commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool bool hasExtension(const QByteArray &extension) const [0xc820644b60] }
+&{isOpenGLES QOpenGLContext::isOpenGLES commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool bool isOpenGLES() const [] }
+&{isValid QOpenGLContext::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool bool isValid() const [] }
+&{makeCurrent QOpenGLContext::makeCurrent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool bool makeCurrent(QSurface *surface) [0xc8206329c0] }
+&{nativeHandle QOpenGLContext::nativeHandle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QVariant QVariant nativeHandle() const [] }
+&{openGLModuleHandle QOpenGLContext::openGLModuleHandle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  void * void * openGLModuleHandle() [] }
+&{openGLModuleType QOpenGLContext::openGLModuleType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  OpenGLModuleType OpenGLModuleType openGLModuleType() [] }
+&{setFormat QOpenGLContext::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void void setFormat(const QSurfaceFormat &format) [0xc8206337c0] }
+&{setNativeHandle QOpenGLContext::setNativeHandle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void void setNativeHandle(const QVariant &handle) [0xc820633d40] }
+&{screen QOpenGLContext::screen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QScreen * QScreen * screen() const [] }
+&{setScreen QOpenGLContext::setScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void void setScreen(QScreen *screen) [0xc820620ec0] }
+&{setShareContext QOpenGLContext::setShareContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void void setShareContext(QOpenGLContext *shareContext) [0xc8206211a0] }
+&{shareContext QOpenGLContext::shareContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QOpenGLContext * QOpenGLContext * shareContext() const [] }
+&{shareGroup QOpenGLContext::shareGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QOpenGLContextGroup * QOpenGLContextGroup * shareGroup() const [] }
+&{supportsThreadedOpenGL QOpenGLContext::supportsThreadedOpenGL commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain true false  bool bool supportsThreadedOpenGL() [] }
+&{surface QOpenGLContext::surface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QSurface * QSurface * surface() const [] }
+&{swapBuffers QOpenGLContext::swapBuffers commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void void swapBuffers(QSurface *surface) [0xc82060c240] }
+&{versionFunctions QOpenGLContext::versionFunctions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QAbstractOpenGLFunctions * QAbstractOpenGLFunctions * versionFunctions(const QOpenGLVersionProfile &versionProfile) const [0xc82060cb60] }
+&{versionFunctions QOpenGLContext::versionFunctions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false true 2 TYPE * TYPE * versionFunctions() const [] }
+&{~QOpenGLContext QOpenGLContext::~QOpenGLContext commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non destructor false false   ~QOpenGLContext() [] }
 ########################################			ENUMS			########################################
-&{OpenGLModuleType QOpenGLContext::OpenGLModuleType commendable public  [0xc82018c320 0xc82018c400]}
+&{OpenGLModuleType QOpenGLContext::OpenGLModuleType commendable public  [0xc82065a3a0 0xc82065a4a0] false}

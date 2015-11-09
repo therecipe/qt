@@ -1,9 +1,10 @@
 #include "qmediaservicedefaultdeviceinterface.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMediaService>
+#include <QByteArray>
+#include <QString>
 #include <QMediaServiceDefaultDeviceInterface>
 #include "_cgo_export.h"
 
@@ -11,7 +12,11 @@ class MyQMediaServiceDefaultDeviceInterface: public QMediaServiceDefaultDeviceIn
 public:
 };
 
-void QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(QtObjectPtr ptr){
+void* QMediaServiceDefaultDeviceInterface_DefaultDevice(void* ptr, void* service){
+	return new QByteArray(static_cast<QMediaServiceDefaultDeviceInterface*>(ptr)->defaultDevice(*static_cast<QByteArray*>(service)));
+}
+
+void QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(void* ptr){
 	static_cast<QMediaServiceDefaultDeviceInterface*>(ptr)->~QMediaServiceDefaultDeviceInterface();
 }
 

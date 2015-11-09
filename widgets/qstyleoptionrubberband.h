@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStyleOptionRubberBand_NewQStyleOptionRubberBand();
-QtObjectPtr QStyleOptionRubberBand_NewQStyleOptionRubberBand2(QtObjectPtr other);
+void* QStyleOptionRubberBand_NewQStyleOptionRubberBand();
+void* QStyleOptionRubberBand_NewQStyleOptionRubberBand2(void* other);
 
 #ifdef __cplusplus
 }

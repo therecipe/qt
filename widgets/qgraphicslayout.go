@@ -10,24 +10,24 @@ type QGraphicsLayout struct {
 	QGraphicsLayoutItem
 }
 
-type QGraphicsLayoutITF interface {
-	QGraphicsLayoutItemITF
-	QGraphicsLayoutPTR() *QGraphicsLayout
+type QGraphicsLayout_ITF interface {
+	QGraphicsLayoutItem_ITF
+	QGraphicsLayout_PTR() *QGraphicsLayout
 }
 
-func PointerFromQGraphicsLayout(ptr QGraphicsLayoutITF) unsafe.Pointer {
+func PointerFromQGraphicsLayout(ptr QGraphicsLayout_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsLayoutPTR().Pointer()
+		return ptr.QGraphicsLayout_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsLayoutFromPointer(ptr unsafe.Pointer) *QGraphicsLayout {
+func NewQGraphicsLayoutFromPointer(ptr unsafe.Pointer) *QGraphicsLayout {
 	var n = new(QGraphicsLayout)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsLayout) QGraphicsLayoutPTR() *QGraphicsLayout {
+func (ptr *QGraphicsLayout) QGraphicsLayout_PTR() *QGraphicsLayout {
 	return ptr
 }

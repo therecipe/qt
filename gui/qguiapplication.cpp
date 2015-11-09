@@ -1,17 +1,19 @@
 #include "qguiapplication.h"
-#include <QCursor>
-#include <QString>
-#include <QVariant>
-#include <QModelIndex>
-#include <QWindow>
-#include <QFont>
-#include <QPalette>
-#include <QUrl>
-#include <QEvent>
-#include <QScreen>
 #include <QObject>
+#include <QByteArray>
+#include <QCursor>
+#include <QVariant>
+#include <QUrl>
+#include <QWindow>
 #include <QPoint>
+#include <QString>
 #include <QIcon>
+#include <QScreen>
+#include <QEvent>
+#include <QPalette>
+#include <QList>
+#include <QModelIndex>
+#include <QFont>
 #include <QGuiApplication>
 #include "_cgo_export.h"
 
@@ -35,11 +37,11 @@ int QGuiApplication_QGuiApplication_ApplicationState(){
 	return QGuiApplication::applicationState();
 }
 
-int QGuiApplication_IsSavingSession(QtObjectPtr ptr){
+int QGuiApplication_IsSavingSession(void* ptr){
 	return static_cast<QGuiApplication*>(ptr)->isSavingSession();
 }
 
-int QGuiApplication_IsSessionRestored(QtObjectPtr ptr){
+int QGuiApplication_IsSessionRestored(void* ptr){
 	return static_cast<QGuiApplication*>(ptr)->isSessionRestored();
 }
 
@@ -47,7 +49,7 @@ int QGuiApplication_QGuiApplication_LayoutDirection(){
 	return QGuiApplication::layoutDirection();
 }
 
-QtObjectPtr QGuiApplication_QGuiApplication_OverrideCursor(){
+void* QGuiApplication_QGuiApplication_OverrideCursor(){
 	return QGuiApplication::overrideCursor();
 }
 
@@ -67,11 +69,11 @@ void QGuiApplication_QGuiApplication_RestoreOverrideCursor(){
 	QGuiApplication::restoreOverrideCursor();
 }
 
-char* QGuiApplication_SessionId(QtObjectPtr ptr){
+char* QGuiApplication_SessionId(void* ptr){
 	return static_cast<QGuiApplication*>(ptr)->sessionId().toUtf8().data();
 }
 
-char* QGuiApplication_SessionKey(QtObjectPtr ptr){
+char* QGuiApplication_SessionKey(void* ptr){
 	return static_cast<QGuiApplication*>(ptr)->sessionKey().toUtf8().data();
 }
 
@@ -83,7 +85,7 @@ void QGuiApplication_QGuiApplication_SetLayoutDirection(int direction){
 	QGuiApplication::setLayoutDirection(static_cast<Qt::LayoutDirection>(direction));
 }
 
-void QGuiApplication_QGuiApplication_SetOverrideCursor(QtObjectPtr cursor){
+void QGuiApplication_QGuiApplication_SetOverrideCursor(void* cursor){
 	QGuiApplication::setOverrideCursor(*static_cast<QCursor*>(cursor));
 }
 
@@ -91,27 +93,33 @@ void QGuiApplication_QGuiApplication_SetQuitOnLastWindowClosed(int quit){
 	QGuiApplication::setQuitOnLastWindowClosed(quit != 0);
 }
 
-void QGuiApplication_QGuiApplication_SetWindowIcon(QtObjectPtr icon){
+void QGuiApplication_QGuiApplication_SetWindowIcon(void* icon){
 	QGuiApplication::setWindowIcon(*static_cast<QIcon*>(icon));
 }
 
-QtObjectPtr QGuiApplication_NewQGuiApplication(int argc, char* argv){
-	return new QGuiApplication(argc, &argv);
+void* QGuiApplication_NewQGuiApplication(int argc, char* argv){
+	QList<QByteArray> aList = QByteArray(argv).split('|');
+	char *argvs[argc];
+	static int argcs = argc;
+	for (int i = 0; i < argc; i++)
+		argvs[i] = aList[i].data();
+
+	return new QGuiApplication(argcs, argvs);
 }
 
-void QGuiApplication_ConnectApplicationStateChanged(QtObjectPtr ptr){
+void QGuiApplication_ConnectApplicationStateChanged(void* ptr){
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::ApplicationState)>(&QGuiApplication::applicationStateChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::ApplicationState)>(&MyQGuiApplication::Signal_ApplicationStateChanged));;
 }
 
-void QGuiApplication_DisconnectApplicationStateChanged(QtObjectPtr ptr){
+void QGuiApplication_DisconnectApplicationStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::ApplicationState)>(&QGuiApplication::applicationStateChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::ApplicationState)>(&MyQGuiApplication::Signal_ApplicationStateChanged));;
 }
 
-void QGuiApplication_QGuiApplication_ChangeOverrideCursor(QtObjectPtr cursor){
+void QGuiApplication_QGuiApplication_ChangeOverrideCursor(void* cursor){
 	QGuiApplication::changeOverrideCursor(*static_cast<QCursor*>(cursor));
 }
 
-QtObjectPtr QGuiApplication_QGuiApplication_Clipboard(){
+void* QGuiApplication_QGuiApplication_Clipboard(){
 	return QGuiApplication::clipboard();
 }
 
@@ -119,43 +127,47 @@ int QGuiApplication_QGuiApplication_DesktopSettingsAware(){
 	return QGuiApplication::desktopSettingsAware();
 }
 
+double QGuiApplication_DevicePixelRatio(void* ptr){
+	return static_cast<double>(static_cast<QGuiApplication*>(ptr)->devicePixelRatio());
+}
+
 int QGuiApplication_QGuiApplication_Exec(){
 	return QGuiApplication::exec();
 }
 
-QtObjectPtr QGuiApplication_QGuiApplication_FocusObject(){
+void* QGuiApplication_QGuiApplication_FocusObject(){
 	return QGuiApplication::focusObject();
 }
 
-void QGuiApplication_ConnectFocusObjectChanged(QtObjectPtr ptr){
+void QGuiApplication_ConnectFocusObjectChanged(void* ptr){
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QObject *)>(&QGuiApplication::focusObjectChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QObject *)>(&MyQGuiApplication::Signal_FocusObjectChanged));;
 }
 
-void QGuiApplication_DisconnectFocusObjectChanged(QtObjectPtr ptr){
+void QGuiApplication_DisconnectFocusObjectChanged(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QObject *)>(&QGuiApplication::focusObjectChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QObject *)>(&MyQGuiApplication::Signal_FocusObjectChanged));;
 }
 
-QtObjectPtr QGuiApplication_QGuiApplication_FocusWindow(){
+void* QGuiApplication_QGuiApplication_FocusWindow(){
 	return QGuiApplication::focusWindow();
 }
 
-void QGuiApplication_ConnectFocusWindowChanged(QtObjectPtr ptr){
+void QGuiApplication_ConnectFocusWindowChanged(void* ptr){
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QWindow *)>(&QGuiApplication::focusWindowChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QWindow *)>(&MyQGuiApplication::Signal_FocusWindowChanged));;
 }
 
-void QGuiApplication_DisconnectFocusWindowChanged(QtObjectPtr ptr){
+void QGuiApplication_DisconnectFocusWindowChanged(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QWindow *)>(&QGuiApplication::focusWindowChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QWindow *)>(&MyQGuiApplication::Signal_FocusWindowChanged));;
 }
 
-void QGuiApplication_ConnectFontDatabaseChanged(QtObjectPtr ptr){
+void QGuiApplication_ConnectFontDatabaseChanged(void* ptr){
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::fontDatabaseChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_FontDatabaseChanged));;
 }
 
-void QGuiApplication_DisconnectFontDatabaseChanged(QtObjectPtr ptr){
+void QGuiApplication_DisconnectFontDatabaseChanged(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::fontDatabaseChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_FontDatabaseChanged));;
 }
 
-QtObjectPtr QGuiApplication_QGuiApplication_InputMethod(){
+void* QGuiApplication_QGuiApplication_InputMethod(){
 	return QGuiApplication::inputMethod();
 }
 
@@ -171,23 +183,23 @@ int QGuiApplication_QGuiApplication_KeyboardModifiers(){
 	return QGuiApplication::keyboardModifiers();
 }
 
-void QGuiApplication_ConnectLastWindowClosed(QtObjectPtr ptr){
+void QGuiApplication_ConnectLastWindowClosed(void* ptr){
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::lastWindowClosed), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_LastWindowClosed));;
 }
 
-void QGuiApplication_DisconnectLastWindowClosed(QtObjectPtr ptr){
+void QGuiApplication_DisconnectLastWindowClosed(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::lastWindowClosed), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_LastWindowClosed));;
 }
 
-void QGuiApplication_ConnectLayoutDirectionChanged(QtObjectPtr ptr){
+void QGuiApplication_ConnectLayoutDirectionChanged(void* ptr){
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::LayoutDirection)>(&QGuiApplication::layoutDirectionChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::LayoutDirection)>(&MyQGuiApplication::Signal_LayoutDirectionChanged));;
 }
 
-void QGuiApplication_DisconnectLayoutDirectionChanged(QtObjectPtr ptr){
+void QGuiApplication_DisconnectLayoutDirectionChanged(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(Qt::LayoutDirection)>(&QGuiApplication::layoutDirectionChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(Qt::LayoutDirection)>(&MyQGuiApplication::Signal_LayoutDirectionChanged));;
 }
 
-QtObjectPtr QGuiApplication_QGuiApplication_ModalWindow(){
+void* QGuiApplication_QGuiApplication_ModalWindow(){
 	return QGuiApplication::modalWindow();
 }
 
@@ -195,27 +207,27 @@ int QGuiApplication_QGuiApplication_MouseButtons(){
 	return QGuiApplication::mouseButtons();
 }
 
-int QGuiApplication_Notify(QtObjectPtr ptr, QtObjectPtr object, QtObjectPtr event){
+int QGuiApplication_Notify(void* ptr, void* object, void* event){
 	return static_cast<QGuiApplication*>(ptr)->notify(static_cast<QObject*>(object), static_cast<QEvent*>(event));
 }
 
-QtObjectPtr QGuiApplication_QGuiApplication_PrimaryScreen(){
+void* QGuiApplication_QGuiApplication_PrimaryScreen(){
 	return QGuiApplication::primaryScreen();
 }
 
-void QGuiApplication_ConnectScreenAdded(QtObjectPtr ptr){
+void QGuiApplication_ConnectScreenAdded(void* ptr){
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::screenAdded), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_ScreenAdded));;
 }
 
-void QGuiApplication_DisconnectScreenAdded(QtObjectPtr ptr){
+void QGuiApplication_DisconnectScreenAdded(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::screenAdded), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_ScreenAdded));;
 }
 
-void QGuiApplication_ConnectScreenRemoved(QtObjectPtr ptr){
+void QGuiApplication_ConnectScreenRemoved(void* ptr){
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::screenRemoved), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_ScreenRemoved));;
 }
 
-void QGuiApplication_DisconnectScreenRemoved(QtObjectPtr ptr){
+void QGuiApplication_DisconnectScreenRemoved(void* ptr){
 	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::screenRemoved), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_ScreenRemoved));;
 }
 
@@ -223,15 +235,15 @@ void QGuiApplication_QGuiApplication_SetDesktopSettingsAware(int on){
 	QGuiApplication::setDesktopSettingsAware(on != 0);
 }
 
-void QGuiApplication_QGuiApplication_SetFont(QtObjectPtr font){
+void QGuiApplication_QGuiApplication_SetFont(void* font){
 	QGuiApplication::setFont(*static_cast<QFont*>(font));
 }
 
-void QGuiApplication_QGuiApplication_SetPalette(QtObjectPtr pal){
+void QGuiApplication_QGuiApplication_SetPalette(void* pal){
 	QGuiApplication::setPalette(*static_cast<QPalette*>(pal));
 }
 
-QtObjectPtr QGuiApplication_QGuiApplication_StyleHints(){
+void* QGuiApplication_QGuiApplication_StyleHints(){
 	return QGuiApplication::styleHints();
 }
 
@@ -239,11 +251,11 @@ void QGuiApplication_QGuiApplication_Sync(){
 	QGuiApplication::sync();
 }
 
-QtObjectPtr QGuiApplication_QGuiApplication_TopLevelAt(QtObjectPtr pos){
+void* QGuiApplication_QGuiApplication_TopLevelAt(void* pos){
 	return QGuiApplication::topLevelAt(*static_cast<QPoint*>(pos));
 }
 
-void QGuiApplication_DestroyQGuiApplication(QtObjectPtr ptr){
+void QGuiApplication_DestroyQGuiApplication(void* ptr){
 	static_cast<QGuiApplication*>(ptr)->~QGuiApplication();
 }
 

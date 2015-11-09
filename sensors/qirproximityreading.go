@@ -11,27 +11,40 @@ type QIRProximityReading struct {
 	QSensorReading
 }
 
-type QIRProximityReadingITF interface {
-	QSensorReadingITF
-	QIRProximityReadingPTR() *QIRProximityReading
+type QIRProximityReading_ITF interface {
+	QSensorReading_ITF
+	QIRProximityReading_PTR() *QIRProximityReading
 }
 
-func PointerFromQIRProximityReading(ptr QIRProximityReadingITF) unsafe.Pointer {
+func PointerFromQIRProximityReading(ptr QIRProximityReading_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QIRProximityReadingPTR().Pointer()
+		return ptr.QIRProximityReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func QIRProximityReadingFromPointer(ptr unsafe.Pointer) *QIRProximityReading {
+func NewQIRProximityReadingFromPointer(ptr unsafe.Pointer) *QIRProximityReading {
 	var n = new(QIRProximityReading)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QIRProximityReading_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QIRProximityReading) QIRProximityReadingPTR() *QIRProximityReading {
+func (ptr *QIRProximityReading) QIRProximityReading_PTR() *QIRProximityReading {
 	return ptr
+}
+
+func (ptr *QIRProximityReading) Reflectance() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QIRProximityReading_Reflectance(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QIRProximityReading) SetReflectance(reflectance float64) {
+	if ptr.Pointer() != nil {
+		C.QIRProximityReading_SetReflectance(ptr.Pointer(), C.double(reflectance))
+	}
 }

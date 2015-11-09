@@ -1,39 +1,37 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QQmlEngine_OfflineStoragePath(QtObjectPtr ptr);
-void QQmlEngine_SetOfflineStoragePath(QtObjectPtr ptr, char* dir);
-QtObjectPtr QQmlEngine_NewQQmlEngine(QtObjectPtr parent);
-void QQmlEngine_AddImageProvider(QtObjectPtr ptr, char* providerId, QtObjectPtr provider);
-void QQmlEngine_AddImportPath(QtObjectPtr ptr, char* path);
-void QQmlEngine_AddPluginPath(QtObjectPtr ptr, char* path);
-char* QQmlEngine_BaseUrl(QtObjectPtr ptr);
-void QQmlEngine_ClearComponentCache(QtObjectPtr ptr);
-QtObjectPtr QQmlEngine_QQmlEngine_ContextForObject(QtObjectPtr object);
-QtObjectPtr QQmlEngine_ImageProvider(QtObjectPtr ptr, char* providerId);
-char* QQmlEngine_ImportPathList(QtObjectPtr ptr);
-QtObjectPtr QQmlEngine_IncubationController(QtObjectPtr ptr);
-QtObjectPtr QQmlEngine_NetworkAccessManager(QtObjectPtr ptr);
-QtObjectPtr QQmlEngine_NetworkAccessManagerFactory(QtObjectPtr ptr);
-int QQmlEngine_QQmlEngine_ObjectOwnership(QtObjectPtr object);
-int QQmlEngine_OutputWarningsToStandardError(QtObjectPtr ptr);
-char* QQmlEngine_PluginPathList(QtObjectPtr ptr);
-void QQmlEngine_ConnectQuit(QtObjectPtr ptr);
-void QQmlEngine_DisconnectQuit(QtObjectPtr ptr);
-void QQmlEngine_RemoveImageProvider(QtObjectPtr ptr, char* providerId);
-QtObjectPtr QQmlEngine_RootContext(QtObjectPtr ptr);
-void QQmlEngine_SetBaseUrl(QtObjectPtr ptr, char* url);
-void QQmlEngine_QQmlEngine_SetContextForObject(QtObjectPtr object, QtObjectPtr context);
-void QQmlEngine_SetImportPathList(QtObjectPtr ptr, char* paths);
-void QQmlEngine_SetIncubationController(QtObjectPtr ptr, QtObjectPtr controller);
-void QQmlEngine_SetNetworkAccessManagerFactory(QtObjectPtr ptr, QtObjectPtr factory);
-void QQmlEngine_QQmlEngine_SetObjectOwnership(QtObjectPtr object, int ownership);
-void QQmlEngine_SetOutputWarningsToStandardError(QtObjectPtr ptr, int enabled);
-void QQmlEngine_SetPluginPathList(QtObjectPtr ptr, char* paths);
-void QQmlEngine_TrimComponentCache(QtObjectPtr ptr);
-void QQmlEngine_DestroyQQmlEngine(QtObjectPtr ptr);
+char* QQmlEngine_OfflineStoragePath(void* ptr);
+void QQmlEngine_SetOfflineStoragePath(void* ptr, char* dir);
+void* QQmlEngine_NewQQmlEngine(void* parent);
+void QQmlEngine_AddImageProvider(void* ptr, char* providerId, void* provider);
+void QQmlEngine_AddImportPath(void* ptr, char* path);
+void QQmlEngine_AddPluginPath(void* ptr, char* path);
+void QQmlEngine_ClearComponentCache(void* ptr);
+void* QQmlEngine_QQmlEngine_ContextForObject(void* object);
+void* QQmlEngine_ImageProvider(void* ptr, char* providerId);
+char* QQmlEngine_ImportPathList(void* ptr);
+void* QQmlEngine_IncubationController(void* ptr);
+void* QQmlEngine_NetworkAccessManager(void* ptr);
+void* QQmlEngine_NetworkAccessManagerFactory(void* ptr);
+int QQmlEngine_QQmlEngine_ObjectOwnership(void* object);
+int QQmlEngine_OutputWarningsToStandardError(void* ptr);
+char* QQmlEngine_PluginPathList(void* ptr);
+void QQmlEngine_ConnectQuit(void* ptr);
+void QQmlEngine_DisconnectQuit(void* ptr);
+void QQmlEngine_RemoveImageProvider(void* ptr, char* providerId);
+void* QQmlEngine_RootContext(void* ptr);
+void QQmlEngine_SetBaseUrl(void* ptr, void* url);
+void QQmlEngine_QQmlEngine_SetContextForObject(void* object, void* context);
+void QQmlEngine_SetImportPathList(void* ptr, char* paths);
+void QQmlEngine_SetIncubationController(void* ptr, void* controller);
+void QQmlEngine_SetNetworkAccessManagerFactory(void* ptr, void* factory);
+void QQmlEngine_QQmlEngine_SetObjectOwnership(void* object, int ownership);
+void QQmlEngine_SetOutputWarningsToStandardError(void* ptr, int enabled);
+void QQmlEngine_SetPluginPathList(void* ptr, char* paths);
+void QQmlEngine_TrimComponentCache(void* ptr);
+void QQmlEngine_DestroyQQmlEngine(void* ptr);
 
 #ifdef __cplusplus
 }

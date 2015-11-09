@@ -11,48 +11,48 @@ type QCameraCaptureDestinationControl struct {
 	QMediaControl
 }
 
-type QCameraCaptureDestinationControlITF interface {
-	QMediaControlITF
-	QCameraCaptureDestinationControlPTR() *QCameraCaptureDestinationControl
+type QCameraCaptureDestinationControl_ITF interface {
+	QMediaControl_ITF
+	QCameraCaptureDestinationControl_PTR() *QCameraCaptureDestinationControl
 }
 
-func PointerFromQCameraCaptureDestinationControl(ptr QCameraCaptureDestinationControlITF) unsafe.Pointer {
+func PointerFromQCameraCaptureDestinationControl(ptr QCameraCaptureDestinationControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCameraCaptureDestinationControlPTR().Pointer()
+		return ptr.QCameraCaptureDestinationControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCameraCaptureDestinationControlFromPointer(ptr unsafe.Pointer) *QCameraCaptureDestinationControl {
+func NewQCameraCaptureDestinationControlFromPointer(ptr unsafe.Pointer) *QCameraCaptureDestinationControl {
 	var n = new(QCameraCaptureDestinationControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCameraCaptureDestinationControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCameraCaptureDestinationControl) QCameraCaptureDestinationControlPTR() *QCameraCaptureDestinationControl {
+func (ptr *QCameraCaptureDestinationControl) QCameraCaptureDestinationControl_PTR() *QCameraCaptureDestinationControl {
 	return ptr
 }
 
 func (ptr *QCameraCaptureDestinationControl) CaptureDestination() QCameraImageCapture__CaptureDestination {
 	if ptr.Pointer() != nil {
-		return QCameraImageCapture__CaptureDestination(C.QCameraCaptureDestinationControl_CaptureDestination(C.QtObjectPtr(ptr.Pointer())))
+		return QCameraImageCapture__CaptureDestination(C.QCameraCaptureDestinationControl_CaptureDestination(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QCameraCaptureDestinationControl) ConnectCaptureDestinationChanged(f func(destination QCameraImageCapture__CaptureDestination)) {
 	if ptr.Pointer() != nil {
-		C.QCameraCaptureDestinationControl_ConnectCaptureDestinationChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraCaptureDestinationControl_ConnectCaptureDestinationChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "captureDestinationChanged", f)
 	}
 }
 
 func (ptr *QCameraCaptureDestinationControl) DisconnectCaptureDestinationChanged() {
 	if ptr.Pointer() != nil {
-		C.QCameraCaptureDestinationControl_DisconnectCaptureDestinationChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraCaptureDestinationControl_DisconnectCaptureDestinationChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "captureDestinationChanged")
 	}
 }
@@ -64,20 +64,20 @@ func callbackQCameraCaptureDestinationControlCaptureDestinationChanged(ptrName *
 
 func (ptr *QCameraCaptureDestinationControl) IsCaptureDestinationSupported(destination QCameraImageCapture__CaptureDestination) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraCaptureDestinationControl_IsCaptureDestinationSupported(C.QtObjectPtr(ptr.Pointer()), C.int(destination)) != 0
+		return C.QCameraCaptureDestinationControl_IsCaptureDestinationSupported(ptr.Pointer(), C.int(destination)) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraCaptureDestinationControl) SetCaptureDestination(destination QCameraImageCapture__CaptureDestination) {
 	if ptr.Pointer() != nil {
-		C.QCameraCaptureDestinationControl_SetCaptureDestination(C.QtObjectPtr(ptr.Pointer()), C.int(destination))
+		C.QCameraCaptureDestinationControl_SetCaptureDestination(ptr.Pointer(), C.int(destination))
 	}
 }
 
 func (ptr *QCameraCaptureDestinationControl) DestroyQCameraCaptureDestinationControl() {
 	if ptr.Pointer() != nil {
-		C.QCameraCaptureDestinationControl_DestroyQCameraCaptureDestinationControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraCaptureDestinationControl_DestroyQCameraCaptureDestinationControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

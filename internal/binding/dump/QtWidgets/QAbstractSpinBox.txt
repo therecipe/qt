@@ -1,62 +1,62 @@
 ########################################			FUNCTIONS			########################################
-&{alignment QAbstractSpinBox::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  Qt::Alignment [] }
-&{buttonSymbols QAbstractSpinBox::buttonSymbols commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  ButtonSymbols [] }
-&{correctionMode QAbstractSpinBox::correctionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  CorrectionMode [] }
-&{hasAcceptableInput QAbstractSpinBox::hasAcceptableInput commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool [] }
-&{hasFrame QAbstractSpinBox::hasFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool [] }
-&{isAccelerated QAbstractSpinBox::isAccelerated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool [] }
-&{isGroupSeparatorShown QAbstractSpinBox::isGroupSeparatorShown commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool [] }
-&{isReadOnly QAbstractSpinBox::isReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool [] }
-&{keyboardTracking QAbstractSpinBox::keyboardTracking commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool [] }
-&{setAccelerated QAbstractSpinBox::setAccelerated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void [0xc826a8f1a0] }
-&{setAlignment QAbstractSpinBox::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void [0xc826a8f5c0] }
-&{setButtonSymbols QAbstractSpinBox::setButtonSymbols commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void [0xc826a8fa00] }
-&{setCorrectionMode QAbstractSpinBox::setCorrectionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void [0xc826a8fea0] }
-&{setFrame QAbstractSpinBox::setFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void [0xc820b2a2e0] }
-&{setGroupSeparatorShown QAbstractSpinBox::setGroupSeparatorShown commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void [0xc820b2a6e0] }
-&{setKeyboardTracking QAbstractSpinBox::setKeyboardTracking commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void [0xc820b2aa80] }
-&{setLineEdit QAbstractSpinBox::setLineEdit commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void [0xc820b2ae20] }
-&{setReadOnly QAbstractSpinBox::setReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void [0xc820b2b200] }
-&{setSpecialValueText QAbstractSpinBox::setSpecialValueText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void [0xc820b2b540] }
-&{setWrapping QAbstractSpinBox::setWrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void [0xc820b2b9c0] }
-&{specialValueText QAbstractSpinBox::specialValueText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  QString [] }
-&{text QAbstractSpinBox::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  QString [] }
-&{wrapping QAbstractSpinBox::wrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool [] }
-&{QAbstractSpinBox QAbstractSpinBox::QAbstractSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non constructor false false   [0xc8208dd640] }
-&{changeEvent QAbstractSpinBox::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820aa0300] }
-&{clear QAbstractSpinBox::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure slot false false  void [] }
-&{closeEvent QAbstractSpinBox::closeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820aa09a0] }
-&{contextMenuEvent QAbstractSpinBox::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820aa0d20] }
-&{editingFinished QAbstractSpinBox::editingFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non signal false false  void [] }
-&{event QAbstractSpinBox::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  bool [0xc820aa1400] }
-&{fixup QAbstractSpinBox::fixup commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820aa1900] }
-&{focusInEvent QAbstractSpinBox::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820aa1d00] }
-&{focusOutEvent QAbstractSpinBox::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820a161c0] }
-&{hideEvent QAbstractSpinBox::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820a165e0] }
-&{initStyleOption QAbstractSpinBox::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non plain false false  void [0xc820a16900] }
-&{inputMethodQuery QAbstractSpinBox::inputMethodQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  QVariant [0xc820a16d20] }
-&{interpretText QAbstractSpinBox::interpretText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non plain false false  void [] }
-&{keyPressEvent QAbstractSpinBox::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820a172a0] }
-&{keyReleaseEvent QAbstractSpinBox::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820a175a0] }
-&{lineEdit QAbstractSpinBox::lineEdit commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non plain false false  QLineEdit * [] }
-&{minimumSizeHint QAbstractSpinBox::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  QSize [] }
-&{mouseMoveEvent QAbstractSpinBox::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820a17c60] }
-&{mousePressEvent QAbstractSpinBox::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820a17f40] }
-&{mouseReleaseEvent QAbstractSpinBox::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820cda280] }
-&{paintEvent QAbstractSpinBox::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820cda5c0] }
-&{resizeEvent QAbstractSpinBox::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820cda960] }
-&{selectAll QAbstractSpinBox::selectAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non slot false false  void [] }
-&{showEvent QAbstractSpinBox::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820cdaf20] }
-&{sizeHint QAbstractSpinBox::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  QSize [] }
-&{stepBy QAbstractSpinBox::stepBy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820cdb540] }
-&{stepDown QAbstractSpinBox::stepDown commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non slot false false  void [] }
-&{stepEnabled QAbstractSpinBox::stepEnabled commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  StepEnabled [] }
-&{stepUp QAbstractSpinBox::stepUp commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non slot false false  void [] }
-&{timerEvent QAbstractSpinBox::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820cdbe60] }
-&{validate QAbstractSpinBox::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  QValidator::State [0xc820eae480 0xc820eae620] }
-&{wheelEvent QAbstractSpinBox::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void [0xc820eaec00] }
-&{~QAbstractSpinBox QAbstractSpinBox::~QAbstractSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non destructor false false   [] }
+&{alignment QAbstractSpinBox::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  Qt::Alignment Qt::Alignment alignment() const [] }
+&{buttonSymbols QAbstractSpinBox::buttonSymbols commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  ButtonSymbols ButtonSymbols buttonSymbols() const [] }
+&{correctionMode QAbstractSpinBox::correctionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  CorrectionMode CorrectionMode correctionMode() const [] }
+&{hasAcceptableInput QAbstractSpinBox::hasAcceptableInput commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool bool hasAcceptableInput() const [] }
+&{hasFrame QAbstractSpinBox::hasFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool bool hasFrame() const [] }
+&{isAccelerated QAbstractSpinBox::isAccelerated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool bool isAccelerated() const [] }
+&{isGroupSeparatorShown QAbstractSpinBox::isGroupSeparatorShown commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool bool isGroupSeparatorShown() const [] }
+&{isReadOnly QAbstractSpinBox::isReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool bool isReadOnly() const [] }
+&{keyboardTracking QAbstractSpinBox::keyboardTracking commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool bool keyboardTracking() const [] }
+&{setAccelerated QAbstractSpinBox::setAccelerated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void void setAccelerated(bool on) [0xc821976fa0] }
+&{setAlignment QAbstractSpinBox::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void void setAlignment(Qt::Alignment flag) [0xc8219774a0] }
+&{setButtonSymbols QAbstractSpinBox::setButtonSymbols commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void void setButtonSymbols(ButtonSymbols bs) [0xc8219777e0] }
+&{setCorrectionMode QAbstractSpinBox::setCorrectionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void void setCorrectionMode(CorrectionMode cm) [0xc821977be0] }
+&{setFrame QAbstractSpinBox::setFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void void setFrame(bool ) [0xc82196a140] }
+&{setGroupSeparatorShown QAbstractSpinBox::setGroupSeparatorShown commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void void setGroupSeparatorShown(bool shown) [0xc82196a600] }
+&{setKeyboardTracking QAbstractSpinBox::setKeyboardTracking commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void void setKeyboardTracking(bool kt) [0xc82196a9e0] }
+&{setLineEdit QAbstractSpinBox::setLineEdit commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void void setLineEdit(QLineEdit *lineEdit) [0xc82196ad20] }
+&{setReadOnly QAbstractSpinBox::setReadOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void void setReadOnly(bool r) [0xc82196b120] }
+&{setSpecialValueText QAbstractSpinBox::setSpecialValueText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void void setSpecialValueText(const QString &txt) [0xc82196b4a0] }
+&{setWrapping QAbstractSpinBox::setWrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  void void setWrapping(bool w) [0xc82196b8e0] }
+&{specialValueText QAbstractSpinBox::specialValueText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  QString QString specialValueText() const [] }
+&{text QAbstractSpinBox::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  QString QString text() const [] }
+&{wrapping QAbstractSpinBox::wrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.cpp non plain false false  bool bool wrapping() const [] }
+&{QAbstractSpinBox QAbstractSpinBox::QAbstractSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non constructor false false   QAbstractSpinBox(QWidget *parent) [0xc82195b860] }
+&{changeEvent QAbstractSpinBox::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void changeEvent(QEvent *event) [0xc82194a480] }
+&{clear QAbstractSpinBox::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure slot false false  void void clear() [] }
+&{closeEvent QAbstractSpinBox::closeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void closeEvent(QCloseEvent *event) [0xc82194aa20] }
+&{contextMenuEvent QAbstractSpinBox::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void contextMenuEvent(QContextMenuEvent *event) [0xc82194ad00] }
+&{editingFinished QAbstractSpinBox::editingFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non signal false false  void void editingFinished() [] }
+&{event QAbstractSpinBox::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  bool bool event(QEvent *event) [0xc82194b300] }
+&{fixup QAbstractSpinBox::fixup commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void fixup(QString &input) const [0xc82194b880] }
+&{focusInEvent QAbstractSpinBox::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void focusInEvent(QFocusEvent *event) [0xc82194bce0] }
+&{focusOutEvent QAbstractSpinBox::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void focusOutEvent(QFocusEvent *event) [0xc821936140] }
+&{hideEvent QAbstractSpinBox::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void hideEvent(QHideEvent *event) [0xc8219366c0] }
+&{initStyleOption QAbstractSpinBox::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non plain false false  void void initStyleOption(QStyleOptionSpinBox *option) const [0xc821936b60] }
+&{inputMethodQuery QAbstractSpinBox::inputMethodQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  QVariant QVariant inputMethodQuery(Qt::InputMethodQuery query) const [0xc821937000] }
+&{interpretText QAbstractSpinBox::interpretText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non plain false false  void void interpretText() [] }
+&{keyPressEvent QAbstractSpinBox::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void keyPressEvent(QKeyEvent *event) [0xc8219379a0] }
+&{keyReleaseEvent QAbstractSpinBox::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void keyReleaseEvent(QKeyEvent *event) [0xc821937ce0] }
+&{lineEdit QAbstractSpinBox::lineEdit commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non plain false false  QLineEdit * QLineEdit * lineEdit() const [] }
+&{minimumSizeHint QAbstractSpinBox::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  QSize QSize minimumSizeHint() const [] }
+&{mouseMoveEvent QAbstractSpinBox::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void mouseMoveEvent(QMouseEvent *event) [0xc8219166e0] }
+&{mousePressEvent QAbstractSpinBox::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void mousePressEvent(QMouseEvent *event) [0xc821916a60] }
+&{mouseReleaseEvent QAbstractSpinBox::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *event) [0xc821916e60] }
+&{paintEvent QAbstractSpinBox::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void paintEvent(QPaintEvent *event) [0xc821917280] }
+&{resizeEvent QAbstractSpinBox::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void resizeEvent(QResizeEvent *event) [0xc8219176c0] }
+&{selectAll QAbstractSpinBox::selectAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non slot false false  void void selectAll() [] }
+&{showEvent QAbstractSpinBox::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void showEvent(QShowEvent *event) [0xc821917fa0] }
+&{sizeHint QAbstractSpinBox::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  QSize QSize sizeHint() const [] }
+&{stepBy QAbstractSpinBox::stepBy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void stepBy(int steps) [0xc82190aa40] }
+&{stepDown QAbstractSpinBox::stepDown commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non slot false false  void void stepDown() [] }
+&{stepEnabled QAbstractSpinBox::stepEnabled commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  StepEnabled StepEnabled stepEnabled() const [] }
+&{stepUp QAbstractSpinBox::stepUp commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non slot false false  void void stepUp() [] }
+&{timerEvent QAbstractSpinBox::timerEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void timerEvent(QTimerEvent *event) [0xc82190b980] }
+&{validate QAbstractSpinBox::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  QValidator::State QValidator::State validate(QString &input, int &pos) const [0xc821da2080 0xc821da2160] }
+&{wheelEvent QAbstractSpinBox::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h impure plain false false  void void wheelEvent(QWheelEvent *event) [0xc821da2640] }
+&{~QAbstractSpinBox QAbstractSpinBox::~QAbstractSpinBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qabstractspinbox.h non destructor false false   ~QAbstractSpinBox() [] }
 ########################################			ENUMS			########################################
-&{ButtonSymbols QAbstractSpinBox::ButtonSymbols commendable public  [0xc8208dc440 0xc8208dc560 0xc8208dc680]}
-&{CorrectionMode QAbstractSpinBox::CorrectionMode commendable public  [0xc8208dca60 0xc8208dcc20]}
-&{StepEnabledFlag QAbstractSpinBox::StepEnabledFlag commendable public QAbstractSpinBox::StepEnabled [0xc8208dd000 0xc8208dd140 0xc8208dd200]}
+&{ButtonSymbols QAbstractSpinBox::ButtonSymbols commendable public  [0xc82195a420 0xc82195a4e0 0xc82195a5a0] false}
+&{CorrectionMode QAbstractSpinBox::CorrectionMode commendable public  [0xc82195aa00 0xc82195ace0] false}
+&{StepEnabledFlag QAbstractSpinBox::StepEnabledFlag commendable public QAbstractSpinBox::StepEnabled [0xc82195b140 0xc82195b260 0xc82195b380] false}

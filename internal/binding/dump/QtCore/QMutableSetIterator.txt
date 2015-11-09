@@ -1,16 +1,16 @@
 ########################################			FUNCTIONS			########################################
-&{QMutableSetIterator QMutableSetIterator::QMutableSetIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non constructor false false   [0xc820c25920] }
-&{findNext QMutableSetIterator::findNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool [0xc820c25b80] }
-&{findPrevious QMutableSetIterator::findPrevious commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool [0xc820c25d40] }
-&{hasNext QMutableSetIterator::hasNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool [] }
-&{hasPrevious QMutableSetIterator::hasPrevious commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool [] }
-&{next QMutableSetIterator::next commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & [] }
-&{operator= QMutableSetIterator::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QMutableSetIterator & [0xc820c164e0] }
-&{peekNext QMutableSetIterator::peekNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & [] }
-&{peekPrevious QMutableSetIterator::peekPrevious commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & [] }
-&{previous QMutableSetIterator::previous commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & [] }
-&{remove QMutableSetIterator::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  void [] }
-&{toBack QMutableSetIterator::toBack commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  void [] }
-&{toFront QMutableSetIterator::toFront commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  void [] }
-&{value QMutableSetIterator::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & [] }
+&{QMutableSetIterator QMutableSetIterator::QMutableSetIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non constructor false false   QMutableSetIterator(QSet<T> &set) [0xc820cc3ae0] }
+&{findNext QMutableSetIterator::findNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool bool findNext(const T &value) [0xc820cc3d20] }
+&{findPrevious QMutableSetIterator::findPrevious commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool bool findPrevious(const T &value) [0xc820cc3ee0] }
+&{hasNext QMutableSetIterator::hasNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool bool hasNext() const [] }
+&{hasPrevious QMutableSetIterator::hasPrevious commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool bool hasPrevious() const [] }
+&{next QMutableSetIterator::next commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & const T & next() [] }
+&{operator= QMutableSetIterator::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QMutableSetIterator & QMutableSetIterator & operator=(QSet<T> &set) [0xc820cb8760] }
+&{peekNext QMutableSetIterator::peekNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & const T & peekNext() const [] }
+&{peekPrevious QMutableSetIterator::peekPrevious commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & const T & peekPrevious() const [] }
+&{previous QMutableSetIterator::previous commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & const T & previous() [] }
+&{remove QMutableSetIterator::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  void void remove() [] }
+&{toBack QMutableSetIterator::toBack commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  void void toBack() [] }
+&{toFront QMutableSetIterator::toFront commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  void void toFront() [] }
+&{value QMutableSetIterator::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & const T & value() const [] }
 ########################################			ENUMS			########################################

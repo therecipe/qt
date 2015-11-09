@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QAbstractUriResolver QAbstractUriResolver::QAbstractUriResolver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstracturiresolver.h non constructor false false   [0xc820ed2aa0] }
-&{resolve QAbstractUriResolver::resolve commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstracturiresolver.h pure plain false false  QUrl [0xc820ed2ea0 0xc820ed3020] }
-&{~QAbstractUriResolver QAbstractUriResolver::~QAbstractUriResolver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstracturiresolver.h impure destructor false false   [] }
+&{QAbstractUriResolver QAbstractUriResolver::QAbstractUriResolver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstracturiresolver.h non constructor false false   QAbstractUriResolver(QObject *parent) [0xc820bca9a0] }
+&{resolve QAbstractUriResolver::resolve commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstracturiresolver.h pure plain false false  QUrl QUrl resolve(const QUrl &relative, const QUrl &baseURI) const [0xc820bcac80 0xc820bcad60] }
+&{~QAbstractUriResolver QAbstractUriResolver::~QAbstractUriResolver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstracturiresolver.h impure destructor false false   ~QAbstractUriResolver() [] }
 ########################################			ENUMS			########################################

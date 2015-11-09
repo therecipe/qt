@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QXmlStreamEntityDeclaration QXmlStreamEntityDeclaration::QXmlStreamEntityDeclaration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false false   [] }
-&{QXmlStreamEntityDeclaration QXmlStreamEntityDeclaration::QXmlStreamEntityDeclaration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 2  [0xc8204a9aa0] }
-&{name QXmlStreamEntityDeclaration::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
-&{notationName QXmlStreamEntityDeclaration::notationName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
-&{operator!= QXmlStreamEntityDeclaration::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [0xc820496160] }
-&{operator= QXmlStreamEntityDeclaration::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QXmlStreamEntityDeclaration & [0xc8204965a0] }
-&{operator== QXmlStreamEntityDeclaration::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [0xc820496900] }
-&{publicId QXmlStreamEntityDeclaration::publicId commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
-&{systemId QXmlStreamEntityDeclaration::systemId commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
-&{value QXmlStreamEntityDeclaration::value commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
-&{~QXmlStreamEntityDeclaration QXmlStreamEntityDeclaration::~QXmlStreamEntityDeclaration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non destructor false false   [] }
+&{QXmlStreamEntityDeclaration QXmlStreamEntityDeclaration::QXmlStreamEntityDeclaration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false false   QXmlStreamEntityDeclaration() [] }
+&{QXmlStreamEntityDeclaration QXmlStreamEntityDeclaration::QXmlStreamEntityDeclaration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 2  QXmlStreamEntityDeclaration(const QXmlStreamEntityDeclaration &other) [0xc820ba2280] }
+&{name QXmlStreamEntityDeclaration::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef QStringRef name() const [] }
+&{notationName QXmlStreamEntityDeclaration::notationName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef QStringRef notationName() const [] }
+&{operator!= QXmlStreamEntityDeclaration::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool bool operator!=(const QXmlStreamEntityDeclaration &other) const [0xc820ba2620] }
+&{operator= QXmlStreamEntityDeclaration::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QXmlStreamEntityDeclaration & QXmlStreamEntityDeclaration & operator=(const QXmlStreamEntityDeclaration &other) [0xc820ba2820] }
+&{operator== QXmlStreamEntityDeclaration::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool bool operator==(const QXmlStreamEntityDeclaration &other) const [0xc820ba2960] }
+&{publicId QXmlStreamEntityDeclaration::publicId commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef QStringRef publicId() const [] }
+&{systemId QXmlStreamEntityDeclaration::systemId commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef QStringRef systemId() const [] }
+&{value QXmlStreamEntityDeclaration::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef QStringRef value() const [] }
+&{~QXmlStreamEntityDeclaration QXmlStreamEntityDeclaration::~QXmlStreamEntityDeclaration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non destructor false false   ~QXmlStreamEntityDeclaration() [] }
 ########################################			ENUMS			########################################

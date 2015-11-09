@@ -11,8 +11,8 @@ type QImageEncoderSettings struct {
 	ptr unsafe.Pointer
 }
 
-type QImageEncoderSettingsITF interface {
-	QImageEncoderSettingsPTR() *QImageEncoderSettings
+type QImageEncoderSettings_ITF interface {
+	QImageEncoderSettings_PTR() *QImageEncoderSettings
 }
 
 func (p *QImageEncoderSettings) Pointer() unsafe.Pointer {
@@ -23,78 +23,78 @@ func (p *QImageEncoderSettings) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQImageEncoderSettings(ptr QImageEncoderSettingsITF) unsafe.Pointer {
+func PointerFromQImageEncoderSettings(ptr QImageEncoderSettings_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QImageEncoderSettingsPTR().Pointer()
+		return ptr.QImageEncoderSettings_PTR().Pointer()
 	}
 	return nil
 }
 
-func QImageEncoderSettingsFromPointer(ptr unsafe.Pointer) *QImageEncoderSettings {
+func NewQImageEncoderSettingsFromPointer(ptr unsafe.Pointer) *QImageEncoderSettings {
 	var n = new(QImageEncoderSettings)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QImageEncoderSettings) QImageEncoderSettingsPTR() *QImageEncoderSettings {
+func (ptr *QImageEncoderSettings) QImageEncoderSettings_PTR() *QImageEncoderSettings {
 	return ptr
 }
 
 func NewQImageEncoderSettings() *QImageEncoderSettings {
-	return QImageEncoderSettingsFromPointer(unsafe.Pointer(C.QImageEncoderSettings_NewQImageEncoderSettings()))
+	return NewQImageEncoderSettingsFromPointer(C.QImageEncoderSettings_NewQImageEncoderSettings())
 }
 
-func NewQImageEncoderSettings2(other QImageEncoderSettingsITF) *QImageEncoderSettings {
-	return QImageEncoderSettingsFromPointer(unsafe.Pointer(C.QImageEncoderSettings_NewQImageEncoderSettings2(C.QtObjectPtr(PointerFromQImageEncoderSettings(other)))))
+func NewQImageEncoderSettings2(other QImageEncoderSettings_ITF) *QImageEncoderSettings {
+	return NewQImageEncoderSettingsFromPointer(C.QImageEncoderSettings_NewQImageEncoderSettings2(PointerFromQImageEncoderSettings(other)))
 }
 
 func (ptr *QImageEncoderSettings) Codec() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageEncoderSettings_Codec(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QImageEncoderSettings_Codec(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QImageEncoderSettings) EncodingOption(option string) string {
+func (ptr *QImageEncoderSettings) EncodingOption(option string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageEncoderSettings_EncodingOption(C.QtObjectPtr(ptr.Pointer()), C.CString(option)))
+		return core.NewQVariantFromPointer(C.QImageEncoderSettings_EncodingOption(ptr.Pointer(), C.CString(option)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QImageEncoderSettings) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QImageEncoderSettings_IsNull(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QImageEncoderSettings_IsNull(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QImageEncoderSettings) SetCodec(codec string) {
 	if ptr.Pointer() != nil {
-		C.QImageEncoderSettings_SetCodec(C.QtObjectPtr(ptr.Pointer()), C.CString(codec))
+		C.QImageEncoderSettings_SetCodec(ptr.Pointer(), C.CString(codec))
 	}
 }
 
-func (ptr *QImageEncoderSettings) SetEncodingOption(option string, value string) {
+func (ptr *QImageEncoderSettings) SetEncodingOption(option string, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QImageEncoderSettings_SetEncodingOption(C.QtObjectPtr(ptr.Pointer()), C.CString(option), C.CString(value))
+		C.QImageEncoderSettings_SetEncodingOption(ptr.Pointer(), C.CString(option), core.PointerFromQVariant(value))
 	}
 }
 
-func (ptr *QImageEncoderSettings) SetResolution(resolution core.QSizeITF) {
+func (ptr *QImageEncoderSettings) SetResolution(resolution core.QSize_ITF) {
 	if ptr.Pointer() != nil {
-		C.QImageEncoderSettings_SetResolution(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQSize(resolution)))
+		C.QImageEncoderSettings_SetResolution(ptr.Pointer(), core.PointerFromQSize(resolution))
 	}
 }
 
 func (ptr *QImageEncoderSettings) SetResolution2(width int, height int) {
 	if ptr.Pointer() != nil {
-		C.QImageEncoderSettings_SetResolution2(C.QtObjectPtr(ptr.Pointer()), C.int(width), C.int(height))
+		C.QImageEncoderSettings_SetResolution2(ptr.Pointer(), C.int(width), C.int(height))
 	}
 }
 
 func (ptr *QImageEncoderSettings) DestroyQImageEncoderSettings() {
 	if ptr.Pointer() != nil {
-		C.QImageEncoderSettings_DestroyQImageEncoderSettings(C.QtObjectPtr(ptr.Pointer()))
+		C.QImageEncoderSettings_DestroyQImageEncoderSettings(ptr.Pointer())
 	}
 }

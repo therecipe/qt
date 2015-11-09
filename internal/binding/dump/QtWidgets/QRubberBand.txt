@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
-&{setGeometry QRubberBand::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.cpp non plain false false  void [0xc822e52720] }
-&{QRubberBand QRubberBand::QRubberBand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non constructor false false   [0xc822e534c0 0xc822e53620] }
-&{changeEvent QRubberBand::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h impure plain false false  void [0xc822e53ae0] }
-&{event QRubberBand::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h impure plain false false  bool [0xc822e3e1e0] }
-&{initStyleOption QRubberBand::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false false  void [0xc822e3e840] }
-&{move QRubberBand::move commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false true 2 void [0xc822e3efc0] }
-&{move QRubberBand::move commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false false  void [0xc822e3f6a0 0xc822e3f8e0] }
-&{moveEvent QRubberBand::moveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h impure plain false false  void [0xc822e3ffc0] }
-&{paintEvent QRubberBand::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h impure plain false false  void [0xc822e2e5e0] }
-&{resize QRubberBand::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false true 2 void [0xc822e2eac0] }
-&{resize QRubberBand::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false false  void [0xc822e2efa0 0xc822e2f100] }
-&{resizeEvent QRubberBand::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h impure plain false false  void [0xc822e2f600] }
-&{setGeometry QRubberBand::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false true 2 void [0xc822e2fc20 0xc822e2fcc0 0xc822e2ff40 0xc822e2ffc0] }
-&{shape QRubberBand::shape commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false false  Shape [] }
-&{showEvent QRubberBand::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h impure plain false false  void [0xc822e20760] }
-&{~QRubberBand QRubberBand::~QRubberBand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non destructor false false   [] }
+&{setGeometry QRubberBand::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.cpp non plain false false  void void setGeometry(const QRect &rect) [0xc820f8a060] }
+&{QRubberBand QRubberBand::QRubberBand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non constructor false false   QRubberBand(Shape s, QWidget *p) [0xc820f8abe0 0xc820f8ad00] }
+&{changeEvent QRubberBand::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h impure plain false false  void void changeEvent(QEvent *e) [0xc820f8b280] }
+&{event QRubberBand::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h impure plain false false  bool bool event(QEvent *e) [0xc820f8b7e0] }
+&{initStyleOption QRubberBand::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false false  void void initStyleOption(QStyleOptionRubberBand *option) const [0xc820f8bd00] }
+&{move QRubberBand::move commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false true 2 void void move(const QPoint &p) [0xc820f78320] }
+&{move QRubberBand::move commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false false  void void move(int x, int y) [0xc820f787a0 0xc820f78980] }
+&{moveEvent QRubberBand::moveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h impure plain false false  void void moveEvent(QMoveEvent *) [0xc820f78e80] }
+&{paintEvent QRubberBand::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc820f793e0] }
+&{resize QRubberBand::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false true 2 void void resize(const QSize &size) [0xc820f79920] }
+&{resize QRubberBand::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false false  void void resize(int width, int height) [0xc820f79d80 0xc820f79ee0] }
+&{resizeEvent QRubberBand::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h impure plain false false  void void resizeEvent(QResizeEvent *) [0xc821e442c0] }
+&{setGeometry QRubberBand::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false true 2 void void setGeometry(int x, int y, int width, int height) [0xc821e445a0 0xc821e44640 0xc821e44740 0xc821e447e0] }
+&{shape QRubberBand::shape commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non plain false false  Shape Shape shape() const [] }
+&{showEvent QRubberBand::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h impure plain false false  void void showEvent(QShowEvent *e) [0xc821e44d80] }
+&{~QRubberBand QRubberBand::~QRubberBand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qrubberband.h non destructor false false   ~QRubberBand() [] }
 ########################################			ENUMS			########################################
-&{Shape QRubberBand::Shape commendable public  [0xc822e52d80 0xc822e52fc0]}
+&{Shape QRubberBand::Shape commendable public  [0xc820f8a5c0 0xc820f8a760] false}

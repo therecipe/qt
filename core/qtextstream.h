@@ -1,42 +1,41 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QTextStream_AtEnd(QtObjectPtr ptr);
-int QTextStream_AutoDetectUnicode(QtObjectPtr ptr);
-QtObjectPtr QTextStream_Codec(QtObjectPtr ptr);
-QtObjectPtr QTextStream_Device(QtObjectPtr ptr);
-int QTextStream_FieldAlignment(QtObjectPtr ptr);
-int QTextStream_FieldWidth(QtObjectPtr ptr);
-void QTextStream_Flush(QtObjectPtr ptr);
-int QTextStream_GenerateByteOrderMark(QtObjectPtr ptr);
-int QTextStream_IntegerBase(QtObjectPtr ptr);
-int QTextStream_NumberFlags(QtObjectPtr ptr);
-char* QTextStream_ReadAll(QtObjectPtr ptr);
-int QTextStream_RealNumberNotation(QtObjectPtr ptr);
-int QTextStream_RealNumberPrecision(QtObjectPtr ptr);
-void QTextStream_Reset(QtObjectPtr ptr);
-void QTextStream_ResetStatus(QtObjectPtr ptr);
-void QTextStream_SetAutoDetectUnicode(QtObjectPtr ptr, int enabled);
-void QTextStream_SetCodec(QtObjectPtr ptr, QtObjectPtr codec);
-void QTextStream_SetCodec2(QtObjectPtr ptr, char* codecName);
-void QTextStream_SetDevice(QtObjectPtr ptr, QtObjectPtr device);
-void QTextStream_SetFieldAlignment(QtObjectPtr ptr, int mode);
-void QTextStream_SetFieldWidth(QtObjectPtr ptr, int width);
-void QTextStream_SetGenerateByteOrderMark(QtObjectPtr ptr, int generate);
-void QTextStream_SetIntegerBase(QtObjectPtr ptr, int base);
-void QTextStream_SetLocale(QtObjectPtr ptr, QtObjectPtr locale);
-void QTextStream_SetNumberFlags(QtObjectPtr ptr, int flags);
-void QTextStream_SetPadChar(QtObjectPtr ptr, QtObjectPtr ch);
-void QTextStream_SetRealNumberNotation(QtObjectPtr ptr, int notation);
-void QTextStream_SetRealNumberPrecision(QtObjectPtr ptr, int precision);
-void QTextStream_SetStatus(QtObjectPtr ptr, int status);
-void QTextStream_SetString(QtObjectPtr ptr, char* stri, int openMode);
-void QTextStream_SkipWhiteSpace(QtObjectPtr ptr);
-int QTextStream_Status(QtObjectPtr ptr);
-char* QTextStream_String(QtObjectPtr ptr);
-void QTextStream_DestroyQTextStream(QtObjectPtr ptr);
+int QTextStream_AtEnd(void* ptr);
+int QTextStream_AutoDetectUnicode(void* ptr);
+void* QTextStream_Codec(void* ptr);
+void* QTextStream_Device(void* ptr);
+int QTextStream_FieldAlignment(void* ptr);
+int QTextStream_FieldWidth(void* ptr);
+void QTextStream_Flush(void* ptr);
+int QTextStream_GenerateByteOrderMark(void* ptr);
+int QTextStream_IntegerBase(void* ptr);
+int QTextStream_NumberFlags(void* ptr);
+char* QTextStream_ReadAll(void* ptr);
+int QTextStream_RealNumberNotation(void* ptr);
+int QTextStream_RealNumberPrecision(void* ptr);
+void QTextStream_Reset(void* ptr);
+void QTextStream_ResetStatus(void* ptr);
+void QTextStream_SetAutoDetectUnicode(void* ptr, int enabled);
+void QTextStream_SetCodec(void* ptr, void* codec);
+void QTextStream_SetCodec2(void* ptr, char* codecName);
+void QTextStream_SetDevice(void* ptr, void* device);
+void QTextStream_SetFieldAlignment(void* ptr, int mode);
+void QTextStream_SetFieldWidth(void* ptr, int width);
+void QTextStream_SetGenerateByteOrderMark(void* ptr, int generate);
+void QTextStream_SetIntegerBase(void* ptr, int base);
+void QTextStream_SetLocale(void* ptr, void* locale);
+void QTextStream_SetNumberFlags(void* ptr, int flags);
+void QTextStream_SetPadChar(void* ptr, void* ch);
+void QTextStream_SetRealNumberNotation(void* ptr, int notation);
+void QTextStream_SetRealNumberPrecision(void* ptr, int precision);
+void QTextStream_SetStatus(void* ptr, int status);
+void QTextStream_SetString(void* ptr, char* stri, int openMode);
+void QTextStream_SkipWhiteSpace(void* ptr);
+int QTextStream_Status(void* ptr);
+char* QTextStream_String(void* ptr);
+void QTextStream_DestroyQTextStream(void* ptr);
 
 #ifdef __cplusplus
 }

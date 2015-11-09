@@ -1,8 +1,8 @@
 #include "qdomentity.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QDomEntity>
 #include "_cgo_export.h"
 
@@ -10,27 +10,27 @@ class MyQDomEntity: public QDomEntity {
 public:
 };
 
-QtObjectPtr QDomEntity_NewQDomEntity(){
+void* QDomEntity_NewQDomEntity(){
 	return new QDomEntity();
 }
 
-QtObjectPtr QDomEntity_NewQDomEntity2(QtObjectPtr x){
+void* QDomEntity_NewQDomEntity2(void* x){
 	return new QDomEntity(*static_cast<QDomEntity*>(x));
 }
 
-int QDomEntity_NodeType(QtObjectPtr ptr){
+int QDomEntity_NodeType(void* ptr){
 	return static_cast<QDomEntity*>(ptr)->nodeType();
 }
 
-char* QDomEntity_NotationName(QtObjectPtr ptr){
+char* QDomEntity_NotationName(void* ptr){
 	return static_cast<QDomEntity*>(ptr)->notationName().toUtf8().data();
 }
 
-char* QDomEntity_PublicId(QtObjectPtr ptr){
+char* QDomEntity_PublicId(void* ptr){
 	return static_cast<QDomEntity*>(ptr)->publicId().toUtf8().data();
 }
 
-char* QDomEntity_SystemId(QtObjectPtr ptr){
+char* QDomEntity_SystemId(void* ptr){
 	return static_cast<QDomEntity*>(ptr)->systemId().toUtf8().data();
 }
 

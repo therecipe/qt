@@ -11,32 +11,32 @@ type QBluetoothUuid struct {
 	core.QUuid
 }
 
-type QBluetoothUuidITF interface {
-	core.QUuidITF
-	QBluetoothUuidPTR() *QBluetoothUuid
+type QBluetoothUuid_ITF interface {
+	core.QUuid_ITF
+	QBluetoothUuid_PTR() *QBluetoothUuid
 }
 
-func PointerFromQBluetoothUuid(ptr QBluetoothUuidITF) unsafe.Pointer {
+func PointerFromQBluetoothUuid(ptr QBluetoothUuid_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QBluetoothUuidPTR().Pointer()
+		return ptr.QBluetoothUuid_PTR().Pointer()
 	}
 	return nil
 }
 
-func QBluetoothUuidFromPointer(ptr unsafe.Pointer) *QBluetoothUuid {
+func NewQBluetoothUuidFromPointer(ptr unsafe.Pointer) *QBluetoothUuid {
 	var n = new(QBluetoothUuid)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QBluetoothUuid) QBluetoothUuidPTR() *QBluetoothUuid {
+func (ptr *QBluetoothUuid) QBluetoothUuid_PTR() *QBluetoothUuid {
 	return ptr
 }
 
 //QBluetoothUuid::CharacteristicType
-type QBluetoothUuid__CharacteristicType int
+type QBluetoothUuid__CharacteristicType int64
 
-var (
+const (
 	QBluetoothUuid__DeviceName                                    = QBluetoothUuid__CharacteristicType(0x2a00)
 	QBluetoothUuid__Appearance                                    = QBluetoothUuid__CharacteristicType(0x2a01)
 	QBluetoothUuid__PeripheralPrivacyFlag                         = QBluetoothUuid__CharacteristicType(0x2a02)
@@ -177,9 +177,9 @@ var (
 )
 
 //QBluetoothUuid::DescriptorType
-type QBluetoothUuid__DescriptorType int
+type QBluetoothUuid__DescriptorType int64
 
-var (
+const (
 	QBluetoothUuid__UnknownDescriptorType              = QBluetoothUuid__DescriptorType(0x0)
 	QBluetoothUuid__CharacteristicExtendedProperties   = QBluetoothUuid__DescriptorType(0x2900)
 	QBluetoothUuid__CharacteristicUserDescription      = QBluetoothUuid__DescriptorType(0x2901)
@@ -196,9 +196,9 @@ var (
 )
 
 //QBluetoothUuid::ProtocolUuid
-type QBluetoothUuid__ProtocolUuid int
+type QBluetoothUuid__ProtocolUuid int64
 
-var (
+const (
 	QBluetoothUuid__Sdp                    = QBluetoothUuid__ProtocolUuid(0x0001)
 	QBluetoothUuid__Udp                    = QBluetoothUuid__ProtocolUuid(0x0002)
 	QBluetoothUuid__Rfcomm                 = QBluetoothUuid__ProtocolUuid(0x0003)
@@ -227,9 +227,9 @@ var (
 )
 
 //QBluetoothUuid::ServiceClassUuid
-type QBluetoothUuid__ServiceClassUuid int
+type QBluetoothUuid__ServiceClassUuid int64
 
-var (
+const (
 	QBluetoothUuid__ServiceDiscoveryServer                = QBluetoothUuid__ServiceClassUuid(0x1000)
 	QBluetoothUuid__BrowseGroupDescriptor                 = QBluetoothUuid__ServiceClassUuid(0x1001)
 	QBluetoothUuid__PublicBrowseGroup                     = QBluetoothUuid__ServiceClassUuid(0x1002)
@@ -324,35 +324,35 @@ var (
 )
 
 func NewQBluetoothUuid() *QBluetoothUuid {
-	return QBluetoothUuidFromPointer(unsafe.Pointer(C.QBluetoothUuid_NewQBluetoothUuid()))
+	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid())
 }
 
 func NewQBluetoothUuid4(uuid QBluetoothUuid__CharacteristicType) *QBluetoothUuid {
-	return QBluetoothUuidFromPointer(unsafe.Pointer(C.QBluetoothUuid_NewQBluetoothUuid4(C.int(uuid))))
+	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid4(C.int(uuid)))
 }
 
 func NewQBluetoothUuid5(uuid QBluetoothUuid__DescriptorType) *QBluetoothUuid {
-	return QBluetoothUuidFromPointer(unsafe.Pointer(C.QBluetoothUuid_NewQBluetoothUuid5(C.int(uuid))))
+	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid5(C.int(uuid)))
 }
 
 func NewQBluetoothUuid2(uuid QBluetoothUuid__ProtocolUuid) *QBluetoothUuid {
-	return QBluetoothUuidFromPointer(unsafe.Pointer(C.QBluetoothUuid_NewQBluetoothUuid2(C.int(uuid))))
+	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid2(C.int(uuid)))
 }
 
 func NewQBluetoothUuid3(uuid QBluetoothUuid__ServiceClassUuid) *QBluetoothUuid {
-	return QBluetoothUuidFromPointer(unsafe.Pointer(C.QBluetoothUuid_NewQBluetoothUuid3(C.int(uuid))))
+	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid3(C.int(uuid)))
 }
 
-func NewQBluetoothUuid10(uuid QBluetoothUuidITF) *QBluetoothUuid {
-	return QBluetoothUuidFromPointer(unsafe.Pointer(C.QBluetoothUuid_NewQBluetoothUuid10(C.QtObjectPtr(PointerFromQBluetoothUuid(uuid)))))
+func NewQBluetoothUuid10(uuid QBluetoothUuid_ITF) *QBluetoothUuid {
+	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid10(PointerFromQBluetoothUuid(uuid)))
 }
 
 func NewQBluetoothUuid9(uuid string) *QBluetoothUuid {
-	return QBluetoothUuidFromPointer(unsafe.Pointer(C.QBluetoothUuid_NewQBluetoothUuid9(C.CString(uuid))))
+	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid9(C.CString(uuid)))
 }
 
-func NewQBluetoothUuid11(uuid core.QUuidITF) *QBluetoothUuid {
-	return QBluetoothUuidFromPointer(unsafe.Pointer(C.QBluetoothUuid_NewQBluetoothUuid11(C.QtObjectPtr(core.PointerFromQUuid(uuid)))))
+func NewQBluetoothUuid11(uuid core.QUuid_ITF) *QBluetoothUuid {
+	return NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid11(core.PointerFromQUuid(uuid)))
 }
 
 func QBluetoothUuid_CharacteristicToString(uuid QBluetoothUuid__CharacteristicType) string {
@@ -365,7 +365,7 @@ func QBluetoothUuid_DescriptorToString(uuid QBluetoothUuid__DescriptorType) stri
 
 func (ptr *QBluetoothUuid) MinimumSize() int {
 	if ptr.Pointer() != nil {
-		return int(C.QBluetoothUuid_MinimumSize(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QBluetoothUuid_MinimumSize(ptr.Pointer()))
 	}
 	return 0
 }
@@ -380,6 +380,6 @@ func QBluetoothUuid_ServiceClassToString(uuid QBluetoothUuid__ServiceClassUuid) 
 
 func (ptr *QBluetoothUuid) DestroyQBluetoothUuid() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothUuid_DestroyQBluetoothUuid(C.QtObjectPtr(ptr.Pointer()))
+		C.QBluetoothUuid_DestroyQBluetoothUuid(ptr.Pointer())
 	}
 }

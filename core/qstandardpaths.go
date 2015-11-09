@@ -12,8 +12,8 @@ type QStandardPaths struct {
 	ptr unsafe.Pointer
 }
 
-type QStandardPathsITF interface {
-	QStandardPathsPTR() *QStandardPaths
+type QStandardPaths_ITF interface {
+	QStandardPaths_PTR() *QStandardPaths
 }
 
 func (p *QStandardPaths) Pointer() unsafe.Pointer {
@@ -24,35 +24,35 @@ func (p *QStandardPaths) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQStandardPaths(ptr QStandardPathsITF) unsafe.Pointer {
+func PointerFromQStandardPaths(ptr QStandardPaths_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStandardPathsPTR().Pointer()
+		return ptr.QStandardPaths_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStandardPathsFromPointer(ptr unsafe.Pointer) *QStandardPaths {
+func NewQStandardPathsFromPointer(ptr unsafe.Pointer) *QStandardPaths {
 	var n = new(QStandardPaths)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStandardPaths) QStandardPathsPTR() *QStandardPaths {
+func (ptr *QStandardPaths) QStandardPaths_PTR() *QStandardPaths {
 	return ptr
 }
 
 //QStandardPaths::LocateOption
-type QStandardPaths__LocateOption int
+type QStandardPaths__LocateOption int64
 
-var (
+const (
 	QStandardPaths__LocateFile      = QStandardPaths__LocateOption(0x0)
 	QStandardPaths__LocateDirectory = QStandardPaths__LocateOption(0x1)
 )
 
 //QStandardPaths::StandardLocation
-type QStandardPaths__StandardLocation int
+type QStandardPaths__StandardLocation int64
 
-var (
+const (
 	QStandardPaths__DesktopLocation       = QStandardPaths__StandardLocation(0)
 	QStandardPaths__DocumentsLocation     = QStandardPaths__StandardLocation(1)
 	QStandardPaths__FontsLocation         = QStandardPaths__StandardLocation(2)

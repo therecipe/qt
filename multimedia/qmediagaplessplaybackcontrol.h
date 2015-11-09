@@ -1,13 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QMediaGaplessPlaybackControl_ConnectAdvancedToNextMedia(QtObjectPtr ptr);
-void QMediaGaplessPlaybackControl_DisconnectAdvancedToNextMedia(QtObjectPtr ptr);
-int QMediaGaplessPlaybackControl_IsCrossfadeSupported(QtObjectPtr ptr);
-void QMediaGaplessPlaybackControl_SetNextMedia(QtObjectPtr ptr, QtObjectPtr media);
-void QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl(QtObjectPtr ptr);
+void QMediaGaplessPlaybackControl_ConnectAdvancedToNextMedia(void* ptr);
+void QMediaGaplessPlaybackControl_DisconnectAdvancedToNextMedia(void* ptr);
+double QMediaGaplessPlaybackControl_CrossfadeTime(void* ptr);
+int QMediaGaplessPlaybackControl_IsCrossfadeSupported(void* ptr);
+void QMediaGaplessPlaybackControl_SetCrossfadeTime(void* ptr, double crossfadeTime);
+void QMediaGaplessPlaybackControl_SetNextMedia(void* ptr, void* media);
+void QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{blurHints QGraphicsBlurEffect::blurHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non plain false false  BlurHints [] }
-&{blurRadius QGraphicsBlurEffect::blurRadius commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non plain false false  qreal [] }
-&{setBlurHints QGraphicsBlurEffect::setBlurHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non slot false false  void [0xc82300eb20] }
-&{setBlurRadius QGraphicsBlurEffect::setBlurRadius commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non slot false false  void [0xc82300f080] }
-&{QGraphicsBlurEffect QGraphicsBlurEffect::QGraphicsBlurEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non constructor false false   [0xc822ffc200] }
-&{blurHintsChanged QGraphicsBlurEffect::blurHintsChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non signal false false  void [0xc822ffc640] }
-&{blurRadiusChanged QGraphicsBlurEffect::blurRadiusChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non signal false false  void [0xc822ffcb00] }
-&{boundingRectFor QGraphicsBlurEffect::boundingRectFor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure plain false false  QRectF [0xc822ffcf20] }
-&{draw QGraphicsBlurEffect::draw commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure plain false false  void [0xc822ffd4e0] }
-&{~QGraphicsBlurEffect QGraphicsBlurEffect::~QGraphicsBlurEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non destructor false false   [] }
+&{blurHints QGraphicsBlurEffect::blurHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non plain false false  BlurHints BlurHints blurHints() const [] }
+&{blurRadius QGraphicsBlurEffect::blurRadius commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non plain false false  qreal qreal blurRadius() const [] }
+&{setBlurHints QGraphicsBlurEffect::setBlurHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non slot false false  void void setBlurHints(BlurHints hints) [0xc823084ac0] }
+&{setBlurRadius QGraphicsBlurEffect::setBlurRadius commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non slot false false  void void setBlurRadius(qreal blurRadius) [0xc823084dc0] }
+&{QGraphicsBlurEffect QGraphicsBlurEffect::QGraphicsBlurEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non constructor false false   QGraphicsBlurEffect(QObject *parent) [0xc823085a80] }
+&{blurHintsChanged QGraphicsBlurEffect::blurHintsChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non signal false false  void void blurHintsChanged(BlurHints hints) [0xc823085d80] }
+&{blurRadiusChanged QGraphicsBlurEffect::blurRadiusChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non signal false false  void void blurRadiusChanged(qreal radius) [0xc823072160] }
+&{boundingRectFor QGraphicsBlurEffect::boundingRectFor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure plain false false  QRectF QRectF boundingRectFor(const QRectF &rect) const [0xc823072440] }
+&{draw QGraphicsBlurEffect::draw commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure plain false false  void void draw(QPainter *painter) [0xc823072920] }
+&{~QGraphicsBlurEffect QGraphicsBlurEffect::~QGraphicsBlurEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non destructor false false   ~QGraphicsBlurEffect() [] }
 ########################################			ENUMS			########################################
-&{BlurHint QGraphicsBlurEffect::BlurHint commendable public QGraphicsBlurEffect::BlurHints [0xc82300f820 0xc82300f8e0 0xc82300fa20]}
+&{BlurHint QGraphicsBlurEffect::BlurHint commendable public QGraphicsBlurEffect::BlurHints [0xc823085300 0xc823085400 0xc823085500] false}

@@ -1,10 +1,10 @@
 #include "qnetworkcachemetadata.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QDate>
 #include <QDateTime>
-#include <QString>
+#include <QDate>
 #include <QNetworkCacheMetaData>
 #include "_cgo_export.h"
 
@@ -12,47 +12,51 @@ class MyQNetworkCacheMetaData: public QNetworkCacheMetaData {
 public:
 };
 
-QtObjectPtr QNetworkCacheMetaData_NewQNetworkCacheMetaData(){
+void* QNetworkCacheMetaData_NewQNetworkCacheMetaData(){
 	return new QNetworkCacheMetaData();
 }
 
-QtObjectPtr QNetworkCacheMetaData_NewQNetworkCacheMetaData2(QtObjectPtr other){
+void* QNetworkCacheMetaData_NewQNetworkCacheMetaData2(void* other){
 	return new QNetworkCacheMetaData(*static_cast<QNetworkCacheMetaData*>(other));
 }
 
-int QNetworkCacheMetaData_IsValid(QtObjectPtr ptr){
+void* QNetworkCacheMetaData_ExpirationDate(void* ptr){
+	return new QDateTime(static_cast<QNetworkCacheMetaData*>(ptr)->expirationDate());
+}
+
+int QNetworkCacheMetaData_IsValid(void* ptr){
 	return static_cast<QNetworkCacheMetaData*>(ptr)->isValid();
 }
 
-int QNetworkCacheMetaData_SaveToDisk(QtObjectPtr ptr){
+void* QNetworkCacheMetaData_LastModified(void* ptr){
+	return new QDateTime(static_cast<QNetworkCacheMetaData*>(ptr)->lastModified());
+}
+
+int QNetworkCacheMetaData_SaveToDisk(void* ptr){
 	return static_cast<QNetworkCacheMetaData*>(ptr)->saveToDisk();
 }
 
-void QNetworkCacheMetaData_SetExpirationDate(QtObjectPtr ptr, QtObjectPtr dateTime){
+void QNetworkCacheMetaData_SetExpirationDate(void* ptr, void* dateTime){
 	static_cast<QNetworkCacheMetaData*>(ptr)->setExpirationDate(*static_cast<QDateTime*>(dateTime));
 }
 
-void QNetworkCacheMetaData_SetLastModified(QtObjectPtr ptr, QtObjectPtr dateTime){
+void QNetworkCacheMetaData_SetLastModified(void* ptr, void* dateTime){
 	static_cast<QNetworkCacheMetaData*>(ptr)->setLastModified(*static_cast<QDateTime*>(dateTime));
 }
 
-void QNetworkCacheMetaData_SetSaveToDisk(QtObjectPtr ptr, int allow){
+void QNetworkCacheMetaData_SetSaveToDisk(void* ptr, int allow){
 	static_cast<QNetworkCacheMetaData*>(ptr)->setSaveToDisk(allow != 0);
 }
 
-void QNetworkCacheMetaData_SetUrl(QtObjectPtr ptr, char* url){
-	static_cast<QNetworkCacheMetaData*>(ptr)->setUrl(QUrl(QString(url)));
+void QNetworkCacheMetaData_SetUrl(void* ptr, void* url){
+	static_cast<QNetworkCacheMetaData*>(ptr)->setUrl(*static_cast<QUrl*>(url));
 }
 
-void QNetworkCacheMetaData_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QNetworkCacheMetaData_Swap(void* ptr, void* other){
 	static_cast<QNetworkCacheMetaData*>(ptr)->swap(*static_cast<QNetworkCacheMetaData*>(other));
 }
 
-char* QNetworkCacheMetaData_Url(QtObjectPtr ptr){
-	return static_cast<QNetworkCacheMetaData*>(ptr)->url().toString().toUtf8().data();
-}
-
-void QNetworkCacheMetaData_DestroyQNetworkCacheMetaData(QtObjectPtr ptr){
+void QNetworkCacheMetaData_DestroyQNetworkCacheMetaData(void* ptr){
 	static_cast<QNetworkCacheMetaData*>(ptr)->~QNetworkCacheMetaData();
 }
 

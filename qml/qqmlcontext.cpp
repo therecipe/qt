@@ -1,10 +1,10 @@
 #include "qqmlcontext.h"
-#include <QQmlEngine>
 #include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QQmlEngine>
 #include <QQmlContext>
 #include "_cgo_export.h"
 
@@ -12,63 +12,55 @@ class MyQQmlContext: public QQmlContext {
 public:
 };
 
-QtObjectPtr QQmlContext_NewQQmlContext2(QtObjectPtr parentContext, QtObjectPtr parent){
+void* QQmlContext_NewQQmlContext2(void* parentContext, void* parent){
 	return new QQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QQmlContext_NewQQmlContext(QtObjectPtr engine, QtObjectPtr parent){
+void* QQmlContext_NewQQmlContext(void* engine, void* parent){
 	return new QQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QObject*>(parent));
 }
 
-char* QQmlContext_BaseUrl(QtObjectPtr ptr){
-	return static_cast<QQmlContext*>(ptr)->baseUrl().toString().toUtf8().data();
-}
-
-QtObjectPtr QQmlContext_ContextObject(QtObjectPtr ptr){
+void* QQmlContext_ContextObject(void* ptr){
 	return static_cast<QQmlContext*>(ptr)->contextObject();
 }
 
-char* QQmlContext_ContextProperty(QtObjectPtr ptr, char* name){
-	return static_cast<QQmlContext*>(ptr)->contextProperty(QString(name)).toString().toUtf8().data();
+void* QQmlContext_ContextProperty(void* ptr, char* name){
+	return new QVariant(static_cast<QQmlContext*>(ptr)->contextProperty(QString(name)));
 }
 
-QtObjectPtr QQmlContext_Engine(QtObjectPtr ptr){
+void* QQmlContext_Engine(void* ptr){
 	return static_cast<QQmlContext*>(ptr)->engine();
 }
 
-int QQmlContext_IsValid(QtObjectPtr ptr){
+int QQmlContext_IsValid(void* ptr){
 	return static_cast<QQmlContext*>(ptr)->isValid();
 }
 
-char* QQmlContext_NameForObject(QtObjectPtr ptr, QtObjectPtr object){
+char* QQmlContext_NameForObject(void* ptr, void* object){
 	return static_cast<QQmlContext*>(ptr)->nameForObject(static_cast<QObject*>(object)).toUtf8().data();
 }
 
-QtObjectPtr QQmlContext_ParentContext(QtObjectPtr ptr){
+void* QQmlContext_ParentContext(void* ptr){
 	return static_cast<QQmlContext*>(ptr)->parentContext();
 }
 
-char* QQmlContext_ResolvedUrl(QtObjectPtr ptr, char* src){
-	return static_cast<QQmlContext*>(ptr)->resolvedUrl(QUrl(QString(src))).toString().toUtf8().data();
+void QQmlContext_SetBaseUrl(void* ptr, void* baseUrl){
+	static_cast<QQmlContext*>(ptr)->setBaseUrl(*static_cast<QUrl*>(baseUrl));
 }
 
-void QQmlContext_SetBaseUrl(QtObjectPtr ptr, char* baseUrl){
-	static_cast<QQmlContext*>(ptr)->setBaseUrl(QUrl(QString(baseUrl)));
-}
-
-void QQmlContext_SetContextObject(QtObjectPtr ptr, QtObjectPtr object){
+void QQmlContext_SetContextObject(void* ptr, void* object){
 	static_cast<QQmlContext*>(ptr)->setContextObject(static_cast<QObject*>(object));
 }
 
-void QQmlContext_SetContextProperty(QtObjectPtr ptr, char* name, QtObjectPtr value){
+void QQmlContext_SetContextProperty(void* ptr, char* name, void* value){
 	static_cast<QQmlContext*>(ptr)->setContextProperty(QString(name), static_cast<QObject*>(value));
 }
 
-void QQmlContext_SetContextProperty2(QtObjectPtr ptr, char* name, char* value){
-	static_cast<QQmlContext*>(ptr)->setContextProperty(QString(name), QVariant(value));
+void QQmlContext_SetContextProperty2(void* ptr, char* name, void* value){
+	static_cast<QQmlContext*>(ptr)->setContextProperty(QString(name), *static_cast<QVariant*>(value));
 }
 
-void QQmlContext_DestroyQQmlContext(QtObjectPtr ptr){
+void QQmlContext_DestroyQQmlContext(void* ptr){
 	static_cast<QQmlContext*>(ptr)->~QQmlContext();
 }
 

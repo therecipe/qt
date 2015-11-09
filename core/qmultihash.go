@@ -10,24 +10,24 @@ type QMultiHash struct {
 	QHash
 }
 
-type QMultiHashITF interface {
-	QHashITF
-	QMultiHashPTR() *QMultiHash
+type QMultiHash_ITF interface {
+	QHash_ITF
+	QMultiHash_PTR() *QMultiHash
 }
 
-func PointerFromQMultiHash(ptr QMultiHashITF) unsafe.Pointer {
+func PointerFromQMultiHash(ptr QMultiHash_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMultiHashPTR().Pointer()
+		return ptr.QMultiHash_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMultiHashFromPointer(ptr unsafe.Pointer) *QMultiHash {
+func NewQMultiHashFromPointer(ptr unsafe.Pointer) *QMultiHash {
 	var n = new(QMultiHash)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMultiHash) QMultiHashPTR() *QMultiHash {
+func (ptr *QMultiHash) QMultiHash_PTR() *QMultiHash {
 	return ptr
 }

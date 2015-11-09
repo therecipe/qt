@@ -1,28 +1,28 @@
 ########################################			FUNCTIONS			########################################
-&{progress QQmlComponent::progress commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.cpp non plain false false  qreal [] }
-&{status QQmlComponent::status commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.cpp non plain false false  Status [] }
-&{url QQmlComponent::url commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.cpp non plain false false  QUrl [] }
-&{QQmlComponent QQmlComponent::QQmlComponent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non constructor false false   [0xc822e71280 0xc822e713a0] }
-&{QQmlComponent QQmlComponent::QQmlComponent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non constructor false true 4  [0xc822e719a0 0xc822e71ac0 0xc822e71d60 0xc822e71f20] }
-&{QQmlComponent QQmlComponent::QQmlComponent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non constructor false true 3  [0xc822e5e3e0 0xc822e5e660 0xc822e5e940] }
-&{QQmlComponent QQmlComponent::QQmlComponent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non constructor false true 6  [0xc822e5eee0 0xc822e5f0e0 0xc822e5f320 0xc822e5f5c0] }
-&{QQmlComponent QQmlComponent::QQmlComponent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non constructor false true 5  [0xc822e5fba0 0xc822e5fd60 0xc822e5fe80] }
-&{beginCreate QQmlComponent::beginCreate commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h impure plain false false  QObject * [0xc822e52fa0] }
-&{completeCreate QQmlComponent::completeCreate commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h impure plain false false  void [] }
-&{create QQmlComponent::create commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h impure plain false false  QObject * [0xc822e53840] }
-&{create QQmlComponent::create commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false true 2 void [0xc822e53e80 0xc822e3e2c0 0xc822e3e4c0] }
-&{creationContext QQmlComponent::creationContext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false false  QQmlContext * [] }
-&{errors QQmlComponent::errors commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false false  QList<QQmlError> [] }
-&{isError QQmlComponent::isError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false false  bool [] }
-&{isLoading QQmlComponent::isLoading commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false false  bool [] }
-&{isNull QQmlComponent::isNull commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false false  bool [] }
-&{isReady QQmlComponent::isReady commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false false  bool [] }
-&{loadUrl QQmlComponent::loadUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non slot false false  void [0xc822e20160] }
-&{loadUrl QQmlComponent::loadUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non slot false true 2 void [0xc822e205e0 0xc822e20700] }
-&{progressChanged QQmlComponent::progressChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non signal false false  void [0xc822e20ce0] }
-&{setData QQmlComponent::setData commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non slot false false  void [0xc822e21040 0xc822e21220] }
-&{statusChanged QQmlComponent::statusChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non signal false false  void [0xc822e21740] }
-&{~QQmlComponent QQmlComponent::~QQmlComponent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h impure destructor false false   [] }
+&{progress QQmlComponent::progress commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.cpp non plain false false  qreal qreal progress() const [] }
+&{status QQmlComponent::status commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.cpp non plain false false  Status Status status() const [] }
+&{url QQmlComponent::url commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.cpp non plain false false  QUrl QUrl url() const [] }
+&{QQmlComponent QQmlComponent::QQmlComponent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non constructor false false   QQmlComponent(QQmlEngine *engine, QObject *parent) [0xc8230e14c0 0xc8230e1720] }
+&{QQmlComponent QQmlComponent::QQmlComponent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non constructor false true 4  QQmlComponent(QQmlEngine *engine, const QString &fileName, CompilationMode mode, QObject *parent) [0xc8230e1d60 0xc8230e1ea0 0xc8230e1f80 0xc8230d0160] }
+&{QQmlComponent QQmlComponent::QQmlComponent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non constructor false true 3  QQmlComponent(QQmlEngine *engine, const QString &fileName, QObject *parent) [0xc8230d0520 0xc8230d0600 0xc8230d0720] }
+&{QQmlComponent QQmlComponent::QQmlComponent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non constructor false true 6  QQmlComponent(QQmlEngine *engine, const QUrl &url, CompilationMode mode, QObject *parent) [0xc8230d0c00 0xc8230d0d60 0xc8230d0ea0 0xc8230d10a0] }
+&{QQmlComponent QQmlComponent::QQmlComponent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non constructor false true 5  QQmlComponent(QQmlEngine *engine, const QUrl &url, QObject *parent) [0xc8230d15a0 0xc8230d16c0 0xc8230d1880] }
+&{beginCreate QQmlComponent::beginCreate commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h impure plain false false  QObject * QObject * beginCreate(QQmlContext *publicContext) [0xc8230be580] }
+&{completeCreate QQmlComponent::completeCreate commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h impure plain false false  void void completeCreate() [] }
+&{create QQmlComponent::create commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h impure plain false false  QObject * QObject * create(QQmlContext *context) [0xc8230befc0] }
+&{create QQmlComponent::create commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false true 2 void void create(QQmlIncubator &incubator, QQmlContext *context, QQmlContext *forContext) [0xc8230bf3e0 0xc8230bf560 0xc8230bf620] }
+&{creationContext QQmlComponent::creationContext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false false  QQmlContext * QQmlContext * creationContext() const [] }
+&{errors QQmlComponent::errors commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false false  QList<QQmlError> QList<QQmlError> errors() const [] }
+&{isError QQmlComponent::isError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false false  bool bool isError() const [] }
+&{isLoading QQmlComponent::isLoading commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false false  bool bool isLoading() const [] }
+&{isNull QQmlComponent::isNull commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false false  bool bool isNull() const [] }
+&{isReady QQmlComponent::isReady commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non plain false false  bool bool isReady() const [] }
+&{loadUrl QQmlComponent::loadUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non slot false false  void void loadUrl(const QUrl &url) [0xc823096260] }
+&{loadUrl QQmlComponent::loadUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non slot false true 2 void void loadUrl(const QUrl &url, CompilationMode mode) [0xc823096600 0xc8230966e0] }
+&{progressChanged QQmlComponent::progressChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non signal false false  void void progressChanged(qreal progress) [0xc823096bc0] }
+&{setData QQmlComponent::setData commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non slot false false  void void setData(const QByteArray &data, const QUrl &url) [0xc8230970e0 0xc8230972a0] }
+&{statusChanged QQmlComponent::statusChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h non signal false false  void void statusChanged(QQmlComponent::Status status) [0xc8230976e0] }
+&{~QQmlComponent QQmlComponent::~QQmlComponent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlcomponent.h impure destructor false false   ~QQmlComponent() [] }
 ########################################			ENUMS			########################################
-&{CompilationMode QQmlComponent::CompilationMode commendable public  [0xc822e81da0 0xc822e70120]}
-&{Status QQmlComponent::Status commendable public  [0xc822e70660 0xc822e70920 0xc822e70a60 0xc822e70c60]}
+&{CompilationMode QQmlComponent::CompilationMode commendable public  [0xc8230e01a0 0xc8230e0440] false}
+&{Status QQmlComponent::Status commendable public  [0xc8230e0a00 0xc8230e0bc0 0xc8230e0d60 0xc8230e0e80] false}

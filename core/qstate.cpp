@@ -1,11 +1,11 @@
 #include "qstate.h"
-#include <QAbstractState>
 #include <QObject>
+#include <QAbstractState>
+#include <QAbstractTransition>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QAbstractTransition>
 #include <QState>
 #include "_cgo_export.h"
 
@@ -18,99 +18,99 @@ void Signal_InitialStateChanged(){callbackQStateInitialStateChanged(this->object
 void Signal_PropertiesAssigned(){callbackQStatePropertiesAssigned(this->objectName().toUtf8().data());};
 };
 
-QtObjectPtr QState_NewQState2(int childMode, QtObjectPtr parent){
+void* QState_NewQState2(int childMode, void* parent){
 	return new QState(static_cast<QState::ChildMode>(childMode), static_cast<QState*>(parent));
 }
 
-QtObjectPtr QState_NewQState(QtObjectPtr parent){
+void* QState_NewQState(void* parent){
 	return new QState(static_cast<QState*>(parent));
 }
 
-QtObjectPtr QState_AddTransition3(QtObjectPtr ptr, QtObjectPtr target){
+void* QState_AddTransition3(void* ptr, void* target){
 	return static_cast<QState*>(ptr)->addTransition(static_cast<QAbstractState*>(target));
 }
 
-QtObjectPtr QState_AddTransition2(QtObjectPtr ptr, QtObjectPtr sender, char* signal, QtObjectPtr target){
+void* QState_AddTransition2(void* ptr, void* sender, char* signal, void* target){
 	return static_cast<QState*>(ptr)->addTransition(static_cast<QObject*>(sender), const_cast<const char*>(signal), static_cast<QAbstractState*>(target));
 }
 
-void QState_AddTransition(QtObjectPtr ptr, QtObjectPtr transition){
+void QState_AddTransition(void* ptr, void* transition){
 	static_cast<QState*>(ptr)->addTransition(static_cast<QAbstractTransition*>(transition));
 }
 
-void QState_AssignProperty(QtObjectPtr ptr, QtObjectPtr object, char* name, char* value){
-	static_cast<QState*>(ptr)->assignProperty(static_cast<QObject*>(object), const_cast<const char*>(name), QVariant(value));
+void QState_AssignProperty(void* ptr, void* object, char* name, void* value){
+	static_cast<QState*>(ptr)->assignProperty(static_cast<QObject*>(object), const_cast<const char*>(name), *static_cast<QVariant*>(value));
 }
 
-int QState_ChildMode(QtObjectPtr ptr){
+int QState_ChildMode(void* ptr){
 	return static_cast<QState*>(ptr)->childMode();
 }
 
-void QState_ConnectChildModeChanged(QtObjectPtr ptr){
+void QState_ConnectChildModeChanged(void* ptr){
 	QObject::connect(static_cast<QState*>(ptr), &QState::childModeChanged, static_cast<MyQState*>(ptr), static_cast<void (MyQState::*)()>(&MyQState::Signal_ChildModeChanged));;
 }
 
-void QState_DisconnectChildModeChanged(QtObjectPtr ptr){
+void QState_DisconnectChildModeChanged(void* ptr){
 	QObject::disconnect(static_cast<QState*>(ptr), &QState::childModeChanged, static_cast<MyQState*>(ptr), static_cast<void (MyQState::*)()>(&MyQState::Signal_ChildModeChanged));;
 }
 
-QtObjectPtr QState_ErrorState(QtObjectPtr ptr){
+void* QState_ErrorState(void* ptr){
 	return static_cast<QState*>(ptr)->errorState();
 }
 
-void QState_ConnectErrorStateChanged(QtObjectPtr ptr){
+void QState_ConnectErrorStateChanged(void* ptr){
 	QObject::connect(static_cast<QState*>(ptr), &QState::errorStateChanged, static_cast<MyQState*>(ptr), static_cast<void (MyQState::*)()>(&MyQState::Signal_ErrorStateChanged));;
 }
 
-void QState_DisconnectErrorStateChanged(QtObjectPtr ptr){
+void QState_DisconnectErrorStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QState*>(ptr), &QState::errorStateChanged, static_cast<MyQState*>(ptr), static_cast<void (MyQState::*)()>(&MyQState::Signal_ErrorStateChanged));;
 }
 
-void QState_ConnectFinished(QtObjectPtr ptr){
+void QState_ConnectFinished(void* ptr){
 	QObject::connect(static_cast<QState*>(ptr), &QState::finished, static_cast<MyQState*>(ptr), static_cast<void (MyQState::*)()>(&MyQState::Signal_Finished));;
 }
 
-void QState_DisconnectFinished(QtObjectPtr ptr){
+void QState_DisconnectFinished(void* ptr){
 	QObject::disconnect(static_cast<QState*>(ptr), &QState::finished, static_cast<MyQState*>(ptr), static_cast<void (MyQState::*)()>(&MyQState::Signal_Finished));;
 }
 
-QtObjectPtr QState_InitialState(QtObjectPtr ptr){
+void* QState_InitialState(void* ptr){
 	return static_cast<QState*>(ptr)->initialState();
 }
 
-void QState_ConnectInitialStateChanged(QtObjectPtr ptr){
+void QState_ConnectInitialStateChanged(void* ptr){
 	QObject::connect(static_cast<QState*>(ptr), &QState::initialStateChanged, static_cast<MyQState*>(ptr), static_cast<void (MyQState::*)()>(&MyQState::Signal_InitialStateChanged));;
 }
 
-void QState_DisconnectInitialStateChanged(QtObjectPtr ptr){
+void QState_DisconnectInitialStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QState*>(ptr), &QState::initialStateChanged, static_cast<MyQState*>(ptr), static_cast<void (MyQState::*)()>(&MyQState::Signal_InitialStateChanged));;
 }
 
-void QState_ConnectPropertiesAssigned(QtObjectPtr ptr){
+void QState_ConnectPropertiesAssigned(void* ptr){
 	QObject::connect(static_cast<QState*>(ptr), &QState::propertiesAssigned, static_cast<MyQState*>(ptr), static_cast<void (MyQState::*)()>(&MyQState::Signal_PropertiesAssigned));;
 }
 
-void QState_DisconnectPropertiesAssigned(QtObjectPtr ptr){
+void QState_DisconnectPropertiesAssigned(void* ptr){
 	QObject::disconnect(static_cast<QState*>(ptr), &QState::propertiesAssigned, static_cast<MyQState*>(ptr), static_cast<void (MyQState::*)()>(&MyQState::Signal_PropertiesAssigned));;
 }
 
-void QState_RemoveTransition(QtObjectPtr ptr, QtObjectPtr transition){
+void QState_RemoveTransition(void* ptr, void* transition){
 	static_cast<QState*>(ptr)->removeTransition(static_cast<QAbstractTransition*>(transition));
 }
 
-void QState_SetChildMode(QtObjectPtr ptr, int mode){
+void QState_SetChildMode(void* ptr, int mode){
 	static_cast<QState*>(ptr)->setChildMode(static_cast<QState::ChildMode>(mode));
 }
 
-void QState_SetErrorState(QtObjectPtr ptr, QtObjectPtr state){
+void QState_SetErrorState(void* ptr, void* state){
 	static_cast<QState*>(ptr)->setErrorState(static_cast<QAbstractState*>(state));
 }
 
-void QState_SetInitialState(QtObjectPtr ptr, QtObjectPtr state){
+void QState_SetInitialState(void* ptr, void* state){
 	static_cast<QState*>(ptr)->setInitialState(static_cast<QAbstractState*>(state));
 }
 
-void QState_DestroyQState(QtObjectPtr ptr){
+void QState_DestroyQState(void* ptr){
 	static_cast<QState*>(ptr)->~QState();
 }
 

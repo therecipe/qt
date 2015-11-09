@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QDBusVirtualObject_HandleMessage(QtObjectPtr ptr, QtObjectPtr message, QtObjectPtr connection);
-char* QDBusVirtualObject_Introspect(QtObjectPtr ptr, char* path);
-void QDBusVirtualObject_DestroyQDBusVirtualObject(QtObjectPtr ptr);
+int QDBusVirtualObject_HandleMessage(void* ptr, void* message, void* connection);
+char* QDBusVirtualObject_Introspect(void* ptr, char* path);
+void QDBusVirtualObject_DestroyQDBusVirtualObject(void* ptr);
 
 #ifdef __cplusplus
 }

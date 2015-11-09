@@ -1,9 +1,9 @@
 #include "qfinalstate.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QState>
-#include <QString>
 #include <QFinalState>
 #include "_cgo_export.h"
 
@@ -11,11 +11,11 @@ class MyQFinalState: public QFinalState {
 public:
 };
 
-QtObjectPtr QFinalState_NewQFinalState(QtObjectPtr parent){
+void* QFinalState_NewQFinalState(void* parent){
 	return new QFinalState(static_cast<QState*>(parent));
 }
 
-void QFinalState_DestroyQFinalState(QtObjectPtr ptr){
+void QFinalState_DestroyQFinalState(void* ptr){
 	static_cast<QFinalState*>(ptr)->~QFinalState();
 }
 

@@ -1,26 +1,26 @@
 ########################################			FUNCTIONS			########################################
-&{framesPerSecond QSvgRenderer::framesPerSecond commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.cpp non plain false false  int [] }
-&{setFramesPerSecond QSvgRenderer::setFramesPerSecond commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.cpp non plain false false  void [0xc821cef520] }
-&{setViewBox QSvgRenderer::setViewBox commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.cpp non plain false false  void [0xc821cef700] }
-&{setViewBox QSvgRenderer::setViewBox commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.cpp non plain false true 2 void [0xc821cef8e0] }
-&{viewBoxF QSvgRenderer::viewBoxF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.cpp non plain false false  QRectF [] }
-&{QSvgRenderer QSvgRenderer::QSvgRenderer commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non constructor false false   [0xc821cefc00] }
-&{QSvgRenderer QSvgRenderer::QSvgRenderer commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non constructor false true 4  [0xc821cefde0 0xc821cefea0] }
-&{QSvgRenderer QSvgRenderer::QSvgRenderer commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non constructor false true 3  [0xc821cb4080 0xc821cb4140] }
-&{QSvgRenderer QSvgRenderer::QSvgRenderer commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non constructor false true 2  [0xc821cb4320 0xc821cb43a0] }
-&{animated QSvgRenderer::animated commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  bool [] }
-&{boundsOnElement QSvgRenderer::boundsOnElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  QRectF [0xc821cb4640] }
-&{defaultSize QSvgRenderer::defaultSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  QSize [] }
-&{elementExists QSvgRenderer::elementExists commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  bool [0xc821cb4b40] }
-&{isValid QSvgRenderer::isValid commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  bool [] }
-&{load QSvgRenderer::load commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non slot false true 3 bool [0xc821cb4e40] }
-&{load QSvgRenderer::load commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non slot false true 2 bool [0xc821cb5060] }
-&{load QSvgRenderer::load commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non slot false false  bool [0xc821cb5260] }
-&{matrixForElement QSvgRenderer::matrixForElement commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  QMatrix [0xc821cb5400] }
-&{render QSvgRenderer::render commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non slot false false  void [0xc821cb55e0] }
-&{render QSvgRenderer::render commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non slot false true 2 void [0xc821cb57a0 0xc821cb5820] }
-&{render QSvgRenderer::render commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non slot false true 3 void [0xc821cb59e0 0xc821cb5a60 0xc821cb5ae0] }
-&{repaintNeeded QSvgRenderer::repaintNeeded commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non signal false false  void [] }
-&{viewBox QSvgRenderer::viewBox commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  QRect [] }
-&{~QSvgRenderer QSvgRenderer::~QSvgRenderer commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non destructor false false   [] }
+&{framesPerSecond QSvgRenderer::framesPerSecond commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.cpp non plain false false  int int framesPerSecond() const [] }
+&{setFramesPerSecond QSvgRenderer::setFramesPerSecond commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.cpp non plain false false  void void setFramesPerSecond(int num) [0xc8219feac0] }
+&{setViewBox QSvgRenderer::setViewBox commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.cpp non plain false false  void void setViewBox(const QRect &viewbox) [0xc8219feca0] }
+&{setViewBox QSvgRenderer::setViewBox commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.cpp non plain false true 2 void void setViewBox(const QRectF &viewbox) [0xc8219fee80] }
+&{viewBoxF QSvgRenderer::viewBoxF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.cpp non plain false false  QRectF QRectF viewBoxF() const [] }
+&{QSvgRenderer QSvgRenderer::QSvgRenderer commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non constructor false false   QSvgRenderer(QObject *parent) [0xc8219ff220] }
+&{QSvgRenderer QSvgRenderer::QSvgRenderer commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non constructor false true 4  QSvgRenderer(QXmlStreamReader *contents, QObject *parent) [0xc8219ff400 0xc8219ff4c0] }
+&{QSvgRenderer QSvgRenderer::QSvgRenderer commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non constructor false true 3  QSvgRenderer(const QByteArray &contents, QObject *parent) [0xc8219ff6a0 0xc8219ff760] }
+&{QSvgRenderer QSvgRenderer::QSvgRenderer commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non constructor false true 2  QSvgRenderer(const QString &filename, QObject *parent) [0xc8219ff940 0xc8219ff9c0] }
+&{animated QSvgRenderer::animated commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  bool bool animated() const [] }
+&{boundsOnElement QSvgRenderer::boundsOnElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  QRectF QRectF boundsOnElement(const QString &id) const [0xc8219ffca0] }
+&{defaultSize QSvgRenderer::defaultSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  QSize QSize defaultSize() const [] }
+&{elementExists QSvgRenderer::elementExists commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  bool bool elementExists(const QString &id) const [0xc8221da260] }
+&{isValid QSvgRenderer::isValid commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  bool bool isValid() const [] }
+&{load QSvgRenderer::load commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non slot false true 3 bool bool load(QXmlStreamReader *contents) [0xc8221da5a0] }
+&{load QSvgRenderer::load commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non slot false true 2 bool bool load(const QByteArray &contents) [0xc8221da7c0] }
+&{load QSvgRenderer::load commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non slot false false  bool bool load(const QString &filename) [0xc8221da9c0] }
+&{matrixForElement QSvgRenderer::matrixForElement commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  QMatrix QMatrix matrixForElement(const QString &id) const [0xc8221dab60] }
+&{render QSvgRenderer::render commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non slot false false  void void render(QPainter *painter) [0xc8221dad80] }
+&{render QSvgRenderer::render commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non slot false true 2 void void render(QPainter *painter, const QRectF &bounds) [0xc8221daf40 0xc8221dafc0] }
+&{render QSvgRenderer::render commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non slot false true 3 void void render(QPainter *painter, const QString &elementId, const QRectF &bounds) [0xc8221db180 0xc8221db200 0xc8221db280] }
+&{repaintNeeded QSvgRenderer::repaintNeeded commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non signal false false  void void repaintNeeded() [] }
+&{viewBox QSvgRenderer::viewBox commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non plain false false  QRect QRect viewBox() const [] }
+&{~QSvgRenderer QSvgRenderer::~QSvgRenderer commendable public /work/build/qt5_workdir/w/s/qtsvg/src/svg/qsvgrenderer.h non destructor false false   ~QSvgRenderer() [] }
 ########################################			ENUMS			########################################

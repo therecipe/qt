@@ -12,40 +12,40 @@ type QTapGesture struct {
 	QGesture
 }
 
-type QTapGestureITF interface {
-	QGestureITF
-	QTapGesturePTR() *QTapGesture
+type QTapGesture_ITF interface {
+	QGesture_ITF
+	QTapGesture_PTR() *QTapGesture
 }
 
-func PointerFromQTapGesture(ptr QTapGestureITF) unsafe.Pointer {
+func PointerFromQTapGesture(ptr QTapGesture_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTapGesturePTR().Pointer()
+		return ptr.QTapGesture_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTapGestureFromPointer(ptr unsafe.Pointer) *QTapGesture {
+func NewQTapGestureFromPointer(ptr unsafe.Pointer) *QTapGesture {
 	var n = new(QTapGesture)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QTapGesture_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QTapGesture) QTapGesturePTR() *QTapGesture {
+func (ptr *QTapGesture) QTapGesture_PTR() *QTapGesture {
 	return ptr
 }
 
-func (ptr *QTapGesture) SetPosition(pos core.QPointFITF) {
+func (ptr *QTapGesture) SetPosition(pos core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTapGesture_SetPosition(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(pos)))
+		C.QTapGesture_SetPosition(ptr.Pointer(), core.PointerFromQPointF(pos))
 	}
 }
 
 func (ptr *QTapGesture) DestroyQTapGesture() {
 	if ptr.Pointer() != nil {
-		C.QTapGesture_DestroyQTapGesture(C.QtObjectPtr(ptr.Pointer()))
+		C.QTapGesture_DestroyQTapGesture(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

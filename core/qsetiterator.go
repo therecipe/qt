@@ -10,8 +10,8 @@ type QSetIterator struct {
 	ptr unsafe.Pointer
 }
 
-type QSetIteratorITF interface {
-	QSetIteratorPTR() *QSetIterator
+type QSetIterator_ITF interface {
+	QSetIterator_PTR() *QSetIterator
 }
 
 func (p *QSetIterator) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QSetIterator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSetIterator(ptr QSetIteratorITF) unsafe.Pointer {
+func PointerFromQSetIterator(ptr QSetIterator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSetIteratorPTR().Pointer()
+		return ptr.QSetIterator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSetIteratorFromPointer(ptr unsafe.Pointer) *QSetIterator {
+func NewQSetIteratorFromPointer(ptr unsafe.Pointer) *QSetIterator {
 	var n = new(QSetIterator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSetIterator) QSetIteratorPTR() *QSetIterator {
+func (ptr *QSetIterator) QSetIterator_PTR() *QSetIterator {
 	return ptr
 }

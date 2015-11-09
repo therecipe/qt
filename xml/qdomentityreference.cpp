@@ -11,15 +11,15 @@ class MyQDomEntityReference: public QDomEntityReference {
 public:
 };
 
-QtObjectPtr QDomEntityReference_NewQDomEntityReference(){
+void* QDomEntityReference_NewQDomEntityReference(){
 	return new QDomEntityReference();
 }
 
-QtObjectPtr QDomEntityReference_NewQDomEntityReference2(QtObjectPtr x){
+void* QDomEntityReference_NewQDomEntityReference2(void* x){
 	return new QDomEntityReference(*static_cast<QDomEntityReference*>(x));
 }
 
-int QDomEntityReference_NodeType(QtObjectPtr ptr){
+int QDomEntityReference_NodeType(void* ptr){
 	return static_cast<QDomEntityReference*>(ptr)->nodeType();
 }
 

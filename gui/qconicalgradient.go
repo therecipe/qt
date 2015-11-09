@@ -11,34 +11,61 @@ type QConicalGradient struct {
 	QGradient
 }
 
-type QConicalGradientITF interface {
-	QGradientITF
-	QConicalGradientPTR() *QConicalGradient
+type QConicalGradient_ITF interface {
+	QGradient_ITF
+	QConicalGradient_PTR() *QConicalGradient
 }
 
-func PointerFromQConicalGradient(ptr QConicalGradientITF) unsafe.Pointer {
+func PointerFromQConicalGradient(ptr QConicalGradient_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QConicalGradientPTR().Pointer()
+		return ptr.QConicalGradient_PTR().Pointer()
 	}
 	return nil
 }
 
-func QConicalGradientFromPointer(ptr unsafe.Pointer) *QConicalGradient {
+func NewQConicalGradientFromPointer(ptr unsafe.Pointer) *QConicalGradient {
 	var n = new(QConicalGradient)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QConicalGradient) QConicalGradientPTR() *QConicalGradient {
+func (ptr *QConicalGradient) QConicalGradient_PTR() *QConicalGradient {
 	return ptr
 }
 
 func NewQConicalGradient() *QConicalGradient {
-	return QConicalGradientFromPointer(unsafe.Pointer(C.QConicalGradient_NewQConicalGradient()))
+	return NewQConicalGradientFromPointer(C.QConicalGradient_NewQConicalGradient())
 }
 
-func (ptr *QConicalGradient) SetCenter(center core.QPointFITF) {
+func NewQConicalGradient2(center core.QPointF_ITF, angle float64) *QConicalGradient {
+	return NewQConicalGradientFromPointer(C.QConicalGradient_NewQConicalGradient2(core.PointerFromQPointF(center), C.double(angle)))
+}
+
+func NewQConicalGradient3(cx float64, cy float64, angle float64) *QConicalGradient {
+	return NewQConicalGradientFromPointer(C.QConicalGradient_NewQConicalGradient3(C.double(cx), C.double(cy), C.double(angle)))
+}
+
+func (ptr *QConicalGradient) Angle() float64 {
 	if ptr.Pointer() != nil {
-		C.QConicalGradient_SetCenter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(center)))
+		return float64(C.QConicalGradient_Angle(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QConicalGradient) SetAngle(angle float64) {
+	if ptr.Pointer() != nil {
+		C.QConicalGradient_SetAngle(ptr.Pointer(), C.double(angle))
+	}
+}
+
+func (ptr *QConicalGradient) SetCenter(center core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QConicalGradient_SetCenter(ptr.Pointer(), core.PointerFromQPointF(center))
+	}
+}
+
+func (ptr *QConicalGradient) SetCenter2(x float64, y float64) {
+	if ptr.Pointer() != nil {
+		C.QConicalGradient_SetCenter2(ptr.Pointer(), C.double(x), C.double(y))
 	}
 }

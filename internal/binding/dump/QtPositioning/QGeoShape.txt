@@ -1,16 +1,16 @@
 ########################################			FUNCTIONS			########################################
-&{QGeoShape QGeoShape::QGeoShape commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non constructor false false   [] }
-&{QGeoShape QGeoShape::QGeoShape commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non constructor false true 2  [0xc822e90700] }
-&{center QGeoShape::center commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  QGeoCoordinate [] }
-&{contains QGeoShape::contains commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool [0xc822e90f20] }
-&{extendShape QGeoShape::extendShape commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  void [0xc822e91240] }
-&{isEmpty QGeoShape::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool [] }
-&{isValid QGeoShape::isValid commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool [] }
-&{operator!= QGeoShape::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool [0xc822e91940] }
-&{operator= QGeoShape::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  QGeoShape & [0xc822e91c40] }
-&{operator== QGeoShape::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool [0xc822e91f40] }
-&{toString QGeoShape::toString commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  QString [] }
-&{type QGeoShape::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  ShapeType [] }
-&{~QGeoShape QGeoShape::~QGeoShape commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non destructor false false   [] }
+&{QGeoShape QGeoShape::QGeoShape commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non constructor false false   QGeoShape() [] }
+&{QGeoShape QGeoShape::QGeoShape commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non constructor false true 2  QGeoShape(const QGeoShape &other) [0xc82175d020] }
+&{center QGeoShape::center commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  QGeoCoordinate QGeoCoordinate center() const [] }
+&{contains QGeoShape::contains commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool bool contains(const QGeoCoordinate &coordinate) const [0xc82175dc60] }
+&{extendShape QGeoShape::extendShape commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  void void extendShape(const QGeoCoordinate &coordinate) [0xc821746060] }
+&{isEmpty QGeoShape::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool bool isEmpty() const [] }
+&{isValid QGeoShape::isValid commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool bool isValid() const [] }
+&{operator!= QGeoShape::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool bool operator!=(const QGeoShape &other) const [0xc821746a00] }
+&{operator= QGeoShape::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  QGeoShape & QGeoShape & operator=(const QGeoShape &other) [0xc821746dc0] }
+&{operator== QGeoShape::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  bool bool operator==(const QGeoShape &other) const [0xc8217471e0] }
+&{toString QGeoShape::toString commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  QString QString toString() const [] }
+&{type QGeoShape::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non plain false false  ShapeType ShapeType type() const [] }
+&{~QGeoShape QGeoShape::~QGeoShape commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeoshape.h non destructor false false   ~QGeoShape() [] }
 ########################################			ENUMS			########################################
-&{ShapeType QGeoShape::ShapeType commendable public  [0xc822e901c0 0xc822e90260 0xc822e90340]}
+&{ShapeType QGeoShape::ShapeType commendable public  [0xc82175c8c0 0xc82175ca00 0xc82175cb20] false}

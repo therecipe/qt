@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QFocusEvent_NewQFocusEvent(int ty, int reason);
-int QFocusEvent_GotFocus(QtObjectPtr ptr);
-int QFocusEvent_LostFocus(QtObjectPtr ptr);
-int QFocusEvent_Reason(QtObjectPtr ptr);
+void* QFocusEvent_NewQFocusEvent(int ty, int reason);
+int QFocusEvent_GotFocus(void* ptr);
+int QFocusEvent_LostFocus(void* ptr);
+int QFocusEvent_Reason(void* ptr);
 
 #ifdef __cplusplus
 }

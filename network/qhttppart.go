@@ -11,8 +11,8 @@ type QHttpPart struct {
 	ptr unsafe.Pointer
 }
 
-type QHttpPartITF interface {
-	QHttpPartPTR() *QHttpPart
+type QHttpPart_ITF interface {
+	QHttpPart_PTR() *QHttpPart
 }
 
 func (p *QHttpPart) Pointer() unsafe.Pointer {
@@ -23,63 +23,63 @@ func (p *QHttpPart) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQHttpPart(ptr QHttpPartITF) unsafe.Pointer {
+func PointerFromQHttpPart(ptr QHttpPart_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHttpPartPTR().Pointer()
+		return ptr.QHttpPart_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHttpPartFromPointer(ptr unsafe.Pointer) *QHttpPart {
+func NewQHttpPartFromPointer(ptr unsafe.Pointer) *QHttpPart {
 	var n = new(QHttpPart)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QHttpPart) QHttpPartPTR() *QHttpPart {
+func (ptr *QHttpPart) QHttpPart_PTR() *QHttpPart {
 	return ptr
 }
 
 func NewQHttpPart() *QHttpPart {
-	return QHttpPartFromPointer(unsafe.Pointer(C.QHttpPart_NewQHttpPart()))
+	return NewQHttpPartFromPointer(C.QHttpPart_NewQHttpPart())
 }
 
-func NewQHttpPart2(other QHttpPartITF) *QHttpPart {
-	return QHttpPartFromPointer(unsafe.Pointer(C.QHttpPart_NewQHttpPart2(C.QtObjectPtr(PointerFromQHttpPart(other)))))
+func NewQHttpPart2(other QHttpPart_ITF) *QHttpPart {
+	return NewQHttpPartFromPointer(C.QHttpPart_NewQHttpPart2(PointerFromQHttpPart(other)))
 }
 
-func (ptr *QHttpPart) SetBody(body core.QByteArrayITF) {
+func (ptr *QHttpPart) SetBody(body core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QHttpPart_SetBody(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(body)))
+		C.QHttpPart_SetBody(ptr.Pointer(), core.PointerFromQByteArray(body))
 	}
 }
 
-func (ptr *QHttpPart) SetBodyDevice(device core.QIODeviceITF) {
+func (ptr *QHttpPart) SetBodyDevice(device core.QIODevice_ITF) {
 	if ptr.Pointer() != nil {
-		C.QHttpPart_SetBodyDevice(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQIODevice(device)))
+		C.QHttpPart_SetBodyDevice(ptr.Pointer(), core.PointerFromQIODevice(device))
 	}
 }
 
-func (ptr *QHttpPart) SetHeader(header QNetworkRequest__KnownHeaders, value string) {
+func (ptr *QHttpPart) SetHeader(header QNetworkRequest__KnownHeaders, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QHttpPart_SetHeader(C.QtObjectPtr(ptr.Pointer()), C.int(header), C.CString(value))
+		C.QHttpPart_SetHeader(ptr.Pointer(), C.int(header), core.PointerFromQVariant(value))
 	}
 }
 
-func (ptr *QHttpPart) SetRawHeader(headerName core.QByteArrayITF, headerValue core.QByteArrayITF) {
+func (ptr *QHttpPart) SetRawHeader(headerName core.QByteArray_ITF, headerValue core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QHttpPart_SetRawHeader(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(headerName)), C.QtObjectPtr(core.PointerFromQByteArray(headerValue)))
+		C.QHttpPart_SetRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName), core.PointerFromQByteArray(headerValue))
 	}
 }
 
-func (ptr *QHttpPart) Swap(other QHttpPartITF) {
+func (ptr *QHttpPart) Swap(other QHttpPart_ITF) {
 	if ptr.Pointer() != nil {
-		C.QHttpPart_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQHttpPart(other)))
+		C.QHttpPart_Swap(ptr.Pointer(), PointerFromQHttpPart(other))
 	}
 }
 
 func (ptr *QHttpPart) DestroyQHttpPart() {
 	if ptr.Pointer() != nil {
-		C.QHttpPart_DestroyQHttpPart(C.QtObjectPtr(ptr.Pointer()))
+		C.QHttpPart_DestroyQHttpPart(ptr.Pointer())
 	}
 }

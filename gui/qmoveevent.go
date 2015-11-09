@@ -11,28 +11,28 @@ type QMoveEvent struct {
 	core.QEvent
 }
 
-type QMoveEventITF interface {
-	core.QEventITF
-	QMoveEventPTR() *QMoveEvent
+type QMoveEvent_ITF interface {
+	core.QEvent_ITF
+	QMoveEvent_PTR() *QMoveEvent
 }
 
-func PointerFromQMoveEvent(ptr QMoveEventITF) unsafe.Pointer {
+func PointerFromQMoveEvent(ptr QMoveEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMoveEventPTR().Pointer()
+		return ptr.QMoveEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMoveEventFromPointer(ptr unsafe.Pointer) *QMoveEvent {
+func NewQMoveEventFromPointer(ptr unsafe.Pointer) *QMoveEvent {
 	var n = new(QMoveEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMoveEvent) QMoveEventPTR() *QMoveEvent {
+func (ptr *QMoveEvent) QMoveEvent_PTR() *QMoveEvent {
 	return ptr
 }
 
-func NewQMoveEvent(pos core.QPointITF, oldPos core.QPointITF) *QMoveEvent {
-	return QMoveEventFromPointer(unsafe.Pointer(C.QMoveEvent_NewQMoveEvent(C.QtObjectPtr(core.PointerFromQPoint(pos)), C.QtObjectPtr(core.PointerFromQPoint(oldPos)))))
+func NewQMoveEvent(pos core.QPoint_ITF, oldPos core.QPoint_ITF) *QMoveEvent {
+	return NewQMoveEventFromPointer(C.QMoveEvent_NewQMoveEvent(core.PointerFromQPoint(pos), core.PointerFromQPoint(oldPos)))
 }

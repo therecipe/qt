@@ -11,66 +11,66 @@ type QGraphicsItemGroup struct {
 	QGraphicsItem
 }
 
-type QGraphicsItemGroupITF interface {
-	QGraphicsItemITF
-	QGraphicsItemGroupPTR() *QGraphicsItemGroup
+type QGraphicsItemGroup_ITF interface {
+	QGraphicsItem_ITF
+	QGraphicsItemGroup_PTR() *QGraphicsItemGroup
 }
 
-func PointerFromQGraphicsItemGroup(ptr QGraphicsItemGroupITF) unsafe.Pointer {
+func PointerFromQGraphicsItemGroup(ptr QGraphicsItemGroup_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsItemGroupPTR().Pointer()
+		return ptr.QGraphicsItemGroup_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsItemGroupFromPointer(ptr unsafe.Pointer) *QGraphicsItemGroup {
+func NewQGraphicsItemGroupFromPointer(ptr unsafe.Pointer) *QGraphicsItemGroup {
 	var n = new(QGraphicsItemGroup)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsItemGroup) QGraphicsItemGroupPTR() *QGraphicsItemGroup {
+func (ptr *QGraphicsItemGroup) QGraphicsItemGroup_PTR() *QGraphicsItemGroup {
 	return ptr
 }
 
-func NewQGraphicsItemGroup(parent QGraphicsItemITF) *QGraphicsItemGroup {
-	return QGraphicsItemGroupFromPointer(unsafe.Pointer(C.QGraphicsItemGroup_NewQGraphicsItemGroup(C.QtObjectPtr(PointerFromQGraphicsItem(parent)))))
+func NewQGraphicsItemGroup(parent QGraphicsItem_ITF) *QGraphicsItemGroup {
+	return NewQGraphicsItemGroupFromPointer(C.QGraphicsItemGroup_NewQGraphicsItemGroup(PointerFromQGraphicsItem(parent)))
 }
 
-func (ptr *QGraphicsItemGroup) AddToGroup(item QGraphicsItemITF) {
+func (ptr *QGraphicsItemGroup) AddToGroup(item QGraphicsItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsItemGroup_AddToGroup(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItem(item)))
+		C.QGraphicsItemGroup_AddToGroup(ptr.Pointer(), PointerFromQGraphicsItem(item))
 	}
 }
 
-func (ptr *QGraphicsItemGroup) IsObscuredBy(item QGraphicsItemITF) bool {
+func (ptr *QGraphicsItemGroup) IsObscuredBy(item QGraphicsItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsItemGroup_IsObscuredBy(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItem(item))) != 0
+		return C.QGraphicsItemGroup_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
 	}
 	return false
 }
 
-func (ptr *QGraphicsItemGroup) Paint(painter gui.QPainterITF, option QStyleOptionGraphicsItemITF, widget QWidgetITF) {
+func (ptr *QGraphicsItemGroup) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsItemGroup_Paint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(PointerFromQStyleOptionGraphicsItem(option)), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QGraphicsItemGroup_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
 	}
 }
 
-func (ptr *QGraphicsItemGroup) RemoveFromGroup(item QGraphicsItemITF) {
+func (ptr *QGraphicsItemGroup) RemoveFromGroup(item QGraphicsItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsItemGroup_RemoveFromGroup(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItem(item)))
+		C.QGraphicsItemGroup_RemoveFromGroup(ptr.Pointer(), PointerFromQGraphicsItem(item))
 	}
 }
 
 func (ptr *QGraphicsItemGroup) Type() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsItemGroup_Type(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGraphicsItemGroup_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsItemGroup) DestroyQGraphicsItemGroup() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsItemGroup_DestroyQGraphicsItemGroup(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsItemGroup_DestroyQGraphicsItemGroup(ptr.Pointer())
 	}
 }

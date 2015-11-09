@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QResizeEvent_NewQResizeEvent(QtObjectPtr size, QtObjectPtr oldSize);
+void* QResizeEvent_NewQResizeEvent(void* size, void* oldSize);
 
 #ifdef __cplusplus
 }

@@ -10,8 +10,8 @@ type QPair struct {
 	ptr unsafe.Pointer
 }
 
-type QPairITF interface {
-	QPairPTR() *QPair
+type QPair_ITF interface {
+	QPair_PTR() *QPair
 }
 
 func (p *QPair) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QPair) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPair(ptr QPairITF) unsafe.Pointer {
+func PointerFromQPair(ptr QPair_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPairPTR().Pointer()
+		return ptr.QPair_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPairFromPointer(ptr unsafe.Pointer) *QPair {
+func NewQPairFromPointer(ptr unsafe.Pointer) *QPair {
 	var n = new(QPair)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPair) QPairPTR() *QPair {
+func (ptr *QPair) QPair_PTR() *QPair {
 	return ptr
 }

@@ -13,73 +13,73 @@ type QSensorGestureRecognizer struct {
 	core.QObject
 }
 
-type QSensorGestureRecognizerITF interface {
-	core.QObjectITF
-	QSensorGestureRecognizerPTR() *QSensorGestureRecognizer
+type QSensorGestureRecognizer_ITF interface {
+	core.QObject_ITF
+	QSensorGestureRecognizer_PTR() *QSensorGestureRecognizer
 }
 
-func PointerFromQSensorGestureRecognizer(ptr QSensorGestureRecognizerITF) unsafe.Pointer {
+func PointerFromQSensorGestureRecognizer(ptr QSensorGestureRecognizer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSensorGestureRecognizerPTR().Pointer()
+		return ptr.QSensorGestureRecognizer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSensorGestureRecognizerFromPointer(ptr unsafe.Pointer) *QSensorGestureRecognizer {
+func NewQSensorGestureRecognizerFromPointer(ptr unsafe.Pointer) *QSensorGestureRecognizer {
 	var n = new(QSensorGestureRecognizer)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QSensorGestureRecognizer_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QSensorGestureRecognizer) QSensorGestureRecognizerPTR() *QSensorGestureRecognizer {
+func (ptr *QSensorGestureRecognizer) QSensorGestureRecognizer_PTR() *QSensorGestureRecognizer {
 	return ptr
 }
 
 func (ptr *QSensorGestureRecognizer) CreateBackend() {
 	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_CreateBackend(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensorGestureRecognizer_CreateBackend(ptr.Pointer())
 	}
 }
 
 func (ptr *QSensorGestureRecognizer) GestureSignals() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSensorGestureRecognizer_GestureSignals(C.QtObjectPtr(ptr.Pointer()))), "|")
+		return strings.Split(C.GoString(C.QSensorGestureRecognizer_GestureSignals(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSensorGestureRecognizer) Id() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSensorGestureRecognizer_Id(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSensorGestureRecognizer_Id(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSensorGestureRecognizer) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensorGestureRecognizer_IsActive(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSensorGestureRecognizer_IsActive(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSensorGestureRecognizer) StartBackend() {
 	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_StartBackend(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensorGestureRecognizer_StartBackend(ptr.Pointer())
 	}
 }
 
 func (ptr *QSensorGestureRecognizer) StopBackend() {
 	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_StopBackend(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensorGestureRecognizer_StopBackend(ptr.Pointer())
 	}
 }
 
 func (ptr *QSensorGestureRecognizer) DestroyQSensorGestureRecognizer() {
 	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_DestroyQSensorGestureRecognizer(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensorGestureRecognizer_DestroyQSensorGestureRecognizer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

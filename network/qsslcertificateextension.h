@@ -1,17 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSslCertificateExtension_NewQSslCertificateExtension();
-QtObjectPtr QSslCertificateExtension_NewQSslCertificateExtension2(QtObjectPtr other);
-int QSslCertificateExtension_IsCritical(QtObjectPtr ptr);
-int QSslCertificateExtension_IsSupported(QtObjectPtr ptr);
-char* QSslCertificateExtension_Name(QtObjectPtr ptr);
-char* QSslCertificateExtension_Oid(QtObjectPtr ptr);
-void QSslCertificateExtension_Swap(QtObjectPtr ptr, QtObjectPtr other);
-char* QSslCertificateExtension_Value(QtObjectPtr ptr);
-void QSslCertificateExtension_DestroyQSslCertificateExtension(QtObjectPtr ptr);
+void* QSslCertificateExtension_NewQSslCertificateExtension();
+void* QSslCertificateExtension_NewQSslCertificateExtension2(void* other);
+int QSslCertificateExtension_IsCritical(void* ptr);
+int QSslCertificateExtension_IsSupported(void* ptr);
+char* QSslCertificateExtension_Name(void* ptr);
+char* QSslCertificateExtension_Oid(void* ptr);
+void QSslCertificateExtension_Swap(void* ptr, void* other);
+void* QSslCertificateExtension_Value(void* ptr);
+void QSslCertificateExtension_DestroyQSslCertificateExtension(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QMoveEvent_NewQMoveEvent(QtObjectPtr pos, QtObjectPtr oldPos);
+void* QMoveEvent_NewQMoveEvent(void* pos, void* oldPos);
 
 #ifdef __cplusplus
 }

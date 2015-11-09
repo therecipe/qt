@@ -12,44 +12,44 @@ type QSensor struct {
 	core.QObject
 }
 
-type QSensorITF interface {
-	core.QObjectITF
-	QSensorPTR() *QSensor
+type QSensor_ITF interface {
+	core.QObject_ITF
+	QSensor_PTR() *QSensor
 }
 
-func PointerFromQSensor(ptr QSensorITF) unsafe.Pointer {
+func PointerFromQSensor(ptr QSensor_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSensorPTR().Pointer()
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSensorFromPointer(ptr unsafe.Pointer) *QSensor {
+func NewQSensorFromPointer(ptr unsafe.Pointer) *QSensor {
 	var n = new(QSensor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QSensor_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QSensor) QSensorPTR() *QSensor {
+func (ptr *QSensor) QSensor_PTR() *QSensor {
 	return ptr
 }
 
 //QSensor::AxesOrientationMode
-type QSensor__AxesOrientationMode int
+type QSensor__AxesOrientationMode int64
 
-var (
+const (
 	QSensor__FixedOrientation     = QSensor__AxesOrientationMode(0)
 	QSensor__AutomaticOrientation = QSensor__AxesOrientationMode(1)
 	QSensor__UserOrientation      = QSensor__AxesOrientationMode(2)
 )
 
 //QSensor::Feature
-type QSensor__Feature int
+type QSensor__Feature int64
 
-var (
+const (
 	QSensor__Buffering                 = QSensor__Feature(0)
 	QSensor__AlwaysOn                  = QSensor__Feature(1)
 	QSensor__GeoValues                 = QSensor__Feature(2)
@@ -63,178 +63,192 @@ var (
 
 func (ptr *QSensor) AxesOrientationMode() QSensor__AxesOrientationMode {
 	if ptr.Pointer() != nil {
-		return QSensor__AxesOrientationMode(C.QSensor_AxesOrientationMode(C.QtObjectPtr(ptr.Pointer())))
+		return QSensor__AxesOrientationMode(C.QSensor_AxesOrientationMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSensor) BufferSize() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSensor_BufferSize(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSensor_BufferSize(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSensor) CurrentOrientation() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSensor_CurrentOrientation(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSensor_CurrentOrientation(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSensor) DataRate() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSensor_DataRate(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSensor_DataRate(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSensor) Description() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSensor_Description(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSensor_Description(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSensor) EfficientBufferSize() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSensor_EfficientBufferSize(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSensor_EfficientBufferSize(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSensor) Error() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSensor_Error(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSensor_Error(ptr.Pointer()))
 	}
 	return 0
 }
 
+func (ptr *QSensor) Identifier() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		return core.NewQByteArrayFromPointer(C.QSensor_Identifier(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSensor) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_IsActive(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSensor_IsActive(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) IsAlwaysOn() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_IsAlwaysOn(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSensor_IsAlwaysOn(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) IsBusy() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_IsBusy(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSensor_IsBusy(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) IsConnectedToBackend() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_IsConnectedToBackend(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSensor_IsConnectedToBackend(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) MaxBufferSize() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSensor_MaxBufferSize(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSensor_MaxBufferSize(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSensor) OutputRange() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSensor_OutputRange(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSensor_OutputRange(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSensor) Reading() *QSensorReading {
 	if ptr.Pointer() != nil {
-		return QSensorReadingFromPointer(unsafe.Pointer(C.QSensor_Reading(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQSensorReadingFromPointer(C.QSensor_Reading(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QSensor) SetActive(active bool) {
 	if ptr.Pointer() != nil {
-		C.QSensor_SetActive(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(active)))
+		C.QSensor_SetActive(ptr.Pointer(), C.int(qt.GoBoolToInt(active)))
 	}
 }
 
 func (ptr *QSensor) SetAlwaysOn(alwaysOn bool) {
 	if ptr.Pointer() != nil {
-		C.QSensor_SetAlwaysOn(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(alwaysOn)))
+		C.QSensor_SetAlwaysOn(ptr.Pointer(), C.int(qt.GoBoolToInt(alwaysOn)))
 	}
 }
 
 func (ptr *QSensor) SetAxesOrientationMode(axesOrientationMode QSensor__AxesOrientationMode) {
 	if ptr.Pointer() != nil {
-		C.QSensor_SetAxesOrientationMode(C.QtObjectPtr(ptr.Pointer()), C.int(axesOrientationMode))
+		C.QSensor_SetAxesOrientationMode(ptr.Pointer(), C.int(axesOrientationMode))
 	}
 }
 
 func (ptr *QSensor) SetBufferSize(bufferSize int) {
 	if ptr.Pointer() != nil {
-		C.QSensor_SetBufferSize(C.QtObjectPtr(ptr.Pointer()), C.int(bufferSize))
+		C.QSensor_SetBufferSize(ptr.Pointer(), C.int(bufferSize))
 	}
 }
 
 func (ptr *QSensor) SetDataRate(rate int) {
 	if ptr.Pointer() != nil {
-		C.QSensor_SetDataRate(C.QtObjectPtr(ptr.Pointer()), C.int(rate))
+		C.QSensor_SetDataRate(ptr.Pointer(), C.int(rate))
 	}
 }
 
-func (ptr *QSensor) SetIdentifier(identifier core.QByteArrayITF) {
+func (ptr *QSensor) SetIdentifier(identifier core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSensor_SetIdentifier(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(identifier)))
+		C.QSensor_SetIdentifier(ptr.Pointer(), core.PointerFromQByteArray(identifier))
 	}
 }
 
 func (ptr *QSensor) SetOutputRange(index int) {
 	if ptr.Pointer() != nil {
-		C.QSensor_SetOutputRange(C.QtObjectPtr(ptr.Pointer()), C.int(index))
+		C.QSensor_SetOutputRange(ptr.Pointer(), C.int(index))
 	}
 }
 
 func (ptr *QSensor) SetUserOrientation(userOrientation int) {
 	if ptr.Pointer() != nil {
-		C.QSensor_SetUserOrientation(C.QtObjectPtr(ptr.Pointer()), C.int(userOrientation))
+		C.QSensor_SetUserOrientation(ptr.Pointer(), C.int(userOrientation))
 	}
 }
 
 func (ptr *QSensor) SkipDuplicates() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_SkipDuplicates(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSensor_SkipDuplicates(ptr.Pointer()) != 0
 	}
 	return false
 }
 
+func (ptr *QSensor) Type() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		return core.NewQByteArrayFromPointer(C.QSensor_Type(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSensor) UserOrientation() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSensor_UserOrientation(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSensor_UserOrientation(ptr.Pointer()))
 	}
 	return 0
 }
 
-func NewQSensor(ty core.QByteArrayITF, parent core.QObjectITF) *QSensor {
-	return QSensorFromPointer(unsafe.Pointer(C.QSensor_NewQSensor(C.QtObjectPtr(core.PointerFromQByteArray(ty)), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQSensor(ty core.QByteArray_ITF, parent core.QObject_ITF) *QSensor {
+	return NewQSensorFromPointer(C.QSensor_NewQSensor(core.PointerFromQByteArray(ty), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSensor) ConnectActiveChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectActiveChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectActiveChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "activeChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectActiveChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectActiveChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectActiveChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "activeChanged")
 	}
 }
@@ -244,22 +258,22 @@ func callbackQSensorActiveChanged(ptrName *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "activeChanged").(func())()
 }
 
-func (ptr *QSensor) AddFilter(filter QSensorFilterITF) {
+func (ptr *QSensor) AddFilter(filter QSensorFilter_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSensor_AddFilter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSensorFilter(filter)))
+		C.QSensor_AddFilter(ptr.Pointer(), PointerFromQSensorFilter(filter))
 	}
 }
 
 func (ptr *QSensor) ConnectAlwaysOnChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectAlwaysOnChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectAlwaysOnChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "alwaysOnChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectAlwaysOnChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectAlwaysOnChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectAlwaysOnChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "alwaysOnChanged")
 	}
 }
@@ -271,14 +285,14 @@ func callbackQSensorAlwaysOnChanged(ptrName *C.char) {
 
 func (ptr *QSensor) ConnectAvailableSensorsChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectAvailableSensorsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectAvailableSensorsChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "availableSensorsChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectAvailableSensorsChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectAvailableSensorsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectAvailableSensorsChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "availableSensorsChanged")
 	}
 }
@@ -290,14 +304,14 @@ func callbackQSensorAvailableSensorsChanged(ptrName *C.char) {
 
 func (ptr *QSensor) ConnectAxesOrientationModeChanged(f func(axesOrientationMode QSensor__AxesOrientationMode)) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectAxesOrientationModeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectAxesOrientationModeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "axesOrientationModeChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectAxesOrientationModeChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectAxesOrientationModeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectAxesOrientationModeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "axesOrientationModeChanged")
 	}
 }
@@ -309,14 +323,14 @@ func callbackQSensorAxesOrientationModeChanged(ptrName *C.char, axesOrientationM
 
 func (ptr *QSensor) ConnectBufferSizeChanged(f func(bufferSize int)) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectBufferSizeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectBufferSizeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "bufferSizeChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectBufferSizeChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectBufferSizeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectBufferSizeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "bufferSizeChanged")
 	}
 }
@@ -328,14 +342,14 @@ func callbackQSensorBufferSizeChanged(ptrName *C.char, bufferSize C.int) {
 
 func (ptr *QSensor) ConnectBusyChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectBusyChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectBusyChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "busyChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectBusyChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectBusyChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectBusyChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "busyChanged")
 	}
 }
@@ -347,21 +361,21 @@ func callbackQSensorBusyChanged(ptrName *C.char) {
 
 func (ptr *QSensor) ConnectToBackend() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_ConnectToBackend(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSensor_ConnectToBackend(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) ConnectCurrentOrientationChanged(f func(currentOrientation int)) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectCurrentOrientationChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectCurrentOrientationChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "currentOrientationChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectCurrentOrientationChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectCurrentOrientationChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectCurrentOrientationChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "currentOrientationChanged")
 	}
 }
@@ -373,14 +387,14 @@ func callbackQSensorCurrentOrientationChanged(ptrName *C.char, currentOrientatio
 
 func (ptr *QSensor) ConnectDataRateChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectDataRateChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectDataRateChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "dataRateChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectDataRateChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectDataRateChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectDataRateChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "dataRateChanged")
 	}
 }
@@ -390,16 +404,20 @@ func callbackQSensorDataRateChanged(ptrName *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "dataRateChanged").(func())()
 }
 
+func QSensor_DefaultSensorForType(ty core.QByteArray_ITF) *core.QByteArray {
+	return core.NewQByteArrayFromPointer(C.QSensor_QSensor_DefaultSensorForType(core.PointerFromQByteArray(ty)))
+}
+
 func (ptr *QSensor) ConnectEfficientBufferSizeChanged(f func(efficientBufferSize int)) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectEfficientBufferSizeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectEfficientBufferSizeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "efficientBufferSizeChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectEfficientBufferSizeChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectEfficientBufferSizeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectEfficientBufferSizeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "efficientBufferSizeChanged")
 	}
 }
@@ -411,21 +429,21 @@ func callbackQSensorEfficientBufferSizeChanged(ptrName *C.char, efficientBufferS
 
 func (ptr *QSensor) IsFeatureSupported(feature QSensor__Feature) bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_IsFeatureSupported(C.QtObjectPtr(ptr.Pointer()), C.int(feature)) != 0
+		return C.QSensor_IsFeatureSupported(ptr.Pointer(), C.int(feature)) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) ConnectMaxBufferSizeChanged(f func(maxBufferSize int)) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectMaxBufferSizeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectMaxBufferSizeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "maxBufferSizeChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectMaxBufferSizeChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectMaxBufferSizeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectMaxBufferSizeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "maxBufferSizeChanged")
 	}
 }
@@ -437,14 +455,14 @@ func callbackQSensorMaxBufferSizeChanged(ptrName *C.char, maxBufferSize C.int) {
 
 func (ptr *QSensor) ConnectReadingChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectReadingChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectReadingChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "readingChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectReadingChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectReadingChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectReadingChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "readingChanged")
 	}
 }
@@ -454,22 +472,22 @@ func callbackQSensorReadingChanged(ptrName *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "readingChanged").(func())()
 }
 
-func (ptr *QSensor) RemoveFilter(filter QSensorFilterITF) {
+func (ptr *QSensor) RemoveFilter(filter QSensorFilter_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSensor_RemoveFilter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSensorFilter(filter)))
+		C.QSensor_RemoveFilter(ptr.Pointer(), PointerFromQSensorFilter(filter))
 	}
 }
 
 func (ptr *QSensor) ConnectSensorError(f func(error int)) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectSensorError(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectSensorError(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "sensorError", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectSensorError() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectSensorError(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectSensorError(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "sensorError")
 	}
 }
@@ -481,38 +499,38 @@ func callbackQSensorSensorError(ptrName *C.char, error C.int) {
 
 func (ptr *QSensor) SetCurrentOrientation(currentOrientation int) {
 	if ptr.Pointer() != nil {
-		C.QSensor_SetCurrentOrientation(C.QtObjectPtr(ptr.Pointer()), C.int(currentOrientation))
+		C.QSensor_SetCurrentOrientation(ptr.Pointer(), C.int(currentOrientation))
 	}
 }
 
 func (ptr *QSensor) SetEfficientBufferSize(efficientBufferSize int) {
 	if ptr.Pointer() != nil {
-		C.QSensor_SetEfficientBufferSize(C.QtObjectPtr(ptr.Pointer()), C.int(efficientBufferSize))
+		C.QSensor_SetEfficientBufferSize(ptr.Pointer(), C.int(efficientBufferSize))
 	}
 }
 
 func (ptr *QSensor) SetMaxBufferSize(maxBufferSize int) {
 	if ptr.Pointer() != nil {
-		C.QSensor_SetMaxBufferSize(C.QtObjectPtr(ptr.Pointer()), C.int(maxBufferSize))
+		C.QSensor_SetMaxBufferSize(ptr.Pointer(), C.int(maxBufferSize))
 	}
 }
 
 func (ptr *QSensor) SetSkipDuplicates(skipDuplicates bool) {
 	if ptr.Pointer() != nil {
-		C.QSensor_SetSkipDuplicates(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(skipDuplicates)))
+		C.QSensor_SetSkipDuplicates(ptr.Pointer(), C.int(qt.GoBoolToInt(skipDuplicates)))
 	}
 }
 
 func (ptr *QSensor) ConnectSkipDuplicatesChanged(f func(skipDuplicates bool)) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectSkipDuplicatesChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectSkipDuplicatesChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "skipDuplicatesChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectSkipDuplicatesChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectSkipDuplicatesChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectSkipDuplicatesChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "skipDuplicatesChanged")
 	}
 }
@@ -524,27 +542,27 @@ func callbackQSensorSkipDuplicatesChanged(ptrName *C.char, skipDuplicates C.int)
 
 func (ptr *QSensor) Start() bool {
 	if ptr.Pointer() != nil {
-		return C.QSensor_Start(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSensor_Start(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSensor) Stop() {
 	if ptr.Pointer() != nil {
-		C.QSensor_Stop(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_Stop(ptr.Pointer())
 	}
 }
 
 func (ptr *QSensor) ConnectUserOrientationChanged(f func(userOrientation int)) {
 	if ptr.Pointer() != nil {
-		C.QSensor_ConnectUserOrientationChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_ConnectUserOrientationChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "userOrientationChanged", f)
 	}
 }
 
 func (ptr *QSensor) DisconnectUserOrientationChanged() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DisconnectUserOrientationChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DisconnectUserOrientationChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "userOrientationChanged")
 	}
 }
@@ -556,7 +574,7 @@ func callbackQSensorUserOrientationChanged(ptrName *C.char, userOrientation C.in
 
 func (ptr *QSensor) DestroyQSensor() {
 	if ptr.Pointer() != nil {
-		C.QSensor_DestroyQSensor(C.QtObjectPtr(ptr.Pointer()))
+		C.QSensor_DestroyQSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

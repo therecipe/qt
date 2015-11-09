@@ -1,26 +1,25 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QAbstractScrollArea_HorizontalScrollBarPolicy(QtObjectPtr ptr);
-void QAbstractScrollArea_SetHorizontalScrollBarPolicy(QtObjectPtr ptr, int v);
-void QAbstractScrollArea_SetSizeAdjustPolicy(QtObjectPtr ptr, int policy);
-void QAbstractScrollArea_SetVerticalScrollBarPolicy(QtObjectPtr ptr, int v);
-int QAbstractScrollArea_SizeAdjustPolicy(QtObjectPtr ptr);
-int QAbstractScrollArea_VerticalScrollBarPolicy(QtObjectPtr ptr);
-QtObjectPtr QAbstractScrollArea_NewQAbstractScrollArea(QtObjectPtr parent);
-void QAbstractScrollArea_AddScrollBarWidget(QtObjectPtr ptr, QtObjectPtr widget, int alignment);
-QtObjectPtr QAbstractScrollArea_CornerWidget(QtObjectPtr ptr);
-QtObjectPtr QAbstractScrollArea_HorizontalScrollBar(QtObjectPtr ptr);
-void QAbstractScrollArea_SetCornerWidget(QtObjectPtr ptr, QtObjectPtr widget);
-void QAbstractScrollArea_SetHorizontalScrollBar(QtObjectPtr ptr, QtObjectPtr scrollBar);
-void QAbstractScrollArea_SetVerticalScrollBar(QtObjectPtr ptr, QtObjectPtr scrollBar);
-void QAbstractScrollArea_SetViewport(QtObjectPtr ptr, QtObjectPtr widget);
-void QAbstractScrollArea_SetupViewport(QtObjectPtr ptr, QtObjectPtr viewport);
-QtObjectPtr QAbstractScrollArea_VerticalScrollBar(QtObjectPtr ptr);
-QtObjectPtr QAbstractScrollArea_Viewport(QtObjectPtr ptr);
-void QAbstractScrollArea_DestroyQAbstractScrollArea(QtObjectPtr ptr);
+int QAbstractScrollArea_HorizontalScrollBarPolicy(void* ptr);
+void QAbstractScrollArea_SetHorizontalScrollBarPolicy(void* ptr, int v);
+void QAbstractScrollArea_SetSizeAdjustPolicy(void* ptr, int policy);
+void QAbstractScrollArea_SetVerticalScrollBarPolicy(void* ptr, int v);
+int QAbstractScrollArea_SizeAdjustPolicy(void* ptr);
+int QAbstractScrollArea_VerticalScrollBarPolicy(void* ptr);
+void* QAbstractScrollArea_NewQAbstractScrollArea(void* parent);
+void QAbstractScrollArea_AddScrollBarWidget(void* ptr, void* widget, int alignment);
+void* QAbstractScrollArea_CornerWidget(void* ptr);
+void* QAbstractScrollArea_HorizontalScrollBar(void* ptr);
+void QAbstractScrollArea_SetCornerWidget(void* ptr, void* widget);
+void QAbstractScrollArea_SetHorizontalScrollBar(void* ptr, void* scrollBar);
+void QAbstractScrollArea_SetVerticalScrollBar(void* ptr, void* scrollBar);
+void QAbstractScrollArea_SetViewport(void* ptr, void* widget);
+void QAbstractScrollArea_SetupViewport(void* ptr, void* viewport);
+void* QAbstractScrollArea_VerticalScrollBar(void* ptr);
+void* QAbstractScrollArea_Viewport(void* ptr);
+void QAbstractScrollArea_DestroyQAbstractScrollArea(void* ptr);
 
 #ifdef __cplusplus
 }

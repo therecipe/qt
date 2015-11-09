@@ -1,8 +1,8 @@
 #include "qsqlfield.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QSqlField>
 #include "_cgo_export.h"
 
@@ -10,99 +10,99 @@ class MyQSqlField: public QSqlField {
 public:
 };
 
-QtObjectPtr QSqlField_NewQSqlField2(QtObjectPtr other){
+void* QSqlField_NewQSqlField2(void* other){
 	return new QSqlField(*static_cast<QSqlField*>(other));
 }
 
-void QSqlField_Clear(QtObjectPtr ptr){
+void QSqlField_Clear(void* ptr){
 	static_cast<QSqlField*>(ptr)->clear();
 }
 
-char* QSqlField_DefaultValue(QtObjectPtr ptr){
-	return static_cast<QSqlField*>(ptr)->defaultValue().toString().toUtf8().data();
+void* QSqlField_DefaultValue(void* ptr){
+	return new QVariant(static_cast<QSqlField*>(ptr)->defaultValue());
 }
 
-int QSqlField_IsAutoValue(QtObjectPtr ptr){
+int QSqlField_IsAutoValue(void* ptr){
 	return static_cast<QSqlField*>(ptr)->isAutoValue();
 }
 
-int QSqlField_IsGenerated(QtObjectPtr ptr){
+int QSqlField_IsGenerated(void* ptr){
 	return static_cast<QSqlField*>(ptr)->isGenerated();
 }
 
-int QSqlField_IsNull(QtObjectPtr ptr){
+int QSqlField_IsNull(void* ptr){
 	return static_cast<QSqlField*>(ptr)->isNull();
 }
 
-int QSqlField_IsReadOnly(QtObjectPtr ptr){
+int QSqlField_IsReadOnly(void* ptr){
 	return static_cast<QSqlField*>(ptr)->isReadOnly();
 }
 
-int QSqlField_IsValid(QtObjectPtr ptr){
+int QSqlField_IsValid(void* ptr){
 	return static_cast<QSqlField*>(ptr)->isValid();
 }
 
-int QSqlField_Length(QtObjectPtr ptr){
+int QSqlField_Length(void* ptr){
 	return static_cast<QSqlField*>(ptr)->length();
 }
 
-char* QSqlField_Name(QtObjectPtr ptr){
+char* QSqlField_Name(void* ptr){
 	return static_cast<QSqlField*>(ptr)->name().toUtf8().data();
 }
 
-int QSqlField_Precision(QtObjectPtr ptr){
+int QSqlField_Precision(void* ptr){
 	return static_cast<QSqlField*>(ptr)->precision();
 }
 
-int QSqlField_RequiredStatus(QtObjectPtr ptr){
+int QSqlField_RequiredStatus(void* ptr){
 	return static_cast<QSqlField*>(ptr)->requiredStatus();
 }
 
-void QSqlField_SetAutoValue(QtObjectPtr ptr, int autoVal){
+void QSqlField_SetAutoValue(void* ptr, int autoVal){
 	static_cast<QSqlField*>(ptr)->setAutoValue(autoVal != 0);
 }
 
-void QSqlField_SetDefaultValue(QtObjectPtr ptr, char* value){
-	static_cast<QSqlField*>(ptr)->setDefaultValue(QVariant(value));
+void QSqlField_SetDefaultValue(void* ptr, void* value){
+	static_cast<QSqlField*>(ptr)->setDefaultValue(*static_cast<QVariant*>(value));
 }
 
-void QSqlField_SetGenerated(QtObjectPtr ptr, int gen){
+void QSqlField_SetGenerated(void* ptr, int gen){
 	static_cast<QSqlField*>(ptr)->setGenerated(gen != 0);
 }
 
-void QSqlField_SetLength(QtObjectPtr ptr, int fieldLength){
+void QSqlField_SetLength(void* ptr, int fieldLength){
 	static_cast<QSqlField*>(ptr)->setLength(fieldLength);
 }
 
-void QSqlField_SetName(QtObjectPtr ptr, char* name){
+void QSqlField_SetName(void* ptr, char* name){
 	static_cast<QSqlField*>(ptr)->setName(QString(name));
 }
 
-void QSqlField_SetPrecision(QtObjectPtr ptr, int precision){
+void QSqlField_SetPrecision(void* ptr, int precision){
 	static_cast<QSqlField*>(ptr)->setPrecision(precision);
 }
 
-void QSqlField_SetReadOnly(QtObjectPtr ptr, int readOnly){
+void QSqlField_SetReadOnly(void* ptr, int readOnly){
 	static_cast<QSqlField*>(ptr)->setReadOnly(readOnly != 0);
 }
 
-void QSqlField_SetRequired(QtObjectPtr ptr, int required){
+void QSqlField_SetRequired(void* ptr, int required){
 	static_cast<QSqlField*>(ptr)->setRequired(required != 0);
 }
 
-void QSqlField_SetRequiredStatus(QtObjectPtr ptr, int required){
+void QSqlField_SetRequiredStatus(void* ptr, int required){
 	static_cast<QSqlField*>(ptr)->setRequiredStatus(static_cast<QSqlField::RequiredStatus>(required));
 }
 
-void QSqlField_SetValue(QtObjectPtr ptr, char* value){
-	static_cast<QSqlField*>(ptr)->setValue(QVariant(value));
+void QSqlField_SetValue(void* ptr, void* value){
+	static_cast<QSqlField*>(ptr)->setValue(*static_cast<QVariant*>(value));
 }
 
-char* QSqlField_Value(QtObjectPtr ptr){
-	return static_cast<QSqlField*>(ptr)->value().toString().toUtf8().data();
+void* QSqlField_Value(void* ptr){
+	return new QVariant(static_cast<QSqlField*>(ptr)->value());
 }
 
-void QSqlField_DestroyQSqlField(QtObjectPtr ptr){
+void QSqlField_DestroyQSqlField(void* ptr){
 	static_cast<QSqlField*>(ptr)->~QSqlField();
 }
 

@@ -1,11 +1,11 @@
 #include "qstandarditemmodel.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStandardItem>
 #include <QObject>
 #include <QMimeData>
-#include <QString>
 #include <QStandardItemModel>
 #include "_cgo_export.h"
 
@@ -14,203 +14,203 @@ public:
 void Signal_ItemChanged(QStandardItem * item){callbackQStandardItemModelItemChanged(this->objectName().toUtf8().data(), item);};
 };
 
-void QStandardItemModel_SetSortRole(QtObjectPtr ptr, int role){
+void QStandardItemModel_SetSortRole(void* ptr, int role){
 	static_cast<QStandardItemModel*>(ptr)->setSortRole(role);
 }
 
-int QStandardItemModel_SortRole(QtObjectPtr ptr){
+int QStandardItemModel_SortRole(void* ptr){
 	return static_cast<QStandardItemModel*>(ptr)->sortRole();
 }
 
-QtObjectPtr QStandardItemModel_NewQStandardItemModel(QtObjectPtr parent){
+void* QStandardItemModel_NewQStandardItemModel(void* parent){
 	return new QStandardItemModel(static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QStandardItemModel_NewQStandardItemModel2(int rows, int columns, QtObjectPtr parent){
+void* QStandardItemModel_NewQStandardItemModel2(int rows, int columns, void* parent){
 	return new QStandardItemModel(rows, columns, static_cast<QObject*>(parent));
 }
 
-void QStandardItemModel_AppendRow2(QtObjectPtr ptr, QtObjectPtr item){
+void QStandardItemModel_AppendRow2(void* ptr, void* item){
 	static_cast<QStandardItemModel*>(ptr)->appendRow(static_cast<QStandardItem*>(item));
 }
 
-void QStandardItemModel_Clear(QtObjectPtr ptr){
+void QStandardItemModel_Clear(void* ptr){
 	static_cast<QStandardItemModel*>(ptr)->clear();
 }
 
-int QStandardItemModel_ColumnCount(QtObjectPtr ptr, QtObjectPtr parent){
+int QStandardItemModel_ColumnCount(void* ptr, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
-char* QStandardItemModel_Data(QtObjectPtr ptr, QtObjectPtr index, int role){
-	return static_cast<QStandardItemModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role).toString().toUtf8().data();
+void* QStandardItemModel_Data(void* ptr, void* index, int role){
+	return new QVariant(static_cast<QStandardItemModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
 }
 
-int QStandardItemModel_DropMimeData(QtObjectPtr ptr, QtObjectPtr data, int action, int row, int column, QtObjectPtr parent){
+int QStandardItemModel_DropMimeData(void* ptr, void* data, int action, int row, int column, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 }
 
-int QStandardItemModel_Flags(QtObjectPtr ptr, QtObjectPtr index){
+int QStandardItemModel_Flags(void* ptr, void* index){
 	return static_cast<QStandardItemModel*>(ptr)->flags(*static_cast<QModelIndex*>(index));
 }
 
-int QStandardItemModel_HasChildren(QtObjectPtr ptr, QtObjectPtr parent){
+int QStandardItemModel_HasChildren(void* ptr, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->hasChildren(*static_cast<QModelIndex*>(parent));
 }
 
-char* QStandardItemModel_HeaderData(QtObjectPtr ptr, int section, int orientation, int role){
-	return static_cast<QStandardItemModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role).toString().toUtf8().data();
+void* QStandardItemModel_HeaderData(void* ptr, int section, int orientation, int role){
+	return new QVariant(static_cast<QStandardItemModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
 }
 
-QtObjectPtr QStandardItemModel_HorizontalHeaderItem(QtObjectPtr ptr, int column){
+void* QStandardItemModel_HorizontalHeaderItem(void* ptr, int column){
 	return static_cast<QStandardItemModel*>(ptr)->horizontalHeaderItem(column);
 }
 
-QtObjectPtr QStandardItemModel_Index(QtObjectPtr ptr, int row, int column, QtObjectPtr parent){
+void* QStandardItemModel_Index(void* ptr, int row, int column, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)).internalPointer();
 }
 
-QtObjectPtr QStandardItemModel_IndexFromItem(QtObjectPtr ptr, QtObjectPtr item){
+void* QStandardItemModel_IndexFromItem(void* ptr, void* item){
 	return static_cast<QStandardItemModel*>(ptr)->indexFromItem(static_cast<QStandardItem*>(item)).internalPointer();
 }
 
-int QStandardItemModel_InsertColumn2(QtObjectPtr ptr, int column, QtObjectPtr parent){
+int QStandardItemModel_InsertColumn2(void* ptr, int column, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->insertColumn(column, *static_cast<QModelIndex*>(parent));
 }
 
-int QStandardItemModel_InsertColumns(QtObjectPtr ptr, int column, int count, QtObjectPtr parent){
+int QStandardItemModel_InsertColumns(void* ptr, int column, int count, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
-int QStandardItemModel_InsertRow2(QtObjectPtr ptr, int row, QtObjectPtr parent){
+int QStandardItemModel_InsertRow2(void* ptr, int row, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->insertRow(row, *static_cast<QModelIndex*>(parent));
 }
 
-void QStandardItemModel_InsertRow3(QtObjectPtr ptr, int row, QtObjectPtr item){
+void QStandardItemModel_InsertRow3(void* ptr, int row, void* item){
 	static_cast<QStandardItemModel*>(ptr)->insertRow(row, static_cast<QStandardItem*>(item));
 }
 
-int QStandardItemModel_InsertRows(QtObjectPtr ptr, int row, int count, QtObjectPtr parent){
+int QStandardItemModel_InsertRows(void* ptr, int row, int count, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
-QtObjectPtr QStandardItemModel_InvisibleRootItem(QtObjectPtr ptr){
+void* QStandardItemModel_InvisibleRootItem(void* ptr){
 	return static_cast<QStandardItemModel*>(ptr)->invisibleRootItem();
 }
 
-QtObjectPtr QStandardItemModel_Item(QtObjectPtr ptr, int row, int column){
+void* QStandardItemModel_Item(void* ptr, int row, int column){
 	return static_cast<QStandardItemModel*>(ptr)->item(row, column);
 }
 
-void QStandardItemModel_ConnectItemChanged(QtObjectPtr ptr){
+void QStandardItemModel_ConnectItemChanged(void* ptr){
 	QObject::connect(static_cast<QStandardItemModel*>(ptr), static_cast<void (QStandardItemModel::*)(QStandardItem *)>(&QStandardItemModel::itemChanged), static_cast<MyQStandardItemModel*>(ptr), static_cast<void (MyQStandardItemModel::*)(QStandardItem *)>(&MyQStandardItemModel::Signal_ItemChanged));;
 }
 
-void QStandardItemModel_DisconnectItemChanged(QtObjectPtr ptr){
+void QStandardItemModel_DisconnectItemChanged(void* ptr){
 	QObject::disconnect(static_cast<QStandardItemModel*>(ptr), static_cast<void (QStandardItemModel::*)(QStandardItem *)>(&QStandardItemModel::itemChanged), static_cast<MyQStandardItemModel*>(ptr), static_cast<void (MyQStandardItemModel::*)(QStandardItem *)>(&MyQStandardItemModel::Signal_ItemChanged));;
 }
 
-QtObjectPtr QStandardItemModel_ItemFromIndex(QtObjectPtr ptr, QtObjectPtr index){
+void* QStandardItemModel_ItemFromIndex(void* ptr, void* index){
 	return static_cast<QStandardItemModel*>(ptr)->itemFromIndex(*static_cast<QModelIndex*>(index));
 }
 
-QtObjectPtr QStandardItemModel_ItemPrototype(QtObjectPtr ptr){
+void* QStandardItemModel_ItemPrototype(void* ptr){
 	return const_cast<QStandardItem*>(static_cast<QStandardItemModel*>(ptr)->itemPrototype());
 }
 
-char* QStandardItemModel_MimeTypes(QtObjectPtr ptr){
+char* QStandardItemModel_MimeTypes(void* ptr){
 	return static_cast<QStandardItemModel*>(ptr)->mimeTypes().join("|").toUtf8().data();
 }
 
-QtObjectPtr QStandardItemModel_Parent(QtObjectPtr ptr, QtObjectPtr child){
+void* QStandardItemModel_Parent(void* ptr, void* child){
 	return static_cast<QStandardItemModel*>(ptr)->parent(*static_cast<QModelIndex*>(child)).internalPointer();
 }
 
-int QStandardItemModel_RemoveColumns(QtObjectPtr ptr, int column, int count, QtObjectPtr parent){
+int QStandardItemModel_RemoveColumns(void* ptr, int column, int count, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
-int QStandardItemModel_RemoveRows(QtObjectPtr ptr, int row, int count, QtObjectPtr parent){
+int QStandardItemModel_RemoveRows(void* ptr, int row, int count, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->removeRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
-int QStandardItemModel_RowCount(QtObjectPtr ptr, QtObjectPtr parent){
+int QStandardItemModel_RowCount(void* ptr, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
 }
 
-void QStandardItemModel_SetColumnCount(QtObjectPtr ptr, int columns){
+void QStandardItemModel_SetColumnCount(void* ptr, int columns){
 	static_cast<QStandardItemModel*>(ptr)->setColumnCount(columns);
 }
 
-int QStandardItemModel_SetData(QtObjectPtr ptr, QtObjectPtr index, char* value, int role){
-	return static_cast<QStandardItemModel*>(ptr)->setData(*static_cast<QModelIndex*>(index), QVariant(value), role);
+int QStandardItemModel_SetData(void* ptr, void* index, void* value, int role){
+	return static_cast<QStandardItemModel*>(ptr)->setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
 }
 
-int QStandardItemModel_SetHeaderData(QtObjectPtr ptr, int section, int orientation, char* value, int role){
-	return static_cast<QStandardItemModel*>(ptr)->setHeaderData(section, static_cast<Qt::Orientation>(orientation), QVariant(value), role);
+int QStandardItemModel_SetHeaderData(void* ptr, int section, int orientation, void* value, int role){
+	return static_cast<QStandardItemModel*>(ptr)->setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 }
 
-void QStandardItemModel_SetHorizontalHeaderItem(QtObjectPtr ptr, int column, QtObjectPtr item){
+void QStandardItemModel_SetHorizontalHeaderItem(void* ptr, int column, void* item){
 	static_cast<QStandardItemModel*>(ptr)->setHorizontalHeaderItem(column, static_cast<QStandardItem*>(item));
 }
 
-void QStandardItemModel_SetHorizontalHeaderLabels(QtObjectPtr ptr, char* labels){
+void QStandardItemModel_SetHorizontalHeaderLabels(void* ptr, char* labels){
 	static_cast<QStandardItemModel*>(ptr)->setHorizontalHeaderLabels(QString(labels).split("|", QString::SkipEmptyParts));
 }
 
-void QStandardItemModel_SetItem2(QtObjectPtr ptr, int row, QtObjectPtr item){
+void QStandardItemModel_SetItem2(void* ptr, int row, void* item){
 	static_cast<QStandardItemModel*>(ptr)->setItem(row, static_cast<QStandardItem*>(item));
 }
 
-void QStandardItemModel_SetItem(QtObjectPtr ptr, int row, int column, QtObjectPtr item){
+void QStandardItemModel_SetItem(void* ptr, int row, int column, void* item){
 	static_cast<QStandardItemModel*>(ptr)->setItem(row, column, static_cast<QStandardItem*>(item));
 }
 
-void QStandardItemModel_SetItemPrototype(QtObjectPtr ptr, QtObjectPtr item){
+void QStandardItemModel_SetItemPrototype(void* ptr, void* item){
 	static_cast<QStandardItemModel*>(ptr)->setItemPrototype(static_cast<QStandardItem*>(item));
 }
 
-void QStandardItemModel_SetRowCount(QtObjectPtr ptr, int rows){
+void QStandardItemModel_SetRowCount(void* ptr, int rows){
 	static_cast<QStandardItemModel*>(ptr)->setRowCount(rows);
 }
 
-void QStandardItemModel_SetVerticalHeaderItem(QtObjectPtr ptr, int row, QtObjectPtr item){
+void QStandardItemModel_SetVerticalHeaderItem(void* ptr, int row, void* item){
 	static_cast<QStandardItemModel*>(ptr)->setVerticalHeaderItem(row, static_cast<QStandardItem*>(item));
 }
 
-void QStandardItemModel_SetVerticalHeaderLabels(QtObjectPtr ptr, char* labels){
+void QStandardItemModel_SetVerticalHeaderLabels(void* ptr, char* labels){
 	static_cast<QStandardItemModel*>(ptr)->setVerticalHeaderLabels(QString(labels).split("|", QString::SkipEmptyParts));
 }
 
-QtObjectPtr QStandardItemModel_Sibling(QtObjectPtr ptr, int row, int column, QtObjectPtr idx){
+void* QStandardItemModel_Sibling(void* ptr, int row, int column, void* idx){
 	return static_cast<QStandardItemModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)).internalPointer();
 }
 
-void QStandardItemModel_Sort(QtObjectPtr ptr, int column, int order){
+void QStandardItemModel_Sort(void* ptr, int column, int order){
 	static_cast<QStandardItemModel*>(ptr)->sort(column, static_cast<Qt::SortOrder>(order));
 }
 
-int QStandardItemModel_SupportedDropActions(QtObjectPtr ptr){
+int QStandardItemModel_SupportedDropActions(void* ptr){
 	return static_cast<QStandardItemModel*>(ptr)->supportedDropActions();
 }
 
-QtObjectPtr QStandardItemModel_TakeHorizontalHeaderItem(QtObjectPtr ptr, int column){
+void* QStandardItemModel_TakeHorizontalHeaderItem(void* ptr, int column){
 	return static_cast<QStandardItemModel*>(ptr)->takeHorizontalHeaderItem(column);
 }
 
-QtObjectPtr QStandardItemModel_TakeItem(QtObjectPtr ptr, int row, int column){
+void* QStandardItemModel_TakeItem(void* ptr, int row, int column){
 	return static_cast<QStandardItemModel*>(ptr)->takeItem(row, column);
 }
 
-QtObjectPtr QStandardItemModel_TakeVerticalHeaderItem(QtObjectPtr ptr, int row){
+void* QStandardItemModel_TakeVerticalHeaderItem(void* ptr, int row){
 	return static_cast<QStandardItemModel*>(ptr)->takeVerticalHeaderItem(row);
 }
 
-QtObjectPtr QStandardItemModel_VerticalHeaderItem(QtObjectPtr ptr, int row){
+void* QStandardItemModel_VerticalHeaderItem(void* ptr, int row){
 	return static_cast<QStandardItemModel*>(ptr)->verticalHeaderItem(row);
 }
 
-void QStandardItemModel_DestroyQStandardItemModel(QtObjectPtr ptr){
+void QStandardItemModel_DestroyQStandardItemModel(void* ptr){
 	static_cast<QStandardItemModel*>(ptr)->~QStandardItemModel();
 }
 

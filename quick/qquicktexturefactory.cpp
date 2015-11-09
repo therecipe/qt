@@ -11,15 +11,15 @@ class MyQQuickTextureFactory: public QQuickTextureFactory {
 public:
 };
 
-QtObjectPtr QQuickTextureFactory_CreateTexture(QtObjectPtr ptr, QtObjectPtr window){
+void* QQuickTextureFactory_CreateTexture(void* ptr, void* window){
 	return static_cast<QQuickTextureFactory*>(ptr)->createTexture(static_cast<QQuickWindow*>(window));
 }
 
-int QQuickTextureFactory_TextureByteCount(QtObjectPtr ptr){
+int QQuickTextureFactory_TextureByteCount(void* ptr){
 	return static_cast<QQuickTextureFactory*>(ptr)->textureByteCount();
 }
 
-void QQuickTextureFactory_DestroyQQuickTextureFactory(QtObjectPtr ptr){
+void QQuickTextureFactory_DestroyQQuickTextureFactory(void* ptr){
 	static_cast<QQuickTextureFactory*>(ptr)->~QQuickTextureFactory();
 }
 

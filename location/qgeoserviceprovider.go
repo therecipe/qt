@@ -13,35 +13,35 @@ type QGeoServiceProvider struct {
 	core.QObject
 }
 
-type QGeoServiceProviderITF interface {
-	core.QObjectITF
-	QGeoServiceProviderPTR() *QGeoServiceProvider
+type QGeoServiceProvider_ITF interface {
+	core.QObject_ITF
+	QGeoServiceProvider_PTR() *QGeoServiceProvider
 }
 
-func PointerFromQGeoServiceProvider(ptr QGeoServiceProviderITF) unsafe.Pointer {
+func PointerFromQGeoServiceProvider(ptr QGeoServiceProvider_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGeoServiceProviderPTR().Pointer()
+		return ptr.QGeoServiceProvider_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGeoServiceProviderFromPointer(ptr unsafe.Pointer) *QGeoServiceProvider {
+func NewQGeoServiceProviderFromPointer(ptr unsafe.Pointer) *QGeoServiceProvider {
 	var n = new(QGeoServiceProvider)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGeoServiceProvider_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGeoServiceProvider) QGeoServiceProviderPTR() *QGeoServiceProvider {
+func (ptr *QGeoServiceProvider) QGeoServiceProvider_PTR() *QGeoServiceProvider {
 	return ptr
 }
 
 //QGeoServiceProvider::Error
-type QGeoServiceProvider__Error int
+type QGeoServiceProvider__Error int64
 
-var (
+const (
 	QGeoServiceProvider__NoError                       = QGeoServiceProvider__Error(0)
 	QGeoServiceProvider__NotSupportedError             = QGeoServiceProvider__Error(1)
 	QGeoServiceProvider__UnknownParameterError         = QGeoServiceProvider__Error(2)
@@ -50,7 +50,7 @@ var (
 )
 
 //QGeoServiceProvider::GeocodingFeature
-type QGeoServiceProvider__GeocodingFeature int
+type QGeoServiceProvider__GeocodingFeature int64
 
 var (
 	QGeoServiceProvider__NoGeocodingFeatures       = QGeoServiceProvider__GeocodingFeature(0)
@@ -62,7 +62,7 @@ var (
 )
 
 //QGeoServiceProvider::MappingFeature
-type QGeoServiceProvider__MappingFeature int
+type QGeoServiceProvider__MappingFeature int64
 
 var (
 	QGeoServiceProvider__NoMappingFeatures       = QGeoServiceProvider__MappingFeature(0)
@@ -73,7 +73,7 @@ var (
 )
 
 //QGeoServiceProvider::PlacesFeature
-type QGeoServiceProvider__PlacesFeature int
+type QGeoServiceProvider__PlacesFeature int64
 
 var (
 	QGeoServiceProvider__NoPlacesFeatures            = QGeoServiceProvider__PlacesFeature(0)
@@ -92,7 +92,7 @@ var (
 )
 
 //QGeoServiceProvider::RoutingFeature
-type QGeoServiceProvider__RoutingFeature int
+type QGeoServiceProvider__RoutingFeature int64
 
 var (
 	QGeoServiceProvider__NoRoutingFeatures          = QGeoServiceProvider__RoutingFeature(0)
@@ -111,82 +111,82 @@ func QGeoServiceProvider_AvailableServiceProviders() []string {
 
 func (ptr *QGeoServiceProvider) Error() QGeoServiceProvider__Error {
 	if ptr.Pointer() != nil {
-		return QGeoServiceProvider__Error(C.QGeoServiceProvider_Error(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoServiceProvider__Error(C.QGeoServiceProvider_Error(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoServiceProvider) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGeoServiceProvider_ErrorString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QGeoServiceProvider_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QGeoServiceProvider) GeocodingFeatures() QGeoServiceProvider__GeocodingFeature {
 	if ptr.Pointer() != nil {
-		return QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_GeocodingFeatures(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_GeocodingFeatures(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoServiceProvider) GeocodingManager() *QGeoCodingManager {
 	if ptr.Pointer() != nil {
-		return QGeoCodingManagerFromPointer(unsafe.Pointer(C.QGeoServiceProvider_GeocodingManager(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQGeoCodingManagerFromPointer(C.QGeoServiceProvider_GeocodingManager(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QGeoServiceProvider) MappingFeatures() QGeoServiceProvider__MappingFeature {
 	if ptr.Pointer() != nil {
-		return QGeoServiceProvider__MappingFeature(C.QGeoServiceProvider_MappingFeatures(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoServiceProvider__MappingFeature(C.QGeoServiceProvider_MappingFeatures(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoServiceProvider) PlaceManager() *QPlaceManager {
 	if ptr.Pointer() != nil {
-		return QPlaceManagerFromPointer(unsafe.Pointer(C.QGeoServiceProvider_PlaceManager(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQPlaceManagerFromPointer(C.QGeoServiceProvider_PlaceManager(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QGeoServiceProvider) PlacesFeatures() QGeoServiceProvider__PlacesFeature {
 	if ptr.Pointer() != nil {
-		return QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_PlacesFeatures(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_PlacesFeatures(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoServiceProvider) RoutingFeatures() QGeoServiceProvider__RoutingFeature {
 	if ptr.Pointer() != nil {
-		return QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_RoutingFeatures(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_RoutingFeatures(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoServiceProvider) RoutingManager() *QGeoRoutingManager {
 	if ptr.Pointer() != nil {
-		return QGeoRoutingManagerFromPointer(unsafe.Pointer(C.QGeoServiceProvider_RoutingManager(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQGeoRoutingManagerFromPointer(C.QGeoServiceProvider_RoutingManager(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QGeoServiceProvider) SetAllowExperimental(allow bool) {
 	if ptr.Pointer() != nil {
-		C.QGeoServiceProvider_SetAllowExperimental(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(allow)))
+		C.QGeoServiceProvider_SetAllowExperimental(ptr.Pointer(), C.int(qt.GoBoolToInt(allow)))
 	}
 }
 
-func (ptr *QGeoServiceProvider) SetLocale(locale core.QLocaleITF) {
+func (ptr *QGeoServiceProvider) SetLocale(locale core.QLocale_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGeoServiceProvider_SetLocale(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQLocale(locale)))
+		C.QGeoServiceProvider_SetLocale(ptr.Pointer(), core.PointerFromQLocale(locale))
 	}
 }
 
 func (ptr *QGeoServiceProvider) DestroyQGeoServiceProvider() {
 	if ptr.Pointer() != nil {
-		C.QGeoServiceProvider_DestroyQGeoServiceProvider(C.QtObjectPtr(ptr.Pointer()))
+		C.QGeoServiceProvider_DestroyQGeoServiceProvider(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

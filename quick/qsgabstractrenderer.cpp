@@ -1,14 +1,14 @@
 #include "qsgabstractrenderer.h"
-#include <QRectF>
 #include <QVariant>
 #include <QModelIndex>
-#include <QSize>
-#include <QObject>
+#include <QColor>
 #include <QMatrix4x4>
 #include <QRect>
+#include <QRectF>
 #include <QString>
 #include <QUrl>
-#include <QColor>
+#include <QObject>
+#include <QSize>
 #include <QSGAbstractRenderer>
 #include "_cgo_export.h"
 
@@ -17,47 +17,51 @@ public:
 void Signal_SceneGraphChanged(){callbackQSGAbstractRendererSceneGraphChanged(this->objectName().toUtf8().data());};
 };
 
-int QSGAbstractRenderer_ClearMode(QtObjectPtr ptr){
+void* QSGAbstractRenderer_ClearColor(void* ptr){
+	return new QColor(static_cast<QSGAbstractRenderer*>(ptr)->clearColor());
+}
+
+int QSGAbstractRenderer_ClearMode(void* ptr){
 	return static_cast<QSGAbstractRenderer*>(ptr)->clearMode();
 }
 
-void QSGAbstractRenderer_ConnectSceneGraphChanged(QtObjectPtr ptr){
+void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr){
 	QObject::connect(static_cast<QSGAbstractRenderer*>(ptr), static_cast<void (QSGAbstractRenderer::*)()>(&QSGAbstractRenderer::sceneGraphChanged), static_cast<MyQSGAbstractRenderer*>(ptr), static_cast<void (MyQSGAbstractRenderer::*)()>(&MyQSGAbstractRenderer::Signal_SceneGraphChanged));;
 }
 
-void QSGAbstractRenderer_DisconnectSceneGraphChanged(QtObjectPtr ptr){
+void QSGAbstractRenderer_DisconnectSceneGraphChanged(void* ptr){
 	QObject::disconnect(static_cast<QSGAbstractRenderer*>(ptr), static_cast<void (QSGAbstractRenderer::*)()>(&QSGAbstractRenderer::sceneGraphChanged), static_cast<MyQSGAbstractRenderer*>(ptr), static_cast<void (MyQSGAbstractRenderer::*)()>(&MyQSGAbstractRenderer::Signal_SceneGraphChanged));;
 }
 
-void QSGAbstractRenderer_SetClearColor(QtObjectPtr ptr, QtObjectPtr color){
+void QSGAbstractRenderer_SetClearColor(void* ptr, void* color){
 	static_cast<QSGAbstractRenderer*>(ptr)->setClearColor(*static_cast<QColor*>(color));
 }
 
-void QSGAbstractRenderer_SetClearMode(QtObjectPtr ptr, int mode){
+void QSGAbstractRenderer_SetClearMode(void* ptr, int mode){
 	static_cast<QSGAbstractRenderer*>(ptr)->setClearMode(static_cast<QSGAbstractRenderer::ClearModeBit>(mode));
 }
 
-void QSGAbstractRenderer_SetDeviceRect(QtObjectPtr ptr, QtObjectPtr rect){
+void QSGAbstractRenderer_SetDeviceRect(void* ptr, void* rect){
 	static_cast<QSGAbstractRenderer*>(ptr)->setDeviceRect(*static_cast<QRect*>(rect));
 }
 
-void QSGAbstractRenderer_SetDeviceRect2(QtObjectPtr ptr, QtObjectPtr size){
+void QSGAbstractRenderer_SetDeviceRect2(void* ptr, void* size){
 	static_cast<QSGAbstractRenderer*>(ptr)->setDeviceRect(*static_cast<QSize*>(size));
 }
 
-void QSGAbstractRenderer_SetProjectionMatrix(QtObjectPtr ptr, QtObjectPtr matrix){
+void QSGAbstractRenderer_SetProjectionMatrix(void* ptr, void* matrix){
 	static_cast<QSGAbstractRenderer*>(ptr)->setProjectionMatrix(*static_cast<QMatrix4x4*>(matrix));
 }
 
-void QSGAbstractRenderer_SetProjectionMatrixToRect(QtObjectPtr ptr, QtObjectPtr rect){
+void QSGAbstractRenderer_SetProjectionMatrixToRect(void* ptr, void* rect){
 	static_cast<QSGAbstractRenderer*>(ptr)->setProjectionMatrixToRect(*static_cast<QRectF*>(rect));
 }
 
-void QSGAbstractRenderer_SetViewportRect(QtObjectPtr ptr, QtObjectPtr rect){
+void QSGAbstractRenderer_SetViewportRect(void* ptr, void* rect){
 	static_cast<QSGAbstractRenderer*>(ptr)->setViewportRect(*static_cast<QRect*>(rect));
 }
 
-void QSGAbstractRenderer_SetViewportRect2(QtObjectPtr ptr, QtObjectPtr size){
+void QSGAbstractRenderer_SetViewportRect2(void* ptr, void* size){
 	static_cast<QSGAbstractRenderer*>(ptr)->setViewportRect(*static_cast<QSize*>(size));
 }
 

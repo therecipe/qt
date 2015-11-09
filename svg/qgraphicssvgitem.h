@@ -1,17 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGraphicsSvgItem_NewQGraphicsSvgItem(QtObjectPtr parent);
-QtObjectPtr QGraphicsSvgItem_NewQGraphicsSvgItem2(char* fileName, QtObjectPtr parent);
-char* QGraphicsSvgItem_ElementId(QtObjectPtr ptr);
-void QGraphicsSvgItem_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr widget);
-QtObjectPtr QGraphicsSvgItem_Renderer(QtObjectPtr ptr);
-void QGraphicsSvgItem_SetElementId(QtObjectPtr ptr, char* id);
-void QGraphicsSvgItem_SetMaximumCacheSize(QtObjectPtr ptr, QtObjectPtr size);
-void QGraphicsSvgItem_SetSharedRenderer(QtObjectPtr ptr, QtObjectPtr renderer);
-int QGraphicsSvgItem_Type(QtObjectPtr ptr);
+char* QGraphicsSvgItem_ElementId(void* ptr);
+void QGraphicsSvgItem_Paint(void* ptr, void* painter, void* option, void* widget);
+void* QGraphicsSvgItem_Renderer(void* ptr);
+void QGraphicsSvgItem_SetElementId(void* ptr, char* id);
+void QGraphicsSvgItem_SetMaximumCacheSize(void* ptr, void* size);
+void QGraphicsSvgItem_SetSharedRenderer(void* ptr, void* renderer);
+int QGraphicsSvgItem_Type(void* ptr);
 
 #ifdef __cplusplus
 }

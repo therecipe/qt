@@ -12,35 +12,35 @@ type QNetworkConfigurationManager struct {
 	core.QObject
 }
 
-type QNetworkConfigurationManagerITF interface {
-	core.QObjectITF
-	QNetworkConfigurationManagerPTR() *QNetworkConfigurationManager
+type QNetworkConfigurationManager_ITF interface {
+	core.QObject_ITF
+	QNetworkConfigurationManager_PTR() *QNetworkConfigurationManager
 }
 
-func PointerFromQNetworkConfigurationManager(ptr QNetworkConfigurationManagerITF) unsafe.Pointer {
+func PointerFromQNetworkConfigurationManager(ptr QNetworkConfigurationManager_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNetworkConfigurationManagerPTR().Pointer()
+		return ptr.QNetworkConfigurationManager_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNetworkConfigurationManagerFromPointer(ptr unsafe.Pointer) *QNetworkConfigurationManager {
+func NewQNetworkConfigurationManagerFromPointer(ptr unsafe.Pointer) *QNetworkConfigurationManager {
 	var n = new(QNetworkConfigurationManager)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QNetworkConfigurationManager_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QNetworkConfigurationManager) QNetworkConfigurationManagerPTR() *QNetworkConfigurationManager {
+func (ptr *QNetworkConfigurationManager) QNetworkConfigurationManager_PTR() *QNetworkConfigurationManager {
 	return ptr
 }
 
 //QNetworkConfigurationManager::Capability
-type QNetworkConfigurationManager__Capability int
+type QNetworkConfigurationManager__Capability int64
 
-var (
+const (
 	QNetworkConfigurationManager__CanStartAndStopInterfaces = QNetworkConfigurationManager__Capability(0x00000001)
 	QNetworkConfigurationManager__DirectConnectionRouting   = QNetworkConfigurationManager__Capability(0x00000002)
 	QNetworkConfigurationManager__SystemSessionSupport      = QNetworkConfigurationManager__Capability(0x00000004)
@@ -50,34 +50,34 @@ var (
 	QNetworkConfigurationManager__NetworkSessionRequired    = QNetworkConfigurationManager__Capability(0x00000040)
 )
 
-func NewQNetworkConfigurationManager(parent core.QObjectITF) *QNetworkConfigurationManager {
-	return QNetworkConfigurationManagerFromPointer(unsafe.Pointer(C.QNetworkConfigurationManager_NewQNetworkConfigurationManager(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQNetworkConfigurationManager(parent core.QObject_ITF) *QNetworkConfigurationManager {
+	return NewQNetworkConfigurationManagerFromPointer(C.QNetworkConfigurationManager_NewQNetworkConfigurationManager(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNetworkConfigurationManager) Capabilities() QNetworkConfigurationManager__Capability {
 	if ptr.Pointer() != nil {
-		return QNetworkConfigurationManager__Capability(C.QNetworkConfigurationManager_Capabilities(C.QtObjectPtr(ptr.Pointer())))
+		return QNetworkConfigurationManager__Capability(C.QNetworkConfigurationManager_Capabilities(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNetworkConfigurationManager) IsOnline() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkConfigurationManager_IsOnline(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QNetworkConfigurationManager_IsOnline(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectOnlineStateChanged(f func(isOnline bool)) {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_ConnectOnlineStateChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkConfigurationManager_ConnectOnlineStateChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "onlineStateChanged", f)
 	}
 }
 
 func (ptr *QNetworkConfigurationManager) DisconnectOnlineStateChanged() {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_DisconnectOnlineStateChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkConfigurationManager_DisconnectOnlineStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "onlineStateChanged")
 	}
 }
@@ -89,14 +89,14 @@ func callbackQNetworkConfigurationManagerOnlineStateChanged(ptrName *C.char, isO
 
 func (ptr *QNetworkConfigurationManager) ConnectUpdateCompleted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_ConnectUpdateCompleted(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkConfigurationManager_ConnectUpdateCompleted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "updateCompleted", f)
 	}
 }
 
 func (ptr *QNetworkConfigurationManager) DisconnectUpdateCompleted() {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_DisconnectUpdateCompleted(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkConfigurationManager_DisconnectUpdateCompleted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "updateCompleted")
 	}
 }
@@ -108,13 +108,13 @@ func callbackQNetworkConfigurationManagerUpdateCompleted(ptrName *C.char) {
 
 func (ptr *QNetworkConfigurationManager) UpdateConfigurations() {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_UpdateConfigurations(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkConfigurationManager_UpdateConfigurations(ptr.Pointer())
 	}
 }
 
 func (ptr *QNetworkConfigurationManager) DestroyQNetworkConfigurationManager() {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

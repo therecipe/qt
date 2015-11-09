@@ -1,10 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QPaintEvent_NewQPaintEvent2(QtObjectPtr paintRect);
-QtObjectPtr QPaintEvent_NewQPaintEvent(QtObjectPtr paintRegion);
+void* QPaintEvent_NewQPaintEvent2(void* paintRect);
+void* QPaintEvent_NewQPaintEvent(void* paintRegion);
+void* QPaintEvent_Region(void* ptr);
 
 #ifdef __cplusplus
 }

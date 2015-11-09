@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QOrientationReading_Orientation(QtObjectPtr ptr);
-void QOrientationReading_SetOrientation(QtObjectPtr ptr, int orientation);
+int QOrientationReading_Orientation(void* ptr);
+void QOrientationReading_SetOrientation(void* ptr, int orientation);
 
 #ifdef __cplusplus
 }

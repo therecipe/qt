@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QHideEvent_NewQHideEvent();
+void* QHideEvent_NewQHideEvent();
 
 #ifdef __cplusplus
 }

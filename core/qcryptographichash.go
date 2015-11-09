@@ -10,8 +10,8 @@ type QCryptographicHash struct {
 	ptr unsafe.Pointer
 }
 
-type QCryptographicHashITF interface {
-	QCryptographicHashPTR() *QCryptographicHash
+type QCryptographicHash_ITF interface {
+	QCryptographicHash_PTR() *QCryptographicHash
 }
 
 func (p *QCryptographicHash) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QCryptographicHash) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQCryptographicHash(ptr QCryptographicHashITF) unsafe.Pointer {
+func PointerFromQCryptographicHash(ptr QCryptographicHash_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCryptographicHashPTR().Pointer()
+		return ptr.QCryptographicHash_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCryptographicHashFromPointer(ptr unsafe.Pointer) *QCryptographicHash {
+func NewQCryptographicHashFromPointer(ptr unsafe.Pointer) *QCryptographicHash {
 	var n = new(QCryptographicHash)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QCryptographicHash) QCryptographicHashPTR() *QCryptographicHash {
+func (ptr *QCryptographicHash) QCryptographicHash_PTR() *QCryptographicHash {
 	return ptr
 }
 
 //QCryptographicHash::Algorithm
-type QCryptographicHash__Algorithm int
+type QCryptographicHash__Algorithm int64
 
-var (
+const (
 	QCryptographicHash__Md4      = QCryptographicHash__Algorithm(0)
 	QCryptographicHash__Md5      = QCryptographicHash__Algorithm(1)
 	QCryptographicHash__Sha1     = QCryptographicHash__Algorithm(2)
@@ -57,36 +57,47 @@ var (
 )
 
 func NewQCryptographicHash(method QCryptographicHash__Algorithm) *QCryptographicHash {
-	return QCryptographicHashFromPointer(unsafe.Pointer(C.QCryptographicHash_NewQCryptographicHash(C.int(method))))
+	return NewQCryptographicHashFromPointer(C.QCryptographicHash_NewQCryptographicHash(C.int(method)))
 }
 
-func (ptr *QCryptographicHash) AddData2(device QIODeviceITF) bool {
+func (ptr *QCryptographicHash) AddData2(device QIODevice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCryptographicHash_AddData2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQIODevice(device))) != 0
+		return C.QCryptographicHash_AddData2(ptr.Pointer(), PointerFromQIODevice(device)) != 0
 	}
 	return false
 }
 
-func (ptr *QCryptographicHash) AddData3(data QByteArrayITF) {
+func (ptr *QCryptographicHash) AddData3(data QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QCryptographicHash_AddData3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQByteArray(data)))
+		C.QCryptographicHash_AddData3(ptr.Pointer(), PointerFromQByteArray(data))
 	}
 }
 
 func (ptr *QCryptographicHash) AddData(data string, length int) {
 	if ptr.Pointer() != nil {
-		C.QCryptographicHash_AddData(C.QtObjectPtr(ptr.Pointer()), C.CString(data), C.int(length))
+		C.QCryptographicHash_AddData(ptr.Pointer(), C.CString(data), C.int(length))
 	}
+}
+
+func QCryptographicHash_Hash(data QByteArray_ITF, method QCryptographicHash__Algorithm) *QByteArray {
+	return NewQByteArrayFromPointer(C.QCryptographicHash_QCryptographicHash_Hash(PointerFromQByteArray(data), C.int(method)))
 }
 
 func (ptr *QCryptographicHash) Reset() {
 	if ptr.Pointer() != nil {
-		C.QCryptographicHash_Reset(C.QtObjectPtr(ptr.Pointer()))
+		C.QCryptographicHash_Reset(ptr.Pointer())
 	}
+}
+
+func (ptr *QCryptographicHash) Result() *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QCryptographicHash_Result(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QCryptographicHash) DestroyQCryptographicHash() {
 	if ptr.Pointer() != nil {
-		C.QCryptographicHash_DestroyQCryptographicHash(C.QtObjectPtr(ptr.Pointer()))
+		C.QCryptographicHash_DestroyQCryptographicHash(ptr.Pointer())
 	}
 }

@@ -11,11 +11,11 @@ class MyQDebugStateSaver: public QDebugStateSaver {
 public:
 };
 
-QtObjectPtr QDebugStateSaver_NewQDebugStateSaver(QtObjectPtr dbg){
+void* QDebugStateSaver_NewQDebugStateSaver(void* dbg){
 	return new QDebugStateSaver(*static_cast<QDebug*>(dbg));
 }
 
-void QDebugStateSaver_DestroyQDebugStateSaver(QtObjectPtr ptr){
+void QDebugStateSaver_DestroyQDebugStateSaver(void* ptr){
 	static_cast<QDebugStateSaver*>(ptr)->~QDebugStateSaver();
 }
 

@@ -11,8 +11,8 @@ type QSGMaterialShader struct {
 	ptr unsafe.Pointer
 }
 
-type QSGMaterialShaderITF interface {
-	QSGMaterialShaderPTR() *QSGMaterialShader
+type QSGMaterialShader_ITF interface {
+	QSGMaterialShader_PTR() *QSGMaterialShader
 }
 
 func (p *QSGMaterialShader) Pointer() unsafe.Pointer {
@@ -23,38 +23,38 @@ func (p *QSGMaterialShader) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSGMaterialShader(ptr QSGMaterialShaderITF) unsafe.Pointer {
+func PointerFromQSGMaterialShader(ptr QSGMaterialShader_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSGMaterialShaderPTR().Pointer()
+		return ptr.QSGMaterialShader_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSGMaterialShaderFromPointer(ptr unsafe.Pointer) *QSGMaterialShader {
+func NewQSGMaterialShaderFromPointer(ptr unsafe.Pointer) *QSGMaterialShader {
 	var n = new(QSGMaterialShader)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSGMaterialShader) QSGMaterialShaderPTR() *QSGMaterialShader {
+func (ptr *QSGMaterialShader) QSGMaterialShader_PTR() *QSGMaterialShader {
 	return ptr
 }
 
 func (ptr *QSGMaterialShader) Activate() {
 	if ptr.Pointer() != nil {
-		C.QSGMaterialShader_Activate(C.QtObjectPtr(ptr.Pointer()))
+		C.QSGMaterialShader_Activate(ptr.Pointer())
 	}
 }
 
 func (ptr *QSGMaterialShader) Deactivate() {
 	if ptr.Pointer() != nil {
-		C.QSGMaterialShader_Deactivate(C.QtObjectPtr(ptr.Pointer()))
+		C.QSGMaterialShader_Deactivate(ptr.Pointer())
 	}
 }
 
 func (ptr *QSGMaterialShader) Program() *gui.QOpenGLShaderProgram {
 	if ptr.Pointer() != nil {
-		return gui.QOpenGLShaderProgramFromPointer(unsafe.Pointer(C.QSGMaterialShader_Program(C.QtObjectPtr(ptr.Pointer()))))
+		return gui.NewQOpenGLShaderProgramFromPointer(C.QSGMaterialShader_Program(ptr.Pointer()))
 	}
 	return nil
 }

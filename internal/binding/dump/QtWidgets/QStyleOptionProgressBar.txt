@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QStyleOptionProgressBar QStyleOptionProgressBar::QStyleOptionProgressBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
-&{QStyleOptionProgressBar QStyleOptionProgressBar::QStyleOptionProgressBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8214307e0] }
+&{QStyleOptionProgressBar QStyleOptionProgressBar::QStyleOptionProgressBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionProgressBar() [] }
+&{QStyleOptionProgressBar QStyleOptionProgressBar::QStyleOptionProgressBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionProgressBar(const QStyleOptionProgressBar &other) [0xc821d03720] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionProgressBar::StyleOptionType commendable public  [0xc821443f60]}
-&{StyleOptionVersion QStyleOptionProgressBar::StyleOptionVersion commendable public  [0xc821430260]}
+&{StyleOptionType QStyleOptionProgressBar::StyleOptionType commendable public  [0xc821d03120] false}
+&{StyleOptionVersion QStyleOptionProgressBar::StyleOptionVersion commendable public  [0xc821d03380] false}

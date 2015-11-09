@@ -12,99 +12,95 @@ class MyQMediaResource: public QMediaResource {
 public:
 };
 
-QtObjectPtr QMediaResource_NewQMediaResource(){
+void* QMediaResource_NewQMediaResource(){
 	return new QMediaResource();
 }
 
-QtObjectPtr QMediaResource_NewQMediaResource4(QtObjectPtr other){
+void* QMediaResource_NewQMediaResource4(void* other){
 	return new QMediaResource(*static_cast<QMediaResource*>(other));
 }
 
-QtObjectPtr QMediaResource_NewQMediaResource3(QtObjectPtr request, char* mimeType){
+void* QMediaResource_NewQMediaResource3(void* request, char* mimeType){
 	return new QMediaResource(*static_cast<QNetworkRequest*>(request), QString(mimeType));
 }
 
-QtObjectPtr QMediaResource_NewQMediaResource2(char* url, char* mimeType){
-	return new QMediaResource(QUrl(QString(url)), QString(mimeType));
+void* QMediaResource_NewQMediaResource2(void* url, char* mimeType){
+	return new QMediaResource(*static_cast<QUrl*>(url), QString(mimeType));
 }
 
-int QMediaResource_AudioBitRate(QtObjectPtr ptr){
+int QMediaResource_AudioBitRate(void* ptr){
 	return static_cast<QMediaResource*>(ptr)->audioBitRate();
 }
 
-char* QMediaResource_AudioCodec(QtObjectPtr ptr){
+char* QMediaResource_AudioCodec(void* ptr){
 	return static_cast<QMediaResource*>(ptr)->audioCodec().toUtf8().data();
 }
 
-int QMediaResource_ChannelCount(QtObjectPtr ptr){
+int QMediaResource_ChannelCount(void* ptr){
 	return static_cast<QMediaResource*>(ptr)->channelCount();
 }
 
-int QMediaResource_IsNull(QtObjectPtr ptr){
+int QMediaResource_IsNull(void* ptr){
 	return static_cast<QMediaResource*>(ptr)->isNull();
 }
 
-char* QMediaResource_Language(QtObjectPtr ptr){
+char* QMediaResource_Language(void* ptr){
 	return static_cast<QMediaResource*>(ptr)->language().toUtf8().data();
 }
 
-char* QMediaResource_MimeType(QtObjectPtr ptr){
+char* QMediaResource_MimeType(void* ptr){
 	return static_cast<QMediaResource*>(ptr)->mimeType().toUtf8().data();
 }
 
-int QMediaResource_SampleRate(QtObjectPtr ptr){
+int QMediaResource_SampleRate(void* ptr){
 	return static_cast<QMediaResource*>(ptr)->sampleRate();
 }
 
-void QMediaResource_SetAudioBitRate(QtObjectPtr ptr, int rate){
+void QMediaResource_SetAudioBitRate(void* ptr, int rate){
 	static_cast<QMediaResource*>(ptr)->setAudioBitRate(rate);
 }
 
-void QMediaResource_SetAudioCodec(QtObjectPtr ptr, char* codec){
+void QMediaResource_SetAudioCodec(void* ptr, char* codec){
 	static_cast<QMediaResource*>(ptr)->setAudioCodec(QString(codec));
 }
 
-void QMediaResource_SetChannelCount(QtObjectPtr ptr, int channels){
+void QMediaResource_SetChannelCount(void* ptr, int channels){
 	static_cast<QMediaResource*>(ptr)->setChannelCount(channels);
 }
 
-void QMediaResource_SetLanguage(QtObjectPtr ptr, char* language){
+void QMediaResource_SetLanguage(void* ptr, char* language){
 	static_cast<QMediaResource*>(ptr)->setLanguage(QString(language));
 }
 
-void QMediaResource_SetResolution(QtObjectPtr ptr, QtObjectPtr resolution){
+void QMediaResource_SetResolution(void* ptr, void* resolution){
 	static_cast<QMediaResource*>(ptr)->setResolution(*static_cast<QSize*>(resolution));
 }
 
-void QMediaResource_SetResolution2(QtObjectPtr ptr, int width, int height){
+void QMediaResource_SetResolution2(void* ptr, int width, int height){
 	static_cast<QMediaResource*>(ptr)->setResolution(width, height);
 }
 
-void QMediaResource_SetSampleRate(QtObjectPtr ptr, int sampleRate){
+void QMediaResource_SetSampleRate(void* ptr, int sampleRate){
 	static_cast<QMediaResource*>(ptr)->setSampleRate(sampleRate);
 }
 
-void QMediaResource_SetVideoBitRate(QtObjectPtr ptr, int rate){
+void QMediaResource_SetVideoBitRate(void* ptr, int rate){
 	static_cast<QMediaResource*>(ptr)->setVideoBitRate(rate);
 }
 
-void QMediaResource_SetVideoCodec(QtObjectPtr ptr, char* codec){
+void QMediaResource_SetVideoCodec(void* ptr, char* codec){
 	static_cast<QMediaResource*>(ptr)->setVideoCodec(QString(codec));
 }
 
-char* QMediaResource_Url(QtObjectPtr ptr){
-	return static_cast<QMediaResource*>(ptr)->url().toString().toUtf8().data();
-}
-
-int QMediaResource_VideoBitRate(QtObjectPtr ptr){
+int QMediaResource_VideoBitRate(void* ptr){
 	return static_cast<QMediaResource*>(ptr)->videoBitRate();
 }
 
-char* QMediaResource_VideoCodec(QtObjectPtr ptr){
+char* QMediaResource_VideoCodec(void* ptr){
 	return static_cast<QMediaResource*>(ptr)->videoCodec().toUtf8().data();
 }
 
-void QMediaResource_DestroyQMediaResource(QtObjectPtr ptr){
+void QMediaResource_DestroyQMediaResource(void* ptr){
 	static_cast<QMediaResource*>(ptr)->~QMediaResource();
 }
 

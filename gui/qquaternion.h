@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QQuaternion_NewQQuaternion();
-QtObjectPtr QQuaternion_NewQQuaternion5(QtObjectPtr vector);
-void QQuaternion_GetAxes(QtObjectPtr ptr, QtObjectPtr xAxis, QtObjectPtr yAxis, QtObjectPtr zAxis);
-int QQuaternion_IsIdentity(QtObjectPtr ptr);
-int QQuaternion_IsNull(QtObjectPtr ptr);
-void QQuaternion_Normalize(QtObjectPtr ptr);
-void QQuaternion_SetVector(QtObjectPtr ptr, QtObjectPtr vector);
+void* QQuaternion_NewQQuaternion();
+void* QQuaternion_NewQQuaternion5(void* vector);
+void QQuaternion_GetAxes(void* ptr, void* xAxis, void* yAxis, void* zAxis);
+int QQuaternion_IsIdentity(void* ptr);
+int QQuaternion_IsNull(void* ptr);
+void QQuaternion_Normalize(void* ptr);
+void QQuaternion_SetVector(void* ptr, void* vector);
 
 #ifdef __cplusplus
 }

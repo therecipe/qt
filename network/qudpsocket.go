@@ -12,79 +12,79 @@ type QUdpSocket struct {
 	QAbstractSocket
 }
 
-type QUdpSocketITF interface {
-	QAbstractSocketITF
-	QUdpSocketPTR() *QUdpSocket
+type QUdpSocket_ITF interface {
+	QAbstractSocket_ITF
+	QUdpSocket_PTR() *QUdpSocket
 }
 
-func PointerFromQUdpSocket(ptr QUdpSocketITF) unsafe.Pointer {
+func PointerFromQUdpSocket(ptr QUdpSocket_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QUdpSocketPTR().Pointer()
+		return ptr.QUdpSocket_PTR().Pointer()
 	}
 	return nil
 }
 
-func QUdpSocketFromPointer(ptr unsafe.Pointer) *QUdpSocket {
+func NewQUdpSocketFromPointer(ptr unsafe.Pointer) *QUdpSocket {
 	var n = new(QUdpSocket)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QUdpSocket_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QUdpSocket) QUdpSocketPTR() *QUdpSocket {
+func (ptr *QUdpSocket) QUdpSocket_PTR() *QUdpSocket {
 	return ptr
 }
 
-func NewQUdpSocket(parent core.QObjectITF) *QUdpSocket {
-	return QUdpSocketFromPointer(unsafe.Pointer(C.QUdpSocket_NewQUdpSocket(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQUdpSocket(parent core.QObject_ITF) *QUdpSocket {
+	return NewQUdpSocketFromPointer(C.QUdpSocket_NewQUdpSocket(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QUdpSocket) HasPendingDatagrams() bool {
 	if ptr.Pointer() != nil {
-		return C.QUdpSocket_HasPendingDatagrams(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QUdpSocket_HasPendingDatagrams(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QUdpSocket) JoinMulticastGroup(groupAddress QHostAddressITF) bool {
+func (ptr *QUdpSocket) JoinMulticastGroup(groupAddress QHostAddress_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUdpSocket_JoinMulticastGroup(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQHostAddress(groupAddress))) != 0
+		return C.QUdpSocket_JoinMulticastGroup(ptr.Pointer(), PointerFromQHostAddress(groupAddress)) != 0
 	}
 	return false
 }
 
-func (ptr *QUdpSocket) JoinMulticastGroup2(groupAddress QHostAddressITF, iface QNetworkInterfaceITF) bool {
+func (ptr *QUdpSocket) JoinMulticastGroup2(groupAddress QHostAddress_ITF, iface QNetworkInterface_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUdpSocket_JoinMulticastGroup2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQHostAddress(groupAddress)), C.QtObjectPtr(PointerFromQNetworkInterface(iface))) != 0
+		return C.QUdpSocket_JoinMulticastGroup2(ptr.Pointer(), PointerFromQHostAddress(groupAddress), PointerFromQNetworkInterface(iface)) != 0
 	}
 	return false
 }
 
-func (ptr *QUdpSocket) LeaveMulticastGroup(groupAddress QHostAddressITF) bool {
+func (ptr *QUdpSocket) LeaveMulticastGroup(groupAddress QHostAddress_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUdpSocket_LeaveMulticastGroup(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQHostAddress(groupAddress))) != 0
+		return C.QUdpSocket_LeaveMulticastGroup(ptr.Pointer(), PointerFromQHostAddress(groupAddress)) != 0
 	}
 	return false
 }
 
-func (ptr *QUdpSocket) LeaveMulticastGroup2(groupAddress QHostAddressITF, iface QNetworkInterfaceITF) bool {
+func (ptr *QUdpSocket) LeaveMulticastGroup2(groupAddress QHostAddress_ITF, iface QNetworkInterface_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QUdpSocket_LeaveMulticastGroup2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQHostAddress(groupAddress)), C.QtObjectPtr(PointerFromQNetworkInterface(iface))) != 0
+		return C.QUdpSocket_LeaveMulticastGroup2(ptr.Pointer(), PointerFromQHostAddress(groupAddress), PointerFromQNetworkInterface(iface)) != 0
 	}
 	return false
 }
 
-func (ptr *QUdpSocket) SetMulticastInterface(iface QNetworkInterfaceITF) {
+func (ptr *QUdpSocket) SetMulticastInterface(iface QNetworkInterface_ITF) {
 	if ptr.Pointer() != nil {
-		C.QUdpSocket_SetMulticastInterface(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQNetworkInterface(iface)))
+		C.QUdpSocket_SetMulticastInterface(ptr.Pointer(), PointerFromQNetworkInterface(iface))
 	}
 }
 
 func (ptr *QUdpSocket) DestroyQUdpSocket() {
 	if ptr.Pointer() != nil {
-		C.QUdpSocket_DestroyQUdpSocket(C.QtObjectPtr(ptr.Pointer()))
+		C.QUdpSocket_DestroyQUdpSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

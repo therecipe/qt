@@ -1,19 +1,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStylePainter_NewQStylePainter();
-QtObjectPtr QStylePainter_NewQStylePainter3(QtObjectPtr pd, QtObjectPtr widget);
-QtObjectPtr QStylePainter_NewQStylePainter2(QtObjectPtr widget);
-int QStylePainter_Begin2(QtObjectPtr ptr, QtObjectPtr pd, QtObjectPtr widget);
-int QStylePainter_Begin(QtObjectPtr ptr, QtObjectPtr widget);
-void QStylePainter_DrawComplexControl(QtObjectPtr ptr, int cc, QtObjectPtr option);
-void QStylePainter_DrawControl(QtObjectPtr ptr, int ce, QtObjectPtr option);
-void QStylePainter_DrawItemPixmap(QtObjectPtr ptr, QtObjectPtr rect, int flags, QtObjectPtr pixmap);
-void QStylePainter_DrawItemText(QtObjectPtr ptr, QtObjectPtr rect, int flags, QtObjectPtr pal, int enabled, char* text, int textRole);
-void QStylePainter_DrawPrimitive(QtObjectPtr ptr, int pe, QtObjectPtr option);
-QtObjectPtr QStylePainter_Style(QtObjectPtr ptr);
+void* QStylePainter_NewQStylePainter();
+void* QStylePainter_NewQStylePainter3(void* pd, void* widget);
+void* QStylePainter_NewQStylePainter2(void* widget);
+int QStylePainter_Begin2(void* ptr, void* pd, void* widget);
+int QStylePainter_Begin(void* ptr, void* widget);
+void QStylePainter_DrawComplexControl(void* ptr, int cc, void* option);
+void QStylePainter_DrawControl(void* ptr, int ce, void* option);
+void QStylePainter_DrawItemPixmap(void* ptr, void* rect, int flags, void* pixmap);
+void QStylePainter_DrawItemText(void* ptr, void* rect, int flags, void* pal, int enabled, char* text, int textRole);
+void QStylePainter_DrawPrimitive(void* ptr, int pe, void* option);
+void* QStylePainter_Style(void* ptr);
 
 #ifdef __cplusplus
 }

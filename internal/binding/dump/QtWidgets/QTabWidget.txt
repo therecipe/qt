@@ -1,68 +1,68 @@
 ########################################			FUNCTIONS			########################################
-&{addTab QTabWidget::addTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false true 2 int [0xc8220c9600 0xc8220c96a0 0xc8220c9800] }
-&{addTab QTabWidget::addTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  int [0xc8220c9b20 0xc8220c9c80] }
-&{count QTabWidget::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  int [] }
-&{currentIndex QTabWidget::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  int [] }
-&{documentMode QTabWidget::documentMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  bool [] }
-&{elideMode QTabWidget::elideMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  Qt::TextElideMode [] }
-&{iconSize QTabWidget::iconSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  QSize [] }
-&{insertTab QTabWidget::insertTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false true 2 int [0xc821eb8b40 0xc821eb8be0 0xc821eb8d20 0xc821eb8da0] }
-&{insertTab QTabWidget::insertTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  int [0xc821eb91e0 0xc821eb92c0 0xc821eb93a0] }
-&{isMovable QTabWidget::isMovable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  bool [] }
-&{paintEvent QTabWidget::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp impure plain false false  void [0xc821eb9900] }
-&{setCornerWidget QTabWidget::setCornerWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void [0xc821eb9be0 0xc821eb9ca0] }
-&{setCurrentIndex QTabWidget::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non slot false false  void [0xc82273a000] }
-&{setDocumentMode QTabWidget::setDocumentMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void [0xc82273a320] }
-&{setElideMode QTabWidget::setElideMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void [0xc82273a740] }
-&{setIconSize QTabWidget::setIconSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void [0xc82273ab80] }
-&{setMovable QTabWidget::setMovable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void [0xc82273afc0] }
-&{setTabBarAutoHide QTabWidget::setTabBarAutoHide commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void [0xc82273b440] }
-&{setTabPosition QTabWidget::setTabPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void [0xc82273b720] }
-&{setTabShape QTabWidget::setTabShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void [0xc82273bba0] }
-&{setTabsClosable QTabWidget::setTabsClosable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void [0xc82273be80] }
-&{setUsesScrollButtons QTabWidget::setUsesScrollButtons commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void [0xc821e5a220] }
-&{tabBarAutoHide QTabWidget::tabBarAutoHide commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  bool [] }
-&{tabPosition QTabWidget::tabPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  TabPosition [] }
-&{tabShape QTabWidget::tabShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  TabShape [] }
-&{tabsClosable QTabWidget::tabsClosable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  bool [] }
-&{usesScrollButtons QTabWidget::usesScrollButtons commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  bool [] }
-&{QTabWidget QTabWidget::QTabWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non constructor false false   [0xc821e5bb40] }
-&{changeEvent QTabWidget::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  void [0xc822532280] }
-&{clear QTabWidget::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void [] }
-&{cornerWidget QTabWidget::cornerWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QWidget * [0xc8225327c0] }
-&{currentChanged QTabWidget::currentChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non signal false false  void [0xc822532b20] }
-&{currentWidget QTabWidget::currentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QWidget * [] }
-&{event QTabWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  bool [0xc822533060] }
-&{hasHeightForWidth QTabWidget::hasHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  bool [] }
-&{heightForWidth QTabWidget::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  int [0xc822533520] }
-&{indexOf QTabWidget::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  int [0xc822533880] }
-&{initStyleOption QTabWidget::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void [0xc822533c40] }
-&{isTabEnabled QTabWidget::isTabEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  bool [0xc822533f80] }
-&{keyPressEvent QTabWidget::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  void [0xc822a28300] }
-&{minimumSizeHint QTabWidget::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  QSize [] }
-&{removeTab QTabWidget::removeTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void [0xc822a288c0] }
-&{resizeEvent QTabWidget::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  void [0xc822a28c60] }
-&{setCurrentWidget QTabWidget::setCurrentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non slot false false  void [0xc822a28fa0] }
-&{setTabBar QTabWidget::setTabBar commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void [0xc822a29340] }
-&{setTabEnabled QTabWidget::setTabEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void [0xc822a29700 0xc822a297a0] }
-&{setTabIcon QTabWidget::setTabIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void [0xc822a29ae0 0xc822a29c00] }
-&{setTabText QTabWidget::setTabText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void [0xc822a29fe0 0xc822a36080] }
-&{setTabToolTip QTabWidget::setTabToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void [0xc822a363a0 0xc822a36440] }
-&{setTabWhatsThis QTabWidget::setTabWhatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void [0xc822a36760 0xc822a368a0] }
-&{showEvent QTabWidget::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  void [0xc822a36c40] }
-&{sizeHint QTabWidget::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  QSize [] }
-&{tabBar QTabWidget::tabBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QTabBar * [] }
-&{tabBarClicked QTabWidget::tabBarClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non signal false false  void [0xc822a374a0] }
-&{tabBarDoubleClicked QTabWidget::tabBarDoubleClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non signal false false  void [0xc822a37860] }
-&{tabCloseRequested QTabWidget::tabCloseRequested commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non signal false false  void [0xc822a37ce0] }
-&{tabIcon QTabWidget::tabIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QIcon [0xc821e84080] }
-&{tabInserted QTabWidget::tabInserted commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  void [0xc821e84540] }
-&{tabRemoved QTabWidget::tabRemoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  void [0xc821e848a0] }
-&{tabText QTabWidget::tabText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QString [0xc821e84d60] }
-&{tabToolTip QTabWidget::tabToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QString [0xc821e851c0] }
-&{tabWhatsThis QTabWidget::tabWhatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QString [0xc821e855c0] }
-&{widget QTabWidget::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QWidget * [0xc821e85a00] }
-&{~QTabWidget QTabWidget::~QTabWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non destructor false false   [] }
+&{addTab QTabWidget::addTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false true 2 int int addTab(QWidget *page, const QIcon &icon, const QString &label) [0xc821e8bec0 0xc821e8bf60 0xc820936080] }
+&{addTab QTabWidget::addTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  int int addTab(QWidget *page, const QString &label) [0xc820936360 0xc820936480] }
+&{count QTabWidget::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  int int count() const [] }
+&{currentIndex QTabWidget::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  int int currentIndex() const [] }
+&{documentMode QTabWidget::documentMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  bool bool documentMode() const [] }
+&{elideMode QTabWidget::elideMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  Qt::TextElideMode Qt::TextElideMode elideMode() const [] }
+&{iconSize QTabWidget::iconSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  QSize QSize iconSize() const [] }
+&{insertTab QTabWidget::insertTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false true 2 int int insertTab(int index, QWidget *page, const QIcon &icon, const QString &label) [0xc8209375a0 0xc820937640 0xc820937760 0xc8209378c0] }
+&{insertTab QTabWidget::insertTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  int int insertTab(int index, QWidget *page, const QString &label) [0xc820937c40 0xc820937d80 0xc820937e60] }
+&{isMovable QTabWidget::isMovable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  bool bool isMovable() const [] }
+&{paintEvent QTabWidget::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp impure plain false false  void void paintEvent(QPaintEvent *event) [0xc82032e480] }
+&{setCornerWidget QTabWidget::setCornerWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void void setCornerWidget(QWidget *widget, Qt::Corner corner) [0xc82032e860 0xc82032e9c0] }
+&{setCurrentIndex QTabWidget::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non slot false false  void void setCurrentIndex(int index) [0xc82032ee20] }
+&{setDocumentMode QTabWidget::setDocumentMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void void setDocumentMode(bool set) [0xc82032f2a0] }
+&{setElideMode QTabWidget::setElideMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void void setElideMode(Qt::TextElideMode ) [0xc82032f680] }
+&{setIconSize QTabWidget::setIconSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void void setIconSize(const QSize &size) [0xc82032fac0] }
+&{setMovable QTabWidget::setMovable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void void setMovable(bool movable) [0xc82032ff80] }
+&{setTabBarAutoHide QTabWidget::setTabBarAutoHide commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void void setTabBarAutoHide(bool enabled) [0xc82096a360] }
+&{setTabPosition QTabWidget::setTabPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void void setTabPosition(TabPosition ) [0xc82096a740] }
+&{setTabShape QTabWidget::setTabShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void void setTabShape(TabShape s) [0xc82096ab80] }
+&{setTabsClosable QTabWidget::setTabsClosable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void void setTabsClosable(bool closeable) [0xc82096af00] }
+&{setUsesScrollButtons QTabWidget::setUsesScrollButtons commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  void void setUsesScrollButtons(bool useButtons) [0xc82096b300] }
+&{tabBarAutoHide QTabWidget::tabBarAutoHide commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  bool bool tabBarAutoHide() const [] }
+&{tabPosition QTabWidget::tabPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  TabPosition TabPosition tabPosition() const [] }
+&{tabShape QTabWidget::tabShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  TabShape TabShape tabShape() const [] }
+&{tabsClosable QTabWidget::tabsClosable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  bool bool tabsClosable() const [] }
+&{usesScrollButtons QTabWidget::usesScrollButtons commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.cpp non plain false false  bool bool usesScrollButtons() const [] }
+&{QTabWidget QTabWidget::QTabWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non constructor false false   QTabWidget(QWidget *parent) [0xc820a04e60] }
+&{changeEvent QTabWidget::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  void void changeEvent(QEvent *ev) [0xc820a055e0] }
+&{clear QTabWidget::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void void clear() [] }
+&{cornerWidget QTabWidget::cornerWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QWidget * QWidget * cornerWidget(Qt::Corner corner) const [0xc820a05b40] }
+&{currentChanged QTabWidget::currentChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non signal false false  void void currentChanged(int index) [0xc820a05f20] }
+&{currentWidget QTabWidget::currentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QWidget * QWidget * currentWidget() const [] }
+&{event QTabWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  bool bool event(QEvent *ev) [0xc820c58400] }
+&{hasHeightForWidth QTabWidget::hasHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  bool bool hasHeightForWidth() const [] }
+&{heightForWidth QTabWidget::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  int int heightForWidth(int width) const [0xc820c589a0] }
+&{indexOf QTabWidget::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  int int indexOf(QWidget *w) const [0xc820c58de0] }
+&{initStyleOption QTabWidget::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void void initStyleOption(QStyleOptionTabWidgetFrame *option) const [0xc820c59160] }
+&{isTabEnabled QTabWidget::isTabEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  bool bool isTabEnabled(int index) const [0xc820c594c0] }
+&{keyPressEvent QTabWidget::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  void void keyPressEvent(QKeyEvent *e) [0xc820c598e0] }
+&{minimumSizeHint QTabWidget::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  QSize QSize minimumSizeHint() const [] }
+&{removeTab QTabWidget::removeTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void void removeTab(int index) [0xc820c59f80] }
+&{resizeEvent QTabWidget::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  void void resizeEvent(QResizeEvent *e) [0xc820ae6300] }
+&{setCurrentWidget QTabWidget::setCurrentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non slot false false  void void setCurrentWidget(QWidget *widget) [0xc820ae6600] }
+&{setTabBar QTabWidget::setTabBar commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void void setTabBar(QTabBar *tb) [0xc820ae6a20] }
+&{setTabEnabled QTabWidget::setTabEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void void setTabEnabled(int index, bool enable) [0xc820ae6da0 0xc820ae6e20] }
+&{setTabIcon QTabWidget::setTabIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void void setTabIcon(int index, const QIcon &icon) [0xc820ae71c0 0xc820ae72c0] }
+&{setTabText QTabWidget::setTabText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void void setTabText(int index, const QString &label) [0xc820ae75c0 0xc820ae76c0] }
+&{setTabToolTip QTabWidget::setTabToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void void setTabToolTip(int index, const QString &tip) [0xc820ae79c0 0xc820ae7aa0] }
+&{setTabWhatsThis QTabWidget::setTabWhatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  void void setTabWhatsThis(int index, const QString &text) [0xc820ae7e00 0xc820ae7ee0] }
+&{showEvent QTabWidget::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  void void showEvent(QShowEvent *) [0xc821e9a2c0] }
+&{sizeHint QTabWidget::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  QSize QSize sizeHint() const [] }
+&{tabBar QTabWidget::tabBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QTabBar * QTabBar * tabBar() const [] }
+&{tabBarClicked QTabWidget::tabBarClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non signal false false  void void tabBarClicked(int index) [0xc821e9aa20] }
+&{tabBarDoubleClicked QTabWidget::tabBarDoubleClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non signal false false  void void tabBarDoubleClicked(int index) [0xc821e9ad60] }
+&{tabCloseRequested QTabWidget::tabCloseRequested commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non signal false false  void void tabCloseRequested(int index) [0xc821e9b0e0] }
+&{tabIcon QTabWidget::tabIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QIcon QIcon tabIcon(int index) const [0xc821e9b480] }
+&{tabInserted QTabWidget::tabInserted commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  void void tabInserted(int index) [0xc821e9b820] }
+&{tabRemoved QTabWidget::tabRemoved commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h impure plain false false  void void tabRemoved(int index) [0xc821e9bba0] }
+&{tabText QTabWidget::tabText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QString QString tabText(int index) const [0xc821e9bf20] }
+&{tabToolTip QTabWidget::tabToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QString QString tabToolTip(int index) const [0xc826a58200] }
+&{tabWhatsThis QTabWidget::tabWhatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QString QString tabWhatsThis(int index) const [0xc826a58500] }
+&{widget QTabWidget::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non plain false false  QWidget * QWidget * widget(int index) const [0xc826a58880] }
+&{~QTabWidget QTabWidget::~QTabWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qtabwidget.h non destructor false false   ~QTabWidget() [] }
 ########################################			ENUMS			########################################
-&{TabPosition QTabWidget::TabPosition commendable public  [0xc821e5b0e0 0xc821e5b160 0xc821e5b2a0 0xc821e5b3c0]}
-&{TabShape QTabWidget::TabShape commendable public  [0xc821e5b6c0 0xc821e5b7e0]}
+&{TabPosition QTabWidget::TabPosition commendable public  [0xc820a043e0 0xc820a044c0 0xc820a045c0 0xc820a04700] false}
+&{TabShape QTabWidget::TabShape commendable public  [0xc820a04a00 0xc820a04b00] false}

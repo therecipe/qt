@@ -1,14 +1,14 @@
 #include "qxmlschemavalidator.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QIODevice>
-#include <QXmlSchema>
-#include <QNetworkAccessManager>
-#include <QString>
+#include <QAbstractMessageHandler>
 #include <QVariant>
 #include <QAbstractUriResolver>
+#include <QModelIndex>
+#include <QXmlSchema>
 #include <QByteArray>
-#include <QAbstractMessageHandler>
+#include <QNetworkAccessManager>
+#include <QIODevice>
+#include <QString>
+#include <QUrl>
 #include <QXmlSchemaValidator>
 #include "_cgo_export.h"
 
@@ -16,55 +16,55 @@ class MyQXmlSchemaValidator: public QXmlSchemaValidator {
 public:
 };
 
-QtObjectPtr QXmlSchemaValidator_NewQXmlSchemaValidator(){
+void* QXmlSchemaValidator_NewQXmlSchemaValidator(){
 	return new QXmlSchemaValidator();
 }
 
-QtObjectPtr QXmlSchemaValidator_NewQXmlSchemaValidator2(QtObjectPtr schema){
+void* QXmlSchemaValidator_NewQXmlSchemaValidator2(void* schema){
 	return new QXmlSchemaValidator(*static_cast<QXmlSchema*>(schema));
 }
 
-QtObjectPtr QXmlSchemaValidator_MessageHandler(QtObjectPtr ptr){
+void* QXmlSchemaValidator_MessageHandler(void* ptr){
 	return static_cast<QXmlSchemaValidator*>(ptr)->messageHandler();
 }
 
-QtObjectPtr QXmlSchemaValidator_NetworkAccessManager(QtObjectPtr ptr){
+void* QXmlSchemaValidator_NetworkAccessManager(void* ptr){
 	return static_cast<QXmlSchemaValidator*>(ptr)->networkAccessManager();
 }
 
-void QXmlSchemaValidator_SetMessageHandler(QtObjectPtr ptr, QtObjectPtr handler){
+void QXmlSchemaValidator_SetMessageHandler(void* ptr, void* handler){
 	static_cast<QXmlSchemaValidator*>(ptr)->setMessageHandler(static_cast<QAbstractMessageHandler*>(handler));
 }
 
-void QXmlSchemaValidator_SetNetworkAccessManager(QtObjectPtr ptr, QtObjectPtr manager){
+void QXmlSchemaValidator_SetNetworkAccessManager(void* ptr, void* manager){
 	static_cast<QXmlSchemaValidator*>(ptr)->setNetworkAccessManager(static_cast<QNetworkAccessManager*>(manager));
 }
 
-void QXmlSchemaValidator_SetSchema(QtObjectPtr ptr, QtObjectPtr schema){
+void QXmlSchemaValidator_SetSchema(void* ptr, void* schema){
 	static_cast<QXmlSchemaValidator*>(ptr)->setSchema(*static_cast<QXmlSchema*>(schema));
 }
 
-void QXmlSchemaValidator_SetUriResolver(QtObjectPtr ptr, QtObjectPtr resolver){
+void QXmlSchemaValidator_SetUriResolver(void* ptr, void* resolver){
 	static_cast<QXmlSchemaValidator*>(ptr)->setUriResolver(static_cast<QAbstractUriResolver*>(resolver));
 }
 
-QtObjectPtr QXmlSchemaValidator_UriResolver(QtObjectPtr ptr){
+void* QXmlSchemaValidator_UriResolver(void* ptr){
 	return const_cast<QAbstractUriResolver*>(static_cast<QXmlSchemaValidator*>(ptr)->uriResolver());
 }
 
-int QXmlSchemaValidator_Validate2(QtObjectPtr ptr, QtObjectPtr source, char* documentUri){
-	return static_cast<QXmlSchemaValidator*>(ptr)->validate(static_cast<QIODevice*>(source), QUrl(QString(documentUri)));
+int QXmlSchemaValidator_Validate2(void* ptr, void* source, void* documentUri){
+	return static_cast<QXmlSchemaValidator*>(ptr)->validate(static_cast<QIODevice*>(source), *static_cast<QUrl*>(documentUri));
 }
 
-int QXmlSchemaValidator_Validate3(QtObjectPtr ptr, QtObjectPtr data, char* documentUri){
-	return static_cast<QXmlSchemaValidator*>(ptr)->validate(*static_cast<QByteArray*>(data), QUrl(QString(documentUri)));
+int QXmlSchemaValidator_Validate3(void* ptr, void* data, void* documentUri){
+	return static_cast<QXmlSchemaValidator*>(ptr)->validate(*static_cast<QByteArray*>(data), *static_cast<QUrl*>(documentUri));
 }
 
-int QXmlSchemaValidator_Validate(QtObjectPtr ptr, char* source){
-	return static_cast<QXmlSchemaValidator*>(ptr)->validate(QUrl(QString(source)));
+int QXmlSchemaValidator_Validate(void* ptr, void* source){
+	return static_cast<QXmlSchemaValidator*>(ptr)->validate(*static_cast<QUrl*>(source));
 }
 
-void QXmlSchemaValidator_DestroyQXmlSchemaValidator(QtObjectPtr ptr){
+void QXmlSchemaValidator_DestroyQXmlSchemaValidator(void* ptr){
 	static_cast<QXmlSchemaValidator*>(ptr)->~QXmlSchemaValidator();
 }
 

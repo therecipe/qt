@@ -10,48 +10,48 @@ type QStyleHintReturnMask struct {
 	QStyleHintReturn
 }
 
-type QStyleHintReturnMaskITF interface {
-	QStyleHintReturnITF
-	QStyleHintReturnMaskPTR() *QStyleHintReturnMask
+type QStyleHintReturnMask_ITF interface {
+	QStyleHintReturn_ITF
+	QStyleHintReturnMask_PTR() *QStyleHintReturnMask
 }
 
-func PointerFromQStyleHintReturnMask(ptr QStyleHintReturnMaskITF) unsafe.Pointer {
+func PointerFromQStyleHintReturnMask(ptr QStyleHintReturnMask_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleHintReturnMaskPTR().Pointer()
+		return ptr.QStyleHintReturnMask_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleHintReturnMaskFromPointer(ptr unsafe.Pointer) *QStyleHintReturnMask {
+func NewQStyleHintReturnMaskFromPointer(ptr unsafe.Pointer) *QStyleHintReturnMask {
 	var n = new(QStyleHintReturnMask)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleHintReturnMask) QStyleHintReturnMaskPTR() *QStyleHintReturnMask {
+func (ptr *QStyleHintReturnMask) QStyleHintReturnMask_PTR() *QStyleHintReturnMask {
 	return ptr
 }
 
 //QStyleHintReturnMask::StyleOptionType
-type QStyleHintReturnMask__StyleOptionType int
+type QStyleHintReturnMask__StyleOptionType int64
 
 var (
 	QStyleHintReturnMask__Type = QStyleHintReturnMask__StyleOptionType(QStyleHintReturn__SH_Mask)
 )
 
 //QStyleHintReturnMask::StyleOptionVersion
-type QStyleHintReturnMask__StyleOptionVersion int
+type QStyleHintReturnMask__StyleOptionVersion int64
 
 var (
 	QStyleHintReturnMask__Version = QStyleHintReturnMask__StyleOptionVersion(1)
 )
 
 func NewQStyleHintReturnMask() *QStyleHintReturnMask {
-	return QStyleHintReturnMaskFromPointer(unsafe.Pointer(C.QStyleHintReturnMask_NewQStyleHintReturnMask()))
+	return NewQStyleHintReturnMaskFromPointer(C.QStyleHintReturnMask_NewQStyleHintReturnMask())
 }
 
 func (ptr *QStyleHintReturnMask) DestroyQStyleHintReturnMask() {
 	if ptr.Pointer() != nil {
-		C.QStyleHintReturnMask_DestroyQStyleHintReturnMask(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleHintReturnMask_DestroyQStyleHintReturnMask(ptr.Pointer())
 	}
 }

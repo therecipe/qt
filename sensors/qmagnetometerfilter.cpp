@@ -1,6 +1,6 @@
 #include "qmagnetometerfilter.h"
-#include <QMagnetometerReading>
 #include <QMagnetometer>
+#include <QMagnetometerReading>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
@@ -12,7 +12,7 @@ class MyQMagnetometerFilter: public QMagnetometerFilter {
 public:
 };
 
-int QMagnetometerFilter_Filter(QtObjectPtr ptr, QtObjectPtr reading){
+int QMagnetometerFilter_Filter(void* ptr, void* reading){
 	return static_cast<QMagnetometerFilter*>(ptr)->filter(static_cast<QMagnetometerReading*>(reading));
 }
 

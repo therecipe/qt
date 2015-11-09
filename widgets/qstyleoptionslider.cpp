@@ -1,10 +1,10 @@
 #include "qstyleoptionslider.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStyle>
 #include <QStyleOption>
+#include <QString>
 #include <QStyleOptionSlider>
 #include "_cgo_export.h"
 
@@ -12,11 +12,11 @@ class MyQStyleOptionSlider: public QStyleOptionSlider {
 public:
 };
 
-QtObjectPtr QStyleOptionSlider_NewQStyleOptionSlider(){
+void* QStyleOptionSlider_NewQStyleOptionSlider(){
 	return new QStyleOptionSlider();
 }
 
-QtObjectPtr QStyleOptionSlider_NewQStyleOptionSlider2(QtObjectPtr other){
+void* QStyleOptionSlider_NewQStyleOptionSlider2(void* other){
 	return new QStyleOptionSlider(*static_cast<QStyleOptionSlider*>(other));
 }
 

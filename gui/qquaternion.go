@@ -10,8 +10,8 @@ type QQuaternion struct {
 	ptr unsafe.Pointer
 }
 
-type QQuaternionITF interface {
-	QQuaternionPTR() *QQuaternion
+type QQuaternion_ITF interface {
+	QQuaternion_PTR() *QQuaternion
 }
 
 func (p *QQuaternion) Pointer() unsafe.Pointer {
@@ -22,59 +22,59 @@ func (p *QQuaternion) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQQuaternion(ptr QQuaternionITF) unsafe.Pointer {
+func PointerFromQQuaternion(ptr QQuaternion_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QQuaternionPTR().Pointer()
+		return ptr.QQuaternion_PTR().Pointer()
 	}
 	return nil
 }
 
-func QQuaternionFromPointer(ptr unsafe.Pointer) *QQuaternion {
+func NewQQuaternionFromPointer(ptr unsafe.Pointer) *QQuaternion {
 	var n = new(QQuaternion)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QQuaternion) QQuaternionPTR() *QQuaternion {
+func (ptr *QQuaternion) QQuaternion_PTR() *QQuaternion {
 	return ptr
 }
 
 func NewQQuaternion() *QQuaternion {
-	return QQuaternionFromPointer(unsafe.Pointer(C.QQuaternion_NewQQuaternion()))
+	return NewQQuaternionFromPointer(C.QQuaternion_NewQQuaternion())
 }
 
-func NewQQuaternion5(vector QVector4DITF) *QQuaternion {
-	return QQuaternionFromPointer(unsafe.Pointer(C.QQuaternion_NewQQuaternion5(C.QtObjectPtr(PointerFromQVector4D(vector)))))
+func NewQQuaternion5(vector QVector4D_ITF) *QQuaternion {
+	return NewQQuaternionFromPointer(C.QQuaternion_NewQQuaternion5(PointerFromQVector4D(vector)))
 }
 
-func (ptr *QQuaternion) GetAxes(xAxis QVector3DITF, yAxis QVector3DITF, zAxis QVector3DITF) {
+func (ptr *QQuaternion) GetAxes(xAxis QVector3D_ITF, yAxis QVector3D_ITF, zAxis QVector3D_ITF) {
 	if ptr.Pointer() != nil {
-		C.QQuaternion_GetAxes(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQVector3D(xAxis)), C.QtObjectPtr(PointerFromQVector3D(yAxis)), C.QtObjectPtr(PointerFromQVector3D(zAxis)))
+		C.QQuaternion_GetAxes(ptr.Pointer(), PointerFromQVector3D(xAxis), PointerFromQVector3D(yAxis), PointerFromQVector3D(zAxis))
 	}
 }
 
 func (ptr *QQuaternion) IsIdentity() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuaternion_IsIdentity(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QQuaternion_IsIdentity(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QQuaternion) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuaternion_IsNull(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QQuaternion_IsNull(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QQuaternion) Normalize() {
 	if ptr.Pointer() != nil {
-		C.QQuaternion_Normalize(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuaternion_Normalize(ptr.Pointer())
 	}
 }
 
-func (ptr *QQuaternion) SetVector(vector QVector3DITF) {
+func (ptr *QQuaternion) SetVector(vector QVector3D_ITF) {
 	if ptr.Pointer() != nil {
-		C.QQuaternion_SetVector(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQVector3D(vector)))
+		C.QQuaternion_SetVector(ptr.Pointer(), PointerFromQVector3D(vector))
 	}
 }

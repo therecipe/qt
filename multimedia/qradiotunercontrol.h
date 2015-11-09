@@ -1,53 +1,52 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QRadioTunerControl_ConnectAntennaConnectedChanged(QtObjectPtr ptr);
-void QRadioTunerControl_DisconnectAntennaConnectedChanged(QtObjectPtr ptr);
-int QRadioTunerControl_Band(QtObjectPtr ptr);
-void QRadioTunerControl_ConnectBandChanged(QtObjectPtr ptr);
-void QRadioTunerControl_DisconnectBandChanged(QtObjectPtr ptr);
-void QRadioTunerControl_CancelSearch(QtObjectPtr ptr);
-int QRadioTunerControl_Error(QtObjectPtr ptr);
-char* QRadioTunerControl_ErrorString(QtObjectPtr ptr);
-int QRadioTunerControl_Frequency(QtObjectPtr ptr);
-void QRadioTunerControl_ConnectFrequencyChanged(QtObjectPtr ptr);
-void QRadioTunerControl_DisconnectFrequencyChanged(QtObjectPtr ptr);
-int QRadioTunerControl_FrequencyStep(QtObjectPtr ptr, int band);
-int QRadioTunerControl_IsAntennaConnected(QtObjectPtr ptr);
-int QRadioTunerControl_IsBandSupported(QtObjectPtr ptr, int band);
-int QRadioTunerControl_IsMuted(QtObjectPtr ptr);
-int QRadioTunerControl_IsSearching(QtObjectPtr ptr);
-int QRadioTunerControl_IsStereo(QtObjectPtr ptr);
-void QRadioTunerControl_ConnectMutedChanged(QtObjectPtr ptr);
-void QRadioTunerControl_DisconnectMutedChanged(QtObjectPtr ptr);
-void QRadioTunerControl_SearchAllStations(QtObjectPtr ptr, int searchMode);
-void QRadioTunerControl_SearchBackward(QtObjectPtr ptr);
-void QRadioTunerControl_SearchForward(QtObjectPtr ptr);
-void QRadioTunerControl_ConnectSearchingChanged(QtObjectPtr ptr);
-void QRadioTunerControl_DisconnectSearchingChanged(QtObjectPtr ptr);
-void QRadioTunerControl_SetBand(QtObjectPtr ptr, int band);
-void QRadioTunerControl_SetFrequency(QtObjectPtr ptr, int frequency);
-void QRadioTunerControl_SetMuted(QtObjectPtr ptr, int muted);
-void QRadioTunerControl_SetStereoMode(QtObjectPtr ptr, int mode);
-void QRadioTunerControl_SetVolume(QtObjectPtr ptr, int volume);
-int QRadioTunerControl_SignalStrength(QtObjectPtr ptr);
-void QRadioTunerControl_ConnectSignalStrengthChanged(QtObjectPtr ptr);
-void QRadioTunerControl_DisconnectSignalStrengthChanged(QtObjectPtr ptr);
-void QRadioTunerControl_Start(QtObjectPtr ptr);
-void QRadioTunerControl_ConnectStateChanged(QtObjectPtr ptr);
-void QRadioTunerControl_DisconnectStateChanged(QtObjectPtr ptr);
-void QRadioTunerControl_ConnectStationFound(QtObjectPtr ptr);
-void QRadioTunerControl_DisconnectStationFound(QtObjectPtr ptr);
-int QRadioTunerControl_StereoMode(QtObjectPtr ptr);
-void QRadioTunerControl_ConnectStereoStatusChanged(QtObjectPtr ptr);
-void QRadioTunerControl_DisconnectStereoStatusChanged(QtObjectPtr ptr);
-void QRadioTunerControl_Stop(QtObjectPtr ptr);
-int QRadioTunerControl_Volume(QtObjectPtr ptr);
-void QRadioTunerControl_ConnectVolumeChanged(QtObjectPtr ptr);
-void QRadioTunerControl_DisconnectVolumeChanged(QtObjectPtr ptr);
-void QRadioTunerControl_DestroyQRadioTunerControl(QtObjectPtr ptr);
+void QRadioTunerControl_ConnectAntennaConnectedChanged(void* ptr);
+void QRadioTunerControl_DisconnectAntennaConnectedChanged(void* ptr);
+int QRadioTunerControl_Band(void* ptr);
+void QRadioTunerControl_ConnectBandChanged(void* ptr);
+void QRadioTunerControl_DisconnectBandChanged(void* ptr);
+void QRadioTunerControl_CancelSearch(void* ptr);
+int QRadioTunerControl_Error(void* ptr);
+char* QRadioTunerControl_ErrorString(void* ptr);
+int QRadioTunerControl_Frequency(void* ptr);
+void QRadioTunerControl_ConnectFrequencyChanged(void* ptr);
+void QRadioTunerControl_DisconnectFrequencyChanged(void* ptr);
+int QRadioTunerControl_FrequencyStep(void* ptr, int band);
+int QRadioTunerControl_IsAntennaConnected(void* ptr);
+int QRadioTunerControl_IsBandSupported(void* ptr, int band);
+int QRadioTunerControl_IsMuted(void* ptr);
+int QRadioTunerControl_IsSearching(void* ptr);
+int QRadioTunerControl_IsStereo(void* ptr);
+void QRadioTunerControl_ConnectMutedChanged(void* ptr);
+void QRadioTunerControl_DisconnectMutedChanged(void* ptr);
+void QRadioTunerControl_SearchAllStations(void* ptr, int searchMode);
+void QRadioTunerControl_SearchBackward(void* ptr);
+void QRadioTunerControl_SearchForward(void* ptr);
+void QRadioTunerControl_ConnectSearchingChanged(void* ptr);
+void QRadioTunerControl_DisconnectSearchingChanged(void* ptr);
+void QRadioTunerControl_SetBand(void* ptr, int band);
+void QRadioTunerControl_SetFrequency(void* ptr, int frequency);
+void QRadioTunerControl_SetMuted(void* ptr, int muted);
+void QRadioTunerControl_SetStereoMode(void* ptr, int mode);
+void QRadioTunerControl_SetVolume(void* ptr, int volume);
+int QRadioTunerControl_SignalStrength(void* ptr);
+void QRadioTunerControl_ConnectSignalStrengthChanged(void* ptr);
+void QRadioTunerControl_DisconnectSignalStrengthChanged(void* ptr);
+void QRadioTunerControl_Start(void* ptr);
+void QRadioTunerControl_ConnectStateChanged(void* ptr);
+void QRadioTunerControl_DisconnectStateChanged(void* ptr);
+void QRadioTunerControl_ConnectStationFound(void* ptr);
+void QRadioTunerControl_DisconnectStationFound(void* ptr);
+int QRadioTunerControl_StereoMode(void* ptr);
+void QRadioTunerControl_ConnectStereoStatusChanged(void* ptr);
+void QRadioTunerControl_DisconnectStereoStatusChanged(void* ptr);
+void QRadioTunerControl_Stop(void* ptr);
+int QRadioTunerControl_Volume(void* ptr);
+void QRadioTunerControl_ConnectVolumeChanged(void* ptr);
+void QRadioTunerControl_DisconnectVolumeChanged(void* ptr);
+void QRadioTunerControl_DestroyQRadioTunerControl(void* ptr);
 
 #ifdef __cplusplus
 }

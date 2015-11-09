@@ -1,14 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QLowEnergyCharacteristic_NewQLowEnergyCharacteristic();
-QtObjectPtr QLowEnergyCharacteristic_NewQLowEnergyCharacteristic2(QtObjectPtr other);
-int QLowEnergyCharacteristic_IsValid(QtObjectPtr ptr);
-char* QLowEnergyCharacteristic_Name(QtObjectPtr ptr);
-int QLowEnergyCharacteristic_Properties(QtObjectPtr ptr);
-void QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(QtObjectPtr ptr);
+void* QLowEnergyCharacteristic_NewQLowEnergyCharacteristic();
+void* QLowEnergyCharacteristic_NewQLowEnergyCharacteristic2(void* other);
+int QLowEnergyCharacteristic_IsValid(void* ptr);
+char* QLowEnergyCharacteristic_Name(void* ptr);
+int QLowEnergyCharacteristic_Properties(void* ptr);
+void* QLowEnergyCharacteristic_Value(void* ptr);
+void QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(void* ptr);
 
 #ifdef __cplusplus
 }

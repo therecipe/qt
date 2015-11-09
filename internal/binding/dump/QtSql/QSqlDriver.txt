@@ -1,39 +1,39 @@
 ########################################			FUNCTIONS			########################################
-&{QSqlDriver QSqlDriver::QSqlDriver commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non constructor false false   [0xc8215dcc40] }
-&{beginTransaction QSqlDriver::beginTransaction commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool [] }
-&{close QSqlDriver::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h pure plain false false  void [] }
-&{commitTransaction QSqlDriver::commitTransaction commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool [] }
-&{createResult QSqlDriver::createResult commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h pure plain false false  QSqlResult * [] }
-&{dbmsType QSqlDriver::dbmsType commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non plain false false  DbmsType [] }
-&{escapeIdentifier QSqlDriver::escapeIdentifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QString [0xc8215b0160 0xc8215b0280] }
-&{formatValue QSqlDriver::formatValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QString [0xc8215b05c0 0xc8215b0760] }
-&{handle QSqlDriver::handle commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QVariant [] }
-&{hasFeature QSqlDriver::hasFeature commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h pure plain false false  bool [0xc8215b0ce0] }
-&{isIdentifierEscaped QSqlDriver::isIdentifierEscaped commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool [0xc8215b1020 0xc8215b1140] }
-&{isOpen QSqlDriver::isOpen commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool [] }
-&{isOpenError QSqlDriver::isOpenError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non plain false false  bool [] }
-&{lastError QSqlDriver::lastError commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non plain false false  QSqlError [] }
-&{notification QSqlDriver::notification commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non signal false false  void [0xc8215b1ac0] }
-&{notification QSqlDriver::notification commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non signal false true 2 void [0xc8215b1e00 0xc8215b1f60 0xc8215a0040] }
-&{numericalPrecisionPolicy QSqlDriver::numericalPrecisionPolicy commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non plain false false  QSql::NumericalPrecisionPolicy [] }
-&{open QSqlDriver::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h pure plain false false  bool [0xc8215a0500 0xc8215a06e0 0xc8215a0780 0xc8215a0820 0xc8215a0980 0xc8215a0ac0] }
-&{primaryIndex QSqlDriver::primaryIndex commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QSqlIndex [0xc8215a0da0] }
-&{record QSqlDriver::record commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QSqlRecord [0xc8215a1140] }
-&{rollbackTransaction QSqlDriver::rollbackTransaction commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool [] }
-&{setLastError QSqlDriver::setLastError commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  void [0xc8215a1740] }
-&{setNumericalPrecisionPolicy QSqlDriver::setNumericalPrecisionPolicy commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non plain false false  void [0xc8215a1b00] }
-&{setOpen QSqlDriver::setOpen commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  void [0xc8215a1fa0] }
-&{setOpenError QSqlDriver::setOpenError commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  void [0xc82158c320] }
-&{sqlStatement QSqlDriver::sqlStatement commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QString [0xc82158c640 0xc82158c720 0xc82158c840 0xc82158ca40] }
-&{stripDelimiters QSqlDriver::stripDelimiters commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QString [0xc82158ce00 0xc82158ce80] }
-&{subscribeToNotification QSqlDriver::subscribeToNotification commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool [0xc82158d180] }
-&{subscribedToNotifications QSqlDriver::subscribedToNotifications commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QStringList [] }
-&{tables QSqlDriver::tables commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QStringList [0xc82158d660] }
-&{unsubscribeFromNotification QSqlDriver::unsubscribeFromNotification commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool [0xc82158d980] }
-&{~QSqlDriver QSqlDriver::~QSqlDriver commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non destructor false false   [] }
+&{QSqlDriver QSqlDriver::QSqlDriver commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non constructor false false   QSqlDriver(QObject *parent) [0xc820c88340] }
+&{beginTransaction QSqlDriver::beginTransaction commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool bool beginTransaction() [] }
+&{close QSqlDriver::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h pure plain false false  void void close() [] }
+&{commitTransaction QSqlDriver::commitTransaction commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool bool commitTransaction() [] }
+&{createResult QSqlDriver::createResult commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h pure plain false false  QSqlResult * QSqlResult * createResult() const [] }
+&{dbmsType QSqlDriver::dbmsType commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non plain false false  DbmsType DbmsType dbmsType() const [] }
+&{escapeIdentifier QSqlDriver::escapeIdentifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QString QString escapeIdentifier(const QString &identifier, IdentifierType type) const [0xc820c85080 0xc820c85280] }
+&{formatValue QSqlDriver::formatValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QString QString formatValue(const QSqlField &field, bool trimStrings) const [0xc820c85a60 0xc820c85da0] }
+&{handle QSqlDriver::handle commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QVariant QVariant handle() const [] }
+&{hasFeature QSqlDriver::hasFeature commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h pure plain false false  bool bool hasFeature(DriverFeature feature) const [0xc820c7eac0] }
+&{isIdentifierEscaped QSqlDriver::isIdentifierEscaped commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool bool isIdentifierEscaped(const QString &identifier, IdentifierType type) const [0xc820c7f240 0xc820c7f460] }
+&{isOpen QSqlDriver::isOpen commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool bool isOpen() const [] }
+&{isOpenError QSqlDriver::isOpenError commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non plain false false  bool bool isOpenError() const [] }
+&{lastError QSqlDriver::lastError commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non plain false false  QSqlError QSqlError lastError() const [] }
+&{notification QSqlDriver::notification commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non signal false false  void void notification(const QString &name) [0xc820c78aa0] }
+&{notification QSqlDriver::notification commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non signal false true 2 void void notification(const QString &name, QSqlDriver::NotificationSource source, const QVariant &payload) [0xc820c79120 0xc820c792e0 0xc820c79640] }
+&{numericalPrecisionPolicy QSqlDriver::numericalPrecisionPolicy commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non plain false false  QSql::NumericalPrecisionPolicy QSql::NumericalPrecisionPolicy numericalPrecisionPolicy() const [] }
+&{open QSqlDriver::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h pure plain false false  bool bool open(const QString &db, const QString &user, const QString &password, const QString &host, int port, const QString &options) [0xc820c79f80 0xc820e8e0e0 0xc820e8e200 0xc820e8e3a0 0xc820e8e540 0xc820e8e660] }
+&{primaryIndex QSqlDriver::primaryIndex commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QSqlIndex QSqlIndex primaryIndex(const QString &tableName) const [0xc820e8eaa0] }
+&{record QSqlDriver::record commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QSqlRecord QSqlRecord record(const QString &tableName) const [0xc820e8eee0] }
+&{rollbackTransaction QSqlDriver::rollbackTransaction commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool bool rollbackTransaction() [] }
+&{setLastError QSqlDriver::setLastError commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  void void setLastError(const QSqlError &error) [0xc820e8f780] }
+&{setNumericalPrecisionPolicy QSqlDriver::setNumericalPrecisionPolicy commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non plain false false  void void setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy precisionPolicy) [0xc820e8fca0] }
+&{setOpen QSqlDriver::setOpen commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  void void setOpen(bool open) [0xc820c5c240] }
+&{setOpenError QSqlDriver::setOpenError commendable protected /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  void void setOpenError(bool error) [0xc820c5c900] }
+&{sqlStatement QSqlDriver::sqlStatement commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QString QString sqlStatement(StatementType type, const QString &tableName, const QSqlRecord &rec, bool preparedStatement) const [0xc820c5cde0 0xc820c5ce80 0xc820c5d160 0xc820c5d360] }
+&{stripDelimiters QSqlDriver::stripDelimiters commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QString QString stripDelimiters(const QString &identifier, IdentifierType type) const [0xc820c5d8e0 0xc820c5daa0] }
+&{subscribeToNotification QSqlDriver::subscribeToNotification commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool bool subscribeToNotification(const QString &name) [0xc820c5df80] }
+&{subscribedToNotifications QSqlDriver::subscribedToNotifications commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QStringList QStringList subscribedToNotifications() const [] }
+&{tables QSqlDriver::tables commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  QStringList QStringList tables(QSql::TableType tableType) const [0xc820c506c0] }
+&{unsubscribeFromNotification QSqlDriver::unsubscribeFromNotification commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h impure plain false false  bool bool unsubscribeFromNotification(const QString &name) [0xc820c50c60] }
+&{~QSqlDriver QSqlDriver::~QSqlDriver commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriver.h non destructor false false   ~QSqlDriver() [] }
 ########################################			ENUMS			########################################
-&{DbmsType QSqlDriver::DbmsType commendable public  [0xc8216258a0 0xc821625960 0xc821625a20 0xc821625b40 0xc821625ca0 0xc821625dc0 0xc821625ee0 0xc821625f80 0xc8216040c0]}
-&{DriverFeature QSqlDriver::DriverFeature commendable public  [0xc8216043e0 0xc821604520 0xc821604600 0xc8216046c0 0xc821604860 0xc821604980 0xc821604ae0 0xc821604d00 0xc821604e60 0xc821604f00 0xc821605000 0xc821605200 0xc821605380 0xc821605460 0xc8216055e0]}
-&{IdentifierType QSqlDriver::IdentifierType commendable public  [0xc8216058e0 0xc821605a00]}
-&{NotificationSource QSqlDriver::NotificationSource commendable public  [0xc821605da0 0xc821605ec0 0xc821605fe0]}
-&{StatementType QSqlDriver::StatementType commendable public  [0xc8215dc3a0 0xc8215dc480 0xc8215dc540 0xc8215dc660 0xc8215dc820]}
+&{DbmsType QSqlDriver::DbmsType commendable public  [0xc820ca0760 0xc820ca08e0 0xc820ca0a80 0xc820ca0c60 0xc820ca0e60 0xc820ca1060 0xc820ca11e0 0xc820ca13a0 0xc820ca15a0] false}
+&{DriverFeature QSqlDriver::DriverFeature commendable public  [0xc820ca1920 0xc820ca1ae0 0xc820ca1d60 0xc820ca1e20 0xc820c98060 0xc820c98260 0xc820c98580 0xc820c987a0 0xc820c98a60 0xc820c98b60 0xc820c98e00 0xc820c99100 0xc820c994c0 0xc820c99760 0xc820c999e0] false}
+&{IdentifierType QSqlDriver::IdentifierType commendable public  [0xc820c8e060 0xc820c8e200] false}
+&{NotificationSource QSqlDriver::NotificationSource commendable public  [0xc820c8e880 0xc820c8e9e0 0xc820c8ec00] false}
+&{StatementType QSqlDriver::StatementType commendable public  [0xc820c8f280 0xc820c8f4a0 0xc820c8f700 0xc820c8f8e0 0xc820c8fa80] false}

@@ -3,6 +3,7 @@ package sql
 //#include "qsqlresult.h"
 import "C"
 import (
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -10,8 +11,8 @@ type QSqlResult struct {
 	ptr unsafe.Pointer
 }
 
-type QSqlResultITF interface {
-	QSqlResultPTR() *QSqlResult
+type QSqlResult_ITF interface {
+	QSqlResult_PTR() *QSqlResult
 }
 
 func (p *QSqlResult) Pointer() unsafe.Pointer {
@@ -22,32 +23,32 @@ func (p *QSqlResult) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSqlResult(ptr QSqlResultITF) unsafe.Pointer {
+func PointerFromQSqlResult(ptr QSqlResult_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSqlResultPTR().Pointer()
+		return ptr.QSqlResult_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSqlResultFromPointer(ptr unsafe.Pointer) *QSqlResult {
+func NewQSqlResultFromPointer(ptr unsafe.Pointer) *QSqlResult {
 	var n = new(QSqlResult)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSqlResult) QSqlResultPTR() *QSqlResult {
+func (ptr *QSqlResult) QSqlResult_PTR() *QSqlResult {
 	return ptr
 }
 
-func (ptr *QSqlResult) Handle() string {
+func (ptr *QSqlResult) Handle() *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlResult_Handle(C.QtObjectPtr(ptr.Pointer())))
+		return core.NewQVariantFromPointer(C.QSqlResult_Handle(ptr.Pointer()))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QSqlResult) DestroyQSqlResult() {
 	if ptr.Pointer() != nil {
-		C.QSqlResult_DestroyQSqlResult(C.QtObjectPtr(ptr.Pointer()))
+		C.QSqlResult_DestroyQSqlResult(ptr.Pointer())
 	}
 }

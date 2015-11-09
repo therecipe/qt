@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QQmlParserStatus_ClassBegin(QtObjectPtr ptr);
-void QQmlParserStatus_ComponentComplete(QtObjectPtr ptr);
+void QQmlParserStatus_ClassBegin(void* ptr);
+void QQmlParserStatus_ComponentComplete(void* ptr);
 
 #ifdef __cplusplus
 }

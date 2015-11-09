@@ -10,8 +10,8 @@ type QSupportedWritingSystems struct {
 	ptr unsafe.Pointer
 }
 
-type QSupportedWritingSystemsITF interface {
-	QSupportedWritingSystemsPTR() *QSupportedWritingSystems
+type QSupportedWritingSystems_ITF interface {
+	QSupportedWritingSystems_PTR() *QSupportedWritingSystems
 }
 
 func (p *QSupportedWritingSystems) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QSupportedWritingSystems) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSupportedWritingSystems(ptr QSupportedWritingSystemsITF) unsafe.Pointer {
+func PointerFromQSupportedWritingSystems(ptr QSupportedWritingSystems_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSupportedWritingSystemsPTR().Pointer()
+		return ptr.QSupportedWritingSystems_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSupportedWritingSystemsFromPointer(ptr unsafe.Pointer) *QSupportedWritingSystems {
+func NewQSupportedWritingSystemsFromPointer(ptr unsafe.Pointer) *QSupportedWritingSystems {
 	var n = new(QSupportedWritingSystems)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSupportedWritingSystems) QSupportedWritingSystemsPTR() *QSupportedWritingSystems {
+func (ptr *QSupportedWritingSystems) QSupportedWritingSystems_PTR() *QSupportedWritingSystems {
 	return ptr
 }

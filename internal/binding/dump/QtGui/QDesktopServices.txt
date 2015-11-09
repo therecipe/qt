@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{openUrl QDesktopServices::openUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qdesktopservices.h non plain true false  bool [0xc820d056a0] }
-&{setUrlHandler QDesktopServices::setUrlHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qdesktopservices.h non plain true false  void [0xc820d05900 0xc820d059a0 0xc820d05a60] }
-&{unsetUrlHandler QDesktopServices::unsetUrlHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qdesktopservices.h non plain true false  void [0xc820d05e00] }
+&{openUrl QDesktopServices::openUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qdesktopservices.h non plain true false  bool bool openUrl(const QUrl &url) [0xc82367a320] }
+&{setUrlHandler QDesktopServices::setUrlHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qdesktopservices.h non plain true false  void void setUrlHandler(const QString &scheme, QObject *receiver, const char *method) [0xc82367a4e0 0xc82367a560 0xc82367a5e0] }
+&{unsetUrlHandler QDesktopServices::unsetUrlHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qdesktopservices.h non plain true false  void void unsetUrlHandler(const QString &scheme) [0xc82000e800] }
 ########################################			ENUMS			########################################

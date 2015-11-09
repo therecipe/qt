@@ -1,24 +1,24 @@
 ########################################			FUNCTIONS			########################################
-&{icon QSystemTrayIcon::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non plain false false  QIcon [] }
-&{isVisible QSystemTrayIcon::isVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non plain false false  bool [] }
-&{setIcon QSystemTrayIcon::setIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non plain false false  void [0xc821285d80] }
-&{setToolTip QSystemTrayIcon::setToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non plain false false  void [0xc8212740c0] }
-&{setVisible QSystemTrayIcon::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non slot false false  void [0xc821274680] }
-&{showMessage QSystemTrayIcon::showMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non slot false false  void [0xc821274a20 0xc821274b40 0xc821274ca0 0xc821274ee0] }
-&{toolTip QSystemTrayIcon::toolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non plain false false  QString [] }
-&{QSystemTrayIcon QSystemTrayIcon::QSystemTrayIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non constructor false false   [0xc821264620] }
-&{QSystemTrayIcon QSystemTrayIcon::QSystemTrayIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non constructor false true 2  [0xc8212649e0 0xc821264a80] }
-&{activated QSystemTrayIcon::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non signal false false  void [0xc821265160] }
-&{contextMenu QSystemTrayIcon::contextMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non plain false false  QMenu * [] }
-&{event QSystemTrayIcon::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h impure plain false false  bool [0xc821265780] }
-&{geometry QSystemTrayIcon::geometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non plain false false  QRect [] }
-&{hide QSystemTrayIcon::hide commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non slot false false  void [] }
-&{isSystemTrayAvailable QSystemTrayIcon::isSystemTrayAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non plain true false  bool [] }
-&{messageClicked QSystemTrayIcon::messageClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non signal false false  void [] }
-&{setContextMenu QSystemTrayIcon::setContextMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non plain false false  void [0xc821252300] }
-&{show QSystemTrayIcon::show commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non slot false false  void [] }
-&{supportsMessages QSystemTrayIcon::supportsMessages commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non plain true false  bool [] }
-&{~QSystemTrayIcon QSystemTrayIcon::~QSystemTrayIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non destructor false false   [] }
+&{icon QSystemTrayIcon::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non plain false false  QIcon QIcon icon() const [] }
+&{isVisible QSystemTrayIcon::isVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non plain false false  bool bool isVisible() const [] }
+&{setIcon QSystemTrayIcon::setIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non plain false false  void void setIcon(const QIcon &icon) [0xc821b75900] }
+&{setToolTip QSystemTrayIcon::setToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non plain false false  void void setToolTip(const QString &tip) [0xc821b75d40] }
+&{setVisible QSystemTrayIcon::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non slot false false  void void setVisible(bool visible) [0xc821b68200] }
+&{showMessage QSystemTrayIcon::showMessage commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non slot false false  void void showMessage(const QString &title, const QString &message, QSystemTrayIcon::MessageIcon icon, int millisecondsTimeoutHint) [0xc821b684e0 0xc821b685a0 0xc821b686a0 0xc821b68800] }
+&{toolTip QSystemTrayIcon::toolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.cpp non plain false false  QString QString toolTip() const [] }
+&{QSystemTrayIcon QSystemTrayIcon::QSystemTrayIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non constructor false false   QSystemTrayIcon(QObject *parent) [0xc821b69840] }
+&{QSystemTrayIcon QSystemTrayIcon::QSystemTrayIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non constructor false true 2  QSystemTrayIcon(const QIcon &icon, QObject *parent) [0xc821b69b00 0xc821b69b80] }
+&{activated QSystemTrayIcon::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non signal false false  void void activated(QSystemTrayIcon::ActivationReason reason) [0xc821b64080] }
+&{contextMenu QSystemTrayIcon::contextMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non plain false false  QMenu * QMenu * contextMenu() const [] }
+&{event QSystemTrayIcon::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h impure plain false false  bool bool event(QEvent *e) [0xc821b64900] }
+&{geometry QSystemTrayIcon::geometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non plain false false  QRect QRect geometry() const [] }
+&{hide QSystemTrayIcon::hide commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non slot false false  void void hide() [] }
+&{isSystemTrayAvailable QSystemTrayIcon::isSystemTrayAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non plain true false  bool bool isSystemTrayAvailable() [] }
+&{messageClicked QSystemTrayIcon::messageClicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non signal false false  void void messageClicked() [] }
+&{setContextMenu QSystemTrayIcon::setContextMenu commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non plain false false  void void setContextMenu(QMenu *menu) [0xc821b65b40] }
+&{show QSystemTrayIcon::show commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non slot false false  void void show() [] }
+&{supportsMessages QSystemTrayIcon::supportsMessages commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non plain true false  bool bool supportsMessages() [] }
+&{~QSystemTrayIcon QSystemTrayIcon::~QSystemTrayIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qsystemtrayicon.h non destructor false false   ~QSystemTrayIcon() [] }
 ########################################			ENUMS			########################################
-&{ActivationReason QSystemTrayIcon::ActivationReason commendable public  [0xc821275640 0xc8212757c0 0xc821275960 0xc821275a40 0xc821275c80]}
-&{MessageIcon QSystemTrayIcon::MessageIcon commendable public  [0xc821264000 0xc821264100 0xc8212641c0 0xc8212642e0]}
+&{ActivationReason QSystemTrayIcon::ActivationReason commendable public  [0xc821b68c60 0xc821b68d20 0xc821b68e80 0xc821b68f00 0xc821b68fc0] false}
+&{MessageIcon QSystemTrayIcon::MessageIcon commendable public  [0xc821b69220 0xc821b69300 0xc821b693a0 0xc821b694a0] false}

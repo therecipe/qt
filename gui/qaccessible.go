@@ -11,8 +11,8 @@ type QAccessible struct {
 	ptr unsafe.Pointer
 }
 
-type QAccessibleITF interface {
-	QAccessiblePTR() *QAccessible
+type QAccessible_ITF interface {
+	QAccessible_PTR() *QAccessible
 }
 
 func (p *QAccessible) Pointer() unsafe.Pointer {
@@ -23,25 +23,25 @@ func (p *QAccessible) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQAccessible(ptr QAccessibleITF) unsafe.Pointer {
+func PointerFromQAccessible(ptr QAccessible_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAccessiblePTR().Pointer()
+		return ptr.QAccessible_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAccessibleFromPointer(ptr unsafe.Pointer) *QAccessible {
+func NewQAccessibleFromPointer(ptr unsafe.Pointer) *QAccessible {
 	var n = new(QAccessible)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAccessible) QAccessiblePTR() *QAccessible {
+func (ptr *QAccessible) QAccessible_PTR() *QAccessible {
 	return ptr
 }
 
 //QAccessible::Event
-type QAccessible__Event int
+type QAccessible__Event int64
 
 var (
 	QAccessible__SoundPlayed                     = QAccessible__Event(0x0001)
@@ -116,9 +116,9 @@ var (
 )
 
 //QAccessible::InterfaceType
-type QAccessible__InterfaceType int
+type QAccessible__InterfaceType int64
 
-var (
+const (
 	QAccessible__TextInterface         = QAccessible__InterfaceType(0)
 	QAccessible__EditableTextInterface = QAccessible__InterfaceType(1)
 	QAccessible__ValueInterface        = QAccessible__InterfaceType(2)
@@ -129,9 +129,9 @@ var (
 )
 
 //QAccessible::RelationFlag
-type QAccessible__RelationFlag int
+type QAccessible__RelationFlag int64
 
-var (
+const (
 	QAccessible__Label        = QAccessible__RelationFlag(0x00000001)
 	QAccessible__Labelled     = QAccessible__RelationFlag(0x00000002)
 	QAccessible__Controller   = QAccessible__RelationFlag(0x00000004)
@@ -140,9 +140,9 @@ var (
 )
 
 //QAccessible::Role
-type QAccessible__Role int
+type QAccessible__Role int64
 
-var (
+const (
 	QAccessible__NoRole               = QAccessible__Role(0x00000000)
 	QAccessible__TitleBar             = QAccessible__Role(0x00000001)
 	QAccessible__MenuBar              = QAccessible__Role(0x00000002)
@@ -221,9 +221,9 @@ var (
 )
 
 //QAccessible::Text
-type QAccessible__Text int
+type QAccessible__Text int64
 
-var (
+const (
 	QAccessible__Name             = QAccessible__Text(0)
 	QAccessible__Description      = QAccessible__Text(1)
 	QAccessible__Value            = QAccessible__Text(2)
@@ -234,9 +234,9 @@ var (
 )
 
 //QAccessible::TextBoundaryType
-type QAccessible__TextBoundaryType int
+type QAccessible__TextBoundaryType int64
 
-var (
+const (
 	QAccessible__CharBoundary      = QAccessible__TextBoundaryType(0)
 	QAccessible__WordBoundary      = QAccessible__TextBoundaryType(1)
 	QAccessible__SentenceBoundary  = QAccessible__TextBoundaryType(2)
@@ -249,14 +249,14 @@ func QAccessible_IsActive() bool {
 	return C.QAccessible_QAccessible_IsActive() != 0
 }
 
-func QAccessible_QueryAccessibleInterface(object core.QObjectITF) *QAccessibleInterface {
-	return QAccessibleInterfaceFromPointer(unsafe.Pointer(C.QAccessible_QAccessible_QueryAccessibleInterface(C.QtObjectPtr(core.PointerFromQObject(object)))))
+func QAccessible_QueryAccessibleInterface(object core.QObject_ITF) *QAccessibleInterface {
+	return NewQAccessibleInterfaceFromPointer(C.QAccessible_QAccessible_QueryAccessibleInterface(core.PointerFromQObject(object)))
 }
 
-func QAccessible_SetRootObject(object core.QObjectITF) {
-	C.QAccessible_QAccessible_SetRootObject(C.QtObjectPtr(core.PointerFromQObject(object)))
+func QAccessible_SetRootObject(object core.QObject_ITF) {
+	C.QAccessible_QAccessible_SetRootObject(core.PointerFromQObject(object))
 }
 
-func QAccessible_UpdateAccessibility(event QAccessibleEventITF) {
-	C.QAccessible_QAccessible_UpdateAccessibility(C.QtObjectPtr(PointerFromQAccessibleEvent(event)))
+func QAccessible_UpdateAccessibility(event QAccessibleEvent_ITF) {
+	C.QAccessible_QAccessible_UpdateAccessibility(PointerFromQAccessibleEvent(event))
 }

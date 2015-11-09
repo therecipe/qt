@@ -1,44 +1,44 @@
 ########################################			FUNCTIONS			########################################
-&{availableGeometry QScreen::availableGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QRect [] }
-&{availableSize QScreen::availableSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QSize [] }
-&{availableVirtualGeometry QScreen::availableVirtualGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QRect [] }
-&{availableVirtualSize QScreen::availableVirtualSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QSize [] }
-&{depth QScreen::depth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  int [] }
-&{devicePixelRatio QScreen::devicePixelRatio commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal [] }
-&{geometry QScreen::geometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QRect [] }
-&{logicalDotsPerInch QScreen::logicalDotsPerInch commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal [] }
-&{logicalDotsPerInchX QScreen::logicalDotsPerInchX commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal [] }
-&{logicalDotsPerInchY QScreen::logicalDotsPerInchY commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal [] }
-&{name QScreen::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QString [] }
-&{nativeOrientation QScreen::nativeOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  Qt::ScreenOrientation [] }
-&{orientation QScreen::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  Qt::ScreenOrientation [] }
-&{physicalDotsPerInch QScreen::physicalDotsPerInch commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal [] }
-&{physicalDotsPerInchX QScreen::physicalDotsPerInchX commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal [] }
-&{physicalDotsPerInchY QScreen::physicalDotsPerInchY commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal [] }
-&{physicalSize QScreen::physicalSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QSizeF [] }
-&{primaryOrientation QScreen::primaryOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  Qt::ScreenOrientation [] }
-&{refreshRate QScreen::refreshRate commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal [] }
-&{size QScreen::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QSize [] }
-&{virtualGeometry QScreen::virtualGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QRect [] }
-&{virtualSize QScreen::virtualSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QSize [] }
-&{angleBetween QScreen::angleBetween commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  int [0xc820606060 0xc820606200] }
-&{availableGeometryChanged QScreen::availableGeometryChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void [0xc820606680] }
-&{geometryChanged QScreen::geometryChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void [0xc820606a20] }
-&{grabWindow QScreen::grabWindow commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  QPixmap [0xc820606d40 0xc820606e40 0xc820606ee0 0xc820606f80 0xc820607060] }
-&{handle QScreen::handle commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  QPlatformScreen * [] }
-&{isLandscape QScreen::isLandscape commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  bool [0xc820607520] }
-&{isPortrait QScreen::isPortrait commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  bool [0xc820607940] }
-&{logicalDotsPerInchChanged QScreen::logicalDotsPerInchChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void [0xc820607ca0] }
-&{mapBetween QScreen::mapBetween commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  QRect [0xc8205f0020 0xc8205f0140 0xc8205f0280] }
-&{orientationChanged QScreen::orientationChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void [0xc8205f07a0] }
-&{orientationUpdateMask QScreen::orientationUpdateMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  Qt::ScreenOrientations [] }
-&{physicalDotsPerInchChanged QScreen::physicalDotsPerInchChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void [0xc8205f0ca0] }
-&{physicalSizeChanged QScreen::physicalSizeChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void [0xc8205f1080] }
-&{primaryOrientationChanged QScreen::primaryOrientationChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void [0xc8205f13e0] }
-&{refreshRateChanged QScreen::refreshRateChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void [0xc8205f19e0] }
-&{setOrientationUpdateMask QScreen::setOrientationUpdateMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  void [0xc8205f1da0] }
-&{transformBetween QScreen::transformBetween commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  QTransform [0xc8205ce100 0xc8205ce220 0xc8205ce300] }
-&{virtualGeometryChanged QScreen::virtualGeometryChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void [0xc8205ce5a0] }
-&{virtualSiblings QScreen::virtualSiblings commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  QList<QScreen *> [] }
-&{~QScreen QScreen::~QScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non destructor false false   [] }
+&{availableGeometry QScreen::availableGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QRect QRect availableGeometry() const [] }
+&{availableSize QScreen::availableSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QSize QSize availableSize() const [] }
+&{availableVirtualGeometry QScreen::availableVirtualGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QRect QRect availableVirtualGeometry() const [] }
+&{availableVirtualSize QScreen::availableVirtualSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QSize QSize availableVirtualSize() const [] }
+&{depth QScreen::depth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  int int depth() const [] }
+&{devicePixelRatio QScreen::devicePixelRatio commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal qreal devicePixelRatio() const [] }
+&{geometry QScreen::geometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QRect QRect geometry() const [] }
+&{logicalDotsPerInch QScreen::logicalDotsPerInch commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal qreal logicalDotsPerInch() const [] }
+&{logicalDotsPerInchX QScreen::logicalDotsPerInchX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal qreal logicalDotsPerInchX() const [] }
+&{logicalDotsPerInchY QScreen::logicalDotsPerInchY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal qreal logicalDotsPerInchY() const [] }
+&{name QScreen::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QString QString name() const [] }
+&{nativeOrientation QScreen::nativeOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  Qt::ScreenOrientation Qt::ScreenOrientation nativeOrientation() const [] }
+&{orientation QScreen::orientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  Qt::ScreenOrientation Qt::ScreenOrientation orientation() const [] }
+&{physicalDotsPerInch QScreen::physicalDotsPerInch commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal qreal physicalDotsPerInch() const [] }
+&{physicalDotsPerInchX QScreen::physicalDotsPerInchX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal qreal physicalDotsPerInchX() const [] }
+&{physicalDotsPerInchY QScreen::physicalDotsPerInchY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal qreal physicalDotsPerInchY() const [] }
+&{physicalSize QScreen::physicalSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QSizeF QSizeF physicalSize() const [] }
+&{primaryOrientation QScreen::primaryOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  Qt::ScreenOrientation Qt::ScreenOrientation primaryOrientation() const [] }
+&{refreshRate QScreen::refreshRate commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  qreal qreal refreshRate() const [] }
+&{size QScreen::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QSize QSize size() const [] }
+&{virtualGeometry QScreen::virtualGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QRect QRect virtualGeometry() const [] }
+&{virtualSize QScreen::virtualSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.cpp non plain false false  QSize QSize virtualSize() const [] }
+&{angleBetween QScreen::angleBetween commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  int int angleBetween(Qt::ScreenOrientation a, Qt::ScreenOrientation b) const [0xc8204c8820 0xc8204c8a40] }
+&{availableGeometryChanged QScreen::availableGeometryChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void void availableGeometryChanged(const QRect &geometry) [0xc8204c8de0] }
+&{geometryChanged QScreen::geometryChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void void geometryChanged(const QRect &geometry) [0xc8204c9220] }
+&{grabWindow QScreen::grabWindow commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  QPixmap QPixmap grabWindow(WId window, int x, int y, int width, int height) [0xc8204c94c0 0xc8204c9600 0xc8204c9680 0xc8204c9700 0xc8204c9820] }
+&{handle QScreen::handle commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  QPlatformScreen * QPlatformScreen * handle() const [] }
+&{isLandscape QScreen::isLandscape commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  bool bool isLandscape(Qt::ScreenOrientation o) const [0xc8204c9c60] }
+&{isPortrait QScreen::isPortrait commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  bool bool isPortrait(Qt::ScreenOrientation o) const [0xc8204c9fc0] }
+&{logicalDotsPerInchChanged QScreen::logicalDotsPerInchChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void void logicalDotsPerInchChanged(qreal dpi) [0xc8204b8240] }
+&{mapBetween QScreen::mapBetween commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  QRect QRect mapBetween(Qt::ScreenOrientation a, Qt::ScreenOrientation b, const QRect &rect) const [0xc8204b8500 0xc8204b8680 0xc8204b8760] }
+&{orientationChanged QScreen::orientationChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void void orientationChanged(Qt::ScreenOrientation orientation) [0xc8204b8b40] }
+&{orientationUpdateMask QScreen::orientationUpdateMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  Qt::ScreenOrientations Qt::ScreenOrientations orientationUpdateMask() const [] }
+&{physicalDotsPerInchChanged QScreen::physicalDotsPerInchChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void void physicalDotsPerInchChanged(qreal dpi) [0xc8204b9080] }
+&{physicalSizeChanged QScreen::physicalSizeChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void void physicalSizeChanged(const QSizeF &size) [0xc8204b9560] }
+&{primaryOrientationChanged QScreen::primaryOrientationChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void void primaryOrientationChanged(Qt::ScreenOrientation orientation) [0xc8204b9800] }
+&{refreshRateChanged QScreen::refreshRateChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void void refreshRateChanged(qreal refreshRate) [0xc8204b9ba0] }
+&{setOrientationUpdateMask QScreen::setOrientationUpdateMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  void void setOrientationUpdateMask(Qt::ScreenOrientations mask) [0xc8204b9e40] }
+&{transformBetween QScreen::transformBetween commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  QTransform QTransform transformBetween(Qt::ScreenOrientation a, Qt::ScreenOrientation b, const QRect &target) const [0xc8204aa140 0xc8204aa280 0xc8204aa420] }
+&{virtualGeometryChanged QScreen::virtualGeometryChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non signal false false  void void virtualGeometryChanged(const QRect &rect) [0xc8204aa840] }
+&{virtualSiblings QScreen::virtualSiblings commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non plain false false  QList<QScreen *> QList<QScreen *> virtualSiblings() const [] }
+&{~QScreen QScreen::~QScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qscreen.h non destructor false false   ~QScreen() [] }
 ########################################			ENUMS			########################################

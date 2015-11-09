@@ -1,17 +1,17 @@
 #include "qgraphicspixmapitem.h"
 #include <QString>
-#include <QStyleOptionGraphicsItem>
-#include <QPainter>
-#include <QPoint>
-#include <QPixmap>
-#include <QGraphicsItem>
-#include <QWidget>
-#include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QStyle>
-#include <QStyleOption>
+#include <QPixmap>
+#include <QPoint>
 #include <QPointF>
+#include <QStyleOption>
+#include <QVariant>
+#include <QModelIndex>
+#include <QWidget>
+#include <QStyleOptionGraphicsItem>
+#include <QStyle>
+#include <QGraphicsItem>
+#include <QPainter>
 #include <QGraphicsPixmapItem>
 #include "_cgo_export.h"
 
@@ -19,55 +19,59 @@ class MyQGraphicsPixmapItem: public QGraphicsPixmapItem {
 public:
 };
 
-QtObjectPtr QGraphicsPixmapItem_NewQGraphicsPixmapItem(QtObjectPtr parent){
+void* QGraphicsPixmapItem_NewQGraphicsPixmapItem(void* parent){
 	return new QGraphicsPixmapItem(static_cast<QGraphicsItem*>(parent));
 }
 
-QtObjectPtr QGraphicsPixmapItem_NewQGraphicsPixmapItem2(QtObjectPtr pixmap, QtObjectPtr parent){
+void* QGraphicsPixmapItem_NewQGraphicsPixmapItem2(void* pixmap, void* parent){
 	return new QGraphicsPixmapItem(*static_cast<QPixmap*>(pixmap), static_cast<QGraphicsItem*>(parent));
 }
 
-int QGraphicsPixmapItem_Contains(QtObjectPtr ptr, QtObjectPtr point){
+int QGraphicsPixmapItem_Contains(void* ptr, void* point){
 	return static_cast<QGraphicsPixmapItem*>(ptr)->contains(*static_cast<QPointF*>(point));
 }
 
-int QGraphicsPixmapItem_IsObscuredBy(QtObjectPtr ptr, QtObjectPtr item){
+int QGraphicsPixmapItem_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QGraphicsPixmapItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
 }
 
-void QGraphicsPixmapItem_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr widget){
+void QGraphicsPixmapItem_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<QGraphicsPixmapItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
 
-void QGraphicsPixmapItem_SetOffset(QtObjectPtr ptr, QtObjectPtr offset){
+void QGraphicsPixmapItem_SetOffset(void* ptr, void* offset){
 	static_cast<QGraphicsPixmapItem*>(ptr)->setOffset(*static_cast<QPointF*>(offset));
 }
 
-void QGraphicsPixmapItem_SetPixmap(QtObjectPtr ptr, QtObjectPtr pixmap){
+void QGraphicsPixmapItem_SetOffset2(void* ptr, double x, double y){
+	static_cast<QGraphicsPixmapItem*>(ptr)->setOffset(static_cast<qreal>(x), static_cast<qreal>(y));
+}
+
+void QGraphicsPixmapItem_SetPixmap(void* ptr, void* pixmap){
 	static_cast<QGraphicsPixmapItem*>(ptr)->setPixmap(*static_cast<QPixmap*>(pixmap));
 }
 
-void QGraphicsPixmapItem_SetShapeMode(QtObjectPtr ptr, int mode){
+void QGraphicsPixmapItem_SetShapeMode(void* ptr, int mode){
 	static_cast<QGraphicsPixmapItem*>(ptr)->setShapeMode(static_cast<QGraphicsPixmapItem::ShapeMode>(mode));
 }
 
-void QGraphicsPixmapItem_SetTransformationMode(QtObjectPtr ptr, int mode){
+void QGraphicsPixmapItem_SetTransformationMode(void* ptr, int mode){
 	static_cast<QGraphicsPixmapItem*>(ptr)->setTransformationMode(static_cast<Qt::TransformationMode>(mode));
 }
 
-int QGraphicsPixmapItem_ShapeMode(QtObjectPtr ptr){
+int QGraphicsPixmapItem_ShapeMode(void* ptr){
 	return static_cast<QGraphicsPixmapItem*>(ptr)->shapeMode();
 }
 
-int QGraphicsPixmapItem_TransformationMode(QtObjectPtr ptr){
+int QGraphicsPixmapItem_TransformationMode(void* ptr){
 	return static_cast<QGraphicsPixmapItem*>(ptr)->transformationMode();
 }
 
-int QGraphicsPixmapItem_Type(QtObjectPtr ptr){
+int QGraphicsPixmapItem_Type(void* ptr){
 	return static_cast<QGraphicsPixmapItem*>(ptr)->type();
 }
 
-void QGraphicsPixmapItem_DestroyQGraphicsPixmapItem(QtObjectPtr ptr){
+void QGraphicsPixmapItem_DestroyQGraphicsPixmapItem(void* ptr){
 	static_cast<QGraphicsPixmapItem*>(ptr)->~QGraphicsPixmapItem();
 }
 

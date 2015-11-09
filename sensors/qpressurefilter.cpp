@@ -11,7 +11,7 @@ class MyQPressureFilter: public QPressureFilter {
 public:
 };
 
-int QPressureFilter_Filter(QtObjectPtr ptr, QtObjectPtr reading){
+int QPressureFilter_Filter(void* ptr, void* reading){
 	return static_cast<QPressureFilter*>(ptr)->filter(static_cast<QPressureReading*>(reading));
 }
 

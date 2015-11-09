@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{modifiers QGraphicsSceneContextMenuEvent::modifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::KeyboardModifiers [] }
-&{pos QGraphicsSceneContextMenuEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
-&{reason QGraphicsSceneContextMenuEvent::reason commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Reason [] }
-&{scenePos QGraphicsSceneContextMenuEvent::scenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
-&{screenPos QGraphicsSceneContextMenuEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint [] }
-&{~QGraphicsSceneContextMenuEvent QGraphicsSceneContextMenuEvent::~QGraphicsSceneContextMenuEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   [] }
+&{modifiers QGraphicsSceneContextMenuEvent::modifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::KeyboardModifiers Qt::KeyboardModifiers modifiers() const [] }
+&{pos QGraphicsSceneContextMenuEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF QPointF pos() const [] }
+&{reason QGraphicsSceneContextMenuEvent::reason commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Reason Reason reason() const [] }
+&{scenePos QGraphicsSceneContextMenuEvent::scenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF QPointF scenePos() const [] }
+&{screenPos QGraphicsSceneContextMenuEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint QPoint screenPos() const [] }
+&{~QGraphicsSceneContextMenuEvent QGraphicsSceneContextMenuEvent::~QGraphicsSceneContextMenuEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   ~QGraphicsSceneContextMenuEvent() [] }
 ########################################			ENUMS			########################################
-&{Reason QGraphicsSceneContextMenuEvent::Reason commendable public  [0xc82295c0e0 0xc82295c180 0xc82295c260]}
+&{Reason QGraphicsSceneContextMenuEvent::Reason commendable public  [0xc822585a60 0xc822585b00 0xc822585ba0] false}

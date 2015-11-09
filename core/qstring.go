@@ -10,8 +10,8 @@ type QString struct {
 	ptr unsafe.Pointer
 }
 
-type QStringITF interface {
-	QStringPTR() *QString
+type QString_ITF interface {
+	QString_PTR() *QString
 }
 
 func (p *QString) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QString) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQString(ptr QStringITF) unsafe.Pointer {
+func PointerFromQString(ptr QString_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStringPTR().Pointer()
+		return ptr.QString_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStringFromPointer(ptr unsafe.Pointer) *QString {
+func NewQStringFromPointer(ptr unsafe.Pointer) *QString {
 	var n = new(QString)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QString) QStringPTR() *QString {
+func (ptr *QString) QString_PTR() *QString {
 	return ptr
 }
 
 //QString::NormalizationForm
-type QString__NormalizationForm int
+type QString__NormalizationForm int64
 
-var (
+const (
 	QString__NormalizationForm_D  = QString__NormalizationForm(0)
 	QString__NormalizationForm_C  = QString__NormalizationForm(1)
 	QString__NormalizationForm_KD = QString__NormalizationForm(2)
@@ -50,9 +50,9 @@ var (
 )
 
 //QString::SectionFlag
-type QString__SectionFlag int
+type QString__SectionFlag int64
 
-var (
+const (
 	QString__SectionDefault             = QString__SectionFlag(0x00)
 	QString__SectionSkipEmpty           = QString__SectionFlag(0x01)
 	QString__SectionIncludeLeadingSep   = QString__SectionFlag(0x02)
@@ -61,9 +61,9 @@ var (
 )
 
 //QString::SplitBehavior
-type QString__SplitBehavior int
+type QString__SplitBehavior int64
 
-var (
+const (
 	QString__KeepEmptyParts = QString__SplitBehavior(0)
 	QString__SkipEmptyParts = QString__SplitBehavior(1)
 )

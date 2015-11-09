@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{classBegin QQmlParserStatus::classBegin commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlparserstatus.h pure plain false false  void [] }
-&{componentComplete QQmlParserStatus::componentComplete commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlparserstatus.h pure plain false false  void [] }
+&{classBegin QQmlParserStatus::classBegin commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlparserstatus.h pure plain false false  void void classBegin() [] }
+&{componentComplete QQmlParserStatus::componentComplete commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlparserstatus.h pure plain false false  void void componentComplete() [] }
 ########################################			ENUMS			########################################

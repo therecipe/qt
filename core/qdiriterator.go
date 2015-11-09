@@ -10,8 +10,8 @@ type QDirIterator struct {
 	ptr unsafe.Pointer
 }
 
-type QDirIteratorITF interface {
-	QDirIteratorPTR() *QDirIterator
+type QDirIterator_ITF interface {
+	QDirIterator_PTR() *QDirIterator
 }
 
 func (p *QDirIterator) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QDirIterator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQDirIterator(ptr QDirIteratorITF) unsafe.Pointer {
+func PointerFromQDirIterator(ptr QDirIterator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDirIteratorPTR().Pointer()
+		return ptr.QDirIterator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDirIteratorFromPointer(ptr unsafe.Pointer) *QDirIterator {
+func NewQDirIteratorFromPointer(ptr unsafe.Pointer) *QDirIterator {
 	var n = new(QDirIterator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDirIterator) QDirIteratorPTR() *QDirIterator {
+func (ptr *QDirIterator) QDirIterator_PTR() *QDirIterator {
 	return ptr
 }
 
 //QDirIterator::IteratorFlag
-type QDirIterator__IteratorFlag int
+type QDirIterator__IteratorFlag int64
 
-var (
+const (
 	QDirIterator__NoIteratorFlags = QDirIterator__IteratorFlag(0x0)
 	QDirIterator__FollowSymlinks  = QDirIterator__IteratorFlag(0x1)
 	QDirIterator__Subdirectories  = QDirIterator__IteratorFlag(0x2)

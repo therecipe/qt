@@ -12,69 +12,69 @@ type QAbstractTextDocumentLayout struct {
 	core.QObject
 }
 
-type QAbstractTextDocumentLayoutITF interface {
-	core.QObjectITF
-	QAbstractTextDocumentLayoutPTR() *QAbstractTextDocumentLayout
+type QAbstractTextDocumentLayout_ITF interface {
+	core.QObject_ITF
+	QAbstractTextDocumentLayout_PTR() *QAbstractTextDocumentLayout
 }
 
-func PointerFromQAbstractTextDocumentLayout(ptr QAbstractTextDocumentLayoutITF) unsafe.Pointer {
+func PointerFromQAbstractTextDocumentLayout(ptr QAbstractTextDocumentLayout_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAbstractTextDocumentLayoutPTR().Pointer()
+		return ptr.QAbstractTextDocumentLayout_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAbstractTextDocumentLayoutFromPointer(ptr unsafe.Pointer) *QAbstractTextDocumentLayout {
+func NewQAbstractTextDocumentLayoutFromPointer(ptr unsafe.Pointer) *QAbstractTextDocumentLayout {
 	var n = new(QAbstractTextDocumentLayout)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAbstractTextDocumentLayout_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAbstractTextDocumentLayout) QAbstractTextDocumentLayoutPTR() *QAbstractTextDocumentLayout {
+func (ptr *QAbstractTextDocumentLayout) QAbstractTextDocumentLayout_PTR() *QAbstractTextDocumentLayout {
 	return ptr
 }
 
-func (ptr *QAbstractTextDocumentLayout) AnchorAt(position core.QPointFITF) string {
+func (ptr *QAbstractTextDocumentLayout) AnchorAt(position core.QPointF_ITF) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAbstractTextDocumentLayout_AnchorAt(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(position))))
+		return C.GoString(C.QAbstractTextDocumentLayout_AnchorAt(ptr.Pointer(), core.PointerFromQPointF(position)))
 	}
 	return ""
 }
 
 func (ptr *QAbstractTextDocumentLayout) Document() *QTextDocument {
 	if ptr.Pointer() != nil {
-		return QTextDocumentFromPointer(unsafe.Pointer(C.QAbstractTextDocumentLayout_Document(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQTextDocumentFromPointer(C.QAbstractTextDocumentLayout_Document(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QAbstractTextDocumentLayout) HandlerForObject(objectType int) *QTextObjectInterface {
 	if ptr.Pointer() != nil {
-		return QTextObjectInterfaceFromPointer(unsafe.Pointer(C.QAbstractTextDocumentLayout_HandlerForObject(C.QtObjectPtr(ptr.Pointer()), C.int(objectType))))
+		return NewQTextObjectInterfaceFromPointer(C.QAbstractTextDocumentLayout_HandlerForObject(ptr.Pointer(), C.int(objectType)))
 	}
 	return nil
 }
 
 func (ptr *QAbstractTextDocumentLayout) PageCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAbstractTextDocumentLayout_PageCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAbstractTextDocumentLayout_PageCount(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAbstractTextDocumentLayout) ConnectPageCountChanged(f func(newPages int)) {
 	if ptr.Pointer() != nil {
-		C.QAbstractTextDocumentLayout_ConnectPageCountChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractTextDocumentLayout_ConnectPageCountChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "pageCountChanged", f)
 	}
 }
 
 func (ptr *QAbstractTextDocumentLayout) DisconnectPageCountChanged() {
 	if ptr.Pointer() != nil {
-		C.QAbstractTextDocumentLayout_DisconnectPageCountChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractTextDocumentLayout_DisconnectPageCountChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "pageCountChanged")
 	}
 }
@@ -86,25 +86,25 @@ func callbackQAbstractTextDocumentLayoutPageCountChanged(ptrName *C.char, newPag
 
 func (ptr *QAbstractTextDocumentLayout) PaintDevice() *QPaintDevice {
 	if ptr.Pointer() != nil {
-		return QPaintDeviceFromPointer(unsafe.Pointer(C.QAbstractTextDocumentLayout_PaintDevice(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQPaintDeviceFromPointer(C.QAbstractTextDocumentLayout_PaintDevice(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QAbstractTextDocumentLayout) RegisterHandler(objectType int, component core.QObjectITF) {
+func (ptr *QAbstractTextDocumentLayout) RegisterHandler(objectType int, component core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractTextDocumentLayout_RegisterHandler(C.QtObjectPtr(ptr.Pointer()), C.int(objectType), C.QtObjectPtr(core.PointerFromQObject(component)))
+		C.QAbstractTextDocumentLayout_RegisterHandler(ptr.Pointer(), C.int(objectType), core.PointerFromQObject(component))
 	}
 }
 
-func (ptr *QAbstractTextDocumentLayout) SetPaintDevice(device QPaintDeviceITF) {
+func (ptr *QAbstractTextDocumentLayout) SetPaintDevice(device QPaintDevice_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractTextDocumentLayout_SetPaintDevice(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPaintDevice(device)))
+		C.QAbstractTextDocumentLayout_SetPaintDevice(ptr.Pointer(), PointerFromQPaintDevice(device))
 	}
 }
 
-func (ptr *QAbstractTextDocumentLayout) UnregisterHandler(objectType int, component core.QObjectITF) {
+func (ptr *QAbstractTextDocumentLayout) UnregisterHandler(objectType int, component core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractTextDocumentLayout_UnregisterHandler(C.QtObjectPtr(ptr.Pointer()), C.int(objectType), C.QtObjectPtr(core.PointerFromQObject(component)))
+		C.QAbstractTextDocumentLayout_UnregisterHandler(ptr.Pointer(), C.int(objectType), core.PointerFromQObject(component))
 	}
 }

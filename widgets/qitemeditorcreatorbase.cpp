@@ -1,7 +1,8 @@
 #include "qitemeditorcreatorbase.h"
 #include <QModelIndex>
-#include <QItemEditorCreator>
+#include <QByteArray>
 #include <QWidget>
+#include <QItemEditorCreator>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
@@ -12,11 +13,15 @@ class MyQItemEditorCreatorBase: public QItemEditorCreatorBase {
 public:
 };
 
-void QItemEditorCreatorBase_DestroyQItemEditorCreatorBase(QtObjectPtr ptr){
+void QItemEditorCreatorBase_DestroyQItemEditorCreatorBase(void* ptr){
 	static_cast<QItemEditorCreatorBase*>(ptr)->~QItemEditorCreatorBase();
 }
 
-QtObjectPtr QItemEditorCreatorBase_CreateWidget(QtObjectPtr ptr, QtObjectPtr parent){
+void* QItemEditorCreatorBase_CreateWidget(void* ptr, void* parent){
 	return static_cast<QItemEditorCreatorBase*>(ptr)->createWidget(static_cast<QWidget*>(parent));
+}
+
+void* QItemEditorCreatorBase_ValuePropertyName(void* ptr){
+	return new QByteArray(static_cast<QItemEditorCreatorBase*>(ptr)->valuePropertyName());
 }
 

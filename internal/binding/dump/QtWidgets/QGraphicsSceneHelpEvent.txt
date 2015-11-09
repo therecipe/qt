@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{scenePos QGraphicsSceneHelpEvent::scenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
-&{screenPos QGraphicsSceneHelpEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint [] }
-&{~QGraphicsSceneHelpEvent QGraphicsSceneHelpEvent::~QGraphicsSceneHelpEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   [] }
+&{scenePos QGraphicsSceneHelpEvent::scenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF QPointF scenePos() const [] }
+&{screenPos QGraphicsSceneHelpEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint QPoint screenPos() const [] }
+&{~QGraphicsSceneHelpEvent QGraphicsSceneHelpEvent::~QGraphicsSceneHelpEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   ~QGraphicsSceneHelpEvent() [] }
 ########################################			ENUMS			########################################

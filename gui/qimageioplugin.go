@@ -12,35 +12,35 @@ type QImageIOPlugin struct {
 	core.QObject
 }
 
-type QImageIOPluginITF interface {
-	core.QObjectITF
-	QImageIOPluginPTR() *QImageIOPlugin
+type QImageIOPlugin_ITF interface {
+	core.QObject_ITF
+	QImageIOPlugin_PTR() *QImageIOPlugin
 }
 
-func PointerFromQImageIOPlugin(ptr QImageIOPluginITF) unsafe.Pointer {
+func PointerFromQImageIOPlugin(ptr QImageIOPlugin_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QImageIOPluginPTR().Pointer()
+		return ptr.QImageIOPlugin_PTR().Pointer()
 	}
 	return nil
 }
 
-func QImageIOPluginFromPointer(ptr unsafe.Pointer) *QImageIOPlugin {
+func NewQImageIOPluginFromPointer(ptr unsafe.Pointer) *QImageIOPlugin {
 	var n = new(QImageIOPlugin)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QImageIOPlugin_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QImageIOPlugin) QImageIOPluginPTR() *QImageIOPlugin {
+func (ptr *QImageIOPlugin) QImageIOPlugin_PTR() *QImageIOPlugin {
 	return ptr
 }
 
 //QImageIOPlugin::Capability
-type QImageIOPlugin__Capability int
+type QImageIOPlugin__Capability int64
 
-var (
+const (
 	QImageIOPlugin__CanRead            = QImageIOPlugin__Capability(0x1)
 	QImageIOPlugin__CanWrite           = QImageIOPlugin__Capability(0x2)
 	QImageIOPlugin__CanReadIncremental = QImageIOPlugin__Capability(0x4)

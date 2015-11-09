@@ -1,52 +1,52 @@
 ########################################			FUNCTIONS			########################################
-&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 3  [0xc823489340] }
-&{QJSValue QJSValue::QJSValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 11  [0xc823489520 0xc8234895e0] }
-&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false false   [0xc8234897c0] }
-&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 4  [0xc8234899a0] }
-&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 2  [0xc823489ba0] }
-&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 9  [0xc823489d80] }
-&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 8  [0xc823489fc0] }
-&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 10  [0xc8234b21a0] }
-&{QJSValue QJSValue::QJSValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 7  [0xc8234b23a0] }
-&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 5  [0xc8234b2580] }
-&{QJSValue QJSValue::QJSValue commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 6  [0xc8234b2760] }
-&{call QJSValue::call commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QJSValue [0xc8234b2ac0] }
-&{callAsConstructor QJSValue::callAsConstructor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QJSValue [0xc8234b2d40] }
-&{callWithInstance QJSValue::callWithInstance commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QJSValue [0xc8234b2f40 0xc8234b2fe0] }
-&{deleteProperty QJSValue::deleteProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [0xc8234b31e0] }
-&{equals QJSValue::equals commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [0xc8234b3400] }
-&{hasOwnProperty QJSValue::hasOwnProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [0xc8234b35c0] }
-&{hasProperty QJSValue::hasProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [0xc8234b37c0] }
-&{isArray QJSValue::isArray commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{isBool QJSValue::isBool commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{isCallable QJSValue::isCallable commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{isDate QJSValue::isDate commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{isError QJSValue::isError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{isNull QJSValue::isNull commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{isNumber QJSValue::isNumber commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{isObject QJSValue::isObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{isQObject QJSValue::isQObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{isRegExp QJSValue::isRegExp commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{isString QJSValue::isString commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{isUndefined QJSValue::isUndefined commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{isVariant QJSValue::isVariant commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{operator= QJSValue::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QJSValue & [0xc82347e5a0] }
-&{operator= QJSValue::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false true 2 QJSValue & [0xc82347e760] }
-&{property QJSValue::property commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QJSValue [0xc82347e920] }
-&{property QJSValue::property commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false true 2 QJSValue [0xc82347eae0] }
-&{prototype QJSValue::prototype commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QJSValue [] }
-&{setProperty QJSValue::setProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  void [0xc82347eda0 0xc82347ee20] }
-&{setProperty QJSValue::setProperty commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false true 2 void [0xc82347efe0 0xc82347f060] }
-&{setPrototype QJSValue::setPrototype commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  void [0xc82347f220] }
-&{strictlyEquals QJSValue::strictlyEquals commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [0xc82347f3e0] }
-&{toBool QJSValue::toBool commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool [] }
-&{toDateTime QJSValue::toDateTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QDateTime [] }
-&{toInt QJSValue::toInt commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  qint32 [] }
-&{toNumber QJSValue::toNumber commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  double [] }
-&{toQObject QJSValue::toQObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QObject * [] }
-&{toString QJSValue::toString commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QString [] }
-&{toUInt QJSValue::toUInt commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  quint32 [] }
-&{toVariant QJSValue::toVariant commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QVariant [] }
-&{~QJSValue QJSValue::~QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non destructor false false   [] }
+&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 3  QJSValue(QJSValue &&other) [0xc820cd6560] }
+&{QJSValue QJSValue::QJSValue commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 11  QJSValue(QV4::ExecutionEngine *e, quint64 val) [0xc820cd7160 0xc820cd73e0] }
+&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false false   QJSValue(SpecialValue value) [0xc820cd7f20] }
+&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 4  QJSValue(bool value) [0xc820d2c800] }
+&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 2  QJSValue(const QJSValue &other) [0xc820d2d5e0] }
+&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 9  QJSValue(const QLatin1String &value) [0xc820d2df20] }
+&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 8  QJSValue(const QString &value) [0xc820d94860] }
+&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 10  QJSValue(const char *value) [0xc820d95280] }
+&{QJSValue QJSValue::QJSValue commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 7  QJSValue(double value) [0xc820d95e20] }
+&{QJSValue QJSValue::QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 5  QJSValue(int value) [0xc820dda900] }
+&{QJSValue QJSValue::QJSValue commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non constructor false true 6  QJSValue(uint value) [0xc820ddb1e0] }
+&{call QJSValue::call commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QJSValue QJSValue call(const QJSValueList &args) [0xc820ddbda0] }
+&{callAsConstructor QJSValue::callAsConstructor commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QJSValue QJSValue callAsConstructor(const QJSValueList &args) [0xc820e66ac0] }
+&{callWithInstance QJSValue::callWithInstance commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QJSValue QJSValue callWithInstance(const QJSValue &instance, const QJSValueList &args) [0xc820e67440 0xc820e67680] }
+&{deleteProperty QJSValue::deleteProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool deleteProperty(const QString &name) [0xc820e67ee0] }
+&{equals QJSValue::equals commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool equals(const QJSValue &other) const [0xc8206d8580] }
+&{hasOwnProperty QJSValue::hasOwnProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool hasOwnProperty(const QString &name) const [0xc8206d89c0] }
+&{hasProperty QJSValue::hasProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool hasProperty(const QString &name) const [0xc8206d8e20] }
+&{isArray QJSValue::isArray commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isArray() const [] }
+&{isBool QJSValue::isBool commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isBool() const [] }
+&{isCallable QJSValue::isCallable commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isCallable() const [] }
+&{isDate QJSValue::isDate commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isDate() const [] }
+&{isError QJSValue::isError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isError() const [] }
+&{isNull QJSValue::isNull commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isNull() const [] }
+&{isNumber QJSValue::isNumber commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isNumber() const [] }
+&{isObject QJSValue::isObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isObject() const [] }
+&{isQObject QJSValue::isQObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isQObject() const [] }
+&{isRegExp QJSValue::isRegExp commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isRegExp() const [] }
+&{isString QJSValue::isString commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isString() const [] }
+&{isUndefined QJSValue::isUndefined commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isUndefined() const [] }
+&{isVariant QJSValue::isVariant commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool isVariant() const [] }
+&{operator= QJSValue::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QJSValue & QJSValue & operator=(QJSValue &&other) [0xc821e67320] }
+&{operator= QJSValue::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false true 2 QJSValue & QJSValue & operator=(const QJSValue &other) [0xc821e676e0] }
+&{property QJSValue::property commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QJSValue QJSValue property(const QString &name) const [0xc821e67a20] }
+&{property QJSValue::property commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false true 2 QJSValue QJSValue property(quint32 arrayIndex) const [0xc821e67de0] }
+&{prototype QJSValue::prototype commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QJSValue QJSValue prototype() const [] }
+&{setProperty QJSValue::setProperty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  void void setProperty(const QString &name, const QJSValue &value) [0xc826bec560 0xc826bec700] }
+&{setProperty QJSValue::setProperty commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false true 2 void void setProperty(quint32 arrayIndex, const QJSValue &value) [0xc826becc20 0xc826becde0] }
+&{setPrototype QJSValue::setPrototype commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  void void setPrototype(const QJSValue &prototype) [0xc826bed2a0] }
+&{strictlyEquals QJSValue::strictlyEquals commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool strictlyEquals(const QJSValue &other) const [0xc826bed740] }
+&{toBool QJSValue::toBool commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  bool bool toBool() const [] }
+&{toDateTime QJSValue::toDateTime commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QDateTime QDateTime toDateTime() const [] }
+&{toInt QJSValue::toInt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  qint32 qint32 toInt() const [] }
+&{toNumber QJSValue::toNumber commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  double double toNumber() const [] }
+&{toQObject QJSValue::toQObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QObject * QObject * toQObject() const [] }
+&{toString QJSValue::toString commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QString QString toString() const [] }
+&{toUInt QJSValue::toUInt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  quint32 quint32 toUInt() const [] }
+&{toVariant QJSValue::toVariant commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non plain false false  QVariant QVariant toVariant() const [] }
+&{~QJSValue QJSValue::~QJSValue commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalue.h non destructor false false   ~QJSValue() [] }
 ########################################			ENUMS			########################################
-&{SpecialValue QJSValue::SpecialValue commendable public  [0xc823488e40 0xc823489120]}
+&{SpecialValue QJSValue::SpecialValue commendable public  [0xc820c8f880 0xc820c8fb20] false}

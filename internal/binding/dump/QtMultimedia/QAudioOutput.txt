@@ -1,28 +1,28 @@
 ########################################			FUNCTIONS			########################################
-&{QAudioOutput QAudioOutput::QAudioOutput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non constructor false true 2  [0xc82235acc0 0xc82235adc0 0xc82235aec0] }
-&{QAudioOutput QAudioOutput::QAudioOutput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non constructor false false   [0xc82235b140 0xc82235b240] }
-&{bufferSize QAudioOutput::bufferSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  int [] }
-&{bytesFree QAudioOutput::bytesFree commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  int [] }
-&{category QAudioOutput::category commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  QString [] }
-&{elapsedUSecs QAudioOutput::elapsedUSecs commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  qint64 [] }
-&{error QAudioOutput::error commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  QAudio::Error [] }
-&{format QAudioOutput::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  QAudioFormat [] }
-&{notify QAudioOutput::notify commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non signal false false  void [] }
-&{notifyInterval QAudioOutput::notifyInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  int [] }
-&{periodSize QAudioOutput::periodSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  int [] }
-&{processedUSecs QAudioOutput::processedUSecs commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  qint64 [] }
-&{reset QAudioOutput::reset commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void [] }
-&{resume QAudioOutput::resume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void [] }
-&{setBufferSize QAudioOutput::setBufferSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void [0xc8223703a0] }
-&{setCategory QAudioOutput::setCategory commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void [0xc822370600] }
-&{setNotifyInterval QAudioOutput::setNotifyInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void [0xc822370a20] }
-&{setVolume QAudioOutput::setVolume commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void [0xc822370d80] }
-&{start QAudioOutput::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false true 2 QIODevice * [] }
-&{start QAudioOutput::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void [0xc8223713a0] }
-&{state QAudioOutput::state commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  QAudio::State [] }
-&{stateChanged QAudioOutput::stateChanged commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non signal false false  void [0xc822371860] }
-&{stop QAudioOutput::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void [] }
-&{suspend QAudioOutput::suspend commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void [] }
-&{volume QAudioOutput::volume commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  qreal [] }
-&{~QAudioOutput QAudioOutput::~QAudioOutput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non destructor false false   [] }
+&{QAudioOutput QAudioOutput::QAudioOutput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non constructor false true 2  QAudioOutput(const QAudioDeviceInfo &audioDevice, const QAudioFormat &format, QObject *parent) [0xc82271c420 0xc82271c640 0xc82271c860] }
+&{QAudioOutput QAudioOutput::QAudioOutput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non constructor false false   QAudioOutput(const QAudioFormat &format, QObject *parent) [0xc82271cba0 0xc82271cda0] }
+&{bufferSize QAudioOutput::bufferSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  int int bufferSize() const [] }
+&{bytesFree QAudioOutput::bytesFree commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  int int bytesFree() const [] }
+&{category QAudioOutput::category commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  QString QString category() const [] }
+&{elapsedUSecs QAudioOutput::elapsedUSecs commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  qint64 qint64 elapsedUSecs() const [] }
+&{error QAudioOutput::error commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  QAudio::Error QAudio::Error error() const [] }
+&{format QAudioOutput::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  QAudioFormat QAudioFormat format() const [] }
+&{notify QAudioOutput::notify commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non signal false false  void void notify() [] }
+&{notifyInterval QAudioOutput::notifyInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  int int notifyInterval() const [] }
+&{periodSize QAudioOutput::periodSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  int int periodSize() const [] }
+&{processedUSecs QAudioOutput::processedUSecs commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  qint64 qint64 processedUSecs() const [] }
+&{reset QAudioOutput::reset commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void void reset() [] }
+&{resume QAudioOutput::resume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void void resume() [] }
+&{setBufferSize QAudioOutput::setBufferSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void void setBufferSize(int value) [0xc822824f60] }
+&{setCategory QAudioOutput::setCategory commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void void setCategory(const QString &category) [0xc822825320] }
+&{setNotifyInterval QAudioOutput::setNotifyInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void void setNotifyInterval(int ms) [0xc822825780] }
+&{setVolume QAudioOutput::setVolume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void void setVolume(qreal volume) [0xc822825a60] }
+&{start QAudioOutput::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false true 2 QIODevice * QIODevice * start() [] }
+&{start QAudioOutput::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void void start(QIODevice *device) [0xc822825f80] }
+&{state QAudioOutput::state commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  QAudio::State QAudio::State state() const [] }
+&{stateChanged QAudioOutput::stateChanged commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non signal false false  void void stateChanged(QAudio::State state) [0xc821e284c0] }
+&{stop QAudioOutput::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void void stop() [] }
+&{suspend QAudioOutput::suspend commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  void void suspend() [] }
+&{volume QAudioOutput::volume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non plain false false  qreal qreal volume() const [] }
+&{~QAudioOutput QAudioOutput::~QAudioOutput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudiooutput.h non destructor false false   ~QAudioOutput() [] }
 ########################################			ENUMS			########################################

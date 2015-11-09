@@ -10,55 +10,55 @@ type QStyleOptionToolBox struct {
 	QStyleOption
 }
 
-type QStyleOptionToolBoxITF interface {
-	QStyleOptionITF
-	QStyleOptionToolBoxPTR() *QStyleOptionToolBox
+type QStyleOptionToolBox_ITF interface {
+	QStyleOption_ITF
+	QStyleOptionToolBox_PTR() *QStyleOptionToolBox
 }
 
-func PointerFromQStyleOptionToolBox(ptr QStyleOptionToolBoxITF) unsafe.Pointer {
+func PointerFromQStyleOptionToolBox(ptr QStyleOptionToolBox_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionToolBoxPTR().Pointer()
+		return ptr.QStyleOptionToolBox_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionToolBoxFromPointer(ptr unsafe.Pointer) *QStyleOptionToolBox {
+func NewQStyleOptionToolBoxFromPointer(ptr unsafe.Pointer) *QStyleOptionToolBox {
 	var n = new(QStyleOptionToolBox)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionToolBox) QStyleOptionToolBoxPTR() *QStyleOptionToolBox {
+func (ptr *QStyleOptionToolBox) QStyleOptionToolBox_PTR() *QStyleOptionToolBox {
 	return ptr
 }
 
 //QStyleOptionToolBox::SelectedPosition
-type QStyleOptionToolBox__SelectedPosition int
+type QStyleOptionToolBox__SelectedPosition int64
 
-var (
+const (
 	QStyleOptionToolBox__NotAdjacent        = QStyleOptionToolBox__SelectedPosition(0)
 	QStyleOptionToolBox__NextIsSelected     = QStyleOptionToolBox__SelectedPosition(1)
 	QStyleOptionToolBox__PreviousIsSelected = QStyleOptionToolBox__SelectedPosition(2)
 )
 
 //QStyleOptionToolBox::StyleOptionType
-type QStyleOptionToolBox__StyleOptionType int
+type QStyleOptionToolBox__StyleOptionType int64
 
 var (
 	QStyleOptionToolBox__Type = QStyleOptionToolBox__StyleOptionType(QStyleOption__SO_ToolBox)
 )
 
 //QStyleOptionToolBox::StyleOptionVersion
-type QStyleOptionToolBox__StyleOptionVersion int
+type QStyleOptionToolBox__StyleOptionVersion int64
 
 var (
 	QStyleOptionToolBox__Version = QStyleOptionToolBox__StyleOptionVersion(2)
 )
 
 //QStyleOptionToolBox::TabPosition
-type QStyleOptionToolBox__TabPosition int
+type QStyleOptionToolBox__TabPosition int64
 
-var (
+const (
 	QStyleOptionToolBox__Beginning  = QStyleOptionToolBox__TabPosition(0)
 	QStyleOptionToolBox__Middle     = QStyleOptionToolBox__TabPosition(1)
 	QStyleOptionToolBox__End        = QStyleOptionToolBox__TabPosition(2)
@@ -66,9 +66,9 @@ var (
 )
 
 func NewQStyleOptionToolBox() *QStyleOptionToolBox {
-	return QStyleOptionToolBoxFromPointer(unsafe.Pointer(C.QStyleOptionToolBox_NewQStyleOptionToolBox()))
+	return NewQStyleOptionToolBoxFromPointer(C.QStyleOptionToolBox_NewQStyleOptionToolBox())
 }
 
-func NewQStyleOptionToolBox2(other QStyleOptionToolBoxITF) *QStyleOptionToolBox {
-	return QStyleOptionToolBoxFromPointer(unsafe.Pointer(C.QStyleOptionToolBox_NewQStyleOptionToolBox2(C.QtObjectPtr(PointerFromQStyleOptionToolBox(other)))))
+func NewQStyleOptionToolBox2(other QStyleOptionToolBox_ITF) *QStyleOptionToolBox {
+	return NewQStyleOptionToolBoxFromPointer(C.QStyleOptionToolBox_NewQStyleOptionToolBox2(PointerFromQStyleOptionToolBox(other)))
 }

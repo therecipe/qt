@@ -1,10 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QItemEditorCreatorBase_DestroyQItemEditorCreatorBase(QtObjectPtr ptr);
-QtObjectPtr QItemEditorCreatorBase_CreateWidget(QtObjectPtr ptr, QtObjectPtr parent);
+void QItemEditorCreatorBase_DestroyQItemEditorCreatorBase(void* ptr);
+void* QItemEditorCreatorBase_CreateWidget(void* ptr, void* parent);
+void* QItemEditorCreatorBase_ValuePropertyName(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,9 +1,9 @@
 #include "qstylefactory.h"
-#include <QModelIndex>
-#include <QStyle>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QStyle>
 #include <QStyleFactory>
 #include "_cgo_export.h"
 
@@ -11,7 +11,7 @@ class MyQStyleFactory: public QStyleFactory {
 public:
 };
 
-QtObjectPtr QStyleFactory_QStyleFactory_Create(char* key){
+void* QStyleFactory_QStyleFactory_Create(char* key){
 	return QStyleFactory::create(QString(key));
 }
 

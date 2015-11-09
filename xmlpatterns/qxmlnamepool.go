@@ -10,8 +10,8 @@ type QXmlNamePool struct {
 	ptr unsafe.Pointer
 }
 
-type QXmlNamePoolITF interface {
-	QXmlNamePoolPTR() *QXmlNamePool
+type QXmlNamePool_ITF interface {
+	QXmlNamePool_PTR() *QXmlNamePool
 }
 
 func (p *QXmlNamePool) Pointer() unsafe.Pointer {
@@ -22,33 +22,33 @@ func (p *QXmlNamePool) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQXmlNamePool(ptr QXmlNamePoolITF) unsafe.Pointer {
+func PointerFromQXmlNamePool(ptr QXmlNamePool_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QXmlNamePoolPTR().Pointer()
+		return ptr.QXmlNamePool_PTR().Pointer()
 	}
 	return nil
 }
 
-func QXmlNamePoolFromPointer(ptr unsafe.Pointer) *QXmlNamePool {
+func NewQXmlNamePoolFromPointer(ptr unsafe.Pointer) *QXmlNamePool {
 	var n = new(QXmlNamePool)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QXmlNamePool) QXmlNamePoolPTR() *QXmlNamePool {
+func (ptr *QXmlNamePool) QXmlNamePool_PTR() *QXmlNamePool {
 	return ptr
 }
 
 func NewQXmlNamePool() *QXmlNamePool {
-	return QXmlNamePoolFromPointer(unsafe.Pointer(C.QXmlNamePool_NewQXmlNamePool()))
+	return NewQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool())
 }
 
-func NewQXmlNamePool2(other QXmlNamePoolITF) *QXmlNamePool {
-	return QXmlNamePoolFromPointer(unsafe.Pointer(C.QXmlNamePool_NewQXmlNamePool2(C.QtObjectPtr(PointerFromQXmlNamePool(other)))))
+func NewQXmlNamePool2(other QXmlNamePool_ITF) *QXmlNamePool {
+	return NewQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool2(PointerFromQXmlNamePool(other)))
 }
 
 func (ptr *QXmlNamePool) DestroyQXmlNamePool() {
 	if ptr.Pointer() != nil {
-		C.QXmlNamePool_DestroyQXmlNamePool(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlNamePool_DestroyQXmlNamePool(ptr.Pointer())
 	}
 }

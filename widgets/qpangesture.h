@@ -1,11 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QPanGesture_SetLastOffset(QtObjectPtr ptr, QtObjectPtr value);
-void QPanGesture_SetOffset(QtObjectPtr ptr, QtObjectPtr value);
-void QPanGesture_DestroyQPanGesture(QtObjectPtr ptr);
+double QPanGesture_Acceleration(void* ptr);
+void QPanGesture_SetAcceleration(void* ptr, double value);
+void QPanGesture_SetLastOffset(void* ptr, void* value);
+void QPanGesture_SetOffset(void* ptr, void* value);
+void QPanGesture_DestroyQPanGesture(void* ptr);
 
 #ifdef __cplusplus
 }

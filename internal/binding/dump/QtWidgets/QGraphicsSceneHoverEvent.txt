@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
-&{lastPos QGraphicsSceneHoverEvent::lastPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
-&{lastScenePos QGraphicsSceneHoverEvent::lastScenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
-&{lastScreenPos QGraphicsSceneHoverEvent::lastScreenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint [] }
-&{modifiers QGraphicsSceneHoverEvent::modifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::KeyboardModifiers [] }
-&{pos QGraphicsSceneHoverEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
-&{scenePos QGraphicsSceneHoverEvent::scenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF [] }
-&{screenPos QGraphicsSceneHoverEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint [] }
-&{~QGraphicsSceneHoverEvent QGraphicsSceneHoverEvent::~QGraphicsSceneHoverEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   [] }
+&{lastPos QGraphicsSceneHoverEvent::lastPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF QPointF lastPos() const [] }
+&{lastScenePos QGraphicsSceneHoverEvent::lastScenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF QPointF lastScenePos() const [] }
+&{lastScreenPos QGraphicsSceneHoverEvent::lastScreenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint QPoint lastScreenPos() const [] }
+&{modifiers QGraphicsSceneHoverEvent::modifiers commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  Qt::KeyboardModifiers Qt::KeyboardModifiers modifiers() const [] }
+&{pos QGraphicsSceneHoverEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF QPointF pos() const [] }
+&{scenePos QGraphicsSceneHoverEvent::scenePos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPointF QPointF scenePos() const [] }
+&{screenPos QGraphicsSceneHoverEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non plain false false  QPoint QPoint screenPos() const [] }
+&{~QGraphicsSceneHoverEvent QGraphicsSceneHoverEvent::~QGraphicsSceneHoverEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicssceneevent.h non destructor false false   ~QGraphicsSceneHoverEvent() [] }
 ########################################			ENUMS			########################################

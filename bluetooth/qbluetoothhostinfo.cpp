@@ -1,9 +1,9 @@
 #include "qbluetoothhostinfo.h"
-#include <QBluetoothAddress>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QBluetoothAddress>
 #include <QBluetoothHostInfo>
 #include "_cgo_export.h"
 
@@ -11,27 +11,27 @@ class MyQBluetoothHostInfo: public QBluetoothHostInfo {
 public:
 };
 
-QtObjectPtr QBluetoothHostInfo_NewQBluetoothHostInfo(){
+void* QBluetoothHostInfo_NewQBluetoothHostInfo(){
 	return new QBluetoothHostInfo();
 }
 
-QtObjectPtr QBluetoothHostInfo_NewQBluetoothHostInfo2(QtObjectPtr other){
+void* QBluetoothHostInfo_NewQBluetoothHostInfo2(void* other){
 	return new QBluetoothHostInfo(*static_cast<QBluetoothHostInfo*>(other));
 }
 
-char* QBluetoothHostInfo_Name(QtObjectPtr ptr){
+char* QBluetoothHostInfo_Name(void* ptr){
 	return static_cast<QBluetoothHostInfo*>(ptr)->name().toUtf8().data();
 }
 
-void QBluetoothHostInfo_SetAddress(QtObjectPtr ptr, QtObjectPtr address){
+void QBluetoothHostInfo_SetAddress(void* ptr, void* address){
 	static_cast<QBluetoothHostInfo*>(ptr)->setAddress(*static_cast<QBluetoothAddress*>(address));
 }
 
-void QBluetoothHostInfo_SetName(QtObjectPtr ptr, char* name){
+void QBluetoothHostInfo_SetName(void* ptr, char* name){
 	static_cast<QBluetoothHostInfo*>(ptr)->setName(QString(name));
 }
 
-void QBluetoothHostInfo_DestroyQBluetoothHostInfo(QtObjectPtr ptr){
+void QBluetoothHostInfo_DestroyQBluetoothHostInfo(void* ptr){
 	static_cast<QBluetoothHostInfo*>(ptr)->~QBluetoothHostInfo();
 }
 

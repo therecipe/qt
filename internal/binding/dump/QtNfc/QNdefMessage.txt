@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{QNdefMessage QNdefMessage::QNdefMessage commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non constructor false false   [] }
-&{QNdefMessage QNdefMessage::QNdefMessage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non constructor false true 4  [0xc8227ea180] }
-&{QNdefMessage QNdefMessage::QNdefMessage commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non constructor false true 3  [0xc8227ea500] }
-&{QNdefMessage QNdefMessage::QNdefMessage commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non constructor false true 2  [0xc8227ea820] }
-&{fromByteArray QNdefMessage::fromByteArray commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non plain true false  QNdefMessage [0xc8227eab60] }
-&{operator== QNdefMessage::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non plain false false  bool [0xc8227eaf00] }
-&{toByteArray QNdefMessage::toByteArray commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non plain false false  QByteArray [] }
+&{QNdefMessage QNdefMessage::QNdefMessage commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non constructor false false   QNdefMessage() [] }
+&{QNdefMessage QNdefMessage::QNdefMessage commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non constructor false true 4  QNdefMessage(const QList<QNdefRecord> &records) [0xc82336b240] }
+&{QNdefMessage QNdefMessage::QNdefMessage commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non constructor false true 3  QNdefMessage(const QNdefMessage &message) [0xc82336b620] }
+&{QNdefMessage QNdefMessage::QNdefMessage commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non constructor false true 2  QNdefMessage(const QNdefRecord &record) [0xc82336b9a0] }
+&{fromByteArray QNdefMessage::fromByteArray commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non plain true false  QNdefMessage QNdefMessage fromByteArray(const QByteArray &message) [0xc82336bd80] }
+&{operator== QNdefMessage::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non plain false false  bool bool operator==(const QNdefMessage &other) const [0xc823356060] }
+&{toByteArray QNdefMessage::toByteArray commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non plain false false  QByteArray QByteArray toByteArray() const [] }
 ########################################			ENUMS			########################################

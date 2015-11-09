@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(QtObjectPtr ptr);
+void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(void* ptr);
 
 #ifdef __cplusplus
 }

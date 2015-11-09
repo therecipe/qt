@@ -12,35 +12,35 @@ type QCameraImageProcessing struct {
 	core.QObject
 }
 
-type QCameraImageProcessingITF interface {
-	core.QObjectITF
-	QCameraImageProcessingPTR() *QCameraImageProcessing
+type QCameraImageProcessing_ITF interface {
+	core.QObject_ITF
+	QCameraImageProcessing_PTR() *QCameraImageProcessing
 }
 
-func PointerFromQCameraImageProcessing(ptr QCameraImageProcessingITF) unsafe.Pointer {
+func PointerFromQCameraImageProcessing(ptr QCameraImageProcessing_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCameraImageProcessingPTR().Pointer()
+		return ptr.QCameraImageProcessing_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCameraImageProcessingFromPointer(ptr unsafe.Pointer) *QCameraImageProcessing {
+func NewQCameraImageProcessingFromPointer(ptr unsafe.Pointer) *QCameraImageProcessing {
 	var n = new(QCameraImageProcessing)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCameraImageProcessing_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCameraImageProcessing) QCameraImageProcessingPTR() *QCameraImageProcessing {
+func (ptr *QCameraImageProcessing) QCameraImageProcessing_PTR() *QCameraImageProcessing {
 	return ptr
 }
 
 //QCameraImageProcessing::ColorFilter
-type QCameraImageProcessing__ColorFilter int
+type QCameraImageProcessing__ColorFilter int64
 
-var (
+const (
 	QCameraImageProcessing__ColorFilterNone       = QCameraImageProcessing__ColorFilter(0)
 	QCameraImageProcessing__ColorFilterGrayscale  = QCameraImageProcessing__ColorFilter(1)
 	QCameraImageProcessing__ColorFilterNegative   = QCameraImageProcessing__ColorFilter(2)
@@ -54,9 +54,9 @@ var (
 )
 
 //QCameraImageProcessing::WhiteBalanceMode
-type QCameraImageProcessing__WhiteBalanceMode int
+type QCameraImageProcessing__WhiteBalanceMode int64
 
-var (
+const (
 	QCameraImageProcessing__WhiteBalanceAuto        = QCameraImageProcessing__WhiteBalanceMode(0)
 	QCameraImageProcessing__WhiteBalanceManual      = QCameraImageProcessing__WhiteBalanceMode(1)
 	QCameraImageProcessing__WhiteBalanceSunlight    = QCameraImageProcessing__WhiteBalanceMode(2)
@@ -71,47 +71,112 @@ var (
 
 func (ptr *QCameraImageProcessing) ColorFilter() QCameraImageProcessing__ColorFilter {
 	if ptr.Pointer() != nil {
-		return QCameraImageProcessing__ColorFilter(C.QCameraImageProcessing_ColorFilter(C.QtObjectPtr(ptr.Pointer())))
+		return QCameraImageProcessing__ColorFilter(C.QCameraImageProcessing_ColorFilter(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QCameraImageProcessing) Contrast() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraImageProcessing_Contrast(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QCameraImageProcessing) DenoisingLevel() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraImageProcessing_DenoisingLevel(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QCameraImageProcessing) IsAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageProcessing_IsAvailable(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QCameraImageProcessing_IsAvailable(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraImageProcessing) IsColorFilterSupported(filter QCameraImageProcessing__ColorFilter) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageProcessing_IsColorFilterSupported(C.QtObjectPtr(ptr.Pointer()), C.int(filter)) != 0
+		return C.QCameraImageProcessing_IsColorFilterSupported(ptr.Pointer(), C.int(filter)) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraImageProcessing) IsWhiteBalanceModeSupported(mode QCameraImageProcessing__WhiteBalanceMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraImageProcessing_IsWhiteBalanceModeSupported(C.QtObjectPtr(ptr.Pointer()), C.int(mode)) != 0
+		return C.QCameraImageProcessing_IsWhiteBalanceModeSupported(ptr.Pointer(), C.int(mode)) != 0
 	}
 	return false
 }
 
+func (ptr *QCameraImageProcessing) ManualWhiteBalance() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraImageProcessing_ManualWhiteBalance(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QCameraImageProcessing) Saturation() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraImageProcessing_Saturation(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QCameraImageProcessing) SetColorFilter(filter QCameraImageProcessing__ColorFilter) {
 	if ptr.Pointer() != nil {
-		C.QCameraImageProcessing_SetColorFilter(C.QtObjectPtr(ptr.Pointer()), C.int(filter))
+		C.QCameraImageProcessing_SetColorFilter(ptr.Pointer(), C.int(filter))
+	}
+}
+
+func (ptr *QCameraImageProcessing) SetContrast(value float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing_SetContrast(ptr.Pointer(), C.double(value))
+	}
+}
+
+func (ptr *QCameraImageProcessing) SetDenoisingLevel(level float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing_SetDenoisingLevel(ptr.Pointer(), C.double(level))
+	}
+}
+
+func (ptr *QCameraImageProcessing) SetManualWhiteBalance(colorTemperature float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing_SetManualWhiteBalance(ptr.Pointer(), C.double(colorTemperature))
+	}
+}
+
+func (ptr *QCameraImageProcessing) SetSaturation(value float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing_SetSaturation(ptr.Pointer(), C.double(value))
+	}
+}
+
+func (ptr *QCameraImageProcessing) SetSharpeningLevel(level float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing_SetSharpeningLevel(ptr.Pointer(), C.double(level))
 	}
 }
 
 func (ptr *QCameraImageProcessing) SetWhiteBalanceMode(mode QCameraImageProcessing__WhiteBalanceMode) {
 	if ptr.Pointer() != nil {
-		C.QCameraImageProcessing_SetWhiteBalanceMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QCameraImageProcessing_SetWhiteBalanceMode(ptr.Pointer(), C.int(mode))
 	}
+}
+
+func (ptr *QCameraImageProcessing) SharpeningLevel() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraImageProcessing_SharpeningLevel(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QCameraImageProcessing) WhiteBalanceMode() QCameraImageProcessing__WhiteBalanceMode {
 	if ptr.Pointer() != nil {
-		return QCameraImageProcessing__WhiteBalanceMode(C.QCameraImageProcessing_WhiteBalanceMode(C.QtObjectPtr(ptr.Pointer())))
+		return QCameraImageProcessing__WhiteBalanceMode(C.QCameraImageProcessing_WhiteBalanceMode(ptr.Pointer()))
 	}
 	return 0
 }

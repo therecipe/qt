@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStyleOptionComboBox_NewQStyleOptionComboBox();
-QtObjectPtr QStyleOptionComboBox_NewQStyleOptionComboBox2(QtObjectPtr other);
+void* QStyleOptionComboBox_NewQStyleOptionComboBox();
+void* QStyleOptionComboBox_NewQStyleOptionComboBox2(void* other);
 
 #ifdef __cplusplus
 }

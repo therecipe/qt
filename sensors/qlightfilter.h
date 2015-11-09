@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QLightFilter_Filter(QtObjectPtr ptr, QtObjectPtr reading);
+int QLightFilter_Filter(void* ptr, void* reading);
 
 #ifdef __cplusplus
 }

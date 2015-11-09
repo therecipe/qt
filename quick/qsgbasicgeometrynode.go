@@ -10,50 +10,50 @@ type QSGBasicGeometryNode struct {
 	QSGNode
 }
 
-type QSGBasicGeometryNodeITF interface {
-	QSGNodeITF
-	QSGBasicGeometryNodePTR() *QSGBasicGeometryNode
+type QSGBasicGeometryNode_ITF interface {
+	QSGNode_ITF
+	QSGBasicGeometryNode_PTR() *QSGBasicGeometryNode
 }
 
-func PointerFromQSGBasicGeometryNode(ptr QSGBasicGeometryNodeITF) unsafe.Pointer {
+func PointerFromQSGBasicGeometryNode(ptr QSGBasicGeometryNode_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSGBasicGeometryNodePTR().Pointer()
+		return ptr.QSGBasicGeometryNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSGBasicGeometryNodeFromPointer(ptr unsafe.Pointer) *QSGBasicGeometryNode {
+func NewQSGBasicGeometryNodeFromPointer(ptr unsafe.Pointer) *QSGBasicGeometryNode {
 	var n = new(QSGBasicGeometryNode)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSGBasicGeometryNode) QSGBasicGeometryNodePTR() *QSGBasicGeometryNode {
+func (ptr *QSGBasicGeometryNode) QSGBasicGeometryNode_PTR() *QSGBasicGeometryNode {
 	return ptr
 }
 
 func (ptr *QSGBasicGeometryNode) Geometry2() *QSGGeometry {
 	if ptr.Pointer() != nil {
-		return QSGGeometryFromPointer(unsafe.Pointer(C.QSGBasicGeometryNode_Geometry2(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQSGGeometryFromPointer(C.QSGBasicGeometryNode_Geometry2(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QSGBasicGeometryNode) Geometry() *QSGGeometry {
 	if ptr.Pointer() != nil {
-		return QSGGeometryFromPointer(unsafe.Pointer(C.QSGBasicGeometryNode_Geometry(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQSGGeometryFromPointer(C.QSGBasicGeometryNode_Geometry(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QSGBasicGeometryNode) SetGeometry(geometry QSGGeometryITF) {
+func (ptr *QSGBasicGeometryNode) SetGeometry(geometry QSGGeometry_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSGBasicGeometryNode_SetGeometry(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSGGeometry(geometry)))
+		C.QSGBasicGeometryNode_SetGeometry(ptr.Pointer(), PointerFromQSGGeometry(geometry))
 	}
 }
 
 func (ptr *QSGBasicGeometryNode) DestroyQSGBasicGeometryNode() {
 	if ptr.Pointer() != nil {
-		C.QSGBasicGeometryNode_DestroyQSGBasicGeometryNode(C.QtObjectPtr(ptr.Pointer()))
+		C.QSGBasicGeometryNode_DestroyQSGBasicGeometryNode(ptr.Pointer())
 	}
 }

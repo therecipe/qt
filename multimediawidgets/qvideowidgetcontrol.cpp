@@ -1,10 +1,10 @@
 #include "qvideowidgetcontrol.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QVideoWidget>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QVideoWidget>
+#include <QObject>
 #include <QVideoWidgetControl>
 #include "_cgo_export.h"
 
@@ -17,99 +17,99 @@ void Signal_HueChanged(int hue){callbackQVideoWidgetControlHueChanged(this->obje
 void Signal_SaturationChanged(int saturation){callbackQVideoWidgetControlSaturationChanged(this->objectName().toUtf8().data(), saturation);};
 };
 
-int QVideoWidgetControl_AspectRatioMode(QtObjectPtr ptr){
+int QVideoWidgetControl_AspectRatioMode(void* ptr){
 	return static_cast<QVideoWidgetControl*>(ptr)->aspectRatioMode();
 }
 
-int QVideoWidgetControl_Brightness(QtObjectPtr ptr){
+int QVideoWidgetControl_Brightness(void* ptr){
 	return static_cast<QVideoWidgetControl*>(ptr)->brightness();
 }
 
-void QVideoWidgetControl_ConnectBrightnessChanged(QtObjectPtr ptr){
+void QVideoWidgetControl_ConnectBrightnessChanged(void* ptr){
 	QObject::connect(static_cast<QVideoWidgetControl*>(ptr), static_cast<void (QVideoWidgetControl::*)(int)>(&QVideoWidgetControl::brightnessChanged), static_cast<MyQVideoWidgetControl*>(ptr), static_cast<void (MyQVideoWidgetControl::*)(int)>(&MyQVideoWidgetControl::Signal_BrightnessChanged));;
 }
 
-void QVideoWidgetControl_DisconnectBrightnessChanged(QtObjectPtr ptr){
+void QVideoWidgetControl_DisconnectBrightnessChanged(void* ptr){
 	QObject::disconnect(static_cast<QVideoWidgetControl*>(ptr), static_cast<void (QVideoWidgetControl::*)(int)>(&QVideoWidgetControl::brightnessChanged), static_cast<MyQVideoWidgetControl*>(ptr), static_cast<void (MyQVideoWidgetControl::*)(int)>(&MyQVideoWidgetControl::Signal_BrightnessChanged));;
 }
 
-int QVideoWidgetControl_Contrast(QtObjectPtr ptr){
+int QVideoWidgetControl_Contrast(void* ptr){
 	return static_cast<QVideoWidgetControl*>(ptr)->contrast();
 }
 
-void QVideoWidgetControl_ConnectContrastChanged(QtObjectPtr ptr){
+void QVideoWidgetControl_ConnectContrastChanged(void* ptr){
 	QObject::connect(static_cast<QVideoWidgetControl*>(ptr), static_cast<void (QVideoWidgetControl::*)(int)>(&QVideoWidgetControl::contrastChanged), static_cast<MyQVideoWidgetControl*>(ptr), static_cast<void (MyQVideoWidgetControl::*)(int)>(&MyQVideoWidgetControl::Signal_ContrastChanged));;
 }
 
-void QVideoWidgetControl_DisconnectContrastChanged(QtObjectPtr ptr){
+void QVideoWidgetControl_DisconnectContrastChanged(void* ptr){
 	QObject::disconnect(static_cast<QVideoWidgetControl*>(ptr), static_cast<void (QVideoWidgetControl::*)(int)>(&QVideoWidgetControl::contrastChanged), static_cast<MyQVideoWidgetControl*>(ptr), static_cast<void (MyQVideoWidgetControl::*)(int)>(&MyQVideoWidgetControl::Signal_ContrastChanged));;
 }
 
-void QVideoWidgetControl_ConnectFullScreenChanged(QtObjectPtr ptr){
+void QVideoWidgetControl_ConnectFullScreenChanged(void* ptr){
 	QObject::connect(static_cast<QVideoWidgetControl*>(ptr), static_cast<void (QVideoWidgetControl::*)(bool)>(&QVideoWidgetControl::fullScreenChanged), static_cast<MyQVideoWidgetControl*>(ptr), static_cast<void (MyQVideoWidgetControl::*)(bool)>(&MyQVideoWidgetControl::Signal_FullScreenChanged));;
 }
 
-void QVideoWidgetControl_DisconnectFullScreenChanged(QtObjectPtr ptr){
+void QVideoWidgetControl_DisconnectFullScreenChanged(void* ptr){
 	QObject::disconnect(static_cast<QVideoWidgetControl*>(ptr), static_cast<void (QVideoWidgetControl::*)(bool)>(&QVideoWidgetControl::fullScreenChanged), static_cast<MyQVideoWidgetControl*>(ptr), static_cast<void (MyQVideoWidgetControl::*)(bool)>(&MyQVideoWidgetControl::Signal_FullScreenChanged));;
 }
 
-int QVideoWidgetControl_Hue(QtObjectPtr ptr){
+int QVideoWidgetControl_Hue(void* ptr){
 	return static_cast<QVideoWidgetControl*>(ptr)->hue();
 }
 
-void QVideoWidgetControl_ConnectHueChanged(QtObjectPtr ptr){
+void QVideoWidgetControl_ConnectHueChanged(void* ptr){
 	QObject::connect(static_cast<QVideoWidgetControl*>(ptr), static_cast<void (QVideoWidgetControl::*)(int)>(&QVideoWidgetControl::hueChanged), static_cast<MyQVideoWidgetControl*>(ptr), static_cast<void (MyQVideoWidgetControl::*)(int)>(&MyQVideoWidgetControl::Signal_HueChanged));;
 }
 
-void QVideoWidgetControl_DisconnectHueChanged(QtObjectPtr ptr){
+void QVideoWidgetControl_DisconnectHueChanged(void* ptr){
 	QObject::disconnect(static_cast<QVideoWidgetControl*>(ptr), static_cast<void (QVideoWidgetControl::*)(int)>(&QVideoWidgetControl::hueChanged), static_cast<MyQVideoWidgetControl*>(ptr), static_cast<void (MyQVideoWidgetControl::*)(int)>(&MyQVideoWidgetControl::Signal_HueChanged));;
 }
 
-int QVideoWidgetControl_IsFullScreen(QtObjectPtr ptr){
+int QVideoWidgetControl_IsFullScreen(void* ptr){
 	return static_cast<QVideoWidgetControl*>(ptr)->isFullScreen();
 }
 
-int QVideoWidgetControl_Saturation(QtObjectPtr ptr){
+int QVideoWidgetControl_Saturation(void* ptr){
 	return static_cast<QVideoWidgetControl*>(ptr)->saturation();
 }
 
-void QVideoWidgetControl_ConnectSaturationChanged(QtObjectPtr ptr){
+void QVideoWidgetControl_ConnectSaturationChanged(void* ptr){
 	QObject::connect(static_cast<QVideoWidgetControl*>(ptr), static_cast<void (QVideoWidgetControl::*)(int)>(&QVideoWidgetControl::saturationChanged), static_cast<MyQVideoWidgetControl*>(ptr), static_cast<void (MyQVideoWidgetControl::*)(int)>(&MyQVideoWidgetControl::Signal_SaturationChanged));;
 }
 
-void QVideoWidgetControl_DisconnectSaturationChanged(QtObjectPtr ptr){
+void QVideoWidgetControl_DisconnectSaturationChanged(void* ptr){
 	QObject::disconnect(static_cast<QVideoWidgetControl*>(ptr), static_cast<void (QVideoWidgetControl::*)(int)>(&QVideoWidgetControl::saturationChanged), static_cast<MyQVideoWidgetControl*>(ptr), static_cast<void (MyQVideoWidgetControl::*)(int)>(&MyQVideoWidgetControl::Signal_SaturationChanged));;
 }
 
-void QVideoWidgetControl_SetAspectRatioMode(QtObjectPtr ptr, int mode){
+void QVideoWidgetControl_SetAspectRatioMode(void* ptr, int mode){
 	static_cast<QVideoWidgetControl*>(ptr)->setAspectRatioMode(static_cast<Qt::AspectRatioMode>(mode));
 }
 
-void QVideoWidgetControl_SetBrightness(QtObjectPtr ptr, int brightness){
+void QVideoWidgetControl_SetBrightness(void* ptr, int brightness){
 	static_cast<QVideoWidgetControl*>(ptr)->setBrightness(brightness);
 }
 
-void QVideoWidgetControl_SetContrast(QtObjectPtr ptr, int contrast){
+void QVideoWidgetControl_SetContrast(void* ptr, int contrast){
 	static_cast<QVideoWidgetControl*>(ptr)->setContrast(contrast);
 }
 
-void QVideoWidgetControl_SetFullScreen(QtObjectPtr ptr, int fullScreen){
+void QVideoWidgetControl_SetFullScreen(void* ptr, int fullScreen){
 	static_cast<QVideoWidgetControl*>(ptr)->setFullScreen(fullScreen != 0);
 }
 
-void QVideoWidgetControl_SetHue(QtObjectPtr ptr, int hue){
+void QVideoWidgetControl_SetHue(void* ptr, int hue){
 	static_cast<QVideoWidgetControl*>(ptr)->setHue(hue);
 }
 
-void QVideoWidgetControl_SetSaturation(QtObjectPtr ptr, int saturation){
+void QVideoWidgetControl_SetSaturation(void* ptr, int saturation){
 	static_cast<QVideoWidgetControl*>(ptr)->setSaturation(saturation);
 }
 
-QtObjectPtr QVideoWidgetControl_VideoWidget(QtObjectPtr ptr){
+void* QVideoWidgetControl_VideoWidget(void* ptr){
 	return static_cast<QVideoWidgetControl*>(ptr)->videoWidget();
 }
 
-void QVideoWidgetControl_DestroyQVideoWidgetControl(QtObjectPtr ptr){
+void QVideoWidgetControl_DestroyQVideoWidgetControl(void* ptr){
 	static_cast<QVideoWidgetControl*>(ptr)->~QVideoWidgetControl();
 }
 

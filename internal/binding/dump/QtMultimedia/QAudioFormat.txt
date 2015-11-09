@@ -1,30 +1,30 @@
 ########################################			FUNCTIONS			########################################
-&{QAudioFormat QAudioFormat::QAudioFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non constructor false false   [] }
-&{QAudioFormat QAudioFormat::QAudioFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non constructor false true 2  [0xc822324460] }
-&{byteOrder QAudioFormat::byteOrder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  QAudioFormat::Endian [] }
-&{bytesForDuration QAudioFormat::bytesForDuration commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  qint32 [0xc822324900] }
-&{bytesForFrames QAudioFormat::bytesForFrames commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  qint32 [0xc822324c20] }
-&{bytesPerFrame QAudioFormat::bytesPerFrame commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  int [] }
-&{channelCount QAudioFormat::channelCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  int [] }
-&{codec QAudioFormat::codec commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  QString [] }
-&{durationForBytes QAudioFormat::durationForBytes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  qint64 [0xc822325180] }
-&{durationForFrames QAudioFormat::durationForFrames commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  qint64 [0xc8223253c0] }
-&{framesForBytes QAudioFormat::framesForBytes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  qint32 [0xc822325600] }
-&{framesForDuration QAudioFormat::framesForDuration commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  qint32 [0xc8223258e0] }
-&{isValid QAudioFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  bool [] }
-&{operator!= QAudioFormat::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  bool [0xc822325c60] }
-&{operator= QAudioFormat::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  QAudioFormat & [0xc822325fc0] }
-&{operator== QAudioFormat::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  bool [0xc8223362e0] }
-&{sampleRate QAudioFormat::sampleRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  int [] }
-&{sampleSize QAudioFormat::sampleSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  int [] }
-&{sampleType QAudioFormat::sampleType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  QAudioFormat::SampleType [] }
-&{setByteOrder QAudioFormat::setByteOrder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  void [0xc822336ba0] }
-&{setChannelCount QAudioFormat::setChannelCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  void [0xc822336e60] }
-&{setCodec QAudioFormat::setCodec commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  void [0xc822337120] }
-&{setSampleRate QAudioFormat::setSampleRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  void [0xc8223373e0] }
-&{setSampleSize QAudioFormat::setSampleSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  void [0xc822337600] }
-&{setSampleType QAudioFormat::setSampleType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  void [0xc822337820] }
-&{~QAudioFormat QAudioFormat::~QAudioFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non destructor false false   [] }
+&{QAudioFormat QAudioFormat::QAudioFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non constructor false false   QAudioFormat() [] }
+&{QAudioFormat QAudioFormat::QAudioFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non constructor false true 2  QAudioFormat(const QAudioFormat &other) [0xc821f847e0] }
+&{byteOrder QAudioFormat::byteOrder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  QAudioFormat::Endian QAudioFormat::Endian byteOrder() const [] }
+&{bytesForDuration QAudioFormat::bytesForDuration commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  qint32 qint32 bytesForDuration(qint64 duration) const [0xc821f84da0] }
+&{bytesForFrames QAudioFormat::bytesForFrames commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  qint32 qint32 bytesForFrames(qint32 frameCount) const [0xc821f85180] }
+&{bytesPerFrame QAudioFormat::bytesPerFrame commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  int int bytesPerFrame() const [] }
+&{channelCount QAudioFormat::channelCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  int int channelCount() const [] }
+&{codec QAudioFormat::codec commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  QString QString codec() const [] }
+&{durationForBytes QAudioFormat::durationForBytes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  qint64 qint64 durationForBytes(qint32 bytes) const [0xc821f85c60] }
+&{durationForFrames QAudioFormat::durationForFrames commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  qint64 qint64 durationForFrames(qint32 frameCount) const [0xc821f9a020] }
+&{framesForBytes QAudioFormat::framesForBytes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  qint32 qint32 framesForBytes(qint32 byteCount) const [0xc821f9a460] }
+&{framesForDuration QAudioFormat::framesForDuration commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  qint32 qint32 framesForDuration(qint64 duration) const [0xc821f9a820] }
+&{isValid QAudioFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  bool bool isValid() const [] }
+&{operator!= QAudioFormat::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  bool bool operator!=(const QAudioFormat &other) const [0xc821f9ae40] }
+&{operator= QAudioFormat::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  QAudioFormat & QAudioFormat & operator=(const QAudioFormat &other) [0xc821f9b260] }
+&{operator== QAudioFormat::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  bool bool operator==(const QAudioFormat &other) const [0xc821f9b6e0] }
+&{sampleRate QAudioFormat::sampleRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  int int sampleRate() const [] }
+&{sampleSize QAudioFormat::sampleSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  int int sampleSize() const [] }
+&{sampleType QAudioFormat::sampleType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  QAudioFormat::SampleType QAudioFormat::SampleType sampleType() const [] }
+&{setByteOrder QAudioFormat::setByteOrder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  void void setByteOrder(QAudioFormat::Endian byteOrder) [0xc821d0c0c0] }
+&{setChannelCount QAudioFormat::setChannelCount commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  void void setChannelCount(int channels) [0xc821d0c300] }
+&{setCodec QAudioFormat::setCodec commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  void void setCodec(const QString &codec) [0xc821d0c5c0] }
+&{setSampleRate QAudioFormat::setSampleRate commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  void void setSampleRate(int samplerate) [0xc821d0c920] }
+&{setSampleSize QAudioFormat::setSampleSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  void void setSampleSize(int sampleSize) [0xc821d0cbe0] }
+&{setSampleType QAudioFormat::setSampleType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non plain false false  void void setSampleType(QAudioFormat::SampleType sampleType) [0xc821d0cf80] }
+&{~QAudioFormat QAudioFormat::~QAudioFormat commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioformat.h non destructor false false   ~QAudioFormat() [] }
 ########################################			ENUMS			########################################
-&{Endian QAudioFormat::Endian commendable public  [0xc822311880 0xc822311960]}
-&{SampleType QAudioFormat::SampleType commendable public  [0xc822311cc0 0xc822311dc0 0xc822311e60 0xc822311f20]}
+&{Endian QAudioFormat::Endian commendable public  [0xc822867960 0xc822867b20] false}
+&{SampleType QAudioFormat::SampleType commendable public  [0xc822867ee0 0xc822867f80 0xc821f840e0 0xc821f84180] false}

@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{QPlaceImage QPlaceImage::QPlaceImage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non constructor false false   [] }
-&{QPlaceImage QPlaceImage::QPlaceImage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non constructor false true 2  [0xc8221d3360] }
-&{imageId QPlaceImage::imageId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non plain false false  QString [] }
-&{mimeType QPlaceImage::mimeType commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non plain false false  QString [] }
-&{setImageId QPlaceImage::setImageId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non plain false false  void [0xc8221d3de0] }
-&{setMimeType QPlaceImage::setMimeType commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non plain false false  void [0xc821e9e060] }
-&{setUrl QPlaceImage::setUrl commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non plain false false  void [0xc821e9e3e0] }
-&{url QPlaceImage::url commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non plain false false  QUrl [] }
-&{~QPlaceImage QPlaceImage::~QPlaceImage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h impure destructor false false   [] }
+&{QPlaceImage QPlaceImage::QPlaceImage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non constructor false false   QPlaceImage() [] }
+&{QPlaceImage QPlaceImage::QPlaceImage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non constructor false true 2  QPlaceImage(const QPlaceContent &other) [0xc822330720] }
+&{imageId QPlaceImage::imageId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non plain false false  QString QString imageId() const [] }
+&{mimeType QPlaceImage::mimeType commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non plain false false  QString QString mimeType() const [] }
+&{setImageId QPlaceImage::setImageId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non plain false false  void void setImageId(const QString &identifier) [0xc8223311c0] }
+&{setMimeType QPlaceImage::setMimeType commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non plain false false  void void setMimeType(const QString &type) [0xc822331480] }
+&{setUrl QPlaceImage::setUrl commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non plain false false  void void setUrl(const QUrl &url) [0xc8223317c0] }
+&{url QPlaceImage::url commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h non plain false false  QUrl QUrl url() const [] }
+&{~QPlaceImage QPlaceImage::~QPlaceImage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceimage.h impure destructor false false   ~QPlaceImage() [] }
 ########################################			ENUMS			########################################

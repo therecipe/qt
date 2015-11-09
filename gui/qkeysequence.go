@@ -10,8 +10,8 @@ type QKeySequence struct {
 	ptr unsafe.Pointer
 }
 
-type QKeySequenceITF interface {
-	QKeySequencePTR() *QKeySequence
+type QKeySequence_ITF interface {
+	QKeySequence_PTR() *QKeySequence
 }
 
 func (p *QKeySequence) Pointer() unsafe.Pointer {
@@ -22,44 +22,44 @@ func (p *QKeySequence) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQKeySequence(ptr QKeySequenceITF) unsafe.Pointer {
+func PointerFromQKeySequence(ptr QKeySequence_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QKeySequencePTR().Pointer()
+		return ptr.QKeySequence_PTR().Pointer()
 	}
 	return nil
 }
 
-func QKeySequenceFromPointer(ptr unsafe.Pointer) *QKeySequence {
+func NewQKeySequenceFromPointer(ptr unsafe.Pointer) *QKeySequence {
 	var n = new(QKeySequence)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QKeySequence) QKeySequencePTR() *QKeySequence {
+func (ptr *QKeySequence) QKeySequence_PTR() *QKeySequence {
 	return ptr
 }
 
 //QKeySequence::SequenceFormat
-type QKeySequence__SequenceFormat int
+type QKeySequence__SequenceFormat int64
 
-var (
+const (
 	QKeySequence__NativeText   = QKeySequence__SequenceFormat(0)
 	QKeySequence__PortableText = QKeySequence__SequenceFormat(1)
 )
 
 //QKeySequence::SequenceMatch
-type QKeySequence__SequenceMatch int
+type QKeySequence__SequenceMatch int64
 
-var (
+const (
 	QKeySequence__NoMatch      = QKeySequence__SequenceMatch(0)
 	QKeySequence__PartialMatch = QKeySequence__SequenceMatch(1)
 	QKeySequence__ExactMatch   = QKeySequence__SequenceMatch(2)
 )
 
 //QKeySequence::StandardKey
-type QKeySequence__StandardKey int
+type QKeySequence__StandardKey int64
 
-var (
+const (
 	QKeySequence__UnknownKey               = QKeySequence__StandardKey(0)
 	QKeySequence__HelpContents             = QKeySequence__StandardKey(1)
 	QKeySequence__WhatsThis                = QKeySequence__StandardKey(2)
@@ -133,61 +133,61 @@ var (
 )
 
 func NewQKeySequence() *QKeySequence {
-	return QKeySequenceFromPointer(unsafe.Pointer(C.QKeySequence_NewQKeySequence()))
+	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence())
 }
 
 func NewQKeySequence5(key QKeySequence__StandardKey) *QKeySequence {
-	return QKeySequenceFromPointer(unsafe.Pointer(C.QKeySequence_NewQKeySequence5(C.int(key))))
+	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence5(C.int(key)))
 }
 
-func NewQKeySequence4(keysequence QKeySequenceITF) *QKeySequence {
-	return QKeySequenceFromPointer(unsafe.Pointer(C.QKeySequence_NewQKeySequence4(C.QtObjectPtr(PointerFromQKeySequence(keysequence)))))
+func NewQKeySequence4(keysequence QKeySequence_ITF) *QKeySequence {
+	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence4(PointerFromQKeySequence(keysequence)))
 }
 
 func NewQKeySequence2(key string, format QKeySequence__SequenceFormat) *QKeySequence {
-	return QKeySequenceFromPointer(unsafe.Pointer(C.QKeySequence_NewQKeySequence2(C.CString(key), C.int(format))))
+	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence2(C.CString(key), C.int(format)))
 }
 
 func NewQKeySequence3(k1 int, k2 int, k3 int, k4 int) *QKeySequence {
-	return QKeySequenceFromPointer(unsafe.Pointer(C.QKeySequence_NewQKeySequence3(C.int(k1), C.int(k2), C.int(k3), C.int(k4))))
+	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence3(C.int(k1), C.int(k2), C.int(k3), C.int(k4)))
 }
 
 func (ptr *QKeySequence) Count() int {
 	if ptr.Pointer() != nil {
-		return int(C.QKeySequence_Count(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QKeySequence_Count(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QKeySequence) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QKeySequence_IsEmpty(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QKeySequence_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QKeySequence) Matches(seq QKeySequenceITF) QKeySequence__SequenceMatch {
+func (ptr *QKeySequence) Matches(seq QKeySequence_ITF) QKeySequence__SequenceMatch {
 	if ptr.Pointer() != nil {
-		return QKeySequence__SequenceMatch(C.QKeySequence_Matches(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQKeySequence(seq))))
+		return QKeySequence__SequenceMatch(C.QKeySequence_Matches(ptr.Pointer(), PointerFromQKeySequence(seq)))
 	}
 	return 0
 }
 
-func (ptr *QKeySequence) Swap(other QKeySequenceITF) {
+func (ptr *QKeySequence) Swap(other QKeySequence_ITF) {
 	if ptr.Pointer() != nil {
-		C.QKeySequence_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQKeySequence(other)))
+		C.QKeySequence_Swap(ptr.Pointer(), PointerFromQKeySequence(other))
 	}
 }
 
 func (ptr *QKeySequence) ToString(format QKeySequence__SequenceFormat) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QKeySequence_ToString(C.QtObjectPtr(ptr.Pointer()), C.int(format)))
+		return C.GoString(C.QKeySequence_ToString(ptr.Pointer(), C.int(format)))
 	}
 	return ""
 }
 
 func (ptr *QKeySequence) DestroyQKeySequence() {
 	if ptr.Pointer() != nil {
-		C.QKeySequence_DestroyQKeySequence(C.QtObjectPtr(ptr.Pointer()))
+		C.QKeySequence_DestroyQKeySequence(ptr.Pointer())
 	}
 }

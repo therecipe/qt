@@ -1,19 +1,18 @@
 #include "qmediarecorder.h"
-#include <QMediaObject>
-#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QMetaObject>
+#include <QMediaObject>
 #include <QObject>
-#include <QVariant>
-#include <QVideoEncoderSettings>
 #include <QAudioEncoderSettings>
+#include <QMetaObject>
+#include <QString>
+#include <QVideoEncoderSettings>
 #include <QMediaRecorder>
 #include "_cgo_export.h"
 
 class MyQMediaRecorder: public QMediaRecorder {
 public:
-void Signal_ActualLocationChanged(const QUrl & location){callbackQMediaRecorderActualLocationChanged(this->objectName().toUtf8().data(), location.toString().toUtf8().data());};
 void Signal_AvailabilityChanged(bool available){callbackQMediaRecorderAvailabilityChanged(this->objectName().toUtf8().data(), available);};
 void Signal_MetaDataAvailableChanged(bool available){callbackQMediaRecorderMetaDataAvailableChanged(this->objectName().toUtf8().data(), available);};
 void Signal_MetaDataChanged(){callbackQMediaRecorderMetaDataChanged(this->objectName().toUtf8().data());};
@@ -23,191 +22,183 @@ void Signal_StateChanged(QMediaRecorder::State state){callbackQMediaRecorderStat
 void Signal_StatusChanged(QMediaRecorder::Status status){callbackQMediaRecorderStatusChanged(this->objectName().toUtf8().data(), status);};
 };
 
-char* QMediaRecorder_ActualLocation(QtObjectPtr ptr){
-	return static_cast<QMediaRecorder*>(ptr)->actualLocation().toString().toUtf8().data();
-}
-
-int QMediaRecorder_IsMetaDataAvailable(QtObjectPtr ptr){
+int QMediaRecorder_IsMetaDataAvailable(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->isMetaDataAvailable();
 }
 
-int QMediaRecorder_IsMetaDataWritable(QtObjectPtr ptr){
+int QMediaRecorder_IsMetaDataWritable(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->isMetaDataWritable();
 }
 
-int QMediaRecorder_IsMuted(QtObjectPtr ptr){
+int QMediaRecorder_IsMuted(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->isMuted();
 }
 
-char* QMediaRecorder_OutputLocation(QtObjectPtr ptr){
-	return static_cast<QMediaRecorder*>(ptr)->outputLocation().toString().toUtf8().data();
-}
-
-void QMediaRecorder_SetMuted(QtObjectPtr ptr, int muted){
+void QMediaRecorder_SetMuted(void* ptr, int muted){
 	QMetaObject::invokeMethod(static_cast<QMediaRecorder*>(ptr), "setMuted", Q_ARG(bool, muted != 0));
 }
 
-int QMediaRecorder_SetOutputLocation(QtObjectPtr ptr, char* location){
-	return static_cast<QMediaRecorder*>(ptr)->setOutputLocation(QUrl(QString(location)));
+int QMediaRecorder_SetOutputLocation(void* ptr, void* location){
+	return static_cast<QMediaRecorder*>(ptr)->setOutputLocation(*static_cast<QUrl*>(location));
 }
 
-QtObjectPtr QMediaRecorder_NewQMediaRecorder(QtObjectPtr mediaObject, QtObjectPtr parent){
+void QMediaRecorder_SetVolume(void* ptr, double volume){
+	QMetaObject::invokeMethod(static_cast<QMediaRecorder*>(ptr), "setVolume", Q_ARG(qreal, static_cast<qreal>(volume)));
+}
+
+double QMediaRecorder_Volume(void* ptr){
+	return static_cast<double>(static_cast<QMediaRecorder*>(ptr)->volume());
+}
+
+void* QMediaRecorder_NewQMediaRecorder(void* mediaObject, void* parent){
 	return new QMediaRecorder(static_cast<QMediaObject*>(mediaObject), static_cast<QObject*>(parent));
 }
 
-void QMediaRecorder_ConnectActualLocationChanged(QtObjectPtr ptr){
-	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(const QUrl &)>(&QMediaRecorder::actualLocationChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(const QUrl &)>(&MyQMediaRecorder::Signal_ActualLocationChanged));;
-}
-
-void QMediaRecorder_DisconnectActualLocationChanged(QtObjectPtr ptr){
-	QObject::disconnect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(const QUrl &)>(&QMediaRecorder::actualLocationChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(const QUrl &)>(&MyQMediaRecorder::Signal_ActualLocationChanged));;
-}
-
-char* QMediaRecorder_AudioCodecDescription(QtObjectPtr ptr, char* codec){
+char* QMediaRecorder_AudioCodecDescription(void* ptr, char* codec){
 	return static_cast<QMediaRecorder*>(ptr)->audioCodecDescription(QString(codec)).toUtf8().data();
 }
 
-void QMediaRecorder_ConnectAvailabilityChanged(QtObjectPtr ptr){
+void QMediaRecorder_ConnectAvailabilityChanged(void* ptr){
 	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(bool)>(&QMediaRecorder::availabilityChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(bool)>(&MyQMediaRecorder::Signal_AvailabilityChanged));;
 }
 
-void QMediaRecorder_DisconnectAvailabilityChanged(QtObjectPtr ptr){
+void QMediaRecorder_DisconnectAvailabilityChanged(void* ptr){
 	QObject::disconnect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(bool)>(&QMediaRecorder::availabilityChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(bool)>(&MyQMediaRecorder::Signal_AvailabilityChanged));;
 }
 
-char* QMediaRecorder_AvailableMetaData(QtObjectPtr ptr){
+char* QMediaRecorder_AvailableMetaData(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->availableMetaData().join("|").toUtf8().data();
 }
 
-char* QMediaRecorder_ContainerDescription(QtObjectPtr ptr, char* format){
+char* QMediaRecorder_ContainerDescription(void* ptr, char* format){
 	return static_cast<QMediaRecorder*>(ptr)->containerDescription(QString(format)).toUtf8().data();
 }
 
-char* QMediaRecorder_ContainerFormat(QtObjectPtr ptr){
+char* QMediaRecorder_ContainerFormat(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->containerFormat().toUtf8().data();
 }
 
-int QMediaRecorder_Error(QtObjectPtr ptr){
+int QMediaRecorder_Error(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->error();
 }
 
-char* QMediaRecorder_ErrorString(QtObjectPtr ptr){
+char* QMediaRecorder_ErrorString(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->errorString().toUtf8().data();
 }
 
-int QMediaRecorder_IsAvailable(QtObjectPtr ptr){
+int QMediaRecorder_IsAvailable(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->isAvailable();
 }
 
-QtObjectPtr QMediaRecorder_MediaObject(QtObjectPtr ptr){
+void* QMediaRecorder_MediaObject(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->mediaObject();
 }
 
-char* QMediaRecorder_MetaData(QtObjectPtr ptr, char* key){
-	return static_cast<QMediaRecorder*>(ptr)->metaData(QString(key)).toString().toUtf8().data();
+void* QMediaRecorder_MetaData(void* ptr, char* key){
+	return new QVariant(static_cast<QMediaRecorder*>(ptr)->metaData(QString(key)));
 }
 
-void QMediaRecorder_ConnectMetaDataAvailableChanged(QtObjectPtr ptr){
+void QMediaRecorder_ConnectMetaDataAvailableChanged(void* ptr){
 	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(bool)>(&QMediaRecorder::metaDataAvailableChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(bool)>(&MyQMediaRecorder::Signal_MetaDataAvailableChanged));;
 }
 
-void QMediaRecorder_DisconnectMetaDataAvailableChanged(QtObjectPtr ptr){
+void QMediaRecorder_DisconnectMetaDataAvailableChanged(void* ptr){
 	QObject::disconnect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(bool)>(&QMediaRecorder::metaDataAvailableChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(bool)>(&MyQMediaRecorder::Signal_MetaDataAvailableChanged));;
 }
 
-void QMediaRecorder_ConnectMetaDataChanged(QtObjectPtr ptr){
+void QMediaRecorder_ConnectMetaDataChanged(void* ptr){
 	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)()>(&QMediaRecorder::metaDataChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)()>(&MyQMediaRecorder::Signal_MetaDataChanged));;
 }
 
-void QMediaRecorder_DisconnectMetaDataChanged(QtObjectPtr ptr){
+void QMediaRecorder_DisconnectMetaDataChanged(void* ptr){
 	QObject::disconnect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)()>(&QMediaRecorder::metaDataChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)()>(&MyQMediaRecorder::Signal_MetaDataChanged));;
 }
 
-void QMediaRecorder_ConnectMetaDataWritableChanged(QtObjectPtr ptr){
+void QMediaRecorder_ConnectMetaDataWritableChanged(void* ptr){
 	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(bool)>(&QMediaRecorder::metaDataWritableChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(bool)>(&MyQMediaRecorder::Signal_MetaDataWritableChanged));;
 }
 
-void QMediaRecorder_DisconnectMetaDataWritableChanged(QtObjectPtr ptr){
+void QMediaRecorder_DisconnectMetaDataWritableChanged(void* ptr){
 	QObject::disconnect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(bool)>(&QMediaRecorder::metaDataWritableChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(bool)>(&MyQMediaRecorder::Signal_MetaDataWritableChanged));;
 }
 
-void QMediaRecorder_ConnectMutedChanged(QtObjectPtr ptr){
+void QMediaRecorder_ConnectMutedChanged(void* ptr){
 	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(bool)>(&QMediaRecorder::mutedChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(bool)>(&MyQMediaRecorder::Signal_MutedChanged));;
 }
 
-void QMediaRecorder_DisconnectMutedChanged(QtObjectPtr ptr){
+void QMediaRecorder_DisconnectMutedChanged(void* ptr){
 	QObject::disconnect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(bool)>(&QMediaRecorder::mutedChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(bool)>(&MyQMediaRecorder::Signal_MutedChanged));;
 }
 
-void QMediaRecorder_Pause(QtObjectPtr ptr){
+void QMediaRecorder_Pause(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QMediaRecorder*>(ptr), "pause");
 }
 
-void QMediaRecorder_Record(QtObjectPtr ptr){
+void QMediaRecorder_Record(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QMediaRecorder*>(ptr), "record");
 }
 
-void QMediaRecorder_SetAudioSettings(QtObjectPtr ptr, QtObjectPtr settings){
+void QMediaRecorder_SetAudioSettings(void* ptr, void* settings){
 	static_cast<QMediaRecorder*>(ptr)->setAudioSettings(*static_cast<QAudioEncoderSettings*>(settings));
 }
 
-void QMediaRecorder_SetContainerFormat(QtObjectPtr ptr, char* container){
+void QMediaRecorder_SetContainerFormat(void* ptr, char* container){
 	static_cast<QMediaRecorder*>(ptr)->setContainerFormat(QString(container));
 }
 
-void QMediaRecorder_SetEncodingSettings(QtObjectPtr ptr, QtObjectPtr audio, QtObjectPtr video, char* container){
+void QMediaRecorder_SetEncodingSettings(void* ptr, void* audio, void* video, char* container){
 	static_cast<QMediaRecorder*>(ptr)->setEncodingSettings(*static_cast<QAudioEncoderSettings*>(audio), *static_cast<QVideoEncoderSettings*>(video), QString(container));
 }
 
-void QMediaRecorder_SetMetaData(QtObjectPtr ptr, char* key, char* value){
-	static_cast<QMediaRecorder*>(ptr)->setMetaData(QString(key), QVariant(value));
+void QMediaRecorder_SetMetaData(void* ptr, char* key, void* value){
+	static_cast<QMediaRecorder*>(ptr)->setMetaData(QString(key), *static_cast<QVariant*>(value));
 }
 
-void QMediaRecorder_SetVideoSettings(QtObjectPtr ptr, QtObjectPtr settings){
+void QMediaRecorder_SetVideoSettings(void* ptr, void* settings){
 	static_cast<QMediaRecorder*>(ptr)->setVideoSettings(*static_cast<QVideoEncoderSettings*>(settings));
 }
 
-void QMediaRecorder_ConnectStateChanged(QtObjectPtr ptr){
+void QMediaRecorder_ConnectStateChanged(void* ptr){
 	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(QMediaRecorder::State)>(&QMediaRecorder::stateChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(QMediaRecorder::State)>(&MyQMediaRecorder::Signal_StateChanged));;
 }
 
-void QMediaRecorder_DisconnectStateChanged(QtObjectPtr ptr){
+void QMediaRecorder_DisconnectStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(QMediaRecorder::State)>(&QMediaRecorder::stateChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(QMediaRecorder::State)>(&MyQMediaRecorder::Signal_StateChanged));;
 }
 
-int QMediaRecorder_Status(QtObjectPtr ptr){
+int QMediaRecorder_Status(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->status();
 }
 
-void QMediaRecorder_ConnectStatusChanged(QtObjectPtr ptr){
+void QMediaRecorder_ConnectStatusChanged(void* ptr){
 	QObject::connect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(QMediaRecorder::Status)>(&QMediaRecorder::statusChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(QMediaRecorder::Status)>(&MyQMediaRecorder::Signal_StatusChanged));;
 }
 
-void QMediaRecorder_DisconnectStatusChanged(QtObjectPtr ptr){
+void QMediaRecorder_DisconnectStatusChanged(void* ptr){
 	QObject::disconnect(static_cast<QMediaRecorder*>(ptr), static_cast<void (QMediaRecorder::*)(QMediaRecorder::Status)>(&QMediaRecorder::statusChanged), static_cast<MyQMediaRecorder*>(ptr), static_cast<void (MyQMediaRecorder::*)(QMediaRecorder::Status)>(&MyQMediaRecorder::Signal_StatusChanged));;
 }
 
-void QMediaRecorder_Stop(QtObjectPtr ptr){
+void QMediaRecorder_Stop(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QMediaRecorder*>(ptr), "stop");
 }
 
-char* QMediaRecorder_SupportedAudioCodecs(QtObjectPtr ptr){
+char* QMediaRecorder_SupportedAudioCodecs(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->supportedAudioCodecs().join("|").toUtf8().data();
 }
 
-char* QMediaRecorder_SupportedContainers(QtObjectPtr ptr){
+char* QMediaRecorder_SupportedContainers(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->supportedContainers().join("|").toUtf8().data();
 }
 
-char* QMediaRecorder_SupportedVideoCodecs(QtObjectPtr ptr){
+char* QMediaRecorder_SupportedVideoCodecs(void* ptr){
 	return static_cast<QMediaRecorder*>(ptr)->supportedVideoCodecs().join("|").toUtf8().data();
 }
 
-char* QMediaRecorder_VideoCodecDescription(QtObjectPtr ptr, char* codec){
+char* QMediaRecorder_VideoCodecDescription(void* ptr, char* codec){
 	return static_cast<QMediaRecorder*>(ptr)->videoCodecDescription(QString(codec)).toUtf8().data();
 }
 
-void QMediaRecorder_DestroyQMediaRecorder(QtObjectPtr ptr){
+void QMediaRecorder_DestroyQMediaRecorder(void* ptr){
 	static_cast<QMediaRecorder*>(ptr)->~QMediaRecorder();
 }
 

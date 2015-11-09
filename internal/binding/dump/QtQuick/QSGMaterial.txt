@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{compare QSGMaterial::compare commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h impure plain false false  int [0xc821c16a80] }
-&{createShader QSGMaterial::createShader commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h pure plain false false  QSGMaterialShader * [] }
-&{flags QSGMaterial::flags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  QSGMaterial::Flags [] }
-&{setFlag QSGMaterial::setFlag commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  void [0xc821c179a0 0xc821c17b20] }
-&{type QSGMaterial::type commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h pure plain false false  QSGMaterialType * [] }
+&{compare QSGMaterial::compare commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h impure plain false false  int int compare(const QSGMaterial *other) const [0xc821e4dbc0] }
+&{createShader QSGMaterial::createShader commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h pure plain false false  QSGMaterialShader * QSGMaterialShader * createShader() const [] }
+&{flags QSGMaterial::flags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  QSGMaterial::Flags QSGMaterial::Flags flags() const [] }
+&{setFlag QSGMaterial::setFlag commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  void void setFlag(Flags flags, bool on) [0xc826c008e0 0xc826c00ac0] }
+&{type QSGMaterial::type commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h pure plain false false  QSGMaterialType * QSGMaterialType * type() const [] }
 ########################################			ENUMS			########################################
-&{Flag QSGMaterial::Flag commendable public QSGMaterial::Flags [0xc821c29600 0xc821c297a0 0xc821c29a20 0xc821c29c40 0xc821c29f00]}
+&{Flag QSGMaterial::Flag commendable public QSGMaterial::Flags [0xc821e4d200 0xc821e4d300 0xc821e4d440 0xc821e4d520 0xc821e4d6a0] false}

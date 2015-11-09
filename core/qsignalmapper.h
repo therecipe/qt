@@ -1,21 +1,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSignalMapper_NewQSignalMapper(QtObjectPtr parent);
-void QSignalMapper_Map(QtObjectPtr ptr);
-void QSignalMapper_Map2(QtObjectPtr ptr, QtObjectPtr sender);
-void QSignalMapper_ConnectMapped(QtObjectPtr ptr);
-void QSignalMapper_DisconnectMapped(QtObjectPtr ptr);
-QtObjectPtr QSignalMapper_Mapping4(QtObjectPtr ptr, QtObjectPtr object);
-QtObjectPtr QSignalMapper_Mapping2(QtObjectPtr ptr, char* id);
-QtObjectPtr QSignalMapper_Mapping(QtObjectPtr ptr, int id);
-void QSignalMapper_RemoveMappings(QtObjectPtr ptr, QtObjectPtr sender);
-void QSignalMapper_SetMapping4(QtObjectPtr ptr, QtObjectPtr sender, QtObjectPtr object);
-void QSignalMapper_SetMapping2(QtObjectPtr ptr, QtObjectPtr sender, char* text);
-void QSignalMapper_SetMapping(QtObjectPtr ptr, QtObjectPtr sender, int id);
-void QSignalMapper_DestroyQSignalMapper(QtObjectPtr ptr);
+void* QSignalMapper_NewQSignalMapper(void* parent);
+void QSignalMapper_Map(void* ptr);
+void QSignalMapper_Map2(void* ptr, void* sender);
+void QSignalMapper_ConnectMapped(void* ptr);
+void QSignalMapper_DisconnectMapped(void* ptr);
+void* QSignalMapper_Mapping4(void* ptr, void* object);
+void* QSignalMapper_Mapping2(void* ptr, char* id);
+void* QSignalMapper_Mapping(void* ptr, int id);
+void QSignalMapper_RemoveMappings(void* ptr, void* sender);
+void QSignalMapper_SetMapping4(void* ptr, void* sender, void* object);
+void QSignalMapper_SetMapping2(void* ptr, void* sender, char* text);
+void QSignalMapper_SetMapping(void* ptr, void* sender, int id);
+void QSignalMapper_DestroyQSignalMapper(void* ptr);
 
 #ifdef __cplusplus
 }

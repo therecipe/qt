@@ -1,34 +1,34 @@
 ########################################			FUNCTIONS			########################################
-&{QTextFrameFormat QTextFrameFormat::QTextFrameFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non constructor false false   [] }
-&{bottomMargin QTextFrameFormat::bottomMargin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  qreal [] }
-&{leftMargin QTextFrameFormat::leftMargin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  qreal [] }
-&{rightMargin QTextFrameFormat::rightMargin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  qreal [] }
-&{setMargin QTextFrameFormat::setMargin commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  void [0xc820b0a6e0] }
-&{topMargin QTextFrameFormat::topMargin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  qreal [] }
-&{border QTextFrameFormat::border commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
-&{borderBrush QTextFrameFormat::borderBrush commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QBrush [] }
-&{borderStyle QTextFrameFormat::borderStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  BorderStyle [] }
-&{height QTextFrameFormat::height commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QTextLength [] }
-&{isValid QTextFrameFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
-&{margin QTextFrameFormat::margin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
-&{padding QTextFrameFormat::padding commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
-&{pageBreakPolicy QTextFrameFormat::pageBreakPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  PageBreakFlags [] }
-&{position QTextFrameFormat::position commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  Position [] }
-&{setBorder QTextFrameFormat::setBorder commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820bc13c0] }
-&{setBorderBrush QTextFrameFormat::setBorderBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820bc19e0] }
-&{setBorderStyle QTextFrameFormat::setBorderStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820bc1f60] }
-&{setBottomMargin QTextFrameFormat::setBottomMargin commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8208a4280] }
-&{setHeight QTextFrameFormat::setHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8208a47a0] }
-&{setHeight QTextFrameFormat::setHeight commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false true 2 void [0xc8208a4ca0] }
-&{setLeftMargin QTextFrameFormat::setLeftMargin commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8208a5140] }
-&{setPadding QTextFrameFormat::setPadding commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8208a5520] }
-&{setPageBreakPolicy QTextFrameFormat::setPageBreakPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8208a5800] }
-&{setPosition QTextFrameFormat::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc8208a5d20] }
-&{setRightMargin QTextFrameFormat::setRightMargin commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820d36140] }
-&{setTopMargin QTextFrameFormat::setTopMargin commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820d36d40] }
-&{setWidth QTextFrameFormat::setWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820d377a0] }
-&{setWidth QTextFrameFormat::setWidth commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false true 2 void [0xc820d824c0] }
-&{width QTextFrameFormat::width commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QTextLength [] }
+&{QTextFrameFormat QTextFrameFormat::QTextFrameFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non constructor false false   QTextFrameFormat() [] }
+&{bottomMargin QTextFrameFormat::bottomMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  qreal qreal bottomMargin() const [] }
+&{leftMargin QTextFrameFormat::leftMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  qreal qreal leftMargin() const [] }
+&{rightMargin QTextFrameFormat::rightMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  qreal qreal rightMargin() const [] }
+&{setMargin QTextFrameFormat::setMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  void void setMargin(qreal margin) [0xc8234bfe20] }
+&{topMargin QTextFrameFormat::topMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non plain false false  qreal qreal topMargin() const [] }
+&{border QTextFrameFormat::border commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal qreal border() const [] }
+&{borderBrush QTextFrameFormat::borderBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QBrush QBrush borderBrush() const [] }
+&{borderStyle QTextFrameFormat::borderStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  BorderStyle BorderStyle borderStyle() const [] }
+&{height QTextFrameFormat::height commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QTextLength QTextLength height() const [] }
+&{isValid QTextFrameFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool bool isValid() const [] }
+&{margin QTextFrameFormat::margin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal qreal margin() const [] }
+&{padding QTextFrameFormat::padding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal qreal padding() const [] }
+&{pageBreakPolicy QTextFrameFormat::pageBreakPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  PageBreakFlags PageBreakFlags pageBreakPolicy() const [] }
+&{position QTextFrameFormat::position commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  Position Position position() const [] }
+&{setBorder QTextFrameFormat::setBorder commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setBorder(qreal width) [0xc8234d1960] }
+&{setBorderBrush QTextFrameFormat::setBorderBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setBorderBrush(const QBrush &brush) [0xc8234d1b00] }
+&{setBorderStyle QTextFrameFormat::setBorderStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setBorderStyle(BorderStyle style) [0xc8234d1ca0] }
+&{setBottomMargin QTextFrameFormat::setBottomMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setBottomMargin(qreal margin) [0xc8234d1de0] }
+&{setHeight QTextFrameFormat::setHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setHeight(const QTextLength &height) [0xc8234d1fc0] }
+&{setHeight QTextFrameFormat::setHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false true 2 void void setHeight(qreal height) [0xc8234e6200] }
+&{setLeftMargin QTextFrameFormat::setLeftMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setLeftMargin(qreal margin) [0xc8234e6400] }
+&{setPadding QTextFrameFormat::setPadding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setPadding(qreal width) [0xc8234e6620] }
+&{setPageBreakPolicy QTextFrameFormat::setPageBreakPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setPageBreakPolicy(PageBreakFlags policy) [0xc8234e67c0] }
+&{setPosition QTextFrameFormat::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setPosition(Position policy) [0xc8234e6960] }
+&{setRightMargin QTextFrameFormat::setRightMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setRightMargin(qreal margin) [0xc8234e6b00] }
+&{setTopMargin QTextFrameFormat::setTopMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setTopMargin(qreal margin) [0xc8234e6d00] }
+&{setWidth QTextFrameFormat::setWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setWidth(const QTextLength &width) [0xc8234e6ee0] }
+&{setWidth QTextFrameFormat::setWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false true 2 void void setWidth(qreal width) [0xc8234e7140] }
+&{width QTextFrameFormat::width commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QTextLength QTextLength width() const [] }
 ########################################			ENUMS			########################################
-&{BorderStyle QTextFrameFormat::BorderStyle commendable public  [0xc820b0aa80 0xc820b0ab40 0xc820b0ac60 0xc820b0ad80 0xc820b0aea0 0xc820b0afe0 0xc820b0b100 0xc820b0b1e0 0xc820b0b360 0xc820b0b460 0xc820b0b5c0]}
-&{Position QTextFrameFormat::Position commendable public  [0xc820b0b800 0xc820b0b880 0xc820b0b940]}
+&{BorderStyle QTextFrameFormat::BorderStyle commendable public  [0xc8234d0140 0xc8234d01e0 0xc8234d02c0 0xc8234d03a0 0xc8234d04a0 0xc8234d0580 0xc8234d0660 0xc8234d0740 0xc8234d0840 0xc8234d0920 0xc8234d0a00] false}
+&{Position QTextFrameFormat::Position commendable public  [0xc8234d0be0 0xc8234d0c60 0xc8234d0ce0] false}

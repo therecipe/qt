@@ -11,8 +11,8 @@ type QGeoRouteRequest struct {
 	ptr unsafe.Pointer
 }
 
-type QGeoRouteRequestITF interface {
-	QGeoRouteRequestPTR() *QGeoRouteRequest
+type QGeoRouteRequest_ITF interface {
+	QGeoRouteRequest_PTR() *QGeoRouteRequest
 }
 
 func (p *QGeoRouteRequest) Pointer() unsafe.Pointer {
@@ -23,27 +23,27 @@ func (p *QGeoRouteRequest) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQGeoRouteRequest(ptr QGeoRouteRequestITF) unsafe.Pointer {
+func PointerFromQGeoRouteRequest(ptr QGeoRouteRequest_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGeoRouteRequestPTR().Pointer()
+		return ptr.QGeoRouteRequest_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGeoRouteRequestFromPointer(ptr unsafe.Pointer) *QGeoRouteRequest {
+func NewQGeoRouteRequestFromPointer(ptr unsafe.Pointer) *QGeoRouteRequest {
 	var n = new(QGeoRouteRequest)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGeoRouteRequest) QGeoRouteRequestPTR() *QGeoRouteRequest {
+func (ptr *QGeoRouteRequest) QGeoRouteRequest_PTR() *QGeoRouteRequest {
 	return ptr
 }
 
 //QGeoRouteRequest::FeatureType
-type QGeoRouteRequest__FeatureType int
+type QGeoRouteRequest__FeatureType int64
 
-var (
+const (
 	QGeoRouteRequest__NoFeature            = QGeoRouteRequest__FeatureType(0x00000000)
 	QGeoRouteRequest__TollFeature          = QGeoRouteRequest__FeatureType(0x00000001)
 	QGeoRouteRequest__HighwayFeature       = QGeoRouteRequest__FeatureType(0x00000002)
@@ -56,9 +56,9 @@ var (
 )
 
 //QGeoRouteRequest::FeatureWeight
-type QGeoRouteRequest__FeatureWeight int
+type QGeoRouteRequest__FeatureWeight int64
 
-var (
+const (
 	QGeoRouteRequest__NeutralFeatureWeight  = QGeoRouteRequest__FeatureWeight(0x00000000)
 	QGeoRouteRequest__PreferFeatureWeight   = QGeoRouteRequest__FeatureWeight(0x00000001)
 	QGeoRouteRequest__RequireFeatureWeight  = QGeoRouteRequest__FeatureWeight(0x00000002)
@@ -67,17 +67,17 @@ var (
 )
 
 //QGeoRouteRequest::ManeuverDetail
-type QGeoRouteRequest__ManeuverDetail int
+type QGeoRouteRequest__ManeuverDetail int64
 
-var (
+const (
 	QGeoRouteRequest__NoManeuvers    = QGeoRouteRequest__ManeuverDetail(0x0000)
 	QGeoRouteRequest__BasicManeuvers = QGeoRouteRequest__ManeuverDetail(0x0001)
 )
 
 //QGeoRouteRequest::RouteOptimization
-type QGeoRouteRequest__RouteOptimization int
+type QGeoRouteRequest__RouteOptimization int64
 
-var (
+const (
 	QGeoRouteRequest__ShortestRoute     = QGeoRouteRequest__RouteOptimization(0x0001)
 	QGeoRouteRequest__FastestRoute      = QGeoRouteRequest__RouteOptimization(0x0002)
 	QGeoRouteRequest__MostEconomicRoute = QGeoRouteRequest__RouteOptimization(0x0004)
@@ -85,17 +85,17 @@ var (
 )
 
 //QGeoRouteRequest::SegmentDetail
-type QGeoRouteRequest__SegmentDetail int
+type QGeoRouteRequest__SegmentDetail int64
 
-var (
+const (
 	QGeoRouteRequest__NoSegmentData    = QGeoRouteRequest__SegmentDetail(0x0000)
 	QGeoRouteRequest__BasicSegmentData = QGeoRouteRequest__SegmentDetail(0x0001)
 )
 
 //QGeoRouteRequest::TravelMode
-type QGeoRouteRequest__TravelMode int
+type QGeoRouteRequest__TravelMode int64
 
-var (
+const (
 	QGeoRouteRequest__CarTravel           = QGeoRouteRequest__TravelMode(0x0001)
 	QGeoRouteRequest__PedestrianTravel    = QGeoRouteRequest__TravelMode(0x0002)
 	QGeoRouteRequest__BicycleTravel       = QGeoRouteRequest__TravelMode(0x0004)
@@ -103,94 +103,94 @@ var (
 	QGeoRouteRequest__TruckTravel         = QGeoRouteRequest__TravelMode(0x0010)
 )
 
-func NewQGeoRouteRequest2(origin positioning.QGeoCoordinateITF, destination positioning.QGeoCoordinateITF) *QGeoRouteRequest {
-	return QGeoRouteRequestFromPointer(unsafe.Pointer(C.QGeoRouteRequest_NewQGeoRouteRequest2(C.QtObjectPtr(positioning.PointerFromQGeoCoordinate(origin)), C.QtObjectPtr(positioning.PointerFromQGeoCoordinate(destination)))))
+func NewQGeoRouteRequest2(origin positioning.QGeoCoordinate_ITF, destination positioning.QGeoCoordinate_ITF) *QGeoRouteRequest {
+	return NewQGeoRouteRequestFromPointer(C.QGeoRouteRequest_NewQGeoRouteRequest2(positioning.PointerFromQGeoCoordinate(origin), positioning.PointerFromQGeoCoordinate(destination)))
 }
 
-func NewQGeoRouteRequest3(other QGeoRouteRequestITF) *QGeoRouteRequest {
-	return QGeoRouteRequestFromPointer(unsafe.Pointer(C.QGeoRouteRequest_NewQGeoRouteRequest3(C.QtObjectPtr(PointerFromQGeoRouteRequest(other)))))
+func NewQGeoRouteRequest3(other QGeoRouteRequest_ITF) *QGeoRouteRequest {
+	return NewQGeoRouteRequestFromPointer(C.QGeoRouteRequest_NewQGeoRouteRequest3(PointerFromQGeoRouteRequest(other)))
 }
 
 func (ptr *QGeoRouteRequest) FeatureWeight(featureType QGeoRouteRequest__FeatureType) QGeoRouteRequest__FeatureWeight {
 	if ptr.Pointer() != nil {
-		return QGeoRouteRequest__FeatureWeight(C.QGeoRouteRequest_FeatureWeight(C.QtObjectPtr(ptr.Pointer()), C.int(featureType)))
+		return QGeoRouteRequest__FeatureWeight(C.QGeoRouteRequest_FeatureWeight(ptr.Pointer(), C.int(featureType)))
 	}
 	return 0
 }
 
 func (ptr *QGeoRouteRequest) ManeuverDetail() QGeoRouteRequest__ManeuverDetail {
 	if ptr.Pointer() != nil {
-		return QGeoRouteRequest__ManeuverDetail(C.QGeoRouteRequest_ManeuverDetail(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoRouteRequest__ManeuverDetail(C.QGeoRouteRequest_ManeuverDetail(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoRouteRequest) NumberAlternativeRoutes() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGeoRouteRequest_NumberAlternativeRoutes(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGeoRouteRequest_NumberAlternativeRoutes(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoRouteRequest) RouteOptimization() QGeoRouteRequest__RouteOptimization {
 	if ptr.Pointer() != nil {
-		return QGeoRouteRequest__RouteOptimization(C.QGeoRouteRequest_RouteOptimization(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoRouteRequest__RouteOptimization(C.QGeoRouteRequest_RouteOptimization(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoRouteRequest) SegmentDetail() QGeoRouteRequest__SegmentDetail {
 	if ptr.Pointer() != nil {
-		return QGeoRouteRequest__SegmentDetail(C.QGeoRouteRequest_SegmentDetail(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoRouteRequest__SegmentDetail(C.QGeoRouteRequest_SegmentDetail(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoRouteRequest) SetFeatureWeight(featureType QGeoRouteRequest__FeatureType, featureWeight QGeoRouteRequest__FeatureWeight) {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteRequest_SetFeatureWeight(C.QtObjectPtr(ptr.Pointer()), C.int(featureType), C.int(featureWeight))
+		C.QGeoRouteRequest_SetFeatureWeight(ptr.Pointer(), C.int(featureType), C.int(featureWeight))
 	}
 }
 
 func (ptr *QGeoRouteRequest) SetManeuverDetail(maneuverDetail QGeoRouteRequest__ManeuverDetail) {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteRequest_SetManeuverDetail(C.QtObjectPtr(ptr.Pointer()), C.int(maneuverDetail))
+		C.QGeoRouteRequest_SetManeuverDetail(ptr.Pointer(), C.int(maneuverDetail))
 	}
 }
 
 func (ptr *QGeoRouteRequest) SetNumberAlternativeRoutes(alternatives int) {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteRequest_SetNumberAlternativeRoutes(C.QtObjectPtr(ptr.Pointer()), C.int(alternatives))
+		C.QGeoRouteRequest_SetNumberAlternativeRoutes(ptr.Pointer(), C.int(alternatives))
 	}
 }
 
 func (ptr *QGeoRouteRequest) SetRouteOptimization(optimization QGeoRouteRequest__RouteOptimization) {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteRequest_SetRouteOptimization(C.QtObjectPtr(ptr.Pointer()), C.int(optimization))
+		C.QGeoRouteRequest_SetRouteOptimization(ptr.Pointer(), C.int(optimization))
 	}
 }
 
 func (ptr *QGeoRouteRequest) SetSegmentDetail(segmentDetail QGeoRouteRequest__SegmentDetail) {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteRequest_SetSegmentDetail(C.QtObjectPtr(ptr.Pointer()), C.int(segmentDetail))
+		C.QGeoRouteRequest_SetSegmentDetail(ptr.Pointer(), C.int(segmentDetail))
 	}
 }
 
 func (ptr *QGeoRouteRequest) SetTravelModes(travelModes QGeoRouteRequest__TravelMode) {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteRequest_SetTravelModes(C.QtObjectPtr(ptr.Pointer()), C.int(travelModes))
+		C.QGeoRouteRequest_SetTravelModes(ptr.Pointer(), C.int(travelModes))
 	}
 }
 
 func (ptr *QGeoRouteRequest) TravelModes() QGeoRouteRequest__TravelMode {
 	if ptr.Pointer() != nil {
-		return QGeoRouteRequest__TravelMode(C.QGeoRouteRequest_TravelModes(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoRouteRequest__TravelMode(C.QGeoRouteRequest_TravelModes(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoRouteRequest) DestroyQGeoRouteRequest() {
 	if ptr.Pointer() != nil {
-		C.QGeoRouteRequest_DestroyQGeoRouteRequest(C.QtObjectPtr(ptr.Pointer()))
+		C.QGeoRouteRequest_DestroyQGeoRouteRequest(ptr.Pointer())
 	}
 }

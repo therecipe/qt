@@ -11,28 +11,28 @@ type QDragLeaveEvent struct {
 	core.QEvent
 }
 
-type QDragLeaveEventITF interface {
-	core.QEventITF
-	QDragLeaveEventPTR() *QDragLeaveEvent
+type QDragLeaveEvent_ITF interface {
+	core.QEvent_ITF
+	QDragLeaveEvent_PTR() *QDragLeaveEvent
 }
 
-func PointerFromQDragLeaveEvent(ptr QDragLeaveEventITF) unsafe.Pointer {
+func PointerFromQDragLeaveEvent(ptr QDragLeaveEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDragLeaveEventPTR().Pointer()
+		return ptr.QDragLeaveEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDragLeaveEventFromPointer(ptr unsafe.Pointer) *QDragLeaveEvent {
+func NewQDragLeaveEventFromPointer(ptr unsafe.Pointer) *QDragLeaveEvent {
 	var n = new(QDragLeaveEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDragLeaveEvent) QDragLeaveEventPTR() *QDragLeaveEvent {
+func (ptr *QDragLeaveEvent) QDragLeaveEvent_PTR() *QDragLeaveEvent {
 	return ptr
 }
 
 func NewQDragLeaveEvent() *QDragLeaveEvent {
-	return QDragLeaveEventFromPointer(unsafe.Pointer(C.QDragLeaveEvent_NewQDragLeaveEvent()))
+	return NewQDragLeaveEventFromPointer(C.QDragLeaveEvent_NewQDragLeaveEvent())
 }

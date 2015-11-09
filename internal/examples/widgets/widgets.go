@@ -1,15 +1,17 @@
-//original: http://doc.qt.io/qt-5/qtwidgets-widgets-lineedits-example.html
+//source: http://doc.qt.io/qt-5/qtwidgets-widgets-lineedits-example.html
 
 package main
 
 import (
+	"os"
+
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/widgets"
 )
 
 func main() {
-	widgets.NewQApplication(0, "")
+	widgets.NewQApplication(len(os.Args), os.Args)
 
 	var (
 		echoGroup    = widgets.NewQGroupBox2("Echo", nil)
@@ -130,7 +132,7 @@ func validatorChanged(validatorLineEdit *widgets.QLineEdit, index int) {
 	case 1:
 		validatorLineEdit.SetValidator(gui.NewQIntValidator(validatorLineEdit))
 	case 2:
-		validatorLineEdit.SetValidator(gui.NewQDoubleValidator(validatorLineEdit)) //TODO: MIN MAX
+		validatorLineEdit.SetValidator(gui.NewQDoubleValidator(validatorLineEdit)) // TODO: Min/Max
 	}
 
 	validatorLineEdit.Clear()

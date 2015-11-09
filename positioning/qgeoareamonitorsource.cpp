@@ -1,12 +1,12 @@
 #include "qgeoareamonitorsource.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QGeoPositionInfoSource>
+#include <QObject>
 #include <QGeoAreaMonitorInfo>
 #include <QGeoPositionInfo>
-#include <QObject>
+#include <QGeoPositionInfoSource>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QGeoAreaMonitorSource>
 #include "_cgo_export.h"
 
@@ -18,47 +18,47 @@ char* QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources(){
 	return QGeoAreaMonitorSource::availableSources().join("|").toUtf8().data();
 }
 
-QtObjectPtr QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateDefaultSource(QtObjectPtr parent){
+void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateDefaultSource(void* parent){
 	return QGeoAreaMonitorSource::createDefaultSource(static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(char* sourceName, QtObjectPtr parent){
+void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(char* sourceName, void* parent){
 	return QGeoAreaMonitorSource::createSource(QString(sourceName), static_cast<QObject*>(parent));
 }
 
-int QGeoAreaMonitorSource_Error(QtObjectPtr ptr){
+int QGeoAreaMonitorSource_Error(void* ptr){
 	return static_cast<QGeoAreaMonitorSource*>(ptr)->error();
 }
 
-QtObjectPtr QGeoAreaMonitorSource_PositionInfoSource(QtObjectPtr ptr){
+void* QGeoAreaMonitorSource_PositionInfoSource(void* ptr){
 	return static_cast<QGeoAreaMonitorSource*>(ptr)->positionInfoSource();
 }
 
-int QGeoAreaMonitorSource_RequestUpdate(QtObjectPtr ptr, QtObjectPtr monitor, char* signal){
+int QGeoAreaMonitorSource_RequestUpdate(void* ptr, void* monitor, char* signal){
 	return static_cast<QGeoAreaMonitorSource*>(ptr)->requestUpdate(*static_cast<QGeoAreaMonitorInfo*>(monitor), const_cast<const char*>(signal));
 }
 
-void QGeoAreaMonitorSource_SetPositionInfoSource(QtObjectPtr ptr, QtObjectPtr newSource){
+void QGeoAreaMonitorSource_SetPositionInfoSource(void* ptr, void* newSource){
 	static_cast<QGeoAreaMonitorSource*>(ptr)->setPositionInfoSource(static_cast<QGeoPositionInfoSource*>(newSource));
 }
 
-char* QGeoAreaMonitorSource_SourceName(QtObjectPtr ptr){
+char* QGeoAreaMonitorSource_SourceName(void* ptr){
 	return static_cast<QGeoAreaMonitorSource*>(ptr)->sourceName().toUtf8().data();
 }
 
-int QGeoAreaMonitorSource_StartMonitoring(QtObjectPtr ptr, QtObjectPtr monitor){
+int QGeoAreaMonitorSource_StartMonitoring(void* ptr, void* monitor){
 	return static_cast<QGeoAreaMonitorSource*>(ptr)->startMonitoring(*static_cast<QGeoAreaMonitorInfo*>(monitor));
 }
 
-int QGeoAreaMonitorSource_StopMonitoring(QtObjectPtr ptr, QtObjectPtr monitor){
+int QGeoAreaMonitorSource_StopMonitoring(void* ptr, void* monitor){
 	return static_cast<QGeoAreaMonitorSource*>(ptr)->stopMonitoring(*static_cast<QGeoAreaMonitorInfo*>(monitor));
 }
 
-int QGeoAreaMonitorSource_SupportedAreaMonitorFeatures(QtObjectPtr ptr){
+int QGeoAreaMonitorSource_SupportedAreaMonitorFeatures(void* ptr){
 	return static_cast<QGeoAreaMonitorSource*>(ptr)->supportedAreaMonitorFeatures();
 }
 
-void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(QtObjectPtr ptr){
+void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(void* ptr){
 	static_cast<QGeoAreaMonitorSource*>(ptr)->~QGeoAreaMonitorSource();
 }
 

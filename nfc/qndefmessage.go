@@ -11,36 +11,43 @@ type QNdefMessage struct {
 	core.QList
 }
 
-type QNdefMessageITF interface {
-	core.QListITF
-	QNdefMessagePTR() *QNdefMessage
+type QNdefMessage_ITF interface {
+	core.QList_ITF
+	QNdefMessage_PTR() *QNdefMessage
 }
 
-func PointerFromQNdefMessage(ptr QNdefMessageITF) unsafe.Pointer {
+func PointerFromQNdefMessage(ptr QNdefMessage_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNdefMessagePTR().Pointer()
+		return ptr.QNdefMessage_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNdefMessageFromPointer(ptr unsafe.Pointer) *QNdefMessage {
+func NewQNdefMessageFromPointer(ptr unsafe.Pointer) *QNdefMessage {
 	var n = new(QNdefMessage)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QNdefMessage) QNdefMessagePTR() *QNdefMessage {
+func (ptr *QNdefMessage) QNdefMessage_PTR() *QNdefMessage {
 	return ptr
 }
 
 func NewQNdefMessage() *QNdefMessage {
-	return QNdefMessageFromPointer(unsafe.Pointer(C.QNdefMessage_NewQNdefMessage()))
+	return NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage())
 }
 
-func NewQNdefMessage3(message QNdefMessageITF) *QNdefMessage {
-	return QNdefMessageFromPointer(unsafe.Pointer(C.QNdefMessage_NewQNdefMessage3(C.QtObjectPtr(PointerFromQNdefMessage(message)))))
+func NewQNdefMessage3(message QNdefMessage_ITF) *QNdefMessage {
+	return NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage3(PointerFromQNdefMessage(message)))
 }
 
-func NewQNdefMessage2(record QNdefRecordITF) *QNdefMessage {
-	return QNdefMessageFromPointer(unsafe.Pointer(C.QNdefMessage_NewQNdefMessage2(C.QtObjectPtr(PointerFromQNdefRecord(record)))))
+func NewQNdefMessage2(record QNdefRecord_ITF) *QNdefMessage {
+	return NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage2(PointerFromQNdefRecord(record)))
+}
+
+func (ptr *QNdefMessage) ToByteArray() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		return core.NewQByteArrayFromPointer(C.QNdefMessage_ToByteArray(ptr.Pointer()))
+	}
+	return nil
 }

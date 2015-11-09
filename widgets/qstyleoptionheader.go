@@ -10,32 +10,32 @@ type QStyleOptionHeader struct {
 	QStyleOption
 }
 
-type QStyleOptionHeaderITF interface {
-	QStyleOptionITF
-	QStyleOptionHeaderPTR() *QStyleOptionHeader
+type QStyleOptionHeader_ITF interface {
+	QStyleOption_ITF
+	QStyleOptionHeader_PTR() *QStyleOptionHeader
 }
 
-func PointerFromQStyleOptionHeader(ptr QStyleOptionHeaderITF) unsafe.Pointer {
+func PointerFromQStyleOptionHeader(ptr QStyleOptionHeader_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionHeaderPTR().Pointer()
+		return ptr.QStyleOptionHeader_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionHeaderFromPointer(ptr unsafe.Pointer) *QStyleOptionHeader {
+func NewQStyleOptionHeaderFromPointer(ptr unsafe.Pointer) *QStyleOptionHeader {
 	var n = new(QStyleOptionHeader)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionHeader) QStyleOptionHeaderPTR() *QStyleOptionHeader {
+func (ptr *QStyleOptionHeader) QStyleOptionHeader_PTR() *QStyleOptionHeader {
 	return ptr
 }
 
 //QStyleOptionHeader::SectionPosition
-type QStyleOptionHeader__SectionPosition int
+type QStyleOptionHeader__SectionPosition int64
 
-var (
+const (
 	QStyleOptionHeader__Beginning      = QStyleOptionHeader__SectionPosition(0)
 	QStyleOptionHeader__Middle         = QStyleOptionHeader__SectionPosition(1)
 	QStyleOptionHeader__End            = QStyleOptionHeader__SectionPosition(2)
@@ -43,9 +43,9 @@ var (
 )
 
 //QStyleOptionHeader::SelectedPosition
-type QStyleOptionHeader__SelectedPosition int
+type QStyleOptionHeader__SelectedPosition int64
 
-var (
+const (
 	QStyleOptionHeader__NotAdjacent                = QStyleOptionHeader__SelectedPosition(0)
 	QStyleOptionHeader__NextIsSelected             = QStyleOptionHeader__SelectedPosition(1)
 	QStyleOptionHeader__PreviousIsSelected         = QStyleOptionHeader__SelectedPosition(2)
@@ -53,32 +53,32 @@ var (
 )
 
 //QStyleOptionHeader::SortIndicator
-type QStyleOptionHeader__SortIndicator int
+type QStyleOptionHeader__SortIndicator int64
 
-var (
+const (
 	QStyleOptionHeader__None     = QStyleOptionHeader__SortIndicator(0)
 	QStyleOptionHeader__SortUp   = QStyleOptionHeader__SortIndicator(1)
 	QStyleOptionHeader__SortDown = QStyleOptionHeader__SortIndicator(2)
 )
 
 //QStyleOptionHeader::StyleOptionType
-type QStyleOptionHeader__StyleOptionType int
+type QStyleOptionHeader__StyleOptionType int64
 
 var (
 	QStyleOptionHeader__Type = QStyleOptionHeader__StyleOptionType(QStyleOption__SO_Header)
 )
 
 //QStyleOptionHeader::StyleOptionVersion
-type QStyleOptionHeader__StyleOptionVersion int
+type QStyleOptionHeader__StyleOptionVersion int64
 
 var (
 	QStyleOptionHeader__Version = QStyleOptionHeader__StyleOptionVersion(1)
 )
 
 func NewQStyleOptionHeader() *QStyleOptionHeader {
-	return QStyleOptionHeaderFromPointer(unsafe.Pointer(C.QStyleOptionHeader_NewQStyleOptionHeader()))
+	return NewQStyleOptionHeaderFromPointer(C.QStyleOptionHeader_NewQStyleOptionHeader())
 }
 
-func NewQStyleOptionHeader2(other QStyleOptionHeaderITF) *QStyleOptionHeader {
-	return QStyleOptionHeaderFromPointer(unsafe.Pointer(C.QStyleOptionHeader_NewQStyleOptionHeader2(C.QtObjectPtr(PointerFromQStyleOptionHeader(other)))))
+func NewQStyleOptionHeader2(other QStyleOptionHeader_ITF) *QStyleOptionHeader {
+	return NewQStyleOptionHeaderFromPointer(C.QStyleOptionHeader_NewQStyleOptionHeader2(PointerFromQStyleOptionHeader(other)))
 }

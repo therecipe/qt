@@ -1,19 +1,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QMargins_NewQMargins();
-QtObjectPtr QMargins_NewQMargins2(int left, int top, int right, int bottom);
-int QMargins_Bottom(QtObjectPtr ptr);
-int QMargins_IsNull(QtObjectPtr ptr);
-int QMargins_Left(QtObjectPtr ptr);
-int QMargins_Right(QtObjectPtr ptr);
-void QMargins_SetBottom(QtObjectPtr ptr, int bottom);
-void QMargins_SetLeft(QtObjectPtr ptr, int left);
-void QMargins_SetRight(QtObjectPtr ptr, int right);
-void QMargins_SetTop(QtObjectPtr ptr, int Top);
-int QMargins_Top(QtObjectPtr ptr);
+void* QMargins_NewQMargins();
+void* QMargins_NewQMargins2(int left, int top, int right, int bottom);
+int QMargins_Bottom(void* ptr);
+int QMargins_IsNull(void* ptr);
+int QMargins_Left(void* ptr);
+int QMargins_Right(void* ptr);
+void QMargins_SetBottom(void* ptr, int bottom);
+void QMargins_SetLeft(void* ptr, int left);
+void QMargins_SetRight(void* ptr, int right);
+void QMargins_SetTop(void* ptr, int Top);
+int QMargins_Top(void* ptr);
 
 #ifdef __cplusplus
 }

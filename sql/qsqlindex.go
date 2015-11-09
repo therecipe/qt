@@ -11,89 +11,89 @@ type QSqlIndex struct {
 	QSqlRecord
 }
 
-type QSqlIndexITF interface {
-	QSqlRecordITF
-	QSqlIndexPTR() *QSqlIndex
+type QSqlIndex_ITF interface {
+	QSqlRecord_ITF
+	QSqlIndex_PTR() *QSqlIndex
 }
 
-func PointerFromQSqlIndex(ptr QSqlIndexITF) unsafe.Pointer {
+func PointerFromQSqlIndex(ptr QSqlIndex_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSqlIndexPTR().Pointer()
+		return ptr.QSqlIndex_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSqlIndexFromPointer(ptr unsafe.Pointer) *QSqlIndex {
+func NewQSqlIndexFromPointer(ptr unsafe.Pointer) *QSqlIndex {
 	var n = new(QSqlIndex)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSqlIndex) QSqlIndexPTR() *QSqlIndex {
+func (ptr *QSqlIndex) QSqlIndex_PTR() *QSqlIndex {
 	return ptr
 }
 
-func NewQSqlIndex2(other QSqlIndexITF) *QSqlIndex {
-	return QSqlIndexFromPointer(unsafe.Pointer(C.QSqlIndex_NewQSqlIndex2(C.QtObjectPtr(PointerFromQSqlIndex(other)))))
+func NewQSqlIndex2(other QSqlIndex_ITF) *QSqlIndex {
+	return NewQSqlIndexFromPointer(C.QSqlIndex_NewQSqlIndex2(PointerFromQSqlIndex(other)))
 }
 
 func NewQSqlIndex(cursorname string, name string) *QSqlIndex {
-	return QSqlIndexFromPointer(unsafe.Pointer(C.QSqlIndex_NewQSqlIndex(C.CString(cursorname), C.CString(name))))
+	return NewQSqlIndexFromPointer(C.QSqlIndex_NewQSqlIndex(C.CString(cursorname), C.CString(name)))
 }
 
-func (ptr *QSqlIndex) Append(field QSqlFieldITF) {
+func (ptr *QSqlIndex) Append(field QSqlField_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSqlIndex_Append(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSqlField(field)))
+		C.QSqlIndex_Append(ptr.Pointer(), PointerFromQSqlField(field))
 	}
 }
 
-func (ptr *QSqlIndex) Append2(field QSqlFieldITF, desc bool) {
+func (ptr *QSqlIndex) Append2(field QSqlField_ITF, desc bool) {
 	if ptr.Pointer() != nil {
-		C.QSqlIndex_Append2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSqlField(field)), C.int(qt.GoBoolToInt(desc)))
+		C.QSqlIndex_Append2(ptr.Pointer(), PointerFromQSqlField(field), C.int(qt.GoBoolToInt(desc)))
 	}
 }
 
 func (ptr *QSqlIndex) CursorName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlIndex_CursorName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSqlIndex_CursorName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlIndex) IsDescending(i int) bool {
 	if ptr.Pointer() != nil {
-		return C.QSqlIndex_IsDescending(C.QtObjectPtr(ptr.Pointer()), C.int(i)) != 0
+		return C.QSqlIndex_IsDescending(ptr.Pointer(), C.int(i)) != 0
 	}
 	return false
 }
 
 func (ptr *QSqlIndex) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlIndex_Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSqlIndex_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlIndex) SetCursorName(cursorName string) {
 	if ptr.Pointer() != nil {
-		C.QSqlIndex_SetCursorName(C.QtObjectPtr(ptr.Pointer()), C.CString(cursorName))
+		C.QSqlIndex_SetCursorName(ptr.Pointer(), C.CString(cursorName))
 	}
 }
 
 func (ptr *QSqlIndex) SetDescending(i int, desc bool) {
 	if ptr.Pointer() != nil {
-		C.QSqlIndex_SetDescending(C.QtObjectPtr(ptr.Pointer()), C.int(i), C.int(qt.GoBoolToInt(desc)))
+		C.QSqlIndex_SetDescending(ptr.Pointer(), C.int(i), C.int(qt.GoBoolToInt(desc)))
 	}
 }
 
 func (ptr *QSqlIndex) SetName(name string) {
 	if ptr.Pointer() != nil {
-		C.QSqlIndex_SetName(C.QtObjectPtr(ptr.Pointer()), C.CString(name))
+		C.QSqlIndex_SetName(ptr.Pointer(), C.CString(name))
 	}
 }
 
 func (ptr *QSqlIndex) DestroyQSqlIndex() {
 	if ptr.Pointer() != nil {
-		C.QSqlIndex_DestroyQSqlIndex(C.QtObjectPtr(ptr.Pointer()))
+		C.QSqlIndex_DestroyQSqlIndex(ptr.Pointer())
 	}
 }

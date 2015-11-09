@@ -11,24 +11,24 @@ type QActionEvent struct {
 	core.QEvent
 }
 
-type QActionEventITF interface {
-	core.QEventITF
-	QActionEventPTR() *QActionEvent
+type QActionEvent_ITF interface {
+	core.QEvent_ITF
+	QActionEvent_PTR() *QActionEvent
 }
 
-func PointerFromQActionEvent(ptr QActionEventITF) unsafe.Pointer {
+func PointerFromQActionEvent(ptr QActionEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QActionEventPTR().Pointer()
+		return ptr.QActionEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QActionEventFromPointer(ptr unsafe.Pointer) *QActionEvent {
+func NewQActionEventFromPointer(ptr unsafe.Pointer) *QActionEvent {
 	var n = new(QActionEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QActionEvent) QActionEventPTR() *QActionEvent {
+func (ptr *QActionEvent) QActionEvent_PTR() *QActionEvent {
 	return ptr
 }

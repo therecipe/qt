@@ -11,92 +11,124 @@ type QGraphicsAnchorLayout struct {
 	QGraphicsLayout
 }
 
-type QGraphicsAnchorLayoutITF interface {
-	QGraphicsLayoutITF
-	QGraphicsAnchorLayoutPTR() *QGraphicsAnchorLayout
+type QGraphicsAnchorLayout_ITF interface {
+	QGraphicsLayout_ITF
+	QGraphicsAnchorLayout_PTR() *QGraphicsAnchorLayout
 }
 
-func PointerFromQGraphicsAnchorLayout(ptr QGraphicsAnchorLayoutITF) unsafe.Pointer {
+func PointerFromQGraphicsAnchorLayout(ptr QGraphicsAnchorLayout_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsAnchorLayoutPTR().Pointer()
+		return ptr.QGraphicsAnchorLayout_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsAnchorLayoutFromPointer(ptr unsafe.Pointer) *QGraphicsAnchorLayout {
+func NewQGraphicsAnchorLayoutFromPointer(ptr unsafe.Pointer) *QGraphicsAnchorLayout {
 	var n = new(QGraphicsAnchorLayout)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsAnchorLayout) QGraphicsAnchorLayoutPTR() *QGraphicsAnchorLayout {
+func (ptr *QGraphicsAnchorLayout) QGraphicsAnchorLayout_PTR() *QGraphicsAnchorLayout {
 	return ptr
 }
 
-func NewQGraphicsAnchorLayout(parent QGraphicsLayoutItemITF) *QGraphicsAnchorLayout {
-	return QGraphicsAnchorLayoutFromPointer(unsafe.Pointer(C.QGraphicsAnchorLayout_NewQGraphicsAnchorLayout(C.QtObjectPtr(PointerFromQGraphicsLayoutItem(parent)))))
+func NewQGraphicsAnchorLayout(parent QGraphicsLayoutItem_ITF) *QGraphicsAnchorLayout {
+	return NewQGraphicsAnchorLayoutFromPointer(C.QGraphicsAnchorLayout_NewQGraphicsAnchorLayout(PointerFromQGraphicsLayoutItem(parent)))
 }
 
-func (ptr *QGraphicsAnchorLayout) AddAnchor(firstItem QGraphicsLayoutItemITF, firstEdge core.Qt__AnchorPoint, secondItem QGraphicsLayoutItemITF, secondEdge core.Qt__AnchorPoint) *QGraphicsAnchor {
+func (ptr *QGraphicsAnchorLayout) AddAnchor(firstItem QGraphicsLayoutItem_ITF, firstEdge core.Qt__AnchorPoint, secondItem QGraphicsLayoutItem_ITF, secondEdge core.Qt__AnchorPoint) *QGraphicsAnchor {
 	if ptr.Pointer() != nil {
-		return QGraphicsAnchorFromPointer(unsafe.Pointer(C.QGraphicsAnchorLayout_AddAnchor(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(firstItem)), C.int(firstEdge), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(secondItem)), C.int(secondEdge))))
+		return NewQGraphicsAnchorFromPointer(C.QGraphicsAnchorLayout_AddAnchor(ptr.Pointer(), PointerFromQGraphicsLayoutItem(firstItem), C.int(firstEdge), PointerFromQGraphicsLayoutItem(secondItem), C.int(secondEdge)))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsAnchorLayout) AddAnchors(firstItem QGraphicsLayoutItemITF, secondItem QGraphicsLayoutItemITF, orientations core.Qt__Orientation) {
+func (ptr *QGraphicsAnchorLayout) AddAnchors(firstItem QGraphicsLayoutItem_ITF, secondItem QGraphicsLayoutItem_ITF, orientations core.Qt__Orientation) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsAnchorLayout_AddAnchors(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(firstItem)), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(secondItem)), C.int(orientations))
+		C.QGraphicsAnchorLayout_AddAnchors(ptr.Pointer(), PointerFromQGraphicsLayoutItem(firstItem), PointerFromQGraphicsLayoutItem(secondItem), C.int(orientations))
 	}
 }
 
-func (ptr *QGraphicsAnchorLayout) AddCornerAnchors(firstItem QGraphicsLayoutItemITF, firstCorner core.Qt__Corner, secondItem QGraphicsLayoutItemITF, secondCorner core.Qt__Corner) {
+func (ptr *QGraphicsAnchorLayout) AddCornerAnchors(firstItem QGraphicsLayoutItem_ITF, firstCorner core.Qt__Corner, secondItem QGraphicsLayoutItem_ITF, secondCorner core.Qt__Corner) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsAnchorLayout_AddCornerAnchors(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(firstItem)), C.int(firstCorner), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(secondItem)), C.int(secondCorner))
+		C.QGraphicsAnchorLayout_AddCornerAnchors(ptr.Pointer(), PointerFromQGraphicsLayoutItem(firstItem), C.int(firstCorner), PointerFromQGraphicsLayoutItem(secondItem), C.int(secondCorner))
 	}
 }
 
-func (ptr *QGraphicsAnchorLayout) Anchor(firstItem QGraphicsLayoutItemITF, firstEdge core.Qt__AnchorPoint, secondItem QGraphicsLayoutItemITF, secondEdge core.Qt__AnchorPoint) *QGraphicsAnchor {
+func (ptr *QGraphicsAnchorLayout) Anchor(firstItem QGraphicsLayoutItem_ITF, firstEdge core.Qt__AnchorPoint, secondItem QGraphicsLayoutItem_ITF, secondEdge core.Qt__AnchorPoint) *QGraphicsAnchor {
 	if ptr.Pointer() != nil {
-		return QGraphicsAnchorFromPointer(unsafe.Pointer(C.QGraphicsAnchorLayout_Anchor(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(firstItem)), C.int(firstEdge), C.QtObjectPtr(PointerFromQGraphicsLayoutItem(secondItem)), C.int(secondEdge))))
+		return NewQGraphicsAnchorFromPointer(C.QGraphicsAnchorLayout_Anchor(ptr.Pointer(), PointerFromQGraphicsLayoutItem(firstItem), C.int(firstEdge), PointerFromQGraphicsLayoutItem(secondItem), C.int(secondEdge)))
 	}
 	return nil
 }
 
 func (ptr *QGraphicsAnchorLayout) Count() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsAnchorLayout_Count(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGraphicsAnchorLayout_Count(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QGraphicsAnchorLayout) HorizontalSpacing() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsAnchorLayout_HorizontalSpacing(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsAnchorLayout) Invalidate() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsAnchorLayout_Invalidate(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsAnchorLayout_Invalidate(ptr.Pointer())
 	}
 }
 
 func (ptr *QGraphicsAnchorLayout) ItemAt(index int) *QGraphicsLayoutItem {
 	if ptr.Pointer() != nil {
-		return QGraphicsLayoutItemFromPointer(unsafe.Pointer(C.QGraphicsAnchorLayout_ItemAt(C.QtObjectPtr(ptr.Pointer()), C.int(index))))
+		return NewQGraphicsLayoutItemFromPointer(C.QGraphicsAnchorLayout_ItemAt(ptr.Pointer(), C.int(index)))
 	}
 	return nil
 }
 
 func (ptr *QGraphicsAnchorLayout) RemoveAt(index int) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsAnchorLayout_RemoveAt(C.QtObjectPtr(ptr.Pointer()), C.int(index))
+		C.QGraphicsAnchorLayout_RemoveAt(ptr.Pointer(), C.int(index))
 	}
 }
 
-func (ptr *QGraphicsAnchorLayout) SetGeometry(geom core.QRectFITF) {
+func (ptr *QGraphicsAnchorLayout) SetGeometry(geom core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsAnchorLayout_SetGeometry(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(geom)))
+		C.QGraphicsAnchorLayout_SetGeometry(ptr.Pointer(), core.PointerFromQRectF(geom))
 	}
+}
+
+func (ptr *QGraphicsAnchorLayout) SetHorizontalSpacing(spacing float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchorLayout_SetHorizontalSpacing(ptr.Pointer(), C.double(spacing))
+	}
+}
+
+func (ptr *QGraphicsAnchorLayout) SetSpacing(spacing float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchorLayout_SetSpacing(ptr.Pointer(), C.double(spacing))
+	}
+}
+
+func (ptr *QGraphicsAnchorLayout) SetVerticalSpacing(spacing float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsAnchorLayout_SetVerticalSpacing(ptr.Pointer(), C.double(spacing))
+	}
+}
+
+func (ptr *QGraphicsAnchorLayout) VerticalSpacing() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGraphicsAnchorLayout_VerticalSpacing(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QGraphicsAnchorLayout) DestroyQGraphicsAnchorLayout() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsAnchorLayout_DestroyQGraphicsAnchorLayout(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsAnchorLayout_DestroyQGraphicsAnchorLayout(ptr.Pointer())
 	}
 }

@@ -1,21 +1,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGeoRectangle_NewQGeoRectangle();
-QtObjectPtr QGeoRectangle_NewQGeoRectangle3(QtObjectPtr topLeft, QtObjectPtr bottomRight);
-QtObjectPtr QGeoRectangle_NewQGeoRectangle5(QtObjectPtr other);
-QtObjectPtr QGeoRectangle_NewQGeoRectangle6(QtObjectPtr other);
-int QGeoRectangle_Contains(QtObjectPtr ptr, QtObjectPtr rectangle);
-int QGeoRectangle_Intersects(QtObjectPtr ptr, QtObjectPtr rectangle);
-void QGeoRectangle_SetBottomLeft(QtObjectPtr ptr, QtObjectPtr bottomLeft);
-void QGeoRectangle_SetBottomRight(QtObjectPtr ptr, QtObjectPtr bottomRight);
-void QGeoRectangle_SetCenter(QtObjectPtr ptr, QtObjectPtr center);
-void QGeoRectangle_SetTopLeft(QtObjectPtr ptr, QtObjectPtr topLeft);
-void QGeoRectangle_SetTopRight(QtObjectPtr ptr, QtObjectPtr topRight);
-char* QGeoRectangle_ToString(QtObjectPtr ptr);
-void QGeoRectangle_DestroyQGeoRectangle(QtObjectPtr ptr);
+void* QGeoRectangle_NewQGeoRectangle();
+void* QGeoRectangle_NewQGeoRectangle3(void* topLeft, void* bottomRight);
+void* QGeoRectangle_NewQGeoRectangle5(void* other);
+void* QGeoRectangle_NewQGeoRectangle6(void* other);
+int QGeoRectangle_Contains(void* ptr, void* rectangle);
+int QGeoRectangle_Intersects(void* ptr, void* rectangle);
+void QGeoRectangle_SetBottomLeft(void* ptr, void* bottomLeft);
+void QGeoRectangle_SetBottomRight(void* ptr, void* bottomRight);
+void QGeoRectangle_SetCenter(void* ptr, void* center);
+void QGeoRectangle_SetTopLeft(void* ptr, void* topLeft);
+void QGeoRectangle_SetTopRight(void* ptr, void* topRight);
+char* QGeoRectangle_ToString(void* ptr);
+void QGeoRectangle_DestroyQGeoRectangle(void* ptr);
 
 #ifdef __cplusplus
 }

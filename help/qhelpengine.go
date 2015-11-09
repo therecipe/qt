@@ -12,73 +12,73 @@ type QHelpEngine struct {
 	QHelpEngineCore
 }
 
-type QHelpEngineITF interface {
-	QHelpEngineCoreITF
-	QHelpEnginePTR() *QHelpEngine
+type QHelpEngine_ITF interface {
+	QHelpEngineCore_ITF
+	QHelpEngine_PTR() *QHelpEngine
 }
 
-func PointerFromQHelpEngine(ptr QHelpEngineITF) unsafe.Pointer {
+func PointerFromQHelpEngine(ptr QHelpEngine_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHelpEnginePTR().Pointer()
+		return ptr.QHelpEngine_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHelpEngineFromPointer(ptr unsafe.Pointer) *QHelpEngine {
+func NewQHelpEngineFromPointer(ptr unsafe.Pointer) *QHelpEngine {
 	var n = new(QHelpEngine)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QHelpEngine_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QHelpEngine) QHelpEnginePTR() *QHelpEngine {
+func (ptr *QHelpEngine) QHelpEngine_PTR() *QHelpEngine {
 	return ptr
 }
 
-func NewQHelpEngine(collectionFile string, parent core.QObjectITF) *QHelpEngine {
-	return QHelpEngineFromPointer(unsafe.Pointer(C.QHelpEngine_NewQHelpEngine(C.CString(collectionFile), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQHelpEngine(collectionFile string, parent core.QObject_ITF) *QHelpEngine {
+	return NewQHelpEngineFromPointer(C.QHelpEngine_NewQHelpEngine(C.CString(collectionFile), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHelpEngine) ContentModel() *QHelpContentModel {
 	if ptr.Pointer() != nil {
-		return QHelpContentModelFromPointer(unsafe.Pointer(C.QHelpEngine_ContentModel(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQHelpContentModelFromPointer(C.QHelpEngine_ContentModel(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QHelpEngine) ContentWidget() *QHelpContentWidget {
 	if ptr.Pointer() != nil {
-		return QHelpContentWidgetFromPointer(unsafe.Pointer(C.QHelpEngine_ContentWidget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQHelpContentWidgetFromPointer(C.QHelpEngine_ContentWidget(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QHelpEngine) IndexModel() *QHelpIndexModel {
 	if ptr.Pointer() != nil {
-		return QHelpIndexModelFromPointer(unsafe.Pointer(C.QHelpEngine_IndexModel(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQHelpIndexModelFromPointer(C.QHelpEngine_IndexModel(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QHelpEngine) IndexWidget() *QHelpIndexWidget {
 	if ptr.Pointer() != nil {
-		return QHelpIndexWidgetFromPointer(unsafe.Pointer(C.QHelpEngine_IndexWidget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQHelpIndexWidgetFromPointer(C.QHelpEngine_IndexWidget(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QHelpEngine) SearchEngine() *QHelpSearchEngine {
 	if ptr.Pointer() != nil {
-		return QHelpSearchEngineFromPointer(unsafe.Pointer(C.QHelpEngine_SearchEngine(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQHelpSearchEngineFromPointer(C.QHelpEngine_SearchEngine(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QHelpEngine) DestroyQHelpEngine() {
 	if ptr.Pointer() != nil {
-		C.QHelpEngine_DestroyQHelpEngine(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpEngine_DestroyQHelpEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

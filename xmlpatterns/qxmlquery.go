@@ -12,8 +12,8 @@ type QXmlQuery struct {
 	ptr unsafe.Pointer
 }
 
-type QXmlQueryITF interface {
-	QXmlQueryPTR() *QXmlQuery
+type QXmlQuery_ITF interface {
+	QXmlQuery_PTR() *QXmlQuery
 }
 
 func (p *QXmlQuery) Pointer() unsafe.Pointer {
@@ -24,27 +24,27 @@ func (p *QXmlQuery) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQXmlQuery(ptr QXmlQueryITF) unsafe.Pointer {
+func PointerFromQXmlQuery(ptr QXmlQuery_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QXmlQueryPTR().Pointer()
+		return ptr.QXmlQuery_PTR().Pointer()
 	}
 	return nil
 }
 
-func QXmlQueryFromPointer(ptr unsafe.Pointer) *QXmlQuery {
+func NewQXmlQueryFromPointer(ptr unsafe.Pointer) *QXmlQuery {
 	var n = new(QXmlQuery)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QXmlQuery) QXmlQueryPTR() *QXmlQuery {
+func (ptr *QXmlQuery) QXmlQuery_PTR() *QXmlQuery {
 	return ptr
 }
 
 //QXmlQuery::QueryLanguage
-type QXmlQuery__QueryLanguage int
+type QXmlQuery__QueryLanguage int64
 
-var (
+const (
 	QXmlQuery__XQuery10                              = QXmlQuery__QueryLanguage(1)
 	QXmlQuery__XSLT20                                = QXmlQuery__QueryLanguage(2)
 	QXmlQuery__XmlSchema11IdentityConstraintSelector = QXmlQuery__QueryLanguage(1024)
@@ -53,169 +53,169 @@ var (
 )
 
 func NewQXmlQuery() *QXmlQuery {
-	return QXmlQueryFromPointer(unsafe.Pointer(C.QXmlQuery_NewQXmlQuery()))
+	return NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery())
 }
 
-func NewQXmlQuery4(queryLanguage QXmlQuery__QueryLanguage, np QXmlNamePoolITF) *QXmlQuery {
-	return QXmlQueryFromPointer(unsafe.Pointer(C.QXmlQuery_NewQXmlQuery4(C.int(queryLanguage), C.QtObjectPtr(PointerFromQXmlNamePool(np)))))
+func NewQXmlQuery4(queryLanguage QXmlQuery__QueryLanguage, np QXmlNamePool_ITF) *QXmlQuery {
+	return NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery4(C.int(queryLanguage), PointerFromQXmlNamePool(np)))
 }
 
-func NewQXmlQuery3(np QXmlNamePoolITF) *QXmlQuery {
-	return QXmlQueryFromPointer(unsafe.Pointer(C.QXmlQuery_NewQXmlQuery3(C.QtObjectPtr(PointerFromQXmlNamePool(np)))))
+func NewQXmlQuery3(np QXmlNamePool_ITF) *QXmlQuery {
+	return NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery3(PointerFromQXmlNamePool(np)))
 }
 
-func NewQXmlQuery2(other QXmlQueryITF) *QXmlQuery {
-	return QXmlQueryFromPointer(unsafe.Pointer(C.QXmlQuery_NewQXmlQuery2(C.QtObjectPtr(PointerFromQXmlQuery(other)))))
+func NewQXmlQuery2(other QXmlQuery_ITF) *QXmlQuery {
+	return NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery2(PointerFromQXmlQuery(other)))
 }
 
-func (ptr *QXmlQuery) BindVariable5(localName string, device core.QIODeviceITF) {
+func (ptr *QXmlQuery) BindVariable5(localName string, device core.QIODevice_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_BindVariable5(C.QtObjectPtr(ptr.Pointer()), C.CString(localName), C.QtObjectPtr(core.PointerFromQIODevice(device)))
+		C.QXmlQuery_BindVariable5(ptr.Pointer(), C.CString(localName), core.PointerFromQIODevice(device))
 	}
 }
 
-func (ptr *QXmlQuery) BindVariable4(localName string, value QXmlItemITF) {
+func (ptr *QXmlQuery) BindVariable4(localName string, value QXmlItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_BindVariable4(C.QtObjectPtr(ptr.Pointer()), C.CString(localName), C.QtObjectPtr(PointerFromQXmlItem(value)))
+		C.QXmlQuery_BindVariable4(ptr.Pointer(), C.CString(localName), PointerFromQXmlItem(value))
 	}
 }
 
-func (ptr *QXmlQuery) BindVariable6(localName string, query QXmlQueryITF) {
+func (ptr *QXmlQuery) BindVariable6(localName string, query QXmlQuery_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_BindVariable6(C.QtObjectPtr(ptr.Pointer()), C.CString(localName), C.QtObjectPtr(PointerFromQXmlQuery(query)))
+		C.QXmlQuery_BindVariable6(ptr.Pointer(), C.CString(localName), PointerFromQXmlQuery(query))
 	}
 }
 
-func (ptr *QXmlQuery) BindVariable2(name QXmlNameITF, device core.QIODeviceITF) {
+func (ptr *QXmlQuery) BindVariable2(name QXmlName_ITF, device core.QIODevice_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_BindVariable2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlName(name)), C.QtObjectPtr(core.PointerFromQIODevice(device)))
+		C.QXmlQuery_BindVariable2(ptr.Pointer(), PointerFromQXmlName(name), core.PointerFromQIODevice(device))
 	}
 }
 
-func (ptr *QXmlQuery) BindVariable(name QXmlNameITF, value QXmlItemITF) {
+func (ptr *QXmlQuery) BindVariable(name QXmlName_ITF, value QXmlItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_BindVariable(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlName(name)), C.QtObjectPtr(PointerFromQXmlItem(value)))
+		C.QXmlQuery_BindVariable(ptr.Pointer(), PointerFromQXmlName(name), PointerFromQXmlItem(value))
 	}
 }
 
-func (ptr *QXmlQuery) BindVariable3(name QXmlNameITF, query QXmlQueryITF) {
+func (ptr *QXmlQuery) BindVariable3(name QXmlName_ITF, query QXmlQuery_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_BindVariable3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlName(name)), C.QtObjectPtr(PointerFromQXmlQuery(query)))
+		C.QXmlQuery_BindVariable3(ptr.Pointer(), PointerFromQXmlName(name), PointerFromQXmlQuery(query))
 	}
 }
 
 func (ptr *QXmlQuery) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlQuery_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QXmlQuery_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlQuery) MessageHandler() *QAbstractMessageHandler {
 	if ptr.Pointer() != nil {
-		return QAbstractMessageHandlerFromPointer(unsafe.Pointer(C.QXmlQuery_MessageHandler(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAbstractMessageHandlerFromPointer(C.QXmlQuery_MessageHandler(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QXmlQuery) NetworkAccessManager() *network.QNetworkAccessManager {
 	if ptr.Pointer() != nil {
-		return network.QNetworkAccessManagerFromPointer(unsafe.Pointer(C.QXmlQuery_NetworkAccessManager(C.QtObjectPtr(ptr.Pointer()))))
+		return network.NewQNetworkAccessManagerFromPointer(C.QXmlQuery_NetworkAccessManager(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QXmlQuery) QueryLanguage() QXmlQuery__QueryLanguage {
 	if ptr.Pointer() != nil {
-		return QXmlQuery__QueryLanguage(C.QXmlQuery_QueryLanguage(C.QtObjectPtr(ptr.Pointer())))
+		return QXmlQuery__QueryLanguage(C.QXmlQuery_QueryLanguage(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QXmlQuery) SetFocus3(document core.QIODeviceITF) bool {
+func (ptr *QXmlQuery) SetFocus3(document core.QIODevice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlQuery_SetFocus3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQIODevice(document))) != 0
+		return C.QXmlQuery_SetFocus3(ptr.Pointer(), core.PointerFromQIODevice(document)) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlQuery) SetFocus4(focus string) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlQuery_SetFocus4(C.QtObjectPtr(ptr.Pointer()), C.CString(focus)) != 0
+		return C.QXmlQuery_SetFocus4(ptr.Pointer(), C.CString(focus)) != 0
 	}
 	return false
 }
 
-func (ptr *QXmlQuery) SetFocus2(documentURI string) bool {
+func (ptr *QXmlQuery) SetFocus2(documentURI core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlQuery_SetFocus2(C.QtObjectPtr(ptr.Pointer()), C.CString(documentURI)) != 0
+		return C.QXmlQuery_SetFocus2(ptr.Pointer(), core.PointerFromQUrl(documentURI)) != 0
 	}
 	return false
 }
 
-func (ptr *QXmlQuery) SetFocus(item QXmlItemITF) {
+func (ptr *QXmlQuery) SetFocus(item QXmlItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_SetFocus(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlItem(item)))
+		C.QXmlQuery_SetFocus(ptr.Pointer(), PointerFromQXmlItem(item))
 	}
 }
 
 func (ptr *QXmlQuery) SetInitialTemplateName2(localName string) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_SetInitialTemplateName2(C.QtObjectPtr(ptr.Pointer()), C.CString(localName))
+		C.QXmlQuery_SetInitialTemplateName2(ptr.Pointer(), C.CString(localName))
 	}
 }
 
-func (ptr *QXmlQuery) SetInitialTemplateName(name QXmlNameITF) {
+func (ptr *QXmlQuery) SetInitialTemplateName(name QXmlName_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_SetInitialTemplateName(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlName(name)))
+		C.QXmlQuery_SetInitialTemplateName(ptr.Pointer(), PointerFromQXmlName(name))
 	}
 }
 
-func (ptr *QXmlQuery) SetMessageHandler(aMessageHandler QAbstractMessageHandlerITF) {
+func (ptr *QXmlQuery) SetMessageHandler(aMessageHandler QAbstractMessageHandler_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_SetMessageHandler(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractMessageHandler(aMessageHandler)))
+		C.QXmlQuery_SetMessageHandler(ptr.Pointer(), PointerFromQAbstractMessageHandler(aMessageHandler))
 	}
 }
 
-func (ptr *QXmlQuery) SetNetworkAccessManager(newManager network.QNetworkAccessManagerITF) {
+func (ptr *QXmlQuery) SetNetworkAccessManager(newManager network.QNetworkAccessManager_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_SetNetworkAccessManager(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(network.PointerFromQNetworkAccessManager(newManager)))
+		C.QXmlQuery_SetNetworkAccessManager(ptr.Pointer(), network.PointerFromQNetworkAccessManager(newManager))
 	}
 }
 
-func (ptr *QXmlQuery) SetQuery(sourceCode core.QIODeviceITF, documentURI string) {
+func (ptr *QXmlQuery) SetQuery(sourceCode core.QIODevice_ITF, documentURI core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_SetQuery(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQIODevice(sourceCode)), C.CString(documentURI))
+		C.QXmlQuery_SetQuery(ptr.Pointer(), core.PointerFromQIODevice(sourceCode), core.PointerFromQUrl(documentURI))
 	}
 }
 
-func (ptr *QXmlQuery) SetQuery3(sourceCode string, documentURI string) {
+func (ptr *QXmlQuery) SetQuery3(sourceCode string, documentURI core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_SetQuery3(C.QtObjectPtr(ptr.Pointer()), C.CString(sourceCode), C.CString(documentURI))
+		C.QXmlQuery_SetQuery3(ptr.Pointer(), C.CString(sourceCode), core.PointerFromQUrl(documentURI))
 	}
 }
 
-func (ptr *QXmlQuery) SetQuery2(queryURI string, baseURI string) {
+func (ptr *QXmlQuery) SetQuery2(queryURI core.QUrl_ITF, baseURI core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_SetQuery2(C.QtObjectPtr(ptr.Pointer()), C.CString(queryURI), C.CString(baseURI))
+		C.QXmlQuery_SetQuery2(ptr.Pointer(), core.PointerFromQUrl(queryURI), core.PointerFromQUrl(baseURI))
 	}
 }
 
-func (ptr *QXmlQuery) SetUriResolver(resolver QAbstractUriResolverITF) {
+func (ptr *QXmlQuery) SetUriResolver(resolver QAbstractUriResolver_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_SetUriResolver(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractUriResolver(resolver)))
+		C.QXmlQuery_SetUriResolver(ptr.Pointer(), PointerFromQAbstractUriResolver(resolver))
 	}
 }
 
 func (ptr *QXmlQuery) UriResolver() *QAbstractUriResolver {
 	if ptr.Pointer() != nil {
-		return QAbstractUriResolverFromPointer(unsafe.Pointer(C.QXmlQuery_UriResolver(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAbstractUriResolverFromPointer(C.QXmlQuery_UriResolver(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QXmlQuery) DestroyQXmlQuery() {
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_DestroyQXmlQuery(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlQuery_DestroyQXmlQuery(ptr.Pointer())
 	}
 }

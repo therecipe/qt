@@ -1,12 +1,12 @@
 #include "qhelpsearchengine.h"
+#include <QModelIndex>
+#include <QHelpEngine>
 #include <QMetaObject>
 #include <QObject>
+#include <QHelpEngineCore>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QHelpEngine>
-#include <QHelpEngineCore>
 #include <QHelpSearchEngine>
 #include "_cgo_export.h"
 
@@ -18,67 +18,67 @@ void Signal_SearchingFinished(int hits){callbackQHelpSearchEngineSearchingFinish
 void Signal_SearchingStarted(){callbackQHelpSearchEngineSearchingStarted(this->objectName().toUtf8().data());};
 };
 
-QtObjectPtr QHelpSearchEngine_NewQHelpSearchEngine(QtObjectPtr helpEngine, QtObjectPtr parent){
+void* QHelpSearchEngine_NewQHelpSearchEngine(void* helpEngine, void* parent){
 	return new QHelpSearchEngine(static_cast<QHelpEngineCore*>(helpEngine), static_cast<QObject*>(parent));
 }
 
-void QHelpSearchEngine_CancelIndexing(QtObjectPtr ptr){
+void QHelpSearchEngine_CancelIndexing(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "cancelIndexing");
 }
 
-void QHelpSearchEngine_CancelSearching(QtObjectPtr ptr){
+void QHelpSearchEngine_CancelSearching(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "cancelSearching");
 }
 
-int QHelpSearchEngine_HitCount(QtObjectPtr ptr){
+int QHelpSearchEngine_HitCount(void* ptr){
 	return static_cast<QHelpSearchEngine*>(ptr)->hitCount();
 }
 
-void QHelpSearchEngine_ConnectIndexingFinished(QtObjectPtr ptr){
+void QHelpSearchEngine_ConnectIndexingFinished(void* ptr){
 	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingFinished));;
 }
 
-void QHelpSearchEngine_DisconnectIndexingFinished(QtObjectPtr ptr){
+void QHelpSearchEngine_DisconnectIndexingFinished(void* ptr){
 	QObject::disconnect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingFinished));;
 }
 
-void QHelpSearchEngine_ConnectIndexingStarted(QtObjectPtr ptr){
+void QHelpSearchEngine_ConnectIndexingStarted(void* ptr){
 	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingStarted));;
 }
 
-void QHelpSearchEngine_DisconnectIndexingStarted(QtObjectPtr ptr){
+void QHelpSearchEngine_DisconnectIndexingStarted(void* ptr){
 	QObject::disconnect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingStarted));;
 }
 
-QtObjectPtr QHelpSearchEngine_QueryWidget(QtObjectPtr ptr){
+void* QHelpSearchEngine_QueryWidget(void* ptr){
 	return static_cast<QHelpSearchEngine*>(ptr)->queryWidget();
 }
 
-void QHelpSearchEngine_ReindexDocumentation(QtObjectPtr ptr){
+void QHelpSearchEngine_ReindexDocumentation(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "reindexDocumentation");
 }
 
-QtObjectPtr QHelpSearchEngine_ResultWidget(QtObjectPtr ptr){
+void* QHelpSearchEngine_ResultWidget(void* ptr){
 	return static_cast<QHelpSearchEngine*>(ptr)->resultWidget();
 }
 
-void QHelpSearchEngine_ConnectSearchingFinished(QtObjectPtr ptr){
+void QHelpSearchEngine_ConnectSearchingFinished(void* ptr){
 	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)(int)>(&QHelpSearchEngine::searchingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)(int)>(&MyQHelpSearchEngine::Signal_SearchingFinished));;
 }
 
-void QHelpSearchEngine_DisconnectSearchingFinished(QtObjectPtr ptr){
+void QHelpSearchEngine_DisconnectSearchingFinished(void* ptr){
 	QObject::disconnect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)(int)>(&QHelpSearchEngine::searchingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)(int)>(&MyQHelpSearchEngine::Signal_SearchingFinished));;
 }
 
-void QHelpSearchEngine_ConnectSearchingStarted(QtObjectPtr ptr){
+void QHelpSearchEngine_ConnectSearchingStarted(void* ptr){
 	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::searchingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_SearchingStarted));;
 }
 
-void QHelpSearchEngine_DisconnectSearchingStarted(QtObjectPtr ptr){
+void QHelpSearchEngine_DisconnectSearchingStarted(void* ptr){
 	QObject::disconnect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::searchingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_SearchingStarted));;
 }
 
-void QHelpSearchEngine_DestroyQHelpSearchEngine(QtObjectPtr ptr){
+void QHelpSearchEngine_DestroyQHelpSearchEngine(void* ptr){
 	static_cast<QHelpSearchEngine*>(ptr)->~QHelpSearchEngine();
 }
 

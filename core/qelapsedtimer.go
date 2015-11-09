@@ -10,8 +10,8 @@ type QElapsedTimer struct {
 	ptr unsafe.Pointer
 }
 
-type QElapsedTimerITF interface {
-	QElapsedTimerPTR() *QElapsedTimer
+type QElapsedTimer_ITF interface {
+	QElapsedTimer_PTR() *QElapsedTimer
 }
 
 func (p *QElapsedTimer) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QElapsedTimer) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQElapsedTimer(ptr QElapsedTimerITF) unsafe.Pointer {
+func PointerFromQElapsedTimer(ptr QElapsedTimer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QElapsedTimerPTR().Pointer()
+		return ptr.QElapsedTimer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QElapsedTimerFromPointer(ptr unsafe.Pointer) *QElapsedTimer {
+func NewQElapsedTimerFromPointer(ptr unsafe.Pointer) *QElapsedTimer {
 	var n = new(QElapsedTimer)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QElapsedTimer) QElapsedTimerPTR() *QElapsedTimer {
+func (ptr *QElapsedTimer) QElapsedTimer_PTR() *QElapsedTimer {
 	return ptr
 }
 
 //QElapsedTimer::ClockType
-type QElapsedTimer__ClockType int
+type QElapsedTimer__ClockType int64
 
-var (
+const (
 	QElapsedTimer__SystemTime         = QElapsedTimer__ClockType(0)
 	QElapsedTimer__MonotonicClock     = QElapsedTimer__ClockType(1)
 	QElapsedTimer__TickCounter        = QElapsedTimer__ClockType(2)
@@ -51,18 +51,18 @@ var (
 )
 
 func NewQElapsedTimer() *QElapsedTimer {
-	return QElapsedTimerFromPointer(unsafe.Pointer(C.QElapsedTimer_NewQElapsedTimer()))
+	return NewQElapsedTimerFromPointer(C.QElapsedTimer_NewQElapsedTimer())
 }
 
 func (ptr *QElapsedTimer) Invalidate() {
 	if ptr.Pointer() != nil {
-		C.QElapsedTimer_Invalidate(C.QtObjectPtr(ptr.Pointer()))
+		C.QElapsedTimer_Invalidate(ptr.Pointer())
 	}
 }
 
 func (ptr *QElapsedTimer) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QElapsedTimer_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QElapsedTimer_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -77,6 +77,6 @@ func QElapsedTimer_IsMonotonic() bool {
 
 func (ptr *QElapsedTimer) Start() {
 	if ptr.Pointer() != nil {
-		C.QElapsedTimer_Start(C.QtObjectPtr(ptr.Pointer()))
+		C.QElapsedTimer_Start(ptr.Pointer())
 	}
 }

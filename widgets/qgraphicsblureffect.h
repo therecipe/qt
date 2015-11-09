@@ -1,14 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QGraphicsBlurEffect_BlurHints(QtObjectPtr ptr);
-void QGraphicsBlurEffect_SetBlurHints(QtObjectPtr ptr, int hints);
-QtObjectPtr QGraphicsBlurEffect_NewQGraphicsBlurEffect(QtObjectPtr parent);
-void QGraphicsBlurEffect_ConnectBlurHintsChanged(QtObjectPtr ptr);
-void QGraphicsBlurEffect_DisconnectBlurHintsChanged(QtObjectPtr ptr);
-void QGraphicsBlurEffect_DestroyQGraphicsBlurEffect(QtObjectPtr ptr);
+int QGraphicsBlurEffect_BlurHints(void* ptr);
+double QGraphicsBlurEffect_BlurRadius(void* ptr);
+void QGraphicsBlurEffect_SetBlurHints(void* ptr, int hints);
+void QGraphicsBlurEffect_SetBlurRadius(void* ptr, double blurRadius);
+void* QGraphicsBlurEffect_NewQGraphicsBlurEffect(void* parent);
+void QGraphicsBlurEffect_ConnectBlurHintsChanged(void* ptr);
+void QGraphicsBlurEffect_DisconnectBlurHintsChanged(void* ptr);
+void QGraphicsBlurEffect_DestroyQGraphicsBlurEffect(void* ptr);
 
 #ifdef __cplusplus
 }

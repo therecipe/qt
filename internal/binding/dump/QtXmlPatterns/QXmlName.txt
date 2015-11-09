@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QXmlName QXmlName::QXmlName commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non constructor false false   [] }
-&{QXmlName QXmlName::QXmlName commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non constructor false true 2  [0xc82282a300 0xc82282a3e0 0xc82282a4a0 0xc82282a560] }
-&{fromClarkName QXmlName::fromClarkName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain true false  QXmlName [0xc82282a840 0xc82282a900] }
-&{isNCName QXmlName::isNCName commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain true false  bool [0xc82282ac40] }
-&{isNull QXmlName::isNull commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  bool [] }
-&{localName QXmlName::localName commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  QString [0xc82282af80] }
-&{namespaceUri QXmlName::namespaceUri commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  QString [0xc82282b200] }
-&{operator!= QXmlName::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  bool [0xc82282b4a0] }
-&{operator= QXmlName::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  QXmlName & [0xc82282b6e0] }
-&{operator== QXmlName::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  bool [0xc82282b900] }
-&{prefix QXmlName::prefix commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  QString [0xc82282bb40] }
-&{toClarkName QXmlName::toClarkName commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  QString [0xc82282bf20] }
+&{QXmlName QXmlName::QXmlName commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non constructor false false   QXmlName() [] }
+&{QXmlName QXmlName::QXmlName commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non constructor false true 2  QXmlName(QXmlNamePool &namePool, const QString &localName, const QString &namespaceURI, const QString &prefix) [0xc8226eb8e0 0xc8226eb960 0xc8226eb9e0 0xc8226ebaa0] }
+&{fromClarkName QXmlName::fromClarkName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain true false  QXmlName QXmlName fromClarkName(const QString &clarkName, const QXmlNamePool &namePool) [0xc8226ebd00 0xc8226ebdc0] }
+&{isNCName QXmlName::isNCName commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain true false  bool bool isNCName(const QString &candidate) [0xc8226b8020] }
+&{isNull QXmlName::isNull commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  bool bool isNull() const [] }
+&{localName QXmlName::localName commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  QString QString localName(const QXmlNamePool &namePool) const [0xc8226b8620] }
+&{namespaceUri QXmlName::namespaceUri commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  QString QString namespaceUri(const QXmlNamePool &namePool) const [0xc8226b8a40] }
+&{operator!= QXmlName::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  bool bool operator!=(const QXmlName &other) const [0xc8226b8e00] }
+&{operator= QXmlName::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  QXmlName & QXmlName & operator=(const QXmlName &other) [0xc8226b9200] }
+&{operator== QXmlName::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  bool bool operator==(const QXmlName &other) const [0xc8226b9520] }
+&{prefix QXmlName::prefix commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  QString QString prefix(const QXmlNamePool &namePool) const [0xc8226b9760] }
+&{toClarkName QXmlName::toClarkName commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlname.h non plain false false  QString QString toClarkName(const QXmlNamePool &namePool) const [0xc8226b9b00] }
 ########################################			ENUMS			########################################

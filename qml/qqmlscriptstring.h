@@ -1,15 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QQmlScriptString_NewQQmlScriptString();
-QtObjectPtr QQmlScriptString_NewQQmlScriptString2(QtObjectPtr other);
-int QQmlScriptString_BooleanLiteral(QtObjectPtr ptr, int ok);
-int QQmlScriptString_IsEmpty(QtObjectPtr ptr);
-int QQmlScriptString_IsNullLiteral(QtObjectPtr ptr);
-int QQmlScriptString_IsUndefinedLiteral(QtObjectPtr ptr);
-char* QQmlScriptString_StringLiteral(QtObjectPtr ptr);
+void* QQmlScriptString_NewQQmlScriptString();
+void* QQmlScriptString_NewQQmlScriptString2(void* other);
+int QQmlScriptString_BooleanLiteral(void* ptr, int ok);
+int QQmlScriptString_IsEmpty(void* ptr);
+int QQmlScriptString_IsNullLiteral(void* ptr);
+int QQmlScriptString_IsUndefinedLiteral(void* ptr);
+double QQmlScriptString_NumberLiteral(void* ptr, int ok);
+char* QQmlScriptString_StringLiteral(void* ptr);
 
 #ifdef __cplusplus
 }

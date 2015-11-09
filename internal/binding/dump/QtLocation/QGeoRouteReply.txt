@@ -1,18 +1,18 @@
 ########################################			FUNCTIONS			########################################
-&{QGeoRouteReply QGeoRouteReply::QGeoRouteReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non constructor false false   [0xc821e341c0 0xc821e342c0 0xc821e343a0] }
-&{QGeoRouteReply QGeoRouteReply::QGeoRouteReply commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non constructor false true 2  [0xc821e34780 0xc821e348c0] }
-&{abort QGeoRouteReply::abort commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h impure plain false false  void [] }
-&{addRoutes QGeoRouteReply::addRoutes commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  void [0xc821e34da0] }
-&{error QGeoRouteReply::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non signal false true 2 void [0xc821e35240 0xc821e353c0] }
-&{error QGeoRouteReply::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  Error [] }
-&{errorString QGeoRouteReply::errorString commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  QString [] }
-&{finished QGeoRouteReply::finished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non signal false false  void [] }
-&{isFinished QGeoRouteReply::isFinished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  bool [] }
-&{request QGeoRouteReply::request commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  QGeoRouteRequest [] }
-&{routes QGeoRouteReply::routes commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  QList<QGeoRoute> [] }
-&{setError QGeoRouteReply::setError commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  void [0xc822986320 0xc822986400] }
-&{setFinished QGeoRouteReply::setFinished commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  void [0xc822986720] }
-&{setRoutes QGeoRouteReply::setRoutes commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  void [0xc822986a00] }
-&{~QGeoRouteReply QGeoRouteReply::~QGeoRouteReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h impure destructor false false   [] }
+&{QGeoRouteReply QGeoRouteReply::QGeoRouteReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non constructor false false   QGeoRouteReply(Error error, const QString &errorString, QObject *parent) [0xc82070cce0 0xc82070cd60 0xc82070cde0] }
+&{QGeoRouteReply QGeoRouteReply::QGeoRouteReply commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non constructor false true 2  QGeoRouteReply(const QGeoRouteRequest &request, QObject *parent) [0xc82070cfa0 0xc82070d060] }
+&{abort QGeoRouteReply::abort commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h impure plain false false  void void abort() [] }
+&{addRoutes QGeoRouteReply::addRoutes commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  void void addRoutes(const QList<QGeoRoute> &routes) [0xc82070d320] }
+&{error QGeoRouteReply::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non signal false true 2 void void error(QGeoRouteReply::Error error, const QString &errorString) [0xc82070d560 0xc82070d620] }
+&{error QGeoRouteReply::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  Error Error error() const [] }
+&{errorString QGeoRouteReply::errorString commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  QString QString errorString() const [] }
+&{finished QGeoRouteReply::finished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non signal false false  void void finished() [] }
+&{isFinished QGeoRouteReply::isFinished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  bool bool isFinished() const [] }
+&{request QGeoRouteReply::request commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  QGeoRouteRequest QGeoRouteRequest request() const [] }
+&{routes QGeoRouteReply::routes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  QList<QGeoRoute> QList<QGeoRoute> routes() const [] }
+&{setError QGeoRouteReply::setError commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  void void setError(Error error, const QString &errorString) [0xc82070df20 0xc82070dfa0] }
+&{setFinished QGeoRouteReply::setFinished commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  void void setFinished(bool finished) [0xc822e201c0] }
+&{setRoutes QGeoRouteReply::setRoutes commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h non plain false false  void void setRoutes(const QList<QGeoRoute> &routes) [0xc822e203a0] }
+&{~QGeoRouteReply QGeoRouteReply::~QGeoRouteReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroutereply.h impure destructor false false   ~QGeoRouteReply() [] }
 ########################################			ENUMS			########################################
-&{Error QGeoRouteReply::Error commendable public  [0xc821e277c0 0xc821e27900 0xc821e27a80 0xc821e27cc0 0xc821e27e00 0xc821e27f00]}
+&{Error QGeoRouteReply::Error commendable public  [0xc82070c740 0xc82070c7e0 0xc82070c8c0 0xc82070c980 0xc82070ca40 0xc82070cb00] false}

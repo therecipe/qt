@@ -10,8 +10,8 @@ type QMargins struct {
 	ptr unsafe.Pointer
 }
 
-type QMarginsITF interface {
-	QMarginsPTR() *QMargins
+type QMargins_ITF interface {
+	QMargins_PTR() *QMargins
 }
 
 func (p *QMargins) Pointer() unsafe.Pointer {
@@ -22,86 +22,86 @@ func (p *QMargins) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMargins(ptr QMarginsITF) unsafe.Pointer {
+func PointerFromQMargins(ptr QMargins_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMarginsPTR().Pointer()
+		return ptr.QMargins_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMarginsFromPointer(ptr unsafe.Pointer) *QMargins {
+func NewQMarginsFromPointer(ptr unsafe.Pointer) *QMargins {
 	var n = new(QMargins)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMargins) QMarginsPTR() *QMargins {
+func (ptr *QMargins) QMargins_PTR() *QMargins {
 	return ptr
 }
 
 func NewQMargins() *QMargins {
-	return QMarginsFromPointer(unsafe.Pointer(C.QMargins_NewQMargins()))
+	return NewQMarginsFromPointer(C.QMargins_NewQMargins())
 }
 
 func NewQMargins2(left int, top int, right int, bottom int) *QMargins {
-	return QMarginsFromPointer(unsafe.Pointer(C.QMargins_NewQMargins2(C.int(left), C.int(top), C.int(right), C.int(bottom))))
+	return NewQMarginsFromPointer(C.QMargins_NewQMargins2(C.int(left), C.int(top), C.int(right), C.int(bottom)))
 }
 
 func (ptr *QMargins) Bottom() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMargins_Bottom(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMargins_Bottom(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QMargins) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QMargins_IsNull(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMargins_IsNull(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMargins) Left() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMargins_Left(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMargins_Left(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QMargins) Right() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMargins_Right(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMargins_Right(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QMargins) SetBottom(bottom int) {
 	if ptr.Pointer() != nil {
-		C.QMargins_SetBottom(C.QtObjectPtr(ptr.Pointer()), C.int(bottom))
+		C.QMargins_SetBottom(ptr.Pointer(), C.int(bottom))
 	}
 }
 
 func (ptr *QMargins) SetLeft(left int) {
 	if ptr.Pointer() != nil {
-		C.QMargins_SetLeft(C.QtObjectPtr(ptr.Pointer()), C.int(left))
+		C.QMargins_SetLeft(ptr.Pointer(), C.int(left))
 	}
 }
 
 func (ptr *QMargins) SetRight(right int) {
 	if ptr.Pointer() != nil {
-		C.QMargins_SetRight(C.QtObjectPtr(ptr.Pointer()), C.int(right))
+		C.QMargins_SetRight(ptr.Pointer(), C.int(right))
 	}
 }
 
 func (ptr *QMargins) SetTop(Top int) {
 	if ptr.Pointer() != nil {
-		C.QMargins_SetTop(C.QtObjectPtr(ptr.Pointer()), C.int(Top))
+		C.QMargins_SetTop(ptr.Pointer(), C.int(Top))
 	}
 }
 
 func (ptr *QMargins) Top() int {
 	if ptr.Pointer() != nil {
-		return int(C.QMargins_Top(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QMargins_Top(ptr.Pointer()))
 	}
 	return 0
 }

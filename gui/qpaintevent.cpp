@@ -1,10 +1,10 @@
 #include "qpaintevent.h"
-#include <QRegion>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QRect>
+#include <QRegion>
+#include <QString>
+#include <QVariant>
 #include <QPaintEvent>
 #include "_cgo_export.h"
 
@@ -12,11 +12,15 @@ class MyQPaintEvent: public QPaintEvent {
 public:
 };
 
-QtObjectPtr QPaintEvent_NewQPaintEvent2(QtObjectPtr paintRect){
+void* QPaintEvent_NewQPaintEvent2(void* paintRect){
 	return new QPaintEvent(*static_cast<QRect*>(paintRect));
 }
 
-QtObjectPtr QPaintEvent_NewQPaintEvent(QtObjectPtr paintRegion){
+void* QPaintEvent_NewQPaintEvent(void* paintRegion){
 	return new QPaintEvent(*static_cast<QRegion*>(paintRegion));
+}
+
+void* QPaintEvent_Region(void* ptr){
+	return new QRegion(static_cast<QPaintEvent*>(ptr)->region());
 }
 

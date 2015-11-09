@@ -12,38 +12,38 @@ type QTcpSocket struct {
 	QAbstractSocket
 }
 
-type QTcpSocketITF interface {
-	QAbstractSocketITF
-	QTcpSocketPTR() *QTcpSocket
+type QTcpSocket_ITF interface {
+	QAbstractSocket_ITF
+	QTcpSocket_PTR() *QTcpSocket
 }
 
-func PointerFromQTcpSocket(ptr QTcpSocketITF) unsafe.Pointer {
+func PointerFromQTcpSocket(ptr QTcpSocket_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTcpSocketPTR().Pointer()
+		return ptr.QTcpSocket_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTcpSocketFromPointer(ptr unsafe.Pointer) *QTcpSocket {
+func NewQTcpSocketFromPointer(ptr unsafe.Pointer) *QTcpSocket {
 	var n = new(QTcpSocket)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QTcpSocket_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QTcpSocket) QTcpSocketPTR() *QTcpSocket {
+func (ptr *QTcpSocket) QTcpSocket_PTR() *QTcpSocket {
 	return ptr
 }
 
-func NewQTcpSocket(parent core.QObjectITF) *QTcpSocket {
-	return QTcpSocketFromPointer(unsafe.Pointer(C.QTcpSocket_NewQTcpSocket(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQTcpSocket(parent core.QObject_ITF) *QTcpSocket {
+	return NewQTcpSocketFromPointer(C.QTcpSocket_NewQTcpSocket(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QTcpSocket) DestroyQTcpSocket() {
 	if ptr.Pointer() != nil {
-		C.QTcpSocket_DestroyQTcpSocket(C.QtObjectPtr(ptr.Pointer()))
+		C.QTcpSocket_DestroyQTcpSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

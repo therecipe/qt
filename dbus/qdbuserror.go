@@ -10,8 +10,8 @@ type QDBusError struct {
 	ptr unsafe.Pointer
 }
 
-type QDBusErrorITF interface {
-	QDBusErrorPTR() *QDBusError
+type QDBusError_ITF interface {
+	QDBusError_PTR() *QDBusError
 }
 
 func (p *QDBusError) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QDBusError) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQDBusError(ptr QDBusErrorITF) unsafe.Pointer {
+func PointerFromQDBusError(ptr QDBusError_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDBusErrorPTR().Pointer()
+		return ptr.QDBusError_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDBusErrorFromPointer(ptr unsafe.Pointer) *QDBusError {
+func NewQDBusErrorFromPointer(ptr unsafe.Pointer) *QDBusError {
 	var n = new(QDBusError)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDBusError) QDBusErrorPTR() *QDBusError {
+func (ptr *QDBusError) QDBusError_PTR() *QDBusError {
 	return ptr
 }
 
 //QDBusError::ErrorType
-type QDBusError__ErrorType int
+type QDBusError__ErrorType int64
 
-var (
+const (
 	QDBusError__NoError           = QDBusError__ErrorType(0)
 	QDBusError__Other             = QDBusError__ErrorType(1)
 	QDBusError__Failed            = QDBusError__ErrorType(2)
@@ -79,28 +79,28 @@ func QDBusError_ErrorString(error QDBusError__ErrorType) string {
 
 func (ptr *QDBusError) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusError_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QDBusError_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QDBusError) Message() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusError_Message(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QDBusError_Message(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDBusError) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusError_Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QDBusError_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDBusError) Type() QDBusError__ErrorType {
 	if ptr.Pointer() != nil {
-		return QDBusError__ErrorType(C.QDBusError_Type(C.QtObjectPtr(ptr.Pointer())))
+		return QDBusError__ErrorType(C.QDBusError_Type(ptr.Pointer()))
 	}
 	return 0
 }

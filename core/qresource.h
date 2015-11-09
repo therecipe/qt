@@ -1,18 +1,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
 int QResource_QResource_RegisterResource(char* rccFileName, char* mapRoot);
 int QResource_QResource_UnregisterResource(char* rccFileName, char* mapRoot);
-QtObjectPtr QResource_NewQResource(char* file, QtObjectPtr locale);
-char* QResource_AbsoluteFilePath(QtObjectPtr ptr);
-char* QResource_FileName(QtObjectPtr ptr);
-int QResource_IsCompressed(QtObjectPtr ptr);
-int QResource_IsValid(QtObjectPtr ptr);
-void QResource_SetFileName(QtObjectPtr ptr, char* file);
-void QResource_SetLocale(QtObjectPtr ptr, QtObjectPtr locale);
-void QResource_DestroyQResource(QtObjectPtr ptr);
+void* QResource_NewQResource(char* file, void* locale);
+char* QResource_AbsoluteFilePath(void* ptr);
+char* QResource_FileName(void* ptr);
+int QResource_IsCompressed(void* ptr);
+int QResource_IsValid(void* ptr);
+void QResource_SetFileName(void* ptr, char* file);
+void QResource_SetLocale(void* ptr, void* locale);
+void QResource_DestroyQResource(void* ptr);
 
 #ifdef __cplusplus
 }

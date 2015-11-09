@@ -10,24 +10,24 @@ type QAccessibleStateChangeEvent struct {
 	QAccessibleEvent
 }
 
-type QAccessibleStateChangeEventITF interface {
-	QAccessibleEventITF
-	QAccessibleStateChangeEventPTR() *QAccessibleStateChangeEvent
+type QAccessibleStateChangeEvent_ITF interface {
+	QAccessibleEvent_ITF
+	QAccessibleStateChangeEvent_PTR() *QAccessibleStateChangeEvent
 }
 
-func PointerFromQAccessibleStateChangeEvent(ptr QAccessibleStateChangeEventITF) unsafe.Pointer {
+func PointerFromQAccessibleStateChangeEvent(ptr QAccessibleStateChangeEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAccessibleStateChangeEventPTR().Pointer()
+		return ptr.QAccessibleStateChangeEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAccessibleStateChangeEventFromPointer(ptr unsafe.Pointer) *QAccessibleStateChangeEvent {
+func NewQAccessibleStateChangeEventFromPointer(ptr unsafe.Pointer) *QAccessibleStateChangeEvent {
 	var n = new(QAccessibleStateChangeEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAccessibleStateChangeEvent) QAccessibleStateChangeEventPTR() *QAccessibleStateChangeEvent {
+func (ptr *QAccessibleStateChangeEvent) QAccessibleStateChangeEvent_PTR() *QAccessibleStateChangeEvent {
 	return ptr
 }

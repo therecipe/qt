@@ -12,45 +12,45 @@ type QVideoProbe struct {
 	core.QObject
 }
 
-type QVideoProbeITF interface {
-	core.QObjectITF
-	QVideoProbePTR() *QVideoProbe
+type QVideoProbe_ITF interface {
+	core.QObject_ITF
+	QVideoProbe_PTR() *QVideoProbe
 }
 
-func PointerFromQVideoProbe(ptr QVideoProbeITF) unsafe.Pointer {
+func PointerFromQVideoProbe(ptr QVideoProbe_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QVideoProbePTR().Pointer()
+		return ptr.QVideoProbe_PTR().Pointer()
 	}
 	return nil
 }
 
-func QVideoProbeFromPointer(ptr unsafe.Pointer) *QVideoProbe {
+func NewQVideoProbeFromPointer(ptr unsafe.Pointer) *QVideoProbe {
 	var n = new(QVideoProbe)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QVideoProbe_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QVideoProbe) QVideoProbePTR() *QVideoProbe {
+func (ptr *QVideoProbe) QVideoProbe_PTR() *QVideoProbe {
 	return ptr
 }
 
-func NewQVideoProbe(parent core.QObjectITF) *QVideoProbe {
-	return QVideoProbeFromPointer(unsafe.Pointer(C.QVideoProbe_NewQVideoProbe(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQVideoProbe(parent core.QObject_ITF) *QVideoProbe {
+	return NewQVideoProbeFromPointer(C.QVideoProbe_NewQVideoProbe(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QVideoProbe) ConnectFlush(f func()) {
 	if ptr.Pointer() != nil {
-		C.QVideoProbe_ConnectFlush(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoProbe_ConnectFlush(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "flush", f)
 	}
 }
 
 func (ptr *QVideoProbe) DisconnectFlush() {
 	if ptr.Pointer() != nil {
-		C.QVideoProbe_DisconnectFlush(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoProbe_DisconnectFlush(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "flush")
 	}
 }
@@ -62,28 +62,28 @@ func callbackQVideoProbeFlush(ptrName *C.char) {
 
 func (ptr *QVideoProbe) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoProbe_IsActive(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QVideoProbe_IsActive(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QVideoProbe) SetSource(source QMediaObjectITF) bool {
+func (ptr *QVideoProbe) SetSource(source QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoProbe_SetSource(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQMediaObject(source))) != 0
+		return C.QVideoProbe_SetSource(ptr.Pointer(), PointerFromQMediaObject(source)) != 0
 	}
 	return false
 }
 
-func (ptr *QVideoProbe) SetSource2(mediaRecorder QMediaRecorderITF) bool {
+func (ptr *QVideoProbe) SetSource2(mediaRecorder QMediaRecorder_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoProbe_SetSource2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQMediaRecorder(mediaRecorder))) != 0
+		return C.QVideoProbe_SetSource2(ptr.Pointer(), PointerFromQMediaRecorder(mediaRecorder)) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoProbe) DestroyQVideoProbe() {
 	if ptr.Pointer() != nil {
-		C.QVideoProbe_DestroyQVideoProbe(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoProbe_DestroyQVideoProbe(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

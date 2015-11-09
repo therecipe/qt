@@ -11,57 +11,57 @@ type QSignalMapper struct {
 	QObject
 }
 
-type QSignalMapperITF interface {
-	QObjectITF
-	QSignalMapperPTR() *QSignalMapper
+type QSignalMapper_ITF interface {
+	QObject_ITF
+	QSignalMapper_PTR() *QSignalMapper
 }
 
-func PointerFromQSignalMapper(ptr QSignalMapperITF) unsafe.Pointer {
+func PointerFromQSignalMapper(ptr QSignalMapper_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSignalMapperPTR().Pointer()
+		return ptr.QSignalMapper_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSignalMapperFromPointer(ptr unsafe.Pointer) *QSignalMapper {
+func NewQSignalMapperFromPointer(ptr unsafe.Pointer) *QSignalMapper {
 	var n = new(QSignalMapper)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QSignalMapper_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QSignalMapper) QSignalMapperPTR() *QSignalMapper {
+func (ptr *QSignalMapper) QSignalMapper_PTR() *QSignalMapper {
 	return ptr
 }
 
-func NewQSignalMapper(parent QObjectITF) *QSignalMapper {
-	return QSignalMapperFromPointer(unsafe.Pointer(C.QSignalMapper_NewQSignalMapper(C.QtObjectPtr(PointerFromQObject(parent)))))
+func NewQSignalMapper(parent QObject_ITF) *QSignalMapper {
+	return NewQSignalMapperFromPointer(C.QSignalMapper_NewQSignalMapper(PointerFromQObject(parent)))
 }
 
 func (ptr *QSignalMapper) Map() {
 	if ptr.Pointer() != nil {
-		C.QSignalMapper_Map(C.QtObjectPtr(ptr.Pointer()))
+		C.QSignalMapper_Map(ptr.Pointer())
 	}
 }
 
-func (ptr *QSignalMapper) Map2(sender QObjectITF) {
+func (ptr *QSignalMapper) Map2(sender QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSignalMapper_Map2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(sender)))
+		C.QSignalMapper_Map2(ptr.Pointer(), PointerFromQObject(sender))
 	}
 }
 
 func (ptr *QSignalMapper) ConnectMapped(f func(i int)) {
 	if ptr.Pointer() != nil {
-		C.QSignalMapper_ConnectMapped(C.QtObjectPtr(ptr.Pointer()))
+		C.QSignalMapper_ConnectMapped(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "mapped", f)
 	}
 }
 
 func (ptr *QSignalMapper) DisconnectMapped() {
 	if ptr.Pointer() != nil {
-		C.QSignalMapper_DisconnectMapped(C.QtObjectPtr(ptr.Pointer()))
+		C.QSignalMapper_DisconnectMapped(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "mapped")
 	}
 }
@@ -71,54 +71,54 @@ func callbackQSignalMapperMapped(ptrName *C.char, i C.int) {
 	qt.GetSignal(C.GoString(ptrName), "mapped").(func(int))(int(i))
 }
 
-func (ptr *QSignalMapper) Mapping4(object QObjectITF) *QObject {
+func (ptr *QSignalMapper) Mapping4(object QObject_ITF) *QObject {
 	if ptr.Pointer() != nil {
-		return QObjectFromPointer(unsafe.Pointer(C.QSignalMapper_Mapping4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(object)))))
+		return NewQObjectFromPointer(C.QSignalMapper_Mapping4(ptr.Pointer(), PointerFromQObject(object)))
 	}
 	return nil
 }
 
 func (ptr *QSignalMapper) Mapping2(id string) *QObject {
 	if ptr.Pointer() != nil {
-		return QObjectFromPointer(unsafe.Pointer(C.QSignalMapper_Mapping2(C.QtObjectPtr(ptr.Pointer()), C.CString(id))))
+		return NewQObjectFromPointer(C.QSignalMapper_Mapping2(ptr.Pointer(), C.CString(id)))
 	}
 	return nil
 }
 
 func (ptr *QSignalMapper) Mapping(id int) *QObject {
 	if ptr.Pointer() != nil {
-		return QObjectFromPointer(unsafe.Pointer(C.QSignalMapper_Mapping(C.QtObjectPtr(ptr.Pointer()), C.int(id))))
+		return NewQObjectFromPointer(C.QSignalMapper_Mapping(ptr.Pointer(), C.int(id)))
 	}
 	return nil
 }
 
-func (ptr *QSignalMapper) RemoveMappings(sender QObjectITF) {
+func (ptr *QSignalMapper) RemoveMappings(sender QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSignalMapper_RemoveMappings(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(sender)))
+		C.QSignalMapper_RemoveMappings(ptr.Pointer(), PointerFromQObject(sender))
 	}
 }
 
-func (ptr *QSignalMapper) SetMapping4(sender QObjectITF, object QObjectITF) {
+func (ptr *QSignalMapper) SetMapping4(sender QObject_ITF, object QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSignalMapper_SetMapping4(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(sender)), C.QtObjectPtr(PointerFromQObject(object)))
+		C.QSignalMapper_SetMapping4(ptr.Pointer(), PointerFromQObject(sender), PointerFromQObject(object))
 	}
 }
 
-func (ptr *QSignalMapper) SetMapping2(sender QObjectITF, text string) {
+func (ptr *QSignalMapper) SetMapping2(sender QObject_ITF, text string) {
 	if ptr.Pointer() != nil {
-		C.QSignalMapper_SetMapping2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(sender)), C.CString(text))
+		C.QSignalMapper_SetMapping2(ptr.Pointer(), PointerFromQObject(sender), C.CString(text))
 	}
 }
 
-func (ptr *QSignalMapper) SetMapping(sender QObjectITF, id int) {
+func (ptr *QSignalMapper) SetMapping(sender QObject_ITF, id int) {
 	if ptr.Pointer() != nil {
-		C.QSignalMapper_SetMapping(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(sender)), C.int(id))
+		C.QSignalMapper_SetMapping(ptr.Pointer(), PointerFromQObject(sender), C.int(id))
 	}
 }
 
 func (ptr *QSignalMapper) DestroyQSignalMapper() {
 	if ptr.Pointer() != nil {
-		C.QSignalMapper_DestroyQSignalMapper(C.QtObjectPtr(ptr.Pointer()))
+		C.QSignalMapper_DestroyQSignalMapper(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

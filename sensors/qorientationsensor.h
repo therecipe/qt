@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QOrientationSensor_Reading(QtObjectPtr ptr);
-QtObjectPtr QOrientationSensor_NewQOrientationSensor(QtObjectPtr parent);
-void QOrientationSensor_DestroyQOrientationSensor(QtObjectPtr ptr);
+void* QOrientationSensor_Reading(void* ptr);
+void* QOrientationSensor_NewQOrientationSensor(void* parent);
+void QOrientationSensor_DestroyQOrientationSensor(void* ptr);
 
 #ifdef __cplusplus
 }

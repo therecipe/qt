@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{attributeDecl QXmlDeclHandler::attributeDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8226a3000 0xc8226a3100 0xc8226a31a0 0xc8226a3240 0xc8226a3360] }
-&{errorString QXmlDeclHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString [] }
-&{externalEntityDecl QXmlDeclHandler::externalEntityDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8226a3760 0xc8226a3860 0xc8226a3920] }
-&{internalEntityDecl QXmlDeclHandler::internalEntityDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool [0xc8226a3ba0 0xc8226a3ca0] }
-&{~QXmlDeclHandler QXmlDeclHandler::~QXmlDeclHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   [] }
+&{attributeDecl QXmlDeclHandler::attributeDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool attributeDecl(const QString &eName, const QString &aName, const QString &type, const QString &valueDefault, const QString &value) [0xc82148d2e0 0xc82148d400 0xc82148d4e0 0xc82148d600 0xc82148d700] }
+&{errorString QXmlDeclHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString QString errorString() const [] }
+&{externalEntityDecl QXmlDeclHandler::externalEntityDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool externalEntityDecl(const QString &name, const QString &publicId, const QString &systemId) [0xc82148dce0 0xc82148dd80 0xc82148de80] }
+&{internalEntityDecl QXmlDeclHandler::internalEntityDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool internalEntityDecl(const QString &name, const QString &value) [0xc821538180 0xc8215382a0] }
+&{~QXmlDeclHandler QXmlDeclHandler::~QXmlDeclHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   ~QXmlDeclHandler() [] }
 ########################################			ENUMS			########################################

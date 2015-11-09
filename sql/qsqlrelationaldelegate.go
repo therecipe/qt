@@ -10,8 +10,8 @@ type QSqlRelationalDelegate struct {
 	ptr unsafe.Pointer
 }
 
-type QSqlRelationalDelegateITF interface {
-	QSqlRelationalDelegatePTR() *QSqlRelationalDelegate
+type QSqlRelationalDelegate_ITF interface {
+	QSqlRelationalDelegate_PTR() *QSqlRelationalDelegate
 }
 
 func (p *QSqlRelationalDelegate) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QSqlRelationalDelegate) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSqlRelationalDelegate(ptr QSqlRelationalDelegateITF) unsafe.Pointer {
+func PointerFromQSqlRelationalDelegate(ptr QSqlRelationalDelegate_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSqlRelationalDelegatePTR().Pointer()
+		return ptr.QSqlRelationalDelegate_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSqlRelationalDelegateFromPointer(ptr unsafe.Pointer) *QSqlRelationalDelegate {
+func NewQSqlRelationalDelegateFromPointer(ptr unsafe.Pointer) *QSqlRelationalDelegate {
 	var n = new(QSqlRelationalDelegate)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSqlRelationalDelegate) QSqlRelationalDelegatePTR() *QSqlRelationalDelegate {
+func (ptr *QSqlRelationalDelegate) QSqlRelationalDelegate_PTR() *QSqlRelationalDelegate {
 	return ptr
 }

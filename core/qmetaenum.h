@@ -1,14 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QMetaEnum_IsFlag(QtObjectPtr ptr);
-int QMetaEnum_IsValid(QtObjectPtr ptr);
-int QMetaEnum_KeyCount(QtObjectPtr ptr);
-int QMetaEnum_KeyToValue(QtObjectPtr ptr, char* key, int ok);
-int QMetaEnum_KeysToValue(QtObjectPtr ptr, char* keys, int ok);
-int QMetaEnum_Value(QtObjectPtr ptr, int index);
+int QMetaEnum_IsFlag(void* ptr);
+int QMetaEnum_IsValid(void* ptr);
+int QMetaEnum_KeyCount(void* ptr);
+int QMetaEnum_KeyToValue(void* ptr, char* key, int ok);
+int QMetaEnum_KeysToValue(void* ptr, char* keys, int ok);
+int QMetaEnum_Value(void* ptr, int index);
+void* QMetaEnum_ValueToKeys(void* ptr, int value);
 
 #ifdef __cplusplus
 }

@@ -12,27 +12,27 @@ type QAccessiblePlugin struct {
 	core.QObject
 }
 
-type QAccessiblePluginITF interface {
-	core.QObjectITF
-	QAccessiblePluginPTR() *QAccessiblePlugin
+type QAccessiblePlugin_ITF interface {
+	core.QObject_ITF
+	QAccessiblePlugin_PTR() *QAccessiblePlugin
 }
 
-func PointerFromQAccessiblePlugin(ptr QAccessiblePluginITF) unsafe.Pointer {
+func PointerFromQAccessiblePlugin(ptr QAccessiblePlugin_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAccessiblePluginPTR().Pointer()
+		return ptr.QAccessiblePlugin_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAccessiblePluginFromPointer(ptr unsafe.Pointer) *QAccessiblePlugin {
+func NewQAccessiblePluginFromPointer(ptr unsafe.Pointer) *QAccessiblePlugin {
 	var n = new(QAccessiblePlugin)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAccessiblePlugin_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAccessiblePlugin) QAccessiblePluginPTR() *QAccessiblePlugin {
+func (ptr *QAccessiblePlugin) QAccessiblePlugin_PTR() *QAccessiblePlugin {
 	return ptr
 }

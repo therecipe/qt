@@ -10,46 +10,46 @@ type QStyleOptionToolButton struct {
 	QStyleOptionComplex
 }
 
-type QStyleOptionToolButtonITF interface {
-	QStyleOptionComplexITF
-	QStyleOptionToolButtonPTR() *QStyleOptionToolButton
+type QStyleOptionToolButton_ITF interface {
+	QStyleOptionComplex_ITF
+	QStyleOptionToolButton_PTR() *QStyleOptionToolButton
 }
 
-func PointerFromQStyleOptionToolButton(ptr QStyleOptionToolButtonITF) unsafe.Pointer {
+func PointerFromQStyleOptionToolButton(ptr QStyleOptionToolButton_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionToolButtonPTR().Pointer()
+		return ptr.QStyleOptionToolButton_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionToolButtonFromPointer(ptr unsafe.Pointer) *QStyleOptionToolButton {
+func NewQStyleOptionToolButtonFromPointer(ptr unsafe.Pointer) *QStyleOptionToolButton {
 	var n = new(QStyleOptionToolButton)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionToolButton) QStyleOptionToolButtonPTR() *QStyleOptionToolButton {
+func (ptr *QStyleOptionToolButton) QStyleOptionToolButton_PTR() *QStyleOptionToolButton {
 	return ptr
 }
 
 //QStyleOptionToolButton::StyleOptionType
-type QStyleOptionToolButton__StyleOptionType int
+type QStyleOptionToolButton__StyleOptionType int64
 
 var (
 	QStyleOptionToolButton__Type = QStyleOptionToolButton__StyleOptionType(QStyleOption__SO_ToolButton)
 )
 
 //QStyleOptionToolButton::StyleOptionVersion
-type QStyleOptionToolButton__StyleOptionVersion int
+type QStyleOptionToolButton__StyleOptionVersion int64
 
 var (
 	QStyleOptionToolButton__Version = QStyleOptionToolButton__StyleOptionVersion(1)
 )
 
 //QStyleOptionToolButton::ToolButtonFeature
-type QStyleOptionToolButton__ToolButtonFeature int
+type QStyleOptionToolButton__ToolButtonFeature int64
 
-var (
+const (
 	QStyleOptionToolButton__None            = QStyleOptionToolButton__ToolButtonFeature(0x00)
 	QStyleOptionToolButton__Arrow           = QStyleOptionToolButton__ToolButtonFeature(0x01)
 	QStyleOptionToolButton__Menu            = QStyleOptionToolButton__ToolButtonFeature(0x04)
@@ -59,9 +59,9 @@ var (
 )
 
 func NewQStyleOptionToolButton() *QStyleOptionToolButton {
-	return QStyleOptionToolButtonFromPointer(unsafe.Pointer(C.QStyleOptionToolButton_NewQStyleOptionToolButton()))
+	return NewQStyleOptionToolButtonFromPointer(C.QStyleOptionToolButton_NewQStyleOptionToolButton())
 }
 
-func NewQStyleOptionToolButton2(other QStyleOptionToolButtonITF) *QStyleOptionToolButton {
-	return QStyleOptionToolButtonFromPointer(unsafe.Pointer(C.QStyleOptionToolButton_NewQStyleOptionToolButton2(C.QtObjectPtr(PointerFromQStyleOptionToolButton(other)))))
+func NewQStyleOptionToolButton2(other QStyleOptionToolButton_ITF) *QStyleOptionToolButton {
+	return NewQStyleOptionToolButtonFromPointer(C.QStyleOptionToolButton_NewQStyleOptionToolButton2(PointerFromQStyleOptionToolButton(other)))
 }

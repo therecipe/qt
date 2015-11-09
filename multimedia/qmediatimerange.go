@@ -10,8 +10,8 @@ type QMediaTimeRange struct {
 	ptr unsafe.Pointer
 }
 
-type QMediaTimeRangeITF interface {
-	QMediaTimeRangePTR() *QMediaTimeRange
+type QMediaTimeRange_ITF interface {
+	QMediaTimeRange_PTR() *QMediaTimeRange
 }
 
 func (p *QMediaTimeRange) Pointer() unsafe.Pointer {
@@ -22,81 +22,81 @@ func (p *QMediaTimeRange) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMediaTimeRange(ptr QMediaTimeRangeITF) unsafe.Pointer {
+func PointerFromQMediaTimeRange(ptr QMediaTimeRange_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaTimeRangePTR().Pointer()
+		return ptr.QMediaTimeRange_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaTimeRangeFromPointer(ptr unsafe.Pointer) *QMediaTimeRange {
+func NewQMediaTimeRangeFromPointer(ptr unsafe.Pointer) *QMediaTimeRange {
 	var n = new(QMediaTimeRange)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMediaTimeRange) QMediaTimeRangePTR() *QMediaTimeRange {
+func (ptr *QMediaTimeRange) QMediaTimeRange_PTR() *QMediaTimeRange {
 	return ptr
 }
 
 func NewQMediaTimeRange() *QMediaTimeRange {
-	return QMediaTimeRangeFromPointer(unsafe.Pointer(C.QMediaTimeRange_NewQMediaTimeRange()))
+	return NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange())
 }
 
-func NewQMediaTimeRange3(interval QMediaTimeIntervalITF) *QMediaTimeRange {
-	return QMediaTimeRangeFromPointer(unsafe.Pointer(C.QMediaTimeRange_NewQMediaTimeRange3(C.QtObjectPtr(PointerFromQMediaTimeInterval(interval)))))
+func NewQMediaTimeRange3(interval QMediaTimeInterval_ITF) *QMediaTimeRange {
+	return NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange3(PointerFromQMediaTimeInterval(interval)))
 }
 
-func NewQMediaTimeRange4(ran QMediaTimeRangeITF) *QMediaTimeRange {
-	return QMediaTimeRangeFromPointer(unsafe.Pointer(C.QMediaTimeRange_NewQMediaTimeRange4(C.QtObjectPtr(PointerFromQMediaTimeRange(ran)))))
+func NewQMediaTimeRange4(ran QMediaTimeRange_ITF) *QMediaTimeRange {
+	return NewQMediaTimeRangeFromPointer(C.QMediaTimeRange_NewQMediaTimeRange4(PointerFromQMediaTimeRange(ran)))
 }
 
-func (ptr *QMediaTimeRange) AddInterval(interval QMediaTimeIntervalITF) {
+func (ptr *QMediaTimeRange) AddInterval(interval QMediaTimeInterval_ITF) {
 	if ptr.Pointer() != nil {
-		C.QMediaTimeRange_AddInterval(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQMediaTimeInterval(interval)))
+		C.QMediaTimeRange_AddInterval(ptr.Pointer(), PointerFromQMediaTimeInterval(interval))
 	}
 }
 
-func (ptr *QMediaTimeRange) AddTimeRange(ran QMediaTimeRangeITF) {
+func (ptr *QMediaTimeRange) AddTimeRange(ran QMediaTimeRange_ITF) {
 	if ptr.Pointer() != nil {
-		C.QMediaTimeRange_AddTimeRange(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQMediaTimeRange(ran)))
+		C.QMediaTimeRange_AddTimeRange(ptr.Pointer(), PointerFromQMediaTimeRange(ran))
 	}
 }
 
 func (ptr *QMediaTimeRange) Clear() {
 	if ptr.Pointer() != nil {
-		C.QMediaTimeRange_Clear(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaTimeRange_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QMediaTimeRange) IsContinuous() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaTimeRange_IsContinuous(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMediaTimeRange_IsContinuous(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QMediaTimeRange) IsEmpty() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaTimeRange_IsEmpty(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMediaTimeRange_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QMediaTimeRange) RemoveInterval(interval QMediaTimeIntervalITF) {
+func (ptr *QMediaTimeRange) RemoveInterval(interval QMediaTimeInterval_ITF) {
 	if ptr.Pointer() != nil {
-		C.QMediaTimeRange_RemoveInterval(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQMediaTimeInterval(interval)))
+		C.QMediaTimeRange_RemoveInterval(ptr.Pointer(), PointerFromQMediaTimeInterval(interval))
 	}
 }
 
-func (ptr *QMediaTimeRange) RemoveTimeRange(ran QMediaTimeRangeITF) {
+func (ptr *QMediaTimeRange) RemoveTimeRange(ran QMediaTimeRange_ITF) {
 	if ptr.Pointer() != nil {
-		C.QMediaTimeRange_RemoveTimeRange(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQMediaTimeRange(ran)))
+		C.QMediaTimeRange_RemoveTimeRange(ptr.Pointer(), PointerFromQMediaTimeRange(ran))
 	}
 }
 
 func (ptr *QMediaTimeRange) DestroyQMediaTimeRange() {
 	if ptr.Pointer() != nil {
-		C.QMediaTimeRange_DestroyQMediaTimeRange(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaTimeRange_DestroyQMediaTimeRange(ptr.Pointer())
 	}
 }

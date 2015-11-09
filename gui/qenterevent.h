@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QEnterEvent_NewQEnterEvent(QtObjectPtr localPos, QtObjectPtr windowPos, QtObjectPtr screenPos);
-int QEnterEvent_GlobalX(QtObjectPtr ptr);
-int QEnterEvent_GlobalY(QtObjectPtr ptr);
-int QEnterEvent_X(QtObjectPtr ptr);
-int QEnterEvent_Y(QtObjectPtr ptr);
+void* QEnterEvent_NewQEnterEvent(void* localPos, void* windowPos, void* screenPos);
+int QEnterEvent_GlobalX(void* ptr);
+int QEnterEvent_GlobalY(void* ptr);
+int QEnterEvent_X(void* ptr);
+int QEnterEvent_Y(void* ptr);
 
 #ifdef __cplusplus
 }

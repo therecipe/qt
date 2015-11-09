@@ -1,282 +1,282 @@
 ########################################			FUNCTIONS			########################################
-&{acceptDrops QWidget::acceptDrops commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool [] }
-&{accessibleDescription QWidget::accessibleDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString [] }
-&{accessibleName QWidget::accessibleName commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString [] }
-&{actionEvent QWidget::actionEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc82210dd80] }
-&{activateWindow QWidget::activateWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [] }
-&{autoFillBackground QWidget::autoFillBackground commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool [] }
-&{baseSize QWidget::baseSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QSize [] }
-&{childrenRect QWidget::childrenRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QRect [] }
-&{childrenRegion QWidget::childrenRegion commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QRegion [] }
-&{clearMask QWidget::clearMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [] }
-&{contextMenuPolicy QWidget::contextMenuPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  Qt::ContextMenuPolicy [] }
-&{cursor QWidget::cursor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QCursor [] }
-&{destroy QWidget::destroy commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82211ce20 0xc82211cf00] }
-&{dragEnterEvent QWidget::dragEnterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc82211d220] }
-&{dragLeaveEvent QWidget::dragLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc82211d540] }
-&{dragMoveEvent QWidget::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc82211d7a0] }
-&{dropEvent QWidget::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc82211db40] }
-&{enterEvent QWidget::enterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc82211dd80] }
-&{focusInEvent QWidget::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc82213a040] }
-&{focusOutEvent QWidget::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc82213a340] }
-&{focusPolicy QWidget::focusPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  Qt::FocusPolicy [] }
-&{frameGeometry QWidget::frameGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QRect [] }
-&{frameSize QWidget::frameSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QSize [] }
-&{grabKeyboard QWidget::grabKeyboard commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [] }
-&{grabMouse QWidget::grabMouse commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [] }
-&{grabMouse QWidget::grabMouse commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false true 2 void [0xc82213ae20] }
-&{hasFocus QWidget::hasFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool [] }
-&{hideEvent QWidget::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc82213b320] }
-&{inputMethodHints QWidget::inputMethodHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  Qt::InputMethodHints [] }
-&{isActiveWindow QWidget::isActiveWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool [] }
-&{isFullScreen QWidget::isFullScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool [] }
-&{isMaximized QWidget::isMaximized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool [] }
-&{isMinimized QWidget::isMinimized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool [] }
-&{isWindowModified QWidget::isWindowModified commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool [] }
-&{keyboardGrabber QWidget::keyboardGrabber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain true false  QWidget * [] }
-&{layoutDirection QWidget::layoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  Qt::LayoutDirection [] }
-&{leaveEvent QWidget::leaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc82214e2e0] }
-&{locale QWidget::locale commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QLocale [] }
-&{mapFromGlobal QWidget::mapFromGlobal commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QPoint [0xc82214e640] }
-&{mapToGlobal QWidget::mapToGlobal commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QPoint [0xc82214e880] }
-&{maximumSize QWidget::maximumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QSize [] }
-&{metric QWidget::metric commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  int [0xc82214eb20] }
-&{minimumSize QWidget::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QSize [] }
-&{minimumSizeHint QWidget::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  QSize [] }
-&{mouseGrabber QWidget::mouseGrabber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain true false  QWidget * [] }
-&{move QWidget::move commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82214f100] }
-&{moveEvent QWidget::moveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc82214f2e0] }
-&{normalGeometry QWidget::normalGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QRect [] }
-&{paintEngine QWidget::paintEngine commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  QPaintEngine * [] }
-&{paintEvent QWidget::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc82214f6c0] }
-&{palette QWidget::palette commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  const QPalette & [] }
-&{pos QWidget::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QPoint [] }
-&{releaseKeyboard QWidget::releaseKeyboard commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [] }
-&{releaseMouse QWidget::releaseMouse commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [] }
-&{resize QWidget::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82214fca0] }
-&{setAcceptDrops QWidget::setAcceptDrops commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82214ff20] }
-&{setAccessibleDescription QWidget::setAccessibleDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822164160] }
-&{setAccessibleName QWidget::setAccessibleName commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822164440] }
-&{setAutoFillBackground QWidget::setAutoFillBackground commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822164700] }
-&{setContextMenuPolicy QWidget::setContextMenuPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822164960] }
-&{setCursor QWidget::setCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822164c20] }
-&{setEditFocus QWidget::setEditFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822164e40] }
-&{setEnabled QWidget::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non slot false false  void [0xc822165060] }
-&{setFixedSize QWidget::setFixedSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false true 2 void [0xc822165240 0xc8221652c0] }
-&{setFocusPolicy QWidget::setFocusPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822165500] }
-&{setFont QWidget::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822165720] }
-&{setGeometry QWidget::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822165960] }
-&{setInputMethodHints QWidget::setInputMethodHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822165c60] }
-&{setLayout QWidget::setLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822165f00] }
-&{setLayoutDirection QWidget::setLayoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82217c220] }
-&{setLocale QWidget::setLocale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82217c4e0] }
-&{setMask QWidget::setMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82217c640] }
-&{setMask QWidget::setMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false true 2 void [0xc82217c7a0] }
-&{setMaximumHeight QWidget::setMaximumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82217ca20] }
-&{setMaximumWidth QWidget::setMaximumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82217cd20] }
-&{setMinimumHeight QWidget::setMinimumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82217d0c0] }
-&{setMinimumWidth QWidget::setMinimumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82217d3e0] }
-&{setPalette QWidget::setPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82217d680] }
-&{setSizePolicy QWidget::setSizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82217d980] }
-&{setStatusTip QWidget::setStatusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc82217dba0] }
-&{setStyleSheet QWidget::setStyleSheet commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non slot false false  void [0xc82217de60] }
-&{setToolTip QWidget::setToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc8221940e0] }
-&{setToolTipDuration QWidget::setToolTipDuration commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822194380] }
-&{setUpdatesEnabled QWidget::setUpdatesEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822194660] }
-&{setVisible QWidget::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure slot false false  void [0xc822194880] }
-&{setWhatsThis QWidget::setWhatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822194a60] }
-&{setWindowFilePath QWidget::setWindowFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822194d80] }
-&{setWindowFlags QWidget::setWindowFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822194fc0] }
-&{setWindowIcon QWidget::setWindowIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822195220] }
-&{setWindowIconText QWidget::setWindowIconText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822195500] }
-&{setWindowModality QWidget::setWindowModality commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822195800] }
-&{setWindowModified QWidget::setWindowModified commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non slot false false  void [0xc822195b80] }
-&{setWindowOpacity QWidget::setWindowOpacity commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc822195dc0] }
-&{setWindowState QWidget::setWindowState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [0xc8221a4000] }
-&{setWindowTitle QWidget::setWindowTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non slot false false  void [0xc8221a4240] }
-&{showEvent QWidget::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void [0xc8221a4460] }
-&{sizeHint QWidget::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  QSize [] }
-&{sizeIncrement QWidget::sizeIncrement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QSize [] }
-&{sizePolicy QWidget::sizePolicy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QSizePolicy [] }
-&{statusTip QWidget::statusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString [] }
-&{styleSheet QWidget::styleSheet commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString [] }
-&{toolTip QWidget::toolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString [] }
-&{toolTipDuration QWidget::toolTipDuration commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  int [] }
-&{unsetCursor QWidget::unsetCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [] }
-&{unsetLayoutDirection QWidget::unsetLayoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [] }
-&{unsetLocale QWidget::unsetLocale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void [] }
-&{whatsThis QWidget::whatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString [] }
-&{winId QWidget::winId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  WId [] }
-&{windowFilePath QWidget::windowFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString [] }
-&{windowIcon QWidget::windowIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QIcon [] }
-&{windowIconText QWidget::windowIconText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString [] }
-&{windowModality QWidget::windowModality commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  Qt::WindowModality [] }
-&{windowOpacity QWidget::windowOpacity commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  qreal [] }
-&{windowTitle QWidget::windowTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString [] }
-&{x QWidget::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  int [] }
-&{y QWidget::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  int [] }
-&{QWidget QWidget::QWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non constructor false false   [0xc8221bc980 0xc8221bca40] }
-&{actions QWidget::actions commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QList<QAction *> [] }
-&{addAction QWidget::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc8221d2000] }
-&{addActions QWidget::addActions commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc8221d2240] }
-&{adjustSize QWidget::adjustSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [] }
-&{backgroundRole QWidget::backgroundRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPalette::ColorRole [] }
-&{backingStore QWidget::backingStore commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QBackingStore * [] }
-&{changeEvent QWidget::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc8221d28c0] }
-&{childAt QWidget::childAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 QWidget * [0xc8221d2a80] }
-&{childAt QWidget::childAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * [0xc8221d2c20 0xc8221d2cc0] }
-&{clearFocus QWidget::clearFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [] }
-&{close QWidget::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  bool [] }
-&{closeEvent QWidget::closeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc8221d30e0] }
-&{contentsMargins QWidget::contentsMargins commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QMargins [] }
-&{contentsRect QWidget::contentsRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QRect [] }
-&{contextMenuEvent QWidget::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc8221d35c0] }
-&{create QWidget::create commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc8221d37a0 0xc8221d3820 0xc8221d3920] }
-&{customContextMenuRequested QWidget::customContextMenuRequested commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non signal false false  void [0xc8221d3b00] }
-&{effectiveWinId QWidget::effectiveWinId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  WId [] }
-&{ensurePolished QWidget::ensurePolished commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [] }
-&{event QWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  bool [0xc821e9e0a0] }
-&{find QWidget::find commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain true false  QWidget * [0xc821e9e2c0] }
-&{focusNextChild QWidget::focusNextChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [] }
-&{focusNextPrevChild QWidget::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  bool [0xc821e9e680] }
-&{focusPreviousChild QWidget::focusPreviousChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [] }
-&{focusProxy QWidget::focusProxy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * [] }
-&{focusWidget QWidget::focusWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * [] }
-&{font QWidget::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  const QFont & [] }
-&{fontInfo QWidget::fontInfo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QFontInfo [] }
-&{fontMetrics QWidget::fontMetrics commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QFontMetrics [] }
-&{foregroundRole QWidget::foregroundRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPalette::ColorRole [] }
-&{geometry QWidget::geometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  const QRect & [] }
-&{getContentsMargins QWidget::getContentsMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc821e9f360 0xc821e9f420 0xc821e9f4c0 0xc821e9f540] }
-&{grab QWidget::grab commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPixmap [0xc821e9f720] }
-&{grabGesture QWidget::grabGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc821e9f940 0xc821e9fa40] }
-&{grabShortcut QWidget::grabShortcut commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int [0xc821e9fca0 0xc821e9fda0] }
-&{graphicsEffect QWidget::graphicsEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QGraphicsEffect * [] }
-&{graphicsProxyWidget QWidget::graphicsProxyWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QGraphicsProxyWidget * [] }
-&{hasEditFocus QWidget::hasEditFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [] }
-&{hasHeightForWidth QWidget::hasHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  bool [] }
-&{hasMouseTracking QWidget::hasMouseTracking commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [] }
-&{height QWidget::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int [] }
-&{heightForWidth QWidget::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  int [0xc8221e8860] }
-&{hide QWidget::hide commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [] }
-&{initPainter QWidget::initPainter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc8221e8b00] }
-&{inputMethodEvent QWidget::inputMethodEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc8221e8da0] }
-&{inputMethodQuery QWidget::inputMethodQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  QVariant [0xc8221e9020] }
-&{insertAction QWidget::insertAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc8221e92e0 0xc8221e9360] }
-&{insertActions QWidget::insertActions commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc8221e9580 0xc8221e9660] }
-&{isAncestorOf QWidget::isAncestorOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [0xc8221e99e0] }
-&{isEnabled QWidget::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [] }
-&{isEnabledTo QWidget::isEnabledTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [0xc8221e9d20] }
-&{isHidden QWidget::isHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [] }
-&{isModal QWidget::isModal commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [] }
-&{isVisible QWidget::isVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [] }
-&{isVisibleTo QWidget::isVisibleTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [0xc822b3e520] }
-&{isWindow QWidget::isWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [] }
-&{keyPressEvent QWidget::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc822b3e940] }
-&{keyReleaseEvent QWidget::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc822b3eb20] }
-&{layout QWidget::layout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QLayout * [] }
-&{lower QWidget::lower commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [] }
-&{mapFrom QWidget::mapFrom commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPoint [0xc822b3eee0 0xc822b3efe0] }
-&{mapFromParent QWidget::mapFromParent commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPoint [0xc822b3f240] }
-&{mapTo QWidget::mapTo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPoint [0xc822b3f4a0 0xc822b3f580] }
-&{mapToParent QWidget::mapToParent commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPoint [0xc822b3f880] }
-&{mask QWidget::mask commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QRegion [] }
-&{maximumHeight QWidget::maximumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int [] }
-&{maximumWidth QWidget::maximumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int [] }
-&{minimumHeight QWidget::minimumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int [] }
-&{minimumWidth QWidget::minimumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int [] }
-&{mouseDoubleClickEvent QWidget::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc822b52400] }
-&{mouseMoveEvent QWidget::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc822b526a0] }
-&{mousePressEvent QWidget::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc822b52960] }
-&{mouseReleaseEvent QWidget::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc822b52d20] }
-&{move QWidget::move commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc822b52fc0 0xc822b530a0] }
-&{nativeEvent QWidget::nativeEvent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  bool [0xc822b533c0 0xc822b534e0 0xc822b535c0] }
-&{nativeParentWidget QWidget::nativeParentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * [] }
-&{nextInFocusChain QWidget::nextInFocusChain commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * [] }
-&{overrideWindowFlags QWidget::overrideWindowFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc822b53c80] }
-&{parentWidget QWidget::parentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * [] }
-&{previousInFocusChain QWidget::previousInFocusChain commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * [] }
-&{raise QWidget::raise commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [] }
-&{rect QWidget::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QRect [] }
-&{releaseShortcut QWidget::releaseShortcut commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82254e4e0] }
-&{removeAction QWidget::removeAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82254e760] }
-&{render QWidget::render commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82254e9c0 0xc82254eac0 0xc82254eb60 0xc82254ec20] }
-&{render QWidget::render commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc82254ee60 0xc82254ef20 0xc82254f000 0xc82254f0a0] }
-&{repaint QWidget::repaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [] }
-&{repaint QWidget::repaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 3 void [0xc82254f3e0] }
-&{repaint QWidget::repaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 4 void [0xc82254f660] }
-&{repaint QWidget::repaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc82254f840 0xc82254f920 0xc82254f9c0 0xc82254fac0] }
-&{resize QWidget::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc82254fd20 0xc82254fda0] }
-&{resizeEvent QWidget::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc82255e0a0] }
-&{restoreGeometry QWidget::restoreGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [0xc82255e3a0] }
-&{saveGeometry QWidget::saveGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QByteArray [] }
-&{scroll QWidget::scroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82255e840 0xc82255e900] }
-&{scroll QWidget::scroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc82255eb00 0xc82255ec00 0xc82255ece0] }
-&{setAttribute QWidget::setAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82255efc0 0xc82255f120] }
-&{setBackgroundRole QWidget::setBackgroundRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82255f4a0] }
-&{setBaseSize QWidget::setBaseSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82255f800] }
-&{setBaseSize QWidget::setBaseSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc82255fb00 0xc82255fba0] }
-&{setContentsMargins QWidget::setContentsMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc82255fee0] }
-&{setContentsMargins QWidget::setContentsMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82256a240 0xc82256a360 0xc82256a440 0xc82256a4e0] }
-&{setDisabled QWidget::setDisabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [0xc82256a840] }
-&{setFixedHeight QWidget::setFixedHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82256ac40] }
-&{setFixedSize QWidget::setFixedSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82256afe0] }
-&{setFixedWidth QWidget::setFixedWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82256b3e0] }
-&{setFocus QWidget::setFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false true 2 void [] }
-&{setFocus QWidget::setFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82256b8e0] }
-&{setFocusProxy QWidget::setFocusProxy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82256bca0] }
-&{setForegroundRole QWidget::setForegroundRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82257a160] }
-&{setGeometry QWidget::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc82257a600 0xc82257a6e0 0xc82257a820 0xc82257a9a0] }
-&{setGraphicsEffect QWidget::setGraphicsEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82257af00] }
-&{setHidden QWidget::setHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [0xc82257b3e0] }
-&{setMaximumSize QWidget::setMaximumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82257b960] }
-&{setMaximumSize QWidget::setMaximumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc82257bde0 0xc82257bf40] }
-&{setMinimumSize QWidget::setMinimumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc822588220] }
-&{setMinimumSize QWidget::setMinimumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc822588500 0xc822588620] }
-&{setMouseTracking QWidget::setMouseTracking commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc822588940] }
-&{setParent QWidget::setParent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc822588c40] }
-&{setParent QWidget::setParent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc822588f40 0xc822588fc0] }
-&{setShortcutAutoRepeat QWidget::setShortcutAutoRepeat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc822589300 0xc822589400] }
-&{setShortcutEnabled QWidget::setShortcutEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc822589700 0xc8225897c0] }
-&{setSizeIncrement QWidget::setSizeIncrement commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc822589ac0] }
-&{setSizeIncrement QWidget::setSizeIncrement commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc822589e00 0xc822589e80] }
-&{setSizePolicy QWidget::setSizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc82259a1c0 0xc82259a320] }
-&{setStyle QWidget::setStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82259a680] }
-&{setTabOrder QWidget::setTabOrder commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain true false  void [0xc82259a960 0xc82259a9e0] }
-&{setWindowRole QWidget::setWindowRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82259acc0] }
-&{setupUi QWidget::setupUi commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82259af20] }
-&{show QWidget::show commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [] }
-&{showFullScreen QWidget::showFullScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [] }
-&{showMaximized QWidget::showMaximized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [] }
-&{showMinimized QWidget::showMinimized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [] }
-&{showNormal QWidget::showNormal commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [] }
-&{size QWidget::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QSize [] }
-&{stackUnder QWidget::stackUnder commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc82259ba80] }
-&{style QWidget::style commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QStyle * [] }
-&{tabletEvent QWidget::tabletEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc82259be60] }
-&{testAttribute QWidget::testAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [0xc8225a8140] }
-&{underMouse QWidget::underMouse commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [] }
-&{ungrabGesture QWidget::ungrabGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [0xc8225a8740] }
-&{update QWidget::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [] }
-&{update QWidget::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 3 void [0xc8225a8a40] }
-&{update QWidget::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 4 void [0xc8225a8ca0] }
-&{update QWidget::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void [0xc8225a8ec0 0xc8225a8fc0 0xc8225a9040 0xc8225a9120] }
-&{updateGeometry QWidget::updateGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void [] }
-&{updateMicroFocus QWidget::updateMicroFocus commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void [] }
-&{updatesEnabled QWidget::updatesEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool [] }
-&{visibleRegion QWidget::visibleRegion commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QRegion [] }
-&{wheelEvent QWidget::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void [0xc8225a9ac0] }
-&{width QWidget::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int [] }
-&{window QWidget::window commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * [] }
-&{windowFlags QWidget::windowFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  Qt::WindowFlags [] }
-&{windowHandle QWidget::windowHandle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWindow * [] }
-&{windowIconChanged QWidget::windowIconChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non signal false false  void [0xc8225ba3a0] }
-&{windowIconTextChanged QWidget::windowIconTextChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non signal false false  void [0xc8225ba720] }
-&{windowRole QWidget::windowRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QString [] }
-&{windowState QWidget::windowState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  Qt::WindowStates [] }
-&{windowTitleChanged QWidget::windowTitleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non signal false false  void [0xc8225bae40] }
-&{windowType QWidget::windowType commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  Qt::WindowType [] }
-&{~QWidget QWidget::~QWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non destructor false false   [] }
-&{createWindowContainer QWidget::createWindowContainer commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwindowcontainer.cpp non plain true false  QWidget * [0xc8225d8d20 0xc8225d8e20 0xc8225d8f20] }
+&{acceptDrops QWidget::acceptDrops commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool bool acceptDrops() const [] }
+&{accessibleDescription QWidget::accessibleDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString QString accessibleDescription() const [] }
+&{accessibleName QWidget::accessibleName commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString QString accessibleName() const [] }
+&{actionEvent QWidget::actionEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void actionEvent(QActionEvent *event) [0xc822b29500] }
+&{activateWindow QWidget::activateWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void activateWindow() [] }
+&{autoFillBackground QWidget::autoFillBackground commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool bool autoFillBackground() const [] }
+&{baseSize QWidget::baseSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QSize QSize baseSize() const [] }
+&{childrenRect QWidget::childrenRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QRect QRect childrenRect() const [] }
+&{childrenRegion QWidget::childrenRegion commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QRegion QRegion childrenRegion() const [] }
+&{clearMask QWidget::clearMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void clearMask() [] }
+&{contextMenuPolicy QWidget::contextMenuPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  Qt::ContextMenuPolicy Qt::ContextMenuPolicy contextMenuPolicy() const [] }
+&{cursor QWidget::cursor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QCursor QCursor cursor() const [] }
+&{destroy QWidget::destroy commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void destroy(bool destroyWindow, bool destroySubWindows) [0xc822b3a440 0xc822b3a4e0] }
+&{dragEnterEvent QWidget::dragEnterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void dragEnterEvent(QDragEnterEvent *event) [0xc822b3a700] }
+&{dragLeaveEvent QWidget::dragLeaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void dragLeaveEvent(QDragLeaveEvent *event) [0xc822b3a920] }
+&{dragMoveEvent QWidget::dragMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void dragMoveEvent(QDragMoveEvent *event) [0xc822b3ab20] }
+&{dropEvent QWidget::dropEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void dropEvent(QDropEvent *event) [0xc822b3ada0] }
+&{enterEvent QWidget::enterEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void enterEvent(QEvent *event) [0xc822b3b040] }
+&{focusInEvent QWidget::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void focusInEvent(QFocusEvent *event) [0xc822b3b280] }
+&{focusOutEvent QWidget::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void focusOutEvent(QFocusEvent *event) [0xc822b3b4a0] }
+&{focusPolicy QWidget::focusPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  Qt::FocusPolicy Qt::FocusPolicy focusPolicy() const [] }
+&{frameGeometry QWidget::frameGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QRect QRect frameGeometry() const [] }
+&{frameSize QWidget::frameSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QSize QSize frameSize() const [] }
+&{grabKeyboard QWidget::grabKeyboard commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void grabKeyboard() [] }
+&{grabMouse QWidget::grabMouse commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void grabMouse() [] }
+&{grabMouse QWidget::grabMouse commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false true 2 void void grabMouse(const QCursor &cursor) [0xc822b3be80] }
+&{hasFocus QWidget::hasFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool bool hasFocus() const [] }
+&{hideEvent QWidget::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void hideEvent(QHideEvent *event) [0xc822b4c2a0] }
+&{inputMethodHints QWidget::inputMethodHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  Qt::InputMethodHints Qt::InputMethodHints inputMethodHints() const [] }
+&{isActiveWindow QWidget::isActiveWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool bool isActiveWindow() const [] }
+&{isFullScreen QWidget::isFullScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool bool isFullScreen() const [] }
+&{isMaximized QWidget::isMaximized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool bool isMaximized() const [] }
+&{isMinimized QWidget::isMinimized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool bool isMinimized() const [] }
+&{isWindowModified QWidget::isWindowModified commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  bool bool isWindowModified() const [] }
+&{keyboardGrabber QWidget::keyboardGrabber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain true false  QWidget * QWidget * keyboardGrabber() [] }
+&{layoutDirection QWidget::layoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  Qt::LayoutDirection Qt::LayoutDirection layoutDirection() const [] }
+&{leaveEvent QWidget::leaveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void leaveEvent(QEvent *event) [0xc822b4d280] }
+&{locale QWidget::locale commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QLocale QLocale locale() const [] }
+&{mapFromGlobal QWidget::mapFromGlobal commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QPoint QPoint mapFromGlobal(const QPoint &pos) const [0xc822b4d5e0] }
+&{mapToGlobal QWidget::mapToGlobal commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QPoint QPoint mapToGlobal(const QPoint &pos) const [0xc822b4d820] }
+&{maximumSize QWidget::maximumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QSize QSize maximumSize() const [] }
+&{metric QWidget::metric commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  int int metric(PaintDeviceMetric m) const [0xc822b4db40] }
+&{minimumSize QWidget::minimumSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QSize QSize minimumSize() const [] }
+&{minimumSizeHint QWidget::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  QSize QSize minimumSizeHint() const [] }
+&{mouseGrabber QWidget::mouseGrabber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain true false  QWidget * QWidget * mouseGrabber() [] }
+&{move QWidget::move commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void move(const QPoint &) [0xc822b5e220] }
+&{moveEvent QWidget::moveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void moveEvent(QMoveEvent *event) [0xc822b5e400] }
+&{normalGeometry QWidget::normalGeometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QRect QRect normalGeometry() const [] }
+&{paintEngine QWidget::paintEngine commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  QPaintEngine * QPaintEngine * paintEngine() const [] }
+&{paintEvent QWidget::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void paintEvent(QPaintEvent *event) [0xc822b5e840] }
+&{palette QWidget::palette commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  const QPalette & const QPalette & palette() const [] }
+&{pos QWidget::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QPoint QPoint pos() const [] }
+&{releaseKeyboard QWidget::releaseKeyboard commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void releaseKeyboard() [] }
+&{releaseMouse QWidget::releaseMouse commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void releaseMouse() [] }
+&{resize QWidget::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void resize(const QSize &) [0xc822b5ef80] }
+&{setAcceptDrops QWidget::setAcceptDrops commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setAcceptDrops(bool on) [0xc822b5f2a0] }
+&{setAccessibleDescription QWidget::setAccessibleDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setAccessibleDescription(const QString &description) [0xc822b5f4e0] }
+&{setAccessibleName QWidget::setAccessibleName commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setAccessibleName(const QString &name) [0xc822b5f7e0] }
+&{setAutoFillBackground QWidget::setAutoFillBackground commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setAutoFillBackground(bool enabled) [0xc822b5faa0] }
+&{setContextMenuPolicy QWidget::setContextMenuPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setContextMenuPolicy(Qt::ContextMenuPolicy policy) [0xc822b5fd80] }
+&{setCursor QWidget::setCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setCursor(const QCursor &) [0xc822b72100] }
+&{setEditFocus QWidget::setEditFocus commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setEditFocus(bool enable) [0xc822b723a0] }
+&{setEnabled QWidget::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non slot false false  void void setEnabled(bool ) [0xc822b72680] }
+&{setFixedSize QWidget::setFixedSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false true 2 void void setFixedSize(int w, int h) [0xc822b728a0 0xc822b72920] }
+&{setFocusPolicy QWidget::setFocusPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setFocusPolicy(Qt::FocusPolicy policy) [0xc822b72ba0] }
+&{setFont QWidget::setFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setFont(const QFont &) [0xc822b72de0] }
+&{setGeometry QWidget::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setGeometry(const QRect &) [0xc822b730e0] }
+&{setInputMethodHints QWidget::setInputMethodHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setInputMethodHints(Qt::InputMethodHints hints) [0xc822b73320] }
+&{setLayout QWidget::setLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setLayout(QLayout *layout) [0xc822b73600] }
+&{setLayoutDirection QWidget::setLayoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setLayoutDirection(Qt::LayoutDirection direction) [0xc822b738c0] }
+&{setLocale QWidget::setLocale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setLocale(const QLocale &locale) [0xc822b73b80] }
+&{setMask QWidget::setMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setMask(const QBitmap &bitmap) [0xc822b73d40] }
+&{setMask QWidget::setMask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false true 2 void void setMask(const QRegion &region) [0xc822b73f40] }
+&{setMaximumHeight QWidget::setMaximumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setMaximumHeight(int maxh) [0xc822b88220] }
+&{setMaximumWidth QWidget::setMaximumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setMaximumWidth(int maxw) [0xc822b884a0] }
+&{setMinimumHeight QWidget::setMinimumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setMinimumHeight(int minh) [0xc822b88760] }
+&{setMinimumWidth QWidget::setMinimumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setMinimumWidth(int minw) [0xc822b88a60] }
+&{setPalette QWidget::setPalette commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setPalette(const QPalette &) [0xc822b88cc0] }
+&{setSizePolicy QWidget::setSizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setSizePolicy(QSizePolicy ) [0xc822b88fa0] }
+&{setStatusTip QWidget::setStatusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setStatusTip(const QString &) [0xc822b891e0] }
+&{setStyleSheet QWidget::setStyleSheet commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non slot false false  void void setStyleSheet(const QString &styleSheet) [0xc822b89460] }
+&{setToolTip QWidget::setToolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setToolTip(const QString &) [0xc822b89760] }
+&{setToolTipDuration QWidget::setToolTipDuration commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setToolTipDuration(int msec) [0xc822b899e0] }
+&{setUpdatesEnabled QWidget::setUpdatesEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setUpdatesEnabled(bool enable) [0xc822b89c80] }
+&{setVisible QWidget::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure slot false false  void void setVisible(bool visible) [0xc822b89f60] }
+&{setWhatsThis QWidget::setWhatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setWhatsThis(const QString &) [0xc822b98160] }
+&{setWindowFilePath QWidget::setWindowFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setWindowFilePath(const QString &filePath) [0xc822b983a0] }
+&{setWindowFlags QWidget::setWindowFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setWindowFlags(Qt::WindowFlags type) [0xc822b98580] }
+&{setWindowIcon QWidget::setWindowIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setWindowIcon(const QIcon &icon) [0xc822b987e0] }
+&{setWindowIconText QWidget::setWindowIconText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setWindowIconText(const QString &) [0xc822b98ac0] }
+&{setWindowModality QWidget::setWindowModality commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setWindowModality(Qt::WindowModality windowModality) [0xc822b98de0] }
+&{setWindowModified QWidget::setWindowModified commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non slot false false  void void setWindowModified(bool ) [0xc822b99180] }
+&{setWindowOpacity QWidget::setWindowOpacity commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setWindowOpacity(qreal level) [0xc822b993e0] }
+&{setWindowState QWidget::setWindowState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void setWindowState(Qt::WindowStates windowState) [0xc822b99620] }
+&{setWindowTitle QWidget::setWindowTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non slot false false  void void setWindowTitle(const QString &) [0xc822b99800] }
+&{showEvent QWidget::showEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  void void showEvent(QShowEvent *event) [0xc822b99a40] }
+&{sizeHint QWidget::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp impure plain false false  QSize QSize sizeHint() const [] }
+&{sizeIncrement QWidget::sizeIncrement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QSize QSize sizeIncrement() const [] }
+&{sizePolicy QWidget::sizePolicy commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QSizePolicy QSizePolicy sizePolicy() const [] }
+&{statusTip QWidget::statusTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString QString statusTip() const [] }
+&{styleSheet QWidget::styleSheet commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString QString styleSheet() const [] }
+&{toolTip QWidget::toolTip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString QString toolTip() const [] }
+&{toolTipDuration QWidget::toolTipDuration commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  int int toolTipDuration() const [] }
+&{unsetCursor QWidget::unsetCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void unsetCursor() [] }
+&{unsetLayoutDirection QWidget::unsetLayoutDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void unsetLayoutDirection() [] }
+&{unsetLocale QWidget::unsetLocale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  void void unsetLocale() [] }
+&{whatsThis QWidget::whatsThis commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString QString whatsThis() const [] }
+&{winId QWidget::winId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  WId WId winId() const [] }
+&{windowFilePath QWidget::windowFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString QString windowFilePath() const [] }
+&{windowIcon QWidget::windowIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QIcon QIcon windowIcon() const [] }
+&{windowIconText QWidget::windowIconText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString QString windowIconText() const [] }
+&{windowModality QWidget::windowModality commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  Qt::WindowModality Qt::WindowModality windowModality() const [] }
+&{windowOpacity QWidget::windowOpacity commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  qreal qreal windowOpacity() const [] }
+&{windowTitle QWidget::windowTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  QString QString windowTitle() const [] }
+&{x QWidget::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  int int x() const [] }
+&{y QWidget::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.cpp non plain false false  int int y() const [] }
+&{QWidget QWidget::QWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non constructor false false   QWidget(QWidget *parent, Qt::WindowFlags f) [0xc8229c0440 0xc8229c04e0] }
+&{actions QWidget::actions commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QList<QAction *> QList<QAction *> actions() const [] }
+&{addAction QWidget::addAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void addAction(QAction *action) [0xc8229c1d00] }
+&{addActions QWidget::addActions commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void addActions(const QList<QAction *> &actions) [0xc8229c1f00] }
+&{adjustSize QWidget::adjustSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void adjustSize() [] }
+&{backgroundRole QWidget::backgroundRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPalette::ColorRole QPalette::ColorRole backgroundRole() const [] }
+&{backingStore QWidget::backingStore commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QBackingStore * QBackingStore * backingStore() const [] }
+&{changeEvent QWidget::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void changeEvent(QEvent *event) [0xc8229e45e0] }
+&{childAt QWidget::childAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 QWidget * QWidget * childAt(const QPoint &p) const [0xc8229e47c0] }
+&{childAt QWidget::childAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * QWidget * childAt(int x, int y) const [0xc8229e4960 0xc8229e49e0] }
+&{clearFocus QWidget::clearFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void clearFocus() [] }
+&{close QWidget::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  bool bool close() [] }
+&{closeEvent QWidget::closeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void closeEvent(QCloseEvent *event) [0xc8229e4ea0] }
+&{contentsMargins QWidget::contentsMargins commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QMargins QMargins contentsMargins() const [] }
+&{contentsRect QWidget::contentsRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QRect QRect contentsRect() const [] }
+&{contextMenuEvent QWidget::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void contextMenuEvent(QContextMenuEvent *event) [0xc8229e5480] }
+&{create QWidget::create commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void create(WId window, bool initializeWindow, bool destroyOldWindow) [0xc8229e56a0 0xc8229e5720 0xc8229e57c0] }
+&{customContextMenuRequested QWidget::customContextMenuRequested commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non signal false false  void void customContextMenuRequested(const QPoint &pos) [0xc8229e59e0] }
+&{effectiveWinId QWidget::effectiveWinId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  WId WId effectiveWinId() const [] }
+&{ensurePolished QWidget::ensurePolished commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void ensurePolished() const [] }
+&{event QWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  bool bool event(QEvent *event) [0xc8229fc220] }
+&{find QWidget::find commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain true false  QWidget * QWidget * find(WId id) [0xc8229fc460] }
+&{focusNextChild QWidget::focusNextChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool focusNextChild() [] }
+&{focusNextPrevChild QWidget::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  bool bool focusNextPrevChild(bool next) [0xc8229fc8e0] }
+&{focusPreviousChild QWidget::focusPreviousChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool focusPreviousChild() [] }
+&{focusProxy QWidget::focusProxy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * QWidget * focusProxy() const [] }
+&{focusWidget QWidget::focusWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * QWidget * focusWidget() const [] }
+&{font QWidget::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  const QFont & const QFont & font() const [] }
+&{fontInfo QWidget::fontInfo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QFontInfo QFontInfo fontInfo() const [] }
+&{fontMetrics QWidget::fontMetrics commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QFontMetrics QFontMetrics fontMetrics() const [] }
+&{foregroundRole QWidget::foregroundRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPalette::ColorRole QPalette::ColorRole foregroundRole() const [] }
+&{geometry QWidget::geometry commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  const QRect & const QRect & geometry() const [] }
+&{getContentsMargins QWidget::getContentsMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void getContentsMargins(int *left, int *top, int *right, int *bottom) const [0xc8229fd800 0xc8229fd8e0 0xc8229fd980 0xc8229fda00] }
+&{grab QWidget::grab commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPixmap QPixmap grab(const QRect &rectangle) [0xc8229fdbc0] }
+&{grabGesture QWidget::grabGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void grabGesture(Qt::GestureType gesture, Qt::GestureFlags flags) [0xc8229fde00 0xc8229fdee0] }
+&{grabShortcut QWidget::grabShortcut commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int int grabShortcut(const QKeySequence &key, Qt::ShortcutContext context) [0xc822a0c160 0xc822a0c2e0] }
+&{graphicsEffect QWidget::graphicsEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QGraphicsEffect * QGraphicsEffect * graphicsEffect() const [] }
+&{graphicsProxyWidget QWidget::graphicsProxyWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QGraphicsProxyWidget * QGraphicsProxyWidget * graphicsProxyWidget() const [] }
+&{hasEditFocus QWidget::hasEditFocus commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool hasEditFocus() const [] }
+&{hasHeightForWidth QWidget::hasHeightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  bool bool hasHeightForWidth() const [] }
+&{hasMouseTracking QWidget::hasMouseTracking commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool hasMouseTracking() const [] }
+&{height QWidget::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int int height() const [] }
+&{heightForWidth QWidget::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  int int heightForWidth(int w) const [0xc822a0d020] }
+&{hide QWidget::hide commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void hide() [] }
+&{initPainter QWidget::initPainter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void initPainter(QPainter *painter) const [0xc822a0d300] }
+&{inputMethodEvent QWidget::inputMethodEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void inputMethodEvent(QInputMethodEvent *event) [0xc822a0d560] }
+&{inputMethodQuery QWidget::inputMethodQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  QVariant QVariant inputMethodQuery(Qt::InputMethodQuery query) const [0xc822a0d800] }
+&{insertAction QWidget::insertAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void insertAction(QAction *before, QAction *action) [0xc822a0daa0 0xc822a0db20] }
+&{insertActions QWidget::insertActions commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void insertActions(QAction *before, QList<QAction *> actions) [0xc822a0dd60 0xc822a0de20] }
+&{isAncestorOf QWidget::isAncestorOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool isAncestorOf(const QWidget *child) const [0xc822a22200] }
+&{isEnabled QWidget::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool isEnabled() const [] }
+&{isEnabledTo QWidget::isEnabledTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool isEnabledTo(const QWidget *ancestor) const [0xc822a22600] }
+&{isHidden QWidget::isHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool isHidden() const [] }
+&{isModal QWidget::isModal commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool isModal() const [] }
+&{isVisible QWidget::isVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool isVisible() const [] }
+&{isVisibleTo QWidget::isVisibleTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool isVisibleTo(const QWidget *ancestor) const [0xc822a22f80] }
+&{isWindow QWidget::isWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool isWindow() const [] }
+&{keyPressEvent QWidget::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void keyPressEvent(QKeyEvent *event) [0xc822a232c0] }
+&{keyReleaseEvent QWidget::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void keyReleaseEvent(QKeyEvent *event) [0xc822a234e0] }
+&{layout QWidget::layout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QLayout * QLayout * layout() const [] }
+&{lower QWidget::lower commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void lower() [] }
+&{mapFrom QWidget::mapFrom commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPoint QPoint mapFrom(const QWidget *parent, const QPoint &pos) const [0xc822a23820 0xc822a238a0] }
+&{mapFromParent QWidget::mapFromParent commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPoint QPoint mapFromParent(const QPoint &pos) const [0xc822a23ae0] }
+&{mapTo QWidget::mapTo commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPoint QPoint mapTo(const QWidget *parent, const QPoint &pos) const [0xc822a23cc0 0xc822a23d40] }
+&{mapToParent QWidget::mapToParent commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QPoint QPoint mapToParent(const QPoint &pos) const [0xc822a23fc0] }
+&{mask QWidget::mask commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QRegion QRegion mask() const [] }
+&{maximumHeight QWidget::maximumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int int maximumHeight() const [] }
+&{maximumWidth QWidget::maximumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int int maximumWidth() const [] }
+&{minimumHeight QWidget::minimumHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int int minimumHeight() const [] }
+&{minimumWidth QWidget::minimumWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int int minimumWidth() const [] }
+&{mouseDoubleClickEvent QWidget::mouseDoubleClickEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void mouseDoubleClickEvent(QMouseEvent *event) [0xc822a349a0] }
+&{mouseMoveEvent QWidget::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void mouseMoveEvent(QMouseEvent *event) [0xc822a34bc0] }
+&{mousePressEvent QWidget::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void mousePressEvent(QMouseEvent *event) [0xc822a34de0] }
+&{mouseReleaseEvent QWidget::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *event) [0xc822a35000] }
+&{move QWidget::move commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void move(int x, int y) [0xc822a351e0 0xc822a35260] }
+&{nativeEvent QWidget::nativeEvent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  bool bool nativeEvent(const QByteArray &eventType, void *message, long *result) [0xc822a354c0 0xc822a355a0 0xc822a35620] }
+&{nativeParentWidget QWidget::nativeParentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * QWidget * nativeParentWidget() const [] }
+&{nextInFocusChain QWidget::nextInFocusChain commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * QWidget * nextInFocusChain() const [] }
+&{overrideWindowFlags QWidget::overrideWindowFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void overrideWindowFlags(Qt::WindowFlags flags) [0xc822a35b20] }
+&{parentWidget QWidget::parentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * QWidget * parentWidget() const [] }
+&{previousInFocusChain QWidget::previousInFocusChain commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * QWidget * previousInFocusChain() const [] }
+&{raise QWidget::raise commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void raise() [] }
+&{rect QWidget::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QRect QRect rect() const [] }
+&{releaseShortcut QWidget::releaseShortcut commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void releaseShortcut(int id) [0xc822a502a0] }
+&{removeAction QWidget::removeAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void removeAction(QAction *action) [0xc822a504c0] }
+&{render QWidget::render commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void render(QPaintDevice *target, const QPoint &targetOffset, const QRegion &sourceRegion, RenderFlags renderFlags) [0xc822a50660 0xc822a50700 0xc822a50780 0xc822a50800] }
+&{render QWidget::render commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void render(QPainter *painter, const QPoint &targetOffset, const QRegion &sourceRegion, RenderFlags renderFlags) [0xc822a509c0 0xc822a50a80 0xc822a50b00 0xc822a50be0] }
+&{repaint QWidget::repaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void repaint() [] }
+&{repaint QWidget::repaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 3 void void repaint(const QRect &rect) [0xc822a50e60] }
+&{repaint QWidget::repaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 4 void void repaint(const QRegion &rgn) [0xc822a51060] }
+&{repaint QWidget::repaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void repaint(int x, int y, int w, int h) [0xc822a511e0 0xc822a51280 0xc822a51300 0xc822a513a0] }
+&{resize QWidget::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void resize(int w, int h) [0xc822a51620 0xc822a516a0] }
+&{resizeEvent QWidget::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void resizeEvent(QResizeEvent *event) [0xc822a518c0] }
+&{restoreGeometry QWidget::restoreGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool restoreGeometry(const QByteArray &geometry) [0xc822a51b20] }
+&{saveGeometry QWidget::saveGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QByteArray QByteArray saveGeometry() const [] }
+&{scroll QWidget::scroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void scroll(int dx, int dy) [0xc822a51f80 0xc822a66020] }
+&{scroll QWidget::scroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void scroll(int dx, int dy, const QRect &r) [0xc822a66280 0xc822a66340 0xc822a66400] }
+&{setAttribute QWidget::setAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setAttribute(Qt::WidgetAttribute attribute, bool on) [0xc822a666e0 0xc822a667c0] }
+&{setBackgroundRole QWidget::setBackgroundRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setBackgroundRole(QPalette::ColorRole role) [0xc822a66ae0] }
+&{setBaseSize QWidget::setBaseSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setBaseSize(const QSize &) [0xc822a66e80] }
+&{setBaseSize QWidget::setBaseSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void setBaseSize(int basew, int baseh) [0xc822a671a0 0xc822a67280] }
+&{setContentsMargins QWidget::setContentsMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void setContentsMargins(const QMargins &margins) [0xc822a67580] }
+&{setContentsMargins QWidget::setContentsMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setContentsMargins(int left, int top, int right, int bottom) [0xc822a67960 0xc822a67a20 0xc822a67b00 0xc822a67bc0] }
+&{setDisabled QWidget::setDisabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void setDisabled(bool disable) [0xc822a67de0] }
+&{setFixedHeight QWidget::setFixedHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setFixedHeight(int h) [0xc8229d4080] }
+&{setFixedSize QWidget::setFixedSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setFixedSize(const QSize &s) [0xc8229d42a0] }
+&{setFixedWidth QWidget::setFixedWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setFixedWidth(int w) [0xc8229d4560] }
+&{setFocus QWidget::setFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false true 2 void void setFocus() [] }
+&{setFocus QWidget::setFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setFocus(Qt::FocusReason reason) [0xc8229d48e0] }
+&{setFocusProxy QWidget::setFocusProxy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setFocusProxy(QWidget *w) [0xc8229d4b60] }
+&{setForegroundRole QWidget::setForegroundRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setForegroundRole(QPalette::ColorRole role) [0xc8229d4e40] }
+&{setGeometry QWidget::setGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void setGeometry(int x, int y, int w, int h) [0xc8229d50e0 0xc8229d5180 0xc8229d5220 0xc8229d52e0] }
+&{setGraphicsEffect QWidget::setGraphicsEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setGraphicsEffect(QGraphicsEffect *effect) [0xc8229d5580] }
+&{setHidden QWidget::setHidden commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void setHidden(bool hidden) [0xc8229d5880] }
+&{setMaximumSize QWidget::setMaximumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setMaximumSize(const QSize &) [0xc8229d5b00] }
+&{setMaximumSize QWidget::setMaximumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void setMaximumSize(int maxw, int maxh) [0xc8229d5d60 0xc8229d5de0] }
+&{setMinimumSize QWidget::setMinimumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setMinimumSize(const QSize &) [0xc8229d5fc0] }
+&{setMinimumSize QWidget::setMinimumSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void setMinimumSize(int minw, int minh) [0xc822a7c240 0xc822a7c2c0] }
+&{setMouseTracking QWidget::setMouseTracking commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setMouseTracking(bool enable) [0xc822a7c540] }
+&{setParent QWidget::setParent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setParent(QWidget *parent) [0xc822a7c7e0] }
+&{setParent QWidget::setParent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void setParent(QWidget *parent, Qt::WindowFlags f) [0xc822a7ca20 0xc822a7caa0] }
+&{setShortcutAutoRepeat QWidget::setShortcutAutoRepeat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setShortcutAutoRepeat(int id, bool enable) [0xc822a7ccc0 0xc822a7cd40] }
+&{setShortcutEnabled QWidget::setShortcutEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setShortcutEnabled(int id, bool enable) [0xc822a7cfe0 0xc822a7d0c0] }
+&{setSizeIncrement QWidget::setSizeIncrement commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setSizeIncrement(const QSize &) [0xc822a7d300] }
+&{setSizeIncrement QWidget::setSizeIncrement commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void setSizeIncrement(int w, int h) [0xc822a7d560 0xc822a7d640] }
+&{setSizePolicy QWidget::setSizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void setSizePolicy(QSizePolicy::Policy horizontal, QSizePolicy::Policy vertical) [0xc822a7d8a0 0xc822a7d9c0] }
+&{setStyle QWidget::setStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setStyle(QStyle *style) [0xc822a7dce0] }
+&{setTabOrder QWidget::setTabOrder commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain true false  void void setTabOrder(QWidget *first, QWidget *second) [0xc822a7df40 0xc822a7dfc0] }
+&{setWindowRole QWidget::setWindowRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setWindowRole(const QString &role) [0xc822a901e0] }
+&{setupUi QWidget::setupUi commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void setupUi(QWidget *widget) [0xc822a90420] }
+&{show QWidget::show commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void show() [] }
+&{showFullScreen QWidget::showFullScreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void showFullScreen() [] }
+&{showMaximized QWidget::showMaximized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void showMaximized() [] }
+&{showMinimized QWidget::showMinimized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void showMinimized() [] }
+&{showNormal QWidget::showNormal commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void showNormal() [] }
+&{size QWidget::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QSize QSize size() const [] }
+&{stackUnder QWidget::stackUnder commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void stackUnder(QWidget *w) [0xc822a90f00] }
+&{style QWidget::style commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QStyle * QStyle * style() const [] }
+&{tabletEvent QWidget::tabletEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void tabletEvent(QTabletEvent *event) [0xc822a91220] }
+&{testAttribute QWidget::testAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool testAttribute(Qt::WidgetAttribute attribute) const [0xc822a914a0] }
+&{underMouse QWidget::underMouse commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool underMouse() const [] }
+&{ungrabGesture QWidget::ungrabGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void ungrabGesture(Qt::GestureType gesture) [0xc822a91a40] }
+&{update QWidget::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void update() [] }
+&{update QWidget::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 3 void void update(const QRect &rect) [0xc822a91d20] }
+&{update QWidget::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 4 void void update(const QRegion &rgn) [0xc822a91f60] }
+&{update QWidget::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false true 2 void void update(int x, int y, int w, int h) [0xc822c50120 0xc822c501c0 0xc822c50280 0xc822c50320] }
+&{updateGeometry QWidget::updateGeometry commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  void void updateGeometry() [] }
+&{updateMicroFocus QWidget::updateMicroFocus commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non slot false false  void void updateMicroFocus() [] }
+&{updatesEnabled QWidget::updatesEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  bool bool updatesEnabled() const [] }
+&{visibleRegion QWidget::visibleRegion commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QRegion QRegion visibleRegion() const [] }
+&{wheelEvent QWidget::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h impure plain false false  void void wheelEvent(QWheelEvent *event) [0xc822c50b80] }
+&{width QWidget::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  int int width() const [] }
+&{window QWidget::window commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWidget * QWidget * window() const [] }
+&{windowFlags QWidget::windowFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  Qt::WindowFlags Qt::WindowFlags windowFlags() const [] }
+&{windowHandle QWidget::windowHandle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QWindow * QWindow * windowHandle() const [] }
+&{windowIconChanged QWidget::windowIconChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non signal false false  void void windowIconChanged(const QIcon &icon) [0xc822c51300] }
+&{windowIconTextChanged QWidget::windowIconTextChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non signal false false  void void windowIconTextChanged(const QString &iconText) [0xc822c515e0] }
+&{windowRole QWidget::windowRole commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  QString QString windowRole() const [] }
+&{windowState QWidget::windowState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  Qt::WindowStates Qt::WindowStates windowState() const [] }
+&{windowTitleChanged QWidget::windowTitleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non signal false false  void void windowTitleChanged(const QString &title) [0xc822c51b00] }
+&{windowType QWidget::windowType commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non plain false false  Qt::WindowType Qt::WindowType windowType() const [] }
+&{~QWidget QWidget::~QWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidget.h non destructor false false   ~QWidget() [] }
+&{createWindowContainer QWidget::createWindowContainer commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwindowcontainer.cpp non plain true false  QWidget * QWidget * createWindowContainer(QWindow *window, QWidget *parent, Qt::WindowFlags flags) [0xc822ca47c0 0xc822ca4880 0xc822ca4920] }
 ########################################			ENUMS			########################################
-&{RenderFlag QWidget::RenderFlag commendable public QWidget::RenderFlags [0xc8221bc5e0 0xc8221bc6a0 0xc8221bc720]}
+&{RenderFlag QWidget::RenderFlag commendable public QWidget::RenderFlags [0xc8229c0020 0xc8229c0120 0xc8229c01a0] false}

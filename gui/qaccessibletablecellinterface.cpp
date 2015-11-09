@@ -1,9 +1,9 @@
 #include "qaccessibletablecellinterface.h"
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QAccessible>
 #include <QString>
+#include <QVariant>
 #include <QAccessibleTableCellInterface>
 #include "_cgo_export.h"
 
@@ -11,31 +11,31 @@ class MyQAccessibleTableCellInterface: public QAccessibleTableCellInterface {
 public:
 };
 
-int QAccessibleTableCellInterface_ColumnExtent(QtObjectPtr ptr){
+int QAccessibleTableCellInterface_ColumnExtent(void* ptr){
 	return static_cast<QAccessibleTableCellInterface*>(ptr)->columnExtent();
 }
 
-int QAccessibleTableCellInterface_ColumnIndex(QtObjectPtr ptr){
+int QAccessibleTableCellInterface_ColumnIndex(void* ptr){
 	return static_cast<QAccessibleTableCellInterface*>(ptr)->columnIndex();
 }
 
-int QAccessibleTableCellInterface_IsSelected(QtObjectPtr ptr){
+int QAccessibleTableCellInterface_IsSelected(void* ptr){
 	return static_cast<QAccessibleTableCellInterface*>(ptr)->isSelected();
 }
 
-int QAccessibleTableCellInterface_RowExtent(QtObjectPtr ptr){
+int QAccessibleTableCellInterface_RowExtent(void* ptr){
 	return static_cast<QAccessibleTableCellInterface*>(ptr)->rowExtent();
 }
 
-int QAccessibleTableCellInterface_RowIndex(QtObjectPtr ptr){
+int QAccessibleTableCellInterface_RowIndex(void* ptr){
 	return static_cast<QAccessibleTableCellInterface*>(ptr)->rowIndex();
 }
 
-QtObjectPtr QAccessibleTableCellInterface_Table(QtObjectPtr ptr){
+void* QAccessibleTableCellInterface_Table(void* ptr){
 	return static_cast<QAccessibleTableCellInterface*>(ptr)->table();
 }
 
-void QAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface(QtObjectPtr ptr){
+void QAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface(void* ptr){
 	static_cast<QAccessibleTableCellInterface*>(ptr)->~QAccessibleTableCellInterface();
 }
 

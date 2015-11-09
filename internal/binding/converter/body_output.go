@@ -1,6 +1,9 @@
 package converter
 
-import "github.com/therecipe/qt/internal/binding/parser"
+import (
+	"github.com/therecipe/qt/internal/binding/parser"
+	"strings"
+)
 
 func GoBodyOutput(f *parser.Function, name string) string {
 
@@ -14,23 +17,31 @@ func GoBodyOutput(f *parser.Function, name string) string {
 }
 
 func GoBodyOutputFailed(value string, f *parser.Function) string {
+	var vOld = value
+
 	value = cleanValue(value)
 
 	switch value {
 	case "bool":
 		return "false"
 
-	case "int":
+	case "int", "qreal":
 		return "0"
 
-	case "uchar", "char", "QString", "QUrl", "QVariant":
+	case "uchar", "char", "QString":
 		return "\"\""
 
 	case "QStringList":
 		return "make([]string, 0)"
 
 	case "void", "":
+		if strings.Contains(vOld, "*") {
+			return "nil"
+		}
 		return ""
+
+	case "T":
+		return "nil"
 	}
 
 	switch {

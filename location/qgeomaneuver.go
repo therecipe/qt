@@ -11,8 +11,8 @@ type QGeoManeuver struct {
 	ptr unsafe.Pointer
 }
 
-type QGeoManeuverITF interface {
-	QGeoManeuverPTR() *QGeoManeuver
+type QGeoManeuver_ITF interface {
+	QGeoManeuver_PTR() *QGeoManeuver
 }
 
 func (p *QGeoManeuver) Pointer() unsafe.Pointer {
@@ -23,27 +23,27 @@ func (p *QGeoManeuver) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQGeoManeuver(ptr QGeoManeuverITF) unsafe.Pointer {
+func PointerFromQGeoManeuver(ptr QGeoManeuver_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGeoManeuverPTR().Pointer()
+		return ptr.QGeoManeuver_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGeoManeuverFromPointer(ptr unsafe.Pointer) *QGeoManeuver {
+func NewQGeoManeuverFromPointer(ptr unsafe.Pointer) *QGeoManeuver {
 	var n = new(QGeoManeuver)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGeoManeuver) QGeoManeuverPTR() *QGeoManeuver {
+func (ptr *QGeoManeuver) QGeoManeuver_PTR() *QGeoManeuver {
 	return ptr
 }
 
 //QGeoManeuver::InstructionDirection
-type QGeoManeuver__InstructionDirection int
+type QGeoManeuver__InstructionDirection int64
 
-var (
+const (
 	QGeoManeuver__NoDirection         = QGeoManeuver__InstructionDirection(0)
 	QGeoManeuver__DirectionForward    = QGeoManeuver__InstructionDirection(1)
 	QGeoManeuver__DirectionBearRight  = QGeoManeuver__InstructionDirection(2)
@@ -59,73 +59,86 @@ var (
 )
 
 func NewQGeoManeuver() *QGeoManeuver {
-	return QGeoManeuverFromPointer(unsafe.Pointer(C.QGeoManeuver_NewQGeoManeuver()))
+	return NewQGeoManeuverFromPointer(C.QGeoManeuver_NewQGeoManeuver())
 }
 
-func NewQGeoManeuver2(other QGeoManeuverITF) *QGeoManeuver {
-	return QGeoManeuverFromPointer(unsafe.Pointer(C.QGeoManeuver_NewQGeoManeuver2(C.QtObjectPtr(PointerFromQGeoManeuver(other)))))
+func NewQGeoManeuver2(other QGeoManeuver_ITF) *QGeoManeuver {
+	return NewQGeoManeuverFromPointer(C.QGeoManeuver_NewQGeoManeuver2(PointerFromQGeoManeuver(other)))
 }
 
 func (ptr *QGeoManeuver) Direction() QGeoManeuver__InstructionDirection {
 	if ptr.Pointer() != nil {
-		return QGeoManeuver__InstructionDirection(C.QGeoManeuver_Direction(C.QtObjectPtr(ptr.Pointer())))
+		return QGeoManeuver__InstructionDirection(C.QGeoManeuver_Direction(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QGeoManeuver) DistanceToNextInstruction() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QGeoManeuver_DistanceToNextInstruction(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoManeuver) InstructionText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGeoManeuver_InstructionText(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QGeoManeuver_InstructionText(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QGeoManeuver) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QGeoManeuver_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QGeoManeuver_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QGeoManeuver) SetDirection(direction QGeoManeuver__InstructionDirection) {
 	if ptr.Pointer() != nil {
-		C.QGeoManeuver_SetDirection(C.QtObjectPtr(ptr.Pointer()), C.int(direction))
+		C.QGeoManeuver_SetDirection(ptr.Pointer(), C.int(direction))
+	}
+}
+
+func (ptr *QGeoManeuver) SetDistanceToNextInstruction(distance float64) {
+	if ptr.Pointer() != nil {
+		C.QGeoManeuver_SetDistanceToNextInstruction(ptr.Pointer(), C.double(distance))
 	}
 }
 
 func (ptr *QGeoManeuver) SetInstructionText(instructionText string) {
 	if ptr.Pointer() != nil {
-		C.QGeoManeuver_SetInstructionText(C.QtObjectPtr(ptr.Pointer()), C.CString(instructionText))
+		C.QGeoManeuver_SetInstructionText(ptr.Pointer(), C.CString(instructionText))
 	}
 }
 
-func (ptr *QGeoManeuver) SetPosition(position positioning.QGeoCoordinateITF) {
+func (ptr *QGeoManeuver) SetPosition(position positioning.QGeoCoordinate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGeoManeuver_SetPosition(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(positioning.PointerFromQGeoCoordinate(position)))
+		C.QGeoManeuver_SetPosition(ptr.Pointer(), positioning.PointerFromQGeoCoordinate(position))
 	}
 }
 
 func (ptr *QGeoManeuver) SetTimeToNextInstruction(secs int) {
 	if ptr.Pointer() != nil {
-		C.QGeoManeuver_SetTimeToNextInstruction(C.QtObjectPtr(ptr.Pointer()), C.int(secs))
+		C.QGeoManeuver_SetTimeToNextInstruction(ptr.Pointer(), C.int(secs))
 	}
 }
 
-func (ptr *QGeoManeuver) SetWaypoint(coordinate positioning.QGeoCoordinateITF) {
+func (ptr *QGeoManeuver) SetWaypoint(coordinate positioning.QGeoCoordinate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGeoManeuver_SetWaypoint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(positioning.PointerFromQGeoCoordinate(coordinate)))
+		C.QGeoManeuver_SetWaypoint(ptr.Pointer(), positioning.PointerFromQGeoCoordinate(coordinate))
 	}
 }
 
 func (ptr *QGeoManeuver) TimeToNextInstruction() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGeoManeuver_TimeToNextInstruction(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGeoManeuver_TimeToNextInstruction(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGeoManeuver) DestroyQGeoManeuver() {
 	if ptr.Pointer() != nil {
-		C.QGeoManeuver_DestroyQGeoManeuver(C.QtObjectPtr(ptr.Pointer()))
+		C.QGeoManeuver_DestroyQGeoManeuver(ptr.Pointer())
 	}
 }

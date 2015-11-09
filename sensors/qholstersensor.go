@@ -12,45 +12,45 @@ type QHolsterSensor struct {
 	QSensor
 }
 
-type QHolsterSensorITF interface {
-	QSensorITF
-	QHolsterSensorPTR() *QHolsterSensor
+type QHolsterSensor_ITF interface {
+	QSensor_ITF
+	QHolsterSensor_PTR() *QHolsterSensor
 }
 
-func PointerFromQHolsterSensor(ptr QHolsterSensorITF) unsafe.Pointer {
+func PointerFromQHolsterSensor(ptr QHolsterSensor_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHolsterSensorPTR().Pointer()
+		return ptr.QHolsterSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHolsterSensorFromPointer(ptr unsafe.Pointer) *QHolsterSensor {
+func NewQHolsterSensorFromPointer(ptr unsafe.Pointer) *QHolsterSensor {
 	var n = new(QHolsterSensor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QHolsterSensor_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QHolsterSensor) QHolsterSensorPTR() *QHolsterSensor {
+func (ptr *QHolsterSensor) QHolsterSensor_PTR() *QHolsterSensor {
 	return ptr
 }
 
 func (ptr *QHolsterSensor) Reading() *QHolsterReading {
 	if ptr.Pointer() != nil {
-		return QHolsterReadingFromPointer(unsafe.Pointer(C.QHolsterSensor_Reading(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQHolsterReadingFromPointer(C.QHolsterSensor_Reading(ptr.Pointer()))
 	}
 	return nil
 }
 
-func NewQHolsterSensor(parent core.QObjectITF) *QHolsterSensor {
-	return QHolsterSensorFromPointer(unsafe.Pointer(C.QHolsterSensor_NewQHolsterSensor(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQHolsterSensor(parent core.QObject_ITF) *QHolsterSensor {
+	return NewQHolsterSensorFromPointer(C.QHolsterSensor_NewQHolsterSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHolsterSensor) DestroyQHolsterSensor() {
 	if ptr.Pointer() != nil {
-		C.QHolsterSensor_DestroyQHolsterSensor(C.QtObjectPtr(ptr.Pointer()))
+		C.QHolsterSensor_DestroyQHolsterSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

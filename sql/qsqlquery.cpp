@@ -1,11 +1,11 @@
 #include "qsqlquery.h"
-#include <QModelIndex>
-#include <QSqlDatabase>
-#include <QSqlResult>
 #include <QSqlDriver>
+#include <QSqlDatabase>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QSqlResult>
 #include <QSqlQuery>
 #include "_cgo_export.h"
 
@@ -13,147 +13,147 @@ class MyQSqlQuery: public QSqlQuery {
 public:
 };
 
-QtObjectPtr QSqlQuery_NewQSqlQuery3(QtObjectPtr db){
+void* QSqlQuery_NewQSqlQuery3(void* db){
 	return new QSqlQuery(*static_cast<QSqlDatabase*>(db));
 }
 
-QtObjectPtr QSqlQuery_NewQSqlQuery(QtObjectPtr result){
+void* QSqlQuery_NewQSqlQuery(void* result){
 	return new QSqlQuery(static_cast<QSqlResult*>(result));
 }
 
-QtObjectPtr QSqlQuery_NewQSqlQuery4(QtObjectPtr other){
+void* QSqlQuery_NewQSqlQuery4(void* other){
 	return new QSqlQuery(*static_cast<QSqlQuery*>(other));
 }
 
-QtObjectPtr QSqlQuery_NewQSqlQuery2(char* query, QtObjectPtr db){
+void* QSqlQuery_NewQSqlQuery2(char* query, void* db){
 	return new QSqlQuery(QString(query), *static_cast<QSqlDatabase*>(db));
 }
 
-int QSqlQuery_At(QtObjectPtr ptr){
+int QSqlQuery_At(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->at();
 }
 
-char* QSqlQuery_BoundValue(QtObjectPtr ptr, char* placeholder){
-	return static_cast<QSqlQuery*>(ptr)->boundValue(QString(placeholder)).toString().toUtf8().data();
+void* QSqlQuery_BoundValue(void* ptr, char* placeholder){
+	return new QVariant(static_cast<QSqlQuery*>(ptr)->boundValue(QString(placeholder)));
 }
 
-char* QSqlQuery_BoundValue2(QtObjectPtr ptr, int pos){
-	return static_cast<QSqlQuery*>(ptr)->boundValue(pos).toString().toUtf8().data();
+void* QSqlQuery_BoundValue2(void* ptr, int pos){
+	return new QVariant(static_cast<QSqlQuery*>(ptr)->boundValue(pos));
 }
 
-void QSqlQuery_Clear(QtObjectPtr ptr){
+void QSqlQuery_Clear(void* ptr){
 	static_cast<QSqlQuery*>(ptr)->clear();
 }
 
-QtObjectPtr QSqlQuery_Driver(QtObjectPtr ptr){
+void* QSqlQuery_Driver(void* ptr){
 	return const_cast<QSqlDriver*>(static_cast<QSqlQuery*>(ptr)->driver());
 }
 
-int QSqlQuery_Exec2(QtObjectPtr ptr){
+int QSqlQuery_Exec2(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->exec();
 }
 
-int QSqlQuery_Exec(QtObjectPtr ptr, char* query){
+int QSqlQuery_Exec(void* ptr, char* query){
 	return static_cast<QSqlQuery*>(ptr)->exec(QString(query));
 }
 
-int QSqlQuery_ExecBatch(QtObjectPtr ptr, int mode){
+int QSqlQuery_ExecBatch(void* ptr, int mode){
 	return static_cast<QSqlQuery*>(ptr)->execBatch(static_cast<QSqlQuery::BatchExecutionMode>(mode));
 }
 
-char* QSqlQuery_ExecutedQuery(QtObjectPtr ptr){
+char* QSqlQuery_ExecutedQuery(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->executedQuery().toUtf8().data();
 }
 
-void QSqlQuery_Finish(QtObjectPtr ptr){
+void QSqlQuery_Finish(void* ptr){
 	static_cast<QSqlQuery*>(ptr)->finish();
 }
 
-int QSqlQuery_First(QtObjectPtr ptr){
+int QSqlQuery_First(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->first();
 }
 
-int QSqlQuery_IsActive(QtObjectPtr ptr){
+int QSqlQuery_IsActive(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->isActive();
 }
 
-int QSqlQuery_IsForwardOnly(QtObjectPtr ptr){
+int QSqlQuery_IsForwardOnly(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->isForwardOnly();
 }
 
-int QSqlQuery_IsNull2(QtObjectPtr ptr, char* name){
+int QSqlQuery_IsNull2(void* ptr, char* name){
 	return static_cast<QSqlQuery*>(ptr)->isNull(QString(name));
 }
 
-int QSqlQuery_IsNull(QtObjectPtr ptr, int field){
+int QSqlQuery_IsNull(void* ptr, int field){
 	return static_cast<QSqlQuery*>(ptr)->isNull(field);
 }
 
-int QSqlQuery_IsSelect(QtObjectPtr ptr){
+int QSqlQuery_IsSelect(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->isSelect();
 }
 
-int QSqlQuery_IsValid(QtObjectPtr ptr){
+int QSqlQuery_IsValid(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->isValid();
 }
 
-int QSqlQuery_Last(QtObjectPtr ptr){
+int QSqlQuery_Last(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->last();
 }
 
-char* QSqlQuery_LastInsertId(QtObjectPtr ptr){
-	return static_cast<QSqlQuery*>(ptr)->lastInsertId().toString().toUtf8().data();
+void* QSqlQuery_LastInsertId(void* ptr){
+	return new QVariant(static_cast<QSqlQuery*>(ptr)->lastInsertId());
 }
 
-char* QSqlQuery_LastQuery(QtObjectPtr ptr){
+char* QSqlQuery_LastQuery(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->lastQuery().toUtf8().data();
 }
 
-int QSqlQuery_Next(QtObjectPtr ptr){
+int QSqlQuery_Next(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->next();
 }
 
-int QSqlQuery_NextResult(QtObjectPtr ptr){
+int QSqlQuery_NextResult(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->nextResult();
 }
 
-int QSqlQuery_NumRowsAffected(QtObjectPtr ptr){
+int QSqlQuery_NumRowsAffected(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->numRowsAffected();
 }
 
-int QSqlQuery_Prepare(QtObjectPtr ptr, char* query){
+int QSqlQuery_Prepare(void* ptr, char* query){
 	return static_cast<QSqlQuery*>(ptr)->prepare(QString(query));
 }
 
-int QSqlQuery_Previous(QtObjectPtr ptr){
+int QSqlQuery_Previous(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->previous();
 }
 
-QtObjectPtr QSqlQuery_Result(QtObjectPtr ptr){
+void* QSqlQuery_Result(void* ptr){
 	return const_cast<QSqlResult*>(static_cast<QSqlQuery*>(ptr)->result());
 }
 
-int QSqlQuery_Seek(QtObjectPtr ptr, int index, int relative){
+int QSqlQuery_Seek(void* ptr, int index, int relative){
 	return static_cast<QSqlQuery*>(ptr)->seek(index, relative != 0);
 }
 
-void QSqlQuery_SetForwardOnly(QtObjectPtr ptr, int forward){
+void QSqlQuery_SetForwardOnly(void* ptr, int forward){
 	static_cast<QSqlQuery*>(ptr)->setForwardOnly(forward != 0);
 }
 
-int QSqlQuery_Size(QtObjectPtr ptr){
+int QSqlQuery_Size(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->size();
 }
 
-char* QSqlQuery_Value2(QtObjectPtr ptr, char* name){
-	return static_cast<QSqlQuery*>(ptr)->value(QString(name)).toString().toUtf8().data();
+void* QSqlQuery_Value2(void* ptr, char* name){
+	return new QVariant(static_cast<QSqlQuery*>(ptr)->value(QString(name)));
 }
 
-char* QSqlQuery_Value(QtObjectPtr ptr, int index){
-	return static_cast<QSqlQuery*>(ptr)->value(index).toString().toUtf8().data();
+void* QSqlQuery_Value(void* ptr, int index){
+	return new QVariant(static_cast<QSqlQuery*>(ptr)->value(index));
 }
 
-void QSqlQuery_DestroyQSqlQuery(QtObjectPtr ptr){
+void QSqlQuery_DestroyQSqlQuery(void* ptr){
 	static_cast<QSqlQuery*>(ptr)->~QSqlQuery();
 }
 

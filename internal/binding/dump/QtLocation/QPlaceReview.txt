@@ -1,17 +1,17 @@
 ########################################			FUNCTIONS			########################################
-&{QPlaceReview QPlaceReview::QPlaceReview commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non constructor false false   [] }
-&{QPlaceReview QPlaceReview::QPlaceReview commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non constructor false true 2  [0xc8225c3ae0] }
-&{dateTime QPlaceReview::dateTime commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  QDateTime [] }
-&{language QPlaceReview::language commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  QString [] }
-&{rating QPlaceReview::rating commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  qreal [] }
-&{reviewId QPlaceReview::reviewId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  QString [] }
-&{setDateTime QPlaceReview::setDateTime commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  void [0xc8225ca7e0] }
-&{setLanguage QPlaceReview::setLanguage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  void [0xc8225cac40] }
-&{setRating QPlaceReview::setRating commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  void [0xc8225cb040] }
-&{setReviewId QPlaceReview::setReviewId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  void [0xc8225cb4a0] }
-&{setText QPlaceReview::setText commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  void [0xc8225cb8c0] }
-&{setTitle QPlaceReview::setTitle commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  void [0xc8225cbce0] }
-&{text QPlaceReview::text commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  QString [] }
-&{title QPlaceReview::title commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  QString [] }
-&{~QPlaceReview QPlaceReview::~QPlaceReview commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h impure destructor false false   [] }
+&{QPlaceReview QPlaceReview::QPlaceReview commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non constructor false false   QPlaceReview() [] }
+&{QPlaceReview QPlaceReview::QPlaceReview commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non constructor false true 2  QPlaceReview(const QPlaceContent &other) [0xc822385660] }
+&{dateTime QPlaceReview::dateTime commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  QDateTime QDateTime dateTime() const [] }
+&{language QPlaceReview::language commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  QString QString language() const [] }
+&{rating QPlaceReview::rating commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  qreal qreal rating() const [] }
+&{reviewId QPlaceReview::reviewId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  QString QString reviewId() const [] }
+&{setDateTime QPlaceReview::setDateTime commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  void void setDateTime(const QDateTime &dateTime) [0xc822584400] }
+&{setLanguage QPlaceReview::setLanguage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  void void setLanguage(const QString &language) [0xc822584680] }
+&{setRating QPlaceReview::setRating commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  void void setRating(qreal rating) [0xc822584940] }
+&{setReviewId QPlaceReview::setReviewId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  void void setReviewId(const QString &identifier) [0xc822584b80] }
+&{setText QPlaceReview::setText commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  void void setText(const QString &text) [0xc822584da0] }
+&{setTitle QPlaceReview::setTitle commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  void void setTitle(const QString &title) [0xc822585000] }
+&{text QPlaceReview::text commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  QString QString text() const [] }
+&{title QPlaceReview::title commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h non plain false false  QString QString title() const [] }
+&{~QPlaceReview QPlaceReview::~QPlaceReview commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereview.h impure destructor false false   ~QPlaceReview() [] }
 ########################################			ENUMS			########################################

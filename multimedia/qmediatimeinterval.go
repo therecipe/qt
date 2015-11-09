@@ -10,8 +10,8 @@ type QMediaTimeInterval struct {
 	ptr unsafe.Pointer
 }
 
-type QMediaTimeIntervalITF interface {
-	QMediaTimeIntervalPTR() *QMediaTimeInterval
+type QMediaTimeInterval_ITF interface {
+	QMediaTimeInterval_PTR() *QMediaTimeInterval
 }
 
 func (p *QMediaTimeInterval) Pointer() unsafe.Pointer {
@@ -22,34 +22,34 @@ func (p *QMediaTimeInterval) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMediaTimeInterval(ptr QMediaTimeIntervalITF) unsafe.Pointer {
+func PointerFromQMediaTimeInterval(ptr QMediaTimeInterval_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaTimeIntervalPTR().Pointer()
+		return ptr.QMediaTimeInterval_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaTimeIntervalFromPointer(ptr unsafe.Pointer) *QMediaTimeInterval {
+func NewQMediaTimeIntervalFromPointer(ptr unsafe.Pointer) *QMediaTimeInterval {
 	var n = new(QMediaTimeInterval)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMediaTimeInterval) QMediaTimeIntervalPTR() *QMediaTimeInterval {
+func (ptr *QMediaTimeInterval) QMediaTimeInterval_PTR() *QMediaTimeInterval {
 	return ptr
 }
 
 func NewQMediaTimeInterval() *QMediaTimeInterval {
-	return QMediaTimeIntervalFromPointer(unsafe.Pointer(C.QMediaTimeInterval_NewQMediaTimeInterval()))
+	return NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval())
 }
 
-func NewQMediaTimeInterval3(other QMediaTimeIntervalITF) *QMediaTimeInterval {
-	return QMediaTimeIntervalFromPointer(unsafe.Pointer(C.QMediaTimeInterval_NewQMediaTimeInterval3(C.QtObjectPtr(PointerFromQMediaTimeInterval(other)))))
+func NewQMediaTimeInterval3(other QMediaTimeInterval_ITF) *QMediaTimeInterval {
+	return NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval3(PointerFromQMediaTimeInterval(other)))
 }
 
 func (ptr *QMediaTimeInterval) IsNormal() bool {
 	if ptr.Pointer() != nil {
-		return C.QMediaTimeInterval_IsNormal(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QMediaTimeInterval_IsNormal(ptr.Pointer()) != 0
 	}
 	return false
 }

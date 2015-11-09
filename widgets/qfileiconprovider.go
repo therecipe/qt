@@ -11,8 +11,8 @@ type QFileIconProvider struct {
 	ptr unsafe.Pointer
 }
 
-type QFileIconProviderITF interface {
-	QFileIconProviderPTR() *QFileIconProvider
+type QFileIconProvider_ITF interface {
+	QFileIconProvider_PTR() *QFileIconProvider
 }
 
 func (p *QFileIconProvider) Pointer() unsafe.Pointer {
@@ -23,27 +23,27 @@ func (p *QFileIconProvider) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQFileIconProvider(ptr QFileIconProviderITF) unsafe.Pointer {
+func PointerFromQFileIconProvider(ptr QFileIconProvider_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QFileIconProviderPTR().Pointer()
+		return ptr.QFileIconProvider_PTR().Pointer()
 	}
 	return nil
 }
 
-func QFileIconProviderFromPointer(ptr unsafe.Pointer) *QFileIconProvider {
+func NewQFileIconProviderFromPointer(ptr unsafe.Pointer) *QFileIconProvider {
 	var n = new(QFileIconProvider)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QFileIconProvider) QFileIconProviderPTR() *QFileIconProvider {
+func (ptr *QFileIconProvider) QFileIconProvider_PTR() *QFileIconProvider {
 	return ptr
 }
 
 //QFileIconProvider::IconType
-type QFileIconProvider__IconType int
+type QFileIconProvider__IconType int64
 
-var (
+const (
 	QFileIconProvider__Computer = QFileIconProvider__IconType(0)
 	QFileIconProvider__Desktop  = QFileIconProvider__IconType(1)
 	QFileIconProvider__Trashcan = QFileIconProvider__IconType(2)
@@ -54,38 +54,38 @@ var (
 )
 
 //QFileIconProvider::Option
-type QFileIconProvider__Option int
+type QFileIconProvider__Option int64
 
-var (
+const (
 	QFileIconProvider__DontUseCustomDirectoryIcons = QFileIconProvider__Option(0x00000001)
 )
 
 func NewQFileIconProvider() *QFileIconProvider {
-	return QFileIconProviderFromPointer(unsafe.Pointer(C.QFileIconProvider_NewQFileIconProvider()))
+	return NewQFileIconProviderFromPointer(C.QFileIconProvider_NewQFileIconProvider())
 }
 
 func (ptr *QFileIconProvider) Options() QFileIconProvider__Option {
 	if ptr.Pointer() != nil {
-		return QFileIconProvider__Option(C.QFileIconProvider_Options(C.QtObjectPtr(ptr.Pointer())))
+		return QFileIconProvider__Option(C.QFileIconProvider_Options(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QFileIconProvider) SetOptions(options QFileIconProvider__Option) {
 	if ptr.Pointer() != nil {
-		C.QFileIconProvider_SetOptions(C.QtObjectPtr(ptr.Pointer()), C.int(options))
+		C.QFileIconProvider_SetOptions(ptr.Pointer(), C.int(options))
 	}
 }
 
-func (ptr *QFileIconProvider) Type(info core.QFileInfoITF) string {
+func (ptr *QFileIconProvider) Type(info core.QFileInfo_ITF) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFileIconProvider_Type(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQFileInfo(info))))
+		return C.GoString(C.QFileIconProvider_Type(ptr.Pointer(), core.PointerFromQFileInfo(info)))
 	}
 	return ""
 }
 
 func (ptr *QFileIconProvider) DestroyQFileIconProvider() {
 	if ptr.Pointer() != nil {
-		C.QFileIconProvider_DestroyQFileIconProvider(C.QtObjectPtr(ptr.Pointer()))
+		C.QFileIconProvider_DestroyQFileIconProvider(ptr.Pointer())
 	}
 }

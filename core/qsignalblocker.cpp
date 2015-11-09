@@ -10,15 +10,15 @@ class MyQSignalBlocker: public QSignalBlocker {
 public:
 };
 
-void QSignalBlocker_Reblock(QtObjectPtr ptr){
+void QSignalBlocker_Reblock(void* ptr){
 	static_cast<QSignalBlocker*>(ptr)->reblock();
 }
 
-void QSignalBlocker_Unblock(QtObjectPtr ptr){
+void QSignalBlocker_Unblock(void* ptr){
 	static_cast<QSignalBlocker*>(ptr)->unblock();
 }
 
-void QSignalBlocker_DestroyQSignalBlocker(QtObjectPtr ptr){
+void QSignalBlocker_DestroyQSignalBlocker(void* ptr){
 	static_cast<QSignalBlocker*>(ptr)->~QSignalBlocker();
 }
 

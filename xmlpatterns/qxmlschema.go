@@ -12,8 +12,8 @@ type QXmlSchema struct {
 	ptr unsafe.Pointer
 }
 
-type QXmlSchemaITF interface {
-	QXmlSchemaPTR() *QXmlSchema
+type QXmlSchema_ITF interface {
+	QXmlSchema_PTR() *QXmlSchema
 }
 
 func (p *QXmlSchema) Pointer() unsafe.Pointer {
@@ -24,107 +24,100 @@ func (p *QXmlSchema) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQXmlSchema(ptr QXmlSchemaITF) unsafe.Pointer {
+func PointerFromQXmlSchema(ptr QXmlSchema_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QXmlSchemaPTR().Pointer()
+		return ptr.QXmlSchema_PTR().Pointer()
 	}
 	return nil
 }
 
-func QXmlSchemaFromPointer(ptr unsafe.Pointer) *QXmlSchema {
+func NewQXmlSchemaFromPointer(ptr unsafe.Pointer) *QXmlSchema {
 	var n = new(QXmlSchema)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QXmlSchema) QXmlSchemaPTR() *QXmlSchema {
+func (ptr *QXmlSchema) QXmlSchema_PTR() *QXmlSchema {
 	return ptr
 }
 
 func NewQXmlSchema() *QXmlSchema {
-	return QXmlSchemaFromPointer(unsafe.Pointer(C.QXmlSchema_NewQXmlSchema()))
+	return NewQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema())
 }
 
-func NewQXmlSchema2(other QXmlSchemaITF) *QXmlSchema {
-	return QXmlSchemaFromPointer(unsafe.Pointer(C.QXmlSchema_NewQXmlSchema2(C.QtObjectPtr(PointerFromQXmlSchema(other)))))
-}
-
-func (ptr *QXmlSchema) DocumentUri() string {
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QXmlSchema_DocumentUri(C.QtObjectPtr(ptr.Pointer())))
-	}
-	return ""
+func NewQXmlSchema2(other QXmlSchema_ITF) *QXmlSchema {
+	return NewQXmlSchemaFromPointer(C.QXmlSchema_NewQXmlSchema2(PointerFromQXmlSchema(other)))
 }
 
 func (ptr *QXmlSchema) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSchema_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QXmlSchema_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QXmlSchema) Load2(source core.QIODeviceITF, documentUri string) bool {
+func (ptr *QXmlSchema) Load2(source core.QIODevice_ITF, documentUri core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSchema_Load2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQIODevice(source)), C.CString(documentUri)) != 0
+		return C.QXmlSchema_Load2(ptr.Pointer(), core.PointerFromQIODevice(source), core.PointerFromQUrl(documentUri)) != 0
 	}
 	return false
 }
 
-func (ptr *QXmlSchema) Load3(data core.QByteArrayITF, documentUri string) bool {
+func (ptr *QXmlSchema) Load3(data core.QByteArray_ITF, documentUri core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSchema_Load3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(data)), C.CString(documentUri)) != 0
+		return C.QXmlSchema_Load3(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(documentUri)) != 0
 	}
 	return false
 }
 
-func (ptr *QXmlSchema) Load(source string) bool {
+func (ptr *QXmlSchema) Load(source core.QUrl_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlSchema_Load(C.QtObjectPtr(ptr.Pointer()), C.CString(source)) != 0
+		return C.QXmlSchema_Load(ptr.Pointer(), core.PointerFromQUrl(source)) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlSchema) MessageHandler() *QAbstractMessageHandler {
 	if ptr.Pointer() != nil {
-		return QAbstractMessageHandlerFromPointer(unsafe.Pointer(C.QXmlSchema_MessageHandler(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAbstractMessageHandlerFromPointer(C.QXmlSchema_MessageHandler(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QXmlSchema) NetworkAccessManager() *network.QNetworkAccessManager {
 	if ptr.Pointer() != nil {
-		return network.QNetworkAccessManagerFromPointer(unsafe.Pointer(C.QXmlSchema_NetworkAccessManager(C.QtObjectPtr(ptr.Pointer()))))
+		return network.NewQNetworkAccessManagerFromPointer(C.QXmlSchema_NetworkAccessManager(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QXmlSchema) SetMessageHandler(handler QAbstractMessageHandlerITF) {
+func (ptr *QXmlSchema) SetMessageHandler(handler QAbstractMessageHandler_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlSchema_SetMessageHandler(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractMessageHandler(handler)))
+		C.QXmlSchema_SetMessageHandler(ptr.Pointer(), PointerFromQAbstractMessageHandler(handler))
 	}
 }
 
-func (ptr *QXmlSchema) SetNetworkAccessManager(manager network.QNetworkAccessManagerITF) {
+func (ptr *QXmlSchema) SetNetworkAccessManager(manager network.QNetworkAccessManager_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlSchema_SetNetworkAccessManager(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(network.PointerFromQNetworkAccessManager(manager)))
+		C.QXmlSchema_SetNetworkAccessManager(ptr.Pointer(), network.PointerFromQNetworkAccessManager(manager))
 	}
 }
 
-func (ptr *QXmlSchema) SetUriResolver(resolver QAbstractUriResolverITF) {
+func (ptr *QXmlSchema) SetUriResolver(resolver QAbstractUriResolver_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlSchema_SetUriResolver(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractUriResolver(resolver)))
+		C.QXmlSchema_SetUriResolver(ptr.Pointer(), PointerFromQAbstractUriResolver(resolver))
 	}
 }
 
 func (ptr *QXmlSchema) UriResolver() *QAbstractUriResolver {
 	if ptr.Pointer() != nil {
-		return QAbstractUriResolverFromPointer(unsafe.Pointer(C.QXmlSchema_UriResolver(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAbstractUriResolverFromPointer(C.QXmlSchema_UriResolver(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QXmlSchema) DestroyQXmlSchema() {
 	if ptr.Pointer() != nil {
-		C.QXmlSchema_DestroyQXmlSchema(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlSchema_DestroyQXmlSchema(ptr.Pointer())
 	}
 }

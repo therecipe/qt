@@ -1,23 +1,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QToolButton_ArrowType(QtObjectPtr ptr);
-int QToolButton_AutoRaise(QtObjectPtr ptr);
-int QToolButton_PopupMode(QtObjectPtr ptr);
-void QToolButton_SetArrowType(QtObjectPtr ptr, int ty);
-void QToolButton_SetAutoRaise(QtObjectPtr ptr, int enable);
-void QToolButton_SetPopupMode(QtObjectPtr ptr, int mode);
-void QToolButton_SetToolButtonStyle(QtObjectPtr ptr, int style);
-int QToolButton_ToolButtonStyle(QtObjectPtr ptr);
-QtObjectPtr QToolButton_NewQToolButton(QtObjectPtr parent);
-QtObjectPtr QToolButton_Menu(QtObjectPtr ptr);
-void QToolButton_SetMenu(QtObjectPtr ptr, QtObjectPtr menu);
-void QToolButton_ShowMenu(QtObjectPtr ptr);
-void QToolButton_ConnectTriggered(QtObjectPtr ptr);
-void QToolButton_DisconnectTriggered(QtObjectPtr ptr);
-void QToolButton_DestroyQToolButton(QtObjectPtr ptr);
+int QToolButton_ArrowType(void* ptr);
+int QToolButton_AutoRaise(void* ptr);
+int QToolButton_PopupMode(void* ptr);
+void QToolButton_SetArrowType(void* ptr, int ty);
+void QToolButton_SetAutoRaise(void* ptr, int enable);
+void QToolButton_SetPopupMode(void* ptr, int mode);
+void QToolButton_SetToolButtonStyle(void* ptr, int style);
+int QToolButton_ToolButtonStyle(void* ptr);
+void* QToolButton_NewQToolButton(void* parent);
+void* QToolButton_Menu(void* ptr);
+void QToolButton_SetMenu(void* ptr, void* menu);
+void QToolButton_ShowMenu(void* ptr);
+void QToolButton_ConnectTriggered(void* ptr);
+void QToolButton_DisconnectTriggered(void* ptr);
+void QToolButton_DestroyQToolButton(void* ptr);
 
 #ifdef __cplusplus
 }

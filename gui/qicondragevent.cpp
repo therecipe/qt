@@ -11,7 +11,7 @@ class MyQIconDragEvent: public QIconDragEvent {
 public:
 };
 
-QtObjectPtr QIconDragEvent_NewQIconDragEvent(){
+void* QIconDragEvent_NewQIconDragEvent(){
 	return new QIconDragEvent();
 }
 

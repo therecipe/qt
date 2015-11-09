@@ -1,21 +1,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QTextTable_InsertColumns(QtObjectPtr ptr, int index, int columns);
-void QTextTable_InsertRows(QtObjectPtr ptr, int index, int rows);
-void QTextTable_RemoveColumns(QtObjectPtr ptr, int index, int columns);
-void QTextTable_RemoveRows(QtObjectPtr ptr, int index, int rows);
-void QTextTable_Resize(QtObjectPtr ptr, int rows, int columns);
-void QTextTable_SetFormat(QtObjectPtr ptr, QtObjectPtr format);
-void QTextTable_AppendColumns(QtObjectPtr ptr, int count);
-void QTextTable_AppendRows(QtObjectPtr ptr, int count);
-int QTextTable_Columns(QtObjectPtr ptr);
-void QTextTable_MergeCells2(QtObjectPtr ptr, QtObjectPtr cursor);
-void QTextTable_MergeCells(QtObjectPtr ptr, int row, int column, int numRows, int numCols);
-int QTextTable_Rows(QtObjectPtr ptr);
-void QTextTable_SplitCell(QtObjectPtr ptr, int row, int column, int numRows, int numCols);
+void QTextTable_InsertColumns(void* ptr, int index, int columns);
+void QTextTable_InsertRows(void* ptr, int index, int rows);
+void QTextTable_RemoveColumns(void* ptr, int index, int columns);
+void QTextTable_RemoveRows(void* ptr, int index, int rows);
+void QTextTable_Resize(void* ptr, int rows, int columns);
+void QTextTable_SetFormat(void* ptr, void* format);
+void QTextTable_AppendColumns(void* ptr, int count);
+void QTextTable_AppendRows(void* ptr, int count);
+int QTextTable_Columns(void* ptr);
+void QTextTable_MergeCells2(void* ptr, void* cursor);
+void QTextTable_MergeCells(void* ptr, int row, int column, int numRows, int numCols);
+int QTextTable_Rows(void* ptr);
+void QTextTable_SplitCell(void* ptr, int row, int column, int numRows, int numCols);
 
 #ifdef __cplusplus
 }

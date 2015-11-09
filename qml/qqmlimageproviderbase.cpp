@@ -10,11 +10,11 @@ class MyQQmlImageProviderBase: public QQmlImageProviderBase {
 public:
 };
 
-int QQmlImageProviderBase_Flags(QtObjectPtr ptr){
+int QQmlImageProviderBase_Flags(void* ptr){
 	return static_cast<QQmlImageProviderBase*>(ptr)->flags();
 }
 
-int QQmlImageProviderBase_ImageType(QtObjectPtr ptr){
+int QQmlImageProviderBase_ImageType(void* ptr){
 	return static_cast<QQmlImageProviderBase*>(ptr)->imageType();
 }
 

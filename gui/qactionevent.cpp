@@ -1,8 +1,8 @@
 #include "qactionevent.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
+#include <QVariant>
 #include <QActionEvent>
 #include "_cgo_export.h"
 

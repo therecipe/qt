@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{QHelpEvent QHelpEvent::QHelpEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc8208c36c0 0xc8208c3780 0xc8208c3820] }
-&{globalPos QHelpEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & [] }
-&{globalX QHelpEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{globalY QHelpEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{pos QHelpEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & [] }
-&{x QHelpEvent::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{y QHelpEvent::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{QHelpEvent QHelpEvent::QHelpEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QHelpEvent(Type type, const QPoint &pos, const QPoint &globalPos) [0xc8206c03c0 0xc8206c0440 0xc8206c04c0] }
+&{globalPos QHelpEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & const QPoint & globalPos() const [] }
+&{globalX QHelpEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalX() const [] }
+&{globalY QHelpEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalY() const [] }
+&{pos QHelpEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & const QPoint & pos() const [] }
+&{x QHelpEvent::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int x() const [] }
+&{y QHelpEvent::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int y() const [] }
 ########################################			ENUMS			########################################

@@ -12,35 +12,35 @@ type QValidator struct {
 	core.QObject
 }
 
-type QValidatorITF interface {
-	core.QObjectITF
-	QValidatorPTR() *QValidator
+type QValidator_ITF interface {
+	core.QObject_ITF
+	QValidator_PTR() *QValidator
 }
 
-func PointerFromQValidator(ptr QValidatorITF) unsafe.Pointer {
+func PointerFromQValidator(ptr QValidator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QValidatorPTR().Pointer()
+		return ptr.QValidator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QValidatorFromPointer(ptr unsafe.Pointer) *QValidator {
+func NewQValidatorFromPointer(ptr unsafe.Pointer) *QValidator {
 	var n = new(QValidator)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QValidator_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QValidator) QValidatorPTR() *QValidator {
+func (ptr *QValidator) QValidator_PTR() *QValidator {
 	return ptr
 }
 
 //QValidator::State
-type QValidator__State int
+type QValidator__State int64
 
-var (
+const (
 	QValidator__Invalid      = QValidator__State(0)
 	QValidator__Intermediate = QValidator__State(1)
 	QValidator__Acceptable   = QValidator__State(2)
@@ -48,14 +48,14 @@ var (
 
 func (ptr *QValidator) ConnectChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QValidator_ConnectChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QValidator_ConnectChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "changed", f)
 	}
 }
 
 func (ptr *QValidator) DisconnectChanged() {
 	if ptr.Pointer() != nil {
-		C.QValidator_DisconnectChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QValidator_DisconnectChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "changed")
 	}
 }
@@ -65,15 +65,15 @@ func callbackQValidatorChanged(ptrName *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "changed").(func())()
 }
 
-func (ptr *QValidator) SetLocale(locale core.QLocaleITF) {
+func (ptr *QValidator) SetLocale(locale core.QLocale_ITF) {
 	if ptr.Pointer() != nil {
-		C.QValidator_SetLocale(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQLocale(locale)))
+		C.QValidator_SetLocale(ptr.Pointer(), core.PointerFromQLocale(locale))
 	}
 }
 
 func (ptr *QValidator) DestroyQValidator() {
 	if ptr.Pointer() != nil {
-		C.QValidator_DestroyQValidator(C.QtObjectPtr(ptr.Pointer()))
+		C.QValidator_DestroyQValidator(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

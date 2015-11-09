@@ -12,35 +12,35 @@ type QCameraExposure struct {
 	core.QObject
 }
 
-type QCameraExposureITF interface {
-	core.QObjectITF
-	QCameraExposurePTR() *QCameraExposure
+type QCameraExposure_ITF interface {
+	core.QObject_ITF
+	QCameraExposure_PTR() *QCameraExposure
 }
 
-func PointerFromQCameraExposure(ptr QCameraExposureITF) unsafe.Pointer {
+func PointerFromQCameraExposure(ptr QCameraExposure_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCameraExposurePTR().Pointer()
+		return ptr.QCameraExposure_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCameraExposureFromPointer(ptr unsafe.Pointer) *QCameraExposure {
+func NewQCameraExposureFromPointer(ptr unsafe.Pointer) *QCameraExposure {
 	var n = new(QCameraExposure)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCameraExposure_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCameraExposure) QCameraExposurePTR() *QCameraExposure {
+func (ptr *QCameraExposure) QCameraExposure_PTR() *QCameraExposure {
 	return ptr
 }
 
 //QCameraExposure::ExposureMode
-type QCameraExposure__ExposureMode int
+type QCameraExposure__ExposureMode int64
 
-var (
+const (
 	QCameraExposure__ExposureAuto          = QCameraExposure__ExposureMode(0)
 	QCameraExposure__ExposureManual        = QCameraExposure__ExposureMode(1)
 	QCameraExposure__ExposurePortrait      = QCameraExposure__ExposureMode(2)
@@ -66,9 +66,9 @@ var (
 )
 
 //QCameraExposure::FlashMode
-type QCameraExposure__FlashMode int
+type QCameraExposure__FlashMode int64
 
-var (
+const (
 	QCameraExposure__FlashAuto                 = QCameraExposure__FlashMode(0x1)
 	QCameraExposure__FlashOff                  = QCameraExposure__FlashMode(0x2)
 	QCameraExposure__FlashOn                   = QCameraExposure__FlashMode(0x4)
@@ -82,94 +82,120 @@ var (
 )
 
 //QCameraExposure::MeteringMode
-type QCameraExposure__MeteringMode int
+type QCameraExposure__MeteringMode int64
 
-var (
+const (
 	QCameraExposure__MeteringMatrix  = QCameraExposure__MeteringMode(1)
 	QCameraExposure__MeteringAverage = QCameraExposure__MeteringMode(2)
 	QCameraExposure__MeteringSpot    = QCameraExposure__MeteringMode(3)
 )
 
+func (ptr *QCameraExposure) Aperture() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraExposure_Aperture(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QCameraExposure) ExposureCompensation() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraExposure_ExposureCompensation(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QCameraExposure) ExposureMode() QCameraExposure__ExposureMode {
 	if ptr.Pointer() != nil {
-		return QCameraExposure__ExposureMode(C.QCameraExposure_ExposureMode(C.QtObjectPtr(ptr.Pointer())))
+		return QCameraExposure__ExposureMode(C.QCameraExposure_ExposureMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QCameraExposure) FlashMode() QCameraExposure__FlashMode {
 	if ptr.Pointer() != nil {
-		return QCameraExposure__FlashMode(C.QCameraExposure_FlashMode(C.QtObjectPtr(ptr.Pointer())))
+		return QCameraExposure__FlashMode(C.QCameraExposure_FlashMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QCameraExposure) IsoSensitivity() int {
 	if ptr.Pointer() != nil {
-		return int(C.QCameraExposure_IsoSensitivity(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QCameraExposure_IsoSensitivity(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QCameraExposure) MeteringMode() QCameraExposure__MeteringMode {
 	if ptr.Pointer() != nil {
-		return QCameraExposure__MeteringMode(C.QCameraExposure_MeteringMode(C.QtObjectPtr(ptr.Pointer())))
+		return QCameraExposure__MeteringMode(C.QCameraExposure_MeteringMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QCameraExposure) SetAutoAperture() {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_SetAutoAperture(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposure_SetAutoAperture(ptr.Pointer())
 	}
 }
 
 func (ptr *QCameraExposure) SetAutoIsoSensitivity() {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_SetAutoIsoSensitivity(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposure_SetAutoIsoSensitivity(ptr.Pointer())
+	}
+}
+
+func (ptr *QCameraExposure) SetExposureCompensation(ev float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetExposureCompensation(ptr.Pointer(), C.double(ev))
 	}
 }
 
 func (ptr *QCameraExposure) SetExposureMode(mode QCameraExposure__ExposureMode) {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_SetExposureMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QCameraExposure_SetExposureMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QCameraExposure) SetFlashMode(mode QCameraExposure__FlashMode) {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_SetFlashMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QCameraExposure_SetFlashMode(ptr.Pointer(), C.int(mode))
+	}
+}
+
+func (ptr *QCameraExposure) SetManualAperture(aperture float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetManualAperture(ptr.Pointer(), C.double(aperture))
 	}
 }
 
 func (ptr *QCameraExposure) SetManualIsoSensitivity(iso int) {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_SetManualIsoSensitivity(C.QtObjectPtr(ptr.Pointer()), C.int(iso))
+		C.QCameraExposure_SetManualIsoSensitivity(ptr.Pointer(), C.int(iso))
 	}
 }
 
 func (ptr *QCameraExposure) SetMeteringMode(mode QCameraExposure__MeteringMode) {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_SetMeteringMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QCameraExposure_SetMeteringMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
-func (ptr *QCameraExposure) SetSpotMeteringPoint(point core.QPointFITF) {
+func (ptr *QCameraExposure) SetSpotMeteringPoint(point core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_SetSpotMeteringPoint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(point)))
+		C.QCameraExposure_SetSpotMeteringPoint(ptr.Pointer(), core.PointerFromQPointF(point))
 	}
 }
 
 func (ptr *QCameraExposure) ConnectApertureRangeChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_ConnectApertureRangeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposure_ConnectApertureRangeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "apertureRangeChanged", f)
 	}
 }
 
 func (ptr *QCameraExposure) DisconnectApertureRangeChanged() {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_DisconnectApertureRangeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposure_DisconnectApertureRangeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "apertureRangeChanged")
 	}
 }
@@ -181,14 +207,14 @@ func callbackQCameraExposureApertureRangeChanged(ptrName *C.char) {
 
 func (ptr *QCameraExposure) ConnectFlashReady(f func(ready bool)) {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_ConnectFlashReady(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposure_ConnectFlashReady(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "flashReady", f)
 	}
 }
 
 func (ptr *QCameraExposure) DisconnectFlashReady() {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_DisconnectFlashReady(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposure_DisconnectFlashReady(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "flashReady")
 	}
 }
@@ -200,49 +226,49 @@ func callbackQCameraExposureFlashReady(ptrName *C.char, ready C.int) {
 
 func (ptr *QCameraExposure) IsAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposure_IsAvailable(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QCameraExposure_IsAvailable(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraExposure) IsExposureModeSupported(mode QCameraExposure__ExposureMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposure_IsExposureModeSupported(C.QtObjectPtr(ptr.Pointer()), C.int(mode)) != 0
+		return C.QCameraExposure_IsExposureModeSupported(ptr.Pointer(), C.int(mode)) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraExposure) IsFlashModeSupported(mode QCameraExposure__FlashMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposure_IsFlashModeSupported(C.QtObjectPtr(ptr.Pointer()), C.int(mode)) != 0
+		return C.QCameraExposure_IsFlashModeSupported(ptr.Pointer(), C.int(mode)) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraExposure) IsFlashReady() bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposure_IsFlashReady(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QCameraExposure_IsFlashReady(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraExposure) IsMeteringModeSupported(mode QCameraExposure__MeteringMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QCameraExposure_IsMeteringModeSupported(C.QtObjectPtr(ptr.Pointer()), C.int(mode)) != 0
+		return C.QCameraExposure_IsMeteringModeSupported(ptr.Pointer(), C.int(mode)) != 0
 	}
 	return false
 }
 
 func (ptr *QCameraExposure) ConnectIsoSensitivityChanged(f func(value int)) {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_ConnectIsoSensitivityChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposure_ConnectIsoSensitivityChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "isoSensitivityChanged", f)
 	}
 }
 
 func (ptr *QCameraExposure) DisconnectIsoSensitivityChanged() {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_DisconnectIsoSensitivityChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposure_DisconnectIsoSensitivityChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "isoSensitivityChanged")
 	}
 }
@@ -252,29 +278,56 @@ func callbackQCameraExposureIsoSensitivityChanged(ptrName *C.char, value C.int) 
 	qt.GetSignal(C.GoString(ptrName), "isoSensitivityChanged").(func(int))(int(value))
 }
 
+func (ptr *QCameraExposure) RequestedAperture() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraExposure_RequestedAperture(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QCameraExposure) RequestedIsoSensitivity() int {
 	if ptr.Pointer() != nil {
-		return int(C.QCameraExposure_RequestedIsoSensitivity(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QCameraExposure_RequestedIsoSensitivity(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QCameraExposure) RequestedShutterSpeed() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraExposure_RequestedShutterSpeed(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QCameraExposure) SetAutoShutterSpeed() {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_SetAutoShutterSpeed(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposure_SetAutoShutterSpeed(ptr.Pointer())
 	}
+}
+
+func (ptr *QCameraExposure) SetManualShutterSpeed(seconds float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetManualShutterSpeed(ptr.Pointer(), C.double(seconds))
+	}
+}
+
+func (ptr *QCameraExposure) ShutterSpeed() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraExposure_ShutterSpeed(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QCameraExposure) ConnectShutterSpeedRangeChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_ConnectShutterSpeedRangeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposure_ConnectShutterSpeedRangeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "shutterSpeedRangeChanged", f)
 	}
 }
 
 func (ptr *QCameraExposure) DisconnectShutterSpeedRangeChanged() {
 	if ptr.Pointer() != nil {
-		C.QCameraExposure_DisconnectShutterSpeedRangeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraExposure_DisconnectShutterSpeedRangeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "shutterSpeedRangeChanged")
 	}
 }

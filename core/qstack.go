@@ -10,24 +10,24 @@ type QStack struct {
 	QVector
 }
 
-type QStackITF interface {
-	QVectorITF
-	QStackPTR() *QStack
+type QStack_ITF interface {
+	QVector_ITF
+	QStack_PTR() *QStack
 }
 
-func PointerFromQStack(ptr QStackITF) unsafe.Pointer {
+func PointerFromQStack(ptr QStack_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStackPTR().Pointer()
+		return ptr.QStack_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStackFromPointer(ptr unsafe.Pointer) *QStack {
+func NewQStackFromPointer(ptr unsafe.Pointer) *QStack {
 	var n = new(QStack)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStack) QStackPTR() *QStack {
+func (ptr *QStack) QStack_PTR() *QStack {
 	return ptr
 }

@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QQuickImageProvider_NewQQuickImageProvider(int ty, int flags);
-int QQuickImageProvider_Flags(QtObjectPtr ptr);
-int QQuickImageProvider_ImageType(QtObjectPtr ptr);
-void QQuickImageProvider_DestroyQQuickImageProvider(QtObjectPtr ptr);
+void* QQuickImageProvider_NewQQuickImageProvider(int ty, int flags);
+int QQuickImageProvider_Flags(void* ptr);
+int QQuickImageProvider_ImageType(void* ptr);
+void QQuickImageProvider_DestroyQQuickImageProvider(void* ptr);
 
 #ifdef __cplusplus
 }

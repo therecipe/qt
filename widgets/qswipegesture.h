@@ -1,11 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QSwipeGesture_HorizontalDirection(QtObjectPtr ptr);
-int QSwipeGesture_VerticalDirection(QtObjectPtr ptr);
-void QSwipeGesture_DestroyQSwipeGesture(QtObjectPtr ptr);
+int QSwipeGesture_HorizontalDirection(void* ptr);
+void QSwipeGesture_SetSwipeAngle(void* ptr, double value);
+double QSwipeGesture_SwipeAngle(void* ptr);
+int QSwipeGesture_VerticalDirection(void* ptr);
+void QSwipeGesture_DestroyQSwipeGesture(void* ptr);
 
 #ifdef __cplusplus
 }

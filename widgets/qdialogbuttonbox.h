@@ -1,35 +1,34 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QDialogButtonBox_CenterButtons(QtObjectPtr ptr);
-int QDialogButtonBox_Orientation(QtObjectPtr ptr);
-void QDialogButtonBox_SetCenterButtons(QtObjectPtr ptr, int center);
-void QDialogButtonBox_SetOrientation(QtObjectPtr ptr, int orientation);
-void QDialogButtonBox_SetStandardButtons(QtObjectPtr ptr, int buttons);
-int QDialogButtonBox_StandardButtons(QtObjectPtr ptr);
-QtObjectPtr QDialogButtonBox_NewQDialogButtonBox(QtObjectPtr parent);
-QtObjectPtr QDialogButtonBox_NewQDialogButtonBox2(int orientation, QtObjectPtr parent);
-QtObjectPtr QDialogButtonBox_NewQDialogButtonBox3(int buttons, QtObjectPtr parent);
-QtObjectPtr QDialogButtonBox_NewQDialogButtonBox4(int buttons, int orientation, QtObjectPtr parent);
-void QDialogButtonBox_ConnectAccepted(QtObjectPtr ptr);
-void QDialogButtonBox_DisconnectAccepted(QtObjectPtr ptr);
-QtObjectPtr QDialogButtonBox_AddButton3(QtObjectPtr ptr, int button);
-QtObjectPtr QDialogButtonBox_AddButton2(QtObjectPtr ptr, char* text, int role);
-void QDialogButtonBox_AddButton(QtObjectPtr ptr, QtObjectPtr button, int role);
-QtObjectPtr QDialogButtonBox_Button(QtObjectPtr ptr, int which);
-int QDialogButtonBox_ButtonRole(QtObjectPtr ptr, QtObjectPtr button);
-void QDialogButtonBox_Clear(QtObjectPtr ptr);
-void QDialogButtonBox_ConnectClicked(QtObjectPtr ptr);
-void QDialogButtonBox_DisconnectClicked(QtObjectPtr ptr);
-void QDialogButtonBox_ConnectHelpRequested(QtObjectPtr ptr);
-void QDialogButtonBox_DisconnectHelpRequested(QtObjectPtr ptr);
-void QDialogButtonBox_ConnectRejected(QtObjectPtr ptr);
-void QDialogButtonBox_DisconnectRejected(QtObjectPtr ptr);
-void QDialogButtonBox_RemoveButton(QtObjectPtr ptr, QtObjectPtr button);
-int QDialogButtonBox_StandardButton(QtObjectPtr ptr, QtObjectPtr button);
-void QDialogButtonBox_DestroyQDialogButtonBox(QtObjectPtr ptr);
+int QDialogButtonBox_CenterButtons(void* ptr);
+int QDialogButtonBox_Orientation(void* ptr);
+void QDialogButtonBox_SetCenterButtons(void* ptr, int center);
+void QDialogButtonBox_SetOrientation(void* ptr, int orientation);
+void QDialogButtonBox_SetStandardButtons(void* ptr, int buttons);
+int QDialogButtonBox_StandardButtons(void* ptr);
+void* QDialogButtonBox_NewQDialogButtonBox(void* parent);
+void* QDialogButtonBox_NewQDialogButtonBox2(int orientation, void* parent);
+void* QDialogButtonBox_NewQDialogButtonBox3(int buttons, void* parent);
+void* QDialogButtonBox_NewQDialogButtonBox4(int buttons, int orientation, void* parent);
+void QDialogButtonBox_ConnectAccepted(void* ptr);
+void QDialogButtonBox_DisconnectAccepted(void* ptr);
+void* QDialogButtonBox_AddButton3(void* ptr, int button);
+void* QDialogButtonBox_AddButton2(void* ptr, char* text, int role);
+void QDialogButtonBox_AddButton(void* ptr, void* button, int role);
+void* QDialogButtonBox_Button(void* ptr, int which);
+int QDialogButtonBox_ButtonRole(void* ptr, void* button);
+void QDialogButtonBox_Clear(void* ptr);
+void QDialogButtonBox_ConnectClicked(void* ptr);
+void QDialogButtonBox_DisconnectClicked(void* ptr);
+void QDialogButtonBox_ConnectHelpRequested(void* ptr);
+void QDialogButtonBox_DisconnectHelpRequested(void* ptr);
+void QDialogButtonBox_ConnectRejected(void* ptr);
+void QDialogButtonBox_DisconnectRejected(void* ptr);
+void QDialogButtonBox_RemoveButton(void* ptr, void* button);
+int QDialogButtonBox_StandardButton(void* ptr, void* button);
+void QDialogButtonBox_DestroyQDialogButtonBox(void* ptr);
 
 #ifdef __cplusplus
 }

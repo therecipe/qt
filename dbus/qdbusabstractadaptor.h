@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(QtObjectPtr ptr);
+void QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(void* ptr);
 
 #ifdef __cplusplus
 }

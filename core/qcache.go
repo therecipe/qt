@@ -10,8 +10,8 @@ type QCache struct {
 	ptr unsafe.Pointer
 }
 
-type QCacheITF interface {
-	QCachePTR() *QCache
+type QCache_ITF interface {
+	QCache_PTR() *QCache
 }
 
 func (p *QCache) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QCache) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQCache(ptr QCacheITF) unsafe.Pointer {
+func PointerFromQCache(ptr QCache_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCachePTR().Pointer()
+		return ptr.QCache_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCacheFromPointer(ptr unsafe.Pointer) *QCache {
+func NewQCacheFromPointer(ptr unsafe.Pointer) *QCache {
 	var n = new(QCache)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QCache) QCachePTR() *QCache {
+func (ptr *QCache) QCache_PTR() *QCache {
 	return ptr
 }

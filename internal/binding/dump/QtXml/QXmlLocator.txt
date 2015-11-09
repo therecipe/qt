@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QXmlLocator QXmlLocator::QXmlLocator commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false false   [] }
-&{columnNumber QXmlLocator::columnNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  int [] }
-&{lineNumber QXmlLocator::lineNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  int [] }
-&{~QXmlLocator QXmlLocator::~QXmlLocator commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   [] }
+&{QXmlLocator QXmlLocator::QXmlLocator commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false false   QXmlLocator() [] }
+&{columnNumber QXmlLocator::columnNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  int int columnNumber() const [] }
+&{lineNumber QXmlLocator::lineNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  int int lineNumber() const [] }
+&{~QXmlLocator QXmlLocator::~QXmlLocator commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   ~QXmlLocator() [] }
 ########################################			ENUMS			########################################

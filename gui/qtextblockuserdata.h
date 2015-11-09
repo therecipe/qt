@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QTextBlockUserData_DestroyQTextBlockUserData(QtObjectPtr ptr);
+void QTextBlockUserData_DestroyQTextBlockUserData(void* ptr);
 
 #ifdef __cplusplus
 }

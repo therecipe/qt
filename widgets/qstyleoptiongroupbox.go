@@ -10,46 +10,46 @@ type QStyleOptionGroupBox struct {
 	QStyleOptionComplex
 }
 
-type QStyleOptionGroupBoxITF interface {
-	QStyleOptionComplexITF
-	QStyleOptionGroupBoxPTR() *QStyleOptionGroupBox
+type QStyleOptionGroupBox_ITF interface {
+	QStyleOptionComplex_ITF
+	QStyleOptionGroupBox_PTR() *QStyleOptionGroupBox
 }
 
-func PointerFromQStyleOptionGroupBox(ptr QStyleOptionGroupBoxITF) unsafe.Pointer {
+func PointerFromQStyleOptionGroupBox(ptr QStyleOptionGroupBox_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionGroupBoxPTR().Pointer()
+		return ptr.QStyleOptionGroupBox_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionGroupBoxFromPointer(ptr unsafe.Pointer) *QStyleOptionGroupBox {
+func NewQStyleOptionGroupBoxFromPointer(ptr unsafe.Pointer) *QStyleOptionGroupBox {
 	var n = new(QStyleOptionGroupBox)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionGroupBox) QStyleOptionGroupBoxPTR() *QStyleOptionGroupBox {
+func (ptr *QStyleOptionGroupBox) QStyleOptionGroupBox_PTR() *QStyleOptionGroupBox {
 	return ptr
 }
 
 //QStyleOptionGroupBox::StyleOptionType
-type QStyleOptionGroupBox__StyleOptionType int
+type QStyleOptionGroupBox__StyleOptionType int64
 
 var (
 	QStyleOptionGroupBox__Type = QStyleOptionGroupBox__StyleOptionType(QStyleOption__SO_GroupBox)
 )
 
 //QStyleOptionGroupBox::StyleOptionVersion
-type QStyleOptionGroupBox__StyleOptionVersion int
+type QStyleOptionGroupBox__StyleOptionVersion int64
 
 var (
 	QStyleOptionGroupBox__Version = QStyleOptionGroupBox__StyleOptionVersion(1)
 )
 
 func NewQStyleOptionGroupBox() *QStyleOptionGroupBox {
-	return QStyleOptionGroupBoxFromPointer(unsafe.Pointer(C.QStyleOptionGroupBox_NewQStyleOptionGroupBox()))
+	return NewQStyleOptionGroupBoxFromPointer(C.QStyleOptionGroupBox_NewQStyleOptionGroupBox())
 }
 
-func NewQStyleOptionGroupBox2(other QStyleOptionGroupBoxITF) *QStyleOptionGroupBox {
-	return QStyleOptionGroupBoxFromPointer(unsafe.Pointer(C.QStyleOptionGroupBox_NewQStyleOptionGroupBox2(C.QtObjectPtr(PointerFromQStyleOptionGroupBox(other)))))
+func NewQStyleOptionGroupBox2(other QStyleOptionGroupBox_ITF) *QStyleOptionGroupBox {
+	return NewQStyleOptionGroupBoxFromPointer(C.QStyleOptionGroupBox_NewQStyleOptionGroupBox2(PointerFromQStyleOptionGroupBox(other)))
 }

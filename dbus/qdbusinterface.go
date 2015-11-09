@@ -12,38 +12,38 @@ type QDBusInterface struct {
 	QDBusAbstractInterface
 }
 
-type QDBusInterfaceITF interface {
-	QDBusAbstractInterfaceITF
-	QDBusInterfacePTR() *QDBusInterface
+type QDBusInterface_ITF interface {
+	QDBusAbstractInterface_ITF
+	QDBusInterface_PTR() *QDBusInterface
 }
 
-func PointerFromQDBusInterface(ptr QDBusInterfaceITF) unsafe.Pointer {
+func PointerFromQDBusInterface(ptr QDBusInterface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDBusInterfacePTR().Pointer()
+		return ptr.QDBusInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDBusInterfaceFromPointer(ptr unsafe.Pointer) *QDBusInterface {
+func NewQDBusInterfaceFromPointer(ptr unsafe.Pointer) *QDBusInterface {
 	var n = new(QDBusInterface)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QDBusInterface_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QDBusInterface) QDBusInterfacePTR() *QDBusInterface {
+func (ptr *QDBusInterface) QDBusInterface_PTR() *QDBusInterface {
 	return ptr
 }
 
-func NewQDBusInterface(service string, path string, interfa string, connection QDBusConnectionITF, parent core.QObjectITF) *QDBusInterface {
-	return QDBusInterfaceFromPointer(unsafe.Pointer(C.QDBusInterface_NewQDBusInterface(C.CString(service), C.CString(path), C.CString(interfa), C.QtObjectPtr(PointerFromQDBusConnection(connection)), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQDBusInterface(service string, path string, interfa string, connection QDBusConnection_ITF, parent core.QObject_ITF) *QDBusInterface {
+	return NewQDBusInterfaceFromPointer(C.QDBusInterface_NewQDBusInterface(C.CString(service), C.CString(path), C.CString(interfa), PointerFromQDBusConnection(connection), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDBusInterface) DestroyQDBusInterface() {
 	if ptr.Pointer() != nil {
-		C.QDBusInterface_DestroyQDBusInterface(C.QtObjectPtr(ptr.Pointer()))
+		C.QDBusInterface_DestroyQDBusInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

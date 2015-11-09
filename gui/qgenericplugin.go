@@ -12,27 +12,27 @@ type QGenericPlugin struct {
 	core.QObject
 }
 
-type QGenericPluginITF interface {
-	core.QObjectITF
-	QGenericPluginPTR() *QGenericPlugin
+type QGenericPlugin_ITF interface {
+	core.QObject_ITF
+	QGenericPlugin_PTR() *QGenericPlugin
 }
 
-func PointerFromQGenericPlugin(ptr QGenericPluginITF) unsafe.Pointer {
+func PointerFromQGenericPlugin(ptr QGenericPlugin_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGenericPluginPTR().Pointer()
+		return ptr.QGenericPlugin_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGenericPluginFromPointer(ptr unsafe.Pointer) *QGenericPlugin {
+func NewQGenericPluginFromPointer(ptr unsafe.Pointer) *QGenericPlugin {
 	var n = new(QGenericPlugin)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGenericPlugin_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGenericPlugin) QGenericPluginPTR() *QGenericPlugin {
+func (ptr *QGenericPlugin) QGenericPlugin_PTR() *QGenericPlugin {
 	return ptr
 }

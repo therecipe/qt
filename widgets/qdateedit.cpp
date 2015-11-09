@@ -1,10 +1,10 @@
 #include "qdateedit.h"
+#include <QDate>
+#include <QWidget>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QWidget>
-#include <QDate>
 #include <QDateEdit>
 #include "_cgo_export.h"
 
@@ -12,15 +12,15 @@ class MyQDateEdit: public QDateEdit {
 public:
 };
 
-QtObjectPtr QDateEdit_NewQDateEdit(QtObjectPtr parent){
+void* QDateEdit_NewQDateEdit(void* parent){
 	return new QDateEdit(static_cast<QWidget*>(parent));
 }
 
-QtObjectPtr QDateEdit_NewQDateEdit2(QtObjectPtr date, QtObjectPtr parent){
+void* QDateEdit_NewQDateEdit2(void* date, void* parent){
 	return new QDateEdit(*static_cast<QDate*>(date), static_cast<QWidget*>(parent));
 }
 
-void QDateEdit_DestroyQDateEdit(QtObjectPtr ptr){
+void QDateEdit_DestroyQDateEdit(void* ptr){
 	static_cast<QDateEdit*>(ptr)->~QDateEdit();
 }
 

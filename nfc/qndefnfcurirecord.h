@@ -1,12 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QNdefNfcUriRecord_NewQNdefNfcUriRecord();
-QtObjectPtr QNdefNfcUriRecord_NewQNdefNfcUriRecord2(QtObjectPtr other);
-void QNdefNfcUriRecord_SetUri(QtObjectPtr ptr, char* uri);
-char* QNdefNfcUriRecord_Uri(QtObjectPtr ptr);
+void* QNdefNfcUriRecord_NewQNdefNfcUriRecord();
+void* QNdefNfcUriRecord_NewQNdefNfcUriRecord2(void* other);
+void QNdefNfcUriRecord_SetUri(void* ptr, void* uri);
 
 #ifdef __cplusplus
 }

@@ -11,7 +11,7 @@ class MyQProximityFilter: public QProximityFilter {
 public:
 };
 
-int QProximityFilter_Filter(QtObjectPtr ptr, QtObjectPtr reading){
+int QProximityFilter_Filter(void* ptr, void* reading){
 	return static_cast<QProximityFilter*>(ptr)->filter(static_cast<QProximityReading*>(reading));
 }
 

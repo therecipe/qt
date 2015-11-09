@@ -11,41 +11,41 @@ type QRadioDataControl struct {
 	QMediaControl
 }
 
-type QRadioDataControlITF interface {
-	QMediaControlITF
-	QRadioDataControlPTR() *QRadioDataControl
+type QRadioDataControl_ITF interface {
+	QMediaControl_ITF
+	QRadioDataControl_PTR() *QRadioDataControl
 }
 
-func PointerFromQRadioDataControl(ptr QRadioDataControlITF) unsafe.Pointer {
+func PointerFromQRadioDataControl(ptr QRadioDataControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QRadioDataControlPTR().Pointer()
+		return ptr.QRadioDataControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QRadioDataControlFromPointer(ptr unsafe.Pointer) *QRadioDataControl {
+func NewQRadioDataControlFromPointer(ptr unsafe.Pointer) *QRadioDataControl {
 	var n = new(QRadioDataControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QRadioDataControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QRadioDataControl) QRadioDataControlPTR() *QRadioDataControl {
+func (ptr *QRadioDataControl) QRadioDataControl_PTR() *QRadioDataControl {
 	return ptr
 }
 
 func (ptr *QRadioDataControl) ConnectAlternativeFrequenciesEnabledChanged(f func(enabled bool)) {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_ConnectAlternativeFrequenciesEnabledChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_ConnectAlternativeFrequenciesEnabledChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "alternativeFrequenciesEnabledChanged", f)
 	}
 }
 
 func (ptr *QRadioDataControl) DisconnectAlternativeFrequenciesEnabledChanged() {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_DisconnectAlternativeFrequenciesEnabledChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_DisconnectAlternativeFrequenciesEnabledChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "alternativeFrequenciesEnabledChanged")
 	}
 }
@@ -57,42 +57,42 @@ func callbackQRadioDataControlAlternativeFrequenciesEnabledChanged(ptrName *C.ch
 
 func (ptr *QRadioDataControl) Error() QRadioData__Error {
 	if ptr.Pointer() != nil {
-		return QRadioData__Error(C.QRadioDataControl_Error(C.QtObjectPtr(ptr.Pointer())))
+		return QRadioData__Error(C.QRadioDataControl_Error(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QRadioDataControl) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QRadioDataControl_ErrorString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QRadioDataControl_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QRadioDataControl) IsAlternativeFrequenciesEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QRadioDataControl_IsAlternativeFrequenciesEnabled(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QRadioDataControl_IsAlternativeFrequenciesEnabled(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QRadioDataControl) ProgramType() QRadioData__ProgramType {
 	if ptr.Pointer() != nil {
-		return QRadioData__ProgramType(C.QRadioDataControl_ProgramType(C.QtObjectPtr(ptr.Pointer())))
+		return QRadioData__ProgramType(C.QRadioDataControl_ProgramType(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QRadioDataControl) ConnectProgramTypeChanged(f func(programType QRadioData__ProgramType)) {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_ConnectProgramTypeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_ConnectProgramTypeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "programTypeChanged", f)
 	}
 }
 
 func (ptr *QRadioDataControl) DisconnectProgramTypeChanged() {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_DisconnectProgramTypeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_DisconnectProgramTypeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "programTypeChanged")
 	}
 }
@@ -104,21 +104,21 @@ func callbackQRadioDataControlProgramTypeChanged(ptrName *C.char, programType C.
 
 func (ptr *QRadioDataControl) ProgramTypeName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QRadioDataControl_ProgramTypeName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QRadioDataControl_ProgramTypeName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QRadioDataControl) ConnectProgramTypeNameChanged(f func(programTypeName string)) {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_ConnectProgramTypeNameChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_ConnectProgramTypeNameChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "programTypeNameChanged", f)
 	}
 }
 
 func (ptr *QRadioDataControl) DisconnectProgramTypeNameChanged() {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_DisconnectProgramTypeNameChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_DisconnectProgramTypeNameChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "programTypeNameChanged")
 	}
 }
@@ -130,21 +130,21 @@ func callbackQRadioDataControlProgramTypeNameChanged(ptrName *C.char, programTyp
 
 func (ptr *QRadioDataControl) RadioText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QRadioDataControl_RadioText(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QRadioDataControl_RadioText(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QRadioDataControl) ConnectRadioTextChanged(f func(radioText string)) {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_ConnectRadioTextChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_ConnectRadioTextChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "radioTextChanged", f)
 	}
 }
 
 func (ptr *QRadioDataControl) DisconnectRadioTextChanged() {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_DisconnectRadioTextChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_DisconnectRadioTextChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "radioTextChanged")
 	}
 }
@@ -156,27 +156,27 @@ func callbackQRadioDataControlRadioTextChanged(ptrName *C.char, radioText *C.cha
 
 func (ptr *QRadioDataControl) SetAlternativeFrequenciesEnabled(enabled bool) {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_SetAlternativeFrequenciesEnabled(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enabled)))
+		C.QRadioDataControl_SetAlternativeFrequenciesEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
 	}
 }
 
 func (ptr *QRadioDataControl) StationId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QRadioDataControl_StationId(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QRadioDataControl_StationId(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QRadioDataControl) ConnectStationIdChanged(f func(stationId string)) {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_ConnectStationIdChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_ConnectStationIdChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "stationIdChanged", f)
 	}
 }
 
 func (ptr *QRadioDataControl) DisconnectStationIdChanged() {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_DisconnectStationIdChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_DisconnectStationIdChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "stationIdChanged")
 	}
 }
@@ -188,21 +188,21 @@ func callbackQRadioDataControlStationIdChanged(ptrName *C.char, stationId *C.cha
 
 func (ptr *QRadioDataControl) StationName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QRadioDataControl_StationName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QRadioDataControl_StationName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QRadioDataControl) ConnectStationNameChanged(f func(stationName string)) {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_ConnectStationNameChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_ConnectStationNameChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "stationNameChanged", f)
 	}
 }
 
 func (ptr *QRadioDataControl) DisconnectStationNameChanged() {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_DisconnectStationNameChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_DisconnectStationNameChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "stationNameChanged")
 	}
 }
@@ -214,7 +214,7 @@ func callbackQRadioDataControlStationNameChanged(ptrName *C.char, stationName *C
 
 func (ptr *QRadioDataControl) DestroyQRadioDataControl() {
 	if ptr.Pointer() != nil {
-		C.QRadioDataControl_DestroyQRadioDataControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QRadioDataControl_DestroyQRadioDataControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

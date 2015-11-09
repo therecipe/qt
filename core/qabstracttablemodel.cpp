@@ -11,23 +11,23 @@ class MyQAbstractTableModel: public QAbstractTableModel {
 public:
 };
 
-QtObjectPtr QAbstractTableModel_Index(QtObjectPtr ptr, int row, int column, QtObjectPtr parent){
+void* QAbstractTableModel_Index(void* ptr, int row, int column, void* parent){
 	return static_cast<QAbstractTableModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)).internalPointer();
 }
 
-int QAbstractTableModel_DropMimeData(QtObjectPtr ptr, QtObjectPtr data, int action, int row, int column, QtObjectPtr parent){
+int QAbstractTableModel_DropMimeData(void* ptr, void* data, int action, int row, int column, void* parent){
 	return static_cast<QAbstractTableModel*>(ptr)->dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 }
 
-int QAbstractTableModel_Flags(QtObjectPtr ptr, QtObjectPtr index){
+int QAbstractTableModel_Flags(void* ptr, void* index){
 	return static_cast<QAbstractTableModel*>(ptr)->flags(*static_cast<QModelIndex*>(index));
 }
 
-QtObjectPtr QAbstractTableModel_Sibling(QtObjectPtr ptr, int row, int column, QtObjectPtr idx){
+void* QAbstractTableModel_Sibling(void* ptr, int row, int column, void* idx){
 	return static_cast<QAbstractTableModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)).internalPointer();
 }
 
-void QAbstractTableModel_DestroyQAbstractTableModel(QtObjectPtr ptr){
+void QAbstractTableModel_DestroyQAbstractTableModel(void* ptr){
 	static_cast<QAbstractTableModel*>(ptr)->~QAbstractTableModel();
 }
 

@@ -1,10 +1,10 @@
 #include "qstyleoptionheader.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QStyleOption>
 #include <QStyle>
+#include <QStyleOption>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QStyleOptionHeader>
 #include "_cgo_export.h"
 
@@ -12,11 +12,11 @@ class MyQStyleOptionHeader: public QStyleOptionHeader {
 public:
 };
 
-QtObjectPtr QStyleOptionHeader_NewQStyleOptionHeader(){
+void* QStyleOptionHeader_NewQStyleOptionHeader(){
 	return new QStyleOptionHeader();
 }
 
-QtObjectPtr QStyleOptionHeader_NewQStyleOptionHeader2(QtObjectPtr other){
+void* QStyleOptionHeader_NewQStyleOptionHeader2(void* other){
 	return new QStyleOptionHeader(*static_cast<QStyleOptionHeader*>(other));
 }
 

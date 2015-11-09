@@ -10,8 +10,8 @@ type QStorageInfo struct {
 	ptr unsafe.Pointer
 }
 
-type QStorageInfoITF interface {
-	QStorageInfoPTR() *QStorageInfo
+type QStorageInfo_ITF interface {
+	QStorageInfo_PTR() *QStorageInfo
 }
 
 func (p *QStorageInfo) Pointer() unsafe.Pointer {
@@ -22,108 +22,122 @@ func (p *QStorageInfo) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQStorageInfo(ptr QStorageInfoITF) unsafe.Pointer {
+func PointerFromQStorageInfo(ptr QStorageInfo_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStorageInfoPTR().Pointer()
+		return ptr.QStorageInfo_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStorageInfoFromPointer(ptr unsafe.Pointer) *QStorageInfo {
+func NewQStorageInfoFromPointer(ptr unsafe.Pointer) *QStorageInfo {
 	var n = new(QStorageInfo)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStorageInfo) QStorageInfoPTR() *QStorageInfo {
+func (ptr *QStorageInfo) QStorageInfo_PTR() *QStorageInfo {
 	return ptr
 }
 
 func NewQStorageInfo() *QStorageInfo {
-	return QStorageInfoFromPointer(unsafe.Pointer(C.QStorageInfo_NewQStorageInfo()))
+	return NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo())
 }
 
-func NewQStorageInfo3(dir QDirITF) *QStorageInfo {
-	return QStorageInfoFromPointer(unsafe.Pointer(C.QStorageInfo_NewQStorageInfo3(C.QtObjectPtr(PointerFromQDir(dir)))))
+func NewQStorageInfo3(dir QDir_ITF) *QStorageInfo {
+	return NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo3(PointerFromQDir(dir)))
 }
 
-func NewQStorageInfo4(other QStorageInfoITF) *QStorageInfo {
-	return QStorageInfoFromPointer(unsafe.Pointer(C.QStorageInfo_NewQStorageInfo4(C.QtObjectPtr(PointerFromQStorageInfo(other)))))
+func NewQStorageInfo4(other QStorageInfo_ITF) *QStorageInfo {
+	return NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo4(PointerFromQStorageInfo(other)))
 }
 
 func NewQStorageInfo2(path string) *QStorageInfo {
-	return QStorageInfoFromPointer(unsafe.Pointer(C.QStorageInfo_NewQStorageInfo2(C.CString(path))))
+	return NewQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo2(C.CString(path)))
+}
+
+func (ptr *QStorageInfo) Device() *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QStorageInfo_Device(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QStorageInfo) DisplayName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStorageInfo_DisplayName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QStorageInfo_DisplayName(ptr.Pointer()))
 	}
 	return ""
 }
 
+func (ptr *QStorageInfo) FileSystemType() *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QStorageInfo_FileSystemType(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QStorageInfo) IsReadOnly() bool {
 	if ptr.Pointer() != nil {
-		return C.QStorageInfo_IsReadOnly(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QStorageInfo_IsReadOnly(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QStorageInfo) IsReady() bool {
 	if ptr.Pointer() != nil {
-		return C.QStorageInfo_IsReady(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QStorageInfo_IsReady(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QStorageInfo) IsRoot() bool {
 	if ptr.Pointer() != nil {
-		return C.QStorageInfo_IsRoot(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QStorageInfo_IsRoot(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QStorageInfo) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QStorageInfo_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QStorageInfo_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QStorageInfo) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStorageInfo_Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QStorageInfo_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QStorageInfo) Refresh() {
 	if ptr.Pointer() != nil {
-		C.QStorageInfo_Refresh(C.QtObjectPtr(ptr.Pointer()))
+		C.QStorageInfo_Refresh(ptr.Pointer())
 	}
 }
 
 func (ptr *QStorageInfo) RootPath() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStorageInfo_RootPath(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QStorageInfo_RootPath(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QStorageInfo) SetPath(path string) {
 	if ptr.Pointer() != nil {
-		C.QStorageInfo_SetPath(C.QtObjectPtr(ptr.Pointer()), C.CString(path))
+		C.QStorageInfo_SetPath(ptr.Pointer(), C.CString(path))
 	}
 }
 
-func (ptr *QStorageInfo) Swap(other QStorageInfoITF) {
+func (ptr *QStorageInfo) Swap(other QStorageInfo_ITF) {
 	if ptr.Pointer() != nil {
-		C.QStorageInfo_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQStorageInfo(other)))
+		C.QStorageInfo_Swap(ptr.Pointer(), PointerFromQStorageInfo(other))
 	}
 }
 
 func (ptr *QStorageInfo) DestroyQStorageInfo() {
 	if ptr.Pointer() != nil {
-		C.QStorageInfo_DestroyQStorageInfo(C.QtObjectPtr(ptr.Pointer()))
+		C.QStorageInfo_DestroyQStorageInfo(ptr.Pointer())
 	}
 }

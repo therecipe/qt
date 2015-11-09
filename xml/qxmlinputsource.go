@@ -11,8 +11,8 @@ type QXmlInputSource struct {
 	ptr unsafe.Pointer
 }
 
-type QXmlInputSourceITF interface {
-	QXmlInputSourcePTR() *QXmlInputSource
+type QXmlInputSource_ITF interface {
+	QXmlInputSource_PTR() *QXmlInputSource
 }
 
 func (p *QXmlInputSource) Pointer() unsafe.Pointer {
@@ -23,64 +23,64 @@ func (p *QXmlInputSource) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQXmlInputSource(ptr QXmlInputSourceITF) unsafe.Pointer {
+func PointerFromQXmlInputSource(ptr QXmlInputSource_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QXmlInputSourcePTR().Pointer()
+		return ptr.QXmlInputSource_PTR().Pointer()
 	}
 	return nil
 }
 
-func QXmlInputSourceFromPointer(ptr unsafe.Pointer) *QXmlInputSource {
+func NewQXmlInputSourceFromPointer(ptr unsafe.Pointer) *QXmlInputSource {
 	var n = new(QXmlInputSource)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QXmlInputSource) QXmlInputSourcePTR() *QXmlInputSource {
+func (ptr *QXmlInputSource) QXmlInputSource_PTR() *QXmlInputSource {
 	return ptr
 }
 
 func NewQXmlInputSource() *QXmlInputSource {
-	return QXmlInputSourceFromPointer(unsafe.Pointer(C.QXmlInputSource_NewQXmlInputSource()))
+	return NewQXmlInputSourceFromPointer(C.QXmlInputSource_NewQXmlInputSource())
 }
 
-func NewQXmlInputSource2(dev core.QIODeviceITF) *QXmlInputSource {
-	return QXmlInputSourceFromPointer(unsafe.Pointer(C.QXmlInputSource_NewQXmlInputSource2(C.QtObjectPtr(core.PointerFromQIODevice(dev)))))
+func NewQXmlInputSource2(dev core.QIODevice_ITF) *QXmlInputSource {
+	return NewQXmlInputSourceFromPointer(C.QXmlInputSource_NewQXmlInputSource2(core.PointerFromQIODevice(dev)))
 }
 
 func (ptr *QXmlInputSource) Data() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QXmlInputSource_Data(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QXmlInputSource_Data(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QXmlInputSource) FetchData() {
 	if ptr.Pointer() != nil {
-		C.QXmlInputSource_FetchData(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlInputSource_FetchData(ptr.Pointer())
 	}
 }
 
 func (ptr *QXmlInputSource) Reset() {
 	if ptr.Pointer() != nil {
-		C.QXmlInputSource_Reset(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlInputSource_Reset(ptr.Pointer())
 	}
 }
 
-func (ptr *QXmlInputSource) SetData2(dat core.QByteArrayITF) {
+func (ptr *QXmlInputSource) SetData2(dat core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QXmlInputSource_SetData2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(dat)))
+		C.QXmlInputSource_SetData2(ptr.Pointer(), core.PointerFromQByteArray(dat))
 	}
 }
 
 func (ptr *QXmlInputSource) SetData(dat string) {
 	if ptr.Pointer() != nil {
-		C.QXmlInputSource_SetData(C.QtObjectPtr(ptr.Pointer()), C.CString(dat))
+		C.QXmlInputSource_SetData(ptr.Pointer(), C.CString(dat))
 	}
 }
 
 func (ptr *QXmlInputSource) DestroyQXmlInputSource() {
 	if ptr.Pointer() != nil {
-		C.QXmlInputSource_DestroyQXmlInputSource(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlInputSource_DestroyQXmlInputSource(ptr.Pointer())
 	}
 }

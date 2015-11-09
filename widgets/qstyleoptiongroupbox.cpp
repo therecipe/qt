@@ -1,10 +1,10 @@
 #include "qstyleoptiongroupbox.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QStyleOption>
 #include <QStyle>
+#include <QStyleOption>
+#include <QString>
+#include <QVariant>
 #include <QStyleOptionGroupBox>
 #include "_cgo_export.h"
 
@@ -12,11 +12,11 @@ class MyQStyleOptionGroupBox: public QStyleOptionGroupBox {
 public:
 };
 
-QtObjectPtr QStyleOptionGroupBox_NewQStyleOptionGroupBox(){
+void* QStyleOptionGroupBox_NewQStyleOptionGroupBox(){
 	return new QStyleOptionGroupBox();
 }
 
-QtObjectPtr QStyleOptionGroupBox_NewQStyleOptionGroupBox2(QtObjectPtr other){
+void* QStyleOptionGroupBox_NewQStyleOptionGroupBox2(void* other){
 	return new QStyleOptionGroupBox(*static_cast<QStyleOptionGroupBox*>(other));
 }
 

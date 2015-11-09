@@ -12,35 +12,35 @@ type QNearFieldTarget struct {
 	core.QObject
 }
 
-type QNearFieldTargetITF interface {
-	core.QObjectITF
-	QNearFieldTargetPTR() *QNearFieldTarget
+type QNearFieldTarget_ITF interface {
+	core.QObject_ITF
+	QNearFieldTarget_PTR() *QNearFieldTarget
 }
 
-func PointerFromQNearFieldTarget(ptr QNearFieldTargetITF) unsafe.Pointer {
+func PointerFromQNearFieldTarget(ptr QNearFieldTarget_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNearFieldTargetPTR().Pointer()
+		return ptr.QNearFieldTarget_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNearFieldTargetFromPointer(ptr unsafe.Pointer) *QNearFieldTarget {
+func NewQNearFieldTargetFromPointer(ptr unsafe.Pointer) *QNearFieldTarget {
 	var n = new(QNearFieldTarget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QNearFieldTarget_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QNearFieldTarget) QNearFieldTargetPTR() *QNearFieldTarget {
+func (ptr *QNearFieldTarget) QNearFieldTarget_PTR() *QNearFieldTarget {
 	return ptr
 }
 
 //QNearFieldTarget::AccessMethod
-type QNearFieldTarget__AccessMethod int
+type QNearFieldTarget__AccessMethod int64
 
-var (
+const (
 	QNearFieldTarget__UnknownAccess         = QNearFieldTarget__AccessMethod(0x00)
 	QNearFieldTarget__NdefAccess            = QNearFieldTarget__AccessMethod(0x01)
 	QNearFieldTarget__TagTypeSpecificAccess = QNearFieldTarget__AccessMethod(0x02)
@@ -48,9 +48,9 @@ var (
 )
 
 //QNearFieldTarget::Error
-type QNearFieldTarget__Error int
+type QNearFieldTarget__Error int64
 
-var (
+const (
 	QNearFieldTarget__NoError                = QNearFieldTarget__Error(0)
 	QNearFieldTarget__UnknownError           = QNearFieldTarget__Error(1)
 	QNearFieldTarget__UnsupportedError       = QNearFieldTarget__Error(2)
@@ -63,9 +63,9 @@ var (
 )
 
 //QNearFieldTarget::Type
-type QNearFieldTarget__Type int
+type QNearFieldTarget__Type int64
 
-var (
+const (
 	QNearFieldTarget__ProprietaryTag = QNearFieldTarget__Type(0)
 	QNearFieldTarget__NfcTagType1    = QNearFieldTarget__Type(1)
 	QNearFieldTarget__NfcTagType2    = QNearFieldTarget__Type(2)
@@ -76,21 +76,21 @@ var (
 
 func (ptr *QNearFieldTarget) AccessMethods() QNearFieldTarget__AccessMethod {
 	if ptr.Pointer() != nil {
-		return QNearFieldTarget__AccessMethod(C.QNearFieldTarget_AccessMethods(C.QtObjectPtr(ptr.Pointer())))
+		return QNearFieldTarget__AccessMethod(C.QNearFieldTarget_AccessMethods(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNearFieldTarget) ConnectDisconnected(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldTarget_ConnectDisconnected(C.QtObjectPtr(ptr.Pointer()))
+		C.QNearFieldTarget_ConnectDisconnected(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "disconnected", f)
 	}
 }
 
 func (ptr *QNearFieldTarget) DisconnectDisconnected() {
 	if ptr.Pointer() != nil {
-		C.QNearFieldTarget_DisconnectDisconnected(C.QtObjectPtr(ptr.Pointer()))
+		C.QNearFieldTarget_DisconnectDisconnected(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "disconnected")
 	}
 }
@@ -102,28 +102,28 @@ func callbackQNearFieldTargetDisconnected(ptrName *C.char) {
 
 func (ptr *QNearFieldTarget) HasNdefMessage() bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldTarget_HasNdefMessage(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QNearFieldTarget_HasNdefMessage(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QNearFieldTarget) IsProcessingCommand() bool {
 	if ptr.Pointer() != nil {
-		return C.QNearFieldTarget_IsProcessingCommand(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QNearFieldTarget_IsProcessingCommand(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QNearFieldTarget) ConnectNdefMessagesWritten(f func()) {
 	if ptr.Pointer() != nil {
-		C.QNearFieldTarget_ConnectNdefMessagesWritten(C.QtObjectPtr(ptr.Pointer()))
+		C.QNearFieldTarget_ConnectNdefMessagesWritten(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "ndefMessagesWritten", f)
 	}
 }
 
 func (ptr *QNearFieldTarget) DisconnectNdefMessagesWritten() {
 	if ptr.Pointer() != nil {
-		C.QNearFieldTarget_DisconnectNdefMessagesWritten(C.QtObjectPtr(ptr.Pointer()))
+		C.QNearFieldTarget_DisconnectNdefMessagesWritten(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "ndefMessagesWritten")
 	}
 }
@@ -135,21 +135,21 @@ func callbackQNearFieldTargetNdefMessagesWritten(ptrName *C.char) {
 
 func (ptr *QNearFieldTarget) Type() QNearFieldTarget__Type {
 	if ptr.Pointer() != nil {
-		return QNearFieldTarget__Type(C.QNearFieldTarget_Type(C.QtObjectPtr(ptr.Pointer())))
+		return QNearFieldTarget__Type(C.QNearFieldTarget_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QNearFieldTarget) Url() string {
+func (ptr *QNearFieldTarget) Uid() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNearFieldTarget_Url(C.QtObjectPtr(ptr.Pointer())))
+		return core.NewQByteArrayFromPointer(C.QNearFieldTarget_Uid(ptr.Pointer()))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QNearFieldTarget) DestroyQNearFieldTarget() {
 	if ptr.Pointer() != nil {
-		C.QNearFieldTarget_DestroyQNearFieldTarget(C.QtObjectPtr(ptr.Pointer()))
+		C.QNearFieldTarget_DestroyQNearFieldTarget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

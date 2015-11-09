@@ -1,3 +1,3 @@
 ########################################			FUNCTIONS			########################################
 ########################################			ENUMS			########################################
-&{HookIndex QHooks::HookIndex commendable public  [0xc820a950c0 0xc820a95160 0xc820a95200 0xc820a95280 0xc820a95380 0xc820a95400 0xc820a954a0]}
+&{HookIndex QHooks::HookIndex commendable public  [0xc820ae10a0 0xc820ae1140 0xc820ae11c0 0xc820ae12a0 0xc820ae1340 0xc820ae13e0 0xc820ae1460] false}

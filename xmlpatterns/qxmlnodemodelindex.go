@@ -10,8 +10,8 @@ type QXmlNodeModelIndex struct {
 	ptr unsafe.Pointer
 }
 
-type QXmlNodeModelIndexITF interface {
-	QXmlNodeModelIndexPTR() *QXmlNodeModelIndex
+type QXmlNodeModelIndex_ITF interface {
+	QXmlNodeModelIndex_PTR() *QXmlNodeModelIndex
 }
 
 func (p *QXmlNodeModelIndex) Pointer() unsafe.Pointer {
@@ -22,36 +22,36 @@ func (p *QXmlNodeModelIndex) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQXmlNodeModelIndex(ptr QXmlNodeModelIndexITF) unsafe.Pointer {
+func PointerFromQXmlNodeModelIndex(ptr QXmlNodeModelIndex_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QXmlNodeModelIndexPTR().Pointer()
+		return ptr.QXmlNodeModelIndex_PTR().Pointer()
 	}
 	return nil
 }
 
-func QXmlNodeModelIndexFromPointer(ptr unsafe.Pointer) *QXmlNodeModelIndex {
+func NewQXmlNodeModelIndexFromPointer(ptr unsafe.Pointer) *QXmlNodeModelIndex {
 	var n = new(QXmlNodeModelIndex)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QXmlNodeModelIndex) QXmlNodeModelIndexPTR() *QXmlNodeModelIndex {
+func (ptr *QXmlNodeModelIndex) QXmlNodeModelIndex_PTR() *QXmlNodeModelIndex {
 	return ptr
 }
 
 //QXmlNodeModelIndex::DocumentOrder
-type QXmlNodeModelIndex__DocumentOrder int
+type QXmlNodeModelIndex__DocumentOrder int64
 
-var (
+const (
 	QXmlNodeModelIndex__Precedes = QXmlNodeModelIndex__DocumentOrder(-1)
 	QXmlNodeModelIndex__Is       = QXmlNodeModelIndex__DocumentOrder(0)
 	QXmlNodeModelIndex__Follows  = QXmlNodeModelIndex__DocumentOrder(1)
 )
 
 //QXmlNodeModelIndex::NodeKind
-type QXmlNodeModelIndex__NodeKind int
+type QXmlNodeModelIndex__NodeKind int64
 
-var (
+const (
 	QXmlNodeModelIndex__Attribute             = QXmlNodeModelIndex__NodeKind(1)
 	QXmlNodeModelIndex__Comment               = QXmlNodeModelIndex__NodeKind(2)
 	QXmlNodeModelIndex__Document              = QXmlNodeModelIndex__NodeKind(4)
@@ -62,29 +62,30 @@ var (
 )
 
 func NewQXmlNodeModelIndex() *QXmlNodeModelIndex {
-	return QXmlNodeModelIndexFromPointer(unsafe.Pointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex()))
+	return NewQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex())
 }
 
-func NewQXmlNodeModelIndex2(other QXmlNodeModelIndexITF) *QXmlNodeModelIndex {
-	return QXmlNodeModelIndexFromPointer(unsafe.Pointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex2(C.QtObjectPtr(PointerFromQXmlNodeModelIndex(other)))))
+func NewQXmlNodeModelIndex2(other QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
+	return NewQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex2(PointerFromQXmlNodeModelIndex(other)))
 }
 
-func (ptr *QXmlNodeModelIndex) InternalPointer() {
+func (ptr *QXmlNodeModelIndex) InternalPointer() unsafe.Pointer {
 	if ptr.Pointer() != nil {
-		C.QXmlNodeModelIndex_InternalPointer(C.QtObjectPtr(ptr.Pointer()))
+		return unsafe.Pointer(C.QXmlNodeModelIndex_InternalPointer(ptr.Pointer()))
 	}
+	return nil
 }
 
 func (ptr *QXmlNodeModelIndex) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlNodeModelIndex_IsNull(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QXmlNodeModelIndex_IsNull(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlNodeModelIndex) Model() *QAbstractXmlNodeModel {
 	if ptr.Pointer() != nil {
-		return QAbstractXmlNodeModelFromPointer(unsafe.Pointer(C.QXmlNodeModelIndex_Model(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAbstractXmlNodeModelFromPointer(C.QXmlNodeModelIndex_Model(ptr.Pointer()))
 	}
 	return nil
 }

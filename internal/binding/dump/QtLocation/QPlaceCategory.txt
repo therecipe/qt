@@ -1,17 +1,17 @@
 ########################################			FUNCTIONS			########################################
-&{QPlaceCategory QPlaceCategory::QPlaceCategory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non constructor false false   [] }
-&{QPlaceCategory QPlaceCategory::QPlaceCategory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non constructor false true 2  [0xc8220ff600] }
-&{categoryId QPlaceCategory::categoryId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  QString [] }
-&{icon QPlaceCategory::icon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  QPlaceIcon [] }
-&{isEmpty QPlaceCategory::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  bool [] }
-&{name QPlaceCategory::name commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  QString [] }
-&{operator!= QPlaceCategory::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  bool [0xc8220ffc20] }
-&{operator= QPlaceCategory::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  QPlaceCategory & [0xc8220ffe40] }
-&{operator== QPlaceCategory::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  bool [0xc82210c0e0] }
-&{setCategoryId QPlaceCategory::setCategoryId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  void [0xc82210c3e0] }
-&{setIcon QPlaceCategory::setIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  void [0xc82210c720] }
-&{setName QPlaceCategory::setName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  void [0xc82210cb00] }
-&{setVisibility QPlaceCategory::setVisibility commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  void [0xc82210cf00] }
-&{visibility QPlaceCategory::visibility commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  QLocation::Visibility [] }
-&{~QPlaceCategory QPlaceCategory::~QPlaceCategory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h impure destructor false false   [] }
+&{QPlaceCategory QPlaceCategory::QPlaceCategory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non constructor false false   QPlaceCategory() [] }
+&{QPlaceCategory QPlaceCategory::QPlaceCategory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non constructor false true 2  QPlaceCategory(const QPlaceCategory &other) [0xc82251a060] }
+&{categoryId QPlaceCategory::categoryId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  QString QString categoryId() const [] }
+&{icon QPlaceCategory::icon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  QPlaceIcon QPlaceIcon icon() const [] }
+&{isEmpty QPlaceCategory::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  bool bool isEmpty() const [] }
+&{name QPlaceCategory::name commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  QString QString name() const [] }
+&{operator!= QPlaceCategory::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  bool bool operator!=(const QPlaceCategory &other) const [0xc82251aae0] }
+&{operator= QPlaceCategory::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  QPlaceCategory & QPlaceCategory & operator=(const QPlaceCategory &other) [0xc82251ae60] }
+&{operator== QPlaceCategory::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  bool bool operator==(const QPlaceCategory &other) const [0xc82251b1a0] }
+&{setCategoryId QPlaceCategory::setCategoryId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  void void setCategoryId(const QString &identifier) [0xc82251b500] }
+&{setIcon QPlaceCategory::setIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  void void setIcon(const QPlaceIcon &icon) [0xc82251b800] }
+&{setName QPlaceCategory::setName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  void void setName(const QString &name) [0xc82251bb40] }
+&{setVisibility QPlaceCategory::setVisibility commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  void void setVisibility(QLocation::Visibility visibility) [0xc82251be00] }
+&{visibility QPlaceCategory::visibility commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h non plain false false  QLocation::Visibility QLocation::Visibility visibility() const [] }
+&{~QPlaceCategory QPlaceCategory::~QPlaceCategory commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacecategory.h impure destructor false false   ~QPlaceCategory() [] }
 ########################################			ENUMS			########################################

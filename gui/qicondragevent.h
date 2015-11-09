@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QIconDragEvent_NewQIconDragEvent();
+void* QIconDragEvent_NewQIconDragEvent();
 
 #ifdef __cplusplus
 }

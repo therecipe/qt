@@ -11,48 +11,48 @@ type QCameraLocksControl struct {
 	QMediaControl
 }
 
-type QCameraLocksControlITF interface {
-	QMediaControlITF
-	QCameraLocksControlPTR() *QCameraLocksControl
+type QCameraLocksControl_ITF interface {
+	QMediaControl_ITF
+	QCameraLocksControl_PTR() *QCameraLocksControl
 }
 
-func PointerFromQCameraLocksControl(ptr QCameraLocksControlITF) unsafe.Pointer {
+func PointerFromQCameraLocksControl(ptr QCameraLocksControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCameraLocksControlPTR().Pointer()
+		return ptr.QCameraLocksControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCameraLocksControlFromPointer(ptr unsafe.Pointer) *QCameraLocksControl {
+func NewQCameraLocksControlFromPointer(ptr unsafe.Pointer) *QCameraLocksControl {
 	var n = new(QCameraLocksControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCameraLocksControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCameraLocksControl) QCameraLocksControlPTR() *QCameraLocksControl {
+func (ptr *QCameraLocksControl) QCameraLocksControl_PTR() *QCameraLocksControl {
 	return ptr
 }
 
 func (ptr *QCameraLocksControl) LockStatus(lock QCamera__LockType) QCamera__LockStatus {
 	if ptr.Pointer() != nil {
-		return QCamera__LockStatus(C.QCameraLocksControl_LockStatus(C.QtObjectPtr(ptr.Pointer()), C.int(lock)))
+		return QCamera__LockStatus(C.QCameraLocksControl_LockStatus(ptr.Pointer(), C.int(lock)))
 	}
 	return 0
 }
 
 func (ptr *QCameraLocksControl) ConnectLockStatusChanged(f func(lock QCamera__LockType, status QCamera__LockStatus, reason QCamera__LockChangeReason)) {
 	if ptr.Pointer() != nil {
-		C.QCameraLocksControl_ConnectLockStatusChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraLocksControl_ConnectLockStatusChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "lockStatusChanged", f)
 	}
 }
 
 func (ptr *QCameraLocksControl) DisconnectLockStatusChanged() {
 	if ptr.Pointer() != nil {
-		C.QCameraLocksControl_DisconnectLockStatusChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraLocksControl_DisconnectLockStatusChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "lockStatusChanged")
 	}
 }
@@ -64,26 +64,26 @@ func callbackQCameraLocksControlLockStatusChanged(ptrName *C.char, lock C.int, s
 
 func (ptr *QCameraLocksControl) SearchAndLock(locks QCamera__LockType) {
 	if ptr.Pointer() != nil {
-		C.QCameraLocksControl_SearchAndLock(C.QtObjectPtr(ptr.Pointer()), C.int(locks))
+		C.QCameraLocksControl_SearchAndLock(ptr.Pointer(), C.int(locks))
 	}
 }
 
 func (ptr *QCameraLocksControl) SupportedLocks() QCamera__LockType {
 	if ptr.Pointer() != nil {
-		return QCamera__LockType(C.QCameraLocksControl_SupportedLocks(C.QtObjectPtr(ptr.Pointer())))
+		return QCamera__LockType(C.QCameraLocksControl_SupportedLocks(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QCameraLocksControl) Unlock(locks QCamera__LockType) {
 	if ptr.Pointer() != nil {
-		C.QCameraLocksControl_Unlock(C.QtObjectPtr(ptr.Pointer()), C.int(locks))
+		C.QCameraLocksControl_Unlock(ptr.Pointer(), C.int(locks))
 	}
 }
 
 func (ptr *QCameraLocksControl) DestroyQCameraLocksControl() {
 	if ptr.Pointer() != nil {
-		C.QCameraLocksControl_DestroyQCameraLocksControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraLocksControl_DestroyQCameraLocksControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

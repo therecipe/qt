@@ -1,10 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSGOpacityNode_NewQSGOpacityNode();
-void QSGOpacityNode_DestroyQSGOpacityNode(QtObjectPtr ptr);
+void* QSGOpacityNode_NewQSGOpacityNode();
+double QSGOpacityNode_Opacity(void* ptr);
+void QSGOpacityNode_SetOpacity(void* ptr, double opacity);
+void QSGOpacityNode_DestroyQSGOpacityNode(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QKeySequenceEdit_SetKeySequence(QtObjectPtr ptr, QtObjectPtr keySequence);
-QtObjectPtr QKeySequenceEdit_NewQKeySequenceEdit(QtObjectPtr parent);
-QtObjectPtr QKeySequenceEdit_NewQKeySequenceEdit2(QtObjectPtr keySequence, QtObjectPtr parent);
-void QKeySequenceEdit_Clear(QtObjectPtr ptr);
-void QKeySequenceEdit_ConnectEditingFinished(QtObjectPtr ptr);
-void QKeySequenceEdit_DisconnectEditingFinished(QtObjectPtr ptr);
-void QKeySequenceEdit_DestroyQKeySequenceEdit(QtObjectPtr ptr);
+void QKeySequenceEdit_SetKeySequence(void* ptr, void* keySequence);
+void* QKeySequenceEdit_NewQKeySequenceEdit(void* parent);
+void* QKeySequenceEdit_NewQKeySequenceEdit2(void* keySequence, void* parent);
+void QKeySequenceEdit_Clear(void* ptr);
+void QKeySequenceEdit_ConnectEditingFinished(void* ptr);
+void QKeySequenceEdit_DisconnectEditingFinished(void* ptr);
+void QKeySequenceEdit_DestroyQKeySequenceEdit(void* ptr);
 
 #ifdef __cplusplus
 }

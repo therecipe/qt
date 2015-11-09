@@ -10,8 +10,8 @@ type QDBusReply struct {
 	ptr unsafe.Pointer
 }
 
-type QDBusReplyITF interface {
-	QDBusReplyPTR() *QDBusReply
+type QDBusReply_ITF interface {
+	QDBusReply_PTR() *QDBusReply
 }
 
 func (p *QDBusReply) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QDBusReply) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQDBusReply(ptr QDBusReplyITF) unsafe.Pointer {
+func PointerFromQDBusReply(ptr QDBusReply_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDBusReplyPTR().Pointer()
+		return ptr.QDBusReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDBusReplyFromPointer(ptr unsafe.Pointer) *QDBusReply {
+func NewQDBusReplyFromPointer(ptr unsafe.Pointer) *QDBusReply {
 	var n = new(QDBusReply)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDBusReply) QDBusReplyPTR() *QDBusReply {
+func (ptr *QDBusReply) QDBusReply_PTR() *QDBusReply {
 	return ptr
 }

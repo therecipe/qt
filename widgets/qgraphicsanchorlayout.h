@@ -1,19 +1,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGraphicsAnchorLayout_NewQGraphicsAnchorLayout(QtObjectPtr parent);
-QtObjectPtr QGraphicsAnchorLayout_AddAnchor(QtObjectPtr ptr, QtObjectPtr firstItem, int firstEdge, QtObjectPtr secondItem, int secondEdge);
-void QGraphicsAnchorLayout_AddAnchors(QtObjectPtr ptr, QtObjectPtr firstItem, QtObjectPtr secondItem, int orientations);
-void QGraphicsAnchorLayout_AddCornerAnchors(QtObjectPtr ptr, QtObjectPtr firstItem, int firstCorner, QtObjectPtr secondItem, int secondCorner);
-QtObjectPtr QGraphicsAnchorLayout_Anchor(QtObjectPtr ptr, QtObjectPtr firstItem, int firstEdge, QtObjectPtr secondItem, int secondEdge);
-int QGraphicsAnchorLayout_Count(QtObjectPtr ptr);
-void QGraphicsAnchorLayout_Invalidate(QtObjectPtr ptr);
-QtObjectPtr QGraphicsAnchorLayout_ItemAt(QtObjectPtr ptr, int index);
-void QGraphicsAnchorLayout_RemoveAt(QtObjectPtr ptr, int index);
-void QGraphicsAnchorLayout_SetGeometry(QtObjectPtr ptr, QtObjectPtr geom);
-void QGraphicsAnchorLayout_DestroyQGraphicsAnchorLayout(QtObjectPtr ptr);
+void* QGraphicsAnchorLayout_NewQGraphicsAnchorLayout(void* parent);
+void* QGraphicsAnchorLayout_AddAnchor(void* ptr, void* firstItem, int firstEdge, void* secondItem, int secondEdge);
+void QGraphicsAnchorLayout_AddAnchors(void* ptr, void* firstItem, void* secondItem, int orientations);
+void QGraphicsAnchorLayout_AddCornerAnchors(void* ptr, void* firstItem, int firstCorner, void* secondItem, int secondCorner);
+void* QGraphicsAnchorLayout_Anchor(void* ptr, void* firstItem, int firstEdge, void* secondItem, int secondEdge);
+int QGraphicsAnchorLayout_Count(void* ptr);
+double QGraphicsAnchorLayout_HorizontalSpacing(void* ptr);
+void QGraphicsAnchorLayout_Invalidate(void* ptr);
+void* QGraphicsAnchorLayout_ItemAt(void* ptr, int index);
+void QGraphicsAnchorLayout_RemoveAt(void* ptr, int index);
+void QGraphicsAnchorLayout_SetGeometry(void* ptr, void* geom);
+void QGraphicsAnchorLayout_SetHorizontalSpacing(void* ptr, double spacing);
+void QGraphicsAnchorLayout_SetSpacing(void* ptr, double spacing);
+void QGraphicsAnchorLayout_SetVerticalSpacing(void* ptr, double spacing);
+double QGraphicsAnchorLayout_VerticalSpacing(void* ptr);
+void QGraphicsAnchorLayout_DestroyQGraphicsAnchorLayout(void* ptr);
 
 #ifdef __cplusplus
 }

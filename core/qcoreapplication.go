@@ -12,28 +12,28 @@ type QCoreApplication struct {
 	QObject
 }
 
-type QCoreApplicationITF interface {
-	QObjectITF
-	QCoreApplicationPTR() *QCoreApplication
+type QCoreApplication_ITF interface {
+	QObject_ITF
+	QCoreApplication_PTR() *QCoreApplication
 }
 
-func PointerFromQCoreApplication(ptr QCoreApplicationITF) unsafe.Pointer {
+func PointerFromQCoreApplication(ptr QCoreApplication_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCoreApplicationPTR().Pointer()
+		return ptr.QCoreApplication_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCoreApplicationFromPointer(ptr unsafe.Pointer) *QCoreApplication {
+func NewQCoreApplicationFromPointer(ptr unsafe.Pointer) *QCoreApplication {
 	var n = new(QCoreApplication)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCoreApplication_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCoreApplication) QCoreApplicationPTR() *QCoreApplication {
+func (ptr *QCoreApplication) QCoreApplication_PTR() *QCoreApplication {
 	return ptr
 }
 
@@ -69,20 +69,20 @@ func QCoreApplication_SetOrganizationName(orgName string) {
 	C.QCoreApplication_QCoreApplication_SetOrganizationName(C.CString(orgName))
 }
 
-func NewQCoreApplication(argc int, argv string) *QCoreApplication {
-	return QCoreApplicationFromPointer(unsafe.Pointer(C.QCoreApplication_NewQCoreApplication(C.int(argc), C.CString(argv))))
+func NewQCoreApplication(argc int, argv []string) *QCoreApplication {
+	return NewQCoreApplicationFromPointer(C.QCoreApplication_NewQCoreApplication(C.int(argc), C.CString(strings.Join(argv, "|"))))
 }
 
 func (ptr *QCoreApplication) ConnectAboutToQuit(f func()) {
 	if ptr.Pointer() != nil {
-		C.QCoreApplication_ConnectAboutToQuit(C.QtObjectPtr(ptr.Pointer()))
+		C.QCoreApplication_ConnectAboutToQuit(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "aboutToQuit", f)
 	}
 }
 
 func (ptr *QCoreApplication) DisconnectAboutToQuit() {
 	if ptr.Pointer() != nil {
-		C.QCoreApplication_DisconnectAboutToQuit(C.QtObjectPtr(ptr.Pointer()))
+		C.QCoreApplication_DisconnectAboutToQuit(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "aboutToQuit")
 	}
 }
@@ -113,7 +113,7 @@ func QCoreApplication_ClosingDown() bool {
 }
 
 func QCoreApplication_EventDispatcher() *QAbstractEventDispatcher {
-	return QAbstractEventDispatcherFromPointer(unsafe.Pointer(C.QCoreApplication_QCoreApplication_EventDispatcher()))
+	return NewQAbstractEventDispatcherFromPointer(C.QCoreApplication_QCoreApplication_EventDispatcher())
 }
 
 func QCoreApplication_Exec() int {
@@ -128,18 +128,18 @@ func QCoreApplication_Flush() {
 	C.QCoreApplication_QCoreApplication_Flush()
 }
 
-func (ptr *QCoreApplication) InstallNativeEventFilter(filterObj QAbstractNativeEventFilterITF) {
+func (ptr *QCoreApplication) InstallNativeEventFilter(filterObj QAbstractNativeEventFilter_ITF) {
 	if ptr.Pointer() != nil {
-		C.QCoreApplication_InstallNativeEventFilter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractNativeEventFilter(filterObj)))
+		C.QCoreApplication_InstallNativeEventFilter(ptr.Pointer(), PointerFromQAbstractNativeEventFilter(filterObj))
 	}
 }
 
-func QCoreApplication_InstallTranslator(translationFile QTranslatorITF) bool {
-	return C.QCoreApplication_QCoreApplication_InstallTranslator(C.QtObjectPtr(PointerFromQTranslator(translationFile))) != 0
+func QCoreApplication_InstallTranslator(translationFile QTranslator_ITF) bool {
+	return C.QCoreApplication_QCoreApplication_InstallTranslator(PointerFromQTranslator(translationFile)) != 0
 }
 
 func QCoreApplication_Instance() *QCoreApplication {
-	return QCoreApplicationFromPointer(unsafe.Pointer(C.QCoreApplication_QCoreApplication_Instance()))
+	return NewQCoreApplicationFromPointer(C.QCoreApplication_QCoreApplication_Instance())
 }
 
 func QCoreApplication_IsQuitLockEnabled() bool {
@@ -154,15 +154,15 @@ func QCoreApplication_LibraryPaths() []string {
 	return strings.Split(C.GoString(C.QCoreApplication_QCoreApplication_LibraryPaths()), "|")
 }
 
-func (ptr *QCoreApplication) Notify(receiver QObjectITF, event QEventITF) bool {
+func (ptr *QCoreApplication) Notify(receiver QObject_ITF, event QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QCoreApplication_Notify(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQObject(receiver)), C.QtObjectPtr(PointerFromQEvent(event))) != 0
+		return C.QCoreApplication_Notify(ptr.Pointer(), PointerFromQObject(receiver), PointerFromQEvent(event)) != 0
 	}
 	return false
 }
 
-func QCoreApplication_PostEvent(receiver QObjectITF, event QEventITF, priority int) {
-	C.QCoreApplication_QCoreApplication_PostEvent(C.QtObjectPtr(PointerFromQObject(receiver)), C.QtObjectPtr(PointerFromQEvent(event)), C.int(priority))
+func QCoreApplication_PostEvent(receiver QObject_ITF, event QEvent_ITF, priority int) {
+	C.QCoreApplication_QCoreApplication_PostEvent(PointerFromQObject(receiver), PointerFromQEvent(event), C.int(priority))
 }
 
 func QCoreApplication_ProcessEvents(flags QEventLoop__ProcessEventsFlag) {
@@ -181,34 +181,34 @@ func QCoreApplication_RemoveLibraryPath(path string) {
 	C.QCoreApplication_QCoreApplication_RemoveLibraryPath(C.CString(path))
 }
 
-func (ptr *QCoreApplication) RemoveNativeEventFilter(filterObject QAbstractNativeEventFilterITF) {
+func (ptr *QCoreApplication) RemoveNativeEventFilter(filterObject QAbstractNativeEventFilter_ITF) {
 	if ptr.Pointer() != nil {
-		C.QCoreApplication_RemoveNativeEventFilter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractNativeEventFilter(filterObject)))
+		C.QCoreApplication_RemoveNativeEventFilter(ptr.Pointer(), PointerFromQAbstractNativeEventFilter(filterObject))
 	}
 }
 
-func QCoreApplication_RemovePostedEvents(receiver QObjectITF, eventType int) {
-	C.QCoreApplication_QCoreApplication_RemovePostedEvents(C.QtObjectPtr(PointerFromQObject(receiver)), C.int(eventType))
+func QCoreApplication_RemovePostedEvents(receiver QObject_ITF, eventType int) {
+	C.QCoreApplication_QCoreApplication_RemovePostedEvents(PointerFromQObject(receiver), C.int(eventType))
 }
 
-func QCoreApplication_RemoveTranslator(translationFile QTranslatorITF) bool {
-	return C.QCoreApplication_QCoreApplication_RemoveTranslator(C.QtObjectPtr(PointerFromQTranslator(translationFile))) != 0
+func QCoreApplication_RemoveTranslator(translationFile QTranslator_ITF) bool {
+	return C.QCoreApplication_QCoreApplication_RemoveTranslator(PointerFromQTranslator(translationFile)) != 0
 }
 
-func QCoreApplication_SendEvent(receiver QObjectITF, event QEventITF) bool {
-	return C.QCoreApplication_QCoreApplication_SendEvent(C.QtObjectPtr(PointerFromQObject(receiver)), C.QtObjectPtr(PointerFromQEvent(event))) != 0
+func QCoreApplication_SendEvent(receiver QObject_ITF, event QEvent_ITF) bool {
+	return C.QCoreApplication_QCoreApplication_SendEvent(PointerFromQObject(receiver), PointerFromQEvent(event)) != 0
 }
 
-func QCoreApplication_SendPostedEvents(receiver QObjectITF, event_type int) {
-	C.QCoreApplication_QCoreApplication_SendPostedEvents(C.QtObjectPtr(PointerFromQObject(receiver)), C.int(event_type))
+func QCoreApplication_SendPostedEvents(receiver QObject_ITF, event_type int) {
+	C.QCoreApplication_QCoreApplication_SendPostedEvents(PointerFromQObject(receiver), C.int(event_type))
 }
 
 func QCoreApplication_SetAttribute(attribute Qt__ApplicationAttribute, on bool) {
 	C.QCoreApplication_QCoreApplication_SetAttribute(C.int(attribute), C.int(qt.GoBoolToInt(on)))
 }
 
-func QCoreApplication_SetEventDispatcher(eventDispatcher QAbstractEventDispatcherITF) {
-	C.QCoreApplication_QCoreApplication_SetEventDispatcher(C.QtObjectPtr(PointerFromQAbstractEventDispatcher(eventDispatcher)))
+func QCoreApplication_SetEventDispatcher(eventDispatcher QAbstractEventDispatcher_ITF) {
+	C.QCoreApplication_QCoreApplication_SetEventDispatcher(PointerFromQAbstractEventDispatcher(eventDispatcher))
 }
 
 func QCoreApplication_SetLibraryPaths(paths []string) {
@@ -237,7 +237,7 @@ func QCoreApplication_Translate(context string, sourceText string, disambiguatio
 
 func (ptr *QCoreApplication) DestroyQCoreApplication() {
 	if ptr.Pointer() != nil {
-		C.QCoreApplication_DestroyQCoreApplication(C.QtObjectPtr(ptr.Pointer()))
+		C.QCoreApplication_DestroyQCoreApplication(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

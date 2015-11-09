@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QBluetoothHostInfo_NewQBluetoothHostInfo();
-QtObjectPtr QBluetoothHostInfo_NewQBluetoothHostInfo2(QtObjectPtr other);
-char* QBluetoothHostInfo_Name(QtObjectPtr ptr);
-void QBluetoothHostInfo_SetAddress(QtObjectPtr ptr, QtObjectPtr address);
-void QBluetoothHostInfo_SetName(QtObjectPtr ptr, char* name);
-void QBluetoothHostInfo_DestroyQBluetoothHostInfo(QtObjectPtr ptr);
+void* QBluetoothHostInfo_NewQBluetoothHostInfo();
+void* QBluetoothHostInfo_NewQBluetoothHostInfo2(void* other);
+char* QBluetoothHostInfo_Name(void* ptr);
+void QBluetoothHostInfo_SetAddress(void* ptr, void* address);
+void QBluetoothHostInfo_SetName(void* ptr, char* name);
+void QBluetoothHostInfo_DestroyQBluetoothHostInfo(void* ptr);
 
 #ifdef __cplusplus
 }

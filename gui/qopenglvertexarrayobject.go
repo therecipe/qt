@@ -12,70 +12,27 @@ type QOpenGLVertexArrayObject struct {
 	core.QObject
 }
 
-type QOpenGLVertexArrayObjectITF interface {
-	core.QObjectITF
-	QOpenGLVertexArrayObjectPTR() *QOpenGLVertexArrayObject
+type QOpenGLVertexArrayObject_ITF interface {
+	core.QObject_ITF
+	QOpenGLVertexArrayObject_PTR() *QOpenGLVertexArrayObject
 }
 
-func PointerFromQOpenGLVertexArrayObject(ptr QOpenGLVertexArrayObjectITF) unsafe.Pointer {
+func PointerFromQOpenGLVertexArrayObject(ptr QOpenGLVertexArrayObject_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QOpenGLVertexArrayObjectPTR().Pointer()
+		return ptr.QOpenGLVertexArrayObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func QOpenGLVertexArrayObjectFromPointer(ptr unsafe.Pointer) *QOpenGLVertexArrayObject {
+func NewQOpenGLVertexArrayObjectFromPointer(ptr unsafe.Pointer) *QOpenGLVertexArrayObject {
 	var n = new(QOpenGLVertexArrayObject)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QOpenGLVertexArrayObject_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QOpenGLVertexArrayObject) QOpenGLVertexArrayObjectPTR() *QOpenGLVertexArrayObject {
+func (ptr *QOpenGLVertexArrayObject) QOpenGLVertexArrayObject_PTR() *QOpenGLVertexArrayObject {
 	return ptr
-}
-
-func NewQOpenGLVertexArrayObject(parent core.QObjectITF) *QOpenGLVertexArrayObject {
-	return QOpenGLVertexArrayObjectFromPointer(unsafe.Pointer(C.QOpenGLVertexArrayObject_NewQOpenGLVertexArrayObject(C.QtObjectPtr(core.PointerFromQObject(parent)))))
-}
-
-func (ptr *QOpenGLVertexArrayObject) Bind() {
-	if ptr.Pointer() != nil {
-		C.QOpenGLVertexArrayObject_Bind(C.QtObjectPtr(ptr.Pointer()))
-	}
-}
-
-func (ptr *QOpenGLVertexArrayObject) Create() bool {
-	if ptr.Pointer() != nil {
-		return C.QOpenGLVertexArrayObject_Create(C.QtObjectPtr(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QOpenGLVertexArrayObject) Destroy() {
-	if ptr.Pointer() != nil {
-		C.QOpenGLVertexArrayObject_Destroy(C.QtObjectPtr(ptr.Pointer()))
-	}
-}
-
-func (ptr *QOpenGLVertexArrayObject) IsCreated() bool {
-	if ptr.Pointer() != nil {
-		return C.QOpenGLVertexArrayObject_IsCreated(C.QtObjectPtr(ptr.Pointer())) != 0
-	}
-	return false
-}
-
-func (ptr *QOpenGLVertexArrayObject) Release() {
-	if ptr.Pointer() != nil {
-		C.QOpenGLVertexArrayObject_Release(C.QtObjectPtr(ptr.Pointer()))
-	}
-}
-
-func (ptr *QOpenGLVertexArrayObject) DestroyQOpenGLVertexArrayObject() {
-	if ptr.Pointer() != nil {
-		C.QOpenGLVertexArrayObject_DestroyQOpenGLVertexArrayObject(C.QtObjectPtr(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
 }

@@ -11,23 +11,23 @@ class MyQMutexLocker: public QMutexLocker {
 public:
 };
 
-QtObjectPtr QMutexLocker_NewQMutexLocker(QtObjectPtr mutex){
+void* QMutexLocker_NewQMutexLocker(void* mutex){
 	return new QMutexLocker(static_cast<QMutex*>(mutex));
 }
 
-QtObjectPtr QMutexLocker_Mutex(QtObjectPtr ptr){
+void* QMutexLocker_Mutex(void* ptr){
 	return static_cast<QMutexLocker*>(ptr)->mutex();
 }
 
-void QMutexLocker_Relock(QtObjectPtr ptr){
+void QMutexLocker_Relock(void* ptr){
 	static_cast<QMutexLocker*>(ptr)->relock();
 }
 
-void QMutexLocker_Unlock(QtObjectPtr ptr){
+void QMutexLocker_Unlock(void* ptr){
 	static_cast<QMutexLocker*>(ptr)->unlock();
 }
 
-void QMutexLocker_DestroyQMutexLocker(QtObjectPtr ptr){
+void QMutexLocker_DestroyQMutexLocker(void* ptr){
 	static_cast<QMutexLocker*>(ptr)->~QMutexLocker();
 }
 

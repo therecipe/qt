@@ -10,8 +10,8 @@ type QMapIterator struct {
 	ptr unsafe.Pointer
 }
 
-type QMapIteratorITF interface {
-	QMapIteratorPTR() *QMapIterator
+type QMapIterator_ITF interface {
+	QMapIterator_PTR() *QMapIterator
 }
 
 func (p *QMapIterator) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QMapIterator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMapIterator(ptr QMapIteratorITF) unsafe.Pointer {
+func PointerFromQMapIterator(ptr QMapIterator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMapIteratorPTR().Pointer()
+		return ptr.QMapIterator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMapIteratorFromPointer(ptr unsafe.Pointer) *QMapIterator {
+func NewQMapIteratorFromPointer(ptr unsafe.Pointer) *QMapIterator {
 	var n = new(QMapIterator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMapIterator) QMapIteratorPTR() *QMapIterator {
+func (ptr *QMapIterator) QMapIterator_PTR() *QMapIterator {
 	return ptr
 }

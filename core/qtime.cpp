@@ -10,23 +10,23 @@ class MyQTime: public QTime {
 public:
 };
 
-QtObjectPtr QTime_NewQTime(){
+void* QTime_NewQTime(){
 	return new QTime();
 }
 
-QtObjectPtr QTime_NewQTime3(int h, int m, int s, int ms){
+void* QTime_NewQTime3(int h, int m, int s, int ms){
 	return new QTime(h, m, s, ms);
 }
 
-int QTime_Elapsed(QtObjectPtr ptr){
+int QTime_Elapsed(void* ptr){
 	return static_cast<QTime*>(ptr)->elapsed();
 }
 
-int QTime_Hour(QtObjectPtr ptr){
+int QTime_Hour(void* ptr){
 	return static_cast<QTime*>(ptr)->hour();
 }
 
-int QTime_IsNull(QtObjectPtr ptr){
+int QTime_IsNull(void* ptr){
 	return static_cast<QTime*>(ptr)->isNull();
 }
 
@@ -34,51 +34,51 @@ int QTime_QTime_IsValid2(int h, int m, int s, int ms){
 	return QTime::isValid(h, m, s, ms);
 }
 
-int QTime_IsValid(QtObjectPtr ptr){
+int QTime_IsValid(void* ptr){
 	return static_cast<QTime*>(ptr)->isValid();
 }
 
-int QTime_Minute(QtObjectPtr ptr){
+int QTime_Minute(void* ptr){
 	return static_cast<QTime*>(ptr)->minute();
 }
 
-int QTime_Msec(QtObjectPtr ptr){
+int QTime_Msec(void* ptr){
 	return static_cast<QTime*>(ptr)->msec();
 }
 
-int QTime_MsecsSinceStartOfDay(QtObjectPtr ptr){
+int QTime_MsecsSinceStartOfDay(void* ptr){
 	return static_cast<QTime*>(ptr)->msecsSinceStartOfDay();
 }
 
-int QTime_MsecsTo(QtObjectPtr ptr, QtObjectPtr t){
+int QTime_MsecsTo(void* ptr, void* t){
 	return static_cast<QTime*>(ptr)->msecsTo(*static_cast<QTime*>(t));
 }
 
-int QTime_Restart(QtObjectPtr ptr){
+int QTime_Restart(void* ptr){
 	return static_cast<QTime*>(ptr)->restart();
 }
 
-int QTime_Second(QtObjectPtr ptr){
+int QTime_Second(void* ptr){
 	return static_cast<QTime*>(ptr)->second();
 }
 
-int QTime_SecsTo(QtObjectPtr ptr, QtObjectPtr t){
+int QTime_SecsTo(void* ptr, void* t){
 	return static_cast<QTime*>(ptr)->secsTo(*static_cast<QTime*>(t));
 }
 
-int QTime_SetHMS(QtObjectPtr ptr, int h, int m, int s, int ms){
+int QTime_SetHMS(void* ptr, int h, int m, int s, int ms){
 	return static_cast<QTime*>(ptr)->setHMS(h, m, s, ms);
 }
 
-void QTime_Start(QtObjectPtr ptr){
+void QTime_Start(void* ptr){
 	static_cast<QTime*>(ptr)->start();
 }
 
-char* QTime_ToString2(QtObjectPtr ptr, int format){
+char* QTime_ToString2(void* ptr, int format){
 	return static_cast<QTime*>(ptr)->toString(static_cast<Qt::DateFormat>(format)).toUtf8().data();
 }
 
-char* QTime_ToString(QtObjectPtr ptr, char* format){
+char* QTime_ToString(void* ptr, char* format){
 	return static_cast<QTime*>(ptr)->toString(QString(format)).toUtf8().data();
 }
 

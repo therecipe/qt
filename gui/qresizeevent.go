@@ -11,28 +11,28 @@ type QResizeEvent struct {
 	core.QEvent
 }
 
-type QResizeEventITF interface {
-	core.QEventITF
-	QResizeEventPTR() *QResizeEvent
+type QResizeEvent_ITF interface {
+	core.QEvent_ITF
+	QResizeEvent_PTR() *QResizeEvent
 }
 
-func PointerFromQResizeEvent(ptr QResizeEventITF) unsafe.Pointer {
+func PointerFromQResizeEvent(ptr QResizeEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QResizeEventPTR().Pointer()
+		return ptr.QResizeEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QResizeEventFromPointer(ptr unsafe.Pointer) *QResizeEvent {
+func NewQResizeEventFromPointer(ptr unsafe.Pointer) *QResizeEvent {
 	var n = new(QResizeEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QResizeEvent) QResizeEventPTR() *QResizeEvent {
+func (ptr *QResizeEvent) QResizeEvent_PTR() *QResizeEvent {
 	return ptr
 }
 
-func NewQResizeEvent(size core.QSizeITF, oldSize core.QSizeITF) *QResizeEvent {
-	return QResizeEventFromPointer(unsafe.Pointer(C.QResizeEvent_NewQResizeEvent(C.QtObjectPtr(core.PointerFromQSize(size)), C.QtObjectPtr(core.PointerFromQSize(oldSize)))))
+func NewQResizeEvent(size core.QSize_ITF, oldSize core.QSize_ITF) *QResizeEvent {
+	return NewQResizeEventFromPointer(C.QResizeEvent_NewQResizeEvent(core.PointerFromQSize(size), core.PointerFromQSize(oldSize)))
 }

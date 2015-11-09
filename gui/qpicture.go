@@ -11,84 +11,84 @@ type QPicture struct {
 	QPaintDevice
 }
 
-type QPictureITF interface {
-	QPaintDeviceITF
-	QPicturePTR() *QPicture
+type QPicture_ITF interface {
+	QPaintDevice_ITF
+	QPicture_PTR() *QPicture
 }
 
-func PointerFromQPicture(ptr QPictureITF) unsafe.Pointer {
+func PointerFromQPicture(ptr QPicture_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPicturePTR().Pointer()
+		return ptr.QPicture_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPictureFromPointer(ptr unsafe.Pointer) *QPicture {
+func NewQPictureFromPointer(ptr unsafe.Pointer) *QPicture {
 	var n = new(QPicture)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPicture) QPicturePTR() *QPicture {
+func (ptr *QPicture) QPicture_PTR() *QPicture {
 	return ptr
 }
 
 func (ptr *QPicture) IsNull() bool {
 	if ptr.Pointer() != nil {
-		return C.QPicture_IsNull(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QPicture_IsNull(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QPicture) Load2(dev core.QIODeviceITF, format string) bool {
+func (ptr *QPicture) Load2(dev core.QIODevice_ITF, format string) bool {
 	if ptr.Pointer() != nil {
-		return C.QPicture_Load2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQIODevice(dev)), C.CString(format)) != 0
+		return C.QPicture_Load2(ptr.Pointer(), core.PointerFromQIODevice(dev), C.CString(format)) != 0
 	}
 	return false
 }
 
 func (ptr *QPicture) Load(fileName string, format string) bool {
 	if ptr.Pointer() != nil {
-		return C.QPicture_Load(C.QtObjectPtr(ptr.Pointer()), C.CString(fileName), C.CString(format)) != 0
+		return C.QPicture_Load(ptr.Pointer(), C.CString(fileName), C.CString(format)) != 0
 	}
 	return false
 }
 
-func (ptr *QPicture) Play(painter QPainterITF) bool {
+func (ptr *QPicture) Play(painter QPainter_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPicture_Play(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPainter(painter))) != 0
+		return C.QPicture_Play(ptr.Pointer(), PointerFromQPainter(painter)) != 0
 	}
 	return false
 }
 
-func (ptr *QPicture) Save2(dev core.QIODeviceITF, format string) bool {
+func (ptr *QPicture) Save2(dev core.QIODevice_ITF, format string) bool {
 	if ptr.Pointer() != nil {
-		return C.QPicture_Save2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQIODevice(dev)), C.CString(format)) != 0
+		return C.QPicture_Save2(ptr.Pointer(), core.PointerFromQIODevice(dev), C.CString(format)) != 0
 	}
 	return false
 }
 
 func (ptr *QPicture) Save(fileName string, format string) bool {
 	if ptr.Pointer() != nil {
-		return C.QPicture_Save(C.QtObjectPtr(ptr.Pointer()), C.CString(fileName), C.CString(format)) != 0
+		return C.QPicture_Save(ptr.Pointer(), C.CString(fileName), C.CString(format)) != 0
 	}
 	return false
 }
 
-func (ptr *QPicture) SetBoundingRect(r core.QRectITF) {
+func (ptr *QPicture) SetBoundingRect(r core.QRect_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPicture_SetBoundingRect(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(r)))
+		C.QPicture_SetBoundingRect(ptr.Pointer(), core.PointerFromQRect(r))
 	}
 }
 
-func (ptr *QPicture) Swap(other QPictureITF) {
+func (ptr *QPicture) Swap(other QPicture_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPicture_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPicture(other)))
+		C.QPicture_Swap(ptr.Pointer(), PointerFromQPicture(other))
 	}
 }
 
 func (ptr *QPicture) DestroyQPicture() {
 	if ptr.Pointer() != nil {
-		C.QPicture_DestroyQPicture(C.QtObjectPtr(ptr.Pointer()))
+		C.QPicture_DestroyQPicture(ptr.Pointer())
 	}
 }

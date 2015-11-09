@@ -11,42 +11,42 @@ type QHBoxLayout struct {
 	QBoxLayout
 }
 
-type QHBoxLayoutITF interface {
-	QBoxLayoutITF
-	QHBoxLayoutPTR() *QHBoxLayout
+type QHBoxLayout_ITF interface {
+	QBoxLayout_ITF
+	QHBoxLayout_PTR() *QHBoxLayout
 }
 
-func PointerFromQHBoxLayout(ptr QHBoxLayoutITF) unsafe.Pointer {
+func PointerFromQHBoxLayout(ptr QHBoxLayout_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHBoxLayoutPTR().Pointer()
+		return ptr.QHBoxLayout_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHBoxLayoutFromPointer(ptr unsafe.Pointer) *QHBoxLayout {
+func NewQHBoxLayoutFromPointer(ptr unsafe.Pointer) *QHBoxLayout {
 	var n = new(QHBoxLayout)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QHBoxLayout_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QHBoxLayout) QHBoxLayoutPTR() *QHBoxLayout {
+func (ptr *QHBoxLayout) QHBoxLayout_PTR() *QHBoxLayout {
 	return ptr
 }
 
 func NewQHBoxLayout() *QHBoxLayout {
-	return QHBoxLayoutFromPointer(unsafe.Pointer(C.QHBoxLayout_NewQHBoxLayout()))
+	return NewQHBoxLayoutFromPointer(C.QHBoxLayout_NewQHBoxLayout())
 }
 
-func NewQHBoxLayout2(parent QWidgetITF) *QHBoxLayout {
-	return QHBoxLayoutFromPointer(unsafe.Pointer(C.QHBoxLayout_NewQHBoxLayout2(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQHBoxLayout2(parent QWidget_ITF) *QHBoxLayout {
+	return NewQHBoxLayoutFromPointer(C.QHBoxLayout_NewQHBoxLayout2(PointerFromQWidget(parent)))
 }
 
 func (ptr *QHBoxLayout) DestroyQHBoxLayout() {
 	if ptr.Pointer() != nil {
-		C.QHBoxLayout_DestroyQHBoxLayout(C.QtObjectPtr(ptr.Pointer()))
+		C.QHBoxLayout_DestroyQHBoxLayout(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

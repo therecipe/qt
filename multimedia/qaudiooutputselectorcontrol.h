@@ -1,17 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QAudioOutputSelectorControl_ActiveOutput(QtObjectPtr ptr);
-void QAudioOutputSelectorControl_ConnectActiveOutputChanged(QtObjectPtr ptr);
-void QAudioOutputSelectorControl_DisconnectActiveOutputChanged(QtObjectPtr ptr);
-void QAudioOutputSelectorControl_ConnectAvailableOutputsChanged(QtObjectPtr ptr);
-void QAudioOutputSelectorControl_DisconnectAvailableOutputsChanged(QtObjectPtr ptr);
-char* QAudioOutputSelectorControl_DefaultOutput(QtObjectPtr ptr);
-char* QAudioOutputSelectorControl_OutputDescription(QtObjectPtr ptr, char* name);
-void QAudioOutputSelectorControl_SetActiveOutput(QtObjectPtr ptr, char* name);
-void QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(QtObjectPtr ptr);
+char* QAudioOutputSelectorControl_ActiveOutput(void* ptr);
+void QAudioOutputSelectorControl_ConnectActiveOutputChanged(void* ptr);
+void QAudioOutputSelectorControl_DisconnectActiveOutputChanged(void* ptr);
+void QAudioOutputSelectorControl_ConnectAvailableOutputsChanged(void* ptr);
+void QAudioOutputSelectorControl_DisconnectAvailableOutputsChanged(void* ptr);
+char* QAudioOutputSelectorControl_DefaultOutput(void* ptr);
+char* QAudioOutputSelectorControl_OutputDescription(void* ptr, char* name);
+void QAudioOutputSelectorControl_SetActiveOutput(void* ptr, char* name);
+void QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(void* ptr);
 
 #ifdef __cplusplus
 }

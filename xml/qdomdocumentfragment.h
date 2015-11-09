@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDomDocumentFragment_NewQDomDocumentFragment();
-QtObjectPtr QDomDocumentFragment_NewQDomDocumentFragment2(QtObjectPtr x);
-int QDomDocumentFragment_NodeType(QtObjectPtr ptr);
+void* QDomDocumentFragment_NewQDomDocumentFragment();
+void* QDomDocumentFragment_NewQDomDocumentFragment2(void* x);
+int QDomDocumentFragment_NodeType(void* ptr);
 
 #ifdef __cplusplus
 }

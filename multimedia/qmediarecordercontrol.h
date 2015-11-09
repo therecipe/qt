@@ -1,26 +1,24 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QMediaRecorderControl_ConnectActualLocationChanged(QtObjectPtr ptr);
-void QMediaRecorderControl_DisconnectActualLocationChanged(QtObjectPtr ptr);
-void QMediaRecorderControl_ApplySettings(QtObjectPtr ptr);
-void QMediaRecorderControl_ConnectError(QtObjectPtr ptr);
-void QMediaRecorderControl_DisconnectError(QtObjectPtr ptr);
-int QMediaRecorderControl_IsMuted(QtObjectPtr ptr);
-void QMediaRecorderControl_ConnectMutedChanged(QtObjectPtr ptr);
-void QMediaRecorderControl_DisconnectMutedChanged(QtObjectPtr ptr);
-char* QMediaRecorderControl_OutputLocation(QtObjectPtr ptr);
-void QMediaRecorderControl_SetMuted(QtObjectPtr ptr, int muted);
-int QMediaRecorderControl_SetOutputLocation(QtObjectPtr ptr, char* location);
-void QMediaRecorderControl_SetState(QtObjectPtr ptr, int state);
-void QMediaRecorderControl_ConnectStateChanged(QtObjectPtr ptr);
-void QMediaRecorderControl_DisconnectStateChanged(QtObjectPtr ptr);
-int QMediaRecorderControl_Status(QtObjectPtr ptr);
-void QMediaRecorderControl_ConnectStatusChanged(QtObjectPtr ptr);
-void QMediaRecorderControl_DisconnectStatusChanged(QtObjectPtr ptr);
-void QMediaRecorderControl_DestroyQMediaRecorderControl(QtObjectPtr ptr);
+void QMediaRecorderControl_ApplySettings(void* ptr);
+void QMediaRecorderControl_ConnectError(void* ptr);
+void QMediaRecorderControl_DisconnectError(void* ptr);
+int QMediaRecorderControl_IsMuted(void* ptr);
+void QMediaRecorderControl_ConnectMutedChanged(void* ptr);
+void QMediaRecorderControl_DisconnectMutedChanged(void* ptr);
+void QMediaRecorderControl_SetMuted(void* ptr, int muted);
+int QMediaRecorderControl_SetOutputLocation(void* ptr, void* location);
+void QMediaRecorderControl_SetState(void* ptr, int state);
+void QMediaRecorderControl_SetVolume(void* ptr, double gain);
+void QMediaRecorderControl_ConnectStateChanged(void* ptr);
+void QMediaRecorderControl_DisconnectStateChanged(void* ptr);
+int QMediaRecorderControl_Status(void* ptr);
+void QMediaRecorderControl_ConnectStatusChanged(void* ptr);
+void QMediaRecorderControl_DisconnectStatusChanged(void* ptr);
+double QMediaRecorderControl_Volume(void* ptr);
+void QMediaRecorderControl_DestroyQMediaRecorderControl(void* ptr);
 
 #ifdef __cplusplus
 }

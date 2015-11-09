@@ -1,19 +1,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QMouseEvent_NewQMouseEvent(int ty, QtObjectPtr localPos, int button, int buttons, int modifiers);
-QtObjectPtr QMouseEvent_NewQMouseEvent2(int ty, QtObjectPtr localPos, QtObjectPtr screenPos, int button, int buttons, int modifiers);
-QtObjectPtr QMouseEvent_NewQMouseEvent3(int ty, QtObjectPtr localPos, QtObjectPtr windowPos, QtObjectPtr screenPos, int button, int buttons, int modifiers);
-int QMouseEvent_Button(QtObjectPtr ptr);
-int QMouseEvent_Buttons(QtObjectPtr ptr);
-int QMouseEvent_Flags(QtObjectPtr ptr);
-int QMouseEvent_GlobalX(QtObjectPtr ptr);
-int QMouseEvent_GlobalY(QtObjectPtr ptr);
-int QMouseEvent_Source(QtObjectPtr ptr);
-int QMouseEvent_X(QtObjectPtr ptr);
-int QMouseEvent_Y(QtObjectPtr ptr);
+void* QMouseEvent_NewQMouseEvent(int ty, void* localPos, int button, int buttons, int modifiers);
+void* QMouseEvent_NewQMouseEvent2(int ty, void* localPos, void* screenPos, int button, int buttons, int modifiers);
+void* QMouseEvent_NewQMouseEvent3(int ty, void* localPos, void* windowPos, void* screenPos, int button, int buttons, int modifiers);
+int QMouseEvent_Button(void* ptr);
+int QMouseEvent_Buttons(void* ptr);
+int QMouseEvent_Flags(void* ptr);
+int QMouseEvent_GlobalX(void* ptr);
+int QMouseEvent_GlobalY(void* ptr);
+int QMouseEvent_Source(void* ptr);
+int QMouseEvent_X(void* ptr);
+int QMouseEvent_Y(void* ptr);
 
 #ifdef __cplusplus
 }

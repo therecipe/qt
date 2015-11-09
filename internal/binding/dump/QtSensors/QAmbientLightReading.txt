@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{lightLevel QAmbientLightReading::lightLevel commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambientlightsensor.cpp non plain false false  LightLevel [] }
-&{setLightLevel QAmbientLightReading::setLightLevel commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambientlightsensor.h non plain false false  void [0xc822ed3fe0] }
+&{lightLevel QAmbientLightReading::lightLevel commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambientlightsensor.cpp non plain false false  LightLevel LightLevel lightLevel() const [] }
+&{setLightLevel QAmbientLightReading::setLightLevel commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambientlightsensor.h non plain false false  void void setLightLevel(LightLevel lightLevel) [0xc8234079e0] }
 ########################################			ENUMS			########################################
-&{LightLevel QAmbientLightReading::LightLevel commendable public  [0xc822ed3620 0xc822ed3720 0xc822ed3800 0xc822ed38c0 0xc822ed39e0 0xc822ed3a80]}
+&{LightLevel QAmbientLightReading::LightLevel commendable public  [0xc823407080 0xc823407140 0xc823407240 0xc8234072c0 0xc8234073e0 0xc823407480] false}

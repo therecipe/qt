@@ -10,8 +10,8 @@ type QBluetoothHostInfo struct {
 	ptr unsafe.Pointer
 }
 
-type QBluetoothHostInfoITF interface {
-	QBluetoothHostInfoPTR() *QBluetoothHostInfo
+type QBluetoothHostInfo_ITF interface {
+	QBluetoothHostInfo_PTR() *QBluetoothHostInfo
 }
 
 func (p *QBluetoothHostInfo) Pointer() unsafe.Pointer {
@@ -22,52 +22,52 @@ func (p *QBluetoothHostInfo) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQBluetoothHostInfo(ptr QBluetoothHostInfoITF) unsafe.Pointer {
+func PointerFromQBluetoothHostInfo(ptr QBluetoothHostInfo_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QBluetoothHostInfoPTR().Pointer()
+		return ptr.QBluetoothHostInfo_PTR().Pointer()
 	}
 	return nil
 }
 
-func QBluetoothHostInfoFromPointer(ptr unsafe.Pointer) *QBluetoothHostInfo {
+func NewQBluetoothHostInfoFromPointer(ptr unsafe.Pointer) *QBluetoothHostInfo {
 	var n = new(QBluetoothHostInfo)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QBluetoothHostInfo) QBluetoothHostInfoPTR() *QBluetoothHostInfo {
+func (ptr *QBluetoothHostInfo) QBluetoothHostInfo_PTR() *QBluetoothHostInfo {
 	return ptr
 }
 
 func NewQBluetoothHostInfo() *QBluetoothHostInfo {
-	return QBluetoothHostInfoFromPointer(unsafe.Pointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo()))
+	return NewQBluetoothHostInfoFromPointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo())
 }
 
-func NewQBluetoothHostInfo2(other QBluetoothHostInfoITF) *QBluetoothHostInfo {
-	return QBluetoothHostInfoFromPointer(unsafe.Pointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo2(C.QtObjectPtr(PointerFromQBluetoothHostInfo(other)))))
+func NewQBluetoothHostInfo2(other QBluetoothHostInfo_ITF) *QBluetoothHostInfo {
+	return NewQBluetoothHostInfoFromPointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo2(PointerFromQBluetoothHostInfo(other)))
 }
 
 func (ptr *QBluetoothHostInfo) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QBluetoothHostInfo_Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QBluetoothHostInfo_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QBluetoothHostInfo) SetAddress(address QBluetoothAddressITF) {
+func (ptr *QBluetoothHostInfo) SetAddress(address QBluetoothAddress_ITF) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothHostInfo_SetAddress(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQBluetoothAddress(address)))
+		C.QBluetoothHostInfo_SetAddress(ptr.Pointer(), PointerFromQBluetoothAddress(address))
 	}
 }
 
 func (ptr *QBluetoothHostInfo) SetName(name string) {
 	if ptr.Pointer() != nil {
-		C.QBluetoothHostInfo_SetName(C.QtObjectPtr(ptr.Pointer()), C.CString(name))
+		C.QBluetoothHostInfo_SetName(ptr.Pointer(), C.CString(name))
 	}
 }
 
 func (ptr *QBluetoothHostInfo) DestroyQBluetoothHostInfo() {
 	if ptr.Pointer() != nil {
-		C.QBluetoothHostInfo_DestroyQBluetoothHostInfo(C.QtObjectPtr(ptr.Pointer()))
+		C.QBluetoothHostInfo_DestroyQBluetoothHostInfo(ptr.Pointer())
 	}
 }

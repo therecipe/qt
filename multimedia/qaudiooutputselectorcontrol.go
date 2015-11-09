@@ -11,48 +11,48 @@ type QAudioOutputSelectorControl struct {
 	QMediaControl
 }
 
-type QAudioOutputSelectorControlITF interface {
-	QMediaControlITF
-	QAudioOutputSelectorControlPTR() *QAudioOutputSelectorControl
+type QAudioOutputSelectorControl_ITF interface {
+	QMediaControl_ITF
+	QAudioOutputSelectorControl_PTR() *QAudioOutputSelectorControl
 }
 
-func PointerFromQAudioOutputSelectorControl(ptr QAudioOutputSelectorControlITF) unsafe.Pointer {
+func PointerFromQAudioOutputSelectorControl(ptr QAudioOutputSelectorControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAudioOutputSelectorControlPTR().Pointer()
+		return ptr.QAudioOutputSelectorControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAudioOutputSelectorControlFromPointer(ptr unsafe.Pointer) *QAudioOutputSelectorControl {
+func NewQAudioOutputSelectorControlFromPointer(ptr unsafe.Pointer) *QAudioOutputSelectorControl {
 	var n = new(QAudioOutputSelectorControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAudioOutputSelectorControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAudioOutputSelectorControl) QAudioOutputSelectorControlPTR() *QAudioOutputSelectorControl {
+func (ptr *QAudioOutputSelectorControl) QAudioOutputSelectorControl_PTR() *QAudioOutputSelectorControl {
 	return ptr
 }
 
 func (ptr *QAudioOutputSelectorControl) ActiveOutput() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAudioOutputSelectorControl_ActiveOutput(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QAudioOutputSelectorControl_ActiveOutput(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QAudioOutputSelectorControl) ConnectActiveOutputChanged(f func(name string)) {
 	if ptr.Pointer() != nil {
-		C.QAudioOutputSelectorControl_ConnectActiveOutputChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioOutputSelectorControl_ConnectActiveOutputChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "activeOutputChanged", f)
 	}
 }
 
 func (ptr *QAudioOutputSelectorControl) DisconnectActiveOutputChanged() {
 	if ptr.Pointer() != nil {
-		C.QAudioOutputSelectorControl_DisconnectActiveOutputChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioOutputSelectorControl_DisconnectActiveOutputChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "activeOutputChanged")
 	}
 }
@@ -64,14 +64,14 @@ func callbackQAudioOutputSelectorControlActiveOutputChanged(ptrName *C.char, nam
 
 func (ptr *QAudioOutputSelectorControl) ConnectAvailableOutputsChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QAudioOutputSelectorControl_ConnectAvailableOutputsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioOutputSelectorControl_ConnectAvailableOutputsChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "availableOutputsChanged", f)
 	}
 }
 
 func (ptr *QAudioOutputSelectorControl) DisconnectAvailableOutputsChanged() {
 	if ptr.Pointer() != nil {
-		C.QAudioOutputSelectorControl_DisconnectAvailableOutputsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioOutputSelectorControl_DisconnectAvailableOutputsChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "availableOutputsChanged")
 	}
 }
@@ -83,27 +83,27 @@ func callbackQAudioOutputSelectorControlAvailableOutputsChanged(ptrName *C.char)
 
 func (ptr *QAudioOutputSelectorControl) DefaultOutput() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAudioOutputSelectorControl_DefaultOutput(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QAudioOutputSelectorControl_DefaultOutput(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QAudioOutputSelectorControl) OutputDescription(name string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAudioOutputSelectorControl_OutputDescription(C.QtObjectPtr(ptr.Pointer()), C.CString(name)))
+		return C.GoString(C.QAudioOutputSelectorControl_OutputDescription(ptr.Pointer(), C.CString(name)))
 	}
 	return ""
 }
 
 func (ptr *QAudioOutputSelectorControl) SetActiveOutput(name string) {
 	if ptr.Pointer() != nil {
-		C.QAudioOutputSelectorControl_SetActiveOutput(C.QtObjectPtr(ptr.Pointer()), C.CString(name))
+		C.QAudioOutputSelectorControl_SetActiveOutput(ptr.Pointer(), C.CString(name))
 	}
 }
 
 func (ptr *QAudioOutputSelectorControl) DestroyQAudioOutputSelectorControl() {
 	if ptr.Pointer() != nil {
-		C.QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QScrollPrepareEvent_NewQScrollPrepareEvent(QtObjectPtr startPos);
-void QScrollPrepareEvent_SetContentPos(QtObjectPtr ptr, QtObjectPtr pos);
-void QScrollPrepareEvent_SetContentPosRange(QtObjectPtr ptr, QtObjectPtr rect);
-void QScrollPrepareEvent_SetViewportSize(QtObjectPtr ptr, QtObjectPtr size);
-void QScrollPrepareEvent_DestroyQScrollPrepareEvent(QtObjectPtr ptr);
+void* QScrollPrepareEvent_NewQScrollPrepareEvent(void* startPos);
+void QScrollPrepareEvent_SetContentPos(void* ptr, void* pos);
+void QScrollPrepareEvent_SetContentPosRange(void* ptr, void* rect);
+void QScrollPrepareEvent_SetViewportSize(void* ptr, void* size);
+void QScrollPrepareEvent_DestroyQScrollPrepareEvent(void* ptr);
 
 #ifdef __cplusplus
 }

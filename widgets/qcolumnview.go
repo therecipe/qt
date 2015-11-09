@@ -12,120 +12,120 @@ type QColumnView struct {
 	QAbstractItemView
 }
 
-type QColumnViewITF interface {
-	QAbstractItemViewITF
-	QColumnViewPTR() *QColumnView
+type QColumnView_ITF interface {
+	QAbstractItemView_ITF
+	QColumnView_PTR() *QColumnView
 }
 
-func PointerFromQColumnView(ptr QColumnViewITF) unsafe.Pointer {
+func PointerFromQColumnView(ptr QColumnView_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QColumnViewPTR().Pointer()
+		return ptr.QColumnView_PTR().Pointer()
 	}
 	return nil
 }
 
-func QColumnViewFromPointer(ptr unsafe.Pointer) *QColumnView {
+func NewQColumnViewFromPointer(ptr unsafe.Pointer) *QColumnView {
 	var n = new(QColumnView)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QColumnView_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QColumnView) QColumnViewPTR() *QColumnView {
+func (ptr *QColumnView) QColumnView_PTR() *QColumnView {
 	return ptr
 }
 
 func (ptr *QColumnView) ResizeGripsVisible() bool {
 	if ptr.Pointer() != nil {
-		return C.QColumnView_ResizeGripsVisible(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QColumnView_ResizeGripsVisible(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QColumnView) SetResizeGripsVisible(visible bool) {
 	if ptr.Pointer() != nil {
-		C.QColumnView_SetResizeGripsVisible(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(visible)))
+		C.QColumnView_SetResizeGripsVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
 	}
 }
 
-func NewQColumnView(parent QWidgetITF) *QColumnView {
-	return QColumnViewFromPointer(unsafe.Pointer(C.QColumnView_NewQColumnView(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQColumnView(parent QWidget_ITF) *QColumnView {
+	return NewQColumnViewFromPointer(C.QColumnView_NewQColumnView(PointerFromQWidget(parent)))
 }
 
-func (ptr *QColumnView) IndexAt(point core.QPointITF) *core.QModelIndex {
+func (ptr *QColumnView) IndexAt(point core.QPoint_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		return core.QModelIndexFromPointer(unsafe.Pointer(C.QColumnView_IndexAt(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(point)))))
+		return core.NewQModelIndexFromPointer(C.QColumnView_IndexAt(ptr.Pointer(), core.PointerFromQPoint(point)))
 	}
 	return nil
 }
 
 func (ptr *QColumnView) PreviewWidget() *QWidget {
 	if ptr.Pointer() != nil {
-		return QWidgetFromPointer(unsafe.Pointer(C.QColumnView_PreviewWidget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQWidgetFromPointer(C.QColumnView_PreviewWidget(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QColumnView) ScrollTo(index core.QModelIndexITF, hint QAbstractItemView__ScrollHint) {
+func (ptr *QColumnView) ScrollTo(index core.QModelIndex_ITF, hint QAbstractItemView__ScrollHint) {
 	if ptr.Pointer() != nil {
-		C.QColumnView_ScrollTo(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQModelIndex(index)), C.int(hint))
+		C.QColumnView_ScrollTo(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(hint))
 	}
 }
 
 func (ptr *QColumnView) SelectAll() {
 	if ptr.Pointer() != nil {
-		C.QColumnView_SelectAll(C.QtObjectPtr(ptr.Pointer()))
+		C.QColumnView_SelectAll(ptr.Pointer())
 	}
 }
 
-func (ptr *QColumnView) SetModel(model core.QAbstractItemModelITF) {
+func (ptr *QColumnView) SetModel(model core.QAbstractItemModel_ITF) {
 	if ptr.Pointer() != nil {
-		C.QColumnView_SetModel(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQAbstractItemModel(model)))
+		C.QColumnView_SetModel(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
 	}
 }
 
-func (ptr *QColumnView) SetPreviewWidget(widget QWidgetITF) {
+func (ptr *QColumnView) SetPreviewWidget(widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QColumnView_SetPreviewWidget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QColumnView_SetPreviewWidget(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
-func (ptr *QColumnView) SetRootIndex(index core.QModelIndexITF) {
+func (ptr *QColumnView) SetRootIndex(index core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.QColumnView_SetRootIndex(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQModelIndex(index)))
+		C.QColumnView_SetRootIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
-func (ptr *QColumnView) SetSelectionModel(newSelectionModel core.QItemSelectionModelITF) {
+func (ptr *QColumnView) SetSelectionModel(newSelectionModel core.QItemSelectionModel_ITF) {
 	if ptr.Pointer() != nil {
-		C.QColumnView_SetSelectionModel(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQItemSelectionModel(newSelectionModel)))
+		C.QColumnView_SetSelectionModel(ptr.Pointer(), core.PointerFromQItemSelectionModel(newSelectionModel))
 	}
 }
 
-func (ptr *QColumnView) ConnectUpdatePreviewWidget(f func(index core.QModelIndexITF)) {
+func (ptr *QColumnView) ConnectUpdatePreviewWidget(f func(index *core.QModelIndex)) {
 	if ptr.Pointer() != nil {
-		C.QColumnView_ConnectUpdatePreviewWidget(C.QtObjectPtr(ptr.Pointer()))
+		C.QColumnView_ConnectUpdatePreviewWidget(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "updatePreviewWidget", f)
 	}
 }
 
 func (ptr *QColumnView) DisconnectUpdatePreviewWidget() {
 	if ptr.Pointer() != nil {
-		C.QColumnView_DisconnectUpdatePreviewWidget(C.QtObjectPtr(ptr.Pointer()))
+		C.QColumnView_DisconnectUpdatePreviewWidget(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "updatePreviewWidget")
 	}
 }
 
 //export callbackQColumnViewUpdatePreviewWidget
 func callbackQColumnViewUpdatePreviewWidget(ptrName *C.char, index unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "updatePreviewWidget").(func(*core.QModelIndex))(core.QModelIndexFromPointer(index))
+	qt.GetSignal(C.GoString(ptrName), "updatePreviewWidget").(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 }
 
 func (ptr *QColumnView) DestroyQColumnView() {
 	if ptr.Pointer() != nil {
-		C.QColumnView_DestroyQColumnView(C.QtObjectPtr(ptr.Pointer()))
+		C.QColumnView_DestroyQColumnView(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

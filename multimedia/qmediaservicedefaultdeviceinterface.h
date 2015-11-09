@@ -1,9 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(QtObjectPtr ptr);
+void* QMediaServiceDefaultDeviceInterface_DefaultDevice(void* ptr, void* service);
+void QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(void* ptr);
 
 #ifdef __cplusplus
 }

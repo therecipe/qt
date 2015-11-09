@@ -11,35 +11,35 @@ type QWhatsThisClickedEvent struct {
 	core.QEvent
 }
 
-type QWhatsThisClickedEventITF interface {
-	core.QEventITF
-	QWhatsThisClickedEventPTR() *QWhatsThisClickedEvent
+type QWhatsThisClickedEvent_ITF interface {
+	core.QEvent_ITF
+	QWhatsThisClickedEvent_PTR() *QWhatsThisClickedEvent
 }
 
-func PointerFromQWhatsThisClickedEvent(ptr QWhatsThisClickedEventITF) unsafe.Pointer {
+func PointerFromQWhatsThisClickedEvent(ptr QWhatsThisClickedEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QWhatsThisClickedEventPTR().Pointer()
+		return ptr.QWhatsThisClickedEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QWhatsThisClickedEventFromPointer(ptr unsafe.Pointer) *QWhatsThisClickedEvent {
+func NewQWhatsThisClickedEventFromPointer(ptr unsafe.Pointer) *QWhatsThisClickedEvent {
 	var n = new(QWhatsThisClickedEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QWhatsThisClickedEvent) QWhatsThisClickedEventPTR() *QWhatsThisClickedEvent {
+func (ptr *QWhatsThisClickedEvent) QWhatsThisClickedEvent_PTR() *QWhatsThisClickedEvent {
 	return ptr
 }
 
 func NewQWhatsThisClickedEvent(href string) *QWhatsThisClickedEvent {
-	return QWhatsThisClickedEventFromPointer(unsafe.Pointer(C.QWhatsThisClickedEvent_NewQWhatsThisClickedEvent(C.CString(href))))
+	return NewQWhatsThisClickedEventFromPointer(C.QWhatsThisClickedEvent_NewQWhatsThisClickedEvent(C.CString(href)))
 }
 
 func (ptr *QWhatsThisClickedEvent) Href() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWhatsThisClickedEvent_Href(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QWhatsThisClickedEvent_Href(ptr.Pointer()))
 	}
 	return ""
 }

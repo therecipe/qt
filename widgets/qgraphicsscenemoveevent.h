@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGraphicsSceneMoveEvent_NewQGraphicsSceneMoveEvent();
-void QGraphicsSceneMoveEvent_DestroyQGraphicsSceneMoveEvent(QtObjectPtr ptr);
+void* QGraphicsSceneMoveEvent_NewQGraphicsSceneMoveEvent();
+void QGraphicsSceneMoveEvent_DestroyQGraphicsSceneMoveEvent(void* ptr);
 
 #ifdef __cplusplus
 }

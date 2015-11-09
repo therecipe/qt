@@ -1,17 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QCheckBox_IsTristate(QtObjectPtr ptr);
-void QCheckBox_SetTristate(QtObjectPtr ptr, int y);
-QtObjectPtr QCheckBox_NewQCheckBox(QtObjectPtr parent);
-QtObjectPtr QCheckBox_NewQCheckBox2(char* text, QtObjectPtr parent);
-int QCheckBox_CheckState(QtObjectPtr ptr);
-void QCheckBox_SetCheckState(QtObjectPtr ptr, int state);
-void QCheckBox_ConnectStateChanged(QtObjectPtr ptr);
-void QCheckBox_DisconnectStateChanged(QtObjectPtr ptr);
-void QCheckBox_DestroyQCheckBox(QtObjectPtr ptr);
+int QCheckBox_IsTristate(void* ptr);
+void QCheckBox_SetTristate(void* ptr, int y);
+void* QCheckBox_NewQCheckBox(void* parent);
+void* QCheckBox_NewQCheckBox2(char* text, void* parent);
+int QCheckBox_CheckState(void* ptr);
+void QCheckBox_SetCheckState(void* ptr, int state);
+void QCheckBox_ConnectStateChanged(void* ptr);
+void QCheckBox_DisconnectStateChanged(void* ptr);
+void QCheckBox_DestroyQCheckBox(void* ptr);
 
 #ifdef __cplusplus
 }

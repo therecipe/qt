@@ -11,15 +11,15 @@ class MyQSGTransformNode: public QSGTransformNode {
 public:
 };
 
-QtObjectPtr QSGTransformNode_NewQSGTransformNode(){
+void* QSGTransformNode_NewQSGTransformNode(){
 	return new QSGTransformNode();
 }
 
-void QSGTransformNode_SetMatrix(QtObjectPtr ptr, QtObjectPtr matrix){
+void QSGTransformNode_SetMatrix(void* ptr, void* matrix){
 	static_cast<QSGTransformNode*>(ptr)->setMatrix(*static_cast<QMatrix4x4*>(matrix));
 }
 
-void QSGTransformNode_DestroyQSGTransformNode(QtObjectPtr ptr){
+void QSGTransformNode_DestroyQSGTransformNode(void* ptr){
 	static_cast<QSGTransformNode*>(ptr)->~QSGTransformNode();
 }
 

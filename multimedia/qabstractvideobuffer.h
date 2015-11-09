@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QAbstractVideoBuffer_Handle(QtObjectPtr ptr);
-int QAbstractVideoBuffer_HandleType(QtObjectPtr ptr);
-int QAbstractVideoBuffer_MapMode(QtObjectPtr ptr);
-void QAbstractVideoBuffer_Release(QtObjectPtr ptr);
-void QAbstractVideoBuffer_Unmap(QtObjectPtr ptr);
-void QAbstractVideoBuffer_DestroyQAbstractVideoBuffer(QtObjectPtr ptr);
+void* QAbstractVideoBuffer_Handle(void* ptr);
+int QAbstractVideoBuffer_HandleType(void* ptr);
+int QAbstractVideoBuffer_MapMode(void* ptr);
+void QAbstractVideoBuffer_Release(void* ptr);
+void QAbstractVideoBuffer_Unmap(void* ptr);
+void QAbstractVideoBuffer_DestroyQAbstractVideoBuffer(void* ptr);
 
 #ifdef __cplusplus
 }

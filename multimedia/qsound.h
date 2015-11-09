@@ -1,18 +1,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QSound_SetLoops(QtObjectPtr ptr, int number);
-QtObjectPtr QSound_NewQSound(char* filename, QtObjectPtr parent);
-char* QSound_FileName(QtObjectPtr ptr);
-int QSound_IsFinished(QtObjectPtr ptr);
-int QSound_Loops(QtObjectPtr ptr);
-int QSound_LoopsRemaining(QtObjectPtr ptr);
-void QSound_Play2(QtObjectPtr ptr);
+void QSound_SetLoops(void* ptr, int number);
+void* QSound_NewQSound(char* filename, void* parent);
+char* QSound_FileName(void* ptr);
+int QSound_IsFinished(void* ptr);
+int QSound_Loops(void* ptr);
+int QSound_LoopsRemaining(void* ptr);
+void QSound_Play2(void* ptr);
 void QSound_QSound_Play(char* filename);
-void QSound_Stop(QtObjectPtr ptr);
-void QSound_DestroyQSound(QtObjectPtr ptr);
+void QSound_Stop(void* ptr);
+void QSound_DestroyQSound(void* ptr);
 
 #ifdef __cplusplus
 }

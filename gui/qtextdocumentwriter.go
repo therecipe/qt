@@ -11,8 +11,8 @@ type QTextDocumentWriter struct {
 	ptr unsafe.Pointer
 }
 
-type QTextDocumentWriterITF interface {
-	QTextDocumentWriterPTR() *QTextDocumentWriter
+type QTextDocumentWriter_ITF interface {
+	QTextDocumentWriter_PTR() *QTextDocumentWriter
 }
 
 func (p *QTextDocumentWriter) Pointer() unsafe.Pointer {
@@ -23,96 +23,103 @@ func (p *QTextDocumentWriter) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQTextDocumentWriter(ptr QTextDocumentWriterITF) unsafe.Pointer {
+func PointerFromQTextDocumentWriter(ptr QTextDocumentWriter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTextDocumentWriterPTR().Pointer()
+		return ptr.QTextDocumentWriter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTextDocumentWriterFromPointer(ptr unsafe.Pointer) *QTextDocumentWriter {
+func NewQTextDocumentWriterFromPointer(ptr unsafe.Pointer) *QTextDocumentWriter {
 	var n = new(QTextDocumentWriter)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QTextDocumentWriter) QTextDocumentWriterPTR() *QTextDocumentWriter {
+func (ptr *QTextDocumentWriter) QTextDocumentWriter_PTR() *QTextDocumentWriter {
 	return ptr
 }
 
 func NewQTextDocumentWriter() *QTextDocumentWriter {
-	return QTextDocumentWriterFromPointer(unsafe.Pointer(C.QTextDocumentWriter_NewQTextDocumentWriter()))
+	return NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter())
 }
 
-func NewQTextDocumentWriter2(device core.QIODeviceITF, format core.QByteArrayITF) *QTextDocumentWriter {
-	return QTextDocumentWriterFromPointer(unsafe.Pointer(C.QTextDocumentWriter_NewQTextDocumentWriter2(C.QtObjectPtr(core.PointerFromQIODevice(device)), C.QtObjectPtr(core.PointerFromQByteArray(format)))))
+func NewQTextDocumentWriter2(device core.QIODevice_ITF, format core.QByteArray_ITF) *QTextDocumentWriter {
+	return NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 }
 
-func NewQTextDocumentWriter3(fileName string, format core.QByteArrayITF) *QTextDocumentWriter {
-	return QTextDocumentWriterFromPointer(unsafe.Pointer(C.QTextDocumentWriter_NewQTextDocumentWriter3(C.CString(fileName), C.QtObjectPtr(core.PointerFromQByteArray(format)))))
+func NewQTextDocumentWriter3(fileName string, format core.QByteArray_ITF) *QTextDocumentWriter {
+	return NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter3(C.CString(fileName), core.PointerFromQByteArray(format)))
 }
 
 func (ptr *QTextDocumentWriter) Codec() *core.QTextCodec {
 	if ptr.Pointer() != nil {
-		return core.QTextCodecFromPointer(unsafe.Pointer(C.QTextDocumentWriter_Codec(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQTextCodecFromPointer(C.QTextDocumentWriter_Codec(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QTextDocumentWriter) Device() *core.QIODevice {
 	if ptr.Pointer() != nil {
-		return core.QIODeviceFromPointer(unsafe.Pointer(C.QTextDocumentWriter_Device(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQIODeviceFromPointer(C.QTextDocumentWriter_Device(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QTextDocumentWriter) FileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextDocumentWriter_FileName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QTextDocumentWriter_FileName(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QTextDocumentWriter) SetCodec(codec core.QTextCodecITF) {
+func (ptr *QTextDocumentWriter) Format() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		C.QTextDocumentWriter_SetCodec(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQTextCodec(codec)))
+		return core.NewQByteArrayFromPointer(C.QTextDocumentWriter_Format(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTextDocumentWriter) SetCodec(codec core.QTextCodec_ITF) {
+	if ptr.Pointer() != nil {
+		C.QTextDocumentWriter_SetCodec(ptr.Pointer(), core.PointerFromQTextCodec(codec))
 	}
 }
 
-func (ptr *QTextDocumentWriter) SetDevice(device core.QIODeviceITF) {
+func (ptr *QTextDocumentWriter) SetDevice(device core.QIODevice_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTextDocumentWriter_SetDevice(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQIODevice(device)))
+		C.QTextDocumentWriter_SetDevice(ptr.Pointer(), core.PointerFromQIODevice(device))
 	}
 }
 
 func (ptr *QTextDocumentWriter) SetFileName(fileName string) {
 	if ptr.Pointer() != nil {
-		C.QTextDocumentWriter_SetFileName(C.QtObjectPtr(ptr.Pointer()), C.CString(fileName))
+		C.QTextDocumentWriter_SetFileName(ptr.Pointer(), C.CString(fileName))
 	}
 }
 
-func (ptr *QTextDocumentWriter) SetFormat(format core.QByteArrayITF) {
+func (ptr *QTextDocumentWriter) SetFormat(format core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTextDocumentWriter_SetFormat(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(format)))
+		C.QTextDocumentWriter_SetFormat(ptr.Pointer(), core.PointerFromQByteArray(format))
 	}
 }
 
-func (ptr *QTextDocumentWriter) Write(document QTextDocumentITF) bool {
+func (ptr *QTextDocumentWriter) Write(document QTextDocument_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextDocumentWriter_Write(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTextDocument(document))) != 0
+		return C.QTextDocumentWriter_Write(ptr.Pointer(), PointerFromQTextDocument(document)) != 0
 	}
 	return false
 }
 
-func (ptr *QTextDocumentWriter) Write2(fragment QTextDocumentFragmentITF) bool {
+func (ptr *QTextDocumentWriter) Write2(fragment QTextDocumentFragment_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTextDocumentWriter_Write2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTextDocumentFragment(fragment))) != 0
+		return C.QTextDocumentWriter_Write2(ptr.Pointer(), PointerFromQTextDocumentFragment(fragment)) != 0
 	}
 	return false
 }
 
 func (ptr *QTextDocumentWriter) DestroyQTextDocumentWriter() {
 	if ptr.Pointer() != nil {
-		C.QTextDocumentWriter_DestroyQTextDocumentWriter(C.QtObjectPtr(ptr.Pointer()))
+		C.QTextDocumentWriter_DestroyQTextDocumentWriter(ptr.Pointer())
 	}
 }

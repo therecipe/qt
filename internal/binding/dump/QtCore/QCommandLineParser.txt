@@ -1,30 +1,30 @@
 ########################################			FUNCTIONS			########################################
-&{QCommandLineParser QCommandLineParser::QCommandLineParser commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non constructor false false   [] }
-&{addHelpOption QCommandLineParser::addHelpOption commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QCommandLineOption [] }
-&{addOption QCommandLineParser::addOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  bool [0xc820781500] }
-&{addOptions QCommandLineParser::addOptions commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  bool [0xc820781700] }
-&{addPositionalArgument QCommandLineParser::addPositionalArgument commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void [0xc8207818e0 0xc820781960 0xc8207819e0] }
-&{addVersionOption QCommandLineParser::addVersionOption commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QCommandLineOption [] }
-&{applicationDescription QCommandLineParser::applicationDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QString [] }
-&{clearPositionalArguments QCommandLineParser::clearPositionalArguments commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void [] }
-&{errorText QCommandLineParser::errorText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QString [] }
-&{helpText QCommandLineParser::helpText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QString [] }
-&{isSet QCommandLineParser::isSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false true 2 bool [0xc820758200] }
-&{isSet QCommandLineParser::isSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  bool [0xc820758480] }
-&{optionNames QCommandLineParser::optionNames commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QStringList [] }
-&{parse QCommandLineParser::parse commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  bool [0xc820758860] }
-&{positionalArguments QCommandLineParser::positionalArguments commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QStringList [] }
-&{process QCommandLineParser::process commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false true 2 void [0xc820758be0] }
-&{process QCommandLineParser::process commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void [0xc820758e40] }
-&{setApplicationDescription QCommandLineParser::setApplicationDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void [0xc820759060] }
-&{setSingleDashWordOptionMode QCommandLineParser::setSingleDashWordOptionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void [0xc8207592a0] }
-&{showHelp QCommandLineParser::showHelp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void [0xc8207595a0] }
-&{showVersion QCommandLineParser::showVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void [] }
-&{unknownOptionNames QCommandLineParser::unknownOptionNames commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QStringList [] }
-&{value QCommandLineParser::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false true 2 QString [0xc820759a20] }
-&{value QCommandLineParser::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QString [0xc820759ce0] }
-&{values QCommandLineParser::values commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false true 2 QStringList [0xc820759f60] }
-&{values QCommandLineParser::values commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QStringList [0xc820740240] }
-&{~QCommandLineParser QCommandLineParser::~QCommandLineParser commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non destructor false false   [] }
+&{QCommandLineParser QCommandLineParser::QCommandLineParser commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non constructor false false   QCommandLineParser() [] }
+&{addHelpOption QCommandLineParser::addHelpOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QCommandLineOption QCommandLineOption addHelpOption() [] }
+&{addOption QCommandLineParser::addOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  bool bool addOption(const QCommandLineOption &option) [0xc82072c1a0] }
+&{addOptions QCommandLineParser::addOptions commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  bool bool addOptions(const QList<QCommandLineOption> &options) [0xc82072c460] }
+&{addPositionalArgument QCommandLineParser::addPositionalArgument commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void void addPositionalArgument(const QString &name, const QString &description, const QString &syntax) [0xc82072c6c0 0xc82072c760 0xc82072c7e0] }
+&{addVersionOption QCommandLineParser::addVersionOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QCommandLineOption QCommandLineOption addVersionOption() [] }
+&{applicationDescription QCommandLineParser::applicationDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QString QString applicationDescription() const [] }
+&{clearPositionalArguments QCommandLineParser::clearPositionalArguments commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void void clearPositionalArguments() [] }
+&{errorText QCommandLineParser::errorText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QString QString errorText() const [] }
+&{helpText QCommandLineParser::helpText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QString QString helpText() const [] }
+&{isSet QCommandLineParser::isSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false true 2 bool bool isSet(const QCommandLineOption &option) const [0xc82072d120] }
+&{isSet QCommandLineParser::isSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  bool bool isSet(const QString &name) const [0xc82072d3c0] }
+&{optionNames QCommandLineParser::optionNames commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QStringList QStringList optionNames() const [] }
+&{parse QCommandLineParser::parse commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  bool bool parse(const QStringList &arguments) [0xc82072d7a0] }
+&{positionalArguments QCommandLineParser::positionalArguments commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QStringList QStringList positionalArguments() const [] }
+&{process QCommandLineParser::process commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false true 2 void void process(const QCoreApplication &app) [0xc82072db60] }
+&{process QCommandLineParser::process commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void void process(const QStringList &arguments) [0xc82072de40] }
+&{setApplicationDescription QCommandLineParser::setApplicationDescription commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void void setApplicationDescription(const QString &description) [0xc82071a0c0] }
+&{setSingleDashWordOptionMode QCommandLineParser::setSingleDashWordOptionMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void void setSingleDashWordOptionMode(SingleDashWordOptionMode singleDashWordOptionMode) [0xc82071a340] }
+&{showHelp QCommandLineParser::showHelp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void void showHelp(int exitCode) [0xc82071a6a0] }
+&{showVersion QCommandLineParser::showVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  void void showVersion() [] }
+&{unknownOptionNames QCommandLineParser::unknownOptionNames commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QStringList QStringList unknownOptionNames() const [] }
+&{value QCommandLineParser::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false true 2 QString QString value(const QCommandLineOption &option) const [0xc82071abe0] }
+&{value QCommandLineParser::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QString QString value(const QString &optionName) const [0xc82071ae80] }
+&{values QCommandLineParser::values commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false true 2 QStringList QStringList values(const QCommandLineOption &option) const [0xc82071b100] }
+&{values QCommandLineParser::values commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non plain false false  QStringList QStringList values(const QString &optionName) const [0xc82071b3a0] }
+&{~QCommandLineParser QCommandLineParser::~QCommandLineParser commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcommandlineparser.h non destructor false false   ~QCommandLineParser() [] }
 ########################################			ENUMS			########################################
-&{SingleDashWordOptionMode QCommandLineParser::SingleDashWordOptionMode commendable public  [0xc820780fe0 0xc8207810c0]}
+&{SingleDashWordOptionMode QCommandLineParser::SingleDashWordOptionMode commendable public  [0xc820743b40 0xc820743c40] false}

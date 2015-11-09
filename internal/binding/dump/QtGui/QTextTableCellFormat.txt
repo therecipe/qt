@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QTextTableCellFormat QTextTableCellFormat::QTextTableCellFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non constructor false false   [] }
-&{bottomPadding QTextTableCellFormat::bottomPadding commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
-&{isValid QTextTableCellFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool [] }
-&{leftPadding QTextTableCellFormat::leftPadding commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
-&{rightPadding QTextTableCellFormat::rightPadding commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
-&{setBottomPadding QTextTableCellFormat::setBottomPadding commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc820fabea0] }
-&{setLeftPadding QTextTableCellFormat::setLeftPadding commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc821064280] }
-&{setPadding QTextTableCellFormat::setPadding commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc821064a80] }
-&{setRightPadding QTextTableCellFormat::setRightPadding commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc821065080] }
-&{setTopPadding QTextTableCellFormat::setTopPadding commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void [0xc821065540] }
-&{topPadding QTextTableCellFormat::topPadding commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal [] }
+&{QTextTableCellFormat QTextTableCellFormat::QTextTableCellFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.cpp non constructor false false   QTextTableCellFormat() [] }
+&{bottomPadding QTextTableCellFormat::bottomPadding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal qreal bottomPadding() const [] }
+&{isValid QTextTableCellFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool bool isValid() const [] }
+&{leftPadding QTextTableCellFormat::leftPadding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal qreal leftPadding() const [] }
+&{rightPadding QTextTableCellFormat::rightPadding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal qreal rightPadding() const [] }
+&{setBottomPadding QTextTableCellFormat::setBottomPadding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setBottomPadding(qreal padding) [0xc823507400] }
+&{setLeftPadding QTextTableCellFormat::setLeftPadding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setLeftPadding(qreal padding) [0xc823507540] }
+&{setPadding QTextTableCellFormat::setPadding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setPadding(qreal padding) [0xc823507760] }
+&{setRightPadding QTextTableCellFormat::setRightPadding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setRightPadding(qreal padding) [0xc8235078a0] }
+&{setTopPadding QTextTableCellFormat::setTopPadding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setTopPadding(qreal padding) [0xc8235079e0] }
+&{topPadding QTextTableCellFormat::topPadding commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal qreal topPadding() const [] }
 ########################################			ENUMS			########################################

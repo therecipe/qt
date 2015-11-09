@@ -1,85 +1,85 @@
 ########################################			FUNCTIONS			########################################
-&{insertBlock QTextCursor::insertBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false true 3 void [0xc8232b4a20 0xc8232b4b00] }
-&{insertTable QTextCursor::insertTable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false true 2 QTextTable * [0xc8232b4d00 0xc8232b4d80] }
-&{insertTable QTextCursor::insertTable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  QTextTable * [0xc8232b4f40 0xc8232b4fc0 0xc8232b5060] }
-&{insertText QTextCursor::insertText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false true 2 void [0xc8232b5260 0xc8232b5300] }
-&{movePosition QTextCursor::movePosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool [0xc8232b5520 0xc8232b55a0 0xc8232b5620] }
-&{operator!= QTextCursor::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool [0xc8232b5800] }
-&{operator< QTextCursor::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool [0xc8232b5a20] }
-&{operator<= QTextCursor::operator<= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool [0xc8232b5c40] }
-&{operator== QTextCursor::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool [0xc8232b5e80] }
-&{operator> QTextCursor::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool [0xc8232c40a0] }
-&{operator>= QTextCursor::operator>= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool [0xc8232c42c0] }
-&{QTextCursor QTextCursor::QTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non constructor false false   [] }
-&{QTextCursor QTextCursor::QTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non constructor false true 2  [0xc8232c59a0] }
-&{QTextCursor QTextCursor::QTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non constructor false true 4  [0xc8232c5b80] }
-&{QTextCursor QTextCursor::QTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non constructor false true 5  [0xc8232c5d60] }
-&{QTextCursor QTextCursor::QTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non constructor false true 7  [0xc8232c5f80] }
-&{anchor QTextCursor::anchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int [] }
-&{atBlockEnd QTextCursor::atBlockEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool [] }
-&{atBlockStart QTextCursor::atBlockStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool [] }
-&{atEnd QTextCursor::atEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool [] }
-&{atStart QTextCursor::atStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool [] }
-&{beginEditBlock QTextCursor::beginEditBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [] }
-&{block QTextCursor::block commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextBlock [] }
-&{blockCharFormat QTextCursor::blockCharFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextCharFormat [] }
-&{blockFormat QTextCursor::blockFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextBlockFormat [] }
-&{blockNumber QTextCursor::blockNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int [] }
-&{charFormat QTextCursor::charFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextCharFormat [] }
-&{clearSelection QTextCursor::clearSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [] }
-&{columnNumber QTextCursor::columnNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int [] }
-&{createList QTextCursor::createList commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false true 2 QTextList * [0xc8232cf320] }
-&{createList QTextCursor::createList commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextList * [0xc8232cf560] }
-&{currentFrame QTextCursor::currentFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextFrame * [] }
-&{currentList QTextCursor::currentList commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextList * [] }
-&{currentTable QTextCursor::currentTable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextTable * [] }
-&{deleteChar QTextCursor::deleteChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [] }
-&{deletePreviousChar QTextCursor::deletePreviousChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [] }
-&{document QTextCursor::document commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextDocument * [] }
-&{endEditBlock QTextCursor::endEditBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [] }
-&{hasComplexSelection QTextCursor::hasComplexSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool [] }
-&{hasSelection QTextCursor::hasSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool [] }
-&{insertBlock QTextCursor::insertBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [] }
-&{insertBlock QTextCursor::insertBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false true 2 void [0xc8232e61c0] }
-&{insertFragment QTextCursor::insertFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232e63e0] }
-&{insertFrame QTextCursor::insertFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextFrame * [0xc8232e6600] }
-&{insertHtml QTextCursor::insertHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232e6800] }
-&{insertImage QTextCursor::insertImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false true 4 void [0xc8232e69c0 0xc8232e6a40] }
-&{insertImage QTextCursor::insertImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false true 3 void [0xc8232e6c00] }
-&{insertImage QTextCursor::insertImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232e6de0] }
-&{insertImage QTextCursor::insertImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false true 2 void [0xc8232e7000 0xc8232e70e0] }
-&{insertList QTextCursor::insertList commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false true 2 QTextList * [0xc8232e7300] }
-&{insertList QTextCursor::insertList commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextList * [0xc8232e7520] }
-&{insertText QTextCursor::insertText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232e7720] }
-&{isCopyOf QTextCursor::isCopyOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool [0xc8232e7900] }
-&{isNull QTextCursor::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool [] }
-&{joinPreviousEditBlock QTextCursor::joinPreviousEditBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [] }
-&{keepPositionOnInsert QTextCursor::keepPositionOnInsert commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool [] }
-&{mergeBlockCharFormat QTextCursor::mergeBlockCharFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232e7da0] }
-&{mergeBlockFormat QTextCursor::mergeBlockFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232e7fa0] }
-&{mergeCharFormat QTextCursor::mergeCharFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232fc1c0] }
-&{operator= QTextCursor::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextCursor & [0xc8232fc3e0] }
-&{position QTextCursor::position commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int [] }
-&{positionInBlock QTextCursor::positionInBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int [] }
-&{removeSelectedText QTextCursor::removeSelectedText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [] }
-&{select QTextCursor::select commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232fc940] }
-&{selectedTableCells QTextCursor::selectedTableCells commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232fcb40 0xc8232fcbc0 0xc8232fcc40 0xc8232fccc0] }
-&{selectedText QTextCursor::selectedText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QString [] }
-&{selection QTextCursor::selection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextDocumentFragment [] }
-&{selectionEnd QTextCursor::selectionEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int [] }
-&{selectionStart QTextCursor::selectionStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int [] }
-&{setBlockCharFormat QTextCursor::setBlockCharFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232fd320] }
-&{setBlockFormat QTextCursor::setBlockFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232fd540] }
-&{setCharFormat QTextCursor::setCharFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232fd760] }
-&{setKeepPositionOnInsert QTextCursor::setKeepPositionOnInsert commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232fd940] }
-&{setPosition QTextCursor::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232fdb00 0xc8232fdb80] }
-&{setVerticalMovementX QTextCursor::setVerticalMovementX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232fdd40] }
-&{setVisualNavigation QTextCursor::setVisualNavigation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc8232fdf60] }
-&{swap QTextCursor::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void [0xc82330c140] }
-&{verticalMovementX QTextCursor::verticalMovementX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int [] }
-&{visualNavigation QTextCursor::visualNavigation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool [] }
-&{~QTextCursor QTextCursor::~QTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non destructor false false   [] }
+&{insertBlock QTextCursor::insertBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false true 3 void void insertBlock(const QTextBlockFormat &format, const QTextCharFormat &charFormat) [0xc8233260a0 0xc823326180] }
+&{insertTable QTextCursor::insertTable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false true 2 QTextTable * QTextTable * insertTable(int rows, int columns) [0xc823326380 0xc823326400] }
+&{insertTable QTextCursor::insertTable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  QTextTable * QTextTable * insertTable(int rows, int columns, const QTextTableFormat &format) [0xc8233265c0 0xc823326640 0xc8233266e0] }
+&{insertText QTextCursor::insertText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false true 2 void void insertText(const QString &text, const QTextCharFormat &format) [0xc8233268e0 0xc823326980] }
+&{movePosition QTextCursor::movePosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool bool movePosition(MoveOperation operation, MoveMode mode, int n) [0xc823326ba0 0xc823326c20 0xc823326ca0] }
+&{operator!= QTextCursor::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool bool operator!=(const QTextCursor &other) const [0xc823326e80] }
+&{operator< QTextCursor::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool bool operator<(const QTextCursor &other) const [0xc8233270a0] }
+&{operator<= QTextCursor::operator<= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool bool operator<=(const QTextCursor &other) const [0xc8233272c0] }
+&{operator== QTextCursor::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool bool operator==(const QTextCursor &other) const [0xc823327500] }
+&{operator> QTextCursor::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool bool operator>(const QTextCursor &other) const [0xc823327720] }
+&{operator>= QTextCursor::operator>= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.cpp non plain false false  bool bool operator>=(const QTextCursor &other) const [0xc823327940] }
+&{QTextCursor QTextCursor::QTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non constructor false false   QTextCursor() [] }
+&{QTextCursor QTextCursor::QTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non constructor false true 2  QTextCursor(QTextDocument *document) [0xc823335020] }
+&{QTextCursor QTextCursor::QTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non constructor false true 4  QTextCursor(QTextFrame *frame) [0xc823335240] }
+&{QTextCursor QTextCursor::QTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non constructor false true 5  QTextCursor(const QTextBlock &block) [0xc823335420] }
+&{QTextCursor QTextCursor::QTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non constructor false true 7  QTextCursor(const QTextCursor &cursor) [0xc823335640] }
+&{anchor QTextCursor::anchor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int int anchor() const [] }
+&{atBlockEnd QTextCursor::atBlockEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool bool atBlockEnd() const [] }
+&{atBlockStart QTextCursor::atBlockStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool bool atBlockStart() const [] }
+&{atEnd QTextCursor::atEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool bool atEnd() const [] }
+&{atStart QTextCursor::atStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool bool atStart() const [] }
+&{beginEditBlock QTextCursor::beginEditBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void beginEditBlock() [] }
+&{block QTextCursor::block commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextBlock QTextBlock block() const [] }
+&{blockCharFormat QTextCursor::blockCharFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextCharFormat QTextCharFormat blockCharFormat() const [] }
+&{blockFormat QTextCursor::blockFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextBlockFormat QTextBlockFormat blockFormat() const [] }
+&{blockNumber QTextCursor::blockNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int int blockNumber() const [] }
+&{charFormat QTextCursor::charFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextCharFormat QTextCharFormat charFormat() const [] }
+&{clearSelection QTextCursor::clearSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void clearSelection() [] }
+&{columnNumber QTextCursor::columnNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int int columnNumber() const [] }
+&{createList QTextCursor::createList commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false true 2 QTextList * QTextList * createList(QTextListFormat::Style style) [0xc823344c60] }
+&{createList QTextCursor::createList commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextList * QTextList * createList(const QTextListFormat &format) [0xc823344ea0] }
+&{currentFrame QTextCursor::currentFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextFrame * QTextFrame * currentFrame() const [] }
+&{currentList QTextCursor::currentList commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextList * QTextList * currentList() const [] }
+&{currentTable QTextCursor::currentTable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextTable * QTextTable * currentTable() const [] }
+&{deleteChar QTextCursor::deleteChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void deleteChar() [] }
+&{deletePreviousChar QTextCursor::deletePreviousChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void deletePreviousChar() [] }
+&{document QTextCursor::document commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextDocument * QTextDocument * document() const [] }
+&{endEditBlock QTextCursor::endEditBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void endEditBlock() [] }
+&{hasComplexSelection QTextCursor::hasComplexSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool bool hasComplexSelection() const [] }
+&{hasSelection QTextCursor::hasSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool bool hasSelection() const [] }
+&{insertBlock QTextCursor::insertBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void insertBlock() [] }
+&{insertBlock QTextCursor::insertBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false true 2 void void insertBlock(const QTextBlockFormat &format) [0xc823345d00] }
+&{insertFragment QTextCursor::insertFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void insertFragment(const QTextDocumentFragment &fragment) [0xc823345f20] }
+&{insertFrame QTextCursor::insertFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextFrame * QTextFrame * insertFrame(const QTextFrameFormat &format) [0xc823356140] }
+&{insertHtml QTextCursor::insertHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void insertHtml(const QString &html) [0xc823356340] }
+&{insertImage QTextCursor::insertImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false true 4 void void insertImage(const QImage &image, const QString &name) [0xc823356500 0xc823356580] }
+&{insertImage QTextCursor::insertImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false true 3 void void insertImage(const QString &name) [0xc823356740] }
+&{insertImage QTextCursor::insertImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void insertImage(const QTextImageFormat &format) [0xc823356920] }
+&{insertImage QTextCursor::insertImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false true 2 void void insertImage(const QTextImageFormat &format, QTextFrameFormat::Position alignment) [0xc823356b40 0xc823356c20] }
+&{insertList QTextCursor::insertList commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false true 2 QTextList * QTextList * insertList(QTextListFormat::Style style) [0xc823356e40] }
+&{insertList QTextCursor::insertList commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextList * QTextList * insertList(const QTextListFormat &format) [0xc823357060] }
+&{insertText QTextCursor::insertText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void insertText(const QString &text) [0xc823357260] }
+&{isCopyOf QTextCursor::isCopyOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool bool isCopyOf(const QTextCursor &other) const [0xc823357440] }
+&{isNull QTextCursor::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool bool isNull() const [] }
+&{joinPreviousEditBlock QTextCursor::joinPreviousEditBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void joinPreviousEditBlock() [] }
+&{keepPositionOnInsert QTextCursor::keepPositionOnInsert commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool bool keepPositionOnInsert() const [] }
+&{mergeBlockCharFormat QTextCursor::mergeBlockCharFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void mergeBlockCharFormat(const QTextCharFormat &modifier) [0xc823357960] }
+&{mergeBlockFormat QTextCursor::mergeBlockFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void mergeBlockFormat(const QTextBlockFormat &modifier) [0xc823357b60] }
+&{mergeCharFormat QTextCursor::mergeCharFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void mergeCharFormat(const QTextCharFormat &modifier) [0xc823357d80] }
+&{operator= QTextCursor::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextCursor & QTextCursor & operator=(const QTextCursor &cursor) [0xc823357fa0] }
+&{position QTextCursor::position commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int int position() const [] }
+&{positionInBlock QTextCursor::positionInBlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int int positionInBlock() const [] }
+&{removeSelectedText QTextCursor::removeSelectedText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void removeSelectedText() [] }
+&{select QTextCursor::select commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void select(SelectionType selection) [0xc82336a5c0] }
+&{selectedTableCells QTextCursor::selectedTableCells commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void selectedTableCells(int *firstRow, int *numRows, int *firstColumn, int *numColumns) const [0xc82336a7c0 0xc82336a840 0xc82336a8c0 0xc82336a940] }
+&{selectedText QTextCursor::selectedText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QString QString selectedText() const [] }
+&{selection QTextCursor::selection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  QTextDocumentFragment QTextDocumentFragment selection() const [] }
+&{selectionEnd QTextCursor::selectionEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int int selectionEnd() const [] }
+&{selectionStart QTextCursor::selectionStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int int selectionStart() const [] }
+&{setBlockCharFormat QTextCursor::setBlockCharFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void setBlockCharFormat(const QTextCharFormat &format) [0xc82336b060] }
+&{setBlockFormat QTextCursor::setBlockFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void setBlockFormat(const QTextBlockFormat &format) [0xc82336b280] }
+&{setCharFormat QTextCursor::setCharFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void setCharFormat(const QTextCharFormat &format) [0xc82336b4a0] }
+&{setKeepPositionOnInsert QTextCursor::setKeepPositionOnInsert commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void setKeepPositionOnInsert(bool b) [0xc82336b680] }
+&{setPosition QTextCursor::setPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void setPosition(int pos, MoveMode m) [0xc82336b840 0xc82336b8c0] }
+&{setVerticalMovementX QTextCursor::setVerticalMovementX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void setVerticalMovementX(int x) [0xc82336bac0] }
+&{setVisualNavigation QTextCursor::setVisualNavigation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void setVisualNavigation(bool b) [0xc82336bd20] }
+&{swap QTextCursor::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  void void swap(QTextCursor &other) [0xc82336bf40] }
+&{verticalMovementX QTextCursor::verticalMovementX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  int int verticalMovementX() const [] }
+&{visualNavigation QTextCursor::visualNavigation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non plain false false  bool bool visualNavigation() const [] }
+&{~QTextCursor QTextCursor::~QTextCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextcursor.h non destructor false false   ~QTextCursor() [] }
 ########################################			ENUMS			########################################
-&{MoveMode QTextCursor::MoveMode commendable public  [0xc8232c4500 0xc8232c4580]}
-&{MoveOperation QTextCursor::MoveOperation commendable public  [0xc8232c4720 0xc8232c47a0 0xc8232c4820 0xc8232c48a0 0xc8232c4940 0xc8232c49c0 0xc8232c4a40 0xc8232c4ae0 0xc8232c4bc0 0xc8232c4c40 0xc8232c4cc0 0xc8232c4d40 0xc8232c4dc0 0xc8232c4e40 0xc8232c4ec0 0xc8232c4f40 0xc8232c4fe0 0xc8232c5060 0xc8232c50e0 0xc8232c5160 0xc8232c51e0 0xc8232c5260 0xc8232c52e0 0xc8232c5360 0xc8232c53e0]}
-&{SelectionType QTextCursor::SelectionType commendable public  [0xc8232c5580 0xc8232c5600 0xc8232c5680 0xc8232c5700]}
+&{MoveMode QTextCursor::MoveMode commendable public  [0xc823327b80 0xc823327c00] false}
+&{MoveOperation QTextCursor::MoveOperation commendable public  [0xc823327da0 0xc823327e20 0xc823327ea0 0xc823327f20 0xc823327fc0 0xc823334040 0xc8233340c0 0xc823334160 0xc823334240 0xc8233342c0 0xc823334340 0xc8233343c0 0xc823334440 0xc8233344c0 0xc823334540 0xc8233345c0 0xc823334660 0xc8233346e0 0xc823334760 0xc8233347e0 0xc823334860 0xc8233348e0 0xc823334960 0xc8233349e0 0xc823334a60] false}
+&{SelectionType QTextCursor::SelectionType commendable public  [0xc823334c00 0xc823334c80 0xc823334d00 0xc823334d80] false}

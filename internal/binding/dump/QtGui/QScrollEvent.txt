@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{QScrollEvent QScrollEvent::QScrollEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc820a558c0 0xc820a559c0 0xc820a55b40] }
-&{contentPos QScrollEvent::contentPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPointF [] }
-&{overshootDistance QScrollEvent::overshootDistance commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPointF [] }
-&{scrollState QScrollEvent::scrollState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  ScrollState [] }
-&{~QScrollEvent QScrollEvent::~QScrollEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non destructor false false   [] }
+&{QScrollEvent QScrollEvent::QScrollEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QScrollEvent(const QPointF &contentPos, const QPointF &overshootDistance, ScrollState scrollState) [0xc8208b1380 0xc8208b14e0 0xc8208b1600] }
+&{contentPos QScrollEvent::contentPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPointF QPointF contentPos() const [] }
+&{overshootDistance QScrollEvent::overshootDistance commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPointF QPointF overshootDistance() const [] }
+&{scrollState QScrollEvent::scrollState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  ScrollState ScrollState scrollState() const [] }
+&{~QScrollEvent QScrollEvent::~QScrollEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non destructor false false   ~QScrollEvent() [] }
 ########################################			ENUMS			########################################
-&{ScrollState QScrollEvent::ScrollState commendable public  [0xc820a554c0 0xc820a55580 0xc820a55620]}
+&{ScrollState QScrollEvent::ScrollState commendable public  [0xc8208b0d60 0xc8208b0e00 0xc8208b0f40] false}

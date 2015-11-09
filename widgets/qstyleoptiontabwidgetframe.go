@@ -10,46 +10,46 @@ type QStyleOptionTabWidgetFrame struct {
 	QStyleOption
 }
 
-type QStyleOptionTabWidgetFrameITF interface {
-	QStyleOptionITF
-	QStyleOptionTabWidgetFramePTR() *QStyleOptionTabWidgetFrame
+type QStyleOptionTabWidgetFrame_ITF interface {
+	QStyleOption_ITF
+	QStyleOptionTabWidgetFrame_PTR() *QStyleOptionTabWidgetFrame
 }
 
-func PointerFromQStyleOptionTabWidgetFrame(ptr QStyleOptionTabWidgetFrameITF) unsafe.Pointer {
+func PointerFromQStyleOptionTabWidgetFrame(ptr QStyleOptionTabWidgetFrame_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionTabWidgetFramePTR().Pointer()
+		return ptr.QStyleOptionTabWidgetFrame_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionTabWidgetFrameFromPointer(ptr unsafe.Pointer) *QStyleOptionTabWidgetFrame {
+func NewQStyleOptionTabWidgetFrameFromPointer(ptr unsafe.Pointer) *QStyleOptionTabWidgetFrame {
 	var n = new(QStyleOptionTabWidgetFrame)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionTabWidgetFrame) QStyleOptionTabWidgetFramePTR() *QStyleOptionTabWidgetFrame {
+func (ptr *QStyleOptionTabWidgetFrame) QStyleOptionTabWidgetFrame_PTR() *QStyleOptionTabWidgetFrame {
 	return ptr
 }
 
 //QStyleOptionTabWidgetFrame::StyleOptionType
-type QStyleOptionTabWidgetFrame__StyleOptionType int
+type QStyleOptionTabWidgetFrame__StyleOptionType int64
 
 var (
 	QStyleOptionTabWidgetFrame__Type = QStyleOptionTabWidgetFrame__StyleOptionType(QStyleOption__SO_TabWidgetFrame)
 )
 
 //QStyleOptionTabWidgetFrame::StyleOptionVersion
-type QStyleOptionTabWidgetFrame__StyleOptionVersion int
+type QStyleOptionTabWidgetFrame__StyleOptionVersion int64
 
 var (
 	QStyleOptionTabWidgetFrame__Version = QStyleOptionTabWidgetFrame__StyleOptionVersion(2)
 )
 
 func NewQStyleOptionTabWidgetFrame() *QStyleOptionTabWidgetFrame {
-	return QStyleOptionTabWidgetFrameFromPointer(unsafe.Pointer(C.QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame()))
+	return NewQStyleOptionTabWidgetFrameFromPointer(C.QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame())
 }
 
-func NewQStyleOptionTabWidgetFrame2(other QStyleOptionTabWidgetFrameITF) *QStyleOptionTabWidgetFrame {
-	return QStyleOptionTabWidgetFrameFromPointer(unsafe.Pointer(C.QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame2(C.QtObjectPtr(PointerFromQStyleOptionTabWidgetFrame(other)))))
+func NewQStyleOptionTabWidgetFrame2(other QStyleOptionTabWidgetFrame_ITF) *QStyleOptionTabWidgetFrame {
+	return NewQStyleOptionTabWidgetFrameFromPointer(C.QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame2(PointerFromQStyleOptionTabWidgetFrame(other)))
 }

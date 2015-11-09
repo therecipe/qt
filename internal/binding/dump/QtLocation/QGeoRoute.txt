@@ -1,24 +1,24 @@
 ########################################			FUNCTIONS			########################################
-&{QGeoRoute QGeoRoute::QGeoRoute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non constructor false false   [] }
-&{QGeoRoute QGeoRoute::QGeoRoute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non constructor false true 2  [0xc821e059e0] }
-&{bounds QGeoRoute::bounds commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QGeoRectangle [] }
-&{distance QGeoRoute::distance commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  qreal [] }
-&{firstRouteSegment QGeoRoute::firstRouteSegment commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QGeoRouteSegment [] }
-&{operator!= QGeoRoute::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  bool [0xc821e16320] }
-&{operator= QGeoRoute::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QGeoRoute & [0xc821e16620] }
-&{operator== QGeoRoute::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  bool [0xc821e16980] }
-&{path QGeoRoute::path commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QList<QGeoCoordinate> [] }
-&{request QGeoRoute::request commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QGeoRouteRequest [] }
-&{routeId QGeoRoute::routeId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QString [] }
-&{setBounds QGeoRoute::setBounds commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void [0xc821e171a0] }
-&{setDistance QGeoRoute::setDistance commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void [0xc821e17480] }
-&{setFirstRouteSegment QGeoRoute::setFirstRouteSegment commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void [0xc821e177e0] }
-&{setPath QGeoRoute::setPath commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void [0xc821e17b00] }
-&{setRequest QGeoRoute::setRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void [0xc821e17e60] }
-&{setRouteId QGeoRoute::setRouteId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void [0xc821e26180] }
-&{setTravelMode QGeoRoute::setTravelMode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void [0xc821e26640] }
-&{setTravelTime QGeoRoute::setTravelTime commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void [0xc821e26ac0] }
-&{travelMode QGeoRoute::travelMode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QGeoRouteRequest::TravelMode [] }
-&{travelTime QGeoRoute::travelTime commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  int [] }
-&{~QGeoRoute QGeoRoute::~QGeoRoute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non destructor false false   [] }
+&{QGeoRoute QGeoRoute::QGeoRoute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non constructor false false   QGeoRoute() [] }
+&{QGeoRoute QGeoRoute::QGeoRoute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non constructor false true 2  QGeoRoute(const QGeoRoute &other) [0xc820c6a220] }
+&{bounds QGeoRoute::bounds commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QGeoRectangle QGeoRectangle bounds() const [] }
+&{distance QGeoRoute::distance commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  qreal qreal distance() const [] }
+&{firstRouteSegment QGeoRoute::firstRouteSegment commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QGeoRouteSegment QGeoRouteSegment firstRouteSegment() const [] }
+&{operator!= QGeoRoute::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  bool bool operator!=(const QGeoRoute &other) const [0xc820c6a820] }
+&{operator= QGeoRoute::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QGeoRoute & QGeoRoute & operator=(const QGeoRoute &other) [0xc820c6aa40] }
+&{operator== QGeoRoute::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  bool bool operator==(const QGeoRoute &other) const [0xc820c6ac60] }
+&{path QGeoRoute::path commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QList<QGeoCoordinate> QList<QGeoCoordinate> path() const [] }
+&{request QGeoRoute::request commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QGeoRouteRequest QGeoRouteRequest request() const [] }
+&{routeId QGeoRoute::routeId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QString QString routeId() const [] }
+&{setBounds QGeoRoute::setBounds commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void void setBounds(const QGeoRectangle &bounds) [0xc820c6b200] }
+&{setDistance QGeoRoute::setDistance commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void void setDistance(qreal distance) [0xc820c6b460] }
+&{setFirstRouteSegment QGeoRoute::setFirstRouteSegment commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void void setFirstRouteSegment(const QGeoRouteSegment &routeSegment) [0xc820c6b680] }
+&{setPath QGeoRoute::setPath commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void void setPath(const QList<QGeoCoordinate> &path) [0xc820c6b8a0] }
+&{setRequest QGeoRoute::setRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void void setRequest(const QGeoRouteRequest &request) [0xc820c6bac0] }
+&{setRouteId QGeoRoute::setRouteId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void void setRouteId(const QString &id) [0xc820c6bce0] }
+&{setTravelMode QGeoRoute::setTravelMode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void void setTravelMode(QGeoRouteRequest::TravelMode mode) [0xc820c6bec0] }
+&{setTravelTime QGeoRoute::setTravelTime commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  void void setTravelTime(int secs) [0xc82070c120] }
+&{travelMode QGeoRoute::travelMode commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  QGeoRouteRequest::TravelMode QGeoRouteRequest::TravelMode travelMode() const [] }
+&{travelTime QGeoRoute::travelTime commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non plain false false  int int travelTime() const [] }
+&{~QGeoRoute QGeoRoute::~QGeoRoute commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/maps/qgeoroute.h non destructor false false   ~QGeoRoute() [] }
 ########################################			ENUMS			########################################

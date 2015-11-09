@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QHelpEvent_NewQHelpEvent(int ty, QtObjectPtr pos, QtObjectPtr globalPos);
-int QHelpEvent_GlobalX(QtObjectPtr ptr);
-int QHelpEvent_GlobalY(QtObjectPtr ptr);
-int QHelpEvent_X(QtObjectPtr ptr);
-int QHelpEvent_Y(QtObjectPtr ptr);
+void* QHelpEvent_NewQHelpEvent(int ty, void* pos, void* globalPos);
+int QHelpEvent_GlobalX(void* ptr);
+int QHelpEvent_GlobalY(void* ptr);
+int QHelpEvent_X(void* ptr);
+int QHelpEvent_Y(void* ptr);
 
 #ifdef __cplusplus
 }

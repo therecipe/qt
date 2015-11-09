@@ -12,110 +12,110 @@ type QDataWidgetMapper struct {
 	core.QObject
 }
 
-type QDataWidgetMapperITF interface {
-	core.QObjectITF
-	QDataWidgetMapperPTR() *QDataWidgetMapper
+type QDataWidgetMapper_ITF interface {
+	core.QObject_ITF
+	QDataWidgetMapper_PTR() *QDataWidgetMapper
 }
 
-func PointerFromQDataWidgetMapper(ptr QDataWidgetMapperITF) unsafe.Pointer {
+func PointerFromQDataWidgetMapper(ptr QDataWidgetMapper_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDataWidgetMapperPTR().Pointer()
+		return ptr.QDataWidgetMapper_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDataWidgetMapperFromPointer(ptr unsafe.Pointer) *QDataWidgetMapper {
+func NewQDataWidgetMapperFromPointer(ptr unsafe.Pointer) *QDataWidgetMapper {
 	var n = new(QDataWidgetMapper)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QDataWidgetMapper_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QDataWidgetMapper) QDataWidgetMapperPTR() *QDataWidgetMapper {
+func (ptr *QDataWidgetMapper) QDataWidgetMapper_PTR() *QDataWidgetMapper {
 	return ptr
 }
 
 //QDataWidgetMapper::SubmitPolicy
-type QDataWidgetMapper__SubmitPolicy int
+type QDataWidgetMapper__SubmitPolicy int64
 
-var (
+const (
 	QDataWidgetMapper__AutoSubmit   = QDataWidgetMapper__SubmitPolicy(0)
 	QDataWidgetMapper__ManualSubmit = QDataWidgetMapper__SubmitPolicy(1)
 )
 
 func (ptr *QDataWidgetMapper) CurrentIndex() int {
 	if ptr.Pointer() != nil {
-		return int(C.QDataWidgetMapper_CurrentIndex(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QDataWidgetMapper_CurrentIndex(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDataWidgetMapper) Orientation() core.Qt__Orientation {
 	if ptr.Pointer() != nil {
-		return core.Qt__Orientation(C.QDataWidgetMapper_Orientation(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__Orientation(C.QDataWidgetMapper_Orientation(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDataWidgetMapper) SetCurrentIndex(index int) {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_SetCurrentIndex(C.QtObjectPtr(ptr.Pointer()), C.int(index))
+		C.QDataWidgetMapper_SetCurrentIndex(ptr.Pointer(), C.int(index))
 	}
 }
 
 func (ptr *QDataWidgetMapper) SetOrientation(aOrientation core.Qt__Orientation) {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_SetOrientation(C.QtObjectPtr(ptr.Pointer()), C.int(aOrientation))
+		C.QDataWidgetMapper_SetOrientation(ptr.Pointer(), C.int(aOrientation))
 	}
 }
 
 func (ptr *QDataWidgetMapper) SetSubmitPolicy(policy QDataWidgetMapper__SubmitPolicy) {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_SetSubmitPolicy(C.QtObjectPtr(ptr.Pointer()), C.int(policy))
+		C.QDataWidgetMapper_SetSubmitPolicy(ptr.Pointer(), C.int(policy))
 	}
 }
 
 func (ptr *QDataWidgetMapper) SubmitPolicy() QDataWidgetMapper__SubmitPolicy {
 	if ptr.Pointer() != nil {
-		return QDataWidgetMapper__SubmitPolicy(C.QDataWidgetMapper_SubmitPolicy(C.QtObjectPtr(ptr.Pointer())))
+		return QDataWidgetMapper__SubmitPolicy(C.QDataWidgetMapper_SubmitPolicy(ptr.Pointer()))
 	}
 	return 0
 }
 
-func NewQDataWidgetMapper(parent core.QObjectITF) *QDataWidgetMapper {
-	return QDataWidgetMapperFromPointer(unsafe.Pointer(C.QDataWidgetMapper_NewQDataWidgetMapper(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQDataWidgetMapper(parent core.QObject_ITF) *QDataWidgetMapper {
+	return NewQDataWidgetMapperFromPointer(C.QDataWidgetMapper_NewQDataWidgetMapper(core.PointerFromQObject(parent)))
 }
 
-func (ptr *QDataWidgetMapper) AddMapping(widget QWidgetITF, section int) {
+func (ptr *QDataWidgetMapper) AddMapping(widget QWidget_ITF, section int) {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_AddMapping(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget)), C.int(section))
+		C.QDataWidgetMapper_AddMapping(ptr.Pointer(), PointerFromQWidget(widget), C.int(section))
 	}
 }
 
-func (ptr *QDataWidgetMapper) AddMapping2(widget QWidgetITF, section int, propertyName core.QByteArrayITF) {
+func (ptr *QDataWidgetMapper) AddMapping2(widget QWidget_ITF, section int, propertyName core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_AddMapping2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget)), C.int(section), C.QtObjectPtr(core.PointerFromQByteArray(propertyName)))
+		C.QDataWidgetMapper_AddMapping2(ptr.Pointer(), PointerFromQWidget(widget), C.int(section), core.PointerFromQByteArray(propertyName))
 	}
 }
 
 func (ptr *QDataWidgetMapper) ClearMapping() {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_ClearMapping(C.QtObjectPtr(ptr.Pointer()))
+		C.QDataWidgetMapper_ClearMapping(ptr.Pointer())
 	}
 }
 
 func (ptr *QDataWidgetMapper) ConnectCurrentIndexChanged(f func(index int)) {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_ConnectCurrentIndexChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QDataWidgetMapper_ConnectCurrentIndexChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "currentIndexChanged", f)
 	}
 }
 
 func (ptr *QDataWidgetMapper) DisconnectCurrentIndexChanged() {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_DisconnectCurrentIndexChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QDataWidgetMapper_DisconnectCurrentIndexChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "currentIndexChanged")
 	}
 }
@@ -127,109 +127,116 @@ func callbackQDataWidgetMapperCurrentIndexChanged(ptrName *C.char, index C.int) 
 
 func (ptr *QDataWidgetMapper) ItemDelegate() *QAbstractItemDelegate {
 	if ptr.Pointer() != nil {
-		return QAbstractItemDelegateFromPointer(unsafe.Pointer(C.QDataWidgetMapper_ItemDelegate(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAbstractItemDelegateFromPointer(C.QDataWidgetMapper_ItemDelegate(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QDataWidgetMapper) MappedSection(widget QWidgetITF) int {
+func (ptr *QDataWidgetMapper) MappedPropertyName(widget QWidget_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return int(C.QDataWidgetMapper_MappedSection(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget))))
+		return core.NewQByteArrayFromPointer(C.QDataWidgetMapper_MappedPropertyName(ptr.Pointer(), PointerFromQWidget(widget)))
+	}
+	return nil
+}
+
+func (ptr *QDataWidgetMapper) MappedSection(widget QWidget_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(C.QDataWidgetMapper_MappedSection(ptr.Pointer(), PointerFromQWidget(widget)))
 	}
 	return 0
 }
 
 func (ptr *QDataWidgetMapper) MappedWidgetAt(section int) *QWidget {
 	if ptr.Pointer() != nil {
-		return QWidgetFromPointer(unsafe.Pointer(C.QDataWidgetMapper_MappedWidgetAt(C.QtObjectPtr(ptr.Pointer()), C.int(section))))
+		return NewQWidgetFromPointer(C.QDataWidgetMapper_MappedWidgetAt(ptr.Pointer(), C.int(section)))
 	}
 	return nil
 }
 
 func (ptr *QDataWidgetMapper) Model() *core.QAbstractItemModel {
 	if ptr.Pointer() != nil {
-		return core.QAbstractItemModelFromPointer(unsafe.Pointer(C.QDataWidgetMapper_Model(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQAbstractItemModelFromPointer(C.QDataWidgetMapper_Model(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QDataWidgetMapper) RemoveMapping(widget QWidgetITF) {
+func (ptr *QDataWidgetMapper) RemoveMapping(widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_RemoveMapping(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QDataWidgetMapper_RemoveMapping(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QDataWidgetMapper) Revert() {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_Revert(C.QtObjectPtr(ptr.Pointer()))
+		C.QDataWidgetMapper_Revert(ptr.Pointer())
 	}
 }
 
 func (ptr *QDataWidgetMapper) RootIndex() *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		return core.QModelIndexFromPointer(unsafe.Pointer(C.QDataWidgetMapper_RootIndex(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQModelIndexFromPointer(C.QDataWidgetMapper_RootIndex(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QDataWidgetMapper) SetCurrentModelIndex(index core.QModelIndexITF) {
+func (ptr *QDataWidgetMapper) SetCurrentModelIndex(index core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_SetCurrentModelIndex(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQModelIndex(index)))
+		C.QDataWidgetMapper_SetCurrentModelIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
-func (ptr *QDataWidgetMapper) SetItemDelegate(delegate QAbstractItemDelegateITF) {
+func (ptr *QDataWidgetMapper) SetItemDelegate(delegate QAbstractItemDelegate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_SetItemDelegate(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractItemDelegate(delegate)))
+		C.QDataWidgetMapper_SetItemDelegate(ptr.Pointer(), PointerFromQAbstractItemDelegate(delegate))
 	}
 }
 
-func (ptr *QDataWidgetMapper) SetModel(model core.QAbstractItemModelITF) {
+func (ptr *QDataWidgetMapper) SetModel(model core.QAbstractItemModel_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_SetModel(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQAbstractItemModel(model)))
+		C.QDataWidgetMapper_SetModel(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
 	}
 }
 
-func (ptr *QDataWidgetMapper) SetRootIndex(index core.QModelIndexITF) {
+func (ptr *QDataWidgetMapper) SetRootIndex(index core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_SetRootIndex(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQModelIndex(index)))
+		C.QDataWidgetMapper_SetRootIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QDataWidgetMapper) Submit() bool {
 	if ptr.Pointer() != nil {
-		return C.QDataWidgetMapper_Submit(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QDataWidgetMapper_Submit(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QDataWidgetMapper) ToFirst() {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_ToFirst(C.QtObjectPtr(ptr.Pointer()))
+		C.QDataWidgetMapper_ToFirst(ptr.Pointer())
 	}
 }
 
 func (ptr *QDataWidgetMapper) ToLast() {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_ToLast(C.QtObjectPtr(ptr.Pointer()))
+		C.QDataWidgetMapper_ToLast(ptr.Pointer())
 	}
 }
 
 func (ptr *QDataWidgetMapper) ToNext() {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_ToNext(C.QtObjectPtr(ptr.Pointer()))
+		C.QDataWidgetMapper_ToNext(ptr.Pointer())
 	}
 }
 
 func (ptr *QDataWidgetMapper) ToPrevious() {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_ToPrevious(C.QtObjectPtr(ptr.Pointer()))
+		C.QDataWidgetMapper_ToPrevious(ptr.Pointer())
 	}
 }
 
 func (ptr *QDataWidgetMapper) DestroyQDataWidgetMapper() {
 	if ptr.Pointer() != nil {
-		C.QDataWidgetMapper_DestroyQDataWidgetMapper(C.QtObjectPtr(ptr.Pointer()))
+		C.QDataWidgetMapper_DestroyQDataWidgetMapper(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

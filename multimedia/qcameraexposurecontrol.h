@@ -1,19 +1,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QCameraExposureControl_ActualValue(QtObjectPtr ptr, int parameter);
-void QCameraExposureControl_ConnectActualValueChanged(QtObjectPtr ptr);
-void QCameraExposureControl_DisconnectActualValueChanged(QtObjectPtr ptr);
-int QCameraExposureControl_IsParameterSupported(QtObjectPtr ptr, int parameter);
-void QCameraExposureControl_ConnectParameterRangeChanged(QtObjectPtr ptr);
-void QCameraExposureControl_DisconnectParameterRangeChanged(QtObjectPtr ptr);
-char* QCameraExposureControl_RequestedValue(QtObjectPtr ptr, int parameter);
-void QCameraExposureControl_ConnectRequestedValueChanged(QtObjectPtr ptr);
-void QCameraExposureControl_DisconnectRequestedValueChanged(QtObjectPtr ptr);
-int QCameraExposureControl_SetValue(QtObjectPtr ptr, int parameter, char* value);
-void QCameraExposureControl_DestroyQCameraExposureControl(QtObjectPtr ptr);
+void* QCameraExposureControl_ActualValue(void* ptr, int parameter);
+void QCameraExposureControl_ConnectActualValueChanged(void* ptr);
+void QCameraExposureControl_DisconnectActualValueChanged(void* ptr);
+int QCameraExposureControl_IsParameterSupported(void* ptr, int parameter);
+void QCameraExposureControl_ConnectParameterRangeChanged(void* ptr);
+void QCameraExposureControl_DisconnectParameterRangeChanged(void* ptr);
+void* QCameraExposureControl_RequestedValue(void* ptr, int parameter);
+void QCameraExposureControl_ConnectRequestedValueChanged(void* ptr);
+void QCameraExposureControl_DisconnectRequestedValueChanged(void* ptr);
+int QCameraExposureControl_SetValue(void* ptr, int parameter, void* value);
+void QCameraExposureControl_DestroyQCameraExposureControl(void* ptr);
 
 #ifdef __cplusplus
 }

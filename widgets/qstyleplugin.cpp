@@ -1,9 +1,9 @@
 #include "qstyleplugin.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStyle>
+#include <QString>
+#include <QVariant>
 #include <QStylePlugin>
 #include "_cgo_export.h"
 
@@ -11,11 +11,11 @@ class MyQStylePlugin: public QStylePlugin {
 public:
 };
 
-QtObjectPtr QStylePlugin_Create(QtObjectPtr ptr, char* key){
+void* QStylePlugin_Create(void* ptr, char* key){
 	return static_cast<QStylePlugin*>(ptr)->create(QString(key));
 }
 
-void QStylePlugin_DestroyQStylePlugin(QtObjectPtr ptr){
+void QStylePlugin_DestroyQStylePlugin(void* ptr){
 	static_cast<QStylePlugin*>(ptr)->~QStylePlugin();
 }
 

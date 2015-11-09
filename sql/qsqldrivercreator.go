@@ -10,24 +10,24 @@ type QSqlDriverCreator struct {
 	QSqlDriverCreatorBase
 }
 
-type QSqlDriverCreatorITF interface {
-	QSqlDriverCreatorBaseITF
-	QSqlDriverCreatorPTR() *QSqlDriverCreator
+type QSqlDriverCreator_ITF interface {
+	QSqlDriverCreatorBase_ITF
+	QSqlDriverCreator_PTR() *QSqlDriverCreator
 }
 
-func PointerFromQSqlDriverCreator(ptr QSqlDriverCreatorITF) unsafe.Pointer {
+func PointerFromQSqlDriverCreator(ptr QSqlDriverCreator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSqlDriverCreatorPTR().Pointer()
+		return ptr.QSqlDriverCreator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSqlDriverCreatorFromPointer(ptr unsafe.Pointer) *QSqlDriverCreator {
+func NewQSqlDriverCreatorFromPointer(ptr unsafe.Pointer) *QSqlDriverCreator {
 	var n = new(QSqlDriverCreator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSqlDriverCreator) QSqlDriverCreatorPTR() *QSqlDriverCreator {
+func (ptr *QSqlDriverCreator) QSqlDriverCreator_PTR() *QSqlDriverCreator {
 	return ptr
 }

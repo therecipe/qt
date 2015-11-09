@@ -1,10 +1,10 @@
 #include "qcameracontrol.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QCamera>
 #include <QObject>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QCamera>
 #include <QCameraControl>
 #include "_cgo_export.h"
 
@@ -16,63 +16,63 @@ void Signal_StateChanged(QCamera::State state){callbackQCameraControlStateChange
 void Signal_StatusChanged(QCamera::Status status){callbackQCameraControlStatusChanged(this->objectName().toUtf8().data(), status);};
 };
 
-int QCameraControl_CanChangeProperty(QtObjectPtr ptr, int changeType, int status){
+int QCameraControl_CanChangeProperty(void* ptr, int changeType, int status){
 	return static_cast<QCameraControl*>(ptr)->canChangeProperty(static_cast<QCameraControl::PropertyChangeType>(changeType), static_cast<QCamera::Status>(status));
 }
 
-int QCameraControl_CaptureMode(QtObjectPtr ptr){
+int QCameraControl_CaptureMode(void* ptr){
 	return static_cast<QCameraControl*>(ptr)->captureMode();
 }
 
-void QCameraControl_ConnectCaptureModeChanged(QtObjectPtr ptr){
+void QCameraControl_ConnectCaptureModeChanged(void* ptr){
 	QObject::connect(static_cast<QCameraControl*>(ptr), static_cast<void (QCameraControl::*)(QCamera::CaptureModes)>(&QCameraControl::captureModeChanged), static_cast<MyQCameraControl*>(ptr), static_cast<void (MyQCameraControl::*)(QCamera::CaptureModes)>(&MyQCameraControl::Signal_CaptureModeChanged));;
 }
 
-void QCameraControl_DisconnectCaptureModeChanged(QtObjectPtr ptr){
+void QCameraControl_DisconnectCaptureModeChanged(void* ptr){
 	QObject::disconnect(static_cast<QCameraControl*>(ptr), static_cast<void (QCameraControl::*)(QCamera::CaptureModes)>(&QCameraControl::captureModeChanged), static_cast<MyQCameraControl*>(ptr), static_cast<void (MyQCameraControl::*)(QCamera::CaptureModes)>(&MyQCameraControl::Signal_CaptureModeChanged));;
 }
 
-void QCameraControl_ConnectError(QtObjectPtr ptr){
+void QCameraControl_ConnectError(void* ptr){
 	QObject::connect(static_cast<QCameraControl*>(ptr), static_cast<void (QCameraControl::*)(int, const QString &)>(&QCameraControl::error), static_cast<MyQCameraControl*>(ptr), static_cast<void (MyQCameraControl::*)(int, const QString &)>(&MyQCameraControl::Signal_Error));;
 }
 
-void QCameraControl_DisconnectError(QtObjectPtr ptr){
+void QCameraControl_DisconnectError(void* ptr){
 	QObject::disconnect(static_cast<QCameraControl*>(ptr), static_cast<void (QCameraControl::*)(int, const QString &)>(&QCameraControl::error), static_cast<MyQCameraControl*>(ptr), static_cast<void (MyQCameraControl::*)(int, const QString &)>(&MyQCameraControl::Signal_Error));;
 }
 
-int QCameraControl_IsCaptureModeSupported(QtObjectPtr ptr, int mode){
+int QCameraControl_IsCaptureModeSupported(void* ptr, int mode){
 	return static_cast<QCameraControl*>(ptr)->isCaptureModeSupported(static_cast<QCamera::CaptureMode>(mode));
 }
 
-void QCameraControl_SetCaptureMode(QtObjectPtr ptr, int mode){
+void QCameraControl_SetCaptureMode(void* ptr, int mode){
 	static_cast<QCameraControl*>(ptr)->setCaptureMode(static_cast<QCamera::CaptureMode>(mode));
 }
 
-void QCameraControl_SetState(QtObjectPtr ptr, int state){
+void QCameraControl_SetState(void* ptr, int state){
 	static_cast<QCameraControl*>(ptr)->setState(static_cast<QCamera::State>(state));
 }
 
-void QCameraControl_ConnectStateChanged(QtObjectPtr ptr){
+void QCameraControl_ConnectStateChanged(void* ptr){
 	QObject::connect(static_cast<QCameraControl*>(ptr), static_cast<void (QCameraControl::*)(QCamera::State)>(&QCameraControl::stateChanged), static_cast<MyQCameraControl*>(ptr), static_cast<void (MyQCameraControl::*)(QCamera::State)>(&MyQCameraControl::Signal_StateChanged));;
 }
 
-void QCameraControl_DisconnectStateChanged(QtObjectPtr ptr){
+void QCameraControl_DisconnectStateChanged(void* ptr){
 	QObject::disconnect(static_cast<QCameraControl*>(ptr), static_cast<void (QCameraControl::*)(QCamera::State)>(&QCameraControl::stateChanged), static_cast<MyQCameraControl*>(ptr), static_cast<void (MyQCameraControl::*)(QCamera::State)>(&MyQCameraControl::Signal_StateChanged));;
 }
 
-int QCameraControl_Status(QtObjectPtr ptr){
+int QCameraControl_Status(void* ptr){
 	return static_cast<QCameraControl*>(ptr)->status();
 }
 
-void QCameraControl_ConnectStatusChanged(QtObjectPtr ptr){
+void QCameraControl_ConnectStatusChanged(void* ptr){
 	QObject::connect(static_cast<QCameraControl*>(ptr), static_cast<void (QCameraControl::*)(QCamera::Status)>(&QCameraControl::statusChanged), static_cast<MyQCameraControl*>(ptr), static_cast<void (MyQCameraControl::*)(QCamera::Status)>(&MyQCameraControl::Signal_StatusChanged));;
 }
 
-void QCameraControl_DisconnectStatusChanged(QtObjectPtr ptr){
+void QCameraControl_DisconnectStatusChanged(void* ptr){
 	QObject::disconnect(static_cast<QCameraControl*>(ptr), static_cast<void (QCameraControl::*)(QCamera::Status)>(&QCameraControl::statusChanged), static_cast<MyQCameraControl*>(ptr), static_cast<void (MyQCameraControl::*)(QCamera::Status)>(&MyQCameraControl::Signal_StatusChanged));;
 }
 
-void QCameraControl_DestroyQCameraControl(QtObjectPtr ptr){
+void QCameraControl_DestroyQCameraControl(void* ptr){
 	static_cast<QCameraControl*>(ptr)->~QCameraControl();
 }
 

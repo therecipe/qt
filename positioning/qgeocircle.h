@@ -1,14 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGeoCircle_NewQGeoCircle();
-QtObjectPtr QGeoCircle_NewQGeoCircle3(QtObjectPtr other);
-QtObjectPtr QGeoCircle_NewQGeoCircle4(QtObjectPtr other);
-void QGeoCircle_SetCenter(QtObjectPtr ptr, QtObjectPtr center);
-char* QGeoCircle_ToString(QtObjectPtr ptr);
-void QGeoCircle_DestroyQGeoCircle(QtObjectPtr ptr);
+void* QGeoCircle_NewQGeoCircle();
+void* QGeoCircle_NewQGeoCircle3(void* other);
+void* QGeoCircle_NewQGeoCircle2(void* center, double radius);
+void* QGeoCircle_NewQGeoCircle4(void* other);
+double QGeoCircle_Radius(void* ptr);
+void QGeoCircle_SetCenter(void* ptr, void* center);
+void QGeoCircle_SetRadius(void* ptr, double radius);
+char* QGeoCircle_ToString(void* ptr);
+void QGeoCircle_DestroyQGeoCircle(void* ptr);
 
 #ifdef __cplusplus
 }

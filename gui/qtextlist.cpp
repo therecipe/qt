@@ -1,12 +1,12 @@
 #include "qtextlist.h"
 #include <QList>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QList>
-#include <QTextListFormat>
 #include <QTextBlock>
+#include <QTextListFormat>
+#include <QList>
+#include <QString>
+#include <QVariant>
 #include <QTextList>
 #include "_cgo_export.h"
 
@@ -14,27 +14,27 @@ class MyQTextList: public QTextList {
 public:
 };
 
-int QTextList_ItemNumber(QtObjectPtr ptr, QtObjectPtr block){
+int QTextList_ItemNumber(void* ptr, void* block){
 	return static_cast<QTextList*>(ptr)->itemNumber(*static_cast<QTextBlock*>(block));
 }
 
-char* QTextList_ItemText(QtObjectPtr ptr, QtObjectPtr block){
+char* QTextList_ItemText(void* ptr, void* block){
 	return static_cast<QTextList*>(ptr)->itemText(*static_cast<QTextBlock*>(block)).toUtf8().data();
 }
 
-void QTextList_Add(QtObjectPtr ptr, QtObjectPtr block){
+void QTextList_Add(void* ptr, void* block){
 	static_cast<QTextList*>(ptr)->add(*static_cast<QTextBlock*>(block));
 }
 
-int QTextList_Count(QtObjectPtr ptr){
+int QTextList_Count(void* ptr){
 	return static_cast<QTextList*>(ptr)->count();
 }
 
-void QTextList_RemoveItem(QtObjectPtr ptr, int i){
+void QTextList_RemoveItem(void* ptr, int i){
 	static_cast<QTextList*>(ptr)->removeItem(i);
 }
 
-void QTextList_SetFormat(QtObjectPtr ptr, QtObjectPtr format){
+void QTextList_SetFormat(void* ptr, void* format){
 	static_cast<QTextList*>(ptr)->setFormat(*static_cast<QTextListFormat*>(format));
 }
 

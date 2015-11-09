@@ -1,29 +1,29 @@
 ########################################			FUNCTIONS			########################################
-&{createUuid QUuid::createUuid commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain true false  QUuid [] }
-&{createUuidV3 QUuid::createUuidV3 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain true false  QUuid [0xc82018d880 0xc82018d980] }
-&{createUuidV5 QUuid::createUuidV5 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain true false  QUuid [0xc82018dce0 0xc82018de40] }
-&{operator< QUuid::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain false false  bool [0xc8201620c0] }
-&{operator> QUuid::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain false false  bool [0xc8201623c0] }
-&{variant QUuid::variant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain false false  QUuid::Variant [] }
-&{version QUuid::version commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain false false  QUuid::Version [] }
-&{QUuid QUuid::QUuid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non constructor false false   [] }
-&{QUuid QUuid::QUuid commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non constructor false true 6  [0xc8201638e0] }
-&{QUuid QUuid::QUuid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non constructor false true 5  [0xc820163b00] }
-&{QUuid QUuid::QUuid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non constructor false true 3  [0xc820163d20] }
-&{QUuid QUuid::QUuid commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non constructor false true 2  [0xc820163f00 0xc820163f80 0xc8201520c0 0xc820152180 0xc820152280 0xc820152340 0xc820152460 0xc820152520 0xc820152660 0xc820152700 0xc8201527c0] }
-&{createUuidV3 QUuid::createUuidV3 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain true true 2 QUuid [0xc820152d40 0xc820152de0] }
-&{createUuidV5 QUuid::createUuidV5 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain true true 2 QUuid [0xc820153080 0xc820153160] }
-&{fromRfc4122 QUuid::fromRfc4122 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain true false  QUuid [0xc820153440] }
-&{isNull QUuid::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  bool [] }
-&{operator GUID QUuid::operator GUID commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false   [] }
-&{operator!= QUuid::operator!= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false true 2 bool [0xc820153aa0] }
-&{operator!= QUuid::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  bool [0xc820153d80] }
-&{operator= QUuid::operator= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  QUuid & [0xc82013c000] }
-&{operator== QUuid::operator== commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false true 2 bool [0xc82013c240] }
-&{operator== QUuid::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  bool [0xc82013c520] }
-&{toByteArray QUuid::toByteArray commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  QByteArray [] }
-&{toRfc4122 QUuid::toRfc4122 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  QByteArray [] }
-&{toString QUuid::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  QString [] }
+&{createUuid QUuid::createUuid commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain true false  QUuid QUuid createUuid() [] }
+&{createUuidV3 QUuid::createUuidV3 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain true false  QUuid QUuid createUuidV3(const QUuid &ns, const QByteArray &baseData) [0xc8200feb80 0xc8200feca0] }
+&{createUuidV5 QUuid::createUuidV5 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain true false  QUuid QUuid createUuidV5(const QUuid &ns, const QByteArray &baseData) [0xc8200fef80 0xc8200ff0a0] }
+&{operator< QUuid::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain false false  bool bool operator<(const QUuid &other) const [0xc8200ff3c0] }
+&{operator> QUuid::operator> commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain false false  bool bool operator>(const QUuid &other) const [0xc8200ff700] }
+&{variant QUuid::variant commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain false false  QUuid::Variant QUuid::Variant variant() const [] }
+&{version QUuid::version commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.cpp non plain false false  QUuid::Version QUuid::Version version() const [] }
+&{QUuid QUuid::QUuid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non constructor false false   QUuid() [] }
+&{QUuid QUuid::QUuid commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non constructor false true 6  QUuid(const GUID &guid) [0xc8200ed0c0] }
+&{QUuid QUuid::QUuid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non constructor false true 5  QUuid(const QByteArray &text) [0xc8200ed3c0] }
+&{QUuid QUuid::QUuid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non constructor false true 3  QUuid(const QString &text) [0xc8200ed720] }
+&{QUuid QUuid::QUuid commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non constructor false true 2  QUuid(uint l, ushort w1, ushort w2, uchar b1, uchar b2, uchar b3, uchar b4, uchar b5, uchar b6, uchar b7, uchar b8) [0xc8200ed9e0 0xc8200edac0 0xc8200edba0 0xc8200edcc0 0xc8200ede40 0xc8200edec0 0xc8200edf80 0xc8200dc060 0xc8200dc180 0xc8200dc280 0xc8200dc320] }
+&{createUuidV3 QUuid::createUuidV3 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain true true 2 QUuid QUuid createUuidV3(const QUuid &ns, const QString &baseData) [0xc8200dcae0 0xc8200dcba0] }
+&{createUuidV5 QUuid::createUuidV5 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain true true 2 QUuid QUuid createUuidV5(const QUuid &ns, const QString &baseData) [0xc8200dcf80 0xc8200dd040] }
+&{fromRfc4122 QUuid::fromRfc4122 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain true false  QUuid QUuid fromRfc4122(const QByteArray &bytes) [0xc8200dd480] }
+&{isNull QUuid::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  bool bool isNull() const [] }
+&{operator GUID QUuid::operator GUID commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false   operator GUID() const [] }
+&{operator!= QUuid::operator!= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false true 2 bool bool operator!=(const GUID &guid) const [0xc8200ddda0] }
+&{operator!= QUuid::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  bool bool operator!=(const QUuid &other) const [0xc8200b2120] }
+&{operator= QUuid::operator= commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  QUuid & QUuid & operator=(const GUID &guid) [0xc8200b2420] }
+&{operator== QUuid::operator== commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false true 2 bool bool operator==(const GUID &guid) const [0xc8200b2780] }
+&{operator== QUuid::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  bool bool operator==(const QUuid &other) const [0xc8200b2b60] }
+&{toByteArray QUuid::toByteArray commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  QByteArray QByteArray toByteArray() const [] }
+&{toRfc4122 QUuid::toRfc4122 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  QByteArray QByteArray toRfc4122() const [] }
+&{toString QUuid::toString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/quuid.h non plain false false  QString QString toString() const [] }
 ########################################			ENUMS			########################################
-&{Variant QUuid::Variant commendable public  [0xc8201629c0 0xc820162a80 0xc820162ba0 0xc820162c40 0xc820162e00]}
-&{Version QUuid::Version commendable public  [0xc820163080 0xc820163200 0xc8201632e0 0xc820163360 0xc820163480 0xc820163560 0xc820163620]}
+&{Variant QUuid::Variant commendable public  [0xc8200ffe60 0xc8200fffa0 0xc8200ec0a0 0xc8200ec1e0 0xc8200ec360] false}
+&{Version QUuid::Version commendable public  [0xc8200ec580 0xc8200ec6a0 0xc8200ec7a0 0xc8200ec840 0xc8200ec940 0xc8200ecaa0 0xc8200ecc20] false}

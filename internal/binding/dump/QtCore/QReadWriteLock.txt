@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
-&{QReadWriteLock QReadWriteLock::QReadWriteLock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non constructor false false   [0xc820716280] }
-&{lockForRead QReadWriteLock::lockForRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  void [] }
-&{lockForWrite QReadWriteLock::lockForWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  void [] }
-&{tryLockForRead QReadWriteLock::tryLockForRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  bool [] }
-&{tryLockForRead QReadWriteLock::tryLockForRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false true 2 bool [0xc820716740] }
-&{tryLockForWrite QReadWriteLock::tryLockForWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  bool [] }
-&{tryLockForWrite QReadWriteLock::tryLockForWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false true 2 bool [0xc8207169c0] }
-&{unlock QReadWriteLock::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  void [] }
-&{~QReadWriteLock QReadWriteLock::~QReadWriteLock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non destructor false false   [] }
+&{QReadWriteLock QReadWriteLock::QReadWriteLock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non constructor false false   QReadWriteLock(RecursionMode recursionMode) [0xc8207559e0] }
+&{lockForRead QReadWriteLock::lockForRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  void void lockForRead() [] }
+&{lockForWrite QReadWriteLock::lockForWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  void void lockForWrite() [] }
+&{tryLockForRead QReadWriteLock::tryLockForRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  bool bool tryLockForRead() [] }
+&{tryLockForRead QReadWriteLock::tryLockForRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false true 2 bool bool tryLockForRead(int timeout) [0xc820755fa0] }
+&{tryLockForWrite QReadWriteLock::tryLockForWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  bool bool tryLockForWrite() [] }
+&{tryLockForWrite QReadWriteLock::tryLockForWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false true 2 bool bool tryLockForWrite(int timeout) [0xc82076a260] }
+&{unlock QReadWriteLock::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non plain false false  void void unlock() [] }
+&{~QReadWriteLock QReadWriteLock::~QReadWriteLock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qreadwritelock.h non destructor false false   ~QReadWriteLock() [] }
 ########################################			ENUMS			########################################
-&{RecursionMode QReadWriteLock::RecursionMode commendable public  [0xc820716020 0xc8207160a0]}
+&{RecursionMode QReadWriteLock::RecursionMode commendable public  [0xc820755780 0xc820755800] false}

@@ -1,18 +1,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QAbstractTextDocumentLayout_AnchorAt(QtObjectPtr ptr, QtObjectPtr position);
-QtObjectPtr QAbstractTextDocumentLayout_Document(QtObjectPtr ptr);
-QtObjectPtr QAbstractTextDocumentLayout_HandlerForObject(QtObjectPtr ptr, int objectType);
-int QAbstractTextDocumentLayout_PageCount(QtObjectPtr ptr);
-void QAbstractTextDocumentLayout_ConnectPageCountChanged(QtObjectPtr ptr);
-void QAbstractTextDocumentLayout_DisconnectPageCountChanged(QtObjectPtr ptr);
-QtObjectPtr QAbstractTextDocumentLayout_PaintDevice(QtObjectPtr ptr);
-void QAbstractTextDocumentLayout_RegisterHandler(QtObjectPtr ptr, int objectType, QtObjectPtr component);
-void QAbstractTextDocumentLayout_SetPaintDevice(QtObjectPtr ptr, QtObjectPtr device);
-void QAbstractTextDocumentLayout_UnregisterHandler(QtObjectPtr ptr, int objectType, QtObjectPtr component);
+char* QAbstractTextDocumentLayout_AnchorAt(void* ptr, void* position);
+void* QAbstractTextDocumentLayout_Document(void* ptr);
+void* QAbstractTextDocumentLayout_HandlerForObject(void* ptr, int objectType);
+int QAbstractTextDocumentLayout_PageCount(void* ptr);
+void QAbstractTextDocumentLayout_ConnectPageCountChanged(void* ptr);
+void QAbstractTextDocumentLayout_DisconnectPageCountChanged(void* ptr);
+void* QAbstractTextDocumentLayout_PaintDevice(void* ptr);
+void QAbstractTextDocumentLayout_RegisterHandler(void* ptr, int objectType, void* component);
+void QAbstractTextDocumentLayout_SetPaintDevice(void* ptr, void* device);
+void QAbstractTextDocumentLayout_UnregisterHandler(void* ptr, int objectType, void* component);
 
 #ifdef __cplusplus
 }

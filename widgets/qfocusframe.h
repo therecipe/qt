@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QFocusFrame_NewQFocusFrame(QtObjectPtr parent);
-void QFocusFrame_SetWidget(QtObjectPtr ptr, QtObjectPtr widget);
-QtObjectPtr QFocusFrame_Widget(QtObjectPtr ptr);
-void QFocusFrame_DestroyQFocusFrame(QtObjectPtr ptr);
+void* QFocusFrame_NewQFocusFrame(void* parent);
+void QFocusFrame_SetWidget(void* ptr, void* widget);
+void* QFocusFrame_Widget(void* ptr);
+void QFocusFrame_DestroyQFocusFrame(void* ptr);
 
 #ifdef __cplusplus
 }

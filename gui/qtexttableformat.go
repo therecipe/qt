@@ -11,74 +11,100 @@ type QTextTableFormat struct {
 	QTextFrameFormat
 }
 
-type QTextTableFormatITF interface {
-	QTextFrameFormatITF
-	QTextTableFormatPTR() *QTextTableFormat
+type QTextTableFormat_ITF interface {
+	QTextFrameFormat_ITF
+	QTextTableFormat_PTR() *QTextTableFormat
 }
 
-func PointerFromQTextTableFormat(ptr QTextTableFormatITF) unsafe.Pointer {
+func PointerFromQTextTableFormat(ptr QTextTableFormat_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTextTableFormatPTR().Pointer()
+		return ptr.QTextTableFormat_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTextTableFormatFromPointer(ptr unsafe.Pointer) *QTextTableFormat {
+func NewQTextTableFormatFromPointer(ptr unsafe.Pointer) *QTextTableFormat {
 	var n = new(QTextTableFormat)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QTextTableFormat) QTextTableFormatPTR() *QTextTableFormat {
+func (ptr *QTextTableFormat) QTextTableFormat_PTR() *QTextTableFormat {
 	return ptr
 }
 
 func NewQTextTableFormat() *QTextTableFormat {
-	return QTextTableFormatFromPointer(unsafe.Pointer(C.QTextTableFormat_NewQTextTableFormat()))
+	return NewQTextTableFormatFromPointer(C.QTextTableFormat_NewQTextTableFormat())
 }
 
 func (ptr *QTextTableFormat) Alignment() core.Qt__AlignmentFlag {
 	if ptr.Pointer() != nil {
-		return core.Qt__AlignmentFlag(C.QTextTableFormat_Alignment(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__AlignmentFlag(C.QTextTableFormat_Alignment(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QTextTableFormat) CellPadding() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QTextTableFormat_CellPadding(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QTextTableFormat) CellSpacing() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QTextTableFormat_CellSpacing(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTextTableFormat) ClearColumnWidthConstraints() {
 	if ptr.Pointer() != nil {
-		C.QTextTableFormat_ClearColumnWidthConstraints(C.QtObjectPtr(ptr.Pointer()))
+		C.QTextTableFormat_ClearColumnWidthConstraints(ptr.Pointer())
 	}
 }
 
 func (ptr *QTextTableFormat) Columns() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTextTableFormat_Columns(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTextTableFormat_Columns(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTextTableFormat) HeaderRowCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTextTableFormat_HeaderRowCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTextTableFormat_HeaderRowCount(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTextTableFormat) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QTextTableFormat_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QTextTableFormat_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QTextTableFormat) SetAlignment(alignment core.Qt__AlignmentFlag) {
 	if ptr.Pointer() != nil {
-		C.QTextTableFormat_SetAlignment(C.QtObjectPtr(ptr.Pointer()), C.int(alignment))
+		C.QTextTableFormat_SetAlignment(ptr.Pointer(), C.int(alignment))
+	}
+}
+
+func (ptr *QTextTableFormat) SetCellPadding(padding float64) {
+	if ptr.Pointer() != nil {
+		C.QTextTableFormat_SetCellPadding(ptr.Pointer(), C.double(padding))
+	}
+}
+
+func (ptr *QTextTableFormat) SetCellSpacing(spacing float64) {
+	if ptr.Pointer() != nil {
+		C.QTextTableFormat_SetCellSpacing(ptr.Pointer(), C.double(spacing))
 	}
 }
 
 func (ptr *QTextTableFormat) SetHeaderRowCount(count int) {
 	if ptr.Pointer() != nil {
-		C.QTextTableFormat_SetHeaderRowCount(C.QtObjectPtr(ptr.Pointer()), C.int(count))
+		C.QTextTableFormat_SetHeaderRowCount(ptr.Pointer(), C.int(count))
 	}
 }

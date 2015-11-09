@@ -10,8 +10,8 @@ type QGlobalStatic struct {
 	ptr unsafe.Pointer
 }
 
-type QGlobalStaticITF interface {
-	QGlobalStaticPTR() *QGlobalStatic
+type QGlobalStatic_ITF interface {
+	QGlobalStatic_PTR() *QGlobalStatic
 }
 
 func (p *QGlobalStatic) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QGlobalStatic) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQGlobalStatic(ptr QGlobalStaticITF) unsafe.Pointer {
+func PointerFromQGlobalStatic(ptr QGlobalStatic_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGlobalStaticPTR().Pointer()
+		return ptr.QGlobalStatic_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGlobalStaticFromPointer(ptr unsafe.Pointer) *QGlobalStatic {
+func NewQGlobalStaticFromPointer(ptr unsafe.Pointer) *QGlobalStatic {
 	var n = new(QGlobalStatic)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGlobalStatic) QGlobalStaticPTR() *QGlobalStatic {
+func (ptr *QGlobalStatic) QGlobalStatic_PTR() *QGlobalStatic {
 	return ptr
 }

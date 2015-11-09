@@ -1,9 +1,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QRasterWindow_NewQRasterWindow(QtObjectPtr parent);
+void* QRasterWindow_NewQRasterWindow(void* parent);
 
 #ifdef __cplusplus
 }

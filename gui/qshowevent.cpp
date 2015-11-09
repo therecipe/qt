@@ -10,7 +10,7 @@ class MyQShowEvent: public QShowEvent {
 public:
 };
 
-QtObjectPtr QShowEvent_NewQShowEvent(){
+void* QShowEvent_NewQShowEvent(){
 	return new QShowEvent();
 }
 

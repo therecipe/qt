@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDomNodeList_NewQDomNodeList();
-QtObjectPtr QDomNodeList_NewQDomNodeList2(QtObjectPtr n);
-int QDomNodeList_Count(QtObjectPtr ptr);
-int QDomNodeList_IsEmpty(QtObjectPtr ptr);
-int QDomNodeList_Length(QtObjectPtr ptr);
-int QDomNodeList_Size(QtObjectPtr ptr);
-void QDomNodeList_DestroyQDomNodeList(QtObjectPtr ptr);
+void* QDomNodeList_NewQDomNodeList();
+void* QDomNodeList_NewQDomNodeList2(void* n);
+int QDomNodeList_Count(void* ptr);
+int QDomNodeList_IsEmpty(void* ptr);
+int QDomNodeList_Length(void* ptr);
+int QDomNodeList_Size(void* ptr);
+void QDomNodeList_DestroyQDomNodeList(void* ptr);
 
 #ifdef __cplusplus
 }

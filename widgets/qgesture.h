@@ -1,16 +1,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QGesture_GestureCancelPolicy(QtObjectPtr ptr);
-int QGesture_GestureType(QtObjectPtr ptr);
-int QGesture_HasHotSpot(QtObjectPtr ptr);
-void QGesture_SetGestureCancelPolicy(QtObjectPtr ptr, int policy);
-void QGesture_SetHotSpot(QtObjectPtr ptr, QtObjectPtr value);
-void QGesture_UnsetHotSpot(QtObjectPtr ptr);
-QtObjectPtr QGesture_NewQGesture(QtObjectPtr parent);
-void QGesture_DestroyQGesture(QtObjectPtr ptr);
+int QGesture_GestureCancelPolicy(void* ptr);
+int QGesture_GestureType(void* ptr);
+int QGesture_HasHotSpot(void* ptr);
+void QGesture_SetGestureCancelPolicy(void* ptr, int policy);
+void QGesture_SetHotSpot(void* ptr, void* value);
+void QGesture_UnsetHotSpot(void* ptr);
+void* QGesture_NewQGesture(void* parent);
+void QGesture_DestroyQGesture(void* ptr);
 
 #ifdef __cplusplus
 }

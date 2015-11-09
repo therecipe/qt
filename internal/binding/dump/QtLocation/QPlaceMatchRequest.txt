@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QPlaceMatchRequest QPlaceMatchRequest::QPlaceMatchRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non constructor false false   [] }
-&{QPlaceMatchRequest QPlaceMatchRequest::QPlaceMatchRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non constructor false true 2  [0xc82259b260] }
-&{clear QPlaceMatchRequest::clear commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  void [] }
-&{operator!= QPlaceMatchRequest::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  bool [0xc82259ba00] }
-&{operator= QPlaceMatchRequest::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  QPlaceMatchRequest & [0xc8225a8100] }
-&{operator== QPlaceMatchRequest::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  bool [0xc8225a8620] }
-&{parameters QPlaceMatchRequest::parameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  QVariantMap [] }
-&{places QPlaceMatchRequest::places commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  QList<QPlace> [] }
-&{setParameters QPlaceMatchRequest::setParameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  void [0xc8225a8f60] }
-&{setPlaces QPlaceMatchRequest::setPlaces commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  void [0xc8225a94c0] }
-&{setResults QPlaceMatchRequest::setResults commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  void [0xc8225a9a40] }
-&{~QPlaceMatchRequest QPlaceMatchRequest::~QPlaceMatchRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non destructor false false   [] }
+&{QPlaceMatchRequest QPlaceMatchRequest::QPlaceMatchRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non constructor false false   QPlaceMatchRequest() [] }
+&{QPlaceMatchRequest QPlaceMatchRequest::QPlaceMatchRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non constructor false true 2  QPlaceMatchRequest(const QPlaceMatchRequest &other) [0xc82239e380] }
+&{clear QPlaceMatchRequest::clear commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  void void clear() [] }
+&{operator!= QPlaceMatchRequest::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  bool bool operator!=(const QPlaceMatchRequest &other) const [0xc82239e880] }
+&{operator= QPlaceMatchRequest::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  QPlaceMatchRequest & QPlaceMatchRequest & operator=(const QPlaceMatchRequest &other) [0xc82239ecc0] }
+&{operator== QPlaceMatchRequest::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  bool bool operator==(const QPlaceMatchRequest &other) const [0xc82239f040] }
+&{parameters QPlaceMatchRequest::parameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  QVariantMap QVariantMap parameters() const [] }
+&{places QPlaceMatchRequest::places commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  QList<QPlace> QList<QPlace> places() const [] }
+&{setParameters QPlaceMatchRequest::setParameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  void void setParameters(const QVariantMap &parameters) [0xc82239f9c0] }
+&{setPlaces QPlaceMatchRequest::setPlaces commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  void void setPlaces(const QList<QPlace> places) [0xc82239fd60] }
+&{setResults QPlaceMatchRequest::setResults commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non plain false false  void void setResults(const QList<QPlaceSearchResult> &results) [0xc8223d6220] }
+&{~QPlaceMatchRequest QPlaceMatchRequest::~QPlaceMatchRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchrequest.h non destructor false false   ~QPlaceMatchRequest() [] }
 ########################################			ENUMS			########################################

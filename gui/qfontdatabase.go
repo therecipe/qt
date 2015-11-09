@@ -12,8 +12,8 @@ type QFontDatabase struct {
 	ptr unsafe.Pointer
 }
 
-type QFontDatabaseITF interface {
-	QFontDatabasePTR() *QFontDatabase
+type QFontDatabase_ITF interface {
+	QFontDatabase_PTR() *QFontDatabase
 }
 
 func (p *QFontDatabase) Pointer() unsafe.Pointer {
@@ -24,27 +24,27 @@ func (p *QFontDatabase) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQFontDatabase(ptr QFontDatabaseITF) unsafe.Pointer {
+func PointerFromQFontDatabase(ptr QFontDatabase_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QFontDatabasePTR().Pointer()
+		return ptr.QFontDatabase_PTR().Pointer()
 	}
 	return nil
 }
 
-func QFontDatabaseFromPointer(ptr unsafe.Pointer) *QFontDatabase {
+func NewQFontDatabaseFromPointer(ptr unsafe.Pointer) *QFontDatabase {
 	var n = new(QFontDatabase)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QFontDatabase) QFontDatabasePTR() *QFontDatabase {
+func (ptr *QFontDatabase) QFontDatabase_PTR() *QFontDatabase {
 	return ptr
 }
 
 //QFontDatabase::SystemFont
-type QFontDatabase__SystemFont int
+type QFontDatabase__SystemFont int64
 
-var (
+const (
 	QFontDatabase__GeneralFont          = QFontDatabase__SystemFont(0)
 	QFontDatabase__FixedFont            = QFontDatabase__SystemFont(1)
 	QFontDatabase__TitleFont            = QFontDatabase__SystemFont(2)
@@ -52,7 +52,7 @@ var (
 )
 
 //QFontDatabase::WritingSystem
-type QFontDatabase__WritingSystem int
+type QFontDatabase__WritingSystem int64
 
 var (
 	QFontDatabase__Any                 = QFontDatabase__WritingSystem(0)
@@ -102,15 +102,15 @@ func QFontDatabase_RemoveApplicationFont(id int) bool {
 }
 
 func NewQFontDatabase() *QFontDatabase {
-	return QFontDatabaseFromPointer(unsafe.Pointer(C.QFontDatabase_NewQFontDatabase()))
+	return NewQFontDatabaseFromPointer(C.QFontDatabase_NewQFontDatabase())
 }
 
 func QFontDatabase_AddApplicationFont(fileName string) int {
 	return int(C.QFontDatabase_QFontDatabase_AddApplicationFont(C.CString(fileName)))
 }
 
-func QFontDatabase_AddApplicationFontFromData(fontData core.QByteArrayITF) int {
-	return int(C.QFontDatabase_QFontDatabase_AddApplicationFontFromData(C.QtObjectPtr(core.PointerFromQByteArray(fontData))))
+func QFontDatabase_AddApplicationFontFromData(fontData core.QByteArray_ITF) int {
+	return int(C.QFontDatabase_QFontDatabase_AddApplicationFontFromData(core.PointerFromQByteArray(fontData)))
 }
 
 func QFontDatabase_ApplicationFontFamilies(id int) []string {
@@ -119,84 +119,84 @@ func QFontDatabase_ApplicationFontFamilies(id int) []string {
 
 func (ptr *QFontDatabase) Bold(family string, style string) bool {
 	if ptr.Pointer() != nil {
-		return C.QFontDatabase_Bold(C.QtObjectPtr(ptr.Pointer()), C.CString(family), C.CString(style)) != 0
+		return C.QFontDatabase_Bold(ptr.Pointer(), C.CString(family), C.CString(style)) != 0
 	}
 	return false
 }
 
 func (ptr *QFontDatabase) Families(writingSystem QFontDatabase__WritingSystem) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QFontDatabase_Families(C.QtObjectPtr(ptr.Pointer()), C.int(writingSystem))), "|")
+		return strings.Split(C.GoString(C.QFontDatabase_Families(ptr.Pointer(), C.int(writingSystem))), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFontDatabase) IsBitmapScalable(family string, style string) bool {
 	if ptr.Pointer() != nil {
-		return C.QFontDatabase_IsBitmapScalable(C.QtObjectPtr(ptr.Pointer()), C.CString(family), C.CString(style)) != 0
+		return C.QFontDatabase_IsBitmapScalable(ptr.Pointer(), C.CString(family), C.CString(style)) != 0
 	}
 	return false
 }
 
 func (ptr *QFontDatabase) IsFixedPitch(family string, style string) bool {
 	if ptr.Pointer() != nil {
-		return C.QFontDatabase_IsFixedPitch(C.QtObjectPtr(ptr.Pointer()), C.CString(family), C.CString(style)) != 0
+		return C.QFontDatabase_IsFixedPitch(ptr.Pointer(), C.CString(family), C.CString(style)) != 0
 	}
 	return false
 }
 
 func (ptr *QFontDatabase) IsPrivateFamily(family string) bool {
 	if ptr.Pointer() != nil {
-		return C.QFontDatabase_IsPrivateFamily(C.QtObjectPtr(ptr.Pointer()), C.CString(family)) != 0
+		return C.QFontDatabase_IsPrivateFamily(ptr.Pointer(), C.CString(family)) != 0
 	}
 	return false
 }
 
 func (ptr *QFontDatabase) IsScalable(family string, style string) bool {
 	if ptr.Pointer() != nil {
-		return C.QFontDatabase_IsScalable(C.QtObjectPtr(ptr.Pointer()), C.CString(family), C.CString(style)) != 0
+		return C.QFontDatabase_IsScalable(ptr.Pointer(), C.CString(family), C.CString(style)) != 0
 	}
 	return false
 }
 
 func (ptr *QFontDatabase) IsSmoothlyScalable(family string, style string) bool {
 	if ptr.Pointer() != nil {
-		return C.QFontDatabase_IsSmoothlyScalable(C.QtObjectPtr(ptr.Pointer()), C.CString(family), C.CString(style)) != 0
+		return C.QFontDatabase_IsSmoothlyScalable(ptr.Pointer(), C.CString(family), C.CString(style)) != 0
 	}
 	return false
 }
 
 func (ptr *QFontDatabase) Italic(family string, style string) bool {
 	if ptr.Pointer() != nil {
-		return C.QFontDatabase_Italic(C.QtObjectPtr(ptr.Pointer()), C.CString(family), C.CString(style)) != 0
+		return C.QFontDatabase_Italic(ptr.Pointer(), C.CString(family), C.CString(style)) != 0
 	}
 	return false
 }
 
-func (ptr *QFontDatabase) StyleString(font QFontITF) string {
+func (ptr *QFontDatabase) StyleString(font QFont_ITF) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFontDatabase_StyleString(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQFont(font))))
+		return C.GoString(C.QFontDatabase_StyleString(ptr.Pointer(), PointerFromQFont(font)))
 	}
 	return ""
 }
 
-func (ptr *QFontDatabase) StyleString2(fontInfo QFontInfoITF) string {
+func (ptr *QFontDatabase) StyleString2(fontInfo QFontInfo_ITF) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFontDatabase_StyleString2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQFontInfo(fontInfo))))
+		return C.GoString(C.QFontDatabase_StyleString2(ptr.Pointer(), PointerFromQFontInfo(fontInfo)))
 	}
 	return ""
 }
 
 func (ptr *QFontDatabase) Styles(family string) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QFontDatabase_Styles(C.QtObjectPtr(ptr.Pointer()), C.CString(family))), "|")
+		return strings.Split(C.GoString(C.QFontDatabase_Styles(ptr.Pointer(), C.CString(family))), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFontDatabase) Weight(family string, style string) int {
 	if ptr.Pointer() != nil {
-		return int(C.QFontDatabase_Weight(C.QtObjectPtr(ptr.Pointer()), C.CString(family), C.CString(style)))
+		return int(C.QFontDatabase_Weight(ptr.Pointer(), C.CString(family), C.CString(style)))
 	}
 	return 0
 }

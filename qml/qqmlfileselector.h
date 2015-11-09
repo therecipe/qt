@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QQmlFileSelector_NewQQmlFileSelector(QtObjectPtr engine, QtObjectPtr parent);
-QtObjectPtr QQmlFileSelector_QQmlFileSelector_Get(QtObjectPtr engine);
-void QQmlFileSelector_SetExtraSelectors(QtObjectPtr ptr, char* strin);
-void QQmlFileSelector_SetExtraSelectors2(QtObjectPtr ptr, char* strin);
-void QQmlFileSelector_SetSelector(QtObjectPtr ptr, QtObjectPtr selector);
-void QQmlFileSelector_DestroyQQmlFileSelector(QtObjectPtr ptr);
+void* QQmlFileSelector_NewQQmlFileSelector(void* engine, void* parent);
+void* QQmlFileSelector_QQmlFileSelector_Get(void* engine);
+void QQmlFileSelector_SetExtraSelectors(void* ptr, char* strin);
+void QQmlFileSelector_SetExtraSelectors2(void* ptr, char* strin);
+void QQmlFileSelector_SetSelector(void* ptr, void* selector);
+void QQmlFileSelector_DestroyQQmlFileSelector(void* ptr);
 
 #ifdef __cplusplus
 }

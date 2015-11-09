@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QQmlIncubationController_NewQQmlIncubationController();
-QtObjectPtr QQmlIncubationController_Engine(QtObjectPtr ptr);
-void QQmlIncubationController_IncubateFor(QtObjectPtr ptr, int msecs);
-int QQmlIncubationController_IncubatingObjectCount(QtObjectPtr ptr);
+void* QQmlIncubationController_NewQQmlIncubationController();
+void* QQmlIncubationController_Engine(void* ptr);
+void QQmlIncubationController_IncubateFor(void* ptr, int msecs);
+int QQmlIncubationController_IncubatingObjectCount(void* ptr);
 
 #ifdef __cplusplus
 }

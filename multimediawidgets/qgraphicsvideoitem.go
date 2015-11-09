@@ -16,86 +16,86 @@ type QGraphicsVideoItem struct {
 	widgets.QGraphicsObject
 }
 
-type QGraphicsVideoItemITF interface {
-	multimedia.QMediaBindableInterfaceITF
-	widgets.QGraphicsObjectITF
-	QGraphicsVideoItemPTR() *QGraphicsVideoItem
+type QGraphicsVideoItem_ITF interface {
+	multimedia.QMediaBindableInterface_ITF
+	widgets.QGraphicsObject_ITF
+	QGraphicsVideoItem_PTR() *QGraphicsVideoItem
 }
 
 func (p *QGraphicsVideoItem) Pointer() unsafe.Pointer {
-	return p.QMediaBindableInterfacePTR().Pointer()
+	return p.QMediaBindableInterface_PTR().Pointer()
 }
 
 func (p *QGraphicsVideoItem) SetPointer(ptr unsafe.Pointer) {
-	p.QMediaBindableInterfacePTR().SetPointer(ptr)
-	p.QGraphicsObjectPTR().SetPointer(ptr)
+	p.QMediaBindableInterface_PTR().SetPointer(ptr)
+	p.QGraphicsObject_PTR().SetPointer(ptr)
 }
 
-func PointerFromQGraphicsVideoItem(ptr QGraphicsVideoItemITF) unsafe.Pointer {
+func PointerFromQGraphicsVideoItem(ptr QGraphicsVideoItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsVideoItemPTR().Pointer()
+		return ptr.QGraphicsVideoItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsVideoItemFromPointer(ptr unsafe.Pointer) *QGraphicsVideoItem {
+func NewQGraphicsVideoItemFromPointer(ptr unsafe.Pointer) *QGraphicsVideoItem {
 	var n = new(QGraphicsVideoItem)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGraphicsVideoItem_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGraphicsVideoItem) QGraphicsVideoItemPTR() *QGraphicsVideoItem {
+func (ptr *QGraphicsVideoItem) QGraphicsVideoItem_PTR() *QGraphicsVideoItem {
 	return ptr
 }
 
-func NewQGraphicsVideoItem(parent widgets.QGraphicsItemITF) *QGraphicsVideoItem {
-	return QGraphicsVideoItemFromPointer(unsafe.Pointer(C.QGraphicsVideoItem_NewQGraphicsVideoItem(C.QtObjectPtr(widgets.PointerFromQGraphicsItem(parent)))))
+func NewQGraphicsVideoItem(parent widgets.QGraphicsItem_ITF) *QGraphicsVideoItem {
+	return NewQGraphicsVideoItemFromPointer(C.QGraphicsVideoItem_NewQGraphicsVideoItem(widgets.PointerFromQGraphicsItem(parent)))
 }
 
 func (ptr *QGraphicsVideoItem) AspectRatioMode() core.Qt__AspectRatioMode {
 	if ptr.Pointer() != nil {
-		return core.Qt__AspectRatioMode(C.QGraphicsVideoItem_AspectRatioMode(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__AspectRatioMode(C.QGraphicsVideoItem_AspectRatioMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsVideoItem) MediaObject() *multimedia.QMediaObject {
 	if ptr.Pointer() != nil {
-		return multimedia.QMediaObjectFromPointer(unsafe.Pointer(C.QGraphicsVideoItem_MediaObject(C.QtObjectPtr(ptr.Pointer()))))
+		return multimedia.NewQMediaObjectFromPointer(C.QGraphicsVideoItem_MediaObject(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsVideoItem) Paint(painter gui.QPainterITF, option widgets.QStyleOptionGraphicsItemITF, widget widgets.QWidgetITF) {
+func (ptr *QGraphicsVideoItem) Paint(painter gui.QPainter_ITF, option widgets.QStyleOptionGraphicsItem_ITF, widget widgets.QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsVideoItem_Paint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(widgets.PointerFromQStyleOptionGraphicsItem(option)), C.QtObjectPtr(widgets.PointerFromQWidget(widget)))
+		C.QGraphicsVideoItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionGraphicsItem(option), widgets.PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QGraphicsVideoItem) SetAspectRatioMode(mode core.Qt__AspectRatioMode) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsVideoItem_SetAspectRatioMode(C.QtObjectPtr(ptr.Pointer()), C.int(mode))
+		C.QGraphicsVideoItem_SetAspectRatioMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
-func (ptr *QGraphicsVideoItem) SetOffset(offset core.QPointFITF) {
+func (ptr *QGraphicsVideoItem) SetOffset(offset core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsVideoItem_SetOffset(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(offset)))
+		C.QGraphicsVideoItem_SetOffset(ptr.Pointer(), core.PointerFromQPointF(offset))
 	}
 }
 
-func (ptr *QGraphicsVideoItem) SetSize(size core.QSizeFITF) {
+func (ptr *QGraphicsVideoItem) SetSize(size core.QSizeF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsVideoItem_SetSize(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQSizeF(size)))
+		C.QGraphicsVideoItem_SetSize(ptr.Pointer(), core.PointerFromQSizeF(size))
 	}
 }
 
 func (ptr *QGraphicsVideoItem) DestroyQGraphicsVideoItem() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsVideoItem_DestroyQGraphicsVideoItem(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsVideoItem_DestroyQGraphicsVideoItem(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

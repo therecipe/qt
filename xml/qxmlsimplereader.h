@@ -1,31 +1,30 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QXmlSimpleReader_DTDHandler(QtObjectPtr ptr);
-QtObjectPtr QXmlSimpleReader_NewQXmlSimpleReader();
-QtObjectPtr QXmlSimpleReader_ContentHandler(QtObjectPtr ptr);
-QtObjectPtr QXmlSimpleReader_DeclHandler(QtObjectPtr ptr);
-QtObjectPtr QXmlSimpleReader_EntityResolver(QtObjectPtr ptr);
-QtObjectPtr QXmlSimpleReader_ErrorHandler(QtObjectPtr ptr);
-int QXmlSimpleReader_Feature(QtObjectPtr ptr, char* name, int ok);
-int QXmlSimpleReader_HasFeature(QtObjectPtr ptr, char* name);
-int QXmlSimpleReader_HasProperty(QtObjectPtr ptr, char* name);
-QtObjectPtr QXmlSimpleReader_LexicalHandler(QtObjectPtr ptr);
-int QXmlSimpleReader_Parse(QtObjectPtr ptr, QtObjectPtr input);
-int QXmlSimpleReader_Parse2(QtObjectPtr ptr, QtObjectPtr input);
-int QXmlSimpleReader_Parse3(QtObjectPtr ptr, QtObjectPtr input, int incremental);
-int QXmlSimpleReader_ParseContinue(QtObjectPtr ptr);
-void QXmlSimpleReader_Property(QtObjectPtr ptr, char* name, int ok);
-void QXmlSimpleReader_SetContentHandler(QtObjectPtr ptr, QtObjectPtr handler);
-void QXmlSimpleReader_SetDTDHandler(QtObjectPtr ptr, QtObjectPtr handler);
-void QXmlSimpleReader_SetDeclHandler(QtObjectPtr ptr, QtObjectPtr handler);
-void QXmlSimpleReader_SetEntityResolver(QtObjectPtr ptr, QtObjectPtr handler);
-void QXmlSimpleReader_SetErrorHandler(QtObjectPtr ptr, QtObjectPtr handler);
-void QXmlSimpleReader_SetFeature(QtObjectPtr ptr, char* name, int enable);
-void QXmlSimpleReader_SetLexicalHandler(QtObjectPtr ptr, QtObjectPtr handler);
-void QXmlSimpleReader_DestroyQXmlSimpleReader(QtObjectPtr ptr);
+void* QXmlSimpleReader_DTDHandler(void* ptr);
+void* QXmlSimpleReader_NewQXmlSimpleReader();
+void* QXmlSimpleReader_ContentHandler(void* ptr);
+void* QXmlSimpleReader_DeclHandler(void* ptr);
+void* QXmlSimpleReader_EntityResolver(void* ptr);
+void* QXmlSimpleReader_ErrorHandler(void* ptr);
+int QXmlSimpleReader_Feature(void* ptr, char* name, int ok);
+int QXmlSimpleReader_HasFeature(void* ptr, char* name);
+int QXmlSimpleReader_HasProperty(void* ptr, char* name);
+void* QXmlSimpleReader_LexicalHandler(void* ptr);
+int QXmlSimpleReader_Parse(void* ptr, void* input);
+int QXmlSimpleReader_Parse2(void* ptr, void* input);
+int QXmlSimpleReader_Parse3(void* ptr, void* input, int incremental);
+int QXmlSimpleReader_ParseContinue(void* ptr);
+void* QXmlSimpleReader_Property(void* ptr, char* name, int ok);
+void QXmlSimpleReader_SetContentHandler(void* ptr, void* handler);
+void QXmlSimpleReader_SetDTDHandler(void* ptr, void* handler);
+void QXmlSimpleReader_SetDeclHandler(void* ptr, void* handler);
+void QXmlSimpleReader_SetEntityResolver(void* ptr, void* handler);
+void QXmlSimpleReader_SetErrorHandler(void* ptr, void* handler);
+void QXmlSimpleReader_SetFeature(void* ptr, char* name, int enable);
+void QXmlSimpleReader_SetLexicalHandler(void* ptr, void* handler);
+void QXmlSimpleReader_DestroyQXmlSimpleReader(void* ptr);
 
 #ifdef __cplusplus
 }

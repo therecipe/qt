@@ -11,19 +11,19 @@ class MyQCollatorSortKey: public QCollatorSortKey {
 public:
 };
 
-QtObjectPtr QCollatorSortKey_NewQCollatorSortKey(QtObjectPtr other){
+void* QCollatorSortKey_NewQCollatorSortKey(void* other){
 	return new QCollatorSortKey(*static_cast<QCollatorSortKey*>(other));
 }
 
-void QCollatorSortKey_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QCollatorSortKey_Swap(void* ptr, void* other){
 	static_cast<QCollatorSortKey*>(ptr)->swap(*static_cast<QCollatorSortKey*>(other));
 }
 
-void QCollatorSortKey_DestroyQCollatorSortKey(QtObjectPtr ptr){
+void QCollatorSortKey_DestroyQCollatorSortKey(void* ptr){
 	static_cast<QCollatorSortKey*>(ptr)->~QCollatorSortKey();
 }
 
-int QCollatorSortKey_Compare(QtObjectPtr ptr, QtObjectPtr otherKey){
+int QCollatorSortKey_Compare(void* ptr, void* otherKey){
 	return static_cast<QCollatorSortKey*>(ptr)->compare(*static_cast<QCollatorSortKey*>(otherKey));
 }
 

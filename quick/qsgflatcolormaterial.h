@@ -1,9 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QSGFlatColorMaterial_SetColor(QtObjectPtr ptr, QtObjectPtr color);
+void* QSGFlatColorMaterial_Color(void* ptr);
+void QSGFlatColorMaterial_SetColor(void* ptr, void* color);
 
 #ifdef __cplusplus
 }

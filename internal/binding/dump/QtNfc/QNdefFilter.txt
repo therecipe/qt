@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QNdefFilter QNdefFilter::QNdefFilter commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non constructor false false   [] }
-&{QNdefFilter QNdefFilter::QNdefFilter commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non constructor false true 2  [0xc822a15f60] }
-&{appendRecord QNdefFilter::appendRecord commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false true 2 void [0xc8227dc280 0xc8227dc400 0xc8227dc520 0xc8227dc660] }
-&{appendRecord QNdefFilter::appendRecord commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false true 3 void [0xc8227dc920] }
-&{appendRecord QNdefFilter::appendRecord commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  void [0xc8227dcbc0 0xc8227dcc60] }
-&{clear QNdefFilter::clear commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  void [] }
-&{operator= QNdefFilter::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  QNdefFilter & [0xc8227dd0c0] }
-&{orderMatch QNdefFilter::orderMatch commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  bool [] }
-&{recordAt QNdefFilter::recordAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  Record [0xc8227dd600] }
-&{recordCount QNdefFilter::recordCount commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  int [] }
-&{setOrderMatch QNdefFilter::setOrderMatch commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  void [0xc8227ddaa0] }
-&{~QNdefFilter QNdefFilter::~QNdefFilter commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non destructor false false   [] }
+&{QNdefFilter QNdefFilter::QNdefFilter commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non constructor false false   QNdefFilter() [] }
+&{QNdefFilter QNdefFilter::QNdefFilter commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non constructor false true 2  QNdefFilter(const QNdefFilter &other) [0xc82337aea0] }
+&{appendRecord QNdefFilter::appendRecord commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false true 2 void void appendRecord(QNdefRecord::TypeNameFormat typeNameFormat, const QByteArray &type, unsigned int min, unsigned int max) [0xc82337b1c0 0xc82337b300 0xc82337b440 0xc82337b4e0] }
+&{appendRecord QNdefFilter::appendRecord commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false true 3 void void appendRecord(const Record &record) [0xc82337b7a0] }
+&{appendRecord QNdefFilter::appendRecord commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  void void appendRecord(unsigned int min, unsigned int max) [0xc82337ba80 0xc82337bb20] }
+&{clear QNdefFilter::clear commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  void void clear() [] }
+&{operator= QNdefFilter::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  QNdefFilter & QNdefFilter & operator=(const QNdefFilter &other) [0xc82337bf80] }
+&{orderMatch QNdefFilter::orderMatch commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  bool bool orderMatch() const [] }
+&{recordAt QNdefFilter::recordAt commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  Record Record recordAt(int i) const [0xc82336a580] }
+&{recordCount QNdefFilter::recordCount commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  int int recordCount() const [] }
+&{setOrderMatch QNdefFilter::setOrderMatch commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non plain false false  void void setOrderMatch(bool on) [0xc82336ab60] }
+&{~QNdefFilter QNdefFilter::~QNdefFilter commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndeffilter.h non destructor false false   ~QNdefFilter() [] }
 ########################################			ENUMS			########################################

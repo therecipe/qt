@@ -1,19 +1,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QItemDelegate_HasClipping(QtObjectPtr ptr);
-void QItemDelegate_SetClipping(QtObjectPtr ptr, int clip);
-QtObjectPtr QItemDelegate_NewQItemDelegate(QtObjectPtr parent);
-QtObjectPtr QItemDelegate_CreateEditor(QtObjectPtr ptr, QtObjectPtr parent, QtObjectPtr option, QtObjectPtr index);
-QtObjectPtr QItemDelegate_ItemEditorFactory(QtObjectPtr ptr);
-void QItemDelegate_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr index);
-void QItemDelegate_SetEditorData(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr index);
-void QItemDelegate_SetItemEditorFactory(QtObjectPtr ptr, QtObjectPtr factory);
-void QItemDelegate_SetModelData(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr model, QtObjectPtr index);
-void QItemDelegate_UpdateEditorGeometry(QtObjectPtr ptr, QtObjectPtr editor, QtObjectPtr option, QtObjectPtr index);
-void QItemDelegate_DestroyQItemDelegate(QtObjectPtr ptr);
+int QItemDelegate_HasClipping(void* ptr);
+void QItemDelegate_SetClipping(void* ptr, int clip);
+void* QItemDelegate_NewQItemDelegate(void* parent);
+void* QItemDelegate_CreateEditor(void* ptr, void* parent, void* option, void* index);
+void* QItemDelegate_ItemEditorFactory(void* ptr);
+void QItemDelegate_Paint(void* ptr, void* painter, void* option, void* index);
+void QItemDelegate_SetEditorData(void* ptr, void* editor, void* index);
+void QItemDelegate_SetItemEditorFactory(void* ptr, void* factory);
+void QItemDelegate_SetModelData(void* ptr, void* editor, void* model, void* index);
+void QItemDelegate_UpdateEditorGeometry(void* ptr, void* editor, void* option, void* index);
+void QItemDelegate_DestroyQItemDelegate(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -10,43 +10,43 @@ class MyQTouchDevice: public QTouchDevice {
 public:
 };
 
-QtObjectPtr QTouchDevice_NewQTouchDevice(){
+void* QTouchDevice_NewQTouchDevice(){
 	return new QTouchDevice();
 }
 
-int QTouchDevice_Capabilities(QtObjectPtr ptr){
+int QTouchDevice_Capabilities(void* ptr){
 	return static_cast<QTouchDevice*>(ptr)->capabilities();
 }
 
-int QTouchDevice_MaximumTouchPoints(QtObjectPtr ptr){
+int QTouchDevice_MaximumTouchPoints(void* ptr){
 	return static_cast<QTouchDevice*>(ptr)->maximumTouchPoints();
 }
 
-char* QTouchDevice_Name(QtObjectPtr ptr){
+char* QTouchDevice_Name(void* ptr){
 	return static_cast<QTouchDevice*>(ptr)->name().toUtf8().data();
 }
 
-void QTouchDevice_SetCapabilities(QtObjectPtr ptr, int caps){
+void QTouchDevice_SetCapabilities(void* ptr, int caps){
 	static_cast<QTouchDevice*>(ptr)->setCapabilities(static_cast<QTouchDevice::CapabilityFlag>(caps));
 }
 
-void QTouchDevice_SetMaximumTouchPoints(QtObjectPtr ptr, int max){
+void QTouchDevice_SetMaximumTouchPoints(void* ptr, int max){
 	static_cast<QTouchDevice*>(ptr)->setMaximumTouchPoints(max);
 }
 
-void QTouchDevice_SetName(QtObjectPtr ptr, char* name){
+void QTouchDevice_SetName(void* ptr, char* name){
 	static_cast<QTouchDevice*>(ptr)->setName(QString(name));
 }
 
-void QTouchDevice_SetType(QtObjectPtr ptr, int devType){
+void QTouchDevice_SetType(void* ptr, int devType){
 	static_cast<QTouchDevice*>(ptr)->setType(static_cast<QTouchDevice::DeviceType>(devType));
 }
 
-int QTouchDevice_Type(QtObjectPtr ptr){
+int QTouchDevice_Type(void* ptr){
 	return static_cast<QTouchDevice*>(ptr)->type();
 }
 
-void QTouchDevice_DestroyQTouchDevice(QtObjectPtr ptr){
+void QTouchDevice_DestroyQTouchDevice(void* ptr){
 	static_cast<QTouchDevice*>(ptr)->~QTouchDevice();
 }
 

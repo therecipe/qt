@@ -1,44 +1,43 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QHelpEngineCore_AutoSaveFilter(QtObjectPtr ptr);
-char* QHelpEngineCore_CollectionFile(QtObjectPtr ptr);
-char* QHelpEngineCore_CurrentFilter(QtObjectPtr ptr);
-void QHelpEngineCore_SetAutoSaveFilter(QtObjectPtr ptr, int save);
-void QHelpEngineCore_SetCollectionFile(QtObjectPtr ptr, char* fileName);
-void QHelpEngineCore_SetCurrentFilter(QtObjectPtr ptr, char* filterName);
-QtObjectPtr QHelpEngineCore_NewQHelpEngineCore(char* collectionFile, QtObjectPtr parent);
-int QHelpEngineCore_AddCustomFilter(QtObjectPtr ptr, char* filterName, char* attributes);
-int QHelpEngineCore_CopyCollectionFile(QtObjectPtr ptr, char* fileName);
-void QHelpEngineCore_ConnectCurrentFilterChanged(QtObjectPtr ptr);
-void QHelpEngineCore_DisconnectCurrentFilterChanged(QtObjectPtr ptr);
-char* QHelpEngineCore_CustomFilters(QtObjectPtr ptr);
-char* QHelpEngineCore_CustomValue(QtObjectPtr ptr, char* key, char* defaultValue);
-char* QHelpEngineCore_DocumentationFileName(QtObjectPtr ptr, char* namespaceName);
-char* QHelpEngineCore_Error(QtObjectPtr ptr);
-char* QHelpEngineCore_FilterAttributes(QtObjectPtr ptr);
-char* QHelpEngineCore_FilterAttributes2(QtObjectPtr ptr, char* filterName);
-char* QHelpEngineCore_FindFile(QtObjectPtr ptr, char* url);
-char* QHelpEngineCore_QHelpEngineCore_MetaData(char* documentationFileName, char* name);
+int QHelpEngineCore_AutoSaveFilter(void* ptr);
+char* QHelpEngineCore_CollectionFile(void* ptr);
+char* QHelpEngineCore_CurrentFilter(void* ptr);
+void QHelpEngineCore_SetAutoSaveFilter(void* ptr, int save);
+void QHelpEngineCore_SetCollectionFile(void* ptr, char* fileName);
+void QHelpEngineCore_SetCurrentFilter(void* ptr, char* filterName);
+void* QHelpEngineCore_NewQHelpEngineCore(char* collectionFile, void* parent);
+int QHelpEngineCore_AddCustomFilter(void* ptr, char* filterName, char* attributes);
+int QHelpEngineCore_CopyCollectionFile(void* ptr, char* fileName);
+void QHelpEngineCore_ConnectCurrentFilterChanged(void* ptr);
+void QHelpEngineCore_DisconnectCurrentFilterChanged(void* ptr);
+char* QHelpEngineCore_CustomFilters(void* ptr);
+void* QHelpEngineCore_CustomValue(void* ptr, char* key, void* defaultValue);
+char* QHelpEngineCore_DocumentationFileName(void* ptr, char* namespaceName);
+char* QHelpEngineCore_Error(void* ptr);
+void* QHelpEngineCore_FileData(void* ptr, void* url);
+char* QHelpEngineCore_FilterAttributes(void* ptr);
+char* QHelpEngineCore_FilterAttributes2(void* ptr, char* filterName);
+void* QHelpEngineCore_QHelpEngineCore_MetaData(char* documentationFileName, char* name);
 char* QHelpEngineCore_QHelpEngineCore_NamespaceName(char* documentationFileName);
-void QHelpEngineCore_ConnectReadersAboutToBeInvalidated(QtObjectPtr ptr);
-void QHelpEngineCore_DisconnectReadersAboutToBeInvalidated(QtObjectPtr ptr);
-int QHelpEngineCore_RegisterDocumentation(QtObjectPtr ptr, char* documentationFileName);
-char* QHelpEngineCore_RegisteredDocumentations(QtObjectPtr ptr);
-int QHelpEngineCore_RemoveCustomFilter(QtObjectPtr ptr, char* filterName);
-int QHelpEngineCore_RemoveCustomValue(QtObjectPtr ptr, char* key);
-int QHelpEngineCore_SetCustomValue(QtObjectPtr ptr, char* key, char* value);
-int QHelpEngineCore_SetupData(QtObjectPtr ptr);
-void QHelpEngineCore_ConnectSetupFinished(QtObjectPtr ptr);
-void QHelpEngineCore_DisconnectSetupFinished(QtObjectPtr ptr);
-void QHelpEngineCore_ConnectSetupStarted(QtObjectPtr ptr);
-void QHelpEngineCore_DisconnectSetupStarted(QtObjectPtr ptr);
-int QHelpEngineCore_UnregisterDocumentation(QtObjectPtr ptr, char* namespaceName);
-void QHelpEngineCore_ConnectWarning(QtObjectPtr ptr);
-void QHelpEngineCore_DisconnectWarning(QtObjectPtr ptr);
-void QHelpEngineCore_DestroyQHelpEngineCore(QtObjectPtr ptr);
+void QHelpEngineCore_ConnectReadersAboutToBeInvalidated(void* ptr);
+void QHelpEngineCore_DisconnectReadersAboutToBeInvalidated(void* ptr);
+int QHelpEngineCore_RegisterDocumentation(void* ptr, char* documentationFileName);
+char* QHelpEngineCore_RegisteredDocumentations(void* ptr);
+int QHelpEngineCore_RemoveCustomFilter(void* ptr, char* filterName);
+int QHelpEngineCore_RemoveCustomValue(void* ptr, char* key);
+int QHelpEngineCore_SetCustomValue(void* ptr, char* key, void* value);
+int QHelpEngineCore_SetupData(void* ptr);
+void QHelpEngineCore_ConnectSetupFinished(void* ptr);
+void QHelpEngineCore_DisconnectSetupFinished(void* ptr);
+void QHelpEngineCore_ConnectSetupStarted(void* ptr);
+void QHelpEngineCore_DisconnectSetupStarted(void* ptr);
+int QHelpEngineCore_UnregisterDocumentation(void* ptr, char* namespaceName);
+void QHelpEngineCore_ConnectWarning(void* ptr);
+void QHelpEngineCore_DisconnectWarning(void* ptr);
+void QHelpEngineCore_DestroyQHelpEngineCore(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -12,8 +12,8 @@ type QImageWriter struct {
 	ptr unsafe.Pointer
 }
 
-type QImageWriterITF interface {
-	QImageWriterPTR() *QImageWriter
+type QImageWriter_ITF interface {
+	QImageWriter_PTR() *QImageWriter
 }
 
 func (p *QImageWriter) Pointer() unsafe.Pointer {
@@ -24,190 +24,204 @@ func (p *QImageWriter) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQImageWriter(ptr QImageWriterITF) unsafe.Pointer {
+func PointerFromQImageWriter(ptr QImageWriter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QImageWriterPTR().Pointer()
+		return ptr.QImageWriter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QImageWriterFromPointer(ptr unsafe.Pointer) *QImageWriter {
+func NewQImageWriterFromPointer(ptr unsafe.Pointer) *QImageWriter {
 	var n = new(QImageWriter)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QImageWriter) QImageWriterPTR() *QImageWriter {
+func (ptr *QImageWriter) QImageWriter_PTR() *QImageWriter {
 	return ptr
 }
 
 //QImageWriter::ImageWriterError
-type QImageWriter__ImageWriterError int
+type QImageWriter__ImageWriterError int64
 
-var (
+const (
 	QImageWriter__UnknownError           = QImageWriter__ImageWriterError(0)
 	QImageWriter__DeviceError            = QImageWriter__ImageWriterError(1)
 	QImageWriter__UnsupportedFormatError = QImageWriter__ImageWriterError(2)
 )
 
 func NewQImageWriter() *QImageWriter {
-	return QImageWriterFromPointer(unsafe.Pointer(C.QImageWriter_NewQImageWriter()))
+	return NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter())
 }
 
-func NewQImageWriter2(device core.QIODeviceITF, format core.QByteArrayITF) *QImageWriter {
-	return QImageWriterFromPointer(unsafe.Pointer(C.QImageWriter_NewQImageWriter2(C.QtObjectPtr(core.PointerFromQIODevice(device)), C.QtObjectPtr(core.PointerFromQByteArray(format)))))
+func NewQImageWriter2(device core.QIODevice_ITF, format core.QByteArray_ITF) *QImageWriter {
+	return NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 }
 
-func NewQImageWriter3(fileName string, format core.QByteArrayITF) *QImageWriter {
-	return QImageWriterFromPointer(unsafe.Pointer(C.QImageWriter_NewQImageWriter3(C.CString(fileName), C.QtObjectPtr(core.PointerFromQByteArray(format)))))
+func NewQImageWriter3(fileName string, format core.QByteArray_ITF) *QImageWriter {
+	return NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter3(C.CString(fileName), core.PointerFromQByteArray(format)))
 }
 
 func (ptr *QImageWriter) CanWrite() bool {
 	if ptr.Pointer() != nil {
-		return C.QImageWriter_CanWrite(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QImageWriter_CanWrite(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QImageWriter) Compression() int {
 	if ptr.Pointer() != nil {
-		return int(C.QImageWriter_Compression(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QImageWriter_Compression(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QImageWriter) Device() *core.QIODevice {
 	if ptr.Pointer() != nil {
-		return core.QIODeviceFromPointer(unsafe.Pointer(C.QImageWriter_Device(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQIODeviceFromPointer(C.QImageWriter_Device(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QImageWriter) Error() QImageWriter__ImageWriterError {
 	if ptr.Pointer() != nil {
-		return QImageWriter__ImageWriterError(C.QImageWriter_Error(C.QtObjectPtr(ptr.Pointer())))
+		return QImageWriter__ImageWriterError(C.QImageWriter_Error(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QImageWriter) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageWriter_ErrorString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QImageWriter_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QImageWriter) FileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageWriter_FileName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QImageWriter_FileName(ptr.Pointer()))
 	}
 	return ""
 }
 
+func (ptr *QImageWriter) Format() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		return core.NewQByteArrayFromPointer(C.QImageWriter_Format(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QImageWriter) OptimizedWrite() bool {
 	if ptr.Pointer() != nil {
-		return C.QImageWriter_OptimizedWrite(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QImageWriter_OptimizedWrite(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QImageWriter) ProgressiveScanWrite() bool {
 	if ptr.Pointer() != nil {
-		return C.QImageWriter_ProgressiveScanWrite(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QImageWriter_ProgressiveScanWrite(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QImageWriter) Quality() int {
 	if ptr.Pointer() != nil {
-		return int(C.QImageWriter_Quality(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QImageWriter_Quality(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QImageWriter) SetCompression(compression int) {
 	if ptr.Pointer() != nil {
-		C.QImageWriter_SetCompression(C.QtObjectPtr(ptr.Pointer()), C.int(compression))
+		C.QImageWriter_SetCompression(ptr.Pointer(), C.int(compression))
 	}
 }
 
-func (ptr *QImageWriter) SetDevice(device core.QIODeviceITF) {
+func (ptr *QImageWriter) SetDevice(device core.QIODevice_ITF) {
 	if ptr.Pointer() != nil {
-		C.QImageWriter_SetDevice(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQIODevice(device)))
+		C.QImageWriter_SetDevice(ptr.Pointer(), core.PointerFromQIODevice(device))
 	}
 }
 
 func (ptr *QImageWriter) SetFileName(fileName string) {
 	if ptr.Pointer() != nil {
-		C.QImageWriter_SetFileName(C.QtObjectPtr(ptr.Pointer()), C.CString(fileName))
+		C.QImageWriter_SetFileName(ptr.Pointer(), C.CString(fileName))
 	}
 }
 
-func (ptr *QImageWriter) SetFormat(format core.QByteArrayITF) {
+func (ptr *QImageWriter) SetFormat(format core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QImageWriter_SetFormat(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(format)))
+		C.QImageWriter_SetFormat(ptr.Pointer(), core.PointerFromQByteArray(format))
 	}
 }
 
 func (ptr *QImageWriter) SetOptimizedWrite(optimize bool) {
 	if ptr.Pointer() != nil {
-		C.QImageWriter_SetOptimizedWrite(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(optimize)))
+		C.QImageWriter_SetOptimizedWrite(ptr.Pointer(), C.int(qt.GoBoolToInt(optimize)))
 	}
 }
 
 func (ptr *QImageWriter) SetProgressiveScanWrite(progressive bool) {
 	if ptr.Pointer() != nil {
-		C.QImageWriter_SetProgressiveScanWrite(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(progressive)))
+		C.QImageWriter_SetProgressiveScanWrite(ptr.Pointer(), C.int(qt.GoBoolToInt(progressive)))
 	}
 }
 
 func (ptr *QImageWriter) SetQuality(quality int) {
 	if ptr.Pointer() != nil {
-		C.QImageWriter_SetQuality(C.QtObjectPtr(ptr.Pointer()), C.int(quality))
+		C.QImageWriter_SetQuality(ptr.Pointer(), C.int(quality))
 	}
 }
 
-func (ptr *QImageWriter) SetSubType(ty core.QByteArrayITF) {
+func (ptr *QImageWriter) SetSubType(ty core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QImageWriter_SetSubType(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(ty)))
+		C.QImageWriter_SetSubType(ptr.Pointer(), core.PointerFromQByteArray(ty))
 	}
 }
 
 func (ptr *QImageWriter) SetText(key string, text string) {
 	if ptr.Pointer() != nil {
-		C.QImageWriter_SetText(C.QtObjectPtr(ptr.Pointer()), C.CString(key), C.CString(text))
+		C.QImageWriter_SetText(ptr.Pointer(), C.CString(key), C.CString(text))
 	}
 }
 
 func (ptr *QImageWriter) SetTransformation(transform QImageIOHandler__Transformation) {
 	if ptr.Pointer() != nil {
-		C.QImageWriter_SetTransformation(C.QtObjectPtr(ptr.Pointer()), C.int(transform))
+		C.QImageWriter_SetTransformation(ptr.Pointer(), C.int(transform))
 	}
+}
+
+func (ptr *QImageWriter) SubType() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		return core.NewQByteArrayFromPointer(C.QImageWriter_SubType(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QImageWriter) SupportsOption(option QImageIOHandler__ImageOption) bool {
 	if ptr.Pointer() != nil {
-		return C.QImageWriter_SupportsOption(C.QtObjectPtr(ptr.Pointer()), C.int(option)) != 0
+		return C.QImageWriter_SupportsOption(ptr.Pointer(), C.int(option)) != 0
 	}
 	return false
 }
 
 func (ptr *QImageWriter) Transformation() QImageIOHandler__Transformation {
 	if ptr.Pointer() != nil {
-		return QImageIOHandler__Transformation(C.QImageWriter_Transformation(C.QtObjectPtr(ptr.Pointer())))
+		return QImageIOHandler__Transformation(C.QImageWriter_Transformation(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QImageWriter) Write(image QImageITF) bool {
+func (ptr *QImageWriter) Write(image QImage_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QImageWriter_Write(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQImage(image))) != 0
+		return C.QImageWriter_Write(ptr.Pointer(), PointerFromQImage(image)) != 0
 	}
 	return false
 }
 
 func (ptr *QImageWriter) DestroyQImageWriter() {
 	if ptr.Pointer() != nil {
-		C.QImageWriter_DestroyQImageWriter(C.QtObjectPtr(ptr.Pointer()))
+		C.QImageWriter_DestroyQImageWriter(ptr.Pointer())
 	}
 }

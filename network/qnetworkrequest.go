@@ -11,8 +11,8 @@ type QNetworkRequest struct {
 	ptr unsafe.Pointer
 }
 
-type QNetworkRequestITF interface {
-	QNetworkRequestPTR() *QNetworkRequest
+type QNetworkRequest_ITF interface {
+	QNetworkRequest_PTR() *QNetworkRequest
 }
 
 func (p *QNetworkRequest) Pointer() unsafe.Pointer {
@@ -23,27 +23,27 @@ func (p *QNetworkRequest) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQNetworkRequest(ptr QNetworkRequestITF) unsafe.Pointer {
+func PointerFromQNetworkRequest(ptr QNetworkRequest_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNetworkRequestPTR().Pointer()
+		return ptr.QNetworkRequest_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNetworkRequestFromPointer(ptr unsafe.Pointer) *QNetworkRequest {
+func NewQNetworkRequestFromPointer(ptr unsafe.Pointer) *QNetworkRequest {
 	var n = new(QNetworkRequest)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QNetworkRequest) QNetworkRequestPTR() *QNetworkRequest {
+func (ptr *QNetworkRequest) QNetworkRequest_PTR() *QNetworkRequest {
 	return ptr
 }
 
 //QNetworkRequest::Attribute
-type QNetworkRequest__Attribute int
+type QNetworkRequest__Attribute int64
 
-var (
+const (
 	QNetworkRequest__HttpStatusCodeAttribute               = QNetworkRequest__Attribute(0)
 	QNetworkRequest__HttpReasonPhraseAttribute             = QNetworkRequest__Attribute(1)
 	QNetworkRequest__RedirectionTargetAttribute            = QNetworkRequest__Attribute(2)
@@ -70,9 +70,9 @@ var (
 )
 
 //QNetworkRequest::CacheLoadControl
-type QNetworkRequest__CacheLoadControl int
+type QNetworkRequest__CacheLoadControl int64
 
-var (
+const (
 	QNetworkRequest__AlwaysNetwork = QNetworkRequest__CacheLoadControl(0)
 	QNetworkRequest__PreferNetwork = QNetworkRequest__CacheLoadControl(1)
 	QNetworkRequest__PreferCache   = QNetworkRequest__CacheLoadControl(2)
@@ -80,9 +80,9 @@ var (
 )
 
 //QNetworkRequest::KnownHeaders
-type QNetworkRequest__KnownHeaders int
+type QNetworkRequest__KnownHeaders int64
 
-var (
+const (
 	QNetworkRequest__ContentTypeHeader        = QNetworkRequest__KnownHeaders(0)
 	QNetworkRequest__ContentLengthHeader      = QNetworkRequest__KnownHeaders(1)
 	QNetworkRequest__LocationHeader           = QNetworkRequest__KnownHeaders(2)
@@ -95,122 +95,122 @@ var (
 )
 
 //QNetworkRequest::LoadControl
-type QNetworkRequest__LoadControl int
+type QNetworkRequest__LoadControl int64
 
-var (
+const (
 	QNetworkRequest__Automatic = QNetworkRequest__LoadControl(0)
 	QNetworkRequest__Manual    = QNetworkRequest__LoadControl(1)
 )
 
 //QNetworkRequest::Priority
-type QNetworkRequest__Priority int
+type QNetworkRequest__Priority int64
 
-var (
+const (
 	QNetworkRequest__HighPriority   = QNetworkRequest__Priority(1)
 	QNetworkRequest__NormalPriority = QNetworkRequest__Priority(3)
 	QNetworkRequest__LowPriority    = QNetworkRequest__Priority(5)
 )
 
-func NewQNetworkRequest2(other QNetworkRequestITF) *QNetworkRequest {
-	return QNetworkRequestFromPointer(unsafe.Pointer(C.QNetworkRequest_NewQNetworkRequest2(C.QtObjectPtr(PointerFromQNetworkRequest(other)))))
+func NewQNetworkRequest2(other QNetworkRequest_ITF) *QNetworkRequest {
+	return NewQNetworkRequestFromPointer(C.QNetworkRequest_NewQNetworkRequest2(PointerFromQNetworkRequest(other)))
 }
 
-func NewQNetworkRequest(url string) *QNetworkRequest {
-	return QNetworkRequestFromPointer(unsafe.Pointer(C.QNetworkRequest_NewQNetworkRequest(C.CString(url))))
+func NewQNetworkRequest(url core.QUrl_ITF) *QNetworkRequest {
+	return NewQNetworkRequestFromPointer(C.QNetworkRequest_NewQNetworkRequest(core.PointerFromQUrl(url)))
 }
 
-func (ptr *QNetworkRequest) Attribute(code QNetworkRequest__Attribute, defaultValue string) string {
+func (ptr *QNetworkRequest) Attribute(code QNetworkRequest__Attribute, defaultValue core.QVariant_ITF) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkRequest_Attribute(C.QtObjectPtr(ptr.Pointer()), C.int(code), C.CString(defaultValue)))
+		return core.NewQVariantFromPointer(C.QNetworkRequest_Attribute(ptr.Pointer(), C.int(code), core.PointerFromQVariant(defaultValue)))
 	}
-	return ""
+	return nil
 }
 
-func (ptr *QNetworkRequest) HasRawHeader(headerName core.QByteArrayITF) bool {
+func (ptr *QNetworkRequest) HasRawHeader(headerName core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkRequest_HasRawHeader(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(headerName))) != 0
+		return C.QNetworkRequest_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)) != 0
 	}
 	return false
 }
 
-func (ptr *QNetworkRequest) Header(header QNetworkRequest__KnownHeaders) string {
+func (ptr *QNetworkRequest) Header(header QNetworkRequest__KnownHeaders) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkRequest_Header(C.QtObjectPtr(ptr.Pointer()), C.int(header)))
+		return core.NewQVariantFromPointer(C.QNetworkRequest_Header(ptr.Pointer(), C.int(header)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QNetworkRequest) OriginatingObject() *core.QObject {
 	if ptr.Pointer() != nil {
-		return core.QObjectFromPointer(unsafe.Pointer(C.QNetworkRequest_OriginatingObject(C.QtObjectPtr(ptr.Pointer()))))
+		return core.NewQObjectFromPointer(C.QNetworkRequest_OriginatingObject(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QNetworkRequest) Priority() QNetworkRequest__Priority {
 	if ptr.Pointer() != nil {
-		return QNetworkRequest__Priority(C.QNetworkRequest_Priority(C.QtObjectPtr(ptr.Pointer())))
+		return QNetworkRequest__Priority(C.QNetworkRequest_Priority(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QNetworkRequest) SetAttribute(code QNetworkRequest__Attribute, value string) {
+func (ptr *QNetworkRequest) RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetAttribute(C.QtObjectPtr(ptr.Pointer()), C.int(code), C.CString(value))
+		return core.NewQByteArrayFromPointer(C.QNetworkRequest_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
+	}
+	return nil
+}
+
+func (ptr *QNetworkRequest) SetAttribute(code QNetworkRequest__Attribute, value core.QVariant_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNetworkRequest_SetAttribute(ptr.Pointer(), C.int(code), core.PointerFromQVariant(value))
 	}
 }
 
-func (ptr *QNetworkRequest) SetHeader(header QNetworkRequest__KnownHeaders, value string) {
+func (ptr *QNetworkRequest) SetHeader(header QNetworkRequest__KnownHeaders, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetHeader(C.QtObjectPtr(ptr.Pointer()), C.int(header), C.CString(value))
+		C.QNetworkRequest_SetHeader(ptr.Pointer(), C.int(header), core.PointerFromQVariant(value))
 	}
 }
 
-func (ptr *QNetworkRequest) SetOriginatingObject(object core.QObjectITF) {
+func (ptr *QNetworkRequest) SetOriginatingObject(object core.QObject_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetOriginatingObject(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQObject(object)))
+		C.QNetworkRequest_SetOriginatingObject(ptr.Pointer(), core.PointerFromQObject(object))
 	}
 }
 
 func (ptr *QNetworkRequest) SetPriority(priority QNetworkRequest__Priority) {
 	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetPriority(C.QtObjectPtr(ptr.Pointer()), C.int(priority))
+		C.QNetworkRequest_SetPriority(ptr.Pointer(), C.int(priority))
 	}
 }
 
-func (ptr *QNetworkRequest) SetRawHeader(headerName core.QByteArrayITF, headerValue core.QByteArrayITF) {
+func (ptr *QNetworkRequest) SetRawHeader(headerName core.QByteArray_ITF, headerValue core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetRawHeader(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(headerName)), C.QtObjectPtr(core.PointerFromQByteArray(headerValue)))
+		C.QNetworkRequest_SetRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName), core.PointerFromQByteArray(headerValue))
 	}
 }
 
-func (ptr *QNetworkRequest) SetSslConfiguration(config QSslConfigurationITF) {
+func (ptr *QNetworkRequest) SetSslConfiguration(config QSslConfiguration_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetSslConfiguration(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSslConfiguration(config)))
+		C.QNetworkRequest_SetSslConfiguration(ptr.Pointer(), PointerFromQSslConfiguration(config))
 	}
 }
 
-func (ptr *QNetworkRequest) SetUrl(url string) {
+func (ptr *QNetworkRequest) SetUrl(url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNetworkRequest_SetUrl(C.QtObjectPtr(ptr.Pointer()), C.CString(url))
+		C.QNetworkRequest_SetUrl(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
-func (ptr *QNetworkRequest) Swap(other QNetworkRequestITF) {
+func (ptr *QNetworkRequest) Swap(other QNetworkRequest_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNetworkRequest_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQNetworkRequest(other)))
+		C.QNetworkRequest_Swap(ptr.Pointer(), PointerFromQNetworkRequest(other))
 	}
-}
-
-func (ptr *QNetworkRequest) Url() string {
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkRequest_Url(C.QtObjectPtr(ptr.Pointer())))
-	}
-	return ""
 }
 
 func (ptr *QNetworkRequest) DestroyQNetworkRequest() {
 	if ptr.Pointer() != nil {
-		C.QNetworkRequest_DestroyQNetworkRequest(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkRequest_DestroyQNetworkRequest(ptr.Pointer())
 	}
 }

@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QXmlResultItems_NewQXmlResultItems();
-int QXmlResultItems_HasError(QtObjectPtr ptr);
-void QXmlResultItems_DestroyQXmlResultItems(QtObjectPtr ptr);
+void* QXmlResultItems_NewQXmlResultItems();
+int QXmlResultItems_HasError(void* ptr);
+void QXmlResultItems_DestroyQXmlResultItems(void* ptr);
 
 #ifdef __cplusplus
 }

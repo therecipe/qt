@@ -1,15 +1,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSslKey_NewQSslKey();
-QtObjectPtr QSslKey_NewQSslKey5(QtObjectPtr other);
-void QSslKey_Clear(QtObjectPtr ptr);
-int QSslKey_IsNull(QtObjectPtr ptr);
-int QSslKey_Length(QtObjectPtr ptr);
-void QSslKey_Swap(QtObjectPtr ptr, QtObjectPtr other);
-void QSslKey_DestroyQSslKey(QtObjectPtr ptr);
+void* QSslKey_NewQSslKey();
+void* QSslKey_NewQSslKey5(void* other);
+void QSslKey_Clear(void* ptr);
+int QSslKey_IsNull(void* ptr);
+int QSslKey_Length(void* ptr);
+void QSslKey_Swap(void* ptr, void* other);
+void* QSslKey_ToDer(void* ptr, void* passPhrase);
+void* QSslKey_ToPem(void* ptr, void* passPhrase);
+void QSslKey_DestroyQSslKey(void* ptr);
 
 #ifdef __cplusplus
 }

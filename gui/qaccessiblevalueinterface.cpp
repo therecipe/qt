@@ -1,9 +1,9 @@
 #include "qaccessiblevalueinterface.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QAccessible>
-#include <QString>
-#include <QVariant>
 #include <QAccessibleValueInterface>
 #include "_cgo_export.h"
 
@@ -11,27 +11,27 @@ class MyQAccessibleValueInterface: public QAccessibleValueInterface {
 public:
 };
 
-char* QAccessibleValueInterface_CurrentValue(QtObjectPtr ptr){
-	return static_cast<QAccessibleValueInterface*>(ptr)->currentValue().toString().toUtf8().data();
+void* QAccessibleValueInterface_CurrentValue(void* ptr){
+	return new QVariant(static_cast<QAccessibleValueInterface*>(ptr)->currentValue());
 }
 
-char* QAccessibleValueInterface_MaximumValue(QtObjectPtr ptr){
-	return static_cast<QAccessibleValueInterface*>(ptr)->maximumValue().toString().toUtf8().data();
+void* QAccessibleValueInterface_MaximumValue(void* ptr){
+	return new QVariant(static_cast<QAccessibleValueInterface*>(ptr)->maximumValue());
 }
 
-char* QAccessibleValueInterface_MinimumStepSize(QtObjectPtr ptr){
-	return static_cast<QAccessibleValueInterface*>(ptr)->minimumStepSize().toString().toUtf8().data();
+void* QAccessibleValueInterface_MinimumStepSize(void* ptr){
+	return new QVariant(static_cast<QAccessibleValueInterface*>(ptr)->minimumStepSize());
 }
 
-char* QAccessibleValueInterface_MinimumValue(QtObjectPtr ptr){
-	return static_cast<QAccessibleValueInterface*>(ptr)->minimumValue().toString().toUtf8().data();
+void* QAccessibleValueInterface_MinimumValue(void* ptr){
+	return new QVariant(static_cast<QAccessibleValueInterface*>(ptr)->minimumValue());
 }
 
-void QAccessibleValueInterface_SetCurrentValue(QtObjectPtr ptr, char* value){
-	static_cast<QAccessibleValueInterface*>(ptr)->setCurrentValue(QVariant(value));
+void QAccessibleValueInterface_SetCurrentValue(void* ptr, void* value){
+	static_cast<QAccessibleValueInterface*>(ptr)->setCurrentValue(*static_cast<QVariant*>(value));
 }
 
-void QAccessibleValueInterface_DestroyQAccessibleValueInterface(QtObjectPtr ptr){
+void QAccessibleValueInterface_DestroyQAccessibleValueInterface(void* ptr){
 	static_cast<QAccessibleValueInterface*>(ptr)->~QAccessibleValueInterface();
 }
 

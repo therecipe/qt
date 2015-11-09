@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QAccessibleValueChangeEvent_NewQAccessibleValueChangeEvent2(QtObjectPtr iface, char* val);
-QtObjectPtr QAccessibleValueChangeEvent_NewQAccessibleValueChangeEvent(QtObjectPtr object, char* value);
-void QAccessibleValueChangeEvent_SetValue(QtObjectPtr ptr, char* value);
-char* QAccessibleValueChangeEvent_Value(QtObjectPtr ptr);
+void* QAccessibleValueChangeEvent_NewQAccessibleValueChangeEvent2(void* iface, void* val);
+void* QAccessibleValueChangeEvent_NewQAccessibleValueChangeEvent(void* object, void* value);
+void QAccessibleValueChangeEvent_SetValue(void* ptr, void* value);
+void* QAccessibleValueChangeEvent_Value(void* ptr);
 
 #ifdef __cplusplus
 }

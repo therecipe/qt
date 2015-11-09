@@ -10,11 +10,11 @@ class MyQMediaBindableInterface: public QMediaBindableInterface {
 public:
 };
 
-QtObjectPtr QMediaBindableInterface_MediaObject(QtObjectPtr ptr){
+void* QMediaBindableInterface_MediaObject(void* ptr){
 	return static_cast<QMediaBindableInterface*>(ptr)->mediaObject();
 }
 
-void QMediaBindableInterface_DestroyQMediaBindableInterface(QtObjectPtr ptr){
+void QMediaBindableInterface_DestroyQMediaBindableInterface(void* ptr){
 	static_cast<QMediaBindableInterface*>(ptr)->~QMediaBindableInterface();
 }
 

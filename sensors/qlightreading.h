@@ -1,8 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
+double QLightReading_Lux(void* ptr);
+void QLightReading_SetLux(void* ptr, double lux);
 
 #ifdef __cplusplus
 }

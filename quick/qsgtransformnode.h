@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSGTransformNode_NewQSGTransformNode();
-void QSGTransformNode_SetMatrix(QtObjectPtr ptr, QtObjectPtr matrix);
-void QSGTransformNode_DestroyQSGTransformNode(QtObjectPtr ptr);
+void* QSGTransformNode_NewQSGTransformNode();
+void QSGTransformNode_SetMatrix(void* ptr, void* matrix);
+void QSGTransformNode_DestroyQSGTransformNode(void* ptr);
 
 #ifdef __cplusplus
 }

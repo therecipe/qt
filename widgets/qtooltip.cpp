@@ -1,13 +1,13 @@
 #include "qtooltip.h"
-#include <QUrl>
-#include <QPoint>
-#include <QRect>
-#include <QString>
-#include <QVariant>
 #include <QModelIndex>
 #include <QFont>
-#include <QWidget>
 #include <QPalette>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QWidget>
+#include <QPoint>
+#include <QRect>
 #include <QToolTip>
 #include "_cgo_export.h"
 
@@ -23,23 +23,23 @@ int QToolTip_QToolTip_IsVisible(){
 	return QToolTip::isVisible();
 }
 
-void QToolTip_QToolTip_SetFont(QtObjectPtr font){
+void QToolTip_QToolTip_SetFont(void* font){
 	QToolTip::setFont(*static_cast<QFont*>(font));
 }
 
-void QToolTip_QToolTip_SetPalette(QtObjectPtr palette){
+void QToolTip_QToolTip_SetPalette(void* palette){
 	QToolTip::setPalette(*static_cast<QPalette*>(palette));
 }
 
-void QToolTip_QToolTip_ShowText3(QtObjectPtr pos, char* text, QtObjectPtr w){
+void QToolTip_QToolTip_ShowText3(void* pos, char* text, void* w){
 	QToolTip::showText(*static_cast<QPoint*>(pos), QString(text), static_cast<QWidget*>(w));
 }
 
-void QToolTip_QToolTip_ShowText(QtObjectPtr pos, char* text, QtObjectPtr w, QtObjectPtr rect){
+void QToolTip_QToolTip_ShowText(void* pos, char* text, void* w, void* rect){
 	QToolTip::showText(*static_cast<QPoint*>(pos), QString(text), static_cast<QWidget*>(w), *static_cast<QRect*>(rect));
 }
 
-void QToolTip_QToolTip_ShowText2(QtObjectPtr pos, char* text, QtObjectPtr w, QtObjectPtr rect, int msecDisplayTime){
+void QToolTip_QToolTip_ShowText2(void* pos, char* text, void* w, void* rect, int msecDisplayTime){
 	QToolTip::showText(*static_cast<QPoint*>(pos), QString(text), static_cast<QWidget*>(w), *static_cast<QRect*>(rect), msecDisplayTime);
 }
 

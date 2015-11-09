@@ -12,45 +12,45 @@ type QGyroscope struct {
 	QSensor
 }
 
-type QGyroscopeITF interface {
-	QSensorITF
-	QGyroscopePTR() *QGyroscope
+type QGyroscope_ITF interface {
+	QSensor_ITF
+	QGyroscope_PTR() *QGyroscope
 }
 
-func PointerFromQGyroscope(ptr QGyroscopeITF) unsafe.Pointer {
+func PointerFromQGyroscope(ptr QGyroscope_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGyroscopePTR().Pointer()
+		return ptr.QGyroscope_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGyroscopeFromPointer(ptr unsafe.Pointer) *QGyroscope {
+func NewQGyroscopeFromPointer(ptr unsafe.Pointer) *QGyroscope {
 	var n = new(QGyroscope)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGyroscope_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGyroscope) QGyroscopePTR() *QGyroscope {
+func (ptr *QGyroscope) QGyroscope_PTR() *QGyroscope {
 	return ptr
 }
 
 func (ptr *QGyroscope) Reading() *QGyroscopeReading {
 	if ptr.Pointer() != nil {
-		return QGyroscopeReadingFromPointer(unsafe.Pointer(C.QGyroscope_Reading(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQGyroscopeReadingFromPointer(C.QGyroscope_Reading(ptr.Pointer()))
 	}
 	return nil
 }
 
-func NewQGyroscope(parent core.QObjectITF) *QGyroscope {
-	return QGyroscopeFromPointer(unsafe.Pointer(C.QGyroscope_NewQGyroscope(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQGyroscope(parent core.QObject_ITF) *QGyroscope {
+	return NewQGyroscopeFromPointer(C.QGyroscope_NewQGyroscope(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QGyroscope) DestroyQGyroscope() {
 	if ptr.Pointer() != nil {
-		C.QGyroscope_DestroyQGyroscope(C.QtObjectPtr(ptr.Pointer()))
+		C.QGyroscope_DestroyQGyroscope(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -12,61 +12,61 @@ type QKeySequenceEdit struct {
 	QWidget
 }
 
-type QKeySequenceEditITF interface {
-	QWidgetITF
-	QKeySequenceEditPTR() *QKeySequenceEdit
+type QKeySequenceEdit_ITF interface {
+	QWidget_ITF
+	QKeySequenceEdit_PTR() *QKeySequenceEdit
 }
 
-func PointerFromQKeySequenceEdit(ptr QKeySequenceEditITF) unsafe.Pointer {
+func PointerFromQKeySequenceEdit(ptr QKeySequenceEdit_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QKeySequenceEditPTR().Pointer()
+		return ptr.QKeySequenceEdit_PTR().Pointer()
 	}
 	return nil
 }
 
-func QKeySequenceEditFromPointer(ptr unsafe.Pointer) *QKeySequenceEdit {
+func NewQKeySequenceEditFromPointer(ptr unsafe.Pointer) *QKeySequenceEdit {
 	var n = new(QKeySequenceEdit)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QKeySequenceEdit_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QKeySequenceEdit) QKeySequenceEditPTR() *QKeySequenceEdit {
+func (ptr *QKeySequenceEdit) QKeySequenceEdit_PTR() *QKeySequenceEdit {
 	return ptr
 }
 
-func (ptr *QKeySequenceEdit) SetKeySequence(keySequence gui.QKeySequenceITF) {
+func (ptr *QKeySequenceEdit) SetKeySequence(keySequence gui.QKeySequence_ITF) {
 	if ptr.Pointer() != nil {
-		C.QKeySequenceEdit_SetKeySequence(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQKeySequence(keySequence)))
+		C.QKeySequenceEdit_SetKeySequence(ptr.Pointer(), gui.PointerFromQKeySequence(keySequence))
 	}
 }
 
-func NewQKeySequenceEdit(parent QWidgetITF) *QKeySequenceEdit {
-	return QKeySequenceEditFromPointer(unsafe.Pointer(C.QKeySequenceEdit_NewQKeySequenceEdit(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQKeySequenceEdit(parent QWidget_ITF) *QKeySequenceEdit {
+	return NewQKeySequenceEditFromPointer(C.QKeySequenceEdit_NewQKeySequenceEdit(PointerFromQWidget(parent)))
 }
 
-func NewQKeySequenceEdit2(keySequence gui.QKeySequenceITF, parent QWidgetITF) *QKeySequenceEdit {
-	return QKeySequenceEditFromPointer(unsafe.Pointer(C.QKeySequenceEdit_NewQKeySequenceEdit2(C.QtObjectPtr(gui.PointerFromQKeySequence(keySequence)), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQKeySequenceEdit2(keySequence gui.QKeySequence_ITF, parent QWidget_ITF) *QKeySequenceEdit {
+	return NewQKeySequenceEditFromPointer(C.QKeySequenceEdit_NewQKeySequenceEdit2(gui.PointerFromQKeySequence(keySequence), PointerFromQWidget(parent)))
 }
 
 func (ptr *QKeySequenceEdit) Clear() {
 	if ptr.Pointer() != nil {
-		C.QKeySequenceEdit_Clear(C.QtObjectPtr(ptr.Pointer()))
+		C.QKeySequenceEdit_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QKeySequenceEdit) ConnectEditingFinished(f func()) {
 	if ptr.Pointer() != nil {
-		C.QKeySequenceEdit_ConnectEditingFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QKeySequenceEdit_ConnectEditingFinished(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "editingFinished", f)
 	}
 }
 
 func (ptr *QKeySequenceEdit) DisconnectEditingFinished() {
 	if ptr.Pointer() != nil {
-		C.QKeySequenceEdit_DisconnectEditingFinished(C.QtObjectPtr(ptr.Pointer()))
+		C.QKeySequenceEdit_DisconnectEditingFinished(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "editingFinished")
 	}
 }
@@ -78,7 +78,7 @@ func callbackQKeySequenceEditEditingFinished(ptrName *C.char) {
 
 func (ptr *QKeySequenceEdit) DestroyQKeySequenceEdit() {
 	if ptr.Pointer() != nil {
-		C.QKeySequenceEdit_DestroyQKeySequenceEdit(C.QtObjectPtr(ptr.Pointer()))
+		C.QKeySequenceEdit_DestroyQKeySequenceEdit(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -11,35 +11,35 @@ type QFileDevice struct {
 	QIODevice
 }
 
-type QFileDeviceITF interface {
-	QIODeviceITF
-	QFileDevicePTR() *QFileDevice
+type QFileDevice_ITF interface {
+	QIODevice_ITF
+	QFileDevice_PTR() *QFileDevice
 }
 
-func PointerFromQFileDevice(ptr QFileDeviceITF) unsafe.Pointer {
+func PointerFromQFileDevice(ptr QFileDevice_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QFileDevicePTR().Pointer()
+		return ptr.QFileDevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func QFileDeviceFromPointer(ptr unsafe.Pointer) *QFileDevice {
+func NewQFileDeviceFromPointer(ptr unsafe.Pointer) *QFileDevice {
 	var n = new(QFileDevice)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QFileDevice_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QFileDevice) QFileDevicePTR() *QFileDevice {
+func (ptr *QFileDevice) QFileDevice_PTR() *QFileDevice {
 	return ptr
 }
 
 //QFileDevice::FileError
-type QFileDevice__FileError int
+type QFileDevice__FileError int64
 
-var (
+const (
 	QFileDevice__NoError          = QFileDevice__FileError(0)
 	QFileDevice__ReadError        = QFileDevice__FileError(1)
 	QFileDevice__WriteError       = QFileDevice__FileError(2)
@@ -58,25 +58,25 @@ var (
 )
 
 //QFileDevice::FileHandleFlag
-type QFileDevice__FileHandleFlag int
+type QFileDevice__FileHandleFlag int64
 
-var (
+const (
 	QFileDevice__AutoCloseHandle = QFileDevice__FileHandleFlag(0x0001)
 	QFileDevice__DontCloseHandle = QFileDevice__FileHandleFlag(0)
 )
 
 //QFileDevice::MemoryMapFlags
-type QFileDevice__MemoryMapFlags int
+type QFileDevice__MemoryMapFlags int64
 
-var (
+const (
 	QFileDevice__NoOptions        = QFileDevice__MemoryMapFlags(0)
 	QFileDevice__MapPrivateOption = QFileDevice__MemoryMapFlags(0x0001)
 )
 
 //QFileDevice::Permission
-type QFileDevice__Permission int
+type QFileDevice__Permission int64
 
-var (
+const (
 	QFileDevice__ReadOwner  = QFileDevice__Permission(0x4000)
 	QFileDevice__WriteOwner = QFileDevice__Permission(0x2000)
 	QFileDevice__ExeOwner   = QFileDevice__Permission(0x1000)
@@ -93,75 +93,75 @@ var (
 
 func (ptr *QFileDevice) AtEnd() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDevice_AtEnd(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QFileDevice_AtEnd(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QFileDevice) Close() {
 	if ptr.Pointer() != nil {
-		C.QFileDevice_Close(C.QtObjectPtr(ptr.Pointer()))
+		C.QFileDevice_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QFileDevice) Error() QFileDevice__FileError {
 	if ptr.Pointer() != nil {
-		return QFileDevice__FileError(C.QFileDevice_Error(C.QtObjectPtr(ptr.Pointer())))
+		return QFileDevice__FileError(C.QFileDevice_Error(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QFileDevice) FileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFileDevice_FileName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QFileDevice_FileName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QFileDevice) Flush() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDevice_Flush(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QFileDevice_Flush(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QFileDevice) Handle() int {
 	if ptr.Pointer() != nil {
-		return int(C.QFileDevice_Handle(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QFileDevice_Handle(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QFileDevice) IsSequential() bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDevice_IsSequential(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QFileDevice_IsSequential(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QFileDevice) Permissions() QFileDevice__Permission {
 	if ptr.Pointer() != nil {
-		return QFileDevice__Permission(C.QFileDevice_Permissions(C.QtObjectPtr(ptr.Pointer())))
+		return QFileDevice__Permission(C.QFileDevice_Permissions(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QFileDevice) SetPermissions(permissions QFileDevice__Permission) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileDevice_SetPermissions(C.QtObjectPtr(ptr.Pointer()), C.int(permissions)) != 0
+		return C.QFileDevice_SetPermissions(ptr.Pointer(), C.int(permissions)) != 0
 	}
 	return false
 }
 
 func (ptr *QFileDevice) UnsetError() {
 	if ptr.Pointer() != nil {
-		C.QFileDevice_UnsetError(C.QtObjectPtr(ptr.Pointer()))
+		C.QFileDevice_UnsetError(ptr.Pointer())
 	}
 }
 
 func (ptr *QFileDevice) DestroyQFileDevice() {
 	if ptr.Pointer() != nil {
-		C.QFileDevice_DestroyQFileDevice(C.QtObjectPtr(ptr.Pointer()))
+		C.QFileDevice_DestroyQFileDevice(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

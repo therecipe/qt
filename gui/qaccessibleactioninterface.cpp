@@ -11,15 +11,15 @@ class MyQAccessibleActionInterface: public QAccessibleActionInterface {
 public:
 };
 
-char* QAccessibleActionInterface_LocalizedActionDescription(QtObjectPtr ptr, char* actionName){
+char* QAccessibleActionInterface_LocalizedActionDescription(void* ptr, char* actionName){
 	return static_cast<QAccessibleActionInterface*>(ptr)->localizedActionDescription(QString(actionName)).toUtf8().data();
 }
 
-char* QAccessibleActionInterface_LocalizedActionName(QtObjectPtr ptr, char* actionName){
+char* QAccessibleActionInterface_LocalizedActionName(void* ptr, char* actionName){
 	return static_cast<QAccessibleActionInterface*>(ptr)->localizedActionName(QString(actionName)).toUtf8().data();
 }
 
-char* QAccessibleActionInterface_ActionNames(QtObjectPtr ptr){
+char* QAccessibleActionInterface_ActionNames(void* ptr){
 	return static_cast<QAccessibleActionInterface*>(ptr)->actionNames().join("|").toUtf8().data();
 }
 
@@ -27,7 +27,7 @@ char* QAccessibleActionInterface_QAccessibleActionInterface_DecreaseAction(){
 	return QAccessibleActionInterface::decreaseAction().toUtf8().data();
 }
 
-void QAccessibleActionInterface_DoAction(QtObjectPtr ptr, char* actionName){
+void QAccessibleActionInterface_DoAction(void* ptr, char* actionName){
 	static_cast<QAccessibleActionInterface*>(ptr)->doAction(QString(actionName));
 }
 
@@ -35,7 +35,7 @@ char* QAccessibleActionInterface_QAccessibleActionInterface_IncreaseAction(){
 	return QAccessibleActionInterface::increaseAction().toUtf8().data();
 }
 
-char* QAccessibleActionInterface_KeyBindingsForAction(QtObjectPtr ptr, char* actionName){
+char* QAccessibleActionInterface_KeyBindingsForAction(void* ptr, char* actionName){
 	return static_cast<QAccessibleActionInterface*>(ptr)->keyBindingsForAction(QString(actionName)).join("|").toUtf8().data();
 }
 
@@ -79,7 +79,7 @@ char* QAccessibleActionInterface_QAccessibleActionInterface_ToggleAction(){
 	return QAccessibleActionInterface::toggleAction().toUtf8().data();
 }
 
-void QAccessibleActionInterface_DestroyQAccessibleActionInterface(QtObjectPtr ptr){
+void QAccessibleActionInterface_DestroyQAccessibleActionInterface(void* ptr){
 	static_cast<QAccessibleActionInterface*>(ptr)->~QAccessibleActionInterface();
 }
 

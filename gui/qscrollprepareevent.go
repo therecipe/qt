@@ -11,52 +11,52 @@ type QScrollPrepareEvent struct {
 	core.QEvent
 }
 
-type QScrollPrepareEventITF interface {
-	core.QEventITF
-	QScrollPrepareEventPTR() *QScrollPrepareEvent
+type QScrollPrepareEvent_ITF interface {
+	core.QEvent_ITF
+	QScrollPrepareEvent_PTR() *QScrollPrepareEvent
 }
 
-func PointerFromQScrollPrepareEvent(ptr QScrollPrepareEventITF) unsafe.Pointer {
+func PointerFromQScrollPrepareEvent(ptr QScrollPrepareEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScrollPrepareEventPTR().Pointer()
+		return ptr.QScrollPrepareEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScrollPrepareEventFromPointer(ptr unsafe.Pointer) *QScrollPrepareEvent {
+func NewQScrollPrepareEventFromPointer(ptr unsafe.Pointer) *QScrollPrepareEvent {
 	var n = new(QScrollPrepareEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QScrollPrepareEvent) QScrollPrepareEventPTR() *QScrollPrepareEvent {
+func (ptr *QScrollPrepareEvent) QScrollPrepareEvent_PTR() *QScrollPrepareEvent {
 	return ptr
 }
 
-func NewQScrollPrepareEvent(startPos core.QPointFITF) *QScrollPrepareEvent {
-	return QScrollPrepareEventFromPointer(unsafe.Pointer(C.QScrollPrepareEvent_NewQScrollPrepareEvent(C.QtObjectPtr(core.PointerFromQPointF(startPos)))))
+func NewQScrollPrepareEvent(startPos core.QPointF_ITF) *QScrollPrepareEvent {
+	return NewQScrollPrepareEventFromPointer(C.QScrollPrepareEvent_NewQScrollPrepareEvent(core.PointerFromQPointF(startPos)))
 }
 
-func (ptr *QScrollPrepareEvent) SetContentPos(pos core.QPointFITF) {
+func (ptr *QScrollPrepareEvent) SetContentPos(pos core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QScrollPrepareEvent_SetContentPos(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(pos)))
+		C.QScrollPrepareEvent_SetContentPos(ptr.Pointer(), core.PointerFromQPointF(pos))
 	}
 }
 
-func (ptr *QScrollPrepareEvent) SetContentPosRange(rect core.QRectFITF) {
+func (ptr *QScrollPrepareEvent) SetContentPosRange(rect core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QScrollPrepareEvent_SetContentPosRange(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)))
+		C.QScrollPrepareEvent_SetContentPosRange(ptr.Pointer(), core.PointerFromQRectF(rect))
 	}
 }
 
-func (ptr *QScrollPrepareEvent) SetViewportSize(size core.QSizeFITF) {
+func (ptr *QScrollPrepareEvent) SetViewportSize(size core.QSizeF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QScrollPrepareEvent_SetViewportSize(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQSizeF(size)))
+		C.QScrollPrepareEvent_SetViewportSize(ptr.Pointer(), core.PointerFromQSizeF(size))
 	}
 }
 
 func (ptr *QScrollPrepareEvent) DestroyQScrollPrepareEvent() {
 	if ptr.Pointer() != nil {
-		C.QScrollPrepareEvent_DestroyQScrollPrepareEvent(C.QtObjectPtr(ptr.Pointer()))
+		C.QScrollPrepareEvent_DestroyQScrollPrepareEvent(ptr.Pointer())
 	}
 }

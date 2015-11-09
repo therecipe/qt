@@ -10,30 +10,30 @@ type QGraphicsSceneHelpEvent struct {
 	QGraphicsSceneEvent
 }
 
-type QGraphicsSceneHelpEventITF interface {
-	QGraphicsSceneEventITF
-	QGraphicsSceneHelpEventPTR() *QGraphicsSceneHelpEvent
+type QGraphicsSceneHelpEvent_ITF interface {
+	QGraphicsSceneEvent_ITF
+	QGraphicsSceneHelpEvent_PTR() *QGraphicsSceneHelpEvent
 }
 
-func PointerFromQGraphicsSceneHelpEvent(ptr QGraphicsSceneHelpEventITF) unsafe.Pointer {
+func PointerFromQGraphicsSceneHelpEvent(ptr QGraphicsSceneHelpEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsSceneHelpEventPTR().Pointer()
+		return ptr.QGraphicsSceneHelpEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsSceneHelpEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneHelpEvent {
+func NewQGraphicsSceneHelpEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneHelpEvent {
 	var n = new(QGraphicsSceneHelpEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsSceneHelpEvent) QGraphicsSceneHelpEventPTR() *QGraphicsSceneHelpEvent {
+func (ptr *QGraphicsSceneHelpEvent) QGraphicsSceneHelpEvent_PTR() *QGraphicsSceneHelpEvent {
 	return ptr
 }
 
 func (ptr *QGraphicsSceneHelpEvent) DestroyQGraphicsSceneHelpEvent() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSceneHelpEvent_DestroyQGraphicsSceneHelpEvent(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsSceneHelpEvent_DestroyQGraphicsSceneHelpEvent(ptr.Pointer())
 	}
 }

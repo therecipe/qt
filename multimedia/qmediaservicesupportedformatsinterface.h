@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(QtObjectPtr ptr);
-void QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(QtObjectPtr ptr);
+char* QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(void* ptr);
+void QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(void* ptr);
 
 #ifdef __cplusplus
 }

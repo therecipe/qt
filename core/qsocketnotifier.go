@@ -11,35 +11,35 @@ type QSocketNotifier struct {
 	QObject
 }
 
-type QSocketNotifierITF interface {
-	QObjectITF
-	QSocketNotifierPTR() *QSocketNotifier
+type QSocketNotifier_ITF interface {
+	QObject_ITF
+	QSocketNotifier_PTR() *QSocketNotifier
 }
 
-func PointerFromQSocketNotifier(ptr QSocketNotifierITF) unsafe.Pointer {
+func PointerFromQSocketNotifier(ptr QSocketNotifier_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSocketNotifierPTR().Pointer()
+		return ptr.QSocketNotifier_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSocketNotifierFromPointer(ptr unsafe.Pointer) *QSocketNotifier {
+func NewQSocketNotifierFromPointer(ptr unsafe.Pointer) *QSocketNotifier {
 	var n = new(QSocketNotifier)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QSocketNotifier_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QSocketNotifier) QSocketNotifierPTR() *QSocketNotifier {
+func (ptr *QSocketNotifier) QSocketNotifier_PTR() *QSocketNotifier {
 	return ptr
 }
 
 //QSocketNotifier::Type
-type QSocketNotifier__Type int
+type QSocketNotifier__Type int64
 
-var (
+const (
 	QSocketNotifier__Read      = QSocketNotifier__Type(0)
 	QSocketNotifier__Write     = QSocketNotifier__Type(1)
 	QSocketNotifier__Exception = QSocketNotifier__Type(2)
@@ -47,14 +47,14 @@ var (
 
 func (ptr *QSocketNotifier) ConnectActivated(f func(socket int)) {
 	if ptr.Pointer() != nil {
-		C.QSocketNotifier_ConnectActivated(C.QtObjectPtr(ptr.Pointer()))
+		C.QSocketNotifier_ConnectActivated(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "activated", f)
 	}
 }
 
 func (ptr *QSocketNotifier) DisconnectActivated() {
 	if ptr.Pointer() != nil {
-		C.QSocketNotifier_DisconnectActivated(C.QtObjectPtr(ptr.Pointer()))
+		C.QSocketNotifier_DisconnectActivated(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "activated")
 	}
 }
@@ -66,27 +66,27 @@ func callbackQSocketNotifierActivated(ptrName *C.char, socket C.int) {
 
 func (ptr *QSocketNotifier) IsEnabled() bool {
 	if ptr.Pointer() != nil {
-		return C.QSocketNotifier_IsEnabled(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QSocketNotifier_IsEnabled(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QSocketNotifier) SetEnabled(enable bool) {
 	if ptr.Pointer() != nil {
-		C.QSocketNotifier_SetEnabled(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enable)))
+		C.QSocketNotifier_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
 func (ptr *QSocketNotifier) Type() QSocketNotifier__Type {
 	if ptr.Pointer() != nil {
-		return QSocketNotifier__Type(C.QSocketNotifier_Type(C.QtObjectPtr(ptr.Pointer())))
+		return QSocketNotifier__Type(C.QSocketNotifier_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSocketNotifier) DestroyQSocketNotifier() {
 	if ptr.Pointer() != nil {
-		C.QSocketNotifier_DestroyQSocketNotifier(C.QtObjectPtr(ptr.Pointer()))
+		C.QSocketNotifier_DestroyQSocketNotifier(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

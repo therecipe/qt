@@ -1,46 +1,45 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QAbstractSlider_HasTracking(QtObjectPtr ptr);
-int QAbstractSlider_InvertedAppearance(QtObjectPtr ptr);
-int QAbstractSlider_InvertedControls(QtObjectPtr ptr);
-int QAbstractSlider_IsSliderDown(QtObjectPtr ptr);
-int QAbstractSlider_Maximum(QtObjectPtr ptr);
-int QAbstractSlider_Minimum(QtObjectPtr ptr);
-int QAbstractSlider_Orientation(QtObjectPtr ptr);
-int QAbstractSlider_PageStep(QtObjectPtr ptr);
-void QAbstractSlider_SetInvertedAppearance(QtObjectPtr ptr, int v);
-void QAbstractSlider_SetInvertedControls(QtObjectPtr ptr, int v);
-void QAbstractSlider_SetMaximum(QtObjectPtr ptr, int v);
-void QAbstractSlider_SetMinimum(QtObjectPtr ptr, int v);
-void QAbstractSlider_SetOrientation(QtObjectPtr ptr, int v);
-void QAbstractSlider_SetPageStep(QtObjectPtr ptr, int v);
-void QAbstractSlider_SetSingleStep(QtObjectPtr ptr, int v);
-void QAbstractSlider_SetSliderDown(QtObjectPtr ptr, int v);
-void QAbstractSlider_SetSliderPosition(QtObjectPtr ptr, int v);
-void QAbstractSlider_SetTracking(QtObjectPtr ptr, int enable);
-void QAbstractSlider_SetValue(QtObjectPtr ptr, int v);
-int QAbstractSlider_SingleStep(QtObjectPtr ptr);
-int QAbstractSlider_SliderPosition(QtObjectPtr ptr);
-int QAbstractSlider_Value(QtObjectPtr ptr);
-QtObjectPtr QAbstractSlider_NewQAbstractSlider(QtObjectPtr parent);
-void QAbstractSlider_ConnectActionTriggered(QtObjectPtr ptr);
-void QAbstractSlider_DisconnectActionTriggered(QtObjectPtr ptr);
-void QAbstractSlider_ConnectRangeChanged(QtObjectPtr ptr);
-void QAbstractSlider_DisconnectRangeChanged(QtObjectPtr ptr);
-void QAbstractSlider_SetRange(QtObjectPtr ptr, int min, int max);
-void QAbstractSlider_ConnectSliderMoved(QtObjectPtr ptr);
-void QAbstractSlider_DisconnectSliderMoved(QtObjectPtr ptr);
-void QAbstractSlider_ConnectSliderPressed(QtObjectPtr ptr);
-void QAbstractSlider_DisconnectSliderPressed(QtObjectPtr ptr);
-void QAbstractSlider_ConnectSliderReleased(QtObjectPtr ptr);
-void QAbstractSlider_DisconnectSliderReleased(QtObjectPtr ptr);
-void QAbstractSlider_TriggerAction(QtObjectPtr ptr, int action);
-void QAbstractSlider_ConnectValueChanged(QtObjectPtr ptr);
-void QAbstractSlider_DisconnectValueChanged(QtObjectPtr ptr);
-void QAbstractSlider_DestroyQAbstractSlider(QtObjectPtr ptr);
+int QAbstractSlider_HasTracking(void* ptr);
+int QAbstractSlider_InvertedAppearance(void* ptr);
+int QAbstractSlider_InvertedControls(void* ptr);
+int QAbstractSlider_IsSliderDown(void* ptr);
+int QAbstractSlider_Maximum(void* ptr);
+int QAbstractSlider_Minimum(void* ptr);
+int QAbstractSlider_Orientation(void* ptr);
+int QAbstractSlider_PageStep(void* ptr);
+void QAbstractSlider_SetInvertedAppearance(void* ptr, int v);
+void QAbstractSlider_SetInvertedControls(void* ptr, int v);
+void QAbstractSlider_SetMaximum(void* ptr, int v);
+void QAbstractSlider_SetMinimum(void* ptr, int v);
+void QAbstractSlider_SetOrientation(void* ptr, int v);
+void QAbstractSlider_SetPageStep(void* ptr, int v);
+void QAbstractSlider_SetSingleStep(void* ptr, int v);
+void QAbstractSlider_SetSliderDown(void* ptr, int v);
+void QAbstractSlider_SetSliderPosition(void* ptr, int v);
+void QAbstractSlider_SetTracking(void* ptr, int enable);
+void QAbstractSlider_SetValue(void* ptr, int v);
+int QAbstractSlider_SingleStep(void* ptr);
+int QAbstractSlider_SliderPosition(void* ptr);
+int QAbstractSlider_Value(void* ptr);
+void* QAbstractSlider_NewQAbstractSlider(void* parent);
+void QAbstractSlider_ConnectActionTriggered(void* ptr);
+void QAbstractSlider_DisconnectActionTriggered(void* ptr);
+void QAbstractSlider_ConnectRangeChanged(void* ptr);
+void QAbstractSlider_DisconnectRangeChanged(void* ptr);
+void QAbstractSlider_SetRange(void* ptr, int min, int max);
+void QAbstractSlider_ConnectSliderMoved(void* ptr);
+void QAbstractSlider_DisconnectSliderMoved(void* ptr);
+void QAbstractSlider_ConnectSliderPressed(void* ptr);
+void QAbstractSlider_DisconnectSliderPressed(void* ptr);
+void QAbstractSlider_ConnectSliderReleased(void* ptr);
+void QAbstractSlider_DisconnectSliderReleased(void* ptr);
+void QAbstractSlider_TriggerAction(void* ptr, int action);
+void QAbstractSlider_ConnectValueChanged(void* ptr);
+void QAbstractSlider_DisconnectValueChanged(void* ptr);
+void QAbstractSlider_DestroyQAbstractSlider(void* ptr);
 
 #ifdef __cplusplus
 }

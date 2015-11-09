@@ -10,24 +10,24 @@ type QSGSimpleMaterialShader struct {
 	QSGMaterialShader
 }
 
-type QSGSimpleMaterialShaderITF interface {
-	QSGMaterialShaderITF
-	QSGSimpleMaterialShaderPTR() *QSGSimpleMaterialShader
+type QSGSimpleMaterialShader_ITF interface {
+	QSGMaterialShader_ITF
+	QSGSimpleMaterialShader_PTR() *QSGSimpleMaterialShader
 }
 
-func PointerFromQSGSimpleMaterialShader(ptr QSGSimpleMaterialShaderITF) unsafe.Pointer {
+func PointerFromQSGSimpleMaterialShader(ptr QSGSimpleMaterialShader_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSGSimpleMaterialShaderPTR().Pointer()
+		return ptr.QSGSimpleMaterialShader_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSGSimpleMaterialShaderFromPointer(ptr unsafe.Pointer) *QSGSimpleMaterialShader {
+func NewQSGSimpleMaterialShaderFromPointer(ptr unsafe.Pointer) *QSGSimpleMaterialShader {
 	var n = new(QSGSimpleMaterialShader)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSGSimpleMaterialShader) QSGSimpleMaterialShaderPTR() *QSGSimpleMaterialShader {
+func (ptr *QSGSimpleMaterialShader) QSGSimpleMaterialShader_PTR() *QSGSimpleMaterialShader {
 	return ptr
 }

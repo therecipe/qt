@@ -10,8 +10,8 @@ type QScopedValueRollback struct {
 	ptr unsafe.Pointer
 }
 
-type QScopedValueRollbackITF interface {
-	QScopedValueRollbackPTR() *QScopedValueRollback
+type QScopedValueRollback_ITF interface {
+	QScopedValueRollback_PTR() *QScopedValueRollback
 }
 
 func (p *QScopedValueRollback) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QScopedValueRollback) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQScopedValueRollback(ptr QScopedValueRollbackITF) unsafe.Pointer {
+func PointerFromQScopedValueRollback(ptr QScopedValueRollback_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScopedValueRollbackPTR().Pointer()
+		return ptr.QScopedValueRollback_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScopedValueRollbackFromPointer(ptr unsafe.Pointer) *QScopedValueRollback {
+func NewQScopedValueRollbackFromPointer(ptr unsafe.Pointer) *QScopedValueRollback {
 	var n = new(QScopedValueRollback)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QScopedValueRollback) QScopedValueRollbackPTR() *QScopedValueRollback {
+func (ptr *QScopedValueRollback) QScopedValueRollback_PTR() *QScopedValueRollback {
 	return ptr
 }

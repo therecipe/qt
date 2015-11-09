@@ -10,11 +10,7 @@ class MyQQmlAbstractUrlInterceptor: public QQmlAbstractUrlInterceptor {
 public:
 };
 
-char* QQmlAbstractUrlInterceptor_Intercept(QtObjectPtr ptr, char* url, int ty){
-	return static_cast<QQmlAbstractUrlInterceptor*>(ptr)->intercept(QUrl(QString(url)), static_cast<QQmlAbstractUrlInterceptor::DataType>(ty)).toString().toUtf8().data();
-}
-
-void QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(QtObjectPtr ptr){
+void QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(void* ptr){
 	static_cast<QQmlAbstractUrlInterceptor*>(ptr)->~QQmlAbstractUrlInterceptor();
 }
 

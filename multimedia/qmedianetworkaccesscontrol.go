@@ -11,34 +11,34 @@ type QMediaNetworkAccessControl struct {
 	QMediaControl
 }
 
-type QMediaNetworkAccessControlITF interface {
-	QMediaControlITF
-	QMediaNetworkAccessControlPTR() *QMediaNetworkAccessControl
+type QMediaNetworkAccessControl_ITF interface {
+	QMediaControl_ITF
+	QMediaNetworkAccessControl_PTR() *QMediaNetworkAccessControl
 }
 
-func PointerFromQMediaNetworkAccessControl(ptr QMediaNetworkAccessControlITF) unsafe.Pointer {
+func PointerFromQMediaNetworkAccessControl(ptr QMediaNetworkAccessControl_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMediaNetworkAccessControlPTR().Pointer()
+		return ptr.QMediaNetworkAccessControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMediaNetworkAccessControlFromPointer(ptr unsafe.Pointer) *QMediaNetworkAccessControl {
+func NewQMediaNetworkAccessControlFromPointer(ptr unsafe.Pointer) *QMediaNetworkAccessControl {
 	var n = new(QMediaNetworkAccessControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMediaNetworkAccessControl_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMediaNetworkAccessControl) QMediaNetworkAccessControlPTR() *QMediaNetworkAccessControl {
+func (ptr *QMediaNetworkAccessControl) QMediaNetworkAccessControl_PTR() *QMediaNetworkAccessControl {
 	return ptr
 }
 
 func (ptr *QMediaNetworkAccessControl) DestroyQMediaNetworkAccessControl() {
 	if ptr.Pointer() != nil {
-		C.QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(C.QtObjectPtr(ptr.Pointer()))
+		C.QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

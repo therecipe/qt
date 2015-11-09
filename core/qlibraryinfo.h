@@ -1,7 +1,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
 int QLibraryInfo_QLibraryInfo_IsDebugBuild();
 char* QLibraryInfo_QLibraryInfo_LicensedProducts();

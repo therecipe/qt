@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDnsServiceRecord_NewQDnsServiceRecord();
-QtObjectPtr QDnsServiceRecord_NewQDnsServiceRecord2(QtObjectPtr other);
-char* QDnsServiceRecord_Name(QtObjectPtr ptr);
-void QDnsServiceRecord_Swap(QtObjectPtr ptr, QtObjectPtr other);
-char* QDnsServiceRecord_Target(QtObjectPtr ptr);
-void QDnsServiceRecord_DestroyQDnsServiceRecord(QtObjectPtr ptr);
+void* QDnsServiceRecord_NewQDnsServiceRecord();
+void* QDnsServiceRecord_NewQDnsServiceRecord2(void* other);
+char* QDnsServiceRecord_Name(void* ptr);
+void QDnsServiceRecord_Swap(void* ptr, void* other);
+char* QDnsServiceRecord_Target(void* ptr);
+void QDnsServiceRecord_DestroyQDnsServiceRecord(void* ptr);
 
 #ifdef __cplusplus
 }

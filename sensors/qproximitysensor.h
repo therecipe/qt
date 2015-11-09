@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QProximitySensor_Reading(QtObjectPtr ptr);
-QtObjectPtr QProximitySensor_NewQProximitySensor(QtObjectPtr parent);
-void QProximitySensor_DestroyQProximitySensor(QtObjectPtr ptr);
+void* QProximitySensor_Reading(void* ptr);
+void* QProximitySensor_NewQProximitySensor(void* parent);
+void QProximitySensor_DestroyQProximitySensor(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,30 +1,33 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QJsonValue_NewQJsonValue5(QtObjectPtr s);
-QtObjectPtr QJsonValue_NewQJsonValue(int ty);
-QtObjectPtr QJsonValue_NewQJsonValue2(int b);
-QtObjectPtr QJsonValue_NewQJsonValue7(QtObjectPtr a);
-QtObjectPtr QJsonValue_NewQJsonValue8(QtObjectPtr o);
-QtObjectPtr QJsonValue_NewQJsonValue9(QtObjectPtr other);
-QtObjectPtr QJsonValue_NewQJsonValue4(char* s);
-QtObjectPtr QJsonValue_NewQJsonValue6(char* s);
-QtObjectPtr QJsonValue_NewQJsonValue12(int n);
-int QJsonValue_IsArray(QtObjectPtr ptr);
-int QJsonValue_IsBool(QtObjectPtr ptr);
-int QJsonValue_IsDouble(QtObjectPtr ptr);
-int QJsonValue_IsNull(QtObjectPtr ptr);
-int QJsonValue_IsObject(QtObjectPtr ptr);
-int QJsonValue_IsString(QtObjectPtr ptr);
-int QJsonValue_IsUndefined(QtObjectPtr ptr);
-int QJsonValue_ToBool(QtObjectPtr ptr, int defaultValue);
-int QJsonValue_ToInt(QtObjectPtr ptr, int defaultValue);
-char* QJsonValue_ToString(QtObjectPtr ptr, char* defaultValue);
-char* QJsonValue_ToVariant(QtObjectPtr ptr);
-int QJsonValue_Type(QtObjectPtr ptr);
-void QJsonValue_DestroyQJsonValue(QtObjectPtr ptr);
+void* QJsonValue_NewQJsonValue5(void* s);
+void* QJsonValue_NewQJsonValue(int ty);
+void* QJsonValue_NewQJsonValue2(int b);
+void* QJsonValue_NewQJsonValue7(void* a);
+void* QJsonValue_NewQJsonValue8(void* o);
+void* QJsonValue_NewQJsonValue9(void* other);
+void* QJsonValue_NewQJsonValue4(char* s);
+void* QJsonValue_NewQJsonValue6(char* s);
+void* QJsonValue_NewQJsonValue12(int n);
+int QJsonValue_IsArray(void* ptr);
+int QJsonValue_IsBool(void* ptr);
+int QJsonValue_IsDouble(void* ptr);
+int QJsonValue_IsNull(void* ptr);
+int QJsonValue_IsObject(void* ptr);
+int QJsonValue_IsString(void* ptr);
+int QJsonValue_IsUndefined(void* ptr);
+void* QJsonValue_ToArray2(void* ptr);
+void* QJsonValue_ToArray(void* ptr, void* defaultValue);
+int QJsonValue_ToBool(void* ptr, int defaultValue);
+int QJsonValue_ToInt(void* ptr, int defaultValue);
+void* QJsonValue_ToObject2(void* ptr);
+void* QJsonValue_ToObject(void* ptr, void* defaultValue);
+char* QJsonValue_ToString(void* ptr, char* defaultValue);
+void* QJsonValue_ToVariant(void* ptr);
+int QJsonValue_Type(void* ptr);
+void QJsonValue_DestroyQJsonValue(void* ptr);
 
 #ifdef __cplusplus
 }

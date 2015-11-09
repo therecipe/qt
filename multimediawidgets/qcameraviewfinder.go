@@ -13,45 +13,45 @@ type QCameraViewfinder struct {
 	QVideoWidget
 }
 
-type QCameraViewfinderITF interface {
-	QVideoWidgetITF
-	QCameraViewfinderPTR() *QCameraViewfinder
+type QCameraViewfinder_ITF interface {
+	QVideoWidget_ITF
+	QCameraViewfinder_PTR() *QCameraViewfinder
 }
 
-func PointerFromQCameraViewfinder(ptr QCameraViewfinderITF) unsafe.Pointer {
+func PointerFromQCameraViewfinder(ptr QCameraViewfinder_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QCameraViewfinderPTR().Pointer()
+		return ptr.QCameraViewfinder_PTR().Pointer()
 	}
 	return nil
 }
 
-func QCameraViewfinderFromPointer(ptr unsafe.Pointer) *QCameraViewfinder {
+func NewQCameraViewfinderFromPointer(ptr unsafe.Pointer) *QCameraViewfinder {
 	var n = new(QCameraViewfinder)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QCameraViewfinder_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QCameraViewfinder) QCameraViewfinderPTR() *QCameraViewfinder {
+func (ptr *QCameraViewfinder) QCameraViewfinder_PTR() *QCameraViewfinder {
 	return ptr
 }
 
-func NewQCameraViewfinder(parent widgets.QWidgetITF) *QCameraViewfinder {
-	return QCameraViewfinderFromPointer(unsafe.Pointer(C.QCameraViewfinder_NewQCameraViewfinder(C.QtObjectPtr(widgets.PointerFromQWidget(parent)))))
+func NewQCameraViewfinder(parent widgets.QWidget_ITF) *QCameraViewfinder {
+	return NewQCameraViewfinderFromPointer(C.QCameraViewfinder_NewQCameraViewfinder(widgets.PointerFromQWidget(parent)))
 }
 
 func (ptr *QCameraViewfinder) MediaObject() *multimedia.QMediaObject {
 	if ptr.Pointer() != nil {
-		return multimedia.QMediaObjectFromPointer(unsafe.Pointer(C.QCameraViewfinder_MediaObject(C.QtObjectPtr(ptr.Pointer()))))
+		return multimedia.NewQMediaObjectFromPointer(C.QCameraViewfinder_MediaObject(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QCameraViewfinder) DestroyQCameraViewfinder() {
 	if ptr.Pointer() != nil {
-		C.QCameraViewfinder_DestroyQCameraViewfinder(C.QtObjectPtr(ptr.Pointer()))
+		C.QCameraViewfinder_DestroyQCameraViewfinder(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

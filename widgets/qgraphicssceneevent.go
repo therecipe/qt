@@ -11,37 +11,37 @@ type QGraphicsSceneEvent struct {
 	core.QEvent
 }
 
-type QGraphicsSceneEventITF interface {
-	core.QEventITF
-	QGraphicsSceneEventPTR() *QGraphicsSceneEvent
+type QGraphicsSceneEvent_ITF interface {
+	core.QEvent_ITF
+	QGraphicsSceneEvent_PTR() *QGraphicsSceneEvent
 }
 
-func PointerFromQGraphicsSceneEvent(ptr QGraphicsSceneEventITF) unsafe.Pointer {
+func PointerFromQGraphicsSceneEvent(ptr QGraphicsSceneEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsSceneEventPTR().Pointer()
+		return ptr.QGraphicsSceneEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsSceneEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneEvent {
+func NewQGraphicsSceneEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneEvent {
 	var n = new(QGraphicsSceneEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsSceneEvent) QGraphicsSceneEventPTR() *QGraphicsSceneEvent {
+func (ptr *QGraphicsSceneEvent) QGraphicsSceneEvent_PTR() *QGraphicsSceneEvent {
 	return ptr
 }
 
 func (ptr *QGraphicsSceneEvent) Widget() *QWidget {
 	if ptr.Pointer() != nil {
-		return QWidgetFromPointer(unsafe.Pointer(C.QGraphicsSceneEvent_Widget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQWidgetFromPointer(C.QGraphicsSceneEvent_Widget(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QGraphicsSceneEvent) DestroyQGraphicsSceneEvent() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSceneEvent_DestroyQGraphicsSceneEvent(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsSceneEvent_DestroyQGraphicsSceneEvent(ptr.Pointer())
 	}
 }

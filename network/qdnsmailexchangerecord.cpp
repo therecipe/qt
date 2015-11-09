@@ -10,27 +10,27 @@ class MyQDnsMailExchangeRecord: public QDnsMailExchangeRecord {
 public:
 };
 
-QtObjectPtr QDnsMailExchangeRecord_NewQDnsMailExchangeRecord(){
+void* QDnsMailExchangeRecord_NewQDnsMailExchangeRecord(){
 	return new QDnsMailExchangeRecord();
 }
 
-QtObjectPtr QDnsMailExchangeRecord_NewQDnsMailExchangeRecord2(QtObjectPtr other){
+void* QDnsMailExchangeRecord_NewQDnsMailExchangeRecord2(void* other){
 	return new QDnsMailExchangeRecord(*static_cast<QDnsMailExchangeRecord*>(other));
 }
 
-char* QDnsMailExchangeRecord_Exchange(QtObjectPtr ptr){
+char* QDnsMailExchangeRecord_Exchange(void* ptr){
 	return static_cast<QDnsMailExchangeRecord*>(ptr)->exchange().toUtf8().data();
 }
 
-char* QDnsMailExchangeRecord_Name(QtObjectPtr ptr){
+char* QDnsMailExchangeRecord_Name(void* ptr){
 	return static_cast<QDnsMailExchangeRecord*>(ptr)->name().toUtf8().data();
 }
 
-void QDnsMailExchangeRecord_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QDnsMailExchangeRecord_Swap(void* ptr, void* other){
 	static_cast<QDnsMailExchangeRecord*>(ptr)->swap(*static_cast<QDnsMailExchangeRecord*>(other));
 }
 
-void QDnsMailExchangeRecord_DestroyQDnsMailExchangeRecord(QtObjectPtr ptr){
+void QDnsMailExchangeRecord_DestroyQDnsMailExchangeRecord(void* ptr){
 	static_cast<QDnsMailExchangeRecord*>(ptr)->~QDnsMailExchangeRecord();
 }
 

@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QMediaBindableInterface_MediaObject(QtObjectPtr ptr);
-void QMediaBindableInterface_DestroyQMediaBindableInterface(QtObjectPtr ptr);
+void* QMediaBindableInterface_MediaObject(void* ptr);
+void QMediaBindableInterface_DestroyQMediaBindableInterface(void* ptr);
 
 #ifdef __cplusplus
 }

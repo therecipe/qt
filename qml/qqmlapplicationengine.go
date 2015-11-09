@@ -12,83 +12,64 @@ type QQmlApplicationEngine struct {
 	QQmlEngine
 }
 
-type QQmlApplicationEngineITF interface {
-	QQmlEngineITF
-	QQmlApplicationEnginePTR() *QQmlApplicationEngine
+type QQmlApplicationEngine_ITF interface {
+	QQmlEngine_ITF
+	QQmlApplicationEngine_PTR() *QQmlApplicationEngine
 }
 
-func PointerFromQQmlApplicationEngine(ptr QQmlApplicationEngineITF) unsafe.Pointer {
+func PointerFromQQmlApplicationEngine(ptr QQmlApplicationEngine_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QQmlApplicationEnginePTR().Pointer()
+		return ptr.QQmlApplicationEngine_PTR().Pointer()
 	}
 	return nil
 }
 
-func QQmlApplicationEngineFromPointer(ptr unsafe.Pointer) *QQmlApplicationEngine {
+func NewQQmlApplicationEngineFromPointer(ptr unsafe.Pointer) *QQmlApplicationEngine {
 	var n = new(QQmlApplicationEngine)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QQmlApplicationEngine_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QQmlApplicationEngine) QQmlApplicationEnginePTR() *QQmlApplicationEngine {
+func (ptr *QQmlApplicationEngine) QQmlApplicationEngine_PTR() *QQmlApplicationEngine {
 	return ptr
 }
 
-func NewQQmlApplicationEngine(parent core.QObjectITF) *QQmlApplicationEngine {
-	return QQmlApplicationEngineFromPointer(unsafe.Pointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQQmlApplicationEngine(parent core.QObject_ITF) *QQmlApplicationEngine {
+	return NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine(core.PointerFromQObject(parent)))
 }
 
-func NewQQmlApplicationEngine3(filePath string, parent core.QObjectITF) *QQmlApplicationEngine {
-	return QQmlApplicationEngineFromPointer(unsafe.Pointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine3(C.CString(filePath), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQQmlApplicationEngine3(filePath string, parent core.QObject_ITF) *QQmlApplicationEngine {
+	return NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine3(C.CString(filePath), core.PointerFromQObject(parent)))
 }
 
-func NewQQmlApplicationEngine2(url string, parent core.QObjectITF) *QQmlApplicationEngine {
-	return QQmlApplicationEngineFromPointer(unsafe.Pointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine2(C.CString(url), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQQmlApplicationEngine2(url core.QUrl_ITF, parent core.QObject_ITF) *QQmlApplicationEngine {
+	return NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine2(core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QQmlApplicationEngine) Load2(filePath string) {
 	if ptr.Pointer() != nil {
-		C.QQmlApplicationEngine_Load2(C.QtObjectPtr(ptr.Pointer()), C.CString(filePath))
+		C.QQmlApplicationEngine_Load2(ptr.Pointer(), C.CString(filePath))
 	}
 }
 
-func (ptr *QQmlApplicationEngine) Load(url string) {
+func (ptr *QQmlApplicationEngine) Load(url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		C.QQmlApplicationEngine_Load(C.QtObjectPtr(ptr.Pointer()), C.CString(url))
+		C.QQmlApplicationEngine_Load(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
-func (ptr *QQmlApplicationEngine) LoadData(data core.QByteArrayITF, url string) {
+func (ptr *QQmlApplicationEngine) LoadData(data core.QByteArray_ITF, url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		C.QQmlApplicationEngine_LoadData(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(data)), C.CString(url))
+		C.QQmlApplicationEngine_LoadData(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(url))
 	}
-}
-
-func (ptr *QQmlApplicationEngine) ConnectObjectCreated(f func(object core.QObjectITF, url string)) {
-	if ptr.Pointer() != nil {
-		C.QQmlApplicationEngine_ConnectObjectCreated(C.QtObjectPtr(ptr.Pointer()))
-		qt.ConnectSignal(ptr.ObjectName(), "objectCreated", f)
-	}
-}
-
-func (ptr *QQmlApplicationEngine) DisconnectObjectCreated() {
-	if ptr.Pointer() != nil {
-		C.QQmlApplicationEngine_DisconnectObjectCreated(C.QtObjectPtr(ptr.Pointer()))
-		qt.DisconnectSignal(ptr.ObjectName(), "objectCreated")
-	}
-}
-
-//export callbackQQmlApplicationEngineObjectCreated
-func callbackQQmlApplicationEngineObjectCreated(ptrName *C.char, object unsafe.Pointer, url *C.char) {
-	qt.GetSignal(C.GoString(ptrName), "objectCreated").(func(*core.QObject, string))(core.QObjectFromPointer(object), C.GoString(url))
 }
 
 func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
 	if ptr.Pointer() != nil {
-		C.QQmlApplicationEngine_DestroyQQmlApplicationEngine(C.QtObjectPtr(ptr.Pointer()))
+		C.QQmlApplicationEngine_DestroyQQmlApplicationEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

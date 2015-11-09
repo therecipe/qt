@@ -14,6 +14,7 @@ type Function struct {
 	Overload       bool         `xml:"overload,attr"`
 	OverloadNumber string       `xml:"overload-number,attr"`
 	Output         string       `xml:"type,attr"`
+	Signature      string       `xml:"signature,attr"`
 	Parameters     []*Parameter `xml:"parameter"`
 	SignalMode     string
 }

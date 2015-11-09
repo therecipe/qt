@@ -3,6 +3,7 @@ package nfc
 //#include "qndefnfcurirecord.h"
 import "C"
 import (
+	"github.com/therecipe/qt/core"
 	"unsafe"
 )
 
@@ -10,45 +11,38 @@ type QNdefNfcUriRecord struct {
 	QNdefRecord
 }
 
-type QNdefNfcUriRecordITF interface {
-	QNdefRecordITF
-	QNdefNfcUriRecordPTR() *QNdefNfcUriRecord
+type QNdefNfcUriRecord_ITF interface {
+	QNdefRecord_ITF
+	QNdefNfcUriRecord_PTR() *QNdefNfcUriRecord
 }
 
-func PointerFromQNdefNfcUriRecord(ptr QNdefNfcUriRecordITF) unsafe.Pointer {
+func PointerFromQNdefNfcUriRecord(ptr QNdefNfcUriRecord_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNdefNfcUriRecordPTR().Pointer()
+		return ptr.QNdefNfcUriRecord_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNdefNfcUriRecordFromPointer(ptr unsafe.Pointer) *QNdefNfcUriRecord {
+func NewQNdefNfcUriRecordFromPointer(ptr unsafe.Pointer) *QNdefNfcUriRecord {
 	var n = new(QNdefNfcUriRecord)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QNdefNfcUriRecord) QNdefNfcUriRecordPTR() *QNdefNfcUriRecord {
+func (ptr *QNdefNfcUriRecord) QNdefNfcUriRecord_PTR() *QNdefNfcUriRecord {
 	return ptr
 }
 
 func NewQNdefNfcUriRecord() *QNdefNfcUriRecord {
-	return QNdefNfcUriRecordFromPointer(unsafe.Pointer(C.QNdefNfcUriRecord_NewQNdefNfcUriRecord()))
+	return NewQNdefNfcUriRecordFromPointer(C.QNdefNfcUriRecord_NewQNdefNfcUriRecord())
 }
 
-func NewQNdefNfcUriRecord2(other QNdefRecordITF) *QNdefNfcUriRecord {
-	return QNdefNfcUriRecordFromPointer(unsafe.Pointer(C.QNdefNfcUriRecord_NewQNdefNfcUriRecord2(C.QtObjectPtr(PointerFromQNdefRecord(other)))))
+func NewQNdefNfcUriRecord2(other QNdefRecord_ITF) *QNdefNfcUriRecord {
+	return NewQNdefNfcUriRecordFromPointer(C.QNdefNfcUriRecord_NewQNdefNfcUriRecord2(PointerFromQNdefRecord(other)))
 }
 
-func (ptr *QNdefNfcUriRecord) SetUri(uri string) {
+func (ptr *QNdefNfcUriRecord) SetUri(uri core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNdefNfcUriRecord_SetUri(C.QtObjectPtr(ptr.Pointer()), C.CString(uri))
+		C.QNdefNfcUriRecord_SetUri(ptr.Pointer(), core.PointerFromQUrl(uri))
 	}
-}
-
-func (ptr *QNdefNfcUriRecord) Uri() string {
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QNdefNfcUriRecord_Uri(C.QtObjectPtr(ptr.Pointer())))
-	}
-	return ""
 }

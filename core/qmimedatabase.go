@@ -10,8 +10,8 @@ type QMimeDatabase struct {
 	ptr unsafe.Pointer
 }
 
-type QMimeDatabaseITF interface {
-	QMimeDatabasePTR() *QMimeDatabase
+type QMimeDatabase_ITF interface {
+	QMimeDatabase_PTR() *QMimeDatabase
 }
 
 func (p *QMimeDatabase) Pointer() unsafe.Pointer {
@@ -22,45 +22,45 @@ func (p *QMimeDatabase) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQMimeDatabase(ptr QMimeDatabaseITF) unsafe.Pointer {
+func PointerFromQMimeDatabase(ptr QMimeDatabase_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMimeDatabasePTR().Pointer()
+		return ptr.QMimeDatabase_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMimeDatabaseFromPointer(ptr unsafe.Pointer) *QMimeDatabase {
+func NewQMimeDatabaseFromPointer(ptr unsafe.Pointer) *QMimeDatabase {
 	var n = new(QMimeDatabase)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QMimeDatabase) QMimeDatabasePTR() *QMimeDatabase {
+func (ptr *QMimeDatabase) QMimeDatabase_PTR() *QMimeDatabase {
 	return ptr
 }
 
 //QMimeDatabase::MatchMode
-type QMimeDatabase__MatchMode int
+type QMimeDatabase__MatchMode int64
 
-var (
+const (
 	QMimeDatabase__MatchDefault   = QMimeDatabase__MatchMode(0x0)
 	QMimeDatabase__MatchExtension = QMimeDatabase__MatchMode(0x1)
 	QMimeDatabase__MatchContent   = QMimeDatabase__MatchMode(0x2)
 )
 
 func NewQMimeDatabase() *QMimeDatabase {
-	return QMimeDatabaseFromPointer(unsafe.Pointer(C.QMimeDatabase_NewQMimeDatabase()))
+	return NewQMimeDatabaseFromPointer(C.QMimeDatabase_NewQMimeDatabase())
 }
 
 func (ptr *QMimeDatabase) DestroyQMimeDatabase() {
 	if ptr.Pointer() != nil {
-		C.QMimeDatabase_DestroyQMimeDatabase(C.QtObjectPtr(ptr.Pointer()))
+		C.QMimeDatabase_DestroyQMimeDatabase(ptr.Pointer())
 	}
 }
 
 func (ptr *QMimeDatabase) SuffixForFileName(fileName string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMimeDatabase_SuffixForFileName(C.QtObjectPtr(ptr.Pointer()), C.CString(fileName)))
+		return C.GoString(C.QMimeDatabase_SuffixForFileName(ptr.Pointer(), C.CString(fileName)))
 	}
 	return ""
 }

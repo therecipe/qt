@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{run QVideoFilterRunnable::run commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.h pure plain false false  QVideoFrame [0xc826b1b580 0xc826b1b840 0xc826b1b9e0] }
+&{run QVideoFilterRunnable::run commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.h pure plain false false  QVideoFrame QVideoFrame run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags) [0xc8228a67c0 0xc8228a68c0 0xc8228a69e0] }
 ########################################			ENUMS			########################################
-&{RunFlag QVideoFilterRunnable::RunFlag commendable public QVideoFilterRunnable::RunFlags [0xc826b1ac60]}
+&{RunFlag QVideoFilterRunnable::RunFlag commendable public QVideoFilterRunnable::RunFlags [0xc8228a6220] false}

@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{QDomProcessingInstruction QDomProcessingInstruction::QDomProcessingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   [] }
-&{QDomProcessingInstruction QDomProcessingInstruction::QDomProcessingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  [0xc8218e8ee0] }
-&{data QDomProcessingInstruction::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
-&{nodeType QDomProcessingInstruction::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType [] }
-&{operator= QDomProcessingInstruction::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomProcessingInstruction & [0xc8218e9660] }
-&{setData QDomProcessingInstruction::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void [0xc8218e9900] }
-&{target QDomProcessingInstruction::target commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString [] }
+&{QDomProcessingInstruction QDomProcessingInstruction::QDomProcessingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   QDomProcessingInstruction() [] }
+&{QDomProcessingInstruction QDomProcessingInstruction::QDomProcessingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomProcessingInstruction(const QDomProcessingInstruction &x) [0xc820feb5a0] }
+&{data QDomProcessingInstruction::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString data() const [] }
+&{nodeType QDomProcessingInstruction::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType QDomNode::NodeType nodeType() const [] }
+&{operator= QDomProcessingInstruction::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomProcessingInstruction & QDomProcessingInstruction & operator=(const QDomProcessingInstruction &x) [0xc820febec0] }
+&{setData QDomProcessingInstruction::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void setData(const QString &d) [0xc821090280] }
+&{target QDomProcessingInstruction::target commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString target() const [] }
 ########################################			ENUMS			########################################

@@ -12,27 +12,27 @@ type QGeoCodingManagerEngine struct {
 	core.QObject
 }
 
-type QGeoCodingManagerEngineITF interface {
-	core.QObjectITF
-	QGeoCodingManagerEnginePTR() *QGeoCodingManagerEngine
+type QGeoCodingManagerEngine_ITF interface {
+	core.QObject_ITF
+	QGeoCodingManagerEngine_PTR() *QGeoCodingManagerEngine
 }
 
-func PointerFromQGeoCodingManagerEngine(ptr QGeoCodingManagerEngineITF) unsafe.Pointer {
+func PointerFromQGeoCodingManagerEngine(ptr QGeoCodingManagerEngine_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGeoCodingManagerEnginePTR().Pointer()
+		return ptr.QGeoCodingManagerEngine_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGeoCodingManagerEngineFromPointer(ptr unsafe.Pointer) *QGeoCodingManagerEngine {
+func NewQGeoCodingManagerEngineFromPointer(ptr unsafe.Pointer) *QGeoCodingManagerEngine {
 	var n = new(QGeoCodingManagerEngine)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGeoCodingManagerEngine_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGeoCodingManagerEngine) QGeoCodingManagerEnginePTR() *QGeoCodingManagerEngine {
+func (ptr *QGeoCodingManagerEngine) QGeoCodingManagerEngine_PTR() *QGeoCodingManagerEngine {
 	return ptr
 }

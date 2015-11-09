@@ -1,48 +1,48 @@
 ########################################			FUNCTIONS			########################################
-&{getChar QIODevice::getChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.cpp non plain false false  bool [0xc82039bfc0] }
-&{putChar QIODevice::putChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.cpp non plain false false  bool [0xc8203ec220] }
-&{QIODevice QIODevice::QIODevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non constructor false false   [] }
-&{QIODevice QIODevice::QIODevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non constructor false true 2  [0xc8203ecdc0] }
-&{aboutToClose QIODevice::aboutToClose commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non signal false false  void [] }
-&{atEnd QIODevice::atEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool [] }
-&{bytesAvailable QIODevice::bytesAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  qint64 [] }
-&{bytesToWrite QIODevice::bytesToWrite commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  qint64 [] }
-&{bytesWritten QIODevice::bytesWritten commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non signal false false  void [0xc8203ed860] }
-&{canReadLine QIODevice::canReadLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool [] }
-&{close QIODevice::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  void [] }
-&{errorString QIODevice::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  QString [] }
-&{isOpen QIODevice::isOpen commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  bool [] }
-&{isReadable QIODevice::isReadable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  bool [] }
-&{isSequential QIODevice::isSequential commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool [] }
-&{isTextModeEnabled QIODevice::isTextModeEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  bool [] }
-&{isWritable QIODevice::isWritable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  bool [] }
-&{open QIODevice::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool [0xc8203da3a0] }
-&{openMode QIODevice::openMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  OpenMode [] }
-&{peek QIODevice::peek commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false true 2 QByteArray [0xc8203da6e0] }
-&{peek QIODevice::peek commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  qint64 [0xc8203da8a0 0xc8203da960] }
-&{pos QIODevice::pos commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  qint64 [] }
-&{read QIODevice::read commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false true 2 QByteArray [0xc8203daba0] }
-&{read QIODevice::read commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  qint64 [0xc8203dad80 0xc8203dae20] }
-&{readAll QIODevice::readAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  QByteArray [] }
-&{readChannelFinished QIODevice::readChannelFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non signal false false  void [] }
-&{readData QIODevice::readData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h pure plain false false  qint64 [0xc8203db2c0 0xc8203db360] }
-&{readLine QIODevice::readLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false true 2 QByteArray [0xc8203db560] }
-&{readLine QIODevice::readLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  qint64 [0xc8203db760 0xc8203db800] }
-&{readLineData QIODevice::readLineData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  qint64 [0xc8203dba40 0xc8203dbac0] }
-&{readyRead QIODevice::readyRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non signal false false  void [] }
-&{reset QIODevice::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool [] }
-&{seek QIODevice::seek commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool [0xc8203dbe60] }
-&{setErrorString QIODevice::setErrorString commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  void [0xc8203c60a0] }
-&{setOpenMode QIODevice::setOpenMode commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  void [0xc8203c62c0] }
-&{setTextModeEnabled QIODevice::setTextModeEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  void [0xc8203c6520] }
-&{size QIODevice::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  qint64 [] }
-&{ungetChar QIODevice::ungetChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  void [0xc8203c6880] }
-&{waitForBytesWritten QIODevice::waitForBytesWritten commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool [0xc8203c6b00] }
-&{waitForReadyRead QIODevice::waitForReadyRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool [0xc8203c6d80] }
-&{write QIODevice::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false true 3 qint64 [0xc8203c6f20] }
-&{write QIODevice::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false true 2 qint64 [0xc8203c7160] }
-&{write QIODevice::write commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  qint64 [0xc8203c72c0 0xc8203c7340] }
-&{writeData QIODevice::writeData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h pure plain false false  qint64 [0xc8203c75a0 0xc8203c7640] }
-&{~QIODevice QIODevice::~QIODevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure destructor false false   [] }
+&{getChar QIODevice::getChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.cpp non plain false false  bool bool getChar(char *c) [0xc8203eee00] }
+&{putChar QIODevice::putChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.cpp non plain false false  bool bool putChar(char c) [0xc8203ef0a0] }
+&{QIODevice QIODevice::QIODevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non constructor false false   QIODevice() [] }
+&{QIODevice QIODevice::QIODevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non constructor false true 2  QIODevice(QObject *parent) [0xc8203efd40] }
+&{aboutToClose QIODevice::aboutToClose commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non signal false false  void void aboutToClose() [] }
+&{atEnd QIODevice::atEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool bool atEnd() const [] }
+&{bytesAvailable QIODevice::bytesAvailable commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  qint64 qint64 bytesAvailable() const [] }
+&{bytesToWrite QIODevice::bytesToWrite commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  qint64 qint64 bytesToWrite() const [] }
+&{bytesWritten QIODevice::bytesWritten commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non signal false false  void void bytesWritten(qint64 bytes) [0xc8203de9e0] }
+&{canReadLine QIODevice::canReadLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool bool canReadLine() const [] }
+&{close QIODevice::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  void void close() [] }
+&{errorString QIODevice::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  QString QString errorString() const [] }
+&{isOpen QIODevice::isOpen commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  bool bool isOpen() const [] }
+&{isReadable QIODevice::isReadable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  bool bool isReadable() const [] }
+&{isSequential QIODevice::isSequential commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool bool isSequential() const [] }
+&{isTextModeEnabled QIODevice::isTextModeEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  bool bool isTextModeEnabled() const [] }
+&{isWritable QIODevice::isWritable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  bool bool isWritable() const [] }
+&{open QIODevice::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool bool open(OpenMode mode) [0xc8203df880] }
+&{openMode QIODevice::openMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  OpenMode OpenMode openMode() const [] }
+&{peek QIODevice::peek commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false true 2 QByteArray QByteArray peek(qint64 maxSize) [0xc8203dfc20] }
+&{peek QIODevice::peek commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  qint64 qint64 peek(char *data, qint64 maxSize) [0xc8203dfe00 0xc8203dfea0] }
+&{pos QIODevice::pos commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  qint64 qint64 pos() const [] }
+&{read QIODevice::read commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false true 2 QByteArray QByteArray read(qint64 maxSize) [0xc8203ca1e0] }
+&{read QIODevice::read commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  qint64 qint64 read(char *data, qint64 maxSize) [0xc8203ca360 0xc8203ca440] }
+&{readAll QIODevice::readAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  QByteArray QByteArray readAll() [] }
+&{readChannelFinished QIODevice::readChannelFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non signal false false  void void readChannelFinished() [] }
+&{readData QIODevice::readData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h pure plain false false  qint64 qint64 readData(char *data, qint64 maxSize) [0xc8203ca9a0 0xc8203caa20] }
+&{readLine QIODevice::readLine commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false true 2 QByteArray QByteArray readLine(qint64 maxSize) [0xc8203cac60] }
+&{readLine QIODevice::readLine commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  qint64 qint64 readLine(char *data, qint64 maxSize) [0xc8203caea0 0xc8203caf20] }
+&{readLineData QIODevice::readLineData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  qint64 qint64 readLineData(char *data, qint64 maxSize) [0xc8203cb140 0xc8203cb200] }
+&{readyRead QIODevice::readyRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non signal false false  void void readyRead() [] }
+&{reset QIODevice::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool bool reset() [] }
+&{seek QIODevice::seek commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool bool seek(qint64 pos) [0xc8203cb660] }
+&{setErrorString QIODevice::setErrorString commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  void void setErrorString(const QString &str) [0xc8203cb880] }
+&{setOpenMode QIODevice::setOpenMode commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  void void setOpenMode(OpenMode openMode) [0xc8203cbac0] }
+&{setTextModeEnabled QIODevice::setTextModeEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  void void setTextModeEnabled(bool enabled) [0xc8203cbd40] }
+&{size QIODevice::size commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  qint64 qint64 size() const [] }
+&{ungetChar QIODevice::ungetChar commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  void void ungetChar(char c) [0xc8203b00c0] }
+&{waitForBytesWritten QIODevice::waitForBytesWritten commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool bool waitForBytesWritten(int msecs) [0xc8203b02e0] }
+&{waitForReadyRead QIODevice::waitForReadyRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure plain false false  bool bool waitForReadyRead(int msecs) [0xc8203b0500] }
+&{write QIODevice::write commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false true 3 qint64 qint64 write(const QByteArray &byteArray) [0xc8203b06e0] }
+&{write QIODevice::write commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false true 2 qint64 qint64 write(const char *data) [0xc8203b0940] }
+&{write QIODevice::write commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h non plain false false  qint64 qint64 write(const char *data, qint64 maxSize) [0xc8203b0b00 0xc8203b0bc0] }
+&{writeData QIODevice::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h pure plain false false  qint64 qint64 writeData(const char *data, qint64 maxSize) [0xc8203b0da0 0xc8203b0e60] }
+&{~QIODevice QIODevice::~QIODevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qiodevice.h impure destructor false false   ~QIODevice() [] }
 ########################################			ENUMS			########################################
-&{OpenModeFlag QIODevice::OpenModeFlag commendable public QIODevice::OpenMode [0xc8203ec4e0 0xc8203ec580 0xc8203ec600 0xc8203ec700 0xc8203ec7e0 0xc8203ec880 0xc8203ec920 0xc8203eca00]}
+&{OpenModeFlag QIODevice::OpenModeFlag commendable public QIODevice::OpenMode [0xc8203ef3e0 0xc8203ef460 0xc8203ef520 0xc8203ef5c0 0xc8203ef720 0xc8203ef7a0 0xc8203ef860 0xc8203ef8e0] false}

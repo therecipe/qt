@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSensorBackend>
 #include <QSensor>
+#include <QSensorBackend>
 #include <QSensorBackendFactory>
 #include "_cgo_export.h"
 
@@ -12,7 +12,7 @@ class MyQSensorBackendFactory: public QSensorBackendFactory {
 public:
 };
 
-QtObjectPtr QSensorBackendFactory_CreateBackend(QtObjectPtr ptr, QtObjectPtr sensor){
+void* QSensorBackendFactory_CreateBackend(void* ptr, void* sensor){
 	return static_cast<QSensorBackendFactory*>(ptr)->createBackend(static_cast<QSensor*>(sensor));
 }
 

@@ -10,8 +10,8 @@ type QJsonParseError struct {
 	ptr unsafe.Pointer
 }
 
-type QJsonParseErrorITF interface {
-	QJsonParseErrorPTR() *QJsonParseError
+type QJsonParseError_ITF interface {
+	QJsonParseError_PTR() *QJsonParseError
 }
 
 func (p *QJsonParseError) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QJsonParseError) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQJsonParseError(ptr QJsonParseErrorITF) unsafe.Pointer {
+func PointerFromQJsonParseError(ptr QJsonParseError_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QJsonParseErrorPTR().Pointer()
+		return ptr.QJsonParseError_PTR().Pointer()
 	}
 	return nil
 }
 
-func QJsonParseErrorFromPointer(ptr unsafe.Pointer) *QJsonParseError {
+func NewQJsonParseErrorFromPointer(ptr unsafe.Pointer) *QJsonParseError {
 	var n = new(QJsonParseError)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QJsonParseError) QJsonParseErrorPTR() *QJsonParseError {
+func (ptr *QJsonParseError) QJsonParseError_PTR() *QJsonParseError {
 	return ptr
 }
 
 //QJsonParseError::ParseError
-type QJsonParseError__ParseError int
+type QJsonParseError__ParseError int64
 
-var (
+const (
 	QJsonParseError__NoError               = QJsonParseError__ParseError(0)
 	QJsonParseError__UnterminatedObject    = QJsonParseError__ParseError(1)
 	QJsonParseError__MissingNameSeparator  = QJsonParseError__ParseError(2)
@@ -62,7 +62,7 @@ var (
 
 func (ptr *QJsonParseError) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QJsonParseError_ErrorString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QJsonParseError_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }

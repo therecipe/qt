@@ -10,15 +10,15 @@ class MyQDomCDATASection: public QDomCDATASection {
 public:
 };
 
-QtObjectPtr QDomCDATASection_NewQDomCDATASection(){
+void* QDomCDATASection_NewQDomCDATASection(){
 	return new QDomCDATASection();
 }
 
-QtObjectPtr QDomCDATASection_NewQDomCDATASection2(QtObjectPtr x){
+void* QDomCDATASection_NewQDomCDATASection2(void* x){
 	return new QDomCDATASection(*static_cast<QDomCDATASection*>(x));
 }
 
-int QDomCDATASection_NodeType(QtObjectPtr ptr){
+int QDomCDATASection_NodeType(void* ptr){
 	return static_cast<QDomCDATASection*>(ptr)->nodeType();
 }
 

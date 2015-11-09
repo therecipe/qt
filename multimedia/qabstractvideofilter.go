@@ -12,54 +12,54 @@ type QAbstractVideoFilter struct {
 	core.QObject
 }
 
-type QAbstractVideoFilterITF interface {
-	core.QObjectITF
-	QAbstractVideoFilterPTR() *QAbstractVideoFilter
+type QAbstractVideoFilter_ITF interface {
+	core.QObject_ITF
+	QAbstractVideoFilter_PTR() *QAbstractVideoFilter
 }
 
-func PointerFromQAbstractVideoFilter(ptr QAbstractVideoFilterITF) unsafe.Pointer {
+func PointerFromQAbstractVideoFilter(ptr QAbstractVideoFilter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAbstractVideoFilterPTR().Pointer()
+		return ptr.QAbstractVideoFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAbstractVideoFilterFromPointer(ptr unsafe.Pointer) *QAbstractVideoFilter {
+func NewQAbstractVideoFilterFromPointer(ptr unsafe.Pointer) *QAbstractVideoFilter {
 	var n = new(QAbstractVideoFilter)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAbstractVideoFilter_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAbstractVideoFilter) QAbstractVideoFilterPTR() *QAbstractVideoFilter {
+func (ptr *QAbstractVideoFilter) QAbstractVideoFilter_PTR() *QAbstractVideoFilter {
 	return ptr
 }
 
 func (ptr *QAbstractVideoFilter) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoFilter_IsActive(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QAbstractVideoFilter_IsActive(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractVideoFilter) SetActive(v bool) {
 	if ptr.Pointer() != nil {
-		C.QAbstractVideoFilter_SetActive(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(v)))
+		C.QAbstractVideoFilter_SetActive(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
 	}
 }
 
 func (ptr *QAbstractVideoFilter) ConnectActiveChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QAbstractVideoFilter_ConnectActiveChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractVideoFilter_ConnectActiveChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "activeChanged", f)
 	}
 }
 
 func (ptr *QAbstractVideoFilter) DisconnectActiveChanged() {
 	if ptr.Pointer() != nil {
-		C.QAbstractVideoFilter_DisconnectActiveChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractVideoFilter_DisconnectActiveChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "activeChanged")
 	}
 }
@@ -71,7 +71,7 @@ func callbackQAbstractVideoFilterActiveChanged(ptrName *C.char) {
 
 func (ptr *QAbstractVideoFilter) CreateFilterRunnable() *QVideoFilterRunnable {
 	if ptr.Pointer() != nil {
-		return QVideoFilterRunnableFromPointer(unsafe.Pointer(C.QAbstractVideoFilter_CreateFilterRunnable(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQVideoFilterRunnableFromPointer(C.QAbstractVideoFilter_CreateFilterRunnable(ptr.Pointer()))
 	}
 	return nil
 }

@@ -1,9 +1,9 @@
 #include "qmetadatareadercontrol.h"
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
 #include <QMetaDataReaderControl>
 #include "_cgo_export.h"
 
@@ -13,35 +13,35 @@ void Signal_MetaDataAvailableChanged(bool available){callbackQMetaDataReaderCont
 void Signal_MetaDataChanged(){callbackQMetaDataReaderControlMetaDataChanged(this->objectName().toUtf8().data());};
 };
 
-char* QMetaDataReaderControl_AvailableMetaData(QtObjectPtr ptr){
+char* QMetaDataReaderControl_AvailableMetaData(void* ptr){
 	return static_cast<QMetaDataReaderControl*>(ptr)->availableMetaData().join("|").toUtf8().data();
 }
 
-int QMetaDataReaderControl_IsMetaDataAvailable(QtObjectPtr ptr){
+int QMetaDataReaderControl_IsMetaDataAvailable(void* ptr){
 	return static_cast<QMetaDataReaderControl*>(ptr)->isMetaDataAvailable();
 }
 
-char* QMetaDataReaderControl_MetaData(QtObjectPtr ptr, char* key){
-	return static_cast<QMetaDataReaderControl*>(ptr)->metaData(QString(key)).toString().toUtf8().data();
+void* QMetaDataReaderControl_MetaData(void* ptr, char* key){
+	return new QVariant(static_cast<QMetaDataReaderControl*>(ptr)->metaData(QString(key)));
 }
 
-void QMetaDataReaderControl_ConnectMetaDataAvailableChanged(QtObjectPtr ptr){
+void QMetaDataReaderControl_ConnectMetaDataAvailableChanged(void* ptr){
 	QObject::connect(static_cast<QMetaDataReaderControl*>(ptr), static_cast<void (QMetaDataReaderControl::*)(bool)>(&QMetaDataReaderControl::metaDataAvailableChanged), static_cast<MyQMetaDataReaderControl*>(ptr), static_cast<void (MyQMetaDataReaderControl::*)(bool)>(&MyQMetaDataReaderControl::Signal_MetaDataAvailableChanged));;
 }
 
-void QMetaDataReaderControl_DisconnectMetaDataAvailableChanged(QtObjectPtr ptr){
+void QMetaDataReaderControl_DisconnectMetaDataAvailableChanged(void* ptr){
 	QObject::disconnect(static_cast<QMetaDataReaderControl*>(ptr), static_cast<void (QMetaDataReaderControl::*)(bool)>(&QMetaDataReaderControl::metaDataAvailableChanged), static_cast<MyQMetaDataReaderControl*>(ptr), static_cast<void (MyQMetaDataReaderControl::*)(bool)>(&MyQMetaDataReaderControl::Signal_MetaDataAvailableChanged));;
 }
 
-void QMetaDataReaderControl_ConnectMetaDataChanged(QtObjectPtr ptr){
+void QMetaDataReaderControl_ConnectMetaDataChanged(void* ptr){
 	QObject::connect(static_cast<QMetaDataReaderControl*>(ptr), static_cast<void (QMetaDataReaderControl::*)()>(&QMetaDataReaderControl::metaDataChanged), static_cast<MyQMetaDataReaderControl*>(ptr), static_cast<void (MyQMetaDataReaderControl::*)()>(&MyQMetaDataReaderControl::Signal_MetaDataChanged));;
 }
 
-void QMetaDataReaderControl_DisconnectMetaDataChanged(QtObjectPtr ptr){
+void QMetaDataReaderControl_DisconnectMetaDataChanged(void* ptr){
 	QObject::disconnect(static_cast<QMetaDataReaderControl*>(ptr), static_cast<void (QMetaDataReaderControl::*)()>(&QMetaDataReaderControl::metaDataChanged), static_cast<MyQMetaDataReaderControl*>(ptr), static_cast<void (MyQMetaDataReaderControl::*)()>(&MyQMetaDataReaderControl::Signal_MetaDataChanged));;
 }
 
-void QMetaDataReaderControl_DestroyQMetaDataReaderControl(QtObjectPtr ptr){
+void QMetaDataReaderControl_DestroyQMetaDataReaderControl(void* ptr){
 	static_cast<QMetaDataReaderControl*>(ptr)->~QMetaDataReaderControl();
 }
 

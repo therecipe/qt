@@ -11,35 +11,35 @@ type QAmbientLightReading struct {
 	QSensorReading
 }
 
-type QAmbientLightReadingITF interface {
-	QSensorReadingITF
-	QAmbientLightReadingPTR() *QAmbientLightReading
+type QAmbientLightReading_ITF interface {
+	QSensorReading_ITF
+	QAmbientLightReading_PTR() *QAmbientLightReading
 }
 
-func PointerFromQAmbientLightReading(ptr QAmbientLightReadingITF) unsafe.Pointer {
+func PointerFromQAmbientLightReading(ptr QAmbientLightReading_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAmbientLightReadingPTR().Pointer()
+		return ptr.QAmbientLightReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAmbientLightReadingFromPointer(ptr unsafe.Pointer) *QAmbientLightReading {
+func NewQAmbientLightReadingFromPointer(ptr unsafe.Pointer) *QAmbientLightReading {
 	var n = new(QAmbientLightReading)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAmbientLightReading_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAmbientLightReading) QAmbientLightReadingPTR() *QAmbientLightReading {
+func (ptr *QAmbientLightReading) QAmbientLightReading_PTR() *QAmbientLightReading {
 	return ptr
 }
 
 //QAmbientLightReading::LightLevel
-type QAmbientLightReading__LightLevel int
+type QAmbientLightReading__LightLevel int64
 
-var (
+const (
 	QAmbientLightReading__Undefined = QAmbientLightReading__LightLevel(0)
 	QAmbientLightReading__Dark      = QAmbientLightReading__LightLevel(1)
 	QAmbientLightReading__Twilight  = QAmbientLightReading__LightLevel(2)
@@ -50,13 +50,13 @@ var (
 
 func (ptr *QAmbientLightReading) LightLevel() QAmbientLightReading__LightLevel {
 	if ptr.Pointer() != nil {
-		return QAmbientLightReading__LightLevel(C.QAmbientLightReading_LightLevel(C.QtObjectPtr(ptr.Pointer())))
+		return QAmbientLightReading__LightLevel(C.QAmbientLightReading_LightLevel(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAmbientLightReading) SetLightLevel(lightLevel QAmbientLightReading__LightLevel) {
 	if ptr.Pointer() != nil {
-		C.QAmbientLightReading_SetLightLevel(C.QtObjectPtr(ptr.Pointer()), C.int(lightLevel))
+		C.QAmbientLightReading_SetLightLevel(ptr.Pointer(), C.int(lightLevel))
 	}
 }

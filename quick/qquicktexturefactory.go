@@ -12,48 +12,48 @@ type QQuickTextureFactory struct {
 	core.QObject
 }
 
-type QQuickTextureFactoryITF interface {
-	core.QObjectITF
-	QQuickTextureFactoryPTR() *QQuickTextureFactory
+type QQuickTextureFactory_ITF interface {
+	core.QObject_ITF
+	QQuickTextureFactory_PTR() *QQuickTextureFactory
 }
 
-func PointerFromQQuickTextureFactory(ptr QQuickTextureFactoryITF) unsafe.Pointer {
+func PointerFromQQuickTextureFactory(ptr QQuickTextureFactory_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QQuickTextureFactoryPTR().Pointer()
+		return ptr.QQuickTextureFactory_PTR().Pointer()
 	}
 	return nil
 }
 
-func QQuickTextureFactoryFromPointer(ptr unsafe.Pointer) *QQuickTextureFactory {
+func NewQQuickTextureFactoryFromPointer(ptr unsafe.Pointer) *QQuickTextureFactory {
 	var n = new(QQuickTextureFactory)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QQuickTextureFactory_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QQuickTextureFactory) QQuickTextureFactoryPTR() *QQuickTextureFactory {
+func (ptr *QQuickTextureFactory) QQuickTextureFactory_PTR() *QQuickTextureFactory {
 	return ptr
 }
 
-func (ptr *QQuickTextureFactory) CreateTexture(window QQuickWindowITF) *QSGTexture {
+func (ptr *QQuickTextureFactory) CreateTexture(window QQuickWindow_ITF) *QSGTexture {
 	if ptr.Pointer() != nil {
-		return QSGTextureFromPointer(unsafe.Pointer(C.QQuickTextureFactory_CreateTexture(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQQuickWindow(window)))))
+		return NewQSGTextureFromPointer(C.QQuickTextureFactory_CreateTexture(ptr.Pointer(), PointerFromQQuickWindow(window)))
 	}
 	return nil
 }
 
 func (ptr *QQuickTextureFactory) TextureByteCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QQuickTextureFactory_TextureByteCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QQuickTextureFactory_TextureByteCount(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QQuickTextureFactory) DestroyQQuickTextureFactory() {
 	if ptr.Pointer() != nil {
-		C.QQuickTextureFactory_DestroyQQuickTextureFactory(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickTextureFactory_DestroyQQuickTextureFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

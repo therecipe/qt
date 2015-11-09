@@ -1,11 +1,11 @@
 #include "qmediacontent.h"
+#include <QNetworkRequest>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMediaPlaylist>
-#include <QNetworkRequest>
 #include <QMediaResource>
-#include <QString>
 #include <QMediaContent>
 #include "_cgo_export.h"
 
@@ -13,43 +13,39 @@ class MyQMediaContent: public QMediaContent {
 public:
 };
 
-QtObjectPtr QMediaContent_NewQMediaContent(){
+void* QMediaContent_NewQMediaContent(){
 	return new QMediaContent();
 }
 
-QtObjectPtr QMediaContent_NewQMediaContent7(QtObjectPtr playlist, char* contentUrl, int takeOwnership){
-	return new QMediaContent(static_cast<QMediaPlaylist*>(playlist), QUrl(QString(contentUrl)), takeOwnership != 0);
+void* QMediaContent_NewQMediaContent7(void* playlist, void* contentUrl, int takeOwnership){
+	return new QMediaContent(static_cast<QMediaPlaylist*>(playlist), *static_cast<QUrl*>(contentUrl), takeOwnership != 0);
 }
 
-QtObjectPtr QMediaContent_NewQMediaContent6(QtObjectPtr other){
+void* QMediaContent_NewQMediaContent6(void* other){
 	return new QMediaContent(*static_cast<QMediaContent*>(other));
 }
 
-QtObjectPtr QMediaContent_NewQMediaContent4(QtObjectPtr resource){
+void* QMediaContent_NewQMediaContent4(void* resource){
 	return new QMediaContent(*static_cast<QMediaResource*>(resource));
 }
 
-QtObjectPtr QMediaContent_NewQMediaContent3(QtObjectPtr request){
+void* QMediaContent_NewQMediaContent3(void* request){
 	return new QMediaContent(*static_cast<QNetworkRequest*>(request));
 }
 
-QtObjectPtr QMediaContent_NewQMediaContent2(char* url){
-	return new QMediaContent(QUrl(QString(url)));
+void* QMediaContent_NewQMediaContent2(void* url){
+	return new QMediaContent(*static_cast<QUrl*>(url));
 }
 
-char* QMediaContent_CanonicalUrl(QtObjectPtr ptr){
-	return static_cast<QMediaContent*>(ptr)->canonicalUrl().toString().toUtf8().data();
-}
-
-int QMediaContent_IsNull(QtObjectPtr ptr){
+int QMediaContent_IsNull(void* ptr){
 	return static_cast<QMediaContent*>(ptr)->isNull();
 }
 
-QtObjectPtr QMediaContent_Playlist(QtObjectPtr ptr){
+void* QMediaContent_Playlist(void* ptr){
 	return static_cast<QMediaContent*>(ptr)->playlist();
 }
 
-void QMediaContent_DestroyQMediaContent(QtObjectPtr ptr){
+void QMediaContent_DestroyQMediaContent(void* ptr){
 	static_cast<QMediaContent*>(ptr)->~QMediaContent();
 }
 

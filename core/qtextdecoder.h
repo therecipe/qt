@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QTextDecoder_NewQTextDecoder(QtObjectPtr codec);
-QtObjectPtr QTextDecoder_NewQTextDecoder2(QtObjectPtr codec, int flags);
-void QTextDecoder_DestroyQTextDecoder(QtObjectPtr ptr);
+void* QTextDecoder_NewQTextDecoder(void* codec);
+void* QTextDecoder_NewQTextDecoder2(void* codec, int flags);
+void QTextDecoder_DestroyQTextDecoder(void* ptr);
 
 #ifdef __cplusplus
 }

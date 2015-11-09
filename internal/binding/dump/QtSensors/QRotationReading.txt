@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{x QRotationReading::x commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  qreal [] }
-&{y QRotationReading::y commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  qreal [] }
-&{z QRotationReading::z commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  qreal [] }
-&{setFromEuler QRotationReading::setFromEuler commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non plain false false  void [0xc822e14300 0xc822e143a0 0xc822e14440] }
+&{x QRotationReading::x commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  qreal qreal x() const [] }
+&{y QRotationReading::y commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  qreal qreal y() const [] }
+&{z QRotationReading::z commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  qreal qreal z() const [] }
+&{setFromEuler QRotationReading::setFromEuler commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non plain false false  void void setFromEuler(qreal x, qreal y, qreal z) [0xc8235a9720 0xc8235a9800 0xc8235a98e0] }
 ########################################			ENUMS			########################################

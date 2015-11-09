@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QAbstractListModel_Index(QtObjectPtr ptr, int row, int column, QtObjectPtr parent);
-int QAbstractListModel_DropMimeData(QtObjectPtr ptr, QtObjectPtr data, int action, int row, int column, QtObjectPtr parent);
-int QAbstractListModel_Flags(QtObjectPtr ptr, QtObjectPtr index);
-QtObjectPtr QAbstractListModel_Sibling(QtObjectPtr ptr, int row, int column, QtObjectPtr idx);
-void QAbstractListModel_DestroyQAbstractListModel(QtObjectPtr ptr);
+void* QAbstractListModel_Index(void* ptr, int row, int column, void* parent);
+int QAbstractListModel_DropMimeData(void* ptr, void* data, int action, int row, int column, void* parent);
+int QAbstractListModel_Flags(void* ptr, void* index);
+void* QAbstractListModel_Sibling(void* ptr, int row, int column, void* idx);
+void QAbstractListModel_DestroyQAbstractListModel(void* ptr);
 
 #ifdef __cplusplus
 }

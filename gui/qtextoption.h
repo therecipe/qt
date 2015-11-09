@@ -1,22 +1,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QTextOption_NewQTextOption3(QtObjectPtr other);
-QtObjectPtr QTextOption_NewQTextOption();
-QtObjectPtr QTextOption_NewQTextOption2(int alignment);
-int QTextOption_Alignment(QtObjectPtr ptr);
-int QTextOption_Flags(QtObjectPtr ptr);
-void QTextOption_SetAlignment(QtObjectPtr ptr, int alignment);
-void QTextOption_SetFlags(QtObjectPtr ptr, int flags);
-void QTextOption_SetTextDirection(QtObjectPtr ptr, int direction);
-void QTextOption_SetUseDesignMetrics(QtObjectPtr ptr, int enable);
-void QTextOption_SetWrapMode(QtObjectPtr ptr, int mode);
-int QTextOption_TextDirection(QtObjectPtr ptr);
-int QTextOption_UseDesignMetrics(QtObjectPtr ptr);
-int QTextOption_WrapMode(QtObjectPtr ptr);
-void QTextOption_DestroyQTextOption(QtObjectPtr ptr);
+void* QTextOption_NewQTextOption3(void* other);
+void* QTextOption_NewQTextOption();
+void* QTextOption_NewQTextOption2(int alignment);
+int QTextOption_Alignment(void* ptr);
+int QTextOption_Flags(void* ptr);
+void QTextOption_SetAlignment(void* ptr, int alignment);
+void QTextOption_SetFlags(void* ptr, int flags);
+void QTextOption_SetTabStop(void* ptr, double tabStop);
+void QTextOption_SetTextDirection(void* ptr, int direction);
+void QTextOption_SetUseDesignMetrics(void* ptr, int enable);
+void QTextOption_SetWrapMode(void* ptr, int mode);
+double QTextOption_TabStop(void* ptr);
+int QTextOption_TextDirection(void* ptr);
+int QTextOption_UseDesignMetrics(void* ptr);
+int QTextOption_WrapMode(void* ptr);
+void QTextOption_DestroyQTextOption(void* ptr);
 
 #ifdef __cplusplus
 }

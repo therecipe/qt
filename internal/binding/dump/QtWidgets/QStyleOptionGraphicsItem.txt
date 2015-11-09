@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{QStyleOptionGraphicsItem QStyleOptionGraphicsItem::QStyleOptionGraphicsItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
-&{QStyleOptionGraphicsItem QStyleOptionGraphicsItem::QStyleOptionGraphicsItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8214851e0] }
-&{levelOfDetailFromTransform QStyleOptionGraphicsItem::levelOfDetailFromTransform commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non plain true false  qreal [0xc821485b60] }
+&{QStyleOptionGraphicsItem QStyleOptionGraphicsItem::QStyleOptionGraphicsItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionGraphicsItem() [] }
+&{QStyleOptionGraphicsItem QStyleOptionGraphicsItem::QStyleOptionGraphicsItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionGraphicsItem(const QStyleOptionGraphicsItem &other) [0xc82219afa0] }
+&{levelOfDetailFromTransform QStyleOptionGraphicsItem::levelOfDetailFromTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non plain true false  qreal qreal levelOfDetailFromTransform(const QTransform &worldTransform) [0xc82219b760] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionGraphicsItem::StyleOptionType commendable public  [0xc821484700]}
-&{StyleOptionVersion QStyleOptionGraphicsItem::StyleOptionVersion commendable public  [0xc821484b40]}
+&{StyleOptionType QStyleOptionGraphicsItem::StyleOptionType commendable public  [0xc82219a5a0] false}
+&{StyleOptionVersion QStyleOptionGraphicsItem::StyleOptionVersion commendable public  [0xc82219a920] false}

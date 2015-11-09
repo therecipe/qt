@@ -1,12 +1,12 @@
 #include "qoffscreensurface.h"
+#include <QModelIndex>
 #include <QSurfaceFormat>
+#include <QScreen>
 #include <QObject>
+#include <QSurface>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QScreen>
-#include <QSurface>
 #include <QOffscreenSurface>
 #include "_cgo_export.h"
 
@@ -15,47 +15,47 @@ public:
 void Signal_ScreenChanged(QScreen * screen){callbackQOffscreenSurfaceScreenChanged(this->objectName().toUtf8().data(), screen);};
 };
 
-QtObjectPtr QOffscreenSurface_NewQOffscreenSurface(QtObjectPtr targetScreen){
+void* QOffscreenSurface_NewQOffscreenSurface(void* targetScreen){
 	return new QOffscreenSurface(static_cast<QScreen*>(targetScreen));
 }
 
-void QOffscreenSurface_Create(QtObjectPtr ptr){
+void QOffscreenSurface_Create(void* ptr){
 	static_cast<QOffscreenSurface*>(ptr)->create();
 }
 
-void QOffscreenSurface_Destroy(QtObjectPtr ptr){
+void QOffscreenSurface_Destroy(void* ptr){
 	static_cast<QOffscreenSurface*>(ptr)->destroy();
 }
 
-int QOffscreenSurface_IsValid(QtObjectPtr ptr){
+int QOffscreenSurface_IsValid(void* ptr){
 	return static_cast<QOffscreenSurface*>(ptr)->isValid();
 }
 
-QtObjectPtr QOffscreenSurface_Screen(QtObjectPtr ptr){
+void* QOffscreenSurface_Screen(void* ptr){
 	return static_cast<QOffscreenSurface*>(ptr)->screen();
 }
 
-void QOffscreenSurface_ConnectScreenChanged(QtObjectPtr ptr){
+void QOffscreenSurface_ConnectScreenChanged(void* ptr){
 	QObject::connect(static_cast<QOffscreenSurface*>(ptr), static_cast<void (QOffscreenSurface::*)(QScreen *)>(&QOffscreenSurface::screenChanged), static_cast<MyQOffscreenSurface*>(ptr), static_cast<void (MyQOffscreenSurface::*)(QScreen *)>(&MyQOffscreenSurface::Signal_ScreenChanged));;
 }
 
-void QOffscreenSurface_DisconnectScreenChanged(QtObjectPtr ptr){
+void QOffscreenSurface_DisconnectScreenChanged(void* ptr){
 	QObject::disconnect(static_cast<QOffscreenSurface*>(ptr), static_cast<void (QOffscreenSurface::*)(QScreen *)>(&QOffscreenSurface::screenChanged), static_cast<MyQOffscreenSurface*>(ptr), static_cast<void (MyQOffscreenSurface::*)(QScreen *)>(&MyQOffscreenSurface::Signal_ScreenChanged));;
 }
 
-void QOffscreenSurface_SetFormat(QtObjectPtr ptr, QtObjectPtr format){
+void QOffscreenSurface_SetFormat(void* ptr, void* format){
 	static_cast<QOffscreenSurface*>(ptr)->setFormat(*static_cast<QSurfaceFormat*>(format));
 }
 
-void QOffscreenSurface_SetScreen(QtObjectPtr ptr, QtObjectPtr newScreen){
+void QOffscreenSurface_SetScreen(void* ptr, void* newScreen){
 	static_cast<QOffscreenSurface*>(ptr)->setScreen(static_cast<QScreen*>(newScreen));
 }
 
-int QOffscreenSurface_SurfaceType(QtObjectPtr ptr){
+int QOffscreenSurface_SurfaceType(void* ptr){
 	return static_cast<QOffscreenSurface*>(ptr)->surfaceType();
 }
 
-void QOffscreenSurface_DestroyQOffscreenSurface(QtObjectPtr ptr){
+void QOffscreenSurface_DestroyQOffscreenSurface(void* ptr){
 	static_cast<QOffscreenSurface*>(ptr)->~QOffscreenSurface();
 }
 

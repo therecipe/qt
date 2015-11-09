@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QXmlLocator_ColumnNumber(QtObjectPtr ptr);
-int QXmlLocator_LineNumber(QtObjectPtr ptr);
-void QXmlLocator_DestroyQXmlLocator(QtObjectPtr ptr);
+int QXmlLocator_ColumnNumber(void* ptr);
+int QXmlLocator_LineNumber(void* ptr);
+void QXmlLocator_DestroyQXmlLocator(void* ptr);
 
 #ifdef __cplusplus
 }

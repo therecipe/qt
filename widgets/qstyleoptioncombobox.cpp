@@ -12,11 +12,11 @@ class MyQStyleOptionComboBox: public QStyleOptionComboBox {
 public:
 };
 
-QtObjectPtr QStyleOptionComboBox_NewQStyleOptionComboBox(){
+void* QStyleOptionComboBox_NewQStyleOptionComboBox(){
 	return new QStyleOptionComboBox();
 }
 
-QtObjectPtr QStyleOptionComboBox_NewQStyleOptionComboBox2(QtObjectPtr other){
+void* QStyleOptionComboBox_NewQStyleOptionComboBox2(void* other){
 	return new QStyleOptionComboBox(*static_cast<QStyleOptionComboBox*>(other));
 }
 

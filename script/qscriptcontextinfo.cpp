@@ -1,9 +1,9 @@
 #include "qscriptcontextinfo.h"
-#include <QModelIndex>
 #include <QScriptContext>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QScriptContextInfo>
 #include "_cgo_export.h"
 
@@ -11,55 +11,55 @@ class MyQScriptContextInfo: public QScriptContextInfo {
 public:
 };
 
-QtObjectPtr QScriptContextInfo_NewQScriptContextInfo3(){
+void* QScriptContextInfo_NewQScriptContextInfo3(){
 	return new QScriptContextInfo();
 }
 
-QtObjectPtr QScriptContextInfo_NewQScriptContextInfo(QtObjectPtr context){
+void* QScriptContextInfo_NewQScriptContextInfo(void* context){
 	return new QScriptContextInfo(static_cast<QScriptContext*>(context));
 }
 
-QtObjectPtr QScriptContextInfo_NewQScriptContextInfo2(QtObjectPtr other){
+void* QScriptContextInfo_NewQScriptContextInfo2(void* other){
 	return new QScriptContextInfo(*static_cast<QScriptContextInfo*>(other));
 }
 
-char* QScriptContextInfo_FileName(QtObjectPtr ptr){
+char* QScriptContextInfo_FileName(void* ptr){
 	return static_cast<QScriptContextInfo*>(ptr)->fileName().toUtf8().data();
 }
 
-int QScriptContextInfo_FunctionEndLineNumber(QtObjectPtr ptr){
+int QScriptContextInfo_FunctionEndLineNumber(void* ptr){
 	return static_cast<QScriptContextInfo*>(ptr)->functionEndLineNumber();
 }
 
-int QScriptContextInfo_FunctionMetaIndex(QtObjectPtr ptr){
+int QScriptContextInfo_FunctionMetaIndex(void* ptr){
 	return static_cast<QScriptContextInfo*>(ptr)->functionMetaIndex();
 }
 
-char* QScriptContextInfo_FunctionName(QtObjectPtr ptr){
+char* QScriptContextInfo_FunctionName(void* ptr){
 	return static_cast<QScriptContextInfo*>(ptr)->functionName().toUtf8().data();
 }
 
-char* QScriptContextInfo_FunctionParameterNames(QtObjectPtr ptr){
+char* QScriptContextInfo_FunctionParameterNames(void* ptr){
 	return static_cast<QScriptContextInfo*>(ptr)->functionParameterNames().join("|").toUtf8().data();
 }
 
-int QScriptContextInfo_FunctionStartLineNumber(QtObjectPtr ptr){
+int QScriptContextInfo_FunctionStartLineNumber(void* ptr){
 	return static_cast<QScriptContextInfo*>(ptr)->functionStartLineNumber();
 }
 
-int QScriptContextInfo_FunctionType(QtObjectPtr ptr){
+int QScriptContextInfo_FunctionType(void* ptr){
 	return static_cast<QScriptContextInfo*>(ptr)->functionType();
 }
 
-int QScriptContextInfo_IsNull(QtObjectPtr ptr){
+int QScriptContextInfo_IsNull(void* ptr){
 	return static_cast<QScriptContextInfo*>(ptr)->isNull();
 }
 
-int QScriptContextInfo_LineNumber(QtObjectPtr ptr){
+int QScriptContextInfo_LineNumber(void* ptr){
 	return static_cast<QScriptContextInfo*>(ptr)->lineNumber();
 }
 
-void QScriptContextInfo_DestroyQScriptContextInfo(QtObjectPtr ptr){
+void QScriptContextInfo_DestroyQScriptContextInfo(void* ptr){
 	static_cast<QScriptContextInfo*>(ptr)->~QScriptContextInfo();
 }
 

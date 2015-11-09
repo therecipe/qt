@@ -10,44 +10,37 @@ type QSimpleXmlNodeModel struct {
 	QAbstractXmlNodeModel
 }
 
-type QSimpleXmlNodeModelITF interface {
-	QAbstractXmlNodeModelITF
-	QSimpleXmlNodeModelPTR() *QSimpleXmlNodeModel
+type QSimpleXmlNodeModel_ITF interface {
+	QAbstractXmlNodeModel_ITF
+	QSimpleXmlNodeModel_PTR() *QSimpleXmlNodeModel
 }
 
-func PointerFromQSimpleXmlNodeModel(ptr QSimpleXmlNodeModelITF) unsafe.Pointer {
+func PointerFromQSimpleXmlNodeModel(ptr QSimpleXmlNodeModel_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSimpleXmlNodeModelPTR().Pointer()
+		return ptr.QSimpleXmlNodeModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSimpleXmlNodeModelFromPointer(ptr unsafe.Pointer) *QSimpleXmlNodeModel {
+func NewQSimpleXmlNodeModelFromPointer(ptr unsafe.Pointer) *QSimpleXmlNodeModel {
 	var n = new(QSimpleXmlNodeModel)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSimpleXmlNodeModel) QSimpleXmlNodeModelPTR() *QSimpleXmlNodeModel {
+func (ptr *QSimpleXmlNodeModel) QSimpleXmlNodeModel_PTR() *QSimpleXmlNodeModel {
 	return ptr
 }
 
-func (ptr *QSimpleXmlNodeModel) BaseUri(node QXmlNodeModelIndexITF) string {
+func (ptr *QSimpleXmlNodeModel) StringValue(node QXmlNodeModelIndex_ITF) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSimpleXmlNodeModel_BaseUri(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlNodeModelIndex(node))))
-	}
-	return ""
-}
-
-func (ptr *QSimpleXmlNodeModel) StringValue(node QXmlNodeModelIndexITF) string {
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QSimpleXmlNodeModel_StringValue(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlNodeModelIndex(node))))
+		return C.GoString(C.QSimpleXmlNodeModel_StringValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
 	}
 	return ""
 }
 
 func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModel() {
 	if ptr.Pointer() != nil {
-		C.QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(C.QtObjectPtr(ptr.Pointer()))
+		C.QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(ptr.Pointer())
 	}
 }

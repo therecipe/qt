@@ -10,8 +10,8 @@ type QGraphicsLayoutItem struct {
 	ptr unsafe.Pointer
 }
 
-type QGraphicsLayoutItemITF interface {
-	QGraphicsLayoutItemPTR() *QGraphicsLayoutItem
+type QGraphicsLayoutItem_ITF interface {
+	QGraphicsLayoutItem_PTR() *QGraphicsLayoutItem
 }
 
 func (p *QGraphicsLayoutItem) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QGraphicsLayoutItem) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQGraphicsLayoutItem(ptr QGraphicsLayoutItemITF) unsafe.Pointer {
+func PointerFromQGraphicsLayoutItem(ptr QGraphicsLayoutItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsLayoutItemPTR().Pointer()
+		return ptr.QGraphicsLayoutItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsLayoutItemFromPointer(ptr unsafe.Pointer) *QGraphicsLayoutItem {
+func NewQGraphicsLayoutItemFromPointer(ptr unsafe.Pointer) *QGraphicsLayoutItem {
 	var n = new(QGraphicsLayoutItem)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsLayoutItem) QGraphicsLayoutItemPTR() *QGraphicsLayoutItem {
+func (ptr *QGraphicsLayoutItem) QGraphicsLayoutItem_PTR() *QGraphicsLayoutItem {
 	return ptr
 }

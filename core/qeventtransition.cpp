@@ -1,11 +1,11 @@
 #include "qeventtransition.h"
-#include <QObject>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QEvent>
 #include <QState>
+#include <QObject>
+#include <QEvent>
+#include <QString>
+#include <QVariant>
 #include <QEventTransition>
 #include "_cgo_export.h"
 
@@ -13,31 +13,31 @@ class MyQEventTransition: public QEventTransition {
 public:
 };
 
-QtObjectPtr QEventTransition_NewQEventTransition2(QtObjectPtr object, int ty, QtObjectPtr sourceState){
+void* QEventTransition_NewQEventTransition2(void* object, int ty, void* sourceState){
 	return new QEventTransition(static_cast<QObject*>(object), static_cast<QEvent::Type>(ty), static_cast<QState*>(sourceState));
 }
 
-QtObjectPtr QEventTransition_NewQEventTransition(QtObjectPtr sourceState){
+void* QEventTransition_NewQEventTransition(void* sourceState){
 	return new QEventTransition(static_cast<QState*>(sourceState));
 }
 
-QtObjectPtr QEventTransition_EventSource(QtObjectPtr ptr){
+void* QEventTransition_EventSource(void* ptr){
 	return static_cast<QEventTransition*>(ptr)->eventSource();
 }
 
-int QEventTransition_EventType(QtObjectPtr ptr){
+int QEventTransition_EventType(void* ptr){
 	return static_cast<QEventTransition*>(ptr)->eventType();
 }
 
-void QEventTransition_SetEventSource(QtObjectPtr ptr, QtObjectPtr object){
+void QEventTransition_SetEventSource(void* ptr, void* object){
 	static_cast<QEventTransition*>(ptr)->setEventSource(static_cast<QObject*>(object));
 }
 
-void QEventTransition_SetEventType(QtObjectPtr ptr, int ty){
+void QEventTransition_SetEventType(void* ptr, int ty){
 	static_cast<QEventTransition*>(ptr)->setEventType(static_cast<QEvent::Type>(ty));
 }
 
-void QEventTransition_DestroyQEventTransition(QtObjectPtr ptr){
+void QEventTransition_DestroyQEventTransition(void* ptr){
 	static_cast<QEventTransition*>(ptr)->~QEventTransition();
 }
 

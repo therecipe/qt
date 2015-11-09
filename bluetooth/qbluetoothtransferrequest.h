@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QBluetoothTransferRequest_NewQBluetoothTransferRequest(QtObjectPtr address);
-QtObjectPtr QBluetoothTransferRequest_NewQBluetoothTransferRequest2(QtObjectPtr other);
-char* QBluetoothTransferRequest_Attribute(QtObjectPtr ptr, int code, char* defaultValue);
-void QBluetoothTransferRequest_SetAttribute(QtObjectPtr ptr, int code, char* value);
-void QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(QtObjectPtr ptr);
+void* QBluetoothTransferRequest_NewQBluetoothTransferRequest(void* address);
+void* QBluetoothTransferRequest_NewQBluetoothTransferRequest2(void* other);
+void* QBluetoothTransferRequest_Attribute(void* ptr, int code, void* defaultValue);
+void QBluetoothTransferRequest_SetAttribute(void* ptr, int code, void* value);
+void QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(void* ptr);
 
 #ifdef __cplusplus
 }

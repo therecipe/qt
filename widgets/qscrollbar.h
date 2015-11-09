@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QScrollBar_NewQScrollBar(QtObjectPtr parent);
-QtObjectPtr QScrollBar_NewQScrollBar2(int orientation, QtObjectPtr parent);
-int QScrollBar_Event(QtObjectPtr ptr, QtObjectPtr event);
-void QScrollBar_DestroyQScrollBar(QtObjectPtr ptr);
+void* QScrollBar_NewQScrollBar(void* parent);
+void* QScrollBar_NewQScrollBar2(int orientation, void* parent);
+int QScrollBar_Event(void* ptr, void* event);
+void QScrollBar_DestroyQScrollBar(void* ptr);
 
 #ifdef __cplusplus
 }

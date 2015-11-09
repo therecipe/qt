@@ -1,14 +1,14 @@
 #include "qmdiarea.h"
-#include <QVariant>
-#include <QModelIndex>
-#include <QTabWidget>
 #include <QMdiSubWindow>
+#include <QObject>
+#include <QVariant>
+#include <QTabWidget>
+#include <QModelIndex>
 #include <QMetaObject>
-#include <QString>
-#include <QUrl>
 #include <QWidget>
 #include <QBrush>
-#include <QObject>
+#include <QString>
+#include <QUrl>
 #include <QMdiArea>
 #include "_cgo_export.h"
 
@@ -17,131 +17,135 @@ public:
 void Signal_SubWindowActivated(QMdiSubWindow * window){callbackQMdiAreaSubWindowActivated(this->objectName().toUtf8().data(), window);};
 };
 
-int QMdiArea_ActivationOrder(QtObjectPtr ptr){
+int QMdiArea_ActivationOrder(void* ptr){
 	return static_cast<QMdiArea*>(ptr)->activationOrder();
 }
 
-int QMdiArea_DocumentMode(QtObjectPtr ptr){
+void* QMdiArea_Background(void* ptr){
+	return new QBrush(static_cast<QMdiArea*>(ptr)->background());
+}
+
+int QMdiArea_DocumentMode(void* ptr){
 	return static_cast<QMdiArea*>(ptr)->documentMode();
 }
 
-void QMdiArea_SetActivationOrder(QtObjectPtr ptr, int order){
+void QMdiArea_SetActivationOrder(void* ptr, int order){
 	static_cast<QMdiArea*>(ptr)->setActivationOrder(static_cast<QMdiArea::WindowOrder>(order));
 }
 
-void QMdiArea_SetBackground(QtObjectPtr ptr, QtObjectPtr background){
+void QMdiArea_SetBackground(void* ptr, void* background){
 	static_cast<QMdiArea*>(ptr)->setBackground(*static_cast<QBrush*>(background));
 }
 
-void QMdiArea_SetDocumentMode(QtObjectPtr ptr, int enabled){
+void QMdiArea_SetDocumentMode(void* ptr, int enabled){
 	static_cast<QMdiArea*>(ptr)->setDocumentMode(enabled != 0);
 }
 
-void QMdiArea_SetTabPosition(QtObjectPtr ptr, int position){
+void QMdiArea_SetTabPosition(void* ptr, int position){
 	static_cast<QMdiArea*>(ptr)->setTabPosition(static_cast<QTabWidget::TabPosition>(position));
 }
 
-void QMdiArea_SetTabShape(QtObjectPtr ptr, int shape){
+void QMdiArea_SetTabShape(void* ptr, int shape){
 	static_cast<QMdiArea*>(ptr)->setTabShape(static_cast<QTabWidget::TabShape>(shape));
 }
 
-void QMdiArea_SetTabsClosable(QtObjectPtr ptr, int closable){
+void QMdiArea_SetTabsClosable(void* ptr, int closable){
 	static_cast<QMdiArea*>(ptr)->setTabsClosable(closable != 0);
 }
 
-void QMdiArea_SetTabsMovable(QtObjectPtr ptr, int movable){
+void QMdiArea_SetTabsMovable(void* ptr, int movable){
 	static_cast<QMdiArea*>(ptr)->setTabsMovable(movable != 0);
 }
 
-void QMdiArea_SetViewMode(QtObjectPtr ptr, int mode){
+void QMdiArea_SetViewMode(void* ptr, int mode){
 	static_cast<QMdiArea*>(ptr)->setViewMode(static_cast<QMdiArea::ViewMode>(mode));
 }
 
-int QMdiArea_TabPosition(QtObjectPtr ptr){
+int QMdiArea_TabPosition(void* ptr){
 	return static_cast<QMdiArea*>(ptr)->tabPosition();
 }
 
-int QMdiArea_TabShape(QtObjectPtr ptr){
+int QMdiArea_TabShape(void* ptr){
 	return static_cast<QMdiArea*>(ptr)->tabShape();
 }
 
-int QMdiArea_TabsClosable(QtObjectPtr ptr){
+int QMdiArea_TabsClosable(void* ptr){
 	return static_cast<QMdiArea*>(ptr)->tabsClosable();
 }
 
-int QMdiArea_TabsMovable(QtObjectPtr ptr){
+int QMdiArea_TabsMovable(void* ptr){
 	return static_cast<QMdiArea*>(ptr)->tabsMovable();
 }
 
-int QMdiArea_ViewMode(QtObjectPtr ptr){
+int QMdiArea_ViewMode(void* ptr){
 	return static_cast<QMdiArea*>(ptr)->viewMode();
 }
 
-QtObjectPtr QMdiArea_NewQMdiArea(QtObjectPtr parent){
+void* QMdiArea_NewQMdiArea(void* parent){
 	return new QMdiArea(static_cast<QWidget*>(parent));
 }
 
-void QMdiArea_ActivateNextSubWindow(QtObjectPtr ptr){
+void QMdiArea_ActivateNextSubWindow(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "activateNextSubWindow");
 }
 
-void QMdiArea_ActivatePreviousSubWindow(QtObjectPtr ptr){
+void QMdiArea_ActivatePreviousSubWindow(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "activatePreviousSubWindow");
 }
 
-QtObjectPtr QMdiArea_ActiveSubWindow(QtObjectPtr ptr){
+void* QMdiArea_ActiveSubWindow(void* ptr){
 	return static_cast<QMdiArea*>(ptr)->activeSubWindow();
 }
 
-QtObjectPtr QMdiArea_AddSubWindow(QtObjectPtr ptr, QtObjectPtr widget, int windowFlags){
+void* QMdiArea_AddSubWindow(void* ptr, void* widget, int windowFlags){
 	return static_cast<QMdiArea*>(ptr)->addSubWindow(static_cast<QWidget*>(widget), static_cast<Qt::WindowType>(windowFlags));
 }
 
-void QMdiArea_CascadeSubWindows(QtObjectPtr ptr){
+void QMdiArea_CascadeSubWindows(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "cascadeSubWindows");
 }
 
-void QMdiArea_CloseActiveSubWindow(QtObjectPtr ptr){
+void QMdiArea_CloseActiveSubWindow(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "closeActiveSubWindow");
 }
 
-void QMdiArea_CloseAllSubWindows(QtObjectPtr ptr){
+void QMdiArea_CloseAllSubWindows(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "closeAllSubWindows");
 }
 
-QtObjectPtr QMdiArea_CurrentSubWindow(QtObjectPtr ptr){
+void* QMdiArea_CurrentSubWindow(void* ptr){
 	return static_cast<QMdiArea*>(ptr)->currentSubWindow();
 }
 
-void QMdiArea_RemoveSubWindow(QtObjectPtr ptr, QtObjectPtr widget){
+void QMdiArea_RemoveSubWindow(void* ptr, void* widget){
 	static_cast<QMdiArea*>(ptr)->removeSubWindow(static_cast<QWidget*>(widget));
 }
 
-void QMdiArea_SetActiveSubWindow(QtObjectPtr ptr, QtObjectPtr window){
+void QMdiArea_SetActiveSubWindow(void* ptr, void* window){
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "setActiveSubWindow", Q_ARG(QMdiSubWindow*, static_cast<QMdiSubWindow*>(window)));
 }
 
-void QMdiArea_SetOption(QtObjectPtr ptr, int option, int on){
+void QMdiArea_SetOption(void* ptr, int option, int on){
 	static_cast<QMdiArea*>(ptr)->setOption(static_cast<QMdiArea::AreaOption>(option), on != 0);
 }
 
-void QMdiArea_ConnectSubWindowActivated(QtObjectPtr ptr){
+void QMdiArea_ConnectSubWindowActivated(void* ptr){
 	QObject::connect(static_cast<QMdiArea*>(ptr), static_cast<void (QMdiArea::*)(QMdiSubWindow *)>(&QMdiArea::subWindowActivated), static_cast<MyQMdiArea*>(ptr), static_cast<void (MyQMdiArea::*)(QMdiSubWindow *)>(&MyQMdiArea::Signal_SubWindowActivated));;
 }
 
-void QMdiArea_DisconnectSubWindowActivated(QtObjectPtr ptr){
+void QMdiArea_DisconnectSubWindowActivated(void* ptr){
 	QObject::disconnect(static_cast<QMdiArea*>(ptr), static_cast<void (QMdiArea::*)(QMdiSubWindow *)>(&QMdiArea::subWindowActivated), static_cast<MyQMdiArea*>(ptr), static_cast<void (MyQMdiArea::*)(QMdiSubWindow *)>(&MyQMdiArea::Signal_SubWindowActivated));;
 }
 
-int QMdiArea_TestOption(QtObjectPtr ptr, int option){
+int QMdiArea_TestOption(void* ptr, int option){
 	return static_cast<QMdiArea*>(ptr)->testOption(static_cast<QMdiArea::AreaOption>(option));
 }
 
-void QMdiArea_TileSubWindows(QtObjectPtr ptr){
+void QMdiArea_TileSubWindows(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "tileSubWindows");
 }
 
-void QMdiArea_DestroyQMdiArea(QtObjectPtr ptr){
+void QMdiArea_DestroyQMdiArea(void* ptr){
 	static_cast<QMdiArea*>(ptr)->~QMdiArea();
 }
 

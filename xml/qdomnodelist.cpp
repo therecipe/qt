@@ -13,31 +13,31 @@ class MyQDomNodeList: public QDomNodeList {
 public:
 };
 
-QtObjectPtr QDomNodeList_NewQDomNodeList(){
+void* QDomNodeList_NewQDomNodeList(){
 	return new QDomNodeList();
 }
 
-QtObjectPtr QDomNodeList_NewQDomNodeList2(QtObjectPtr n){
+void* QDomNodeList_NewQDomNodeList2(void* n){
 	return new QDomNodeList(*static_cast<QDomNodeList*>(n));
 }
 
-int QDomNodeList_Count(QtObjectPtr ptr){
+int QDomNodeList_Count(void* ptr){
 	return static_cast<QDomNodeList*>(ptr)->count();
 }
 
-int QDomNodeList_IsEmpty(QtObjectPtr ptr){
+int QDomNodeList_IsEmpty(void* ptr){
 	return static_cast<QDomNodeList*>(ptr)->isEmpty();
 }
 
-int QDomNodeList_Length(QtObjectPtr ptr){
+int QDomNodeList_Length(void* ptr){
 	return static_cast<QDomNodeList*>(ptr)->length();
 }
 
-int QDomNodeList_Size(QtObjectPtr ptr){
+int QDomNodeList_Size(void* ptr){
 	return static_cast<QDomNodeList*>(ptr)->size();
 }
 
-void QDomNodeList_DestroyQDomNodeList(QtObjectPtr ptr){
+void QDomNodeList_DestroyQDomNodeList(void* ptr){
 	static_cast<QDomNodeList*>(ptr)->~QDomNodeList();
 }
 

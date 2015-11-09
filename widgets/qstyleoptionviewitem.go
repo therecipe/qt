@@ -10,32 +10,32 @@ type QStyleOptionViewItem struct {
 	QStyleOption
 }
 
-type QStyleOptionViewItemITF interface {
-	QStyleOptionITF
-	QStyleOptionViewItemPTR() *QStyleOptionViewItem
+type QStyleOptionViewItem_ITF interface {
+	QStyleOption_ITF
+	QStyleOptionViewItem_PTR() *QStyleOptionViewItem
 }
 
-func PointerFromQStyleOptionViewItem(ptr QStyleOptionViewItemITF) unsafe.Pointer {
+func PointerFromQStyleOptionViewItem(ptr QStyleOptionViewItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionViewItemPTR().Pointer()
+		return ptr.QStyleOptionViewItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionViewItemFromPointer(ptr unsafe.Pointer) *QStyleOptionViewItem {
+func NewQStyleOptionViewItemFromPointer(ptr unsafe.Pointer) *QStyleOptionViewItem {
 	var n = new(QStyleOptionViewItem)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionViewItem) QStyleOptionViewItemPTR() *QStyleOptionViewItem {
+func (ptr *QStyleOptionViewItem) QStyleOptionViewItem_PTR() *QStyleOptionViewItem {
 	return ptr
 }
 
 //QStyleOptionViewItem::Position
-type QStyleOptionViewItem__Position int
+type QStyleOptionViewItem__Position int64
 
-var (
+const (
 	QStyleOptionViewItem__Left   = QStyleOptionViewItem__Position(0)
 	QStyleOptionViewItem__Right  = QStyleOptionViewItem__Position(1)
 	QStyleOptionViewItem__Top    = QStyleOptionViewItem__Position(2)
@@ -43,23 +43,23 @@ var (
 )
 
 //QStyleOptionViewItem::StyleOptionType
-type QStyleOptionViewItem__StyleOptionType int
+type QStyleOptionViewItem__StyleOptionType int64
 
 var (
 	QStyleOptionViewItem__Type = QStyleOptionViewItem__StyleOptionType(QStyleOption__SO_ViewItem)
 )
 
 //QStyleOptionViewItem::StyleOptionVersion
-type QStyleOptionViewItem__StyleOptionVersion int
+type QStyleOptionViewItem__StyleOptionVersion int64
 
 var (
 	QStyleOptionViewItem__Version = QStyleOptionViewItem__StyleOptionVersion(4)
 )
 
 //QStyleOptionViewItem::ViewItemFeature
-type QStyleOptionViewItem__ViewItemFeature int
+type QStyleOptionViewItem__ViewItemFeature int64
 
-var (
+const (
 	QStyleOptionViewItem__None              = QStyleOptionViewItem__ViewItemFeature(0x00)
 	QStyleOptionViewItem__WrapText          = QStyleOptionViewItem__ViewItemFeature(0x01)
 	QStyleOptionViewItem__Alternate         = QStyleOptionViewItem__ViewItemFeature(0x02)
@@ -69,9 +69,9 @@ var (
 )
 
 //QStyleOptionViewItem::ViewItemPosition
-type QStyleOptionViewItem__ViewItemPosition int
+type QStyleOptionViewItem__ViewItemPosition int64
 
-var (
+const (
 	QStyleOptionViewItem__Invalid   = QStyleOptionViewItem__ViewItemPosition(0)
 	QStyleOptionViewItem__Beginning = QStyleOptionViewItem__ViewItemPosition(1)
 	QStyleOptionViewItem__Middle    = QStyleOptionViewItem__ViewItemPosition(2)
@@ -80,9 +80,9 @@ var (
 )
 
 func NewQStyleOptionViewItem() *QStyleOptionViewItem {
-	return QStyleOptionViewItemFromPointer(unsafe.Pointer(C.QStyleOptionViewItem_NewQStyleOptionViewItem()))
+	return NewQStyleOptionViewItemFromPointer(C.QStyleOptionViewItem_NewQStyleOptionViewItem())
 }
 
-func NewQStyleOptionViewItem2(other QStyleOptionViewItemITF) *QStyleOptionViewItem {
-	return QStyleOptionViewItemFromPointer(unsafe.Pointer(C.QStyleOptionViewItem_NewQStyleOptionViewItem2(C.QtObjectPtr(PointerFromQStyleOptionViewItem(other)))))
+func NewQStyleOptionViewItem2(other QStyleOptionViewItem_ITF) *QStyleOptionViewItem {
+	return NewQStyleOptionViewItemFromPointer(C.QStyleOptionViewItem_NewQStyleOptionViewItem2(PointerFromQStyleOptionViewItem(other)))
 }

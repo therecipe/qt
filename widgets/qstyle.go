@@ -13,35 +13,35 @@ type QStyle struct {
 	core.QObject
 }
 
-type QStyleITF interface {
-	core.QObjectITF
-	QStylePTR() *QStyle
+type QStyle_ITF interface {
+	core.QObject_ITF
+	QStyle_PTR() *QStyle
 }
 
-func PointerFromQStyle(ptr QStyleITF) unsafe.Pointer {
+func PointerFromQStyle(ptr QStyle_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStylePTR().Pointer()
+		return ptr.QStyle_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleFromPointer(ptr unsafe.Pointer) *QStyle {
+func NewQStyleFromPointer(ptr unsafe.Pointer) *QStyle {
 	var n = new(QStyle)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QStyle_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QStyle) QStylePTR() *QStyle {
+func (ptr *QStyle) QStyle_PTR() *QStyle {
 	return ptr
 }
 
 //QStyle::ComplexControl
-type QStyle__ComplexControl int
+type QStyle__ComplexControl int64
 
-var (
+const (
 	QStyle__CC_SpinBox     = QStyle__ComplexControl(0)
 	QStyle__CC_ComboBox    = QStyle__ComplexControl(1)
 	QStyle__CC_ScrollBar   = QStyle__ComplexControl(2)
@@ -55,9 +55,9 @@ var (
 )
 
 //QStyle::ContentsType
-type QStyle__ContentsType int
+type QStyle__ContentsType int64
 
-var (
+const (
 	QStyle__CT_PushButton    = QStyle__ContentsType(0)
 	QStyle__CT_CheckBox      = QStyle__ContentsType(1)
 	QStyle__CT_RadioButton   = QStyle__ContentsType(2)
@@ -85,9 +85,9 @@ var (
 )
 
 //QStyle::ControlElement
-type QStyle__ControlElement int
+type QStyle__ControlElement int64
 
-var (
+const (
 	QStyle__CE_PushButton          = QStyle__ControlElement(0)
 	QStyle__CE_PushButtonBevel     = QStyle__ControlElement(1)
 	QStyle__CE_PushButtonLabel     = QStyle__ControlElement(2)
@@ -139,7 +139,7 @@ var (
 )
 
 //QStyle::PixelMetric
-type QStyle__PixelMetric int
+type QStyle__PixelMetric int64
 
 var (
 	QStyle__PM_ButtonMargin                       = QStyle__PixelMetric(0)
@@ -242,7 +242,7 @@ var (
 )
 
 //QStyle::PrimitiveElement
-type QStyle__PrimitiveElement int
+type QStyle__PrimitiveElement int64
 
 var (
 	QStyle__PE_Frame                           = QStyle__PrimitiveElement(0)
@@ -300,17 +300,17 @@ var (
 )
 
 //QStyle::RequestSoftwareInputPanel
-type QStyle__RequestSoftwareInputPanel int
+type QStyle__RequestSoftwareInputPanel int64
 
-var (
+const (
 	QStyle__RSIP_OnMouseClickAndAlreadyFocused = QStyle__RequestSoftwareInputPanel(0)
 	QStyle__RSIP_OnMouseClick                  = QStyle__RequestSoftwareInputPanel(1)
 )
 
 //QStyle::StandardPixmap
-type QStyle__StandardPixmap int
+type QStyle__StandardPixmap int64
 
-var (
+const (
 	QStyle__SP_TitleBarMenuButton               = QStyle__StandardPixmap(0)
 	QStyle__SP_TitleBarMinButton                = QStyle__StandardPixmap(1)
 	QStyle__SP_TitleBarMaxButton                = QStyle__StandardPixmap(2)
@@ -386,9 +386,9 @@ var (
 )
 
 //QStyle::StateFlag
-type QStyle__StateFlag int
+type QStyle__StateFlag int64
 
-var (
+const (
 	QStyle__State_None                = QStyle__StateFlag(0x00000000)
 	QStyle__State_Enabled             = QStyle__StateFlag(0x00000001)
 	QStyle__State_Raised              = QStyle__StateFlag(0x00000002)
@@ -421,7 +421,7 @@ var (
 )
 
 //QStyle::StyleHint
-type QStyle__StyleHint int
+type QStyle__StyleHint int64
 
 var (
 	QStyle__SH_EtchDisabledText                               = QStyle__StyleHint(0)
@@ -541,9 +541,9 @@ var (
 )
 
 //QStyle::SubControl
-type QStyle__SubControl int
+type QStyle__SubControl int64
 
-var (
+const (
 	QStyle__SC_None                      = QStyle__SubControl(0x00000000)
 	QStyle__SC_ScrollBarAddLine          = QStyle__SubControl(0x00000001)
 	QStyle__SC_ScrollBarSubLine          = QStyle__SubControl(0x00000002)
@@ -590,7 +590,7 @@ var (
 )
 
 //QStyle::SubElement
-type QStyle__SubElement int
+type QStyle__SubElement int64
 
 var (
 	QStyle__SE_PushButtonContents         = QStyle__SubElement(0)
@@ -651,33 +651,33 @@ var (
 	QStyle__SE_CustomBase                 = QStyle__SubElement(0xf0000000)
 )
 
-func (ptr *QStyle) DrawItemPixmap(painter gui.QPainterITF, rectangle core.QRectITF, alignment int, pixmap gui.QPixmapITF) {
+func (ptr *QStyle) DrawItemPixmap(painter gui.QPainter_ITF, rectangle core.QRect_ITF, alignment int, pixmap gui.QPixmap_ITF) {
 	if ptr.Pointer() != nil {
-		C.QStyle_DrawItemPixmap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.int(alignment), C.QtObjectPtr(gui.PointerFromQPixmap(pixmap)))
+		C.QStyle_DrawItemPixmap(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(alignment), gui.PointerFromQPixmap(pixmap))
 	}
 }
 
-func (ptr *QStyle) DrawItemText(painter gui.QPainterITF, rectangle core.QRectITF, alignment int, palette gui.QPaletteITF, enabled bool, text string, textRole gui.QPalette__ColorRole) {
+func (ptr *QStyle) DrawItemText(painter gui.QPainter_ITF, rectangle core.QRect_ITF, alignment int, palette gui.QPalette_ITF, enabled bool, text string, textRole gui.QPalette__ColorRole) {
 	if ptr.Pointer() != nil {
-		C.QStyle_DrawItemText(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(core.PointerFromQRect(rectangle)), C.int(alignment), C.QtObjectPtr(gui.PointerFromQPalette(palette)), C.int(qt.GoBoolToInt(enabled)), C.CString(text), C.int(textRole))
+		C.QStyle_DrawItemText(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(alignment), gui.PointerFromQPalette(palette), C.int(qt.GoBoolToInt(enabled)), C.CString(text), C.int(textRole))
 	}
 }
 
-func (ptr *QStyle) Polish2(application QApplicationITF) {
+func (ptr *QStyle) Polish2(application QApplication_ITF) {
 	if ptr.Pointer() != nil {
-		C.QStyle_Polish2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQApplication(application)))
+		C.QStyle_Polish2(ptr.Pointer(), PointerFromQApplication(application))
 	}
 }
 
-func (ptr *QStyle) Polish3(palette gui.QPaletteITF) {
+func (ptr *QStyle) Polish3(palette gui.QPalette_ITF) {
 	if ptr.Pointer() != nil {
-		C.QStyle_Polish3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPalette(palette)))
+		C.QStyle_Polish3(ptr.Pointer(), gui.PointerFromQPalette(palette))
 	}
 }
 
 func (ptr *QStyle) Proxy() *QStyle {
 	if ptr.Pointer() != nil {
-		return QStyleFromPointer(unsafe.Pointer(C.QStyle_Proxy(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQStyleFromPointer(C.QStyle_Proxy(ptr.Pointer()))
 	}
 	return nil
 }
@@ -686,61 +686,61 @@ func QStyle_SliderValueFromPosition(min int, max int, position int, span int, up
 	return int(C.QStyle_QStyle_SliderValueFromPosition(C.int(min), C.int(max), C.int(position), C.int(span), C.int(qt.GoBoolToInt(upsideDown))))
 }
 
-func (ptr *QStyle) Unpolish2(application QApplicationITF) {
+func (ptr *QStyle) Unpolish2(application QApplication_ITF) {
 	if ptr.Pointer() != nil {
-		C.QStyle_Unpolish2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQApplication(application)))
+		C.QStyle_Unpolish2(ptr.Pointer(), PointerFromQApplication(application))
 	}
 }
 
-func (ptr *QStyle) CombinedLayoutSpacing(controls1 QSizePolicy__ControlType, controls2 QSizePolicy__ControlType, orientation core.Qt__Orientation, option QStyleOptionITF, widget QWidgetITF) int {
+func (ptr *QStyle) CombinedLayoutSpacing(controls1 QSizePolicy__ControlType, controls2 QSizePolicy__ControlType, orientation core.Qt__Orientation, option QStyleOption_ITF, widget QWidget_ITF) int {
 	if ptr.Pointer() != nil {
-		return int(C.QStyle_CombinedLayoutSpacing(C.QtObjectPtr(ptr.Pointer()), C.int(controls1), C.int(controls2), C.int(orientation), C.QtObjectPtr(PointerFromQStyleOption(option)), C.QtObjectPtr(PointerFromQWidget(widget))))
-	}
-	return 0
-}
-
-func (ptr *QStyle) DrawComplexControl(control QStyle__ComplexControl, option QStyleOptionComplexITF, painter gui.QPainterITF, widget QWidgetITF) {
-	if ptr.Pointer() != nil {
-		C.QStyle_DrawComplexControl(C.QtObjectPtr(ptr.Pointer()), C.int(control), C.QtObjectPtr(PointerFromQStyleOptionComplex(option)), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(PointerFromQWidget(widget)))
-	}
-}
-
-func (ptr *QStyle) DrawControl(element QStyle__ControlElement, option QStyleOptionITF, painter gui.QPainterITF, widget QWidgetITF) {
-	if ptr.Pointer() != nil {
-		C.QStyle_DrawControl(C.QtObjectPtr(ptr.Pointer()), C.int(element), C.QtObjectPtr(PointerFromQStyleOption(option)), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(PointerFromQWidget(widget)))
-	}
-}
-
-func (ptr *QStyle) DrawPrimitive(element QStyle__PrimitiveElement, option QStyleOptionITF, painter gui.QPainterITF, widget QWidgetITF) {
-	if ptr.Pointer() != nil {
-		C.QStyle_DrawPrimitive(C.QtObjectPtr(ptr.Pointer()), C.int(element), C.QtObjectPtr(PointerFromQStyleOption(option)), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(PointerFromQWidget(widget)))
-	}
-}
-
-func (ptr *QStyle) HitTestComplexControl(control QStyle__ComplexControl, option QStyleOptionComplexITF, position core.QPointITF, widget QWidgetITF) QStyle__SubControl {
-	if ptr.Pointer() != nil {
-		return QStyle__SubControl(C.QStyle_HitTestComplexControl(C.QtObjectPtr(ptr.Pointer()), C.int(control), C.QtObjectPtr(PointerFromQStyleOptionComplex(option)), C.QtObjectPtr(core.PointerFromQPoint(position)), C.QtObjectPtr(PointerFromQWidget(widget))))
+		return int(C.QStyle_CombinedLayoutSpacing(ptr.Pointer(), C.int(controls1), C.int(controls2), C.int(orientation), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
 	}
 	return 0
 }
 
-func (ptr *QStyle) LayoutSpacing(control1 QSizePolicy__ControlType, control2 QSizePolicy__ControlType, orientation core.Qt__Orientation, option QStyleOptionITF, widget QWidgetITF) int {
+func (ptr *QStyle) DrawComplexControl(control QStyle__ComplexControl, option QStyleOptionComplex_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		return int(C.QStyle_LayoutSpacing(C.QtObjectPtr(ptr.Pointer()), C.int(control1), C.int(control2), C.int(orientation), C.QtObjectPtr(PointerFromQStyleOption(option)), C.QtObjectPtr(PointerFromQWidget(widget))))
+		C.QStyle_DrawComplexControl(ptr.Pointer(), C.int(control), PointerFromQStyleOptionComplex(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QStyle) DrawControl(element QStyle__ControlElement, option QStyleOption_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle_DrawControl(ptr.Pointer(), C.int(element), PointerFromQStyleOption(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QStyle) DrawPrimitive(element QStyle__PrimitiveElement, option QStyleOption_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle_DrawPrimitive(ptr.Pointer(), C.int(element), PointerFromQStyleOption(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
+	}
+}
+
+func (ptr *QStyle) HitTestComplexControl(control QStyle__ComplexControl, option QStyleOptionComplex_ITF, position core.QPoint_ITF, widget QWidget_ITF) QStyle__SubControl {
+	if ptr.Pointer() != nil {
+		return QStyle__SubControl(C.QStyle_HitTestComplexControl(ptr.Pointer(), C.int(control), PointerFromQStyleOptionComplex(option), core.PointerFromQPoint(position), PointerFromQWidget(widget)))
 	}
 	return 0
 }
 
-func (ptr *QStyle) PixelMetric(metric QStyle__PixelMetric, option QStyleOptionITF, widget QWidgetITF) int {
+func (ptr *QStyle) LayoutSpacing(control1 QSizePolicy__ControlType, control2 QSizePolicy__ControlType, orientation core.Qt__Orientation, option QStyleOption_ITF, widget QWidget_ITF) int {
 	if ptr.Pointer() != nil {
-		return int(C.QStyle_PixelMetric(C.QtObjectPtr(ptr.Pointer()), C.int(metric), C.QtObjectPtr(PointerFromQStyleOption(option)), C.QtObjectPtr(PointerFromQWidget(widget))))
+		return int(C.QStyle_LayoutSpacing(ptr.Pointer(), C.int(control1), C.int(control2), C.int(orientation), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
 	}
 	return 0
 }
 
-func (ptr *QStyle) Polish(widget QWidgetITF) {
+func (ptr *QStyle) PixelMetric(metric QStyle__PixelMetric, option QStyleOption_ITF, widget QWidget_ITF) int {
 	if ptr.Pointer() != nil {
-		C.QStyle_Polish(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget)))
+		return int(C.QStyle_PixelMetric(ptr.Pointer(), C.int(metric), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
+	}
+	return 0
+}
+
+func (ptr *QStyle) Polish(widget QWidget_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStyle_Polish(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
@@ -748,16 +748,16 @@ func QStyle_SliderPositionFromValue(min int, max int, logicalValue int, span int
 	return int(C.QStyle_QStyle_SliderPositionFromValue(C.int(min), C.int(max), C.int(logicalValue), C.int(span), C.int(qt.GoBoolToInt(upsideDown))))
 }
 
-func (ptr *QStyle) StyleHint(hint QStyle__StyleHint, option QStyleOptionITF, widget QWidgetITF, returnData QStyleHintReturnITF) int {
+func (ptr *QStyle) StyleHint(hint QStyle__StyleHint, option QStyleOption_ITF, widget QWidget_ITF, returnData QStyleHintReturn_ITF) int {
 	if ptr.Pointer() != nil {
-		return int(C.QStyle_StyleHint(C.QtObjectPtr(ptr.Pointer()), C.int(hint), C.QtObjectPtr(PointerFromQStyleOption(option)), C.QtObjectPtr(PointerFromQWidget(widget)), C.QtObjectPtr(PointerFromQStyleHintReturn(returnData))))
+		return int(C.QStyle_StyleHint(ptr.Pointer(), C.int(hint), PointerFromQStyleOption(option), PointerFromQWidget(widget), PointerFromQStyleHintReturn(returnData)))
 	}
 	return 0
 }
 
-func (ptr *QStyle) Unpolish(widget QWidgetITF) {
+func (ptr *QStyle) Unpolish(widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QStyle_Unpolish(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QStyle_Unpolish(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
@@ -767,7 +767,7 @@ func QStyle_VisualAlignment(direction core.Qt__LayoutDirection, alignment core.Q
 
 func (ptr *QStyle) DestroyQStyle() {
 	if ptr.Pointer() != nil {
-		C.QStyle_DestroyQStyle(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyle_DestroyQStyle(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

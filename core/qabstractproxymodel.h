@@ -1,33 +1,32 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QAbstractProxyModel_Buddy(QtObjectPtr ptr, QtObjectPtr index);
-int QAbstractProxyModel_CanDropMimeData(QtObjectPtr ptr, QtObjectPtr data, int action, int row, int column, QtObjectPtr parent);
-int QAbstractProxyModel_CanFetchMore(QtObjectPtr ptr, QtObjectPtr parent);
-char* QAbstractProxyModel_Data(QtObjectPtr ptr, QtObjectPtr proxyIndex, int role);
-int QAbstractProxyModel_DropMimeData(QtObjectPtr ptr, QtObjectPtr data, int action, int row, int column, QtObjectPtr parent);
-void QAbstractProxyModel_FetchMore(QtObjectPtr ptr, QtObjectPtr parent);
-int QAbstractProxyModel_Flags(QtObjectPtr ptr, QtObjectPtr index);
-int QAbstractProxyModel_HasChildren(QtObjectPtr ptr, QtObjectPtr parent);
-char* QAbstractProxyModel_HeaderData(QtObjectPtr ptr, int section, int orientation, int role);
-QtObjectPtr QAbstractProxyModel_MapFromSource(QtObjectPtr ptr, QtObjectPtr sourceIndex);
-QtObjectPtr QAbstractProxyModel_MapToSource(QtObjectPtr ptr, QtObjectPtr proxyIndex);
-char* QAbstractProxyModel_MimeTypes(QtObjectPtr ptr);
-void QAbstractProxyModel_Revert(QtObjectPtr ptr);
-int QAbstractProxyModel_SetData(QtObjectPtr ptr, QtObjectPtr index, char* value, int role);
-int QAbstractProxyModel_SetHeaderData(QtObjectPtr ptr, int section, int orientation, char* value, int role);
-void QAbstractProxyModel_SetSourceModel(QtObjectPtr ptr, QtObjectPtr sourceModel);
-QtObjectPtr QAbstractProxyModel_Sibling(QtObjectPtr ptr, int row, int column, QtObjectPtr idx);
-void QAbstractProxyModel_Sort(QtObjectPtr ptr, int column, int order);
-QtObjectPtr QAbstractProxyModel_SourceModel(QtObjectPtr ptr);
-void QAbstractProxyModel_ConnectSourceModelChanged(QtObjectPtr ptr);
-void QAbstractProxyModel_DisconnectSourceModelChanged(QtObjectPtr ptr);
-int QAbstractProxyModel_Submit(QtObjectPtr ptr);
-int QAbstractProxyModel_SupportedDragActions(QtObjectPtr ptr);
-int QAbstractProxyModel_SupportedDropActions(QtObjectPtr ptr);
-void QAbstractProxyModel_DestroyQAbstractProxyModel(QtObjectPtr ptr);
+void* QAbstractProxyModel_Buddy(void* ptr, void* index);
+int QAbstractProxyModel_CanDropMimeData(void* ptr, void* data, int action, int row, int column, void* parent);
+int QAbstractProxyModel_CanFetchMore(void* ptr, void* parent);
+void* QAbstractProxyModel_Data(void* ptr, void* proxyIndex, int role);
+int QAbstractProxyModel_DropMimeData(void* ptr, void* data, int action, int row, int column, void* parent);
+void QAbstractProxyModel_FetchMore(void* ptr, void* parent);
+int QAbstractProxyModel_Flags(void* ptr, void* index);
+int QAbstractProxyModel_HasChildren(void* ptr, void* parent);
+void* QAbstractProxyModel_HeaderData(void* ptr, int section, int orientation, int role);
+void* QAbstractProxyModel_MapFromSource(void* ptr, void* sourceIndex);
+void* QAbstractProxyModel_MapToSource(void* ptr, void* proxyIndex);
+char* QAbstractProxyModel_MimeTypes(void* ptr);
+void QAbstractProxyModel_Revert(void* ptr);
+int QAbstractProxyModel_SetData(void* ptr, void* index, void* value, int role);
+int QAbstractProxyModel_SetHeaderData(void* ptr, int section, int orientation, void* value, int role);
+void QAbstractProxyModel_SetSourceModel(void* ptr, void* sourceModel);
+void* QAbstractProxyModel_Sibling(void* ptr, int row, int column, void* idx);
+void QAbstractProxyModel_Sort(void* ptr, int column, int order);
+void* QAbstractProxyModel_SourceModel(void* ptr);
+void QAbstractProxyModel_ConnectSourceModelChanged(void* ptr);
+void QAbstractProxyModel_DisconnectSourceModelChanged(void* ptr);
+int QAbstractProxyModel_Submit(void* ptr);
+int QAbstractProxyModel_SupportedDragActions(void* ptr);
+int QAbstractProxyModel_SupportedDropActions(void* ptr);
+void QAbstractProxyModel_DestroyQAbstractProxyModel(void* ptr);
 
 #ifdef __cplusplus
 }

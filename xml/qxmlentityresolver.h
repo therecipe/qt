@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QXmlEntityResolver_ErrorString(QtObjectPtr ptr);
-void QXmlEntityResolver_DestroyQXmlEntityResolver(QtObjectPtr ptr);
+char* QXmlEntityResolver_ErrorString(void* ptr);
+void QXmlEntityResolver_DestroyQXmlEntityResolver(void* ptr);
 
 #ifdef __cplusplus
 }

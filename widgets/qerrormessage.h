@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QErrorMessage_NewQErrorMessage(QtObjectPtr parent);
-QtObjectPtr QErrorMessage_QErrorMessage_QtHandler();
-void QErrorMessage_ShowMessage(QtObjectPtr ptr, char* message);
-void QErrorMessage_ShowMessage2(QtObjectPtr ptr, char* message, char* ty);
-void QErrorMessage_DestroyQErrorMessage(QtObjectPtr ptr);
+void* QErrorMessage_NewQErrorMessage(void* parent);
+void* QErrorMessage_QErrorMessage_QtHandler();
+void QErrorMessage_ShowMessage(void* ptr, char* message);
+void QErrorMessage_ShowMessage2(void* ptr, char* message, char* ty);
+void QErrorMessage_DestroyQErrorMessage(void* ptr);
 
 #ifdef __cplusplus
 }

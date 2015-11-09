@@ -12,35 +12,35 @@ type QAbstractVideoSurface struct {
 	core.QObject
 }
 
-type QAbstractVideoSurfaceITF interface {
-	core.QObjectITF
-	QAbstractVideoSurfacePTR() *QAbstractVideoSurface
+type QAbstractVideoSurface_ITF interface {
+	core.QObject_ITF
+	QAbstractVideoSurface_PTR() *QAbstractVideoSurface
 }
 
-func PointerFromQAbstractVideoSurface(ptr QAbstractVideoSurfaceITF) unsafe.Pointer {
+func PointerFromQAbstractVideoSurface(ptr QAbstractVideoSurface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAbstractVideoSurfacePTR().Pointer()
+		return ptr.QAbstractVideoSurface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAbstractVideoSurfaceFromPointer(ptr unsafe.Pointer) *QAbstractVideoSurface {
+func NewQAbstractVideoSurfaceFromPointer(ptr unsafe.Pointer) *QAbstractVideoSurface {
 	var n = new(QAbstractVideoSurface)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAbstractVideoSurface_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAbstractVideoSurface) QAbstractVideoSurfacePTR() *QAbstractVideoSurface {
+func (ptr *QAbstractVideoSurface) QAbstractVideoSurface_PTR() *QAbstractVideoSurface {
 	return ptr
 }
 
 //QAbstractVideoSurface::Error
-type QAbstractVideoSurface__Error int
+type QAbstractVideoSurface__Error int64
 
-var (
+const (
 	QAbstractVideoSurface__NoError                = QAbstractVideoSurface__Error(0)
 	QAbstractVideoSurface__UnsupportedFormatError = QAbstractVideoSurface__Error(1)
 	QAbstractVideoSurface__IncorrectFormatError   = QAbstractVideoSurface__Error(2)
@@ -50,14 +50,14 @@ var (
 
 func (ptr *QAbstractVideoSurface) ConnectActiveChanged(f func(active bool)) {
 	if ptr.Pointer() != nil {
-		C.QAbstractVideoSurface_ConnectActiveChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractVideoSurface_ConnectActiveChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "activeChanged", f)
 	}
 }
 
 func (ptr *QAbstractVideoSurface) DisconnectActiveChanged() {
 	if ptr.Pointer() != nil {
-		C.QAbstractVideoSurface_DisconnectActiveChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractVideoSurface_DisconnectActiveChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "activeChanged")
 	}
 }
@@ -69,55 +69,55 @@ func callbackQAbstractVideoSurfaceActiveChanged(ptrName *C.char, active C.int) {
 
 func (ptr *QAbstractVideoSurface) Error() QAbstractVideoSurface__Error {
 	if ptr.Pointer() != nil {
-		return QAbstractVideoSurface__Error(C.QAbstractVideoSurface_Error(C.QtObjectPtr(ptr.Pointer())))
+		return QAbstractVideoSurface__Error(C.QAbstractVideoSurface_Error(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAbstractVideoSurface) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoSurface_IsActive(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QAbstractVideoSurface_IsActive(ptr.Pointer()) != 0
 	}
 	return false
 }
 
-func (ptr *QAbstractVideoSurface) IsFormatSupported(format QVideoSurfaceFormatITF) bool {
+func (ptr *QAbstractVideoSurface) IsFormatSupported(format QVideoSurfaceFormat_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoSurface_IsFormatSupported(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQVideoSurfaceFormat(format))) != 0
+		return C.QAbstractVideoSurface_IsFormatSupported(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format)) != 0
 	}
 	return false
 }
 
-func (ptr *QAbstractVideoSurface) Present(frame QVideoFrameITF) bool {
+func (ptr *QAbstractVideoSurface) Present(frame QVideoFrame_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoSurface_Present(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQVideoFrame(frame))) != 0
+		return C.QAbstractVideoSurface_Present(ptr.Pointer(), PointerFromQVideoFrame(frame)) != 0
 	}
 	return false
 }
 
-func (ptr *QAbstractVideoSurface) Start(format QVideoSurfaceFormatITF) bool {
+func (ptr *QAbstractVideoSurface) Start(format QVideoSurfaceFormat_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAbstractVideoSurface_Start(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQVideoSurfaceFormat(format))) != 0
+		return C.QAbstractVideoSurface_Start(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format)) != 0
 	}
 	return false
 }
 
 func (ptr *QAbstractVideoSurface) Stop() {
 	if ptr.Pointer() != nil {
-		C.QAbstractVideoSurface_Stop(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractVideoSurface_Stop(ptr.Pointer())
 	}
 }
 
 func (ptr *QAbstractVideoSurface) ConnectSupportedFormatsChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QAbstractVideoSurface_ConnectSupportedFormatsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractVideoSurface_ConnectSupportedFormatsChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "supportedFormatsChanged", f)
 	}
 }
 
 func (ptr *QAbstractVideoSurface) DisconnectSupportedFormatsChanged() {
 	if ptr.Pointer() != nil {
-		C.QAbstractVideoSurface_DisconnectSupportedFormatsChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractVideoSurface_DisconnectSupportedFormatsChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "supportedFormatsChanged")
 	}
 }
@@ -129,7 +129,7 @@ func callbackQAbstractVideoSurfaceSupportedFormatsChanged(ptrName *C.char) {
 
 func (ptr *QAbstractVideoSurface) DestroyQAbstractVideoSurface() {
 	if ptr.Pointer() != nil {
-		C.QAbstractVideoSurface_DestroyQAbstractVideoSurface(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractVideoSurface_DestroyQAbstractVideoSurface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

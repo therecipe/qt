@@ -12,77 +12,87 @@ type QGraphicsLineItem struct {
 	QGraphicsItem
 }
 
-type QGraphicsLineItemITF interface {
-	QGraphicsItemITF
-	QGraphicsLineItemPTR() *QGraphicsLineItem
+type QGraphicsLineItem_ITF interface {
+	QGraphicsItem_ITF
+	QGraphicsLineItem_PTR() *QGraphicsLineItem
 }
 
-func PointerFromQGraphicsLineItem(ptr QGraphicsLineItemITF) unsafe.Pointer {
+func PointerFromQGraphicsLineItem(ptr QGraphicsLineItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsLineItemPTR().Pointer()
+		return ptr.QGraphicsLineItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsLineItemFromPointer(ptr unsafe.Pointer) *QGraphicsLineItem {
+func NewQGraphicsLineItemFromPointer(ptr unsafe.Pointer) *QGraphicsLineItem {
 	var n = new(QGraphicsLineItem)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsLineItem) QGraphicsLineItemPTR() *QGraphicsLineItem {
+func (ptr *QGraphicsLineItem) QGraphicsLineItem_PTR() *QGraphicsLineItem {
 	return ptr
 }
 
-func NewQGraphicsLineItem(parent QGraphicsItemITF) *QGraphicsLineItem {
-	return QGraphicsLineItemFromPointer(unsafe.Pointer(C.QGraphicsLineItem_NewQGraphicsLineItem(C.QtObjectPtr(PointerFromQGraphicsItem(parent)))))
+func NewQGraphicsLineItem(parent QGraphicsItem_ITF) *QGraphicsLineItem {
+	return NewQGraphicsLineItemFromPointer(C.QGraphicsLineItem_NewQGraphicsLineItem(PointerFromQGraphicsItem(parent)))
 }
 
-func NewQGraphicsLineItem2(line core.QLineFITF, parent QGraphicsItemITF) *QGraphicsLineItem {
-	return QGraphicsLineItemFromPointer(unsafe.Pointer(C.QGraphicsLineItem_NewQGraphicsLineItem2(C.QtObjectPtr(core.PointerFromQLineF(line)), C.QtObjectPtr(PointerFromQGraphicsItem(parent)))))
+func NewQGraphicsLineItem2(line core.QLineF_ITF, parent QGraphicsItem_ITF) *QGraphicsLineItem {
+	return NewQGraphicsLineItemFromPointer(C.QGraphicsLineItem_NewQGraphicsLineItem2(core.PointerFromQLineF(line), PointerFromQGraphicsItem(parent)))
 }
 
-func (ptr *QGraphicsLineItem) Contains(point core.QPointFITF) bool {
+func NewQGraphicsLineItem3(x1 float64, y1 float64, x2 float64, y2 float64, parent QGraphicsItem_ITF) *QGraphicsLineItem {
+	return NewQGraphicsLineItemFromPointer(C.QGraphicsLineItem_NewQGraphicsLineItem3(C.double(x1), C.double(y1), C.double(x2), C.double(y2), PointerFromQGraphicsItem(parent)))
+}
+
+func (ptr *QGraphicsLineItem) Contains(point core.QPointF_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsLineItem_Contains(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(point))) != 0
+		return C.QGraphicsLineItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
 	}
 	return false
 }
 
-func (ptr *QGraphicsLineItem) IsObscuredBy(item QGraphicsItemITF) bool {
+func (ptr *QGraphicsLineItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsLineItem_IsObscuredBy(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsItem(item))) != 0
+		return C.QGraphicsLineItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
 	}
 	return false
 }
 
-func (ptr *QGraphicsLineItem) Paint(painter gui.QPainterITF, option QStyleOptionGraphicsItemITF, widget QWidgetITF) {
+func (ptr *QGraphicsLineItem) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLineItem_Paint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(PointerFromQStyleOptionGraphicsItem(option)), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QGraphicsLineItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
 	}
 }
 
-func (ptr *QGraphicsLineItem) SetLine(line core.QLineFITF) {
+func (ptr *QGraphicsLineItem) SetLine(line core.QLineF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLineItem_SetLine(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQLineF(line)))
+		C.QGraphicsLineItem_SetLine(ptr.Pointer(), core.PointerFromQLineF(line))
 	}
 }
 
-func (ptr *QGraphicsLineItem) SetPen(pen gui.QPenITF) {
+func (ptr *QGraphicsLineItem) SetLine2(x1 float64, y1 float64, x2 float64, y2 float64) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLineItem_SetPen(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPen(pen)))
+		C.QGraphicsLineItem_SetLine2(ptr.Pointer(), C.double(x1), C.double(y1), C.double(x2), C.double(y2))
+	}
+}
+
+func (ptr *QGraphicsLineItem) SetPen(pen gui.QPen_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsLineItem_SetPen(ptr.Pointer(), gui.PointerFromQPen(pen))
 	}
 }
 
 func (ptr *QGraphicsLineItem) Type() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsLineItem_Type(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGraphicsLineItem_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsLineItem) DestroyQGraphicsLineItem() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsLineItem_DestroyQGraphicsLineItem(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsLineItem_DestroyQGraphicsLineItem(ptr.Pointer())
 	}
 }

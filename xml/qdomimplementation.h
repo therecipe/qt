@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDomImplementation_NewQDomImplementation();
-QtObjectPtr QDomImplementation_NewQDomImplementation2(QtObjectPtr x);
-int QDomImplementation_HasFeature(QtObjectPtr ptr, char* feature, char* version);
+void* QDomImplementation_NewQDomImplementation();
+void* QDomImplementation_NewQDomImplementation2(void* x);
+int QDomImplementation_HasFeature(void* ptr, char* feature, char* version);
 int QDomImplementation_QDomImplementation_InvalidDataPolicy();
-int QDomImplementation_IsNull(QtObjectPtr ptr);
+int QDomImplementation_IsNull(void* ptr);
 void QDomImplementation_QDomImplementation_SetInvalidDataPolicy(int policy);
-void QDomImplementation_DestroyQDomImplementation(QtObjectPtr ptr);
+void QDomImplementation_DestroyQDomImplementation(void* ptr);
 
 #ifdef __cplusplus
 }

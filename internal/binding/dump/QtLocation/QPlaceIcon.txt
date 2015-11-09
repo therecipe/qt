@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QPlaceIcon QPlaceIcon::QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non constructor false false   [] }
-&{QPlaceIcon QPlaceIcon::QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non constructor false true 2  [0xc8221a5c00] }
-&{isEmpty QPlaceIcon::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool [] }
-&{manager QPlaceIcon::manager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QPlaceManager * [] }
-&{operator!= QPlaceIcon::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool [0xc8221bc4c0] }
-&{operator= QPlaceIcon::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QPlaceIcon & [0xc8221bc940] }
-&{operator== QPlaceIcon::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool [0xc8221bcd80] }
-&{parameters QPlaceIcon::parameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QVariantMap [] }
-&{setManager QPlaceIcon::setManager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  void [0xc8221bd260] }
-&{setParameters QPlaceIcon::setParameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  void [0xc8221bd520] }
-&{url QPlaceIcon::url commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QUrl [0xc8221bd700] }
-&{~QPlaceIcon QPlaceIcon::~QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non destructor false false   [] }
+&{QPlaceIcon QPlaceIcon::QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non constructor false false   QPlaceIcon() [] }
+&{QPlaceIcon QPlaceIcon::QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non constructor false true 2  QPlaceIcon(const QPlaceIcon &other) [0xc8224ad300] }
+&{isEmpty QPlaceIcon::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool bool isEmpty() const [] }
+&{manager QPlaceIcon::manager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QPlaceManager * QPlaceManager * manager() const [] }
+&{operator!= QPlaceIcon::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool bool operator!=(const QPlaceIcon &other) const [0xc8224ada20] }
+&{operator= QPlaceIcon::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QPlaceIcon & QPlaceIcon & operator=(const QPlaceIcon &other) [0xc8224add40] }
+&{operator== QPlaceIcon::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool bool operator==(const QPlaceIcon &other) const [0xc82250a040] }
+&{parameters QPlaceIcon::parameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QVariantMap QVariantMap parameters() const [] }
+&{setManager QPlaceIcon::setManager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  void void setManager(QPlaceManager *manager) [0xc82250a540] }
+&{setParameters QPlaceIcon::setParameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  void void setParameters(const QVariantMap &parameters) [0xc82250a840] }
+&{url QPlaceIcon::url commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QUrl QUrl url(const QSize &size) const [0xc82250aa80] }
+&{~QPlaceIcon QPlaceIcon::~QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non destructor false false   ~QPlaceIcon() [] }
 ########################################			ENUMS			########################################

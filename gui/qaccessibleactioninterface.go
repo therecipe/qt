@@ -11,8 +11,8 @@ type QAccessibleActionInterface struct {
 	ptr unsafe.Pointer
 }
 
-type QAccessibleActionInterfaceITF interface {
-	QAccessibleActionInterfacePTR() *QAccessibleActionInterface
+type QAccessibleActionInterface_ITF interface {
+	QAccessibleActionInterface_PTR() *QAccessibleActionInterface
 }
 
 func (p *QAccessibleActionInterface) Pointer() unsafe.Pointer {
@@ -23,40 +23,40 @@ func (p *QAccessibleActionInterface) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQAccessibleActionInterface(ptr QAccessibleActionInterfaceITF) unsafe.Pointer {
+func PointerFromQAccessibleActionInterface(ptr QAccessibleActionInterface_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAccessibleActionInterfacePTR().Pointer()
+		return ptr.QAccessibleActionInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAccessibleActionInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleActionInterface {
+func NewQAccessibleActionInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleActionInterface {
 	var n = new(QAccessibleActionInterface)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAccessibleActionInterface) QAccessibleActionInterfacePTR() *QAccessibleActionInterface {
+func (ptr *QAccessibleActionInterface) QAccessibleActionInterface_PTR() *QAccessibleActionInterface {
 	return ptr
 }
 
 func (ptr *QAccessibleActionInterface) LocalizedActionDescription(actionName string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleActionInterface_LocalizedActionDescription(C.QtObjectPtr(ptr.Pointer()), C.CString(actionName)))
+		return C.GoString(C.QAccessibleActionInterface_LocalizedActionDescription(ptr.Pointer(), C.CString(actionName)))
 	}
 	return ""
 }
 
 func (ptr *QAccessibleActionInterface) LocalizedActionName(actionName string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleActionInterface_LocalizedActionName(C.QtObjectPtr(ptr.Pointer()), C.CString(actionName)))
+		return C.GoString(C.QAccessibleActionInterface_LocalizedActionName(ptr.Pointer(), C.CString(actionName)))
 	}
 	return ""
 }
 
 func (ptr *QAccessibleActionInterface) ActionNames() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QAccessibleActionInterface_ActionNames(C.QtObjectPtr(ptr.Pointer()))), "|")
+		return strings.Split(C.GoString(C.QAccessibleActionInterface_ActionNames(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -67,7 +67,7 @@ func QAccessibleActionInterface_DecreaseAction() string {
 
 func (ptr *QAccessibleActionInterface) DoAction(actionName string) {
 	if ptr.Pointer() != nil {
-		C.QAccessibleActionInterface_DoAction(C.QtObjectPtr(ptr.Pointer()), C.CString(actionName))
+		C.QAccessibleActionInterface_DoAction(ptr.Pointer(), C.CString(actionName))
 	}
 }
 
@@ -77,7 +77,7 @@ func QAccessibleActionInterface_IncreaseAction() string {
 
 func (ptr *QAccessibleActionInterface) KeyBindingsForAction(actionName string) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QAccessibleActionInterface_KeyBindingsForAction(C.QtObjectPtr(ptr.Pointer()), C.CString(actionName))), "|")
+		return strings.Split(C.GoString(C.QAccessibleActionInterface_KeyBindingsForAction(ptr.Pointer(), C.CString(actionName))), "|")
 	}
 	return make([]string, 0)
 }
@@ -124,6 +124,6 @@ func QAccessibleActionInterface_ToggleAction() string {
 
 func (ptr *QAccessibleActionInterface) DestroyQAccessibleActionInterface() {
 	if ptr.Pointer() != nil {
-		C.QAccessibleActionInterface_DestroyQAccessibleActionInterface(C.QtObjectPtr(ptr.Pointer()))
+		C.QAccessibleActionInterface_DestroyQAccessibleActionInterface(ptr.Pointer())
 	}
 }

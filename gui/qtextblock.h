@@ -1,33 +1,32 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QTextBlock_IsValid(QtObjectPtr ptr);
-QtObjectPtr QTextBlock_NewQTextBlock(QtObjectPtr other);
-int QTextBlock_BlockFormatIndex(QtObjectPtr ptr);
-int QTextBlock_CharFormatIndex(QtObjectPtr ptr);
-void QTextBlock_ClearLayout(QtObjectPtr ptr);
-int QTextBlock_Contains(QtObjectPtr ptr, int position);
-int QTextBlock_BlockNumber(QtObjectPtr ptr);
-QtObjectPtr QTextBlock_Document(QtObjectPtr ptr);
-int QTextBlock_FirstLineNumber(QtObjectPtr ptr);
-int QTextBlock_IsVisible(QtObjectPtr ptr);
-QtObjectPtr QTextBlock_Layout(QtObjectPtr ptr);
-int QTextBlock_Length(QtObjectPtr ptr);
-int QTextBlock_LineCount(QtObjectPtr ptr);
-int QTextBlock_Position(QtObjectPtr ptr);
-int QTextBlock_Revision(QtObjectPtr ptr);
-void QTextBlock_SetLineCount(QtObjectPtr ptr, int count);
-void QTextBlock_SetRevision(QtObjectPtr ptr, int rev);
-void QTextBlock_SetUserData(QtObjectPtr ptr, QtObjectPtr data);
-void QTextBlock_SetUserState(QtObjectPtr ptr, int state);
-void QTextBlock_SetVisible(QtObjectPtr ptr, int visible);
-char* QTextBlock_Text(QtObjectPtr ptr);
-int QTextBlock_TextDirection(QtObjectPtr ptr);
-QtObjectPtr QTextBlock_TextList(QtObjectPtr ptr);
-QtObjectPtr QTextBlock_UserData(QtObjectPtr ptr);
-int QTextBlock_UserState(QtObjectPtr ptr);
+int QTextBlock_IsValid(void* ptr);
+void* QTextBlock_NewQTextBlock(void* other);
+int QTextBlock_BlockFormatIndex(void* ptr);
+int QTextBlock_CharFormatIndex(void* ptr);
+void QTextBlock_ClearLayout(void* ptr);
+int QTextBlock_Contains(void* ptr, int position);
+int QTextBlock_BlockNumber(void* ptr);
+void* QTextBlock_Document(void* ptr);
+int QTextBlock_FirstLineNumber(void* ptr);
+int QTextBlock_IsVisible(void* ptr);
+void* QTextBlock_Layout(void* ptr);
+int QTextBlock_Length(void* ptr);
+int QTextBlock_LineCount(void* ptr);
+int QTextBlock_Position(void* ptr);
+int QTextBlock_Revision(void* ptr);
+void QTextBlock_SetLineCount(void* ptr, int count);
+void QTextBlock_SetRevision(void* ptr, int rev);
+void QTextBlock_SetUserData(void* ptr, void* data);
+void QTextBlock_SetUserState(void* ptr, int state);
+void QTextBlock_SetVisible(void* ptr, int visible);
+char* QTextBlock_Text(void* ptr);
+int QTextBlock_TextDirection(void* ptr);
+void* QTextBlock_TextList(void* ptr);
+void* QTextBlock_UserData(void* ptr);
+int QTextBlock_UserState(void* ptr);
 
 #ifdef __cplusplus
 }

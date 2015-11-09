@@ -11,94 +11,94 @@ type QAbstractTransition struct {
 	QObject
 }
 
-type QAbstractTransitionITF interface {
-	QObjectITF
-	QAbstractTransitionPTR() *QAbstractTransition
+type QAbstractTransition_ITF interface {
+	QObject_ITF
+	QAbstractTransition_PTR() *QAbstractTransition
 }
 
-func PointerFromQAbstractTransition(ptr QAbstractTransitionITF) unsafe.Pointer {
+func PointerFromQAbstractTransition(ptr QAbstractTransition_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAbstractTransitionPTR().Pointer()
+		return ptr.QAbstractTransition_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAbstractTransitionFromPointer(ptr unsafe.Pointer) *QAbstractTransition {
+func NewQAbstractTransitionFromPointer(ptr unsafe.Pointer) *QAbstractTransition {
 	var n = new(QAbstractTransition)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAbstractTransition_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAbstractTransition) QAbstractTransitionPTR() *QAbstractTransition {
+func (ptr *QAbstractTransition) QAbstractTransition_PTR() *QAbstractTransition {
 	return ptr
 }
 
 //QAbstractTransition::TransitionType
-type QAbstractTransition__TransitionType int
+type QAbstractTransition__TransitionType int64
 
-var (
+const (
 	QAbstractTransition__ExternalTransition = QAbstractTransition__TransitionType(0)
 	QAbstractTransition__InternalTransition = QAbstractTransition__TransitionType(1)
 )
 
-func (ptr *QAbstractTransition) AddAnimation(animation QAbstractAnimationITF) {
+func (ptr *QAbstractTransition) AddAnimation(animation QAbstractAnimation_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractTransition_AddAnimation(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractAnimation(animation)))
+		C.QAbstractTransition_AddAnimation(ptr.Pointer(), PointerFromQAbstractAnimation(animation))
 	}
 }
 
 func (ptr *QAbstractTransition) Machine() *QStateMachine {
 	if ptr.Pointer() != nil {
-		return QStateMachineFromPointer(unsafe.Pointer(C.QAbstractTransition_Machine(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQStateMachineFromPointer(C.QAbstractTransition_Machine(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QAbstractTransition) RemoveAnimation(animation QAbstractAnimationITF) {
+func (ptr *QAbstractTransition) RemoveAnimation(animation QAbstractAnimation_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractTransition_RemoveAnimation(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractAnimation(animation)))
+		C.QAbstractTransition_RemoveAnimation(ptr.Pointer(), PointerFromQAbstractAnimation(animation))
 	}
 }
 
-func (ptr *QAbstractTransition) SetTargetState(target QAbstractStateITF) {
+func (ptr *QAbstractTransition) SetTargetState(target QAbstractState_ITF) {
 	if ptr.Pointer() != nil {
-		C.QAbstractTransition_SetTargetState(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAbstractState(target)))
+		C.QAbstractTransition_SetTargetState(ptr.Pointer(), PointerFromQAbstractState(target))
 	}
 }
 
 func (ptr *QAbstractTransition) SetTransitionType(ty QAbstractTransition__TransitionType) {
 	if ptr.Pointer() != nil {
-		C.QAbstractTransition_SetTransitionType(C.QtObjectPtr(ptr.Pointer()), C.int(ty))
+		C.QAbstractTransition_SetTransitionType(ptr.Pointer(), C.int(ty))
 	}
 }
 
 func (ptr *QAbstractTransition) SourceState() *QState {
 	if ptr.Pointer() != nil {
-		return QStateFromPointer(unsafe.Pointer(C.QAbstractTransition_SourceState(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQStateFromPointer(C.QAbstractTransition_SourceState(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QAbstractTransition) TargetState() *QAbstractState {
 	if ptr.Pointer() != nil {
-		return QAbstractStateFromPointer(unsafe.Pointer(C.QAbstractTransition_TargetState(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQAbstractStateFromPointer(C.QAbstractTransition_TargetState(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QAbstractTransition) ConnectTargetStateChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QAbstractTransition_ConnectTargetStateChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractTransition_ConnectTargetStateChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "targetStateChanged", f)
 	}
 }
 
 func (ptr *QAbstractTransition) DisconnectTargetStateChanged() {
 	if ptr.Pointer() != nil {
-		C.QAbstractTransition_DisconnectTargetStateChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractTransition_DisconnectTargetStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "targetStateChanged")
 	}
 }
@@ -110,14 +110,14 @@ func callbackQAbstractTransitionTargetStateChanged(ptrName *C.char) {
 
 func (ptr *QAbstractTransition) ConnectTargetStatesChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QAbstractTransition_ConnectTargetStatesChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractTransition_ConnectTargetStatesChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "targetStatesChanged", f)
 	}
 }
 
 func (ptr *QAbstractTransition) DisconnectTargetStatesChanged() {
 	if ptr.Pointer() != nil {
-		C.QAbstractTransition_DisconnectTargetStatesChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractTransition_DisconnectTargetStatesChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "targetStatesChanged")
 	}
 }
@@ -129,21 +129,21 @@ func callbackQAbstractTransitionTargetStatesChanged(ptrName *C.char) {
 
 func (ptr *QAbstractTransition) TransitionType() QAbstractTransition__TransitionType {
 	if ptr.Pointer() != nil {
-		return QAbstractTransition__TransitionType(C.QAbstractTransition_TransitionType(C.QtObjectPtr(ptr.Pointer())))
+		return QAbstractTransition__TransitionType(C.QAbstractTransition_TransitionType(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAbstractTransition) ConnectTriggered(f func()) {
 	if ptr.Pointer() != nil {
-		C.QAbstractTransition_ConnectTriggered(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractTransition_ConnectTriggered(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "triggered", f)
 	}
 }
 
 func (ptr *QAbstractTransition) DisconnectTriggered() {
 	if ptr.Pointer() != nil {
-		C.QAbstractTransition_DisconnectTriggered(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractTransition_DisconnectTriggered(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "triggered")
 	}
 }
@@ -155,7 +155,7 @@ func callbackQAbstractTransitionTriggered(ptrName *C.char) {
 
 func (ptr *QAbstractTransition) DestroyQAbstractTransition() {
 	if ptr.Pointer() != nil {
-		C.QAbstractTransition_DestroyQAbstractTransition(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractTransition_DestroyQAbstractTransition(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

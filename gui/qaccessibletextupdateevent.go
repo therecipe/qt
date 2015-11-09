@@ -11,53 +11,53 @@ type QAccessibleTextUpdateEvent struct {
 	QAccessibleTextCursorEvent
 }
 
-type QAccessibleTextUpdateEventITF interface {
-	QAccessibleTextCursorEventITF
-	QAccessibleTextUpdateEventPTR() *QAccessibleTextUpdateEvent
+type QAccessibleTextUpdateEvent_ITF interface {
+	QAccessibleTextCursorEvent_ITF
+	QAccessibleTextUpdateEvent_PTR() *QAccessibleTextUpdateEvent
 }
 
-func PointerFromQAccessibleTextUpdateEvent(ptr QAccessibleTextUpdateEventITF) unsafe.Pointer {
+func PointerFromQAccessibleTextUpdateEvent(ptr QAccessibleTextUpdateEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAccessibleTextUpdateEventPTR().Pointer()
+		return ptr.QAccessibleTextUpdateEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAccessibleTextUpdateEventFromPointer(ptr unsafe.Pointer) *QAccessibleTextUpdateEvent {
+func NewQAccessibleTextUpdateEventFromPointer(ptr unsafe.Pointer) *QAccessibleTextUpdateEvent {
 	var n = new(QAccessibleTextUpdateEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAccessibleTextUpdateEvent) QAccessibleTextUpdateEventPTR() *QAccessibleTextUpdateEvent {
+func (ptr *QAccessibleTextUpdateEvent) QAccessibleTextUpdateEvent_PTR() *QAccessibleTextUpdateEvent {
 	return ptr
 }
 
-func NewQAccessibleTextUpdateEvent2(iface QAccessibleInterfaceITF, position int, oldText string, text string) *QAccessibleTextUpdateEvent {
-	return QAccessibleTextUpdateEventFromPointer(unsafe.Pointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent2(C.QtObjectPtr(PointerFromQAccessibleInterface(iface)), C.int(position), C.CString(oldText), C.CString(text))))
+func NewQAccessibleTextUpdateEvent2(iface QAccessibleInterface_ITF, position int, oldText string, text string) *QAccessibleTextUpdateEvent {
+	return NewQAccessibleTextUpdateEventFromPointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent2(PointerFromQAccessibleInterface(iface), C.int(position), C.CString(oldText), C.CString(text)))
 }
 
-func NewQAccessibleTextUpdateEvent(object core.QObjectITF, position int, oldText string, text string) *QAccessibleTextUpdateEvent {
-	return QAccessibleTextUpdateEventFromPointer(unsafe.Pointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent(C.QtObjectPtr(core.PointerFromQObject(object)), C.int(position), C.CString(oldText), C.CString(text))))
+func NewQAccessibleTextUpdateEvent(object core.QObject_ITF, position int, oldText string, text string) *QAccessibleTextUpdateEvent {
+	return NewQAccessibleTextUpdateEventFromPointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent(core.PointerFromQObject(object), C.int(position), C.CString(oldText), C.CString(text)))
 }
 
 func (ptr *QAccessibleTextUpdateEvent) ChangePosition() int {
 	if ptr.Pointer() != nil {
-		return int(C.QAccessibleTextUpdateEvent_ChangePosition(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QAccessibleTextUpdateEvent_ChangePosition(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QAccessibleTextUpdateEvent) TextInserted() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextUpdateEvent_TextInserted(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QAccessibleTextUpdateEvent_TextInserted(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QAccessibleTextUpdateEvent) TextRemoved() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextUpdateEvent_TextRemoved(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QAccessibleTextUpdateEvent_TextRemoved(ptr.Pointer()))
 	}
 	return ""
 }

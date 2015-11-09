@@ -12,8 +12,8 @@ type QPaintEngine struct {
 	ptr unsafe.Pointer
 }
 
-type QPaintEngineITF interface {
-	QPaintEnginePTR() *QPaintEngine
+type QPaintEngine_ITF interface {
+	QPaintEngine_PTR() *QPaintEngine
 }
 
 func (p *QPaintEngine) Pointer() unsafe.Pointer {
@@ -24,27 +24,27 @@ func (p *QPaintEngine) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPaintEngine(ptr QPaintEngineITF) unsafe.Pointer {
+func PointerFromQPaintEngine(ptr QPaintEngine_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPaintEnginePTR().Pointer()
+		return ptr.QPaintEngine_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPaintEngineFromPointer(ptr unsafe.Pointer) *QPaintEngine {
+func NewQPaintEngineFromPointer(ptr unsafe.Pointer) *QPaintEngine {
 	var n = new(QPaintEngine)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPaintEngine) QPaintEnginePTR() *QPaintEngine {
+func (ptr *QPaintEngine) QPaintEngine_PTR() *QPaintEngine {
 	return ptr
 }
 
 //QPaintEngine::DirtyFlag
-type QPaintEngine__DirtyFlag int
+type QPaintEngine__DirtyFlag int64
 
-var (
+const (
 	QPaintEngine__DirtyPen             = QPaintEngine__DirtyFlag(0x0001)
 	QPaintEngine__DirtyBrush           = QPaintEngine__DirtyFlag(0x0002)
 	QPaintEngine__DirtyBrushOrigin     = QPaintEngine__DirtyFlag(0x0004)
@@ -62,9 +62,9 @@ var (
 )
 
 //QPaintEngine::PaintEngineFeature
-type QPaintEngine__PaintEngineFeature int
+type QPaintEngine__PaintEngineFeature int64
 
-var (
+const (
 	QPaintEngine__PrimitiveTransform          = QPaintEngine__PaintEngineFeature(0x00000001)
 	QPaintEngine__PatternTransform            = QPaintEngine__PaintEngineFeature(0x00000002)
 	QPaintEngine__PixmapTransform             = QPaintEngine__PaintEngineFeature(0x00000004)
@@ -88,9 +88,9 @@ var (
 )
 
 //QPaintEngine::PolygonDrawMode
-type QPaintEngine__PolygonDrawMode int
+type QPaintEngine__PolygonDrawMode int64
 
-var (
+const (
 	QPaintEngine__OddEvenMode  = QPaintEngine__PolygonDrawMode(0)
 	QPaintEngine__WindingMode  = QPaintEngine__PolygonDrawMode(1)
 	QPaintEngine__ConvexMode   = QPaintEngine__PolygonDrawMode(2)
@@ -98,9 +98,9 @@ var (
 )
 
 //QPaintEngine::Type
-type QPaintEngine__Type int
+type QPaintEngine__Type int64
 
-var (
+const (
 	QPaintEngine__X11           = QPaintEngine__Type(0)
 	QPaintEngine__Windows       = QPaintEngine__Type(1)
 	QPaintEngine__QuickDraw     = QPaintEngine__Type(2)
@@ -123,159 +123,159 @@ var (
 	QPaintEngine__MaxUser       = QPaintEngine__Type(100)
 )
 
-func (ptr *QPaintEngine) DrawEllipse(rect core.QRectFITF) {
+func (ptr *QPaintEngine) DrawEllipse(rect core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawEllipse(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)))
+		C.QPaintEngine_DrawEllipse(ptr.Pointer(), core.PointerFromQRectF(rect))
 	}
 }
 
-func (ptr *QPaintEngine) DrawImage(rectangle core.QRectFITF, image QImageITF, sr core.QRectFITF, flags core.Qt__ImageConversionFlag) {
+func (ptr *QPaintEngine) DrawImage(rectangle core.QRectF_ITF, image QImage_ITF, sr core.QRectF_ITF, flags core.Qt__ImageConversionFlag) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawImage(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rectangle)), C.QtObjectPtr(PointerFromQImage(image)), C.QtObjectPtr(core.PointerFromQRectF(sr)), C.int(flags))
+		C.QPaintEngine_DrawImage(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQImage(image), core.PointerFromQRectF(sr), C.int(flags))
 	}
 }
 
-func (ptr *QPaintEngine) DrawPolygon(points core.QPointFITF, pointCount int, mode QPaintEngine__PolygonDrawMode) {
+func (ptr *QPaintEngine) DrawPolygon(points core.QPointF_ITF, pointCount int, mode QPaintEngine__PolygonDrawMode) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawPolygon(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(points)), C.int(pointCount), C.int(mode))
+		C.QPaintEngine_DrawPolygon(ptr.Pointer(), core.PointerFromQPointF(points), C.int(pointCount), C.int(mode))
 	}
 }
 
-func (ptr *QPaintEngine) Begin(pdev QPaintDeviceITF) bool {
+func (ptr *QPaintEngine) Begin(pdev QPaintDevice_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QPaintEngine_Begin(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPaintDevice(pdev))) != 0
+		return C.QPaintEngine_Begin(ptr.Pointer(), PointerFromQPaintDevice(pdev)) != 0
 	}
 	return false
 }
 
-func (ptr *QPaintEngine) DrawEllipse2(rect core.QRectITF) {
+func (ptr *QPaintEngine) DrawEllipse2(rect core.QRect_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawEllipse2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rect)))
+		C.QPaintEngine_DrawEllipse2(ptr.Pointer(), core.PointerFromQRect(rect))
 	}
 }
 
-func (ptr *QPaintEngine) DrawLines2(lines core.QLineITF, lineCount int) {
+func (ptr *QPaintEngine) DrawLines2(lines core.QLine_ITF, lineCount int) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawLines2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQLine(lines)), C.int(lineCount))
+		C.QPaintEngine_DrawLines2(ptr.Pointer(), core.PointerFromQLine(lines), C.int(lineCount))
 	}
 }
 
-func (ptr *QPaintEngine) DrawLines(lines core.QLineFITF, lineCount int) {
+func (ptr *QPaintEngine) DrawLines(lines core.QLineF_ITF, lineCount int) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawLines(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQLineF(lines)), C.int(lineCount))
+		C.QPaintEngine_DrawLines(ptr.Pointer(), core.PointerFromQLineF(lines), C.int(lineCount))
 	}
 }
 
-func (ptr *QPaintEngine) DrawPath(path QPainterPathITF) {
+func (ptr *QPaintEngine) DrawPath(path QPainterPath_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawPath(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPainterPath(path)))
+		C.QPaintEngine_DrawPath(ptr.Pointer(), PointerFromQPainterPath(path))
 	}
 }
 
-func (ptr *QPaintEngine) DrawPixmap(r core.QRectFITF, pm QPixmapITF, sr core.QRectFITF) {
+func (ptr *QPaintEngine) DrawPixmap(r core.QRectF_ITF, pm QPixmap_ITF, sr core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawPixmap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(r)), C.QtObjectPtr(PointerFromQPixmap(pm)), C.QtObjectPtr(core.PointerFromQRectF(sr)))
+		C.QPaintEngine_DrawPixmap(ptr.Pointer(), core.PointerFromQRectF(r), PointerFromQPixmap(pm), core.PointerFromQRectF(sr))
 	}
 }
 
-func (ptr *QPaintEngine) DrawPoints2(points core.QPointITF, pointCount int) {
+func (ptr *QPaintEngine) DrawPoints2(points core.QPoint_ITF, pointCount int) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawPoints2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(points)), C.int(pointCount))
+		C.QPaintEngine_DrawPoints2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount))
 	}
 }
 
-func (ptr *QPaintEngine) DrawPoints(points core.QPointFITF, pointCount int) {
+func (ptr *QPaintEngine) DrawPoints(points core.QPointF_ITF, pointCount int) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawPoints(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(points)), C.int(pointCount))
+		C.QPaintEngine_DrawPoints(ptr.Pointer(), core.PointerFromQPointF(points), C.int(pointCount))
 	}
 }
 
-func (ptr *QPaintEngine) DrawPolygon2(points core.QPointITF, pointCount int, mode QPaintEngine__PolygonDrawMode) {
+func (ptr *QPaintEngine) DrawPolygon2(points core.QPoint_ITF, pointCount int, mode QPaintEngine__PolygonDrawMode) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawPolygon2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(points)), C.int(pointCount), C.int(mode))
+		C.QPaintEngine_DrawPolygon2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount), C.int(mode))
 	}
 }
 
-func (ptr *QPaintEngine) DrawRects2(rects core.QRectITF, rectCount int) {
+func (ptr *QPaintEngine) DrawRects2(rects core.QRect_ITF, rectCount int) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawRects2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRect(rects)), C.int(rectCount))
+		C.QPaintEngine_DrawRects2(ptr.Pointer(), core.PointerFromQRect(rects), C.int(rectCount))
 	}
 }
 
-func (ptr *QPaintEngine) DrawRects(rects core.QRectFITF, rectCount int) {
+func (ptr *QPaintEngine) DrawRects(rects core.QRectF_ITF, rectCount int) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawRects(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rects)), C.int(rectCount))
+		C.QPaintEngine_DrawRects(ptr.Pointer(), core.PointerFromQRectF(rects), C.int(rectCount))
 	}
 }
 
-func (ptr *QPaintEngine) DrawTextItem(p core.QPointFITF, textItem QTextItemITF) {
+func (ptr *QPaintEngine) DrawTextItem(p core.QPointF_ITF, textItem QTextItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawTextItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(p)), C.QtObjectPtr(PointerFromQTextItem(textItem)))
+		C.QPaintEngine_DrawTextItem(ptr.Pointer(), core.PointerFromQPointF(p), PointerFromQTextItem(textItem))
 	}
 }
 
-func (ptr *QPaintEngine) DrawTiledPixmap(rect core.QRectFITF, pixmap QPixmapITF, p core.QPointFITF) {
+func (ptr *QPaintEngine) DrawTiledPixmap(rect core.QRectF_ITF, pixmap QPixmap_ITF, p core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DrawTiledPixmap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)), C.QtObjectPtr(PointerFromQPixmap(pixmap)), C.QtObjectPtr(core.PointerFromQPointF(p)))
+		C.QPaintEngine_DrawTiledPixmap(ptr.Pointer(), core.PointerFromQRectF(rect), PointerFromQPixmap(pixmap), core.PointerFromQPointF(p))
 	}
 }
 
 func (ptr *QPaintEngine) End() bool {
 	if ptr.Pointer() != nil {
-		return C.QPaintEngine_End(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QPaintEngine_End(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QPaintEngine) HasFeature(feature QPaintEngine__PaintEngineFeature) bool {
 	if ptr.Pointer() != nil {
-		return C.QPaintEngine_HasFeature(C.QtObjectPtr(ptr.Pointer()), C.int(feature)) != 0
+		return C.QPaintEngine_HasFeature(ptr.Pointer(), C.int(feature)) != 0
 	}
 	return false
 }
 
 func (ptr *QPaintEngine) IsActive() bool {
 	if ptr.Pointer() != nil {
-		return C.QPaintEngine_IsActive(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QPaintEngine_IsActive(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QPaintEngine) PaintDevice() *QPaintDevice {
 	if ptr.Pointer() != nil {
-		return QPaintDeviceFromPointer(unsafe.Pointer(C.QPaintEngine_PaintDevice(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQPaintDeviceFromPointer(C.QPaintEngine_PaintDevice(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QPaintEngine) Painter() *QPainter {
 	if ptr.Pointer() != nil {
-		return QPainterFromPointer(unsafe.Pointer(C.QPaintEngine_Painter(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQPainterFromPointer(C.QPaintEngine_Painter(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QPaintEngine) SetActive(state bool) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_SetActive(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(state)))
+		C.QPaintEngine_SetActive(ptr.Pointer(), C.int(qt.GoBoolToInt(state)))
 	}
 }
 
 func (ptr *QPaintEngine) Type() QPaintEngine__Type {
 	if ptr.Pointer() != nil {
-		return QPaintEngine__Type(C.QPaintEngine_Type(C.QtObjectPtr(ptr.Pointer())))
+		return QPaintEngine__Type(C.QPaintEngine_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QPaintEngine) UpdateState(state QPaintEngineStateITF) {
+func (ptr *QPaintEngine) UpdateState(state QPaintEngineState_ITF) {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_UpdateState(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQPaintEngineState(state)))
+		C.QPaintEngine_UpdateState(ptr.Pointer(), PointerFromQPaintEngineState(state))
 	}
 }
 
 func (ptr *QPaintEngine) DestroyQPaintEngine() {
 	if ptr.Pointer() != nil {
-		C.QPaintEngine_DestroyQPaintEngine(C.QtObjectPtr(ptr.Pointer()))
+		C.QPaintEngine_DestroyQPaintEngine(ptr.Pointer())
 	}
 }

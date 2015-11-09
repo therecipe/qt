@@ -14,182 +14,182 @@ type QGraphicsWidget struct {
 	QGraphicsLayoutItem
 }
 
-type QGraphicsWidgetITF interface {
-	QGraphicsObjectITF
-	QGraphicsLayoutItemITF
-	QGraphicsWidgetPTR() *QGraphicsWidget
+type QGraphicsWidget_ITF interface {
+	QGraphicsObject_ITF
+	QGraphicsLayoutItem_ITF
+	QGraphicsWidget_PTR() *QGraphicsWidget
 }
 
 func (p *QGraphicsWidget) Pointer() unsafe.Pointer {
-	return p.QGraphicsObjectPTR().Pointer()
+	return p.QGraphicsObject_PTR().Pointer()
 }
 
 func (p *QGraphicsWidget) SetPointer(ptr unsafe.Pointer) {
-	p.QGraphicsObjectPTR().SetPointer(ptr)
-	p.QGraphicsLayoutItemPTR().SetPointer(ptr)
+	p.QGraphicsObject_PTR().SetPointer(ptr)
+	p.QGraphicsLayoutItem_PTR().SetPointer(ptr)
 }
 
-func PointerFromQGraphicsWidget(ptr QGraphicsWidgetITF) unsafe.Pointer {
+func PointerFromQGraphicsWidget(ptr QGraphicsWidget_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsWidgetPTR().Pointer()
+		return ptr.QGraphicsWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsWidgetFromPointer(ptr unsafe.Pointer) *QGraphicsWidget {
+func NewQGraphicsWidgetFromPointer(ptr unsafe.Pointer) *QGraphicsWidget {
 	var n = new(QGraphicsWidget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGraphicsWidget_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGraphicsWidget) QGraphicsWidgetPTR() *QGraphicsWidget {
+func (ptr *QGraphicsWidget) QGraphicsWidget_PTR() *QGraphicsWidget {
 	return ptr
 }
 
 func (ptr *QGraphicsWidget) AutoFillBackground() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_AutoFillBackground(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QGraphicsWidget_AutoFillBackground(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsWidget) FocusPolicy() core.Qt__FocusPolicy {
 	if ptr.Pointer() != nil {
-		return core.Qt__FocusPolicy(C.QGraphicsWidget_FocusPolicy(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__FocusPolicy(C.QGraphicsWidget_FocusPolicy(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsWidget) LayoutDirection() core.Qt__LayoutDirection {
 	if ptr.Pointer() != nil {
-		return core.Qt__LayoutDirection(C.QGraphicsWidget_LayoutDirection(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__LayoutDirection(C.QGraphicsWidget_LayoutDirection(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QGraphicsWidget) Resize(size core.QSizeFITF) {
+func (ptr *QGraphicsWidget) Resize(size core.QSizeF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_Resize(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQSizeF(size)))
+		C.QGraphicsWidget_Resize(ptr.Pointer(), core.PointerFromQSizeF(size))
 	}
 }
 
 func (ptr *QGraphicsWidget) SetAutoFillBackground(enabled bool) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetAutoFillBackground(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enabled)))
+		C.QGraphicsWidget_SetAutoFillBackground(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
 	}
 }
 
 func (ptr *QGraphicsWidget) SetFocusPolicy(policy core.Qt__FocusPolicy) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetFocusPolicy(C.QtObjectPtr(ptr.Pointer()), C.int(policy))
+		C.QGraphicsWidget_SetFocusPolicy(ptr.Pointer(), C.int(policy))
 	}
 }
 
-func (ptr *QGraphicsWidget) SetFont(font gui.QFontITF) {
+func (ptr *QGraphicsWidget) SetFont(font gui.QFont_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetFont(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQFont(font)))
+		C.QGraphicsWidget_SetFont(ptr.Pointer(), gui.PointerFromQFont(font))
 	}
 }
 
-func (ptr *QGraphicsWidget) SetGeometry(rect core.QRectFITF) {
+func (ptr *QGraphicsWidget) SetGeometry(rect core.QRectF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetGeometry(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQRectF(rect)))
+		C.QGraphicsWidget_SetGeometry(ptr.Pointer(), core.PointerFromQRectF(rect))
 	}
 }
 
-func (ptr *QGraphicsWidget) SetLayout(layout QGraphicsLayoutITF) {
+func (ptr *QGraphicsWidget) SetLayout(layout QGraphicsLayout_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetLayout(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQGraphicsLayout(layout)))
+		C.QGraphicsWidget_SetLayout(ptr.Pointer(), PointerFromQGraphicsLayout(layout))
 	}
 }
 
 func (ptr *QGraphicsWidget) SetLayoutDirection(direction core.Qt__LayoutDirection) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetLayoutDirection(C.QtObjectPtr(ptr.Pointer()), C.int(direction))
+		C.QGraphicsWidget_SetLayoutDirection(ptr.Pointer(), C.int(direction))
 	}
 }
 
-func (ptr *QGraphicsWidget) SetPalette(palette gui.QPaletteITF) {
+func (ptr *QGraphicsWidget) SetPalette(palette gui.QPalette_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetPalette(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPalette(palette)))
+		C.QGraphicsWidget_SetPalette(ptr.Pointer(), gui.PointerFromQPalette(palette))
 	}
 }
 
 func (ptr *QGraphicsWidget) SetWindowFlags(wFlags core.Qt__WindowType) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetWindowFlags(C.QtObjectPtr(ptr.Pointer()), C.int(wFlags))
+		C.QGraphicsWidget_SetWindowFlags(ptr.Pointer(), C.int(wFlags))
 	}
 }
 
 func (ptr *QGraphicsWidget) SetWindowTitle(title string) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetWindowTitle(C.QtObjectPtr(ptr.Pointer()), C.CString(title))
+		C.QGraphicsWidget_SetWindowTitle(ptr.Pointer(), C.CString(title))
 	}
 }
 
 func (ptr *QGraphicsWidget) UnsetLayoutDirection() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_UnsetLayoutDirection(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsWidget_UnsetLayoutDirection(ptr.Pointer())
 	}
 }
 
 func (ptr *QGraphicsWidget) WindowFlags() core.Qt__WindowType {
 	if ptr.Pointer() != nil {
-		return core.Qt__WindowType(C.QGraphicsWidget_WindowFlags(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__WindowType(C.QGraphicsWidget_WindowFlags(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsWidget) WindowTitle() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGraphicsWidget_WindowTitle(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QGraphicsWidget_WindowTitle(ptr.Pointer()))
 	}
 	return ""
 }
 
-func NewQGraphicsWidget(parent QGraphicsItemITF, wFlags core.Qt__WindowType) *QGraphicsWidget {
-	return QGraphicsWidgetFromPointer(unsafe.Pointer(C.QGraphicsWidget_NewQGraphicsWidget(C.QtObjectPtr(PointerFromQGraphicsItem(parent)), C.int(wFlags))))
+func NewQGraphicsWidget(parent QGraphicsItem_ITF, wFlags core.Qt__WindowType) *QGraphicsWidget {
+	return NewQGraphicsWidgetFromPointer(C.QGraphicsWidget_NewQGraphicsWidget(PointerFromQGraphicsItem(parent), C.int(wFlags)))
 }
 
-func (ptr *QGraphicsWidget) AddAction(action QActionITF) {
+func (ptr *QGraphicsWidget) AddAction(action QAction_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_AddAction(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAction(action)))
+		C.QGraphicsWidget_AddAction(ptr.Pointer(), PointerFromQAction(action))
 	}
 }
 
 func (ptr *QGraphicsWidget) AdjustSize() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_AdjustSize(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsWidget_AdjustSize(ptr.Pointer())
 	}
 }
 
 func (ptr *QGraphicsWidget) Close() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_Close(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QGraphicsWidget_Close(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsWidget) FocusWidget() *QGraphicsWidget {
 	if ptr.Pointer() != nil {
-		return QGraphicsWidgetFromPointer(unsafe.Pointer(C.QGraphicsWidget_FocusWidget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQGraphicsWidgetFromPointer(C.QGraphicsWidget_FocusWidget(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QGraphicsWidget) ConnectGeometryChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_ConnectGeometryChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsWidget_ConnectGeometryChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "geometryChanged", f)
 	}
 }
 
 func (ptr *QGraphicsWidget) DisconnectGeometryChanged() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_DisconnectGeometryChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsWidget_DisconnectGeometryChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "geometryChanged")
 	}
 }
@@ -199,122 +199,146 @@ func callbackQGraphicsWidgetGeometryChanged(ptrName *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "geometryChanged").(func())()
 }
 
-func (ptr *QGraphicsWidget) GrabShortcut(sequence gui.QKeySequenceITF, context core.Qt__ShortcutContext) int {
+func (ptr *QGraphicsWidget) GrabShortcut(sequence gui.QKeySequence_ITF, context core.Qt__ShortcutContext) int {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsWidget_GrabShortcut(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQKeySequence(sequence)), C.int(context)))
+		return int(C.QGraphicsWidget_GrabShortcut(ptr.Pointer(), gui.PointerFromQKeySequence(sequence), C.int(context)))
 	}
 	return 0
 }
 
-func (ptr *QGraphicsWidget) InsertAction(before QActionITF, action QActionITF) {
+func (ptr *QGraphicsWidget) InsertAction(before QAction_ITF, action QAction_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_InsertAction(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAction(before)), C.QtObjectPtr(PointerFromQAction(action)))
+		C.QGraphicsWidget_InsertAction(ptr.Pointer(), PointerFromQAction(before), PointerFromQAction(action))
 	}
 }
 
 func (ptr *QGraphicsWidget) IsActiveWindow() bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_IsActiveWindow(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QGraphicsWidget_IsActiveWindow(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsWidget) Layout() *QGraphicsLayout {
 	if ptr.Pointer() != nil {
-		return QGraphicsLayoutFromPointer(unsafe.Pointer(C.QGraphicsWidget_Layout(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQGraphicsLayoutFromPointer(C.QGraphicsWidget_Layout(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QGraphicsWidget) Paint(painter gui.QPainterITF, option QStyleOptionGraphicsItemITF, widget QWidgetITF) {
+func (ptr *QGraphicsWidget) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_Paint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(PointerFromQStyleOptionGraphicsItem(option)), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QGraphicsWidget_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
 	}
 }
 
-func (ptr *QGraphicsWidget) PaintWindowFrame(painter gui.QPainterITF, option QStyleOptionGraphicsItemITF, widget QWidgetITF) {
+func (ptr *QGraphicsWidget) PaintWindowFrame(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_PaintWindowFrame(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQPainter(painter)), C.QtObjectPtr(PointerFromQStyleOptionGraphicsItem(option)), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QGraphicsWidget_PaintWindowFrame(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QGraphicsWidget) ReleaseShortcut(id int) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_ReleaseShortcut(C.QtObjectPtr(ptr.Pointer()), C.int(id))
+		C.QGraphicsWidget_ReleaseShortcut(ptr.Pointer(), C.int(id))
 	}
 }
 
-func (ptr *QGraphicsWidget) RemoveAction(action QActionITF) {
+func (ptr *QGraphicsWidget) RemoveAction(action QAction_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_RemoveAction(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAction(action)))
+		C.QGraphicsWidget_RemoveAction(ptr.Pointer(), PointerFromQAction(action))
+	}
+}
+
+func (ptr *QGraphicsWidget) Resize2(w float64, h float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsWidget_Resize2(ptr.Pointer(), C.double(w), C.double(h))
 	}
 }
 
 func (ptr *QGraphicsWidget) SetAttribute(attribute core.Qt__WidgetAttribute, on bool) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetAttribute(C.QtObjectPtr(ptr.Pointer()), C.int(attribute), C.int(qt.GoBoolToInt(on)))
+		C.QGraphicsWidget_SetAttribute(ptr.Pointer(), C.int(attribute), C.int(qt.GoBoolToInt(on)))
+	}
+}
+
+func (ptr *QGraphicsWidget) SetContentsMargins(left float64, top float64, right float64, bottom float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsWidget_SetContentsMargins(ptr.Pointer(), C.double(left), C.double(top), C.double(right), C.double(bottom))
+	}
+}
+
+func (ptr *QGraphicsWidget) SetGeometry2(x float64, y float64, w float64, h float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsWidget_SetGeometry2(ptr.Pointer(), C.double(x), C.double(y), C.double(w), C.double(h))
 	}
 }
 
 func (ptr *QGraphicsWidget) SetShortcutAutoRepeat(id int, enabled bool) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetShortcutAutoRepeat(C.QtObjectPtr(ptr.Pointer()), C.int(id), C.int(qt.GoBoolToInt(enabled)))
+		C.QGraphicsWidget_SetShortcutAutoRepeat(ptr.Pointer(), C.int(id), C.int(qt.GoBoolToInt(enabled)))
 	}
 }
 
 func (ptr *QGraphicsWidget) SetShortcutEnabled(id int, enabled bool) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetShortcutEnabled(C.QtObjectPtr(ptr.Pointer()), C.int(id), C.int(qt.GoBoolToInt(enabled)))
+		C.QGraphicsWidget_SetShortcutEnabled(ptr.Pointer(), C.int(id), C.int(qt.GoBoolToInt(enabled)))
 	}
 }
 
-func (ptr *QGraphicsWidget) SetStyle(style QStyleITF) {
+func (ptr *QGraphicsWidget) SetStyle(style QStyle_ITF) {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_SetStyle(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQStyle(style)))
+		C.QGraphicsWidget_SetStyle(ptr.Pointer(), PointerFromQStyle(style))
 	}
 }
 
-func QGraphicsWidget_SetTabOrder(first QGraphicsWidgetITF, second QGraphicsWidgetITF) {
-	C.QGraphicsWidget_QGraphicsWidget_SetTabOrder(C.QtObjectPtr(PointerFromQGraphicsWidget(first)), C.QtObjectPtr(PointerFromQGraphicsWidget(second)))
+func QGraphicsWidget_SetTabOrder(first QGraphicsWidget_ITF, second QGraphicsWidget_ITF) {
+	C.QGraphicsWidget_QGraphicsWidget_SetTabOrder(PointerFromQGraphicsWidget(first), PointerFromQGraphicsWidget(second))
+}
+
+func (ptr *QGraphicsWidget) SetWindowFrameMargins(left float64, top float64, right float64, bottom float64) {
+	if ptr.Pointer() != nil {
+		C.QGraphicsWidget_SetWindowFrameMargins(ptr.Pointer(), C.double(left), C.double(top), C.double(right), C.double(bottom))
+	}
 }
 
 func (ptr *QGraphicsWidget) Style() *QStyle {
 	if ptr.Pointer() != nil {
-		return QStyleFromPointer(unsafe.Pointer(C.QGraphicsWidget_Style(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQStyleFromPointer(C.QGraphicsWidget_Style(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QGraphicsWidget) TestAttribute(attribute core.Qt__WidgetAttribute) bool {
 	if ptr.Pointer() != nil {
-		return C.QGraphicsWidget_TestAttribute(C.QtObjectPtr(ptr.Pointer()), C.int(attribute)) != 0
+		return C.QGraphicsWidget_TestAttribute(ptr.Pointer(), C.int(attribute)) != 0
 	}
 	return false
 }
 
 func (ptr *QGraphicsWidget) Type() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsWidget_Type(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGraphicsWidget_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsWidget) UnsetWindowFrameMargins() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_UnsetWindowFrameMargins(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsWidget_UnsetWindowFrameMargins(ptr.Pointer())
 	}
 }
 
 func (ptr *QGraphicsWidget) WindowType() core.Qt__WindowType {
 	if ptr.Pointer() != nil {
-		return core.Qt__WindowType(C.QGraphicsWidget_WindowType(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__WindowType(C.QGraphicsWidget_WindowType(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsWidget) DestroyQGraphicsWidget() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsWidget_DestroyQGraphicsWidget(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsWidget_DestroyQGraphicsWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -1,9 +1,9 @@
 #include "qpauseanimation.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
-#include <QString>
 #include <QPauseAnimation>
 #include "_cgo_export.h"
 
@@ -11,23 +11,23 @@ class MyQPauseAnimation: public QPauseAnimation {
 public:
 };
 
-int QPauseAnimation_Duration(QtObjectPtr ptr){
+int QPauseAnimation_Duration(void* ptr){
 	return static_cast<QPauseAnimation*>(ptr)->duration();
 }
 
-void QPauseAnimation_SetDuration(QtObjectPtr ptr, int msecs){
+void QPauseAnimation_SetDuration(void* ptr, int msecs){
 	static_cast<QPauseAnimation*>(ptr)->setDuration(msecs);
 }
 
-QtObjectPtr QPauseAnimation_NewQPauseAnimation(QtObjectPtr parent){
+void* QPauseAnimation_NewQPauseAnimation(void* parent){
 	return new QPauseAnimation(static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QPauseAnimation_NewQPauseAnimation2(int msecs, QtObjectPtr parent){
+void* QPauseAnimation_NewQPauseAnimation2(int msecs, void* parent){
 	return new QPauseAnimation(msecs, static_cast<QObject*>(parent));
 }
 
-void QPauseAnimation_DestroyQPauseAnimation(QtObjectPtr ptr){
+void QPauseAnimation_DestroyQPauseAnimation(void* ptr){
 	static_cast<QPauseAnimation*>(ptr)->~QPauseAnimation();
 }
 

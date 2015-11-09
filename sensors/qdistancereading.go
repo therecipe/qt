@@ -11,27 +11,40 @@ type QDistanceReading struct {
 	QSensorReading
 }
 
-type QDistanceReadingITF interface {
-	QSensorReadingITF
-	QDistanceReadingPTR() *QDistanceReading
+type QDistanceReading_ITF interface {
+	QSensorReading_ITF
+	QDistanceReading_PTR() *QDistanceReading
 }
 
-func PointerFromQDistanceReading(ptr QDistanceReadingITF) unsafe.Pointer {
+func PointerFromQDistanceReading(ptr QDistanceReading_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDistanceReadingPTR().Pointer()
+		return ptr.QDistanceReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDistanceReadingFromPointer(ptr unsafe.Pointer) *QDistanceReading {
+func NewQDistanceReadingFromPointer(ptr unsafe.Pointer) *QDistanceReading {
 	var n = new(QDistanceReading)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QDistanceReading_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QDistanceReading) QDistanceReadingPTR() *QDistanceReading {
+func (ptr *QDistanceReading) QDistanceReading_PTR() *QDistanceReading {
 	return ptr
+}
+
+func (ptr *QDistanceReading) Distance() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QDistanceReading_Distance(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QDistanceReading) SetDistance(distance float64) {
+	if ptr.Pointer() != nil {
+		C.QDistanceReading_SetDistance(ptr.Pointer(), C.double(distance))
+	}
 }

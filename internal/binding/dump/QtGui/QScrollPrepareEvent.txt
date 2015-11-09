@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{QScrollPrepareEvent QScrollPrepareEvent::QScrollPrepareEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc82083e5e0] }
-&{contentPos QScrollPrepareEvent::contentPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPointF [] }
-&{contentPosRange QScrollPrepareEvent::contentPosRange commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QRectF [] }
-&{setContentPos QScrollPrepareEvent::setContentPos commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void [0xc82083ea60] }
-&{setContentPosRange QScrollPrepareEvent::setContentPosRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void [0xc82083ed00] }
-&{setViewportSize QScrollPrepareEvent::setViewportSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void [0xc82083eea0] }
-&{startPos QScrollPrepareEvent::startPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPointF [] }
-&{viewportSize QScrollPrepareEvent::viewportSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QSizeF [] }
-&{~QScrollPrepareEvent QScrollPrepareEvent::~QScrollPrepareEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non destructor false false   [] }
+&{QScrollPrepareEvent QScrollPrepareEvent::QScrollPrepareEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QScrollPrepareEvent(const QPointF &startPos) [0xc82089a4c0] }
+&{contentPos QScrollPrepareEvent::contentPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPointF QPointF contentPos() const [] }
+&{contentPosRange QScrollPrepareEvent::contentPosRange commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QRectF QRectF contentPosRange() const [] }
+&{setContentPos QScrollPrepareEvent::setContentPos commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void void setContentPos(const QPointF &pos) [0xc82089a9c0] }
+&{setContentPosRange QScrollPrepareEvent::setContentPosRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void void setContentPosRange(const QRectF &rect) [0xc82089ad40] }
+&{setViewportSize QScrollPrepareEvent::setViewportSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void void setViewportSize(const QSizeF &size) [0xc82089afe0] }
+&{startPos QScrollPrepareEvent::startPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPointF QPointF startPos() const [] }
+&{viewportSize QScrollPrepareEvent::viewportSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QSizeF QSizeF viewportSize() const [] }
+&{~QScrollPrepareEvent QScrollPrepareEvent::~QScrollPrepareEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non destructor false false   ~QScrollPrepareEvent() [] }
 ########################################			ENUMS			########################################

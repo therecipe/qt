@@ -1,14 +1,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QDoubleValidator_Notation(QtObjectPtr ptr);
-void QDoubleValidator_SetDecimals(QtObjectPtr ptr, int v);
-void QDoubleValidator_SetNotation(QtObjectPtr ptr, int v);
-QtObjectPtr QDoubleValidator_NewQDoubleValidator(QtObjectPtr parent);
-int QDoubleValidator_Decimals(QtObjectPtr ptr);
-void QDoubleValidator_DestroyQDoubleValidator(QtObjectPtr ptr);
+int QDoubleValidator_Notation(void* ptr);
+void QDoubleValidator_SetDecimals(void* ptr, int v);
+void QDoubleValidator_SetNotation(void* ptr, int v);
+void* QDoubleValidator_NewQDoubleValidator(void* parent);
+int QDoubleValidator_Decimals(void* ptr);
+void QDoubleValidator_DestroyQDoubleValidator(void* ptr);
 
 #ifdef __cplusplus
 }

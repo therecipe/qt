@@ -1,12 +1,12 @@
 #include "qcursor.h"
-#include <QModelIndex>
 #include <QScreen>
-#include <QPixmap>
 #include <QBitmap>
-#include <QPoint>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QPoint>
+#include <QPixmap>
 #include <QCursor>
 #include "_cgo_export.h"
 
@@ -14,7 +14,7 @@ class MyQCursor: public QCursor {
 public:
 };
 
-void QCursor_QCursor_SetPos2(QtObjectPtr screen, int x, int y){
+void QCursor_QCursor_SetPos2(void* screen, int x, int y){
 	QCursor::setPos(static_cast<QScreen*>(screen), x, y);
 }
 
@@ -22,55 +22,55 @@ void QCursor_QCursor_SetPos(int x, int y){
 	QCursor::setPos(x, y);
 }
 
-QtObjectPtr QCursor_NewQCursor(){
+void* QCursor_NewQCursor(){
 	return new QCursor();
 }
 
-QtObjectPtr QCursor_NewQCursor6(QtObjectPtr other){
+void* QCursor_NewQCursor6(void* other){
 	return new QCursor(*static_cast<QCursor*>(other));
 }
 
-QtObjectPtr QCursor_NewQCursor2(int shape){
+void* QCursor_NewQCursor2(int shape){
 	return new QCursor(static_cast<Qt::CursorShape>(shape));
 }
 
-QtObjectPtr QCursor_NewQCursor3(QtObjectPtr bitmap, QtObjectPtr mask, int hotX, int hotY){
+void* QCursor_NewQCursor3(void* bitmap, void* mask, int hotX, int hotY){
 	return new QCursor(*static_cast<QBitmap*>(bitmap), *static_cast<QBitmap*>(mask), hotX, hotY);
 }
 
-QtObjectPtr QCursor_NewQCursor5(QtObjectPtr c){
+void* QCursor_NewQCursor5(void* c){
 	return new QCursor(*static_cast<QCursor*>(c));
 }
 
-QtObjectPtr QCursor_NewQCursor4(QtObjectPtr pixmap, int hotX, int hotY){
+void* QCursor_NewQCursor4(void* pixmap, int hotX, int hotY){
 	return new QCursor(*static_cast<QPixmap*>(pixmap), hotX, hotY);
 }
 
-QtObjectPtr QCursor_Bitmap(QtObjectPtr ptr){
+void* QCursor_Bitmap(void* ptr){
 	return const_cast<QBitmap*>(static_cast<QCursor*>(ptr)->bitmap());
 }
 
-QtObjectPtr QCursor_Mask(QtObjectPtr ptr){
+void* QCursor_Mask(void* ptr){
 	return const_cast<QBitmap*>(static_cast<QCursor*>(ptr)->mask());
 }
 
-void QCursor_QCursor_SetPos4(QtObjectPtr screen, QtObjectPtr p){
+void QCursor_QCursor_SetPos4(void* screen, void* p){
 	QCursor::setPos(static_cast<QScreen*>(screen), *static_cast<QPoint*>(p));
 }
 
-void QCursor_QCursor_SetPos3(QtObjectPtr p){
+void QCursor_QCursor_SetPos3(void* p){
 	QCursor::setPos(*static_cast<QPoint*>(p));
 }
 
-void QCursor_SetShape(QtObjectPtr ptr, int shape){
+void QCursor_SetShape(void* ptr, int shape){
 	static_cast<QCursor*>(ptr)->setShape(static_cast<Qt::CursorShape>(shape));
 }
 
-int QCursor_Shape(QtObjectPtr ptr){
+int QCursor_Shape(void* ptr){
 	return static_cast<QCursor*>(ptr)->shape();
 }
 
-void QCursor_DestroyQCursor(QtObjectPtr ptr){
+void QCursor_DestroyQCursor(void* ptr){
 	static_cast<QCursor*>(ptr)->~QCursor();
 }
 

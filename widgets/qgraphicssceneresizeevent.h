@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGraphicsSceneResizeEvent_NewQGraphicsSceneResizeEvent();
-void QGraphicsSceneResizeEvent_DestroyQGraphicsSceneResizeEvent(QtObjectPtr ptr);
+void* QGraphicsSceneResizeEvent_NewQGraphicsSceneResizeEvent();
+void QGraphicsSceneResizeEvent_DestroyQGraphicsSceneResizeEvent(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,20 +1,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QDesktopWidget_IsVirtualDesktop(QtObjectPtr ptr);
-int QDesktopWidget_PrimaryScreen(QtObjectPtr ptr);
-QtObjectPtr QDesktopWidget_Screen(QtObjectPtr ptr, int screen);
-int QDesktopWidget_ScreenNumber2(QtObjectPtr ptr, QtObjectPtr point);
-int QDesktopWidget_ScreenNumber(QtObjectPtr ptr, QtObjectPtr widget);
-void QDesktopWidget_ConnectResized(QtObjectPtr ptr);
-void QDesktopWidget_DisconnectResized(QtObjectPtr ptr);
-int QDesktopWidget_ScreenCount(QtObjectPtr ptr);
-void QDesktopWidget_ConnectScreenCountChanged(QtObjectPtr ptr);
-void QDesktopWidget_DisconnectScreenCountChanged(QtObjectPtr ptr);
-void QDesktopWidget_ConnectWorkAreaResized(QtObjectPtr ptr);
-void QDesktopWidget_DisconnectWorkAreaResized(QtObjectPtr ptr);
+int QDesktopWidget_IsVirtualDesktop(void* ptr);
+int QDesktopWidget_PrimaryScreen(void* ptr);
+void* QDesktopWidget_Screen(void* ptr, int screen);
+int QDesktopWidget_ScreenNumber2(void* ptr, void* point);
+int QDesktopWidget_ScreenNumber(void* ptr, void* widget);
+void QDesktopWidget_ConnectResized(void* ptr);
+void QDesktopWidget_DisconnectResized(void* ptr);
+int QDesktopWidget_ScreenCount(void* ptr);
+void QDesktopWidget_ConnectScreenCountChanged(void* ptr);
+void QDesktopWidget_DisconnectScreenCountChanged(void* ptr);
+void QDesktopWidget_ConnectWorkAreaResized(void* ptr);
+void QDesktopWidget_DisconnectWorkAreaResized(void* ptr);
 
 #ifdef __cplusplus
 }

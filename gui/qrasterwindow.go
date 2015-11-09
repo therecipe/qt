@@ -11,31 +11,31 @@ type QRasterWindow struct {
 	QPaintDeviceWindow
 }
 
-type QRasterWindowITF interface {
-	QPaintDeviceWindowITF
-	QRasterWindowPTR() *QRasterWindow
+type QRasterWindow_ITF interface {
+	QPaintDeviceWindow_ITF
+	QRasterWindow_PTR() *QRasterWindow
 }
 
-func PointerFromQRasterWindow(ptr QRasterWindowITF) unsafe.Pointer {
+func PointerFromQRasterWindow(ptr QRasterWindow_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QRasterWindowPTR().Pointer()
+		return ptr.QRasterWindow_PTR().Pointer()
 	}
 	return nil
 }
 
-func QRasterWindowFromPointer(ptr unsafe.Pointer) *QRasterWindow {
+func NewQRasterWindowFromPointer(ptr unsafe.Pointer) *QRasterWindow {
 	var n = new(QRasterWindow)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QRasterWindow_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QRasterWindow) QRasterWindowPTR() *QRasterWindow {
+func (ptr *QRasterWindow) QRasterWindow_PTR() *QRasterWindow {
 	return ptr
 }
 
-func NewQRasterWindow(parent QWindowITF) *QRasterWindow {
-	return QRasterWindowFromPointer(unsafe.Pointer(C.QRasterWindow_NewQRasterWindow(C.QtObjectPtr(PointerFromQWindow(parent)))))
+func NewQRasterWindow(parent QWindow_ITF) *QRasterWindow {
+	return NewQRasterWindowFromPointer(C.QRasterWindow_NewQRasterWindow(PointerFromQWindow(parent)))
 }

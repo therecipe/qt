@@ -1,71 +1,71 @@
 ########################################			FUNCTIONS			########################################
-&{QDateTimeEdit QDateTimeEdit::QDateTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non constructor false true 3  [0xc8207a8140 0xc8207a83e0] }
-&{QDateTimeEdit QDateTimeEdit::QDateTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non constructor false true 4  [0xc8207a8c00 0xc8207a8de0] }
-&{calendarPopup QDateTimeEdit::calendarPopup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  bool [] }
-&{clearMaximumDate QDateTimeEdit::clearMaximumDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [] }
-&{clearMaximumDateTime QDateTimeEdit::clearMaximumDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [] }
-&{clearMaximumTime QDateTimeEdit::clearMaximumTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [] }
-&{clearMinimumDate QDateTimeEdit::clearMinimumDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [] }
-&{clearMinimumDateTime QDateTimeEdit::clearMinimumDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [] }
-&{clearMinimumTime QDateTimeEdit::clearMinimumTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [] }
-&{currentSection QDateTimeEdit::currentSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  Section [] }
-&{currentSectionIndex QDateTimeEdit::currentSectionIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  int [] }
-&{dateTime QDateTimeEdit::dateTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QDateTime [] }
-&{displayFormat QDateTimeEdit::displayFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QString [] }
-&{displayedSections QDateTimeEdit::displayedSections commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  Sections [] }
-&{maximumDate QDateTimeEdit::maximumDate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QDate [] }
-&{maximumDateTime QDateTimeEdit::maximumDateTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QDateTime [] }
-&{maximumTime QDateTimeEdit::maximumTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QTime [] }
-&{minimumDate QDateTimeEdit::minimumDate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QDate [] }
-&{minimumDateTime QDateTimeEdit::minimumDateTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QDateTime [] }
-&{minimumTime QDateTimeEdit::minimumTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QTime [] }
-&{sectionCount QDateTimeEdit::sectionCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  int [] }
-&{sectionText QDateTimeEdit::sectionText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QString [0xc820581980] }
-&{setCalendarPopup QDateTimeEdit::setCalendarPopup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [0xc820581c00] }
-&{setCurrentSection QDateTimeEdit::setCurrentSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [0xc820581ee0] }
-&{setCurrentSectionIndex QDateTimeEdit::setCurrentSectionIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [0xc8209f21c0] }
-&{setDate QDateTimeEdit::setDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non slot false false  void [0xc8209f2680] }
-&{setDateTime QDateTimeEdit::setDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non slot false false  void [0xc8209f29e0] }
-&{setDisplayFormat QDateTimeEdit::setDisplayFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [0xc8209f2d40] }
-&{setMaximumDate QDateTimeEdit::setMaximumDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [0xc8209f3040] }
-&{setMaximumDateTime QDateTimeEdit::setMaximumDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [0xc8209f3300] }
-&{setMaximumTime QDateTimeEdit::setMaximumTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [0xc8209f36c0] }
-&{setMinimumDate QDateTimeEdit::setMinimumDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [0xc8209f3960] }
-&{setMinimumDateTime QDateTimeEdit::setMinimumDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [0xc8209f3c80] }
-&{setMinimumTime QDateTimeEdit::setMinimumTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [0xc820e62100] }
-&{setTime QDateTimeEdit::setTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non slot false false  void [0xc820e624a0] }
-&{setTimeSpec QDateTimeEdit::setTimeSpec commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void [0xc820e62880] }
-&{timeSpec QDateTimeEdit::timeSpec commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  Qt::TimeSpec [] }
-&{QDateTimeEdit QDateTimeEdit::QDateTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non constructor false false   [0xc820e63fa0] }
-&{QDateTimeEdit QDateTimeEdit::QDateTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non constructor false true 2  [0xc820e1d720 0xc820b7e2c0] }
-&{calendarWidget QDateTimeEdit::calendarWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  QCalendarWidget * [] }
-&{clear QDateTimeEdit::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void [] }
-&{date QDateTimeEdit::date commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  QDate [] }
-&{dateChanged QDateTimeEdit::dateChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non signal false false  void [0xc820c64000] }
-&{dateTimeChanged QDateTimeEdit::dateTimeChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non signal false false  void [0xc820c643c0] }
-&{dateTimeFromText QDateTimeEdit::dateTimeFromText commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  QDateTime [0xc820c64740] }
-&{event QDateTimeEdit::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  bool [0xc820c64b80] }
-&{fixup QDateTimeEdit::fixup commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void [0xc820c64f80] }
-&{focusInEvent QDateTimeEdit::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void [0xc820c652c0] }
-&{focusNextPrevChild QDateTimeEdit::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  bool [0xc820c65620] }
-&{initStyleOption QDateTimeEdit::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  void [0xc820c65900] }
-&{keyPressEvent QDateTimeEdit::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void [0xc820c65d40] }
-&{mousePressEvent QDateTimeEdit::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void [0xc82271a0e0] }
-&{paintEvent QDateTimeEdit::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void [0xc82271a440] }
-&{sectionAt QDateTimeEdit::sectionAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  Section [0xc82271a840] }
-&{setCalendarWidget QDateTimeEdit::setCalendarWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  void [0xc82271acc0] }
-&{setDateRange QDateTimeEdit::setDateRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  void [0xc82271b0e0 0xc82271b200] }
-&{setDateTimeRange QDateTimeEdit::setDateTimeRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  void [0xc82271b540 0xc82271b760] }
-&{setSelectedSection QDateTimeEdit::setSelectedSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  void [0xc82271bb00] }
-&{setTimeRange QDateTimeEdit::setTimeRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  void [0xc82271be80 0xc820cda100] }
-&{sizeHint QDateTimeEdit::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  QSize [] }
-&{stepBy QDateTimeEdit::stepBy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void [0xc820cda780] }
-&{stepEnabled QDateTimeEdit::stepEnabled commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  StepEnabled [] }
-&{textFromDateTime QDateTimeEdit::textFromDateTime commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  QString [0xc820cdae20] }
-&{time QDateTimeEdit::time commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  QTime [] }
-&{timeChanged QDateTimeEdit::timeChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non signal false false  void [0xc820cdb660] }
-&{validate QDateTimeEdit::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  QValidator::State [0xc820cdbac0 0xc820cdbc00] }
-&{wheelEvent QDateTimeEdit::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void [0xc826ada040] }
-&{~QDateTimeEdit QDateTimeEdit::~QDateTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non destructor false false   [] }
+&{QDateTimeEdit QDateTimeEdit::QDateTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non constructor false true 3  QDateTimeEdit(const QDate &date, QWidget *parent) [0xc82168d880 0xc82168d9a0] }
+&{QDateTimeEdit QDateTimeEdit::QDateTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non constructor false true 4  QDateTimeEdit(const QTime &time, QWidget *parent) [0xc82168ddc0 0xc82168de80] }
+&{calendarPopup QDateTimeEdit::calendarPopup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  bool bool calendarPopup() const [] }
+&{clearMaximumDate QDateTimeEdit::clearMaximumDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void clearMaximumDate() [] }
+&{clearMaximumDateTime QDateTimeEdit::clearMaximumDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void clearMaximumDateTime() [] }
+&{clearMaximumTime QDateTimeEdit::clearMaximumTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void clearMaximumTime() [] }
+&{clearMinimumDate QDateTimeEdit::clearMinimumDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void clearMinimumDate() [] }
+&{clearMinimumDateTime QDateTimeEdit::clearMinimumDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void clearMinimumDateTime() [] }
+&{clearMinimumTime QDateTimeEdit::clearMinimumTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void clearMinimumTime() [] }
+&{currentSection QDateTimeEdit::currentSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  Section Section currentSection() const [] }
+&{currentSectionIndex QDateTimeEdit::currentSectionIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  int int currentSectionIndex() const [] }
+&{dateTime QDateTimeEdit::dateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QDateTime QDateTime dateTime() const [] }
+&{displayFormat QDateTimeEdit::displayFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QString QString displayFormat() const [] }
+&{displayedSections QDateTimeEdit::displayedSections commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  Sections Sections displayedSections() const [] }
+&{maximumDate QDateTimeEdit::maximumDate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QDate QDate maximumDate() const [] }
+&{maximumDateTime QDateTimeEdit::maximumDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QDateTime QDateTime maximumDateTime() const [] }
+&{maximumTime QDateTimeEdit::maximumTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QTime QTime maximumTime() const [] }
+&{minimumDate QDateTimeEdit::minimumDate commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QDate QDate minimumDate() const [] }
+&{minimumDateTime QDateTimeEdit::minimumDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QDateTime QDateTime minimumDateTime() const [] }
+&{minimumTime QDateTimeEdit::minimumTime commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QTime QTime minimumTime() const [] }
+&{sectionCount QDateTimeEdit::sectionCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  int int sectionCount() const [] }
+&{sectionText QDateTimeEdit::sectionText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  QString QString sectionText(Section section) const [0xc821667ee0] }
+&{setCalendarPopup QDateTimeEdit::setCalendarPopup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void setCalendarPopup(bool enable) [0xc8215d6e80] }
+&{setCurrentSection QDateTimeEdit::setCurrentSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void setCurrentSection(Section section) [0xc821538560] }
+&{setCurrentSectionIndex QDateTimeEdit::setCurrentSectionIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void setCurrentSectionIndex(int index) [0xc8215389e0] }
+&{setDate QDateTimeEdit::setDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non slot false false  void void setDate(const QDate &date) [0xc821538fc0] }
+&{setDateTime QDateTimeEdit::setDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non slot false false  void void setDateTime(const QDateTime &dateTime) [0xc8215394c0] }
+&{setDisplayFormat QDateTimeEdit::setDisplayFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void setDisplayFormat(const QString &format) [0xc8215399a0] }
+&{setMaximumDate QDateTimeEdit::setMaximumDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void setMaximumDate(const QDate &max) [0xc821539da0] }
+&{setMaximumDateTime QDateTimeEdit::setMaximumDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void setMaximumDateTime(const QDateTime &dt) [0xc82151e1c0] }
+&{setMaximumTime QDateTimeEdit::setMaximumTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void setMaximumTime(const QTime &max) [0xc82151e520] }
+&{setMinimumDate QDateTimeEdit::setMinimumDate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void setMinimumDate(const QDate &min) [0xc82151e820] }
+&{setMinimumDateTime QDateTimeEdit::setMinimumDateTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void setMinimumDateTime(const QDateTime &dt) [0xc82151ec20] }
+&{setMinimumTime QDateTimeEdit::setMinimumTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void setMinimumTime(const QTime &min) [0xc82151f020] }
+&{setTime QDateTimeEdit::setTime commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non slot false false  void void setTime(const QTime &time) [0xc82151f4e0] }
+&{setTimeSpec QDateTimeEdit::setTimeSpec commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  void void setTimeSpec(Qt::TimeSpec spec) [0xc82151f880] }
+&{timeSpec QDateTimeEdit::timeSpec commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.cpp non plain false false  Qt::TimeSpec Qt::TimeSpec timeSpec() const [] }
+&{QDateTimeEdit QDateTimeEdit::QDateTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non constructor false false   QDateTimeEdit(QWidget *parent) [0xc8215130a0] }
+&{QDateTimeEdit QDateTimeEdit::QDateTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non constructor false true 2  QDateTimeEdit(const QDateTime &datetime, QWidget *parent) [0xc8215133a0 0xc8215134a0] }
+&{calendarWidget QDateTimeEdit::calendarWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  QCalendarWidget * QCalendarWidget * calendarWidget() const [] }
+&{clear QDateTimeEdit::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void void clear() [] }
+&{date QDateTimeEdit::date commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  QDate QDate date() const [] }
+&{dateChanged QDateTimeEdit::dateChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non signal false false  void void dateChanged(const QDate &date) [0xc8215007e0] }
+&{dateTimeChanged QDateTimeEdit::dateTimeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non signal false false  void void dateTimeChanged(const QDateTime &datetime) [0xc821500be0] }
+&{dateTimeFromText QDateTimeEdit::dateTimeFromText commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  QDateTime QDateTime dateTimeFromText(const QString &text) const [0xc821501000] }
+&{event QDateTimeEdit::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  bool bool event(QEvent *event) [0xc8215014c0] }
+&{fixup QDateTimeEdit::fixup commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void void fixup(QString &input) const [0xc821501980] }
+&{focusInEvent QDateTimeEdit::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void void focusInEvent(QFocusEvent *event) [0xc821501ce0] }
+&{focusNextPrevChild QDateTimeEdit::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  bool bool focusNextPrevChild(bool next) [0xc821501fe0] }
+&{initStyleOption QDateTimeEdit::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  void void initStyleOption(QStyleOptionSpinBox *option) const [0xc8214fa220] }
+&{keyPressEvent QDateTimeEdit::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void void keyPressEvent(QKeyEvent *event) [0xc8214fa4a0] }
+&{mousePressEvent QDateTimeEdit::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void void mousePressEvent(QMouseEvent *event) [0xc8214fa6e0] }
+&{paintEvent QDateTimeEdit::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void void paintEvent(QPaintEvent *event) [0xc8214fa900] }
+&{sectionAt QDateTimeEdit::sectionAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  Section Section sectionAt(int index) const [0xc8214fab80] }
+&{setCalendarWidget QDateTimeEdit::setCalendarWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  void void setCalendarWidget(QCalendarWidget *calendarWidget) [0xc8214fae00] }
+&{setDateRange QDateTimeEdit::setDateRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  void void setDateRange(const QDate &min, const QDate &max) [0xc8214fb080 0xc8214fb120] }
+&{setDateTimeRange QDateTimeEdit::setDateTimeRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  void void setDateTimeRange(const QDateTime &min, const QDateTime &max) [0xc8214fb2e0 0xc8214fb420] }
+&{setSelectedSection QDateTimeEdit::setSelectedSection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  void void setSelectedSection(Section section) [0xc8214fb600] }
+&{setTimeRange QDateTimeEdit::setTimeRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  void void setTimeRange(const QTime &min, const QTime &max) [0xc8214fb7e0 0xc8214fb8c0] }
+&{sizeHint QDateTimeEdit::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  QSize QSize sizeHint() const [] }
+&{stepBy QDateTimeEdit::stepBy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void void stepBy(int steps) [0xc8214fbd20] }
+&{stepEnabled QDateTimeEdit::stepEnabled commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  StepEnabled StepEnabled stepEnabled() const [] }
+&{textFromDateTime QDateTimeEdit::textFromDateTime commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  QString QString textFromDateTime(const QDateTime &dateTime) const [0xc8214ee240] }
+&{time QDateTimeEdit::time commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non plain false false  QTime QTime time() const [] }
+&{timeChanged QDateTimeEdit::timeChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non signal false false  void void timeChanged(const QTime &time) [0xc8214ee840] }
+&{validate QDateTimeEdit::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  QValidator::State QValidator::State validate(QString &text, int &pos) const [0xc8214eec60 0xc8214eed20] }
+&{wheelEvent QDateTimeEdit::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h impure plain false false  void void wheelEvent(QWheelEvent *event) [0xc8214ef0e0] }
+&{~QDateTimeEdit QDateTimeEdit::~QDateTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non destructor false false   ~QDateTimeEdit() [] }
 ########################################			ENUMS			########################################
-&{Section QDateTimeEdit::Section commendable public QDateTimeEdit::Sections [0xc820e63000 0xc820e63080 0xc820e631c0 0xc820e632c0 0xc820e633c0 0xc820e634a0 0xc820e635c0 0xc820e636e0 0xc820e637c0 0xc820e638e0 0xc820e63aa0]}
+&{Section QDateTimeEdit::Section commendable public QDateTimeEdit::Sections [0xc82151ff60 0xc8215120a0 0xc821512140 0xc821512240 0xc821512360 0xc821512420 0xc821512500 0xc821512660 0xc8215127a0 0xc8215128c0 0xc821512a80] false}

@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QSetIterator QSetIterator::QSetIterator commendable public qset.h non constructor false false   [0xc8202742c0] }
-&{findNext QSetIterator::findNext commendable public qset.h non plain false false  bool [0xc8202747c0] }
-&{findPrevious QSetIterator::findPrevious commendable public qset.h non plain false false  bool [0xc820274ca0] }
-&{hasNext QSetIterator::hasNext commendable public qset.h non plain false false  bool [] }
-&{hasPrevious QSetIterator::hasPrevious commendable public qset.h non plain false false  bool [] }
-&{next QSetIterator::next commendable public qset.h non plain false false  const T & [] }
-&{operator= QSetIterator::operator= commendable public qset.h non plain false false  QSetIterator & [0xc820275a20] }
-&{peekNext QSetIterator::peekNext commendable public qset.h non plain false false  const T & [] }
-&{peekPrevious QSetIterator::peekPrevious commendable public qset.h non plain false false  const T & [] }
-&{previous QSetIterator::previous commendable public qset.h non plain false false  const T & [] }
-&{toBack QSetIterator::toBack commendable public qset.h non plain false false  void [] }
-&{toFront QSetIterator::toFront commendable public qset.h non plain false false  void [] }
+&{QSetIterator QSetIterator::QSetIterator commendable public qset.h non constructor false false   QSetIterator(const QSet<T> &set) [0xc820251640] }
+&{findNext QSetIterator::findNext commendable public qset.h non plain false false  bool bool findNext(const T &value) [0xc820251980] }
+&{findPrevious QSetIterator::findPrevious commendable public qset.h non plain false false  bool bool findPrevious(const T &value) [0xc820251d20] }
+&{hasNext QSetIterator::hasNext commendable public qset.h non plain false false  bool bool hasNext() const [] }
+&{hasPrevious QSetIterator::hasPrevious commendable public qset.h non plain false false  bool bool hasPrevious() const [] }
+&{next QSetIterator::next commendable public qset.h non plain false false  const T & const T & next() [] }
+&{operator= QSetIterator::operator= commendable public qset.h non plain false false  QSetIterator & QSetIterator & operator=(const QSet<T> &set) [0xc820244ca0] }
+&{peekNext QSetIterator::peekNext commendable public qset.h non plain false false  const T & const T & peekNext() const [] }
+&{peekPrevious QSetIterator::peekPrevious commendable public qset.h non plain false false  const T & const T & peekPrevious() const [] }
+&{previous QSetIterator::previous commendable public qset.h non plain false false  const T & const T & previous() [] }
+&{toBack QSetIterator::toBack commendable public qset.h non plain false false  void void toBack() [] }
+&{toFront QSetIterator::toFront commendable public qset.h non plain false false  void void toFront() [] }
 ########################################			ENUMS			########################################

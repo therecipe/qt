@@ -1,28 +1,27 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QMdiSubWindow_KeyboardPageStep(QtObjectPtr ptr);
-int QMdiSubWindow_KeyboardSingleStep(QtObjectPtr ptr);
-void QMdiSubWindow_SetKeyboardPageStep(QtObjectPtr ptr, int step);
-void QMdiSubWindow_SetKeyboardSingleStep(QtObjectPtr ptr, int step);
-QtObjectPtr QMdiSubWindow_NewQMdiSubWindow(QtObjectPtr parent, int flags);
-void QMdiSubWindow_ConnectAboutToActivate(QtObjectPtr ptr);
-void QMdiSubWindow_DisconnectAboutToActivate(QtObjectPtr ptr);
-int QMdiSubWindow_IsShaded(QtObjectPtr ptr);
-QtObjectPtr QMdiSubWindow_MdiArea(QtObjectPtr ptr);
-void QMdiSubWindow_SetOption(QtObjectPtr ptr, int option, int on);
-void QMdiSubWindow_SetSystemMenu(QtObjectPtr ptr, QtObjectPtr systemMenu);
-void QMdiSubWindow_SetWidget(QtObjectPtr ptr, QtObjectPtr widget);
-void QMdiSubWindow_ShowShaded(QtObjectPtr ptr);
-void QMdiSubWindow_ShowSystemMenu(QtObjectPtr ptr);
-QtObjectPtr QMdiSubWindow_SystemMenu(QtObjectPtr ptr);
-int QMdiSubWindow_TestOption(QtObjectPtr ptr, int option);
-QtObjectPtr QMdiSubWindow_Widget(QtObjectPtr ptr);
-void QMdiSubWindow_ConnectWindowStateChanged(QtObjectPtr ptr);
-void QMdiSubWindow_DisconnectWindowStateChanged(QtObjectPtr ptr);
-void QMdiSubWindow_DestroyQMdiSubWindow(QtObjectPtr ptr);
+int QMdiSubWindow_KeyboardPageStep(void* ptr);
+int QMdiSubWindow_KeyboardSingleStep(void* ptr);
+void QMdiSubWindow_SetKeyboardPageStep(void* ptr, int step);
+void QMdiSubWindow_SetKeyboardSingleStep(void* ptr, int step);
+void* QMdiSubWindow_NewQMdiSubWindow(void* parent, int flags);
+void QMdiSubWindow_ConnectAboutToActivate(void* ptr);
+void QMdiSubWindow_DisconnectAboutToActivate(void* ptr);
+int QMdiSubWindow_IsShaded(void* ptr);
+void* QMdiSubWindow_MdiArea(void* ptr);
+void QMdiSubWindow_SetOption(void* ptr, int option, int on);
+void QMdiSubWindow_SetSystemMenu(void* ptr, void* systemMenu);
+void QMdiSubWindow_SetWidget(void* ptr, void* widget);
+void QMdiSubWindow_ShowShaded(void* ptr);
+void QMdiSubWindow_ShowSystemMenu(void* ptr);
+void* QMdiSubWindow_SystemMenu(void* ptr);
+int QMdiSubWindow_TestOption(void* ptr, int option);
+void* QMdiSubWindow_Widget(void* ptr);
+void QMdiSubWindow_ConnectWindowStateChanged(void* ptr);
+void QMdiSubWindow_DisconnectWindowStateChanged(void* ptr);
+void QMdiSubWindow_DestroyQMdiSubWindow(void* ptr);
 
 #ifdef __cplusplus
 }

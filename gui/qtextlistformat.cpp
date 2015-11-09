@@ -13,43 +13,43 @@ class MyQTextListFormat: public QTextListFormat {
 public:
 };
 
-QtObjectPtr QTextListFormat_NewQTextListFormat(){
+void* QTextListFormat_NewQTextListFormat(){
 	return new QTextListFormat();
 }
 
-int QTextListFormat_Indent(QtObjectPtr ptr){
+int QTextListFormat_Indent(void* ptr){
 	return static_cast<QTextListFormat*>(ptr)->indent();
 }
 
-int QTextListFormat_IsValid(QtObjectPtr ptr){
+int QTextListFormat_IsValid(void* ptr){
 	return static_cast<QTextListFormat*>(ptr)->isValid();
 }
 
-char* QTextListFormat_NumberPrefix(QtObjectPtr ptr){
+char* QTextListFormat_NumberPrefix(void* ptr){
 	return static_cast<QTextListFormat*>(ptr)->numberPrefix().toUtf8().data();
 }
 
-char* QTextListFormat_NumberSuffix(QtObjectPtr ptr){
+char* QTextListFormat_NumberSuffix(void* ptr){
 	return static_cast<QTextListFormat*>(ptr)->numberSuffix().toUtf8().data();
 }
 
-void QTextListFormat_SetIndent(QtObjectPtr ptr, int indentation){
+void QTextListFormat_SetIndent(void* ptr, int indentation){
 	static_cast<QTextListFormat*>(ptr)->setIndent(indentation);
 }
 
-void QTextListFormat_SetNumberPrefix(QtObjectPtr ptr, char* numberPrefix){
+void QTextListFormat_SetNumberPrefix(void* ptr, char* numberPrefix){
 	static_cast<QTextListFormat*>(ptr)->setNumberPrefix(QString(numberPrefix));
 }
 
-void QTextListFormat_SetNumberSuffix(QtObjectPtr ptr, char* numberSuffix){
+void QTextListFormat_SetNumberSuffix(void* ptr, char* numberSuffix){
 	static_cast<QTextListFormat*>(ptr)->setNumberSuffix(QString(numberSuffix));
 }
 
-void QTextListFormat_SetStyle(QtObjectPtr ptr, int style){
+void QTextListFormat_SetStyle(void* ptr, int style){
 	static_cast<QTextListFormat*>(ptr)->setStyle(static_cast<QTextListFormat::Style>(style));
 }
 
-int QTextListFormat_Style(QtObjectPtr ptr){
+int QTextListFormat_Style(void* ptr){
 	return static_cast<QTextListFormat*>(ptr)->style();
 }
 

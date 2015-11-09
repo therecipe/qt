@@ -1,16 +1,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QGeoRouteSegment_NewQGeoRouteSegment();
-QtObjectPtr QGeoRouteSegment_NewQGeoRouteSegment2(QtObjectPtr other);
-int QGeoRouteSegment_IsValid(QtObjectPtr ptr);
-void QGeoRouteSegment_SetManeuver(QtObjectPtr ptr, QtObjectPtr maneuver);
-void QGeoRouteSegment_SetNextRouteSegment(QtObjectPtr ptr, QtObjectPtr routeSegment);
-void QGeoRouteSegment_SetTravelTime(QtObjectPtr ptr, int secs);
-int QGeoRouteSegment_TravelTime(QtObjectPtr ptr);
-void QGeoRouteSegment_DestroyQGeoRouteSegment(QtObjectPtr ptr);
+void* QGeoRouteSegment_NewQGeoRouteSegment();
+void* QGeoRouteSegment_NewQGeoRouteSegment2(void* other);
+double QGeoRouteSegment_Distance(void* ptr);
+int QGeoRouteSegment_IsValid(void* ptr);
+void QGeoRouteSegment_SetDistance(void* ptr, double distance);
+void QGeoRouteSegment_SetManeuver(void* ptr, void* maneuver);
+void QGeoRouteSegment_SetNextRouteSegment(void* ptr, void* routeSegment);
+void QGeoRouteSegment_SetTravelTime(void* ptr, int secs);
+int QGeoRouteSegment_TravelTime(void* ptr);
+void QGeoRouteSegment_DestroyQGeoRouteSegment(void* ptr);
 
 #ifdef __cplusplus
 }

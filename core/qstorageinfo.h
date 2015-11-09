@@ -1,23 +1,24 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStorageInfo_NewQStorageInfo();
-QtObjectPtr QStorageInfo_NewQStorageInfo3(QtObjectPtr dir);
-QtObjectPtr QStorageInfo_NewQStorageInfo4(QtObjectPtr other);
-QtObjectPtr QStorageInfo_NewQStorageInfo2(char* path);
-char* QStorageInfo_DisplayName(QtObjectPtr ptr);
-int QStorageInfo_IsReadOnly(QtObjectPtr ptr);
-int QStorageInfo_IsReady(QtObjectPtr ptr);
-int QStorageInfo_IsRoot(QtObjectPtr ptr);
-int QStorageInfo_IsValid(QtObjectPtr ptr);
-char* QStorageInfo_Name(QtObjectPtr ptr);
-void QStorageInfo_Refresh(QtObjectPtr ptr);
-char* QStorageInfo_RootPath(QtObjectPtr ptr);
-void QStorageInfo_SetPath(QtObjectPtr ptr, char* path);
-void QStorageInfo_Swap(QtObjectPtr ptr, QtObjectPtr other);
-void QStorageInfo_DestroyQStorageInfo(QtObjectPtr ptr);
+void* QStorageInfo_NewQStorageInfo();
+void* QStorageInfo_NewQStorageInfo3(void* dir);
+void* QStorageInfo_NewQStorageInfo4(void* other);
+void* QStorageInfo_NewQStorageInfo2(char* path);
+void* QStorageInfo_Device(void* ptr);
+char* QStorageInfo_DisplayName(void* ptr);
+void* QStorageInfo_FileSystemType(void* ptr);
+int QStorageInfo_IsReadOnly(void* ptr);
+int QStorageInfo_IsReady(void* ptr);
+int QStorageInfo_IsRoot(void* ptr);
+int QStorageInfo_IsValid(void* ptr);
+char* QStorageInfo_Name(void* ptr);
+void QStorageInfo_Refresh(void* ptr);
+char* QStorageInfo_RootPath(void* ptr);
+void QStorageInfo_SetPath(void* ptr, char* path);
+void QStorageInfo_Swap(void* ptr, void* other);
+void QStorageInfo_DestroyQStorageInfo(void* ptr);
 
 #ifdef __cplusplus
 }

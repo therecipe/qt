@@ -10,28 +10,35 @@ type QDynamicPropertyChangeEvent struct {
 	QEvent
 }
 
-type QDynamicPropertyChangeEventITF interface {
-	QEventITF
-	QDynamicPropertyChangeEventPTR() *QDynamicPropertyChangeEvent
+type QDynamicPropertyChangeEvent_ITF interface {
+	QEvent_ITF
+	QDynamicPropertyChangeEvent_PTR() *QDynamicPropertyChangeEvent
 }
 
-func PointerFromQDynamicPropertyChangeEvent(ptr QDynamicPropertyChangeEventITF) unsafe.Pointer {
+func PointerFromQDynamicPropertyChangeEvent(ptr QDynamicPropertyChangeEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDynamicPropertyChangeEventPTR().Pointer()
+		return ptr.QDynamicPropertyChangeEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDynamicPropertyChangeEventFromPointer(ptr unsafe.Pointer) *QDynamicPropertyChangeEvent {
+func NewQDynamicPropertyChangeEventFromPointer(ptr unsafe.Pointer) *QDynamicPropertyChangeEvent {
 	var n = new(QDynamicPropertyChangeEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDynamicPropertyChangeEvent) QDynamicPropertyChangeEventPTR() *QDynamicPropertyChangeEvent {
+func (ptr *QDynamicPropertyChangeEvent) QDynamicPropertyChangeEvent_PTR() *QDynamicPropertyChangeEvent {
 	return ptr
 }
 
-func NewQDynamicPropertyChangeEvent(name QByteArrayITF) *QDynamicPropertyChangeEvent {
-	return QDynamicPropertyChangeEventFromPointer(unsafe.Pointer(C.QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(C.QtObjectPtr(PointerFromQByteArray(name)))))
+func NewQDynamicPropertyChangeEvent(name QByteArray_ITF) *QDynamicPropertyChangeEvent {
+	return NewQDynamicPropertyChangeEventFromPointer(C.QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(PointerFromQByteArray(name)))
+}
+
+func (ptr *QDynamicPropertyChangeEvent) PropertyName() *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QDynamicPropertyChangeEvent_PropertyName(ptr.Pointer()))
+	}
+	return nil
 }

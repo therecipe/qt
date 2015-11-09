@@ -1,16 +1,16 @@
 ########################################			FUNCTIONS			########################################
-&{QXmlStreamAttribute QXmlStreamAttribute::QXmlStreamAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false false   [] }
-&{QXmlStreamAttribute QXmlStreamAttribute::QXmlStreamAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 3  [0xc82093d120 0xc82093d1a0 0xc82093d220] }
-&{QXmlStreamAttribute QXmlStreamAttribute::QXmlStreamAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 2  [0xc82093d4e0 0xc82093d5c0] }
-&{QXmlStreamAttribute QXmlStreamAttribute::QXmlStreamAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 4  [0xc82093d7e0] }
-&{isDefault QXmlStreamAttribute::isDefault commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [] }
-&{name QXmlStreamAttribute::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
-&{namespaceUri QXmlStreamAttribute::namespaceUri commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
-&{operator!= QXmlStreamAttribute::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [0xc82093de40] }
-&{operator= QXmlStreamAttribute::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QXmlStreamAttribute & [0xc8204be260] }
-&{operator== QXmlStreamAttribute::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool [0xc8204be6e0] }
-&{prefix QXmlStreamAttribute::prefix commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
-&{qualifiedName QXmlStreamAttribute::qualifiedName commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
-&{value QXmlStreamAttribute::value commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef [] }
-&{~QXmlStreamAttribute QXmlStreamAttribute::~QXmlStreamAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non destructor false false   [] }
+&{QXmlStreamAttribute QXmlStreamAttribute::QXmlStreamAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false false   QXmlStreamAttribute() [] }
+&{QXmlStreamAttribute QXmlStreamAttribute::QXmlStreamAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 3  QXmlStreamAttribute(const QString &namespaceUri, const QString &name, const QString &value) [0xc820a84c40 0xc820a84cc0 0xc820a84dc0] }
+&{QXmlStreamAttribute QXmlStreamAttribute::QXmlStreamAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 2  QXmlStreamAttribute(const QString &qualifiedName, const QString &value) [0xc820a84fc0 0xc820a85080] }
+&{QXmlStreamAttribute QXmlStreamAttribute::QXmlStreamAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non constructor false true 4  QXmlStreamAttribute(const QXmlStreamAttribute &other) [0xc820a85360] }
+&{isDefault QXmlStreamAttribute::isDefault commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool bool isDefault() const [] }
+&{name QXmlStreamAttribute::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef QStringRef name() const [] }
+&{namespaceUri QXmlStreamAttribute::namespaceUri commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef QStringRef namespaceUri() const [] }
+&{operator!= QXmlStreamAttribute::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool bool operator!=(const QXmlStreamAttribute &other) const [0xc820a85c00] }
+&{operator= QXmlStreamAttribute::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QXmlStreamAttribute & QXmlStreamAttribute & operator=(const QXmlStreamAttribute &other) [0xc82048a120] }
+&{operator== QXmlStreamAttribute::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  bool bool operator==(const QXmlStreamAttribute &other) const [0xc82048a580] }
+&{prefix QXmlStreamAttribute::prefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef QStringRef prefix() const [] }
+&{qualifiedName QXmlStreamAttribute::qualifiedName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef QStringRef qualifiedName() const [] }
+&{value QXmlStreamAttribute::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non plain false false  QStringRef QStringRef value() const [] }
+&{~QXmlStreamAttribute QXmlStreamAttribute::~QXmlStreamAttribute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h non destructor false false   ~QXmlStreamAttribute() [] }
 ########################################			ENUMS			########################################

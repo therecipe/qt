@@ -10,55 +10,55 @@ type QStyleOptionFrame struct {
 	QStyleOption
 }
 
-type QStyleOptionFrameITF interface {
-	QStyleOptionITF
-	QStyleOptionFramePTR() *QStyleOptionFrame
+type QStyleOptionFrame_ITF interface {
+	QStyleOption_ITF
+	QStyleOptionFrame_PTR() *QStyleOptionFrame
 }
 
-func PointerFromQStyleOptionFrame(ptr QStyleOptionFrameITF) unsafe.Pointer {
+func PointerFromQStyleOptionFrame(ptr QStyleOptionFrame_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionFramePTR().Pointer()
+		return ptr.QStyleOptionFrame_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionFrameFromPointer(ptr unsafe.Pointer) *QStyleOptionFrame {
+func NewQStyleOptionFrameFromPointer(ptr unsafe.Pointer) *QStyleOptionFrame {
 	var n = new(QStyleOptionFrame)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionFrame) QStyleOptionFramePTR() *QStyleOptionFrame {
+func (ptr *QStyleOptionFrame) QStyleOptionFrame_PTR() *QStyleOptionFrame {
 	return ptr
 }
 
 //QStyleOptionFrame::FrameFeature
-type QStyleOptionFrame__FrameFeature int
+type QStyleOptionFrame__FrameFeature int64
 
-var (
+const (
 	QStyleOptionFrame__None    = QStyleOptionFrame__FrameFeature(0x00)
 	QStyleOptionFrame__Flat    = QStyleOptionFrame__FrameFeature(0x01)
 	QStyleOptionFrame__Rounded = QStyleOptionFrame__FrameFeature(0x02)
 )
 
 //QStyleOptionFrame::StyleOptionType
-type QStyleOptionFrame__StyleOptionType int
+type QStyleOptionFrame__StyleOptionType int64
 
 var (
 	QStyleOptionFrame__Type = QStyleOptionFrame__StyleOptionType(QStyleOption__SO_Frame)
 )
 
 //QStyleOptionFrame::StyleOptionVersion
-type QStyleOptionFrame__StyleOptionVersion int
+type QStyleOptionFrame__StyleOptionVersion int64
 
 var (
 	QStyleOptionFrame__Version = QStyleOptionFrame__StyleOptionVersion(3)
 )
 
 func NewQStyleOptionFrame() *QStyleOptionFrame {
-	return QStyleOptionFrameFromPointer(unsafe.Pointer(C.QStyleOptionFrame_NewQStyleOptionFrame()))
+	return NewQStyleOptionFrameFromPointer(C.QStyleOptionFrame_NewQStyleOptionFrame())
 }
 
-func NewQStyleOptionFrame2(other QStyleOptionFrameITF) *QStyleOptionFrame {
-	return QStyleOptionFrameFromPointer(unsafe.Pointer(C.QStyleOptionFrame_NewQStyleOptionFrame2(C.QtObjectPtr(PointerFromQStyleOptionFrame(other)))))
+func NewQStyleOptionFrame2(other QStyleOptionFrame_ITF) *QStyleOptionFrame {
+	return NewQStyleOptionFrameFromPointer(C.QStyleOptionFrame_NewQStyleOptionFrame2(PointerFromQStyleOptionFrame(other)))
 }

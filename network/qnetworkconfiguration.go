@@ -10,8 +10,8 @@ type QNetworkConfiguration struct {
 	ptr unsafe.Pointer
 }
 
-type QNetworkConfigurationITF interface {
-	QNetworkConfigurationPTR() *QNetworkConfiguration
+type QNetworkConfiguration_ITF interface {
+	QNetworkConfiguration_PTR() *QNetworkConfiguration
 }
 
 func (p *QNetworkConfiguration) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QNetworkConfiguration) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQNetworkConfiguration(ptr QNetworkConfigurationITF) unsafe.Pointer {
+func PointerFromQNetworkConfiguration(ptr QNetworkConfiguration_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNetworkConfigurationPTR().Pointer()
+		return ptr.QNetworkConfiguration_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNetworkConfigurationFromPointer(ptr unsafe.Pointer) *QNetworkConfiguration {
+func NewQNetworkConfigurationFromPointer(ptr unsafe.Pointer) *QNetworkConfiguration {
 	var n = new(QNetworkConfiguration)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QNetworkConfiguration) QNetworkConfigurationPTR() *QNetworkConfiguration {
+func (ptr *QNetworkConfiguration) QNetworkConfiguration_PTR() *QNetworkConfiguration {
 	return ptr
 }
 
 //QNetworkConfiguration::BearerType
-type QNetworkConfiguration__BearerType int
+type QNetworkConfiguration__BearerType int64
 
-var (
+const (
 	QNetworkConfiguration__BearerUnknown   = QNetworkConfiguration__BearerType(0)
 	QNetworkConfiguration__BearerEthernet  = QNetworkConfiguration__BearerType(1)
 	QNetworkConfiguration__BearerWLAN      = QNetworkConfiguration__BearerType(2)
@@ -59,9 +59,9 @@ var (
 )
 
 //QNetworkConfiguration::Purpose
-type QNetworkConfiguration__Purpose int
+type QNetworkConfiguration__Purpose int64
 
-var (
+const (
 	QNetworkConfiguration__UnknownPurpose         = QNetworkConfiguration__Purpose(0)
 	QNetworkConfiguration__PublicPurpose          = QNetworkConfiguration__Purpose(1)
 	QNetworkConfiguration__PrivatePurpose         = QNetworkConfiguration__Purpose(2)
@@ -69,9 +69,9 @@ var (
 )
 
 //QNetworkConfiguration::StateFlag
-type QNetworkConfiguration__StateFlag int
+type QNetworkConfiguration__StateFlag int64
 
-var (
+const (
 	QNetworkConfiguration__Undefined  = QNetworkConfiguration__StateFlag(0x0000001)
 	QNetworkConfiguration__Defined    = QNetworkConfiguration__StateFlag(0x0000002)
 	QNetworkConfiguration__Discovered = QNetworkConfiguration__StateFlag(0x0000006)
@@ -79,9 +79,9 @@ var (
 )
 
 //QNetworkConfiguration::Type
-type QNetworkConfiguration__Type int
+type QNetworkConfiguration__Type int64
 
-var (
+const (
 	QNetworkConfiguration__InternetAccessPoint = QNetworkConfiguration__Type(0)
 	QNetworkConfiguration__ServiceNetwork      = QNetworkConfiguration__Type(1)
 	QNetworkConfiguration__UserChoice          = QNetworkConfiguration__Type(2)
@@ -89,84 +89,84 @@ var (
 )
 
 func NewQNetworkConfiguration() *QNetworkConfiguration {
-	return QNetworkConfigurationFromPointer(unsafe.Pointer(C.QNetworkConfiguration_NewQNetworkConfiguration()))
+	return NewQNetworkConfigurationFromPointer(C.QNetworkConfiguration_NewQNetworkConfiguration())
 }
 
-func NewQNetworkConfiguration2(other QNetworkConfigurationITF) *QNetworkConfiguration {
-	return QNetworkConfigurationFromPointer(unsafe.Pointer(C.QNetworkConfiguration_NewQNetworkConfiguration2(C.QtObjectPtr(PointerFromQNetworkConfiguration(other)))))
+func NewQNetworkConfiguration2(other QNetworkConfiguration_ITF) *QNetworkConfiguration {
+	return NewQNetworkConfigurationFromPointer(C.QNetworkConfiguration_NewQNetworkConfiguration2(PointerFromQNetworkConfiguration(other)))
 }
 
 func (ptr *QNetworkConfiguration) BearerType() QNetworkConfiguration__BearerType {
 	if ptr.Pointer() != nil {
-		return QNetworkConfiguration__BearerType(C.QNetworkConfiguration_BearerType(C.QtObjectPtr(ptr.Pointer())))
+		return QNetworkConfiguration__BearerType(C.QNetworkConfiguration_BearerType(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNetworkConfiguration) BearerTypeFamily() QNetworkConfiguration__BearerType {
 	if ptr.Pointer() != nil {
-		return QNetworkConfiguration__BearerType(C.QNetworkConfiguration_BearerTypeFamily(C.QtObjectPtr(ptr.Pointer())))
+		return QNetworkConfiguration__BearerType(C.QNetworkConfiguration_BearerTypeFamily(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNetworkConfiguration) BearerTypeName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkConfiguration_BearerTypeName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QNetworkConfiguration_BearerTypeName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QNetworkConfiguration) Identifier() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkConfiguration_Identifier(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QNetworkConfiguration_Identifier(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QNetworkConfiguration) IsRoamingAvailable() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkConfiguration_IsRoamingAvailable(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QNetworkConfiguration_IsRoamingAvailable(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkConfiguration) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QNetworkConfiguration_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QNetworkConfiguration_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QNetworkConfiguration) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkConfiguration_Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QNetworkConfiguration_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QNetworkConfiguration) Purpose() QNetworkConfiguration__Purpose {
 	if ptr.Pointer() != nil {
-		return QNetworkConfiguration__Purpose(C.QNetworkConfiguration_Purpose(C.QtObjectPtr(ptr.Pointer())))
+		return QNetworkConfiguration__Purpose(C.QNetworkConfiguration_Purpose(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QNetworkConfiguration) Swap(other QNetworkConfigurationITF) {
+func (ptr *QNetworkConfiguration) Swap(other QNetworkConfiguration_ITF) {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfiguration_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQNetworkConfiguration(other)))
+		C.QNetworkConfiguration_Swap(ptr.Pointer(), PointerFromQNetworkConfiguration(other))
 	}
 }
 
 func (ptr *QNetworkConfiguration) Type() QNetworkConfiguration__Type {
 	if ptr.Pointer() != nil {
-		return QNetworkConfiguration__Type(C.QNetworkConfiguration_Type(C.QtObjectPtr(ptr.Pointer())))
+		return QNetworkConfiguration__Type(C.QNetworkConfiguration_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QNetworkConfiguration) DestroyQNetworkConfiguration() {
 	if ptr.Pointer() != nil {
-		C.QNetworkConfiguration_DestroyQNetworkConfiguration(C.QtObjectPtr(ptr.Pointer()))
+		C.QNetworkConfiguration_DestroyQNetworkConfiguration(ptr.Pointer())
 	}
 }

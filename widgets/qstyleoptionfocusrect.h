@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QStyleOptionFocusRect_NewQStyleOptionFocusRect();
-QtObjectPtr QStyleOptionFocusRect_NewQStyleOptionFocusRect2(QtObjectPtr other);
+void* QStyleOptionFocusRect_NewQStyleOptionFocusRect();
+void* QStyleOptionFocusRect_NewQStyleOptionFocusRect2(void* other);
 
 #ifdef __cplusplus
 }

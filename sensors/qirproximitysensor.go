@@ -12,45 +12,45 @@ type QIRProximitySensor struct {
 	QSensor
 }
 
-type QIRProximitySensorITF interface {
-	QSensorITF
-	QIRProximitySensorPTR() *QIRProximitySensor
+type QIRProximitySensor_ITF interface {
+	QSensor_ITF
+	QIRProximitySensor_PTR() *QIRProximitySensor
 }
 
-func PointerFromQIRProximitySensor(ptr QIRProximitySensorITF) unsafe.Pointer {
+func PointerFromQIRProximitySensor(ptr QIRProximitySensor_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QIRProximitySensorPTR().Pointer()
+		return ptr.QIRProximitySensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func QIRProximitySensorFromPointer(ptr unsafe.Pointer) *QIRProximitySensor {
+func NewQIRProximitySensorFromPointer(ptr unsafe.Pointer) *QIRProximitySensor {
 	var n = new(QIRProximitySensor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QIRProximitySensor_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QIRProximitySensor) QIRProximitySensorPTR() *QIRProximitySensor {
+func (ptr *QIRProximitySensor) QIRProximitySensor_PTR() *QIRProximitySensor {
 	return ptr
 }
 
 func (ptr *QIRProximitySensor) Reading() *QIRProximityReading {
 	if ptr.Pointer() != nil {
-		return QIRProximityReadingFromPointer(unsafe.Pointer(C.QIRProximitySensor_Reading(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQIRProximityReadingFromPointer(C.QIRProximitySensor_Reading(ptr.Pointer()))
 	}
 	return nil
 }
 
-func NewQIRProximitySensor(parent core.QObjectITF) *QIRProximitySensor {
-	return QIRProximitySensorFromPointer(unsafe.Pointer(C.QIRProximitySensor_NewQIRProximitySensor(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQIRProximitySensor(parent core.QObject_ITF) *QIRProximitySensor {
+	return NewQIRProximitySensorFromPointer(C.QIRProximitySensor_NewQIRProximitySensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QIRProximitySensor) DestroyQIRProximitySensor() {
 	if ptr.Pointer() != nil {
-		C.QIRProximitySensor_DestroyQIRProximitySensor(C.QtObjectPtr(ptr.Pointer()))
+		C.QIRProximitySensor_DestroyQIRProximitySensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

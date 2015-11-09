@@ -10,8 +10,8 @@ type QStyleOption struct {
 	ptr unsafe.Pointer
 }
 
-type QStyleOptionITF interface {
-	QStyleOptionPTR() *QStyleOption
+type QStyleOption_ITF interface {
+	QStyleOption_PTR() *QStyleOption
 }
 
 func (p *QStyleOption) Pointer() unsafe.Pointer {
@@ -22,25 +22,25 @@ func (p *QStyleOption) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQStyleOption(ptr QStyleOptionITF) unsafe.Pointer {
+func PointerFromQStyleOption(ptr QStyleOption_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionPTR().Pointer()
+		return ptr.QStyleOption_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionFromPointer(ptr unsafe.Pointer) *QStyleOption {
+func NewQStyleOptionFromPointer(ptr unsafe.Pointer) *QStyleOption {
 	var n = new(QStyleOption)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOption) QStyleOptionPTR() *QStyleOption {
+func (ptr *QStyleOption) QStyleOption_PTR() *QStyleOption {
 	return ptr
 }
 
 //QStyleOption::OptionType
-type QStyleOption__OptionType int
+type QStyleOption__OptionType int64
 
 var (
 	QStyleOption__SO_Default           = QStyleOption__OptionType(0)
@@ -72,35 +72,35 @@ var (
 )
 
 //QStyleOption::StyleOptionType
-type QStyleOption__StyleOptionType int
+type QStyleOption__StyleOptionType int64
 
 var (
 	QStyleOption__Type = QStyleOption__StyleOptionType(QStyleOption__SO_Default)
 )
 
 //QStyleOption::StyleOptionVersion
-type QStyleOption__StyleOptionVersion int
+type QStyleOption__StyleOptionVersion int64
 
 var (
 	QStyleOption__Version = QStyleOption__StyleOptionVersion(1)
 )
 
-func NewQStyleOption2(other QStyleOptionITF) *QStyleOption {
-	return QStyleOptionFromPointer(unsafe.Pointer(C.QStyleOption_NewQStyleOption2(C.QtObjectPtr(PointerFromQStyleOption(other)))))
+func NewQStyleOption2(other QStyleOption_ITF) *QStyleOption {
+	return NewQStyleOptionFromPointer(C.QStyleOption_NewQStyleOption2(PointerFromQStyleOption(other)))
 }
 
 func NewQStyleOption(version int, ty int) *QStyleOption {
-	return QStyleOptionFromPointer(unsafe.Pointer(C.QStyleOption_NewQStyleOption(C.int(version), C.int(ty))))
+	return NewQStyleOptionFromPointer(C.QStyleOption_NewQStyleOption(C.int(version), C.int(ty)))
 }
 
-func (ptr *QStyleOption) InitFrom(widget QWidgetITF) {
+func (ptr *QStyleOption) InitFrom(widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QStyleOption_InitFrom(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QStyleOption_InitFrom(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QStyleOption) DestroyQStyleOption() {
 	if ptr.Pointer() != nil {
-		C.QStyleOption_DestroyQStyleOption(C.QtObjectPtr(ptr.Pointer()))
+		C.QStyleOption_DestroyQStyleOption(ptr.Pointer())
 	}
 }

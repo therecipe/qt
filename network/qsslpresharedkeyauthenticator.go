@@ -11,8 +11,8 @@ type QSslPreSharedKeyAuthenticator struct {
 	ptr unsafe.Pointer
 }
 
-type QSslPreSharedKeyAuthenticatorITF interface {
-	QSslPreSharedKeyAuthenticatorPTR() *QSslPreSharedKeyAuthenticator
+type QSslPreSharedKeyAuthenticator_ITF interface {
+	QSslPreSharedKeyAuthenticator_PTR() *QSslPreSharedKeyAuthenticator
 }
 
 func (p *QSslPreSharedKeyAuthenticator) Pointer() unsafe.Pointer {
@@ -23,65 +23,86 @@ func (p *QSslPreSharedKeyAuthenticator) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSslPreSharedKeyAuthenticator(ptr QSslPreSharedKeyAuthenticatorITF) unsafe.Pointer {
+func PointerFromQSslPreSharedKeyAuthenticator(ptr QSslPreSharedKeyAuthenticator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSslPreSharedKeyAuthenticatorPTR().Pointer()
+		return ptr.QSslPreSharedKeyAuthenticator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSslPreSharedKeyAuthenticatorFromPointer(ptr unsafe.Pointer) *QSslPreSharedKeyAuthenticator {
+func NewQSslPreSharedKeyAuthenticatorFromPointer(ptr unsafe.Pointer) *QSslPreSharedKeyAuthenticator {
 	var n = new(QSslPreSharedKeyAuthenticator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSslPreSharedKeyAuthenticator) QSslPreSharedKeyAuthenticatorPTR() *QSslPreSharedKeyAuthenticator {
+func (ptr *QSslPreSharedKeyAuthenticator) QSslPreSharedKeyAuthenticator_PTR() *QSslPreSharedKeyAuthenticator {
 	return ptr
 }
 
 func NewQSslPreSharedKeyAuthenticator() *QSslPreSharedKeyAuthenticator {
-	return QSslPreSharedKeyAuthenticatorFromPointer(unsafe.Pointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator()))
+	return NewQSslPreSharedKeyAuthenticatorFromPointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator())
 }
 
-func NewQSslPreSharedKeyAuthenticator2(authenticator QSslPreSharedKeyAuthenticatorITF) *QSslPreSharedKeyAuthenticator {
-	return QSslPreSharedKeyAuthenticatorFromPointer(unsafe.Pointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator2(C.QtObjectPtr(PointerFromQSslPreSharedKeyAuthenticator(authenticator)))))
+func NewQSslPreSharedKeyAuthenticator2(authenticator QSslPreSharedKeyAuthenticator_ITF) *QSslPreSharedKeyAuthenticator {
+	return NewQSslPreSharedKeyAuthenticatorFromPointer(C.QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator2(PointerFromQSslPreSharedKeyAuthenticator(authenticator)))
+}
+
+func (ptr *QSslPreSharedKeyAuthenticator) Identity() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		return core.NewQByteArrayFromPointer(C.QSslPreSharedKeyAuthenticator_Identity(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSslPreSharedKeyAuthenticator) IdentityHint() *core.QByteArray {
+	if ptr.Pointer() != nil {
+		return core.NewQByteArrayFromPointer(C.QSslPreSharedKeyAuthenticator_IdentityHint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) MaximumIdentityLength() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSslPreSharedKeyAuthenticator_MaximumIdentityLength(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSslPreSharedKeyAuthenticator_MaximumIdentityLength(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) MaximumPreSharedKeyLength() int {
 	if ptr.Pointer() != nil {
-		return int(C.QSslPreSharedKeyAuthenticator_MaximumPreSharedKeyLength(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QSslPreSharedKeyAuthenticator_MaximumPreSharedKeyLength(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QSslPreSharedKeyAuthenticator) SetIdentity(identity core.QByteArrayITF) {
+func (ptr *QSslPreSharedKeyAuthenticator) PreSharedKey() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		C.QSslPreSharedKeyAuthenticator_SetIdentity(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(identity)))
+		return core.NewQByteArrayFromPointer(C.QSslPreSharedKeyAuthenticator_PreSharedKey(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSslPreSharedKeyAuthenticator) SetIdentity(identity core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSslPreSharedKeyAuthenticator_SetIdentity(ptr.Pointer(), core.PointerFromQByteArray(identity))
 	}
 }
 
-func (ptr *QSslPreSharedKeyAuthenticator) SetPreSharedKey(preSharedKey core.QByteArrayITF) {
+func (ptr *QSslPreSharedKeyAuthenticator) SetPreSharedKey(preSharedKey core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSslPreSharedKeyAuthenticator_SetPreSharedKey(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQByteArray(preSharedKey)))
+		C.QSslPreSharedKeyAuthenticator_SetPreSharedKey(ptr.Pointer(), core.PointerFromQByteArray(preSharedKey))
 	}
 }
 
-func (ptr *QSslPreSharedKeyAuthenticator) Swap(authenticator QSslPreSharedKeyAuthenticatorITF) {
+func (ptr *QSslPreSharedKeyAuthenticator) Swap(authenticator QSslPreSharedKeyAuthenticator_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSslPreSharedKeyAuthenticator_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSslPreSharedKeyAuthenticator(authenticator)))
+		C.QSslPreSharedKeyAuthenticator_Swap(ptr.Pointer(), PointerFromQSslPreSharedKeyAuthenticator(authenticator))
 	}
 }
 
 func (ptr *QSslPreSharedKeyAuthenticator) DestroyQSslPreSharedKeyAuthenticator() {
 	if ptr.Pointer() != nil {
-		C.QSslPreSharedKeyAuthenticator_DestroyQSslPreSharedKeyAuthenticator(C.QtObjectPtr(ptr.Pointer()))
+		C.QSslPreSharedKeyAuthenticator_DestroyQSslPreSharedKeyAuthenticator(ptr.Pointer())
 	}
 }

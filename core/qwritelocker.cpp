@@ -1,9 +1,9 @@
 #include "qwritelocker.h"
+#include <QReadWriteLock>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QReadWriteLock>
 #include <QWriteLocker>
 #include "_cgo_export.h"
 
@@ -11,23 +11,23 @@ class MyQWriteLocker: public QWriteLocker {
 public:
 };
 
-QtObjectPtr QWriteLocker_NewQWriteLocker(QtObjectPtr lock){
+void* QWriteLocker_NewQWriteLocker(void* lock){
 	return new QWriteLocker(static_cast<QReadWriteLock*>(lock));
 }
 
-QtObjectPtr QWriteLocker_ReadWriteLock(QtObjectPtr ptr){
+void* QWriteLocker_ReadWriteLock(void* ptr){
 	return static_cast<QWriteLocker*>(ptr)->readWriteLock();
 }
 
-void QWriteLocker_Relock(QtObjectPtr ptr){
+void QWriteLocker_Relock(void* ptr){
 	static_cast<QWriteLocker*>(ptr)->relock();
 }
 
-void QWriteLocker_Unlock(QtObjectPtr ptr){
+void QWriteLocker_Unlock(void* ptr){
 	static_cast<QWriteLocker*>(ptr)->unlock();
 }
 
-void QWriteLocker_DestroyQWriteLocker(QtObjectPtr ptr){
+void QWriteLocker_DestroyQWriteLocker(void* ptr){
 	static_cast<QWriteLocker*>(ptr)->~QWriteLocker();
 }
 

@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSharedData_NewQSharedData();
-QtObjectPtr QSharedData_NewQSharedData2(QtObjectPtr other);
+void* QSharedData_NewQSharedData();
+void* QSharedData_NewQSharedData2(void* other);
 
 #ifdef __cplusplus
 }

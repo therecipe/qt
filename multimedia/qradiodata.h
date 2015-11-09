@@ -1,32 +1,31 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QRadioData_IsAlternativeFrequenciesEnabled(QtObjectPtr ptr);
-int QRadioData_ProgramType(QtObjectPtr ptr);
-char* QRadioData_ProgramTypeName(QtObjectPtr ptr);
-char* QRadioData_RadioText(QtObjectPtr ptr);
-void QRadioData_SetAlternativeFrequenciesEnabled(QtObjectPtr ptr, int enabled);
-char* QRadioData_StationId(QtObjectPtr ptr);
-char* QRadioData_StationName(QtObjectPtr ptr);
-QtObjectPtr QRadioData_NewQRadioData(QtObjectPtr mediaObject, QtObjectPtr parent);
-void QRadioData_ConnectAlternativeFrequenciesEnabledChanged(QtObjectPtr ptr);
-void QRadioData_DisconnectAlternativeFrequenciesEnabledChanged(QtObjectPtr ptr);
-int QRadioData_Error(QtObjectPtr ptr);
-char* QRadioData_ErrorString(QtObjectPtr ptr);
-QtObjectPtr QRadioData_MediaObject(QtObjectPtr ptr);
-void QRadioData_ConnectProgramTypeChanged(QtObjectPtr ptr);
-void QRadioData_DisconnectProgramTypeChanged(QtObjectPtr ptr);
-void QRadioData_ConnectProgramTypeNameChanged(QtObjectPtr ptr);
-void QRadioData_DisconnectProgramTypeNameChanged(QtObjectPtr ptr);
-void QRadioData_ConnectRadioTextChanged(QtObjectPtr ptr);
-void QRadioData_DisconnectRadioTextChanged(QtObjectPtr ptr);
-void QRadioData_ConnectStationIdChanged(QtObjectPtr ptr);
-void QRadioData_DisconnectStationIdChanged(QtObjectPtr ptr);
-void QRadioData_ConnectStationNameChanged(QtObjectPtr ptr);
-void QRadioData_DisconnectStationNameChanged(QtObjectPtr ptr);
-void QRadioData_DestroyQRadioData(QtObjectPtr ptr);
+int QRadioData_IsAlternativeFrequenciesEnabled(void* ptr);
+int QRadioData_ProgramType(void* ptr);
+char* QRadioData_ProgramTypeName(void* ptr);
+char* QRadioData_RadioText(void* ptr);
+void QRadioData_SetAlternativeFrequenciesEnabled(void* ptr, int enabled);
+char* QRadioData_StationId(void* ptr);
+char* QRadioData_StationName(void* ptr);
+void* QRadioData_NewQRadioData(void* mediaObject, void* parent);
+void QRadioData_ConnectAlternativeFrequenciesEnabledChanged(void* ptr);
+void QRadioData_DisconnectAlternativeFrequenciesEnabledChanged(void* ptr);
+int QRadioData_Error(void* ptr);
+char* QRadioData_ErrorString(void* ptr);
+void* QRadioData_MediaObject(void* ptr);
+void QRadioData_ConnectProgramTypeChanged(void* ptr);
+void QRadioData_DisconnectProgramTypeChanged(void* ptr);
+void QRadioData_ConnectProgramTypeNameChanged(void* ptr);
+void QRadioData_DisconnectProgramTypeNameChanged(void* ptr);
+void QRadioData_ConnectRadioTextChanged(void* ptr);
+void QRadioData_DisconnectRadioTextChanged(void* ptr);
+void QRadioData_ConnectStationIdChanged(void* ptr);
+void QRadioData_DisconnectStationIdChanged(void* ptr);
+void QRadioData_ConnectStationNameChanged(void* ptr);
+void QRadioData_DisconnectStationNameChanged(void* ptr);
+void QRadioData_DestroyQRadioData(void* ptr);
 
 #ifdef __cplusplus
 }

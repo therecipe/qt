@@ -12,31 +12,31 @@ class MyQPlainTextDocumentLayout: public QPlainTextDocumentLayout {
 public:
 };
 
-int QPlainTextDocumentLayout_CursorWidth(QtObjectPtr ptr){
+int QPlainTextDocumentLayout_CursorWidth(void* ptr){
 	return static_cast<QPlainTextDocumentLayout*>(ptr)->cursorWidth();
 }
 
-void QPlainTextDocumentLayout_SetCursorWidth(QtObjectPtr ptr, int width){
+void QPlainTextDocumentLayout_SetCursorWidth(void* ptr, int width){
 	static_cast<QPlainTextDocumentLayout*>(ptr)->setCursorWidth(width);
 }
 
-QtObjectPtr QPlainTextDocumentLayout_NewQPlainTextDocumentLayout(QtObjectPtr document){
+void* QPlainTextDocumentLayout_NewQPlainTextDocumentLayout(void* document){
 	return new QPlainTextDocumentLayout(static_cast<QTextDocument*>(document));
 }
 
-void QPlainTextDocumentLayout_EnsureBlockLayout(QtObjectPtr ptr, QtObjectPtr block){
+void QPlainTextDocumentLayout_EnsureBlockLayout(void* ptr, void* block){
 	static_cast<QPlainTextDocumentLayout*>(ptr)->ensureBlockLayout(*static_cast<QTextBlock*>(block));
 }
 
-int QPlainTextDocumentLayout_PageCount(QtObjectPtr ptr){
+int QPlainTextDocumentLayout_PageCount(void* ptr){
 	return static_cast<QPlainTextDocumentLayout*>(ptr)->pageCount();
 }
 
-void QPlainTextDocumentLayout_RequestUpdate(QtObjectPtr ptr){
+void QPlainTextDocumentLayout_RequestUpdate(void* ptr){
 	static_cast<QPlainTextDocumentLayout*>(ptr)->requestUpdate();
 }
 
-void QPlainTextDocumentLayout_DestroyQPlainTextDocumentLayout(QtObjectPtr ptr){
+void QPlainTextDocumentLayout_DestroyQPlainTextDocumentLayout(void* ptr){
 	static_cast<QPlainTextDocumentLayout*>(ptr)->~QPlainTextDocumentLayout();
 }
 

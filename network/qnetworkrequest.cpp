@@ -1,11 +1,11 @@
 #include "qnetworkrequest.h"
+#include <QObject>
+#include <QSslConfiguration>
+#include <QByteArray>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSslConfiguration>
-#include <QObject>
-#include <QByteArray>
-#include <QString>
 #include <QNetworkRequest>
 #include "_cgo_export.h"
 
@@ -13,71 +13,71 @@ class MyQNetworkRequest: public QNetworkRequest {
 public:
 };
 
-QtObjectPtr QNetworkRequest_NewQNetworkRequest2(QtObjectPtr other){
+void* QNetworkRequest_NewQNetworkRequest2(void* other){
 	return new QNetworkRequest(*static_cast<QNetworkRequest*>(other));
 }
 
-QtObjectPtr QNetworkRequest_NewQNetworkRequest(char* url){
-	return new QNetworkRequest(QUrl(QString(url)));
+void* QNetworkRequest_NewQNetworkRequest(void* url){
+	return new QNetworkRequest(*static_cast<QUrl*>(url));
 }
 
-char* QNetworkRequest_Attribute(QtObjectPtr ptr, int code, char* defaultValue){
-	return static_cast<QNetworkRequest*>(ptr)->attribute(static_cast<QNetworkRequest::Attribute>(code), QVariant(defaultValue)).toString().toUtf8().data();
+void* QNetworkRequest_Attribute(void* ptr, int code, void* defaultValue){
+	return new QVariant(static_cast<QNetworkRequest*>(ptr)->attribute(static_cast<QNetworkRequest::Attribute>(code), *static_cast<QVariant*>(defaultValue)));
 }
 
-int QNetworkRequest_HasRawHeader(QtObjectPtr ptr, QtObjectPtr headerName){
+int QNetworkRequest_HasRawHeader(void* ptr, void* headerName){
 	return static_cast<QNetworkRequest*>(ptr)->hasRawHeader(*static_cast<QByteArray*>(headerName));
 }
 
-char* QNetworkRequest_Header(QtObjectPtr ptr, int header){
-	return static_cast<QNetworkRequest*>(ptr)->header(static_cast<QNetworkRequest::KnownHeaders>(header)).toString().toUtf8().data();
+void* QNetworkRequest_Header(void* ptr, int header){
+	return new QVariant(static_cast<QNetworkRequest*>(ptr)->header(static_cast<QNetworkRequest::KnownHeaders>(header)));
 }
 
-QtObjectPtr QNetworkRequest_OriginatingObject(QtObjectPtr ptr){
+void* QNetworkRequest_OriginatingObject(void* ptr){
 	return static_cast<QNetworkRequest*>(ptr)->originatingObject();
 }
 
-int QNetworkRequest_Priority(QtObjectPtr ptr){
+int QNetworkRequest_Priority(void* ptr){
 	return static_cast<QNetworkRequest*>(ptr)->priority();
 }
 
-void QNetworkRequest_SetAttribute(QtObjectPtr ptr, int code, char* value){
-	static_cast<QNetworkRequest*>(ptr)->setAttribute(static_cast<QNetworkRequest::Attribute>(code), QVariant(value));
+void* QNetworkRequest_RawHeader(void* ptr, void* headerName){
+	return new QByteArray(static_cast<QNetworkRequest*>(ptr)->rawHeader(*static_cast<QByteArray*>(headerName)));
 }
 
-void QNetworkRequest_SetHeader(QtObjectPtr ptr, int header, char* value){
-	static_cast<QNetworkRequest*>(ptr)->setHeader(static_cast<QNetworkRequest::KnownHeaders>(header), QVariant(value));
+void QNetworkRequest_SetAttribute(void* ptr, int code, void* value){
+	static_cast<QNetworkRequest*>(ptr)->setAttribute(static_cast<QNetworkRequest::Attribute>(code), *static_cast<QVariant*>(value));
 }
 
-void QNetworkRequest_SetOriginatingObject(QtObjectPtr ptr, QtObjectPtr object){
+void QNetworkRequest_SetHeader(void* ptr, int header, void* value){
+	static_cast<QNetworkRequest*>(ptr)->setHeader(static_cast<QNetworkRequest::KnownHeaders>(header), *static_cast<QVariant*>(value));
+}
+
+void QNetworkRequest_SetOriginatingObject(void* ptr, void* object){
 	static_cast<QNetworkRequest*>(ptr)->setOriginatingObject(static_cast<QObject*>(object));
 }
 
-void QNetworkRequest_SetPriority(QtObjectPtr ptr, int priority){
+void QNetworkRequest_SetPriority(void* ptr, int priority){
 	static_cast<QNetworkRequest*>(ptr)->setPriority(static_cast<QNetworkRequest::Priority>(priority));
 }
 
-void QNetworkRequest_SetRawHeader(QtObjectPtr ptr, QtObjectPtr headerName, QtObjectPtr headerValue){
+void QNetworkRequest_SetRawHeader(void* ptr, void* headerName, void* headerValue){
 	static_cast<QNetworkRequest*>(ptr)->setRawHeader(*static_cast<QByteArray*>(headerName), *static_cast<QByteArray*>(headerValue));
 }
 
-void QNetworkRequest_SetSslConfiguration(QtObjectPtr ptr, QtObjectPtr config){
+void QNetworkRequest_SetSslConfiguration(void* ptr, void* config){
 	static_cast<QNetworkRequest*>(ptr)->setSslConfiguration(*static_cast<QSslConfiguration*>(config));
 }
 
-void QNetworkRequest_SetUrl(QtObjectPtr ptr, char* url){
-	static_cast<QNetworkRequest*>(ptr)->setUrl(QUrl(QString(url)));
+void QNetworkRequest_SetUrl(void* ptr, void* url){
+	static_cast<QNetworkRequest*>(ptr)->setUrl(*static_cast<QUrl*>(url));
 }
 
-void QNetworkRequest_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QNetworkRequest_Swap(void* ptr, void* other){
 	static_cast<QNetworkRequest*>(ptr)->swap(*static_cast<QNetworkRequest*>(other));
 }
 
-char* QNetworkRequest_Url(QtObjectPtr ptr){
-	return static_cast<QNetworkRequest*>(ptr)->url().toString().toUtf8().data();
-}
-
-void QNetworkRequest_DestroyQNetworkRequest(QtObjectPtr ptr){
+void QNetworkRequest_DestroyQNetworkRequest(void* ptr){
 	static_cast<QNetworkRequest*>(ptr)->~QNetworkRequest();
 }
 

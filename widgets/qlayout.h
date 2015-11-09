@@ -1,39 +1,38 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QLayout_SetSizeConstraint(QtObjectPtr ptr, int v);
-void QLayout_SetSpacing(QtObjectPtr ptr, int v);
-int QLayout_SizeConstraint(QtObjectPtr ptr);
-int QLayout_Spacing(QtObjectPtr ptr);
-int QLayout_Activate(QtObjectPtr ptr);
-void QLayout_AddItem(QtObjectPtr ptr, QtObjectPtr item);
-void QLayout_AddWidget(QtObjectPtr ptr, QtObjectPtr w);
-int QLayout_ControlTypes(QtObjectPtr ptr);
-int QLayout_Count(QtObjectPtr ptr);
-int QLayout_ExpandingDirections(QtObjectPtr ptr);
-void QLayout_GetContentsMargins(QtObjectPtr ptr, int left, int top, int right, int bottom);
-int QLayout_IndexOf(QtObjectPtr ptr, QtObjectPtr widget);
-void QLayout_Invalidate(QtObjectPtr ptr);
-int QLayout_IsEmpty(QtObjectPtr ptr);
-int QLayout_IsEnabled(QtObjectPtr ptr);
-QtObjectPtr QLayout_ItemAt(QtObjectPtr ptr, int index);
-QtObjectPtr QLayout_Layout(QtObjectPtr ptr);
-QtObjectPtr QLayout_MenuBar(QtObjectPtr ptr);
-QtObjectPtr QLayout_ParentWidget(QtObjectPtr ptr);
-void QLayout_RemoveItem(QtObjectPtr ptr, QtObjectPtr item);
-void QLayout_RemoveWidget(QtObjectPtr ptr, QtObjectPtr widget);
-QtObjectPtr QLayout_ReplaceWidget(QtObjectPtr ptr, QtObjectPtr from, QtObjectPtr to, int options);
-int QLayout_SetAlignment2(QtObjectPtr ptr, QtObjectPtr l, int alignment);
-int QLayout_SetAlignment(QtObjectPtr ptr, QtObjectPtr w, int alignment);
-void QLayout_SetContentsMargins2(QtObjectPtr ptr, QtObjectPtr margins);
-void QLayout_SetContentsMargins(QtObjectPtr ptr, int left, int top, int right, int bottom);
-void QLayout_SetEnabled(QtObjectPtr ptr, int enable);
-void QLayout_SetGeometry(QtObjectPtr ptr, QtObjectPtr r);
-void QLayout_SetMenuBar(QtObjectPtr ptr, QtObjectPtr widget);
-QtObjectPtr QLayout_TakeAt(QtObjectPtr ptr, int index);
-void QLayout_Update(QtObjectPtr ptr);
+void QLayout_SetSizeConstraint(void* ptr, int v);
+void QLayout_SetSpacing(void* ptr, int v);
+int QLayout_SizeConstraint(void* ptr);
+int QLayout_Spacing(void* ptr);
+int QLayout_Activate(void* ptr);
+void QLayout_AddItem(void* ptr, void* item);
+void QLayout_AddWidget(void* ptr, void* w);
+int QLayout_ControlTypes(void* ptr);
+int QLayout_Count(void* ptr);
+int QLayout_ExpandingDirections(void* ptr);
+void QLayout_GetContentsMargins(void* ptr, int left, int top, int right, int bottom);
+int QLayout_IndexOf(void* ptr, void* widget);
+void QLayout_Invalidate(void* ptr);
+int QLayout_IsEmpty(void* ptr);
+int QLayout_IsEnabled(void* ptr);
+void* QLayout_ItemAt(void* ptr, int index);
+void* QLayout_Layout(void* ptr);
+void* QLayout_MenuBar(void* ptr);
+void* QLayout_ParentWidget(void* ptr);
+void QLayout_RemoveItem(void* ptr, void* item);
+void QLayout_RemoveWidget(void* ptr, void* widget);
+void* QLayout_ReplaceWidget(void* ptr, void* from, void* to, int options);
+int QLayout_SetAlignment2(void* ptr, void* l, int alignment);
+int QLayout_SetAlignment(void* ptr, void* w, int alignment);
+void QLayout_SetContentsMargins2(void* ptr, void* margins);
+void QLayout_SetContentsMargins(void* ptr, int left, int top, int right, int bottom);
+void QLayout_SetEnabled(void* ptr, int enable);
+void QLayout_SetGeometry(void* ptr, void* r);
+void QLayout_SetMenuBar(void* ptr, void* widget);
+void* QLayout_TakeAt(void* ptr, int index);
+void QLayout_Update(void* ptr);
 
 #ifdef __cplusplus
 }

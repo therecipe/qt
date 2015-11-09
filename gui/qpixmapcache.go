@@ -10,8 +10,8 @@ type QPixmapCache struct {
 	ptr unsafe.Pointer
 }
 
-type QPixmapCacheITF interface {
-	QPixmapCachePTR() *QPixmapCache
+type QPixmapCache_ITF interface {
+	QPixmapCache_PTR() *QPixmapCache
 }
 
 func (p *QPixmapCache) Pointer() unsafe.Pointer {
@@ -22,20 +22,20 @@ func (p *QPixmapCache) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPixmapCache(ptr QPixmapCacheITF) unsafe.Pointer {
+func PointerFromQPixmapCache(ptr QPixmapCache_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPixmapCachePTR().Pointer()
+		return ptr.QPixmapCache_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPixmapCacheFromPointer(ptr unsafe.Pointer) *QPixmapCache {
+func NewQPixmapCacheFromPointer(ptr unsafe.Pointer) *QPixmapCache {
 	var n = new(QPixmapCache)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPixmapCache) QPixmapCachePTR() *QPixmapCache {
+func (ptr *QPixmapCache) QPixmapCache_PTR() *QPixmapCache {
 	return ptr
 }
 

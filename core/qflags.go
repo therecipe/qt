@@ -10,8 +10,8 @@ type QFlags struct {
 	ptr unsafe.Pointer
 }
 
-type QFlagsITF interface {
-	QFlagsPTR() *QFlags
+type QFlags_ITF interface {
+	QFlags_PTR() *QFlags
 }
 
 func (p *QFlags) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QFlags) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQFlags(ptr QFlagsITF) unsafe.Pointer {
+func PointerFromQFlags(ptr QFlags_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QFlagsPTR().Pointer()
+		return ptr.QFlags_PTR().Pointer()
 	}
 	return nil
 }
 
-func QFlagsFromPointer(ptr unsafe.Pointer) *QFlags {
+func NewQFlagsFromPointer(ptr unsafe.Pointer) *QFlags {
 	var n = new(QFlags)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QFlags) QFlagsPTR() *QFlags {
+func (ptr *QFlags) QFlags_PTR() *QFlags {
 	return ptr
 }

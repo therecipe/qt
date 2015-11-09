@@ -12,54 +12,54 @@ type QHelpIndexModel struct {
 	core.QStringListModel
 }
 
-type QHelpIndexModelITF interface {
-	core.QStringListModelITF
-	QHelpIndexModelPTR() *QHelpIndexModel
+type QHelpIndexModel_ITF interface {
+	core.QStringListModel_ITF
+	QHelpIndexModel_PTR() *QHelpIndexModel
 }
 
-func PointerFromQHelpIndexModel(ptr QHelpIndexModelITF) unsafe.Pointer {
+func PointerFromQHelpIndexModel(ptr QHelpIndexModel_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHelpIndexModelPTR().Pointer()
+		return ptr.QHelpIndexModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHelpIndexModelFromPointer(ptr unsafe.Pointer) *QHelpIndexModel {
+func NewQHelpIndexModelFromPointer(ptr unsafe.Pointer) *QHelpIndexModel {
 	var n = new(QHelpIndexModel)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QHelpIndexModel_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QHelpIndexModel) QHelpIndexModelPTR() *QHelpIndexModel {
+func (ptr *QHelpIndexModel) QHelpIndexModel_PTR() *QHelpIndexModel {
 	return ptr
 }
 
 func (ptr *QHelpIndexModel) CreateIndex(customFilterName string) {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_CreateIndex(C.QtObjectPtr(ptr.Pointer()), C.CString(customFilterName))
+		C.QHelpIndexModel_CreateIndex(ptr.Pointer(), C.CString(customFilterName))
 	}
 }
 
 func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		return core.QModelIndexFromPointer(unsafe.Pointer(C.QHelpIndexModel_Filter(C.QtObjectPtr(ptr.Pointer()), C.CString(filter), C.CString(wildcard))))
+		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_Filter(ptr.Pointer(), C.CString(filter), C.CString(wildcard)))
 	}
 	return nil
 }
 
 func (ptr *QHelpIndexModel) ConnectIndexCreated(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_ConnectIndexCreated(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpIndexModel_ConnectIndexCreated(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "indexCreated", f)
 	}
 }
 
 func (ptr *QHelpIndexModel) DisconnectIndexCreated() {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_DisconnectIndexCreated(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpIndexModel_DisconnectIndexCreated(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "indexCreated")
 	}
 }
@@ -71,14 +71,14 @@ func callbackQHelpIndexModelIndexCreated(ptrName *C.char) {
 
 func (ptr *QHelpIndexModel) ConnectIndexCreationStarted(f func()) {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_ConnectIndexCreationStarted(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpIndexModel_ConnectIndexCreationStarted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "indexCreationStarted", f)
 	}
 }
 
 func (ptr *QHelpIndexModel) DisconnectIndexCreationStarted() {
 	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_DisconnectIndexCreationStarted(C.QtObjectPtr(ptr.Pointer()))
+		C.QHelpIndexModel_DisconnectIndexCreationStarted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "indexCreationStarted")
 	}
 }
@@ -90,7 +90,7 @@ func callbackQHelpIndexModelIndexCreationStarted(ptrName *C.char) {
 
 func (ptr *QHelpIndexModel) IsCreatingIndex() bool {
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexModel_IsCreatingIndex(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QHelpIndexModel_IsCreatingIndex(ptr.Pointer()) != 0
 	}
 	return false
 }

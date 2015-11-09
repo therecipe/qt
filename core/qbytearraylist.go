@@ -10,24 +10,45 @@ type QByteArrayList struct {
 	QList
 }
 
-type QByteArrayListITF interface {
-	QListITF
-	QByteArrayListPTR() *QByteArrayList
+type QByteArrayList_ITF interface {
+	QList_ITF
+	QByteArrayList_PTR() *QByteArrayList
 }
 
-func PointerFromQByteArrayList(ptr QByteArrayListITF) unsafe.Pointer {
+func PointerFromQByteArrayList(ptr QByteArrayList_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QByteArrayListPTR().Pointer()
+		return ptr.QByteArrayList_PTR().Pointer()
 	}
 	return nil
 }
 
-func QByteArrayListFromPointer(ptr unsafe.Pointer) *QByteArrayList {
+func NewQByteArrayListFromPointer(ptr unsafe.Pointer) *QByteArrayList {
 	var n = new(QByteArrayList)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QByteArrayList) QByteArrayListPTR() *QByteArrayList {
+func (ptr *QByteArrayList) QByteArrayList_PTR() *QByteArrayList {
 	return ptr
+}
+
+func (ptr *QByteArrayList) Join() *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QByteArrayList_Join(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QByteArrayList) Join3(separator string) *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QByteArrayList_Join3(ptr.Pointer(), C.CString(separator)))
+	}
+	return nil
+}
+
+func (ptr *QByteArrayList) Join2(separator QByteArray_ITF) *QByteArray {
+	if ptr.Pointer() != nil {
+		return NewQByteArrayFromPointer(C.QByteArrayList_Join2(ptr.Pointer(), PointerFromQByteArray(separator)))
+	}
+	return nil
 }

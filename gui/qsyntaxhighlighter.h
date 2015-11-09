@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSyntaxHighlighter_Document(QtObjectPtr ptr);
-void QSyntaxHighlighter_Rehighlight(QtObjectPtr ptr);
-void QSyntaxHighlighter_RehighlightBlock(QtObjectPtr ptr, QtObjectPtr block);
-void QSyntaxHighlighter_SetDocument(QtObjectPtr ptr, QtObjectPtr doc);
-void QSyntaxHighlighter_DestroyQSyntaxHighlighter(QtObjectPtr ptr);
+void* QSyntaxHighlighter_Document(void* ptr);
+void QSyntaxHighlighter_Rehighlight(void* ptr);
+void QSyntaxHighlighter_RehighlightBlock(void* ptr, void* block);
+void QSyntaxHighlighter_SetDocument(void* ptr, void* doc);
+void QSyntaxHighlighter_DestroyQSyntaxHighlighter(void* ptr);
 
 #ifdef __cplusplus
 }

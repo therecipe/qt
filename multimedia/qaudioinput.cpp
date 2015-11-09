@@ -1,12 +1,12 @@
 #include "qaudioinput.h"
-#include <QModelIndex>
-#include <QIODevice>
+#include <QAudioFormat>
 #include <QAudioDeviceInfo>
 #include <QObject>
-#include <QAudioFormat>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QIODevice>
 #include <QAudioInput>
 #include "_cgo_export.h"
 
@@ -15,71 +15,79 @@ public:
 void Signal_Notify(){callbackQAudioInputNotify(this->objectName().toUtf8().data());};
 };
 
-QtObjectPtr QAudioInput_NewQAudioInput2(QtObjectPtr audioDevice, QtObjectPtr format, QtObjectPtr parent){
+void* QAudioInput_NewQAudioInput2(void* audioDevice, void* format, void* parent){
 	return new QAudioInput(*static_cast<QAudioDeviceInfo*>(audioDevice), *static_cast<QAudioFormat*>(format), static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QAudioInput_NewQAudioInput(QtObjectPtr format, QtObjectPtr parent){
+void* QAudioInput_NewQAudioInput(void* format, void* parent){
 	return new QAudioInput(*static_cast<QAudioFormat*>(format), static_cast<QObject*>(parent));
 }
 
-int QAudioInput_BufferSize(QtObjectPtr ptr){
+int QAudioInput_BufferSize(void* ptr){
 	return static_cast<QAudioInput*>(ptr)->bufferSize();
 }
 
-int QAudioInput_BytesReady(QtObjectPtr ptr){
+int QAudioInput_BytesReady(void* ptr){
 	return static_cast<QAudioInput*>(ptr)->bytesReady();
 }
 
-void QAudioInput_ConnectNotify(QtObjectPtr ptr){
+void QAudioInput_ConnectNotify(void* ptr){
 	QObject::connect(static_cast<QAudioInput*>(ptr), static_cast<void (QAudioInput::*)()>(&QAudioInput::notify), static_cast<MyQAudioInput*>(ptr), static_cast<void (MyQAudioInput::*)()>(&MyQAudioInput::Signal_Notify));;
 }
 
-void QAudioInput_DisconnectNotify(QtObjectPtr ptr){
+void QAudioInput_DisconnectNotify(void* ptr){
 	QObject::disconnect(static_cast<QAudioInput*>(ptr), static_cast<void (QAudioInput::*)()>(&QAudioInput::notify), static_cast<MyQAudioInput*>(ptr), static_cast<void (MyQAudioInput::*)()>(&MyQAudioInput::Signal_Notify));;
 }
 
-int QAudioInput_NotifyInterval(QtObjectPtr ptr){
+int QAudioInput_NotifyInterval(void* ptr){
 	return static_cast<QAudioInput*>(ptr)->notifyInterval();
 }
 
-int QAudioInput_PeriodSize(QtObjectPtr ptr){
+int QAudioInput_PeriodSize(void* ptr){
 	return static_cast<QAudioInput*>(ptr)->periodSize();
 }
 
-void QAudioInput_Reset(QtObjectPtr ptr){
+void QAudioInput_Reset(void* ptr){
 	static_cast<QAudioInput*>(ptr)->reset();
 }
 
-void QAudioInput_Resume(QtObjectPtr ptr){
+void QAudioInput_Resume(void* ptr){
 	static_cast<QAudioInput*>(ptr)->resume();
 }
 
-void QAudioInput_SetBufferSize(QtObjectPtr ptr, int value){
+void QAudioInput_SetBufferSize(void* ptr, int value){
 	static_cast<QAudioInput*>(ptr)->setBufferSize(value);
 }
 
-void QAudioInput_SetNotifyInterval(QtObjectPtr ptr, int ms){
+void QAudioInput_SetNotifyInterval(void* ptr, int ms){
 	static_cast<QAudioInput*>(ptr)->setNotifyInterval(ms);
 }
 
-QtObjectPtr QAudioInput_Start2(QtObjectPtr ptr){
+void QAudioInput_SetVolume(void* ptr, double volume){
+	static_cast<QAudioInput*>(ptr)->setVolume(static_cast<qreal>(volume));
+}
+
+void* QAudioInput_Start2(void* ptr){
 	return static_cast<QAudioInput*>(ptr)->start();
 }
 
-void QAudioInput_Start(QtObjectPtr ptr, QtObjectPtr device){
+void QAudioInput_Start(void* ptr, void* device){
 	static_cast<QAudioInput*>(ptr)->start(static_cast<QIODevice*>(device));
 }
 
-void QAudioInput_Stop(QtObjectPtr ptr){
+void QAudioInput_Stop(void* ptr){
 	static_cast<QAudioInput*>(ptr)->stop();
 }
 
-void QAudioInput_Suspend(QtObjectPtr ptr){
+void QAudioInput_Suspend(void* ptr){
 	static_cast<QAudioInput*>(ptr)->suspend();
 }
 
-void QAudioInput_DestroyQAudioInput(QtObjectPtr ptr){
+double QAudioInput_Volume(void* ptr){
+	return static_cast<double>(static_cast<QAudioInput*>(ptr)->volume());
+}
+
+void QAudioInput_DestroyQAudioInput(void* ptr){
 	static_cast<QAudioInput*>(ptr)->~QAudioInput();
 }
 

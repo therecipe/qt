@@ -1,10 +1,10 @@
 #include "qstyleoptionviewitem.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
 #include <QStyle>
 #include <QStyleOption>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QStyleOptionViewItem>
 #include "_cgo_export.h"
 
@@ -12,11 +12,11 @@ class MyQStyleOptionViewItem: public QStyleOptionViewItem {
 public:
 };
 
-QtObjectPtr QStyleOptionViewItem_NewQStyleOptionViewItem(){
+void* QStyleOptionViewItem_NewQStyleOptionViewItem(){
 	return new QStyleOptionViewItem();
 }
 
-QtObjectPtr QStyleOptionViewItem_NewQStyleOptionViewItem2(QtObjectPtr other){
+void* QStyleOptionViewItem_NewQStyleOptionViewItem2(void* other){
 	return new QStyleOptionViewItem(*static_cast<QStyleOptionViewItem*>(other));
 }
 

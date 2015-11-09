@@ -11,159 +11,159 @@ class MyQSurfaceFormat: public QSurfaceFormat {
 public:
 };
 
-QtObjectPtr QSurfaceFormat_NewQSurfaceFormat(){
+void* QSurfaceFormat_NewQSurfaceFormat(){
 	return new QSurfaceFormat();
 }
 
-QtObjectPtr QSurfaceFormat_NewQSurfaceFormat2(int options){
+void* QSurfaceFormat_NewQSurfaceFormat2(int options){
 	return new QSurfaceFormat(static_cast<QSurfaceFormat::FormatOption>(options));
 }
 
-QtObjectPtr QSurfaceFormat_NewQSurfaceFormat3(QtObjectPtr other){
+void* QSurfaceFormat_NewQSurfaceFormat3(void* other){
 	return new QSurfaceFormat(*static_cast<QSurfaceFormat*>(other));
 }
 
-int QSurfaceFormat_AlphaBufferSize(QtObjectPtr ptr){
+int QSurfaceFormat_AlphaBufferSize(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->alphaBufferSize();
 }
 
-int QSurfaceFormat_BlueBufferSize(QtObjectPtr ptr){
+int QSurfaceFormat_BlueBufferSize(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->blueBufferSize();
 }
 
-int QSurfaceFormat_DepthBufferSize(QtObjectPtr ptr){
+int QSurfaceFormat_DepthBufferSize(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->depthBufferSize();
 }
 
-int QSurfaceFormat_GreenBufferSize(QtObjectPtr ptr){
+int QSurfaceFormat_GreenBufferSize(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->greenBufferSize();
 }
 
-int QSurfaceFormat_HasAlpha(QtObjectPtr ptr){
+int QSurfaceFormat_HasAlpha(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->hasAlpha();
 }
 
-int QSurfaceFormat_MajorVersion(QtObjectPtr ptr){
+int QSurfaceFormat_MajorVersion(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->majorVersion();
 }
 
-int QSurfaceFormat_MinorVersion(QtObjectPtr ptr){
+int QSurfaceFormat_MinorVersion(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->minorVersion();
 }
 
-int QSurfaceFormat_Options(QtObjectPtr ptr){
+int QSurfaceFormat_Options(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->options();
 }
 
-int QSurfaceFormat_Profile(QtObjectPtr ptr){
+int QSurfaceFormat_Profile(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->profile();
 }
 
-int QSurfaceFormat_RedBufferSize(QtObjectPtr ptr){
+int QSurfaceFormat_RedBufferSize(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->redBufferSize();
 }
 
-int QSurfaceFormat_RenderableType(QtObjectPtr ptr){
+int QSurfaceFormat_RenderableType(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->renderableType();
 }
 
-int QSurfaceFormat_Samples(QtObjectPtr ptr){
+int QSurfaceFormat_Samples(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->samples();
 }
 
-void QSurfaceFormat_SetAlphaBufferSize(QtObjectPtr ptr, int size){
+void QSurfaceFormat_SetAlphaBufferSize(void* ptr, int size){
 	static_cast<QSurfaceFormat*>(ptr)->setAlphaBufferSize(size);
 }
 
-void QSurfaceFormat_SetBlueBufferSize(QtObjectPtr ptr, int size){
+void QSurfaceFormat_SetBlueBufferSize(void* ptr, int size){
 	static_cast<QSurfaceFormat*>(ptr)->setBlueBufferSize(size);
 }
 
-void QSurfaceFormat_QSurfaceFormat_SetDefaultFormat(QtObjectPtr format){
+void QSurfaceFormat_QSurfaceFormat_SetDefaultFormat(void* format){
 	QSurfaceFormat::setDefaultFormat(*static_cast<QSurfaceFormat*>(format));
 }
 
-void QSurfaceFormat_SetDepthBufferSize(QtObjectPtr ptr, int size){
+void QSurfaceFormat_SetDepthBufferSize(void* ptr, int size){
 	static_cast<QSurfaceFormat*>(ptr)->setDepthBufferSize(size);
 }
 
-void QSurfaceFormat_SetGreenBufferSize(QtObjectPtr ptr, int size){
+void QSurfaceFormat_SetGreenBufferSize(void* ptr, int size){
 	static_cast<QSurfaceFormat*>(ptr)->setGreenBufferSize(size);
 }
 
-void QSurfaceFormat_SetMajorVersion(QtObjectPtr ptr, int major){
+void QSurfaceFormat_SetMajorVersion(void* ptr, int major){
 	static_cast<QSurfaceFormat*>(ptr)->setMajorVersion(major);
 }
 
-void QSurfaceFormat_SetMinorVersion(QtObjectPtr ptr, int minor){
+void QSurfaceFormat_SetMinorVersion(void* ptr, int minor){
 	static_cast<QSurfaceFormat*>(ptr)->setMinorVersion(minor);
 }
 
-void QSurfaceFormat_SetOption(QtObjectPtr ptr, int option, int on){
+void QSurfaceFormat_SetOption(void* ptr, int option, int on){
 	static_cast<QSurfaceFormat*>(ptr)->setOption(static_cast<QSurfaceFormat::FormatOption>(option), on != 0);
 }
 
-void QSurfaceFormat_SetOptions(QtObjectPtr ptr, int options){
+void QSurfaceFormat_SetOptions(void* ptr, int options){
 	static_cast<QSurfaceFormat*>(ptr)->setOptions(static_cast<QSurfaceFormat::FormatOption>(options));
 }
 
-void QSurfaceFormat_SetProfile(QtObjectPtr ptr, int profile){
+void QSurfaceFormat_SetProfile(void* ptr, int profile){
 	static_cast<QSurfaceFormat*>(ptr)->setProfile(static_cast<QSurfaceFormat::OpenGLContextProfile>(profile));
 }
 
-void QSurfaceFormat_SetRedBufferSize(QtObjectPtr ptr, int size){
+void QSurfaceFormat_SetRedBufferSize(void* ptr, int size){
 	static_cast<QSurfaceFormat*>(ptr)->setRedBufferSize(size);
 }
 
-void QSurfaceFormat_SetRenderableType(QtObjectPtr ptr, int ty){
+void QSurfaceFormat_SetRenderableType(void* ptr, int ty){
 	static_cast<QSurfaceFormat*>(ptr)->setRenderableType(static_cast<QSurfaceFormat::RenderableType>(ty));
 }
 
-void QSurfaceFormat_SetSamples(QtObjectPtr ptr, int numSamples){
+void QSurfaceFormat_SetSamples(void* ptr, int numSamples){
 	static_cast<QSurfaceFormat*>(ptr)->setSamples(numSamples);
 }
 
-void QSurfaceFormat_SetStencilBufferSize(QtObjectPtr ptr, int size){
+void QSurfaceFormat_SetStencilBufferSize(void* ptr, int size){
 	static_cast<QSurfaceFormat*>(ptr)->setStencilBufferSize(size);
 }
 
-void QSurfaceFormat_SetStereo(QtObjectPtr ptr, int enable){
+void QSurfaceFormat_SetStereo(void* ptr, int enable){
 	static_cast<QSurfaceFormat*>(ptr)->setStereo(enable != 0);
 }
 
-void QSurfaceFormat_SetSwapBehavior(QtObjectPtr ptr, int behavior){
+void QSurfaceFormat_SetSwapBehavior(void* ptr, int behavior){
 	static_cast<QSurfaceFormat*>(ptr)->setSwapBehavior(static_cast<QSurfaceFormat::SwapBehavior>(behavior));
 }
 
-void QSurfaceFormat_SetSwapInterval(QtObjectPtr ptr, int interval){
+void QSurfaceFormat_SetSwapInterval(void* ptr, int interval){
 	static_cast<QSurfaceFormat*>(ptr)->setSwapInterval(interval);
 }
 
-void QSurfaceFormat_SetVersion(QtObjectPtr ptr, int major, int minor){
+void QSurfaceFormat_SetVersion(void* ptr, int major, int minor){
 	static_cast<QSurfaceFormat*>(ptr)->setVersion(major, minor);
 }
 
-int QSurfaceFormat_StencilBufferSize(QtObjectPtr ptr){
+int QSurfaceFormat_StencilBufferSize(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->stencilBufferSize();
 }
 
-int QSurfaceFormat_Stereo(QtObjectPtr ptr){
+int QSurfaceFormat_Stereo(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->stereo();
 }
 
-int QSurfaceFormat_SwapBehavior(QtObjectPtr ptr){
+int QSurfaceFormat_SwapBehavior(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->swapBehavior();
 }
 
-int QSurfaceFormat_SwapInterval(QtObjectPtr ptr){
+int QSurfaceFormat_SwapInterval(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->swapInterval();
 }
 
-int QSurfaceFormat_TestOption(QtObjectPtr ptr, int option){
+int QSurfaceFormat_TestOption(void* ptr, int option){
 	return static_cast<QSurfaceFormat*>(ptr)->testOption(static_cast<QSurfaceFormat::FormatOption>(option));
 }
 
-void QSurfaceFormat_DestroyQSurfaceFormat(QtObjectPtr ptr){
+void QSurfaceFormat_DestroyQSurfaceFormat(void* ptr){
 	static_cast<QSurfaceFormat*>(ptr)->~QSurfaceFormat();
 }
 

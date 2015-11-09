@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{holstered QHolsterReading::holstered commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qholstersensor.cpp non plain false false  bool [] }
-&{setHolstered QHolsterReading::setHolstered commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qholstersensor.h non plain false false  void [0xc822e95860] }
+&{holstered QHolsterReading::holstered commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qholstersensor.cpp non plain false false  bool bool holstered() const [] }
+&{setHolstered QHolsterReading::setHolstered commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qholstersensor.h non plain false false  void void setHolstered(bool holstered) [0xc823652140] }
 ########################################			ENUMS			########################################

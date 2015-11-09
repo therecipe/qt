@@ -1,10 +1,10 @@
 #include "qaccessible.h"
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
 #include <QObject>
 #include <QAccessibleEvent>
 #include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QAccessible>
 #include "_cgo_export.h"
 
@@ -20,15 +20,15 @@ int QAccessible_QAccessible_IsActive(){
 	return QAccessible::isActive();
 }
 
-QtObjectPtr QAccessible_QAccessible_QueryAccessibleInterface(QtObjectPtr object){
+void* QAccessible_QAccessible_QueryAccessibleInterface(void* object){
 	return QAccessible::queryAccessibleInterface(static_cast<QObject*>(object));
 }
 
-void QAccessible_QAccessible_SetRootObject(QtObjectPtr object){
+void QAccessible_QAccessible_SetRootObject(void* object){
 	QAccessible::setRootObject(static_cast<QObject*>(object));
 }
 
-void QAccessible_QAccessible_UpdateAccessibility(QtObjectPtr event){
+void QAccessible_QAccessible_UpdateAccessibility(void* event){
 	QAccessible::updateAccessibility(static_cast<QAccessibleEvent*>(event));
 }
 

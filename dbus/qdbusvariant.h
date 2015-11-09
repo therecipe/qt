@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDBusVariant_NewQDBusVariant();
-QtObjectPtr QDBusVariant_NewQDBusVariant2(char* variant);
-void QDBusVariant_SetVariant(QtObjectPtr ptr, char* variant);
-char* QDBusVariant_Variant(QtObjectPtr ptr);
+void* QDBusVariant_NewQDBusVariant();
+void* QDBusVariant_NewQDBusVariant2(void* variant);
+void QDBusVariant_SetVariant(void* ptr, void* variant);
+void* QDBusVariant_Variant(void* ptr);
 
 #ifdef __cplusplus
 }

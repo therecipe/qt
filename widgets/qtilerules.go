@@ -11,8 +11,8 @@ type QTileRules struct {
 	ptr unsafe.Pointer
 }
 
-type QTileRulesITF interface {
-	QTileRulesPTR() *QTileRules
+type QTileRules_ITF interface {
+	QTileRules_PTR() *QTileRules
 }
 
 func (p *QTileRules) Pointer() unsafe.Pointer {
@@ -23,27 +23,27 @@ func (p *QTileRules) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQTileRules(ptr QTileRulesITF) unsafe.Pointer {
+func PointerFromQTileRules(ptr QTileRules_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTileRulesPTR().Pointer()
+		return ptr.QTileRules_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTileRulesFromPointer(ptr unsafe.Pointer) *QTileRules {
+func NewQTileRulesFromPointer(ptr unsafe.Pointer) *QTileRules {
 	var n = new(QTileRules)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QTileRules) QTileRulesPTR() *QTileRules {
+func (ptr *QTileRules) QTileRules_PTR() *QTileRules {
 	return ptr
 }
 
 func NewQTileRules(horizontalRule core.Qt__TileRule, verticalRule core.Qt__TileRule) *QTileRules {
-	return QTileRulesFromPointer(unsafe.Pointer(C.QTileRules_NewQTileRules(C.int(horizontalRule), C.int(verticalRule))))
+	return NewQTileRulesFromPointer(C.QTileRules_NewQTileRules(C.int(horizontalRule), C.int(verticalRule)))
 }
 
 func NewQTileRules2(rule core.Qt__TileRule) *QTileRules {
-	return QTileRulesFromPointer(unsafe.Pointer(C.QTileRules_NewQTileRules2(C.int(rule))))
+	return NewQTileRulesFromPointer(C.QTileRules_NewQTileRules2(C.int(rule)))
 }

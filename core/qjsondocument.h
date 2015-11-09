@@ -1,20 +1,27 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QJsonDocument_NewQJsonDocument();
-QtObjectPtr QJsonDocument_NewQJsonDocument3(QtObjectPtr array);
-QtObjectPtr QJsonDocument_NewQJsonDocument4(QtObjectPtr other);
-QtObjectPtr QJsonDocument_NewQJsonDocument2(QtObjectPtr object);
-int QJsonDocument_IsArray(QtObjectPtr ptr);
-int QJsonDocument_IsEmpty(QtObjectPtr ptr);
-int QJsonDocument_IsNull(QtObjectPtr ptr);
-int QJsonDocument_IsObject(QtObjectPtr ptr);
-void QJsonDocument_SetArray(QtObjectPtr ptr, QtObjectPtr array);
-void QJsonDocument_SetObject(QtObjectPtr ptr, QtObjectPtr object);
-char* QJsonDocument_ToVariant(QtObjectPtr ptr);
-void QJsonDocument_DestroyQJsonDocument(QtObjectPtr ptr);
+void* QJsonDocument_NewQJsonDocument();
+void* QJsonDocument_NewQJsonDocument3(void* array);
+void* QJsonDocument_NewQJsonDocument4(void* other);
+void* QJsonDocument_NewQJsonDocument2(void* object);
+void* QJsonDocument_Array(void* ptr);
+void* QJsonDocument_QJsonDocument_FromBinaryData(void* data, int validation);
+void* QJsonDocument_QJsonDocument_FromJson(void* json, void* error);
+void* QJsonDocument_QJsonDocument_FromRawData(char* data, int size, int validation);
+void* QJsonDocument_QJsonDocument_FromVariant(void* variant);
+int QJsonDocument_IsArray(void* ptr);
+int QJsonDocument_IsEmpty(void* ptr);
+int QJsonDocument_IsNull(void* ptr);
+int QJsonDocument_IsObject(void* ptr);
+void* QJsonDocument_Object(void* ptr);
+void QJsonDocument_SetArray(void* ptr, void* array);
+void QJsonDocument_SetObject(void* ptr, void* object);
+void* QJsonDocument_ToBinaryData(void* ptr);
+void* QJsonDocument_ToJson(void* ptr, int format);
+void* QJsonDocument_ToVariant(void* ptr);
+void QJsonDocument_DestroyQJsonDocument(void* ptr);
 
 #ifdef __cplusplus
 }

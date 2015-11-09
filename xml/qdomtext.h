@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QDomText_NewQDomText();
-QtObjectPtr QDomText_NewQDomText2(QtObjectPtr x);
-int QDomText_NodeType(QtObjectPtr ptr);
+void* QDomText_NewQDomText();
+void* QDomText_NewQDomText2(void* x);
+int QDomText_NodeType(void* ptr);
 
 #ifdef __cplusplus
 }

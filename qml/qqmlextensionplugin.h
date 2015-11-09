@@ -1,11 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QQmlExtensionPlugin_InitializeEngine(QtObjectPtr ptr, QtObjectPtr engine, char* uri);
-char* QQmlExtensionPlugin_BaseUrl(QtObjectPtr ptr);
-void QQmlExtensionPlugin_RegisterTypes(QtObjectPtr ptr, char* uri);
+void QQmlExtensionPlugin_InitializeEngine(void* ptr, void* engine, char* uri);
+void QQmlExtensionPlugin_RegisterTypes(void* ptr, char* uri);
 
 #ifdef __cplusplus
 }

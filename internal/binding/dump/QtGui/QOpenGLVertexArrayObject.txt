@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
-&{QOpenGLVertexArrayObject QOpenGLVertexArrayObject::QOpenGLVertexArrayObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non constructor false false   [0xc8224d1660] }
-&{bind QOpenGLVertexArrayObject::bind commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non plain false false  void [] }
-&{create QOpenGLVertexArrayObject::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non plain false false  bool [] }
-&{destroy QOpenGLVertexArrayObject::destroy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non plain false false  void [] }
-&{isCreated QOpenGLVertexArrayObject::isCreated commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non plain false false  bool [] }
-&{objectId QOpenGLVertexArrayObject::objectId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non plain false false  GLuint [] }
-&{release QOpenGLVertexArrayObject::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non plain false false  void [] }
-&{~QOpenGLVertexArrayObject QOpenGLVertexArrayObject::~QOpenGLVertexArrayObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non destructor false false   [] }
+&{QOpenGLVertexArrayObject QOpenGLVertexArrayObject::QOpenGLVertexArrayObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non constructor false false   QOpenGLVertexArrayObject(QObject *parent) [0xc821d0c660] }
+&{bind QOpenGLVertexArrayObject::bind commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non plain false false  void void bind() [] }
+&{create QOpenGLVertexArrayObject::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non plain false false  bool bool create() [] }
+&{destroy QOpenGLVertexArrayObject::destroy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non plain false false  void void destroy() [] }
+&{isCreated QOpenGLVertexArrayObject::isCreated commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non plain false false  bool bool isCreated() const [] }
+&{objectId QOpenGLVertexArrayObject::objectId commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non plain false false  GLuint GLuint objectId() const [] }
+&{release QOpenGLVertexArrayObject::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non plain false false  void void release() [] }
+&{~QOpenGLVertexArrayObject QOpenGLVertexArrayObject::~QOpenGLVertexArrayObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglvertexarrayobject.h non destructor false false   ~QOpenGLVertexArrayObject() [] }
 ########################################			ENUMS			########################################

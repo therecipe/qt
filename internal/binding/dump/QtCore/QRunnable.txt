@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{QRunnable QRunnable::QRunnable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h non constructor false false   [] }
-&{autoDelete QRunnable::autoDelete commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h non plain false false  bool [] }
-&{run QRunnable::run commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h pure plain false false  void [] }
-&{setAutoDelete QRunnable::setAutoDelete commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h non plain false false  void [0xc8207176a0] }
-&{~QRunnable QRunnable::~QRunnable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h impure destructor false false   [] }
+&{QRunnable QRunnable::QRunnable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h non constructor false false   QRunnable() [] }
+&{autoDelete QRunnable::autoDelete commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h non plain false false  bool bool autoDelete() const [] }
+&{run QRunnable::run commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h pure plain false false  void void run() [] }
+&{setAutoDelete QRunnable::setAutoDelete commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h non plain false false  void void setAutoDelete(bool autoDelete) [0xc82076afc0] }
+&{~QRunnable QRunnable::~QRunnable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h impure destructor false false   ~QRunnable() [] }
 ########################################			ENUMS			########################################

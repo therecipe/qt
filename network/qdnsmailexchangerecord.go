@@ -10,8 +10,8 @@ type QDnsMailExchangeRecord struct {
 	ptr unsafe.Pointer
 }
 
-type QDnsMailExchangeRecordITF interface {
-	QDnsMailExchangeRecordPTR() *QDnsMailExchangeRecord
+type QDnsMailExchangeRecord_ITF interface {
+	QDnsMailExchangeRecord_PTR() *QDnsMailExchangeRecord
 }
 
 func (p *QDnsMailExchangeRecord) Pointer() unsafe.Pointer {
@@ -22,53 +22,53 @@ func (p *QDnsMailExchangeRecord) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQDnsMailExchangeRecord(ptr QDnsMailExchangeRecordITF) unsafe.Pointer {
+func PointerFromQDnsMailExchangeRecord(ptr QDnsMailExchangeRecord_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDnsMailExchangeRecordPTR().Pointer()
+		return ptr.QDnsMailExchangeRecord_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDnsMailExchangeRecordFromPointer(ptr unsafe.Pointer) *QDnsMailExchangeRecord {
+func NewQDnsMailExchangeRecordFromPointer(ptr unsafe.Pointer) *QDnsMailExchangeRecord {
 	var n = new(QDnsMailExchangeRecord)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDnsMailExchangeRecord) QDnsMailExchangeRecordPTR() *QDnsMailExchangeRecord {
+func (ptr *QDnsMailExchangeRecord) QDnsMailExchangeRecord_PTR() *QDnsMailExchangeRecord {
 	return ptr
 }
 
 func NewQDnsMailExchangeRecord() *QDnsMailExchangeRecord {
-	return QDnsMailExchangeRecordFromPointer(unsafe.Pointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord()))
+	return NewQDnsMailExchangeRecordFromPointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord())
 }
 
-func NewQDnsMailExchangeRecord2(other QDnsMailExchangeRecordITF) *QDnsMailExchangeRecord {
-	return QDnsMailExchangeRecordFromPointer(unsafe.Pointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord2(C.QtObjectPtr(PointerFromQDnsMailExchangeRecord(other)))))
+func NewQDnsMailExchangeRecord2(other QDnsMailExchangeRecord_ITF) *QDnsMailExchangeRecord {
+	return NewQDnsMailExchangeRecordFromPointer(C.QDnsMailExchangeRecord_NewQDnsMailExchangeRecord2(PointerFromQDnsMailExchangeRecord(other)))
 }
 
 func (ptr *QDnsMailExchangeRecord) Exchange() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDnsMailExchangeRecord_Exchange(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QDnsMailExchangeRecord_Exchange(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDnsMailExchangeRecord) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDnsMailExchangeRecord_Name(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QDnsMailExchangeRecord_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QDnsMailExchangeRecord) Swap(other QDnsMailExchangeRecordITF) {
+func (ptr *QDnsMailExchangeRecord) Swap(other QDnsMailExchangeRecord_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDnsMailExchangeRecord_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQDnsMailExchangeRecord(other)))
+		C.QDnsMailExchangeRecord_Swap(ptr.Pointer(), PointerFromQDnsMailExchangeRecord(other))
 	}
 }
 
 func (ptr *QDnsMailExchangeRecord) DestroyQDnsMailExchangeRecord() {
 	if ptr.Pointer() != nil {
-		C.QDnsMailExchangeRecord_DestroyQDnsMailExchangeRecord(C.QtObjectPtr(ptr.Pointer()))
+		C.QDnsMailExchangeRecord_DestroyQDnsMailExchangeRecord(ptr.Pointer())
 	}
 }

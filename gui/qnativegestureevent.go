@@ -11,31 +11,38 @@ type QNativeGestureEvent struct {
 	QInputEvent
 }
 
-type QNativeGestureEventITF interface {
-	QInputEventITF
-	QNativeGestureEventPTR() *QNativeGestureEvent
+type QNativeGestureEvent_ITF interface {
+	QInputEvent_ITF
+	QNativeGestureEvent_PTR() *QNativeGestureEvent
 }
 
-func PointerFromQNativeGestureEvent(ptr QNativeGestureEventITF) unsafe.Pointer {
+func PointerFromQNativeGestureEvent(ptr QNativeGestureEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QNativeGestureEventPTR().Pointer()
+		return ptr.QNativeGestureEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QNativeGestureEventFromPointer(ptr unsafe.Pointer) *QNativeGestureEvent {
+func NewQNativeGestureEventFromPointer(ptr unsafe.Pointer) *QNativeGestureEvent {
 	var n = new(QNativeGestureEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QNativeGestureEvent) QNativeGestureEventPTR() *QNativeGestureEvent {
+func (ptr *QNativeGestureEvent) QNativeGestureEvent_PTR() *QNativeGestureEvent {
 	return ptr
 }
 
 func (ptr *QNativeGestureEvent) GestureType() core.Qt__NativeGestureType {
 	if ptr.Pointer() != nil {
-		return core.Qt__NativeGestureType(C.QNativeGestureEvent_GestureType(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__NativeGestureType(C.QNativeGestureEvent_GestureType(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QNativeGestureEvent) Value() float64 {
+	if ptr.Pointer() != nil {
+		return float64(C.QNativeGestureEvent_Value(ptr.Pointer()))
 	}
 	return 0
 }

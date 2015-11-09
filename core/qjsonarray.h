@@ -1,23 +1,23 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QJsonArray_Append(QtObjectPtr ptr, QtObjectPtr value);
-int QJsonArray_Contains(QtObjectPtr ptr, QtObjectPtr value);
-int QJsonArray_Count(QtObjectPtr ptr);
-int QJsonArray_Empty(QtObjectPtr ptr);
-int QJsonArray_IsEmpty(QtObjectPtr ptr);
-void QJsonArray_Pop_back(QtObjectPtr ptr);
-void QJsonArray_Pop_front(QtObjectPtr ptr);
-void QJsonArray_Prepend(QtObjectPtr ptr, QtObjectPtr value);
-void QJsonArray_Push_back(QtObjectPtr ptr, QtObjectPtr value);
-void QJsonArray_Push_front(QtObjectPtr ptr, QtObjectPtr value);
-void QJsonArray_RemoveAt(QtObjectPtr ptr, int i);
-void QJsonArray_RemoveFirst(QtObjectPtr ptr);
-void QJsonArray_RemoveLast(QtObjectPtr ptr);
-int QJsonArray_Size(QtObjectPtr ptr);
-void QJsonArray_DestroyQJsonArray(QtObjectPtr ptr);
+void QJsonArray_Append(void* ptr, void* value);
+int QJsonArray_Contains(void* ptr, void* value);
+int QJsonArray_Count(void* ptr);
+int QJsonArray_Empty(void* ptr);
+void* QJsonArray_QJsonArray_FromStringList(char* list);
+int QJsonArray_IsEmpty(void* ptr);
+void QJsonArray_Pop_back(void* ptr);
+void QJsonArray_Pop_front(void* ptr);
+void QJsonArray_Prepend(void* ptr, void* value);
+void QJsonArray_Push_back(void* ptr, void* value);
+void QJsonArray_Push_front(void* ptr, void* value);
+void QJsonArray_RemoveAt(void* ptr, int i);
+void QJsonArray_RemoveFirst(void* ptr);
+void QJsonArray_RemoveLast(void* ptr);
+int QJsonArray_Size(void* ptr);
+void QJsonArray_DestroyQJsonArray(void* ptr);
 
 #ifdef __cplusplus
 }

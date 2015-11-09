@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
-&{QNativeGestureEvent QNativeGestureEvent::QNativeGestureEvent commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc82077a140 0xc82077a220 0xc82077a2e0 0xc82077a360 0xc82077a400 0xc82077a4c0 0xc82077a580] }
-&{gestureType QNativeGestureEvent::gestureType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::NativeGestureType [] }
-&{globalPos QNativeGestureEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint [] }
-&{localPos QNativeGestureEvent::localPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
-&{pos QNativeGestureEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint [] }
-&{screenPos QNativeGestureEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
-&{value QNativeGestureEvent::value commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qreal [] }
-&{windowPos QNativeGestureEvent::windowPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
+&{QNativeGestureEvent QNativeGestureEvent::QNativeGestureEvent commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QNativeGestureEvent(Qt::NativeGestureType type, const QPointF &localPos, const QPointF &windowPos, const QPointF &screenPos, qreal realValue, ulong sequenceId, quint64 intValue) [0xc8208d8480 0xc8208d8560 0xc8208d8620 0xc8208d87e0 0xc8208d88c0 0xc8208d89a0 0xc8208d8aa0] }
+&{gestureType QNativeGestureEvent::gestureType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::NativeGestureType Qt::NativeGestureType gestureType() const [] }
+&{globalPos QNativeGestureEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint const QPoint globalPos() const [] }
+&{localPos QNativeGestureEvent::localPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & const QPointF & localPos() const [] }
+&{pos QNativeGestureEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint const QPoint pos() const [] }
+&{screenPos QNativeGestureEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & const QPointF & screenPos() const [] }
+&{value QNativeGestureEvent::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  qreal qreal value() const [] }
+&{windowPos QNativeGestureEvent::windowPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & const QPointF & windowPos() const [] }
 ########################################			ENUMS			########################################

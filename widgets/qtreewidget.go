@@ -13,348 +13,348 @@ type QTreeWidget struct {
 	QTreeView
 }
 
-type QTreeWidgetITF interface {
-	QTreeViewITF
-	QTreeWidgetPTR() *QTreeWidget
+type QTreeWidget_ITF interface {
+	QTreeView_ITF
+	QTreeWidget_PTR() *QTreeWidget
 }
 
-func PointerFromQTreeWidget(ptr QTreeWidgetITF) unsafe.Pointer {
+func PointerFromQTreeWidget(ptr QTreeWidget_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTreeWidgetPTR().Pointer()
+		return ptr.QTreeWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTreeWidgetFromPointer(ptr unsafe.Pointer) *QTreeWidget {
+func NewQTreeWidgetFromPointer(ptr unsafe.Pointer) *QTreeWidget {
 	var n = new(QTreeWidget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QTreeWidget_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QTreeWidget) QTreeWidgetPTR() *QTreeWidget {
+func (ptr *QTreeWidget) QTreeWidget_PTR() *QTreeWidget {
 	return ptr
 }
 
 func (ptr *QTreeWidget) ColumnCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTreeWidget_ColumnCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTreeWidget_ColumnCount(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTreeWidget) SetColumnCount(columns int) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_SetColumnCount(C.QtObjectPtr(ptr.Pointer()), C.int(columns))
+		C.QTreeWidget_SetColumnCount(ptr.Pointer(), C.int(columns))
 	}
 }
 
 func (ptr *QTreeWidget) TopLevelItemCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTreeWidget_TopLevelItemCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTreeWidget_TopLevelItemCount(ptr.Pointer()))
 	}
 	return 0
 }
 
-func NewQTreeWidget(parent QWidgetITF) *QTreeWidget {
-	return QTreeWidgetFromPointer(unsafe.Pointer(C.QTreeWidget_NewQTreeWidget(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQTreeWidget(parent QWidget_ITF) *QTreeWidget {
+	return NewQTreeWidgetFromPointer(C.QTreeWidget_NewQTreeWidget(PointerFromQWidget(parent)))
 }
 
-func (ptr *QTreeWidget) AddTopLevelItem(item QTreeWidgetItemITF) {
+func (ptr *QTreeWidget) AddTopLevelItem(item QTreeWidgetItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_AddTopLevelItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)))
+		C.QTreeWidget_AddTopLevelItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item))
 	}
 }
 
 func (ptr *QTreeWidget) Clear() {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_Clear(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_Clear(ptr.Pointer())
 	}
 }
 
-func (ptr *QTreeWidget) ClosePersistentEditor(item QTreeWidgetItemITF, column int) {
+func (ptr *QTreeWidget) ClosePersistentEditor(item QTreeWidgetItem_ITF, column int) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ClosePersistentEditor(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)), C.int(column))
+		C.QTreeWidget_ClosePersistentEditor(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
 	}
 }
 
-func (ptr *QTreeWidget) CollapseItem(item QTreeWidgetItemITF) {
+func (ptr *QTreeWidget) CollapseItem(item QTreeWidgetItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_CollapseItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)))
+		C.QTreeWidget_CollapseItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item))
 	}
 }
 
 func (ptr *QTreeWidget) CurrentColumn() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTreeWidget_CurrentColumn(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTreeWidget_CurrentColumn(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTreeWidget) CurrentItem() *QTreeWidgetItem {
 	if ptr.Pointer() != nil {
-		return QTreeWidgetItemFromPointer(unsafe.Pointer(C.QTreeWidget_CurrentItem(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_CurrentItem(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QTreeWidget) ConnectCurrentItemChanged(f func(current QTreeWidgetItemITF, previous QTreeWidgetItemITF)) {
+func (ptr *QTreeWidget) ConnectCurrentItemChanged(f func(current *QTreeWidgetItem, previous *QTreeWidgetItem)) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ConnectCurrentItemChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_ConnectCurrentItemChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "currentItemChanged", f)
 	}
 }
 
 func (ptr *QTreeWidget) DisconnectCurrentItemChanged() {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_DisconnectCurrentItemChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_DisconnectCurrentItemChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "currentItemChanged")
 	}
 }
 
 //export callbackQTreeWidgetCurrentItemChanged
 func callbackQTreeWidgetCurrentItemChanged(ptrName *C.char, current unsafe.Pointer, previous unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "currentItemChanged").(func(*QTreeWidgetItem, *QTreeWidgetItem))(QTreeWidgetItemFromPointer(current), QTreeWidgetItemFromPointer(previous))
+	qt.GetSignal(C.GoString(ptrName), "currentItemChanged").(func(*QTreeWidgetItem, *QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(current), NewQTreeWidgetItemFromPointer(previous))
 }
 
-func (ptr *QTreeWidget) EditItem(item QTreeWidgetItemITF, column int) {
+func (ptr *QTreeWidget) EditItem(item QTreeWidgetItem_ITF, column int) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_EditItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)), C.int(column))
+		C.QTreeWidget_EditItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
 	}
 }
 
-func (ptr *QTreeWidget) ExpandItem(item QTreeWidgetItemITF) {
+func (ptr *QTreeWidget) ExpandItem(item QTreeWidgetItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ExpandItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)))
+		C.QTreeWidget_ExpandItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item))
 	}
 }
 
 func (ptr *QTreeWidget) HeaderItem() *QTreeWidgetItem {
 	if ptr.Pointer() != nil {
-		return QTreeWidgetItemFromPointer(unsafe.Pointer(C.QTreeWidget_HeaderItem(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_HeaderItem(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QTreeWidget) IndexOfTopLevelItem(item QTreeWidgetItemITF) int {
+func (ptr *QTreeWidget) IndexOfTopLevelItem(item QTreeWidgetItem_ITF) int {
 	if ptr.Pointer() != nil {
-		return int(C.QTreeWidget_IndexOfTopLevelItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item))))
+		return int(C.QTreeWidget_IndexOfTopLevelItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item)))
 	}
 	return 0
 }
 
-func (ptr *QTreeWidget) InsertTopLevelItem(index int, item QTreeWidgetItemITF) {
+func (ptr *QTreeWidget) InsertTopLevelItem(index int, item QTreeWidgetItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_InsertTopLevelItem(C.QtObjectPtr(ptr.Pointer()), C.int(index), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)))
+		C.QTreeWidget_InsertTopLevelItem(ptr.Pointer(), C.int(index), PointerFromQTreeWidgetItem(item))
 	}
 }
 
 func (ptr *QTreeWidget) InvisibleRootItem() *QTreeWidgetItem {
 	if ptr.Pointer() != nil {
-		return QTreeWidgetItemFromPointer(unsafe.Pointer(C.QTreeWidget_InvisibleRootItem(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_InvisibleRootItem(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QTreeWidget) IsFirstItemColumnSpanned(item QTreeWidgetItemITF) bool {
+func (ptr *QTreeWidget) IsFirstItemColumnSpanned(item QTreeWidgetItem_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QTreeWidget_IsFirstItemColumnSpanned(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item))) != 0
+		return C.QTreeWidget_IsFirstItemColumnSpanned(ptr.Pointer(), PointerFromQTreeWidgetItem(item)) != 0
 	}
 	return false
 }
 
-func (ptr *QTreeWidget) ItemAbove(item QTreeWidgetItemITF) *QTreeWidgetItem {
+func (ptr *QTreeWidget) ItemAbove(item QTreeWidgetItem_ITF) *QTreeWidgetItem {
 	if ptr.Pointer() != nil {
-		return QTreeWidgetItemFromPointer(unsafe.Pointer(C.QTreeWidget_ItemAbove(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)))))
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_ItemAbove(ptr.Pointer(), PointerFromQTreeWidgetItem(item)))
 	}
 	return nil
 }
 
-func (ptr *QTreeWidget) ConnectItemActivated(f func(item QTreeWidgetItemITF, column int)) {
+func (ptr *QTreeWidget) ConnectItemActivated(f func(item *QTreeWidgetItem, column int)) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ConnectItemActivated(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_ConnectItemActivated(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "itemActivated", f)
 	}
 }
 
 func (ptr *QTreeWidget) DisconnectItemActivated() {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_DisconnectItemActivated(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_DisconnectItemActivated(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "itemActivated")
 	}
 }
 
 //export callbackQTreeWidgetItemActivated
 func callbackQTreeWidgetItemActivated(ptrName *C.char, item unsafe.Pointer, column C.int) {
-	qt.GetSignal(C.GoString(ptrName), "itemActivated").(func(*QTreeWidgetItem, int))(QTreeWidgetItemFromPointer(item), int(column))
+	qt.GetSignal(C.GoString(ptrName), "itemActivated").(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 }
 
-func (ptr *QTreeWidget) ItemAt(p core.QPointITF) *QTreeWidgetItem {
+func (ptr *QTreeWidget) ItemAt(p core.QPoint_ITF) *QTreeWidgetItem {
 	if ptr.Pointer() != nil {
-		return QTreeWidgetItemFromPointer(unsafe.Pointer(C.QTreeWidget_ItemAt(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPoint(p)))))
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_ItemAt(ptr.Pointer(), core.PointerFromQPoint(p)))
 	}
 	return nil
 }
 
 func (ptr *QTreeWidget) ItemAt2(x int, y int) *QTreeWidgetItem {
 	if ptr.Pointer() != nil {
-		return QTreeWidgetItemFromPointer(unsafe.Pointer(C.QTreeWidget_ItemAt2(C.QtObjectPtr(ptr.Pointer()), C.int(x), C.int(y))))
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_ItemAt2(ptr.Pointer(), C.int(x), C.int(y)))
 	}
 	return nil
 }
 
-func (ptr *QTreeWidget) ItemBelow(item QTreeWidgetItemITF) *QTreeWidgetItem {
+func (ptr *QTreeWidget) ItemBelow(item QTreeWidgetItem_ITF) *QTreeWidgetItem {
 	if ptr.Pointer() != nil {
-		return QTreeWidgetItemFromPointer(unsafe.Pointer(C.QTreeWidget_ItemBelow(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)))))
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_ItemBelow(ptr.Pointer(), PointerFromQTreeWidgetItem(item)))
 	}
 	return nil
 }
 
-func (ptr *QTreeWidget) ConnectItemChanged(f func(item QTreeWidgetItemITF, column int)) {
+func (ptr *QTreeWidget) ConnectItemChanged(f func(item *QTreeWidgetItem, column int)) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ConnectItemChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_ConnectItemChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "itemChanged", f)
 	}
 }
 
 func (ptr *QTreeWidget) DisconnectItemChanged() {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_DisconnectItemChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_DisconnectItemChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "itemChanged")
 	}
 }
 
 //export callbackQTreeWidgetItemChanged
 func callbackQTreeWidgetItemChanged(ptrName *C.char, item unsafe.Pointer, column C.int) {
-	qt.GetSignal(C.GoString(ptrName), "itemChanged").(func(*QTreeWidgetItem, int))(QTreeWidgetItemFromPointer(item), int(column))
+	qt.GetSignal(C.GoString(ptrName), "itemChanged").(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 }
 
-func (ptr *QTreeWidget) ConnectItemClicked(f func(item QTreeWidgetItemITF, column int)) {
+func (ptr *QTreeWidget) ConnectItemClicked(f func(item *QTreeWidgetItem, column int)) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ConnectItemClicked(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_ConnectItemClicked(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "itemClicked", f)
 	}
 }
 
 func (ptr *QTreeWidget) DisconnectItemClicked() {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_DisconnectItemClicked(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_DisconnectItemClicked(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "itemClicked")
 	}
 }
 
 //export callbackQTreeWidgetItemClicked
 func callbackQTreeWidgetItemClicked(ptrName *C.char, item unsafe.Pointer, column C.int) {
-	qt.GetSignal(C.GoString(ptrName), "itemClicked").(func(*QTreeWidgetItem, int))(QTreeWidgetItemFromPointer(item), int(column))
+	qt.GetSignal(C.GoString(ptrName), "itemClicked").(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 }
 
-func (ptr *QTreeWidget) ConnectItemCollapsed(f func(item QTreeWidgetItemITF)) {
+func (ptr *QTreeWidget) ConnectItemCollapsed(f func(item *QTreeWidgetItem)) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ConnectItemCollapsed(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_ConnectItemCollapsed(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "itemCollapsed", f)
 	}
 }
 
 func (ptr *QTreeWidget) DisconnectItemCollapsed() {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_DisconnectItemCollapsed(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_DisconnectItemCollapsed(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "itemCollapsed")
 	}
 }
 
 //export callbackQTreeWidgetItemCollapsed
 func callbackQTreeWidgetItemCollapsed(ptrName *C.char, item unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "itemCollapsed").(func(*QTreeWidgetItem))(QTreeWidgetItemFromPointer(item))
+	qt.GetSignal(C.GoString(ptrName), "itemCollapsed").(func(*QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(item))
 }
 
-func (ptr *QTreeWidget) ConnectItemDoubleClicked(f func(item QTreeWidgetItemITF, column int)) {
+func (ptr *QTreeWidget) ConnectItemDoubleClicked(f func(item *QTreeWidgetItem, column int)) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ConnectItemDoubleClicked(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_ConnectItemDoubleClicked(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "itemDoubleClicked", f)
 	}
 }
 
 func (ptr *QTreeWidget) DisconnectItemDoubleClicked() {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_DisconnectItemDoubleClicked(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_DisconnectItemDoubleClicked(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "itemDoubleClicked")
 	}
 }
 
 //export callbackQTreeWidgetItemDoubleClicked
 func callbackQTreeWidgetItemDoubleClicked(ptrName *C.char, item unsafe.Pointer, column C.int) {
-	qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked").(func(*QTreeWidgetItem, int))(QTreeWidgetItemFromPointer(item), int(column))
+	qt.GetSignal(C.GoString(ptrName), "itemDoubleClicked").(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 }
 
-func (ptr *QTreeWidget) ConnectItemEntered(f func(item QTreeWidgetItemITF, column int)) {
+func (ptr *QTreeWidget) ConnectItemEntered(f func(item *QTreeWidgetItem, column int)) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ConnectItemEntered(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_ConnectItemEntered(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "itemEntered", f)
 	}
 }
 
 func (ptr *QTreeWidget) DisconnectItemEntered() {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_DisconnectItemEntered(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_DisconnectItemEntered(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "itemEntered")
 	}
 }
 
 //export callbackQTreeWidgetItemEntered
 func callbackQTreeWidgetItemEntered(ptrName *C.char, item unsafe.Pointer, column C.int) {
-	qt.GetSignal(C.GoString(ptrName), "itemEntered").(func(*QTreeWidgetItem, int))(QTreeWidgetItemFromPointer(item), int(column))
+	qt.GetSignal(C.GoString(ptrName), "itemEntered").(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 }
 
-func (ptr *QTreeWidget) ConnectItemExpanded(f func(item QTreeWidgetItemITF)) {
+func (ptr *QTreeWidget) ConnectItemExpanded(f func(item *QTreeWidgetItem)) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ConnectItemExpanded(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_ConnectItemExpanded(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "itemExpanded", f)
 	}
 }
 
 func (ptr *QTreeWidget) DisconnectItemExpanded() {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_DisconnectItemExpanded(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_DisconnectItemExpanded(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "itemExpanded")
 	}
 }
 
 //export callbackQTreeWidgetItemExpanded
 func callbackQTreeWidgetItemExpanded(ptrName *C.char, item unsafe.Pointer) {
-	qt.GetSignal(C.GoString(ptrName), "itemExpanded").(func(*QTreeWidgetItem))(QTreeWidgetItemFromPointer(item))
+	qt.GetSignal(C.GoString(ptrName), "itemExpanded").(func(*QTreeWidgetItem))(NewQTreeWidgetItemFromPointer(item))
 }
 
-func (ptr *QTreeWidget) ConnectItemPressed(f func(item QTreeWidgetItemITF, column int)) {
+func (ptr *QTreeWidget) ConnectItemPressed(f func(item *QTreeWidgetItem, column int)) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ConnectItemPressed(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_ConnectItemPressed(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "itemPressed", f)
 	}
 }
 
 func (ptr *QTreeWidget) DisconnectItemPressed() {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_DisconnectItemPressed(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_DisconnectItemPressed(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "itemPressed")
 	}
 }
 
 //export callbackQTreeWidgetItemPressed
 func callbackQTreeWidgetItemPressed(ptrName *C.char, item unsafe.Pointer, column C.int) {
-	qt.GetSignal(C.GoString(ptrName), "itemPressed").(func(*QTreeWidgetItem, int))(QTreeWidgetItemFromPointer(item), int(column))
+	qt.GetSignal(C.GoString(ptrName), "itemPressed").(func(*QTreeWidgetItem, int))(NewQTreeWidgetItemFromPointer(item), int(column))
 }
 
 func (ptr *QTreeWidget) ConnectItemSelectionChanged(f func()) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ConnectItemSelectionChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_ConnectItemSelectionChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "itemSelectionChanged", f)
 	}
 }
 
 func (ptr *QTreeWidget) DisconnectItemSelectionChanged() {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_DisconnectItemSelectionChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_DisconnectItemSelectionChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "itemSelectionChanged")
 	}
 }
@@ -364,115 +364,115 @@ func callbackQTreeWidgetItemSelectionChanged(ptrName *C.char) {
 	qt.GetSignal(C.GoString(ptrName), "itemSelectionChanged").(func())()
 }
 
-func (ptr *QTreeWidget) ItemWidget(item QTreeWidgetItemITF, column int) *QWidget {
+func (ptr *QTreeWidget) ItemWidget(item QTreeWidgetItem_ITF, column int) *QWidget {
 	if ptr.Pointer() != nil {
-		return QWidgetFromPointer(unsafe.Pointer(C.QTreeWidget_ItemWidget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)), C.int(column))))
+		return NewQWidgetFromPointer(C.QTreeWidget_ItemWidget(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column)))
 	}
 	return nil
 }
 
-func (ptr *QTreeWidget) OpenPersistentEditor(item QTreeWidgetItemITF, column int) {
+func (ptr *QTreeWidget) OpenPersistentEditor(item QTreeWidgetItem_ITF, column int) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_OpenPersistentEditor(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)), C.int(column))
+		C.QTreeWidget_OpenPersistentEditor(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
 	}
 }
 
-func (ptr *QTreeWidget) RemoveItemWidget(item QTreeWidgetItemITF, column int) {
+func (ptr *QTreeWidget) RemoveItemWidget(item QTreeWidgetItem_ITF, column int) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_RemoveItemWidget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)), C.int(column))
+		C.QTreeWidget_RemoveItemWidget(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
 	}
 }
 
-func (ptr *QTreeWidget) ScrollToItem(item QTreeWidgetItemITF, hint QAbstractItemView__ScrollHint) {
+func (ptr *QTreeWidget) ScrollToItem(item QTreeWidgetItem_ITF, hint QAbstractItemView__ScrollHint) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_ScrollToItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)), C.int(hint))
+		C.QTreeWidget_ScrollToItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(hint))
 	}
 }
 
-func (ptr *QTreeWidget) SetCurrentItem(item QTreeWidgetItemITF) {
+func (ptr *QTreeWidget) SetCurrentItem(item QTreeWidgetItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_SetCurrentItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)))
+		C.QTreeWidget_SetCurrentItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item))
 	}
 }
 
-func (ptr *QTreeWidget) SetCurrentItem2(item QTreeWidgetItemITF, column int) {
+func (ptr *QTreeWidget) SetCurrentItem2(item QTreeWidgetItem_ITF, column int) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_SetCurrentItem2(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)), C.int(column))
+		C.QTreeWidget_SetCurrentItem2(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column))
 	}
 }
 
-func (ptr *QTreeWidget) SetCurrentItem3(item QTreeWidgetItemITF, column int, command core.QItemSelectionModel__SelectionFlag) {
+func (ptr *QTreeWidget) SetCurrentItem3(item QTreeWidgetItem_ITF, column int, command core.QItemSelectionModel__SelectionFlag) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_SetCurrentItem3(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)), C.int(column), C.int(command))
+		C.QTreeWidget_SetCurrentItem3(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column), C.int(command))
 	}
 }
 
-func (ptr *QTreeWidget) SetFirstItemColumnSpanned(item QTreeWidgetItemITF, span bool) {
+func (ptr *QTreeWidget) SetFirstItemColumnSpanned(item QTreeWidgetItem_ITF, span bool) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_SetFirstItemColumnSpanned(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)), C.int(qt.GoBoolToInt(span)))
+		C.QTreeWidget_SetFirstItemColumnSpanned(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(qt.GoBoolToInt(span)))
 	}
 }
 
-func (ptr *QTreeWidget) SetHeaderItem(item QTreeWidgetItemITF) {
+func (ptr *QTreeWidget) SetHeaderItem(item QTreeWidgetItem_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_SetHeaderItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)))
+		C.QTreeWidget_SetHeaderItem(ptr.Pointer(), PointerFromQTreeWidgetItem(item))
 	}
 }
 
 func (ptr *QTreeWidget) SetHeaderLabel(label string) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_SetHeaderLabel(C.QtObjectPtr(ptr.Pointer()), C.CString(label))
+		C.QTreeWidget_SetHeaderLabel(ptr.Pointer(), C.CString(label))
 	}
 }
 
 func (ptr *QTreeWidget) SetHeaderLabels(labels []string) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_SetHeaderLabels(C.QtObjectPtr(ptr.Pointer()), C.CString(strings.Join(labels, "|")))
+		C.QTreeWidget_SetHeaderLabels(ptr.Pointer(), C.CString(strings.Join(labels, "|")))
 	}
 }
 
-func (ptr *QTreeWidget) SetItemWidget(item QTreeWidgetItemITF, column int, widget QWidgetITF) {
+func (ptr *QTreeWidget) SetItemWidget(item QTreeWidgetItem_ITF, column int, widget QWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_SetItemWidget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQTreeWidgetItem(item)), C.int(column), C.QtObjectPtr(PointerFromQWidget(widget)))
+		C.QTreeWidget_SetItemWidget(ptr.Pointer(), PointerFromQTreeWidgetItem(item), C.int(column), PointerFromQWidget(widget))
 	}
 }
 
-func (ptr *QTreeWidget) SetSelectionModel(selectionModel core.QItemSelectionModelITF) {
+func (ptr *QTreeWidget) SetSelectionModel(selectionModel core.QItemSelectionModel_ITF) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_SetSelectionModel(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQItemSelectionModel(selectionModel)))
+		C.QTreeWidget_SetSelectionModel(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
 	}
 }
 
 func (ptr *QTreeWidget) SortColumn() int {
 	if ptr.Pointer() != nil {
-		return int(C.QTreeWidget_SortColumn(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QTreeWidget_SortColumn(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QTreeWidget) SortItems(column int, order core.Qt__SortOrder) {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_SortItems(C.QtObjectPtr(ptr.Pointer()), C.int(column), C.int(order))
+		C.QTreeWidget_SortItems(ptr.Pointer(), C.int(column), C.int(order))
 	}
 }
 
 func (ptr *QTreeWidget) TakeTopLevelItem(index int) *QTreeWidgetItem {
 	if ptr.Pointer() != nil {
-		return QTreeWidgetItemFromPointer(unsafe.Pointer(C.QTreeWidget_TakeTopLevelItem(C.QtObjectPtr(ptr.Pointer()), C.int(index))))
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_TakeTopLevelItem(ptr.Pointer(), C.int(index)))
 	}
 	return nil
 }
 
 func (ptr *QTreeWidget) TopLevelItem(index int) *QTreeWidgetItem {
 	if ptr.Pointer() != nil {
-		return QTreeWidgetItemFromPointer(unsafe.Pointer(C.QTreeWidget_TopLevelItem(C.QtObjectPtr(ptr.Pointer()), C.int(index))))
+		return NewQTreeWidgetItemFromPointer(C.QTreeWidget_TopLevelItem(ptr.Pointer(), C.int(index)))
 	}
 	return nil
 }
 
 func (ptr *QTreeWidget) DestroyQTreeWidget() {
 	if ptr.Pointer() != nil {
-		C.QTreeWidget_DestroyQTreeWidget(C.QtObjectPtr(ptr.Pointer()))
+		C.QTreeWidget_DestroyQTreeWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

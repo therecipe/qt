@@ -1,13 +1,13 @@
 #include "qundoview.h"
-#include <QUndoStack>
-#include <QWidget>
-#include <QMetaObject>
-#include <QString>
 #include <QVariant>
-#include <QModelIndex>
 #include <QUrl>
-#include <QIcon>
+#include <QModelIndex>
+#include <QUndoStack>
+#include <QMetaObject>
+#include <QWidget>
+#include <QString>
 #include <QUndoGroup>
+#include <QIcon>
 #include <QUndoView>
 #include "_cgo_export.h"
 
@@ -15,47 +15,47 @@ class MyQUndoView: public QUndoView {
 public:
 };
 
-char* QUndoView_EmptyLabel(QtObjectPtr ptr){
+char* QUndoView_EmptyLabel(void* ptr){
 	return static_cast<QUndoView*>(ptr)->emptyLabel().toUtf8().data();
 }
 
-void QUndoView_SetCleanIcon(QtObjectPtr ptr, QtObjectPtr icon){
+void QUndoView_SetCleanIcon(void* ptr, void* icon){
 	static_cast<QUndoView*>(ptr)->setCleanIcon(*static_cast<QIcon*>(icon));
 }
 
-void QUndoView_SetEmptyLabel(QtObjectPtr ptr, char* label){
+void QUndoView_SetEmptyLabel(void* ptr, char* label){
 	static_cast<QUndoView*>(ptr)->setEmptyLabel(QString(label));
 }
 
-QtObjectPtr QUndoView_NewQUndoView3(QtObjectPtr group, QtObjectPtr parent){
+void* QUndoView_NewQUndoView3(void* group, void* parent){
 	return new QUndoView(static_cast<QUndoGroup*>(group), static_cast<QWidget*>(parent));
 }
 
-QtObjectPtr QUndoView_NewQUndoView2(QtObjectPtr stack, QtObjectPtr parent){
+void* QUndoView_NewQUndoView2(void* stack, void* parent){
 	return new QUndoView(static_cast<QUndoStack*>(stack), static_cast<QWidget*>(parent));
 }
 
-QtObjectPtr QUndoView_NewQUndoView(QtObjectPtr parent){
+void* QUndoView_NewQUndoView(void* parent){
 	return new QUndoView(static_cast<QWidget*>(parent));
 }
 
-QtObjectPtr QUndoView_Group(QtObjectPtr ptr){
+void* QUndoView_Group(void* ptr){
 	return static_cast<QUndoView*>(ptr)->group();
 }
 
-void QUndoView_SetGroup(QtObjectPtr ptr, QtObjectPtr group){
+void QUndoView_SetGroup(void* ptr, void* group){
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "setGroup", Q_ARG(QUndoGroup*, static_cast<QUndoGroup*>(group)));
 }
 
-void QUndoView_SetStack(QtObjectPtr ptr, QtObjectPtr stack){
+void QUndoView_SetStack(void* ptr, void* stack){
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "setStack", Q_ARG(QUndoStack*, static_cast<QUndoStack*>(stack)));
 }
 
-QtObjectPtr QUndoView_Stack(QtObjectPtr ptr){
+void* QUndoView_Stack(void* ptr){
 	return static_cast<QUndoView*>(ptr)->stack();
 }
 
-void QUndoView_DestroyQUndoView(QtObjectPtr ptr){
+void QUndoView_DestroyQUndoView(void* ptr){
 	static_cast<QUndoView*>(ptr)->~QUndoView();
 }
 

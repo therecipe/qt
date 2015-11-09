@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
-&{setBottom QIntValidator::setBottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void [0xc82300e620] }
-&{setTop QIntValidator::setTop commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void [0xc82300e980] }
-&{validate QIntValidator::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp impure plain false false  QValidator::State [0xc82300ed20 0xc82300ede0] }
-&{QIntValidator QIntValidator::QIntValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false false   [0xc82300f0c0] }
-&{QIntValidator QIntValidator::QIntValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false true 2  [0xc82300f3c0 0xc82300f460 0xc82300f540] }
-&{bottom QIntValidator::bottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  int [] }
-&{fixup QIntValidator::fixup commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h impure plain false false  void [0xc82300fd40] }
-&{setRange QIntValidator::setRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h impure plain false false  void [0xc823114020 0xc8231140a0] }
-&{top QIntValidator::top commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  int [] }
-&{~QIntValidator QIntValidator::~QIntValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non destructor false false   [] }
+&{setBottom QIntValidator::setBottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void void setBottom(int ) [0xc8202f7b00] }
+&{setTop QIntValidator::setTop commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void void setTop(int ) [0xc8203726a0] }
+&{validate QIntValidator::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp impure plain false false  QValidator::State QValidator::State validate(QString &input, int &pos) const [0xc820373100 0xc820373480] }
+&{QIntValidator QIntValidator::QIntValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false false   QIntValidator(QObject *parent) [0xc820373f00] }
+&{QIntValidator QIntValidator::QIntValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false true 2  QIntValidator(int minimum, int maximum, QObject *parent) [0xc820d58480 0xc820d58640 0xc820d58760] }
+&{bottom QIntValidator::bottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  int int bottom() const [] }
+&{fixup QIntValidator::fixup commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h impure plain false false  void void fixup(QString &input) const [0xc820d59760] }
+&{setRange QIntValidator::setRange commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h impure plain false false  void void setRange(int bottom, int top) [0xc820d59bc0 0xc820d59d40] }
+&{top QIntValidator::top commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  int int top() const [] }
+&{~QIntValidator QIntValidator::~QIntValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non destructor false false   ~QIntValidator() [] }
 ########################################			ENUMS			########################################

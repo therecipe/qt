@@ -10,7 +10,7 @@ class MyQCloseEvent: public QCloseEvent {
 public:
 };
 
-QtObjectPtr QCloseEvent_NewQCloseEvent(){
+void* QCloseEvent_NewQCloseEvent(){
 	return new QCloseEvent();
 }
 

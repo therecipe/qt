@@ -10,43 +10,43 @@ class MyQXmlNamespaceSupport: public QXmlNamespaceSupport {
 public:
 };
 
-QtObjectPtr QXmlNamespaceSupport_NewQXmlNamespaceSupport(){
+void* QXmlNamespaceSupport_NewQXmlNamespaceSupport(){
 	return new QXmlNamespaceSupport();
 }
 
-void QXmlNamespaceSupport_PopContext(QtObjectPtr ptr){
+void QXmlNamespaceSupport_PopContext(void* ptr){
 	static_cast<QXmlNamespaceSupport*>(ptr)->popContext();
 }
 
-char* QXmlNamespaceSupport_Prefix(QtObjectPtr ptr, char* uri){
+char* QXmlNamespaceSupport_Prefix(void* ptr, char* uri){
 	return static_cast<QXmlNamespaceSupport*>(ptr)->prefix(QString(uri)).toUtf8().data();
 }
 
-char* QXmlNamespaceSupport_Prefixes(QtObjectPtr ptr){
+char* QXmlNamespaceSupport_Prefixes(void* ptr){
 	return static_cast<QXmlNamespaceSupport*>(ptr)->prefixes().join("|").toUtf8().data();
 }
 
-char* QXmlNamespaceSupport_Prefixes2(QtObjectPtr ptr, char* uri){
+char* QXmlNamespaceSupport_Prefixes2(void* ptr, char* uri){
 	return static_cast<QXmlNamespaceSupport*>(ptr)->prefixes(QString(uri)).join("|").toUtf8().data();
 }
 
-void QXmlNamespaceSupport_PushContext(QtObjectPtr ptr){
+void QXmlNamespaceSupport_PushContext(void* ptr){
 	static_cast<QXmlNamespaceSupport*>(ptr)->pushContext();
 }
 
-void QXmlNamespaceSupport_Reset(QtObjectPtr ptr){
+void QXmlNamespaceSupport_Reset(void* ptr){
 	static_cast<QXmlNamespaceSupport*>(ptr)->reset();
 }
 
-void QXmlNamespaceSupport_SetPrefix(QtObjectPtr ptr, char* pre, char* uri){
+void QXmlNamespaceSupport_SetPrefix(void* ptr, char* pre, char* uri){
 	static_cast<QXmlNamespaceSupport*>(ptr)->setPrefix(QString(pre), QString(uri));
 }
 
-char* QXmlNamespaceSupport_Uri(QtObjectPtr ptr, char* prefix){
+char* QXmlNamespaceSupport_Uri(void* ptr, char* prefix){
 	return static_cast<QXmlNamespaceSupport*>(ptr)->uri(QString(prefix)).toUtf8().data();
 }
 
-void QXmlNamespaceSupport_DestroyQXmlNamespaceSupport(QtObjectPtr ptr){
+void QXmlNamespaceSupport_DestroyQXmlNamespaceSupport(void* ptr){
 	static_cast<QXmlNamespaceSupport*>(ptr)->~QXmlNamespaceSupport();
 }
 

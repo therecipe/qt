@@ -1,7 +1,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
 int QGeoServiceProvider_OnlineGeocodingFeature_Type();
 int QGeoServiceProvider_OfflineGeocodingFeature_Type();
@@ -32,18 +31,18 @@ int QGeoServiceProvider_AlternativeRoutesFeature_Type();
 int QGeoServiceProvider_ExcludeAreasRoutingFeature_Type();
 int QGeoServiceProvider_AnyRoutingFeatures_Type();
 char* QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders();
-int QGeoServiceProvider_Error(QtObjectPtr ptr);
-char* QGeoServiceProvider_ErrorString(QtObjectPtr ptr);
-int QGeoServiceProvider_GeocodingFeatures(QtObjectPtr ptr);
-QtObjectPtr QGeoServiceProvider_GeocodingManager(QtObjectPtr ptr);
-int QGeoServiceProvider_MappingFeatures(QtObjectPtr ptr);
-QtObjectPtr QGeoServiceProvider_PlaceManager(QtObjectPtr ptr);
-int QGeoServiceProvider_PlacesFeatures(QtObjectPtr ptr);
-int QGeoServiceProvider_RoutingFeatures(QtObjectPtr ptr);
-QtObjectPtr QGeoServiceProvider_RoutingManager(QtObjectPtr ptr);
-void QGeoServiceProvider_SetAllowExperimental(QtObjectPtr ptr, int allow);
-void QGeoServiceProvider_SetLocale(QtObjectPtr ptr, QtObjectPtr locale);
-void QGeoServiceProvider_DestroyQGeoServiceProvider(QtObjectPtr ptr);
+int QGeoServiceProvider_Error(void* ptr);
+char* QGeoServiceProvider_ErrorString(void* ptr);
+int QGeoServiceProvider_GeocodingFeatures(void* ptr);
+void* QGeoServiceProvider_GeocodingManager(void* ptr);
+int QGeoServiceProvider_MappingFeatures(void* ptr);
+void* QGeoServiceProvider_PlaceManager(void* ptr);
+int QGeoServiceProvider_PlacesFeatures(void* ptr);
+int QGeoServiceProvider_RoutingFeatures(void* ptr);
+void* QGeoServiceProvider_RoutingManager(void* ptr);
+void QGeoServiceProvider_SetAllowExperimental(void* ptr, int allow);
+void QGeoServiceProvider_SetLocale(void* ptr, void* locale);
+void QGeoServiceProvider_DestroyQGeoServiceProvider(void* ptr);
 
 #ifdef __cplusplus
 }

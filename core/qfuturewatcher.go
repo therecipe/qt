@@ -11,27 +11,27 @@ type QFutureWatcher struct {
 	QObject
 }
 
-type QFutureWatcherITF interface {
-	QObjectITF
-	QFutureWatcherPTR() *QFutureWatcher
+type QFutureWatcher_ITF interface {
+	QObject_ITF
+	QFutureWatcher_PTR() *QFutureWatcher
 }
 
-func PointerFromQFutureWatcher(ptr QFutureWatcherITF) unsafe.Pointer {
+func PointerFromQFutureWatcher(ptr QFutureWatcher_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QFutureWatcherPTR().Pointer()
+		return ptr.QFutureWatcher_PTR().Pointer()
 	}
 	return nil
 }
 
-func QFutureWatcherFromPointer(ptr unsafe.Pointer) *QFutureWatcher {
+func NewQFutureWatcherFromPointer(ptr unsafe.Pointer) *QFutureWatcher {
 	var n = new(QFutureWatcher)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QFutureWatcher_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QFutureWatcher) QFutureWatcherPTR() *QFutureWatcher {
+func (ptr *QFutureWatcher) QFutureWatcher_PTR() *QFutureWatcher {
 	return ptr
 }

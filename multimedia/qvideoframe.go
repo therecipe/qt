@@ -12,8 +12,8 @@ type QVideoFrame struct {
 	ptr unsafe.Pointer
 }
 
-type QVideoFrameITF interface {
-	QVideoFramePTR() *QVideoFrame
+type QVideoFrame_ITF interface {
+	QVideoFrame_PTR() *QVideoFrame
 }
 
 func (p *QVideoFrame) Pointer() unsafe.Pointer {
@@ -24,27 +24,27 @@ func (p *QVideoFrame) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQVideoFrame(ptr QVideoFrameITF) unsafe.Pointer {
+func PointerFromQVideoFrame(ptr QVideoFrame_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QVideoFramePTR().Pointer()
+		return ptr.QVideoFrame_PTR().Pointer()
 	}
 	return nil
 }
 
-func QVideoFrameFromPointer(ptr unsafe.Pointer) *QVideoFrame {
+func NewQVideoFrameFromPointer(ptr unsafe.Pointer) *QVideoFrame {
 	var n = new(QVideoFrame)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QVideoFrame) QVideoFramePTR() *QVideoFrame {
+func (ptr *QVideoFrame) QVideoFrame_PTR() *QVideoFrame {
 	return ptr
 }
 
 //QVideoFrame::FieldType
-type QVideoFrame__FieldType int
+type QVideoFrame__FieldType int64
 
-var (
+const (
 	QVideoFrame__ProgressiveFrame = QVideoFrame__FieldType(0)
 	QVideoFrame__TopField         = QVideoFrame__FieldType(1)
 	QVideoFrame__BottomField      = QVideoFrame__FieldType(2)
@@ -52,9 +52,9 @@ var (
 )
 
 //QVideoFrame::PixelFormat
-type QVideoFrame__PixelFormat int
+type QVideoFrame__PixelFormat int64
 
-var (
+const (
 	QVideoFrame__Format_Invalid                = QVideoFrame__PixelFormat(0)
 	QVideoFrame__Format_ARGB32                 = QVideoFrame__PixelFormat(1)
 	QVideoFrame__Format_ARGB32_Premultiplied   = QVideoFrame__PixelFormat(2)
@@ -92,63 +92,63 @@ var (
 )
 
 func NewQVideoFrame() *QVideoFrame {
-	return QVideoFrameFromPointer(unsafe.Pointer(C.QVideoFrame_NewQVideoFrame()))
+	return NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame())
 }
 
-func NewQVideoFrame2(buffer QAbstractVideoBufferITF, size core.QSizeITF, format QVideoFrame__PixelFormat) *QVideoFrame {
-	return QVideoFrameFromPointer(unsafe.Pointer(C.QVideoFrame_NewQVideoFrame2(C.QtObjectPtr(PointerFromQAbstractVideoBuffer(buffer)), C.QtObjectPtr(core.PointerFromQSize(size)), C.int(format))))
+func NewQVideoFrame2(buffer QAbstractVideoBuffer_ITF, size core.QSize_ITF, format QVideoFrame__PixelFormat) *QVideoFrame {
+	return NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame2(PointerFromQAbstractVideoBuffer(buffer), core.PointerFromQSize(size), C.int(format)))
 }
 
-func NewQVideoFrame4(image gui.QImageITF) *QVideoFrame {
-	return QVideoFrameFromPointer(unsafe.Pointer(C.QVideoFrame_NewQVideoFrame4(C.QtObjectPtr(gui.PointerFromQImage(image)))))
+func NewQVideoFrame4(image gui.QImage_ITF) *QVideoFrame {
+	return NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame4(gui.PointerFromQImage(image)))
 }
 
-func NewQVideoFrame5(other QVideoFrameITF) *QVideoFrame {
-	return QVideoFrameFromPointer(unsafe.Pointer(C.QVideoFrame_NewQVideoFrame5(C.QtObjectPtr(PointerFromQVideoFrame(other)))))
+func NewQVideoFrame5(other QVideoFrame_ITF) *QVideoFrame {
+	return NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame5(PointerFromQVideoFrame(other)))
 }
 
-func NewQVideoFrame3(bytes int, size core.QSizeITF, bytesPerLine int, format QVideoFrame__PixelFormat) *QVideoFrame {
-	return QVideoFrameFromPointer(unsafe.Pointer(C.QVideoFrame_NewQVideoFrame3(C.int(bytes), C.QtObjectPtr(core.PointerFromQSize(size)), C.int(bytesPerLine), C.int(format))))
+func NewQVideoFrame3(bytes int, size core.QSize_ITF, bytesPerLine int, format QVideoFrame__PixelFormat) *QVideoFrame {
+	return NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame3(C.int(bytes), core.PointerFromQSize(size), C.int(bytesPerLine), C.int(format)))
 }
 
 func (ptr *QVideoFrame) BytesPerLine() int {
 	if ptr.Pointer() != nil {
-		return int(C.QVideoFrame_BytesPerLine(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QVideoFrame_BytesPerLine(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QVideoFrame) BytesPerLine2(plane int) int {
 	if ptr.Pointer() != nil {
-		return int(C.QVideoFrame_BytesPerLine2(C.QtObjectPtr(ptr.Pointer()), C.int(plane)))
+		return int(C.QVideoFrame_BytesPerLine2(ptr.Pointer(), C.int(plane)))
 	}
 	return 0
 }
 
 func (ptr *QVideoFrame) FieldType() QVideoFrame__FieldType {
 	if ptr.Pointer() != nil {
-		return QVideoFrame__FieldType(C.QVideoFrame_FieldType(C.QtObjectPtr(ptr.Pointer())))
+		return QVideoFrame__FieldType(C.QVideoFrame_FieldType(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QVideoFrame) Handle() string {
+func (ptr *QVideoFrame) Handle() *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QVideoFrame_Handle(C.QtObjectPtr(ptr.Pointer())))
+		return core.NewQVariantFromPointer(C.QVideoFrame_Handle(ptr.Pointer()))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QVideoFrame) HandleType() QAbstractVideoBuffer__HandleType {
 	if ptr.Pointer() != nil {
-		return QAbstractVideoBuffer__HandleType(C.QVideoFrame_HandleType(C.QtObjectPtr(ptr.Pointer())))
+		return QAbstractVideoBuffer__HandleType(C.QVideoFrame_HandleType(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QVideoFrame) Height() int {
 	if ptr.Pointer() != nil {
-		return int(C.QVideoFrame_Height(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QVideoFrame_Height(ptr.Pointer()))
 	}
 	return 0
 }
@@ -159,63 +159,63 @@ func QVideoFrame_ImageFormatFromPixelFormat(format QVideoFrame__PixelFormat) gui
 
 func (ptr *QVideoFrame) IsMapped() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoFrame_IsMapped(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QVideoFrame_IsMapped(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoFrame) IsReadable() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoFrame_IsReadable(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QVideoFrame_IsReadable(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoFrame) IsValid() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoFrame_IsValid(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QVideoFrame_IsValid(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoFrame) IsWritable() bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoFrame_IsWritable(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QVideoFrame_IsWritable(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoFrame) Map(mode QAbstractVideoBuffer__MapMode) bool {
 	if ptr.Pointer() != nil {
-		return C.QVideoFrame_Map(C.QtObjectPtr(ptr.Pointer()), C.int(mode)) != 0
+		return C.QVideoFrame_Map(ptr.Pointer(), C.int(mode)) != 0
 	}
 	return false
 }
 
 func (ptr *QVideoFrame) MapMode() QAbstractVideoBuffer__MapMode {
 	if ptr.Pointer() != nil {
-		return QAbstractVideoBuffer__MapMode(C.QVideoFrame_MapMode(C.QtObjectPtr(ptr.Pointer())))
+		return QAbstractVideoBuffer__MapMode(C.QVideoFrame_MapMode(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QVideoFrame) MappedBytes() int {
 	if ptr.Pointer() != nil {
-		return int(C.QVideoFrame_MappedBytes(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QVideoFrame_MappedBytes(ptr.Pointer()))
 	}
 	return 0
 }
 
-func (ptr *QVideoFrame) MetaData(key string) string {
+func (ptr *QVideoFrame) MetaData(key string) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QVideoFrame_MetaData(C.QtObjectPtr(ptr.Pointer()), C.CString(key)))
+		return core.NewQVariantFromPointer(C.QVideoFrame_MetaData(ptr.Pointer(), C.CString(key)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QVideoFrame) PixelFormat() QVideoFrame__PixelFormat {
 	if ptr.Pointer() != nil {
-		return QVideoFrame__PixelFormat(C.QVideoFrame_PixelFormat(C.QtObjectPtr(ptr.Pointer())))
+		return QVideoFrame__PixelFormat(C.QVideoFrame_PixelFormat(ptr.Pointer()))
 	}
 	return 0
 }
@@ -226,38 +226,38 @@ func QVideoFrame_PixelFormatFromImageFormat(format gui.QImage__Format) QVideoFra
 
 func (ptr *QVideoFrame) PlaneCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QVideoFrame_PlaneCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QVideoFrame_PlaneCount(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QVideoFrame) SetFieldType(field QVideoFrame__FieldType) {
 	if ptr.Pointer() != nil {
-		C.QVideoFrame_SetFieldType(C.QtObjectPtr(ptr.Pointer()), C.int(field))
+		C.QVideoFrame_SetFieldType(ptr.Pointer(), C.int(field))
 	}
 }
 
-func (ptr *QVideoFrame) SetMetaData(key string, value string) {
+func (ptr *QVideoFrame) SetMetaData(key string, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QVideoFrame_SetMetaData(C.QtObjectPtr(ptr.Pointer()), C.CString(key), C.CString(value))
+		C.QVideoFrame_SetMetaData(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QVideoFrame) Unmap() {
 	if ptr.Pointer() != nil {
-		C.QVideoFrame_Unmap(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoFrame_Unmap(ptr.Pointer())
 	}
 }
 
 func (ptr *QVideoFrame) Width() int {
 	if ptr.Pointer() != nil {
-		return int(C.QVideoFrame_Width(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QVideoFrame_Width(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QVideoFrame) DestroyQVideoFrame() {
 	if ptr.Pointer() != nil {
-		C.QVideoFrame_DestroyQVideoFrame(C.QtObjectPtr(ptr.Pointer()))
+		C.QVideoFrame_DestroyQVideoFrame(ptr.Pointer())
 	}
 }

@@ -12,49 +12,49 @@ type QScrollBar struct {
 	QAbstractSlider
 }
 
-type QScrollBarITF interface {
-	QAbstractSliderITF
-	QScrollBarPTR() *QScrollBar
+type QScrollBar_ITF interface {
+	QAbstractSlider_ITF
+	QScrollBar_PTR() *QScrollBar
 }
 
-func PointerFromQScrollBar(ptr QScrollBarITF) unsafe.Pointer {
+func PointerFromQScrollBar(ptr QScrollBar_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QScrollBarPTR().Pointer()
+		return ptr.QScrollBar_PTR().Pointer()
 	}
 	return nil
 }
 
-func QScrollBarFromPointer(ptr unsafe.Pointer) *QScrollBar {
+func NewQScrollBarFromPointer(ptr unsafe.Pointer) *QScrollBar {
 	var n = new(QScrollBar)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QScrollBar_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QScrollBar) QScrollBarPTR() *QScrollBar {
+func (ptr *QScrollBar) QScrollBar_PTR() *QScrollBar {
 	return ptr
 }
 
-func NewQScrollBar(parent QWidgetITF) *QScrollBar {
-	return QScrollBarFromPointer(unsafe.Pointer(C.QScrollBar_NewQScrollBar(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQScrollBar(parent QWidget_ITF) *QScrollBar {
+	return NewQScrollBarFromPointer(C.QScrollBar_NewQScrollBar(PointerFromQWidget(parent)))
 }
 
-func NewQScrollBar2(orientation core.Qt__Orientation, parent QWidgetITF) *QScrollBar {
-	return QScrollBarFromPointer(unsafe.Pointer(C.QScrollBar_NewQScrollBar2(C.int(orientation), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQScrollBar2(orientation core.Qt__Orientation, parent QWidget_ITF) *QScrollBar {
+	return NewQScrollBarFromPointer(C.QScrollBar_NewQScrollBar2(C.int(orientation), PointerFromQWidget(parent)))
 }
 
-func (ptr *QScrollBar) Event(event core.QEventITF) bool {
+func (ptr *QScrollBar) Event(event core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QScrollBar_Event(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQEvent(event))) != 0
+		return C.QScrollBar_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
 	}
 	return false
 }
 
 func (ptr *QScrollBar) DestroyQScrollBar() {
 	if ptr.Pointer() != nil {
-		C.QScrollBar_DestroyQScrollBar(C.QtObjectPtr(ptr.Pointer()))
+		C.QScrollBar_DestroyQScrollBar(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

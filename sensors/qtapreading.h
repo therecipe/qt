@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QTapReading_IsDoubleTap(QtObjectPtr ptr);
-int QTapReading_TapDirection(QtObjectPtr ptr);
-void QTapReading_SetDoubleTap(QtObjectPtr ptr, int doubleTap);
-void QTapReading_SetTapDirection(QtObjectPtr ptr, int tapDirection);
+int QTapReading_IsDoubleTap(void* ptr);
+int QTapReading_TapDirection(void* ptr);
+void QTapReading_SetDoubleTap(void* ptr, int doubleTap);
+void QTapReading_SetTapDirection(void* ptr, int tapDirection);
 
 #ifdef __cplusplus
 }

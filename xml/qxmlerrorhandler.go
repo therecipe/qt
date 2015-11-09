@@ -10,8 +10,8 @@ type QXmlErrorHandler struct {
 	ptr unsafe.Pointer
 }
 
-type QXmlErrorHandlerITF interface {
-	QXmlErrorHandlerPTR() *QXmlErrorHandler
+type QXmlErrorHandler_ITF interface {
+	QXmlErrorHandler_PTR() *QXmlErrorHandler
 }
 
 func (p *QXmlErrorHandler) Pointer() unsafe.Pointer {
@@ -22,53 +22,53 @@ func (p *QXmlErrorHandler) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQXmlErrorHandler(ptr QXmlErrorHandlerITF) unsafe.Pointer {
+func PointerFromQXmlErrorHandler(ptr QXmlErrorHandler_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QXmlErrorHandlerPTR().Pointer()
+		return ptr.QXmlErrorHandler_PTR().Pointer()
 	}
 	return nil
 }
 
-func QXmlErrorHandlerFromPointer(ptr unsafe.Pointer) *QXmlErrorHandler {
+func NewQXmlErrorHandlerFromPointer(ptr unsafe.Pointer) *QXmlErrorHandler {
 	var n = new(QXmlErrorHandler)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QXmlErrorHandler) QXmlErrorHandlerPTR() *QXmlErrorHandler {
+func (ptr *QXmlErrorHandler) QXmlErrorHandler_PTR() *QXmlErrorHandler {
 	return ptr
 }
 
-func (ptr *QXmlErrorHandler) Error(exception QXmlParseExceptionITF) bool {
+func (ptr *QXmlErrorHandler) Error(exception QXmlParseException_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlErrorHandler_Error(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlParseException(exception))) != 0
+		return C.QXmlErrorHandler_Error(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlErrorHandler) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QXmlErrorHandler_ErrorString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QXmlErrorHandler_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QXmlErrorHandler) FatalError(exception QXmlParseExceptionITF) bool {
+func (ptr *QXmlErrorHandler) FatalError(exception QXmlParseException_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlErrorHandler_FatalError(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlParseException(exception))) != 0
+		return C.QXmlErrorHandler_FatalError(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
 	}
 	return false
 }
 
-func (ptr *QXmlErrorHandler) Warning(exception QXmlParseExceptionITF) bool {
+func (ptr *QXmlErrorHandler) Warning(exception QXmlParseException_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QXmlErrorHandler_Warning(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQXmlParseException(exception))) != 0
+		return C.QXmlErrorHandler_Warning(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
 	}
 	return false
 }
 
 func (ptr *QXmlErrorHandler) DestroyQXmlErrorHandler() {
 	if ptr.Pointer() != nil {
-		C.QXmlErrorHandler_DestroyQXmlErrorHandler(C.QtObjectPtr(ptr.Pointer()))
+		C.QXmlErrorHandler_DestroyQXmlErrorHandler(ptr.Pointer())
 	}
 }

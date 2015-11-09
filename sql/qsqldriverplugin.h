@@ -1,10 +1,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSqlDriverPlugin_Create(QtObjectPtr ptr, char* key);
-void QSqlDriverPlugin_DestroyQSqlDriverPlugin(QtObjectPtr ptr);
+void* QSqlDriverPlugin_Create(void* ptr, char* key);
+void QSqlDriverPlugin_DestroyQSqlDriverPlugin(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,11 +1,11 @@
 #include "qundostack.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMetaObject>
-#include <QObject>
 #include <QUndoCommand>
-#include <QString>
+#include <QObject>
 #include <QUndoStack>
 #include "_cgo_export.h"
 
@@ -19,155 +19,155 @@ void Signal_RedoTextChanged(const QString & redoText){callbackQUndoStackRedoText
 void Signal_UndoTextChanged(const QString & undoText){callbackQUndoStackUndoTextChanged(this->objectName().toUtf8().data(), undoText.toUtf8().data());};
 };
 
-int QUndoStack_IsActive(QtObjectPtr ptr){
+int QUndoStack_IsActive(void* ptr){
 	return static_cast<QUndoStack*>(ptr)->isActive();
 }
 
-void QUndoStack_SetActive(QtObjectPtr ptr, int active){
+void QUndoStack_SetActive(void* ptr, int active){
 	QMetaObject::invokeMethod(static_cast<QUndoStack*>(ptr), "setActive", Q_ARG(bool, active != 0));
 }
 
-void QUndoStack_SetUndoLimit(QtObjectPtr ptr, int limit){
+void QUndoStack_SetUndoLimit(void* ptr, int limit){
 	static_cast<QUndoStack*>(ptr)->setUndoLimit(limit);
 }
 
-int QUndoStack_UndoLimit(QtObjectPtr ptr){
+int QUndoStack_UndoLimit(void* ptr){
 	return static_cast<QUndoStack*>(ptr)->undoLimit();
 }
 
-QtObjectPtr QUndoStack_NewQUndoStack(QtObjectPtr parent){
+void* QUndoStack_NewQUndoStack(void* parent){
 	return new QUndoStack(static_cast<QObject*>(parent));
 }
 
-void QUndoStack_BeginMacro(QtObjectPtr ptr, char* text){
+void QUndoStack_BeginMacro(void* ptr, char* text){
 	static_cast<QUndoStack*>(ptr)->beginMacro(QString(text));
 }
 
-int QUndoStack_CanRedo(QtObjectPtr ptr){
+int QUndoStack_CanRedo(void* ptr){
 	return static_cast<QUndoStack*>(ptr)->canRedo();
 }
 
-void QUndoStack_ConnectCanRedoChanged(QtObjectPtr ptr){
+void QUndoStack_ConnectCanRedoChanged(void* ptr){
 	QObject::connect(static_cast<QUndoStack*>(ptr), static_cast<void (QUndoStack::*)(bool)>(&QUndoStack::canRedoChanged), static_cast<MyQUndoStack*>(ptr), static_cast<void (MyQUndoStack::*)(bool)>(&MyQUndoStack::Signal_CanRedoChanged));;
 }
 
-void QUndoStack_DisconnectCanRedoChanged(QtObjectPtr ptr){
+void QUndoStack_DisconnectCanRedoChanged(void* ptr){
 	QObject::disconnect(static_cast<QUndoStack*>(ptr), static_cast<void (QUndoStack::*)(bool)>(&QUndoStack::canRedoChanged), static_cast<MyQUndoStack*>(ptr), static_cast<void (MyQUndoStack::*)(bool)>(&MyQUndoStack::Signal_CanRedoChanged));;
 }
 
-int QUndoStack_CanUndo(QtObjectPtr ptr){
+int QUndoStack_CanUndo(void* ptr){
 	return static_cast<QUndoStack*>(ptr)->canUndo();
 }
 
-void QUndoStack_ConnectCanUndoChanged(QtObjectPtr ptr){
+void QUndoStack_ConnectCanUndoChanged(void* ptr){
 	QObject::connect(static_cast<QUndoStack*>(ptr), static_cast<void (QUndoStack::*)(bool)>(&QUndoStack::canUndoChanged), static_cast<MyQUndoStack*>(ptr), static_cast<void (MyQUndoStack::*)(bool)>(&MyQUndoStack::Signal_CanUndoChanged));;
 }
 
-void QUndoStack_DisconnectCanUndoChanged(QtObjectPtr ptr){
+void QUndoStack_DisconnectCanUndoChanged(void* ptr){
 	QObject::disconnect(static_cast<QUndoStack*>(ptr), static_cast<void (QUndoStack::*)(bool)>(&QUndoStack::canUndoChanged), static_cast<MyQUndoStack*>(ptr), static_cast<void (MyQUndoStack::*)(bool)>(&MyQUndoStack::Signal_CanUndoChanged));;
 }
 
-void QUndoStack_ConnectCleanChanged(QtObjectPtr ptr){
+void QUndoStack_ConnectCleanChanged(void* ptr){
 	QObject::connect(static_cast<QUndoStack*>(ptr), static_cast<void (QUndoStack::*)(bool)>(&QUndoStack::cleanChanged), static_cast<MyQUndoStack*>(ptr), static_cast<void (MyQUndoStack::*)(bool)>(&MyQUndoStack::Signal_CleanChanged));;
 }
 
-void QUndoStack_DisconnectCleanChanged(QtObjectPtr ptr){
+void QUndoStack_DisconnectCleanChanged(void* ptr){
 	QObject::disconnect(static_cast<QUndoStack*>(ptr), static_cast<void (QUndoStack::*)(bool)>(&QUndoStack::cleanChanged), static_cast<MyQUndoStack*>(ptr), static_cast<void (MyQUndoStack::*)(bool)>(&MyQUndoStack::Signal_CleanChanged));;
 }
 
-int QUndoStack_CleanIndex(QtObjectPtr ptr){
+int QUndoStack_CleanIndex(void* ptr){
 	return static_cast<QUndoStack*>(ptr)->cleanIndex();
 }
 
-void QUndoStack_Clear(QtObjectPtr ptr){
+void QUndoStack_Clear(void* ptr){
 	static_cast<QUndoStack*>(ptr)->clear();
 }
 
-QtObjectPtr QUndoStack_Command(QtObjectPtr ptr, int index){
+void* QUndoStack_Command(void* ptr, int index){
 	return const_cast<QUndoCommand*>(static_cast<QUndoStack*>(ptr)->command(index));
 }
 
-int QUndoStack_Count(QtObjectPtr ptr){
+int QUndoStack_Count(void* ptr){
 	return static_cast<QUndoStack*>(ptr)->count();
 }
 
-QtObjectPtr QUndoStack_CreateRedoAction(QtObjectPtr ptr, QtObjectPtr parent, char* prefix){
+void* QUndoStack_CreateRedoAction(void* ptr, void* parent, char* prefix){
 	return static_cast<QUndoStack*>(ptr)->createRedoAction(static_cast<QObject*>(parent), QString(prefix));
 }
 
-QtObjectPtr QUndoStack_CreateUndoAction(QtObjectPtr ptr, QtObjectPtr parent, char* prefix){
+void* QUndoStack_CreateUndoAction(void* ptr, void* parent, char* prefix){
 	return static_cast<QUndoStack*>(ptr)->createUndoAction(static_cast<QObject*>(parent), QString(prefix));
 }
 
-void QUndoStack_EndMacro(QtObjectPtr ptr){
+void QUndoStack_EndMacro(void* ptr){
 	static_cast<QUndoStack*>(ptr)->endMacro();
 }
 
-int QUndoStack_Index(QtObjectPtr ptr){
+int QUndoStack_Index(void* ptr){
 	return static_cast<QUndoStack*>(ptr)->index();
 }
 
-void QUndoStack_ConnectIndexChanged(QtObjectPtr ptr){
+void QUndoStack_ConnectIndexChanged(void* ptr){
 	QObject::connect(static_cast<QUndoStack*>(ptr), static_cast<void (QUndoStack::*)(int)>(&QUndoStack::indexChanged), static_cast<MyQUndoStack*>(ptr), static_cast<void (MyQUndoStack::*)(int)>(&MyQUndoStack::Signal_IndexChanged));;
 }
 
-void QUndoStack_DisconnectIndexChanged(QtObjectPtr ptr){
+void QUndoStack_DisconnectIndexChanged(void* ptr){
 	QObject::disconnect(static_cast<QUndoStack*>(ptr), static_cast<void (QUndoStack::*)(int)>(&QUndoStack::indexChanged), static_cast<MyQUndoStack*>(ptr), static_cast<void (MyQUndoStack::*)(int)>(&MyQUndoStack::Signal_IndexChanged));;
 }
 
-int QUndoStack_IsClean(QtObjectPtr ptr){
+int QUndoStack_IsClean(void* ptr){
 	return static_cast<QUndoStack*>(ptr)->isClean();
 }
 
-void QUndoStack_Push(QtObjectPtr ptr, QtObjectPtr cmd){
+void QUndoStack_Push(void* ptr, void* cmd){
 	static_cast<QUndoStack*>(ptr)->push(static_cast<QUndoCommand*>(cmd));
 }
 
-void QUndoStack_Redo(QtObjectPtr ptr){
+void QUndoStack_Redo(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QUndoStack*>(ptr), "redo");
 }
 
-char* QUndoStack_RedoText(QtObjectPtr ptr){
+char* QUndoStack_RedoText(void* ptr){
 	return static_cast<QUndoStack*>(ptr)->redoText().toUtf8().data();
 }
 
-void QUndoStack_ConnectRedoTextChanged(QtObjectPtr ptr){
+void QUndoStack_ConnectRedoTextChanged(void* ptr){
 	QObject::connect(static_cast<QUndoStack*>(ptr), static_cast<void (QUndoStack::*)(const QString &)>(&QUndoStack::redoTextChanged), static_cast<MyQUndoStack*>(ptr), static_cast<void (MyQUndoStack::*)(const QString &)>(&MyQUndoStack::Signal_RedoTextChanged));;
 }
 
-void QUndoStack_DisconnectRedoTextChanged(QtObjectPtr ptr){
+void QUndoStack_DisconnectRedoTextChanged(void* ptr){
 	QObject::disconnect(static_cast<QUndoStack*>(ptr), static_cast<void (QUndoStack::*)(const QString &)>(&QUndoStack::redoTextChanged), static_cast<MyQUndoStack*>(ptr), static_cast<void (MyQUndoStack::*)(const QString &)>(&MyQUndoStack::Signal_RedoTextChanged));;
 }
 
-void QUndoStack_SetClean(QtObjectPtr ptr){
+void QUndoStack_SetClean(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QUndoStack*>(ptr), "setClean");
 }
 
-void QUndoStack_SetIndex(QtObjectPtr ptr, int idx){
+void QUndoStack_SetIndex(void* ptr, int idx){
 	QMetaObject::invokeMethod(static_cast<QUndoStack*>(ptr), "setIndex", Q_ARG(int, idx));
 }
 
-char* QUndoStack_Text(QtObjectPtr ptr, int idx){
+char* QUndoStack_Text(void* ptr, int idx){
 	return static_cast<QUndoStack*>(ptr)->text(idx).toUtf8().data();
 }
 
-void QUndoStack_Undo(QtObjectPtr ptr){
+void QUndoStack_Undo(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QUndoStack*>(ptr), "undo");
 }
 
-char* QUndoStack_UndoText(QtObjectPtr ptr){
+char* QUndoStack_UndoText(void* ptr){
 	return static_cast<QUndoStack*>(ptr)->undoText().toUtf8().data();
 }
 
-void QUndoStack_ConnectUndoTextChanged(QtObjectPtr ptr){
+void QUndoStack_ConnectUndoTextChanged(void* ptr){
 	QObject::connect(static_cast<QUndoStack*>(ptr), static_cast<void (QUndoStack::*)(const QString &)>(&QUndoStack::undoTextChanged), static_cast<MyQUndoStack*>(ptr), static_cast<void (MyQUndoStack::*)(const QString &)>(&MyQUndoStack::Signal_UndoTextChanged));;
 }
 
-void QUndoStack_DisconnectUndoTextChanged(QtObjectPtr ptr){
+void QUndoStack_DisconnectUndoTextChanged(void* ptr){
 	QObject::disconnect(static_cast<QUndoStack*>(ptr), static_cast<void (QUndoStack::*)(const QString &)>(&QUndoStack::undoTextChanged), static_cast<MyQUndoStack*>(ptr), static_cast<void (MyQUndoStack::*)(const QString &)>(&MyQUndoStack::Signal_UndoTextChanged));;
 }
 
-void QUndoStack_DestroyQUndoStack(QtObjectPtr ptr){
+void QUndoStack_DestroyQUndoStack(void* ptr){
 	static_cast<QUndoStack*>(ptr)->~QUndoStack();
 }
 

@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QStyleOptionTabWidgetFrame QStyleOptionTabWidgetFrame::QStyleOptionTabWidgetFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
-&{QStyleOptionTabWidgetFrame QStyleOptionTabWidgetFrame::QStyleOptionTabWidgetFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8226fc7c0] }
+&{QStyleOptionTabWidgetFrame QStyleOptionTabWidgetFrame::QStyleOptionTabWidgetFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionTabWidgetFrame() [] }
+&{QStyleOptionTabWidgetFrame QStyleOptionTabWidgetFrame::QStyleOptionTabWidgetFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionTabWidgetFrame(const QStyleOptionTabWidgetFrame &other) [0xc821cb4b60] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionTabWidgetFrame::StyleOptionType commendable public  [0xc8226fc060]}
-&{StyleOptionVersion QStyleOptionTabWidgetFrame::StyleOptionVersion commendable public  [0xc8226fc380]}
+&{StyleOptionType QStyleOptionTabWidgetFrame::StyleOptionType commendable public  [0xc821cb4220] false}
+&{StyleOptionVersion QStyleOptionTabWidgetFrame::StyleOptionVersion commendable public  [0xc821cb45e0] false}

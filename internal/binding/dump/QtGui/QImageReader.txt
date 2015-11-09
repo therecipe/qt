@@ -1,54 +1,54 @@
 ########################################			FUNCTIONS			########################################
-&{QImageReader QImageReader::QImageReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non constructor false false   [] }
-&{QImageReader QImageReader::QImageReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non constructor false true 2  [0xc820bc1400 0xc820bc14a0] }
-&{QImageReader QImageReader::QImageReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non constructor false true 3  [0xc820bc16a0 0xc820bc1780] }
-&{autoDetectImageFormat QImageReader::autoDetectImageFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool [] }
-&{autoTransform QImageReader::autoTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool [] }
-&{backgroundColor QImageReader::backgroundColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QColor [] }
-&{canRead QImageReader::canRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool [] }
-&{clipRect QImageReader::clipRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QRect [] }
-&{currentImageNumber QImageReader::currentImageNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  int [] }
-&{currentImageRect QImageReader::currentImageRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QRect [] }
-&{decideFormatFromContent QImageReader::decideFormatFromContent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool [] }
-&{device QImageReader::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QIODevice * [] }
-&{error QImageReader::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  ImageReaderError [] }
-&{errorString QImageReader::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QString [] }
-&{fileName QImageReader::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QString [] }
-&{format QImageReader::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QByteArray [] }
-&{imageCount QImageReader::imageCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  int [] }
-&{imageFormat QImageReader::imageFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain true true 3 QByteArray [0xc820ba89c0] }
-&{imageFormat QImageReader::imageFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain true true 2 QByteArray [0xc820ba8b80] }
-&{imageFormat QImageReader::imageFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QImage::Format [] }
-&{jumpToImage QImageReader::jumpToImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool [0xc820ba8e60] }
-&{jumpToNextImage QImageReader::jumpToNextImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool [] }
-&{loopCount QImageReader::loopCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  int [] }
-&{nextImageDelay QImageReader::nextImageDelay commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  int [] }
-&{quality QImageReader::quality commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  int [] }
-&{read QImageReader::read commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QImage [] }
-&{read QImageReader::read commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false true 2 bool [0xc820ba9620] }
-&{scaledClipRect QImageReader::scaledClipRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QRect [] }
-&{scaledSize QImageReader::scaledSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QSize [] }
-&{setAutoDetectImageFormat QImageReader::setAutoDetectImageFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void [0xc820ba9a80] }
-&{setAutoTransform QImageReader::setAutoTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void [0xc820ba9c60] }
-&{setBackgroundColor QImageReader::setBackgroundColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void [0xc820ba9ea0] }
-&{setClipRect QImageReader::setClipRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void [0xc820b8e100] }
-&{setDecideFormatFromContent QImageReader::setDecideFormatFromContent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void [0xc820b8e320] }
-&{setDevice QImageReader::setDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void [0xc820b8e500] }
-&{setFileName QImageReader::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void [0xc820b8e6c0] }
-&{setFormat QImageReader::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void [0xc820b8e8c0] }
-&{setQuality QImageReader::setQuality commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void [0xc820b8eb00] }
-&{setScaledClipRect QImageReader::setScaledClipRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void [0xc820b8ede0] }
-&{setScaledSize QImageReader::setScaledSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void [0xc820b8f000] }
-&{size QImageReader::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QSize [] }
-&{subType QImageReader::subType commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QByteArray [] }
-&{supportedImageFormats QImageReader::supportedImageFormats commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain true false  QList<QByteArray> [] }
-&{supportedMimeTypes QImageReader::supportedMimeTypes commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain true false  QList<QByteArray> [] }
-&{supportedSubTypes QImageReader::supportedSubTypes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QList<QByteArray> [] }
-&{supportsAnimation QImageReader::supportsAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool [] }
-&{supportsOption QImageReader::supportsOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool [0xc820b8fac0] }
-&{text QImageReader::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QString [0xc820b8fd00] }
-&{textKeys QImageReader::textKeys commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QStringList [] }
-&{transformation QImageReader::transformation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QImageIOHandler::Transformations [] }
-&{~QImageReader QImageReader::~QImageReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non destructor false false   [] }
+&{QImageReader QImageReader::QImageReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non constructor false false   QImageReader() [] }
+&{QImageReader QImageReader::QImageReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non constructor false true 2  QImageReader(QIODevice *device, const QByteArray &format) [0xc820c7e1a0 0xc820c7e300] }
+&{QImageReader QImageReader::QImageReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non constructor false true 3  QImageReader(const QString &fileName, const QByteArray &format) [0xc820c7e640 0xc820c7e760] }
+&{autoDetectImageFormat QImageReader::autoDetectImageFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool bool autoDetectImageFormat() const [] }
+&{autoTransform QImageReader::autoTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool bool autoTransform() const [] }
+&{backgroundColor QImageReader::backgroundColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QColor QColor backgroundColor() const [] }
+&{canRead QImageReader::canRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool bool canRead() const [] }
+&{clipRect QImageReader::clipRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QRect QRect clipRect() const [] }
+&{currentImageNumber QImageReader::currentImageNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  int int currentImageNumber() const [] }
+&{currentImageRect QImageReader::currentImageRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QRect QRect currentImageRect() const [] }
+&{decideFormatFromContent QImageReader::decideFormatFromContent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool bool decideFormatFromContent() const [] }
+&{device QImageReader::device commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QIODevice * QIODevice * device() const [] }
+&{error QImageReader::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  ImageReaderError ImageReaderError error() const [] }
+&{errorString QImageReader::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QString QString errorString() const [] }
+&{fileName QImageReader::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QString QString fileName() const [] }
+&{format QImageReader::format commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QByteArray QByteArray format() const [] }
+&{imageCount QImageReader::imageCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  int int imageCount() const [] }
+&{imageFormat QImageReader::imageFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain true true 3 QByteArray QByteArray imageFormat(QIODevice *device) [0xc820c78560] }
+&{imageFormat QImageReader::imageFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain true true 2 QByteArray QByteArray imageFormat(const QString &fileName) [0xc820c78800] }
+&{imageFormat QImageReader::imageFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QImage::Format QImage::Format imageFormat() const [] }
+&{jumpToImage QImageReader::jumpToImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool bool jumpToImage(int imageNumber) [0xc820c78c20] }
+&{jumpToNextImage QImageReader::jumpToNextImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool bool jumpToNextImage() [] }
+&{loopCount QImageReader::loopCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  int int loopCount() const [] }
+&{nextImageDelay QImageReader::nextImageDelay commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  int int nextImageDelay() const [] }
+&{quality QImageReader::quality commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  int int quality() const [] }
+&{read QImageReader::read commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QImage QImage read() [] }
+&{read QImageReader::read commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false true 2 bool bool read(QImage *image) [0xc820c798c0] }
+&{scaledClipRect QImageReader::scaledClipRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QRect QRect scaledClipRect() const [] }
+&{scaledSize QImageReader::scaledSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QSize QSize scaledSize() const [] }
+&{setAutoDetectImageFormat QImageReader::setAutoDetectImageFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void void setAutoDetectImageFormat(bool enabled) [0xc820c79f00] }
+&{setAutoTransform QImageReader::setAutoTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void void setAutoTransform(bool enabled) [0xc820c5c100] }
+&{setBackgroundColor QImageReader::setBackgroundColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void void setBackgroundColor(const QColor &color) [0xc820c5c380] }
+&{setClipRect QImageReader::setClipRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void void setClipRect(const QRect &rect) [0xc820c5c580] }
+&{setDecideFormatFromContent QImageReader::setDecideFormatFromContent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void void setDecideFormatFromContent(bool ignored) [0xc820c5c760] }
+&{setDevice QImageReader::setDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void void setDevice(QIODevice *device) [0xc820c5c940] }
+&{setFileName QImageReader::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void void setFileName(const QString &fileName) [0xc820c5cb00] }
+&{setFormat QImageReader::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void void setFormat(const QByteArray &format) [0xc820c5cd00] }
+&{setQuality QImageReader::setQuality commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void void setQuality(int quality) [0xc820c5d020] }
+&{setScaledClipRect QImageReader::setScaledClipRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void void setScaledClipRect(const QRect &rect) [0xc820c5d260] }
+&{setScaledSize QImageReader::setScaledSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  void void setScaledSize(const QSize &size) [0xc820c5d440] }
+&{size QImageReader::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QSize QSize size() const [] }
+&{subType QImageReader::subType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QByteArray QByteArray subType() const [] }
+&{supportedImageFormats QImageReader::supportedImageFormats commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain true false  QList<QByteArray> QList<QByteArray> supportedImageFormats() [] }
+&{supportedMimeTypes QImageReader::supportedMimeTypes commendable unsupported_goOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain true false  QList<QByteArray> QList<QByteArray> supportedMimeTypes() [] }
+&{supportedSubTypes QImageReader::supportedSubTypes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QList<QByteArray> QList<QByteArray> supportedSubTypes() const [] }
+&{supportsAnimation QImageReader::supportsAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool bool supportsAnimation() const [] }
+&{supportsOption QImageReader::supportsOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  bool bool supportsOption(QImageIOHandler::ImageOption option) const [0xc820c5dfe0] }
+&{text QImageReader::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QString QString text(const QString &key) const [0xc820c50280] }
+&{textKeys QImageReader::textKeys commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QStringList QStringList textKeys() const [] }
+&{transformation QImageReader::transformation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non plain false false  QImageIOHandler::Transformations QImageIOHandler::Transformations transformation() const [] }
+&{~QImageReader QImageReader::~QImageReader commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimagereader.h non destructor false false   ~QImageReader() [] }
 ########################################			ENUMS			########################################
-&{ImageReaderError QImageReader::ImageReaderError commendable public  [0xc820bc0dc0 0xc820bc0e60 0xc820bc0f20 0xc820bc1000 0xc820bc10e0]}
+&{ImageReaderError QImageReader::ImageReaderError commendable public  [0xc820c857a0 0xc820c858a0 0xc820c859c0 0xc820c85ac0 0xc820c85ca0] false}

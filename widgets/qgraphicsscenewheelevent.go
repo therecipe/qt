@@ -11,58 +11,58 @@ type QGraphicsSceneWheelEvent struct {
 	QGraphicsSceneEvent
 }
 
-type QGraphicsSceneWheelEventITF interface {
-	QGraphicsSceneEventITF
-	QGraphicsSceneWheelEventPTR() *QGraphicsSceneWheelEvent
+type QGraphicsSceneWheelEvent_ITF interface {
+	QGraphicsSceneEvent_ITF
+	QGraphicsSceneWheelEvent_PTR() *QGraphicsSceneWheelEvent
 }
 
-func PointerFromQGraphicsSceneWheelEvent(ptr QGraphicsSceneWheelEventITF) unsafe.Pointer {
+func PointerFromQGraphicsSceneWheelEvent(ptr QGraphicsSceneWheelEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGraphicsSceneWheelEventPTR().Pointer()
+		return ptr.QGraphicsSceneWheelEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGraphicsSceneWheelEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneWheelEvent {
+func NewQGraphicsSceneWheelEventFromPointer(ptr unsafe.Pointer) *QGraphicsSceneWheelEvent {
 	var n = new(QGraphicsSceneWheelEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QGraphicsSceneWheelEvent) QGraphicsSceneWheelEventPTR() *QGraphicsSceneWheelEvent {
+func (ptr *QGraphicsSceneWheelEvent) QGraphicsSceneWheelEvent_PTR() *QGraphicsSceneWheelEvent {
 	return ptr
 }
 
 func (ptr *QGraphicsSceneWheelEvent) Buttons() core.Qt__MouseButton {
 	if ptr.Pointer() != nil {
-		return core.Qt__MouseButton(C.QGraphicsSceneWheelEvent_Buttons(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__MouseButton(C.QGraphicsSceneWheelEvent_Buttons(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsSceneWheelEvent) Delta() int {
 	if ptr.Pointer() != nil {
-		return int(C.QGraphicsSceneWheelEvent_Delta(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QGraphicsSceneWheelEvent_Delta(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsSceneWheelEvent) Modifiers() core.Qt__KeyboardModifier {
 	if ptr.Pointer() != nil {
-		return core.Qt__KeyboardModifier(C.QGraphicsSceneWheelEvent_Modifiers(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__KeyboardModifier(C.QGraphicsSceneWheelEvent_Modifiers(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsSceneWheelEvent) Orientation() core.Qt__Orientation {
 	if ptr.Pointer() != nil {
-		return core.Qt__Orientation(C.QGraphicsSceneWheelEvent_Orientation(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__Orientation(C.QGraphicsSceneWheelEvent_Orientation(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QGraphicsSceneWheelEvent) DestroyQGraphicsSceneWheelEvent() {
 	if ptr.Pointer() != nil {
-		C.QGraphicsSceneWheelEvent_DestroyQGraphicsSceneWheelEvent(C.QtObjectPtr(ptr.Pointer()))
+		C.QGraphicsSceneWheelEvent_DestroyQGraphicsSceneWheelEvent(ptr.Pointer())
 	}
 }

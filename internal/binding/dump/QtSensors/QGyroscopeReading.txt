@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{x QGyroscopeReading::x commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  qreal [] }
-&{y QGyroscopeReading::y commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  qreal [] }
-&{z QGyroscopeReading::z commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  qreal [] }
-&{setX QGyroscopeReading::setX commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non plain false false  void [0xc822ea3c00] }
-&{setY QGyroscopeReading::setY commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non plain false false  void [0xc822ea3f00] }
-&{setZ QGyroscopeReading::setZ commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non plain false false  void [0xc822e94200] }
+&{x QGyroscopeReading::x commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  qreal qreal x() const [] }
+&{y QGyroscopeReading::y commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  qreal qreal y() const [] }
+&{z QGyroscopeReading::z commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  qreal qreal z() const [] }
+&{setX QGyroscopeReading::setX commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non plain false false  void void setX(qreal x) [0xc823664a40] }
+&{setY QGyroscopeReading::setY commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non plain false false  void void setY(qreal y) [0xc823664d40] }
+&{setZ QGyroscopeReading::setZ commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non plain false false  void void setZ(qreal z) [0xc823664fa0] }
 ########################################			ENUMS			########################################

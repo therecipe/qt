@@ -11,8 +11,8 @@ type QDBusSignature struct {
 	ptr unsafe.Pointer
 }
 
-type QDBusSignatureITF interface {
-	QDBusSignaturePTR() *QDBusSignature
+type QDBusSignature_ITF interface {
+	QDBusSignature_PTR() *QDBusSignature
 }
 
 func (p *QDBusSignature) Pointer() unsafe.Pointer {
@@ -23,48 +23,48 @@ func (p *QDBusSignature) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQDBusSignature(ptr QDBusSignatureITF) unsafe.Pointer {
+func PointerFromQDBusSignature(ptr QDBusSignature_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDBusSignaturePTR().Pointer()
+		return ptr.QDBusSignature_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDBusSignatureFromPointer(ptr unsafe.Pointer) *QDBusSignature {
+func NewQDBusSignatureFromPointer(ptr unsafe.Pointer) *QDBusSignature {
 	var n = new(QDBusSignature)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QDBusSignature) QDBusSignaturePTR() *QDBusSignature {
+func (ptr *QDBusSignature) QDBusSignature_PTR() *QDBusSignature {
 	return ptr
 }
 
 func NewQDBusSignature() *QDBusSignature {
-	return QDBusSignatureFromPointer(unsafe.Pointer(C.QDBusSignature_NewQDBusSignature()))
+	return NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature())
 }
 
-func NewQDBusSignature3(signature core.QLatin1StringITF) *QDBusSignature {
-	return QDBusSignatureFromPointer(unsafe.Pointer(C.QDBusSignature_NewQDBusSignature3(C.QtObjectPtr(core.PointerFromQLatin1String(signature)))))
+func NewQDBusSignature3(signature core.QLatin1String_ITF) *QDBusSignature {
+	return NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature3(core.PointerFromQLatin1String(signature)))
 }
 
 func NewQDBusSignature4(signature string) *QDBusSignature {
-	return QDBusSignatureFromPointer(unsafe.Pointer(C.QDBusSignature_NewQDBusSignature4(C.CString(signature))))
+	return NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature4(C.CString(signature)))
 }
 
 func NewQDBusSignature2(signature string) *QDBusSignature {
-	return QDBusSignatureFromPointer(unsafe.Pointer(C.QDBusSignature_NewQDBusSignature2(C.CString(signature))))
+	return NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature2(C.CString(signature)))
 }
 
 func (ptr *QDBusSignature) SetSignature(signature string) {
 	if ptr.Pointer() != nil {
-		C.QDBusSignature_SetSignature(C.QtObjectPtr(ptr.Pointer()), C.CString(signature))
+		C.QDBusSignature_SetSignature(ptr.Pointer(), C.CString(signature))
 	}
 }
 
 func (ptr *QDBusSignature) Signature() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusSignature_Signature(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QDBusSignature_Signature(ptr.Pointer()))
 	}
 	return ""
 }

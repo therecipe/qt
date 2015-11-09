@@ -11,35 +11,35 @@ class MyQNdefNfcTextRecord: public QNdefNfcTextRecord {
 public:
 };
 
-QtObjectPtr QNdefNfcTextRecord_NewQNdefNfcTextRecord(){
+void* QNdefNfcTextRecord_NewQNdefNfcTextRecord(){
 	return new QNdefNfcTextRecord();
 }
 
-QtObjectPtr QNdefNfcTextRecord_NewQNdefNfcTextRecord2(QtObjectPtr other){
+void* QNdefNfcTextRecord_NewQNdefNfcTextRecord2(void* other){
 	return new QNdefNfcTextRecord(*static_cast<QNdefRecord*>(other));
 }
 
-int QNdefNfcTextRecord_Encoding(QtObjectPtr ptr){
+int QNdefNfcTextRecord_Encoding(void* ptr){
 	return static_cast<QNdefNfcTextRecord*>(ptr)->encoding();
 }
 
-char* QNdefNfcTextRecord_Locale(QtObjectPtr ptr){
+char* QNdefNfcTextRecord_Locale(void* ptr){
 	return static_cast<QNdefNfcTextRecord*>(ptr)->locale().toUtf8().data();
 }
 
-void QNdefNfcTextRecord_SetEncoding(QtObjectPtr ptr, int encoding){
+void QNdefNfcTextRecord_SetEncoding(void* ptr, int encoding){
 	static_cast<QNdefNfcTextRecord*>(ptr)->setEncoding(static_cast<QNdefNfcTextRecord::Encoding>(encoding));
 }
 
-void QNdefNfcTextRecord_SetLocale(QtObjectPtr ptr, char* locale){
+void QNdefNfcTextRecord_SetLocale(void* ptr, char* locale){
 	static_cast<QNdefNfcTextRecord*>(ptr)->setLocale(QString(locale));
 }
 
-void QNdefNfcTextRecord_SetText(QtObjectPtr ptr, char* text){
+void QNdefNfcTextRecord_SetText(void* ptr, char* text){
 	static_cast<QNdefNfcTextRecord*>(ptr)->setText(QString(text));
 }
 
-char* QNdefNfcTextRecord_Text(QtObjectPtr ptr){
+char* QNdefNfcTextRecord_Text(void* ptr){
 	return static_cast<QNdefNfcTextRecord*>(ptr)->text().toUtf8().data();
 }
 

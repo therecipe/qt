@@ -10,59 +10,59 @@ class MyQSize: public QSize {
 public:
 };
 
-QtObjectPtr QSize_NewQSize(){
+void* QSize_NewQSize(){
 	return new QSize();
 }
 
-QtObjectPtr QSize_NewQSize2(int width, int height){
+void* QSize_NewQSize2(int width, int height){
 	return new QSize(width, height);
 }
 
-int QSize_Height(QtObjectPtr ptr){
+int QSize_Height(void* ptr){
 	return static_cast<QSize*>(ptr)->height();
 }
 
-int QSize_IsEmpty(QtObjectPtr ptr){
+int QSize_IsEmpty(void* ptr){
 	return static_cast<QSize*>(ptr)->isEmpty();
 }
 
-int QSize_IsNull(QtObjectPtr ptr){
+int QSize_IsNull(void* ptr){
 	return static_cast<QSize*>(ptr)->isNull();
 }
 
-int QSize_IsValid(QtObjectPtr ptr){
+int QSize_IsValid(void* ptr){
 	return static_cast<QSize*>(ptr)->isValid();
 }
 
-int QSize_Rheight(QtObjectPtr ptr){
+int QSize_Rheight(void* ptr){
 	return static_cast<QSize*>(ptr)->rheight();
 }
 
-int QSize_Rwidth(QtObjectPtr ptr){
+int QSize_Rwidth(void* ptr){
 	return static_cast<QSize*>(ptr)->rwidth();
 }
 
-void QSize_Scale2(QtObjectPtr ptr, QtObjectPtr size, int mode){
+void QSize_Scale2(void* ptr, void* size, int mode){
 	static_cast<QSize*>(ptr)->scale(*static_cast<QSize*>(size), static_cast<Qt::AspectRatioMode>(mode));
 }
 
-void QSize_Scale(QtObjectPtr ptr, int width, int height, int mode){
+void QSize_Scale(void* ptr, int width, int height, int mode){
 	static_cast<QSize*>(ptr)->scale(width, height, static_cast<Qt::AspectRatioMode>(mode));
 }
 
-void QSize_SetHeight(QtObjectPtr ptr, int height){
+void QSize_SetHeight(void* ptr, int height){
 	static_cast<QSize*>(ptr)->setHeight(height);
 }
 
-void QSize_SetWidth(QtObjectPtr ptr, int width){
+void QSize_SetWidth(void* ptr, int width){
 	static_cast<QSize*>(ptr)->setWidth(width);
 }
 
-void QSize_Transpose(QtObjectPtr ptr){
+void QSize_Transpose(void* ptr){
 	static_cast<QSize*>(ptr)->transpose();
 }
 
-int QSize_Width(QtObjectPtr ptr){
+int QSize_Width(void* ptr){
 	return static_cast<QSize*>(ptr)->width();
 }
 

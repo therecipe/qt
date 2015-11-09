@@ -1,11 +1,11 @@
 #include "qscriptenginedebugger.h"
-#include <QScriptEngine>
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QWidget>
+#include <QObject>
+#include <QScriptEngine>
 #include <QScriptEngineDebugger>
 #include "_cgo_export.h"
 
@@ -15,63 +15,63 @@ void Signal_EvaluationResumed(){callbackQScriptEngineDebuggerEvaluationResumed(t
 void Signal_EvaluationSuspended(){callbackQScriptEngineDebuggerEvaluationSuspended(this->objectName().toUtf8().data());};
 };
 
-QtObjectPtr QScriptEngineDebugger_NewQScriptEngineDebugger(QtObjectPtr parent){
+void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent){
 	return new QScriptEngineDebugger(static_cast<QObject*>(parent));
 }
 
-QtObjectPtr QScriptEngineDebugger_Action(QtObjectPtr ptr, int action){
+void* QScriptEngineDebugger_Action(void* ptr, int action){
 	return static_cast<QScriptEngineDebugger*>(ptr)->action(static_cast<QScriptEngineDebugger::DebuggerAction>(action));
 }
 
-void QScriptEngineDebugger_AttachTo(QtObjectPtr ptr, QtObjectPtr engine){
+void QScriptEngineDebugger_AttachTo(void* ptr, void* engine){
 	static_cast<QScriptEngineDebugger*>(ptr)->attachTo(static_cast<QScriptEngine*>(engine));
 }
 
-int QScriptEngineDebugger_AutoShowStandardWindow(QtObjectPtr ptr){
+int QScriptEngineDebugger_AutoShowStandardWindow(void* ptr){
 	return static_cast<QScriptEngineDebugger*>(ptr)->autoShowStandardWindow();
 }
 
-QtObjectPtr QScriptEngineDebugger_CreateStandardMenu(QtObjectPtr ptr, QtObjectPtr parent){
+void* QScriptEngineDebugger_CreateStandardMenu(void* ptr, void* parent){
 	return static_cast<QScriptEngineDebugger*>(ptr)->createStandardMenu(static_cast<QWidget*>(parent));
 }
 
-QtObjectPtr QScriptEngineDebugger_CreateStandardToolBar(QtObjectPtr ptr, QtObjectPtr parent){
+void* QScriptEngineDebugger_CreateStandardToolBar(void* ptr, void* parent){
 	return static_cast<QScriptEngineDebugger*>(ptr)->createStandardToolBar(static_cast<QWidget*>(parent));
 }
 
-void QScriptEngineDebugger_Detach(QtObjectPtr ptr){
+void QScriptEngineDebugger_Detach(void* ptr){
 	static_cast<QScriptEngineDebugger*>(ptr)->detach();
 }
 
-void QScriptEngineDebugger_ConnectEvaluationResumed(QtObjectPtr ptr){
+void QScriptEngineDebugger_ConnectEvaluationResumed(void* ptr){
 	QObject::connect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationResumed), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationResumed));;
 }
 
-void QScriptEngineDebugger_DisconnectEvaluationResumed(QtObjectPtr ptr){
+void QScriptEngineDebugger_DisconnectEvaluationResumed(void* ptr){
 	QObject::disconnect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationResumed), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationResumed));;
 }
 
-void QScriptEngineDebugger_ConnectEvaluationSuspended(QtObjectPtr ptr){
+void QScriptEngineDebugger_ConnectEvaluationSuspended(void* ptr){
 	QObject::connect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationSuspended), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationSuspended));;
 }
 
-void QScriptEngineDebugger_DisconnectEvaluationSuspended(QtObjectPtr ptr){
+void QScriptEngineDebugger_DisconnectEvaluationSuspended(void* ptr){
 	QObject::disconnect(static_cast<QScriptEngineDebugger*>(ptr), static_cast<void (QScriptEngineDebugger::*)()>(&QScriptEngineDebugger::evaluationSuspended), static_cast<MyQScriptEngineDebugger*>(ptr), static_cast<void (MyQScriptEngineDebugger::*)()>(&MyQScriptEngineDebugger::Signal_EvaluationSuspended));;
 }
 
-void QScriptEngineDebugger_SetAutoShowStandardWindow(QtObjectPtr ptr, int autoShow){
+void QScriptEngineDebugger_SetAutoShowStandardWindow(void* ptr, int autoShow){
 	static_cast<QScriptEngineDebugger*>(ptr)->setAutoShowStandardWindow(autoShow != 0);
 }
 
-QtObjectPtr QScriptEngineDebugger_StandardWindow(QtObjectPtr ptr){
+void* QScriptEngineDebugger_StandardWindow(void* ptr){
 	return static_cast<QScriptEngineDebugger*>(ptr)->standardWindow();
 }
 
-QtObjectPtr QScriptEngineDebugger_Widget(QtObjectPtr ptr, int widget){
+void* QScriptEngineDebugger_Widget(void* ptr, int widget){
 	return static_cast<QScriptEngineDebugger*>(ptr)->widget(static_cast<QScriptEngineDebugger::DebuggerWidget>(widget));
 }
 
-void QScriptEngineDebugger_DestroyQScriptEngineDebugger(QtObjectPtr ptr){
+void QScriptEngineDebugger_DestroyQScriptEngineDebugger(void* ptr){
 	static_cast<QScriptEngineDebugger*>(ptr)->~QScriptEngineDebugger();
 }
 

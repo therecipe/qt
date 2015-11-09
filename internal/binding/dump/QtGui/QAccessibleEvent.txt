@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
-&{QAccessibleEvent QAccessibleEvent::QAccessibleEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  [0xc820cf4d00 0xc820cf4de0] }
-&{QAccessibleEvent QAccessibleEvent::QAccessibleEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   [0xc820cf4fe0 0xc820cf5100] }
-&{accessibleInterface QAccessibleEvent::accessibleInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure plain false false  QAccessibleInterface * [] }
-&{child QAccessibleEvent::child commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int [] }
-&{object QAccessibleEvent::object commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QObject * [] }
-&{setChild QAccessibleEvent::setChild commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  void [0xc820cf5880] }
-&{type QAccessibleEvent::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QAccessible::Event [] }
-&{~QAccessibleEvent QAccessibleEvent::~QAccessibleEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure destructor false false   [] }
+&{QAccessibleEvent QAccessibleEvent::QAccessibleEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  QAccessibleEvent(QAccessibleInterface *interface, QAccessible::Event type) [0xc820da9be0 0xc820da9d20] }
+&{QAccessibleEvent QAccessibleEvent::QAccessibleEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   QAccessibleEvent(QObject *object, QAccessible::Event type) [0xc820da9f00 0xc820da9fe0] }
+&{accessibleInterface QAccessibleEvent::accessibleInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure plain false false  QAccessibleInterface * QAccessibleInterface * accessibleInterface() const [] }
+&{child QAccessibleEvent::child commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int int child() const [] }
+&{object QAccessibleEvent::object commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QObject * QObject * object() const [] }
+&{setChild QAccessibleEvent::setChild commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  void void setChild(int child) [0xc820d948a0] }
+&{type QAccessibleEvent::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QAccessible::Event QAccessible::Event type() const [] }
+&{~QAccessibleEvent QAccessibleEvent::~QAccessibleEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure destructor false false   ~QAccessibleEvent() [] }
 ########################################			ENUMS			########################################

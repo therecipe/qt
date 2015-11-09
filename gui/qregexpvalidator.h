@@ -1,12 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QRegExpValidator_SetRegExp(QtObjectPtr ptr, QtObjectPtr rx);
-QtObjectPtr QRegExpValidator_NewQRegExpValidator(QtObjectPtr parent);
-QtObjectPtr QRegExpValidator_NewQRegExpValidator2(QtObjectPtr rx, QtObjectPtr parent);
-void QRegExpValidator_DestroyQRegExpValidator(QtObjectPtr ptr);
+void QRegExpValidator_SetRegExp(void* ptr, void* rx);
+void* QRegExpValidator_NewQRegExpValidator(void* parent);
+void* QRegExpValidator_NewQRegExpValidator2(void* rx, void* parent);
+void* QRegExpValidator_RegExp(void* ptr);
+void QRegExpValidator_DestroyQRegExpValidator(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,9 +1,9 @@
 #include "qmodelindex.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QAbstractItemModel>
-#include <QString>
 #include <QModelIndex>
 #include "_cgo_export.h"
 
@@ -11,47 +11,47 @@ class MyQModelIndex: public QModelIndex {
 public:
 };
 
-QtObjectPtr QModelIndex_NewQModelIndex(){
+void* QModelIndex_NewQModelIndex(){
 	return new QModelIndex();
 }
 
-QtObjectPtr QModelIndex_Child(QtObjectPtr ptr, int row, int column){
+void* QModelIndex_Child(void* ptr, int row, int column){
 	return static_cast<QModelIndex*>(ptr)->child(row, column).internalPointer();
 }
 
-int QModelIndex_Column(QtObjectPtr ptr){
+int QModelIndex_Column(void* ptr){
 	return static_cast<QModelIndex*>(ptr)->column();
 }
 
-char* QModelIndex_Data(QtObjectPtr ptr, int role){
-	return static_cast<QModelIndex*>(ptr)->data(role).toString().toUtf8().data();
+void* QModelIndex_Data(void* ptr, int role){
+	return new QVariant(static_cast<QModelIndex*>(ptr)->data(role));
 }
 
-int QModelIndex_Flags(QtObjectPtr ptr){
+int QModelIndex_Flags(void* ptr){
 	return static_cast<QModelIndex*>(ptr)->flags();
 }
 
-void QModelIndex_InternalPointer(QtObjectPtr ptr){
-	static_cast<QModelIndex*>(ptr)->internalPointer();
+void* QModelIndex_InternalPointer(void* ptr){
+	return static_cast<QModelIndex*>(ptr)->internalPointer();
 }
 
-int QModelIndex_IsValid(QtObjectPtr ptr){
+int QModelIndex_IsValid(void* ptr){
 	return static_cast<QModelIndex*>(ptr)->isValid();
 }
 
-QtObjectPtr QModelIndex_Model(QtObjectPtr ptr){
+void* QModelIndex_Model(void* ptr){
 	return const_cast<QAbstractItemModel*>(static_cast<QModelIndex*>(ptr)->model());
 }
 
-QtObjectPtr QModelIndex_Parent(QtObjectPtr ptr){
+void* QModelIndex_Parent(void* ptr){
 	return static_cast<QModelIndex*>(ptr)->parent().internalPointer();
 }
 
-int QModelIndex_Row(QtObjectPtr ptr){
+int QModelIndex_Row(void* ptr){
 	return static_cast<QModelIndex*>(ptr)->row();
 }
 
-QtObjectPtr QModelIndex_Sibling(QtObjectPtr ptr, int row, int column){
+void* QModelIndex_Sibling(void* ptr, int row, int column){
 	return static_cast<QModelIndex*>(ptr)->sibling(row, column).internalPointer();
 }
 

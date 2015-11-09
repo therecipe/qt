@@ -12,34 +12,34 @@ type QAbstractMessageHandler struct {
 	core.QObject
 }
 
-type QAbstractMessageHandlerITF interface {
-	core.QObjectITF
-	QAbstractMessageHandlerPTR() *QAbstractMessageHandler
+type QAbstractMessageHandler_ITF interface {
+	core.QObject_ITF
+	QAbstractMessageHandler_PTR() *QAbstractMessageHandler
 }
 
-func PointerFromQAbstractMessageHandler(ptr QAbstractMessageHandlerITF) unsafe.Pointer {
+func PointerFromQAbstractMessageHandler(ptr QAbstractMessageHandler_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAbstractMessageHandlerPTR().Pointer()
+		return ptr.QAbstractMessageHandler_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAbstractMessageHandlerFromPointer(ptr unsafe.Pointer) *QAbstractMessageHandler {
+func NewQAbstractMessageHandlerFromPointer(ptr unsafe.Pointer) *QAbstractMessageHandler {
 	var n = new(QAbstractMessageHandler)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QAbstractMessageHandler_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QAbstractMessageHandler) QAbstractMessageHandlerPTR() *QAbstractMessageHandler {
+func (ptr *QAbstractMessageHandler) QAbstractMessageHandler_PTR() *QAbstractMessageHandler {
 	return ptr
 }
 
 func (ptr *QAbstractMessageHandler) DestroyQAbstractMessageHandler() {
 	if ptr.Pointer() != nil {
-		C.QAbstractMessageHandler_DestroyQAbstractMessageHandler(C.QtObjectPtr(ptr.Pointer()))
+		C.QAbstractMessageHandler_DestroyQAbstractMessageHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

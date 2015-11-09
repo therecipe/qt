@@ -11,35 +11,35 @@ type QPlaceIdReply struct {
 	QPlaceReply
 }
 
-type QPlaceIdReplyITF interface {
-	QPlaceReplyITF
-	QPlaceIdReplyPTR() *QPlaceIdReply
+type QPlaceIdReply_ITF interface {
+	QPlaceReply_ITF
+	QPlaceIdReply_PTR() *QPlaceIdReply
 }
 
-func PointerFromQPlaceIdReply(ptr QPlaceIdReplyITF) unsafe.Pointer {
+func PointerFromQPlaceIdReply(ptr QPlaceIdReply_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceIdReplyPTR().Pointer()
+		return ptr.QPlaceIdReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceIdReplyFromPointer(ptr unsafe.Pointer) *QPlaceIdReply {
+func NewQPlaceIdReplyFromPointer(ptr unsafe.Pointer) *QPlaceIdReply {
 	var n = new(QPlaceIdReply)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QPlaceIdReply_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QPlaceIdReply) QPlaceIdReplyPTR() *QPlaceIdReply {
+func (ptr *QPlaceIdReply) QPlaceIdReply_PTR() *QPlaceIdReply {
 	return ptr
 }
 
 //QPlaceIdReply::OperationType
-type QPlaceIdReply__OperationType int
+type QPlaceIdReply__OperationType int64
 
-var (
+const (
 	QPlaceIdReply__SavePlace      = QPlaceIdReply__OperationType(0)
 	QPlaceIdReply__SaveCategory   = QPlaceIdReply__OperationType(1)
 	QPlaceIdReply__RemovePlace    = QPlaceIdReply__OperationType(2)

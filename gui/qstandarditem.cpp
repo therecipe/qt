@@ -1,13 +1,13 @@
 #include "qstandarditem.h"
-#include <QModelIndex>
-#include <QIcon>
-#include <QSize>
-#include <QDataStream>
-#include <QFont>
 #include <QString>
-#include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QBrush>
+#include <QFont>
+#include <QDataStream>
+#include <QVariant>
+#include <QSize>
+#include <QIcon>
 #include <QStandardItem>
 #include "_cgo_export.h"
 
@@ -15,287 +15,295 @@ class MyQStandardItem: public QStandardItem {
 public:
 };
 
-QtObjectPtr QStandardItem_NewQStandardItem(){
+void* QStandardItem_NewQStandardItem(){
 	return new QStandardItem();
 }
 
-QtObjectPtr QStandardItem_NewQStandardItem3(QtObjectPtr icon, char* text){
+void* QStandardItem_NewQStandardItem3(void* icon, char* text){
 	return new QStandardItem(*static_cast<QIcon*>(icon), QString(text));
 }
 
-QtObjectPtr QStandardItem_NewQStandardItem2(char* text){
+void* QStandardItem_NewQStandardItem2(char* text){
 	return new QStandardItem(QString(text));
 }
 
-QtObjectPtr QStandardItem_NewQStandardItem4(int rows, int columns){
+void* QStandardItem_NewQStandardItem4(int rows, int columns){
 	return new QStandardItem(rows, columns);
 }
 
-char* QStandardItem_AccessibleDescription(QtObjectPtr ptr){
+char* QStandardItem_AccessibleDescription(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->accessibleDescription().toUtf8().data();
 }
 
-char* QStandardItem_AccessibleText(QtObjectPtr ptr){
+char* QStandardItem_AccessibleText(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->accessibleText().toUtf8().data();
 }
 
-void QStandardItem_AppendRow2(QtObjectPtr ptr, QtObjectPtr item){
+void QStandardItem_AppendRow2(void* ptr, void* item){
 	static_cast<QStandardItem*>(ptr)->appendRow(static_cast<QStandardItem*>(item));
 }
 
-int QStandardItem_CheckState(QtObjectPtr ptr){
+void* QStandardItem_Background(void* ptr){
+	return new QBrush(static_cast<QStandardItem*>(ptr)->background());
+}
+
+int QStandardItem_CheckState(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->checkState();
 }
 
-QtObjectPtr QStandardItem_Child(QtObjectPtr ptr, int row, int column){
+void* QStandardItem_Child(void* ptr, int row, int column){
 	return static_cast<QStandardItem*>(ptr)->child(row, column);
 }
 
-QtObjectPtr QStandardItem_Clone(QtObjectPtr ptr){
+void* QStandardItem_Clone(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->clone();
 }
 
-int QStandardItem_Column(QtObjectPtr ptr){
+int QStandardItem_Column(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->column();
 }
 
-int QStandardItem_ColumnCount(QtObjectPtr ptr){
+int QStandardItem_ColumnCount(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->columnCount();
 }
 
-char* QStandardItem_Data(QtObjectPtr ptr, int role){
-	return static_cast<QStandardItem*>(ptr)->data(role).toString().toUtf8().data();
+void* QStandardItem_Data(void* ptr, int role){
+	return new QVariant(static_cast<QStandardItem*>(ptr)->data(role));
 }
 
-int QStandardItem_Flags(QtObjectPtr ptr){
+int QStandardItem_Flags(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->flags();
 }
 
-int QStandardItem_HasChildren(QtObjectPtr ptr){
+void* QStandardItem_Foreground(void* ptr){
+	return new QBrush(static_cast<QStandardItem*>(ptr)->foreground());
+}
+
+int QStandardItem_HasChildren(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->hasChildren();
 }
 
-QtObjectPtr QStandardItem_Index(QtObjectPtr ptr){
+void* QStandardItem_Index(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->index().internalPointer();
 }
 
-void QStandardItem_InsertColumns(QtObjectPtr ptr, int column, int count){
+void QStandardItem_InsertColumns(void* ptr, int column, int count){
 	static_cast<QStandardItem*>(ptr)->insertColumns(column, count);
 }
 
-void QStandardItem_InsertRow2(QtObjectPtr ptr, int row, QtObjectPtr item){
+void QStandardItem_InsertRow2(void* ptr, int row, void* item){
 	static_cast<QStandardItem*>(ptr)->insertRow(row, static_cast<QStandardItem*>(item));
 }
 
-void QStandardItem_InsertRows2(QtObjectPtr ptr, int row, int count){
+void QStandardItem_InsertRows2(void* ptr, int row, int count){
 	static_cast<QStandardItem*>(ptr)->insertRows(row, count);
 }
 
-int QStandardItem_IsCheckable(QtObjectPtr ptr){
+int QStandardItem_IsCheckable(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->isCheckable();
 }
 
-int QStandardItem_IsDragEnabled(QtObjectPtr ptr){
+int QStandardItem_IsDragEnabled(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->isDragEnabled();
 }
 
-int QStandardItem_IsDropEnabled(QtObjectPtr ptr){
+int QStandardItem_IsDropEnabled(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->isDropEnabled();
 }
 
-int QStandardItem_IsEditable(QtObjectPtr ptr){
+int QStandardItem_IsEditable(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->isEditable();
 }
 
-int QStandardItem_IsEnabled(QtObjectPtr ptr){
+int QStandardItem_IsEnabled(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->isEnabled();
 }
 
-int QStandardItem_IsSelectable(QtObjectPtr ptr){
+int QStandardItem_IsSelectable(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->isSelectable();
 }
 
-int QStandardItem_IsTristate(QtObjectPtr ptr){
+int QStandardItem_IsTristate(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->isTristate();
 }
 
-QtObjectPtr QStandardItem_Model(QtObjectPtr ptr){
+void* QStandardItem_Model(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->model();
 }
 
-QtObjectPtr QStandardItem_Parent(QtObjectPtr ptr){
+void* QStandardItem_Parent(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->parent();
 }
 
-void QStandardItem_Read(QtObjectPtr ptr, QtObjectPtr in){
+void QStandardItem_Read(void* ptr, void* in){
 	static_cast<QStandardItem*>(ptr)->read(*static_cast<QDataStream*>(in));
 }
 
-void QStandardItem_RemoveColumn(QtObjectPtr ptr, int column){
+void QStandardItem_RemoveColumn(void* ptr, int column){
 	static_cast<QStandardItem*>(ptr)->removeColumn(column);
 }
 
-void QStandardItem_RemoveColumns(QtObjectPtr ptr, int column, int count){
+void QStandardItem_RemoveColumns(void* ptr, int column, int count){
 	static_cast<QStandardItem*>(ptr)->removeColumns(column, count);
 }
 
-void QStandardItem_RemoveRow(QtObjectPtr ptr, int row){
+void QStandardItem_RemoveRow(void* ptr, int row){
 	static_cast<QStandardItem*>(ptr)->removeRow(row);
 }
 
-void QStandardItem_RemoveRows(QtObjectPtr ptr, int row, int count){
+void QStandardItem_RemoveRows(void* ptr, int row, int count){
 	static_cast<QStandardItem*>(ptr)->removeRows(row, count);
 }
 
-int QStandardItem_Row(QtObjectPtr ptr){
+int QStandardItem_Row(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->row();
 }
 
-int QStandardItem_RowCount(QtObjectPtr ptr){
+int QStandardItem_RowCount(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->rowCount();
 }
 
-void QStandardItem_SetAccessibleDescription(QtObjectPtr ptr, char* accessibleDescription){
+void QStandardItem_SetAccessibleDescription(void* ptr, char* accessibleDescription){
 	static_cast<QStandardItem*>(ptr)->setAccessibleDescription(QString(accessibleDescription));
 }
 
-void QStandardItem_SetAccessibleText(QtObjectPtr ptr, char* accessibleText){
+void QStandardItem_SetAccessibleText(void* ptr, char* accessibleText){
 	static_cast<QStandardItem*>(ptr)->setAccessibleText(QString(accessibleText));
 }
 
-void QStandardItem_SetBackground(QtObjectPtr ptr, QtObjectPtr brush){
+void QStandardItem_SetBackground(void* ptr, void* brush){
 	static_cast<QStandardItem*>(ptr)->setBackground(*static_cast<QBrush*>(brush));
 }
 
-void QStandardItem_SetCheckState(QtObjectPtr ptr, int state){
+void QStandardItem_SetCheckState(void* ptr, int state){
 	static_cast<QStandardItem*>(ptr)->setCheckState(static_cast<Qt::CheckState>(state));
 }
 
-void QStandardItem_SetCheckable(QtObjectPtr ptr, int checkable){
+void QStandardItem_SetCheckable(void* ptr, int checkable){
 	static_cast<QStandardItem*>(ptr)->setCheckable(checkable != 0);
 }
 
-void QStandardItem_SetChild2(QtObjectPtr ptr, int row, QtObjectPtr item){
+void QStandardItem_SetChild2(void* ptr, int row, void* item){
 	static_cast<QStandardItem*>(ptr)->setChild(row, static_cast<QStandardItem*>(item));
 }
 
-void QStandardItem_SetChild(QtObjectPtr ptr, int row, int column, QtObjectPtr item){
+void QStandardItem_SetChild(void* ptr, int row, int column, void* item){
 	static_cast<QStandardItem*>(ptr)->setChild(row, column, static_cast<QStandardItem*>(item));
 }
 
-void QStandardItem_SetColumnCount(QtObjectPtr ptr, int columns){
+void QStandardItem_SetColumnCount(void* ptr, int columns){
 	static_cast<QStandardItem*>(ptr)->setColumnCount(columns);
 }
 
-void QStandardItem_SetData(QtObjectPtr ptr, char* value, int role){
-	static_cast<QStandardItem*>(ptr)->setData(QVariant(value), role);
+void QStandardItem_SetData(void* ptr, void* value, int role){
+	static_cast<QStandardItem*>(ptr)->setData(*static_cast<QVariant*>(value), role);
 }
 
-void QStandardItem_SetDragEnabled(QtObjectPtr ptr, int dragEnabled){
+void QStandardItem_SetDragEnabled(void* ptr, int dragEnabled){
 	static_cast<QStandardItem*>(ptr)->setDragEnabled(dragEnabled != 0);
 }
 
-void QStandardItem_SetDropEnabled(QtObjectPtr ptr, int dropEnabled){
+void QStandardItem_SetDropEnabled(void* ptr, int dropEnabled){
 	static_cast<QStandardItem*>(ptr)->setDropEnabled(dropEnabled != 0);
 }
 
-void QStandardItem_SetEditable(QtObjectPtr ptr, int editable){
+void QStandardItem_SetEditable(void* ptr, int editable){
 	static_cast<QStandardItem*>(ptr)->setEditable(editable != 0);
 }
 
-void QStandardItem_SetEnabled(QtObjectPtr ptr, int enabled){
+void QStandardItem_SetEnabled(void* ptr, int enabled){
 	static_cast<QStandardItem*>(ptr)->setEnabled(enabled != 0);
 }
 
-void QStandardItem_SetFlags(QtObjectPtr ptr, int flags){
+void QStandardItem_SetFlags(void* ptr, int flags){
 	static_cast<QStandardItem*>(ptr)->setFlags(static_cast<Qt::ItemFlag>(flags));
 }
 
-void QStandardItem_SetFont(QtObjectPtr ptr, QtObjectPtr font){
+void QStandardItem_SetFont(void* ptr, void* font){
 	static_cast<QStandardItem*>(ptr)->setFont(*static_cast<QFont*>(font));
 }
 
-void QStandardItem_SetForeground(QtObjectPtr ptr, QtObjectPtr brush){
+void QStandardItem_SetForeground(void* ptr, void* brush){
 	static_cast<QStandardItem*>(ptr)->setForeground(*static_cast<QBrush*>(brush));
 }
 
-void QStandardItem_SetIcon(QtObjectPtr ptr, QtObjectPtr icon){
+void QStandardItem_SetIcon(void* ptr, void* icon){
 	static_cast<QStandardItem*>(ptr)->setIcon(*static_cast<QIcon*>(icon));
 }
 
-void QStandardItem_SetRowCount(QtObjectPtr ptr, int rows){
+void QStandardItem_SetRowCount(void* ptr, int rows){
 	static_cast<QStandardItem*>(ptr)->setRowCount(rows);
 }
 
-void QStandardItem_SetSelectable(QtObjectPtr ptr, int selectable){
+void QStandardItem_SetSelectable(void* ptr, int selectable){
 	static_cast<QStandardItem*>(ptr)->setSelectable(selectable != 0);
 }
 
-void QStandardItem_SetSizeHint(QtObjectPtr ptr, QtObjectPtr size){
+void QStandardItem_SetSizeHint(void* ptr, void* size){
 	static_cast<QStandardItem*>(ptr)->setSizeHint(*static_cast<QSize*>(size));
 }
 
-void QStandardItem_SetStatusTip(QtObjectPtr ptr, char* statusTip){
+void QStandardItem_SetStatusTip(void* ptr, char* statusTip){
 	static_cast<QStandardItem*>(ptr)->setStatusTip(QString(statusTip));
 }
 
-void QStandardItem_SetText(QtObjectPtr ptr, char* text){
+void QStandardItem_SetText(void* ptr, char* text){
 	static_cast<QStandardItem*>(ptr)->setText(QString(text));
 }
 
-void QStandardItem_SetTextAlignment(QtObjectPtr ptr, int alignment){
+void QStandardItem_SetTextAlignment(void* ptr, int alignment){
 	static_cast<QStandardItem*>(ptr)->setTextAlignment(static_cast<Qt::AlignmentFlag>(alignment));
 }
 
-void QStandardItem_SetToolTip(QtObjectPtr ptr, char* toolTip){
+void QStandardItem_SetToolTip(void* ptr, char* toolTip){
 	static_cast<QStandardItem*>(ptr)->setToolTip(QString(toolTip));
 }
 
-void QStandardItem_SetTristate(QtObjectPtr ptr, int tristate){
+void QStandardItem_SetTristate(void* ptr, int tristate){
 	static_cast<QStandardItem*>(ptr)->setTristate(tristate != 0);
 }
 
-void QStandardItem_SetWhatsThis(QtObjectPtr ptr, char* whatsThis){
+void QStandardItem_SetWhatsThis(void* ptr, char* whatsThis){
 	static_cast<QStandardItem*>(ptr)->setWhatsThis(QString(whatsThis));
 }
 
-void QStandardItem_SortChildren(QtObjectPtr ptr, int column, int order){
+void QStandardItem_SortChildren(void* ptr, int column, int order){
 	static_cast<QStandardItem*>(ptr)->sortChildren(column, static_cast<Qt::SortOrder>(order));
 }
 
-char* QStandardItem_StatusTip(QtObjectPtr ptr){
+char* QStandardItem_StatusTip(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->statusTip().toUtf8().data();
 }
 
-QtObjectPtr QStandardItem_TakeChild(QtObjectPtr ptr, int row, int column){
+void* QStandardItem_TakeChild(void* ptr, int row, int column){
 	return static_cast<QStandardItem*>(ptr)->takeChild(row, column);
 }
 
-char* QStandardItem_Text(QtObjectPtr ptr){
+char* QStandardItem_Text(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->text().toUtf8().data();
 }
 
-int QStandardItem_TextAlignment(QtObjectPtr ptr){
+int QStandardItem_TextAlignment(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->textAlignment();
 }
 
-char* QStandardItem_ToolTip(QtObjectPtr ptr){
+char* QStandardItem_ToolTip(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->toolTip().toUtf8().data();
 }
 
-int QStandardItem_Type(QtObjectPtr ptr){
+int QStandardItem_Type(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->type();
 }
 
-char* QStandardItem_WhatsThis(QtObjectPtr ptr){
+char* QStandardItem_WhatsThis(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->whatsThis().toUtf8().data();
 }
 
-void QStandardItem_Write(QtObjectPtr ptr, QtObjectPtr out){
+void QStandardItem_Write(void* ptr, void* out){
 	static_cast<QStandardItem*>(ptr)->write(*static_cast<QDataStream*>(out));
 }
 
-void QStandardItem_DestroyQStandardItem(QtObjectPtr ptr){
+void QStandardItem_DestroyQStandardItem(void* ptr){
 	static_cast<QStandardItem*>(ptr)->~QStandardItem();
 }
 

@@ -1,35 +1,35 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QGraphicsTextItem_OpenExternalLinks(QtObjectPtr ptr);
-void QGraphicsTextItem_SetOpenExternalLinks(QtObjectPtr ptr, int open);
-void QGraphicsTextItem_SetTextCursor(QtObjectPtr ptr, QtObjectPtr cursor);
-QtObjectPtr QGraphicsTextItem_NewQGraphicsTextItem(QtObjectPtr parent);
-QtObjectPtr QGraphicsTextItem_NewQGraphicsTextItem2(char* text, QtObjectPtr parent);
-void QGraphicsTextItem_AdjustSize(QtObjectPtr ptr);
-int QGraphicsTextItem_Contains(QtObjectPtr ptr, QtObjectPtr point);
-QtObjectPtr QGraphicsTextItem_Document(QtObjectPtr ptr);
-int QGraphicsTextItem_IsObscuredBy(QtObjectPtr ptr, QtObjectPtr item);
-void QGraphicsTextItem_ConnectLinkActivated(QtObjectPtr ptr);
-void QGraphicsTextItem_DisconnectLinkActivated(QtObjectPtr ptr);
-void QGraphicsTextItem_ConnectLinkHovered(QtObjectPtr ptr);
-void QGraphicsTextItem_DisconnectLinkHovered(QtObjectPtr ptr);
-void QGraphicsTextItem_Paint(QtObjectPtr ptr, QtObjectPtr painter, QtObjectPtr option, QtObjectPtr widget);
-void QGraphicsTextItem_SetDefaultTextColor(QtObjectPtr ptr, QtObjectPtr col);
-void QGraphicsTextItem_SetDocument(QtObjectPtr ptr, QtObjectPtr document);
-void QGraphicsTextItem_SetFont(QtObjectPtr ptr, QtObjectPtr font);
-void QGraphicsTextItem_SetHtml(QtObjectPtr ptr, char* text);
-void QGraphicsTextItem_SetPlainText(QtObjectPtr ptr, char* text);
-void QGraphicsTextItem_SetTabChangesFocus(QtObjectPtr ptr, int b);
-void QGraphicsTextItem_SetTextInteractionFlags(QtObjectPtr ptr, int flags);
-int QGraphicsTextItem_TabChangesFocus(QtObjectPtr ptr);
-int QGraphicsTextItem_TextInteractionFlags(QtObjectPtr ptr);
-char* QGraphicsTextItem_ToHtml(QtObjectPtr ptr);
-char* QGraphicsTextItem_ToPlainText(QtObjectPtr ptr);
-int QGraphicsTextItem_Type(QtObjectPtr ptr);
-void QGraphicsTextItem_DestroyQGraphicsTextItem(QtObjectPtr ptr);
+int QGraphicsTextItem_OpenExternalLinks(void* ptr);
+void QGraphicsTextItem_SetOpenExternalLinks(void* ptr, int open);
+void QGraphicsTextItem_SetTextCursor(void* ptr, void* cursor);
+void QGraphicsTextItem_AdjustSize(void* ptr);
+int QGraphicsTextItem_Contains(void* ptr, void* point);
+void* QGraphicsTextItem_DefaultTextColor(void* ptr);
+void* QGraphicsTextItem_Document(void* ptr);
+int QGraphicsTextItem_IsObscuredBy(void* ptr, void* item);
+void QGraphicsTextItem_ConnectLinkActivated(void* ptr);
+void QGraphicsTextItem_DisconnectLinkActivated(void* ptr);
+void QGraphicsTextItem_ConnectLinkHovered(void* ptr);
+void QGraphicsTextItem_DisconnectLinkHovered(void* ptr);
+void QGraphicsTextItem_Paint(void* ptr, void* painter, void* option, void* widget);
+void QGraphicsTextItem_SetDefaultTextColor(void* ptr, void* col);
+void QGraphicsTextItem_SetDocument(void* ptr, void* document);
+void QGraphicsTextItem_SetFont(void* ptr, void* font);
+void QGraphicsTextItem_SetHtml(void* ptr, char* text);
+void QGraphicsTextItem_SetPlainText(void* ptr, char* text);
+void QGraphicsTextItem_SetTabChangesFocus(void* ptr, int b);
+void QGraphicsTextItem_SetTextInteractionFlags(void* ptr, int flags);
+void QGraphicsTextItem_SetTextWidth(void* ptr, double width);
+int QGraphicsTextItem_TabChangesFocus(void* ptr);
+int QGraphicsTextItem_TextInteractionFlags(void* ptr);
+double QGraphicsTextItem_TextWidth(void* ptr);
+char* QGraphicsTextItem_ToHtml(void* ptr);
+char* QGraphicsTextItem_ToPlainText(void* ptr);
+int QGraphicsTextItem_Type(void* ptr);
+void QGraphicsTextItem_DestroyQGraphicsTextItem(void* ptr);
 
 #ifdef __cplusplus
 }

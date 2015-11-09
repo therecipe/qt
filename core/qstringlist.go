@@ -10,24 +10,24 @@ type QStringList struct {
 	QList
 }
 
-type QStringListITF interface {
-	QListITF
-	QStringListPTR() *QStringList
+type QStringList_ITF interface {
+	QList_ITF
+	QStringList_PTR() *QStringList
 }
 
-func PointerFromQStringList(ptr QStringListITF) unsafe.Pointer {
+func PointerFromQStringList(ptr QStringList_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStringListPTR().Pointer()
+		return ptr.QStringList_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStringListFromPointer(ptr unsafe.Pointer) *QStringList {
+func NewQStringListFromPointer(ptr unsafe.Pointer) *QStringList {
 	var n = new(QStringList)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStringList) QStringListPTR() *QStringList {
+func (ptr *QStringList) QStringList_PTR() *QStringList {
 	return ptr
 }

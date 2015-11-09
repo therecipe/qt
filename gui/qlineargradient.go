@@ -11,44 +11,60 @@ type QLinearGradient struct {
 	QGradient
 }
 
-type QLinearGradientITF interface {
-	QGradientITF
-	QLinearGradientPTR() *QLinearGradient
+type QLinearGradient_ITF interface {
+	QGradient_ITF
+	QLinearGradient_PTR() *QLinearGradient
 }
 
-func PointerFromQLinearGradient(ptr QLinearGradientITF) unsafe.Pointer {
+func PointerFromQLinearGradient(ptr QLinearGradient_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QLinearGradientPTR().Pointer()
+		return ptr.QLinearGradient_PTR().Pointer()
 	}
 	return nil
 }
 
-func QLinearGradientFromPointer(ptr unsafe.Pointer) *QLinearGradient {
+func NewQLinearGradientFromPointer(ptr unsafe.Pointer) *QLinearGradient {
 	var n = new(QLinearGradient)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QLinearGradient) QLinearGradientPTR() *QLinearGradient {
+func (ptr *QLinearGradient) QLinearGradient_PTR() *QLinearGradient {
 	return ptr
 }
 
+func NewQLinearGradient3(x1 float64, y1 float64, x2 float64, y2 float64) *QLinearGradient {
+	return NewQLinearGradientFromPointer(C.QLinearGradient_NewQLinearGradient3(C.double(x1), C.double(y1), C.double(x2), C.double(y2)))
+}
+
 func NewQLinearGradient() *QLinearGradient {
-	return QLinearGradientFromPointer(unsafe.Pointer(C.QLinearGradient_NewQLinearGradient()))
+	return NewQLinearGradientFromPointer(C.QLinearGradient_NewQLinearGradient())
 }
 
-func NewQLinearGradient2(start core.QPointFITF, finalStop core.QPointFITF) *QLinearGradient {
-	return QLinearGradientFromPointer(unsafe.Pointer(C.QLinearGradient_NewQLinearGradient2(C.QtObjectPtr(core.PointerFromQPointF(start)), C.QtObjectPtr(core.PointerFromQPointF(finalStop)))))
+func NewQLinearGradient2(start core.QPointF_ITF, finalStop core.QPointF_ITF) *QLinearGradient {
+	return NewQLinearGradientFromPointer(C.QLinearGradient_NewQLinearGradient2(core.PointerFromQPointF(start), core.PointerFromQPointF(finalStop)))
 }
 
-func (ptr *QLinearGradient) SetFinalStop(stop core.QPointFITF) {
+func (ptr *QLinearGradient) SetFinalStop(stop core.QPointF_ITF) {
 	if ptr.Pointer() != nil {
-		C.QLinearGradient_SetFinalStop(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(stop)))
+		C.QLinearGradient_SetFinalStop(ptr.Pointer(), core.PointerFromQPointF(stop))
 	}
 }
 
-func (ptr *QLinearGradient) SetStart(start core.QPointFITF) {
+func (ptr *QLinearGradient) SetFinalStop2(x float64, y float64) {
 	if ptr.Pointer() != nil {
-		C.QLinearGradient_SetStart(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQPointF(start)))
+		C.QLinearGradient_SetFinalStop2(ptr.Pointer(), C.double(x), C.double(y))
+	}
+}
+
+func (ptr *QLinearGradient) SetStart(start core.QPointF_ITF) {
+	if ptr.Pointer() != nil {
+		C.QLinearGradient_SetStart(ptr.Pointer(), core.PointerFromQPointF(start))
+	}
+}
+
+func (ptr *QLinearGradient) SetStart2(x float64, y float64) {
+	if ptr.Pointer() != nil {
+		C.QLinearGradient_SetStart2(ptr.Pointer(), C.double(x), C.double(y))
 	}
 }

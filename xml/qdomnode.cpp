@@ -1,9 +1,9 @@
 #include "qdomnode.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QTextStream>
-#include <QString>
 #include <QDomNode>
 #include "_cgo_export.h"
 
@@ -11,135 +11,135 @@ class MyQDomNode: public QDomNode {
 public:
 };
 
-QtObjectPtr QDomNode_NewQDomNode(){
+void* QDomNode_NewQDomNode(){
 	return new QDomNode();
 }
 
-QtObjectPtr QDomNode_NewQDomNode2(QtObjectPtr n){
+void* QDomNode_NewQDomNode2(void* n){
 	return new QDomNode(*static_cast<QDomNode*>(n));
 }
 
-void QDomNode_Clear(QtObjectPtr ptr){
+void QDomNode_Clear(void* ptr){
 	static_cast<QDomNode*>(ptr)->clear();
 }
 
-int QDomNode_ColumnNumber(QtObjectPtr ptr){
+int QDomNode_ColumnNumber(void* ptr){
 	return static_cast<QDomNode*>(ptr)->columnNumber();
 }
 
-int QDomNode_HasAttributes(QtObjectPtr ptr){
+int QDomNode_HasAttributes(void* ptr){
 	return static_cast<QDomNode*>(ptr)->hasAttributes();
 }
 
-int QDomNode_HasChildNodes(QtObjectPtr ptr){
+int QDomNode_HasChildNodes(void* ptr){
 	return static_cast<QDomNode*>(ptr)->hasChildNodes();
 }
 
-int QDomNode_IsAttr(QtObjectPtr ptr){
+int QDomNode_IsAttr(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isAttr();
 }
 
-int QDomNode_IsCDATASection(QtObjectPtr ptr){
+int QDomNode_IsCDATASection(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isCDATASection();
 }
 
-int QDomNode_IsCharacterData(QtObjectPtr ptr){
+int QDomNode_IsCharacterData(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isCharacterData();
 }
 
-int QDomNode_IsComment(QtObjectPtr ptr){
+int QDomNode_IsComment(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isComment();
 }
 
-int QDomNode_IsDocument(QtObjectPtr ptr){
+int QDomNode_IsDocument(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isDocument();
 }
 
-int QDomNode_IsDocumentFragment(QtObjectPtr ptr){
+int QDomNode_IsDocumentFragment(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isDocumentFragment();
 }
 
-int QDomNode_IsDocumentType(QtObjectPtr ptr){
+int QDomNode_IsDocumentType(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isDocumentType();
 }
 
-int QDomNode_IsElement(QtObjectPtr ptr){
+int QDomNode_IsElement(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isElement();
 }
 
-int QDomNode_IsEntity(QtObjectPtr ptr){
+int QDomNode_IsEntity(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isEntity();
 }
 
-int QDomNode_IsEntityReference(QtObjectPtr ptr){
+int QDomNode_IsEntityReference(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isEntityReference();
 }
 
-int QDomNode_IsNotation(QtObjectPtr ptr){
+int QDomNode_IsNotation(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isNotation();
 }
 
-int QDomNode_IsNull(QtObjectPtr ptr){
+int QDomNode_IsNull(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isNull();
 }
 
-int QDomNode_IsProcessingInstruction(QtObjectPtr ptr){
+int QDomNode_IsProcessingInstruction(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isProcessingInstruction();
 }
 
-int QDomNode_IsSupported(QtObjectPtr ptr, char* feature, char* version){
+int QDomNode_IsSupported(void* ptr, char* feature, char* version){
 	return static_cast<QDomNode*>(ptr)->isSupported(QString(feature), QString(version));
 }
 
-int QDomNode_IsText(QtObjectPtr ptr){
+int QDomNode_IsText(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isText();
 }
 
-int QDomNode_LineNumber(QtObjectPtr ptr){
+int QDomNode_LineNumber(void* ptr){
 	return static_cast<QDomNode*>(ptr)->lineNumber();
 }
 
-char* QDomNode_LocalName(QtObjectPtr ptr){
+char* QDomNode_LocalName(void* ptr){
 	return static_cast<QDomNode*>(ptr)->localName().toUtf8().data();
 }
 
-char* QDomNode_NamespaceURI(QtObjectPtr ptr){
+char* QDomNode_NamespaceURI(void* ptr){
 	return static_cast<QDomNode*>(ptr)->namespaceURI().toUtf8().data();
 }
 
-char* QDomNode_NodeName(QtObjectPtr ptr){
+char* QDomNode_NodeName(void* ptr){
 	return static_cast<QDomNode*>(ptr)->nodeName().toUtf8().data();
 }
 
-int QDomNode_NodeType(QtObjectPtr ptr){
+int QDomNode_NodeType(void* ptr){
 	return static_cast<QDomNode*>(ptr)->nodeType();
 }
 
-char* QDomNode_NodeValue(QtObjectPtr ptr){
+char* QDomNode_NodeValue(void* ptr){
 	return static_cast<QDomNode*>(ptr)->nodeValue().toUtf8().data();
 }
 
-void QDomNode_Normalize(QtObjectPtr ptr){
+void QDomNode_Normalize(void* ptr){
 	static_cast<QDomNode*>(ptr)->normalize();
 }
 
-char* QDomNode_Prefix(QtObjectPtr ptr){
+char* QDomNode_Prefix(void* ptr){
 	return static_cast<QDomNode*>(ptr)->prefix().toUtf8().data();
 }
 
-void QDomNode_Save(QtObjectPtr ptr, QtObjectPtr stream, int indent, int encodingPolicy){
+void QDomNode_Save(void* ptr, void* stream, int indent, int encodingPolicy){
 	static_cast<QDomNode*>(ptr)->save(*static_cast<QTextStream*>(stream), indent, static_cast<QDomNode::EncodingPolicy>(encodingPolicy));
 }
 
-void QDomNode_SetNodeValue(QtObjectPtr ptr, char* v){
+void QDomNode_SetNodeValue(void* ptr, char* v){
 	static_cast<QDomNode*>(ptr)->setNodeValue(QString(v));
 }
 
-void QDomNode_SetPrefix(QtObjectPtr ptr, char* pre){
+void QDomNode_SetPrefix(void* ptr, char* pre){
 	static_cast<QDomNode*>(ptr)->setPrefix(QString(pre));
 }
 
-void QDomNode_DestroyQDomNode(QtObjectPtr ptr){
+void QDomNode_DestroyQDomNode(void* ptr){
 	static_cast<QDomNode*>(ptr)->~QDomNode();
 }
 

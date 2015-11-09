@@ -1,22 +1,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QQuickView_ResizeMode(QtObjectPtr ptr);
-void QQuickView_SetResizeMode(QtObjectPtr ptr, int v);
-int QQuickView_Status(QtObjectPtr ptr);
-QtObjectPtr QQuickView_NewQQuickView2(QtObjectPtr engine, QtObjectPtr parent);
-QtObjectPtr QQuickView_NewQQuickView(QtObjectPtr parent);
-QtObjectPtr QQuickView_NewQQuickView3(char* source, QtObjectPtr parent);
-QtObjectPtr QQuickView_Engine(QtObjectPtr ptr);
-QtObjectPtr QQuickView_RootContext(QtObjectPtr ptr);
-QtObjectPtr QQuickView_RootObject(QtObjectPtr ptr);
-void QQuickView_SetSource(QtObjectPtr ptr, char* url);
-char* QQuickView_Source(QtObjectPtr ptr);
-void QQuickView_ConnectStatusChanged(QtObjectPtr ptr);
-void QQuickView_DisconnectStatusChanged(QtObjectPtr ptr);
-void QQuickView_DestroyQQuickView(QtObjectPtr ptr);
+int QQuickView_ResizeMode(void* ptr);
+void QQuickView_SetResizeMode(void* ptr, int v);
+int QQuickView_Status(void* ptr);
+void* QQuickView_NewQQuickView2(void* engine, void* parent);
+void* QQuickView_NewQQuickView(void* parent);
+void* QQuickView_NewQQuickView3(void* source, void* parent);
+void* QQuickView_Engine(void* ptr);
+void* QQuickView_RootContext(void* ptr);
+void* QQuickView_RootObject(void* ptr);
+void QQuickView_SetSource(void* ptr, void* url);
+void QQuickView_ConnectStatusChanged(void* ptr);
+void QQuickView_DisconnectStatusChanged(void* ptr);
+void QQuickView_DestroyQQuickView(void* ptr);
 
 #ifdef __cplusplus
 }

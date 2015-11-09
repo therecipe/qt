@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{QMacToolBarItem QMacToolBarItem::QMacToolBarItem commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.h non constructor false false   [0xc8231e54c0] }
-&{activated QMacToolBarItem::activated commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.h non signal false false  void [] }
-&{nativeToolBarItem QMacToolBarItem::nativeToolBarItem commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.h non plain false false  NSToolbarItem * [] }
-&{~QMacToolBarItem QMacToolBarItem::~QMacToolBarItem commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.h impure destructor false false   [] }
-&{icon QMacToolBarItem::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  QIcon [] }
-&{selectable QMacToolBarItem::selectable commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  bool [] }
-&{setIcon QMacToolBarItem::setIcon commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  void [0xc82237c240] }
-&{setSelectable QMacToolBarItem::setSelectable commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  void [0xc82237c420] }
-&{setStandardItem QMacToolBarItem::setStandardItem commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  void [0xc82237c620] }
-&{setText QMacToolBarItem::setText commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  void [0xc82237c820] }
-&{standardItem QMacToolBarItem::standardItem commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  StandardItem [] }
-&{text QMacToolBarItem::text commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  QString [] }
+&{QMacToolBarItem QMacToolBarItem::QMacToolBarItem commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.h non constructor false false   QMacToolBarItem(QObject *parent) [0xc8219cc380] }
+&{activated QMacToolBarItem::activated commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.h non signal false false  void void activated() [] }
+&{nativeToolBarItem QMacToolBarItem::nativeToolBarItem commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.h non plain false false  NSToolbarItem * NSToolbarItem * nativeToolBarItem() const [] }
+&{~QMacToolBarItem QMacToolBarItem::~QMacToolBarItem commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.h impure destructor false false   ~QMacToolBarItem() [] }
+&{icon QMacToolBarItem::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  QIcon QIcon icon() const [] }
+&{selectable QMacToolBarItem::selectable commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  bool bool selectable() const [] }
+&{setIcon QMacToolBarItem::setIcon commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  void void setIcon(const QIcon &icon) [0xc8219cdf00] }
+&{setSelectable QMacToolBarItem::setSelectable commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  void void setSelectable(bool selectable) [0xc8219be360] }
+&{setStandardItem QMacToolBarItem::setStandardItem commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  void void setStandardItem(StandardItem standardItem) [0xc8219be7e0] }
+&{setText QMacToolBarItem::setText commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  void void setText(const QString &text) [0xc8219bec40] }
+&{standardItem QMacToolBarItem::standardItem commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  StandardItem StandardItem standardItem() const [] }
+&{text QMacToolBarItem::text commendable public /work/build/qt5_workdir/w/s/qtmacextras/src/macextras/qmactoolbaritem.mm non plain false false  QString QString text() const [] }
 ########################################			ENUMS			########################################
-&{StandardItem QMacToolBarItem::StandardItem commendable public  [0xc8231e51a0 0xc8231e5220 0xc8231e52a0]}
+&{StandardItem QMacToolBarItem::StandardItem commendable public  [0xc8219e1c80 0xc8219e1da0 0xc8219e1e40] false}

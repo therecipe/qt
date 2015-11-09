@@ -10,24 +10,24 @@ type QItemEditorCreator struct {
 	QItemEditorCreatorBase
 }
 
-type QItemEditorCreatorITF interface {
-	QItemEditorCreatorBaseITF
-	QItemEditorCreatorPTR() *QItemEditorCreator
+type QItemEditorCreator_ITF interface {
+	QItemEditorCreatorBase_ITF
+	QItemEditorCreator_PTR() *QItemEditorCreator
 }
 
-func PointerFromQItemEditorCreator(ptr QItemEditorCreatorITF) unsafe.Pointer {
+func PointerFromQItemEditorCreator(ptr QItemEditorCreator_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QItemEditorCreatorPTR().Pointer()
+		return ptr.QItemEditorCreator_PTR().Pointer()
 	}
 	return nil
 }
 
-func QItemEditorCreatorFromPointer(ptr unsafe.Pointer) *QItemEditorCreator {
+func NewQItemEditorCreatorFromPointer(ptr unsafe.Pointer) *QItemEditorCreator {
 	var n = new(QItemEditorCreator)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QItemEditorCreator) QItemEditorCreatorPTR() *QItemEditorCreator {
+func (ptr *QItemEditorCreator) QItemEditorCreator_PTR() *QItemEditorCreator {
 	return ptr
 }

@@ -1,19 +1,19 @@
 #include "qmainwindow.h"
-#include <QString>
 #include <QVariant>
-#include <QObject>
-#include <QMenuBar>
-#include <QModelIndex>
-#include <QWidget>
-#include <QByteArray>
-#include <QTabWidget>
-#include <QStatusBar>
-#include <QMetaObject>
 #include <QSize>
-#include <QDockWidget>
-#include <QMenu>
+#include <QTabWidget>
 #include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QByteArray>
+#include <QMenu>
+#include <QDockWidget>
 #include <QToolBar>
+#include <QMetaObject>
+#include <QWidget>
+#include <QString>
+#include <QStatusBar>
+#include <QMenuBar>
 #include <QMainWindow>
 #include "_cgo_export.h"
 
@@ -22,207 +22,211 @@ public:
 void Signal_ToolButtonStyleChanged(Qt::ToolButtonStyle toolButtonStyle){callbackQMainWindowToolButtonStyleChanged(this->objectName().toUtf8().data(), toolButtonStyle);};
 };
 
-int QMainWindow_DockOptions(QtObjectPtr ptr){
+int QMainWindow_DockOptions(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->dockOptions();
 }
 
-int QMainWindow_DocumentMode(QtObjectPtr ptr){
+int QMainWindow_DocumentMode(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->documentMode();
 }
 
-int QMainWindow_IsAnimated(QtObjectPtr ptr){
+int QMainWindow_IsAnimated(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->isAnimated();
 }
 
-int QMainWindow_IsDockNestingEnabled(QtObjectPtr ptr){
+int QMainWindow_IsDockNestingEnabled(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->isDockNestingEnabled();
 }
 
-void QMainWindow_SetAnimated(QtObjectPtr ptr, int enabled){
+void QMainWindow_SetAnimated(void* ptr, int enabled){
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "setAnimated", Q_ARG(bool, enabled != 0));
 }
 
-void QMainWindow_SetDockNestingEnabled(QtObjectPtr ptr, int enabled){
+void QMainWindow_SetDockNestingEnabled(void* ptr, int enabled){
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "setDockNestingEnabled", Q_ARG(bool, enabled != 0));
 }
 
-void QMainWindow_SetDockOptions(QtObjectPtr ptr, int options){
+void QMainWindow_SetDockOptions(void* ptr, int options){
 	static_cast<QMainWindow*>(ptr)->setDockOptions(static_cast<QMainWindow::DockOption>(options));
 }
 
-void QMainWindow_SetDocumentMode(QtObjectPtr ptr, int enabled){
+void QMainWindow_SetDocumentMode(void* ptr, int enabled){
 	static_cast<QMainWindow*>(ptr)->setDocumentMode(enabled != 0);
 }
 
-void QMainWindow_SetIconSize(QtObjectPtr ptr, QtObjectPtr iconSize){
+void QMainWindow_SetIconSize(void* ptr, void* iconSize){
 	static_cast<QMainWindow*>(ptr)->setIconSize(*static_cast<QSize*>(iconSize));
 }
 
-void QMainWindow_SetTabShape(QtObjectPtr ptr, int tabShape){
+void QMainWindow_SetTabShape(void* ptr, int tabShape){
 	static_cast<QMainWindow*>(ptr)->setTabShape(static_cast<QTabWidget::TabShape>(tabShape));
 }
 
-void QMainWindow_SetToolButtonStyle(QtObjectPtr ptr, int toolButtonStyle){
+void QMainWindow_SetToolButtonStyle(void* ptr, int toolButtonStyle){
 	static_cast<QMainWindow*>(ptr)->setToolButtonStyle(static_cast<Qt::ToolButtonStyle>(toolButtonStyle));
 }
 
-void QMainWindow_SetUnifiedTitleAndToolBarOnMac(QtObjectPtr ptr, int set){
+void QMainWindow_SetUnifiedTitleAndToolBarOnMac(void* ptr, int set){
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "setUnifiedTitleAndToolBarOnMac", Q_ARG(bool, set != 0));
 }
 
-void QMainWindow_SplitDockWidget(QtObjectPtr ptr, QtObjectPtr first, QtObjectPtr second, int orientation){
+void QMainWindow_SplitDockWidget(void* ptr, void* first, void* second, int orientation){
 	static_cast<QMainWindow*>(ptr)->splitDockWidget(static_cast<QDockWidget*>(first), static_cast<QDockWidget*>(second), static_cast<Qt::Orientation>(orientation));
 }
 
-int QMainWindow_TabShape(QtObjectPtr ptr){
+int QMainWindow_TabShape(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->tabShape();
 }
 
-void QMainWindow_TabifyDockWidget(QtObjectPtr ptr, QtObjectPtr first, QtObjectPtr second){
+void QMainWindow_TabifyDockWidget(void* ptr, void* first, void* second){
 	static_cast<QMainWindow*>(ptr)->tabifyDockWidget(static_cast<QDockWidget*>(first), static_cast<QDockWidget*>(second));
 }
 
-int QMainWindow_ToolButtonStyle(QtObjectPtr ptr){
+int QMainWindow_ToolButtonStyle(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->toolButtonStyle();
 }
 
-int QMainWindow_UnifiedTitleAndToolBarOnMac(QtObjectPtr ptr){
+int QMainWindow_UnifiedTitleAndToolBarOnMac(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->unifiedTitleAndToolBarOnMac();
 }
 
-QtObjectPtr QMainWindow_NewQMainWindow(QtObjectPtr parent, int flags){
+void* QMainWindow_NewQMainWindow(void* parent, int flags){
 	return new QMainWindow(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
 }
 
-void QMainWindow_AddDockWidget(QtObjectPtr ptr, int area, QtObjectPtr dockwidget){
+void QMainWindow_AddDockWidget(void* ptr, int area, void* dockwidget){
 	static_cast<QMainWindow*>(ptr)->addDockWidget(static_cast<Qt::DockWidgetArea>(area), static_cast<QDockWidget*>(dockwidget));
 }
 
-void QMainWindow_AddDockWidget2(QtObjectPtr ptr, int area, QtObjectPtr dockwidget, int orientation){
+void QMainWindow_AddDockWidget2(void* ptr, int area, void* dockwidget, int orientation){
 	static_cast<QMainWindow*>(ptr)->addDockWidget(static_cast<Qt::DockWidgetArea>(area), static_cast<QDockWidget*>(dockwidget), static_cast<Qt::Orientation>(orientation));
 }
 
-QtObjectPtr QMainWindow_AddToolBar3(QtObjectPtr ptr, char* title){
+void* QMainWindow_AddToolBar3(void* ptr, char* title){
 	return static_cast<QMainWindow*>(ptr)->addToolBar(QString(title));
 }
 
-void QMainWindow_AddToolBar2(QtObjectPtr ptr, QtObjectPtr toolbar){
+void QMainWindow_AddToolBar2(void* ptr, void* toolbar){
 	static_cast<QMainWindow*>(ptr)->addToolBar(static_cast<QToolBar*>(toolbar));
 }
 
-void QMainWindow_AddToolBar(QtObjectPtr ptr, int area, QtObjectPtr toolbar){
+void QMainWindow_AddToolBar(void* ptr, int area, void* toolbar){
 	static_cast<QMainWindow*>(ptr)->addToolBar(static_cast<Qt::ToolBarArea>(area), static_cast<QToolBar*>(toolbar));
 }
 
-void QMainWindow_AddToolBarBreak(QtObjectPtr ptr, int area){
+void QMainWindow_AddToolBarBreak(void* ptr, int area){
 	static_cast<QMainWindow*>(ptr)->addToolBarBreak(static_cast<Qt::ToolBarArea>(area));
 }
 
-QtObjectPtr QMainWindow_CentralWidget(QtObjectPtr ptr){
+void* QMainWindow_CentralWidget(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->centralWidget();
 }
 
-int QMainWindow_Corner(QtObjectPtr ptr, int corner){
+int QMainWindow_Corner(void* ptr, int corner){
 	return static_cast<QMainWindow*>(ptr)->corner(static_cast<Qt::Corner>(corner));
 }
 
-QtObjectPtr QMainWindow_CreatePopupMenu(QtObjectPtr ptr){
+void* QMainWindow_CreatePopupMenu(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->createPopupMenu();
 }
 
-int QMainWindow_DockWidgetArea(QtObjectPtr ptr, QtObjectPtr dockwidget){
+int QMainWindow_DockWidgetArea(void* ptr, void* dockwidget){
 	return static_cast<QMainWindow*>(ptr)->dockWidgetArea(static_cast<QDockWidget*>(dockwidget));
 }
 
-void QMainWindow_InsertToolBar(QtObjectPtr ptr, QtObjectPtr before, QtObjectPtr toolbar){
+void QMainWindow_InsertToolBar(void* ptr, void* before, void* toolbar){
 	static_cast<QMainWindow*>(ptr)->insertToolBar(static_cast<QToolBar*>(before), static_cast<QToolBar*>(toolbar));
 }
 
-void QMainWindow_InsertToolBarBreak(QtObjectPtr ptr, QtObjectPtr before){
+void QMainWindow_InsertToolBarBreak(void* ptr, void* before){
 	static_cast<QMainWindow*>(ptr)->insertToolBarBreak(static_cast<QToolBar*>(before));
 }
 
-QtObjectPtr QMainWindow_MenuBar(QtObjectPtr ptr){
+void* QMainWindow_MenuBar(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->menuBar();
 }
 
-QtObjectPtr QMainWindow_MenuWidget(QtObjectPtr ptr){
+void* QMainWindow_MenuWidget(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->menuWidget();
 }
 
-void QMainWindow_RemoveDockWidget(QtObjectPtr ptr, QtObjectPtr dockwidget){
+void QMainWindow_RemoveDockWidget(void* ptr, void* dockwidget){
 	static_cast<QMainWindow*>(ptr)->removeDockWidget(static_cast<QDockWidget*>(dockwidget));
 }
 
-void QMainWindow_RemoveToolBar(QtObjectPtr ptr, QtObjectPtr toolbar){
+void QMainWindow_RemoveToolBar(void* ptr, void* toolbar){
 	static_cast<QMainWindow*>(ptr)->removeToolBar(static_cast<QToolBar*>(toolbar));
 }
 
-void QMainWindow_RemoveToolBarBreak(QtObjectPtr ptr, QtObjectPtr before){
+void QMainWindow_RemoveToolBarBreak(void* ptr, void* before){
 	static_cast<QMainWindow*>(ptr)->removeToolBarBreak(static_cast<QToolBar*>(before));
 }
 
-int QMainWindow_RestoreDockWidget(QtObjectPtr ptr, QtObjectPtr dockwidget){
+int QMainWindow_RestoreDockWidget(void* ptr, void* dockwidget){
 	return static_cast<QMainWindow*>(ptr)->restoreDockWidget(static_cast<QDockWidget*>(dockwidget));
 }
 
-int QMainWindow_RestoreState(QtObjectPtr ptr, QtObjectPtr state, int version){
+int QMainWindow_RestoreState(void* ptr, void* state, int version){
 	return static_cast<QMainWindow*>(ptr)->restoreState(*static_cast<QByteArray*>(state), version);
 }
 
-void QMainWindow_SetCentralWidget(QtObjectPtr ptr, QtObjectPtr widget){
+void* QMainWindow_SaveState(void* ptr, int version){
+	return new QByteArray(static_cast<QMainWindow*>(ptr)->saveState(version));
+}
+
+void QMainWindow_SetCentralWidget(void* ptr, void* widget){
 	static_cast<QMainWindow*>(ptr)->setCentralWidget(static_cast<QWidget*>(widget));
 }
 
-void QMainWindow_SetCorner(QtObjectPtr ptr, int corner, int area){
+void QMainWindow_SetCorner(void* ptr, int corner, int area){
 	static_cast<QMainWindow*>(ptr)->setCorner(static_cast<Qt::Corner>(corner), static_cast<Qt::DockWidgetArea>(area));
 }
 
-void QMainWindow_SetMenuBar(QtObjectPtr ptr, QtObjectPtr menuBar){
+void QMainWindow_SetMenuBar(void* ptr, void* menuBar){
 	static_cast<QMainWindow*>(ptr)->setMenuBar(static_cast<QMenuBar*>(menuBar));
 }
 
-void QMainWindow_SetMenuWidget(QtObjectPtr ptr, QtObjectPtr menuBar){
+void QMainWindow_SetMenuWidget(void* ptr, void* menuBar){
 	static_cast<QMainWindow*>(ptr)->setMenuWidget(static_cast<QWidget*>(menuBar));
 }
 
-void QMainWindow_SetStatusBar(QtObjectPtr ptr, QtObjectPtr statusbar){
+void QMainWindow_SetStatusBar(void* ptr, void* statusbar){
 	static_cast<QMainWindow*>(ptr)->setStatusBar(static_cast<QStatusBar*>(statusbar));
 }
 
-void QMainWindow_SetTabPosition(QtObjectPtr ptr, int areas, int tabPosition){
+void QMainWindow_SetTabPosition(void* ptr, int areas, int tabPosition){
 	static_cast<QMainWindow*>(ptr)->setTabPosition(static_cast<Qt::DockWidgetArea>(areas), static_cast<QTabWidget::TabPosition>(tabPosition));
 }
 
-QtObjectPtr QMainWindow_StatusBar(QtObjectPtr ptr){
+void* QMainWindow_StatusBar(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->statusBar();
 }
 
-int QMainWindow_TabPosition(QtObjectPtr ptr, int area){
+int QMainWindow_TabPosition(void* ptr, int area){
 	return static_cast<QMainWindow*>(ptr)->tabPosition(static_cast<Qt::DockWidgetArea>(area));
 }
 
-QtObjectPtr QMainWindow_TakeCentralWidget(QtObjectPtr ptr){
+void* QMainWindow_TakeCentralWidget(void* ptr){
 	return static_cast<QMainWindow*>(ptr)->takeCentralWidget();
 }
 
-int QMainWindow_ToolBarArea(QtObjectPtr ptr, QtObjectPtr toolbar){
+int QMainWindow_ToolBarArea(void* ptr, void* toolbar){
 	return static_cast<QMainWindow*>(ptr)->toolBarArea(static_cast<QToolBar*>(toolbar));
 }
 
-int QMainWindow_ToolBarBreak(QtObjectPtr ptr, QtObjectPtr toolbar){
+int QMainWindow_ToolBarBreak(void* ptr, void* toolbar){
 	return static_cast<QMainWindow*>(ptr)->toolBarBreak(static_cast<QToolBar*>(toolbar));
 }
 
-void QMainWindow_ConnectToolButtonStyleChanged(QtObjectPtr ptr){
+void QMainWindow_ConnectToolButtonStyleChanged(void* ptr){
 	QObject::connect(static_cast<QMainWindow*>(ptr), static_cast<void (QMainWindow::*)(Qt::ToolButtonStyle)>(&QMainWindow::toolButtonStyleChanged), static_cast<MyQMainWindow*>(ptr), static_cast<void (MyQMainWindow::*)(Qt::ToolButtonStyle)>(&MyQMainWindow::Signal_ToolButtonStyleChanged));;
 }
 
-void QMainWindow_DisconnectToolButtonStyleChanged(QtObjectPtr ptr){
+void QMainWindow_DisconnectToolButtonStyleChanged(void* ptr){
 	QObject::disconnect(static_cast<QMainWindow*>(ptr), static_cast<void (QMainWindow::*)(Qt::ToolButtonStyle)>(&QMainWindow::toolButtonStyleChanged), static_cast<MyQMainWindow*>(ptr), static_cast<void (MyQMainWindow::*)(Qt::ToolButtonStyle)>(&MyQMainWindow::Signal_ToolButtonStyleChanged));;
 }
 
-void QMainWindow_DestroyQMainWindow(QtObjectPtr ptr){
+void QMainWindow_DestroyQMainWindow(void* ptr){
 	static_cast<QMainWindow*>(ptr)->~QMainWindow();
 }
 

@@ -12,35 +12,35 @@ type QLocalServer struct {
 	core.QObject
 }
 
-type QLocalServerITF interface {
-	core.QObjectITF
-	QLocalServerPTR() *QLocalServer
+type QLocalServer_ITF interface {
+	core.QObject_ITF
+	QLocalServer_PTR() *QLocalServer
 }
 
-func PointerFromQLocalServer(ptr QLocalServerITF) unsafe.Pointer {
+func PointerFromQLocalServer(ptr QLocalServer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QLocalServerPTR().Pointer()
+		return ptr.QLocalServer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QLocalServerFromPointer(ptr unsafe.Pointer) *QLocalServer {
+func NewQLocalServerFromPointer(ptr unsafe.Pointer) *QLocalServer {
 	var n = new(QLocalServer)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QLocalServer_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QLocalServer) QLocalServerPTR() *QLocalServer {
+func (ptr *QLocalServer) QLocalServer_PTR() *QLocalServer {
 	return ptr
 }
 
 //QLocalServer::SocketOption
-type QLocalServer__SocketOption int
+type QLocalServer__SocketOption int64
 
-var (
+const (
 	QLocalServer__NoOptions         = QLocalServer__SocketOption(0x0)
 	QLocalServer__UserAccessOption  = QLocalServer__SocketOption(0x01)
 	QLocalServer__GroupAccessOption = QLocalServer__SocketOption(0x2)
@@ -50,72 +50,72 @@ var (
 
 func (ptr *QLocalServer) SetSocketOptions(options QLocalServer__SocketOption) {
 	if ptr.Pointer() != nil {
-		C.QLocalServer_SetSocketOptions(C.QtObjectPtr(ptr.Pointer()), C.int(options))
+		C.QLocalServer_SetSocketOptions(ptr.Pointer(), C.int(options))
 	}
 }
 
-func NewQLocalServer(parent core.QObjectITF) *QLocalServer {
-	return QLocalServerFromPointer(unsafe.Pointer(C.QLocalServer_NewQLocalServer(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQLocalServer(parent core.QObject_ITF) *QLocalServer {
+	return NewQLocalServerFromPointer(C.QLocalServer_NewQLocalServer(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QLocalServer) Close() {
 	if ptr.Pointer() != nil {
-		C.QLocalServer_Close(C.QtObjectPtr(ptr.Pointer()))
+		C.QLocalServer_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QLocalServer) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocalServer_ErrorString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QLocalServer_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QLocalServer) FullServerName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocalServer_FullServerName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QLocalServer_FullServerName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QLocalServer) HasPendingConnections() bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalServer_HasPendingConnections(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QLocalServer_HasPendingConnections(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QLocalServer) IsListening() bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalServer_IsListening(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QLocalServer_IsListening(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QLocalServer) Listen(name string) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalServer_Listen(C.QtObjectPtr(ptr.Pointer()), C.CString(name)) != 0
+		return C.QLocalServer_Listen(ptr.Pointer(), C.CString(name)) != 0
 	}
 	return false
 }
 
 func (ptr *QLocalServer) MaxPendingConnections() int {
 	if ptr.Pointer() != nil {
-		return int(C.QLocalServer_MaxPendingConnections(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QLocalServer_MaxPendingConnections(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QLocalServer) ConnectNewConnection(f func()) {
 	if ptr.Pointer() != nil {
-		C.QLocalServer_ConnectNewConnection(C.QtObjectPtr(ptr.Pointer()))
+		C.QLocalServer_ConnectNewConnection(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "newConnection", f)
 	}
 }
 
 func (ptr *QLocalServer) DisconnectNewConnection() {
 	if ptr.Pointer() != nil {
-		C.QLocalServer_DisconnectNewConnection(C.QtObjectPtr(ptr.Pointer()))
+		C.QLocalServer_DisconnectNewConnection(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "newConnection")
 	}
 }
@@ -127,7 +127,7 @@ func callbackQLocalServerNewConnection(ptrName *C.char) {
 
 func (ptr *QLocalServer) NextPendingConnection() *QLocalSocket {
 	if ptr.Pointer() != nil {
-		return QLocalSocketFromPointer(unsafe.Pointer(C.QLocalServer_NextPendingConnection(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQLocalSocketFromPointer(C.QLocalServer_NextPendingConnection(ptr.Pointer()))
 	}
 	return nil
 }
@@ -138,41 +138,41 @@ func QLocalServer_RemoveServer(name string) bool {
 
 func (ptr *QLocalServer) ServerError() QAbstractSocket__SocketError {
 	if ptr.Pointer() != nil {
-		return QAbstractSocket__SocketError(C.QLocalServer_ServerError(C.QtObjectPtr(ptr.Pointer())))
+		return QAbstractSocket__SocketError(C.QLocalServer_ServerError(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QLocalServer) ServerName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocalServer_ServerName(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QLocalServer_ServerName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QLocalServer) SetMaxPendingConnections(numConnections int) {
 	if ptr.Pointer() != nil {
-		C.QLocalServer_SetMaxPendingConnections(C.QtObjectPtr(ptr.Pointer()), C.int(numConnections))
+		C.QLocalServer_SetMaxPendingConnections(ptr.Pointer(), C.int(numConnections))
 	}
 }
 
 func (ptr *QLocalServer) SocketOptions() QLocalServer__SocketOption {
 	if ptr.Pointer() != nil {
-		return QLocalServer__SocketOption(C.QLocalServer_SocketOptions(C.QtObjectPtr(ptr.Pointer())))
+		return QLocalServer__SocketOption(C.QLocalServer_SocketOptions(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QLocalServer) WaitForNewConnection(msec int, timedOut bool) bool {
 	if ptr.Pointer() != nil {
-		return C.QLocalServer_WaitForNewConnection(C.QtObjectPtr(ptr.Pointer()), C.int(msec), C.int(qt.GoBoolToInt(timedOut))) != 0
+		return C.QLocalServer_WaitForNewConnection(ptr.Pointer(), C.int(msec), C.int(qt.GoBoolToInt(timedOut))) != 0
 	}
 	return false
 }
 
 func (ptr *QLocalServer) DestroyQLocalServer() {
 	if ptr.Pointer() != nil {
-		C.QLocalServer_DestroyQLocalServer(C.QtObjectPtr(ptr.Pointer()))
+		C.QLocalServer_DestroyQLocalServer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

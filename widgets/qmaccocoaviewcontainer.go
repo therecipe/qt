@@ -11,34 +11,34 @@ type QMacCocoaViewContainer struct {
 	QWidget
 }
 
-type QMacCocoaViewContainerITF interface {
-	QWidgetITF
-	QMacCocoaViewContainerPTR() *QMacCocoaViewContainer
+type QMacCocoaViewContainer_ITF interface {
+	QWidget_ITF
+	QMacCocoaViewContainer_PTR() *QMacCocoaViewContainer
 }
 
-func PointerFromQMacCocoaViewContainer(ptr QMacCocoaViewContainerITF) unsafe.Pointer {
+func PointerFromQMacCocoaViewContainer(ptr QMacCocoaViewContainer_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMacCocoaViewContainerPTR().Pointer()
+		return ptr.QMacCocoaViewContainer_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMacCocoaViewContainerFromPointer(ptr unsafe.Pointer) *QMacCocoaViewContainer {
+func NewQMacCocoaViewContainerFromPointer(ptr unsafe.Pointer) *QMacCocoaViewContainer {
 	var n = new(QMacCocoaViewContainer)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMacCocoaViewContainer_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMacCocoaViewContainer) QMacCocoaViewContainerPTR() *QMacCocoaViewContainer {
+func (ptr *QMacCocoaViewContainer) QMacCocoaViewContainer_PTR() *QMacCocoaViewContainer {
 	return ptr
 }
 
 func (ptr *QMacCocoaViewContainer) DestroyQMacCocoaViewContainer() {
 	if ptr.Pointer() != nil {
-		C.QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(C.QtObjectPtr(ptr.Pointer()))
+		C.QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

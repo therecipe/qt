@@ -13,74 +13,74 @@ type QMacToolBar struct {
 	core.QObject
 }
 
-type QMacToolBarITF interface {
-	core.QObjectITF
-	QMacToolBarPTR() *QMacToolBar
+type QMacToolBar_ITF interface {
+	core.QObject_ITF
+	QMacToolBar_PTR() *QMacToolBar
 }
 
-func PointerFromQMacToolBar(ptr QMacToolBarITF) unsafe.Pointer {
+func PointerFromQMacToolBar(ptr QMacToolBar_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMacToolBarPTR().Pointer()
+		return ptr.QMacToolBar_PTR().Pointer()
 	}
 	return nil
 }
 
-func QMacToolBarFromPointer(ptr unsafe.Pointer) *QMacToolBar {
+func NewQMacToolBarFromPointer(ptr unsafe.Pointer) *QMacToolBar {
 	var n = new(QMacToolBar)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QMacToolBar_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QMacToolBar) QMacToolBarPTR() *QMacToolBar {
+func (ptr *QMacToolBar) QMacToolBar_PTR() *QMacToolBar {
 	return ptr
 }
 
-func NewQMacToolBar(parent core.QObjectITF) *QMacToolBar {
-	return QMacToolBarFromPointer(unsafe.Pointer(C.QMacToolBar_NewQMacToolBar(C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQMacToolBar(parent core.QObject_ITF) *QMacToolBar {
+	return NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar(core.PointerFromQObject(parent)))
 }
 
-func NewQMacToolBar2(identifier string, parent core.QObjectITF) *QMacToolBar {
-	return QMacToolBarFromPointer(unsafe.Pointer(C.QMacToolBar_NewQMacToolBar2(C.CString(identifier), C.QtObjectPtr(core.PointerFromQObject(parent)))))
+func NewQMacToolBar2(identifier string, parent core.QObject_ITF) *QMacToolBar {
+	return NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar2(C.CString(identifier), core.PointerFromQObject(parent)))
 }
 
-func (ptr *QMacToolBar) AddAllowedItem(icon gui.QIconITF, text string) *QMacToolBarItem {
+func (ptr *QMacToolBar) AddAllowedItem(icon gui.QIcon_ITF, text string) *QMacToolBarItem {
 	if ptr.Pointer() != nil {
-		return QMacToolBarItemFromPointer(unsafe.Pointer(C.QMacToolBar_AddAllowedItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQIcon(icon)), C.CString(text))))
+		return NewQMacToolBarItemFromPointer(C.QMacToolBar_AddAllowedItem(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text)))
 	}
 	return nil
 }
 
-func (ptr *QMacToolBar) AddItem(icon gui.QIconITF, text string) *QMacToolBarItem {
+func (ptr *QMacToolBar) AddItem(icon gui.QIcon_ITF, text string) *QMacToolBarItem {
 	if ptr.Pointer() != nil {
-		return QMacToolBarItemFromPointer(unsafe.Pointer(C.QMacToolBar_AddItem(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQIcon(icon)), C.CString(text))))
+		return NewQMacToolBarItemFromPointer(C.QMacToolBar_AddItem(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text)))
 	}
 	return nil
 }
 
 func (ptr *QMacToolBar) AddSeparator() {
 	if ptr.Pointer() != nil {
-		C.QMacToolBar_AddSeparator(C.QtObjectPtr(ptr.Pointer()))
+		C.QMacToolBar_AddSeparator(ptr.Pointer())
 	}
 }
 
-func (ptr *QMacToolBar) AttachToWindow(window gui.QWindowITF) {
+func (ptr *QMacToolBar) AttachToWindow(window gui.QWindow_ITF) {
 	if ptr.Pointer() != nil {
-		C.QMacToolBar_AttachToWindow(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQWindow(window)))
+		C.QMacToolBar_AttachToWindow(ptr.Pointer(), gui.PointerFromQWindow(window))
 	}
 }
 
 func (ptr *QMacToolBar) DetachFromWindow() {
 	if ptr.Pointer() != nil {
-		C.QMacToolBar_DetachFromWindow(C.QtObjectPtr(ptr.Pointer()))
+		C.QMacToolBar_DetachFromWindow(ptr.Pointer())
 	}
 }
 
 func (ptr *QMacToolBar) DestroyQMacToolBar() {
 	if ptr.Pointer() != nil {
-		C.QMacToolBar_DestroyQMacToolBar(C.QtObjectPtr(ptr.Pointer()))
+		C.QMacToolBar_DestroyQMacToolBar(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

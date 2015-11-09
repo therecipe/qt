@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QOpenGLVersionProfile QOpenGLVersionProfile::QOpenGLVersionProfile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non constructor false false   [] }
-&{QOpenGLVersionProfile QOpenGLVersionProfile::QOpenGLVersionProfile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non constructor false true 3  [0xc8200a5ae0] }
-&{QOpenGLVersionProfile QOpenGLVersionProfile::QOpenGLVersionProfile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non constructor false true 2  [0xc8200a5ec0] }
-&{hasProfiles QOpenGLVersionProfile::hasProfiles commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool [] }
-&{isLegacyVersion QOpenGLVersionProfile::isLegacyVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool [] }
-&{isValid QOpenGLVersionProfile::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool [] }
-&{operator= QOpenGLVersionProfile::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QOpenGLVersionProfile & [0xc8207a87a0] }
-&{profile QOpenGLVersionProfile::profile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QSurfaceFormat::OpenGLContextProfile [] }
-&{setProfile QOpenGLVersionProfile::setProfile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void [0xc8207a8c80] }
-&{setVersion QOpenGLVersionProfile::setVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void [0xc8207a8ec0 0xc8207a8fa0] }
-&{version QOpenGLVersionProfile::version commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QPair<int, int> [] }
-&{~QOpenGLVersionProfile QOpenGLVersionProfile::~QOpenGLVersionProfile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non destructor false false   [] }
+&{QOpenGLVersionProfile QOpenGLVersionProfile::QOpenGLVersionProfile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non constructor false false   QOpenGLVersionProfile() [] }
+&{QOpenGLVersionProfile QOpenGLVersionProfile::QOpenGLVersionProfile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non constructor false true 3  QOpenGLVersionProfile(const QOpenGLVersionProfile &other) [0xc8205f8580] }
+&{QOpenGLVersionProfile QOpenGLVersionProfile::QOpenGLVersionProfile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non constructor false true 2  QOpenGLVersionProfile(const QSurfaceFormat &format) [0xc8205f8a00] }
+&{hasProfiles QOpenGLVersionProfile::hasProfiles commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool bool hasProfiles() const [] }
+&{isLegacyVersion QOpenGLVersionProfile::isLegacyVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool bool isLegacyVersion() const [] }
+&{isValid QOpenGLVersionProfile::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  bool bool isValid() const [] }
+&{operator= QOpenGLVersionProfile::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QOpenGLVersionProfile & QOpenGLVersionProfile & operator=(const QOpenGLVersionProfile &rhs) [0xc8205f93e0] }
+&{profile QOpenGLVersionProfile::profile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QSurfaceFormat::OpenGLContextProfile QSurfaceFormat::OpenGLContextProfile profile() const [] }
+&{setProfile QOpenGLVersionProfile::setProfile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void void setProfile(QSurfaceFormat::OpenGLContextProfile profile) [0xc8205f9960] }
+&{setVersion QOpenGLVersionProfile::setVersion commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  void void setVersion(int majorVersion, int minorVersion) [0xc8205f9ac0 0xc8205f9ba0] }
+&{version QOpenGLVersionProfile::version commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non plain false false  QPair<int, int> QPair<int, int> version() const [] }
+&{~QOpenGLVersionProfile QOpenGLVersionProfile::~QOpenGLVersionProfile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qopenglcontext.h non destructor false false   ~QOpenGLVersionProfile() [] }
 ########################################			ENUMS			########################################

@@ -22,6 +22,28 @@ func cppFunctionHeader(f *parser.Function) string {
 
 func cppFunctionBody(f *parser.Function) (o string) {
 
+	/*
+		for _, p := range f.Parameters {
+			if strings.Contains(p.Value, "**") && p.Name == "argv" {
+				o += "QList<QByteArray> aList = QByteArray(argv).split('|');\n"
+				o += "\tQVarLengthArray<const char*> argvs(argc);\n"
+				o += "\tstatic int argcs = argc;\n"
+				o += "\tfor (int i = 0; i < argc; i++)\n"
+				o += "\t\targvs[i] = static_cast<const char*>(aList[i].constData());\n\n\t"
+			}
+		}
+	*/
+
+	for _, p := range f.Parameters {
+		if strings.Contains(p.Value, "**") && p.Name == "argv" {
+			o += "QList<QByteArray> aList = QByteArray(argv).split('|');\n"
+			o += "\tchar *argvs[argc];\n"
+			o += "\tstatic int argcs = argc;\n"
+			o += "\tfor (int i = 0; i < argc; i++)\n"
+			o += "\t\targvs[i] = aList[i].data();\n\n\t"
+		}
+	}
+
 	if converter.CppHeaderOutput(f) != "void" {
 		o += "return "
 	}
@@ -41,7 +63,13 @@ func cppFunctionBody(f *parser.Function) (o string) {
 		if f.Static {
 			o += converter.CppBodyOutput(f, fmt.Sprintf("%v::%v(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
 		} else {
-			o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
+			if f.Output == "T" && f.Class() == "QObject" {
+				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v<QObject*>(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
+			} else if f.Output == "T" && f.Class() == "QMediaService" {
+				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v<QMediaControl*>(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
+			} else {
+				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
+			}
 		}
 
 	case "signal":

@@ -1,10 +1,10 @@
 #include "qslider.h"
+#include <QWidget>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QEvent>
-#include <QWidget>
 #include <QSlider>
 #include "_cgo_export.h"
 
@@ -12,35 +12,35 @@ class MyQSlider: public QSlider {
 public:
 };
 
-void QSlider_SetTickInterval(QtObjectPtr ptr, int ti){
+void QSlider_SetTickInterval(void* ptr, int ti){
 	static_cast<QSlider*>(ptr)->setTickInterval(ti);
 }
 
-void QSlider_SetTickPosition(QtObjectPtr ptr, int position){
+void QSlider_SetTickPosition(void* ptr, int position){
 	static_cast<QSlider*>(ptr)->setTickPosition(static_cast<QSlider::TickPosition>(position));
 }
 
-int QSlider_TickInterval(QtObjectPtr ptr){
+int QSlider_TickInterval(void* ptr){
 	return static_cast<QSlider*>(ptr)->tickInterval();
 }
 
-int QSlider_TickPosition(QtObjectPtr ptr){
+int QSlider_TickPosition(void* ptr){
 	return static_cast<QSlider*>(ptr)->tickPosition();
 }
 
-QtObjectPtr QSlider_NewQSlider(QtObjectPtr parent){
+void* QSlider_NewQSlider(void* parent){
 	return new QSlider(static_cast<QWidget*>(parent));
 }
 
-QtObjectPtr QSlider_NewQSlider2(int orientation, QtObjectPtr parent){
+void* QSlider_NewQSlider2(int orientation, void* parent){
 	return new QSlider(static_cast<Qt::Orientation>(orientation), static_cast<QWidget*>(parent));
 }
 
-int QSlider_Event(QtObjectPtr ptr, QtObjectPtr event){
+int QSlider_Event(void* ptr, void* event){
 	return static_cast<QSlider*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
-void QSlider_DestroyQSlider(QtObjectPtr ptr){
+void QSlider_DestroyQSlider(void* ptr){
 	static_cast<QSlider*>(ptr)->~QSlider();
 }
 

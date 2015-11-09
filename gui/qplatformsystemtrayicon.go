@@ -12,35 +12,35 @@ type QPlatformSystemTrayIcon struct {
 	core.QObject
 }
 
-type QPlatformSystemTrayIconITF interface {
-	core.QObjectITF
-	QPlatformSystemTrayIconPTR() *QPlatformSystemTrayIcon
+type QPlatformSystemTrayIcon_ITF interface {
+	core.QObject_ITF
+	QPlatformSystemTrayIcon_PTR() *QPlatformSystemTrayIcon
 }
 
-func PointerFromQPlatformSystemTrayIcon(ptr QPlatformSystemTrayIconITF) unsafe.Pointer {
+func PointerFromQPlatformSystemTrayIcon(ptr QPlatformSystemTrayIcon_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlatformSystemTrayIconPTR().Pointer()
+		return ptr.QPlatformSystemTrayIcon_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlatformSystemTrayIconFromPointer(ptr unsafe.Pointer) *QPlatformSystemTrayIcon {
+func NewQPlatformSystemTrayIconFromPointer(ptr unsafe.Pointer) *QPlatformSystemTrayIcon {
 	var n = new(QPlatformSystemTrayIcon)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QPlatformSystemTrayIcon_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QPlatformSystemTrayIcon) QPlatformSystemTrayIconPTR() *QPlatformSystemTrayIcon {
+func (ptr *QPlatformSystemTrayIcon) QPlatformSystemTrayIcon_PTR() *QPlatformSystemTrayIcon {
 	return ptr
 }
 
 //QPlatformSystemTrayIcon::ActivationReason
-type QPlatformSystemTrayIcon__ActivationReason int
+type QPlatformSystemTrayIcon__ActivationReason int64
 
-var (
+const (
 	QPlatformSystemTrayIcon__Unknown     = QPlatformSystemTrayIcon__ActivationReason(0)
 	QPlatformSystemTrayIcon__Context     = QPlatformSystemTrayIcon__ActivationReason(1)
 	QPlatformSystemTrayIcon__DoubleClick = QPlatformSystemTrayIcon__ActivationReason(2)
@@ -49,9 +49,9 @@ var (
 )
 
 //QPlatformSystemTrayIcon::MessageIcon
-type QPlatformSystemTrayIcon__MessageIcon int
+type QPlatformSystemTrayIcon__MessageIcon int64
 
-var (
+const (
 	QPlatformSystemTrayIcon__NoIcon      = QPlatformSystemTrayIcon__MessageIcon(0)
 	QPlatformSystemTrayIcon__Information = QPlatformSystemTrayIcon__MessageIcon(1)
 	QPlatformSystemTrayIcon__Warning     = QPlatformSystemTrayIcon__MessageIcon(2)

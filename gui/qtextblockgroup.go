@@ -11,27 +11,27 @@ type QTextBlockGroup struct {
 	QTextObject
 }
 
-type QTextBlockGroupITF interface {
-	QTextObjectITF
-	QTextBlockGroupPTR() *QTextBlockGroup
+type QTextBlockGroup_ITF interface {
+	QTextObject_ITF
+	QTextBlockGroup_PTR() *QTextBlockGroup
 }
 
-func PointerFromQTextBlockGroup(ptr QTextBlockGroupITF) unsafe.Pointer {
+func PointerFromQTextBlockGroup(ptr QTextBlockGroup_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QTextBlockGroupPTR().Pointer()
+		return ptr.QTextBlockGroup_PTR().Pointer()
 	}
 	return nil
 }
 
-func QTextBlockGroupFromPointer(ptr unsafe.Pointer) *QTextBlockGroup {
+func NewQTextBlockGroupFromPointer(ptr unsafe.Pointer) *QTextBlockGroup {
 	var n = new(QTextBlockGroup)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QTextBlockGroup_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QTextBlockGroup) QTextBlockGroupPTR() *QTextBlockGroup {
+func (ptr *QTextBlockGroup) QTextBlockGroup_PTR() *QTextBlockGroup {
 	return ptr
 }

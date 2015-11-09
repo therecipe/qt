@@ -11,31 +11,31 @@ class MyQInputMethodEvent: public QInputMethodEvent {
 public:
 };
 
-QtObjectPtr QInputMethodEvent_NewQInputMethodEvent(){
+void* QInputMethodEvent_NewQInputMethodEvent(){
 	return new QInputMethodEvent();
 }
 
-QtObjectPtr QInputMethodEvent_NewQInputMethodEvent3(QtObjectPtr other){
+void* QInputMethodEvent_NewQInputMethodEvent3(void* other){
 	return new QInputMethodEvent(*static_cast<QInputMethodEvent*>(other));
 }
 
-char* QInputMethodEvent_CommitString(QtObjectPtr ptr){
+char* QInputMethodEvent_CommitString(void* ptr){
 	return static_cast<QInputMethodEvent*>(ptr)->commitString().toUtf8().data();
 }
 
-char* QInputMethodEvent_PreeditString(QtObjectPtr ptr){
+char* QInputMethodEvent_PreeditString(void* ptr){
 	return static_cast<QInputMethodEvent*>(ptr)->preeditString().toUtf8().data();
 }
 
-int QInputMethodEvent_ReplacementLength(QtObjectPtr ptr){
+int QInputMethodEvent_ReplacementLength(void* ptr){
 	return static_cast<QInputMethodEvent*>(ptr)->replacementLength();
 }
 
-int QInputMethodEvent_ReplacementStart(QtObjectPtr ptr){
+int QInputMethodEvent_ReplacementStart(void* ptr){
 	return static_cast<QInputMethodEvent*>(ptr)->replacementStart();
 }
 
-void QInputMethodEvent_SetCommitString(QtObjectPtr ptr, char* commitString, int replaceFrom, int replaceLength){
+void QInputMethodEvent_SetCommitString(void* ptr, char* commitString, int replaceFrom, int replaceLength){
 	static_cast<QInputMethodEvent*>(ptr)->setCommitString(QString(commitString), replaceFrom, replaceLength);
 }
 

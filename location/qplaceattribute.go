@@ -10,8 +10,8 @@ type QPlaceAttribute struct {
 	ptr unsafe.Pointer
 }
 
-type QPlaceAttributeITF interface {
-	QPlaceAttributePTR() *QPlaceAttribute
+type QPlaceAttribute_ITF interface {
+	QPlaceAttribute_PTR() *QPlaceAttribute
 }
 
 func (p *QPlaceAttribute) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QPlaceAttribute) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPlaceAttribute(ptr QPlaceAttributeITF) unsafe.Pointer {
+func PointerFromQPlaceAttribute(ptr QPlaceAttribute_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceAttributePTR().Pointer()
+		return ptr.QPlaceAttribute_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceAttributeFromPointer(ptr unsafe.Pointer) *QPlaceAttribute {
+func NewQPlaceAttributeFromPointer(ptr unsafe.Pointer) *QPlaceAttribute {
 	var n = new(QPlaceAttribute)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPlaceAttribute) QPlaceAttributePTR() *QPlaceAttribute {
+func (ptr *QPlaceAttribute) QPlaceAttribute_PTR() *QPlaceAttribute {
 	return ptr
 }

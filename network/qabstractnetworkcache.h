@@ -1,13 +1,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-void QAbstractNetworkCache_Clear(QtObjectPtr ptr);
-QtObjectPtr QAbstractNetworkCache_Data(QtObjectPtr ptr, char* url);
-QtObjectPtr QAbstractNetworkCache_Prepare(QtObjectPtr ptr, QtObjectPtr metaData);
-void QAbstractNetworkCache_UpdateMetaData(QtObjectPtr ptr, QtObjectPtr metaData);
-void QAbstractNetworkCache_DestroyQAbstractNetworkCache(QtObjectPtr ptr);
+void QAbstractNetworkCache_Clear(void* ptr);
+void* QAbstractNetworkCache_Data(void* ptr, void* url);
+void* QAbstractNetworkCache_Prepare(void* ptr, void* metaData);
+void QAbstractNetworkCache_UpdateMetaData(void* ptr, void* metaData);
+void QAbstractNetworkCache_DestroyQAbstractNetworkCache(void* ptr);
 
 #ifdef __cplusplus
 }

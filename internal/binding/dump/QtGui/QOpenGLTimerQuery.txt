@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QOpenGLTimerQuery QOpenGLTimerQuery::QOpenGLTimerQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non constructor false false   [0xc8224bdd40] }
-&{begin QOpenGLTimerQuery::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void [] }
-&{create QOpenGLTimerQuery::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool [] }
-&{destroy QOpenGLTimerQuery::destroy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void [] }
-&{end QOpenGLTimerQuery::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void [] }
-&{isCreated QOpenGLTimerQuery::isCreated commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool [] }
-&{isResultAvailable QOpenGLTimerQuery::isResultAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool [] }
-&{objectId QOpenGLTimerQuery::objectId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  GLuint [] }
-&{recordTimestamp QOpenGLTimerQuery::recordTimestamp commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void [] }
-&{waitForResult QOpenGLTimerQuery::waitForResult commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  GLuint64 [] }
-&{waitForTimestamp QOpenGLTimerQuery::waitForTimestamp commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  GLuint64 [] }
-&{~QOpenGLTimerQuery QOpenGLTimerQuery::~QOpenGLTimerQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non destructor false false   [] }
+&{QOpenGLTimerQuery QOpenGLTimerQuery::QOpenGLTimerQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non constructor false false   QOpenGLTimerQuery(QObject *parent) [0xc822452ac0] }
+&{begin QOpenGLTimerQuery::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void void begin() [] }
+&{create QOpenGLTimerQuery::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool bool create() [] }
+&{destroy QOpenGLTimerQuery::destroy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void void destroy() [] }
+&{end QOpenGLTimerQuery::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void void end() [] }
+&{isCreated QOpenGLTimerQuery::isCreated commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool bool isCreated() const [] }
+&{isResultAvailable QOpenGLTimerQuery::isResultAvailable commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool bool isResultAvailable() const [] }
+&{objectId QOpenGLTimerQuery::objectId commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  GLuint GLuint objectId() const [] }
+&{recordTimestamp QOpenGLTimerQuery::recordTimestamp commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void void recordTimestamp() [] }
+&{waitForResult QOpenGLTimerQuery::waitForResult commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  GLuint64 GLuint64 waitForResult() const [] }
+&{waitForTimestamp QOpenGLTimerQuery::waitForTimestamp commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  GLuint64 GLuint64 waitForTimestamp() const [] }
+&{~QOpenGLTimerQuery QOpenGLTimerQuery::~QOpenGLTimerQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non destructor false false   ~QOpenGLTimerQuery() [] }
 ########################################			ENUMS			########################################

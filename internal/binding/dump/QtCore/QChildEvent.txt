@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{QChildEvent QChildEvent::QChildEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non constructor false false   [0xc8202019a0 0xc820201a40] }
-&{added QChildEvent::added commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  bool [] }
-&{child QChildEvent::child commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  QObject * [] }
-&{polished QChildEvent::polished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  bool [] }
-&{removed QChildEvent::removed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  bool [] }
+&{QChildEvent QChildEvent::QChildEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non constructor false false   QChildEvent(Type type, QObject *child) [0xc82060cc00 0xc82060cc80] }
+&{added QChildEvent::added commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  bool bool added() const [] }
+&{child QChildEvent::child commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  QObject * QObject * child() const [] }
+&{polished QChildEvent::polished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  bool bool polished() const [] }
+&{removed QChildEvent::removed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  bool bool removed() const [] }
 ########################################			ENUMS			########################################

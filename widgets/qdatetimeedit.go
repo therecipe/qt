@@ -12,35 +12,35 @@ type QDateTimeEdit struct {
 	QAbstractSpinBox
 }
 
-type QDateTimeEditITF interface {
-	QAbstractSpinBoxITF
-	QDateTimeEditPTR() *QDateTimeEdit
+type QDateTimeEdit_ITF interface {
+	QAbstractSpinBox_ITF
+	QDateTimeEdit_PTR() *QDateTimeEdit
 }
 
-func PointerFromQDateTimeEdit(ptr QDateTimeEditITF) unsafe.Pointer {
+func PointerFromQDateTimeEdit(ptr QDateTimeEdit_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDateTimeEditPTR().Pointer()
+		return ptr.QDateTimeEdit_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDateTimeEditFromPointer(ptr unsafe.Pointer) *QDateTimeEdit {
+func NewQDateTimeEditFromPointer(ptr unsafe.Pointer) *QDateTimeEdit {
 	var n = new(QDateTimeEdit)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QDateTimeEdit_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QDateTimeEdit) QDateTimeEditPTR() *QDateTimeEdit {
+func (ptr *QDateTimeEdit) QDateTimeEdit_PTR() *QDateTimeEdit {
 	return ptr
 }
 
 //QDateTimeEdit::Section
-type QDateTimeEdit__Section int
+type QDateTimeEdit__Section int64
 
-var (
+const (
 	QDateTimeEdit__NoSection         = QDateTimeEdit__Section(0x0000)
 	QDateTimeEdit__AmPmSection       = QDateTimeEdit__Section(0x0001)
 	QDateTimeEdit__MSecSection       = QDateTimeEdit__Section(0x0002)
@@ -54,264 +54,304 @@ var (
 	QDateTimeEdit__DateSections_Mask = QDateTimeEdit__Section(QDateTimeEdit__DaySection | QDateTimeEdit__MonthSection | QDateTimeEdit__YearSection)
 )
 
-func NewQDateTimeEdit3(date core.QDateITF, parent QWidgetITF) *QDateTimeEdit {
-	return QDateTimeEditFromPointer(unsafe.Pointer(C.QDateTimeEdit_NewQDateTimeEdit3(C.QtObjectPtr(core.PointerFromQDate(date)), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQDateTimeEdit3(date core.QDate_ITF, parent QWidget_ITF) *QDateTimeEdit {
+	return NewQDateTimeEditFromPointer(C.QDateTimeEdit_NewQDateTimeEdit3(core.PointerFromQDate(date), PointerFromQWidget(parent)))
 }
 
-func NewQDateTimeEdit4(time core.QTimeITF, parent QWidgetITF) *QDateTimeEdit {
-	return QDateTimeEditFromPointer(unsafe.Pointer(C.QDateTimeEdit_NewQDateTimeEdit4(C.QtObjectPtr(core.PointerFromQTime(time)), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQDateTimeEdit4(time core.QTime_ITF, parent QWidget_ITF) *QDateTimeEdit {
+	return NewQDateTimeEditFromPointer(C.QDateTimeEdit_NewQDateTimeEdit4(core.PointerFromQTime(time), PointerFromQWidget(parent)))
 }
 
 func (ptr *QDateTimeEdit) CalendarPopup() bool {
 	if ptr.Pointer() != nil {
-		return C.QDateTimeEdit_CalendarPopup(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QDateTimeEdit_CalendarPopup(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QDateTimeEdit) ClearMaximumDate() {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_ClearMaximumDate(C.QtObjectPtr(ptr.Pointer()))
+		C.QDateTimeEdit_ClearMaximumDate(ptr.Pointer())
 	}
 }
 
 func (ptr *QDateTimeEdit) ClearMaximumDateTime() {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_ClearMaximumDateTime(C.QtObjectPtr(ptr.Pointer()))
+		C.QDateTimeEdit_ClearMaximumDateTime(ptr.Pointer())
 	}
 }
 
 func (ptr *QDateTimeEdit) ClearMaximumTime() {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_ClearMaximumTime(C.QtObjectPtr(ptr.Pointer()))
+		C.QDateTimeEdit_ClearMaximumTime(ptr.Pointer())
 	}
 }
 
 func (ptr *QDateTimeEdit) ClearMinimumDate() {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_ClearMinimumDate(C.QtObjectPtr(ptr.Pointer()))
+		C.QDateTimeEdit_ClearMinimumDate(ptr.Pointer())
 	}
 }
 
 func (ptr *QDateTimeEdit) ClearMinimumDateTime() {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_ClearMinimumDateTime(C.QtObjectPtr(ptr.Pointer()))
+		C.QDateTimeEdit_ClearMinimumDateTime(ptr.Pointer())
 	}
 }
 
 func (ptr *QDateTimeEdit) ClearMinimumTime() {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_ClearMinimumTime(C.QtObjectPtr(ptr.Pointer()))
+		C.QDateTimeEdit_ClearMinimumTime(ptr.Pointer())
 	}
 }
 
 func (ptr *QDateTimeEdit) CurrentSection() QDateTimeEdit__Section {
 	if ptr.Pointer() != nil {
-		return QDateTimeEdit__Section(C.QDateTimeEdit_CurrentSection(C.QtObjectPtr(ptr.Pointer())))
+		return QDateTimeEdit__Section(C.QDateTimeEdit_CurrentSection(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDateTimeEdit) CurrentSectionIndex() int {
 	if ptr.Pointer() != nil {
-		return int(C.QDateTimeEdit_CurrentSectionIndex(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QDateTimeEdit_CurrentSectionIndex(ptr.Pointer()))
 	}
 	return 0
 }
 
+func (ptr *QDateTimeEdit) DateTime() *core.QDateTime {
+	if ptr.Pointer() != nil {
+		return core.NewQDateTimeFromPointer(C.QDateTimeEdit_DateTime(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QDateTimeEdit) DisplayFormat() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDateTimeEdit_DisplayFormat(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QDateTimeEdit_DisplayFormat(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDateTimeEdit) DisplayedSections() QDateTimeEdit__Section {
 	if ptr.Pointer() != nil {
-		return QDateTimeEdit__Section(C.QDateTimeEdit_DisplayedSections(C.QtObjectPtr(ptr.Pointer())))
+		return QDateTimeEdit__Section(C.QDateTimeEdit_DisplayedSections(ptr.Pointer()))
 	}
 	return 0
 }
 
+func (ptr *QDateTimeEdit) MaximumDateTime() *core.QDateTime {
+	if ptr.Pointer() != nil {
+		return core.NewQDateTimeFromPointer(C.QDateTimeEdit_MaximumDateTime(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDateTimeEdit) MinimumDateTime() *core.QDateTime {
+	if ptr.Pointer() != nil {
+		return core.NewQDateTimeFromPointer(C.QDateTimeEdit_MinimumDateTime(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QDateTimeEdit) SectionCount() int {
 	if ptr.Pointer() != nil {
-		return int(C.QDateTimeEdit_SectionCount(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QDateTimeEdit_SectionCount(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QDateTimeEdit) SectionText(section QDateTimeEdit__Section) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDateTimeEdit_SectionText(C.QtObjectPtr(ptr.Pointer()), C.int(section)))
+		return C.GoString(C.QDateTimeEdit_SectionText(ptr.Pointer(), C.int(section)))
 	}
 	return ""
 }
 
 func (ptr *QDateTimeEdit) SetCalendarPopup(enable bool) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetCalendarPopup(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(enable)))
+		C.QDateTimeEdit_SetCalendarPopup(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
 func (ptr *QDateTimeEdit) SetCurrentSection(section QDateTimeEdit__Section) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetCurrentSection(C.QtObjectPtr(ptr.Pointer()), C.int(section))
+		C.QDateTimeEdit_SetCurrentSection(ptr.Pointer(), C.int(section))
 	}
 }
 
 func (ptr *QDateTimeEdit) SetCurrentSectionIndex(index int) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetCurrentSectionIndex(C.QtObjectPtr(ptr.Pointer()), C.int(index))
+		C.QDateTimeEdit_SetCurrentSectionIndex(ptr.Pointer(), C.int(index))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetDate(date core.QDateITF) {
+func (ptr *QDateTimeEdit) SetDate(date core.QDate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetDate(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQDate(date)))
+		C.QDateTimeEdit_SetDate(ptr.Pointer(), core.PointerFromQDate(date))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetDateTime(dateTime core.QDateTimeITF) {
+func (ptr *QDateTimeEdit) SetDateTime(dateTime core.QDateTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetDateTime(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQDateTime(dateTime)))
+		C.QDateTimeEdit_SetDateTime(ptr.Pointer(), core.PointerFromQDateTime(dateTime))
 	}
 }
 
 func (ptr *QDateTimeEdit) SetDisplayFormat(format string) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetDisplayFormat(C.QtObjectPtr(ptr.Pointer()), C.CString(format))
+		C.QDateTimeEdit_SetDisplayFormat(ptr.Pointer(), C.CString(format))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetMaximumDate(max core.QDateITF) {
+func (ptr *QDateTimeEdit) SetMaximumDate(max core.QDate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetMaximumDate(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQDate(max)))
+		C.QDateTimeEdit_SetMaximumDate(ptr.Pointer(), core.PointerFromQDate(max))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetMaximumDateTime(dt core.QDateTimeITF) {
+func (ptr *QDateTimeEdit) SetMaximumDateTime(dt core.QDateTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetMaximumDateTime(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQDateTime(dt)))
+		C.QDateTimeEdit_SetMaximumDateTime(ptr.Pointer(), core.PointerFromQDateTime(dt))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetMaximumTime(max core.QTimeITF) {
+func (ptr *QDateTimeEdit) SetMaximumTime(max core.QTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetMaximumTime(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQTime(max)))
+		C.QDateTimeEdit_SetMaximumTime(ptr.Pointer(), core.PointerFromQTime(max))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetMinimumDate(min core.QDateITF) {
+func (ptr *QDateTimeEdit) SetMinimumDate(min core.QDate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetMinimumDate(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQDate(min)))
+		C.QDateTimeEdit_SetMinimumDate(ptr.Pointer(), core.PointerFromQDate(min))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetMinimumDateTime(dt core.QDateTimeITF) {
+func (ptr *QDateTimeEdit) SetMinimumDateTime(dt core.QDateTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetMinimumDateTime(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQDateTime(dt)))
+		C.QDateTimeEdit_SetMinimumDateTime(ptr.Pointer(), core.PointerFromQDateTime(dt))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetMinimumTime(min core.QTimeITF) {
+func (ptr *QDateTimeEdit) SetMinimumTime(min core.QTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetMinimumTime(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQTime(min)))
+		C.QDateTimeEdit_SetMinimumTime(ptr.Pointer(), core.PointerFromQTime(min))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetTime(time core.QTimeITF) {
+func (ptr *QDateTimeEdit) SetTime(time core.QTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetTime(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQTime(time)))
+		C.QDateTimeEdit_SetTime(ptr.Pointer(), core.PointerFromQTime(time))
 	}
 }
 
 func (ptr *QDateTimeEdit) SetTimeSpec(spec core.Qt__TimeSpec) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetTimeSpec(C.QtObjectPtr(ptr.Pointer()), C.int(spec))
+		C.QDateTimeEdit_SetTimeSpec(ptr.Pointer(), C.int(spec))
 	}
 }
 
 func (ptr *QDateTimeEdit) TimeSpec() core.Qt__TimeSpec {
 	if ptr.Pointer() != nil {
-		return core.Qt__TimeSpec(C.QDateTimeEdit_TimeSpec(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__TimeSpec(C.QDateTimeEdit_TimeSpec(ptr.Pointer()))
 	}
 	return 0
 }
 
-func NewQDateTimeEdit(parent QWidgetITF) *QDateTimeEdit {
-	return QDateTimeEditFromPointer(unsafe.Pointer(C.QDateTimeEdit_NewQDateTimeEdit(C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQDateTimeEdit(parent QWidget_ITF) *QDateTimeEdit {
+	return NewQDateTimeEditFromPointer(C.QDateTimeEdit_NewQDateTimeEdit(PointerFromQWidget(parent)))
 }
 
-func NewQDateTimeEdit2(datetime core.QDateTimeITF, parent QWidgetITF) *QDateTimeEdit {
-	return QDateTimeEditFromPointer(unsafe.Pointer(C.QDateTimeEdit_NewQDateTimeEdit2(C.QtObjectPtr(core.PointerFromQDateTime(datetime)), C.QtObjectPtr(PointerFromQWidget(parent)))))
+func NewQDateTimeEdit2(datetime core.QDateTime_ITF, parent QWidget_ITF) *QDateTimeEdit {
+	return NewQDateTimeEditFromPointer(C.QDateTimeEdit_NewQDateTimeEdit2(core.PointerFromQDateTime(datetime), PointerFromQWidget(parent)))
 }
 
 func (ptr *QDateTimeEdit) CalendarWidget() *QCalendarWidget {
 	if ptr.Pointer() != nil {
-		return QCalendarWidgetFromPointer(unsafe.Pointer(C.QDateTimeEdit_CalendarWidget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQCalendarWidgetFromPointer(C.QDateTimeEdit_CalendarWidget(ptr.Pointer()))
 	}
 	return nil
 }
 
 func (ptr *QDateTimeEdit) Clear() {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_Clear(C.QtObjectPtr(ptr.Pointer()))
+		C.QDateTimeEdit_Clear(ptr.Pointer())
 	}
 }
 
-func (ptr *QDateTimeEdit) Event(event core.QEventITF) bool {
+func (ptr *QDateTimeEdit) ConnectDateTimeChanged(f func(datetime *core.QDateTime)) {
 	if ptr.Pointer() != nil {
-		return C.QDateTimeEdit_Event(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQEvent(event))) != 0
+		C.QDateTimeEdit_ConnectDateTimeChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "dateTimeChanged", f)
+	}
+}
+
+func (ptr *QDateTimeEdit) DisconnectDateTimeChanged() {
+	if ptr.Pointer() != nil {
+		C.QDateTimeEdit_DisconnectDateTimeChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "dateTimeChanged")
+	}
+}
+
+//export callbackQDateTimeEditDateTimeChanged
+func callbackQDateTimeEditDateTimeChanged(ptrName *C.char, datetime unsafe.Pointer) {
+	qt.GetSignal(C.GoString(ptrName), "dateTimeChanged").(func(*core.QDateTime))(core.NewQDateTimeFromPointer(datetime))
+}
+
+func (ptr *QDateTimeEdit) Event(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QDateTimeEdit_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
 	}
 	return false
 }
 
 func (ptr *QDateTimeEdit) SectionAt(index int) QDateTimeEdit__Section {
 	if ptr.Pointer() != nil {
-		return QDateTimeEdit__Section(C.QDateTimeEdit_SectionAt(C.QtObjectPtr(ptr.Pointer()), C.int(index)))
+		return QDateTimeEdit__Section(C.QDateTimeEdit_SectionAt(ptr.Pointer(), C.int(index)))
 	}
 	return 0
 }
 
-func (ptr *QDateTimeEdit) SetCalendarWidget(calendarWidget QCalendarWidgetITF) {
+func (ptr *QDateTimeEdit) SetCalendarWidget(calendarWidget QCalendarWidget_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetCalendarWidget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQCalendarWidget(calendarWidget)))
+		C.QDateTimeEdit_SetCalendarWidget(ptr.Pointer(), PointerFromQCalendarWidget(calendarWidget))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetDateRange(min core.QDateITF, max core.QDateITF) {
+func (ptr *QDateTimeEdit) SetDateRange(min core.QDate_ITF, max core.QDate_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetDateRange(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQDate(min)), C.QtObjectPtr(core.PointerFromQDate(max)))
+		C.QDateTimeEdit_SetDateRange(ptr.Pointer(), core.PointerFromQDate(min), core.PointerFromQDate(max))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetDateTimeRange(min core.QDateTimeITF, max core.QDateTimeITF) {
+func (ptr *QDateTimeEdit) SetDateTimeRange(min core.QDateTime_ITF, max core.QDateTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetDateTimeRange(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQDateTime(min)), C.QtObjectPtr(core.PointerFromQDateTime(max)))
+		C.QDateTimeEdit_SetDateTimeRange(ptr.Pointer(), core.PointerFromQDateTime(min), core.PointerFromQDateTime(max))
 	}
 }
 
 func (ptr *QDateTimeEdit) SetSelectedSection(section QDateTimeEdit__Section) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetSelectedSection(C.QtObjectPtr(ptr.Pointer()), C.int(section))
+		C.QDateTimeEdit_SetSelectedSection(ptr.Pointer(), C.int(section))
 	}
 }
 
-func (ptr *QDateTimeEdit) SetTimeRange(min core.QTimeITF, max core.QTimeITF) {
+func (ptr *QDateTimeEdit) SetTimeRange(min core.QTime_ITF, max core.QTime_ITF) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_SetTimeRange(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQTime(min)), C.QtObjectPtr(core.PointerFromQTime(max)))
+		C.QDateTimeEdit_SetTimeRange(ptr.Pointer(), core.PointerFromQTime(min), core.PointerFromQTime(max))
 	}
 }
 
 func (ptr *QDateTimeEdit) StepBy(steps int) {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_StepBy(C.QtObjectPtr(ptr.Pointer()), C.int(steps))
+		C.QDateTimeEdit_StepBy(ptr.Pointer(), C.int(steps))
 	}
 }
 
 func (ptr *QDateTimeEdit) DestroyQDateTimeEdit() {
 	if ptr.Pointer() != nil {
-		C.QDateTimeEdit_DestroyQDateTimeEdit(C.QtObjectPtr(ptr.Pointer()))
+		C.QDateTimeEdit_DestroyQDateTimeEdit(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

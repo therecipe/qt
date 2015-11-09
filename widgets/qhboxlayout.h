@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QHBoxLayout_NewQHBoxLayout();
-QtObjectPtr QHBoxLayout_NewQHBoxLayout2(QtObjectPtr parent);
-void QHBoxLayout_DestroyQHBoxLayout(QtObjectPtr ptr);
+void* QHBoxLayout_NewQHBoxLayout();
+void* QHBoxLayout_NewQHBoxLayout2(void* parent);
+void QHBoxLayout_DestroyQHBoxLayout(void* ptr);
 
 #ifdef __cplusplus
 }

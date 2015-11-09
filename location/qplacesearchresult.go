@@ -10,8 +10,8 @@ type QPlaceSearchResult struct {
 	ptr unsafe.Pointer
 }
 
-type QPlaceSearchResultITF interface {
-	QPlaceSearchResultPTR() *QPlaceSearchResult
+type QPlaceSearchResult_ITF interface {
+	QPlaceSearchResult_PTR() *QPlaceSearchResult
 }
 
 func (p *QPlaceSearchResult) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QPlaceSearchResult) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQPlaceSearchResult(ptr QPlaceSearchResultITF) unsafe.Pointer {
+func PointerFromQPlaceSearchResult(ptr QPlaceSearchResult_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceSearchResultPTR().Pointer()
+		return ptr.QPlaceSearchResult_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceSearchResultFromPointer(ptr unsafe.Pointer) *QPlaceSearchResult {
+func NewQPlaceSearchResultFromPointer(ptr unsafe.Pointer) *QPlaceSearchResult {
 	var n = new(QPlaceSearchResult)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPlaceSearchResult) QPlaceSearchResultPTR() *QPlaceSearchResult {
+func (ptr *QPlaceSearchResult) QPlaceSearchResult_PTR() *QPlaceSearchResult {
 	return ptr
 }
 
 //QPlaceSearchResult::SearchResultType
-type QPlaceSearchResult__SearchResultType int
+type QPlaceSearchResult__SearchResultType int64
 
-var (
+const (
 	QPlaceSearchResult__UnknownSearchResult  = QPlaceSearchResult__SearchResultType(0)
 	QPlaceSearchResult__PlaceResult          = QPlaceSearchResult__SearchResultType(1)
 	QPlaceSearchResult__ProposedSearchResult = QPlaceSearchResult__SearchResultType(2)

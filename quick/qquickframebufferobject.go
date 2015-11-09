@@ -11,67 +11,67 @@ type QQuickFramebufferObject struct {
 	QQuickItem
 }
 
-type QQuickFramebufferObjectITF interface {
-	QQuickItemITF
-	QQuickFramebufferObjectPTR() *QQuickFramebufferObject
+type QQuickFramebufferObject_ITF interface {
+	QQuickItem_ITF
+	QQuickFramebufferObject_PTR() *QQuickFramebufferObject
 }
 
-func PointerFromQQuickFramebufferObject(ptr QQuickFramebufferObjectITF) unsafe.Pointer {
+func PointerFromQQuickFramebufferObject(ptr QQuickFramebufferObject_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QQuickFramebufferObjectPTR().Pointer()
+		return ptr.QQuickFramebufferObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func QQuickFramebufferObjectFromPointer(ptr unsafe.Pointer) *QQuickFramebufferObject {
+func NewQQuickFramebufferObjectFromPointer(ptr unsafe.Pointer) *QQuickFramebufferObject {
 	var n = new(QQuickFramebufferObject)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QQuickFramebufferObject_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QQuickFramebufferObject) QQuickFramebufferObjectPTR() *QQuickFramebufferObject {
+func (ptr *QQuickFramebufferObject) QQuickFramebufferObject_PTR() *QQuickFramebufferObject {
 	return ptr
 }
 
 func (ptr *QQuickFramebufferObject) SetTextureFollowsItemSize(follows bool) {
 	if ptr.Pointer() != nil {
-		C.QQuickFramebufferObject_SetTextureFollowsItemSize(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(follows)))
+		C.QQuickFramebufferObject_SetTextureFollowsItemSize(ptr.Pointer(), C.int(qt.GoBoolToInt(follows)))
 	}
 }
 
 func (ptr *QQuickFramebufferObject) TextureFollowsItemSize() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickFramebufferObject_TextureFollowsItemSize(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QQuickFramebufferObject_TextureFollowsItemSize(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickFramebufferObject) IsTextureProvider() bool {
 	if ptr.Pointer() != nil {
-		return C.QQuickFramebufferObject_IsTextureProvider(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QQuickFramebufferObject_IsTextureProvider(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QQuickFramebufferObject) ReleaseResources() {
 	if ptr.Pointer() != nil {
-		C.QQuickFramebufferObject_ReleaseResources(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickFramebufferObject_ReleaseResources(ptr.Pointer())
 	}
 }
 
 func (ptr *QQuickFramebufferObject) ConnectTextureFollowsItemSizeChanged(f func(v bool)) {
 	if ptr.Pointer() != nil {
-		C.QQuickFramebufferObject_ConnectTextureFollowsItemSizeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickFramebufferObject_ConnectTextureFollowsItemSizeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "textureFollowsItemSizeChanged", f)
 	}
 }
 
 func (ptr *QQuickFramebufferObject) DisconnectTextureFollowsItemSizeChanged() {
 	if ptr.Pointer() != nil {
-		C.QQuickFramebufferObject_DisconnectTextureFollowsItemSizeChanged(C.QtObjectPtr(ptr.Pointer()))
+		C.QQuickFramebufferObject_DisconnectTextureFollowsItemSizeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "textureFollowsItemSizeChanged")
 	}
 }
@@ -83,7 +83,7 @@ func callbackQQuickFramebufferObjectTextureFollowsItemSizeChanged(ptrName *C.cha
 
 func (ptr *QQuickFramebufferObject) TextureProvider() *QSGTextureProvider {
 	if ptr.Pointer() != nil {
-		return QSGTextureProviderFromPointer(unsafe.Pointer(C.QQuickFramebufferObject_TextureProvider(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQSGTextureProviderFromPointer(C.QQuickFramebufferObject_TextureProvider(ptr.Pointer()))
 	}
 	return nil
 }

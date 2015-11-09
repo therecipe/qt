@@ -10,46 +10,46 @@ type QStyleOptionRubberBand struct {
 	QStyleOption
 }
 
-type QStyleOptionRubberBandITF interface {
-	QStyleOptionITF
-	QStyleOptionRubberBandPTR() *QStyleOptionRubberBand
+type QStyleOptionRubberBand_ITF interface {
+	QStyleOption_ITF
+	QStyleOptionRubberBand_PTR() *QStyleOptionRubberBand
 }
 
-func PointerFromQStyleOptionRubberBand(ptr QStyleOptionRubberBandITF) unsafe.Pointer {
+func PointerFromQStyleOptionRubberBand(ptr QStyleOptionRubberBand_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QStyleOptionRubberBandPTR().Pointer()
+		return ptr.QStyleOptionRubberBand_PTR().Pointer()
 	}
 	return nil
 }
 
-func QStyleOptionRubberBandFromPointer(ptr unsafe.Pointer) *QStyleOptionRubberBand {
+func NewQStyleOptionRubberBandFromPointer(ptr unsafe.Pointer) *QStyleOptionRubberBand {
 	var n = new(QStyleOptionRubberBand)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QStyleOptionRubberBand) QStyleOptionRubberBandPTR() *QStyleOptionRubberBand {
+func (ptr *QStyleOptionRubberBand) QStyleOptionRubberBand_PTR() *QStyleOptionRubberBand {
 	return ptr
 }
 
 //QStyleOptionRubberBand::StyleOptionType
-type QStyleOptionRubberBand__StyleOptionType int
+type QStyleOptionRubberBand__StyleOptionType int64
 
 var (
 	QStyleOptionRubberBand__Type = QStyleOptionRubberBand__StyleOptionType(QStyleOption__SO_RubberBand)
 )
 
 //QStyleOptionRubberBand::StyleOptionVersion
-type QStyleOptionRubberBand__StyleOptionVersion int
+type QStyleOptionRubberBand__StyleOptionVersion int64
 
 var (
 	QStyleOptionRubberBand__Version = QStyleOptionRubberBand__StyleOptionVersion(1)
 )
 
 func NewQStyleOptionRubberBand() *QStyleOptionRubberBand {
-	return QStyleOptionRubberBandFromPointer(unsafe.Pointer(C.QStyleOptionRubberBand_NewQStyleOptionRubberBand()))
+	return NewQStyleOptionRubberBandFromPointer(C.QStyleOptionRubberBand_NewQStyleOptionRubberBand())
 }
 
-func NewQStyleOptionRubberBand2(other QStyleOptionRubberBandITF) *QStyleOptionRubberBand {
-	return QStyleOptionRubberBandFromPointer(unsafe.Pointer(C.QStyleOptionRubberBand_NewQStyleOptionRubberBand2(C.QtObjectPtr(PointerFromQStyleOptionRubberBand(other)))))
+func NewQStyleOptionRubberBand2(other QStyleOptionRubberBand_ITF) *QStyleOptionRubberBand {
+	return NewQStyleOptionRubberBandFromPointer(C.QStyleOptionRubberBand_NewQStyleOptionRubberBand2(PointerFromQStyleOptionRubberBand(other)))
 }

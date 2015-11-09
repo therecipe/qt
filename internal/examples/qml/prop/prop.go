@@ -2,21 +2,23 @@ package main
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/qml"
 )
 
 func main() {
 
-	core.NewQCoreApplication(0, "")
+	core.NewQCoreApplication(len(os.Args), os.Args)
 
 	var (
-		component = qml.NewQQmlComponent3(qml.NewQQmlEngine(nil), "qml/prop.qml", nil)
+		component = qml.NewQQmlComponent5(qml.NewQQmlEngine(nil), core.NewQUrl3("qrc:///qml/prop.qml", 0), nil)
 		object    = component.Create(nil)
 	)
 
 	fmt.Println("Property value:", object.Property("someNumber"))
-	object.SetProperty("someNumber", "5000")
+	object.SetProperty("someNumber", core.NewQVariant7(5000))
 	fmt.Println("Property value:", object.Property("someNumber"))
-	object.SetProperty("someNumber", "100")
+	object.SetProperty("someNumber", core.NewQVariant7(100))
 }

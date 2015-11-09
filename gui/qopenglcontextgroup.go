@@ -12,31 +12,27 @@ type QOpenGLContextGroup struct {
 	core.QObject
 }
 
-type QOpenGLContextGroupITF interface {
-	core.QObjectITF
-	QOpenGLContextGroupPTR() *QOpenGLContextGroup
+type QOpenGLContextGroup_ITF interface {
+	core.QObject_ITF
+	QOpenGLContextGroup_PTR() *QOpenGLContextGroup
 }
 
-func PointerFromQOpenGLContextGroup(ptr QOpenGLContextGroupITF) unsafe.Pointer {
+func PointerFromQOpenGLContextGroup(ptr QOpenGLContextGroup_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QOpenGLContextGroupPTR().Pointer()
+		return ptr.QOpenGLContextGroup_PTR().Pointer()
 	}
 	return nil
 }
 
-func QOpenGLContextGroupFromPointer(ptr unsafe.Pointer) *QOpenGLContextGroup {
+func NewQOpenGLContextGroupFromPointer(ptr unsafe.Pointer) *QOpenGLContextGroup {
 	var n = new(QOpenGLContextGroup)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QOpenGLContextGroup_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QOpenGLContextGroup) QOpenGLContextGroupPTR() *QOpenGLContextGroup {
+func (ptr *QOpenGLContextGroup) QOpenGLContextGroup_PTR() *QOpenGLContextGroup {
 	return ptr
-}
-
-func QOpenGLContextGroup_CurrentContextGroup() *QOpenGLContextGroup {
-	return QOpenGLContextGroupFromPointer(unsafe.Pointer(C.QOpenGLContextGroup_QOpenGLContextGroup_CurrentContextGroup()))
 }

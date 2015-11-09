@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{QQueue QQueue::QQueue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non constructor false false   [] }
-&{dequeue QQueue::dequeue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non plain false false  T [] }
-&{enqueue QQueue::enqueue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non plain false false  void [0xc8205256a0] }
-&{head QQueue::head commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non plain false false  T & [] }
-&{head QQueue::head commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non plain false true 2 const T & [] }
-&{swap QQueue::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non plain false false  void [0xc820525b80] }
-&{~QQueue QQueue::~QQueue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non destructor false false   [] }
+&{QQueue QQueue::QQueue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non constructor false false   QQueue() [] }
+&{dequeue QQueue::dequeue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non plain false false  T T dequeue() [] }
+&{enqueue QQueue::enqueue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non plain false false  void void enqueue(const T &t) [0xc820279a40] }
+&{head QQueue::head commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non plain false false  T & T & head() [] }
+&{head QQueue::head commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non plain false true 2 const T & const T & head() const [] }
+&{swap QQueue::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non plain false false  void void swap(QQueue<T> &other) [0xc8203861e0] }
+&{~QQueue QQueue::~QQueue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qqueue.h non destructor false false   ~QQueue() [] }
 ########################################			ENUMS			########################################

@@ -12,48 +12,48 @@ type QDBusVirtualObject struct {
 	core.QObject
 }
 
-type QDBusVirtualObjectITF interface {
-	core.QObjectITF
-	QDBusVirtualObjectPTR() *QDBusVirtualObject
+type QDBusVirtualObject_ITF interface {
+	core.QObject_ITF
+	QDBusVirtualObject_PTR() *QDBusVirtualObject
 }
 
-func PointerFromQDBusVirtualObject(ptr QDBusVirtualObjectITF) unsafe.Pointer {
+func PointerFromQDBusVirtualObject(ptr QDBusVirtualObject_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QDBusVirtualObjectPTR().Pointer()
+		return ptr.QDBusVirtualObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func QDBusVirtualObjectFromPointer(ptr unsafe.Pointer) *QDBusVirtualObject {
+func NewQDBusVirtualObjectFromPointer(ptr unsafe.Pointer) *QDBusVirtualObject {
 	var n = new(QDBusVirtualObject)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QDBusVirtualObject_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QDBusVirtualObject) QDBusVirtualObjectPTR() *QDBusVirtualObject {
+func (ptr *QDBusVirtualObject) QDBusVirtualObject_PTR() *QDBusVirtualObject {
 	return ptr
 }
 
-func (ptr *QDBusVirtualObject) HandleMessage(message QDBusMessageITF, connection QDBusConnectionITF) bool {
+func (ptr *QDBusVirtualObject) HandleMessage(message QDBusMessage_ITF, connection QDBusConnection_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QDBusVirtualObject_HandleMessage(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQDBusMessage(message)), C.QtObjectPtr(PointerFromQDBusConnection(connection))) != 0
+		return C.QDBusVirtualObject_HandleMessage(ptr.Pointer(), PointerFromQDBusMessage(message), PointerFromQDBusConnection(connection)) != 0
 	}
 	return false
 }
 
 func (ptr *QDBusVirtualObject) Introspect(path string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusVirtualObject_Introspect(C.QtObjectPtr(ptr.Pointer()), C.CString(path)))
+		return C.GoString(C.QDBusVirtualObject_Introspect(ptr.Pointer(), C.CString(path)))
 	}
 	return ""
 }
 
 func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObject() {
 	if ptr.Pointer() != nil {
-		C.QDBusVirtualObject_DestroyQDBusVirtualObject(C.QtObjectPtr(ptr.Pointer()))
+		C.QDBusVirtualObject_DestroyQDBusVirtualObject(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

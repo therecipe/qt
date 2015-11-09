@@ -1,21 +1,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QBluetoothDeviceInfo_NewQBluetoothDeviceInfo();
-QtObjectPtr QBluetoothDeviceInfo_NewQBluetoothDeviceInfo4(QtObjectPtr other);
-int QBluetoothDeviceInfo_CoreConfigurations(QtObjectPtr ptr);
-int QBluetoothDeviceInfo_IsCached(QtObjectPtr ptr);
-int QBluetoothDeviceInfo_IsValid(QtObjectPtr ptr);
-int QBluetoothDeviceInfo_MajorDeviceClass(QtObjectPtr ptr);
-char* QBluetoothDeviceInfo_Name(QtObjectPtr ptr);
-int QBluetoothDeviceInfo_ServiceClasses(QtObjectPtr ptr);
-int QBluetoothDeviceInfo_ServiceUuidsCompleteness(QtObjectPtr ptr);
-void QBluetoothDeviceInfo_SetCached(QtObjectPtr ptr, int cached);
-void QBluetoothDeviceInfo_SetCoreConfigurations(QtObjectPtr ptr, int coreConfigs);
-void QBluetoothDeviceInfo_SetDeviceUuid(QtObjectPtr ptr, QtObjectPtr uuid);
-void QBluetoothDeviceInfo_DestroyQBluetoothDeviceInfo(QtObjectPtr ptr);
+void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo();
+void* QBluetoothDeviceInfo_NewQBluetoothDeviceInfo4(void* other);
+int QBluetoothDeviceInfo_CoreConfigurations(void* ptr);
+int QBluetoothDeviceInfo_IsCached(void* ptr);
+int QBluetoothDeviceInfo_IsValid(void* ptr);
+int QBluetoothDeviceInfo_MajorDeviceClass(void* ptr);
+char* QBluetoothDeviceInfo_Name(void* ptr);
+int QBluetoothDeviceInfo_ServiceClasses(void* ptr);
+int QBluetoothDeviceInfo_ServiceUuidsCompleteness(void* ptr);
+void QBluetoothDeviceInfo_SetCached(void* ptr, int cached);
+void QBluetoothDeviceInfo_SetCoreConfigurations(void* ptr, int coreConfigs);
+void QBluetoothDeviceInfo_SetDeviceUuid(void* ptr, void* uuid);
+void QBluetoothDeviceInfo_DestroyQBluetoothDeviceInfo(void* ptr);
 
 #ifdef __cplusplus
 }

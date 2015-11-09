@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QPlainTextDocumentLayout_CursorWidth(QtObjectPtr ptr);
-void QPlainTextDocumentLayout_SetCursorWidth(QtObjectPtr ptr, int width);
-QtObjectPtr QPlainTextDocumentLayout_NewQPlainTextDocumentLayout(QtObjectPtr document);
-void QPlainTextDocumentLayout_EnsureBlockLayout(QtObjectPtr ptr, QtObjectPtr block);
-int QPlainTextDocumentLayout_PageCount(QtObjectPtr ptr);
-void QPlainTextDocumentLayout_RequestUpdate(QtObjectPtr ptr);
-void QPlainTextDocumentLayout_DestroyQPlainTextDocumentLayout(QtObjectPtr ptr);
+int QPlainTextDocumentLayout_CursorWidth(void* ptr);
+void QPlainTextDocumentLayout_SetCursorWidth(void* ptr, int width);
+void* QPlainTextDocumentLayout_NewQPlainTextDocumentLayout(void* document);
+void QPlainTextDocumentLayout_EnsureBlockLayout(void* ptr, void* block);
+int QPlainTextDocumentLayout_PageCount(void* ptr);
+void QPlainTextDocumentLayout_RequestUpdate(void* ptr);
+void QPlainTextDocumentLayout_DestroyQPlainTextDocumentLayout(void* ptr);
 
 #ifdef __cplusplus
 }

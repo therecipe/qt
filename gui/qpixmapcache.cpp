@@ -1,9 +1,9 @@
 #include "qpixmapcache.h"
-#include <QPixmap>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QPixmap>
 #include <QPixmapCache>
 #include "_cgo_export.h"
 

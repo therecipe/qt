@@ -1,18 +1,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QWebChannel_BlockUpdates(QtObjectPtr ptr);
-void QWebChannel_SetBlockUpdates(QtObjectPtr ptr, int block);
-QtObjectPtr QWebChannel_NewQWebChannel(QtObjectPtr parent);
-void QWebChannel_ConnectBlockUpdatesChanged(QtObjectPtr ptr);
-void QWebChannel_DisconnectBlockUpdatesChanged(QtObjectPtr ptr);
-void QWebChannel_ConnectTo(QtObjectPtr ptr, QtObjectPtr transport);
-void QWebChannel_DeregisterObject(QtObjectPtr ptr, QtObjectPtr object);
-void QWebChannel_DisconnectFrom(QtObjectPtr ptr, QtObjectPtr transport);
-void QWebChannel_RegisterObject(QtObjectPtr ptr, char* id, QtObjectPtr object);
-void QWebChannel_DestroyQWebChannel(QtObjectPtr ptr);
+int QWebChannel_BlockUpdates(void* ptr);
+void QWebChannel_SetBlockUpdates(void* ptr, int block);
+void* QWebChannel_NewQWebChannel(void* parent);
+void QWebChannel_ConnectBlockUpdatesChanged(void* ptr);
+void QWebChannel_DisconnectBlockUpdatesChanged(void* ptr);
+void QWebChannel_ConnectTo(void* ptr, void* transport);
+void QWebChannel_DeregisterObject(void* ptr, void* object);
+void QWebChannel_DisconnectFrom(void* ptr, void* transport);
+void QWebChannel_RegisterObject(void* ptr, char* id, void* object);
+void QWebChannel_DestroyQWebChannel(void* ptr);
 
 #ifdef __cplusplus
 }

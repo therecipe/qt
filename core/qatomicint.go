@@ -10,24 +10,24 @@ type QAtomicInt struct {
 	QAtomicInteger
 }
 
-type QAtomicIntITF interface {
-	QAtomicIntegerITF
-	QAtomicIntPTR() *QAtomicInt
+type QAtomicInt_ITF interface {
+	QAtomicInteger_ITF
+	QAtomicInt_PTR() *QAtomicInt
 }
 
-func PointerFromQAtomicInt(ptr QAtomicIntITF) unsafe.Pointer {
+func PointerFromQAtomicInt(ptr QAtomicInt_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAtomicIntPTR().Pointer()
+		return ptr.QAtomicInt_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAtomicIntFromPointer(ptr unsafe.Pointer) *QAtomicInt {
+func NewQAtomicIntFromPointer(ptr unsafe.Pointer) *QAtomicInt {
 	var n = new(QAtomicInt)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAtomicInt) QAtomicIntPTR() *QAtomicInt {
+func (ptr *QAtomicInt) QAtomicInt_PTR() *QAtomicInt {
 	return ptr
 }

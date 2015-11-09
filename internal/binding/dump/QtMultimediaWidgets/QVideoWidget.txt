@@ -1,29 +1,29 @@
 ########################################			FUNCTIONS			########################################
-&{aspectRatioMode QVideoWidget::aspectRatioMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non plain false false  Qt::AspectRatioMode [] }
-&{brightness QVideoWidget::brightness commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non plain false false  int [] }
-&{contrast QVideoWidget::contrast commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non plain false false  int [] }
-&{hue QVideoWidget::hue commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non plain false false  int [] }
-&{mediaObject QVideoWidget::mediaObject commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp impure plain false false  QMediaObject * [] }
-&{saturation QVideoWidget::saturation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non plain false false  int [] }
-&{setAspectRatioMode QVideoWidget::setAspectRatioMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non slot false false  void [0xc822aa9340] }
-&{setBrightness QVideoWidget::setBrightness commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non slot false false  void [0xc822aa9620] }
-&{setContrast QVideoWidget::setContrast commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non slot false false  void [0xc822aa99c0] }
-&{setFullScreen QVideoWidget::setFullScreen commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non slot false false  void [0xc822aa9d40] }
-&{setHue QVideoWidget::setHue commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non slot false false  void [0xc822abc120] }
-&{setSaturation QVideoWidget::setSaturation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non slot false false  void [0xc822abc3e0] }
-&{QVideoWidget QVideoWidget::QVideoWidget commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non constructor false false   [0xc822abc6e0] }
-&{brightnessChanged QVideoWidget::brightnessChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non signal false false  void [0xc822abd100] }
-&{contrastChanged QVideoWidget::contrastChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non signal false false  void [0xc822abd3e0] }
-&{event QVideoWidget::event commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  bool [0xc822abd660] }
-&{fullScreenChanged QVideoWidget::fullScreenChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non signal false false  void [0xc822abd8e0] }
-&{hideEvent QVideoWidget::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  void [0xc822abdb40] }
-&{hueChanged QVideoWidget::hueChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non signal false false  void [0xc822abdea0] }
-&{isFullScreen QVideoWidget::isFullScreen commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non plain false false  bool [] }
-&{moveEvent QVideoWidget::moveEvent commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  void [0xc822acc220] }
-&{paintEvent QVideoWidget::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  void [0xc822acc460] }
-&{resizeEvent QVideoWidget::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  void [0xc822acc680] }
-&{saturationChanged QVideoWidget::saturationChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non signal false false  void [0xc822acc8e0] }
-&{showEvent QVideoWidget::showEvent commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  void [0xc822accca0] }
-&{sizeHint QVideoWidget::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  QSize [] }
-&{~QVideoWidget QVideoWidget::~QVideoWidget commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non destructor false false   [] }
+&{aspectRatioMode QVideoWidget::aspectRatioMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non plain false false  Qt::AspectRatioMode Qt::AspectRatioMode aspectRatioMode() const [] }
+&{brightness QVideoWidget::brightness commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non plain false false  int int brightness() const [] }
+&{contrast QVideoWidget::contrast commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non plain false false  int int contrast() const [] }
+&{hue QVideoWidget::hue commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non plain false false  int int hue() const [] }
+&{mediaObject QVideoWidget::mediaObject commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp impure plain false false  QMediaObject * QMediaObject * mediaObject() const [] }
+&{saturation QVideoWidget::saturation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non plain false false  int int saturation() const [] }
+&{setAspectRatioMode QVideoWidget::setAspectRatioMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non slot false false  void void setAspectRatioMode(Qt::AspectRatioMode mode) [0xc8201715c0] }
+&{setBrightness QVideoWidget::setBrightness commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non slot false false  void void setBrightness(int brightness) [0xc820171cc0] }
+&{setContrast QVideoWidget::setContrast commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non slot false false  void void setContrast(int contrast) [0xc82015c840] }
+&{setFullScreen QVideoWidget::setFullScreen commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non slot false false  void void setFullScreen(bool fullScreen) [0xc82015d220] }
+&{setHue QVideoWidget::setHue commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non slot false false  void void setHue(int hue) [0xc82015df80] }
+&{setSaturation QVideoWidget::setSaturation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.cpp non slot false false  void void setSaturation(int saturation) [0xc820148920] }
+&{QVideoWidget QVideoWidget::QVideoWidget commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non constructor false false   QVideoWidget(QWidget *parent) [0xc820149320] }
+&{brightnessChanged QVideoWidget::brightnessChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non signal false false  void void brightnessChanged(int brightness) [0xc820133080] }
+&{contrastChanged QVideoWidget::contrastChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non signal false false  void void contrastChanged(int contrast) [0xc820133960] }
+&{event QVideoWidget::event commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  bool bool event(QEvent *event) [0xc820bb0140] }
+&{fullScreenChanged QVideoWidget::fullScreenChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non signal false false  void void fullScreenChanged(bool fullScreen) [0xc820bb0780] }
+&{hideEvent QVideoWidget::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  void void hideEvent(QHideEvent *event) [0xc820bb0cc0] }
+&{hueChanged QVideoWidget::hueChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non signal false false  void void hueChanged(int hue) [0xc820bb12a0] }
+&{isFullScreen QVideoWidget::isFullScreen commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non plain false false  bool bool isFullScreen() const [] }
+&{moveEvent QVideoWidget::moveEvent commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  void void moveEvent(QMoveEvent *event) [0xc820bb1ae0] }
+&{paintEvent QVideoWidget::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  void void paintEvent(QPaintEvent *event) [0xc820bb1f60] }
+&{resizeEvent QVideoWidget::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  void void resizeEvent(QResizeEvent *event) [0xc820126440] }
+&{saturationChanged QVideoWidget::saturationChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non signal false false  void void saturationChanged(int saturation) [0xc820126960] }
+&{showEvent QVideoWidget::showEvent commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  void void showEvent(QShowEvent *event) [0xc820127760] }
+&{sizeHint QVideoWidget::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h impure plain false false  QSize QSize sizeHint() const [] }
+&{~QVideoWidget QVideoWidget::~QVideoWidget commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qvideowidget.h non destructor false false   ~QVideoWidget() [] }
 ########################################			ENUMS			########################################

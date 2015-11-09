@@ -13,53 +13,34 @@ type QHelpContentWidget struct {
 	widgets.QTreeView
 }
 
-type QHelpContentWidgetITF interface {
-	widgets.QTreeViewITF
-	QHelpContentWidgetPTR() *QHelpContentWidget
+type QHelpContentWidget_ITF interface {
+	widgets.QTreeView_ITF
+	QHelpContentWidget_PTR() *QHelpContentWidget
 }
 
-func PointerFromQHelpContentWidget(ptr QHelpContentWidgetITF) unsafe.Pointer {
+func PointerFromQHelpContentWidget(ptr QHelpContentWidget_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QHelpContentWidgetPTR().Pointer()
+		return ptr.QHelpContentWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func QHelpContentWidgetFromPointer(ptr unsafe.Pointer) *QHelpContentWidget {
+func NewQHelpContentWidgetFromPointer(ptr unsafe.Pointer) *QHelpContentWidget {
 	var n = new(QHelpContentWidget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QHelpContentWidget_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QHelpContentWidget) QHelpContentWidgetPTR() *QHelpContentWidget {
+func (ptr *QHelpContentWidget) QHelpContentWidget_PTR() *QHelpContentWidget {
 	return ptr
 }
 
-func (ptr *QHelpContentWidget) IndexOf(link string) *core.QModelIndex {
+func (ptr *QHelpContentWidget) IndexOf(link core.QUrl_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
-		return core.QModelIndexFromPointer(unsafe.Pointer(C.QHelpContentWidget_IndexOf(C.QtObjectPtr(ptr.Pointer()), C.CString(link))))
+		return core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexOf(ptr.Pointer(), core.PointerFromQUrl(link)))
 	}
 	return nil
-}
-
-func (ptr *QHelpContentWidget) ConnectLinkActivated(f func(link string)) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget_ConnectLinkActivated(C.QtObjectPtr(ptr.Pointer()))
-		qt.ConnectSignal(ptr.ObjectName(), "linkActivated", f)
-	}
-}
-
-func (ptr *QHelpContentWidget) DisconnectLinkActivated() {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget_DisconnectLinkActivated(C.QtObjectPtr(ptr.Pointer()))
-		qt.DisconnectSignal(ptr.ObjectName(), "linkActivated")
-	}
-}
-
-//export callbackQHelpContentWidgetLinkActivated
-func callbackQHelpContentWidgetLinkActivated(ptrName *C.char, link *C.char) {
-	qt.GetSignal(C.GoString(ptrName), "linkActivated").(func(string))(C.GoString(link))
 }

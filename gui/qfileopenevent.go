@@ -11,45 +11,38 @@ type QFileOpenEvent struct {
 	core.QEvent
 }
 
-type QFileOpenEventITF interface {
-	core.QEventITF
-	QFileOpenEventPTR() *QFileOpenEvent
+type QFileOpenEvent_ITF interface {
+	core.QEvent_ITF
+	QFileOpenEvent_PTR() *QFileOpenEvent
 }
 
-func PointerFromQFileOpenEvent(ptr QFileOpenEventITF) unsafe.Pointer {
+func PointerFromQFileOpenEvent(ptr QFileOpenEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QFileOpenEventPTR().Pointer()
+		return ptr.QFileOpenEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QFileOpenEventFromPointer(ptr unsafe.Pointer) *QFileOpenEvent {
+func NewQFileOpenEventFromPointer(ptr unsafe.Pointer) *QFileOpenEvent {
 	var n = new(QFileOpenEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QFileOpenEvent) QFileOpenEventPTR() *QFileOpenEvent {
+func (ptr *QFileOpenEvent) QFileOpenEvent_PTR() *QFileOpenEvent {
 	return ptr
 }
 
-func (ptr *QFileOpenEvent) OpenFile(file core.QFileITF, flags core.QIODevice__OpenModeFlag) bool {
+func (ptr *QFileOpenEvent) OpenFile(file core.QFile_ITF, flags core.QIODevice__OpenModeFlag) bool {
 	if ptr.Pointer() != nil {
-		return C.QFileOpenEvent_OpenFile(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQFile(file)), C.int(flags)) != 0
+		return C.QFileOpenEvent_OpenFile(ptr.Pointer(), core.PointerFromQFile(file), C.int(flags)) != 0
 	}
 	return false
 }
 
 func (ptr *QFileOpenEvent) File() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFileOpenEvent_File(C.QtObjectPtr(ptr.Pointer())))
-	}
-	return ""
-}
-
-func (ptr *QFileOpenEvent) Url() string {
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QFileOpenEvent_Url(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QFileOpenEvent_File(ptr.Pointer()))
 	}
 	return ""
 }

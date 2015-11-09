@@ -10,55 +10,55 @@ type QItemSelection struct {
 	QList
 }
 
-type QItemSelectionITF interface {
-	QListITF
-	QItemSelectionPTR() *QItemSelection
+type QItemSelection_ITF interface {
+	QList_ITF
+	QItemSelection_PTR() *QItemSelection
 }
 
-func PointerFromQItemSelection(ptr QItemSelectionITF) unsafe.Pointer {
+func PointerFromQItemSelection(ptr QItemSelection_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QItemSelectionPTR().Pointer()
+		return ptr.QItemSelection_PTR().Pointer()
 	}
 	return nil
 }
 
-func QItemSelectionFromPointer(ptr unsafe.Pointer) *QItemSelection {
+func NewQItemSelectionFromPointer(ptr unsafe.Pointer) *QItemSelection {
 	var n = new(QItemSelection)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QItemSelection) QItemSelectionPTR() *QItemSelection {
+func (ptr *QItemSelection) QItemSelection_PTR() *QItemSelection {
 	return ptr
 }
 
 func NewQItemSelection() *QItemSelection {
-	return QItemSelectionFromPointer(unsafe.Pointer(C.QItemSelection_NewQItemSelection()))
+	return NewQItemSelectionFromPointer(C.QItemSelection_NewQItemSelection())
 }
 
-func NewQItemSelection2(topLeft QModelIndexITF, bottomRight QModelIndexITF) *QItemSelection {
-	return QItemSelectionFromPointer(unsafe.Pointer(C.QItemSelection_NewQItemSelection2(C.QtObjectPtr(PointerFromQModelIndex(topLeft)), C.QtObjectPtr(PointerFromQModelIndex(bottomRight)))))
+func NewQItemSelection2(topLeft QModelIndex_ITF, bottomRight QModelIndex_ITF) *QItemSelection {
+	return NewQItemSelectionFromPointer(C.QItemSelection_NewQItemSelection2(PointerFromQModelIndex(topLeft), PointerFromQModelIndex(bottomRight)))
 }
 
-func (ptr *QItemSelection) Contains(index QModelIndexITF) bool {
+func (ptr *QItemSelection) Contains(index QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QItemSelection_Contains(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQModelIndex(index))) != 0
+		return C.QItemSelection_Contains(ptr.Pointer(), PointerFromQModelIndex(index)) != 0
 	}
 	return false
 }
 
-func (ptr *QItemSelection) Merge(other QItemSelectionITF, command QItemSelectionModel__SelectionFlag) {
+func (ptr *QItemSelection) Merge(other QItemSelection_ITF, command QItemSelectionModel__SelectionFlag) {
 	if ptr.Pointer() != nil {
-		C.QItemSelection_Merge(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQItemSelection(other)), C.int(command))
+		C.QItemSelection_Merge(ptr.Pointer(), PointerFromQItemSelection(other), C.int(command))
 	}
 }
 
-func (ptr *QItemSelection) Select(topLeft QModelIndexITF, bottomRight QModelIndexITF) {
+func (ptr *QItemSelection) Select(topLeft QModelIndex_ITF, bottomRight QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
-		C.QItemSelection_Select(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQModelIndex(topLeft)), C.QtObjectPtr(PointerFromQModelIndex(bottomRight)))
+		C.QItemSelection_Select(ptr.Pointer(), PointerFromQModelIndex(topLeft), PointerFromQModelIndex(bottomRight))
 	}
 }
 
-func QItemSelection_Split(ran QItemSelectionRangeITF, other QItemSelectionRangeITF, result QItemSelectionITF) {
-	C.QItemSelection_QItemSelection_Split(C.QtObjectPtr(PointerFromQItemSelectionRange(ran)), C.QtObjectPtr(PointerFromQItemSelectionRange(other)), C.QtObjectPtr(PointerFromQItemSelection(result)))
+func QItemSelection_Split(ran QItemSelectionRange_ITF, other QItemSelectionRange_ITF, result QItemSelection_ITF) {
+	C.QItemSelection_QItemSelection_Split(PointerFromQItemSelectionRange(ran), PointerFromQItemSelectionRange(other), PointerFromQItemSelection(result))
 }

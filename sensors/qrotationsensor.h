@@ -1,15 +1,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QRotationSensor_HasZ(QtObjectPtr ptr);
-QtObjectPtr QRotationSensor_Reading(QtObjectPtr ptr);
-QtObjectPtr QRotationSensor_NewQRotationSensor(QtObjectPtr parent);
-void QRotationSensor_ConnectHasZChanged(QtObjectPtr ptr);
-void QRotationSensor_DisconnectHasZChanged(QtObjectPtr ptr);
-void QRotationSensor_SetHasZ(QtObjectPtr ptr, int hasZ);
-void QRotationSensor_DestroyQRotationSensor(QtObjectPtr ptr);
+int QRotationSensor_HasZ(void* ptr);
+void* QRotationSensor_Reading(void* ptr);
+void* QRotationSensor_NewQRotationSensor(void* parent);
+void QRotationSensor_ConnectHasZChanged(void* ptr);
+void QRotationSensor_DisconnectHasZChanged(void* ptr);
+void QRotationSensor_SetHasZ(void* ptr, int hasZ);
+void QRotationSensor_DestroyQRotationSensor(void* ptr);
 
 #ifdef __cplusplus
 }

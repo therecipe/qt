@@ -10,31 +10,31 @@ type QAmbientLightFilter struct {
 	QSensorFilter
 }
 
-type QAmbientLightFilterITF interface {
-	QSensorFilterITF
-	QAmbientLightFilterPTR() *QAmbientLightFilter
+type QAmbientLightFilter_ITF interface {
+	QSensorFilter_ITF
+	QAmbientLightFilter_PTR() *QAmbientLightFilter
 }
 
-func PointerFromQAmbientLightFilter(ptr QAmbientLightFilterITF) unsafe.Pointer {
+func PointerFromQAmbientLightFilter(ptr QAmbientLightFilter_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QAmbientLightFilterPTR().Pointer()
+		return ptr.QAmbientLightFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func QAmbientLightFilterFromPointer(ptr unsafe.Pointer) *QAmbientLightFilter {
+func NewQAmbientLightFilterFromPointer(ptr unsafe.Pointer) *QAmbientLightFilter {
 	var n = new(QAmbientLightFilter)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QAmbientLightFilter) QAmbientLightFilterPTR() *QAmbientLightFilter {
+func (ptr *QAmbientLightFilter) QAmbientLightFilter_PTR() *QAmbientLightFilter {
 	return ptr
 }
 
-func (ptr *QAmbientLightFilter) Filter(reading QAmbientLightReadingITF) bool {
+func (ptr *QAmbientLightFilter) Filter(reading QAmbientLightReading_ITF) bool {
 	if ptr.Pointer() != nil {
-		return C.QAmbientLightFilter_Filter(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQAmbientLightReading(reading))) != 0
+		return C.QAmbientLightFilter_Filter(ptr.Pointer(), PointerFromQAmbientLightReading(reading)) != 0
 	}
 	return false
 }

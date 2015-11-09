@@ -10,7 +10,7 @@ class MyQDBusAbstractAdaptor: public QDBusAbstractAdaptor {
 public:
 };
 
-void QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(QtObjectPtr ptr){
+void QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(void* ptr){
 	static_cast<QDBusAbstractAdaptor*>(ptr)->~QDBusAbstractAdaptor();
 }
 

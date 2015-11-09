@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QSaveFile QSaveFile::QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non constructor false true 2  [0xc8202d1200] }
-&{QSaveFile QSaveFile::QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non constructor false false   [0xc8202d1440] }
-&{QSaveFile QSaveFile::QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non constructor false true 3  [0xc8202d16c0 0xc8202d1740] }
-&{cancelWriting QSaveFile::cancelWriting commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  void [] }
-&{commit QSaveFile::commit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  bool [] }
-&{directWriteFallback QSaveFile::directWriteFallback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  bool [] }
-&{fileName QSaveFile::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h impure plain false false  QString [] }
-&{open QSaveFile::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h impure plain false false  bool [0xc8202d1f80] }
-&{setDirectWriteFallback QSaveFile::setDirectWriteFallback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  void [0xc8202c2180] }
-&{setFileName QSaveFile::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  void [0xc8202c23c0] }
-&{writeData QSaveFile::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h impure plain false false  qint64 [0xc8202c2620 0xc8202c26c0] }
-&{~QSaveFile QSaveFile::~QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non destructor false false   [] }
+&{QSaveFile QSaveFile::QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non constructor false true 2  QSaveFile(QObject *parent) [0xc8202ba300] }
+&{QSaveFile QSaveFile::QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non constructor false false   QSaveFile(const QString &name) [0xc8202ba5e0] }
+&{QSaveFile QSaveFile::QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non constructor false true 3  QSaveFile(const QString &name, QObject *parent) [0xc8202ba800 0xc8202ba880] }
+&{cancelWriting QSaveFile::cancelWriting commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  void void cancelWriting() [] }
+&{commit QSaveFile::commit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  bool bool commit() [] }
+&{directWriteFallback QSaveFile::directWriteFallback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  bool bool directWriteFallback() const [] }
+&{fileName QSaveFile::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h impure plain false false  QString QString fileName() const [] }
+&{open QSaveFile::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h impure plain false false  bool bool open(OpenMode mode) [0xc8202bb160] }
+&{setDirectWriteFallback QSaveFile::setDirectWriteFallback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  void void setDirectWriteFallback(bool enabled) [0xc8202bb300] }
+&{setFileName QSaveFile::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  void void setFileName(const QString &name) [0xc8202bb560] }
+&{writeData QSaveFile::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h impure plain false false  qint64 qint64 writeData(const char *data, qint64 len) [0xc8202bb760 0xc8202bb820] }
+&{~QSaveFile QSaveFile::~QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non destructor false false   ~QSaveFile() [] }
 ########################################			ENUMS			########################################

@@ -1,25 +1,25 @@
 ########################################			FUNCTIONS			########################################
-&{currentColor QColorDialog::currentColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.cpp non plain false false  QColor [] }
-&{options QColorDialog::options commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.cpp non plain false false  ColorDialogOptions [] }
-&{setCurrentColor QColorDialog::setCurrentColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.cpp non plain false false  void [0xc8231df500] }
-&{setOptions QColorDialog::setOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.cpp non plain false false  void [0xc8231df880] }
-&{QColorDialog QColorDialog::QColorDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non constructor false false   [0xc8231c8380] }
-&{QColorDialog QColorDialog::QColorDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non constructor false true 2  [0xc8231c86a0 0xc8231c8780] }
-&{changeEvent QColorDialog::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h impure plain false false  void [0xc8231c8e00] }
-&{colorSelected QColorDialog::colorSelected commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non signal false false  void [0xc8231c9180] }
-&{currentColorChanged QColorDialog::currentColorChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non signal false false  void [0xc8231c9420] }
-&{customColor QColorDialog::customColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain true false  QColor [0xc8231c96c0] }
-&{customCount QColorDialog::customCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain true false  int [] }
-&{done QColorDialog::done commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h impure plain false false  void [0xc8231c9b40] }
-&{getColor QColorDialog::getColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain true false  QColor [0xc8231c9e00 0xc8231c9ec0 0xc8231c9f60 0xc8231ba060] }
-&{open QColorDialog::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain false false  void [0xc8231ba780 0xc8231ba800] }
-&{selectedColor QColorDialog::selectedColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain false false  QColor [] }
-&{setCustomColor QColorDialog::setCustomColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain true false  void [0xc8231babe0 0xc8231bac60] }
-&{setOption QColorDialog::setOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain false false  void [0xc8231baee0 0xc8231bafe0] }
-&{setStandardColor QColorDialog::setStandardColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain true false  void [0xc8231bb200 0xc8231bb2a0] }
-&{setVisible QColorDialog::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h impure plain false false  void [0xc8231bb560] }
-&{standardColor QColorDialog::standardColor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain true false  QColor [0xc8231bb8a0] }
-&{testOption QColorDialog::testOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain false false  bool [0xc8231bbb40] }
-&{~QColorDialog QColorDialog::~QColorDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non destructor false false   [] }
+&{currentColor QColorDialog::currentColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.cpp non plain false false  QColor QColor currentColor() const [] }
+&{options QColorDialog::options commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.cpp non plain false false  ColorDialogOptions ColorDialogOptions options() const [] }
+&{setCurrentColor QColorDialog::setCurrentColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.cpp non plain false false  void void setCurrentColor(const QColor &color) [0xc82324fa00] }
+&{setOptions QColorDialog::setOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.cpp non plain false false  void void setOptions(ColorDialogOptions options) [0xc82324fda0] }
+&{QColorDialog QColorDialog::QColorDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non constructor false false   QColorDialog(QWidget *parent) [0xc823238cc0] }
+&{QColorDialog QColorDialog::QColorDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non constructor false true 2  QColorDialog(const QColor &initial, QWidget *parent) [0xc823239020 0xc8232391e0] }
+&{changeEvent QColorDialog::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h impure plain false false  void void changeEvent(QEvent *e) [0xc823239a00] }
+&{colorSelected QColorDialog::colorSelected commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non signal false false  void void colorSelected(const QColor &color) [0xc823239da0] }
+&{currentColorChanged QColorDialog::currentColorChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non signal false false  void void currentColorChanged(const QColor &color) [0xc823228120] }
+&{customColor QColorDialog::customColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain true false  QColor QColor customColor(int index) [0xc8232284a0] }
+&{customCount QColorDialog::customCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain true false  int int customCount() [] }
+&{done QColorDialog::done commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h impure plain false false  void void done(int result) [0xc823228c00] }
+&{getColor QColorDialog::getColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain true false  QColor QColor getColor(const QColor &initial, QWidget *parent, const QString &title, ColorDialogOptions options) [0xc823228f60 0xc823229080 0xc8232291a0 0xc8232292c0] }
+&{open QColorDialog::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain false false  void void open(QObject *receiver, const char *member) [0xc823229ca0 0xc823229d40] }
+&{selectedColor QColorDialog::selectedColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain false false  QColor QColor selectedColor() const [] }
+&{setCustomColor QColorDialog::setCustomColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain true false  void void setCustomColor(int index, QColor color) [0xc8232163c0 0xc8232164e0] }
+&{setOption QColorDialog::setOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain false false  void void setOption(ColorDialogOption option, bool on) [0xc823216900 0xc823216a40] }
+&{setStandardColor QColorDialog::setStandardColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain true false  void void setStandardColor(int index, QColor color) [0xc823216e00 0xc823216f40] }
+&{setVisible QColorDialog::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h impure plain false false  void void setVisible(bool visible) [0xc823217540] }
+&{standardColor QColorDialog::standardColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain true false  QColor QColor standardColor(int index) [0xc823217b60] }
+&{testOption QColorDialog::testOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non plain false false  bool bool testOption(ColorDialogOption option) const [0xc823217f60] }
+&{~QColorDialog QColorDialog::~QColorDialog commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/dialogs/qcolordialog.h non destructor false false   ~QColorDialog() [] }
 ########################################			ENUMS			########################################
-&{ColorDialogOption QColorDialog::ColorDialogOption commendable public QColorDialog::ColorDialogOptions [0xc8231dfce0 0xc8231dfd80 0xc8231dfe60]}
+&{ColorDialogOption QColorDialog::ColorDialogOption commendable public QColorDialog::ColorDialogOptions [0xc823238380 0xc823238520 0xc8232385e0] false}

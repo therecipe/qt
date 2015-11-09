@@ -12,72 +12,65 @@ type QFileSelector struct {
 	QObject
 }
 
-type QFileSelectorITF interface {
-	QObjectITF
-	QFileSelectorPTR() *QFileSelector
+type QFileSelector_ITF interface {
+	QObject_ITF
+	QFileSelector_PTR() *QFileSelector
 }
 
-func PointerFromQFileSelector(ptr QFileSelectorITF) unsafe.Pointer {
+func PointerFromQFileSelector(ptr QFileSelector_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QFileSelectorPTR().Pointer()
+		return ptr.QFileSelector_PTR().Pointer()
 	}
 	return nil
 }
 
-func QFileSelectorFromPointer(ptr unsafe.Pointer) *QFileSelector {
+func NewQFileSelectorFromPointer(ptr unsafe.Pointer) *QFileSelector {
 	var n = new(QFileSelector)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QFileSelector_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QFileSelector) QFileSelectorPTR() *QFileSelector {
+func (ptr *QFileSelector) QFileSelector_PTR() *QFileSelector {
 	return ptr
 }
 
-func NewQFileSelector(parent QObjectITF) *QFileSelector {
-	return QFileSelectorFromPointer(unsafe.Pointer(C.QFileSelector_NewQFileSelector(C.QtObjectPtr(PointerFromQObject(parent)))))
+func NewQFileSelector(parent QObject_ITF) *QFileSelector {
+	return NewQFileSelectorFromPointer(C.QFileSelector_NewQFileSelector(PointerFromQObject(parent)))
 }
 
 func (ptr *QFileSelector) AllSelectors() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QFileSelector_AllSelectors(C.QtObjectPtr(ptr.Pointer()))), "|")
+		return strings.Split(C.GoString(C.QFileSelector_AllSelectors(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFileSelector) ExtraSelectors() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QFileSelector_ExtraSelectors(C.QtObjectPtr(ptr.Pointer()))), "|")
+		return strings.Split(C.GoString(C.QFileSelector_ExtraSelectors(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFileSelector) Select(filePath string) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFileSelector_Select(C.QtObjectPtr(ptr.Pointer()), C.CString(filePath)))
-	}
-	return ""
-}
-
-func (ptr *QFileSelector) Select2(filePath string) string {
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QFileSelector_Select2(C.QtObjectPtr(ptr.Pointer()), C.CString(filePath)))
+		return C.GoString(C.QFileSelector_Select(ptr.Pointer(), C.CString(filePath)))
 	}
 	return ""
 }
 
 func (ptr *QFileSelector) SetExtraSelectors(list []string) {
 	if ptr.Pointer() != nil {
-		C.QFileSelector_SetExtraSelectors(C.QtObjectPtr(ptr.Pointer()), C.CString(strings.Join(list, "|")))
+		C.QFileSelector_SetExtraSelectors(ptr.Pointer(), C.CString(strings.Join(list, "|")))
 	}
 }
 
 func (ptr *QFileSelector) DestroyQFileSelector() {
 	if ptr.Pointer() != nil {
-		C.QFileSelector_DestroyQFileSelector(C.QtObjectPtr(ptr.Pointer()))
+		C.QFileSelector_DestroyQFileSelector(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -10,8 +10,8 @@ type QSet struct {
 	ptr unsafe.Pointer
 }
 
-type QSetITF interface {
-	QSetPTR() *QSet
+type QSet_ITF interface {
+	QSet_PTR() *QSet
 }
 
 func (p *QSet) Pointer() unsafe.Pointer {
@@ -22,19 +22,19 @@ func (p *QSet) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSet(ptr QSetITF) unsafe.Pointer {
+func PointerFromQSet(ptr QSet_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSetPTR().Pointer()
+		return ptr.QSet_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSetFromPointer(ptr unsafe.Pointer) *QSet {
+func NewQSetFromPointer(ptr unsafe.Pointer) *QSet {
 	var n = new(QSet)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSet) QSetPTR() *QSet {
+func (ptr *QSet) QSet_PTR() *QSet {
 	return ptr
 }

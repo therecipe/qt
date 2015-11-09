@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QCameraViewfinderSettingsControl_IsViewfinderParameterSupported(QtObjectPtr ptr, int parameter);
-void QCameraViewfinderSettingsControl_SetViewfinderParameter(QtObjectPtr ptr, int parameter, char* value);
-char* QCameraViewfinderSettingsControl_ViewfinderParameter(QtObjectPtr ptr, int parameter);
-void QCameraViewfinderSettingsControl_DestroyQCameraViewfinderSettingsControl(QtObjectPtr ptr);
+int QCameraViewfinderSettingsControl_IsViewfinderParameterSupported(void* ptr, int parameter);
+void QCameraViewfinderSettingsControl_SetViewfinderParameter(void* ptr, int parameter, void* value);
+void* QCameraViewfinderSettingsControl_ViewfinderParameter(void* ptr, int parameter);
+void QCameraViewfinderSettingsControl_DestroyQCameraViewfinderSettingsControl(void* ptr);
 
 #ifdef __cplusplus
 }

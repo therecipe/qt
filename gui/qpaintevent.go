@@ -11,32 +11,39 @@ type QPaintEvent struct {
 	core.QEvent
 }
 
-type QPaintEventITF interface {
-	core.QEventITF
-	QPaintEventPTR() *QPaintEvent
+type QPaintEvent_ITF interface {
+	core.QEvent_ITF
+	QPaintEvent_PTR() *QPaintEvent
 }
 
-func PointerFromQPaintEvent(ptr QPaintEventITF) unsafe.Pointer {
+func PointerFromQPaintEvent(ptr QPaintEvent_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPaintEventPTR().Pointer()
+		return ptr.QPaintEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPaintEventFromPointer(ptr unsafe.Pointer) *QPaintEvent {
+func NewQPaintEventFromPointer(ptr unsafe.Pointer) *QPaintEvent {
 	var n = new(QPaintEvent)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QPaintEvent) QPaintEventPTR() *QPaintEvent {
+func (ptr *QPaintEvent) QPaintEvent_PTR() *QPaintEvent {
 	return ptr
 }
 
-func NewQPaintEvent2(paintRect core.QRectITF) *QPaintEvent {
-	return QPaintEventFromPointer(unsafe.Pointer(C.QPaintEvent_NewQPaintEvent2(C.QtObjectPtr(core.PointerFromQRect(paintRect)))))
+func NewQPaintEvent2(paintRect core.QRect_ITF) *QPaintEvent {
+	return NewQPaintEventFromPointer(C.QPaintEvent_NewQPaintEvent2(core.PointerFromQRect(paintRect)))
 }
 
-func NewQPaintEvent(paintRegion QRegionITF) *QPaintEvent {
-	return QPaintEventFromPointer(unsafe.Pointer(C.QPaintEvent_NewQPaintEvent(C.QtObjectPtr(PointerFromQRegion(paintRegion)))))
+func NewQPaintEvent(paintRegion QRegion_ITF) *QPaintEvent {
+	return NewQPaintEventFromPointer(C.QPaintEvent_NewQPaintEvent(PointerFromQRegion(paintRegion)))
+}
+
+func (ptr *QPaintEvent) Region() *QRegion {
+	if ptr.Pointer() != nil {
+		return NewQRegionFromPointer(C.QPaintEvent_Region(ptr.Pointer()))
+	}
+	return nil
 }

@@ -1,21 +1,20 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-int QPushButton_AutoDefault(QtObjectPtr ptr);
-int QPushButton_IsDefault(QtObjectPtr ptr);
-int QPushButton_IsFlat(QtObjectPtr ptr);
-void QPushButton_SetAutoDefault(QtObjectPtr ptr, int v);
-void QPushButton_SetDefault(QtObjectPtr ptr, int v);
-void QPushButton_SetFlat(QtObjectPtr ptr, int v);
-QtObjectPtr QPushButton_NewQPushButton(QtObjectPtr parent);
-QtObjectPtr QPushButton_NewQPushButton3(QtObjectPtr icon, char* text, QtObjectPtr parent);
-QtObjectPtr QPushButton_NewQPushButton2(char* text, QtObjectPtr parent);
-QtObjectPtr QPushButton_Menu(QtObjectPtr ptr);
-void QPushButton_SetMenu(QtObjectPtr ptr, QtObjectPtr menu);
-void QPushButton_ShowMenu(QtObjectPtr ptr);
-void QPushButton_DestroyQPushButton(QtObjectPtr ptr);
+int QPushButton_AutoDefault(void* ptr);
+int QPushButton_IsDefault(void* ptr);
+int QPushButton_IsFlat(void* ptr);
+void QPushButton_SetAutoDefault(void* ptr, int v);
+void QPushButton_SetDefault(void* ptr, int v);
+void QPushButton_SetFlat(void* ptr, int v);
+void* QPushButton_NewQPushButton(void* parent);
+void* QPushButton_NewQPushButton3(void* icon, char* text, void* parent);
+void* QPushButton_NewQPushButton2(char* text, void* parent);
+void* QPushButton_Menu(void* ptr);
+void QPushButton_SetMenu(void* ptr, void* menu);
+void QPushButton_ShowMenu(void* ptr);
+void QPushButton_DestroyQPushButton(void* ptr);
 
 #ifdef __cplusplus
 }

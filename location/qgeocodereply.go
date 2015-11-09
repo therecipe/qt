@@ -12,35 +12,35 @@ type QGeoCodeReply struct {
 	core.QObject
 }
 
-type QGeoCodeReplyITF interface {
-	core.QObjectITF
-	QGeoCodeReplyPTR() *QGeoCodeReply
+type QGeoCodeReply_ITF interface {
+	core.QObject_ITF
+	QGeoCodeReply_PTR() *QGeoCodeReply
 }
 
-func PointerFromQGeoCodeReply(ptr QGeoCodeReplyITF) unsafe.Pointer {
+func PointerFromQGeoCodeReply(ptr QGeoCodeReply_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QGeoCodeReplyPTR().Pointer()
+		return ptr.QGeoCodeReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func QGeoCodeReplyFromPointer(ptr unsafe.Pointer) *QGeoCodeReply {
+func NewQGeoCodeReplyFromPointer(ptr unsafe.Pointer) *QGeoCodeReply {
 	var n = new(QGeoCodeReply)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QGeoCodeReply_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QGeoCodeReply) QGeoCodeReplyPTR() *QGeoCodeReply {
+func (ptr *QGeoCodeReply) QGeoCodeReply_PTR() *QGeoCodeReply {
 	return ptr
 }
 
 //QGeoCodeReply::Error
-type QGeoCodeReply__Error int
+type QGeoCodeReply__Error int64
 
-var (
+const (
 	QGeoCodeReply__NoError                = QGeoCodeReply__Error(0)
 	QGeoCodeReply__EngineNotSetError      = QGeoCodeReply__Error(1)
 	QGeoCodeReply__CommunicationError     = QGeoCodeReply__Error(2)

@@ -1,10 +1,10 @@
 #include "qmetatype.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QMetaObject>
-#include <QByteArray>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QByteArray>
+#include <QMetaObject>
 #include <QMetaType>
 #include "_cgo_export.h"
 
@@ -12,11 +12,11 @@ class MyQMetaType: public QMetaType {
 public:
 };
 
-QtObjectPtr QMetaType_NewQMetaType(int typeId){
+void* QMetaType_NewQMetaType(int typeId){
 	return new QMetaType(typeId);
 }
 
-int QMetaType_Flags(QtObjectPtr ptr){
+int QMetaType_Flags(void* ptr){
 	return static_cast<QMetaType*>(ptr)->flags();
 }
 
@@ -24,19 +24,19 @@ int QMetaType_QMetaType_IsRegistered(int ty){
 	return QMetaType::isRegistered(ty);
 }
 
-int QMetaType_IsRegistered2(QtObjectPtr ptr){
+int QMetaType_IsRegistered2(void* ptr){
 	return static_cast<QMetaType*>(ptr)->isRegistered();
 }
 
-int QMetaType_IsValid(QtObjectPtr ptr){
+int QMetaType_IsValid(void* ptr){
 	return static_cast<QMetaType*>(ptr)->isValid();
 }
 
-QtObjectPtr QMetaType_MetaObject(QtObjectPtr ptr){
+void* QMetaType_MetaObject(void* ptr){
 	return const_cast<QMetaObject*>(static_cast<QMetaType*>(ptr)->metaObject());
 }
 
-QtObjectPtr QMetaType_QMetaType_MetaObjectForType(int ty){
+void* QMetaType_QMetaType_MetaObjectForType(int ty){
 	return const_cast<QMetaObject*>(QMetaType::metaObjectForType(ty));
 }
 
@@ -44,11 +44,11 @@ int QMetaType_QMetaType_SizeOf(int ty){
 	return QMetaType::sizeOf(ty);
 }
 
-int QMetaType_SizeOf2(QtObjectPtr ptr){
+int QMetaType_SizeOf2(void* ptr){
 	return static_cast<QMetaType*>(ptr)->sizeOf();
 }
 
-int QMetaType_QMetaType_Type2(QtObjectPtr typeName){
+int QMetaType_QMetaType_Type2(void* typeName){
 	return QMetaType::type(*static_cast<QByteArray*>(typeName));
 }
 
@@ -60,7 +60,7 @@ int QMetaType_QMetaType_TypeFlags(int ty){
 	return QMetaType::typeFlags(ty);
 }
 
-void QMetaType_DestroyQMetaType(QtObjectPtr ptr){
+void QMetaType_DestroyQMetaType(void* ptr){
 	static_cast<QMetaType*>(ptr)->~QMetaType();
 }
 

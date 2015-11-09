@@ -1,10 +1,10 @@
 #include "qradiodatacontrol.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
 #include <QRadioData>
 #include <QString>
-#include <QVariant>
 #include <QRadioDataControl>
 #include "_cgo_export.h"
 
@@ -18,91 +18,91 @@ void Signal_StationIdChanged(QString stationId){callbackQRadioDataControlStation
 void Signal_StationNameChanged(QString stationName){callbackQRadioDataControlStationNameChanged(this->objectName().toUtf8().data(), stationName.toUtf8().data());};
 };
 
-void QRadioDataControl_ConnectAlternativeFrequenciesEnabledChanged(QtObjectPtr ptr){
+void QRadioDataControl_ConnectAlternativeFrequenciesEnabledChanged(void* ptr){
 	QObject::connect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(bool)>(&QRadioDataControl::alternativeFrequenciesEnabledChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(bool)>(&MyQRadioDataControl::Signal_AlternativeFrequenciesEnabledChanged));;
 }
 
-void QRadioDataControl_DisconnectAlternativeFrequenciesEnabledChanged(QtObjectPtr ptr){
+void QRadioDataControl_DisconnectAlternativeFrequenciesEnabledChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(bool)>(&QRadioDataControl::alternativeFrequenciesEnabledChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(bool)>(&MyQRadioDataControl::Signal_AlternativeFrequenciesEnabledChanged));;
 }
 
-int QRadioDataControl_Error(QtObjectPtr ptr){
+int QRadioDataControl_Error(void* ptr){
 	return static_cast<QRadioDataControl*>(ptr)->error();
 }
 
-char* QRadioDataControl_ErrorString(QtObjectPtr ptr){
+char* QRadioDataControl_ErrorString(void* ptr){
 	return static_cast<QRadioDataControl*>(ptr)->errorString().toUtf8().data();
 }
 
-int QRadioDataControl_IsAlternativeFrequenciesEnabled(QtObjectPtr ptr){
+int QRadioDataControl_IsAlternativeFrequenciesEnabled(void* ptr){
 	return static_cast<QRadioDataControl*>(ptr)->isAlternativeFrequenciesEnabled();
 }
 
-int QRadioDataControl_ProgramType(QtObjectPtr ptr){
+int QRadioDataControl_ProgramType(void* ptr){
 	return static_cast<QRadioDataControl*>(ptr)->programType();
 }
 
-void QRadioDataControl_ConnectProgramTypeChanged(QtObjectPtr ptr){
+void QRadioDataControl_ConnectProgramTypeChanged(void* ptr){
 	QObject::connect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(QRadioData::ProgramType)>(&QRadioDataControl::programTypeChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(QRadioData::ProgramType)>(&MyQRadioDataControl::Signal_ProgramTypeChanged));;
 }
 
-void QRadioDataControl_DisconnectProgramTypeChanged(QtObjectPtr ptr){
+void QRadioDataControl_DisconnectProgramTypeChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(QRadioData::ProgramType)>(&QRadioDataControl::programTypeChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(QRadioData::ProgramType)>(&MyQRadioDataControl::Signal_ProgramTypeChanged));;
 }
 
-char* QRadioDataControl_ProgramTypeName(QtObjectPtr ptr){
+char* QRadioDataControl_ProgramTypeName(void* ptr){
 	return static_cast<QRadioDataControl*>(ptr)->programTypeName().toUtf8().data();
 }
 
-void QRadioDataControl_ConnectProgramTypeNameChanged(QtObjectPtr ptr){
+void QRadioDataControl_ConnectProgramTypeNameChanged(void* ptr){
 	QObject::connect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(QString)>(&QRadioDataControl::programTypeNameChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(QString)>(&MyQRadioDataControl::Signal_ProgramTypeNameChanged));;
 }
 
-void QRadioDataControl_DisconnectProgramTypeNameChanged(QtObjectPtr ptr){
+void QRadioDataControl_DisconnectProgramTypeNameChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(QString)>(&QRadioDataControl::programTypeNameChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(QString)>(&MyQRadioDataControl::Signal_ProgramTypeNameChanged));;
 }
 
-char* QRadioDataControl_RadioText(QtObjectPtr ptr){
+char* QRadioDataControl_RadioText(void* ptr){
 	return static_cast<QRadioDataControl*>(ptr)->radioText().toUtf8().data();
 }
 
-void QRadioDataControl_ConnectRadioTextChanged(QtObjectPtr ptr){
+void QRadioDataControl_ConnectRadioTextChanged(void* ptr){
 	QObject::connect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(QString)>(&QRadioDataControl::radioTextChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(QString)>(&MyQRadioDataControl::Signal_RadioTextChanged));;
 }
 
-void QRadioDataControl_DisconnectRadioTextChanged(QtObjectPtr ptr){
+void QRadioDataControl_DisconnectRadioTextChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(QString)>(&QRadioDataControl::radioTextChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(QString)>(&MyQRadioDataControl::Signal_RadioTextChanged));;
 }
 
-void QRadioDataControl_SetAlternativeFrequenciesEnabled(QtObjectPtr ptr, int enabled){
+void QRadioDataControl_SetAlternativeFrequenciesEnabled(void* ptr, int enabled){
 	static_cast<QRadioDataControl*>(ptr)->setAlternativeFrequenciesEnabled(enabled != 0);
 }
 
-char* QRadioDataControl_StationId(QtObjectPtr ptr){
+char* QRadioDataControl_StationId(void* ptr){
 	return static_cast<QRadioDataControl*>(ptr)->stationId().toUtf8().data();
 }
 
-void QRadioDataControl_ConnectStationIdChanged(QtObjectPtr ptr){
+void QRadioDataControl_ConnectStationIdChanged(void* ptr){
 	QObject::connect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(QString)>(&QRadioDataControl::stationIdChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(QString)>(&MyQRadioDataControl::Signal_StationIdChanged));;
 }
 
-void QRadioDataControl_DisconnectStationIdChanged(QtObjectPtr ptr){
+void QRadioDataControl_DisconnectStationIdChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(QString)>(&QRadioDataControl::stationIdChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(QString)>(&MyQRadioDataControl::Signal_StationIdChanged));;
 }
 
-char* QRadioDataControl_StationName(QtObjectPtr ptr){
+char* QRadioDataControl_StationName(void* ptr){
 	return static_cast<QRadioDataControl*>(ptr)->stationName().toUtf8().data();
 }
 
-void QRadioDataControl_ConnectStationNameChanged(QtObjectPtr ptr){
+void QRadioDataControl_ConnectStationNameChanged(void* ptr){
 	QObject::connect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(QString)>(&QRadioDataControl::stationNameChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(QString)>(&MyQRadioDataControl::Signal_StationNameChanged));;
 }
 
-void QRadioDataControl_DisconnectStationNameChanged(QtObjectPtr ptr){
+void QRadioDataControl_DisconnectStationNameChanged(void* ptr){
 	QObject::disconnect(static_cast<QRadioDataControl*>(ptr), static_cast<void (QRadioDataControl::*)(QString)>(&QRadioDataControl::stationNameChanged), static_cast<MyQRadioDataControl*>(ptr), static_cast<void (MyQRadioDataControl::*)(QString)>(&MyQRadioDataControl::Signal_StationNameChanged));;
 }
 
-void QRadioDataControl_DestroyQRadioDataControl(QtObjectPtr ptr){
+void QRadioDataControl_DestroyQRadioDataControl(void* ptr){
 	static_cast<QRadioDataControl*>(ptr)->~QRadioDataControl();
 }
 

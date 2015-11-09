@@ -1,9 +1,9 @@
 #include "qpersistentmodelindex.h"
+#include <QModelIndex>
+#include <QAbstractItemModel>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QAbstractItemModel>
 #include <QPersistentModelIndex>
 #include "_cgo_export.h"
 
@@ -11,55 +11,55 @@ class MyQPersistentModelIndex: public QPersistentModelIndex {
 public:
 };
 
-QtObjectPtr QPersistentModelIndex_NewQPersistentModelIndex3(QtObjectPtr other){
+void* QPersistentModelIndex_NewQPersistentModelIndex3(void* other){
 	return new QPersistentModelIndex(*static_cast<QPersistentModelIndex*>(other));
 }
 
-int QPersistentModelIndex_Column(QtObjectPtr ptr){
+int QPersistentModelIndex_Column(void* ptr){
 	return static_cast<QPersistentModelIndex*>(ptr)->column();
 }
 
-int QPersistentModelIndex_IsValid(QtObjectPtr ptr){
+int QPersistentModelIndex_IsValid(void* ptr){
 	return static_cast<QPersistentModelIndex*>(ptr)->isValid();
 }
 
-int QPersistentModelIndex_Row(QtObjectPtr ptr){
+int QPersistentModelIndex_Row(void* ptr){
 	return static_cast<QPersistentModelIndex*>(ptr)->row();
 }
 
-QtObjectPtr QPersistentModelIndex_NewQPersistentModelIndex4(QtObjectPtr other){
+void* QPersistentModelIndex_NewQPersistentModelIndex4(void* other){
 	return new QPersistentModelIndex(*static_cast<QPersistentModelIndex*>(other));
 }
 
-QtObjectPtr QPersistentModelIndex_NewQPersistentModelIndex(QtObjectPtr index){
+void* QPersistentModelIndex_NewQPersistentModelIndex(void* index){
 	return new QPersistentModelIndex(*static_cast<QModelIndex*>(index));
 }
 
-QtObjectPtr QPersistentModelIndex_Child(QtObjectPtr ptr, int row, int column){
+void* QPersistentModelIndex_Child(void* ptr, int row, int column){
 	return static_cast<QPersistentModelIndex*>(ptr)->child(row, column).internalPointer();
 }
 
-char* QPersistentModelIndex_Data(QtObjectPtr ptr, int role){
-	return static_cast<QPersistentModelIndex*>(ptr)->data(role).toString().toUtf8().data();
+void* QPersistentModelIndex_Data(void* ptr, int role){
+	return new QVariant(static_cast<QPersistentModelIndex*>(ptr)->data(role));
 }
 
-int QPersistentModelIndex_Flags(QtObjectPtr ptr){
+int QPersistentModelIndex_Flags(void* ptr){
 	return static_cast<QPersistentModelIndex*>(ptr)->flags();
 }
 
-QtObjectPtr QPersistentModelIndex_Model(QtObjectPtr ptr){
+void* QPersistentModelIndex_Model(void* ptr){
 	return const_cast<QAbstractItemModel*>(static_cast<QPersistentModelIndex*>(ptr)->model());
 }
 
-QtObjectPtr QPersistentModelIndex_Parent(QtObjectPtr ptr){
+void* QPersistentModelIndex_Parent(void* ptr){
 	return static_cast<QPersistentModelIndex*>(ptr)->parent().internalPointer();
 }
 
-QtObjectPtr QPersistentModelIndex_Sibling(QtObjectPtr ptr, int row, int column){
+void* QPersistentModelIndex_Sibling(void* ptr, int row, int column){
 	return static_cast<QPersistentModelIndex*>(ptr)->sibling(row, column).internalPointer();
 }
 
-void QPersistentModelIndex_Swap(QtObjectPtr ptr, QtObjectPtr other){
+void QPersistentModelIndex_Swap(void* ptr, void* other){
 	static_cast<QPersistentModelIndex*>(ptr)->swap(*static_cast<QPersistentModelIndex*>(other));
 }
 

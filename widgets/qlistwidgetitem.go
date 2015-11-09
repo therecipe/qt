@@ -13,8 +13,8 @@ type QListWidgetItem struct {
 	ptr unsafe.Pointer
 }
 
-type QListWidgetItemITF interface {
-	QListWidgetItemPTR() *QListWidgetItem
+type QListWidgetItem_ITF interface {
+	QListWidgetItem_PTR() *QListWidgetItem
 }
 
 func (p *QListWidgetItem) Pointer() unsafe.Pointer {
@@ -25,242 +25,256 @@ func (p *QListWidgetItem) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQListWidgetItem(ptr QListWidgetItemITF) unsafe.Pointer {
+func PointerFromQListWidgetItem(ptr QListWidgetItem_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QListWidgetItemPTR().Pointer()
+		return ptr.QListWidgetItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func QListWidgetItemFromPointer(ptr unsafe.Pointer) *QListWidgetItem {
+func NewQListWidgetItemFromPointer(ptr unsafe.Pointer) *QListWidgetItem {
 	var n = new(QListWidgetItem)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QListWidgetItem) QListWidgetItemPTR() *QListWidgetItem {
+func (ptr *QListWidgetItem) QListWidgetItem_PTR() *QListWidgetItem {
 	return ptr
 }
 
 //QListWidgetItem::ItemType
-type QListWidgetItem__ItemType int
+type QListWidgetItem__ItemType int64
 
-var (
+const (
 	QListWidgetItem__Type     = QListWidgetItem__ItemType(0)
 	QListWidgetItem__UserType = QListWidgetItem__ItemType(1000)
 )
 
-func NewQListWidgetItem(parent QListWidgetITF, ty int) *QListWidgetItem {
-	return QListWidgetItemFromPointer(unsafe.Pointer(C.QListWidgetItem_NewQListWidgetItem(C.QtObjectPtr(PointerFromQListWidget(parent)), C.int(ty))))
+func NewQListWidgetItem(parent QListWidget_ITF, ty int) *QListWidgetItem {
+	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem(PointerFromQListWidget(parent), C.int(ty)))
 }
 
-func NewQListWidgetItem3(icon gui.QIconITF, text string, parent QListWidgetITF, ty int) *QListWidgetItem {
-	return QListWidgetItemFromPointer(unsafe.Pointer(C.QListWidgetItem_NewQListWidgetItem3(C.QtObjectPtr(gui.PointerFromQIcon(icon)), C.CString(text), C.QtObjectPtr(PointerFromQListWidget(parent)), C.int(ty))))
+func NewQListWidgetItem3(icon gui.QIcon_ITF, text string, parent QListWidget_ITF, ty int) *QListWidgetItem {
+	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem3(gui.PointerFromQIcon(icon), C.CString(text), PointerFromQListWidget(parent), C.int(ty)))
 }
 
-func NewQListWidgetItem2(text string, parent QListWidgetITF, ty int) *QListWidgetItem {
-	return QListWidgetItemFromPointer(unsafe.Pointer(C.QListWidgetItem_NewQListWidgetItem2(C.CString(text), C.QtObjectPtr(PointerFromQListWidget(parent)), C.int(ty))))
+func NewQListWidgetItem2(text string, parent QListWidget_ITF, ty int) *QListWidgetItem {
+	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem2(C.CString(text), PointerFromQListWidget(parent), C.int(ty)))
 }
 
 func (ptr *QListWidgetItem) SetFlags(flags core.Qt__ItemFlag) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetFlags(C.QtObjectPtr(ptr.Pointer()), C.int(flags))
+		C.QListWidgetItem_SetFlags(ptr.Pointer(), C.int(flags))
 	}
 }
 
-func NewQListWidgetItem4(other QListWidgetItemITF) *QListWidgetItem {
-	return QListWidgetItemFromPointer(unsafe.Pointer(C.QListWidgetItem_NewQListWidgetItem4(C.QtObjectPtr(PointerFromQListWidgetItem(other)))))
+func NewQListWidgetItem4(other QListWidgetItem_ITF) *QListWidgetItem {
+	return NewQListWidgetItemFromPointer(C.QListWidgetItem_NewQListWidgetItem4(PointerFromQListWidgetItem(other)))
+}
+
+func (ptr *QListWidgetItem) Background() *gui.QBrush {
+	if ptr.Pointer() != nil {
+		return gui.NewQBrushFromPointer(C.QListWidgetItem_Background(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QListWidgetItem) CheckState() core.Qt__CheckState {
 	if ptr.Pointer() != nil {
-		return core.Qt__CheckState(C.QListWidgetItem_CheckState(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__CheckState(C.QListWidgetItem_CheckState(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QListWidgetItem) Clone() *QListWidgetItem {
 	if ptr.Pointer() != nil {
-		return QListWidgetItemFromPointer(unsafe.Pointer(C.QListWidgetItem_Clone(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQListWidgetItemFromPointer(C.QListWidgetItem_Clone(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QListWidgetItem) Data(role int) string {
+func (ptr *QListWidgetItem) Data(role int) *core.QVariant {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QListWidgetItem_Data(C.QtObjectPtr(ptr.Pointer()), C.int(role)))
+		return core.NewQVariantFromPointer(C.QListWidgetItem_Data(ptr.Pointer(), C.int(role)))
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QListWidgetItem) Flags() core.Qt__ItemFlag {
 	if ptr.Pointer() != nil {
-		return core.Qt__ItemFlag(C.QListWidgetItem_Flags(C.QtObjectPtr(ptr.Pointer())))
+		return core.Qt__ItemFlag(C.QListWidgetItem_Flags(ptr.Pointer()))
 	}
 	return 0
 }
 
+func (ptr *QListWidgetItem) Foreground() *gui.QBrush {
+	if ptr.Pointer() != nil {
+		return gui.NewQBrushFromPointer(C.QListWidgetItem_Foreground(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QListWidgetItem) IsHidden() bool {
 	if ptr.Pointer() != nil {
-		return C.QListWidgetItem_IsHidden(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QListWidgetItem_IsHidden(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QListWidgetItem) IsSelected() bool {
 	if ptr.Pointer() != nil {
-		return C.QListWidgetItem_IsSelected(C.QtObjectPtr(ptr.Pointer())) != 0
+		return C.QListWidgetItem_IsSelected(ptr.Pointer()) != 0
 	}
 	return false
 }
 
 func (ptr *QListWidgetItem) ListWidget() *QListWidget {
 	if ptr.Pointer() != nil {
-		return QListWidgetFromPointer(unsafe.Pointer(C.QListWidgetItem_ListWidget(C.QtObjectPtr(ptr.Pointer()))))
+		return NewQListWidgetFromPointer(C.QListWidgetItem_ListWidget(ptr.Pointer()))
 	}
 	return nil
 }
 
-func (ptr *QListWidgetItem) Read(in core.QDataStreamITF) {
+func (ptr *QListWidgetItem) Read(in core.QDataStream_ITF) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_Read(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQDataStream(in)))
+		C.QListWidgetItem_Read(ptr.Pointer(), core.PointerFromQDataStream(in))
 	}
 }
 
-func (ptr *QListWidgetItem) SetBackground(brush gui.QBrushITF) {
+func (ptr *QListWidgetItem) SetBackground(brush gui.QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetBackground(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQBrush(brush)))
+		C.QListWidgetItem_SetBackground(ptr.Pointer(), gui.PointerFromQBrush(brush))
 	}
 }
 
 func (ptr *QListWidgetItem) SetCheckState(state core.Qt__CheckState) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetCheckState(C.QtObjectPtr(ptr.Pointer()), C.int(state))
+		C.QListWidgetItem_SetCheckState(ptr.Pointer(), C.int(state))
 	}
 }
 
-func (ptr *QListWidgetItem) SetData(role int, value string) {
+func (ptr *QListWidgetItem) SetData(role int, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetData(C.QtObjectPtr(ptr.Pointer()), C.int(role), C.CString(value))
+		C.QListWidgetItem_SetData(ptr.Pointer(), C.int(role), core.PointerFromQVariant(value))
 	}
 }
 
-func (ptr *QListWidgetItem) SetFont(font gui.QFontITF) {
+func (ptr *QListWidgetItem) SetFont(font gui.QFont_ITF) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetFont(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQFont(font)))
+		C.QListWidgetItem_SetFont(ptr.Pointer(), gui.PointerFromQFont(font))
 	}
 }
 
-func (ptr *QListWidgetItem) SetForeground(brush gui.QBrushITF) {
+func (ptr *QListWidgetItem) SetForeground(brush gui.QBrush_ITF) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetForeground(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQBrush(brush)))
+		C.QListWidgetItem_SetForeground(ptr.Pointer(), gui.PointerFromQBrush(brush))
 	}
 }
 
 func (ptr *QListWidgetItem) SetHidden(hide bool) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetHidden(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(hide)))
+		C.QListWidgetItem_SetHidden(ptr.Pointer(), C.int(qt.GoBoolToInt(hide)))
 	}
 }
 
-func (ptr *QListWidgetItem) SetIcon(icon gui.QIconITF) {
+func (ptr *QListWidgetItem) SetIcon(icon gui.QIcon_ITF) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetIcon(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(gui.PointerFromQIcon(icon)))
+		C.QListWidgetItem_SetIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
 	}
 }
 
 func (ptr *QListWidgetItem) SetSelected(sele bool) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetSelected(C.QtObjectPtr(ptr.Pointer()), C.int(qt.GoBoolToInt(sele)))
+		C.QListWidgetItem_SetSelected(ptr.Pointer(), C.int(qt.GoBoolToInt(sele)))
 	}
 }
 
-func (ptr *QListWidgetItem) SetSizeHint(size core.QSizeITF) {
+func (ptr *QListWidgetItem) SetSizeHint(size core.QSize_ITF) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetSizeHint(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQSize(size)))
+		C.QListWidgetItem_SetSizeHint(ptr.Pointer(), core.PointerFromQSize(size))
 	}
 }
 
 func (ptr *QListWidgetItem) SetStatusTip(statusTip string) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetStatusTip(C.QtObjectPtr(ptr.Pointer()), C.CString(statusTip))
+		C.QListWidgetItem_SetStatusTip(ptr.Pointer(), C.CString(statusTip))
 	}
 }
 
 func (ptr *QListWidgetItem) SetText(text string) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetText(C.QtObjectPtr(ptr.Pointer()), C.CString(text))
+		C.QListWidgetItem_SetText(ptr.Pointer(), C.CString(text))
 	}
 }
 
 func (ptr *QListWidgetItem) SetTextAlignment(alignment int) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetTextAlignment(C.QtObjectPtr(ptr.Pointer()), C.int(alignment))
+		C.QListWidgetItem_SetTextAlignment(ptr.Pointer(), C.int(alignment))
 	}
 }
 
 func (ptr *QListWidgetItem) SetToolTip(toolTip string) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetToolTip(C.QtObjectPtr(ptr.Pointer()), C.CString(toolTip))
+		C.QListWidgetItem_SetToolTip(ptr.Pointer(), C.CString(toolTip))
 	}
 }
 
 func (ptr *QListWidgetItem) SetWhatsThis(whatsThis string) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_SetWhatsThis(C.QtObjectPtr(ptr.Pointer()), C.CString(whatsThis))
+		C.QListWidgetItem_SetWhatsThis(ptr.Pointer(), C.CString(whatsThis))
 	}
 }
 
 func (ptr *QListWidgetItem) StatusTip() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QListWidgetItem_StatusTip(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QListWidgetItem_StatusTip(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QListWidgetItem) Text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QListWidgetItem_Text(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QListWidgetItem_Text(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QListWidgetItem) TextAlignment() int {
 	if ptr.Pointer() != nil {
-		return int(C.QListWidgetItem_TextAlignment(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QListWidgetItem_TextAlignment(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QListWidgetItem) ToolTip() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QListWidgetItem_ToolTip(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QListWidgetItem_ToolTip(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QListWidgetItem) Type() int {
 	if ptr.Pointer() != nil {
-		return int(C.QListWidgetItem_Type(C.QtObjectPtr(ptr.Pointer())))
+		return int(C.QListWidgetItem_Type(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QListWidgetItem) WhatsThis() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QListWidgetItem_WhatsThis(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QListWidgetItem_WhatsThis(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QListWidgetItem) Write(out core.QDataStreamITF) {
+func (ptr *QListWidgetItem) Write(out core.QDataStream_ITF) {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_Write(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(core.PointerFromQDataStream(out)))
+		C.QListWidgetItem_Write(ptr.Pointer(), core.PointerFromQDataStream(out))
 	}
 }
 
 func (ptr *QListWidgetItem) DestroyQListWidgetItem() {
 	if ptr.Pointer() != nil {
-		C.QListWidgetItem_DestroyQListWidgetItem(C.QtObjectPtr(ptr.Pointer()))
+		C.QListWidgetItem_DestroyQListWidgetItem(ptr.Pointer())
 	}
 }

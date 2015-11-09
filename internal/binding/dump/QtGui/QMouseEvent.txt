@@ -1,18 +1,18 @@
 ########################################			FUNCTIONS			########################################
-&{QMouseEvent QMouseEvent::QMouseEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   [0xc820877fe0 0xc82085e0c0 0xc82085e1c0 0xc82085e300 0xc82085e440] }
-&{QMouseEvent QMouseEvent::QMouseEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 2  [0xc82085e800 0xc82085e8c0 0xc82085e9e0 0xc82085eae0 0xc82085eba0 0xc82085ecc0] }
-&{QMouseEvent QMouseEvent::QMouseEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 3  [0xc82085f060 0xc82085f0e0 0xc82085f240 0xc82085f2e0 0xc82085f3e0 0xc82085f460 0xc82085f620] }
-&{button QMouseEvent::button commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseButton [] }
-&{buttons QMouseEvent::buttons commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseButtons [] }
-&{flags QMouseEvent::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseEventFlags [] }
-&{globalPos QMouseEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
-&{globalX QMouseEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{globalY QMouseEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{localPos QMouseEvent::localPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
-&{pos QMouseEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint [] }
-&{screenPos QMouseEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
-&{source QMouseEvent::source commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseEventSource [] }
-&{windowPos QMouseEvent::windowPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & [] }
-&{x QMouseEvent::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
-&{y QMouseEvent::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int [] }
+&{QMouseEvent QMouseEvent::QMouseEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QMouseEvent(Type type, const QPointF &localPos, Qt::MouseButton button, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers) [0xc8208f6d40 0xc8208f6de0 0xc8208f6ea0 0xc8208f6f20 0xc8208f6fe0] }
+&{QMouseEvent QMouseEvent::QMouseEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 2  QMouseEvent(Type type, const QPointF &localPos, const QPointF &screenPos, Qt::MouseButton button, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers) [0xc8208f7240 0xc8208f72c0 0xc8208f7360 0xc8208f73e0 0xc8208f7480 0xc8208f7520] }
+&{QMouseEvent QMouseEvent::QMouseEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false true 3  QMouseEvent(Type type, const QPointF &localPos, const QPointF &windowPos, const QPointF &screenPos, Qt::MouseButton button, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers) [0xc8208f7740 0xc8208f77e0 0xc8208f78a0 0xc8208f7920 0xc8208f79c0 0xc8208f7a60 0xc8208f7b00] }
+&{button QMouseEvent::button commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseButton Qt::MouseButton button() const [] }
+&{buttons QMouseEvent::buttons commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseButtons Qt::MouseButtons buttons() const [] }
+&{flags QMouseEvent::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseEventFlags Qt::MouseEventFlags flags() const [] }
+&{globalPos QMouseEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint QPoint globalPos() const [] }
+&{globalX QMouseEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalX() const [] }
+&{globalY QMouseEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalY() const [] }
+&{localPos QMouseEvent::localPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & const QPointF & localPos() const [] }
+&{pos QMouseEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint QPoint pos() const [] }
+&{screenPos QMouseEvent::screenPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & const QPointF & screenPos() const [] }
+&{source QMouseEvent::source commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::MouseEventSource Qt::MouseEventSource source() const [] }
+&{windowPos QMouseEvent::windowPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & const QPointF & windowPos() const [] }
+&{x QMouseEvent::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int x() const [] }
+&{y QMouseEvent::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int y() const [] }
 ########################################			ENUMS			########################################

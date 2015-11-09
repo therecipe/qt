@@ -11,27 +11,27 @@ type QPlaceSearchReply struct {
 	QPlaceReply
 }
 
-type QPlaceSearchReplyITF interface {
-	QPlaceReplyITF
-	QPlaceSearchReplyPTR() *QPlaceSearchReply
+type QPlaceSearchReply_ITF interface {
+	QPlaceReply_ITF
+	QPlaceSearchReply_PTR() *QPlaceSearchReply
 }
 
-func PointerFromQPlaceSearchReply(ptr QPlaceSearchReplyITF) unsafe.Pointer {
+func PointerFromQPlaceSearchReply(ptr QPlaceSearchReply_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QPlaceSearchReplyPTR().Pointer()
+		return ptr.QPlaceSearchReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func QPlaceSearchReplyFromPointer(ptr unsafe.Pointer) *QPlaceSearchReply {
+func NewQPlaceSearchReplyFromPointer(ptr unsafe.Pointer) *QPlaceSearchReply {
 	var n = new(QPlaceSearchReply)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	if len(n.ObjectName()) == 0 {
 		n.SetObjectName("QPlaceSearchReply_" + qt.RandomIdentifier())
 	}
 	return n
 }
 
-func (ptr *QPlaceSearchReply) QPlaceSearchReplyPTR() *QPlaceSearchReply {
+func (ptr *QPlaceSearchReply) QPlaceSearchReply_PTR() *QPlaceSearchReply {
 	return ptr
 }

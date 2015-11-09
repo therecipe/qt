@@ -1,26 +1,25 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QMimeType_NewQMimeType();
-QtObjectPtr QMimeType_NewQMimeType2(QtObjectPtr other);
-char* QMimeType_FilterString(QtObjectPtr ptr);
-char* QMimeType_GenericIconName(QtObjectPtr ptr);
-char* QMimeType_GlobPatterns(QtObjectPtr ptr);
-char* QMimeType_IconName(QtObjectPtr ptr);
-int QMimeType_Inherits(QtObjectPtr ptr, char* mimeTypeName);
-int QMimeType_IsDefault(QtObjectPtr ptr);
-int QMimeType_IsValid(QtObjectPtr ptr);
-char* QMimeType_Name(QtObjectPtr ptr);
-void QMimeType_DestroyQMimeType(QtObjectPtr ptr);
-char* QMimeType_Aliases(QtObjectPtr ptr);
-char* QMimeType_AllAncestors(QtObjectPtr ptr);
-char* QMimeType_Comment(QtObjectPtr ptr);
-char* QMimeType_ParentMimeTypes(QtObjectPtr ptr);
-char* QMimeType_PreferredSuffix(QtObjectPtr ptr);
-char* QMimeType_Suffixes(QtObjectPtr ptr);
-void QMimeType_Swap(QtObjectPtr ptr, QtObjectPtr other);
+void* QMimeType_NewQMimeType();
+void* QMimeType_NewQMimeType2(void* other);
+char* QMimeType_FilterString(void* ptr);
+char* QMimeType_GenericIconName(void* ptr);
+char* QMimeType_GlobPatterns(void* ptr);
+char* QMimeType_IconName(void* ptr);
+int QMimeType_Inherits(void* ptr, char* mimeTypeName);
+int QMimeType_IsDefault(void* ptr);
+int QMimeType_IsValid(void* ptr);
+char* QMimeType_Name(void* ptr);
+void QMimeType_DestroyQMimeType(void* ptr);
+char* QMimeType_Aliases(void* ptr);
+char* QMimeType_AllAncestors(void* ptr);
+char* QMimeType_Comment(void* ptr);
+char* QMimeType_ParentMimeTypes(void* ptr);
+char* QMimeType_PreferredSuffix(void* ptr);
+char* QMimeType_Suffixes(void* ptr);
+void QMimeType_Swap(void* ptr, void* other);
 
 #ifdef __cplusplus
 }

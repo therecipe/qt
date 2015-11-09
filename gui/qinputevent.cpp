@@ -1,8 +1,8 @@
 #include "qinputevent.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QString>
 #include <QInputEvent>
 #include "_cgo_export.h"
 
@@ -10,7 +10,7 @@ class MyQInputEvent: public QInputEvent {
 public:
 };
 
-int QInputEvent_Modifiers(QtObjectPtr ptr){
+int QInputEvent_Modifiers(void* ptr){
 	return static_cast<QInputEvent*>(ptr)->modifiers();
 }
 

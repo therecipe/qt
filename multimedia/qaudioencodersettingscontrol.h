@@ -1,12 +1,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-char* QAudioEncoderSettingsControl_CodecDescription(QtObjectPtr ptr, char* codec);
-void QAudioEncoderSettingsControl_SetAudioSettings(QtObjectPtr ptr, QtObjectPtr settings);
-char* QAudioEncoderSettingsControl_SupportedAudioCodecs(QtObjectPtr ptr);
-void QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(QtObjectPtr ptr);
+char* QAudioEncoderSettingsControl_CodecDescription(void* ptr, char* codec);
+void QAudioEncoderSettingsControl_SetAudioSettings(void* ptr, void* settings);
+char* QAudioEncoderSettingsControl_SupportedAudioCodecs(void* ptr);
+void QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(void* ptr);
 
 #ifdef __cplusplus
 }

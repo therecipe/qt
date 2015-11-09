@@ -1,18 +1,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QSignalTransition_NewQSignalTransition(QtObjectPtr sourceState);
-QtObjectPtr QSignalTransition_NewQSignalTransition2(QtObjectPtr sender, char* signal, QtObjectPtr sourceState);
-QtObjectPtr QSignalTransition_SenderObject(QtObjectPtr ptr);
-void QSignalTransition_ConnectSenderObjectChanged(QtObjectPtr ptr);
-void QSignalTransition_DisconnectSenderObjectChanged(QtObjectPtr ptr);
-void QSignalTransition_SetSenderObject(QtObjectPtr ptr, QtObjectPtr sender);
-void QSignalTransition_SetSignal(QtObjectPtr ptr, QtObjectPtr signal);
-void QSignalTransition_ConnectSignalChanged(QtObjectPtr ptr);
-void QSignalTransition_DisconnectSignalChanged(QtObjectPtr ptr);
-void QSignalTransition_DestroyQSignalTransition(QtObjectPtr ptr);
+void* QSignalTransition_NewQSignalTransition(void* sourceState);
+void* QSignalTransition_NewQSignalTransition2(void* sender, char* signal, void* sourceState);
+void* QSignalTransition_SenderObject(void* ptr);
+void QSignalTransition_ConnectSenderObjectChanged(void* ptr);
+void QSignalTransition_DisconnectSenderObjectChanged(void* ptr);
+void QSignalTransition_SetSenderObject(void* ptr, void* sender);
+void QSignalTransition_SetSignal(void* ptr, void* signal);
+void* QSignalTransition_Signal(void* ptr);
+void QSignalTransition_ConnectSignalChanged(void* ptr);
+void QSignalTransition_DisconnectSignalChanged(void* ptr);
+void QSignalTransition_DestroyQSignalTransition(void* ptr);
 
 #ifdef __cplusplus
 }

@@ -1,11 +1,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include "../cgoutil.h"
 
-QtObjectPtr QQuickTextureFactory_CreateTexture(QtObjectPtr ptr, QtObjectPtr window);
-int QQuickTextureFactory_TextureByteCount(QtObjectPtr ptr);
-void QQuickTextureFactory_DestroyQQuickTextureFactory(QtObjectPtr ptr);
+void* QQuickTextureFactory_CreateTexture(void* ptr, void* window);
+int QQuickTextureFactory_TextureByteCount(void* ptr);
+void QQuickTextureFactory_DestroyQQuickTextureFactory(void* ptr);
 
 #ifdef __cplusplus
 }

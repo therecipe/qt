@@ -10,8 +10,8 @@ type QSslError struct {
 	ptr unsafe.Pointer
 }
 
-type QSslErrorITF interface {
-	QSslErrorPTR() *QSslError
+type QSslError_ITF interface {
+	QSslError_PTR() *QSslError
 }
 
 func (p *QSslError) Pointer() unsafe.Pointer {
@@ -22,27 +22,27 @@ func (p *QSslError) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQSslError(ptr QSslErrorITF) unsafe.Pointer {
+func PointerFromQSslError(ptr QSslError_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QSslErrorPTR().Pointer()
+		return ptr.QSslError_PTR().Pointer()
 	}
 	return nil
 }
 
-func QSslErrorFromPointer(ptr unsafe.Pointer) *QSslError {
+func NewQSslErrorFromPointer(ptr unsafe.Pointer) *QSslError {
 	var n = new(QSslError)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QSslError) QSslErrorPTR() *QSslError {
+func (ptr *QSslError) QSslError_PTR() *QSslError {
 	return ptr
 }
 
 //QSslError::SslError
-type QSslError__SslError int
+type QSslError__SslError int64
 
-var (
+const (
 	QSslError__NoError                             = QSslError__SslError(0)
 	QSslError__UnableToGetIssuerCertificate        = QSslError__SslError(1)
 	QSslError__UnableToDecryptCertificateSignature = QSslError__SslError(2)
@@ -72,43 +72,43 @@ var (
 )
 
 func NewQSslError() *QSslError {
-	return QSslErrorFromPointer(unsafe.Pointer(C.QSslError_NewQSslError()))
+	return NewQSslErrorFromPointer(C.QSslError_NewQSslError())
 }
 
 func NewQSslError2(error QSslError__SslError) *QSslError {
-	return QSslErrorFromPointer(unsafe.Pointer(C.QSslError_NewQSslError2(C.int(error))))
+	return NewQSslErrorFromPointer(C.QSslError_NewQSslError2(C.int(error)))
 }
 
-func NewQSslError3(error QSslError__SslError, certificate QSslCertificateITF) *QSslError {
-	return QSslErrorFromPointer(unsafe.Pointer(C.QSslError_NewQSslError3(C.int(error), C.QtObjectPtr(PointerFromQSslCertificate(certificate)))))
+func NewQSslError3(error QSslError__SslError, certificate QSslCertificate_ITF) *QSslError {
+	return NewQSslErrorFromPointer(C.QSslError_NewQSslError3(C.int(error), PointerFromQSslCertificate(certificate)))
 }
 
-func NewQSslError4(other QSslErrorITF) *QSslError {
-	return QSslErrorFromPointer(unsafe.Pointer(C.QSslError_NewQSslError4(C.QtObjectPtr(PointerFromQSslError(other)))))
+func NewQSslError4(other QSslError_ITF) *QSslError {
+	return NewQSslErrorFromPointer(C.QSslError_NewQSslError4(PointerFromQSslError(other)))
 }
 
 func (ptr *QSslError) Error() QSslError__SslError {
 	if ptr.Pointer() != nil {
-		return QSslError__SslError(C.QSslError_Error(C.QtObjectPtr(ptr.Pointer())))
+		return QSslError__SslError(C.QSslError_Error(ptr.Pointer()))
 	}
 	return 0
 }
 
 func (ptr *QSslError) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSslError_ErrorString(C.QtObjectPtr(ptr.Pointer())))
+		return C.GoString(C.QSslError_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QSslError) Swap(other QSslErrorITF) {
+func (ptr *QSslError) Swap(other QSslError_ITF) {
 	if ptr.Pointer() != nil {
-		C.QSslError_Swap(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQSslError(other)))
+		C.QSslError_Swap(ptr.Pointer(), PointerFromQSslError(other))
 	}
 }
 
 func (ptr *QSslError) DestroyQSslError() {
 	if ptr.Pointer() != nil {
-		C.QSslError_DestroyQSslError(C.QtObjectPtr(ptr.Pointer()))
+		C.QSslError_DestroyQSslError(ptr.Pointer())
 	}
 }

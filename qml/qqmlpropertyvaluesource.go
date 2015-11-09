@@ -10,8 +10,8 @@ type QQmlPropertyValueSource struct {
 	ptr unsafe.Pointer
 }
 
-type QQmlPropertyValueSourceITF interface {
-	QQmlPropertyValueSourcePTR() *QQmlPropertyValueSource
+type QQmlPropertyValueSource_ITF interface {
+	QQmlPropertyValueSource_PTR() *QQmlPropertyValueSource
 }
 
 func (p *QQmlPropertyValueSource) Pointer() unsafe.Pointer {
@@ -22,31 +22,31 @@ func (p *QQmlPropertyValueSource) SetPointer(ptr unsafe.Pointer) {
 	p.ptr = ptr
 }
 
-func PointerFromQQmlPropertyValueSource(ptr QQmlPropertyValueSourceITF) unsafe.Pointer {
+func PointerFromQQmlPropertyValueSource(ptr QQmlPropertyValueSource_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QQmlPropertyValueSourcePTR().Pointer()
+		return ptr.QQmlPropertyValueSource_PTR().Pointer()
 	}
 	return nil
 }
 
-func QQmlPropertyValueSourceFromPointer(ptr unsafe.Pointer) *QQmlPropertyValueSource {
+func NewQQmlPropertyValueSourceFromPointer(ptr unsafe.Pointer) *QQmlPropertyValueSource {
 	var n = new(QQmlPropertyValueSource)
 	n.SetPointer(ptr)
 	return n
 }
 
-func (ptr *QQmlPropertyValueSource) QQmlPropertyValueSourcePTR() *QQmlPropertyValueSource {
+func (ptr *QQmlPropertyValueSource) QQmlPropertyValueSource_PTR() *QQmlPropertyValueSource {
 	return ptr
 }
 
-func (ptr *QQmlPropertyValueSource) SetTarget(property QQmlPropertyITF) {
+func (ptr *QQmlPropertyValueSource) SetTarget(property QQmlProperty_ITF) {
 	if ptr.Pointer() != nil {
-		C.QQmlPropertyValueSource_SetTarget(C.QtObjectPtr(ptr.Pointer()), C.QtObjectPtr(PointerFromQQmlProperty(property)))
+		C.QQmlPropertyValueSource_SetTarget(ptr.Pointer(), PointerFromQQmlProperty(property))
 	}
 }
 
 func (ptr *QQmlPropertyValueSource) DestroyQQmlPropertyValueSource() {
 	if ptr.Pointer() != nil {
-		C.QQmlPropertyValueSource_DestroyQQmlPropertyValueSource(C.QtObjectPtr(ptr.Pointer()))
+		C.QQmlPropertyValueSource_DestroyQQmlPropertyValueSource(ptr.Pointer())
 	}
 }

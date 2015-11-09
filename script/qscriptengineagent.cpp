@@ -11,31 +11,31 @@ class MyQScriptEngineAgent: public QScriptEngineAgent {
 public:
 };
 
-QtObjectPtr QScriptEngineAgent_NewQScriptEngineAgent(QtObjectPtr engine){
+void* QScriptEngineAgent_NewQScriptEngineAgent(void* engine){
 	return new QScriptEngineAgent(static_cast<QScriptEngine*>(engine));
 }
 
-void QScriptEngineAgent_ContextPop(QtObjectPtr ptr){
+void QScriptEngineAgent_ContextPop(void* ptr){
 	static_cast<QScriptEngineAgent*>(ptr)->contextPop();
 }
 
-void QScriptEngineAgent_ContextPush(QtObjectPtr ptr){
+void QScriptEngineAgent_ContextPush(void* ptr){
 	static_cast<QScriptEngineAgent*>(ptr)->contextPush();
 }
 
-QtObjectPtr QScriptEngineAgent_Engine(QtObjectPtr ptr){
+void* QScriptEngineAgent_Engine(void* ptr){
 	return static_cast<QScriptEngineAgent*>(ptr)->engine();
 }
 
-char* QScriptEngineAgent_Extension(QtObjectPtr ptr, int extension, char* argument){
-	return static_cast<QScriptEngineAgent*>(ptr)->extension(static_cast<QScriptEngineAgent::Extension>(extension), QVariant(argument)).toString().toUtf8().data();
+void* QScriptEngineAgent_Extension(void* ptr, int extension, void* argument){
+	return new QVariant(static_cast<QScriptEngineAgent*>(ptr)->extension(static_cast<QScriptEngineAgent::Extension>(extension), *static_cast<QVariant*>(argument)));
 }
 
-int QScriptEngineAgent_SupportsExtension(QtObjectPtr ptr, int extension){
+int QScriptEngineAgent_SupportsExtension(void* ptr, int extension){
 	return static_cast<QScriptEngineAgent*>(ptr)->supportsExtension(static_cast<QScriptEngineAgent::Extension>(extension));
 }
 
-void QScriptEngineAgent_DestroyQScriptEngineAgent(QtObjectPtr ptr){
+void QScriptEngineAgent_DestroyQScriptEngineAgent(void* ptr){
 	static_cast<QScriptEngineAgent*>(ptr)->~QScriptEngineAgent();
 }
 

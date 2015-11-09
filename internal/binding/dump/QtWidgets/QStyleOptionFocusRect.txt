@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QStyleOptionFocusRect QStyleOptionFocusRect::QStyleOptionFocusRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   [] }
-&{QStyleOptionFocusRect QStyleOptionFocusRect::QStyleOptionFocusRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  [0xc8214a3780] }
+&{QStyleOptionFocusRect QStyleOptionFocusRect::QStyleOptionFocusRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionFocusRect() [] }
+&{QStyleOptionFocusRect QStyleOptionFocusRect::QStyleOptionFocusRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionFocusRect(const QStyleOptionFocusRect &other) [0xc82217ea40] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionFocusRect::StyleOptionType commendable public  [0xc8214a2ca0]}
-&{StyleOptionVersion QStyleOptionFocusRect::StyleOptionVersion commendable public  [0xc8214a3020]}
+&{StyleOptionType QStyleOptionFocusRect::StyleOptionType commendable public  [0xc82217e460] false}
+&{StyleOptionVersion QStyleOptionFocusRect::StyleOptionVersion commendable public  [0xc82217e620] false}

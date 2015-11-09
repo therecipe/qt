@@ -1,14 +1,14 @@
 #include "qabstracteventdispatcher.h"
-#include <QObject>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSocketNotifier>
 #include <QThread>
-#include <QEventLoop>
 #include <QAbstractNativeEventFilter>
+#include <QSocketNotifier>
+#include <QUrl>
+#include <QObject>
+#include <QModelIndex>
+#include <QEventLoop>
 #include <QEvent>
 #include <QString>
+#include <QVariant>
 #include <QAbstractEventDispatcher>
 #include "_cgo_export.h"
 
@@ -18,71 +18,71 @@ void Signal_AboutToBlock(){callbackQAbstractEventDispatcherAboutToBlock(this->ob
 void Signal_Awake(){callbackQAbstractEventDispatcherAwake(this->objectName().toUtf8().data());};
 };
 
-void QAbstractEventDispatcher_ConnectAboutToBlock(QtObjectPtr ptr){
+void QAbstractEventDispatcher_ConnectAboutToBlock(void* ptr){
 	QObject::connect(static_cast<QAbstractEventDispatcher*>(ptr), static_cast<void (QAbstractEventDispatcher::*)()>(&QAbstractEventDispatcher::aboutToBlock), static_cast<MyQAbstractEventDispatcher*>(ptr), static_cast<void (MyQAbstractEventDispatcher::*)()>(&MyQAbstractEventDispatcher::Signal_AboutToBlock));;
 }
 
-void QAbstractEventDispatcher_DisconnectAboutToBlock(QtObjectPtr ptr){
+void QAbstractEventDispatcher_DisconnectAboutToBlock(void* ptr){
 	QObject::disconnect(static_cast<QAbstractEventDispatcher*>(ptr), static_cast<void (QAbstractEventDispatcher::*)()>(&QAbstractEventDispatcher::aboutToBlock), static_cast<MyQAbstractEventDispatcher*>(ptr), static_cast<void (MyQAbstractEventDispatcher::*)()>(&MyQAbstractEventDispatcher::Signal_AboutToBlock));;
 }
 
-void QAbstractEventDispatcher_ConnectAwake(QtObjectPtr ptr){
+void QAbstractEventDispatcher_ConnectAwake(void* ptr){
 	QObject::connect(static_cast<QAbstractEventDispatcher*>(ptr), static_cast<void (QAbstractEventDispatcher::*)()>(&QAbstractEventDispatcher::awake), static_cast<MyQAbstractEventDispatcher*>(ptr), static_cast<void (MyQAbstractEventDispatcher::*)()>(&MyQAbstractEventDispatcher::Signal_Awake));;
 }
 
-void QAbstractEventDispatcher_DisconnectAwake(QtObjectPtr ptr){
+void QAbstractEventDispatcher_DisconnectAwake(void* ptr){
 	QObject::disconnect(static_cast<QAbstractEventDispatcher*>(ptr), static_cast<void (QAbstractEventDispatcher::*)()>(&QAbstractEventDispatcher::awake), static_cast<MyQAbstractEventDispatcher*>(ptr), static_cast<void (MyQAbstractEventDispatcher::*)()>(&MyQAbstractEventDispatcher::Signal_Awake));;
 }
 
-void QAbstractEventDispatcher_Flush(QtObjectPtr ptr){
+void QAbstractEventDispatcher_Flush(void* ptr){
 	static_cast<QAbstractEventDispatcher*>(ptr)->flush();
 }
 
-void QAbstractEventDispatcher_InstallNativeEventFilter(QtObjectPtr ptr, QtObjectPtr filterObj){
+void QAbstractEventDispatcher_InstallNativeEventFilter(void* ptr, void* filterObj){
 	static_cast<QAbstractEventDispatcher*>(ptr)->installNativeEventFilter(static_cast<QAbstractNativeEventFilter*>(filterObj));
 }
 
-QtObjectPtr QAbstractEventDispatcher_QAbstractEventDispatcher_Instance(QtObjectPtr thread){
+void* QAbstractEventDispatcher_QAbstractEventDispatcher_Instance(void* thread){
 	return QAbstractEventDispatcher::instance(static_cast<QThread*>(thread));
 }
 
-void QAbstractEventDispatcher_Interrupt(QtObjectPtr ptr){
+void QAbstractEventDispatcher_Interrupt(void* ptr){
 	static_cast<QAbstractEventDispatcher*>(ptr)->interrupt();
 }
 
-int QAbstractEventDispatcher_ProcessEvents(QtObjectPtr ptr, int flags){
+int QAbstractEventDispatcher_ProcessEvents(void* ptr, int flags){
 	return static_cast<QAbstractEventDispatcher*>(ptr)->processEvents(static_cast<QEventLoop::ProcessEventsFlag>(flags));
 }
 
-void QAbstractEventDispatcher_RegisterSocketNotifier(QtObjectPtr ptr, QtObjectPtr notifier){
+void QAbstractEventDispatcher_RegisterSocketNotifier(void* ptr, void* notifier){
 	static_cast<QAbstractEventDispatcher*>(ptr)->registerSocketNotifier(static_cast<QSocketNotifier*>(notifier));
 }
 
-int QAbstractEventDispatcher_RemainingTime(QtObjectPtr ptr, int timerId){
+int QAbstractEventDispatcher_RemainingTime(void* ptr, int timerId){
 	return static_cast<QAbstractEventDispatcher*>(ptr)->remainingTime(timerId);
 }
 
-void QAbstractEventDispatcher_RemoveNativeEventFilter(QtObjectPtr ptr, QtObjectPtr filter){
+void QAbstractEventDispatcher_RemoveNativeEventFilter(void* ptr, void* filter){
 	static_cast<QAbstractEventDispatcher*>(ptr)->removeNativeEventFilter(static_cast<QAbstractNativeEventFilter*>(filter));
 }
 
-void QAbstractEventDispatcher_UnregisterSocketNotifier(QtObjectPtr ptr, QtObjectPtr notifier){
+void QAbstractEventDispatcher_UnregisterSocketNotifier(void* ptr, void* notifier){
 	static_cast<QAbstractEventDispatcher*>(ptr)->unregisterSocketNotifier(static_cast<QSocketNotifier*>(notifier));
 }
 
-int QAbstractEventDispatcher_UnregisterTimer(QtObjectPtr ptr, int timerId){
+int QAbstractEventDispatcher_UnregisterTimer(void* ptr, int timerId){
 	return static_cast<QAbstractEventDispatcher*>(ptr)->unregisterTimer(timerId);
 }
 
-int QAbstractEventDispatcher_UnregisterTimers(QtObjectPtr ptr, QtObjectPtr object){
+int QAbstractEventDispatcher_UnregisterTimers(void* ptr, void* object){
 	return static_cast<QAbstractEventDispatcher*>(ptr)->unregisterTimers(static_cast<QObject*>(object));
 }
 
-void QAbstractEventDispatcher_WakeUp(QtObjectPtr ptr){
+void QAbstractEventDispatcher_WakeUp(void* ptr){
 	static_cast<QAbstractEventDispatcher*>(ptr)->wakeUp();
 }
 
-void QAbstractEventDispatcher_DestroyQAbstractEventDispatcher(QtObjectPtr ptr){
+void QAbstractEventDispatcher_DestroyQAbstractEventDispatcher(void* ptr){
 	static_cast<QAbstractEventDispatcher*>(ptr)->~QAbstractEventDispatcher();
 }
 

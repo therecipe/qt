@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{QVideoProbe QVideoProbe::QVideoProbe commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non constructor false false   [0xc826b3b640] }
-&{flush QVideoProbe::flush commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non signal false false  void [] }
-&{isActive QVideoProbe::isActive commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non plain false false  bool [] }
-&{setSource QVideoProbe::setSource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non plain false false  bool [0xc826b2a020] }
-&{setSource QVideoProbe::setSource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non plain false true 2 bool [0xc826b2a5a0] }
-&{videoFrameProbed QVideoProbe::videoFrameProbed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non signal false false  void [0xc826b2a9a0] }
-&{~QVideoProbe QVideoProbe::~QVideoProbe commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non destructor false false   [] }
+&{QVideoProbe QVideoProbe::QVideoProbe commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non constructor false false   QVideoProbe(QObject *parent) [0xc822907aa0] }
+&{flush QVideoProbe::flush commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non signal false false  void void flush() [] }
+&{isActive QVideoProbe::isActive commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non plain false false  bool bool isActive() const [] }
+&{setSource QVideoProbe::setSource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non plain false false  bool bool setSource(QMediaObject *source) [0xc82291a340] }
+&{setSource QVideoProbe::setSource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non plain false true 2 bool bool setSource(QMediaRecorder *mediaRecorder) [0xc82291a660] }
+&{videoFrameProbed QVideoProbe::videoFrameProbed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non signal false false  void void videoFrameProbed(const QVideoFrame &frame) [0xc82291aa80] }
+&{~QVideoProbe QVideoProbe::~QVideoProbe commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non destructor false false   ~QVideoProbe() [] }
 ########################################			ENUMS			########################################
