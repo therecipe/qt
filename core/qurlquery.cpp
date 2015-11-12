@@ -1,9 +1,9 @@
 #include "qurlquery.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QChar>
+#include <QString>
 #include <QUrlQuery>
 #include "_cgo_export.h"
 

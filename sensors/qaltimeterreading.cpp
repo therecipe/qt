@@ -1,9 +1,9 @@
 #include "qaltimeterreading.h"
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QAltimeter>
 #include <QString>
+#include <QVariant>
 #include <QAltimeterReading>
 #include "_cgo_export.h"
 

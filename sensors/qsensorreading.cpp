@@ -1,9 +1,9 @@
 #include "qsensorreading.h"
+#include <QModelIndex>
+#include <QSensor>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QSensor>
 #include <QSensorReading>
 #include "_cgo_export.h"
 

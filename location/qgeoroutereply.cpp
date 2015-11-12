@@ -1,10 +1,10 @@
 #include "qgeoroutereply.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
 #include <QGeoRoute>
 #include <QObject>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QGeoRouteReply>
 #include "_cgo_export.h"
 

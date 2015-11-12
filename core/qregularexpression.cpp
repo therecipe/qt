@@ -1,11 +1,11 @@
 #include "qregularexpression.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QRegularExpressionMatch>
-#include <QRegularExpressionMatchIterator>
 #include <QStringRef>
+#include <QRegularExpressionMatchIterator>
+#include <QRegularExpressionMatch>
 #include <QString>
-#include <QVariant>
 #include <QRegularExpression>
 #include "_cgo_export.h"
 

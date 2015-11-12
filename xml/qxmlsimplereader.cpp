@@ -1,15 +1,15 @@
 #include "qxmlsimplereader.h"
-#include <QVariant>
-#include <QUrl>
-#include <QXmlEntityResolver>
-#include <QXmlDTDHandler>
-#include <QString>
-#include <QXmlDeclHandler>
-#include <QXmlLexicalHandler>
+#include <QModelIndex>
 #include <QXmlContentHandler>
 #include <QXmlInputSource>
 #include <QXmlErrorHandler>
-#include <QModelIndex>
+#include <QXmlDeclHandler>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QXmlLexicalHandler>
+#include <QXmlDTDHandler>
+#include <QXmlEntityResolver>
 #include <QXmlSimpleReader>
 #include "_cgo_export.h"
 

@@ -1,17 +1,17 @@
 #include "qgraphicspixmapitem.h"
-#include <QString>
-#include <QUrl>
+#include <QVariant>
+#include <QStyle>
+#include <QStyleOptionGraphicsItem>
+#include <QStyleOption>
 #include <QPixmap>
 #include <QPoint>
-#include <QPointF>
-#include <QStyleOption>
-#include <QVariant>
+#include <QString>
+#include <QUrl>
 #include <QModelIndex>
-#include <QWidget>
-#include <QStyleOptionGraphicsItem>
-#include <QStyle>
-#include <QGraphicsItem>
 #include <QPainter>
+#include <QWidget>
+#include <QGraphicsItem>
+#include <QPointF>
 #include <QGraphicsPixmapItem>
 #include "_cgo_export.h"
 

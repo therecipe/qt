@@ -1,11 +1,11 @@
 #include "qcollator.h"
-#include <QStringRef>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QStringRef>
 #include <QLocale>
 #include <QChar>
+#include <QString>
 #include <QCollator>
 #include "_cgo_export.h"
 

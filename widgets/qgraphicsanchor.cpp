@@ -1,10 +1,10 @@
 #include "qgraphicsanchor.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSize>
 #include <QSizePolicy>
+#include <QSize>
+#include <QString>
 #include <QGraphicsAnchor>
 #include "_cgo_export.h"
 

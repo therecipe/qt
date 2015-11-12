@@ -1,12 +1,12 @@
 #include "qfile.h"
+#include <QByteArray>
+#include <QObject>
+#include <QFileDevice>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QIODevice>
-#include <QObject>
-#include <QFileDevice>
-#include <QByteArray>
 #include <QFile>
 #include "_cgo_export.h"
 

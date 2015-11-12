@@ -1,15 +1,15 @@
 #include "qmessagebox.h"
-#include <QCheckBox>
 #include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QPushButton>
+#include <QPixmap>
+#include <QMetaObject>
 #include <QWidget>
 #include <QObject>
+#include <QVariant>
+#include <QUrl>
 #include <QModelIndex>
-#include <QMetaObject>
-#include <QPixmap>
 #include <QAbstractButton>
+#include <QCheckBox>
+#include <QPushButton>
 #include <QMessageBox>
 #include "_cgo_export.h"
 

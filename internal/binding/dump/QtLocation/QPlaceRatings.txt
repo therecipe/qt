@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
 &{QPlaceRatings QPlaceRatings::QPlaceRatings commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non constructor false false   QPlaceRatings() [] }
-&{QPlaceRatings QPlaceRatings::QPlaceRatings commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non constructor false true 2  QPlaceRatings(const QPlaceRatings &other) [0xc82268c380] }
+&{QPlaceRatings QPlaceRatings::QPlaceRatings commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non constructor false true 2  QPlaceRatings(const QPlaceRatings &other) [0xc8203772a0] }
 &{average QPlaceRatings::average commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  qreal qreal average() const [] }
 &{count QPlaceRatings::count commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  int int count() const [] }
 &{isEmpty QPlaceRatings::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  bool bool isEmpty() const [] }
 &{maximum QPlaceRatings::maximum commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  qreal qreal maximum() const [] }
-&{operator!= QPlaceRatings::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  bool bool operator!=(const QPlaceRatings &other) const [0xc82268d100] }
-&{operator= QPlaceRatings::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  QPlaceRatings & QPlaceRatings & operator=(const QPlaceRatings &other) [0xc82268d540] }
-&{operator== QPlaceRatings::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  bool bool operator==(const QPlaceRatings &other) const [0xc82268d9c0] }
-&{setAverage QPlaceRatings::setAverage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  void void setAverage(qreal average) [0xc82268dec0] }
-&{setCount QPlaceRatings::setCount commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  void void setCount(int count) [0xc822ba6280] }
-&{setMaximum QPlaceRatings::setMaximum commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  void void setMaximum(qreal max) [0xc822ba66a0] }
+&{operator!= QPlaceRatings::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  bool bool operator!=(const QPlaceRatings &other) const [0xc820450860] }
+&{operator= QPlaceRatings::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  QPlaceRatings & QPlaceRatings & operator=(const QPlaceRatings &other) [0xc820450e20] }
+&{operator== QPlaceRatings::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  bool bool operator==(const QPlaceRatings &other) const [0xc820451640] }
+&{setAverage QPlaceRatings::setAverage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  void void setAverage(qreal average) [0xc8204da020] }
+&{setCount QPlaceRatings::setCount commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  void void setCount(int count) [0xc8204da9a0] }
+&{setMaximum QPlaceRatings::setMaximum commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non plain false false  void void setMaximum(qreal max) [0xc8204db500] }
 &{~QPlaceRatings QPlaceRatings::~QPlaceRatings commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceratings.h non destructor false false   ~QPlaceRatings() [] }
 ########################################			ENUMS			########################################

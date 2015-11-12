@@ -1,8 +1,8 @@
 #include "qdomcdatasection.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
 #include <QDomCDATASection>
 #include "_cgo_export.h"
 

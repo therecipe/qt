@@ -1,10 +1,10 @@
 #include "qbluetoothtransferreply.h"
-#include <QMetaObject>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QMetaObject>
 #include <QObject>
+#include <QString>
 #include <QBluetoothTransferReply>
 #include "_cgo_export.h"
 

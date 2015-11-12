@@ -1,16 +1,16 @@
 #include "qgraphicsproxywidget.h"
+#include <QRectF>
+#include <QRect>
+#include <QPainter>
+#include <QStyle>
 #include <QWidget>
 #include <QStyleOptionGraphicsItem>
-#include <QPainter>
-#include <QRectF>
+#include <QStyleOption>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QStyle>
 #include <QGraphicsItem>
-#include <QRect>
-#include <QStyleOption>
-#include <QString>
 #include <QGraphicsProxyWidget>
 #include "_cgo_export.h"
 

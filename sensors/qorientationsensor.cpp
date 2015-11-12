@@ -1,9 +1,9 @@
 #include "qorientationsensor.h"
+#include <QObject>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QString>
 #include <QOrientationSensor>
 #include "_cgo_export.h"
 

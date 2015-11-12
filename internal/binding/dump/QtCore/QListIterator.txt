@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{QListIterator QListIterator::QListIterator commendable public qlist.h non constructor false false   QListIterator(const QList<T> &list) [0xc8202bae60] }
-&{findNext QListIterator::findNext commendable public qlist.h non plain false false  bool bool findNext(const T &value) [0xc8202bb640] }
-&{findPrevious QListIterator::findPrevious commendable public qlist.h non plain false false  bool bool findPrevious(const T &value) [0xc8202bbc60] }
+&{QListIterator QListIterator::QListIterator commendable public qlist.h non constructor false false   QListIterator(const QList<T> &list) [0xc82024e000] }
+&{findNext QListIterator::findNext commendable public qlist.h non plain false false  bool bool findNext(const T &value) [0xc82024e7e0] }
+&{findPrevious QListIterator::findPrevious commendable public qlist.h non plain false false  bool bool findPrevious(const T &value) [0xc82024edc0] }
 &{hasNext QListIterator::hasNext commendable public qlist.h non plain false false  bool bool hasNext() const [] }
 &{hasPrevious QListIterator::hasPrevious commendable public qlist.h non plain false false  bool bool hasPrevious() const [] }
 &{next QListIterator::next commendable public qlist.h non plain false false  const T & const T & next() [] }
-&{operator= QListIterator::operator= commendable public qlist.h non plain false false  QListIterator & QListIterator & operator=(const QList<T> &list) [0xc8202a5020] }
+&{operator= QListIterator::operator= commendable public qlist.h non plain false false  QListIterator & QListIterator & operator=(const QList<T> &list) [0xc82024fb60] }
 &{peekNext QListIterator::peekNext commendable public qlist.h non plain false false  const T & const T & peekNext() const [] }
 &{peekPrevious QListIterator::peekPrevious commendable public qlist.h non plain false false  const T & const T & peekPrevious() const [] }
 &{previous QListIterator::previous commendable public qlist.h non plain false false  const T & const T & previous() [] }

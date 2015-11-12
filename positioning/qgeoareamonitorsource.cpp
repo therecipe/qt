@@ -1,12 +1,12 @@
 #include "qgeoareamonitorsource.h"
-#include <QObject>
-#include <QGeoAreaMonitorInfo>
-#include <QGeoPositionInfo>
-#include <QGeoPositionInfoSource>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QGeoAreaMonitorInfo>
+#include <QGeoPositionInfoSource>
+#include <QObject>
+#include <QGeoPositionInfo>
 #include <QGeoAreaMonitorSource>
 #include "_cgo_export.h"
 

@@ -1,14 +1,14 @@
 #include "qsgabstractrenderer.h"
-#include <QVariant>
 #include <QModelIndex>
-#include <QColor>
-#include <QMatrix4x4>
-#include <QRect>
-#include <QRectF>
-#include <QString>
-#include <QUrl>
 #include <QObject>
 #include <QSize>
+#include <QRectF>
+#include <QRect>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QColor>
+#include <QMatrix4x4>
 #include <QSGAbstractRenderer>
 #include "_cgo_export.h"
 

@@ -1,12 +1,12 @@
 #include "qtoolbox.h"
-#include <QObject>
+#include <QModelIndex>
 #include <QMetaObject>
+#include <QWidget>
+#include <QObject>
+#include <QIcon>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QIcon>
-#include <QWidget>
 #include <QToolBox>
 #include "_cgo_export.h"
 

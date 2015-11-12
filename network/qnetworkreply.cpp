@@ -1,14 +1,14 @@
 #include "qnetworkreply.h"
-#include <QByteArray>
+#include <QUrl>
 #include <QSslPreSharedKeyAuthenticator>
+#include <QByteArray>
 #include <QObject>
-#include <QSslConfiguration>
-#include <QNetworkRequest>
-#include <QMetaObject>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
+#include <QNetworkRequest>
+#include <QMetaObject>
+#include <QSslConfiguration>
 #include <QNetworkReply>
 #include "_cgo_export.h"
 

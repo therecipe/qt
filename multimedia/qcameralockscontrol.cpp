@@ -1,10 +1,10 @@
 #include "qcameralockscontrol.h"
+#include <QModelIndex>
+#include <QCamera>
 #include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QCamera>
 #include <QCameraLocksControl>
 #include "_cgo_export.h"
 

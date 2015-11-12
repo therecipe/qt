@@ -1,3 +1,3 @@
 ########################################			FUNCTIONS			########################################
-&{filter QIRProximityFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qirproximitysensor.h pure plain false false  bool bool filter(QIRProximityReading *reading) [0xc823653200] }
+&{filter QIRProximityFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qirproximitysensor.h pure plain false false  bool bool filter(QIRProximityReading *reading) [0xc8235b8900] }
 ########################################			ENUMS			########################################

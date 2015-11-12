@@ -1,13 +1,13 @@
 #include "qquickpainteditem.h"
-#include <QSize>
 #include <QPainter>
+#include <QObject>
+#include <QColor>
 #include <QVariant>
 #include <QUrl>
-#include <QObject>
-#include <QRect>
-#include <QString>
 #include <QModelIndex>
-#include <QColor>
+#include <QRect>
+#include <QSize>
+#include <QString>
 #include <QQuickPaintedItem>
 #include "_cgo_export.h"
 

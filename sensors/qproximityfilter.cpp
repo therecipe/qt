@@ -1,9 +1,9 @@
 #include "qproximityfilter.h"
+#include <QModelIndex>
+#include <QProximityReading>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QProximityReading>
 #include <QProximityFilter>
 #include "_cgo_export.h"
 

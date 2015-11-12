@@ -1,12 +1,12 @@
 #include "qhelpsearchengine.h"
+#include <QUrl>
 #include <QModelIndex>
-#include <QHelpEngine>
 #include <QMetaObject>
 #include <QObject>
 #include <QHelpEngineCore>
+#include <QHelpEngine>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QHelpSearchEngine>
 #include "_cgo_export.h"
 

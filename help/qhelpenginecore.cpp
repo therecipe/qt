@@ -1,11 +1,11 @@
 #include "qhelpenginecore.h"
-#include <QByteArray>
-#include <QHelpEngine>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
+#include <QHelpEngine>
+#include <QByteArray>
 #include <QHelpEngineCore>
 #include "_cgo_export.h"
 

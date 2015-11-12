@@ -1,14 +1,14 @@
 #include "qmenu.h"
-#include <QObject>
-#include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QIcon>
-#include <QAction>
-#include <QPoint>
 #include <QModelIndex>
 #include <QWidget>
+#include <QIcon>
+#include <QPoint>
+#include <QString>
+#include <QUrl>
+#include <QObject>
 #include <QKeySequence>
+#include <QAction>
 #include <QMenu>
 #include "_cgo_export.h"
 

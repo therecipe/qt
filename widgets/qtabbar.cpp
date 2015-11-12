@@ -1,15 +1,15 @@
 #include "qtabbar.h"
-#include <QIcon>
 #include <QModelIndex>
-#include <QPoint>
-#include <QColor>
-#include <QSize>
-#include <QObject>
 #include <QMetaObject>
+#include <QIcon>
+#include <QSize>
 #include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QWidget>
+#include <QObject>
+#include <QColor>
+#include <QPoint>
+#include <QVariant>
 #include <QTabBar>
 #include "_cgo_export.h"
 

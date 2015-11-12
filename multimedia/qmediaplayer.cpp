@@ -1,14 +1,14 @@
 #include "qmediaplayer.h"
+#include <QModelIndex>
+#include <QObject>
+#include <QIODevice>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QMediaPlaylist>
 #include <QAbstractVideoSurface>
-#include <QObject>
 #include <QMediaContent>
-#include <QUrl>
-#include <QModelIndex>
 #include <QMetaObject>
-#include <QIODevice>
 #include <QMediaPlayer>
 #include "_cgo_export.h"
 

@@ -1,9 +1,9 @@
 #include "qaccelerometerreading.h"
+#include <QModelIndex>
+#include <QAccelerometer>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QAccelerometer>
 #include <QAccelerometerReading>
 #include "_cgo_export.h"
 

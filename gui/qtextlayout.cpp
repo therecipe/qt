@@ -1,14 +1,14 @@
 #include "qtextlayout.h"
-#include <QModelIndex>
-#include <QFont>
-#include <QPointF>
-#include <QTextOption>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QPainter>
 #include <QPaintDevice>
+#include <QPointF>
+#include <QVariant>
 #include <QPoint>
+#include <QModelIndex>
+#include <QTextOption>
+#include <QPainter>
+#include <QFont>
+#include <QString>
+#include <QUrl>
 #include <QTextLayout>
 #include "_cgo_export.h"
 

@@ -1,10 +1,10 @@
 #include "qndefmessage.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QByteArray>
 #include <QNdefRecord>
+#include <QString>
+#include <QVariant>
 #include <QNdefMessage>
 #include "_cgo_export.h"
 

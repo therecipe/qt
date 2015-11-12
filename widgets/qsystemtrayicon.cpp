@@ -1,12 +1,12 @@
 #include "qsystemtrayicon.h"
 #include <QObject>
+#include <QIcon>
 #include <QMenu>
-#include <QMetaObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QIcon>
+#include <QMetaObject>
 #include <QSystemTrayIcon>
 #include "_cgo_export.h"
 

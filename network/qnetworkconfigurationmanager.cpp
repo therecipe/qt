@@ -1,7 +1,7 @@
 #include "qnetworkconfigurationmanager.h"
 #include <QModelIndex>
-#include <QNetworkConfiguration>
 #include <QMetaObject>
+#include <QNetworkConfiguration>
 #include <QObject>
 #include <QString>
 #include <QVariant>

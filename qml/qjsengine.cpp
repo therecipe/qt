@@ -1,10 +1,10 @@
 #include "qjsengine.h"
-#include <QModelIndex>
-#include <QJSValue>
 #include <QObject>
+#include <QJSValue>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QJSEngine>
 #include "_cgo_export.h"
 

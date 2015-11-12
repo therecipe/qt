@@ -12,21 +12,27 @@ import (
 )
 
 func main() {
-	var buildTarget = "desktop"
+	var (
+		ending      string
+		buildTarget = "desktop"
+	)
 	if len(os.Args) > 1 {
 		buildTarget = os.Args[1]
+	}
+	if runtime.GOOS == "windows" {
+		ending = ".exe"
 	}
 
 	fmt.Printf("_________________________Test-%v__________________________\n", buildTarget)
 
-	runCmd(exec.Command("go", "build", "-o", path.Join(runtime.GOROOT(), "bin", "qtdeploy"), utils.GetQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
+	runCmd(exec.Command("go", "build", "-o", path.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtdeploy%v", ending)), utils.GetQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
 
 	for _, example := range []string{"widgets", path.Join("quick", "calc"), path.Join("quick", "dialog"), path.Join("quick", "view"), path.Join("qml", "application"), path.Join("qml", "prop")} {
 		var before = time.Now()
 
 		fmt.Print(example)
 
-		runCmd(exec.Command("qtdeploy", "test", buildTarget, path.Join(utils.GetQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
+		runCmd(exec.Command(fmt.Sprintf("qtdeploy%v", ending), "test", buildTarget, path.Join(utils.GetQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
 
 		var sep = "\t"
 		if len(example) < 8 {
@@ -44,7 +50,7 @@ func main() {
 func runCmd(cmd *exec.Cmd, n string) string {
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
-		fmt.Printf("=>%v<=\noutput:%s\nerror:%s\n\n", n, out, err)
+		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", n, out, err)
 		os.Exit(1)
 	}
 	return string(out)

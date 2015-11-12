@@ -1,19 +1,19 @@
 #include "qwindow.h"
 #include <QSurface>
+#include <QMetaObject>
 #include <QObject>
-#include <QSize>
-#include <QRect>
 #include <QPoint>
-#include <QVariant>
-#include <QIcon>
+#include <QUrl>
 #include <QCursor>
 #include <QRegion>
-#include <QScreen>
-#include <QModelIndex>
+#include <QIcon>
+#include <QSize>
 #include <QSurfaceFormat>
-#include <QMetaObject>
 #include <QString>
-#include <QUrl>
+#include <QVariant>
+#include <QModelIndex>
+#include <QScreen>
+#include <QRect>
 #include <QWindow>
 #include "_cgo_export.h"
 

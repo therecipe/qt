@@ -1,10 +1,10 @@
 #include "qbluetoothlocaldevice.h"
+#include <QMetaObject>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QMetaObject>
-#include <QObject>
 #include <QBluetoothAddress>
 #include <QBluetoothLocalDevice>
 #include "_cgo_export.h"

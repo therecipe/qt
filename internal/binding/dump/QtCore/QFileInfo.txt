@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
 &{QFileInfo QFileInfo::QFileInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non constructor false false   QFileInfo() [] }
-&{QFileInfo QFileInfo::QFileInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non constructor false true 5  QFileInfo(const QDir &dir, const QString &file) [0xc8203eff40 0xc8203effc0] }
-&{QFileInfo QFileInfo::QFileInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non constructor false true 4  QFileInfo(const QFile &file) [0xc8203fe1e0] }
-&{QFileInfo QFileInfo::QFileInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non constructor false true 6  QFileInfo(const QFileInfo &fileinfo) [0xc8203fe3c0] }
-&{QFileInfo QFileInfo::QFileInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non constructor false true 3  QFileInfo(const QString &file) [0xc8203fe640] }
+&{QFileInfo QFileInfo::QFileInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non constructor false true 5  QFileInfo(const QDir &dir, const QString &file) [0xc8203c5f40 0xc8203c5fc0] }
+&{QFileInfo QFileInfo::QFileInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non constructor false true 4  QFileInfo(const QFile &file) [0xc8203d41e0] }
+&{QFileInfo QFileInfo::QFileInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non constructor false true 6  QFileInfo(const QFileInfo &fileinfo) [0xc8203d43c0] }
+&{QFileInfo QFileInfo::QFileInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non constructor false true 3  QFileInfo(const QString &file) [0xc8203d4640] }
 &{absoluteDir QFileInfo::absoluteDir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QDir QDir absoluteDir() const [] }
 &{absoluteFilePath QFileInfo::absoluteFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QString QString absoluteFilePath() const [] }
 &{absolutePath QFileInfo::absolutePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QString QString absolutePath() const [] }
@@ -16,7 +16,7 @@
 &{completeSuffix QFileInfo::completeSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QString QString completeSuffix() const [] }
 &{created QFileInfo::created commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QDateTime QDateTime created() const [] }
 &{dir QFileInfo::dir commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QDir QDir dir() const [] }
-&{exists QFileInfo::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain true true 2 bool bool exists(const QString &file) [0xc820414880] }
+&{exists QFileInfo::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain true true 2 bool bool exists(const QString &file) [0xc82000e340] }
 &{exists QFileInfo::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  bool bool exists() const [] }
 &{fileName QFileInfo::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QString QString fileName() const [] }
 &{filePath QFileInfo::filePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QString QString filePath() const [] }
@@ -37,23 +37,23 @@
 &{lastModified QFileInfo::lastModified commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QDateTime QDateTime lastModified() const [] }
 &{lastRead QFileInfo::lastRead commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QDateTime QDateTime lastRead() const [] }
 &{makeAbsolute QFileInfo::makeAbsolute commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  bool bool makeAbsolute() [] }
-&{operator!= QFileInfo::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  bool bool operator!=(const QFileInfo &fileinfo) const [0xc82000f480] }
-&{operator= QFileInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false true 2 QFileInfo & QFileInfo & operator=(QFileInfo &&other) [0xc82000f740] }
-&{operator= QFileInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QFileInfo & QFileInfo & operator=(const QFileInfo &fileinfo) [0xc82000fa40] }
-&{operator== QFileInfo::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  bool bool operator==(const QFileInfo &fileinfo) const [0xc82000fd60] }
+&{operator!= QFileInfo::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  bool bool operator!=(const QFileInfo &fileinfo) const [0xc8201be520] }
+&{operator= QFileInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false true 2 QFileInfo & QFileInfo & operator=(QFileInfo &&other) [0xc8201be7e0] }
+&{operator= QFileInfo::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QFileInfo & QFileInfo & operator=(const QFileInfo &fileinfo) [0xc8201bea60] }
+&{operator== QFileInfo::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  bool bool operator==(const QFileInfo &fileinfo) const [0xc8201bed20] }
 &{owner QFileInfo::owner commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QString QString owner() const [] }
 &{ownerId QFileInfo::ownerId commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  uint uint ownerId() const [] }
 &{path QFileInfo::path commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QString QString path() const [] }
-&{permission QFileInfo::permission commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  bool bool permission(QFile::Permissions permissions) const [0xc8201e84a0] }
+&{permission QFileInfo::permission commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  bool bool permission(QFile::Permissions permissions) const [0xc8201bf400] }
 &{permissions QFileInfo::permissions commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QFile::Permissions QFile::Permissions permissions() const [] }
 &{refresh QFileInfo::refresh commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  void void refresh() [] }
-&{setCaching QFileInfo::setCaching commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  void void setCaching(bool enable) [0xc8201e8c60] }
-&{setFile QFileInfo::setFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false true 3 void void setFile(const QDir &dir, const QString &file) [0xc8201e8ea0 0xc8201e8f60] }
-&{setFile QFileInfo::setFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false true 2 void void setFile(const QFile &file) [0xc8201e9220] }
-&{setFile QFileInfo::setFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  void void setFile(const QString &file) [0xc8201e9480] }
+&{setCaching QFileInfo::setCaching commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  void void setCaching(bool enable) [0xc8201bfba0] }
+&{setFile QFileInfo::setFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false true 3 void void setFile(const QDir &dir, const QString &file) [0xc8201bfe00 0xc8201bfea0] }
+&{setFile QFileInfo::setFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false true 2 void void setFile(const QFile &file) [0xc820332180] }
+&{setFile QFileInfo::setFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  void void setFile(const QString &file) [0xc820332340] }
 &{size QFileInfo::size commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  qint64 qint64 size() const [] }
 &{suffix QFileInfo::suffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QString QString suffix() const [] }
-&{swap QFileInfo::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  void void swap(QFileInfo &other) [0xc8201e99a0] }
+&{swap QFileInfo::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  void void swap(QFileInfo &other) [0xc820332860] }
 &{symLinkTarget QFileInfo::symLinkTarget commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non plain false false  QString QString symLinkTarget() const [] }
 &{~QFileInfo QFileInfo::~QFileInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileinfo.h non destructor false false   ~QFileInfo() [] }
 ########################################			ENUMS			########################################

@@ -1,10 +1,10 @@
 #include "qslider.h"
+#include <QModelIndex>
 #include <QWidget>
+#include <QEvent>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QEvent>
 #include <QSlider>
 #include "_cgo_export.h"
 

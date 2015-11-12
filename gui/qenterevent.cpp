@@ -1,10 +1,10 @@
 #include "qenterevent.h"
+#include <QPointF>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QPoint>
-#include <QPointF>
 #include <QEnterEvent>
 #include "_cgo_export.h"
 

@@ -1,13 +1,13 @@
 #include "qstandarditem.h"
-#include <QString>
 #include <QUrl>
-#include <QModelIndex>
-#include <QBrush>
-#include <QFont>
-#include <QDataStream>
-#include <QVariant>
-#include <QSize>
 #include <QIcon>
+#include <QFont>
+#include <QBrush>
+#include <QString>
+#include <QVariant>
+#include <QModelIndex>
+#include <QSize>
+#include <QDataStream>
 #include <QStandardItem>
 #include "_cgo_export.h"
 

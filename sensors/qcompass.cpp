@@ -1,9 +1,9 @@
 #include "qcompass.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
+#include <QString>
 #include <QCompass>
 #include "_cgo_export.h"
 

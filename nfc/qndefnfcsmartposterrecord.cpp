@@ -1,12 +1,12 @@
 #include "qndefnfcsmartposterrecord.h"
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
-#include <QNdefNfcUriRecord>
 #include <QNdefRecord>
 #include <QNdefNfcTextRecord>
+#include <QNdefNfcUriRecord>
 #include <QByteArray>
 #include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QNdefNfcSmartPosterRecord>
 #include "_cgo_export.h"
 

@@ -1,8 +1,8 @@
 #include "qcommandlineoption.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
+#include <QVariant>
 #include <QCommandLineOption>
 #include "_cgo_export.h"
 

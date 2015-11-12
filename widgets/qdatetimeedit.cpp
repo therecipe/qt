@@ -1,16 +1,16 @@
 #include "qdatetimeedit.h"
-#include <QVariant>
-#include <QEvent>
-#include <QCalendarWidget>
+#include <QWidget>
+#include <QUrl>
+#include <QModelIndex>
+#include <QDateTime>
 #include <QTime>
+#include <QCalendarWidget>
+#include <QEvent>
 #include <QMetaObject>
 #include <QDate>
 #include <QString>
-#include <QUrl>
-#include <QModelIndex>
-#include <QWidget>
+#include <QVariant>
 #include <QObject>
-#include <QDateTime>
 #include <QDateTimeEdit>
 #include "_cgo_export.h"
 

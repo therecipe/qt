@@ -1,12 +1,12 @@
 #include "qdragmoveevent.h"
-#include <QModelIndex>
-#include <QDrag>
-#include <QMimeData>
-#include <QPoint>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QDrag>
 #include <QRect>
+#include <QMimeData>
+#include <QModelIndex>
+#include <QPoint>
 #include <QEvent>
 #include <QDragMoveEvent>
 #include "_cgo_export.h"

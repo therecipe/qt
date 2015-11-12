@@ -1,21 +1,21 @@
 ########################################			FUNCTIONS			########################################
 &{QMarginsF QMarginsF::QMarginsF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non constructor false false   QMarginsF() [] }
-&{QMarginsF QMarginsF::QMarginsF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non constructor false true 3  QMarginsF(const QMargins &margins) [0xc820ddaa80] }
-&{QMarginsF QMarginsF::QMarginsF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non constructor false true 2  QMarginsF(qreal left, qreal top, qreal right, qreal bottom) [0xc820ddac40 0xc820ddacc0 0xc820ddad40 0xc820ddadc0] }
+&{QMarginsF QMarginsF::QMarginsF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non constructor false true 3  QMarginsF(const QMargins &margins) [0xc820d9d8e0] }
+&{QMarginsF QMarginsF::QMarginsF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non constructor false true 2  QMarginsF(qreal left, qreal top, qreal right, qreal bottom) [0xc820d9daa0 0xc820d9db20 0xc820d9dba0 0xc820d9dc20] }
 &{bottom QMarginsF::bottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  qreal qreal bottom() const [] }
 &{isNull QMarginsF::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  bool bool isNull() const [] }
 &{left QMarginsF::left commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  qreal qreal left() const [] }
-&{operator*= QMarginsF::operator*= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMarginsF & QMarginsF & operator*=(qreal factor) [0xc820ddb300] }
-&{operator+= QMarginsF::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMarginsF & QMarginsF & operator+=(const QMarginsF &margins) [0xc820ddb4e0] }
-&{operator+= QMarginsF::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false true 2 QMarginsF & QMarginsF & operator+=(qreal addend) [0xc820ddb700] }
-&{operator-= QMarginsF::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMarginsF & QMarginsF & operator-=(const QMarginsF &margins) [0xc820ddb8e0] }
-&{operator-= QMarginsF::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false true 2 QMarginsF & QMarginsF & operator-=(qreal subtrahend) [0xc820ddbae0] }
-&{operator/= QMarginsF::operator/= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMarginsF & QMarginsF & operator/=(qreal divisor) [0xc820ddbca0] }
+&{operator*= QMarginsF::operator*= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMarginsF & QMarginsF & operator*=(qreal factor) [0xc820db4160] }
+&{operator+= QMarginsF::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMarginsF & QMarginsF & operator+=(const QMarginsF &margins) [0xc820db4340] }
+&{operator+= QMarginsF::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false true 2 QMarginsF & QMarginsF & operator+=(qreal addend) [0xc820db4560] }
+&{operator-= QMarginsF::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMarginsF & QMarginsF & operator-=(const QMarginsF &margins) [0xc820db4740] }
+&{operator-= QMarginsF::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false true 2 QMarginsF & QMarginsF & operator-=(qreal subtrahend) [0xc820db4940] }
+&{operator/= QMarginsF::operator/= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMarginsF & QMarginsF & operator/=(qreal divisor) [0xc820db4b00] }
 &{right QMarginsF::right commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  qreal qreal right() const [] }
-&{setBottom QMarginsF::setBottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  void void setBottom(qreal bottom) [0xc820ddbfa0] }
-&{setLeft QMarginsF::setLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  void void setLeft(qreal left) [0xc820df01c0] }
-&{setRight QMarginsF::setRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  void void setRight(qreal right) [0xc820df03e0] }
-&{setTop QMarginsF::setTop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  void void setTop(qreal Top) [0xc820df0620] }
+&{setBottom QMarginsF::setBottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  void void setBottom(qreal bottom) [0xc820db4e00] }
+&{setLeft QMarginsF::setLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  void void setLeft(qreal left) [0xc820db5020] }
+&{setRight QMarginsF::setRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  void void setRight(qreal right) [0xc820db5240] }
+&{setTop QMarginsF::setTop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  void void setTop(qreal Top) [0xc820db5480] }
 &{toMargins QMarginsF::toMargins commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  QMargins QMargins toMargins() const [] }
 &{top QMarginsF::top commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qmargins.h non plain false false  qreal qreal top() const [] }
 ########################################			ENUMS			########################################

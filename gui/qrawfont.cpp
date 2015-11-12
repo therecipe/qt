@@ -1,11 +1,11 @@
 #include "qrawfont.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QFont>
 #include <QByteArray>
 #include <QChar>
+#include <QFont>
+#include <QString>
 #include <QRawFont>
 #include "_cgo_export.h"
 

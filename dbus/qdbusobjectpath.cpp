@@ -1,9 +1,9 @@
 #include "qdbusobjectpath.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QLatin1String>
 #include <QString>
-#include <QVariant>
 #include <QDBusObjectPath>
 #include "_cgo_export.h"
 

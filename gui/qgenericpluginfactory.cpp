@@ -1,9 +1,9 @@
 #include "qgenericpluginfactory.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QGenericPlugin>
-#include <QString>
-#include <QVariant>
 #include <QGenericPluginFactory>
 #include "_cgo_export.h"
 

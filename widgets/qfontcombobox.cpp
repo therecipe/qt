@@ -1,12 +1,12 @@
 #include "qfontcombobox.h"
-#include <QFont>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QFont>
 #include <QMetaObject>
 #include <QWidget>
 #include <QFontDatabase>
+#include <QString>
 #include <QFontComboBox>
 #include "_cgo_export.h"
 

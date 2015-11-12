@@ -1,12 +1,12 @@
 #include "qlabel.h"
-#include <QVariant>
-#include <QPicture>
 #include <QMovie>
-#include <QWidget>
-#include <QPixmap>
-#include <QString>
 #include <QUrl>
 #include <QModelIndex>
+#include <QPixmap>
+#include <QWidget>
+#include <QPicture>
+#include <QString>
+#include <QVariant>
 #include <QMetaObject>
 #include <QObject>
 #include <QLabel>

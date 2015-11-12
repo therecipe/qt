@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QTextTableCell>
 #include <QTextTable>
+#include <QTextTableCell>
 #include <QTextTableCellFormat>
 #include "_cgo_export.h"
 

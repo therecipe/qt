@@ -1,8 +1,8 @@
 #include "qpoint.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
+#include <QVariant>
 #include <QPoint>
 #include "_cgo_export.h"
 

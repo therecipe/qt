@@ -1,11 +1,11 @@
 #include "qidentityproxymodel.h"
 #include <QObject>
+#include <QAbstractItemModel>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMimeData>
-#include <QAbstractItemModel>
 #include <QIdentityProxyModel>
 #include "_cgo_export.h"
 

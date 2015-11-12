@@ -1,11 +1,11 @@
 #include "qaccessibletextinsertevent.h"
-#include <QAccessible>
-#include <QObject>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
 #include <QAccessibleInterface>
+#include <QAccessible>
+#include <QString>
+#include <QVariant>
 #include <QAccessibleTextInsertEvent>
 #include "_cgo_export.h"
 

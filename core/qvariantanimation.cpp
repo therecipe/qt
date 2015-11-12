@@ -1,10 +1,10 @@
 #include "qvariantanimation.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QEasingCurve>
-#include <QObject>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QEasingCurve>
 #include <QVariantAnimation>
 #include "_cgo_export.h"
 

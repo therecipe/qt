@@ -1,11 +1,11 @@
 #include "qprogressbar.h"
+#include <QMetaObject>
+#include <QWidget>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QWidget>
-#include <QObject>
-#include <QMetaObject>
 #include <QProgressBar>
 #include "_cgo_export.h"
 

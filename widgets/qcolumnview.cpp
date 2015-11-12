@@ -1,15 +1,15 @@
 #include "qcolumnview.h"
 #include <QString>
-#include <QUrl>
-#include <QWidget>
-#include <QPoint>
-#include <QItemSelection>
-#include <QItemSelectionModel>
-#include <QAbstractItemView>
 #include <QVariant>
-#include <QModelIndex>
-#include <QAbstractItemModel>
 #include <QObject>
+#include <QAbstractItemModel>
+#include <QItemSelection>
+#include <QAbstractItemView>
+#include <QUrl>
+#include <QModelIndex>
+#include <QWidget>
+#include <QItemSelectionModel>
+#include <QPoint>
 #include <QColumnView>
 #include "_cgo_export.h"
 

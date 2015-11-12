@@ -1,9 +1,9 @@
 #include "qwheelevent.h"
-#include <QPointF>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QPointF>
 #include <QPoint>
 #include <QWheelEvent>
 #include "_cgo_export.h"

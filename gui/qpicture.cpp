@@ -1,11 +1,11 @@
 #include "qpicture.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPainter>
 #include <QRect>
 #include <QIODevice>
+#include <QPainter>
+#include <QString>
 #include <QPicture>
 #include "_cgo_export.h"
 

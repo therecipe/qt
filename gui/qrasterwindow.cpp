@@ -1,9 +1,9 @@
 #include "qrasterwindow.h"
-#include <QWindow>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QWindow>
 #include <QRasterWindow>
 #include "_cgo_export.h"
 

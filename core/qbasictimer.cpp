@@ -1,9 +1,9 @@
 #include "qbasictimer.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
+#include <QString>
+#include <QVariant>
 #include <QBasicTimer>
 #include "_cgo_export.h"
 

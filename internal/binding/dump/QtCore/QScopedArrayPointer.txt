@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
 &{QScopedArrayPointer QScopedArrayPointer::QScopedArrayPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non constructor false false   QScopedArrayPointer() [] }
-&{operator[] QScopedArrayPointer::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false  T & T & operator[](int i) [0xc820cd6ee0] }
-&{operator[] QScopedArrayPointer::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false true 2 const T & const T & operator[](int i) const [0xc820cd7120] }
+&{operator[] QScopedArrayPointer::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false  T & T & operator[](int i) [0xc820c8f7c0] }
+&{operator[] QScopedArrayPointer::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false true 2 const T & const T & operator[](int i) const [0xc820c8fa00] }
 ########################################			ENUMS			########################################

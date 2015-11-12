@@ -1,9 +1,9 @@
 #include "qdomdocumentfragment.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QDomDocument>
-#include <QString>
 #include <QDomDocumentFragment>
 #include "_cgo_export.h"
 

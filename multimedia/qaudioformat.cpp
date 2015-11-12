@@ -1,8 +1,8 @@
 #include "qaudioformat.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QAudioFormat>
 #include "_cgo_export.h"
 

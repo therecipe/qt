@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QEventLoop QEventLoop::QEventLoop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non constructor false false   QEventLoop(QObject *parent) [0xc8205f8e40] }
-&{event QEventLoop::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h impure plain false false  bool bool event(QEvent *event) [0xc8205f90c0] }
-&{exec QEventLoop::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  int int exec(ProcessEventsFlags flags) [0xc8205f9280] }
-&{exit QEventLoop::exit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  void void exit(int returnCode) [0xc8205f9520] }
+&{QEventLoop QEventLoop::QEventLoop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non constructor false false   QEventLoop(QObject *parent) [0xc8205f7e40] }
+&{event QEventLoop::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h impure plain false false  bool bool event(QEvent *event) [0xc8205e20c0] }
+&{exec QEventLoop::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  int int exec(ProcessEventsFlags flags) [0xc8205e22a0] }
+&{exit QEventLoop::exit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  void void exit(int returnCode) [0xc8205e2540] }
 &{isRunning QEventLoop::isRunning commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  bool bool isRunning() const [] }
-&{processEvents QEventLoop::processEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  bool bool processEvents(ProcessEventsFlags flags) [0xc8205f9940] }
-&{processEvents QEventLoop::processEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false true 2 void void processEvents(ProcessEventsFlags flags, int maxTime) [0xc8205f9be0 0xc8205f9cc0] }
+&{processEvents QEventLoop::processEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  bool bool processEvents(ProcessEventsFlags flags) [0xc8205e2980] }
+&{processEvents QEventLoop::processEvents commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false true 2 void void processEvents(ProcessEventsFlags flags, int maxTime) [0xc8205e2c20 0xc8205e2d60] }
 &{quit QEventLoop::quit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non slot false false  void void quit() [] }
 &{wakeUp QEventLoop::wakeUp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non plain false false  void void wakeUp() [] }
 &{~QEventLoop QEventLoop::~QEventLoop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non destructor false false   ~QEventLoop() [] }
 ########################################			ENUMS			########################################
-&{ProcessEventsFlag QEventLoop::ProcessEventsFlag commendable public QEventLoop::ProcessEventsFlags [0xc8205f8520 0xc8205f85c0 0xc8205f86a0 0xc8205f87a0 0xc8205f8900 0xc8205f8980 0xc8205f8a20] false}
+&{ProcessEventsFlag QEventLoop::ProcessEventsFlag commendable public QEventLoop::ProcessEventsFlags [0xc8205f7460 0xc8205f7540 0xc8205f7660 0xc8205f7780 0xc8205f78a0 0xc8205f7980 0xc8205f7a00] false}

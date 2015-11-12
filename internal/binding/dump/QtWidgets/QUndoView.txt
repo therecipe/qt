@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
 &{cleanIcon QUndoView::cleanIcon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  QIcon QIcon cleanIcon() const [] }
 &{emptyLabel QUndoView::emptyLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  QString QString emptyLabel() const [] }
-&{setCleanIcon QUndoView::setCleanIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  void void setCleanIcon(const QIcon &icon) [0xc821ae8f80] }
-&{setEmptyLabel QUndoView::setEmptyLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  void void setEmptyLabel(const QString &label) [0xc821ae9280] }
-&{QUndoView QUndoView::QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non constructor false true 3  QUndoView(QUndoGroup *group, QWidget *parent) [0xc821ae9580 0xc821ae9600] }
-&{QUndoView QUndoView::QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non constructor false true 2  QUndoView(QUndoStack *stack, QWidget *parent) [0xc821ae98e0 0xc821ae9960] }
-&{QUndoView QUndoView::QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non constructor false false   QUndoView(QWidget *parent) [0xc821ae9cc0] }
+&{setCleanIcon QUndoView::setCleanIcon commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  void void setCleanIcon(const QIcon &icon) [0xc82257e080] }
+&{setEmptyLabel QUndoView::setEmptyLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.cpp non plain false false  void void setEmptyLabel(const QString &label) [0xc82257e3a0] }
+&{QUndoView QUndoView::QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non constructor false true 3  QUndoView(QUndoGroup *group, QWidget *parent) [0xc82257e660 0xc82257e760] }
+&{QUndoView QUndoView::QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non constructor false true 2  QUndoView(QUndoStack *stack, QWidget *parent) [0xc82257ea80 0xc82257eb20] }
+&{QUndoView QUndoView::QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non constructor false false   QUndoView(QWidget *parent) [0xc82257ee60] }
 &{group QUndoView::group commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non plain false false  QUndoGroup * QUndoGroup * group() const [] }
-&{setGroup QUndoView::setGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non slot false false  void void setGroup(QUndoGroup *group) [0xc821ae0120] }
-&{setStack QUndoView::setStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non slot false false  void void setStack(QUndoStack *stack) [0xc821ae05a0] }
+&{setGroup QUndoView::setGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non slot false false  void void setGroup(QUndoGroup *group) [0xc82257f3a0] }
+&{setStack QUndoView::setStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non slot false false  void void setStack(QUndoStack *stack) [0xc82257f720] }
 &{stack QUndoView::stack commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non plain false false  QUndoStack * QUndoStack * stack() const [] }
 &{~QUndoView QUndoView::~QUndoView commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundoview.h non destructor false false   ~QUndoView() [] }
 ########################################			ENUMS			########################################

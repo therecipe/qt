@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QDateTime>
 #include <QDate>
+#include <QDateTime>
 #include <QNetworkCacheMetaData>
 #include "_cgo_export.h"
 

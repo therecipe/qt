@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"path"
+	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
@@ -24,16 +24,37 @@ func main() {
 	}
 
 	if buildTarget == "android" {
-		env = map[string]string{
-			"GOPATH":       os.Getenv("GOPATH"),
-			"GOOS":         "android",
-			"GOARCH":       "arm",
-			"GOARM":        "7",
-			"CC":           path.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
-			"CXX":          path.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
-			"CGO_ENABLED":  "1",
-			"CGO_CPPFLAGS": "-isystem /opt/android-ndk/platforms/android-9/arch-arm/usr/include",
-			"CGO_LDFLAGS":  "--sysroot=/opt/android-ndk/platforms/android-9/arch-arm/ -llog",
+
+		switch runtime.GOOS {
+		case "darwin", "linux":
+			{
+				env = map[string]string{
+					"GOPATH":       os.Getenv("GOPATH"),
+					"GOOS":         "android",
+					"GOARCH":       "arm",
+					"GOARM":        "7",
+					"CC":           filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
+					"CXX":          filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
+					"CGO_ENABLED":  "1",
+					"CGO_CPPFLAGS": "-isystem /opt/android-ndk/platforms/android-9/arch-arm/usr/include",
+					"CGO_LDFLAGS":  "--sysroot=/opt/android-ndk/platforms/android-9/arch-arm/ -llog",
+				}
+			}
+
+		case "windows":
+			{
+				env = map[string]string{
+					"GOPATH":       os.Getenv("GOPATH"),
+					"GOOS":         "android",
+					"GOARCH":       "arm",
+					"GOARM":        "7",
+					"CC":           "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows\\bin\\arm-linux-androideabi-gcc.exe",
+					"CXX":          "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows\\bin\\arm-linux-androideabi-g++.exe",
+					"CGO_ENABLED":  "1",
+					"CGO_CPPFLAGS": "-isystem C:\\android\\android-ndk\\platforms\\android-9\\arch-arm\\usr\\include",
+					"CGO_LDFLAGS":  "--sysroot=C:\\android\\android-ndk\\platforms\\android-9\\arch-arm\\ -llog",
+				}
+			}
 		}
 	}
 
@@ -55,7 +76,7 @@ func main() {
 	for _, m := range templater.GetLibs() {
 
 		if buildTarget == "android" && (m == "DBus" || m == "MacExtras") {
-			//TODO: make stubs for extras
+
 		} else {
 
 			var before = time.Now()
@@ -95,7 +116,7 @@ func main() {
 func runCmd(cmd *exec.Cmd, n string) string {
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
-		fmt.Printf("=>%v<=\noutput:%s\nerror:%s\n\n", n, out, err)
+		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", n, out, err)
 		os.Exit(1)
 	}
 	return string(out)

@@ -1,14 +1,14 @@
 #include "qpagedpaintdevice.h"
 #include <QSize>
-#include <QPageLayout>
-#include <QString>
-#include <QVariant>
-#include <QModelIndex>
-#include <QMargins>
-#include <QPageSize>
-#include <QUrl>
 #include <QSizeF>
+#include <QPageLayout>
+#include <QPageSize>
+#include <QMargins>
+#include <QVariant>
+#include <QUrl>
 #include <QMarginsF>
+#include <QString>
+#include <QModelIndex>
 #include <QPagedPaintDevice>
 #include "_cgo_export.h"
 

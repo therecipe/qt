@@ -1,14 +1,14 @@
 #include "qtreewidgetitem.h"
+#include <QDataStream>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QTreeWidget>
-#include <QIcon>
-#include <QDataStream>
-#include <QSize>
-#include <QString>
 #include <QFont>
 #include <QBrush>
+#include <QIcon>
+#include <QString>
+#include <QTreeWidget>
+#include <QSize>
 #include <QTreeWidgetItem>
 #include "_cgo_export.h"
 

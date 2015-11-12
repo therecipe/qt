@@ -1,12 +1,12 @@
 #include "qtextstream.h"
 #include <QChar>
+#include <QIODevice>
+#include <QTextCodec>
+#include <QLocale>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QIODevice>
-#include <QLocale>
-#include <QTextCodec>
 #include <QTextStream>
 #include "_cgo_export.h"
 

@@ -1,11 +1,11 @@
 #include "qhelpsearchquerywidget.h"
+#include <QModelIndex>
 #include <QWidget>
 #include <QObject>
 #include <QHelpSearchQuery>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QHelpSearchQueryWidget>
 #include "_cgo_export.h"
 

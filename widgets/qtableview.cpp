@@ -1,14 +1,14 @@
 #include "qtableview.h"
-#include <QString>
-#include <QUrl>
-#include <QHeaderView>
-#include <QMetaObject>
-#include <QItemSelectionModel>
 #include <QVariant>
-#include <QModelIndex>
-#include <QAbstractItemModel>
 #include <QPoint>
 #include <QItemSelection>
+#include <QHeaderView>
+#include <QItemSelectionModel>
+#include <QString>
+#include <QUrl>
+#include <QModelIndex>
+#include <QMetaObject>
+#include <QAbstractItemModel>
 #include <QTableView>
 #include "_cgo_export.h"
 

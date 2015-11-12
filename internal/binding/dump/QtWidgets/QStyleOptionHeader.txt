@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
 &{QStyleOptionHeader QStyleOptionHeader::QStyleOptionHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionHeader() [] }
-&{QStyleOptionHeader QStyleOptionHeader::QStyleOptionHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionHeader(const QStyleOptionHeader &other) [0xc822d29fe0] }
+&{QStyleOptionHeader QStyleOptionHeader::QStyleOptionHeader commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionHeader(const QStyleOptionHeader &other) [0xc821f9d060] }
 ########################################			ENUMS			########################################
-&{SectionPosition QStyleOptionHeader::SectionPosition commendable public  [0xc822d28f80 0xc822d29000 0xc822d29080 0xc822d29140] false}
-&{SelectedPosition QStyleOptionHeader::SelectedPosition commendable public  [0xc822d292a0 0xc822d29360 0xc822d29400 0xc822d29520] false}
-&{SortIndicator QStyleOptionHeader::SortIndicator commendable public  [0xc822d29700 0xc822d297c0 0xc822d29840] false}
-&{StyleOptionType QStyleOptionHeader::StyleOptionType commendable public  [0xc822d299c0] false}
-&{StyleOptionVersion QStyleOptionHeader::StyleOptionVersion commendable public  [0xc822d29c20] false}
+&{SectionPosition QStyleOptionHeader::SectionPosition commendable public  [0xc822a9dfa0 0xc821f9c040 0xc821f9c0e0 0xc821f9c1a0] false}
+&{SelectedPosition QStyleOptionHeader::SelectedPosition commendable public  [0xc821f9c300 0xc821f9c3a0 0xc821f9c480 0xc821f9c5a0] false}
+&{SortIndicator QStyleOptionHeader::SortIndicator commendable public  [0xc821f9c780 0xc821f9c820 0xc821f9c8c0] false}
+&{StyleOptionType QStyleOptionHeader::StyleOptionType commendable public  [0xc821f9ca20] false}
+&{StyleOptionVersion QStyleOptionHeader::StyleOptionVersion commendable public  [0xc821f9cca0] false}

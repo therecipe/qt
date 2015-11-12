@@ -1,10 +1,10 @@
 #include "qmediaresource.h"
+#include <QSize>
+#include <QNetworkRequest>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSize>
-#include <QNetworkRequest>
 #include <QMediaResource>
 #include "_cgo_export.h"
 

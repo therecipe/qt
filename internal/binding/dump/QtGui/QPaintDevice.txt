@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
 &{QPaintDevice QPaintDevice::QPaintDevice commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.cpp non constructor false false   QPaintDevice() [] }
-&{metric QPaintDevice::metric commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.cpp impure plain false false  int int metric(PaintDeviceMetric metric) const [0xc821ffc3e0] }
+&{metric QPaintDevice::metric commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.cpp impure plain false false  int int metric(PaintDeviceMetric metric) const [0xc822ac44c0] }
 &{~QPaintDevice QPaintDevice::~QPaintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.cpp impure destructor false false   ~QPaintDevice() [] }
 &{colorCount QPaintDevice::colorCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int int colorCount() const [] }
 &{depth QPaintDevice::depth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int int depth() const [] }
@@ -16,4 +16,4 @@
 &{width QPaintDevice::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int int width() const [] }
 &{widthMM QPaintDevice::widthMM commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintdevice.h non plain false false  int int widthMM() const [] }
 ########################################			ENUMS			########################################
-&{PaintDeviceMetric QPaintDevice::PaintDeviceMetric commendable public  [0xc821ffc720 0xc821ffc7a0 0xc821ffc820 0xc821ffc8a0 0xc821ffc940 0xc821ffc9c0 0xc821ffca40 0xc821ffcac0 0xc821ffcb60 0xc821ffcbe0 0xc821ffcc80] false}
+&{PaintDeviceMetric QPaintDevice::PaintDeviceMetric commendable public  [0xc822ac4800 0xc822ac4880 0xc822ac4900 0xc822ac4980 0xc822ac4a20 0xc822ac4aa0 0xc822ac4b20 0xc822ac4ba0 0xc822ac4c40 0xc822ac4cc0 0xc822ac4d60] false}

@@ -1,13 +1,13 @@
 #include "qrectf.h"
-#include <QString>
-#include <QUrl>
-#include <QRect>
-#include <QSizeF>
-#include <QPoint>
-#include <QVariant>
-#include <QModelIndex>
-#include <QPointF>
 #include <QSize>
+#include <QPoint>
+#include <QString>
+#include <QVariant>
+#include <QPointF>
+#include <QRect>
+#include <QUrl>
+#include <QModelIndex>
+#include <QSizeF>
 #include <QRectF>
 #include "_cgo_export.h"
 

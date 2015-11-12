@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QAbstractVideoBuffer QAbstractVideoBuffer::QAbstractVideoBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h non constructor false false   QAbstractVideoBuffer(HandleType type) [0xc822ce47e0] }
+&{QAbstractVideoBuffer QAbstractVideoBuffer::QAbstractVideoBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h non constructor false false   QAbstractVideoBuffer(HandleType type) [0xc820eb8100] }
 &{handle QAbstractVideoBuffer::handle commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h impure plain false false  QVariant QVariant handle() const [] }
 &{handleType QAbstractVideoBuffer::handleType commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h non plain false false  HandleType HandleType handleType() const [] }
-&{map QAbstractVideoBuffer::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h pure plain false false  uchar * uchar * map(MapMode mode, int *numBytes, int *bytesPerLine) [0xc822ce5260 0xc822ce5320 0xc822ce53a0] }
+&{map QAbstractVideoBuffer::map commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h pure plain false false  uchar * uchar * map(MapMode mode, int *numBytes, int *bytesPerLine) [0xc820eb9260 0xc820eb93a0 0xc820eb94c0] }
 &{mapMode QAbstractVideoBuffer::mapMode commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h pure plain false false  MapMode MapMode mapMode() const [] }
-&{mapPlanes QAbstractVideoBuffer::mapPlanes commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h non plain false false  int int mapPlanes(MapMode mode, int *numBytes, int[4] bytesPerLine, uchar *[4] data) [0xc822ce5900 0xc822ce59c0 0xc822ce5ac0 0xc822ce5b80] }
+&{mapPlanes QAbstractVideoBuffer::mapPlanes commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h non plain false false  int int mapPlanes(MapMode mode, int *numBytes, int[4] bytesPerLine, uchar *[4] data) [0xc820eb9c40 0xc820eb9d40 0xc820eb9e40 0xc820eb9f80] }
 &{release QAbstractVideoBuffer::release commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h impure plain false false  void void release() [] }
 &{unmap QAbstractVideoBuffer::unmap commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h pure plain false false  void void unmap() [] }
 &{~QAbstractVideoBuffer QAbstractVideoBuffer::~QAbstractVideoBuffer commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideobuffer.h impure destructor false false   ~QAbstractVideoBuffer() [] }
 ########################################			ENUMS			########################################
-&{HandleType QAbstractVideoBuffer::HandleType commendable public  [0xc822ccf8e0 0xc822ccf980 0xc822ccfa60 0xc822ccfae0 0xc822ccfc60 0xc822ccfd60 0xc822ccfde0] false}
-&{MapMode QAbstractVideoBuffer::MapMode commendable public  [0xc822ce4160 0xc822ce4240 0xc822ce4300 0xc822ce4400] false}
+&{HandleType QAbstractVideoBuffer::HandleType commendable public  [0xc820ec6b60 0xc820ec6c20 0xc820ec6ce0 0xc820ec6e60 0xc820ec7040 0xc820ec7180 0xc820ec72a0] false}
+&{MapMode QAbstractVideoBuffer::MapMode commendable public  [0xc820ec7700 0xc820ec7880 0xc820ec7980 0xc820ec7ae0] false}

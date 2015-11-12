@@ -1,8 +1,8 @@
 #include "qsessionmanager.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QString>
-#include <QVariant>
 #include <QSessionManager>
 #include "_cgo_export.h"
 

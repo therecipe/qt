@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QHoverEvent QHoverEvent::QHoverEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QHoverEvent(Type type, const QPointF &pos, const QPointF &oldPos, Qt::KeyboardModifiers modifiers) [0xc8206c12e0 0xc8206c1360 0xc8206c1420 0xc8206c14e0] }
+&{QHoverEvent QHoverEvent::QHoverEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QHoverEvent(Type type, const QPointF &pos, const QPointF &oldPos, Qt::KeyboardModifiers modifiers) [0xc820942060 0xc8209420e0 0xc820942180 0xc820942260] }
 &{oldPos QHoverEvent::oldPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint QPoint oldPos() const [] }
 &{oldPosF QHoverEvent::oldPosF commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPointF & const QPointF & oldPosF() const [] }
 &{pos QHoverEvent::pos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint QPoint pos() const [] }

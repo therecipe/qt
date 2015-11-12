@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
 &{lux QLightReading::lux commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.cpp non plain false false  qreal qreal lux() const [] }
-&{setLux QLightReading::setLux commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h non plain false false  void void setLux(qreal lux) [0xc82363f300] }
+&{setLux QLightReading::setLux commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h non plain false false  void void setLux(qreal lux) [0xc8235a48a0] }
 ########################################			ENUMS			########################################

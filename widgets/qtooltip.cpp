@@ -1,13 +1,13 @@
 #include "qtooltip.h"
-#include <QModelIndex>
-#include <QFont>
-#include <QPalette>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QWidget>
-#include <QPoint>
 #include <QRect>
+#include <QPalette>
+#include <QPoint>
+#include <QFont>
+#include <QWidget>
+#include <QString>
+#include <QModelIndex>
 #include <QToolTip>
 #include "_cgo_export.h"
 

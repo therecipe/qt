@@ -1,11 +1,11 @@
 #include "qsgengine.h"
-#include <QObject>
+#include <QModelIndex>
 #include <QImage>
+#include <QObject>
+#include <QOpenGLContext>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QOpenGLContext>
 #include <QSGEngine>
 #include "_cgo_export.h"
 

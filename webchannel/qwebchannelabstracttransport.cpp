@@ -1,9 +1,9 @@
 #include "qwebchannelabstracttransport.h"
 #include <QModelIndex>
-#include <QWebChannel>
 #include <QMetaObject>
-#include <QJsonObject>
 #include <QObject>
+#include <QWebChannel>
+#include <QJsonObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>

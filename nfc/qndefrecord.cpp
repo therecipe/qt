@@ -1,9 +1,9 @@
 #include "qndefrecord.h"
+#include <QModelIndex>
+#include <QByteArray>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QByteArray>
 #include <QNdefRecord>
 #include "_cgo_export.h"
 

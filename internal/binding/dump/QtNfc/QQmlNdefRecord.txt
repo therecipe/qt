@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
 &{typeNameFormat QQmlNdefRecord::typeNameFormat commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.cpp non plain false false  TypeNameFormat TypeNameFormat typeNameFormat() const [] }
-&{QQmlNdefRecord QQmlNdefRecord::QQmlNdefRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non constructor false false   QQmlNdefRecord(QObject *parent) [0xc8230e1780] }
-&{QQmlNdefRecord QQmlNdefRecord::QQmlNdefRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non constructor false true 2  QQmlNdefRecord(const QNdefRecord &record, QObject *parent) [0xc8230e1ae0 0xc8230e1ca0] }
+&{QQmlNdefRecord QQmlNdefRecord::QQmlNdefRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non constructor false false   QQmlNdefRecord(QObject *parent) [0xc821d8d5c0] }
+&{QQmlNdefRecord QQmlNdefRecord::QQmlNdefRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non constructor false true 2  QQmlNdefRecord(const QNdefRecord &record, QObject *parent) [0xc821d8d800 0xc821d8d920] }
 &{record QQmlNdefRecord::record commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  QNdefRecord QNdefRecord record() const [] }
 &{recordChanged QQmlNdefRecord::recordChanged commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non signal false false  void void recordChanged() [] }
-&{setRecord QQmlNdefRecord::setRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  void void setRecord(const QNdefRecord &record) [0xc8230be560] }
-&{setType QQmlNdefRecord::setType commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  void void setType(const QString &newtype) [0xc8230bea60] }
-&{setTypeNameFormat QQmlNdefRecord::setTypeNameFormat commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  void void setTypeNameFormat(TypeNameFormat newTypeNameFormat) [0xc8230bee60] }
+&{setRecord QQmlNdefRecord::setRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  void void setRecord(const QNdefRecord &record) [0xc821d8df60] }
+&{setType QQmlNdefRecord::setType commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  void void setType(const QString &newtype) [0xc821276200] }
+&{setTypeNameFormat QQmlNdefRecord::setTypeNameFormat commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  void void setTypeNameFormat(TypeNameFormat newTypeNameFormat) [0xc821276460] }
 &{type QQmlNdefRecord::type commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non plain false false  QString QString type() const [] }
 &{typeChanged QQmlNdefRecord::typeChanged commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non signal false false  void void typeChanged() [] }
 &{typeNameFormatChanged QQmlNdefRecord::typeNameFormatChanged commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qqmlndefrecord.h non signal false false  void void typeNameFormatChanged() [] }
 ########################################			ENUMS			########################################
-&{TypeNameFormat QQmlNdefRecord::TypeNameFormat commendable public  [0xc8230e0a80 0xc8230e0c40 0xc8230e0de0 0xc8230e0f60 0xc8230e1120 0xc8230e1300] false}
+&{TypeNameFormat QQmlNdefRecord::TypeNameFormat commendable public  [0xc821d8cda0 0xc821d8cea0 0xc821d8cfe0 0xc821d8d0a0 0xc821d8d1e0 0xc821d8d300] false}

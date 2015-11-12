@@ -1,10 +1,10 @@
 #include "qsensorfilter.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QSensor>
 #include <QSensorReading>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QSensor>
 #include <QSensorFilter>
 #include "_cgo_export.h"
 

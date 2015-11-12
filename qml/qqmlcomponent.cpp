@@ -1,14 +1,14 @@
 #include "qqmlcomponent.h"
 #include <QString>
-#include <QQmlContext>
-#include <QMetaObject>
-#include <QQmlIncubator>
-#include <QObject>
-#include <QByteArray>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QVariant>
+#include <QQmlIncubator>
 #include <QQmlEngine>
+#include <QMetaObject>
+#include <QByteArray>
+#include <QObject>
+#include <QQmlContext>
 #include <QQmlComponent>
 #include "_cgo_export.h"
 

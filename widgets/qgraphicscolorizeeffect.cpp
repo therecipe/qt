@@ -1,11 +1,11 @@
 #include "qgraphicscolorizeeffect.h"
-#include <QModelIndex>
 #include <QMetaObject>
-#include <QColor>
 #include <QObject>
+#include <QColor>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QGraphicsColorizeEffect>
 #include "_cgo_export.h"
 

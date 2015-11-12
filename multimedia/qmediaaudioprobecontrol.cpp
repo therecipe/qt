@@ -1,9 +1,9 @@
 #include "qmediaaudioprobecontrol.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
+#include <QString>
+#include <QVariant>
 #include <QMediaAudioProbeControl>
 #include "_cgo_export.h"
 

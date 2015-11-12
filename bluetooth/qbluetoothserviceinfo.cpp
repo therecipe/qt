@@ -1,9 +1,9 @@
 #include "qbluetoothserviceinfo.h"
 #include <QUrl>
 #include <QModelIndex>
-#include <QBluetoothUuid>
-#include <QBluetoothAddress>
 #include <QBluetoothDeviceInfo>
+#include <QBluetoothAddress>
+#include <QBluetoothUuid>
 #include <QString>
 #include <QVariant>
 #include <QBluetoothServiceInfo>

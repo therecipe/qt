@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{comment QXmlLexicalHandler::comment commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool comment(const QString &ch) [0xc821a1e080] }
+&{comment QXmlLexicalHandler::comment commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool comment(const QString &ch) [0xc8234531a0] }
 &{endCDATA QXmlLexicalHandler::endCDATA commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool endCDATA() [] }
 &{endDTD QXmlLexicalHandler::endDTD commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool endDTD() [] }
-&{endEntity QXmlLexicalHandler::endEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool endEntity(const QString &name) [0xc821a1e660] }
+&{endEntity QXmlLexicalHandler::endEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool endEntity(const QString &name) [0xc823453600] }
 &{errorString QXmlLexicalHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString QString errorString() const [] }
 &{startCDATA QXmlLexicalHandler::startCDATA commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool startCDATA() [] }
-&{startDTD QXmlLexicalHandler::startDTD commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool startDTD(const QString &name, const QString &publicId, const QString &systemId) [0xc821a1ee00 0xc821a1ef00 0xc821a1efe0] }
-&{startEntity QXmlLexicalHandler::startEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool startEntity(const QString &name) [0xc821a1f2e0] }
+&{startDTD QXmlLexicalHandler::startDTD commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool startDTD(const QString &name, const QString &publicId, const QString &systemId) [0xc823453b80 0xc823453c20 0xc823453d00] }
+&{startEntity QXmlLexicalHandler::startEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool startEntity(const QString &name) [0xc823453f20] }
 &{~QXmlLexicalHandler QXmlLexicalHandler::~QXmlLexicalHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   ~QXmlLexicalHandler() [] }
 ########################################			ENUMS			########################################

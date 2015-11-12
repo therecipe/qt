@@ -2,9 +2,9 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
 #include <QGeoPositionInfo>
 #include <QGeoPositionInfoSource>
+#include <QObject>
 #include <QString>
 #include <QGeoPositionInfoSourceFactory>
 #include "_cgo_export.h"

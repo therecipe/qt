@@ -1,14 +1,14 @@
 #include "qstatemachine.h"
-#include <QString>
-#include <QEvent>
-#include <QAbstractState>
-#include <QAbstractAnimation>
-#include <QVariant>
+#include <QObject>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QState>
+#include <QAbstractAnimation>
+#include <QAbstractState>
+#include <QEvent>
+#include <QString>
+#include <QVariant>
 #include <QMetaObject>
+#include <QState>
 #include <QStateMachine>
 #include "_cgo_export.h"
 

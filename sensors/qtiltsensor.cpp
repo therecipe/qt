@@ -1,9 +1,9 @@
 #include "qtiltsensor.h"
-#include <QModelIndex>
 #include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QTiltSensor>
 #include "_cgo_export.h"
 

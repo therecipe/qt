@@ -1,11 +1,11 @@
 #include "qdbusconnection.h"
-#include <QDBusMessage>
-#include <QByteArray>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
+#include <QDBusMessage>
+#include <QByteArray>
 #include <QDBusConnection>
 #include "_cgo_export.h"
 

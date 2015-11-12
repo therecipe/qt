@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QCoreApplication>
 #include <QCommandLineOption>
+#include <QCoreApplication>
 #include <QCommandLineParser>
 #include "_cgo_export.h"
 

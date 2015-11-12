@@ -1,10 +1,10 @@
 #include "qurl.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QByteArray>
 #include <QUrlQuery>
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include "_cgo_export.h"
 

@@ -1,9 +1,9 @@
 #include "qsensorchangesinterface.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QSensor>
-#include <QString>
 #include <QSensorChangesInterface>
 #include "_cgo_export.h"
 

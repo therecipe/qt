@@ -1,9 +1,9 @@
 #include "qaccessibleactioninterface.h"
+#include <QModelIndex>
+#include <QAccessible>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QAccessible>
 #include <QAccessibleActionInterface>
 #include "_cgo_export.h"
 

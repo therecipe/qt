@@ -1,9 +1,9 @@
 #include "qabstractstate.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QObject>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QAbstractState>
 #include "_cgo_export.h"
 

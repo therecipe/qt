@@ -1,8 +1,8 @@
 #include "qtiltreading.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QTiltReading>
 #include "_cgo_export.h"
 

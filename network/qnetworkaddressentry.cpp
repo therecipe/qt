@@ -1,9 +1,9 @@
 #include "qnetworkaddressentry.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QHostAddress>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QNetworkAddressEntry>
 #include "_cgo_export.h"
 

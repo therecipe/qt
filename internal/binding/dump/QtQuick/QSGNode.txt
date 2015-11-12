@@ -1,27 +1,27 @@
 ########################################			FUNCTIONS			########################################
-&{childAtIndex QSGNode::childAtIndex commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.cpp non plain false false  QSGNode * QSGNode * childAtIndex(int i) const [0xc826b9f400] }
+&{childAtIndex QSGNode::childAtIndex commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.cpp non plain false false  QSGNode * QSGNode * childAtIndex(int i) const [0xc820b3e580] }
 &{childCount QSGNode::childCount commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.cpp non plain false false  int int childCount() const [] }
 &{QSGNode QSGNode::QSGNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non constructor false false   QSGNode() [] }
-&{appendChildNode QSGNode::appendChildNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void appendChildNode(QSGNode *node) [0xc826b8afc0] }
+&{appendChildNode QSGNode::appendChildNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void appendChildNode(QSGNode *node) [0xc826a6eb20] }
 &{firstChild QSGNode::firstChild commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  QSGNode * QSGNode * firstChild() const [] }
 &{flags QSGNode::flags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  Flags Flags flags() const [] }
-&{insertChildNodeAfter QSGNode::insertChildNodeAfter commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void insertChildNodeAfter(QSGNode *node, QSGNode *after) [0xc826b7e3e0 0xc826b7e4a0] }
-&{insertChildNodeBefore QSGNode::insertChildNodeBefore commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void insertChildNodeBefore(QSGNode *node, QSGNode *before) [0xc826b7e860 0xc826b7e960] }
+&{insertChildNodeAfter QSGNode::insertChildNodeAfter commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void insertChildNodeAfter(QSGNode *node, QSGNode *after) [0xc826a6f8e0 0xc826a6fa20] }
+&{insertChildNodeBefore QSGNode::insertChildNodeBefore commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void insertChildNodeBefore(QSGNode *node, QSGNode *before) [0xc826a6fdc0 0xc826a6ff20] }
 &{isSubtreeBlocked QSGNode::isSubtreeBlocked commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h impure plain false false  bool bool isSubtreeBlocked() const [] }
 &{lastChild QSGNode::lastChild commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  QSGNode * QSGNode * lastChild() const [] }
-&{markDirty QSGNode::markDirty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void markDirty(DirtyState bits) [0xc826b7f2c0] }
+&{markDirty QSGNode::markDirty commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void markDirty(DirtyState bits) [0xc826a706a0] }
 &{nextSibling QSGNode::nextSibling commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  QSGNode * QSGNode * nextSibling() const [] }
 &{parent QSGNode::parent commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  QSGNode * QSGNode * parent() const [] }
-&{prependChildNode QSGNode::prependChildNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void prependChildNode(QSGNode *node) [0xc826b7fd20] }
+&{prependChildNode QSGNode::prependChildNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void prependChildNode(QSGNode *node) [0xc826a70c60] }
 &{preprocess QSGNode::preprocess commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h impure plain false false  void void preprocess() [] }
 &{previousSibling QSGNode::previousSibling commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  QSGNode * QSGNode * previousSibling() const [] }
 &{removeAllChildNodes QSGNode::removeAllChildNodes commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void removeAllChildNodes() [] }
-&{removeChildNode QSGNode::removeChildNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void removeChildNode(QSGNode *node) [0xc826b7ad60] }
-&{setFlag QSGNode::setFlag commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setFlag(Flag f, bool enabled) [0xc826b7b820 0xc826b7b920] }
-&{setFlags QSGNode::setFlags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setFlags(Flags f, bool enabled) [0xc826b7bec0 0xc822e04060] }
+&{removeChildNode QSGNode::removeChildNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void removeChildNode(QSGNode *node) [0xc826a71500] }
+&{setFlag QSGNode::setFlag commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setFlag(Flag f, bool enabled) [0xc826a719e0 0xc826a71ae0] }
+&{setFlags QSGNode::setFlags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setFlags(Flags f, bool enabled) [0xc826a71d80 0xc826a71ea0] }
 &{type QSGNode::type commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  NodeType NodeType type() const [] }
 &{~QSGNode QSGNode::~QSGNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h impure destructor false false   ~QSGNode() [] }
 ########################################			ENUMS			########################################
-&{DirtyStateBit QSGNode::DirtyStateBit commendable public QSGNode::DirtyState [0xc826b9f9c0 0xc826b9fae0 0xc826b9fb80 0xc826b9fca0 0xc826b9fde0 0xc826b9fe60 0xc826b9ff80] false}
-&{Flag QSGNode::Flag commendable public QSGNode::Flags [0xc826b982c0 0xc826b98480 0xc826b985c0 0xc826b986e0 0xc826b98940 0xc826b98c40] false}
-&{NodeType QSGNode::NodeType commendable public  [0xc826b99140 0xc826b99260 0xc826b994e0 0xc826b99720 0xc826b99960] false}
+&{DirtyStateBit QSGNode::DirtyStateBit commendable public QSGNode::DirtyState [0xc820b3eb60 0xc820b3ec60 0xc820b3eda0 0xc820b3ee40 0xc820b3ef40 0xc820b3efc0 0xc820b3f040] false}
+&{Flag QSGNode::Flag commendable public QSGNode::Flags [0xc820b3f2c0 0xc820b3f360 0xc820b3f400 0xc820b3f4a0 0xc820b3f560 0xc820b3f680] false}
+&{NodeType QSGNode::NodeType commendable public  [0xc820b3f940 0xc820b3fa00 0xc820b3fae0 0xc820b3fc20 0xc820b3fce0] false}

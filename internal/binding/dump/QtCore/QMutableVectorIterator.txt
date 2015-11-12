@@ -1,17 +1,17 @@
 ########################################			FUNCTIONS			########################################
-&{QMutableVectorIterator QMutableVectorIterator::QMutableVectorIterator commendable public qvector.h non constructor false false   QMutableVectorIterator(QVector<T> &vector) [0xc82023a880] }
-&{findNext QMutableVectorIterator::findNext commendable public qvector.h non plain false false  bool bool findNext(const T &value) [0xc82023ae00] }
-&{findPrevious QMutableVectorIterator::findPrevious commendable public qvector.h non plain false false  bool bool findPrevious(const T &value) [0xc82023b1a0] }
+&{QMutableVectorIterator QMutableVectorIterator::QMutableVectorIterator commendable public qvector.h non constructor false false   QMutableVectorIterator(QVector<T> &vector) [0xc820b7fba0] }
+&{findNext QMutableVectorIterator::findNext commendable public qvector.h non plain false false  bool bool findNext(const T &value) [0xc820b7fe40] }
+&{findPrevious QMutableVectorIterator::findPrevious commendable public qvector.h non plain false false  bool bool findPrevious(const T &value) [0xc820b7ffe0] }
 &{hasNext QMutableVectorIterator::hasNext commendable public qvector.h non plain false false  bool bool hasNext() const [] }
 &{hasPrevious QMutableVectorIterator::hasPrevious commendable public qvector.h non plain false false  bool bool hasPrevious() const [] }
-&{insert QMutableVectorIterator::insert commendable public qvector.h non plain false false  void void insert(const T &value) [0xc82023bb20] }
+&{insert QMutableVectorIterator::insert commendable public qvector.h non plain false false  void void insert(const T &value) [0xc82021a9a0] }
 &{next QMutableVectorIterator::next commendable public qvector.h non plain false false  T & T & next() [] }
-&{operator= QMutableVectorIterator::operator= commendable public qvector.h non plain false false  QMutableVectorIterator & QMutableVectorIterator & operator=(QVector<T> &vector) [0xc82056e200] }
+&{operator= QMutableVectorIterator::operator= commendable public qvector.h non plain false false  QMutableVectorIterator & QMutableVectorIterator & operator=(QVector<T> &vector) [0xc82021b640] }
 &{peekNext QMutableVectorIterator::peekNext commendable public qvector.h non plain false false  T & T & peekNext() const [] }
 &{peekPrevious QMutableVectorIterator::peekPrevious commendable public qvector.h non plain false false  T & T & peekPrevious() const [] }
 &{previous QMutableVectorIterator::previous commendable public qvector.h non plain false false  T & T & previous() [] }
 &{remove QMutableVectorIterator::remove commendable public qvector.h non plain false false  void void remove() [] }
-&{setValue QMutableVectorIterator::setValue commendable public qvector.h non plain false false  void void setValue(const T &value) const [0xc82056e880] }
+&{setValue QMutableVectorIterator::setValue commendable public qvector.h non plain false false  void void setValue(const T &value) const [0xc820210860] }
 &{toBack QMutableVectorIterator::toBack commendable public qvector.h non plain false false  void void toBack() [] }
 &{toFront QMutableVectorIterator::toFront commendable public qvector.h non plain false false  void void toFront() [] }
 &{value QMutableVectorIterator::value commendable public qvector.h non plain false true 2 T & T & value() [] }

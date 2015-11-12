@@ -1,9 +1,9 @@
 #include "qresource.h"
-#include <QModelIndex>
-#include <QLocale>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QLocale>
 #include <QResource>
 #include "_cgo_export.h"
 

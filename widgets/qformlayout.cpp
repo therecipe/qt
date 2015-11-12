@@ -1,12 +1,12 @@
 #include "qformlayout.h"
-#include <QLayoutItem>
-#include <QRect>
-#include <QLayout>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QRect>
+#include <QLayoutItem>
+#include <QLayout>
 #include <QWidget>
+#include <QString>
+#include <QVariant>
 #include <QFormLayout>
 #include "_cgo_export.h"
 

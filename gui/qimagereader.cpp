@@ -1,15 +1,15 @@
 #include "qimagereader.h"
-#include <QColor>
-#include <QImage>
-#include <QImageIOHandler>
-#include <QRect>
-#include <QUrl>
+#include <QString>
 #include <QVariant>
 #include <QModelIndex>
-#include <QIODevice>
-#include <QSize>
 #include <QByteArray>
-#include <QString>
+#include <QImageIOHandler>
+#include <QUrl>
+#include <QImage>
+#include <QRect>
+#include <QSize>
+#include <QIODevice>
+#include <QColor>
 #include <QImageReader>
 #include "_cgo_export.h"
 

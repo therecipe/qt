@@ -1,8 +1,8 @@
 #include "qxmlcontenthandler.h"
 #include <QUrl>
 #include <QModelIndex>
-#include <QXmlAttributes>
 #include <QXmlLocator>
+#include <QXmlAttributes>
 #include <QString>
 #include <QVariant>
 #include <QXmlContentHandler>

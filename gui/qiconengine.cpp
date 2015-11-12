@@ -1,14 +1,14 @@
 #include "qiconengine.h"
-#include <QString>
 #include <QVariant>
-#include <QDataStream>
-#include <QIcon>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPixmap>
+#include <QIcon>
 #include <QSize>
-#include <QPainter>
 #include <QRect>
+#include <QPixmap>
+#include <QString>
+#include <QPainter>
+#include <QDataStream>
 #include <QIconEngine>
 #include "_cgo_export.h"
 

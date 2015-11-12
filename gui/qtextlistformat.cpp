@@ -4,8 +4,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QList>
 #include <QTextList>
+#include <QList>
 #include <QTextListFormat>
 #include "_cgo_export.h"
 

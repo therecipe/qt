@@ -1,8 +1,8 @@
 #include "qhostaddress.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QHostAddress>
 #include "_cgo_export.h"
 

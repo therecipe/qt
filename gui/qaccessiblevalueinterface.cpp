@@ -1,9 +1,9 @@
 #include "qaccessiblevalueinterface.h"
+#include <QAccessible>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QAccessible>
 #include <QAccessibleValueInterface>
 #include "_cgo_export.h"
 

@@ -1,11 +1,11 @@
 #include "qsgsimplerectnode.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QRect>
 #include <QRectF>
 #include <QColor>
+#include <QRect>
+#include <QString>
 #include <QSGSimpleRectNode>
 #include "_cgo_export.h"
 

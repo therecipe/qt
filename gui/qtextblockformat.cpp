@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QTextBlock>
 #include <QTextFormat>
+#include <QTextBlock>
 #include <QTextBlockFormat>
 #include "_cgo_export.h"
 

@@ -1,11 +1,11 @@
 #include "qtimer.h"
-#include <QObject>
-#include <QTime>
-#include <QMetaObject>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QTime>
+#include <QMetaObject>
+#include <QObject>
+#include <QString>
 #include <QTimer>
 #include "_cgo_export.h"
 

@@ -1,11 +1,11 @@
 #include "qtransform.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QPolygon>
 #include <QRegion>
 #include <QPolygonF>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QTransform>
 #include "_cgo_export.h"
 

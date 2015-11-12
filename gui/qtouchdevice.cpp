@@ -1,8 +1,8 @@
 #include "qtouchdevice.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
 #include <QTouchDevice>
 #include "_cgo_export.h"
 

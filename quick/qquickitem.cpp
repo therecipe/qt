@@ -1,12 +1,12 @@
 #include "qquickitem.h"
-#include <QUrl>
 #include <QQuickWindow>
-#include <QObject>
-#include <QPoint>
 #include <QCursor>
+#include <QPoint>
 #include <QMetaObject>
-#include <QPointF>
 #include <QString>
+#include <QUrl>
+#include <QObject>
+#include <QPointF>
 #include <QVariant>
 #include <QModelIndex>
 #include <QQuickItem>

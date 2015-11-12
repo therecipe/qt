@@ -1,8 +1,8 @@
 #include "qsgtexture.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QSGTexture>
 #include "_cgo_export.h"
 

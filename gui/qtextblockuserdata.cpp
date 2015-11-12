@@ -1,9 +1,9 @@
 #include "qtextblockuserdata.h"
+#include <QTextBlock>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QTextBlock>
-#include <QString>
 #include <QTextBlockUserData>
 #include "_cgo_export.h"
 

@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
 &{QStyleOptionGraphicsItem QStyleOptionGraphicsItem::QStyleOptionGraphicsItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionGraphicsItem() [] }
-&{QStyleOptionGraphicsItem QStyleOptionGraphicsItem::QStyleOptionGraphicsItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionGraphicsItem(const QStyleOptionGraphicsItem &other) [0xc82219afa0] }
-&{levelOfDetailFromTransform QStyleOptionGraphicsItem::levelOfDetailFromTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non plain true false  qreal qreal levelOfDetailFromTransform(const QTransform &worldTransform) [0xc82219b760] }
+&{QStyleOptionGraphicsItem QStyleOptionGraphicsItem::QStyleOptionGraphicsItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionGraphicsItem(const QStyleOptionGraphicsItem &other) [0xc822a9c2e0] }
+&{levelOfDetailFromTransform QStyleOptionGraphicsItem::levelOfDetailFromTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non plain true false  qreal qreal levelOfDetailFromTransform(const QTransform &worldTransform) [0xc822a9c8e0] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionGraphicsItem::StyleOptionType commendable public  [0xc82219a5a0] false}
-&{StyleOptionVersion QStyleOptionGraphicsItem::StyleOptionVersion commendable public  [0xc82219a920] false}
+&{StyleOptionType QStyleOptionGraphicsItem::StyleOptionType commendable public  [0xc821f91b00] false}
+&{StyleOptionVersion QStyleOptionGraphicsItem::StyleOptionVersion commendable public  [0xc821f91de0] false}

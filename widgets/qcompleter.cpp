@@ -1,14 +1,14 @@
 #include "qcompleter.h"
-#include <QAbstractItemModel>
-#include <QRect>
-#include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QWidget>
-#include <QObject>
-#include <QString>
-#include <QMetaObject>
 #include <QAbstractItemView>
+#include <QWidget>
+#include <QRect>
+#include <QAbstractItemModel>
+#include <QString>
+#include <QVariant>
+#include <QModelIndex>
+#include <QMetaObject>
+#include <QObject>
 #include <QCompleter>
 #include "_cgo_export.h"
 

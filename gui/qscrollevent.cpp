@@ -1,10 +1,10 @@
 #include "qscrollevent.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPoint>
 #include <QPointF>
+#include <QPoint>
+#include <QString>
+#include <QVariant>
 #include <QScrollEvent>
 #include "_cgo_export.h"
 

@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{QQuickTextDocument QQuickTextDocument::QQuickTextDocument commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquicktextdocument.cpp non constructor false false   QQuickTextDocument(QQuickItem *parent) [0xc822f650e0] }
+&{QQuickTextDocument QQuickTextDocument::QQuickTextDocument commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquicktextdocument.cpp non constructor false false   QQuickTextDocument(QQuickItem *parent) [0xc8227227a0] }
 &{textDocument QQuickTextDocument::textDocument commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquicktextdocument.cpp non plain false false  QTextDocument * QTextDocument * textDocument() const [] }
 ########################################			ENUMS			########################################

@@ -1,8 +1,8 @@
 #include "qlatin1char.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QString>
 #include <QLatin1Char>
 #include "_cgo_export.h"
 

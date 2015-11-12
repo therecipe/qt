@@ -1,9 +1,9 @@
 #include "qtextdecoder.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QTextCodec>
+#include <QString>
 #include <QTextDecoder>
 #include "_cgo_export.h"
 

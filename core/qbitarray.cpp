@@ -1,8 +1,8 @@
 #include "qbitarray.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QBitArray>
 #include "_cgo_export.h"
 

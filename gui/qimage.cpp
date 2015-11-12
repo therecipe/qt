@@ -1,11 +1,11 @@
 #include "qimage.h"
 #include <QString>
-#include <QUrl>
-#include <QModelIndex>
-#include <QPoint>
 #include <QVariant>
+#include <QModelIndex>
 #include <QPixelFormat>
 #include <QIODevice>
+#include <QPoint>
+#include <QUrl>
 #include <QColor>
 #include <QByteArray>
 #include <QImage>

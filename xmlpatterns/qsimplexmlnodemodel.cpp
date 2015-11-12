@@ -1,9 +1,9 @@
 #include "qsimplexmlnodemodel.h"
-#include <QXmlNodeModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QXmlNodeModelIndex>
 #include <QSimpleXmlNodeModel>
 #include "_cgo_export.h"
 

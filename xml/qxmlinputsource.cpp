@@ -1,10 +1,10 @@
 #include "qxmlinputsource.h"
-#include <QModelIndex>
-#include <QIODevice>
-#include <QByteArray>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QByteArray>
+#include <QIODevice>
 #include <QXmlInputSource>
 #include "_cgo_export.h"
 

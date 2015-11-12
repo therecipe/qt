@@ -1,13 +1,13 @@
 #include "qxmlschema.h"
 #include <QUrl>
-#include <QModelIndex>
-#include <QAbstractUriResolver>
-#include <QByteArray>
-#include <QNetworkAccessManager>
 #include <QIODevice>
 #include <QString>
 #include <QVariant>
+#include <QNetworkAccessManager>
 #include <QAbstractMessageHandler>
+#include <QByteArray>
+#include <QModelIndex>
+#include <QAbstractUriResolver>
 #include <QXmlSchema>
 #include "_cgo_export.h"
 

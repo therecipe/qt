@@ -1,11 +1,11 @@
 #include "qfontdatabase.h"
 #include <QFontInfo>
+#include <QByteArray>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QFont>
-#include <QByteArray>
 #include <QFontDatabase>
 #include "_cgo_export.h"
 

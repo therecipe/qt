@@ -1,12 +1,12 @@
 #include "qregion.h"
+#include <QBitmap>
+#include <QRect>
 #include <QPolygon>
+#include <QPoint>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QRect>
-#include <QBitmap>
-#include <QPoint>
 #include <QRegion>
 #include "_cgo_export.h"
 

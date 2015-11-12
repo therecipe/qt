@@ -1,12 +1,12 @@
 #include "qaudiodecodercontrol.h"
-#include <QAudioFormat>
-#include <QObject>
 #include <QAudioDecoder>
-#include <QIODevice>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
+#include <QAudioFormat>
+#include <QIODevice>
 #include <QAudioDecoderControl>
 #include "_cgo_export.h"
 

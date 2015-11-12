@@ -1,10 +1,10 @@
 #include "qaccelerometerfilter.h"
-#include <QAccelerometer>
-#include <QAccelerometerReading>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QAccelerometer>
+#include <QAccelerometerReading>
 #include <QAccelerometerFilter>
 #include "_cgo_export.h"
 

@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
 &{QStyleOptionDockWidget QStyleOptionDockWidget::QStyleOptionDockWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionDockWidget() [] }
-&{QStyleOptionDockWidget QStyleOptionDockWidget::QStyleOptionDockWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionDockWidget(const QStyleOptionDockWidget &other) [0xc822179ba0] }
+&{QStyleOptionDockWidget QStyleOptionDockWidget::QStyleOptionDockWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionDockWidget(const QStyleOptionDockWidget &other) [0xc821f86960] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionDockWidget::StyleOptionType commendable public  [0xc8221792a0] false}
-&{StyleOptionVersion QStyleOptionDockWidget::StyleOptionVersion commendable public  [0xc822179640] false}
+&{StyleOptionType QStyleOptionDockWidget::StyleOptionType commendable public  [0xc821f86160] false}
+&{StyleOptionVersion QStyleOptionDockWidget::StyleOptionVersion commendable public  [0xc821f86460] false}

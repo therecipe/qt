@@ -1,10 +1,10 @@
 #include "qvideowidgetcontrol.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QVideoWidget>
 #include <QObject>
+#include <QVideoWidget>
+#include <QString>
+#include <QVariant>
 #include <QVideoWidgetControl>
 #include "_cgo_export.h"
 

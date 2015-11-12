@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{QCryptographicHash QCryptographicHash::QCryptographicHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non constructor false false   QCryptographicHash(Algorithm method) [0xc8206dfba0] }
-&{addData QCryptographicHash::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false true 2 bool bool addData(QIODevice *device) [0xc8206dfe20] }
-&{addData QCryptographicHash::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false true 3 void void addData(const QByteArray &data) [0xc8206ca0c0] }
-&{addData QCryptographicHash::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false false  void void addData(const char *data, int length) [0xc8206ca3a0 0xc8206ca420] }
-&{hash QCryptographicHash::hash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain true false  QByteArray QByteArray hash(const QByteArray &data, Algorithm method) [0xc8206ca6e0 0xc8206ca7e0] }
+&{QCryptographicHash QCryptographicHash::QCryptographicHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non constructor false false   QCryptographicHash(Algorithm method) [0xc8206b97c0] }
+&{addData QCryptographicHash::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false true 2 bool bool addData(QIODevice *device) [0xc8206b9aa0] }
+&{addData QCryptographicHash::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false true 3 void void addData(const QByteArray &data) [0xc8206b9ce0] }
+&{addData QCryptographicHash::addData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false false  void void addData(const char *data, int length) [0xc8206b9fc0 0xc8206a4060] }
+&{hash QCryptographicHash::hash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain true false  QByteArray QByteArray hash(const QByteArray &data, Algorithm method) [0xc8206a4320 0xc8206a4400] }
 &{reset QCryptographicHash::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false false  void void reset() [] }
 &{result QCryptographicHash::result commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non plain false false  QByteArray QByteArray result() const [] }
 &{~QCryptographicHash QCryptographicHash::~QCryptographicHash commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcryptographichash.h non destructor false false   ~QCryptographicHash() [] }
 ########################################			ENUMS			########################################
-&{Algorithm QCryptographicHash::Algorithm commendable public  [0xc8206df300 0xc8206df380 0xc8206df400 0xc8206df480 0xc8206df520 0xc8206df5a0 0xc8206df620 0xc8206df6a0 0xc8206df780 0xc8206df840 0xc8206df8c0] false}
+&{Algorithm QCryptographicHash::Algorithm commendable public  [0xc8206b8f20 0xc8206b8fa0 0xc8206b9020 0xc8206b90a0 0xc8206b9140 0xc8206b91c0 0xc8206b9240 0xc8206b9300 0xc8206b93e0 0xc8206b9460 0xc8206b9540] false}

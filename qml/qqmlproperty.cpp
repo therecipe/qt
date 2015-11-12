@@ -1,11 +1,11 @@
 #include "qqmlproperty.h"
-#include <QModelIndex>
 #include <QQmlEngine>
 #include <QObject>
 #include <QQmlContext>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QQmlProperty>
 #include "_cgo_export.h"
 

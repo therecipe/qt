@@ -1,11 +1,11 @@
 #include "qhistorystate.h"
-#include <QModelIndex>
-#include <QAbstractState>
-#include <QState>
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QState>
+#include <QAbstractState>
+#include <QObject>
 #include <QHistoryState>
 #include "_cgo_export.h"
 

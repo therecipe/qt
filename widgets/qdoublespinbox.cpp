@@ -1,9 +1,9 @@
 #include "qdoublespinbox.h"
+#include <QWidget>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QWidget>
-#include <QString>
 #include <QDoubleSpinBox>
 #include "_cgo_export.h"
 

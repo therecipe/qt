@@ -1,8 +1,8 @@
 #include "qdate.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QDate>
 #include "_cgo_export.h"
 

@@ -1,8 +1,8 @@
 #include "qsqlerror.h"
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QString>
+#include <QVariant>
 #include <QSqlError>
 #include "_cgo_export.h"
 

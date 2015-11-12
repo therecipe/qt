@@ -41,6 +41,11 @@ func goInput(name string, value string, f *parser.Function) string {
 		{
 			return fmt.Sprintf("C.double(%v)", name)
 		}
+
+	case "jclass":
+		{
+			return name
+		}
 	}
 
 	switch {
@@ -141,6 +146,11 @@ func cppInput(name string, value string, f *parser.Function) string {
 			}
 
 			return fmt.Sprintf("static_cast<qreal>(%v)", name)
+		}
+
+	case "jclass":
+		{
+			return fmt.Sprintf("static_cast<%v>(%v)", value, name)
 		}
 	}
 

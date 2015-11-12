@@ -1,22 +1,22 @@
 ########################################			FUNCTIONS			########################################
 &{QLine QLine::QLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false false   QLine() [] }
-&{QLine QLine::QLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 2  QLine(const QPoint &p1, const QPoint &p2) [0xc8209424c0 0xc820942560] }
-&{QLine QLine::QLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 3  QLine(int x1, int y1, int x2, int y2) [0xc820942740 0xc8209427e0 0xc820942880 0xc820942900] }
+&{QLine QLine::QLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 2  QLine(const QPoint &p1, const QPoint &p2) [0xc8201977e0 0xc820197880] }
+&{QLine QLine::QLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 3  QLine(int x1, int y1, int x2, int y2) [0xc820197ce0 0xc820197dc0 0xc820538020 0xc8205380a0] }
 &{dx QLine::dx commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  int int dx() const [] }
 &{dy QLine::dy commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  int int dy() const [] }
 &{isNull QLine::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool bool isNull() const [] }
-&{operator!= QLine::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool bool operator!=(const QLine &line) const [0xc820942d00] }
-&{operator== QLine::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool bool operator==(const QLine &line) const [0xc820942f60] }
+&{operator!= QLine::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool bool operator!=(const QLine &line) const [0xc8205384c0] }
+&{operator== QLine::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool bool operator==(const QLine &line) const [0xc820538700] }
 &{p1 QLine::p1 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QPoint QPoint p1() const [] }
 &{p2 QLine::p2 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QPoint QPoint p2() const [] }
-&{setLine QLine::setLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setLine(int x1, int y1, int x2, int y2) [0xc820943300 0xc8209433a0 0xc820943420 0xc8209434c0] }
-&{setP1 QLine::setP1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setP1(const QPoint &p1) [0xc8209436e0] }
-&{setP2 QLine::setP2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setP2(const QPoint &p2) [0xc8209438c0] }
-&{setPoints QLine::setPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setPoints(const QPoint &p1, const QPoint &p2) [0xc820943a20 0xc820943aa0] }
-&{translate QLine::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void translate(const QPoint &offset) [0xc820943c40] }
-&{translate QLine::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false true 2 void void translate(int dx, int dy) [0xc820943e80 0xc820943f40] }
-&{translated QLine::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QLine QLine translated(const QPoint &offset) const [0xc8201f43c0] }
-&{translated QLine::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false true 2 QLine QLine translated(int dx, int dy) const [0xc8201f4ae0 0xc8201f4ca0] }
+&{setLine QLine::setLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setLine(int x1, int y1, int x2, int y2) [0xc820538ae0 0xc820538b80 0xc820538c60 0xc820538ce0] }
+&{setP1 QLine::setP1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setP1(const QPoint &p1) [0xc820538f00] }
+&{setP2 QLine::setP2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setP2(const QPoint &p2) [0xc820539120] }
+&{setPoints QLine::setPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setPoints(const QPoint &p1, const QPoint &p2) [0xc820539300 0xc820539380] }
+&{translate QLine::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void translate(const QPoint &offset) [0xc820539560] }
+&{translate QLine::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false true 2 void void translate(int dx, int dy) [0xc820539780 0xc820539820] }
+&{translated QLine::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QLine QLine translated(const QPoint &offset) const [0xc820539ac0] }
+&{translated QLine::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false true 2 QLine QLine translated(int dx, int dy) const [0xc820539ca0 0xc820539d20] }
 &{x1 QLine::x1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  int int x1() const [] }
 &{x2 QLine::x2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  int int x2() const [] }
 &{y1 QLine::y1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  int int y1() const [] }

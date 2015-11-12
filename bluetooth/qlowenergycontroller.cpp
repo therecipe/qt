@@ -1,11 +1,11 @@
 #include "qlowenergycontroller.h"
-#include <QModelIndex>
 #include <QBluetoothUuid>
 #include <QObject>
 #include <QBluetoothDeviceInfo>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QLowEnergyController>
 #include "_cgo_export.h"
 

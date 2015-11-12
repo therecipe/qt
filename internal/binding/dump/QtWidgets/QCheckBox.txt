@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
 &{isTristate QCheckBox::isTristate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.cpp non plain false false  bool bool isTristate() const [] }
-&{setTristate QCheckBox::setTristate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.cpp non plain false false  void void setTristate(bool y) [0xc822d732c0] }
-&{QCheckBox QCheckBox::QCheckBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h non constructor false false   QCheckBox(QWidget *parent) [0xc822d736e0] }
-&{QCheckBox QCheckBox::QCheckBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h non constructor false true 2  QCheckBox(const QString &text, QWidget *parent) [0xc822d73a20 0xc822d73b20] }
+&{setTristate QCheckBox::setTristate commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.cpp non plain false false  void void setTristate(bool y) [0xc822b5a180] }
+&{QCheckBox QCheckBox::QCheckBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h non constructor false false   QCheckBox(QWidget *parent) [0xc822b5a4c0] }
+&{QCheckBox QCheckBox::QCheckBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h non constructor false true 2  QCheckBox(const QString &text, QWidget *parent) [0xc822b5a7a0 0xc822b5a860] }
 &{checkState QCheckBox::checkState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h non plain false false  Qt::CheckState Qt::CheckState checkState() const [] }
 &{checkStateSet QCheckBox::checkStateSet commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h impure plain false false  void void checkStateSet() [] }
-&{event QCheckBox::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h impure plain false false  bool bool event(QEvent *e) [0xc8217e83a0] }
-&{hitButton QCheckBox::hitButton commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h impure plain false false  bool bool hitButton(const QPoint &pos) const [0xc8217e8900] }
-&{initStyleOption QCheckBox::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h non plain false false  void void initStyleOption(QStyleOptionButton *option) const [0xc8217e8f00] }
+&{event QCheckBox::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h impure plain false false  bool bool event(QEvent *e) [0xc822b5aee0] }
+&{hitButton QCheckBox::hitButton commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h impure plain false false  bool bool hitButton(const QPoint &pos) const [0xc822b5b120] }
+&{initStyleOption QCheckBox::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h non plain false false  void void initStyleOption(QStyleOptionButton *option) const [0xc822b5b3e0] }
 &{minimumSizeHint QCheckBox::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h impure plain false false  QSize QSize minimumSizeHint() const [] }
-&{mouseMoveEvent QCheckBox::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc8217e99a0] }
+&{mouseMoveEvent QCheckBox::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc822b5b8a0] }
 &{nextCheckState QCheckBox::nextCheckState commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h impure plain false false  void void nextCheckState() [] }
-&{paintEvent QCheckBox::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc8217ce420] }
-&{setCheckState QCheckBox::setCheckState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h non plain false false  void void setCheckState(Qt::CheckState state) [0xc8217ce9c0] }
+&{paintEvent QCheckBox::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc822b5bdc0] }
+&{setCheckState QCheckBox::setCheckState commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h non plain false false  void void setCheckState(Qt::CheckState state) [0xc822b6c0e0] }
 &{sizeHint QCheckBox::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h impure plain false false  QSize QSize sizeHint() const [] }
-&{stateChanged QCheckBox::stateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h non signal false false  void void stateChanged(int state) [0xc8217cf3e0] }
+&{stateChanged QCheckBox::stateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h non signal false false  void void stateChanged(int state) [0xc822b6c640] }
 &{~QCheckBox QCheckBox::~QCheckBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qcheckbox.h non destructor false false   ~QCheckBox() [] }
 ########################################			ENUMS			########################################

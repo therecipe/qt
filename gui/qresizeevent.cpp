@@ -1,9 +1,9 @@
 #include "qresizeevent.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QSize>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QResizeEvent>
 #include "_cgo_export.h"
 

@@ -1,10 +1,10 @@
 #include "qgeoroutesegment.h"
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QGeoRoute>
 #include <QGeoManeuver>
+#include <QGeoRoute>
 #include <QString>
+#include <QVariant>
 #include <QGeoRouteSegment>
 #include "_cgo_export.h"
 

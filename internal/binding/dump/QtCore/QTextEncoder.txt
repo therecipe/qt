@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{QTextEncoder QTextEncoder::QTextEncoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non constructor false false   QTextEncoder(const QTextCodec *codec) [0xc82015da20] }
-&{QTextEncoder QTextEncoder::QTextEncoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non constructor false true 2  QTextEncoder(const QTextCodec *codec, QTextCodec::ConversionFlags flags) [0xc82015dc40 0xc82015dd20] }
-&{fromUnicode QTextEncoder::fromUnicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false true 2 QByteArray QByteArray fromUnicode(const QChar *uc, int len) [0xc82015df20 0xc82015dfa0] }
-&{fromUnicode QTextEncoder::fromUnicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false false  QByteArray QByteArray fromUnicode(const QString &str) [0xc820170160] }
+&{QTextEncoder QTextEncoder::QTextEncoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non constructor false false   QTextEncoder(const QTextCodec *codec) [0xc820133a20] }
+&{QTextEncoder QTextEncoder::QTextEncoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non constructor false true 2  QTextEncoder(const QTextCodec *codec, QTextCodec::ConversionFlags flags) [0xc820133c40 0xc820133d20] }
+&{fromUnicode QTextEncoder::fromUnicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false true 2 QByteArray QByteArray fromUnicode(const QChar *uc, int len) [0xc820133f20 0xc820133fa0] }
+&{fromUnicode QTextEncoder::fromUnicode commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false false  QByteArray QByteArray fromUnicode(const QString &str) [0xc820146160] }
 &{~QTextEncoder QTextEncoder::~QTextEncoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non destructor false false   ~QTextEncoder() [] }
 ########################################			ENUMS			########################################

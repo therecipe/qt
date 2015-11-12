@@ -1,8 +1,8 @@
 #include "qelapsedtimer.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QElapsedTimer>
 #include "_cgo_export.h"
 

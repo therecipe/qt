@@ -1,8 +1,8 @@
 #include "qqmlincubator.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QQmlIncubator>
 #include "_cgo_export.h"
 

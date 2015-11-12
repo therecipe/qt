@@ -1,9 +1,9 @@
 #include "qscrollerproperties.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QScroller>
-#include <QString>
-#include <QVariant>
 #include <QScrollerProperties>
 #include "_cgo_export.h"
 

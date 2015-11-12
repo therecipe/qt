@@ -1,10 +1,10 @@
 #include "qsgsimpletexturenode.h"
 #include <QSGTexture>
+#include <QRectF>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QRectF>
 #include <QRect>
 #include <QSGSimpleTextureNode>
 #include "_cgo_export.h"

@@ -1,11 +1,11 @@
 #include "qudpsocket.h"
-#include <QHostAddress>
-#include <QNetworkInterface>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QNetworkInterface>
 #include <QObject>
+#include <QHostAddress>
+#include <QString>
 #include <QUdpSocket>
 #include "_cgo_export.h"
 

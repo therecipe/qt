@@ -1,10 +1,10 @@
 #include "qtextframe.h"
+#include <QModelIndex>
+#include <QTextDocument>
+#include <QTextFrameFormat>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QTextFrameFormat>
-#include <QTextDocument>
 #include <QTextFrame>
 #include "_cgo_export.h"
 

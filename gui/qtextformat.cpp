@@ -1,10 +1,10 @@
 #include "qtextformat.h"
-#include <QColor>
-#include <QBrush>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QBrush>
+#include <QColor>
+#include <QString>
+#include <QVariant>
 #include <QTextFormat>
 #include "_cgo_export.h"
 

@@ -1,10 +1,10 @@
 #include "qfileopenevent.h"
+#include <QModelIndex>
 #include <QIODevice>
 #include <QFile>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QFileOpenEvent>
 #include "_cgo_export.h"
 

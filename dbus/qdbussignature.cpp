@@ -1,9 +1,9 @@
 #include "qdbussignature.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QLatin1String>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QDBusSignature>
 #include "_cgo_export.h"
 

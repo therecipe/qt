@@ -1,18 +1,18 @@
 #include "qgraphicsrectitem.h"
-#include <QString>
-#include <QWidget>
-#include <QStyle>
-#include <QPointF>
-#include <QPoint>
 #include <QPainter>
-#include <QRect>
-#include <QRectF>
+#include <QString>
 #include <QVariant>
-#include <QGraphicsItem>
-#include <QUrl>
 #include <QModelIndex>
 #include <QStyleOptionGraphicsItem>
+#include <QStyle>
+#include <QGraphicsItem>
+#include <QPointF>
+#include <QRectF>
+#include <QRect>
+#include <QWidget>
+#include <QUrl>
 #include <QStyleOption>
+#include <QPoint>
 #include <QGraphicsRectItem>
 #include "_cgo_export.h"
 

@@ -1,15 +1,15 @@
 #include "qtoolbar.h"
-#include <QWidget>
-#include <QString>
-#include <QUrl>
-#include <QObject>
-#include <QMetaObject>
-#include <QIcon>
-#include <QAction>
 #include <QVariant>
-#include <QModelIndex>
-#include <QPoint>
+#include <QUrl>
 #include <QSize>
+#include <QAction>
+#include <QPoint>
+#include <QString>
+#include <QMetaObject>
+#include <QWidget>
+#include <QObject>
+#include <QIcon>
+#include <QModelIndex>
 #include <QToolBar>
 #include "_cgo_export.h"
 

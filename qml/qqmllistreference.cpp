@@ -1,13 +1,13 @@
 #include "qqmllistreference.h"
 #include <QList>
-#include <QList>
-#include <QQmlEngine>
-#include <QObject>
-#include <QMetaObject>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QQmlEngine>
+#include <QMetaObject>
+#include <QObject>
+#include <QList>
+#include <QString>
 #include <QQmlListReference>
 #include "_cgo_export.h"
 

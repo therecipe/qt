@@ -1,11 +1,11 @@
 #include "qspinbox.h"
+#include <QModelIndex>
+#include <QMetaObject>
+#include <QWidget>
 #include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QMetaObject>
-#include <QWidget>
 #include <QSpinBox>
 #include "_cgo_export.h"
 

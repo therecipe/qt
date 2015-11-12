@@ -1,10 +1,10 @@
 #include "qchildevent.h"
+#include <QObject>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
 #include <QEvent>
-#include <QString>
 #include <QChildEvent>
 #include "_cgo_export.h"
 

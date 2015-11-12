@@ -1,10 +1,10 @@
 #include "qstyleoptionslider.h"
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
 #include <QStyle>
 #include <QStyleOption>
 #include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QStyleOptionSlider>
 #include "_cgo_export.h"
 

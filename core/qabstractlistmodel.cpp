@@ -1,11 +1,11 @@
 #include "qabstractlistmodel.h"
 #include <QList>
+#include <QUrl>
+#include <QModelIndex>
 #include <QMimeData>
 #include <QList>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QAbstractListModel>
 #include "_cgo_export.h"
 

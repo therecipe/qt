@@ -1,8 +1,8 @@
 #include "qxmlnamespacesupport.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QXmlNamespaceSupport>
 #include "_cgo_export.h"
 

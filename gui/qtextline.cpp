@@ -1,10 +1,10 @@
 #include "qtextline.h"
+#include <QPointF>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QPoint>
-#include <QPointF>
 #include <QTextLine>
 #include "_cgo_export.h"
 

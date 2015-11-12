@@ -1,11 +1,11 @@
 #include "qnetworkrequest.h"
-#include <QObject>
-#include <QSslConfiguration>
-#include <QByteArray>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QSslConfiguration>
+#include <QByteArray>
+#include <QObject>
+#include <QString>
 #include <QNetworkRequest>
 #include "_cgo_export.h"
 

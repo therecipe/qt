@@ -1,10 +1,10 @@
 #include "qsgclipnode.h"
-#include <QModelIndex>
-#include <QRect>
-#include <QRectF>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QRectF>
+#include <QRect>
 #include <QSGClipNode>
 #include "_cgo_export.h"
 

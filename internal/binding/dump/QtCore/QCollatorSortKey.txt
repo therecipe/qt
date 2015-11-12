@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{QCollatorSortKey QCollatorSortKey::QCollatorSortKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non constructor false false   QCollatorSortKey(const QCollatorSortKey &other) [0xc82076b9c0] }
-&{operator= QCollatorSortKey::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false true 2 QCollatorSortKey & QCollatorSortKey & operator=(QCollatorSortKey &&other) [0xc82076bfa0] }
-&{operator= QCollatorSortKey::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false false  QCollatorSortKey & QCollatorSortKey & operator=(const QCollatorSortKey &other) [0xc820754280] }
-&{swap QCollatorSortKey::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false false  void void swap(QCollatorSortKey &other) [0xc820754540] }
+&{QCollatorSortKey QCollatorSortKey::QCollatorSortKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non constructor false false   QCollatorSortKey(const QCollatorSortKey &other) [0xc820745660] }
+&{operator= QCollatorSortKey::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false true 2 QCollatorSortKey & QCollatorSortKey & operator=(QCollatorSortKey &&other) [0xc820745c40] }
+&{operator= QCollatorSortKey::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false false  QCollatorSortKey & QCollatorSortKey & operator=(const QCollatorSortKey &other) [0xc820745f80] }
+&{swap QCollatorSortKey::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non plain false false  void void swap(QCollatorSortKey &other) [0xc82072e240] }
 &{~QCollatorSortKey QCollatorSortKey::~QCollatorSortKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator.h non destructor false false   ~QCollatorSortKey() [] }
-&{compare QCollatorSortKey::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator_win.cpp non plain false false  int int compare(const QCollatorSortKey &otherKey) const [0xc8207549e0] }
+&{compare QCollatorSortKey::compare commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcollator_win.cpp non plain false false  int int compare(const QCollatorSortKey &otherKey) const [0xc82072e700] }
 ########################################			ENUMS			########################################

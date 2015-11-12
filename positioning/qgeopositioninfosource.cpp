@@ -1,11 +1,11 @@
 #include "qgeopositioninfosource.h"
+#include <QModelIndex>
+#include <QObject>
 #include <QGeoPositionInfo>
 #include <QMetaObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QObject>
 #include <QGeoPositionInfoSource>
 #include "_cgo_export.h"
 

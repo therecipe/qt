@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
 &{QStyleOptionTab QStyleOptionTab::QStyleOptionTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionTab() [] }
-&{QStyleOptionTab QStyleOptionTab::QStyleOptionTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionTab(const QStyleOptionTab &other) [0xc821cdb320] }
+&{QStyleOptionTab QStyleOptionTab::QStyleOptionTab commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionTab(const QStyleOptionTab &other) [0xc8225db9e0] }
 ########################################			ENUMS			########################################
-&{CornerWidget QStyleOptionTab::CornerWidget commendable public QStyleOptionTab::CornerWidgets [0xc821cdd000 0xc821cdd0c0 0xc821cdd200] false}
-&{SelectedPosition QStyleOptionTab::SelectedPosition commendable public  [0xc821cdd420 0xc821cdd560 0xc821cdd620] false}
-&{StyleOptionType QStyleOptionTab::StyleOptionType commendable public  [0xc821cdd920] false}
-&{StyleOptionVersion QStyleOptionTab::StyleOptionVersion commendable public  [0xc821cddbc0] false}
-&{TabFeature QStyleOptionTab::TabFeature commendable public QStyleOptionTab::TabFeatures [0xc821cddf20 0xc821cddfe0] false}
-&{TabPosition QStyleOptionTab::TabPosition commendable public  [0xc821cda4a0 0xc821cda5a0 0xc821cda6c0 0xc821cda840] false}
+&{CornerWidget QStyleOptionTab::CornerWidget commendable public QStyleOptionTab::CornerWidgets [0xc821fbbf60 0xc8225da040 0xc8225da180] false}
+&{SelectedPosition QStyleOptionTab::SelectedPosition commendable public  [0xc8225da3a0 0xc8225da420 0xc8225da560] false}
+&{StyleOptionType QStyleOptionTab::StyleOptionType commendable public  [0xc8225da840] false}
+&{StyleOptionVersion QStyleOptionTab::StyleOptionVersion commendable public  [0xc8225daa80] false}
+&{TabFeature QStyleOptionTab::TabFeature commendable public QStyleOptionTab::TabFeatures [0xc8225dadc0 0xc8225dae80] false}
+&{TabPosition QStyleOptionTab::TabPosition commendable public  [0xc8225db100 0xc8225db240 0xc8225db320 0xc8225db3a0] false}

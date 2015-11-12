@@ -1,8 +1,8 @@
 #include "qkeysequence.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QString>
-#include <QVariant>
 #include <QKeySequence>
 #include "_cgo_export.h"
 

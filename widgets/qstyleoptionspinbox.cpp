@@ -1,10 +1,10 @@
 #include "qstyleoptionspinbox.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QStyleOption>
-#include <QStyle>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QStyle>
 #include <QStyleOptionSpinBox>
 #include "_cgo_export.h"
 

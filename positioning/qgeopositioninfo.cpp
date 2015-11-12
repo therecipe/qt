@@ -1,11 +1,11 @@
 #include "qgeopositioninfo.h"
+#include <QDate>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QDate>
 #include <QDateTime>
 #include <QGeoCoordinate>
-#include <QString>
 #include <QGeoPositionInfo>
 #include "_cgo_export.h"
 

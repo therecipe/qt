@@ -1,9 +1,9 @@
 #include "qgeoshape.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QGeoCoordinate>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QGeoShape>
 #include "_cgo_export.h"
 

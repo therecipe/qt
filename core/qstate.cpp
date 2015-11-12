@@ -1,11 +1,11 @@
 #include "qstate.h"
-#include <QObject>
-#include <QAbstractState>
-#include <QAbstractTransition>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QAbstractState>
+#include <QObject>
+#include <QAbstractTransition>
 #include <QState>
 #include "_cgo_export.h"
 

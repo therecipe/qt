@@ -1,9 +1,9 @@
 #include "qlocalserver.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QObject>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QLocalServer>
 #include "_cgo_export.h"
 

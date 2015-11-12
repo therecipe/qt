@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
 &{isEnabled QGraphicsEffect::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non plain false false  bool bool isEnabled() const [] }
-&{setEnabled QGraphicsEffect::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non slot false false  void void setEnabled(bool enable) [0xc823031420] }
-&{QGraphicsEffect QGraphicsEffect::QGraphicsEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non constructor false false   QGraphicsEffect(QObject *parent) [0xc82301c660] }
+&{setEnabled QGraphicsEffect::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.cpp non slot false false  void void setEnabled(bool enable) [0xc82268a780] }
+&{QGraphicsEffect QGraphicsEffect::QGraphicsEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non constructor false false   QGraphicsEffect(QObject *parent) [0xc82268b5e0] }
 &{boundingRect QGraphicsEffect::boundingRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  QRectF QRectF boundingRect() const [] }
-&{boundingRectFor QGraphicsEffect::boundingRectFor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure plain false false  QRectF QRectF boundingRectFor(const QRectF &rect) const [0xc82301cb80] }
-&{draw QGraphicsEffect::draw commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h pure plain false false  void void draw(QPainter *painter) [0xc82301cf20] }
-&{drawSource QGraphicsEffect::drawSource commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  void void drawSource(QPainter *painter) [0xc82301d1e0] }
-&{enabledChanged QGraphicsEffect::enabledChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non signal false false  void void enabledChanged(bool enabled) [0xc82301d4e0] }
-&{sourceBoundingRect QGraphicsEffect::sourceBoundingRect commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  QRectF QRectF sourceBoundingRect(Qt::CoordinateSystem system) const [0xc82301df80] }
-&{sourceChanged QGraphicsEffect::sourceChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure plain false false  void void sourceChanged(ChangeFlags flags) [0xc82300a280] }
+&{boundingRectFor QGraphicsEffect::boundingRectFor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure plain false false  QRectF QRectF boundingRectFor(const QRectF &rect) const [0xc82268ba00] }
+&{draw QGraphicsEffect::draw commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h pure plain false false  void void draw(QPainter *painter) [0xc82268bce0] }
+&{drawSource QGraphicsEffect::drawSource commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  void void drawSource(QPainter *painter) [0xc82268bf20] }
+&{enabledChanged QGraphicsEffect::enabledChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non signal false false  void void enabledChanged(bool enabled) [0xc822014240] }
+&{sourceBoundingRect QGraphicsEffect::sourceBoundingRect commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  QRectF QRectF sourceBoundingRect(Qt::CoordinateSystem system) const [0xc822014b80] }
+&{sourceChanged QGraphicsEffect::sourceChanged commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure plain false false  void void sourceChanged(ChangeFlags flags) [0xc822014f20] }
 &{sourceIsPixmap QGraphicsEffect::sourceIsPixmap commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  bool bool sourceIsPixmap() const [] }
-&{sourcePixmap QGraphicsEffect::sourcePixmap commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  QPixmap QPixmap sourcePixmap(Qt::CoordinateSystem system, QPoint *offset, PixmapPadMode mode) const [0xc82300a800 0xc82300a8e0 0xc82300aa40] }
+&{sourcePixmap QGraphicsEffect::sourcePixmap commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  QPixmap QPixmap sourcePixmap(Qt::CoordinateSystem system, QPoint *offset, PixmapPadMode mode) const [0xc8220154c0 0xc822015600 0xc8220156a0] }
 &{update QGraphicsEffect::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non slot false false  void void update() [] }
 &{updateBoundingRect QGraphicsEffect::updateBoundingRect commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h non plain false false  void void updateBoundingRect() [] }
 &{~QGraphicsEffect QGraphicsEffect::~QGraphicsEffect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/effects/qgraphicseffect.h impure destructor false false   ~QGraphicsEffect() [] }
 ########################################			ENUMS			########################################
-&{ChangeFlag QGraphicsEffect::ChangeFlag commendable public QGraphicsEffect::ChangeFlags [0xc823031800 0xc8230318e0 0xc823031a00 0xc823031b60] false}
-&{PixmapPadMode QGraphicsEffect::PixmapPadMode commendable public  [0xc823031e80 0xc823031fc0 0xc82301c160] false}
+&{ChangeFlag QGraphicsEffect::ChangeFlag commendable public QGraphicsEffect::ChangeFlags [0xc82268aaa0 0xc82268ab40 0xc82268ac00 0xc82268ad40] false}
+&{PixmapPadMode QGraphicsEffect::PixmapPadMode commendable public  [0xc82268afe0 0xc82268b080 0xc82268b1c0] false}

@@ -1,13 +1,13 @@
 #include "qqmlengine.h"
 #include <QString>
-#include <QObject>
-#include <QModelIndex>
-#include <QQmlImageProviderBase>
-#include <QQmlIncubationController>
-#include <QQmlNetworkAccessManagerFactory>
-#include <QQmlContext>
-#include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QQmlNetworkAccessManagerFactory>
+#include <QVariant>
+#include <QQmlIncubationController>
+#include <QQmlImageProviderBase>
+#include <QQmlContext>
 #include <QQmlEngine>
 #include "_cgo_export.h"
 

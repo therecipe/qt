@@ -1,11 +1,11 @@
 #include "qgraphicslinearlayout.h"
-#include <QRectF>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QGraphicsLayoutItem>
 #include <QGraphicsLayout>
+#include <QGraphicsLayoutItem>
+#include <QRectF>
 #include <QRect>
 #include <QGraphicsLinearLayout>
 #include "_cgo_export.h"

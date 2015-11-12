@@ -1,11 +1,11 @@
 #include "qlcdnumber.h"
-#include <QModelIndex>
-#include <QWidget>
-#include <QObject>
-#include <QMetaObject>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QMetaObject>
+#include <QWidget>
+#include <QObject>
+#include <QString>
 #include <QLCDNumber>
 #include "_cgo_export.h"
 

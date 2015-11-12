@@ -1,13 +1,13 @@
 #include "qbrush.h"
+#include <QModelIndex>
+#include <QTransform>
+#include <QColor>
+#include <QImage>
+#include <QUrl>
+#include <QVariant>
+#include <QPixmap>
 #include <QGradient>
 #include <QString>
-#include <QUrl>
-#include <QModelIndex>
-#include <QPixmap>
-#include <QColor>
-#include <QVariant>
-#include <QTransform>
-#include <QImage>
 #include <QBrush>
 #include "_cgo_export.h"
 

@@ -1,15 +1,15 @@
 #include "qwebsocket.h"
-#include <QString>
 #include <QVariant>
+#include <QNetworkProxy>
+#include <QMetaObject>
+#include <QAbstractSocket>
+#include <QByteArray>
+#include <QSslConfiguration>
+#include <QString>
 #include <QUrl>
 #include <QModelIndex>
-#include <QByteArray>
-#include <QMetaObject>
-#include <QSslConfiguration>
-#include <QAbstractSocket>
-#include <QObject>
-#include <QNetworkProxy>
 #include <QMaskGenerator>
+#include <QObject>
 #include <QWebSocket>
 #include "_cgo_export.h"
 

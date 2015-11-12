@@ -1,11 +1,11 @@
 #include "qxmldefaulthandler.h"
-#include <QModelIndex>
-#include <QXmlAttributes>
-#include <QXmlParseException>
 #include <QXmlLocator>
+#include <QXmlParseException>
+#include <QXmlAttributes>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QXmlDefaultHandler>
 #include "_cgo_export.h"
 

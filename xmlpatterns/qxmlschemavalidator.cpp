@@ -1,11 +1,11 @@
 #include "qxmlschemavalidator.h"
-#include <QAbstractMessageHandler>
-#include <QVariant>
 #include <QAbstractUriResolver>
-#include <QModelIndex>
-#include <QXmlSchema>
-#include <QByteArray>
 #include <QNetworkAccessManager>
+#include <QVariant>
+#include <QXmlSchema>
+#include <QModelIndex>
+#include <QAbstractMessageHandler>
+#include <QByteArray>
 #include <QIODevice>
 #include <QString>
 #include <QUrl>

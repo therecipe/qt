@@ -1,11 +1,11 @@
 #include "qpluginloader.h"
+#include <QModelIndex>
+#include <QLibrary>
+#include <QJsonObject>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QJsonObject>
-#include <QLibrary>
 #include <QPluginLoader>
 #include "_cgo_export.h"
 

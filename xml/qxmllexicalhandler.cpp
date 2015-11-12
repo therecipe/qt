@@ -1,8 +1,8 @@
 #include "qxmllexicalhandler.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QXmlLexicalHandler>
 #include "_cgo_export.h"
 

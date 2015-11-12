@@ -1,23 +1,23 @@
 ########################################			FUNCTIONS			########################################
 &{QStaticText QStaticText::QStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non constructor false false   QStaticText() [] }
-&{QStaticText QStaticText::QStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non constructor false true 3  QStaticText(const QStaticText &other) [0xc8232edb00] }
-&{QStaticText QStaticText::QStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non constructor false true 2  QStaticText(const QString &text) [0xc8232edd60] }
-&{operator!= QStaticText::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  bool bool operator!=(const QStaticText &other) const [0xc8232fe040] }
-&{operator= QStaticText::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  QStaticText & QStaticText & operator=(const QStaticText &other) [0xc8232fe260] }
-&{operator== QStaticText::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  bool bool operator==(const QStaticText &other) const [0xc8232fe480] }
+&{QStaticText QStaticText::QStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non constructor false true 3  QStaticText(const QStaticText &other) [0xc8232e7be0] }
+&{QStaticText QStaticText::QStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non constructor false true 2  QStaticText(const QString &text) [0xc8232e7e40] }
+&{operator!= QStaticText::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  bool bool operator!=(const QStaticText &other) const [0xc8232f8120] }
+&{operator= QStaticText::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  QStaticText & QStaticText & operator=(const QStaticText &other) [0xc8232f8340] }
+&{operator== QStaticText::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  bool bool operator==(const QStaticText &other) const [0xc8232f8560] }
 &{performanceHint QStaticText::performanceHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  PerformanceHint PerformanceHint performanceHint() const [] }
-&{prepare QStaticText::prepare commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void prepare(const QTransform &matrix, const QFont &font) [0xc8232fe7a0 0xc8232fe860] }
-&{setPerformanceHint QStaticText::setPerformanceHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void setPerformanceHint(PerformanceHint performanceHint) [0xc8232fea60] }
-&{setText QStaticText::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void setText(const QString &text) [0xc8232fec20] }
-&{setTextFormat QStaticText::setTextFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void setTextFormat(Qt::TextFormat textFormat) [0xc8232fede0] }
-&{setTextOption QStaticText::setTextOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void setTextOption(const QTextOption &textOption) [0xc8232fefc0] }
-&{setTextWidth QStaticText::setTextWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void setTextWidth(qreal textWidth) [0xc8232ff1c0] }
+&{prepare QStaticText::prepare commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void prepare(const QTransform &matrix, const QFont &font) [0xc8232f8880 0xc8232f8940] }
+&{setPerformanceHint QStaticText::setPerformanceHint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void setPerformanceHint(PerformanceHint performanceHint) [0xc8232f8b40] }
+&{setText QStaticText::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void setText(const QString &text) [0xc8232f8d00] }
+&{setTextFormat QStaticText::setTextFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void setTextFormat(Qt::TextFormat textFormat) [0xc8232f8ec0] }
+&{setTextOption QStaticText::setTextOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void setTextOption(const QTextOption &textOption) [0xc8232f90a0] }
+&{setTextWidth QStaticText::setTextWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void setTextWidth(qreal textWidth) [0xc8232f92a0] }
 &{size QStaticText::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  QSizeF QSizeF size() const [] }
-&{swap QStaticText::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void swap(QStaticText &other) [0xc8232ff520] }
+&{swap QStaticText::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  void void swap(QStaticText &other) [0xc8232f9600] }
 &{text QStaticText::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  QString QString text() const [] }
 &{textFormat QStaticText::textFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  Qt::TextFormat Qt::TextFormat textFormat() const [] }
 &{textOption QStaticText::textOption commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  QTextOption QTextOption textOption() const [] }
 &{textWidth QStaticText::textWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non plain false false  qreal qreal textWidth() const [] }
 &{~QStaticText QStaticText::~QStaticText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qstatictext.h non destructor false false   ~QStaticText() [] }
 ########################################			ENUMS			########################################
-&{PerformanceHint QStaticText::PerformanceHint commendable public  [0xc8232ed720 0xc8232ed7c0] false}
+&{PerformanceHint QStaticText::PerformanceHint commendable public  [0xc8232e7800 0xc8232e78a0] false}

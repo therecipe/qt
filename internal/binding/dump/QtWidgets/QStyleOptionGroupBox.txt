@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
 &{QStyleOptionGroupBox QStyleOptionGroupBox::QStyleOptionGroupBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionGroupBox() [] }
-&{QStyleOptionGroupBox QStyleOptionGroupBox::QStyleOptionGroupBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionGroupBox(const QStyleOptionGroupBox &other) [0xc822d28720] }
+&{QStyleOptionGroupBox QStyleOptionGroupBox::QStyleOptionGroupBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionGroupBox(const QStyleOptionGroupBox &other) [0xc822a9d5a0] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionGroupBox::StyleOptionType commendable public  [0xc822d28080] false}
-&{StyleOptionVersion QStyleOptionGroupBox::StyleOptionVersion commendable public  [0xc822d28300] false}
+&{StyleOptionType QStyleOptionGroupBox::StyleOptionType commendable public  [0xc822a9cea0] false}
+&{StyleOptionVersion QStyleOptionGroupBox::StyleOptionVersion commendable public  [0xc822a9d0c0] false}

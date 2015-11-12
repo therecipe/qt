@@ -39,7 +39,7 @@ func goType(f *parser.Function, value string) string {
 			return value
 		}
 
-	case "T":
+	case "T", "JavaVM", "jclass":
 		{
 			return "unsafe.Pointer"
 		}
@@ -47,6 +47,11 @@ func goType(f *parser.Function, value string) string {
 	case "qreal":
 		{
 			return "float64"
+		}
+
+	case "...":
+		{
+			return ""
 		}
 	}
 
@@ -133,7 +138,7 @@ func cppType(f *parser.Function, value string) string {
 			return "void"
 		}
 
-	case "T":
+	case "T", "JavaVM", "jclass":
 		{
 			return "void*"
 		}
@@ -141,6 +146,11 @@ func cppType(f *parser.Function, value string) string {
 	case "qreal":
 		{
 			return "double"
+		}
+
+	case "...":
+		{
+			return ""
 		}
 	}
 

@@ -1,9 +1,9 @@
 #include "qlowenergycharacteristic.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QByteArray>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QLowEnergyCharacteristic>
 #include "_cgo_export.h"
 

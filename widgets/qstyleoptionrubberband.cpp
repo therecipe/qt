@@ -1,10 +1,10 @@
 #include "qstyleoptionrubberband.h"
+#include <QStyle>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStyleOption>
-#include <QStyle>
-#include <QString>
 #include <QStyleOptionRubberBand>
 #include "_cgo_export.h"
 

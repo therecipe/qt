@@ -1,8 +1,8 @@
 #include "qdnsmailexchangerecord.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QDnsMailExchangeRecord>
 #include "_cgo_export.h"
 

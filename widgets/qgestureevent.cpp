@@ -1,9 +1,9 @@
 #include "qgestureevent.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QGesture>
-#include <QString>
 #include <QGestureEvent>
 #include "_cgo_export.h"
 

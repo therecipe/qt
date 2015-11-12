@@ -1,8 +1,8 @@
 #include "qshareddata.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QSharedData>
 #include "_cgo_export.h"
 

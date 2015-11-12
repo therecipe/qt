@@ -1,11 +1,11 @@
 #include "qtextdocumentfragment.h"
 #include <QByteArray>
+#include <QTextDocument>
 #include <QTextCursor>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QTextDocument>
 #include <QTextDocumentFragment>
 #include "_cgo_export.h"
 

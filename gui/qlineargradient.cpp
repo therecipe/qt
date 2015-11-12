@@ -1,11 +1,11 @@
 #include "qlineargradient.h"
-#include <QPointF>
-#include <QLine>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QLine>
 #include <QPoint>
+#include <QPointF>
+#include <QString>
 #include <QLinearGradient>
 #include "_cgo_export.h"
 

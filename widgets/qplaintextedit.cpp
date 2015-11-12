@@ -1,17 +1,17 @@
 #include "qplaintextedit.h"
+#include <QTextDocument>
+#include <QVariant>
+#include <QUrl>
 #include <QModelIndex>
+#include <QWidget>
+#include <QPoint>
+#include <QTextOption>
+#include <QTextCharFormat>
+#include <QString>
 #include <QMetaObject>
+#include <QObject>
 #include <QPagedPaintDevice>
 #include <QTextCursor>
-#include <QTextCharFormat>
-#include <QPoint>
-#include <QString>
-#include <QVariant>
-#include <QTextOption>
-#include <QWidget>
-#include <QObject>
-#include <QUrl>
-#include <QTextDocument>
 #include <QPlainTextEdit>
 #include "_cgo_export.h"
 

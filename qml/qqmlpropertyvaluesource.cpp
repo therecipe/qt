@@ -1,9 +1,9 @@
 #include "qqmlpropertyvaluesource.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QQmlProperty>
+#include <QString>
+#include <QVariant>
 #include <QQmlPropertyValueSource>
 #include "_cgo_export.h"
 

@@ -2,9 +2,9 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QWindow>
 #include <QMetaObject>
+#include <QWindow>
+#include <QObject>
 #include <QQmlEngine>
 #include <QString>
 #include <QQuickView>

@@ -1,16 +1,16 @@
 ########################################			FUNCTIONS			########################################
-&{QScrollBar QScrollBar::QScrollBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h non constructor false false   QScrollBar(QWidget *parent) [0xc820f412c0] }
-&{QScrollBar QScrollBar::QScrollBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h non constructor false true 2  QScrollBar(Qt::Orientation orientation, QWidget *parent) [0xc820f41740 0xc820f417e0] }
-&{contextMenuEvent QScrollBar::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void contextMenuEvent(QContextMenuEvent *event) [0xc820f41ca0] }
-&{event QScrollBar::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  bool bool event(QEvent *event) [0xc820f2c2a0] }
-&{hideEvent QScrollBar::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void hideEvent(QHideEvent *) [0xc820f2c860] }
-&{initStyleOption QScrollBar::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h non plain false false  void void initStyleOption(QStyleOptionSlider *option) const [0xc820f2cc80] }
-&{mouseMoveEvent QScrollBar::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc820f2d140] }
-&{mousePressEvent QScrollBar::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void mousePressEvent(QMouseEvent *e) [0xc820f2d540] }
-&{mouseReleaseEvent QScrollBar::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *e) [0xc820f2da40] }
-&{paintEvent QScrollBar::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc820f2df60] }
+&{QScrollBar QScrollBar::QScrollBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h non constructor false false   QScrollBar(QWidget *parent) [0xc82184ff60] }
+&{QScrollBar QScrollBar::QScrollBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h non constructor false true 2  QScrollBar(Qt::Orientation orientation, QWidget *parent) [0xc82183c460 0xc82183c5e0] }
+&{contextMenuEvent QScrollBar::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void contextMenuEvent(QContextMenuEvent *event) [0xc82183cb80] }
+&{event QScrollBar::event commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  bool bool event(QEvent *event) [0xc82183d260] }
+&{hideEvent QScrollBar::hideEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void hideEvent(QHideEvent *) [0xc82183d880] }
+&{initStyleOption QScrollBar::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h non plain false false  void void initStyleOption(QStyleOptionSlider *option) const [0xc82183de80] }
+&{mouseMoveEvent QScrollBar::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc82231a2c0] }
+&{mousePressEvent QScrollBar::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void mousePressEvent(QMouseEvent *e) [0xc82231a6c0] }
+&{mouseReleaseEvent QScrollBar::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *e) [0xc82231ab80] }
+&{paintEvent QScrollBar::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc82231afc0] }
 &{sizeHint QScrollBar::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  QSize QSize sizeHint() const [] }
-&{sliderChange QScrollBar::sliderChange commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void sliderChange(SliderChange change) [0xc820f1a840] }
-&{wheelEvent QScrollBar::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void wheelEvent(QWheelEvent *event) [0xc820f1adc0] }
+&{sliderChange QScrollBar::sliderChange commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void sliderChange(SliderChange change) [0xc82231b580] }
+&{wheelEvent QScrollBar::wheelEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h impure plain false false  void void wheelEvent(QWheelEvent *event) [0xc82231b920] }
 &{~QScrollBar QScrollBar::~QScrollBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qscrollbar.h non destructor false false   ~QScrollBar() [] }
 ########################################			ENUMS			########################################

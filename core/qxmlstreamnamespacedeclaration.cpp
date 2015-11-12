@@ -1,9 +1,9 @@
 #include "qxmlstreamnamespacedeclaration.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStringRef>
+#include <QString>
 #include <QXmlStreamNamespaceDeclaration>
 #include "_cgo_export.h"
 

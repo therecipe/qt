@@ -1,11 +1,11 @@
 #include "qsyntaxhighlighter.h"
-#include <QTextBlock>
-#include <QMetaObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QTextDocument>
+#include <QTextBlock>
+#include <QMetaObject>
 #include <QSyntaxHighlighter>
 #include "_cgo_export.h"
 

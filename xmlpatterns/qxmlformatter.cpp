@@ -1,12 +1,12 @@
 #include "qxmlformatter.h"
+#include <QXmlName>
+#include <QIODevice>
 #include <QStringRef>
-#include <QXmlQuery>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QXmlName>
-#include <QIODevice>
+#include <QXmlQuery>
 #include <QXmlFormatter>
 #include "_cgo_export.h"
 

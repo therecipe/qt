@@ -1,8 +1,8 @@
 #include "qdomentity.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QDomEntity>
 #include "_cgo_export.h"
 

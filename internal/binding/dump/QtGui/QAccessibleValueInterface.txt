@@ -3,6 +3,6 @@
 &{maximumValue QAccessibleValueInterface::maximumValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QVariant QVariant maximumValue() const [] }
 &{minimumStepSize QAccessibleValueInterface::minimumStepSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QVariant QVariant minimumStepSize() const [] }
 &{minimumValue QAccessibleValueInterface::minimumValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  QVariant QVariant minimumValue() const [] }
-&{setCurrentValue QAccessibleValueInterface::setCurrentValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void void setCurrentValue(const QVariant &value) [0xc820cc3940] }
+&{setCurrentValue QAccessibleValueInterface::setCurrentValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void void setCurrentValue(const QVariant &value) [0xc820c769c0] }
 &{~QAccessibleValueInterface QAccessibleValueInterface::~QAccessibleValueInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure destructor false false   ~QAccessibleValueInterface() [] }
 ########################################			ENUMS			########################################

@@ -1,12 +1,12 @@
 #include "qitemselectionmodel.h"
-#include <QAbstractItemModel>
-#include <QMetaObject>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QMetaObject>
 #include <QObject>
 #include <QItemSelection>
+#include <QAbstractItemModel>
+#include <QString>
+#include <QVariant>
 #include <QItemSelectionModel>
 #include "_cgo_export.h"
 

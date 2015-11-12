@@ -1,9 +1,9 @@
 #include "qvideorenderercontrol.h"
+#include <QVariant>
+#include <QUrl>
 #include <QModelIndex>
 #include <QAbstractVideoSurface>
 #include <QString>
-#include <QVariant>
-#include <QUrl>
 #include <QVideoRendererControl>
 #include "_cgo_export.h"
 

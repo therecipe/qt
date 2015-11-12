@@ -1,10 +1,10 @@
 #include "qabstractsocket.h"
+#include <QObject>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
 #include <QNetworkProxy>
-#include <QString>
 #include <QAbstractSocket>
 #include "_cgo_export.h"
 

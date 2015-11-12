@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QSqlIndex QSqlIndex::QSqlIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non constructor false true 2  QSqlIndex(const QSqlIndex &other) [0xc820be4960] }
-&{QSqlIndex QSqlIndex::QSqlIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non constructor false false   QSqlIndex(const QString &cursorname, const QString &name) [0xc820be4d00 0xc820be4da0] }
-&{append QSqlIndex::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  void void append(const QSqlField &field) [0xc820be5160] }
-&{append QSqlIndex::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false true 2 void void append(const QSqlField &field, bool desc) [0xc820be55a0 0xc820be58a0] }
+&{QSqlIndex QSqlIndex::QSqlIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non constructor false true 2  QSqlIndex(const QSqlIndex &other) [0xc82242fa60] }
+&{QSqlIndex QSqlIndex::QSqlIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non constructor false false   QSqlIndex(const QString &cursorname, const QString &name) [0xc82242fdc0 0xc82242fea0] }
+&{append QSqlIndex::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  void void append(const QSqlField &field) [0xc826a90240] }
+&{append QSqlIndex::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false true 2 void void append(const QSqlField &field, bool desc) [0xc826a90680 0xc826a90800] }
 &{cursorName QSqlIndex::cursorName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  QString QString cursorName() const [] }
-&{isDescending QSqlIndex::isDescending commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  bool bool isDescending(int i) const [0xc820bd2880] }
+&{isDescending QSqlIndex::isDescending commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  bool bool isDescending(int i) const [0xc826a914c0] }
 &{name QSqlIndex::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  QString QString name() const [] }
-&{operator= QSqlIndex::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  QSqlIndex & QSqlIndex & operator=(const QSqlIndex &other) [0xc820bd3260] }
-&{setCursorName QSqlIndex::setCursorName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  void void setCursorName(const QString &cursorName) [0xc820bd3600] }
-&{setDescending QSqlIndex::setDescending commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  void void setDescending(int i, bool desc) [0xc820bd39c0 0xc820bd3ae0] }
-&{setName QSqlIndex::setName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  void void setName(const QString &name) [0xc820bd3e20] }
+&{operator= QSqlIndex::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  QSqlIndex & QSqlIndex & operator=(const QSqlIndex &other) [0xc826a91a80] }
+&{setCursorName QSqlIndex::setCursorName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  void void setCursorName(const QString &cursorName) [0xc826a91e00] }
+&{setDescending QSqlIndex::setDescending commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  void void setDescending(int i, bool desc) [0xc82081a0c0 0xc82081a1e0] }
+&{setName QSqlIndex::setName commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non plain false false  void void setName(const QString &name) [0xc82081a440] }
 &{~QSqlIndex QSqlIndex::~QSqlIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlindex.h non destructor false false   ~QSqlIndex() [] }
 ########################################			ENUMS			########################################

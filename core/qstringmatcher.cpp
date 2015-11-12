@@ -1,9 +1,9 @@
 #include "qstringmatcher.h"
-#include <QModelIndex>
-#include <QChar>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QChar>
 #include <QStringMatcher>
 #include "_cgo_export.h"
 

@@ -1,10 +1,10 @@
 #include "qsqldrivercreatorbase.h"
+#include <QSqlDriver>
+#include <QSqlDriverCreator>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSqlDriver>
-#include <QSqlDriverCreator>
 #include <QSqlDriverCreatorBase>
 #include "_cgo_export.h"
 

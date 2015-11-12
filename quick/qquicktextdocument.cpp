@@ -1,9 +1,9 @@
 #include "qquicktextdocument.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QQuickItem>
+#include <QString>
+#include <QVariant>
 #include <QQuickTextDocument>
 #include "_cgo_export.h"
 

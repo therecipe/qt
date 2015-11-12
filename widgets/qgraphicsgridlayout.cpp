@@ -1,12 +1,12 @@
 #include "qgraphicsgridlayout.h"
-#include <QRectF>
-#include <QGraphicsLayoutItem>
-#include <QGraphicsLayout>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QGraphicsLayout>
+#include <QGraphicsLayoutItem>
+#include <QRectF>
 #include <QRect>
+#include <QString>
 #include <QGraphicsGridLayout>
 #include "_cgo_export.h"
 

@@ -1,12 +1,12 @@
 #include "qaudioinput.h"
-#include <QAudioFormat>
-#include <QAudioDeviceInfo>
 #include <QObject>
+#include <QAudioFormat>
+#include <QIODevice>
+#include <QAudioDeviceInfo>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QIODevice>
 #include <QAudioInput>
 #include "_cgo_export.h"
 

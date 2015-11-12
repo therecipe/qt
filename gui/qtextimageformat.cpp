@@ -1,8 +1,8 @@
 #include "qtextimageformat.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QString>
-#include <QVariant>
 #include <QTextImageFormat>
 #include "_cgo_export.h"
 

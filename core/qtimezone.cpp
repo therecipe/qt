@@ -1,13 +1,13 @@
 #include "qtimezone.h"
-#include <QDateTime>
-#include <QLocale>
 #include <QString>
 #include <QVariant>
+#include <QLocale>
+#include <QTime>
+#include <QUrl>
 #include <QModelIndex>
 #include <QDate>
-#include <QUrl>
 #include <QByteArray>
-#include <QTime>
+#include <QDateTime>
 #include <QTimeZone>
 #include "_cgo_export.h"
 

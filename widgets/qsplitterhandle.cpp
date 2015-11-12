@@ -1,9 +1,9 @@
 #include "qsplitterhandle.h"
-#include <QSplitter>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QSplitter>
 #include <QSplitterHandle>
 #include "_cgo_export.h"
 

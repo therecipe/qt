@@ -1,10 +1,10 @@
 #include "qnearfieldtarget.h"
-#include <QModelIndex>
-#include <QObject>
-#include <QByteArray>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QByteArray>
+#include <QObject>
 #include <QNearFieldTarget>
 #include "_cgo_export.h"
 

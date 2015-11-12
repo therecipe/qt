@@ -1,10 +1,10 @@
 #include "qsound.h"
-#include <QModelIndex>
 #include <QObject>
-#include <QMetaObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QMetaObject>
 #include <QSound>
 #include "_cgo_export.h"
 

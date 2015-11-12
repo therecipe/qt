@@ -1,10 +1,10 @@
 #include "qsqlrelationaltablemodel.h"
+#include <QSqlRelation>
+#include <QMetaObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QMetaObject>
-#include <QSqlRelation>
 #include <QSqlRelationalTableModel>
 #include "_cgo_export.h"
 

@@ -1,12 +1,12 @@
 #include "qmdisubwindow.h"
-#include <QUrl>
-#include <QModelIndex>
+#include <QMetaObject>
 #include <QWidget>
 #include <QObject>
-#include <QMenu>
-#include <QMetaObject>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QMenu>
 #include <QMdiSubWindow>
 #include "_cgo_export.h"
 

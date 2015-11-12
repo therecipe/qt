@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{compare QSGMaterial::compare commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h impure plain false false  int int compare(const QSGMaterial *other) const [0xc821e4dbc0] }
+&{compare QSGMaterial::compare commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h impure plain false false  int int compare(const QSGMaterial *other) const [0xc82232f400] }
 &{createShader QSGMaterial::createShader commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h pure plain false false  QSGMaterialShader * QSGMaterialShader * createShader() const [] }
 &{flags QSGMaterial::flags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  QSGMaterial::Flags QSGMaterial::Flags flags() const [] }
-&{setFlag QSGMaterial::setFlag commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  void void setFlag(Flags flags, bool on) [0xc826c008e0 0xc826c00ac0] }
+&{setFlag QSGMaterial::setFlag commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  void void setFlag(Flags flags, bool on) [0xc82232fc00 0xc82232fce0] }
 &{type QSGMaterial::type commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h pure plain false false  QSGMaterialType * QSGMaterialType * type() const [] }
 ########################################			ENUMS			########################################
-&{Flag QSGMaterial::Flag commendable public QSGMaterial::Flags [0xc821e4d200 0xc821e4d300 0xc821e4d440 0xc821e4d520 0xc821e4d6a0] false}
+&{Flag QSGMaterial::Flag commendable public QSGMaterial::Flags [0xc82232e7c0 0xc82232e860 0xc82232ea40 0xc82232eba0 0xc82232ed40] false}

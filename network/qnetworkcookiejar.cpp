@@ -1,9 +1,9 @@
 #include "qnetworkcookiejar.h"
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
 #include <QNetworkCookie>
 #include <QNetworkCookieJar>
 #include "_cgo_export.h"

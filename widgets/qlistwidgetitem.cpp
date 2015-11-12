@@ -1,16 +1,16 @@
 #include "qlistwidgetitem.h"
 #include <QList>
-#include <QUrl>
-#include <QDataStream>
-#include <QBrush>
-#include <QSize>
+#include <QModelIndex>
 #include <QIcon>
+#include <QSize>
 #include <QListWidget>
 #include <QString>
 #include <QVariant>
-#include <QModelIndex>
-#include <QList>
+#include <QUrl>
 #include <QFont>
+#include <QBrush>
+#include <QList>
+#include <QDataStream>
 #include <QListWidgetItem>
 #include "_cgo_export.h"
 

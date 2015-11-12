@@ -1,9 +1,9 @@
 #include "qdbusserver.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
+#include <QString>
 #include <QDBusServer>
 #include "_cgo_export.h"
 

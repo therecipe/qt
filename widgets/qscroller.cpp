@@ -1,15 +1,15 @@
 #include "qscroller.h"
-#include <QVariant>
 #include <QUrl>
-#include <QPoint>
-#include <QObject>
-#include <QRect>
+#include <QModelIndex>
 #include <QMetaObject>
+#include <QObject>
+#include <QRectF>
+#include <QRect>
+#include <QVariant>
+#include <QPointF>
+#include <QPoint>
 #include <QScrollerProperties>
 #include <QString>
-#include <QRectF>
-#include <QPointF>
-#include <QModelIndex>
 #include <QScroller>
 #include "_cgo_export.h"
 

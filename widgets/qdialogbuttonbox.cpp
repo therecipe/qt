@@ -1,13 +1,13 @@
 #include "qdialogbuttonbox.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QWidget>
+#include <QDialog>
 #include <QString>
-#include <QVariant>
-#include <QObject>
+#include <QUrl>
+#include <QWidget>
 #include <QDial>
 #include <QAbstractButton>
-#include <QDialog>
+#include <QVariant>
+#include <QModelIndex>
+#include <QObject>
 #include <QDialogButtonBox>
 #include "_cgo_export.h"
 

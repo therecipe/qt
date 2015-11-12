@@ -1,8 +1,8 @@
 #include "qsqlresult.h"
-#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QSqlResult>
 #include "_cgo_export.h"
 

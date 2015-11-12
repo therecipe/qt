@@ -1,11 +1,11 @@
 #include "qregularexpressionvalidator.h"
-#include <QMetaObject>
+#include <QUrl>
+#include <QModelIndex>
 #include <QRegularExpression>
+#include <QMetaObject>
 #include <QObject>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QRegularExpressionValidator>
 #include "_cgo_export.h"
 

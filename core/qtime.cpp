@@ -1,8 +1,8 @@
 #include "qtime.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
 #include <QTime>
 #include "_cgo_export.h"
 

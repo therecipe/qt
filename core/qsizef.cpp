@@ -1,9 +1,9 @@
 #include "qsizef.h"
-#include <QModelIndex>
 #include <QSize>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QSizeF>
 #include "_cgo_export.h"
 

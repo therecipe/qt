@@ -18,6 +18,7 @@ type Class struct {
 	Functions []*Function `xml:"function"`
 	Enums     []*Enum     `xml:"enum"`
 	DocModule string
+	Stub      bool
 }
 
 func (c *Class) register(module string) {

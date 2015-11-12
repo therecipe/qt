@@ -1,11 +1,11 @@
 #include "qeventlooplocker.h"
-#include <QThread>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QEventLoop>
 #include <QEvent>
+#include <QThread>
+#include <QEventLoop>
+#include <QString>
+#include <QVariant>
 #include <QEventLoopLocker>
 #include "_cgo_export.h"
 

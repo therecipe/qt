@@ -1,11 +1,11 @@
 #include "qstyleoptiongraphicsitem.h"
+#include <QStyleOption>
+#include <QTransform>
+#include <QStyle>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QStyleOption>
-#include <QTransform>
-#include <QStyle>
 #include <QStyleOptionGraphicsItem>
 #include "_cgo_export.h"
 

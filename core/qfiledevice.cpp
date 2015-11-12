@@ -1,9 +1,9 @@
 #include "qfiledevice.h"
-#include <QFile>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QFile>
 #include <QFileDevice>
 #include "_cgo_export.h"
 

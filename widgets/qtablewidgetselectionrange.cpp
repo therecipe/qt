@@ -1,9 +1,9 @@
 #include "qtablewidgetselectionrange.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QTableWidget>
+#include <QString>
 #include <QTableWidgetSelectionRange>
 #include "_cgo_export.h"
 

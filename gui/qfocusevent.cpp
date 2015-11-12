@@ -1,9 +1,9 @@
 #include "qfocusevent.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QEvent>
+#include <QString>
+#include <QVariant>
 #include <QFocusEvent>
 #include "_cgo_export.h"
 

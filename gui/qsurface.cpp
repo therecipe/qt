@@ -1,8 +1,8 @@
 #include "qsurface.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QString>
 #include <QSurface>
 #include "_cgo_export.h"
 

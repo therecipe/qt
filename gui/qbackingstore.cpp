@@ -4,8 +4,8 @@
 #include <QUrl>
 #include <QModelIndex>
 #include <QPoint>
-#include <QSize>
 #include <QRegion>
+#include <QSize>
 #include <QWindow>
 #include <QBackingStore>
 #include "_cgo_export.h"

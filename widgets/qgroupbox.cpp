@@ -1,11 +1,11 @@
 #include "qgroupbox.h"
-#include <QMetaObject>
 #include <QWidget>
 #include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QMetaObject>
 #include <QGroupBox>
 #include "_cgo_export.h"
 

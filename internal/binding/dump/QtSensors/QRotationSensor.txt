@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
 &{hasZ QRotationSensor::hasZ commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  bool bool hasZ() const [] }
 &{reading QRotationSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  QRotationReading * QRotationReading * reading() const [] }
-&{QRotationSensor QRotationSensor::QRotationSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non constructor false false   QRotationSensor(QObject *parent) [0xc823598980] }
-&{hasZChanged QRotationSensor::hasZChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non signal false false  void void hasZChanged(bool hasZ) [0xc823598d20] }
-&{setHasZ QRotationSensor::setHasZ commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non plain false false  void void setHasZ(bool hasZ) [0xc823599040] }
+&{QRotationSensor QRotationSensor::QRotationSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non constructor false false   QRotationSensor(QObject *parent) [0xc823543f00] }
+&{hasZChanged QRotationSensor::hasZChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non signal false false  void void hasZChanged(bool hasZ) [0xc8235301e0] }
+&{setHasZ QRotationSensor::setHasZ commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non plain false false  void void setHasZ(bool hasZ) [0xc823530540] }
 &{~QRotationSensor QRotationSensor::~QRotationSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h impure destructor false false   ~QRotationSensor() [] }
 ########################################			ENUMS			########################################

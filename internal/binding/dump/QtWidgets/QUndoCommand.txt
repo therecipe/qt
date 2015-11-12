@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QUndoCommand QUndoCommand::QUndoCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non constructor false false   QUndoCommand(QUndoCommand *parent) [0xc821b316e0] }
-&{QUndoCommand QUndoCommand::QUndoCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non constructor false true 2  QUndoCommand(const QString &text, QUndoCommand *parent) [0xc821b31b40 0xc821b31c60] }
+&{QUndoCommand QUndoCommand::QUndoCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non constructor false false   QUndoCommand(QUndoCommand *parent) [0xc821fb35c0] }
+&{QUndoCommand QUndoCommand::QUndoCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non constructor false true 2  QUndoCommand(const QString &text, QUndoCommand *parent) [0xc821fb3880 0xc821fb3920] }
 &{actionText QUndoCommand::actionText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  QString QString actionText() const [] }
-&{child QUndoCommand::child commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  const QUndoCommand * const QUndoCommand * child(int index) const [0xc821b261e0] }
+&{child QUndoCommand::child commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  const QUndoCommand * const QUndoCommand * child(int index) const [0xc821fb3ee0] }
 &{childCount QUndoCommand::childCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  int int childCount() const [] }
 &{id QUndoCommand::id commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h impure plain false false  int int id() const [] }
-&{mergeWith QUndoCommand::mergeWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h impure plain false false  bool bool mergeWith(const QUndoCommand *command) [0xc821b26860] }
+&{mergeWith QUndoCommand::mergeWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h impure plain false false  bool bool mergeWith(const QUndoCommand *command) [0xc821d804c0] }
 &{redo QUndoCommand::redo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h impure plain false false  void void redo() [] }
-&{setText QUndoCommand::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  void void setText(const QString &text) [0xc821b26ba0] }
+&{setText QUndoCommand::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  void void setText(const QString &text) [0xc821d80940] }
 &{text QUndoCommand::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h non plain false false  QString QString text() const [] }
 &{undo QUndoCommand::undo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h impure plain false false  void void undo() [] }
 &{~QUndoCommand QUndoCommand::~QUndoCommand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qundostack.h impure destructor false false   ~QUndoCommand() [] }

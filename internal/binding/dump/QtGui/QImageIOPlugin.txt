@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{QImageIOPlugin QImageIOPlugin::QImageIOPlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h non constructor false false   QImageIOPlugin(QObject *parent) [0xc820c84660] }
-&{capabilities QImageIOPlugin::capabilities commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h pure plain false false  Capabilities Capabilities capabilities(QIODevice *device, const QByteArray &format) const [0xc820c84980 0xc820c84aa0] }
-&{create QImageIOPlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h pure plain false false  QImageIOHandler * QImageIOHandler * create(QIODevice *device, const QByteArray &format) const [0xc820c84e80 0xc820c84f80] }
+&{QImageIOPlugin QImageIOPlugin::QImageIOPlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h non constructor false false   QImageIOPlugin(QObject *parent) [0xc820c3f860] }
+&{capabilities QImageIOPlugin::capabilities commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h pure plain false false  Capabilities Capabilities capabilities(QIODevice *device, const QByteArray &format) const [0xc820c3fb40 0xc820c3fc60] }
+&{create QImageIOPlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h pure plain false false  QImageIOHandler * QImageIOHandler * create(QIODevice *device, const QByteArray &format) const [0xc820c3a0a0 0xc820c3a1a0] }
 &{~QImageIOPlugin QImageIOPlugin::~QImageIOPlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure destructor false false   ~QImageIOPlugin() [] }
 ########################################			ENUMS			########################################
-&{Capability QImageIOPlugin::Capability commendable public QImageIOPlugin::Capabilities [0xc820cb9f40 0xc820cb9fe0 0xc820c840c0] false}
+&{Capability QImageIOPlugin::Capability commendable public QImageIOPlugin::Capabilities [0xc820c3f0e0 0xc820c3f180 0xc820c3f2c0] false}

@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
 &{QStyleOptionViewItem QStyleOptionViewItem::QStyleOptionViewItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionViewItem() [] }
-&{QStyleOptionViewItem QStyleOptionViewItem::QStyleOptionViewItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionViewItem(const QStyleOptionViewItem &other) [0xc821c739c0] }
+&{QStyleOptionViewItem QStyleOptionViewItem::QStyleOptionViewItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionViewItem(const QStyleOptionViewItem &other) [0xc821ff65c0] }
 ########################################			ENUMS			########################################
-&{Position QStyleOptionViewItem::Position commendable public  [0xc822d33760 0xc822d338a0 0xc822d33940 0xc822d339e0] false}
-&{StyleOptionType QStyleOptionViewItem::StyleOptionType commendable public  [0xc822d33c60] false}
-&{StyleOptionVersion QStyleOptionViewItem::StyleOptionVersion commendable public  [0xc822d33ee0] false}
-&{ViewItemFeature QStyleOptionViewItem::ViewItemFeature commendable public QStyleOptionViewItem::ViewItemFeatures [0xc821c72140 0xc821c72260 0xc821c723a0 0xc821c724e0 0xc821c72760 0xc821c72860] false}
-&{ViewItemPosition QStyleOptionViewItem::ViewItemPosition commendable public  [0xc821c72ba0 0xc821c72ce0 0xc821c72e40 0xc821c72fe0 0xc821c73100] false}
+&{Position QStyleOptionViewItem::Position commendable public  [0xc821fece00 0xc821fecee0 0xc821fecf80 0xc821fed060] false}
+&{StyleOptionType QStyleOptionViewItem::StyleOptionType commendable public  [0xc821fed240] false}
+&{StyleOptionVersion QStyleOptionViewItem::StyleOptionVersion commendable public  [0xc821fed4a0] false}
+&{ViewItemFeature QStyleOptionViewItem::ViewItemFeature commendable public QStyleOptionViewItem::ViewItemFeatures [0xc821fed6a0 0xc821fed7a0 0xc821fed840 0xc821fed920 0xc821feda80 0xc821fedb60] false}
+&{ViewItemPosition QStyleOptionViewItem::ViewItemPosition commendable public  [0xc821fedd60 0xc821fede20 0xc821fedf00 0xc821fedfe0 0xc821ff6080] false}

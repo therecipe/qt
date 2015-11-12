@@ -1,11 +1,11 @@
 #include "qaccessibletablemodelchangeevent.h"
-#include <QAccessible>
-#include <QObject>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QAccessible>
+#include <QObject>
 #include <QAccessibleInterface>
+#include <QString>
+#include <QVariant>
 #include <QAccessibleTableModelChangeEvent>
 #include "_cgo_export.h"
 

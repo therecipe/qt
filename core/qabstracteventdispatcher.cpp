@@ -1,14 +1,14 @@
 #include "qabstracteventdispatcher.h"
-#include <QThread>
-#include <QAbstractNativeEventFilter>
-#include <QSocketNotifier>
-#include <QUrl>
-#include <QObject>
-#include <QModelIndex>
-#include <QEventLoop>
 #include <QEvent>
+#include <QAbstractNativeEventFilter>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QSocketNotifier>
+#include <QThread>
+#include <QObject>
+#include <QEventLoop>
 #include <QAbstractEventDispatcher>
 #include "_cgo_export.h"
 

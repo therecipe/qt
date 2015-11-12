@@ -1,10 +1,10 @@
 #include "qtexttablecell.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QTextCharFormat>
-#include <QTextTable>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QTextTable>
+#include <QTextCharFormat>
 #include <QTextTableCell>
 #include "_cgo_export.h"
 

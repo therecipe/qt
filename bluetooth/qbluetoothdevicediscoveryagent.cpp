@@ -1,11 +1,11 @@
 #include "qbluetoothdevicediscoveryagent.h"
 #include <QBluetoothAddress>
 #include <QMetaObject>
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
 #include <QBluetoothDeviceDiscoveryAgent>
 #include "_cgo_export.h"
 

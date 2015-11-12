@@ -1,10 +1,10 @@
 #include "qnetworkproxyquery.h"
-#include <QNetworkProxy>
+#include <QNetworkConfiguration>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QNetworkConfiguration>
+#include <QNetworkProxy>
 #include <QNetworkProxyQuery>
 #include "_cgo_export.h"
 

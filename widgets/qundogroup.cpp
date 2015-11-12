@@ -1,11 +1,11 @@
 #include "qundogroup.h"
 #include <QMetaObject>
+#include <QUndoStack>
 #include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QUndoStack>
 #include <QUndoGroup>
 #include "_cgo_export.h"
 

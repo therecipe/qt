@@ -1,8 +1,8 @@
 #include "qwaitcondition.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QWaitCondition>
 #include "_cgo_export.h"
 

@@ -1,13 +1,13 @@
 #include "qgraphicsdropshadoweffect.h"
-#include <QPoint>
-#include <QColor>
-#include <QMetaObject>
 #include <QString>
-#include <QUrl>
-#include <QObject>
 #include <QPointF>
+#include <QColor>
+#include <QPoint>
 #include <QVariant>
+#include <QUrl>
 #include <QModelIndex>
+#include <QMetaObject>
+#include <QObject>
 #include <QGraphicsDropShadowEffect>
 #include "_cgo_export.h"
 

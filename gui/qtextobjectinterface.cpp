@@ -1,14 +1,14 @@
 #include "qtextobjectinterface.h"
 #include <QUrl>
-#include <QTextFormat>
-#include <QRectF>
+#include <QModelIndex>
 #include <QPainter>
+#include <QRectF>
 #include <QString>
 #include <QVariant>
-#include <QModelIndex>
-#include <QTextDocument>
-#include <QRect>
 #include <QTextObject>
+#include <QTextFormat>
+#include <QRect>
+#include <QTextDocument>
 #include <QTextObjectInterface>
 #include "_cgo_export.h"
 

@@ -1,12 +1,12 @@
 #include "qsslconfiguration.h"
+#include <QSslKey>
+#include <QByteArray>
+#include <QSslSocket>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSslKey>
-#include <QSslSocket>
-#include <QByteArray>
 #include <QSslCertificate>
-#include <QString>
 #include <QSslConfiguration>
 #include "_cgo_export.h"
 

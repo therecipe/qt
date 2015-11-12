@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{QMediaControl QMediaControl::QMediaControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediacontrol.h non constructor false false   QMediaControl(QObject *parent) [0xc822353880] }
+&{QMediaControl QMediaControl::QMediaControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediacontrol.h non constructor false false   QMediaControl(QObject *parent) [0xc821186140] }
 &{~QMediaControl QMediaControl::~QMediaControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediacontrol.h non destructor false false   ~QMediaControl() [] }
 ########################################			ENUMS			########################################

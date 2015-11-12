@@ -1,8 +1,8 @@
 #include "qorientationreading.h"
-#include <QModelIndex>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QString>
 #include <QOrientationReading>
 #include "_cgo_export.h"
 

@@ -1,17 +1,17 @@
 #include "qfiledialog.h"
 #include <QWidget>
+#include <QByteArray>
+#include <QObject>
+#include <QDir>
+#include <QModelIndex>
 #include <QAbstractItemDelegate>
+#include <QUrl>
 #include <QFileIconProvider>
 #include <QStringList>
 #include <QFile>
-#include <QString>
-#include <QUrl>
-#include <QObject>
 #include <QAbstractProxyModel>
-#include <QByteArray>
-#include <QDir>
+#include <QString>
 #include <QVariant>
-#include <QModelIndex>
 #include <QFileDialog>
 #include "_cgo_export.h"
 

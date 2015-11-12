@@ -1,12 +1,12 @@
 #include "qthread.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QMetaObject>
-#include <QAbstractEventDispatcher>
-#include <QObject>
 #include <QEvent>
+#include <QObject>
+#include <QAbstractEventDispatcher>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QThread>
 #include "_cgo_export.h"
 

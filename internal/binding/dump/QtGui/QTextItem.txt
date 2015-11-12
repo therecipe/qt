@@ -6,4 +6,4 @@
 &{text QTextItem::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  QString QString text() const [] }
 &{width QTextItem::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  qreal qreal width() const [] }
 ########################################			ENUMS			########################################
-&{RenderFlag QTextItem::RenderFlag commendable public QTextItem::RenderFlags [0xc8220681a0 0xc822068220 0xc8220682a0 0xc822068320 0xc8220683c0] false}
+&{RenderFlag QTextItem::RenderFlag commendable public QTextItem::RenderFlags [0xc822b30280 0xc822b30300 0xc822b30380 0xc822b30400 0xc822b304a0] false}

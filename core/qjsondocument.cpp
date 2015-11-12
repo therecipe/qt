@@ -1,12 +1,12 @@
 #include "qjsondocument.h"
 #include <QByteArray>
 #include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonParseError>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QJsonParseError>
-#include <QJsonObject>
 #include <QJsonDocument>
 #include "_cgo_export.h"
 

@@ -1,9 +1,9 @@
 #include "qprocessenvironment.h"
-#include <QProcess>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QProcess>
+#include <QString>
 #include <QProcessEnvironment>
 #include "_cgo_export.h"
 

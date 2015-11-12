@@ -1,9 +1,9 @@
 #include "qhboxlayout.h"
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QWidget>
 #include <QString>
+#include <QVariant>
 #include <QHBoxLayout>
 #include "_cgo_export.h"
 

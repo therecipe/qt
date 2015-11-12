@@ -1,11 +1,11 @@
 #include "qdropevent.h"
 #include <QMimeData>
+#include <QPoint>
+#include <QPointF>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPoint>
-#include <QPointF>
 #include <QEvent>
 #include <QDropEvent>
 #include "_cgo_export.h"

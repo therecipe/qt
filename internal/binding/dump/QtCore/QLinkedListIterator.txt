@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{QLinkedListIterator QLinkedListIterator::QLinkedListIterator commendable public qlinkedlist.h non constructor false false   QLinkedListIterator(const QLinkedList<T> &list) [0xc8202df760] }
-&{findNext QLinkedListIterator::findNext commendable public qlinkedlist.h non plain false false  bool bool findNext(const T &value) [0xc8202dff00] }
-&{findPrevious QLinkedListIterator::findPrevious commendable public qlinkedlist.h non plain false false  bool bool findPrevious(const T &value) [0xc8202cc3a0] }
+&{QLinkedListIterator QLinkedListIterator::QLinkedListIterator commendable public qlinkedlist.h non constructor false false   QLinkedListIterator(const QLinkedList<T> &list) [0xc820271e20] }
+&{findNext QLinkedListIterator::findNext commendable public qlinkedlist.h non plain false false  bool bool findNext(const T &value) [0xc8209262a0] }
+&{findPrevious QLinkedListIterator::findPrevious commendable public qlinkedlist.h non plain false false  bool bool findPrevious(const T &value) [0xc8209264e0] }
 &{hasNext QLinkedListIterator::hasNext commendable public qlinkedlist.h non plain false false  bool bool hasNext() const [] }
 &{hasPrevious QLinkedListIterator::hasPrevious commendable public qlinkedlist.h non plain false false  bool bool hasPrevious() const [] }
 &{next QLinkedListIterator::next commendable public qlinkedlist.h non plain false false  const T & const T & next() [] }
-&{operator= QLinkedListIterator::operator= commendable public qlinkedlist.h non plain false false  QLinkedListIterator & QLinkedListIterator & operator=(const QLinkedList<T> &list) [0xc8202cd540] }
+&{operator= QLinkedListIterator::operator= commendable public qlinkedlist.h non plain false false  QLinkedListIterator & QLinkedListIterator & operator=(const QLinkedList<T> &list) [0xc820926d00] }
 &{peekNext QLinkedListIterator::peekNext commendable public qlinkedlist.h non plain false false  const T & const T & peekNext() const [] }
 &{peekPrevious QLinkedListIterator::peekPrevious commendable public qlinkedlist.h non plain false false  const T & const T & peekPrevious() const [] }
 &{previous QLinkedListIterator::previous commendable public qlinkedlist.h non plain false false  const T & const T & previous() [] }

@@ -1,11 +1,11 @@
 #include "qmediarecordercontrol.h"
+#include <QMediaRecorder>
+#include <QMetaObject>
+#include <QObject>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QMetaObject>
-#include <QMediaRecorder>
-#include <QString>
 #include <QMediaRecorderControl>
 #include "_cgo_export.h"
 

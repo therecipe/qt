@@ -1,14 +1,14 @@
 #include "qscrollprepareevent.h"
-#include <QModelIndex>
 #include <QRect>
-#include <QRectF>
-#include <QSize>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QSizeF>
 #include <QPoint>
 #include <QPointF>
+#include <QSizeF>
+#include <QModelIndex>
+#include <QSize>
+#include <QRectF>
 #include <QScrollPrepareEvent>
 #include "_cgo_export.h"
 

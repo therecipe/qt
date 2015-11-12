@@ -1,14 +1,14 @@
 #include "qwebsocketserver.h"
-#include <QVariant>
-#include <QUrl>
 #include <QAbstractSocket>
 #include <QObject>
+#include <QSslConfiguration>
+#include <QWebSocket>
 #include <QWebSocketCorsAuthenticator>
+#include <QNetworkProxy>
 #include <QString>
 #include <QModelIndex>
-#include <QSslConfiguration>
-#include <QNetworkProxy>
-#include <QWebSocket>
+#include <QVariant>
+#include <QUrl>
 #include <QWebSocketServer>
 #include "_cgo_export.h"
 

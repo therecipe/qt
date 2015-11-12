@@ -1,10 +1,10 @@
 #include "qhelpevent.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QPoint>
 #include <QEvent>
+#include <QString>
+#include <QVariant>
 #include <QHelpEvent>
 #include "_cgo_export.h"
 

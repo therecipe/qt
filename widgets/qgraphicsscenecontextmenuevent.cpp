@@ -1,9 +1,9 @@
 #include "qgraphicsscenecontextmenuevent.h"
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QGraphicsScene>
 #include <QString>
+#include <QVariant>
 #include <QGraphicsSceneContextMenuEvent>
 #include "_cgo_export.h"
 

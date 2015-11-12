@@ -1,10 +1,10 @@
 #include "qsgtextureprovider.h"
+#include <QSGTexture>
+#include <QObject>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QSGTexture>
-#include <QString>
 #include <QSGTextureProvider>
 #include "_cgo_export.h"
 

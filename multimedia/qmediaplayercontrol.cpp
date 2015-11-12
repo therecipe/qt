@@ -2,9 +2,9 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QMediaContent>
 #include <QMediaPlayer>
 #include <QObject>
-#include <QMediaContent>
 #include <QIODevice>
 #include <QString>
 #include <QMediaPlayerControl>

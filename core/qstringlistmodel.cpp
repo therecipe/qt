@@ -1,11 +1,11 @@
 #include "qstringlistmodel.h"
 #include <QList>
-#include <QStringList>
-#include <QList>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QList>
+#include <QStringList>
 #include <QStringListModel>
 #include "_cgo_export.h"
 

@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
 &{reading QCompass::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.cpp non plain false false  QCompassReading * QCompassReading * reading() const [] }
-&{QCompass QCompass::QCompass commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.h non constructor false false   QCompass(QObject *parent) [0xc8235e89c0] }
+&{QCompass QCompass::QCompass commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.h non constructor false false   QCompass(QObject *parent) [0xc8235fc040] }
 &{~QCompass QCompass::~QCompass commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.h impure destructor false false   ~QCompass() [] }
 ########################################			ENUMS			########################################

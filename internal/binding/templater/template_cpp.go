@@ -43,8 +43,11 @@ func HTemplate(c *parser.Class) (o string) {
 }
 
 func CppTemplate(c *parser.Class) (o string) {
-	for _, h := range []string{strings.ToLower(c.Name)} {
-		o += fmt.Sprintf("#include \"%v.h\"\n", h)
+
+	if strings.Contains(c.Module, "droid") {
+		o += fmt.Sprintf("#include \"%v_android.h\"\n", strings.ToLower(c.Name))
+	} else {
+		o += fmt.Sprintf("#include \"%v.h\"\n", strings.ToLower(c.Name))
 	}
 
 	if strings.Contains(c.Name, "List") {

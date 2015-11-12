@@ -1,9 +1,9 @@
 #include "qquicktexturefactory.h"
-#include <QModelIndex>
-#include <QQuickWindow>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QQuickWindow>
 #include <QQuickTextureFactory>
 #include "_cgo_export.h"
 

@@ -1,17 +1,17 @@
 #include "qgraphicssimpletextitem.h"
-#include <QStyleOption>
+#include <QPointF>
+#include <QPainter>
+#include <QFont>
 #include <QWidget>
+#include <QGraphicsItem>
+#include <QStyleOption>
+#include <QUrl>
+#include <QModelIndex>
 #include <QStyleOptionGraphicsItem>
 #include <QPoint>
-#include <QString>
-#include <QUrl>
-#include <QFont>
-#include <QPainter>
-#include <QPointF>
-#include <QVariant>
-#include <QModelIndex>
 #include <QStyle>
-#include <QGraphicsItem>
+#include <QString>
+#include <QVariant>
 #include <QGraphicsSimpleTextItem>
 #include "_cgo_export.h"
 

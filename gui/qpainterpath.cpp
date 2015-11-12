@@ -1,17 +1,17 @@
 #include "qpainterpath.h"
-#include <QPolygon>
-#include <QRegion>
 #include <QString>
+#include <QUrl>
+#include <QPainter>
+#include <QPolygonF>
+#include <QPoint>
+#include <QPolygon>
 #include <QVariant>
 #include <QModelIndex>
-#include <QPoint>
-#include <QPainter>
-#include <QRect>
-#include <QPolygonF>
-#include <QUrl>
+#include <QRegion>
 #include <QPointF>
-#include <QFont>
 #include <QRectF>
+#include <QFont>
+#include <QRect>
 #include <QPainterPath>
 #include "_cgo_export.h"
 

@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QGraphicsObject QGraphicsObject::QGraphicsObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non constructor false false   QGraphicsObject(QGraphicsItem *parent) [0xc820761280] }
+&{QGraphicsObject QGraphicsObject::QGraphicsObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non constructor false false   QGraphicsObject(QGraphicsItem *parent) [0xc822714700] }
 &{enabledChanged QGraphicsObject::enabledChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void void enabledChanged() [] }
-&{event QGraphicsObject::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h impure plain false false  bool bool event(QEvent *ev) [0xc820761bc0] }
-&{grabGesture QGraphicsObject::grabGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non plain false false  void void grabGesture(Qt::GestureType gesture, Qt::GestureFlags flags) [0xc820761de0 0xc820761ec0] }
+&{event QGraphicsObject::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h impure plain false false  bool bool event(QEvent *ev) [0xc822715220] }
+&{grabGesture QGraphicsObject::grabGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non plain false false  void void grabGesture(Qt::GestureType gesture, Qt::GestureFlags flags) [0xc8227154e0 0xc8227155e0] }
 &{opacityChanged QGraphicsObject::opacityChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void void opacityChanged() [] }
 &{parentChanged QGraphicsObject::parentChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void void parentChanged() [] }
 &{rotationChanged QGraphicsObject::rotationChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void void rotationChanged() [] }
 &{scaleChanged QGraphicsObject::scaleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void void scaleChanged() [] }
-&{ungrabGesture QGraphicsObject::ungrabGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non plain false false  void void ungrabGesture(Qt::GestureType gesture) [0xc8212bad80] }
+&{ungrabGesture QGraphicsObject::ungrabGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non plain false false  void void ungrabGesture(Qt::GestureType gesture) [0xc822790360] }
 &{updateMicroFocus QGraphicsObject::updateMicroFocus commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non slot false false  void void updateMicroFocus() [] }
 &{visibleChanged QGraphicsObject::visibleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void void visibleChanged() [] }
 &{xChanged QGraphicsObject::xChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsitem.h non signal false false  void void xChanged() [] }

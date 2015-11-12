@@ -2,5 +2,5 @@
 &{QStyleHintReturnVariant QStyleHintReturnVariant::QStyleHintReturnVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleHintReturnVariant() [] }
 &{~QStyleHintReturnVariant QStyleHintReturnVariant::~QStyleHintReturnVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non destructor false false   ~QStyleHintReturnVariant() [] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleHintReturnVariant::StyleOptionType commendable public  [0xc822154860] false}
-&{StyleOptionVersion QStyleHintReturnVariant::StyleOptionVersion commendable public  [0xc822154a80] false}
+&{StyleOptionType QStyleHintReturnVariant::StyleOptionType commendable public  [0xc8226de840] false}
+&{StyleOptionVersion QStyleHintReturnVariant::StyleOptionVersion commendable public  [0xc8226dea00] false}

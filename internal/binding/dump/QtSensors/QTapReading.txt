@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
 &{isDoubleTap QTapReading::isDoubleTap commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.cpp non plain false false  bool bool isDoubleTap() const [] }
 &{tapDirection QTapReading::tapDirection commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.cpp non plain false false  TapDirection TapDirection tapDirection() const [] }
-&{setDoubleTap QTapReading::setDoubleTap commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.h non plain false false  void void setDoubleTap(bool doubleTap) [0xc8234705e0] }
-&{setTapDirection QTapReading::setTapDirection commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.h non plain false false  void void setTapDirection(TapDirection tapDirection) [0xc823470860] }
+&{setDoubleTap QTapReading::setDoubleTap commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.h non plain false false  void void setDoubleTap(bool doubleTap) [0xc82346a4a0] }
+&{setTapDirection QTapReading::setTapDirection commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.h non plain false false  void void setTapDirection(TapDirection tapDirection) [0xc82346a6e0] }
 ########################################			ENUMS			########################################
-&{TapDirection QTapReading::TapDirection commendable public  [0xc8234876a0 0xc8234877a0 0xc823487860 0xc8234879a0 0xc823487a60 0xc823487b20 0xc823487c80 0xc823487d20 0xc823487e20 0xc823487ec0 0xc823487f80 0xc823470020 0xc8234700e0] false}
+&{TapDirection QTapReading::TapDirection commendable public  [0xc82347f740 0xc82347f7e0 0xc82347f880 0xc82347f920 0xc82347fa00 0xc82347faa0 0xc82347fb40 0xc82347fc00 0xc82347fce0 0xc82347fd80 0xc82347fe40 0xc82347fee0 0xc82347ff80] false}

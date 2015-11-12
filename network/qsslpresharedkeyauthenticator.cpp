@@ -1,9 +1,9 @@
 #include "qsslpresharedkeyauthenticator.h"
-#include <QModelIndex>
-#include <QByteArray>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QByteArray>
 #include <QSslPreSharedKeyAuthenticator>
 #include "_cgo_export.h"
 

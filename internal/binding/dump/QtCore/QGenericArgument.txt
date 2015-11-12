@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QGenericArgument QGenericArgument::QGenericArgument commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non constructor false false   QGenericArgument(const char *name, const void *data) [0xc8203b0f20 0xc8203b0fe0] }
+&{QGenericArgument QGenericArgument::QGenericArgument commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non constructor false false   QGenericArgument(const char *name, const void *data) [0xc820386580 0xc820386600] }
 &{data QGenericArgument::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  void * void * data() const [] }
 &{name QGenericArgument::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non plain false false  const char * const char * name() const [] }
 ########################################			ENUMS			########################################

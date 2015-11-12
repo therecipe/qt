@@ -1,9 +1,9 @@
 #include "qtiltfilter.h"
+#include <QTiltReading>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QTiltReading>
 #include <QTiltFilter>
 #include "_cgo_export.h"
 

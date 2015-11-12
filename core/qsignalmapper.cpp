@@ -1,10 +1,10 @@
 #include "qsignalmapper.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMetaObject>
 #include <QObject>
+#include <QString>
 #include <QSignalMapper>
 #include "_cgo_export.h"
 

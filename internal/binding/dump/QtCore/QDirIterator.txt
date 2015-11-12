@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{QDirIterator QDirIterator::QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non constructor false false   QDirIterator(const QDir &dir, IteratorFlags flags) [0xc8203a0fc0 0xc8203a1040] }
-&{QDirIterator QDirIterator::QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non constructor false true 2  QDirIterator(const QString &path, IteratorFlags flags) [0xc8203a1200 0xc8203a1280] }
-&{QDirIterator QDirIterator::QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non constructor false true 3  QDirIterator(const QString &path, QDir::Filters filters, IteratorFlags flags) [0xc8203a1440 0xc8203a14c0 0xc8203a1540] }
-&{QDirIterator QDirIterator::QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non constructor false true 4  QDirIterator(const QString &path, const QStringList &nameFilters, QDir::Filters filters, IteratorFlags flags) [0xc8203a1700 0xc8203a17a0 0xc8203a1860 0xc8203a18e0] }
+&{QDirIterator QDirIterator::QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non constructor false false   QDirIterator(const QDir &dir, IteratorFlags flags) [0xc820376fc0 0xc820377040] }
+&{QDirIterator QDirIterator::QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non constructor false true 2  QDirIterator(const QString &path, IteratorFlags flags) [0xc820377200 0xc820377280] }
+&{QDirIterator QDirIterator::QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non constructor false true 3  QDirIterator(const QString &path, QDir::Filters filters, IteratorFlags flags) [0xc820377440 0xc8203774c0 0xc820377540] }
+&{QDirIterator QDirIterator::QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non constructor false true 4  QDirIterator(const QString &path, const QStringList &nameFilters, QDir::Filters filters, IteratorFlags flags) [0xc820377700 0xc8203777a0 0xc820377860 0xc8203778e0] }
 &{fileInfo QDirIterator::fileInfo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non plain false false  QFileInfo QFileInfo fileInfo() const [] }
 &{fileName QDirIterator::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non plain false false  QString QString fileName() const [] }
 &{filePath QDirIterator::filePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non plain false false  QString QString filePath() const [] }
@@ -11,4 +11,4 @@
 &{path QDirIterator::path commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non plain false false  QString QString path() const [] }
 &{~QDirIterator QDirIterator::~QDirIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdiriterator.h non destructor false false   ~QDirIterator() [] }
 ########################################			ENUMS			########################################
-&{IteratorFlag QDirIterator::IteratorFlag commendable public QDirIterator::IteratorFlags [0xc8203a0c20 0xc8203a0ca0 0xc8203a0d20] false}
+&{IteratorFlag QDirIterator::IteratorFlag commendable public QDirIterator::IteratorFlags [0xc820376c20 0xc820376ca0 0xc820376d20] false}

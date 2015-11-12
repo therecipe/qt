@@ -1,9 +1,9 @@
 #include "qgeoserviceproviderfactory.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QGeoServiceProvider>
-#include <QString>
 #include <QGeoServiceProviderFactory>
 #include "_cgo_export.h"
 

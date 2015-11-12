@@ -1,12 +1,12 @@
 #include "qwizardpage.h"
+#include <QModelIndex>
+#include <QPixmap>
+#include <QWizard>
+#include <QWidget>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QWidget>
-#include <QPixmap>
-#include <QWizard>
 #include <QWizardPage>
 #include "_cgo_export.h"
 

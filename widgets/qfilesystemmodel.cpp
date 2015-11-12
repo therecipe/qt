@@ -1,15 +1,15 @@
 #include "qfilesystemmodel.h"
-#include <QDir>
-#include <QDate>
-#include <QMimeData>
-#include <QDateTime>
-#include <QFile>
-#include <QObject>
-#include <QFileIconProvider>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QDate>
+#include <QObject>
+#include <QFile>
+#include <QDir>
+#include <QDateTime>
+#include <QMimeData>
+#include <QFileIconProvider>
 #include <QFileSystemModel>
 #include "_cgo_export.h"
 

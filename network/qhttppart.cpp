@@ -1,11 +1,11 @@
 #include "qhttppart.h"
-#include <QModelIndex>
 #include <QNetworkRequest>
-#include <QByteArray>
-#include <QIODevice>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QByteArray>
+#include <QIODevice>
 #include <QHttpPart>
 #include "_cgo_export.h"
 

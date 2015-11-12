@@ -1,16 +1,16 @@
 #include "qquickwidget.h"
-#include <QSurface>
 #include <QString>
 #include <QVariant>
+#include <QQmlEngine>
+#include <QMetaObject>
+#include <QWidget>
+#include <QObject>
+#include <QSurfaceFormat>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QWidget>
 #include <QColor>
-#include <QQmlEngine>
 #include <QQuickWindow>
-#include <QMetaObject>
-#include <QSurfaceFormat>
+#include <QSurface>
 #include <QQuickWidget>
 #include "_cgo_export.h"
 

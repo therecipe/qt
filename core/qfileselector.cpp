@@ -1,10 +1,10 @@
 #include "qfileselector.h"
-#include <QFile>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
+#include <QFile>
 #include <QFileSelector>
 #include "_cgo_export.h"
 

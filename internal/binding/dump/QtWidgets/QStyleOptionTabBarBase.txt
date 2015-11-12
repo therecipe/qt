@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
 &{QStyleOptionTabBarBase QStyleOptionTabBarBase::QStyleOptionTabBarBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionTabBarBase() [] }
-&{QStyleOptionTabBarBase QStyleOptionTabBarBase::QStyleOptionTabBarBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionTabBarBase(const QStyleOptionTabBarBase &other) [0xc821cc94a0] }
+&{QStyleOptionTabBarBase QStyleOptionTabBarBase::QStyleOptionTabBarBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionTabBarBase(const QStyleOptionTabBarBase &other) [0xc821fc9360] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionTabBarBase::StyleOptionType commendable public  [0xc821cc8a40] false}
-&{StyleOptionVersion QStyleOptionTabBarBase::StyleOptionVersion commendable public  [0xc821cc8e20] false}
+&{StyleOptionType QStyleOptionTabBarBase::StyleOptionType commendable public  [0xc821fc8b40] false}
+&{StyleOptionVersion QStyleOptionTabBarBase::StyleOptionVersion commendable public  [0xc821fc8dc0] false}

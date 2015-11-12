@@ -1,9 +1,9 @@
 #include "qcolormap.h"
-#include <QModelIndex>
-#include <QColor>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QColor>
 #include <QColormap>
 #include "_cgo_export.h"
 

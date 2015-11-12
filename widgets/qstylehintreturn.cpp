@@ -1,9 +1,9 @@
 #include "qstylehintreturn.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStyle>
+#include <QString>
+#include <QVariant>
 #include <QStyleHintReturn>
 #include "_cgo_export.h"
 

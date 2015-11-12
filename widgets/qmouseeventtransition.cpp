@@ -1,14 +1,14 @@
 #include "qmouseeventtransition.h"
-#include <QString>
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QEvent>
-#include <QVariant>
-#include <QState>
 #include <QPainterPath>
+#include <QModelIndex>
+#include <QEvent>
+#include <QState>
 #include <QPainter>
+#include <QObject>
 #include <QMouseEvent>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QMouseEventTransition>
 #include "_cgo_export.h"
 

@@ -1,11 +1,11 @@
 #include "qgraphicsopacityeffect.h"
-#include <QModelIndex>
-#include <QBrush>
-#include <QObject>
-#include <QMetaObject>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QMetaObject>
+#include <QBrush>
+#include <QObject>
+#include <QString>
 #include <QGraphicsOpacityEffect>
 #include "_cgo_export.h"
 

@@ -1,15 +1,15 @@
 #include "qgraphicssvgitem.h"
 #include <QString>
-#include <QStyleOptionGraphicsItem>
-#include <QSize>
-#include <QSvgRenderer>
-#include <QStyle>
-#include <QPainter>
-#include <QStyleOption>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QPainter>
+#include <QStyle>
+#include <QSvgRenderer>
 #include <QWidget>
+#include <QStyleOptionGraphicsItem>
+#include <QStyleOption>
+#include <QSize>
 #include <QGraphicsSvgItem>
 #include "_cgo_export.h"
 

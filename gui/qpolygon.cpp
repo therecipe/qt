@@ -1,10 +1,10 @@
 #include "qpolygon.h"
 #include <QRect>
+#include <QPoint>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPoint>
 #include <QPolygon>
 #include "_cgo_export.h"
 

@@ -2,13 +2,13 @@
 #include <QString>
 #include <QUrl>
 #include <QGeoRouteReply>
-#include <QGeoCoordinate>
-#include <QLocale>
-#include <QGeoRouteRequest>
-#include <QVariant>
-#include <QModelIndex>
 #include <QGeoRoute>
 #include <QObject>
+#include <QVariant>
+#include <QModelIndex>
+#include <QLocale>
+#include <QGeoCoordinate>
+#include <QGeoRouteRequest>
 #include <QGeoRoutingManager>
 #include "_cgo_export.h"
 

@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{setColorAt QGradient::setColorAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non plain false false  void void setColorAt(qreal position, const QColor &color) [0xc821d4b1e0 0xc821d4b260] }
-&{setStops QGradient::setStops commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non plain false false  void void setStops(const QGradientStops &stopPoints) [0xc821d4b440] }
+&{setColorAt QGradient::setColorAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non plain false false  void void setColorAt(qreal position, const QColor &color) [0xc821e832c0 0xc821e83340] }
+&{setStops QGradient::setStops commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non plain false false  void void setStops(const QGradientStops &stopPoints) [0xc821e83520] }
 &{coordinateMode QGradient::coordinateMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  CoordinateMode CoordinateMode coordinateMode() const [] }
-&{operator!= QGradient::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  bool bool operator!=(const QGradient &gradient) const [0xc821d5e660] }
-&{operator== QGradient::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  bool bool operator==(const QGradient &gradient) const [0xc821d5e880] }
-&{setCoordinateMode QGradient::setCoordinateMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void void setCoordinateMode(CoordinateMode mode) [0xc821d5eae0] }
-&{setSpread QGradient::setSpread commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void void setSpread(Spread method) [0xc821d5ef80] }
+&{operator!= QGradient::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  bool bool operator!=(const QGradient &gradient) const [0xc821e94740] }
+&{operator== QGradient::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  bool bool operator==(const QGradient &gradient) const [0xc821e94960] }
+&{setCoordinateMode QGradient::setCoordinateMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void void setCoordinateMode(CoordinateMode mode) [0xc821e94bc0] }
+&{setSpread QGradient::setSpread commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void void setSpread(Spread method) [0xc821e95060] }
 &{spread QGradient::spread commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  Spread Spread spread() const [] }
 &{stops QGradient::stops commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  QGradientStops QGradientStops stops() const [] }
 &{type QGradient::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  Type Type type() const [] }
 ########################################			ENUMS			########################################
-&{CoordinateMode QGradient::CoordinateMode commendable public  [0xc821d4b660 0xc821d4b700 0xc821d4b7e0] false}
-&{Spread QGradient::Spread commendable public  [0xc821d4bd20 0xc821d4bda0 0xc821d4be20] false}
-&{Type QGradient::Type commendable public  [0xc821d4bf80 0xc821d5e000 0xc821d5e080 0xc821d5e100] false}
+&{CoordinateMode QGradient::CoordinateMode commendable public  [0xc821e83740 0xc821e837e0 0xc821e838c0] false}
+&{Spread QGradient::Spread commendable public  [0xc821e83e00 0xc821e83e80 0xc821e83f00] false}
+&{Type QGradient::Type commendable public  [0xc821e94060 0xc821e940e0 0xc821e94160 0xc821e941e0] false}

@@ -1,8 +1,8 @@
 #include "qloggingcategory.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
 #include <QLoggingCategory>
 #include "_cgo_export.h"
 

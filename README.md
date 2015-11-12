@@ -1,7 +1,6 @@
 # Qt binding for Go (Windows / Mac OS X / Linux / Android)
 
 ## Desktop (Windows / Mac OS X / Linux)
-(windows is currently not working) -> https://support.microsoft.com/kb/830473
 
 1. Install Go >= 1.5.1
 	* https://storage.googleapis.com/golang/go1.5.1.windows-386.msi
@@ -19,7 +18,7 @@
 	* Windows
 		* Add the directory that contains "gcc" to your PATH
 
-			`C:\Qt\Qt5.5.1\Tools\mingw492_32\bin`
+			`C:\Qt\Qt5.5.1\Tools\mingw492_32\bin\`
 
 	* Mac OS X
 		* Install Xcode >= 7.0.1
@@ -47,28 +46,29 @@
   	`github.com/therecipe/qt/setup.sh`
 
 ## Mobile (Android)
-(windows host is currently not working) -> https://support.microsoft.com/kb/830473
 
 1. Make sure the binding is working by setting up the Desktop version
 
-2. Install the Android SDK `/opt/android-sdk/`
+2. Install the Android SDK `C:\android\android-sdk\` or `/opt/android-sdk/`
 	* http://dl.google.com/android/installer_r24.4.1-windows.exe
 	* http://dl.google.com/android/android-sdk_r24.4.1-macosx.zip
 	* http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
 
-3. Install the SDK dependencies `/opt/android-sdk/tools/android`
+3. Install the SDK dependencies `C:\android\android-sdk\tools\android.bat` or `/opt/android-sdk/tools/android`
 	* Tools
-		* Android SDK Build-tools
+		* Android SDK Build-tools (23.0.2)
 	* Android 6.0 (API 23)
 		* SDK Platform
+	* Extras (Windows only)
+		* Google USB Driver
 
-4. Install the Android NDK `/opt/android-ndk/`
+4. Install the Android NDK `C:\android\android-ndk\` or `/opt/android-ndk/`
 	* http://dl.google.com/android/ndk/android-ndk-r10e-windows-x86.exe
 	* http://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin
 	* http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86.bin
 	* http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
 
-5. Install Apache-Ant `/opt/apache-ant/`
+5. Install Apache-Ant `C:\android\apache-ant\` or `/opt/apache-ant/`
 	* http://mirror.synyx.de/apache/ant/binaries/apache-ant-1.9.6-bin.zip
 	* http://mirror.synyx.de/apache/ant/binaries/apache-ant-1.9.6-bin.tar.bz2
 	* http://mirror.synyx.de/apache/ant/binaries/apache-ant-1.9.6-bin.tar.gz

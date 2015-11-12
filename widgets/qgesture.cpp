@@ -1,11 +1,11 @@
 #include "qgesture.h"
+#include <QPoint>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPoint>
 #include <QObject>
 #include <QPointF>
-#include <QString>
 #include <QGesture>
 #include "_cgo_export.h"
 

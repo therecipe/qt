@@ -1,11 +1,11 @@
 #include "qlinef.h"
-#include <QPointF>
 #include <QLine>
+#include <QPoint>
+#include <QPointF>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPoint>
 #include <QLineF>
 #include "_cgo_export.h"
 

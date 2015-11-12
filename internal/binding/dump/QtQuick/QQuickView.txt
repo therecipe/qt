@@ -1,24 +1,24 @@
 ########################################			FUNCTIONS			########################################
 &{resizeMode QQuickView::resizeMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.cpp non plain false false  ResizeMode ResizeMode resizeMode() const [] }
-&{setResizeMode QQuickView::setResizeMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.cpp non plain false false  void void setResizeMode(ResizeMode ) [0xc822eadd80] }
+&{setResizeMode QQuickView::setResizeMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.cpp non plain false false  void void setResizeMode(ResizeMode ) [0xc821f2f020] }
 &{status QQuickView::status commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.cpp non plain false false  Status Status status() const [] }
-&{QQuickView QQuickView::QQuickView commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non constructor false true 2  QQuickView(QQmlEngine *engine, QWindow *parent) [0xc822e97de0 0xc822e97fc0] }
-&{QQuickView QQuickView::QQuickView commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non constructor false false   QQuickView(QWindow *parent) [0xc822e866e0] }
-&{QQuickView QQuickView::QQuickView commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non constructor false true 3  QQuickView(const QUrl &source, QWindow *parent) [0xc822e86b40 0xc822e86ce0] }
+&{QQuickView QQuickView::QQuickView commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non constructor false true 2  QQuickView(QQmlEngine *engine, QWindow *parent) [0xc821f3a900 0xc821f3aa60] }
+&{QQuickView QQuickView::QQuickView commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non constructor false false   QQuickView(QWindow *parent) [0xc821f3b260] }
+&{QQuickView QQuickView::QQuickView commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non constructor false true 3  QQuickView(const QUrl &source, QWindow *parent) [0xc821f3b760 0xc821f3b880] }
 &{engine QQuickView::engine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non plain false false  QQmlEngine * QQmlEngine * engine() const [] }
-&{errors QQuickView::errors commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non plain false false  QList<QQmlError> QList<QQmlError> errors() const [] }
+&{errors QQuickView::errors commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non plain false false  QList<QQmlError> QList<QQmlError> errors() const [] }
 &{initialSize QQuickView::initialSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non plain false false  QSize QSize initialSize() const [] }
-&{keyPressEvent QQuickView::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h impure plain false false  void void keyPressEvent(QKeyEvent *e) [0xc826bd0420] }
-&{keyReleaseEvent QQuickView::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h impure plain false false  void void keyReleaseEvent(QKeyEvent *e) [0xc826bd08a0] }
-&{mouseMoveEvent QQuickView::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc826bd0d60] }
-&{mousePressEvent QQuickView::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h impure plain false false  void void mousePressEvent(QMouseEvent *e) [0xc826bd11e0] }
-&{mouseReleaseEvent QQuickView::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *e) [0xc826bd17c0] }
+&{keyPressEvent QQuickView::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h impure plain false false  void void keyPressEvent(QKeyEvent *e) [0xc821f4d080] }
+&{keyReleaseEvent QQuickView::keyReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h impure plain false false  void void keyReleaseEvent(QKeyEvent *e) [0xc821f4d600] }
+&{mouseMoveEvent QQuickView::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc821f4dbc0] }
+&{mousePressEvent QQuickView::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h impure plain false false  void void mousePressEvent(QMouseEvent *e) [0xc82269a120] }
+&{mouseReleaseEvent QQuickView::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *e) [0xc82269a460] }
 &{rootContext QQuickView::rootContext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non plain false false  QQmlContext * QQmlContext * rootContext() const [] }
 &{rootObject QQuickView::rootObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non plain false false  QQuickItem * QQuickItem * rootObject() const [] }
-&{setSource QQuickView::setSource commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non slot false false  void void setSource(const QUrl &url) [0xc820c744e0] }
+&{setSource QQuickView::setSource commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non slot false false  void void setSource(const QUrl &url) [0xc82269ab20] }
 &{source QQuickView::source commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non plain false false  QUrl QUrl source() const [] }
-&{statusChanged QQuickView::statusChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non signal false false  void void statusChanged(QQuickView::Status status) [0xc820cf8280] }
+&{statusChanged QQuickView::statusChanged commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h non signal false false  void void statusChanged(QQuickView::Status status) [0xc82269bf00] }
 &{~QQuickView QQuickView::~QQuickView commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/items/qquickview.h impure destructor false false   ~QQuickView() [] }
 ########################################			ENUMS			########################################
-&{ResizeMode QQuickView::ResizeMode commendable public  [0xc822e96700 0xc822e96a60] false}
-&{Status QQuickView::Status commendable public  [0xc822e971a0 0xc822e973c0 0xc822e974e0 0xc822e977e0] false}
+&{ResizeMode QQuickView::ResizeMode commendable public  [0xc821f2f6a0 0xc821f2f920] false}
+&{Status QQuickView::Status commendable public  [0xc821f3a000 0xc821f3a0c0 0xc821f3a2a0 0xc821f3a340] false}

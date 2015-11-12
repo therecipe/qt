@@ -1,17 +1,17 @@
 #include "qscriptengine.h"
-#include <QRegExp>
 #include <QScriptValue>
-#include <QDateTime>
-#include <QScriptProgram>
-#include <QString>
-#include <QModelIndex>
-#include <QScriptClass>
 #include <QMetaObject>
-#include <QDate>
-#include <QObject>
+#include <QScriptProgram>
+#include <QDateTime>
+#include <QRegExp>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QScriptEngineAgent>
+#include <QDate>
+#include <QObject>
+#include <QScriptClass>
+#include <QString>
 #include <QScriptEngine>
 #include "_cgo_export.h"
 

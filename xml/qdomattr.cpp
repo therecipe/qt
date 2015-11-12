@@ -1,8 +1,8 @@
 #include "qdomattr.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QString>
 #include <QDomAttr>
 #include "_cgo_export.h"
 

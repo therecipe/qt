@@ -1,9 +1,9 @@
 #include "qxmlstreamentitydeclaration.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStringRef>
-#include <QString>
-#include <QVariant>
 #include <QXmlStreamEntityDeclaration>
 #include "_cgo_export.h"
 

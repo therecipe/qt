@@ -1,9 +1,9 @@
 #include "qline.h"
-#include <QModelIndex>
-#include <QPoint>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QPoint>
 #include <QLine>
 #include "_cgo_export.h"
 

@@ -1,11 +1,11 @@
 #include "qsqltablemodel.h"
+#include <QObject>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QMetaObject>
-#include <QObject>
 #include <QSqlRecord>
-#include <QString>
+#include <QMetaObject>
 #include <QSqlTableModel>
 #include "_cgo_export.h"
 

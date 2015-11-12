@@ -1,15 +1,15 @@
 #include "qcameraimagecapture.h"
-#include <QUrl>
-#include <QMetaObject>
+#include <QString>
+#include <QModelIndex>
+#include <QVideoFrame>
+#include <QImage>
+#include <QObject>
 #include <QImageEncoderSettings>
 #include <QVariant>
-#include <QModelIndex>
-#include <QImage>
-#include <QCamera>
-#include <QVideoFrame>
+#include <QUrl>
 #include <QMediaObject>
-#include <QObject>
-#include <QString>
+#include <QCamera>
+#include <QMetaObject>
 #include <QCameraImageCapture>
 #include "_cgo_export.h"
 

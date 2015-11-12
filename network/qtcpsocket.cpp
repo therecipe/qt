@@ -1,9 +1,9 @@
 #include "qtcpsocket.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
-#include <QString>
 #include <QTcpSocket>
 #include "_cgo_export.h"
 

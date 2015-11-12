@@ -1,9 +1,9 @@
 #include "qsslerror.h"
+#include <QModelIndex>
+#include <QSslCertificate>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QSslCertificate>
 #include <QSslError>
 #include "_cgo_export.h"
 

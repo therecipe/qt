@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QShortcutEvent QShortcutEvent::QShortcutEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QShortcutEvent(const QKeySequence &key, int id, bool ambiguous) [0xc82089b9a0 0xc82089bb00 0xc82089bbc0] }
+&{QShortcutEvent QShortcutEvent::QShortcutEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QShortcutEvent(const QKeySequence &key, int id, bool ambiguous) [0xc820780ae0 0xc820780c20 0xc820780ce0] }
 &{isAmbiguous QShortcutEvent::isAmbiguous commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  bool bool isAmbiguous() const [] }
 &{key QShortcutEvent::key commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QKeySequence & const QKeySequence & key() const [] }
 &{shortcutId QShortcutEvent::shortcutId commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int shortcutId() const [] }

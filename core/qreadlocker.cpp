@@ -1,9 +1,9 @@
 #include "qreadlocker.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QReadWriteLock>
+#include <QString>
+#include <QVariant>
 #include <QReadLocker>
 #include "_cgo_export.h"
 

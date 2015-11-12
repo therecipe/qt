@@ -1,37 +1,37 @@
 ########################################			FUNCTIONS			########################################
 &{~QDebug QDebug::~QDebug commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.cpp non destructor false false   ~QDebug() [] }
-&{QDebug QDebug::QDebug commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non constructor false false   QDebug(QIODevice *device) [0xc8203221a0] }
-&{QDebug QDebug::QDebug commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non constructor false true 2  QDebug(QString *string) [0xc820322360] }
-&{QDebug QDebug::QDebug commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non constructor false true 3  QDebug(QtMsgType type) [0xc820322520] }
-&{QDebug QDebug::QDebug commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non constructor false true 4  QDebug(const QDebug &other) [0xc820322700] }
+&{QDebug QDebug::QDebug commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non constructor false false   QDebug(QIODevice *device) [0xc8202f81a0] }
+&{QDebug QDebug::QDebug commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non constructor false true 2  QDebug(QString *string) [0xc8202f8360] }
+&{QDebug QDebug::QDebug commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non constructor false true 3  QDebug(QtMsgType type) [0xc8202f8520] }
+&{QDebug QDebug::QDebug commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non constructor false true 4  QDebug(const QDebug &other) [0xc8202f8700] }
 &{autoInsertSpaces QDebug::autoInsertSpaces commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  bool bool autoInsertSpaces() const [] }
-&{maybeQuote QDebug::maybeQuote commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  QDebug & QDebug & maybeQuote(char c) [0xc820322a60] }
+&{maybeQuote QDebug::maybeQuote commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  QDebug & QDebug & maybeQuote(char c) [0xc8202f8a60] }
 &{maybeSpace QDebug::maybeSpace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  QDebug & QDebug & maybeSpace() [] }
 &{noquote QDebug::noquote commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  QDebug & QDebug & noquote() [] }
 &{nospace QDebug::nospace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  QDebug & QDebug & nospace() [] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  QDebug & QDebug & operator<<(QChar t) [0xc820322fa0] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 17 QDebug & QDebug & operator<<(QLatin1String s) [0xc820323160] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 2 QDebug & QDebug & operator<<(bool t) [0xc820323380] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 3 QDebug & QDebug & operator<<(char t) [0xc8203235a0] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 18 QDebug & QDebug & operator<<(const QByteArray &b) [0xc820323780] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 15 QDebug & QDebug & operator<<(const QString &s) [0xc820323980] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 16 QDebug & QDebug & operator<<(const QStringRef &s) [0xc820323b80] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 14 QDebug & QDebug & operator<<(const char *s) [0xc820323d80] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 19 QDebug & QDebug & operator<<(const void *p) [0xc820323f40] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 13 QDebug & QDebug & operator<<(double f) [0xc820338160] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 12 QDebug & QDebug & operator<<(float f) [0xc820338380] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 10 QDebug & QDebug & operator<<(qint64 i) [0xc8203385a0] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 11 QDebug & QDebug & operator<<(quint64 i) [0xc8203387c0] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 6 QDebug & QDebug & operator<<(signed int i) [0xc820338980] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 8 QDebug & QDebug & operator<<(signed long l) [0xc820338b40] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 4 QDebug & QDebug & operator<<(signed short i) [0xc820338d00] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 7 QDebug & QDebug & operator<<(unsigned int i) [0xc820338ec0] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 9 QDebug & QDebug & operator<<(unsigned long l) [0xc820339080] }
-&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 5 QDebug & QDebug & operator<<(unsigned short i) [0xc820339240] }
-&{operator= QDebug::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  QDebug & QDebug & operator=(const QDebug &other) [0xc820339840] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  QDebug & QDebug & operator<<(QChar t) [0xc8202f8fa0] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 17 QDebug & QDebug & operator<<(QLatin1String s) [0xc8202f9160] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 2 QDebug & QDebug & operator<<(bool t) [0xc8202f9380] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 3 QDebug & QDebug & operator<<(char t) [0xc8202f95a0] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 18 QDebug & QDebug & operator<<(const QByteArray &b) [0xc8202f9780] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 15 QDebug & QDebug & operator<<(const QString &s) [0xc8202f9980] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 16 QDebug & QDebug & operator<<(const QStringRef &s) [0xc8202f9b80] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 14 QDebug & QDebug & operator<<(const char *s) [0xc8202f9d80] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 19 QDebug & QDebug & operator<<(const void *p) [0xc8202f9f40] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 13 QDebug & QDebug & operator<<(double f) [0xc82030e160] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 12 QDebug & QDebug & operator<<(float f) [0xc82030e380] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 10 QDebug & QDebug & operator<<(qint64 i) [0xc82030e5a0] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 11 QDebug & QDebug & operator<<(quint64 i) [0xc82030e7c0] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 6 QDebug & QDebug & operator<<(signed int i) [0xc82030e980] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 8 QDebug & QDebug & operator<<(signed long l) [0xc82030eb40] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 4 QDebug & QDebug & operator<<(signed short i) [0xc82030ed00] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 7 QDebug & QDebug & operator<<(unsigned int i) [0xc82030eec0] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 9 QDebug & QDebug & operator<<(unsigned long l) [0xc82030f080] }
+&{operator<< QDebug::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false true 5 QDebug & QDebug & operator<<(unsigned short i) [0xc82030f240] }
+&{operator= QDebug::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  QDebug & QDebug & operator=(const QDebug &other) [0xc82030f840] }
 &{quote QDebug::quote commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  QDebug & QDebug & quote() [] }
 &{resetFormat QDebug::resetFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  QDebug & QDebug & resetFormat() [] }
-&{setAutoInsertSpaces QDebug::setAutoInsertSpaces commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  void void setAutoInsertSpaces(bool b) [0xc82034a360] }
+&{setAutoInsertSpaces QDebug::setAutoInsertSpaces commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  void void setAutoInsertSpaces(bool b) [0xc820320360] }
 &{space QDebug::space commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  QDebug & QDebug & space() [] }
-&{swap QDebug::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  void void swap(QDebug &other) [0xc82034a580] }
+&{swap QDebug::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qdebug.h non plain false false  void void swap(QDebug &other) [0xc820320580] }
 ########################################			ENUMS			########################################

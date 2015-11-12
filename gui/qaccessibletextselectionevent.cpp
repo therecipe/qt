@@ -1,11 +1,11 @@
 #include "qaccessibletextselectionevent.h"
+#include <QAccessible>
+#include <QObject>
+#include <QAccessibleInterface>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QAccessibleInterface>
-#include <QAccessible>
-#include <QObject>
 #include <QAccessibleTextSelectionEvent>
 #include "_cgo_export.h"
 

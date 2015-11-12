@@ -1,9 +1,9 @@
 #include "qshortcutevent.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QKeySequence>
-#include <QString>
-#include <QVariant>
 #include <QShortcutEvent>
 #include "_cgo_export.h"
 

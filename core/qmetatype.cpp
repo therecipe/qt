@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QByteArray>
 #include <QMetaObject>
+#include <QByteArray>
 #include <QMetaType>
 #include "_cgo_export.h"
 

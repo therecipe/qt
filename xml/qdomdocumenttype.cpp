@@ -1,9 +1,9 @@
 #include "qdomdocumenttype.h"
+#include <QModelIndex>
+#include <QDomDocument>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QDomDocument>
 #include <QDomDocumentType>
 #include "_cgo_export.h"
 

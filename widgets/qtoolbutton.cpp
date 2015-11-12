@@ -1,13 +1,13 @@
 #include "qtoolbutton.h"
-#include <QVariant>
+#include <QString>
 #include <QUrl>
+#include <QVariant>
 #include <QModelIndex>
+#include <QAction>
+#include <QMenu>
 #include <QMetaObject>
 #include <QWidget>
-#include <QAction>
-#include <QString>
 #include <QObject>
-#include <QMenu>
 #include <QToolButton>
 #include "_cgo_export.h"
 

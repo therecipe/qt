@@ -1,10 +1,10 @@
 #include "qaccessibletextremoveevent.h"
 #include <QAccessible>
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
 #include <QAccessibleInterface>
 #include <QAccessibleTextRemoveEvent>
 #include "_cgo_export.h"

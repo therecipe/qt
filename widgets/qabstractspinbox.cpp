@@ -1,12 +1,12 @@
 #include "qabstractspinbox.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMetaObject>
-#include <QEvent>
 #include <QWidget>
 #include <QObject>
+#include <QEvent>
 #include <QString>
-#include <QVariant>
 #include <QAbstractSpinBox>
 #include "_cgo_export.h"
 

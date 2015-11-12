@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
 &{fileName QPluginLoader::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.cpp non plain false false  QString QString fileName() const [] }
 &{loadHints QPluginLoader::loadHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.cpp non plain false false  QLibrary::LoadHints QLibrary::LoadHints loadHints() const [] }
-&{setFileName QPluginLoader::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.cpp non plain false false  void void setFileName(const QString &fileName) [0xc8201164c0] }
-&{setLoadHints QPluginLoader::setLoadHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.cpp non plain false false  void void setLoadHints(QLibrary::LoadHints loadHints) [0xc820116860] }
-&{QPluginLoader QPluginLoader::QPluginLoader commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.h non constructor false false   QPluginLoader(QObject *parent) [0xc820116bc0] }
-&{QPluginLoader QPluginLoader::QPluginLoader commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.h non constructor false true 2  QPluginLoader(const QString &fileName, QObject *parent) [0xc820116e80 0xc820116f20] }
+&{setFileName QPluginLoader::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.cpp non plain false false  void void setFileName(const QString &fileName) [0xc8200fdbc0] }
+&{setLoadHints QPluginLoader::setLoadHints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.cpp non plain false false  void void setLoadHints(QLibrary::LoadHints loadHints) [0xc8200fde40] }
+&{QPluginLoader QPluginLoader::QPluginLoader commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.h non constructor false false   QPluginLoader(QObject *parent) [0xc8200ec240] }
+&{QPluginLoader QPluginLoader::QPluginLoader commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.h non constructor false true 2  QPluginLoader(const QString &fileName, QObject *parent) [0xc8200ec4a0 0xc8200ec5a0] }
 &{errorString QPluginLoader::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.h non plain false false  QString QString errorString() const [] }
 &{instance QPluginLoader::instance commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.h non plain false false  QObject * QObject * instance() [] }
 &{isLoaded QPluginLoader::isLoaded commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qpluginloader.h non plain false false  bool bool isLoaded() const [] }

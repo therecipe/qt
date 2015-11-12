@@ -1,13 +1,13 @@
 #include "qheaderview.h"
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QAbstractItemModel>
+#include <QMetaObject>
+#include <QByteArray>
 #include <QString>
+#include <QModelIndex>
 #include <QPoint>
 #include <QObject>
-#include <QByteArray>
-#include <QMetaObject>
+#include <QAbstractItemModel>
 #include <QHeaderView>
 #include "_cgo_export.h"
 

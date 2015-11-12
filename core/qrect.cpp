@@ -1,10 +1,10 @@
 #include "qrect.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSize>
 #include <QPoint>
+#include <QSize>
+#include <QString>
+#include <QVariant>
 #include <QRect>
 #include "_cgo_export.h"
 

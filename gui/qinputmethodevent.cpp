@@ -1,9 +1,9 @@
 #include "qinputmethodevent.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QInputMethod>
+#include <QString>
+#include <QVariant>
 #include <QInputMethodEvent>
 #include "_cgo_export.h"
 

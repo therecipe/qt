@@ -1,8 +1,8 @@
 #include "qdbuspendingcall.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QDBusPendingCall>
 #include "_cgo_export.h"
 

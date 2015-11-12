@@ -1,9 +1,9 @@
 #include "qvideoencodersettingscontrol.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QVideoEncoderSettings>
+#include <QString>
 #include <QVideoEncoderSettingsControl>
 #include "_cgo_export.h"
 

@@ -1,12 +1,12 @@
 #include "qtimeline.h"
-#include <QEasingCurve>
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QTime>
 #include <QMetaObject>
+#include <QObject>
+#include <QEasingCurve>
+#include <QTime>
 #include <QTimeLine>
 #include "_cgo_export.h"
 

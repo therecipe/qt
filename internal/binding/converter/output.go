@@ -42,7 +42,7 @@ func goOutput(name string, value string, f *parser.Function) string {
 			return name
 		}
 
-	case "T":
+	case "T", "JavaVM", "jclass":
 		{
 			return fmt.Sprintf("unsafe.Pointer(%v)", name)
 		}
@@ -150,7 +150,7 @@ func cppOutput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("%v.toUtf8().data()", name)
 		}
 
-	case "bool", "int", "void", "", "T":
+	case "bool", "int", "void", "", "T", "JavaVM", "jclass":
 		{
 			if value == "void" {
 				if strings.Contains(vOld, "*") {
@@ -193,6 +193,11 @@ func cppOutput(name string, value string, f *parser.Function) string {
 			case "QJSValue", "QScriptValue", "QVariant", "QStringRef", "QDateTime", "QTimeZone", "QRegularExpressionMatchIterator", "QRegularExpressionMatch", "QRegularExpression", "QDir", "QByteArray", "QEasingCurve", "QCommandLineOption", "QRegExp", "QJsonObject", "QJsonArray", "QJsonDocument", "QRegion", "QBrush", "QColor":
 				{
 					return fmt.Sprintf("new %v(%v)", value, name)
+				}
+
+			case "QAndroidJniObject":
+				{
+					return name
 				}
 			}
 		}

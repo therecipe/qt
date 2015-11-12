@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
 &{currentFont QFontComboBox::currentFont commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non plain false false  QFont QFont currentFont() const [] }
 &{fontFilters QFontComboBox::fontFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non plain false false  FontFilters FontFilters fontFilters() const [] }
-&{setCurrentFont QFontComboBox::setCurrentFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non slot false false  void void setCurrentFont(const QFont &font) [0xc82144b320] }
-&{setFontFilters QFontComboBox::setFontFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non plain false false  void void setFontFilters(FontFilters filters) [0xc82144b640] }
-&{setWritingSystem QFontComboBox::setWritingSystem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non plain false false  void void setWritingSystem(QFontDatabase::WritingSystem script) [0xc82144baa0] }
+&{setCurrentFont QFontComboBox::setCurrentFont commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non slot false false  void void setCurrentFont(const QFont &font) [0xc82254ac00] }
+&{setFontFilters QFontComboBox::setFontFilters commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non plain false false  void void setFontFilters(FontFilters filters) [0xc82254b0a0] }
+&{setWritingSystem QFontComboBox::setWritingSystem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non plain false false  void void setWritingSystem(QFontDatabase::WritingSystem script) [0xc82254b480] }
 &{writingSystem QFontComboBox::writingSystem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.cpp non plain false false  QFontDatabase::WritingSystem QFontDatabase::WritingSystem writingSystem() const [] }
-&{QFontComboBox QFontComboBox::QFontComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h non constructor false false   QFontComboBox(QWidget *parent) [0xc8214467c0] }
-&{currentFontChanged QFontComboBox::currentFontChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h non signal false false  void void currentFontChanged(const QFont &font) [0xc821446d00] }
-&{event QFontComboBox::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h impure plain false false  bool bool event(QEvent *e) [0xc821446fe0] }
+&{QFontComboBox QFontComboBox::QFontComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h non constructor false false   QFontComboBox(QWidget *parent) [0xc822552600] }
+&{currentFontChanged QFontComboBox::currentFontChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h non signal false false  void void currentFontChanged(const QFont &font) [0xc822552c80] }
+&{event QFontComboBox::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h impure plain false false  bool bool event(QEvent *e) [0xc822552fe0] }
 &{sizeHint QFontComboBox::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h impure plain false false  QSize QSize sizeHint() const [] }
 &{~QFontComboBox QFontComboBox::~QFontComboBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfontcombobox.h non destructor false false   ~QFontComboBox() [] }
 ########################################			ENUMS			########################################
-&{FontFilter QFontComboBox::FontFilter commendable public QFontComboBox::FontFilters [0xc821446140 0xc821446200 0xc821446280 0xc821446340 0xc821446400] false}
+&{FontFilter QFontComboBox::FontFilter commendable public QFontComboBox::FontFilters [0xc82254bcc0 0xc82254bde0 0xc82254bea0 0xc822552020 0xc822552120] false}

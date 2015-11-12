@@ -1,21 +1,21 @@
 ########################################			FUNCTIONS			########################################
 &{QXmlAttributes QXmlAttributes::QXmlAttributes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.cpp non constructor false false   QXmlAttributes() [] }
 &{~QXmlAttributes QXmlAttributes::~QXmlAttributes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.cpp impure destructor false false   ~QXmlAttributes() [] }
-&{append QXmlAttributes::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void void append(const QString &qName, const QString &uri, const QString &localPart, const QString &value) [0xc82114f120 0xc82114f200 0xc82114f3c0 0xc82114f440] }
+&{append QXmlAttributes::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void void append(const QString &qName, const QString &uri, const QString &localPart, const QString &value) [0xc8227a7da0 0xc8227a7e40 0xc8227a7f60 0xc821d5e040] }
 &{clear QXmlAttributes::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  void void clear() [] }
 &{count QXmlAttributes::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int int count() const [] }
-&{index QXmlAttributes::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 2 int int index(QLatin1String qName) const [0xc82114fec0] }
-&{index QXmlAttributes::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int int index(const QString &qName) const [0xc82120a200] }
-&{index QXmlAttributes::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 3 int int index(const QString &uri, const QString &localPart) const [0xc82120a560 0xc82120a600] }
+&{index QXmlAttributes::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 2 int int index(QLatin1String qName) const [0xc821d5e6c0] }
+&{index QXmlAttributes::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int int index(const QString &qName) const [0xc821d5e9e0] }
+&{index QXmlAttributes::index commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 3 int int index(const QString &uri, const QString &localPart) const [0xc821d5ecc0 0xc821d5edc0] }
 &{length QXmlAttributes::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int int length() const [] }
-&{localName QXmlAttributes::localName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString localName(int index) const [0xc82120ac40] }
-&{qName QXmlAttributes::qName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString qName(int index) const [0xc82120b040] }
-&{type QXmlAttributes::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 2 QString QString type(const QString &qName) const [0xc82120b3a0] }
-&{type QXmlAttributes::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 3 QString QString type(const QString &uri, const QString &localName) const [0xc82120b6a0 0xc82120b7e0] }
-&{type QXmlAttributes::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString type(int index) const [0xc82120bbc0] }
-&{uri QXmlAttributes::uri commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString uri(int index) const [0xc82120bf80] }
-&{value QXmlAttributes::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 3 QString QString value(QLatin1String qName) const [0xc8212b22c0] }
-&{value QXmlAttributes::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 2 QString QString value(const QString &qName) const [0xc8212b2680] }
-&{value QXmlAttributes::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 4 QString QString value(const QString &uri, const QString &localName) const [0xc8212b29c0 0xc8212b2aa0] }
-&{value QXmlAttributes::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString value(int index) const [0xc8212b2e60] }
+&{localName QXmlAttributes::localName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString localName(int index) const [0xc821d5f2c0] }
+&{qName QXmlAttributes::qName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString qName(int index) const [0xc821d5f6a0] }
+&{type QXmlAttributes::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 2 QString QString type(const QString &qName) const [0xc821d5f980] }
+&{type QXmlAttributes::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 3 QString QString type(const QString &uri, const QString &localName) const [0xc821d5fc80 0xc821d5fd80] }
+&{type QXmlAttributes::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString type(int index) const [0xc821b580c0] }
+&{uri QXmlAttributes::uri commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString uri(int index) const [0xc821b583a0] }
+&{value QXmlAttributes::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 3 QString QString value(QLatin1String qName) const [0xc821b585c0] }
+&{value QXmlAttributes::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 2 QString QString value(const QString &qName) const [0xc821b58840] }
+&{value QXmlAttributes::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false true 4 QString QString value(const QString &uri, const QString &localName) const [0xc821b58a80 0xc821b58b20] }
+&{value QXmlAttributes::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString value(int index) const [0xc821b58de0] }
 ########################################			ENUMS			########################################

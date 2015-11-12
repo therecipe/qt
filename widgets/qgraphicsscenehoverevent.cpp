@@ -1,9 +1,9 @@
 #include "qgraphicsscenehoverevent.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QGraphicsScene>
 #include <QString>
-#include <QVariant>
 #include <QGraphicsSceneHoverEvent>
 #include "_cgo_export.h"
 

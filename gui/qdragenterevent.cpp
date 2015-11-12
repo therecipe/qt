@@ -1,11 +1,11 @@
 #include "qdragenterevent.h"
-#include <QMimeData>
-#include <QPoint>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QPoint>
 #include <QDrag>
+#include <QMimeData>
 #include <QDragEnterEvent>
 #include "_cgo_export.h"
 

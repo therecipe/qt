@@ -1,10 +1,10 @@
 #include "qstandarditemmodel.h"
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStandardItem>
-#include <QObject>
 #include <QMimeData>
 #include <QStandardItemModel>
 #include "_cgo_export.h"

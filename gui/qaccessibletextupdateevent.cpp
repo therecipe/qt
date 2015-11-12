@@ -1,11 +1,11 @@
 #include "qaccessibletextupdateevent.h"
+#include <QAccessibleInterface>
+#include <QAccessible>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QAccessibleInterface>
-#include <QAccessible>
 #include <QObject>
-#include <QString>
 #include <QAccessibleTextUpdateEvent>
 #include "_cgo_export.h"
 

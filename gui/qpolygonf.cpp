@@ -1,13 +1,13 @@
 #include "qpolygonf.h"
-#include <QString>
-#include <QPointF>
-#include <QPolygon>
-#include <QRectF>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QRect>
+#include <QPolygon>
+#include <QVariant>
+#include <QRectF>
+#include <QModelIndex>
 #include <QPoint>
+#include <QPointF>
+#include <QString>
+#include <QUrl>
 #include <QPolygonF>
 #include "_cgo_export.h"
 

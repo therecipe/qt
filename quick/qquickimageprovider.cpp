@@ -1,9 +1,9 @@
 #include "qquickimageprovider.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QQmlImageProviderBase>
-#include <QString>
 #include <QQuickImageProvider>
 #include "_cgo_export.h"
 

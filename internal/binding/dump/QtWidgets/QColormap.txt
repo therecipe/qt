@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QColormap QColormap::QColormap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non constructor false false   QColormap(const QColormap &colormap) [0xc821c3f600] }
-&{colorAt QColormap::colorAt commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain false false  const QColor const QColor colorAt(uint pixel) const [0xc821c3ff00] }
-&{colormap QColormap::colormap commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain false false  const QVector<QColor> const QVector<QColor> colormap() const [] }
+&{QColormap QColormap::QColormap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non constructor false false   QColormap(const QColormap &colormap) [0xc822ad9f00] }
+&{colorAt QColormap::colorAt commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain false false  const QColor const QColor colorAt(uint pixel) const [0xc8220086e0] }
+&{colormap QColormap::colormap commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain false false  const QVector<QColor> const QVector<QColor> colormap() const [] }
 &{depth QColormap::depth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain false false  int int depth() const [] }
-&{instance QColormap::instance commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain true false  QColormap QColormap instance(int screen) [0xc821c2e8e0] }
+&{instance QColormap::instance commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain true false  QColormap QColormap instance(int screen) [0xc822008de0] }
 &{mode QColormap::mode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain false false  Mode Mode mode() const [] }
-&{operator= QColormap::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain false false  QColormap & QColormap & operator=(const QColormap &colormap) [0xc821c2ee80] }
-&{pixel QColormap::pixel commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain false false  uint uint pixel(const QColor &color) const [0xc821c2f200] }
+&{operator= QColormap::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain false false  QColormap & QColormap & operator=(const QColormap &colormap) [0xc822009280] }
+&{pixel QColormap::pixel commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain false false  uint uint pixel(const QColor &color) const [0xc822009520] }
 &{size QColormap::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non plain false false  int int size() const [] }
 &{~QColormap QColormap::~QColormap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/util/qcolormap.cpp non destructor false false   ~QColormap() [] }
 ########################################			ENUMS			########################################
-&{Mode QColormap::Mode commendable public  [0xc821c2f800 0xc821c2f960 0xc821c2faa0] false}
+&{Mode QColormap::Mode commendable public  [0xc8220099e0 0xc822009ae0 0xc822009bc0] false}

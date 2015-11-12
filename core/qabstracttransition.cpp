@@ -1,11 +1,11 @@
 #include "qabstracttransition.h"
-#include <QUrl>
 #include <QModelIndex>
-#include <QAbstractAnimation>
-#include <QObject>
 #include <QAbstractState>
+#include <QObject>
+#include <QAbstractAnimation>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QAbstractTransition>
 #include "_cgo_export.h"
 

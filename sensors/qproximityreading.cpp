@@ -1,8 +1,8 @@
 #include "qproximityreading.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QProximityReading>
 #include "_cgo_export.h"
 

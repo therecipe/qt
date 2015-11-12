@@ -1,13 +1,13 @@
 #include "qinputmethod.h"
-#include <QObject>
-#include <QRectF>
-#include <QVariant>
-#include <QUrl>
-#include <QRect>
-#include <QMetaObject>
 #include <QString>
+#include <QVariant>
 #include <QModelIndex>
 #include <QTransform>
+#include <QMetaObject>
+#include <QUrl>
+#include <QObject>
+#include <QRectF>
+#include <QRect>
 #include <QInputMethod>
 #include "_cgo_export.h"
 

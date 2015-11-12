@@ -1,9 +1,9 @@
 #include "qgradient.h"
-#include <QModelIndex>
-#include <QColor>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QColor>
 #include <QGradient>
 #include "_cgo_export.h"
 

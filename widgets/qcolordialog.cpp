@@ -4,8 +4,8 @@
 #include <QUrl>
 #include <QModelIndex>
 #include <QWidget>
-#include <QColor>
 #include <QObject>
+#include <QColor>
 #include <QColorDialog>
 #include "_cgo_export.h"
 

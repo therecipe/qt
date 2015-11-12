@@ -2,24 +2,24 @@
 &{QMimeData QMimeData::QMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non constructor false false   QMimeData() [] }
 &{clear QMimeData::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void clear() [] }
 &{colorData QMimeData::colorData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  QVariant QVariant colorData() const [] }
-&{data QMimeData::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  QByteArray QByteArray data(const QString &mimeType) const [0xc82048b180] }
+&{data QMimeData::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  QByteArray QByteArray data(const QString &mimeType) const [0xc820472940] }
 &{formats QMimeData::formats commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h impure plain false false  QStringList QStringList formats() const [] }
 &{hasColor QMimeData::hasColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  bool bool hasColor() const [] }
-&{hasFormat QMimeData::hasFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h impure plain false false  bool bool hasFormat(const QString &mimeType) const [0xc82048b700] }
+&{hasFormat QMimeData::hasFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h impure plain false false  bool bool hasFormat(const QString &mimeType) const [0xc820472ee0] }
 &{hasHtml QMimeData::hasHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  bool bool hasHtml() const [] }
 &{hasImage QMimeData::hasImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  bool bool hasImage() const [] }
 &{hasText QMimeData::hasText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  bool bool hasText() const [] }
 &{hasUrls QMimeData::hasUrls commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  bool bool hasUrls() const [] }
 &{html QMimeData::html commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  QString QString html() const [] }
 &{imageData QMimeData::imageData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  QVariant QVariant imageData() const [] }
-&{removeFormat QMimeData::removeFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void removeFormat(const QString &mimeType) [0xc82047c2e0] }
-&{retrieveData QMimeData::retrieveData commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h impure plain false false  QVariant QVariant retrieveData(const QString &mimeType, QVariant::Type type) const [0xc82047c520 0xc82047c5a0] }
-&{setColorData QMimeData::setColorData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void setColorData(const QVariant &color) [0xc82047c7e0] }
-&{setData QMimeData::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void setData(const QString &mimeType, const QByteArray &data) [0xc82047ca00 0xc82047cb00] }
-&{setHtml QMimeData::setHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void setHtml(const QString &html) [0xc82047cda0] }
-&{setImageData QMimeData::setImageData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void setImageData(const QVariant &image) [0xc82047cfa0] }
-&{setText QMimeData::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void setText(const QString &text) [0xc82047d220] }
-&{setUrls QMimeData::setUrls commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void setUrls(const QList<QUrl> &urls) [0xc82047d460] }
+&{removeFormat QMimeData::removeFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void removeFormat(const QString &mimeType) [0xc820473aa0] }
+&{retrieveData QMimeData::retrieveData commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h impure plain false false  QVariant QVariant retrieveData(const QString &mimeType, QVariant::Type type) const [0xc820473ca0 0xc820473d20] }
+&{setColorData QMimeData::setColorData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void setColorData(const QVariant &color) [0xc820473f20] }
+&{setData QMimeData::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void setData(const QString &mimeType, const QByteArray &data) [0xc8204601a0 0xc820460280] }
+&{setHtml QMimeData::setHtml commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void setHtml(const QString &html) [0xc820460480] }
+&{setImageData QMimeData::setImageData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void setImageData(const QVariant &image) [0xc820460680] }
+&{setText QMimeData::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void setText(const QString &text) [0xc8204608a0] }
+&{setUrls QMimeData::setUrls commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  void void setUrls(const QList<QUrl> &urls) [0xc820460b20] }
 &{text QMimeData::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  QString QString text() const [] }
 &{urls QMimeData::urls commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non plain false false  QList<QUrl> QList<QUrl> urls() const [] }
 &{~QMimeData QMimeData::~QMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmimedata.h non destructor false false   ~QMimeData() [] }

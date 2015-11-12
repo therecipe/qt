@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QHelpEngine QHelpEngine::QHelpEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non constructor false false   QHelpEngine(const QString &collectionFile, QObject *parent) [0xc8234d1d80 0xc8234d1f60] }
+&{QHelpEngine QHelpEngine::QHelpEngine commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non constructor false false   QHelpEngine(const QString &collectionFile, QObject *parent) [0xc826bd4a40 0xc826bd4ac0] }
 &{contentModel QHelpEngine::contentModel commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpContentModel * QHelpContentModel * contentModel() const [] }
 &{contentWidget QHelpEngine::contentWidget commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpContentWidget * QHelpContentWidget * contentWidget() [] }
 &{indexModel QHelpEngine::indexModel commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpengine.h non plain false false  QHelpIndexModel * QHelpIndexModel * indexModel() const [] }

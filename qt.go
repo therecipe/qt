@@ -1,31 +1,33 @@
 package qt
 
 import (
-	"fmt"
 	"runtime"
+	"strconv"
 	"strings"
-	"time"
 
 	_ "github.com/therecipe/qt/internal/android/cgo"
 )
 
-var signalTable = make(map[string]interface{})
+var (
+	signalTable = make(map[string]interface{})
+	ids         int
+)
 
 func init() { runtime.LockOSThread() }
 
 func ConnectSignal(name string, signal string, function interface{}) {
-	signalTable[fmt.Sprintf("%v:%v", name, signal)] = function
+	signalTable[name+":"+signal] = function
 }
 
 func GetSignal(name string, signal string) interface{} {
 	if signal == "destroyed" {
 		defer DisconnectAllSignals(name)
 	}
-	return signalTable[fmt.Sprintf("%v:%v", name, signal)]
+	return signalTable[name+":"+signal]
 }
 
 func DisconnectSignal(name string, signal string) {
-	delete(signalTable, fmt.Sprintf("%v:%v", name, signal))
+	delete(signalTable, name+":"+signal)
 }
 
 func DisconnectAllSignals(name string) {
@@ -37,7 +39,8 @@ func DisconnectAllSignals(name string) {
 }
 
 func RandomIdentifier() string {
-	return fmt.Sprint(time.Now().UnixNano())
+	ids++
+	return strconv.Itoa(ids)
 }
 
 func DumpSignalTable() {

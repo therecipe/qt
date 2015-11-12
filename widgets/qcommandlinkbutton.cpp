@@ -1,9 +1,9 @@
 #include "qcommandlinkbutton.h"
+#include <QModelIndex>
+#include <QWidget>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QWidget>
 #include <QCommandLinkButton>
 #include "_cgo_export.h"
 

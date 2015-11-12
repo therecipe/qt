@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{QExposeEvent QExposeEvent::QExposeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QExposeEvent(const QRegion &exposeRegion) [0xc820732940] }
+&{QExposeEvent QExposeEvent::QExposeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QExposeEvent(const QRegion &exposeRegion) [0xc820869f00] }
 &{region QExposeEvent::region commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QRegion & const QRegion & region() const [] }
 ########################################			ENUMS			########################################

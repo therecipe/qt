@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
 &{QPlaceIcon QPlaceIcon::QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non constructor false false   QPlaceIcon() [] }
-&{QPlaceIcon QPlaceIcon::QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non constructor false true 2  QPlaceIcon(const QPlaceIcon &other) [0xc8224ad300] }
+&{QPlaceIcon QPlaceIcon::QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non constructor false true 2  QPlaceIcon(const QPlaceIcon &other) [0xc826afa140] }
 &{isEmpty QPlaceIcon::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool bool isEmpty() const [] }
 &{manager QPlaceIcon::manager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QPlaceManager * QPlaceManager * manager() const [] }
-&{operator!= QPlaceIcon::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool bool operator!=(const QPlaceIcon &other) const [0xc8224ada20] }
-&{operator= QPlaceIcon::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QPlaceIcon & QPlaceIcon & operator=(const QPlaceIcon &other) [0xc8224add40] }
-&{operator== QPlaceIcon::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool bool operator==(const QPlaceIcon &other) const [0xc82250a040] }
+&{operator!= QPlaceIcon::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool bool operator!=(const QPlaceIcon &other) const [0xc826afaaa0] }
+&{operator= QPlaceIcon::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QPlaceIcon & QPlaceIcon & operator=(const QPlaceIcon &other) [0xc826afaea0] }
+&{operator== QPlaceIcon::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  bool bool operator==(const QPlaceIcon &other) const [0xc826afb2e0] }
 &{parameters QPlaceIcon::parameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QVariantMap QVariantMap parameters() const [] }
-&{setManager QPlaceIcon::setManager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  void void setManager(QPlaceManager *manager) [0xc82250a540] }
-&{setParameters QPlaceIcon::setParameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  void void setParameters(const QVariantMap &parameters) [0xc82250a840] }
-&{url QPlaceIcon::url commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QUrl QUrl url(const QSize &size) const [0xc82250aa80] }
+&{setManager QPlaceIcon::setManager commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  void void setManager(QPlaceManager *manager) [0xc826afb920] }
+&{setParameters QPlaceIcon::setParameters commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  void void setParameters(const QVariantMap &parameters) [0xc826afbd40] }
+&{url QPlaceIcon::url commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non plain false false  QUrl QUrl url(const QSize &size) const [0xc820a58020] }
 &{~QPlaceIcon QPlaceIcon::~QPlaceIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceicon.h non destructor false false   ~QPlaceIcon() [] }
 ########################################			ENUMS			########################################

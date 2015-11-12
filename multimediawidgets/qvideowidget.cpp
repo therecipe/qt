@@ -1,11 +1,11 @@
 #include "qvideowidget.h"
+#include <QModelIndex>
+#include <QObject>
+#include <QMetaObject>
+#include <QWidget>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QWidget>
-#include <QObject>
-#include <QMetaObject>
 #include <QVideoWidget>
 #include "_cgo_export.h"
 

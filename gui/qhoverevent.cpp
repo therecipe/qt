@@ -1,11 +1,11 @@
 #include "qhoverevent.h"
-#include <QEvent>
+#include <QPointF>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QEvent>
 #include <QPoint>
-#include <QPointF>
 #include <QHoverEvent>
 #include "_cgo_export.h"
 

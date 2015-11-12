@@ -1,9 +1,9 @@
 #include "qstyleplugin.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStyle>
-#include <QString>
-#include <QVariant>
 #include <QStylePlugin>
 #include "_cgo_export.h"
 

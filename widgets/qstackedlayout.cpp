@@ -1,15 +1,15 @@
 #include "qstackedlayout.h"
-#include <QUrl>
-#include <QStack>
-#include <QRect>
-#include <QLayoutItem>
-#include <QString>
-#include <QVariant>
-#include <QModelIndex>
-#include <QLayout>
-#include <QMetaObject>
 #include <QWidget>
 #include <QObject>
+#include <QString>
+#include <QUrl>
+#include <QModelIndex>
+#include <QRect>
+#include <QStack>
+#include <QMetaObject>
+#include <QVariant>
+#include <QLayoutItem>
+#include <QLayout>
 #include <QStackedLayout>
 #include "_cgo_export.h"
 

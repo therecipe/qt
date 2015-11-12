@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
 &{distance QDistanceReading::distance commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qdistancesensor.cpp non plain false false  qreal qreal distance() const [] }
-&{setDistance QDistanceReading::setDistance commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qdistancesensor.h non plain false false  void void setDistance(qreal distance) [0xc82367ae20] }
+&{setDistance QDistanceReading::setDistance commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qdistancesensor.h non plain false false  void void setDistance(qreal distance) [0xc8235e2520] }
 ########################################			ENUMS			########################################

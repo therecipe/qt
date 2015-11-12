@@ -1,9 +1,9 @@
 #include "qgraphicsscenemouseevent.h"
-#include <QModelIndex>
 #include <QGraphicsScene>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QGraphicsSceneMouseEvent>
 #include "_cgo_export.h"
 

@@ -1,11 +1,11 @@
 #include "qaccessiblevaluechangeevent.h"
+#include <QModelIndex>
+#include <QAccessible>
 #include <QObject>
+#include <QAccessibleInterface>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QAccessibleInterface>
-#include <QAccessible>
 #include <QAccessibleValueChangeEvent>
 #include "_cgo_export.h"
 

@@ -1,12 +1,12 @@
 #include "qcursor.h"
-#include <QScreen>
-#include <QBitmap>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPoint>
+#include <QBitmap>
+#include <QScreen>
 #include <QPixmap>
+#include <QPoint>
+#include <QString>
+#include <QVariant>
 #include <QCursor>
 #include "_cgo_export.h"
 

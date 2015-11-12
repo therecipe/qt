@@ -1,12 +1,12 @@
 #include "qimagewriter.h"
+#include <QIODevice>
 #include <QImageIOHandler>
+#include <QImage>
 #include <QByteArray>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QIODevice>
-#include <QImage>
 #include <QImageWriter>
 #include "_cgo_export.h"
 

@@ -1,13 +1,13 @@
 #include "qtabwidget.h"
-#include <QUrl>
-#include <QObject>
 #include <QWidget>
-#include <QMetaObject>
-#include <QIcon>
 #include <QString>
 #include <QVariant>
-#include <QModelIndex>
+#include <QIcon>
 #include <QSize>
+#include <QMetaObject>
+#include <QObject>
+#include <QUrl>
+#include <QModelIndex>
 #include <QTabWidget>
 #include "_cgo_export.h"
 

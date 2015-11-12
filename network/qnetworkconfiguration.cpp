@@ -1,8 +1,8 @@
 #include "qnetworkconfiguration.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QNetworkConfiguration>
 #include "_cgo_export.h"
 

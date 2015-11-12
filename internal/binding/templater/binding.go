@@ -2,11 +2,11 @@ package templater
 
 import (
 	"fmt"
+	"runtime"
 	"strings"
 
-	"github.com/therecipe/qt/internal/utils"
-
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func terminalSeperator(module string) string {
@@ -21,7 +21,10 @@ func terminalSeperator(module string) string {
 }
 
 func GenModule(name string) {
-	var moduleT = name
+	var (
+		moduleT = name
+		cppTmp  string
+	)
 
 	name = strings.ToLower(name)
 
@@ -44,8 +47,21 @@ func GenModule(name string) {
 
 				for e, f := range map[string]func(*parser.Class) string{"cpp": CppTemplate, "h": HTemplate, "go": GoTemplate} {
 					utils.MakeFolder(utils.GetQtPkgPath(name))
-					utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))
 					CopyCgo(moduleT)
+					if moduleT == "AndroidExtras" {
+						utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v_android.%v", strings.ToLower(c.Name), e)), f(c))
+						if e == "go" {
+							c.Stub = true
+							utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))
+							c.Stub = false
+						}
+					} else {
+						if e == "cpp" && runtime.GOOS == "windows" {
+							cppTmp += f(c)
+						} else {
+							utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))
+						}
+					}
 				}
 
 				c.Dump()
@@ -54,7 +70,7 @@ func GenModule(name string) {
 			}
 
 		}
+		utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.cpp", strings.ToLower(moduleT))), cppTmp)
 		fmt.Printf("%v%v\tfunctions:%v", name, terminalSeperator(name), fcount)
 	}
-
 }

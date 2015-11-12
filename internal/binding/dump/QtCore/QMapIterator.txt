@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
-&{QMapIterator QMapIterator::QMapIterator commendable public qmap.h non constructor false false   QMapIterator(const QMap<Key, T> &map) [0xc820273160] }
-&{findNext QMapIterator::findNext commendable public qmap.h non plain false false  bool bool findNext(const T &value) [0xc8202737c0] }
-&{findPrevious QMapIterator::findPrevious commendable public qmap.h non plain false false  bool bool findPrevious(const T &value) [0xc820273e20] }
+&{QMapIterator QMapIterator::QMapIterator commendable public qmap.h non constructor false false   QMapIterator(const QMap<Key, T> &map) [0xc820b708a0] }
+&{findNext QMapIterator::findNext commendable public qmap.h non plain false false  bool bool findNext(const T &value) [0xc820b70bc0] }
+&{findPrevious QMapIterator::findPrevious commendable public qmap.h non plain false false  bool bool findPrevious(const T &value) [0xc820b70e00] }
 &{hasNext QMapIterator::hasNext commendable public qmap.h non plain false false  bool bool hasNext() const [] }
 &{hasPrevious QMapIterator::hasPrevious commendable public qmap.h non plain false false  bool bool hasPrevious() const [] }
 &{key QMapIterator::key commendable public qmap.h non plain false false  const Key & const Key & key() const [] }
 &{next QMapIterator::next commendable public qmap.h non plain false false  Item Item next() [] }
-&{operator= QMapIterator::operator= commendable public qmap.h non plain false false  QMapIterator & QMapIterator & operator=(const QMap<Key, T> &map) [0xc82026b420] }
+&{operator= QMapIterator::operator= commendable public qmap.h non plain false false  QMapIterator & QMapIterator & operator=(const QMap<Key, T> &map) [0xc820b71760] }
 &{peekNext QMapIterator::peekNext commendable public qmap.h non plain false false  Item Item peekNext() const [] }
 &{peekPrevious QMapIterator::peekPrevious commendable public qmap.h non plain false false  Item Item peekPrevious() const [] }
 &{previous QMapIterator::previous commendable public qmap.h non plain false false  Item Item previous() [] }

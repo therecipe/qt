@@ -1,10 +1,10 @@
 #include "qplaintextdocumentlayout.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QTextDocument>
 #include <QTextBlock>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QPlainTextDocumentLayout>
 #include "_cgo_export.h"
 

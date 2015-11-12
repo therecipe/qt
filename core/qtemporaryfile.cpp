@@ -1,10 +1,10 @@
 #include "qtemporaryfile.h"
-#include <QObject>
-#include <QFile>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
+#include <QFile>
+#include <QString>
 #include <QTemporaryFile>
 #include "_cgo_export.h"
 

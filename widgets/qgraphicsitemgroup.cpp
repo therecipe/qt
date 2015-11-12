@@ -1,14 +1,14 @@
 #include "qgraphicsitemgroup.h"
-#include <QString>
-#include <QStyleOptionGraphicsItem>
-#include <QPainter>
-#include <QGraphicsItem>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
+#include <QPainter>
 #include <QStyleOption>
-#include <QWidget>
+#include <QString>
 #include <QStyle>
+#include <QWidget>
+#include <QStyleOptionGraphicsItem>
+#include <QGraphicsItem>
+#include <QModelIndex>
 #include <QGraphicsItemGroup>
 #include "_cgo_export.h"
 

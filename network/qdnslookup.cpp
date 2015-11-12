@@ -1,11 +1,11 @@
 #include "qdnslookup.h"
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QHostAddress>
 #include <QMetaObject>
+#include <QObject>
 #include <QDnsLookup>
 #include "_cgo_export.h"
 

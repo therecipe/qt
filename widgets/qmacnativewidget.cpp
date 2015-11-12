@@ -1,8 +1,8 @@
 #include "qmacnativewidget.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QMacNativeWidget>
 #include "_cgo_export.h"
 

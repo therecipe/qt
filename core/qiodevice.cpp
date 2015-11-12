@@ -1,10 +1,10 @@
 #include "qiodevice.h"
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QByteArray>
-#include <QObject>
 #include <QIODevice>
 #include "_cgo_export.h"
 

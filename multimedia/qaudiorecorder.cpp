@@ -1,10 +1,10 @@
 #include "qaudiorecorder.h"
 #include <QMetaObject>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
 #include <QAudioRecorder>
 #include "_cgo_export.h"
 

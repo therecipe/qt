@@ -1,10 +1,10 @@
 #include "qqmlcontext.h"
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QQmlEngine>
+#include <QObject>
 #include <QQmlContext>
 #include "_cgo_export.h"
 

@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
 &{QDBusObjectPath QDBusObjectPath::QDBusObjectPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false false   QDBusObjectPath() [] }
-&{QDBusObjectPath QDBusObjectPath::QDBusObjectPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 3  QDBusObjectPath(QLatin1String path) [0xc821ae8260] }
-&{QDBusObjectPath QDBusObjectPath::QDBusObjectPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 4  QDBusObjectPath(const QString &path) [0xc821ae8420] }
-&{QDBusObjectPath QDBusObjectPath::QDBusObjectPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 2  QDBusObjectPath(const char *path) [0xc821ae8600] }
+&{QDBusObjectPath QDBusObjectPath::QDBusObjectPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 3  QDBusObjectPath(QLatin1String path) [0xc821bd0060] }
+&{QDBusObjectPath QDBusObjectPath::QDBusObjectPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 4  QDBusObjectPath(const QString &path) [0xc821bd0220] }
+&{QDBusObjectPath QDBusObjectPath::QDBusObjectPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 2  QDBusObjectPath(const char *path) [0xc821bd0400] }
 &{path QDBusObjectPath::path commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  QString QString path() const [] }
-&{setPath QDBusObjectPath::setPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  void void setPath(const QString &path) [0xc821ae8940] }
+&{setPath QDBusObjectPath::setPath commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  void void setPath(const QString &path) [0xc821bd0740] }
 ########################################			ENUMS			########################################

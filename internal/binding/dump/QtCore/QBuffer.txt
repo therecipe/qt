@@ -1,20 +1,20 @@
 ########################################			FUNCTIONS			########################################
-&{QBuffer QBuffer::QBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non constructor false true 2  QBuffer(QByteArray *byteArray, QObject *parent) [0xc8202a50a0 0xc8202a5120] }
-&{QBuffer QBuffer::QBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non constructor false false   QBuffer(QObject *parent) [0xc8202a52e0] }
+&{QBuffer QBuffer::QBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non constructor false true 2  QBuffer(QByteArray *byteArray, QObject *parent) [0xc82027b0a0 0xc82027b120] }
+&{QBuffer QBuffer::QBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non constructor false false   QBuffer(QObject *parent) [0xc82027b2e0] }
 &{atEnd QBuffer::atEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  bool bool atEnd() const [] }
 &{buffer QBuffer::buffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non plain false false  QByteArray & QByteArray & buffer() [] }
 &{buffer QBuffer::buffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non plain false true 2 const QByteArray & const QByteArray & buffer() const [] }
 &{canReadLine QBuffer::canReadLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  bool bool canReadLine() const [] }
 &{close QBuffer::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  void void close() [] }
 &{data QBuffer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non plain false false  const QByteArray & const QByteArray & data() const [] }
-&{open QBuffer::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  bool bool open(OpenMode flags) [0xc8202ba0e0] }
+&{open QBuffer::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  bool bool open(OpenMode flags) [0xc8202900e0] }
 &{pos QBuffer::pos commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  qint64 qint64 pos() const [] }
-&{readData QBuffer::readData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  qint64 qint64 readData(char *data, qint64 len) [0xc8202ba360 0xc8202ba3e0] }
-&{seek QBuffer::seek commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  bool bool seek(qint64 pos) [0xc8202ba5a0] }
-&{setBuffer QBuffer::setBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non plain false false  void void setBuffer(QByteArray *byteArray) [0xc8202ba760] }
-&{setData QBuffer::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non plain false false  void void setData(const QByteArray &data) [0xc8202ba900] }
-&{setData QBuffer::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non plain false true 2 void void setData(const char *data, int size) [0xc8202baaa0 0xc8202bab20] }
+&{readData QBuffer::readData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  qint64 qint64 readData(char *data, qint64 len) [0xc820290360 0xc8202903e0] }
+&{seek QBuffer::seek commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  bool bool seek(qint64 pos) [0xc8202905a0] }
+&{setBuffer QBuffer::setBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non plain false false  void void setBuffer(QByteArray *byteArray) [0xc820290760] }
+&{setData QBuffer::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non plain false false  void void setData(const QByteArray &data) [0xc820290900] }
+&{setData QBuffer::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non plain false true 2 void void setData(const char *data, int size) [0xc820290aa0 0xc820290b20] }
 &{size QBuffer::size commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  qint64 qint64 size() const [] }
-&{writeData QBuffer::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  qint64 qint64 writeData(const char *data, qint64 len) [0xc8202badc0 0xc8202bae40] }
+&{writeData QBuffer::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h impure plain false false  qint64 qint64 writeData(const char *data, qint64 len) [0xc820290dc0 0xc820290e40] }
 &{~QBuffer QBuffer::~QBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qbuffer.h non destructor false false   ~QBuffer() [] }
 ########################################			ENUMS			########################################

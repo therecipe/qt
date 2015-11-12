@@ -1,11 +1,11 @@
 #include "qnmeapositioninfosource.h"
-#include <QModelIndex>
 #include <QIODevice>
-#include <QObject>
 #include <QMetaObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QObject>
 #include <QNmeaPositionInfoSource>
 #include "_cgo_export.h"
 

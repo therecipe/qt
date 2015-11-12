@@ -1,12 +1,12 @@
 #include "qgraphicsscale.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QMatrix4x4>
 #include <QVector>
 #include <QVector3D>
 #include <QObject>
+#include <QMatrix4x4>
+#include <QString>
+#include <QVariant>
 #include <QGraphicsScale>
 #include "_cgo_export.h"
 

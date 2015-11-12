@@ -1,13 +1,13 @@
 #include "qcameraexposure.h"
-#include <QMetaObject>
 #include <QObject>
-#include <QPointF>
+#include <QCamera>
 #include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QCamera>
+#include <QMetaObject>
+#include <QPointF>
 #include <QPoint>
+#include <QVariant>
 #include <QCameraExposure>
 #include "_cgo_export.h"
 

@@ -1,9 +1,9 @@
 #include "qsslkey.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QByteArray>
+#include <QString>
+#include <QVariant>
 #include <QSslKey>
 #include "_cgo_export.h"
 

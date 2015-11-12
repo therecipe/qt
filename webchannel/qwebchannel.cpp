@@ -1,11 +1,11 @@
 #include "qwebchannel.h"
-#include <QModelIndex>
-#include <QObject>
 #include <QMetaObject>
+#include <QObject>
 #include <QWebChannelAbstractTransport>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QWebChannel>
 #include "_cgo_export.h"
 

@@ -1,10 +1,10 @@
 #include "qsequentialanimationgroup.h"
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QAbstractAnimation>
-#include <QObject>
 #include <QSequentialAnimationGroup>
 #include "_cgo_export.h"
 

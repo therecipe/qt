@@ -1,8 +1,8 @@
 #include "qxmlparseexception.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
+#include <QVariant>
 #include <QXmlParseException>
 #include "_cgo_export.h"
 

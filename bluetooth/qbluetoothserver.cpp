@@ -1,10 +1,10 @@
 #include "qbluetoothserver.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QBluetoothServiceInfo>
-#include <QObject>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QBluetoothServiceInfo>
 #include <QBluetoothServer>
 #include "_cgo_export.h"
 

@@ -1,9 +1,9 @@
 #include "qexposeevent.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QRegion>
+#include <QString>
 #include <QExposeEvent>
 #include "_cgo_export.h"
 

@@ -1,13 +1,13 @@
 #include "qprocess.h"
+#include <QModelIndex>
+#include <QByteArray>
+#include <QObject>
+#include <QIODevice>
+#include <QProcessEnvironment>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QMetaObject>
-#include <QByteArray>
-#include <QString>
-#include <QProcessEnvironment>
-#include <QIODevice>
-#include <QObject>
 #include <QProcess>
 #include "_cgo_export.h"
 

@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
 &{mediaObject QMediaBindableInterface::mediaObject commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediabindableinterface.h pure plain false false  QMediaObject * QMediaObject * mediaObject() const [] }
-&{setMediaObject QMediaBindableInterface::setMediaObject commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediabindableinterface.h pure plain false false  bool bool setMediaObject(QMediaObject *object) [0xc822352ae0] }
+&{setMediaObject QMediaBindableInterface::setMediaObject commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediabindableinterface.h pure plain false false  bool bool setMediaObject(QMediaObject *object) [0xc8211993a0] }
 &{~QMediaBindableInterface QMediaBindableInterface::~QMediaBindableInterface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediabindableinterface.h impure destructor false false   ~QMediaBindableInterface() [] }
 ########################################			ENUMS			########################################

@@ -1,11 +1,11 @@
 #include "qmediacontent.h"
-#include <QNetworkRequest>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QMediaPlaylist>
+#include <QNetworkRequest>
 #include <QMediaResource>
+#include <QMediaPlaylist>
+#include <QString>
+#include <QVariant>
 #include <QMediaContent>
 #include "_cgo_export.h"
 

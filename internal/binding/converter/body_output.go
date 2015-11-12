@@ -40,7 +40,7 @@ func GoBodyOutputFailed(value string, f *parser.Function) string {
 		}
 		return ""
 
-	case "T":
+	case "T", "JavaVM", "jclass":
 		return "nil"
 	}
 

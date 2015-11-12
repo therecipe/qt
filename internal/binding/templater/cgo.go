@@ -9,13 +9,22 @@ import (
 )
 
 func CopyCgo(module string) {
-	createCgoDarwin(module)
-	createCgoWindows(module)
-	createCgoLinux(module)
+
+	if !strings.Contains(module, "droid") {
+		createCgoDarwin(module)
+		createCgoWindows(module)
+		createCgoLinux(module)
+	}
 
 	switch runtime.GOOS {
 	case "darwin", "linux":
-		createCgoAndroidDarwin(module)
+		{
+			createCgoandroidDarwinAndLinux(module)
+		}
+	case "windows":
+		{
+			createCgoandroidWindows(module)
+		}
 	}
 }
 
@@ -64,7 +73,7 @@ func createCgoWindows(module string) {
 	tmp += fmt.Sprintf("package %v\n", strings.ToLower(module))
 	tmp += "/*\n"
 
-	tmp += "#cgo CPPFLAGS: -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra -fexceptions -mthreads\n"
+	tmp += "#cgo CPPFLAGS: -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra\n"
 
 	tmp += "#cgo CPPFLAGS: -DUNICODE -DQT_NO_DEBUG"
 	for _, m := range append(LibDeps[module], module) {
@@ -80,14 +89,16 @@ func createCgoWindows(module string) {
 	}
 	tmp += "\n\n"
 
-	tmp += "#cgo LDFLAGS: -Wl,-s -Wl,-subsystem,windows -mthreads\n"
+	tmp += "#cgo LDFLAGS: -Wl,-s -Wl,-subsystem,windows -mthreads -Wl,--allow-multiple-definition\n"
 
-	tmp += "#cgo LDFLAGS: -LC:/Qt/Qt5.5.1/5.5/mingw492_32/bin"
+	tmp += "#cgo LDFLAGS: -LC:/Qt/Qt5.5.1/5.5/mingw492_32/lib"
 	for _, m := range append(LibDeps[module], module) {
 		tmp += fmt.Sprintf(" -lQt5%v", m)
 	}
 
-	tmp += "\n*/\n"
+	tmp += " -lmingw32 -lqtmain -lshell32\n"
+	tmp += "*/\n"
+
 	tmp += fmt.Sprintf("import \"C\"\n")
 
 	utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_windows_386.go"), tmp)
@@ -131,7 +142,7 @@ func createCgoLinux(module string) {
 	utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_amd64.go"), strings.Replace(tmp, "gcc", "gcc_64", -1))
 }
 
-func createCgoAndroidDarwin(module string) {
+func createCgoandroidDarwinAndLinux(module string) {
 	var tmp string
 
 	tmp += fmt.Sprintf("package %v\n", strings.ToLower(module))
@@ -156,6 +167,43 @@ func createCgoAndroidDarwin(module string) {
 	tmp += "#cgo LDFLAGS: --sysroot=/opt/android-ndk/platforms/android-9/arch-arm/ -Wl,-rpath=/usr/local/Qt5.5.1/5.5/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition\n"
 
 	tmp += "#cgo LDFLAGS: -L/opt/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android-ndk/platforms/android-9/arch-arm//usr/lib -L/usr/local/Qt5.5.1/5.5/android_armv7/lib -L/opt/android/ndk/sources/cxx-stl/gnu-libstdc++/4.8/libs/armeabi-v7a -L/opt/android/ndk/platforms/android-9/arch-arm//usr/lib"
+	for _, m := range append(LibDeps[module], module) {
+		tmp += fmt.Sprintf(" -lQt5%v", m)
+	}
+
+	tmp += " -lGLESv2 -lgnustl_shared -llog -lz -lm -ldl -lc -lgcc\n"
+
+	tmp += "*/\n"
+	tmp += fmt.Sprintf("import \"C\"\n")
+
+	utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_android_arm.go"), tmp)
+}
+
+func createCgoandroidWindows(module string) {
+	var tmp string
+
+	tmp += fmt.Sprintf("package %v\n", strings.ToLower(module))
+	tmp += "/*\n"
+
+	tmp += "#cgo CPPFLAGS: -Wno-psabi -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -ffunction-sections -funwind-tables -fstack-protector -fno-short-enums -DANDROID -Wa,--noexecstack -fno-builtin-memmove -Os -fomit-frame-pointer -fno-strict-aliasing -finline-limit=64 -mthumb -Wall -Wno-psabi -W -D_REENTRANT\n"
+
+	tmp += "#cgo CPPFLAGS: -DQT_NO_DEBUG"
+	for _, m := range append(LibDeps[module], module) {
+		tmp += fmt.Sprintf(" -DQT_%v_LIB", strings.ToUpper(m))
+	}
+	tmp += "\n"
+
+	tmp += "#cgo CPPFLAGS: -IC:/Qt/Qt5.5.1/5.5/android_armv7/include -isystem C:/android/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -isystem C:/android/android-ndk/platforms/android-9/arch-arm/usr/include -IC:/Qt/Qt5.5.1/5.5/android_armv7/mkspecs/android-g++\n"
+
+	tmp += "#cgo CPPFLAGS:"
+	for _, m := range append(LibDeps[module], module) {
+		tmp += fmt.Sprintf(" -IC:/Qt/Qt5.5.1/5.5/android_armv7/include/Qt%v", m)
+	}
+	tmp += "\n\n"
+
+	tmp += "#cgo LDFLAGS: --sysroot=C:/android/android-ndk/platforms/android-9/arch-arm/ -Wl,-rpath=C:/Qt/Qt5.5.1/5.5/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition\n"
+
+	tmp += "#cgo LDFLAGS: -LC:/android/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -LC:/android/android-ndk/platforms/android-9/arch-arm//usr/lib -LC:/Qt/Qt5.5.1/5.5/android_armv7/lib -LC:/android/android/ndk/sources/cxx-stl/gnu-libstdc++/4.8/libs/armeabi-v7a -LC:/android/android/ndk/platforms/android-9/arch-arm//usr/lib"
 	for _, m := range append(LibDeps[module], module) {
 		tmp += fmt.Sprintf(" -lQt5%v", m)
 	}

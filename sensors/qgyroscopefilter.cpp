@@ -1,10 +1,10 @@
 #include "qgyroscopefilter.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QGyroscopeReading>
 #include <QGyroscope>
-#include <QString>
+#include <QGyroscopeReading>
 #include <QGyroscopeFilter>
 #include "_cgo_export.h"
 

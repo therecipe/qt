@@ -1,7 +1,7 @@
 #include "qmactoolbar.h"
 #include <QIcon>
-#include <QObject>
 #include <QWindow>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>

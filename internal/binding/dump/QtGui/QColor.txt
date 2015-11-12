@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{convertTo QColor::convertTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.cpp non plain false false  QColor QColor convertTo(Spec colorSpec) const [0xc821d876c0] }
+&{convertTo QColor::convertTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.cpp non plain false false  QColor QColor convertTo(Spec colorSpec) const [0xc8221577a0] }
 &{rgb QColor::rgb commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.cpp non plain false false  QRgb QRgb rgb() const [] }
 &{rgba QColor::rgba commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.cpp non plain false false  QRgb QRgb rgba() const [] }
-&{setRgbF QColor::setRgbF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.cpp non plain false false  void void setRgbF(qreal r, qreal g, qreal b, qreal a) [0xc821d87b80 0xc821d87c00 0xc821d87c80 0xc821d87d00] }
+&{setRgbF QColor::setRgbF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.cpp non plain false false  void void setRgbF(qreal r, qreal g, qreal b, qreal a) [0xc822157c60 0xc822157ce0 0xc822157d60 0xc822157de0] }
 &{QColor QColor::QColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false false   QColor() [] }
-&{QColor QColor::QColor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false true 3  QColor(QRgb color) [0xc822bb2540] }
-&{QColor QColor::QColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false true 8  QColor(Qt::GlobalColor color) [0xc822bb2700] }
-&{QColor QColor::QColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false true 6  QColor(const QColor &color) [0xc822bb28e0] }
-&{QColor QColor::QColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false true 4  QColor(const QString &name) [0xc822bb2aa0] }
-&{QColor QColor::QColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false true 5  QColor(const char *name) [0xc822bb2c60] }
-&{QColor QColor::QColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false true 2  QColor(int r, int g, int b, int a) [0xc822bb2dc0 0xc822bb2e40 0xc822bb2ec0 0xc822bb2f40] }
+&{QColor QColor::QColor commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false true 3  QColor(QRgb color) [0xc82216e620] }
+&{QColor QColor::QColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false true 8  QColor(Qt::GlobalColor color) [0xc82216e7e0] }
+&{QColor QColor::QColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false true 6  QColor(const QColor &color) [0xc82216e9c0] }
+&{QColor QColor::QColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false true 4  QColor(const QString &name) [0xc82216eb80] }
+&{QColor QColor::QColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false true 5  QColor(const char *name) [0xc82216ed40] }
+&{QColor QColor::QColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non constructor false true 2  QColor(int r, int g, int b, int a) [0xc82216eea0 0xc82216ef20 0xc82216efa0 0xc82216f020] }
 &{alpha QColor::alpha commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  int int alpha() const [] }
 &{alphaF QColor::alphaF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  qreal qreal alphaF() const [] }
 &{black QColor::black commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  int int black() const [] }
@@ -19,25 +19,25 @@
 &{colorNames QColor::colorNames commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QStringList QStringList colorNames() [] }
 &{cyan QColor::cyan commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  int int cyan() const [] }
 &{cyanF QColor::cyanF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  qreal qreal cyanF() const [] }
-&{darker QColor::darker commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  QColor QColor darker(int factor) const [0xc822bb3be0] }
-&{fromCmyk QColor::fromCmyk commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromCmyk(int c, int m, int y, int k, int a) [0xc822bb3d40 0xc822bb3dc0 0xc822bb3e40 0xc822bb3ec0 0xc822bb3f60] }
-&{fromCmykF QColor::fromCmykF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromCmykF(qreal c, qreal m, qreal y, qreal k, qreal a) [0xc822bc4120 0xc822bc41a0 0xc822bc4220 0xc822bc42a0 0xc822bc4340] }
-&{fromHsl QColor::fromHsl commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromHsl(int h, int s, int l, int a) [0xc822bc44a0 0xc822bc4520 0xc822bc45a0 0xc822bc4620] }
-&{fromHslF QColor::fromHslF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromHslF(qreal h, qreal s, qreal l, qreal a) [0xc822bc4780 0xc822bc4800 0xc822bc4880 0xc822bc4900] }
-&{fromHsv QColor::fromHsv commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromHsv(int h, int s, int v, int a) [0xc822bc4a60 0xc822bc4ae0 0xc822bc4b60 0xc822bc4be0] }
-&{fromHsvF QColor::fromHsvF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromHsvF(qreal h, qreal s, qreal v, qreal a) [0xc822bc4d40 0xc822bc4dc0 0xc822bc4e40 0xc822bc4ec0] }
-&{fromRgb QColor::fromRgb commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromRgb(QRgb rgb) [0xc822bc5080] }
-&{fromRgb QColor::fromRgb commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true true 2 QColor QColor fromRgb(int r, int g, int b, int a) [0xc822bc51e0 0xc822bc5260 0xc822bc52e0 0xc822bc5360] }
-&{fromRgbF QColor::fromRgbF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromRgbF(qreal r, qreal g, qreal b, qreal a) [0xc822bc54e0 0xc822bc5560 0xc822bc55e0 0xc822bc5660] }
-&{fromRgba QColor::fromRgba commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromRgba(QRgb rgba) [0xc822bc5820] }
-&{getCmyk QColor::getCmyk commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getCmyk(int *c, int *m, int *y, int *k, int *a) [0xc822bc5980 0xc822bc5a00 0xc822bc5a80 0xc822bc5b00 0xc822bc5ba0] }
-&{getCmykF QColor::getCmykF commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getCmykF(qreal *c, qreal *m, qreal *y, qreal *k, qreal *a) [0xc822bc5d00 0xc822bc5d80 0xc822bc5e00 0xc822bc5e80 0xc822bc5f20] }
-&{getHsl QColor::getHsl commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getHsl(int *h, int *s, int *l, int *a) const [0xc822bd8080 0xc822bd8100 0xc822bd8180 0xc822bd8200] }
-&{getHslF QColor::getHslF commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getHslF(qreal *h, qreal *s, qreal *l, qreal *a) const [0xc822bd8360 0xc822bd83e0 0xc822bd8460 0xc822bd84e0] }
-&{getHsv QColor::getHsv commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getHsv(int *h, int *s, int *v, int *a) const [0xc822bd8640 0xc822bd86c0 0xc822bd8740 0xc822bd87c0] }
-&{getHsvF QColor::getHsvF commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getHsvF(qreal *h, qreal *s, qreal *v, qreal *a) const [0xc822bd8920 0xc822bd89a0 0xc822bd8a20 0xc822bd8aa0] }
-&{getRgb QColor::getRgb commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getRgb(int *r, int *g, int *b, int *a) const [0xc822bd8c00 0xc822bd8c80 0xc822bd8d00 0xc822bd8d80] }
-&{getRgbF QColor::getRgbF commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getRgbF(qreal *r, qreal *g, qreal *b, qreal *a) const [0xc822bd8ee0 0xc822bd8f60 0xc822bd8fe0 0xc822bd9060] }
+&{darker QColor::darker commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  QColor QColor darker(int factor) const [0xc82216fcc0] }
+&{fromCmyk QColor::fromCmyk commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromCmyk(int c, int m, int y, int k, int a) [0xc82216fe20 0xc82216fea0 0xc82216ff20 0xc82216ffa0 0xc822180040] }
+&{fromCmykF QColor::fromCmykF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromCmykF(qreal c, qreal m, qreal y, qreal k, qreal a) [0xc822180200 0xc822180280 0xc822180300 0xc822180380 0xc822180420] }
+&{fromHsl QColor::fromHsl commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromHsl(int h, int s, int l, int a) [0xc822180580 0xc822180600 0xc822180680 0xc822180700] }
+&{fromHslF QColor::fromHslF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromHslF(qreal h, qreal s, qreal l, qreal a) [0xc822180860 0xc8221808e0 0xc822180960 0xc8221809e0] }
+&{fromHsv QColor::fromHsv commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromHsv(int h, int s, int v, int a) [0xc822180b40 0xc822180bc0 0xc822180c40 0xc822180cc0] }
+&{fromHsvF QColor::fromHsvF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromHsvF(qreal h, qreal s, qreal v, qreal a) [0xc822180e20 0xc822180ea0 0xc822180f20 0xc822180fa0] }
+&{fromRgb QColor::fromRgb commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromRgb(QRgb rgb) [0xc822181160] }
+&{fromRgb QColor::fromRgb commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true true 2 QColor QColor fromRgb(int r, int g, int b, int a) [0xc8221812c0 0xc822181340 0xc8221813c0 0xc822181440] }
+&{fromRgbF QColor::fromRgbF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromRgbF(qreal r, qreal g, qreal b, qreal a) [0xc8221815c0 0xc822181640 0xc8221816c0 0xc822181740] }
+&{fromRgba QColor::fromRgba commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  QColor QColor fromRgba(QRgb rgba) [0xc822181900] }
+&{getCmyk QColor::getCmyk commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getCmyk(int *c, int *m, int *y, int *k, int *a) [0xc822181a60 0xc822181ae0 0xc822181b60 0xc822181be0 0xc822181c80] }
+&{getCmykF QColor::getCmykF commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getCmykF(qreal *c, qreal *m, qreal *y, qreal *k, qreal *a) [0xc822181de0 0xc822181e60 0xc822181ee0 0xc822181f60 0xc822194000] }
+&{getHsl QColor::getHsl commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getHsl(int *h, int *s, int *l, int *a) const [0xc822194160 0xc8221941e0 0xc822194260 0xc8221942e0] }
+&{getHslF QColor::getHslF commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getHslF(qreal *h, qreal *s, qreal *l, qreal *a) const [0xc822194440 0xc8221944c0 0xc822194540 0xc8221945c0] }
+&{getHsv QColor::getHsv commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getHsv(int *h, int *s, int *v, int *a) const [0xc822194720 0xc8221947a0 0xc822194820 0xc8221948a0] }
+&{getHsvF QColor::getHsvF commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getHsvF(qreal *h, qreal *s, qreal *v, qreal *a) const [0xc822194a00 0xc822194a80 0xc822194b00 0xc822194b80] }
+&{getRgb QColor::getRgb commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getRgb(int *r, int *g, int *b, int *a) const [0xc822194ce0 0xc822194d60 0xc822194de0 0xc822194e60] }
+&{getRgbF QColor::getRgbF commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void getRgbF(qreal *r, qreal *g, qreal *b, qreal *a) const [0xc822194fc0 0xc822195040 0xc8221950c0 0xc822195140] }
 &{green QColor::green commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  int int green() const [] }
 &{greenF QColor::greenF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  qreal qreal greenF() const [] }
 &{hslHue QColor::hslHue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  int int hslHue() const [] }
@@ -51,41 +51,41 @@
 &{hue QColor::hue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  int int hue() const [] }
 &{hueF QColor::hueF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  qreal qreal hueF() const [] }
 &{isValid QColor::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  bool bool isValid() const [] }
-&{isValidColor QColor::isValidColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  bool bool isValidColor(const QString &name) [0xc822bd9fa0] }
-&{lighter QColor::lighter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  QColor QColor lighter(int factor) const [0xc822bee320] }
+&{isValidColor QColor::isValidColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain true false  bool bool isValidColor(const QString &name) [0xc8221ac080] }
+&{lighter QColor::lighter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  QColor QColor lighter(int factor) const [0xc8221ac400] }
 &{lightness QColor::lightness commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  int int lightness() const [] }
 &{lightnessF QColor::lightnessF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  qreal qreal lightnessF() const [] }
 &{magenta QColor::magenta commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  int int magenta() const [] }
 &{magentaF QColor::magentaF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  qreal qreal magentaF() const [] }
 &{name QColor::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  QString QString name() const [] }
-&{name QColor::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false true 2 QString QString name(NameFormat format) const [0xc822bee9a0] }
+&{name QColor::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false true 2 QString QString name(NameFormat format) const [0xc8221aca80] }
 &{operator QVariant QColor::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false   operator QVariant() const [] }
-&{operator!= QColor::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  bool bool operator!=(const QColor &color) const [0xc822beed00] }
-&{operator= QColor::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false true 2 QColor & QColor & operator=(Qt::GlobalColor color) [0xc822beeec0] }
-&{operator= QColor::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  QColor & QColor & operator=(const QColor &color) [0xc822bef080] }
-&{operator== QColor::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  bool bool operator==(const QColor &color) const [0xc822bef240] }
+&{operator!= QColor::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  bool bool operator!=(const QColor &color) const [0xc8221acde0] }
+&{operator= QColor::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false true 2 QColor & QColor & operator=(Qt::GlobalColor color) [0xc8221acfa0] }
+&{operator= QColor::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  QColor & QColor & operator=(const QColor &color) [0xc8221ad160] }
+&{operator== QColor::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  bool bool operator==(const QColor &color) const [0xc8221ad320] }
 &{red QColor::red commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  int int red() const [] }
 &{redF QColor::redF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  qreal qreal redF() const [] }
 &{saturation QColor::saturation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  int int saturation() const [] }
 &{saturationF QColor::saturationF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  qreal qreal saturationF() const [] }
-&{setAlpha QColor::setAlpha commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setAlpha(int alpha) [0xc822bef7a0] }
-&{setAlphaF QColor::setAlphaF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setAlphaF(qreal alpha) [0xc822bef9c0] }
-&{setBlue QColor::setBlue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setBlue(int blue) [0xc822befb80] }
-&{setBlueF QColor::setBlueF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setBlueF(qreal blue) [0xc822befd40] }
-&{setCmyk QColor::setCmyk commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setCmyk(int c, int m, int y, int k, int a) [0xc822befea0 0xc822beff20 0xc822beffa0 0xc822c02020 0xc822c020c0] }
-&{setCmykF QColor::setCmykF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setCmykF(qreal c, qreal m, qreal y, qreal k, qreal a) [0xc822c02220 0xc822c022a0 0xc822c02320 0xc822c023a0 0xc822c02440] }
-&{setGreen QColor::setGreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setGreen(int green) [0xc822c02600] }
-&{setGreenF QColor::setGreenF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setGreenF(qreal green) [0xc822c02820] }
-&{setHsl QColor::setHsl commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setHsl(int h, int s, int l, int a) [0xc822c02980 0xc822c02a00 0xc822c02a80 0xc822c02b00] }
-&{setHslF QColor::setHslF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setHslF(qreal h, qreal s, qreal l, qreal a) [0xc822c02c60 0xc822c02ce0 0xc822c02d60 0xc822c02de0] }
-&{setHsv QColor::setHsv commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setHsv(int h, int s, int v, int a) [0xc822c02f40 0xc822c02fc0 0xc822c03040 0xc822c030c0] }
-&{setHsvF QColor::setHsvF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setHsvF(qreal h, qreal s, qreal v, qreal a) [0xc822c03220 0xc822c032a0 0xc822c03320 0xc822c033a0] }
-&{setNamedColor QColor::setNamedColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setNamedColor(const QString &name) [0xc822c03560] }
-&{setRed QColor::setRed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setRed(int red) [0xc822c03720] }
-&{setRedF QColor::setRedF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setRedF(qreal red) [0xc822c038e0] }
-&{setRgb QColor::setRgb commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false true 2 void void setRgb(QRgb rgb) [0xc822c03aa0] }
-&{setRgb QColor::setRgb commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setRgb(int r, int g, int b, int a) [0xc822c03c00 0xc822c03c80 0xc822c03d00 0xc822c03d80] }
-&{setRgba QColor::setRgba commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setRgba(QRgb rgba) [0xc822c03f40] }
+&{setAlpha QColor::setAlpha commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setAlpha(int alpha) [0xc8221ad880] }
+&{setAlphaF QColor::setAlphaF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setAlphaF(qreal alpha) [0xc8221adaa0] }
+&{setBlue QColor::setBlue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setBlue(int blue) [0xc8221adc60] }
+&{setBlueF QColor::setBlueF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setBlueF(qreal blue) [0xc8221ade20] }
+&{setCmyk QColor::setCmyk commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setCmyk(int c, int m, int y, int k, int a) [0xc8221adf80 0xc8221c0000 0xc8221c0080 0xc8221c0100 0xc8221c01a0] }
+&{setCmykF QColor::setCmykF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setCmykF(qreal c, qreal m, qreal y, qreal k, qreal a) [0xc8221c0300 0xc8221c0380 0xc8221c0400 0xc8221c0480 0xc8221c0520] }
+&{setGreen QColor::setGreen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setGreen(int green) [0xc8221c06e0] }
+&{setGreenF QColor::setGreenF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setGreenF(qreal green) [0xc8221c0900] }
+&{setHsl QColor::setHsl commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setHsl(int h, int s, int l, int a) [0xc8221c0a60 0xc8221c0ae0 0xc8221c0b60 0xc8221c0be0] }
+&{setHslF QColor::setHslF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setHslF(qreal h, qreal s, qreal l, qreal a) [0xc8221c0d40 0xc8221c0dc0 0xc8221c0e40 0xc8221c0ec0] }
+&{setHsv QColor::setHsv commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setHsv(int h, int s, int v, int a) [0xc8221c1020 0xc8221c10a0 0xc8221c1120 0xc8221c11a0] }
+&{setHsvF QColor::setHsvF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setHsvF(qreal h, qreal s, qreal v, qreal a) [0xc8221c1300 0xc8221c1380 0xc8221c1400 0xc8221c1480] }
+&{setNamedColor QColor::setNamedColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setNamedColor(const QString &name) [0xc8221c1640] }
+&{setRed QColor::setRed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setRed(int red) [0xc8221c1800] }
+&{setRedF QColor::setRedF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setRedF(qreal red) [0xc8221c19c0] }
+&{setRgb QColor::setRgb commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false true 2 void void setRgb(QRgb rgb) [0xc8221c1b80] }
+&{setRgb QColor::setRgb commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setRgb(int r, int g, int b, int a) [0xc8221c1ce0 0xc8221c1d60 0xc8221c1de0 0xc8221c1e60] }
+&{setRgba QColor::setRgba commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  void void setRgba(QRgb rgba) [0xc8221d2020] }
 &{spec QColor::spec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  Spec Spec spec() const [] }
 &{toCmyk QColor::toCmyk commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  QColor QColor toCmyk() const [] }
 &{toHsl QColor::toHsl commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  QColor QColor toHsl() const [] }
@@ -96,5 +96,5 @@
 &{yellow QColor::yellow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  int int yellow() const [] }
 &{yellowF QColor::yellowF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qcolor.h non plain false false  qreal qreal yellowF() const [] }
 ########################################			ENUMS			########################################
-&{NameFormat QColor::NameFormat commendable public  [0xc821d87f00 0xc821d87f80] false}
-&{Spec QColor::Spec commendable public  [0xc822bb20e0 0xc822bb2160 0xc822bb21e0 0xc822bb2260 0xc822bb2300] false}
+&{NameFormat QColor::NameFormat commendable public  [0xc822157fe0 0xc82216e060] false}
+&{Spec QColor::Spec commendable public  [0xc82216e1c0 0xc82216e240 0xc82216e2c0 0xc82216e340 0xc82216e3e0] false}

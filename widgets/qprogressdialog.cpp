@@ -1,14 +1,14 @@
 #include "qprogressdialog.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QPushButton>
-#include <QMetaObject>
 #include <QLabel>
+#include <QString>
 #include <QVariant>
+#include <QModelIndex>
 #include <QProgressBar>
 #include <QWidget>
+#include <QUrl>
 #include <QObject>
-#include <QString>
+#include <QPushButton>
+#include <QMetaObject>
 #include <QProgressDialog>
 #include "_cgo_export.h"
 

@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
 &{QPair QPair::QPair commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non constructor false false   QPair() [] }
-&{QPair QPair::QPair commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non constructor false true 4  QPair(QPair<TT1, TT2> &&p) [0xc820e1c440] }
-&{QPair QPair::QPair commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non constructor false true 3  QPair(const QPair<TT1, TT2> &p) [0xc820e1c660] }
-&{QPair QPair::QPair commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non constructor false true 2  QPair(const T1 &value1, const T2 &value2) [0xc820e1c800 0xc820e1c880] }
-&{operator= QPair::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non plain false true 2 QPair & QPair & operator=(QPair<TT1, TT2> &&p) [0xc820e1ca20] }
-&{operator= QPair::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non plain false false  QPair & QPair & operator=(const QPair<TT1, TT2> &p) [0xc820e1cbe0] }
-&{swap QPair::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non plain false false  void void swap(QPair &other) [0xc820e1cdc0] }
+&{QPair QPair::QPair commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non constructor false true 4  QPair(QPair<TT1, TT2> &&p) [0xc820de32a0] }
+&{QPair QPair::QPair commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non constructor false true 3  QPair(const QPair<TT1, TT2> &p) [0xc820de34c0] }
+&{QPair QPair::QPair commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non constructor false true 2  QPair(const T1 &value1, const T2 &value2) [0xc820de3660 0xc820de36e0] }
+&{operator= QPair::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non plain false true 2 QPair & QPair & operator=(QPair<TT1, TT2> &&p) [0xc820de3880] }
+&{operator= QPair::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non plain false false  QPair & QPair & operator=(const QPair<TT1, TT2> &p) [0xc820de3a40] }
+&{swap QPair::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qpair.h non plain false false  void void swap(QPair &other) [0xc820de3c20] }
 ########################################			ENUMS			########################################

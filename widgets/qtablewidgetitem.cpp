@@ -1,14 +1,14 @@
 #include "qtablewidgetitem.h"
+#include <QDataStream>
+#include <QFont>
+#include <QIcon>
+#include <QModelIndex>
 #include <QVariant>
 #include <QUrl>
-#include <QDataStream>
-#include <QBrush>
 #include <QTableWidget>
-#include <QString>
-#include <QIcon>
-#include <QFont>
+#include <QBrush>
 #include <QSize>
-#include <QModelIndex>
+#include <QString>
 #include <QTableWidgetItem>
 #include "_cgo_export.h"
 

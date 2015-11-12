@@ -1,13 +1,13 @@
 #include "qundoview.h"
-#include <QVariant>
+#include <QUndoStack>
+#include <QIcon>
+#include <QUndoGroup>
+#include <QMetaObject>
 #include <QUrl>
 #include <QModelIndex>
-#include <QUndoStack>
-#include <QMetaObject>
 #include <QWidget>
 #include <QString>
-#include <QUndoGroup>
-#include <QIcon>
+#include <QVariant>
 #include <QUndoView>
 #include "_cgo_export.h"
 

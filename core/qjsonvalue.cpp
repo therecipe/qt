@@ -1,11 +1,11 @@
 #include "qjsonvalue.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QModelIndex>
 #include <QLatin1String>
 #include <QJsonArray>
 #include <QJsonObject>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
 #include <QJsonValue>
 #include "_cgo_export.h"
 

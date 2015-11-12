@@ -1,10 +1,10 @@
 #include "qpen.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QColor>
 #include <QBrush>
+#include <QColor>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QPen>
 #include "_cgo_export.h"
 

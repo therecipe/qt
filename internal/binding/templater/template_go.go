@@ -99,7 +99,11 @@ func preambleGo(className, input string) string {
 	var tmp string
 
 	tmp += fmt.Sprintf("package %v\n", shortModule(parser.ClassMap[className].Module))
-	tmp += fmt.Sprintf("//#include \"%v.h\"\n", strings.ToLower(className))
+	if parser.ClassMap[className].Module == "androidextras" {
+		tmp += fmt.Sprintf("//#include \"%v_android.h\"\n", strings.ToLower(className))
+	} else {
+		tmp += fmt.Sprintf("//#include \"%v.h\"\n", strings.ToLower(className))
+	}
 	tmp += "import \"C\"\n"
 	tmp += "import (\n"
 

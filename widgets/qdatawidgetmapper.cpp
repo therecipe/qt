@@ -1,14 +1,14 @@
 #include "qdatawidgetmapper.h"
-#include <QObject>
-#include <QByteArray>
-#include <QWidget>
-#include <QString>
-#include <QVariant>
-#include <QAbstractItemModel>
-#include <QMetaObject>
 #include <QUrl>
 #include <QModelIndex>
 #include <QAbstractItemDelegate>
+#include <QMetaObject>
+#include <QObject>
+#include <QAbstractItemModel>
+#include <QString>
+#include <QVariant>
+#include <QWidget>
+#include <QByteArray>
 #include <QDataWidgetMapper>
 #include "_cgo_export.h"
 

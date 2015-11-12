@@ -1,10 +1,10 @@
 #include "qqmlpropertymap.h"
+#include <QObject>
+#include <QQmlProperty>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QQmlProperty>
 #include <QQmlPropertyMap>
 #include "_cgo_export.h"
 

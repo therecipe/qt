@@ -1,10 +1,10 @@
 #include "qgraphicsscenedragdropevent.h"
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
 #include <QMimeData>
 #include <QGraphicsScene>
 #include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QGraphicsSceneDragDropEvent>
 #include "_cgo_export.h"
 

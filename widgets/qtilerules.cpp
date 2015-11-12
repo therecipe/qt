@@ -1,8 +1,8 @@
 #include "qtilerules.h"
+#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QTileRules>
 #include "_cgo_export.h"
 

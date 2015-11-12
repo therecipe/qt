@@ -1,8 +1,8 @@
 #include "qaudiobuffer.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
 #include <QAudioBuffer>
 #include "_cgo_export.h"
 

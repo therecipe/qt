@@ -1,8 +1,8 @@
 #include "qreadwritelock.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QReadWriteLock>
 #include "_cgo_export.h"
 

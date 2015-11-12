@@ -1,7 +1,7 @@
 #include "qcameraimagecapturecontrol.h"
 #include <QCameraImageCapture>
-#include <QObject>
 #include <QCamera>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>

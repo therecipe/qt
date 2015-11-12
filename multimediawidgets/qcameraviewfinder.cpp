@@ -1,10 +1,10 @@
 #include "qcameraviewfinder.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QCamera>
 #include <QWidget>
+#include <QString>
+#include <QVariant>
 #include <QCameraViewfinder>
 #include "_cgo_export.h"
 

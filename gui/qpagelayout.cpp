@@ -1,11 +1,11 @@
 #include "qpagelayout.h"
-#include <QMargins>
 #include <QMarginsF>
-#include <QPageSize>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QPageSize>
+#include <QMargins>
 #include <QPageLayout>
 #include "_cgo_export.h"
 

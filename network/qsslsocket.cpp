@@ -1,15 +1,15 @@
 #include "qsslsocket.h"
-#include <QString>
-#include <QVariant>
 #include <QSslCertificate>
+#include <QSslKey>
+#include <QObject>
+#include <QVariant>
 #include <QSslPreSharedKeyAuthenticator>
+#include <QMetaObject>
+#include <QAbstractSocket>
 #include <QSslConfiguration>
+#include <QString>
 #include <QUrl>
 #include <QModelIndex>
-#include <QAbstractSocket>
-#include <QSslKey>
-#include <QMetaObject>
-#include <QObject>
 #include <QSslSocket>
 #include "_cgo_export.h"
 

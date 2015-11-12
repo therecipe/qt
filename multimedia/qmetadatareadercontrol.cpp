@@ -1,9 +1,9 @@
 #include "qmetadatareadercontrol.h"
+#include <QModelIndex>
 #include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QMetaDataReaderControl>
 #include "_cgo_export.h"
 

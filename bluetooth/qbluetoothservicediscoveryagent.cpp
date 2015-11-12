@@ -1,12 +1,12 @@
 #include "qbluetoothservicediscoveryagent.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QBluetoothUuid>
-#include <QObject>
 #include <QBluetoothAddress>
 #include <QMetaObject>
+#include <QBluetoothUuid>
+#include <QObject>
+#include <QString>
 #include <QBluetoothServiceDiscoveryAgent>
 #include "_cgo_export.h"
 

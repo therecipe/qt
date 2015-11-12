@@ -1,11 +1,11 @@
 #include "qtextbrowser.h"
+#include <QWidget>
 #include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMetaObject>
-#include <QWidget>
 #include <QTextBrowser>
 #include "_cgo_export.h"
 

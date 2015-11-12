@@ -1,10 +1,10 @@
 #include "qdbusinterface.h"
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QDBusConnection>
+#include <QObject>
 #include <QDBusInterface>
 #include "_cgo_export.h"
 

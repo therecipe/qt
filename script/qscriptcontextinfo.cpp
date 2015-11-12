@@ -1,9 +1,9 @@
 #include "qscriptcontextinfo.h"
+#include <QUrl>
+#include <QModelIndex>
 #include <QScriptContext>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QScriptContextInfo>
 #include "_cgo_export.h"
 

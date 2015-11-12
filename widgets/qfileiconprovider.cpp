@@ -1,10 +1,10 @@
 #include "qfileiconprovider.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QFile>
 #include <QFileInfo>
-#include <QString>
 #include <QFileIconProvider>
 #include "_cgo_export.h"
 

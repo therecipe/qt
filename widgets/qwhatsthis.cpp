@@ -1,11 +1,11 @@
 #include "qwhatsthis.h"
 #include <QObject>
+#include <QPoint>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QWidget>
-#include <QPoint>
 #include <QWhatsThis>
 #include "_cgo_export.h"
 

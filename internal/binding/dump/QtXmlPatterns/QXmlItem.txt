@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
 &{QXmlItem QXmlItem::QXmlItem commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non constructor false false   QXmlItem() [] }
-&{QXmlItem QXmlItem::QXmlItem commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non constructor false true 4  QXmlItem(const QVariant &atomicValue) [0xc821bff960] }
-&{QXmlItem QXmlItem::QXmlItem commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non constructor false true 2  QXmlItem(const QXmlItem &other) [0xc821bffca0] }
-&{QXmlItem QXmlItem::QXmlItem commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non constructor false true 3  QXmlItem(const QXmlNodeModelIndex &node) [0xc821bfffa0] }
+&{QXmlItem QXmlItem::QXmlItem commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non constructor false true 4  QXmlItem(const QVariant &atomicValue) [0xc82348db60] }
+&{QXmlItem QXmlItem::QXmlItem commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non constructor false true 2  QXmlItem(const QXmlItem &other) [0xc82347e040] }
+&{QXmlItem QXmlItem::QXmlItem commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non constructor false true 3  QXmlItem(const QXmlNodeModelIndex &node) [0xc82347e4a0] }
 &{isAtomicValue QXmlItem::isAtomicValue commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  bool bool isAtomicValue() const [] }
 &{isNode QXmlItem::isNode commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  bool bool isNode() const [] }
 &{isNull QXmlItem::isNull commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  bool bool isNull() const [] }
-&{operator= QXmlItem::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  QXmlItem & QXmlItem & operator=(const QXmlItem &other) [0xc82219ade0] }
+&{operator= QXmlItem::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  QXmlItem & QXmlItem & operator=(const QXmlItem &other) [0xc82347f360] }
 &{toAtomicValue QXmlItem::toAtomicValue commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  QVariant QVariant toAtomicValue() const [] }
 &{toNodeModelIndex QXmlItem::toNodeModelIndex commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non plain false false  QXmlNodeModelIndex QXmlNodeModelIndex toNodeModelIndex() const [] }
 &{~QXmlItem QXmlItem::~QXmlItem commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstractxmlnodemodel.h non destructor false false   ~QXmlItem() [] }

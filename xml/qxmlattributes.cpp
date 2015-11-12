@@ -1,9 +1,9 @@
 #include "qxmlattributes.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QLatin1String>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QXmlAttributes>
 #include "_cgo_export.h"
 

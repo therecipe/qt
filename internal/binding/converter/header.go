@@ -76,7 +76,7 @@ func GoHeaderInput(f *parser.Function) (o string) {
 	if f.SignalMode == "callback" {
 		o += "ptrName *C.char"
 		for _, p := range f.Parameters {
-			if v := cgoType(f, p.Value); v != "" {
+			if v := cgoType(f, p.Value); !(v == "" || p.Value == "...") {
 				o += fmt.Sprintf(", %v %v", cleanName(p.Name), v)
 			}
 		}
@@ -151,7 +151,7 @@ func CppHeaderInput(f *parser.Function) (o string) {
 	}
 
 	for _, p := range f.Parameters {
-		if v := cppType(f, p.Value); v != "" {
+		if v := cppType(f, p.Value); !(v == "" || p.Value == "...") {
 			o += fmt.Sprintf("%v %v, ", v, cleanName(p.Name))
 		} else {
 			f.Access = "unsupported_CppHeaderInput"

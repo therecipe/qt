@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
 &{cacheLimit QPixmapCache::cacheLimit commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  int int cacheLimit() [] }
 &{clear QPixmapCache::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  void void clear() [] }
-&{find QPixmapCache::find commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true true 3 bool bool find(const Key &key, QPixmap *pixmap) [0xc820b393e0 0xc820b39460] }
-&{find QPixmapCache::find commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  bool bool find(const QString &key, QPixmap *pixmap) [0xc820b398e0 0xc820b399a0] }
-&{insert QPixmapCache::insert commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true true 2 Key Key insert(const QPixmap &pixmap) [0xc820b39ba0] }
-&{insert QPixmapCache::insert commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  bool bool insert(const QString &key, const QPixmap &pixmap) [0xc820b39d80 0xc820b39e00] }
-&{remove QPixmapCache::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true true 2 void void remove(const Key &key) [0xc820b240a0] }
-&{remove QPixmapCache::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  void void remove(const QString &key) [0xc820b24300] }
-&{replace QPixmapCache::replace commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  bool bool replace(const Key &key, const QPixmap &pixmap) [0xc820b24500 0xc820b245a0] }
-&{setCacheLimit QPixmapCache::setCacheLimit commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  void void setCacheLimit(int n) [0xc820b24800] }
+&{find QPixmapCache::find commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true true 3 bool bool find(const Key &key, QPixmap *pixmap) [0xc820aad060 0xc820aad120] }
+&{find QPixmapCache::find commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  bool bool find(const QString &key, QPixmap *pixmap) [0xc820aad5c0 0xc820aad640] }
+&{insert QPixmapCache::insert commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true true 2 Key Key insert(const QPixmap &pixmap) [0xc820aad840] }
+&{insert QPixmapCache::insert commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  bool bool insert(const QString &key, const QPixmap &pixmap) [0xc820aada20 0xc820aadaa0] }
+&{remove QPixmapCache::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true true 2 void void remove(const Key &key) [0xc820aadd60] }
+&{remove QPixmapCache::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  void void remove(const QString &key) [0xc820aadfa0] }
+&{replace QPixmapCache::replace commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  bool bool replace(const Key &key, const QPixmap &pixmap) [0xc820a301c0 0xc820a30280] }
+&{setCacheLimit QPixmapCache::setCacheLimit commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpixmapcache.h non plain true false  void void setCacheLimit(int n) [0xc820a304c0] }
 ########################################			ENUMS			########################################

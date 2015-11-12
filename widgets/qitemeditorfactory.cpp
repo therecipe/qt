@@ -1,12 +1,12 @@
 #include "qitemeditorfactory.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QItemEditorCreator>
-#include <QByteArray>
-#include <QItemEditorCreatorBase>
 #include <QWidget>
+#include <QByteArray>
+#include <QItemEditorCreator>
+#include <QItemEditorCreatorBase>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QItemEditorFactory>
 #include "_cgo_export.h"
 

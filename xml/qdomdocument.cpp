@@ -1,13 +1,13 @@
 #include "qdomdocument.h"
-#include <QByteArray>
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
-#include <QXmlInputSource>
-#include <QString>
-#include <QXmlReader>
 #include <QDomDocumentType>
+#include <QXmlInputSource>
+#include <QUrl>
+#include <QVariant>
+#include <QByteArray>
 #include <QIODevice>
+#include <QXmlReader>
+#include <QString>
 #include <QDomDocument>
 #include "_cgo_export.h"
 

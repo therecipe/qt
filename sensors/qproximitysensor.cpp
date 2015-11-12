@@ -1,9 +1,9 @@
 #include "qproximitysensor.h"
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
 #include <QProximitySensor>
 #include "_cgo_export.h"
 

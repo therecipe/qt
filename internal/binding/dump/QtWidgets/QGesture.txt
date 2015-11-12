@@ -3,11 +3,11 @@
 &{gestureType QGesture::gestureType commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  Qt::GestureType Qt::GestureType gestureType() const [] }
 &{hasHotSpot QGesture::hasHotSpot commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  bool bool hasHotSpot() const [] }
 &{hotSpot QGesture::hotSpot commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF QPointF hotSpot() const [] }
-&{setGestureCancelPolicy QGesture::setGestureCancelPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setGestureCancelPolicy(GestureCancelPolicy policy) [0xc822368500] }
-&{setHotSpot QGesture::setHotSpot commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setHotSpot(const QPointF &value) [0xc822368780] }
+&{setGestureCancelPolicy QGesture::setGestureCancelPolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setGestureCancelPolicy(GestureCancelPolicy policy) [0xc8224e1500] }
+&{setHotSpot QGesture::setHotSpot commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setHotSpot(const QPointF &value) [0xc8224e1880] }
 &{state QGesture::state commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  Qt::GestureState Qt::GestureState state() const [] }
 &{unsetHotSpot QGesture::unsetHotSpot commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void unsetHotSpot() [] }
-&{QGesture QGesture::QGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non constructor false false   QGesture(QObject *parent) [0xc8223690e0] }
+&{QGesture QGesture::QGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non constructor false false   QGesture(QObject *parent) [0xc82250a3a0] }
 &{~QGesture QGesture::~QGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   ~QGesture() [] }
 ########################################			ENUMS			########################################
-&{GestureCancelPolicy QGesture::GestureCancelPolicy commendable public  [0xc822368d00 0xc822368dc0] false}
+&{GestureCancelPolicy QGesture::GestureCancelPolicy commendable public  [0xc8224e1f80 0xc82250a060] false}

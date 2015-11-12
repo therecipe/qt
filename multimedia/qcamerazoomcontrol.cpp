@@ -1,9 +1,9 @@
 #include "qcamerazoomcontrol.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QCamera>
+#include <QString>
+#include <QVariant>
 #include <QCameraZoomControl>
 #include "_cgo_export.h"
 

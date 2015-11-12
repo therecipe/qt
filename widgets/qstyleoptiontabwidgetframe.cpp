@@ -1,6 +1,6 @@
 #include "qstyleoptiontabwidgetframe.h"
-#include <QStyleOption>
 #include <QStyle>
+#include <QStyleOption>
 #include <QString>
 #include <QVariant>
 #include <QUrl>

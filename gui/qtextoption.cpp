@@ -1,8 +1,8 @@
 #include "qtextoption.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QString>
 #include <QTextOption>
 #include "_cgo_export.h"
 

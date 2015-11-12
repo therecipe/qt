@@ -1,9 +1,9 @@
 #include "qaudioencodersettingscontrol.h"
+#include <QModelIndex>
+#include <QAudioEncoderSettings>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QAudioEncoderSettings>
 #include <QAudioEncoderSettingsControl>
 #include "_cgo_export.h"
 

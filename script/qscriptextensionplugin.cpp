@@ -1,10 +1,10 @@
 #include "qscriptextensionplugin.h"
-#include <QScriptEngine>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QScriptValue>
+#include <QScriptEngine>
 #include <QScriptExtensionPlugin>
 #include "_cgo_export.h"
 

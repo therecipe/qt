@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
 &{QDomNotation QDomNotation::QDomNotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   QDomNotation() [] }
-&{QDomNotation QDomNotation::QDomNotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomNotation(const QDomNotation &x) [0xc820f1b840] }
+&{QDomNotation QDomNotation::QDomNotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomNotation(const QDomNotation &x) [0xc821f4c040] }
 &{nodeType QDomNotation::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType QDomNode::NodeType nodeType() const [] }
-&{operator= QDomNotation::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNotation & QDomNotation & operator=(const QDomNotation &x) [0xc820fea0e0] }
+&{operator= QDomNotation::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNotation & QDomNotation & operator=(const QDomNotation &x) [0xc821f4c660] }
 &{publicId QDomNotation::publicId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString publicId() const [] }
 &{systemId QDomNotation::systemId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString systemId() const [] }
 ########################################			ENUMS			########################################

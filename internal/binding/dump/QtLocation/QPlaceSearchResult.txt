@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
 &{QPlaceSearchResult QPlaceSearchResult::QPlaceSearchResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non constructor false false   QPlaceSearchResult() [] }
-&{QPlaceSearchResult QPlaceSearchResult::QPlaceSearchResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non constructor false true 2  QPlaceSearchResult(const QPlaceSearchResult &other) [0xc8225b3ba0] }
+&{QPlaceSearchResult QPlaceSearchResult::QPlaceSearchResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non constructor false true 2  QPlaceSearchResult(const QPlaceSearchResult &other) [0xc820a9f9a0] }
 &{icon QPlaceSearchResult::icon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  QPlaceIcon QPlaceIcon icon() const [] }
-&{operator!= QPlaceSearchResult::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  bool bool operator!=(const QPlaceSearchResult &other) const [0xc8220a4600] }
-&{operator= QPlaceSearchResult::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  QPlaceSearchResult & QPlaceSearchResult & operator=(const QPlaceSearchResult &other) [0xc8220a4a00] }
-&{operator== QPlaceSearchResult::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  bool bool operator==(const QPlaceSearchResult &other) const [0xc8220a4d60] }
-&{setIcon QPlaceSearchResult::setIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  void void setIcon(const QPlaceIcon &icon) [0xc8220a50a0] }
-&{setTitle QPlaceSearchResult::setTitle commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  void void setTitle(const QString &title) [0xc8220a5380] }
+&{operator!= QPlaceSearchResult::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  bool bool operator!=(const QPlaceSearchResult &other) const [0xc820c8c640] }
+&{operator= QPlaceSearchResult::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  QPlaceSearchResult & QPlaceSearchResult & operator=(const QPlaceSearchResult &other) [0xc820c8c9a0] }
+&{operator== QPlaceSearchResult::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  bool bool operator==(const QPlaceSearchResult &other) const [0xc820c8cc60] }
+&{setIcon QPlaceSearchResult::setIcon commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  void void setIcon(const QPlaceIcon &icon) [0xc820c8cf00] }
+&{setTitle QPlaceSearchResult::setTitle commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  void void setTitle(const QString &title) [0xc820c8d240] }
 &{title QPlaceSearchResult::title commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  QString QString title() const [] }
 &{type QPlaceSearchResult::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h non plain false false  SearchResultType SearchResultType type() const [] }
 &{~QPlaceSearchResult QPlaceSearchResult::~QPlaceSearchResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacesearchresult.h impure destructor false false   ~QPlaceSearchResult() [] }
 ########################################			ENUMS			########################################
-&{SearchResultType QPlaceSearchResult::SearchResultType commendable public  [0xc8225b3560 0xc8225b3660 0xc8225b3740] false}
+&{SearchResultType QPlaceSearchResult::SearchResultType commendable public  [0xc820a9ee80 0xc820a9f060 0xc820a9f180] false}

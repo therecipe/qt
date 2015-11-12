@@ -1,16 +1,16 @@
 #include "qmovie.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QMetaObject>
-#include <QIODevice>
-#include <QByteArray>
 #include <QImageReader>
-#include <QString>
-#include <QVariant>
-#include <QColor>
-#include <QObject>
-#include <QImage>
 #include <QSize>
+#include <QColor>
+#include <QString>
+#include <QUrl>
+#include <QMetaObject>
+#include <QByteArray>
+#include <QObject>
+#include <QVariant>
+#include <QModelIndex>
+#include <QImage>
+#include <QIODevice>
 #include <QMovie>
 #include "_cgo_export.h"
 

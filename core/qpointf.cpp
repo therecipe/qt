@@ -1,9 +1,9 @@
 #include "qpointf.h"
-#include <QModelIndex>
-#include <QPoint>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QPoint>
 #include <QPointF>
 #include "_cgo_export.h"
 

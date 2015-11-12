@@ -1,14 +1,14 @@
 #include "qmdiarea.h"
-#include <QMdiSubWindow>
-#include <QObject>
+#include <QString>
 #include <QVariant>
-#include <QTabWidget>
+#include <QUrl>
 #include <QModelIndex>
+#include <QObject>
+#include <QTabWidget>
 #include <QMetaObject>
+#include <QMdiSubWindow>
 #include <QWidget>
 #include <QBrush>
-#include <QString>
-#include <QUrl>
 #include <QMdiArea>
 #include "_cgo_export.h"
 

@@ -4,8 +4,8 @@
 #include <QUrl>
 #include <QModelIndex>
 #include <QCamera>
-#include <QVideoFrame>
 #include <QObject>
+#include <QVideoFrame>
 #include <QCameraCaptureBufferFormatControl>
 #include "_cgo_export.h"
 

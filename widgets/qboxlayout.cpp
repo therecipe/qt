@@ -1,13 +1,13 @@
 #include "qboxlayout.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QLayout>
+#include <QUrl>
 #include <QSpacerItem>
-#include <QWidget>
 #include <QLayoutItem>
 #include <QRect>
+#include <QWidget>
+#include <QString>
+#include <QVariant>
+#include <QModelIndex>
 #include <QBoxLayout>
 #include "_cgo_export.h"
 

@@ -1,38 +1,38 @@
 ########################################			FUNCTIONS			########################################
-&{QPen QPen::QPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non constructor false true 4  QPen(const QBrush &brush, qreal width, Qt::PenStyle style, Qt::PenCapStyle cap, Qt::PenJoinStyle join) [0xc822a35320 0xc822a353a0 0xc822a35420 0xc822a354a0 0xc822a35540] }
-&{QPen QPen::QPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non constructor false true 5  QPen(const QPen &pen) [0xc822a356e0] }
+&{QPen QPen::QPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non constructor false true 4  QPen(const QBrush &brush, qreal width, Qt::PenStyle style, Qt::PenCapStyle cap, Qt::PenJoinStyle join) [0xc822b6d400 0xc822b6d480 0xc822b6d500 0xc822b6d580 0xc822b6d620] }
+&{QPen QPen::QPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non constructor false true 5  QPen(const QPen &pen) [0xc822b6d7c0] }
 &{color QPen::color commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  QColor QColor color() const [] }
-&{operator= QPen::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  QPen & QPen & operator=(const QPen &pen) [0xc822a35a60] }
-&{operator== QPen::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  bool bool operator==(const QPen &pen) const [0xc822a35bc0] }
-&{setCapStyle QPen::setCapStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  void void setCapStyle(Qt::PenCapStyle style) [0xc822a35d80] }
-&{setColor QPen::setColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  void void setColor(const QColor &color) [0xc822a35f00] }
-&{setJoinStyle QPen::setJoinStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  void void setJoinStyle(Qt::PenJoinStyle style) [0xc822a500c0] }
-&{setStyle QPen::setStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  void void setStyle(Qt::PenStyle style) [0xc822a50220] }
-&{setWidth QPen::setWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  void void setWidth(int width) [0xc822a503e0] }
+&{operator= QPen::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  QPen & QPen & operator=(const QPen &pen) [0xc822b6db40] }
+&{operator== QPen::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  bool bool operator==(const QPen &pen) const [0xc822b6dca0] }
+&{setCapStyle QPen::setCapStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  void void setCapStyle(Qt::PenCapStyle style) [0xc822b6de60] }
+&{setColor QPen::setColor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  void void setColor(const QColor &color) [0xc822b6dfe0] }
+&{setJoinStyle QPen::setJoinStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  void void setJoinStyle(Qt::PenJoinStyle style) [0xc822b861a0] }
+&{setStyle QPen::setStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  void void setStyle(Qt::PenStyle style) [0xc822b86300] }
+&{setWidth QPen::setWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  void void setWidth(int width) [0xc822b864c0] }
 &{style QPen::style commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  Qt::PenStyle Qt::PenStyle style() const [] }
 &{width QPen::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  int int width() const [] }
 &{widthF QPen::widthF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.cpp non plain false false  qreal qreal widthF() const [] }
 &{QPen QPen::QPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non constructor false false   QPen() [] }
-&{QPen QPen::QPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non constructor false true 6  QPen(QPen &&pen) [0xc822a50860] }
-&{QPen QPen::QPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non constructor false true 2  QPen(Qt::PenStyle style) [0xc822a50a00] }
-&{QPen QPen::QPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non constructor false true 3  QPen(const QColor &color) [0xc822a50ba0] }
+&{QPen QPen::QPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non constructor false true 6  QPen(QPen &&pen) [0xc822b86940] }
+&{QPen QPen::QPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non constructor false true 2  QPen(Qt::PenStyle style) [0xc822b86ae0] }
+&{QPen QPen::QPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non constructor false true 3  QPen(const QColor &color) [0xc822b86c80] }
 &{brush QPen::brush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  QBrush QBrush brush() const [] }
 &{capStyle QPen::capStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  Qt::PenCapStyle Qt::PenCapStyle capStyle() const [] }
 &{dashOffset QPen::dashOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  qreal qreal dashOffset() const [] }
-&{dashPattern QPen::dashPattern commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  QVector<qreal> QVector<qreal> dashPattern() const [] }
+&{dashPattern QPen::dashPattern commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  QVector<qreal> QVector<qreal> dashPattern() const [] }
 &{isCosmetic QPen::isCosmetic commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  bool bool isCosmetic() const [] }
 &{isSolid QPen::isSolid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  bool bool isSolid() const [] }
 &{joinStyle QPen::joinStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  Qt::PenJoinStyle Qt::PenJoinStyle joinStyle() const [] }
 &{miterLimit QPen::miterLimit commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  qreal qreal miterLimit() const [] }
 &{operator QVariant QPen::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false   operator QVariant() const [] }
-&{operator!= QPen::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  bool bool operator!=(const QPen &pen) const [0xc822a51600] }
-&{operator= QPen::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false true 2 QPen & QPen & operator=(QPen &&other) [0xc822a517c0] }
-&{setBrush QPen::setBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void setBrush(const QBrush &brush) [0xc822a51920] }
-&{setCosmetic QPen::setCosmetic commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void setCosmetic(bool cosmetic) [0xc822a51b60] }
-&{setDashOffset QPen::setDashOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void setDashOffset(qreal offset) [0xc822a51d80] }
-&{setDashPattern QPen::setDashPattern commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void setDashPattern(const QVector<qreal> &pattern) [0xc822a51f60] }
-&{setMiterLimit QPen::setMiterLimit commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void setMiterLimit(qreal limit) [0xc822a661c0] }
-&{setWidthF QPen::setWidthF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void setWidthF(qreal width) [0xc822a66380] }
-&{swap QPen::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void swap(QPen &other) [0xc822a66520] }
+&{operator!= QPen::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  bool bool operator!=(const QPen &pen) const [0xc822b876e0] }
+&{operator= QPen::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false true 2 QPen & QPen & operator=(QPen &&other) [0xc822b878a0] }
+&{setBrush QPen::setBrush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void setBrush(const QBrush &brush) [0xc822b87a00] }
+&{setCosmetic QPen::setCosmetic commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void setCosmetic(bool cosmetic) [0xc822b87c40] }
+&{setDashOffset QPen::setDashOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void setDashOffset(qreal offset) [0xc822b87e60] }
+&{setDashPattern QPen::setDashPattern commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void setDashPattern(const QVector<qreal> &pattern) [0xc822b9e040] }
+&{setMiterLimit QPen::setMiterLimit commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void setMiterLimit(qreal limit) [0xc822b9e2a0] }
+&{setWidthF QPen::setWidthF commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void setWidthF(qreal width) [0xc822b9e460] }
+&{swap QPen::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non plain false false  void void swap(QPen &other) [0xc822b9e600] }
 &{~QPen QPen::~QPen commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpen.h non destructor false false   ~QPen() [] }
 ########################################			ENUMS			########################################

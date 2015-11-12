@@ -1,10 +1,10 @@
 #include "qpaintevent.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QRect>
 #include <QRegion>
+#include <QRect>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QPaintEvent>
 #include "_cgo_export.h"
 

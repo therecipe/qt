@@ -1,10 +1,10 @@
 #include "qabstractanimation.h"
-#include <QMetaObject>
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
+#include <QMetaObject>
 #include <QAbstractAnimation>
 #include "_cgo_export.h"
 

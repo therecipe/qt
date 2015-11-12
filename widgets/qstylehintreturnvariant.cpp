@@ -1,10 +1,10 @@
 #include "qstylehintreturnvariant.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QStyle>
 #include <QStyleHintReturn>
-#include <QString>
+#include <QStyle>
 #include <QStyleHintReturnVariant>
 #include "_cgo_export.h"
 

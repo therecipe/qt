@@ -1,10 +1,10 @@
 #include "qstorageinfo.h"
-#include <QByteArray>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QByteArray>
 #include <QDir>
+#include <QString>
 #include <QStorageInfo>
 #include "_cgo_export.h"
 

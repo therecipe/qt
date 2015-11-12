@@ -1,9 +1,9 @@
 #include "qradiobutton.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QWidget>
-#include <QString>
 #include <QRadioButton>
 #include "_cgo_export.h"
 

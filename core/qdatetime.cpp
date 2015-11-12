@@ -1,7 +1,7 @@
 #include "qdatetime.h"
-#include <QTime>
-#include <QDate>
 #include <QTimeZone>
+#include <QDate>
+#include <QTime>
 #include <QString>
 #include <QVariant>
 #include <QUrl>

@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
 &{waitForFinished QDBusPendingCallWatcher::waitForFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.cpp non plain false false  void void waitForFinished() [] }
-&{QDBusPendingCallWatcher QDBusPendingCallWatcher::QDBusPendingCallWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non constructor false false   QDBusPendingCallWatcher(const QDBusPendingCall &call, QObject *parent) [0xc82148a600 0xc82148a6c0] }
-&{finished QDBusPendingCallWatcher::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non signal false false  void void finished(QDBusPendingCallWatcher *self) [0xc82148aa00] }
+&{QDBusPendingCallWatcher QDBusPendingCallWatcher::QDBusPendingCallWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non constructor false false   QDBusPendingCallWatcher(const QDBusPendingCall &call, QObject *parent) [0xc82153c400 0xc82153c4c0] }
+&{finished QDBusPendingCallWatcher::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non signal false false  void void finished(QDBusPendingCallWatcher *self) [0xc82153c800] }
 &{isFinished QDBusPendingCallWatcher::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non plain false false  bool bool isFinished() const [] }
 &{~QDBusPendingCallWatcher QDBusPendingCallWatcher::~QDBusPendingCallWatcher commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbuspendingcall.h non destructor false false   ~QDBusPendingCallWatcher() [] }
 ########################################			ENUMS			########################################

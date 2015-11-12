@@ -1,10 +1,10 @@
 #include "qaccessibletableinterface.h"
-#include <QModelIndex>
-#include <QAccessibleTableModelChangeEvent>
 #include <QAccessible>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QAccessibleTableModelChangeEvent>
 #include <QAccessibleTableInterface>
 #include "_cgo_export.h"
 

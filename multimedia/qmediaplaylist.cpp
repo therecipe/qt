@@ -1,12 +1,12 @@
 #include "qmediaplaylist.h"
-#include <QUrl>
-#include <QObject>
 #include <QMediaContent>
-#include <QIODevice>
+#include <QMetaObject>
+#include <QObject>
 #include <QString>
 #include <QVariant>
-#include <QMetaObject>
+#include <QUrl>
 #include <QModelIndex>
+#include <QIODevice>
 #include <QNetworkRequest>
 #include <QMediaPlaylist>
 #include "_cgo_export.h"

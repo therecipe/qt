@@ -1,12 +1,12 @@
 #include "qpaintdevicewindow.h"
-#include <QRect>
-#include <QRegion>
-#include <QPaintDevice>
-#include <QMetaObject>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QPaintDevice>
+#include <QRegion>
+#include <QMetaObject>
+#include <QRect>
+#include <QString>
+#include <QVariant>
 #include <QPaintDeviceWindow>
 #include "_cgo_export.h"
 

@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QDBusAbstractAdaptor QDBusAbstractAdaptor::QDBusAbstractAdaptor commendable protected /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractadaptor.h non constructor false false   QDBusAbstractAdaptor(QObject *obj) [0xc8221556a0] }
+&{QDBusAbstractAdaptor QDBusAbstractAdaptor::QDBusAbstractAdaptor commendable protected /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractadaptor.h non constructor false false   QDBusAbstractAdaptor(QObject *obj) [0xc8224814a0] }
 &{autoRelaySignals QDBusAbstractAdaptor::autoRelaySignals commendable protected /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractadaptor.h non plain false false  bool bool autoRelaySignals() const [] }
-&{setAutoRelaySignals QDBusAbstractAdaptor::setAutoRelaySignals commendable protected /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractadaptor.h non plain false false  void void setAutoRelaySignals(bool enable) [0xc822155940] }
+&{setAutoRelaySignals QDBusAbstractAdaptor::setAutoRelaySignals commendable protected /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractadaptor.h non plain false false  void void setAutoRelaySignals(bool enable) [0xc822481740] }
 &{~QDBusAbstractAdaptor QDBusAbstractAdaptor::~QDBusAbstractAdaptor commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusabstractadaptor.h non destructor false false   ~QDBusAbstractAdaptor() [] }
 ########################################			ENUMS			########################################

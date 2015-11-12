@@ -1,9 +1,9 @@
 #include "qaudiodeviceinfo.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QAudioFormat>
-#include <QString>
-#include <QVariant>
 #include <QAudioDeviceInfo>
 #include "_cgo_export.h"
 

@@ -1,10 +1,10 @@
 #include "qsggeometry.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QRectF>
 #include <QRect>
+#include <QString>
 #include <QSGGeometry>
 #include "_cgo_export.h"
 

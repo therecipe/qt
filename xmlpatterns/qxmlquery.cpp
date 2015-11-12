@@ -1,15 +1,15 @@
 #include "qxmlquery.h"
-#include <QXmlNamePool>
-#include <QXmlItem>
-#include <QUrl>
-#include <QNetworkAccessManager>
-#include <QXmlName>
-#include <QIODevice>
 #include <QAbstractUriResolver>
+#include <QNetworkAccessManager>
 #include <QAbstractMessageHandler>
+#include <QXmlNamePool>
+#include <QUrl>
+#include <QModelIndex>
+#include <QXmlName>
+#include <QXmlItem>
 #include <QString>
 #include <QVariant>
-#include <QModelIndex>
+#include <QIODevice>
 #include <QXmlQuery>
 #include "_cgo_export.h"
 

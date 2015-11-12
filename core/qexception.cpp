@@ -1,8 +1,8 @@
 #include "qexception.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QString>
 #include <QException>
 #include "_cgo_export.h"
 

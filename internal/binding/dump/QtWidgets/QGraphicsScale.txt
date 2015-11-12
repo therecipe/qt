@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
 &{origin QGraphicsScale::origin commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  QVector3D QVector3D origin() const [] }
-&{setOrigin QGraphicsScale::setOrigin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void void setOrigin(const QVector3D &point) [0xc8225c2600] }
-&{setXScale QGraphicsScale::setXScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void void setXScale(qreal ) [0xc8225c2960] }
-&{setYScale QGraphicsScale::setYScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void void setYScale(qreal ) [0xc8225c2c80] }
-&{setZScale QGraphicsScale::setZScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void void setZScale(qreal ) [0xc8225c2fa0] }
+&{setOrigin QGraphicsScale::setOrigin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void void setOrigin(const QVector3D &point) [0xc82363cc40] }
+&{setXScale QGraphicsScale::setXScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void void setXScale(qreal ) [0xc82363d140] }
+&{setYScale QGraphicsScale::setYScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void void setYScale(qreal ) [0xc82363d640] }
+&{setZScale QGraphicsScale::setZScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  void void setZScale(qreal ) [0xc82363da80] }
 &{xScale QGraphicsScale::xScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  qreal qreal xScale() const [] }
 &{yScale QGraphicsScale::yScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  qreal qreal yScale() const [] }
 &{zScale QGraphicsScale::zScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.cpp non plain false false  qreal qreal zScale() const [] }
-&{QGraphicsScale QGraphicsScale::QGraphicsScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non constructor false false   QGraphicsScale(QObject *parent) [0xc8225c3840] }
-&{applyTo QGraphicsScale::applyTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h impure plain false false  void void applyTo(QMatrix4x4 *matrix) const [0xc8225c3a80] }
+&{QGraphicsScale QGraphicsScale::QGraphicsScale commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non constructor false false   QGraphicsScale(QObject *parent) [0xc823628620] }
+&{applyTo QGraphicsScale::applyTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h impure plain false false  void void applyTo(QMatrix4x4 *matrix) const [0xc823628960] }
 &{originChanged QGraphicsScale::originChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void void originChanged() [] }
 &{scaleChanged QGraphicsScale::scaleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void void scaleChanged() [] }
 &{xScaleChanged QGraphicsScale::xScaleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicstransform.h non signal false false  void void xScaleChanged() [] }

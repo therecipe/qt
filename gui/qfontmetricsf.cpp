@@ -1,12 +1,12 @@
 #include "qfontmetricsf.h"
-#include <QModelIndex>
-#include <QFontMetrics>
-#include <QChar>
-#include <QPaintDevice>
-#include <QFont>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QFont>
+#include <QFontMetrics>
+#include <QPaintDevice>
+#include <QChar>
 #include <QFontMetricsF>
 #include "_cgo_export.h"
 

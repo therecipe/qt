@@ -1,11 +1,11 @@
 #include "qradiodata.h"
-#include <QMetaObject>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMediaObject>
+#include <QMetaObject>
 #include <QObject>
+#include <QString>
+#include <QVariant>
 #include <QRadioData>
 #include "_cgo_export.h"
 

@@ -1,9 +1,9 @@
 #include "qgyroscopereading.h"
+#include <QModelIndex>
+#include <QGyroscope>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QGyroscope>
 #include <QGyroscopeReading>
 #include "_cgo_export.h"
 

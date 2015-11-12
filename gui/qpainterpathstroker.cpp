@@ -1,11 +1,11 @@
 #include "qpainterpathstroker.h"
-#include <QPen>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QPen>
 #include <QPainterPath>
 #include <QPainter>
+#include <QString>
 #include <QPainterPathStroker>
 #include "_cgo_export.h"
 

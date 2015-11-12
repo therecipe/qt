@@ -1,11 +1,11 @@
 #include "qfontdialog.h"
+#include <QFont>
+#include <QWidget>
+#include <QObject>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QFont>
-#include <QWidget>
-#include <QString>
 #include <QFontDialog>
 #include "_cgo_export.h"
 

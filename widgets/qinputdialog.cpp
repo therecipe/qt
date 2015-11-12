@@ -2,10 +2,10 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QLine>
-#include <QLineEdit>
 #include <QWidget>
 #include <QObject>
+#include <QLine>
+#include <QLineEdit>
 #include <QString>
 #include <QInputDialog>
 #include "_cgo_export.h"

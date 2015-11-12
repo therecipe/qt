@@ -1,9 +1,9 @@
 #include "qambienttemperaturesensor.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
+#include <QString>
 #include <QAmbientTemperatureSensor>
 #include "_cgo_export.h"
 

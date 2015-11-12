@@ -1,13 +1,13 @@
 #include "qicon.h"
-#include <QSize>
-#include <QRect>
-#include <QIconEngine>
-#include <QPainter>
 #include <QPixmap>
+#include <QPainter>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QRect>
 #include <QModelIndex>
+#include <QIconEngine>
+#include <QSize>
 #include <QIcon>
 #include "_cgo_export.h"
 

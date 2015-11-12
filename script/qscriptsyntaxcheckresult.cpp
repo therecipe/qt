@@ -1,8 +1,8 @@
 #include "qscriptsyntaxcheckresult.h"
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
 #include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QScriptSyntaxCheckResult>
 #include "_cgo_export.h"
 

@@ -1,10 +1,10 @@
 #include "qeasingcurve.h"
+#include <QPoint>
 #include <QPointF>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPoint>
 #include <QEasingCurve>
 #include "_cgo_export.h"
 

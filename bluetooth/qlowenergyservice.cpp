@@ -1,12 +1,12 @@
 #include "qlowenergyservice.h"
-#include <QByteArray>
-#include <QLowEnergyDescriptor>
-#include <QLowEnergyCharacteristic>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QLowEnergyCharacteristic>
+#include <QByteArray>
 #include <QObject>
+#include <QLowEnergyDescriptor>
+#include <QString>
+#include <QVariant>
 #include <QLowEnergyService>
 #include "_cgo_export.h"
 

@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
 &{QStack QStack::QStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non constructor false false   QStack() [] }
 &{pop QStack::pop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non plain false false  T T pop() [] }
-&{push QStack::push commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non plain false false  void void push(const T &t) [0xc820be4420] }
-&{swap QStack::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non plain false false  void void swap(QStack<T> &other) [0xc820be45c0] }
+&{push QStack::push commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non plain false false  void void push(const T &t) [0xc820b64f40] }
+&{swap QStack::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non plain false false  void void swap(QStack<T> &other) [0xc820b650e0] }
 &{top QStack::top commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non plain false false  T & T & top() [] }
 &{top QStack::top commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non plain false true 2 const T & const T & top() const [] }
 &{~QStack QStack::~QStack commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qstack.h non destructor false false   ~QStack() [] }

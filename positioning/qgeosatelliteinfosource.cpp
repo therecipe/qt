@@ -1,11 +1,11 @@
 #include "qgeosatelliteinfosource.h"
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
+#include <QObject>
 #include <QGeoSatelliteInfo>
 #include <QMetaObject>
-#include <QObject>
 #include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QGeoSatelliteInfoSource>
 #include "_cgo_export.h"
 

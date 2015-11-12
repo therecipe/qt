@@ -1,9 +1,9 @@
 #include "qmarginsf.h"
+#include <QVariant>
+#include <QUrl>
 #include <QModelIndex>
 #include <QMargins>
 #include <QString>
-#include <QVariant>
-#include <QUrl>
 #include <QMarginsF>
 #include "_cgo_export.h"
 

@@ -4,8 +4,8 @@
 #include <QUrl>
 #include <QModelIndex>
 #include <QCameraExposure>
-#include <QCamera>
 #include <QObject>
+#include <QCamera>
 #include <QCameraFlashControl>
 #include "_cgo_export.h"
 

@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSensor>
 #include <QObject>
+#include <QSensor>
 #include <QSensorGesture>
 #include "_cgo_export.h"
 

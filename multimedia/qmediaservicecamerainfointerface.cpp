@@ -1,10 +1,10 @@
 #include "qmediaservicecamerainfointerface.h"
+#include <QUrl>
+#include <QModelIndex>
 #include <QByteArray>
 #include <QMediaService>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QMediaServiceCameraInfoInterface>
 #include "_cgo_export.h"
 

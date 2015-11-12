@@ -1,16 +1,16 @@
 #include "qscriptvalue.h"
-#include <QDate>
 #include <QObject>
-#include <QLatin1String>
+#include <QScriptClass>
+#include <QRegExp>
+#include <QScriptString>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QScriptString>
-#include <QRegExp>
+#include <QLatin1String>
+#include <QDate>
+#include <QModelIndex>
 #include <QDateTime>
 #include <QMetaObject>
-#include <QString>
-#include <QModelIndex>
-#include <QScriptClass>
 #include <QScriptValue>
 #include "_cgo_export.h"
 

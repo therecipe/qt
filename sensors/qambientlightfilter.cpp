@@ -1,9 +1,9 @@
 #include "qambientlightfilter.h"
-#include <QAmbientLightReading>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QAmbientLightReading>
 #include <QAmbientLightFilter>
 #include "_cgo_export.h"
 

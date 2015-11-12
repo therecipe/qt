@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
 &{QFutureSynchronizer QFutureSynchronizer::QFutureSynchronizer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non constructor false false   QFutureSynchronizer() [] }
-&{QFutureSynchronizer QFutureSynchronizer::QFutureSynchronizer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non constructor false true 2  QFutureSynchronizer(const QFuture<T> &future) [0xc82072c380] }
-&{addFuture QFutureSynchronizer::addFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void void addFuture(const QFuture<T> &future) [0xc82072c5a0] }
+&{QFutureSynchronizer QFutureSynchronizer::QFutureSynchronizer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non constructor false true 2  QFutureSynchronizer(const QFuture<T> &future) [0xc8206f7f20] }
+&{addFuture QFutureSynchronizer::addFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void void addFuture(const QFuture<T> &future) [0xc820708140] }
 &{cancelOnWait QFutureSynchronizer::cancelOnWait commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  bool bool cancelOnWait() const [] }
 &{clearFutures QFutureSynchronizer::clearFutures commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void void clearFutures() [] }
 &{futures QFutureSynchronizer::futures commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  QList<QFuture<T> > QList<QFuture<T> > futures() const [] }
-&{setCancelOnWait QFutureSynchronizer::setCancelOnWait commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void void setCancelOnWait(bool enabled) [0xc82072ca80] }
-&{setFuture QFutureSynchronizer::setFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void void setFuture(const QFuture<T> &future) [0xc82072cc60] }
+&{setCancelOnWait QFutureSynchronizer::setCancelOnWait commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void void setCancelOnWait(bool enabled) [0xc820708620] }
+&{setFuture QFutureSynchronizer::setFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void void setFuture(const QFuture<T> &future) [0xc820708800] }
 &{waitForFinished QFutureSynchronizer::waitForFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non plain false false  void void waitForFinished() [] }
 &{~QFutureSynchronizer QFutureSynchronizer::~QFutureSynchronizer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuturesynchronizer.h non destructor false false   ~QFutureSynchronizer() [] }
 ########################################			ENUMS			########################################

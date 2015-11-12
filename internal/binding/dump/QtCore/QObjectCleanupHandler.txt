@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
 &{QObjectCleanupHandler QObjectCleanupHandler::QObjectCleanupHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectcleanuphandler.h non constructor false false   QObjectCleanupHandler() [] }
-&{add QObjectCleanupHandler::add commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectcleanuphandler.h non plain false false  QObject * QObject * add(QObject *object) [0xc8203b0340] }
+&{add QObjectCleanupHandler::add commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectcleanuphandler.h non plain false false  QObject * QObject * add(QObject *object) [0xc8203a1a60] }
 &{clear QObjectCleanupHandler::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectcleanuphandler.h non plain false false  void void clear() [] }
 &{isEmpty QObjectCleanupHandler::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectcleanuphandler.h non plain false false  bool bool isEmpty() const [] }
-&{remove QObjectCleanupHandler::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectcleanuphandler.h non plain false false  void void remove(QObject *object) [0xc8203b0a00] }
+&{remove QObjectCleanupHandler::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectcleanuphandler.h non plain false false  void void remove(QObject *object) [0xc820386120] }
 &{~QObjectCleanupHandler QObjectCleanupHandler::~QObjectCleanupHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectcleanuphandler.h non destructor false false   ~QObjectCleanupHandler() [] }
 ########################################			ENUMS			########################################

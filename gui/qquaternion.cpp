@@ -3,9 +3,9 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QVector>
 #include <QVector4D>
 #include <QVector3D>
-#include <QVector>
 #include <QQuaternion>
 #include "_cgo_export.h"
 

@@ -1,11 +1,11 @@
 #include "qdesktopwidget.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QWidget>
 #include <QPoint>
+#include <QWidget>
 #include <QObject>
+#include <QString>
+#include <QVariant>
 #include <QDesktopWidget>
 #include "_cgo_export.h"
 

@@ -1,11 +1,11 @@
 #include "qqmlfileselector.h"
-#include <QQmlEngine>
-#include <QObject>
-#include <QFileSelector>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QFileSelector>
+#include <QQmlEngine>
+#include <QObject>
 #include <QFile>
 #include <QQmlFileSelector>
 #include "_cgo_export.h"

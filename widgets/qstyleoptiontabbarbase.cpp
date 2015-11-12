@@ -1,11 +1,11 @@
 #include "qstyleoptiontabbarbase.h"
+#include <QStyleOption>
+#include <QStyleOptionTab>
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStyle>
-#include <QStyleOptionTab>
-#include <QStyleOption>
-#include <QString>
-#include <QVariant>
 #include <QStyleOptionTabBarBase>
 #include "_cgo_export.h"
 

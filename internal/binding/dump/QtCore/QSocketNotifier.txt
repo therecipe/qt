@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{QSocketNotifier QSocketNotifier::QSocketNotifier commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non constructor false false   QSocketNotifier(qintptr socket, Type type, QObject *parent) [0xc8202a5880 0xc8202a5940 0xc8202a5a00] }
-&{activated QSocketNotifier::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non signal false false  void void activated(int socket) [0xc8202a5d60] }
-&{event QSocketNotifier::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h impure plain false false  bool bool event(QEvent *e) [0xc82029a180] }
+&{QSocketNotifier QSocketNotifier::QSocketNotifier commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non constructor false false   QSocketNotifier(qintptr socket, Type type, QObject *parent) [0xc82027af60 0xc82027afe0 0xc82027b060] }
+&{activated QSocketNotifier::activated commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non signal false false  void void activated(int socket) [0xc82027b420] }
+&{event QSocketNotifier::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h impure plain false false  bool bool event(QEvent *e) [0xc82027b7c0] }
 &{isEnabled QSocketNotifier::isEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non plain false false  bool bool isEnabled() const [] }
-&{setEnabled QSocketNotifier::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non slot false false  void void setEnabled(bool enable) [0xc82029a7c0] }
+&{setEnabled QSocketNotifier::setEnabled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non slot false false  void void setEnabled(bool enable) [0xc82027be20] }
 &{socket QSocketNotifier::socket commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non plain false false  qintptr qintptr socket() const [] }
 &{type QSocketNotifier::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non plain false false  Type Type type() const [] }
 &{~QSocketNotifier QSocketNotifier::~QSocketNotifier commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsocketnotifier.h non destructor false false   ~QSocketNotifier() [] }
 ########################################			ENUMS			########################################
-&{Type QSocketNotifier::Type commendable public  [0xc8202a54c0 0xc8202a55a0 0xc8202a5620] false}
+&{Type QSocketNotifier::Type commendable public  [0xc82027abe0 0xc82027aca0 0xc82027ad20] false}

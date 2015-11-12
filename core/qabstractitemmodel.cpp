@@ -1,11 +1,11 @@
 #include "qabstractitemmodel.h"
-#include <QMetaObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
+#include <QMetaObject>
 #include <QMimeData>
+#include <QObject>
 #include <QAbstractItemModel>
 #include "_cgo_export.h"
 

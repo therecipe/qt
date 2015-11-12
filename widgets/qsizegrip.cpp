@@ -1,10 +1,10 @@
 #include "qsizegrip.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QWidget>
 #include <QSize>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QSizeGrip>
 #include "_cgo_export.h"
 

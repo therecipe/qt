@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{QQmlFileSelector QQmlFileSelector::QQmlFileSelector commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non constructor false false   QQmlFileSelector(QQmlEngine *engine, QObject *parent) [0xc822f41b20 0xc822f41c80] }
-&{get QQmlFileSelector::get commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non plain true false  QQmlFileSelector * QQmlFileSelector * get(QQmlEngine *engine) [0xc822f30100] }
-&{setExtraSelectors QQmlFileSelector::setExtraSelectors commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non plain false false  void void setExtraSelectors(QStringList &strings) [0xc822f30500] }
-&{setExtraSelectors QQmlFileSelector::setExtraSelectors commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non plain false true 2 void void setExtraSelectors(const QStringList &strings) [0xc822f309c0] }
-&{setSelector QQmlFileSelector::setSelector commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non plain false false  void void setSelector(QFileSelector *selector) [0xc822f30f40] }
+&{QQmlFileSelector QQmlFileSelector::QQmlFileSelector commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non constructor false false   QQmlFileSelector(QQmlEngine *engine, QObject *parent) [0xc821d67f00 0xc821d67f80] }
+&{get QQmlFileSelector::get commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non plain true false  QQmlFileSelector * QQmlFileSelector * get(QQmlEngine *engine) [0xc821fb2300] }
+&{setExtraSelectors QQmlFileSelector::setExtraSelectors commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non plain false false  void void setExtraSelectors(QStringList &strings) [0xc821fb26a0] }
+&{setExtraSelectors QQmlFileSelector::setExtraSelectors commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non plain false true 2 void void setExtraSelectors(const QStringList &strings) [0xc821fb2a20] }
+&{setSelector QQmlFileSelector::setSelector commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non plain false false  void void setSelector(QFileSelector *selector) [0xc821fb2e40] }
 &{~QQmlFileSelector QQmlFileSelector::~QQmlFileSelector commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlfileselector.h non destructor false false   ~QQmlFileSelector() [] }
 ########################################			ENUMS			########################################

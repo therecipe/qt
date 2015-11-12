@@ -3,9 +3,9 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QByteArray>
 #include <QMetaObject>
+#include <QByteArray>
+#include <QObject>
 #include <QQmlApplicationEngine>
 #include "_cgo_export.h"
 

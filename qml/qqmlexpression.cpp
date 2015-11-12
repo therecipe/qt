@@ -1,7 +1,7 @@
 #include "qqmlexpression.h"
-#include <QQmlContext>
-#include <QObject>
 #include <QQmlScriptString>
+#include <QObject>
+#include <QQmlContext>
 #include <QString>
 #include <QVariant>
 #include <QUrl>

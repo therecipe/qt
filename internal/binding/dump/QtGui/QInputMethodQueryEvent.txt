@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QInputMethodQueryEvent QInputMethodQueryEvent::QInputMethodQueryEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QInputMethodQueryEvent(Qt::InputMethodQueries queries) [0xc820911240] }
+&{QInputMethodQueryEvent QInputMethodQueryEvent::QInputMethodQueryEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QInputMethodQueryEvent(Qt::InputMethodQueries queries) [0xc820814aa0] }
 &{queries QInputMethodQueryEvent::queries commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::InputMethodQueries Qt::InputMethodQueries queries() const [] }
-&{setValue QInputMethodQueryEvent::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void void setValue(Qt::InputMethodQuery query, const QVariant &value) [0xc820911760 0xc820911860] }
-&{value QInputMethodQueryEvent::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QVariant QVariant value(Qt::InputMethodQuery query) const [0xc820911ae0] }
+&{setValue QInputMethodQueryEvent::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void void setValue(Qt::InputMethodQuery query, const QVariant &value) [0xc820814f00 0xc820814fe0] }
+&{value QInputMethodQueryEvent::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QVariant QVariant value(Qt::InputMethodQuery query) const [0xc8208152a0] }
 ########################################			ENUMS			########################################

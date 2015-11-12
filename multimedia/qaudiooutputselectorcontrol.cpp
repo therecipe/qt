@@ -1,10 +1,10 @@
 #include "qaudiooutputselectorcontrol.h"
+#include <QMetaObject>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QMetaObject>
 #include <QAudioOutput>
 #include <QAudioOutputSelectorControl>
 #include "_cgo_export.h"

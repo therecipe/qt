@@ -1,13 +1,13 @@
 #include "qsortfilterproxymodel.h"
-#include <QAbstractItemModel>
 #include <QMetaObject>
 #include <QObject>
-#include <QRegExp>
-#include <QMimeData>
-#include <QModelIndex>
 #include <QString>
 #include <QVariant>
+#include <QModelIndex>
+#include <QAbstractItemModel>
 #include <QUrl>
+#include <QRegExp>
+#include <QMimeData>
 #include <QSortFilterProxyModel>
 #include "_cgo_export.h"
 

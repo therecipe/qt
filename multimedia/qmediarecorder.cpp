@@ -1,13 +1,13 @@
 #include "qmediarecorder.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QMediaObject>
-#include <QObject>
 #include <QAudioEncoderSettings>
 #include <QMetaObject>
 #include <QString>
+#include <QUrl>
+#include <QMediaObject>
 #include <QVideoEncoderSettings>
+#include <QObject>
+#include <QVariant>
+#include <QModelIndex>
 #include <QMediaRecorder>
 #include "_cgo_export.h"
 

@@ -23,9 +23,8 @@ func main() {
 			var out, err = exec.Command("go", "fmt", fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(module))).CombinedOutput()
 			if err != nil {
 				fmt.Println(string(out), err)
-				return
+				os.Exit(1)
 			}
-
 		}
 	}
 }

@@ -1,17 +1,17 @@
 #include "qtablewidget.h"
-#include <QTableWidgetItem>
-#include <QTableWidgetSelectionRange>
-#include <QMetaObject>
-#include <QItemSelectionModel>
-#include <QAbstractItemView>
-#include <QString>
-#include <QUrl>
-#include <QModelIndex>
 #include <QObject>
 #include <QItemSelection>
+#include <QTableWidgetSelectionRange>
+#include <QString>
 #include <QVariant>
+#include <QAbstractItemView>
+#include <QMetaObject>
 #include <QWidget>
+#include <QTableWidgetItem>
+#include <QItemSelectionModel>
 #include <QPoint>
+#include <QUrl>
+#include <QModelIndex>
 #include <QTableWidget>
 #include "_cgo_export.h"
 

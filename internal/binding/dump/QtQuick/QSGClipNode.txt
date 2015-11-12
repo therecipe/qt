@@ -2,7 +2,7 @@
 &{QSGClipNode QSGClipNode::QSGClipNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non constructor false false   QSGClipNode() [] }
 &{clipRect QSGClipNode::clipRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  QRectF QRectF clipRect() const [] }
 &{isRectangular QSGClipNode::isRectangular commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  bool bool isRectangular() const [] }
-&{setClipRect QSGClipNode::setClipRect commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setClipRect(const QRectF &rect) [0xc826bac440] }
-&{setIsRectangular QSGClipNode::setIsRectangular commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setIsRectangular(bool rectHint) [0xc826bac940] }
+&{setClipRect QSGClipNode::setClipRect commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setClipRect(const QRectF &rect) [0xc820b51b20] }
+&{setIsRectangular QSGClipNode::setIsRectangular commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setIsRectangular(bool rectHint) [0xc820b51e60] }
 &{~QSGClipNode QSGClipNode::~QSGClipNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non destructor false false   ~QSGClipNode() [] }
 ########################################			ENUMS			########################################

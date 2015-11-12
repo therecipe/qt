@@ -1,17 +1,17 @@
 #include "qstyleditemdelegate.h"
-#include <QVariant>
-#include <QUrl>
-#include <QPainter>
+#include <QStyle>
 #include <QStyleOption>
-#include <QString>
-#include <QStyleOptionViewItem>
-#include <QWidget>
-#include <QItemEditorFactory>
 #include <QAbstractItemModel>
+#include <QStyleOptionViewItem>
+#include <QString>
+#include <QUrl>
+#include <QModelIndex>
+#include <QPainter>
+#include <QItemEditorFactory>
+#include <QWidget>
 #include <QObject>
 #include <QLocale>
-#include <QStyle>
-#include <QModelIndex>
+#include <QVariant>
 #include <QStyledItemDelegate>
 #include "_cgo_export.h"
 

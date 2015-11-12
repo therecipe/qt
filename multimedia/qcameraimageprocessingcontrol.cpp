@@ -1,9 +1,9 @@
 #include "qcameraimageprocessingcontrol.h"
+#include <QCamera>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QCamera>
 #include <QCameraImageProcessing>
 #include <QCameraImageProcessingControl>
 #include "_cgo_export.h"

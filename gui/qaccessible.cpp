@@ -1,10 +1,10 @@
 #include "qaccessible.h"
-#include <QModelIndex>
-#include <QObject>
-#include <QAccessibleEvent>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QAccessibleEvent>
+#include <QObject>
 #include <QAccessible>
 #include "_cgo_export.h"
 

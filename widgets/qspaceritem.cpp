@@ -1,7 +1,7 @@
 #include "qspaceritem.h"
+#include <QSizePolicy>
 #include <QSize>
 #include <QRect>
-#include <QSizePolicy>
 #include <QString>
 #include <QVariant>
 #include <QUrl>

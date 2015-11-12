@@ -1,9 +1,9 @@
 #include "qlatin1string.h"
-#include <QModelIndex>
-#include <QByteArray>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QByteArray>
 #include <QLatin1String>
 #include "_cgo_export.h"
 

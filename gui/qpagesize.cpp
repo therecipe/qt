@@ -1,10 +1,10 @@
 #include "qpagesize.h"
-#include <QModelIndex>
-#include <QSizeF>
-#include <QSize>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QSize>
+#include <QSizeF>
+#include <QString>
 #include <QPageSize>
 #include "_cgo_export.h"
 

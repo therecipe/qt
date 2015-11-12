@@ -1,13 +1,13 @@
 #include "qvector4d.h"
+#include <QVector>
+#include <QPoint>
+#include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
 #include <QPointF>
+#include <QUrl>
 #include <QVector2D>
-#include <QString>
-#include <QPoint>
 #include <QVector3D>
-#include <QVector>
 #include <QVector4D>
 #include "_cgo_export.h"
 

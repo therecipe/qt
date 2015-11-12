@@ -1,9 +1,9 @@
 #include "qmessageauthenticationcode.h"
+#include <QCryptographicHash>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QCryptographicHash>
 #include <QIODevice>
 #include <QByteArray>
 #include <QMessageAuthenticationCode>

@@ -1,12 +1,12 @@
 #include "qrubberband.h"
+#include <QSize>
 #include <QRect>
+#include <QPoint>
 #include <QWidget>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPoint>
-#include <QSize>
 #include <QRubberBand>
 #include "_cgo_export.h"
 

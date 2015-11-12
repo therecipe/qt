@@ -1,5 +1,4 @@
 #include "qkeysequenceedit.h"
-#include <QWidget>
 #include <QObject>
 #include <QKeySequence>
 #include <QMetaObject>
@@ -7,6 +6,7 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QWidget>
 #include <QKeySequenceEdit>
 #include "_cgo_export.h"
 

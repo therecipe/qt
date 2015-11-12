@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QVideoRendererControl QVideoRendererControl::QVideoRendererControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideorenderercontrol.h non constructor false false   QVideoRendererControl(QObject *parent) [0xc8223ae660] }
-&{setSurface QVideoRendererControl::setSurface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideorenderercontrol.h pure plain false false  void void setSurface(QAbstractVideoSurface *surface) [0xc8223ae980] }
+&{QVideoRendererControl QVideoRendererControl::QVideoRendererControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideorenderercontrol.h non constructor false false   QVideoRendererControl(QObject *parent) [0xc822d35f80] }
+&{setSurface QVideoRendererControl::setSurface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideorenderercontrol.h pure plain false false  void void setSurface(QAbstractVideoSurface *surface) [0xc8213982a0] }
 &{surface QVideoRendererControl::surface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideorenderercontrol.h pure plain false false  QAbstractVideoSurface * QAbstractVideoSurface * surface() const [] }
 &{~QVideoRendererControl QVideoRendererControl::~QVideoRendererControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qvideorenderercontrol.h non destructor false false   ~QVideoRendererControl() [] }
 ########################################			ENUMS			########################################

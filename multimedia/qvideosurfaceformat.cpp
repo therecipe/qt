@@ -1,12 +1,12 @@
 #include "qvideosurfaceformat.h"
-#include <QModelIndex>
-#include <QVideoFrame>
-#include <QSize>
-#include <QRect>
-#include <QAbstractVideoBuffer>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QVideoFrame>
+#include <QAbstractVideoBuffer>
+#include <QSize>
+#include <QRect>
+#include <QString>
 #include <QVideoSurfaceFormat>
 #include "_cgo_export.h"
 

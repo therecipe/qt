@@ -1,9 +1,9 @@
 #include "qdbuscontext.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QDBusError>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QDBusContext>
 #include "_cgo_export.h"
 

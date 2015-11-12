@@ -1,9 +1,9 @@
 #include "qmimedatabase.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QMimeData>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QMimeDatabase>
 #include "_cgo_export.h"
 

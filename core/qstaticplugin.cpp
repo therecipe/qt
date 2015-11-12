@@ -1,9 +1,9 @@
 #include "qstaticplugin.h"
-#include <QModelIndex>
-#include <QJsonObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QJsonObject>
 #include <QStaticPlugin>
 #include "_cgo_export.h"
 

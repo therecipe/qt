@@ -1,18 +1,18 @@
 #include "qgraphicsvideoitem.h"
-#include <QString>
-#include <QPointF>
-#include <QWidget>
-#include <QStyleOptionGraphicsItem>
 #include <QUrl>
-#include <QSizeF>
-#include <QStyle>
-#include <QStyleOption>
 #include <QModelIndex>
+#include <QStyle>
+#include <QWidget>
 #include <QPoint>
-#include <QSize>
-#include <QVariant>
+#include <QSizeF>
 #include <QGraphicsItem>
+#include <QSize>
 #include <QPainter>
+#include <QStyleOption>
+#include <QString>
+#include <QVariant>
+#include <QStyleOptionGraphicsItem>
+#include <QPointF>
 #include <QGraphicsVideoItem>
 #include "_cgo_export.h"
 

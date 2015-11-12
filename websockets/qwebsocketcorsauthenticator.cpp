@@ -1,9 +1,9 @@
 #include "qwebsocketcorsauthenticator.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QWebSocket>
-#include <QString>
 #include <QWebSocketCorsAuthenticator>
 #include "_cgo_export.h"
 

@@ -1,8 +1,8 @@
 #include "qmimetype.h"
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
 #include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QMimeType>
 #include "_cgo_export.h"
 

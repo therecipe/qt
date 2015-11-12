@@ -1,11 +1,11 @@
 #include "qobject.h"
-#include <QMetaObject>
-#include <QEvent>
-#include <QThread>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QMetaObject>
+#include <QEvent>
+#include <QThread>
 #include <QObject>
 #include "_cgo_export.h"
 

@@ -1,10 +1,10 @@
 #include "qaccessibletextinterface.h"
+#include <QPoint>
+#include <QAccessible>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QAccessible>
-#include <QPoint>
 #include <QAccessibleTextInterface>
 #include "_cgo_export.h"
 

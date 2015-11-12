@@ -1,9 +1,9 @@
 #include "qqmlnetworkaccessmanagerfactory.h"
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
 #include <QQmlNetworkAccessManagerFactory>
 #include "_cgo_export.h"
 

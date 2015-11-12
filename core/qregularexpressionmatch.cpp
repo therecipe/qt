@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QStringRef>
 #include <QRegularExpression>
+#include <QStringRef>
 #include <QRegularExpressionMatch>
 #include "_cgo_export.h"
 

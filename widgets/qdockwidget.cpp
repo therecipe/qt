@@ -1,10 +1,10 @@
 #include "qdockwidget.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QWidget>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QWidget>
+#include <QObject>
 #include <QDockWidget>
 #include "_cgo_export.h"
 

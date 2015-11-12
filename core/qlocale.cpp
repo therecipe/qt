@@ -1,12 +1,12 @@
 #include "qlocale.h"
-#include <QStringRef>
-#include <QDate>
+#include <QTime>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QStringRef>
+#include <QDate>
 #include <QDateTime>
-#include <QTime>
 #include <QLocale>
 #include "_cgo_export.h"
 

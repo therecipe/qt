@@ -1,15 +1,15 @@
 #include "qsvgrenderer.h"
-#include <QVariant>
+#include <QObject>
+#include <QUrl>
 #include <QModelIndex>
+#include <QByteArray>
 #include <QMetaObject>
+#include <QXmlStreamReader>
 #include <QRectF>
 #include <QRect>
-#include <QXmlStreamReader>
 #include <QString>
-#include <QUrl>
-#include <QObject>
+#include <QVariant>
 #include <QPainter>
-#include <QByteArray>
 #include <QSvgRenderer>
 #include "_cgo_export.h"
 

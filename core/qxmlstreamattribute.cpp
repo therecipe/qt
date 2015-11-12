@@ -1,9 +1,9 @@
 #include "qxmlstreamattribute.h"
+#include <QUrl>
+#include <QModelIndex>
 #include <QStringRef>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QXmlStreamAttribute>
 #include "_cgo_export.h"
 

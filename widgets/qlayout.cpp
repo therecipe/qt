@@ -1,11 +1,11 @@
 #include "qlayout.h"
-#include <QLayoutItem>
-#include <QRect>
-#include <QMargins>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QRect>
+#include <QLayoutItem>
+#include <QMargins>
 #include <QWidget>
 #include <QLayout>
 #include "_cgo_export.h"

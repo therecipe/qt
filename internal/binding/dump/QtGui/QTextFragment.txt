@@ -1,16 +1,16 @@
 ########################################			FUNCTIONS			########################################
 &{QTextFragment QTextFragment::QTextFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non constructor false false   QTextFragment() [] }
-&{QTextFragment QTextFragment::QTextFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non constructor false true 3  QTextFragment(const QTextFragment &other) [0xc8235d6580] }
+&{QTextFragment QTextFragment::QTextFragment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non constructor false true 3  QTextFragment(const QTextFragment &other) [0xc8235d0660] }
 &{charFormat QTextFragment::charFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextCharFormat QTextCharFormat charFormat() const [] }
 &{charFormatIndex QTextFragment::charFormatIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int charFormatIndex() const [] }
-&{contains QTextFragment::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool contains(int position) const [0xc8235d6ca0] }
-&{glyphRuns QTextFragment::glyphRuns commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QList<QGlyphRun> QList<QGlyphRun> glyphRuns(int pos, int len) const [0xc8235d6e60 0xc8235d6ee0] }
+&{contains QTextFragment::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool contains(int position) const [0xc8235d0d80] }
+&{glyphRuns QTextFragment::glyphRuns commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QList<QGlyphRun> QList<QGlyphRun> glyphRuns(int pos, int len) const [0xc8235d0f40 0xc8235d0fc0] }
 &{isValid QTextFragment::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool isValid() const [] }
 &{length QTextFragment::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int length() const [] }
-&{operator!= QTextFragment::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool operator!=(const QTextFragment &other) const [0xc8235d7340] }
-&{operator< QTextFragment::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool operator<(const QTextFragment &other) const [0xc8235d7560] }
-&{operator= QTextFragment::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextFragment & QTextFragment & operator=(const QTextFragment &other) [0xc8235d7780] }
-&{operator== QTextFragment::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool operator==(const QTextFragment &other) const [0xc8235d7980] }
+&{operator!= QTextFragment::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool operator!=(const QTextFragment &other) const [0xc8235d1420] }
+&{operator< QTextFragment::operator< commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool operator<(const QTextFragment &other) const [0xc8235d1640] }
+&{operator= QTextFragment::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextFragment & QTextFragment & operator=(const QTextFragment &other) [0xc8235d1860] }
+&{operator== QTextFragment::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  bool bool operator==(const QTextFragment &other) const [0xc8235d1a60] }
 &{position QTextFragment::position commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int position() const [] }
 &{text QTextFragment::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QString QString text() const [] }
 ########################################			ENUMS			########################################

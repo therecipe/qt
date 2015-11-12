@@ -1,12 +1,12 @@
 #include "qsensormanager.h"
 #include <QSensorBackendFactory>
-#include <QByteArray>
-#include <QSensorBackend>
+#include <QSensor>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSensor>
+#include <QByteArray>
+#include <QSensorBackend>
 #include <QSensorManager>
 #include "_cgo_export.h"
 

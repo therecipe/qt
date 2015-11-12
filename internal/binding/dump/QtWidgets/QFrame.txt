@@ -5,21 +5,21 @@
 &{frameWidth QFrame::frameWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  int int frameWidth() const [] }
 &{lineWidth QFrame::lineWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  int int lineWidth() const [] }
 &{midLineWidth QFrame::midLineWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  int int midLineWidth() const [] }
-&{setFrameRect QFrame::setFrameRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void void setFrameRect(const QRect &) [0xc82143aa40] }
-&{setFrameShadow QFrame::setFrameShadow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void void setFrameShadow(Shadow ) [0xc82143ae40] }
-&{setFrameShape QFrame::setFrameShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void void setFrameShape(Shape ) [0xc82143b280] }
-&{setLineWidth QFrame::setLineWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void void setLineWidth(int ) [0xc82143b6e0] }
-&{setMidLineWidth QFrame::setMidLineWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void void setMidLineWidth(int ) [0xc82143ba80] }
-&{QFrame QFrame::QFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non constructor false false   QFrame(QWidget *parent, Qt::WindowFlags f) [0xc821426f40 0xc821427020] }
-&{changeEvent QFrame::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h impure plain false false  void void changeEvent(QEvent *ev) [0xc821427440] }
-&{event QFrame::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h impure plain false false  bool bool event(QEvent *e) [0xc821427fc0] }
+&{setFrameRect QFrame::setFrameRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void void setFrameRect(const QRect &) [0xc821d04c00] }
+&{setFrameShadow QFrame::setFrameShadow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void void setFrameShadow(Shadow ) [0xc821d04fc0] }
+&{setFrameShape QFrame::setFrameShape commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void void setFrameShape(Shape ) [0xc821d053a0] }
+&{setLineWidth QFrame::setLineWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void void setLineWidth(int ) [0xc821d056e0] }
+&{setMidLineWidth QFrame::setMidLineWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.cpp non plain false false  void void setMidLineWidth(int ) [0xc821d05a40] }
+&{QFrame QFrame::QFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non constructor false false   QFrame(QWidget *parent, Qt::WindowFlags f) [0xc82255ade0 0xc82255aec0] }
+&{changeEvent QFrame::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h impure plain false false  void void changeEvent(QEvent *ev) [0xc82255b320] }
+&{event QFrame::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h impure plain false false  bool bool event(QEvent *e) [0xc822568060] }
 &{frameStyle QFrame::frameStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non plain false false  int int frameStyle() const [] }
-&{initStyleOption QFrame::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non plain false false  void void initStyleOption(QStyleOptionFrame *option) const [0xc8214125a0] }
-&{paintEvent QFrame::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc8214129e0] }
-&{setFrameStyle QFrame::setFrameStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non plain false false  void void setFrameStyle(int style) [0xc821412de0] }
+&{initStyleOption QFrame::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non plain false false  void void initStyleOption(QStyleOptionFrame *option) const [0xc822568680] }
+&{paintEvent QFrame::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc822568be0] }
+&{setFrameStyle QFrame::setFrameStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non plain false false  void void setFrameStyle(int style) [0xc822568fe0] }
 &{sizeHint QFrame::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h impure plain false false  QSize QSize sizeHint() const [] }
 &{~QFrame QFrame::~QFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qframe.h non destructor false false   ~QFrame() [] }
 ########################################			ENUMS			########################################
-&{Shadow QFrame::Shadow commendable public  [0xc82143be20 0xc82143bee0 0xc821426040] false}
-&{Shape QFrame::Shape commendable public  [0xc821426240 0xc821426380 0xc821426420 0xc821426560 0xc821426680 0xc821426700 0xc821426880] false}
-&{StyleMask QFrame::StyleMask commendable public  [0xc821426ba0 0xc821426c60] false}
+&{Shadow QFrame::Shadow commendable public  [0xc821d05c60 0xc821d05d00 0xc821d05da0] false}
+&{Shape QFrame::Shape commendable public  [0xc821d05fc0 0xc82255a0e0 0xc82255a1c0 0xc82255a240 0xc82255a420 0xc82255a520 0xc82255a620] false}
+&{StyleMask QFrame::StyleMask commendable public  [0xc82255a9e0 0xc82255ab00] false}

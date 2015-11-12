@@ -1,13 +1,13 @@
 #include "qbluetoothsocket.h"
+#include <QObject>
+#include <QBluetoothServiceInfo>
+#include <QBluetoothAddress>
+#include <QString>
+#include <QUrl>
 #include <QModelIndex>
 #include <QBluetoothUuid>
-#include <QObject>
-#include <QBluetoothAddress>
-#include <QIODevice>
-#include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QBluetoothServiceInfo>
+#include <QIODevice>
 #include <QBluetoothSocket>
 #include "_cgo_export.h"
 

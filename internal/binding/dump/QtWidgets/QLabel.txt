@@ -7,48 +7,48 @@
 &{openExternalLinks QLabel::openExternalLinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  bool bool openExternalLinks() const [] }
 &{pixmap QLabel::pixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  const QPixmap * const QPixmap * pixmap() const [] }
 &{selectedText QLabel::selectedText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  QString QString selectedText() const [] }
-&{setAlignment QLabel::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setAlignment(Qt::Alignment ) [0xc822da92c0] }
-&{setIndent QLabel::setIndent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setIndent(int ) [0xc822da95a0] }
-&{setMargin QLabel::setMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setMargin(int ) [0xc822da9860] }
-&{setOpenExternalLinks QLabel::setOpenExternalLinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setOpenExternalLinks(bool open) [0xc822da9b40] }
-&{setPixmap QLabel::setPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non slot false false  void void setPixmap(const QPixmap &) [0xc822da9e20] }
-&{setScaledContents QLabel::setScaledContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setScaledContents(bool ) [0xc8213e6220] }
-&{setText QLabel::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non slot false false  void void setText(const QString &) [0xc8213e6640] }
-&{setTextFormat QLabel::setTextFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setTextFormat(Qt::TextFormat ) [0xc8213e6a80] }
-&{setTextInteractionFlags QLabel::setTextInteractionFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setTextInteractionFlags(Qt::TextInteractionFlags flags) [0xc8213e6f60] }
-&{setWordWrap QLabel::setWordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setWordWrap(bool on) [0xc8213e74a0] }
+&{setAlignment QLabel::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setAlignment(Qt::Alignment ) [0xc822252ca0] }
+&{setIndent QLabel::setIndent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setIndent(int ) [0xc822253000] }
+&{setMargin QLabel::setMargin commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setMargin(int ) [0xc8222533a0] }
+&{setOpenExternalLinks QLabel::setOpenExternalLinks commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setOpenExternalLinks(bool open) [0xc822253760] }
+&{setPixmap QLabel::setPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non slot false false  void void setPixmap(const QPixmap &) [0xc822253bc0] }
+&{setScaledContents QLabel::setScaledContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setScaledContents(bool ) [0xc8222641a0] }
+&{setText QLabel::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non slot false false  void void setText(const QString &) [0xc822264500] }
+&{setTextFormat QLabel::setTextFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setTextFormat(Qt::TextFormat ) [0xc822264900] }
+&{setTextInteractionFlags QLabel::setTextInteractionFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setTextInteractionFlags(Qt::TextInteractionFlags flags) [0xc822264cc0] }
+&{setWordWrap QLabel::setWordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  void void setWordWrap(bool on) [0xc822265240] }
 &{text QLabel::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  QString QString text() const [] }
 &{textFormat QLabel::textFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  Qt::TextFormat Qt::TextFormat textFormat() const [] }
 &{textInteractionFlags QLabel::textInteractionFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  Qt::TextInteractionFlags Qt::TextInteractionFlags textInteractionFlags() const [] }
 &{wordWrap QLabel::wordWrap commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.cpp non plain false false  bool bool wordWrap() const [] }
-&{QLabel QLabel::QLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non constructor false false   QLabel(QWidget *parent, Qt::WindowFlags f) [0xc8213d80a0 0xc8213d8140] }
-&{QLabel QLabel::QLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non constructor false true 2  QLabel(const QString &text, QWidget *parent, Qt::WindowFlags f) [0xc8213d8420 0xc8213d85c0 0xc8213d8660] }
+&{QLabel QLabel::QLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non constructor false false   QLabel(QWidget *parent, Qt::WindowFlags f) [0xc822265ee0 0xc82226e000] }
+&{QLabel QLabel::QLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non constructor false true 2  QLabel(const QString &text, QWidget *parent, Qt::WindowFlags f) [0xc82226e280 0xc82226e320 0xc82226e420] }
 &{buddy QLabel::buddy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non plain false false  QWidget * QWidget * buddy() const [] }
-&{changeEvent QLabel::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void changeEvent(QEvent *ev) [0xc8213d9140] }
+&{changeEvent QLabel::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void changeEvent(QEvent *ev) [0xc82226ec80] }
 &{clear QLabel::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non slot false false  void void clear() [] }
-&{contextMenuEvent QLabel::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void contextMenuEvent(QContextMenuEvent *ev) [0xc8213d9660] }
-&{event QLabel::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  bool bool event(QEvent *e) [0xc8213d9a40] }
-&{focusInEvent QLabel::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void focusInEvent(QFocusEvent *ev) [0xc8213d9e20] }
-&{focusNextPrevChild QLabel::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  bool bool focusNextPrevChild(bool next) [0xc821dfa160] }
-&{focusOutEvent QLabel::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void focusOutEvent(QFocusEvent *ev) [0xc821dfa3c0] }
-&{heightForWidth QLabel::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  int int heightForWidth(int w) const [0xc821dfa6a0] }
-&{keyPressEvent QLabel::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void keyPressEvent(QKeyEvent *ev) [0xc821dfa8e0] }
-&{linkActivated QLabel::linkActivated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non signal false false  void void linkActivated(const QString &link) [0xc821dfab20] }
-&{linkHovered QLabel::linkHovered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non signal false false  void void linkHovered(const QString &link) [0xc821dfad60] }
+&{contextMenuEvent QLabel::contextMenuEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void contextMenuEvent(QContextMenuEvent *ev) [0xc82226f080] }
+&{event QLabel::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  bool bool event(QEvent *e) [0xc82226f420] }
+&{focusInEvent QLabel::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void focusInEvent(QFocusEvent *ev) [0xc82226f700] }
+&{focusNextPrevChild QLabel::focusNextPrevChild commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  bool bool focusNextPrevChild(bool next) [0xc82226faa0] }
+&{focusOutEvent QLabel::focusOutEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void focusOutEvent(QFocusEvent *ev) [0xc82226fe00] }
+&{heightForWidth QLabel::heightForWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  int int heightForWidth(int w) const [0xc8222761a0] }
+&{keyPressEvent QLabel::keyPressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void keyPressEvent(QKeyEvent *ev) [0xc822276560] }
+&{linkActivated QLabel::linkActivated commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non signal false false  void void linkActivated(const QString &link) [0xc822276920] }
+&{linkHovered QLabel::linkHovered commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non signal false false  void void linkHovered(const QString &link) [0xc822276ce0] }
 &{minimumSizeHint QLabel::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  QSize QSize minimumSizeHint() const [] }
-&{mouseMoveEvent QLabel::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void mouseMoveEvent(QMouseEvent *ev) [0xc821dfb140] }
-&{mousePressEvent QLabel::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void mousePressEvent(QMouseEvent *ev) [0xc821dfb360] }
-&{mouseReleaseEvent QLabel::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *ev) [0xc821dfb600] }
+&{mouseMoveEvent QLabel::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void mouseMoveEvent(QMouseEvent *ev) [0xc822277320] }
+&{mousePressEvent QLabel::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void mousePressEvent(QMouseEvent *ev) [0xc822277660] }
+&{mouseReleaseEvent QLabel::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *ev) [0xc822277a80] }
 &{movie QLabel::movie commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non plain false false  QMovie * QMovie * movie() const [] }
-&{paintEvent QLabel::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc821dfba00] }
+&{paintEvent QLabel::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc822277f80] }
 &{picture QLabel::picture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non plain false false  const QPicture * const QPicture * picture() const [] }
 &{selectionStart QLabel::selectionStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non plain false false  int int selectionStart() const [] }
-&{setBuddy QLabel::setBuddy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non plain false false  void void setBuddy(QWidget *buddy) [0xc821dfbee0] }
-&{setMovie QLabel::setMovie commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non slot false false  void void setMovie(QMovie *movie) [0xc8213c61e0] }
-&{setNum QLabel::setNum commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non slot false true 2 void void setNum(double num) [0xc8213c6500] }
-&{setNum QLabel::setNum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non slot false false  void void setNum(int num) [0xc8213c68c0] }
-&{setPicture QLabel::setPicture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non slot false false  void void setPicture(const QPicture &picture) [0xc8213c6b00] }
-&{setSelection QLabel::setSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non plain false false  void void setSelection(int start, int length) [0xc8213c6ea0 0xc8213c6f40] }
+&{setBuddy QLabel::setBuddy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non plain false false  void void setBuddy(QWidget *buddy) [0xc8222827a0] }
+&{setMovie QLabel::setMovie commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non slot false false  void void setMovie(QMovie *movie) [0xc822282b80] }
+&{setNum QLabel::setNum commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non slot false true 2 void void setNum(double num) [0xc822282ee0] }
+&{setNum QLabel::setNum commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non slot false false  void void setNum(int num) [0xc8222832a0] }
+&{setPicture QLabel::setPicture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non slot false false  void void setPicture(const QPicture &picture) [0xc822283600] }
+&{setSelection QLabel::setSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non plain false false  void void setSelection(int start, int length) [0xc8222839c0 0xc822283a80] }
 &{sizeHint QLabel::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h impure plain false false  QSize QSize sizeHint() const [] }
 &{~QLabel QLabel::~QLabel commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlabel.h non destructor false false   ~QLabel() [] }
 ########################################			ENUMS			########################################

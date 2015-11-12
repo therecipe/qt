@@ -1,10 +1,10 @@
 #include "qcheckbox.h"
+#include <QWidget>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QWidget>
-#include <QObject>
 #include <QCheckBox>
 #include "_cgo_export.h"
 

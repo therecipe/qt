@@ -1,9 +1,9 @@
 #include "qxmlerrorhandler.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QXmlParseException>
-#include <QString>
-#include <QVariant>
 #include <QXmlErrorHandler>
 #include "_cgo_export.h"
 

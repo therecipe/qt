@@ -1,12 +1,12 @@
 #include "qclipboard.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
 #include <QImage>
 #include <QMimeData>
 #include <QPixmap>
+#include <QObject>
+#include <QString>
 #include <QClipboard>
 #include "_cgo_export.h"
 

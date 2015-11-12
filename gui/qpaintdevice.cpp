@@ -1,8 +1,8 @@
 #include "qpaintdevice.h"
-#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QPaintDevice>
 #include "_cgo_export.h"
 

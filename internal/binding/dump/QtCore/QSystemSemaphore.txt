@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
-&{QSystemSemaphore QSystemSemaphore::QSystemSemaphore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non constructor false false   QSystemSemaphore(const QString &key, int initialValue, AccessMode mode) [0xc82029bea0 0xc82029bf60 0xc820286000] }
+&{QSystemSemaphore QSystemSemaphore::QSystemSemaphore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non constructor false false   QSystemSemaphore(const QString &key, int initialValue, AccessMode mode) [0xc820271420 0xc820271560 0xc820271620] }
 &{acquire QSystemSemaphore::acquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  bool bool acquire() [] }
 &{error QSystemSemaphore::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  SystemSemaphoreError SystemSemaphoreError error() const [] }
 &{errorString QSystemSemaphore::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  QString QString errorString() const [] }
 &{key QSystemSemaphore::key commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  QString QString key() const [] }
-&{release QSystemSemaphore::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  bool bool release(int n) [0xc820286940] }
-&{setKey QSystemSemaphore::setKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  void void setKey(const QString &key, int initialValue, AccessMode mode) [0xc820286b80 0xc820286c60 0xc820286d00] }
+&{release QSystemSemaphore::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  bool bool release(int n) [0xc82025c1c0] }
+&{setKey QSystemSemaphore::setKey commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non plain false false  void void setKey(const QString &key, int initialValue, AccessMode mode) [0xc82025c420 0xc82025c4a0 0xc82025c560] }
 &{~QSystemSemaphore QSystemSemaphore::~QSystemSemaphore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsystemsemaphore.h non destructor false false   ~QSystemSemaphore() [] }
 ########################################			ENUMS			########################################
-&{AccessMode QSystemSemaphore::AccessMode commendable public  [0xc82029b340 0xc82029b3e0] false}
-&{SystemSemaphoreError QSystemSemaphore::SystemSemaphoreError commendable public  [0xc82029b6c0 0xc82029b7c0 0xc82029b880 0xc82029b980 0xc82029ba40 0xc82029bae0 0xc82029bc20] false}
+&{AccessMode QSystemSemaphore::AccessMode commendable public  [0xc8202708c0 0xc8202709a0] false}
+&{SystemSemaphoreError QSystemSemaphore::SystemSemaphoreError commendable public  [0xc820270c60 0xc820270d00 0xc820270e60 0xc820270f00 0xc820270fc0 0xc8202710e0 0xc8202711c0] false}

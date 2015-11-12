@@ -1,10 +1,10 @@
 #include "qsensorgesturerecognizer.h"
+#include <QSensorGesture>
+#include <QSensor>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSensor>
-#include <QSensorGesture>
-#include <QString>
 #include <QSensorGestureRecognizer>
 #include "_cgo_export.h"
 

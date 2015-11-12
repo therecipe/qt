@@ -1,12 +1,12 @@
 #include "qsvggenerator.h"
 #include <QIODevice>
-#include <QRectF>
-#include <QSize>
-#include <QRect>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QRect>
+#include <QSize>
+#include <QRectF>
 #include <QSvgGenerator>
 #include "_cgo_export.h"
 

@@ -1,10 +1,10 @@
 #include "qstyleoptionsizegrip.h"
-#include <QStyleOption>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStyle>
+#include <QStyleOption>
 #include <QStyleOptionSizeGrip>
 #include "_cgo_export.h"
 

@@ -1,9 +1,9 @@
 #include "qdynamicpropertychangeevent.h"
+#include <QByteArray>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QByteArray>
 #include <QDynamicPropertyChangeEvent>
 #include "_cgo_export.h"
 

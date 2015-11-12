@@ -1,12 +1,12 @@
 #include "qbluetoothtransfermanager.h"
+#include <QObject>
+#include <QBluetoothTransferReply>
 #include <QIODevice>
+#include <QBluetoothTransferRequest>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QBluetoothTransferReply>
-#include <QBluetoothTransferRequest>
 #include <QBluetoothTransferManager>
 #include "_cgo_export.h"
 

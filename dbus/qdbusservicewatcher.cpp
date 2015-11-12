@@ -1,10 +1,10 @@
 #include "qdbusservicewatcher.h"
+#include <QModelIndex>
+#include <QDBusConnection>
+#include <QObject>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QDBusConnection>
-#include <QString>
 #include <QDBusServiceWatcher>
 #include "_cgo_export.h"
 

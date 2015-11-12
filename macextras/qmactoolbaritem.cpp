@@ -4,8 +4,8 @@
 #include <QUrl>
 #include <QModelIndex>
 #include <QMacToolBar>
-#include <QIcon>
 #include <QObject>
+#include <QIcon>
 #include <QMacToolBarItem>
 #include "_cgo_export.h"
 

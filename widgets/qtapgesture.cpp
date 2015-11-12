@@ -1,10 +1,10 @@
 #include "qtapgesture.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QPointF>
 #include <QPoint>
-#include <QString>
-#include <QVariant>
 #include <QTapGesture>
 #include "_cgo_export.h"
 

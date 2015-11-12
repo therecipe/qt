@@ -1,11 +1,11 @@
 #include "qthreadpool.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
-#include <QThread>
 #include <QRunnable>
-#include <QString>
-#include <QVariant>
+#include <QThread>
 #include <QThreadPool>
 #include "_cgo_export.h"
 

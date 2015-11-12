@@ -1,10 +1,10 @@
 #include "qtimeedit.h"
-#include <QModelIndex>
 #include <QWidget>
-#include <QTime>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QTime>
 #include <QTimeEdit>
 #include "_cgo_export.h"
 

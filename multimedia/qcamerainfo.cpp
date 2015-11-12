@@ -1,10 +1,10 @@
 #include "qcamerainfo.h"
-#include <QModelIndex>
-#include <QCamera>
-#include <QByteArray>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QCamera>
+#include <QByteArray>
 #include <QCameraInfo>
 #include "_cgo_export.h"
 

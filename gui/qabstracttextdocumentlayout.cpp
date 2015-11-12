@@ -1,12 +1,12 @@
 #include "qabstracttextdocumentlayout.h"
-#include <QPoint>
-#include <QPointF>
 #include <QObject>
+#include <QPoint>
+#include <QPaintDevice>
+#include <QPointF>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPaintDevice>
 #include <QAbstractTextDocumentLayout>
 #include "_cgo_export.h"
 

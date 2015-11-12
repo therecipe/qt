@@ -1,13 +1,13 @@
 #include "qnearfieldmanager.h"
-#include <QModelIndex>
-#include <QNearFieldTarget>
-#include <QUrl>
-#include <QVariant>
 #include <QObject>
 #include <QNdefRecord>
-#include <QByteArray>
 #include <QNdefFilter>
 #include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QByteArray>
+#include <QModelIndex>
+#include <QNearFieldTarget>
 #include <QNearFieldManager>
 #include "_cgo_export.h"
 

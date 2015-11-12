@@ -1,8 +1,8 @@
 #include "qsequentialiterable.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QSequentialIterable>
 #include "_cgo_export.h"
 

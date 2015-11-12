@@ -1,11 +1,11 @@
 #include "qnetworkdiskcache.h"
+#include <QNetworkCacheMetaData>
+#include <QMetaObject>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QNetworkCacheMetaData>
-#include <QMetaObject>
-#include <QObject>
 #include <QNetworkDiskCache>
 #include "_cgo_export.h"
 

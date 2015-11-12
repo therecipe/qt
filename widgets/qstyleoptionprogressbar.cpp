@@ -1,10 +1,10 @@
 #include "qstyleoptionprogressbar.h"
+#include <QStyle>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QStyleOption>
-#include <QStyle>
-#include <QString>
 #include <QStyleOptionProgressBar>
 #include "_cgo_export.h"
 

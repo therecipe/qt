@@ -1,9 +1,9 @@
 #include "qdoublevalidator.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
+#include <QString>
 #include <QDoubleValidator>
 #include "_cgo_export.h"
 

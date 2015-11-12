@@ -9,19 +9,19 @@
 &{commit QInputMethod::commit commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void void commit() [] }
 &{cursorRectangleChanged QInputMethod::cursorRectangleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non signal false false  void void cursorRectangleChanged() [] }
 &{hide QInputMethod::hide commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void void hide() [] }
-&{inputDirectionChanged QInputMethod::inputDirectionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non signal false false  void void inputDirectionChanged(Qt::LayoutDirection newDirection) [0xc82071bdc0] }
+&{inputDirectionChanged QInputMethod::inputDirectionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non signal false false  void void inputDirectionChanged(Qt::LayoutDirection newDirection) [0xc82061a4e0] }
 &{inputItemRectangle QInputMethod::inputItemRectangle commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  QRectF QRectF inputItemRectangle() const [] }
 &{inputItemTransform QInputMethod::inputItemTransform commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  QTransform QTransform inputItemTransform() const [] }
-&{invokeAction QInputMethod::invokeAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void void invokeAction(Action a, int cursorPosition) [0xc8206fe3e0 0xc8206fe4a0] }
+&{invokeAction QInputMethod::invokeAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void void invokeAction(Action a, int cursorPosition) [0xc82061b000 0xc82061b160] }
 &{keyboardRectangleChanged QInputMethod::keyboardRectangleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non signal false false  void void keyboardRectangleChanged() [] }
 &{localeChanged QInputMethod::localeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non signal false false  void void localeChanged() [] }
-&{queryFocusObject QInputMethod::queryFocusObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain true false  QVariant QVariant queryFocusObject(Qt::InputMethodQuery query, QVariant argument) [0xc8206feae0 0xc8206feba0] }
+&{queryFocusObject QInputMethod::queryFocusObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain true false  QVariant QVariant queryFocusObject(Qt::InputMethodQuery query, QVariant argument) [0xc82061bb80 0xc82061bd60] }
 &{reset QInputMethod::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void void reset() [] }
-&{setInputItemRectangle QInputMethod::setInputItemRectangle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  void void setInputItemRectangle(const QRectF &rect) [0xc8206fef00] }
-&{setInputItemTransform QInputMethod::setInputItemTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  void void setInputItemTransform(const QTransform &transform) [0xc8206ff140] }
-&{setVisible QInputMethod::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  void void setVisible(bool visible) [0xc8206ff480] }
+&{setInputItemRectangle QInputMethod::setInputItemRectangle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  void void setInputItemRectangle(const QRectF &rect) [0xc8206082c0] }
+&{setInputItemTransform QInputMethod::setInputItemTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  void void setInputItemTransform(const QTransform &transform) [0xc820608780] }
+&{setVisible QInputMethod::setVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non plain false false  void void setVisible(bool visible) [0xc820608c60] }
 &{show QInputMethod::show commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void void show() [] }
-&{update QInputMethod::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void void update(Qt::InputMethodQueries queries) [0xc8206ff8a0] }
+&{update QInputMethod::update commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non slot false false  void void update(Qt::InputMethodQueries queries) [0xc820609100] }
 &{visibleChanged QInputMethod::visibleChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qinputmethod.h non signal false false  void void visibleChanged() [] }
 ########################################			ENUMS			########################################
-&{Action QInputMethod::Action commendable public  [0xc82071b1c0 0xc82071b2a0] false}
+&{Action QInputMethod::Action commendable public  [0xc8209199a0 0xc820919a40] false}

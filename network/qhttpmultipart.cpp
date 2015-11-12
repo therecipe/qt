@@ -1,11 +1,11 @@
 #include "qhttpmultipart.h"
+#include <QModelIndex>
 #include <QHttpPart>
 #include <QByteArray>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QObject>
 #include <QHttpMultiPart>
 #include "_cgo_export.h"
 

@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
 &{QSGTexture QSGTexture::QSGTexture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non constructor false false   QSGTexture() [] }
 &{bind QSGTexture::bind commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h pure plain false false  void void bind() [] }
-&{convertToNormalizedSourceRect QSGTexture::convertToNormalizedSourceRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  QRectF QRectF convertToNormalizedSourceRect(const QRectF &rect) const [0xc821e7cac0] }
+&{convertToNormalizedSourceRect QSGTexture::convertToNormalizedSourceRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  QRectF QRectF convertToNormalizedSourceRect(const QRectF &rect) const [0xc820aac100] }
 &{filtering QSGTexture::filtering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  QSGTexture::Filtering QSGTexture::Filtering filtering() const [] }
 &{hasAlphaChannel QSGTexture::hasAlphaChannel commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h pure plain false false  bool bool hasAlphaChannel() const [] }
 &{hasMipmaps QSGTexture::hasMipmaps commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h pure plain false false  bool bool hasMipmaps() const [] }
@@ -10,15 +10,15 @@
 &{mipmapFiltering QSGTexture::mipmapFiltering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  QSGTexture::Filtering QSGTexture::Filtering mipmapFiltering() const [] }
 &{normalizedTextureSubRect QSGTexture::normalizedTextureSubRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h impure plain false false  QRectF QRectF normalizedTextureSubRect() const [] }
 &{removedFromAtlas QSGTexture::removedFromAtlas commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h impure plain false false  QSGTexture * QSGTexture * removedFromAtlas() const [] }
-&{setFiltering QSGTexture::setFiltering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  void void setFiltering(Filtering filter) [0xc82046c200] }
-&{setHorizontalWrapMode QSGTexture::setHorizontalWrapMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  void void setHorizontalWrapMode(WrapMode hwrap) [0xc82046c4a0] }
-&{setMipmapFiltering QSGTexture::setMipmapFiltering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  void void setMipmapFiltering(Filtering filter) [0xc82046c820] }
-&{setVerticalWrapMode QSGTexture::setVerticalWrapMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  void void setVerticalWrapMode(WrapMode vwrap) [0xc82046cb60] }
+&{setFiltering QSGTexture::setFiltering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  void void setFiltering(Filtering filter) [0xc820aadbe0] }
+&{setHorizontalWrapMode QSGTexture::setHorizontalWrapMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  void void setHorizontalWrapMode(WrapMode hwrap) [0xc8208020e0] }
+&{setMipmapFiltering QSGTexture::setMipmapFiltering commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  void void setMipmapFiltering(Filtering filter) [0xc8208024c0] }
+&{setVerticalWrapMode QSGTexture::setVerticalWrapMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  void void setVerticalWrapMode(WrapMode vwrap) [0xc820802840] }
 &{textureId QSGTexture::textureId commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h pure plain false false  int int textureId() const [] }
 &{textureSize QSGTexture::textureSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h pure plain false false  QSize QSize textureSize() const [] }
-&{updateBindOptions QSGTexture::updateBindOptions commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  void void updateBindOptions(bool force) [0xc82046d320] }
+&{updateBindOptions QSGTexture::updateBindOptions commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  void void updateBindOptions(bool force) [0xc820803100] }
 &{verticalWrapMode QSGTexture::verticalWrapMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non plain false false  QSGTexture::WrapMode QSGTexture::WrapMode verticalWrapMode() const [] }
 &{~QSGTexture QSGTexture::~QSGTexture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h non destructor false false   ~QSGTexture() [] }
 ########################################			ENUMS			########################################
-&{Filtering QSGTexture::Filtering commendable public  [0xc820673920 0xc820673ac0 0xc820673b60] false}
-&{WrapMode QSGTexture::WrapMode commendable public  [0xc820673f00 0xc821e7c000] false}
+&{Filtering QSGTexture::Filtering commendable public  [0xc820abe9c0 0xc820abea80 0xc820abeb80] false}
+&{WrapMode QSGTexture::WrapMode commendable public  [0xc820abf180 0xc820abf2a0] false}

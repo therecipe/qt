@@ -1,16 +1,16 @@
 #include "qtreewidget.h"
-#include <QVariant>
-#include <QUrl>
-#include <QAbstractItemView>
-#include <QObject>
-#include <QItemSelection>
-#include <QItemSelectionModel>
-#include <QString>
-#include <QModelIndex>
-#include <QWidget>
-#include <QPoint>
 #include <QTreeWidgetItem>
+#include <QItemSelection>
+#include <QVariant>
+#include <QModelIndex>
 #include <QMetaObject>
+#include <QWidget>
+#include <QObject>
+#include <QItemSelectionModel>
+#include <QPoint>
+#include <QAbstractItemView>
+#include <QString>
+#include <QUrl>
 #include <QTreeWidget>
 #include "_cgo_export.h"
 

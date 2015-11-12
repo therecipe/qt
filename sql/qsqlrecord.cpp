@@ -1,9 +1,9 @@
 #include "qsqlrecord.h"
+#include <QModelIndex>
+#include <QSqlField>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QSqlField>
 #include <QSqlRecord>
 #include "_cgo_export.h"
 

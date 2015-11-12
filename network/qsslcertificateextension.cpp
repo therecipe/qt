@@ -1,9 +1,9 @@
 #include "qsslcertificateextension.h"
+#include <QModelIndex>
+#include <QSslCertificate>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QSslCertificate>
 #include <QSslCertificateExtension>
 #include "_cgo_export.h"
 

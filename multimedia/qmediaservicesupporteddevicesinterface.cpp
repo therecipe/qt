@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QMediaService>
 #include <QByteArray>
+#include <QMediaService>
 #include <QMediaServiceSupportedDevicesInterface>
 #include "_cgo_export.h"
 

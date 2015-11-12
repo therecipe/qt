@@ -1,10 +1,10 @@
 #include "qmagnetometerfilter.h"
-#include <QMagnetometer>
+#include <QModelIndex>
 #include <QMagnetometerReading>
+#include <QMagnetometer>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QMagnetometerFilter>
 #include "_cgo_export.h"
 

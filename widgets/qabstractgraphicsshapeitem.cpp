@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPen>
 #include <QBrush>
+#include <QPen>
 #include <QGraphicsItem>
 #include <QAbstractGraphicsShapeItem>
 #include "_cgo_export.h"

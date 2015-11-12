@@ -1,10 +1,10 @@
 #include "qfileinfo.h"
 #include <QUrl>
 #include <QModelIndex>
-#include <QDateTime>
-#include <QDir>
 #include <QDate>
 #include <QFile>
+#include <QDir>
+#include <QDateTime>
 #include <QString>
 #include <QVariant>
 #include <QFileInfo>

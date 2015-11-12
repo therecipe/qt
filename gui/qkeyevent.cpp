@@ -1,9 +1,9 @@
 #include "qkeyevent.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QKeySequence>
-#include <QString>
-#include <QVariant>
 #include <QKeyEvent>
 #include "_cgo_export.h"
 

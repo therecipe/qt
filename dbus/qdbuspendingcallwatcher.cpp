@@ -1,10 +1,10 @@
 #include "qdbuspendingcallwatcher.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QObject>
 #include <QDBusPendingCall>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QDBusPendingCallWatcher>
 #include "_cgo_export.h"
 

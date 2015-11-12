@@ -1,10 +1,10 @@
 #include "qqmlndefrecord.h"
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
 #include <QNdefRecord>
 #include <QString>
+#include <QVariant>
 #include <QQmlNdefRecord>
 #include "_cgo_export.h"
 

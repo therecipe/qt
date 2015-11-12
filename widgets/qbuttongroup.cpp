@@ -1,10 +1,10 @@
 #include "qbuttongroup.h"
+#include <QObject>
+#include <QAbstractButton>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QAbstractButton>
 #include <QButtonGroup>
 #include "_cgo_export.h"
 

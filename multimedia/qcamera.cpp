@@ -1,14 +1,14 @@
 #include "qcamera.h"
+#include <QString>
+#include <QAbstractVideoSurface>
+#include <QByteArray>
+#include <QObject>
 #include <QVariant>
 #include <QUrl>
-#include <QByteArray>
-#include <QString>
 #include <QModelIndex>
-#include <QMetaObject>
-#include <QCameraInfo>
-#include <QObject>
-#include <QAbstractVideoSurface>
 #include <QCameraViewfinderSettings>
+#include <QCameraInfo>
+#include <QMetaObject>
 #include <QCamera>
 #include "_cgo_export.h"
 

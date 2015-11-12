@@ -1,9 +1,9 @@
 #include "qlightsensor.h"
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
 #include <QObject>
 #include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QLightSensor>
 #include "_cgo_export.h"
 

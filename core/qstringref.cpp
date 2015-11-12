@@ -1,11 +1,11 @@
 #include "qstringref.h"
 #include <QLatin1String>
+#include <QByteArray>
 #include <QChar>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QByteArray>
 #include <QStringRef>
 #include "_cgo_export.h"
 

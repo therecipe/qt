@@ -1,9 +1,9 @@
 #include "qpauseanimation.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
+#include <QString>
 #include <QPauseAnimation>
 #include "_cgo_export.h"
 

@@ -1,13 +1,13 @@
 #include "qsplashscreen.h"
-#include <QMetaObject>
+#include <QString>
+#include <QColor>
+#include <QModelIndex>
 #include <QWidget>
+#include <QObject>
+#include <QPixmap>
+#include <QMetaObject>
 #include <QVariant>
 #include <QUrl>
-#include <QObject>
-#include <QColor>
-#include <QString>
-#include <QModelIndex>
-#include <QPixmap>
 #include <QSplashScreen>
 #include "_cgo_export.h"
 

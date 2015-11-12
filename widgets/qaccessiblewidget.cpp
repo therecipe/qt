@@ -1,5 +1,4 @@
 #include "qaccessiblewidget.h"
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QWidget>
@@ -7,6 +6,7 @@
 #include <QColor>
 #include <QAccessible>
 #include <QString>
+#include <QVariant>
 #include <QAccessibleWidget>
 #include "_cgo_export.h"
 

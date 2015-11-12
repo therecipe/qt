@@ -1,7 +1,7 @@
 #include "qgeoareamonitorinfo.h"
-#include <QDate>
 #include <QDateTime>
 #include <QGeoShape>
+#include <QDate>
 #include <QString>
 #include <QVariant>
 #include <QUrl>

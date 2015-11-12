@@ -1,11 +1,11 @@
 #include "qxmlstreamattributes.h"
+#include <QModelIndex>
 #include <QLatin1String>
+#include <QXmlStreamAttribute>
 #include <QStringRef>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QXmlStreamAttribute>
 #include <QXmlStreamAttributes>
 #include "_cgo_export.h"
 

@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QEnterEvent QEnterEvent::QEnterEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QEnterEvent(const QPointF &localPos, const QPointF &windowPos, const QPointF &screenPos) [0xc8209339c0 0xc820933a80 0xc820933b00] }
+&{QEnterEvent QEnterEvent::QEnterEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QEnterEvent(const QPointF &localPos, const QPointF &windowPos, const QPointF &screenPos) [0xc820868660 0xc8208687c0 0xc8208688e0] }
 &{globalPos QEnterEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPoint QPoint globalPos() const [] }
 &{globalX QEnterEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalX() const [] }
 &{globalY QEnterEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalY() const [] }

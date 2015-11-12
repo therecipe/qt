@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{linkAt QHelpSearchResultWidget::linkAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchresultwidget.h non plain false false  QUrl QUrl linkAt(const QPoint &point) [0xc8233b97c0] }
-&{requestShowLink QHelpSearchResultWidget::requestShowLink commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchresultwidget.h non signal false false  void void requestShowLink(const QUrl &link) [0xc8233b9b20] }
+&{linkAt QHelpSearchResultWidget::linkAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchresultwidget.h non plain false false  QUrl QUrl linkAt(const QPoint &point) [0xc822a88f40] }
+&{requestShowLink QHelpSearchResultWidget::requestShowLink commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchresultwidget.h non signal false false  void void requestShowLink(const QUrl &link) [0xc822a890a0] }
 &{~QHelpSearchResultWidget QHelpSearchResultWidget::~QHelpSearchResultWidget commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchresultwidget.h non destructor false false   ~QHelpSearchResultWidget() [] }
 ########################################			ENUMS			########################################

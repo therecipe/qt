@@ -1,9 +1,9 @@
 #include "qambienttemperaturefilter.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QAmbientTemperatureReading>
-#include <QString>
-#include <QVariant>
 #include <QAmbientTemperatureFilter>
 #include "_cgo_export.h"
 

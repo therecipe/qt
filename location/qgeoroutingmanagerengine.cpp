@@ -1,15 +1,15 @@
 #include "qgeoroutingmanagerengine.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QGeoRouteRequest>
-#include <QGeoRouteReply>
 #include <QGeoRoute>
-#include <QString>
-#include <QVariant>
 #include <QGeoRoutingManager>
+#include <QVariant>
+#include <QModelIndex>
 #include <QGeoCoordinate>
+#include <QGeoRouteRequest>
 #include <QObject>
+#include <QString>
+#include <QUrl>
 #include <QLocale>
+#include <QGeoRouteReply>
 #include <QGeoRoutingManagerEngine>
 #include "_cgo_export.h"
 

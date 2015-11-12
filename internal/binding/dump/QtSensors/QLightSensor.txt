@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
 &{fieldOfView QLightSensor::fieldOfView commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.cpp non plain false false  qreal qreal fieldOfView() const [] }
 &{reading QLightSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.cpp non plain false false  QLightReading * QLightReading * reading() const [] }
-&{QLightSensor QLightSensor::QLightSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h non constructor false false   QLightSensor(QObject *parent) [0xc82363fce0] }
-&{fieldOfViewChanged QLightSensor::fieldOfViewChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h non signal false false  void void fieldOfViewChanged(qreal fieldOfView) [0xc823624080] }
-&{setFieldOfView QLightSensor::setFieldOfView commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h non plain false false  void void setFieldOfView(qreal fieldOfView) [0xc8236243a0] }
+&{QLightSensor QLightSensor::QLightSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h non constructor false false   QLightSensor(QObject *parent) [0xc8235a5020] }
+&{fieldOfViewChanged QLightSensor::fieldOfViewChanged commendable unsupported_cgoOutput /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h non signal false false  void void fieldOfViewChanged(qreal fieldOfView) [0xc8235a52c0] }
+&{setFieldOfView QLightSensor::setFieldOfView commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h non plain false false  void void setFieldOfView(qreal fieldOfView) [0xc8235a5520] }
 &{~QLightSensor QLightSensor::~QLightSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h impure destructor false false   ~QLightSensor() [] }
 ########################################			ENUMS			########################################

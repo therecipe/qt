@@ -1,10 +1,10 @@
 #include "qnearfieldsharemanager.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QNearFieldShareTarget>
 #include <QObject>
+#include <QNearFieldShareTarget>
+#include <QString>
+#include <QVariant>
 #include <QNearFieldShareManager>
 #include "_cgo_export.h"
 

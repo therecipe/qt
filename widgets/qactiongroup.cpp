@@ -1,12 +1,12 @@
 #include "qactiongroup.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QMetaObject>
+#include <QObject>
 #include <QIcon>
 #include <QAction>
-#include <QObject>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QActionGroup>
 #include "_cgo_export.h"
 

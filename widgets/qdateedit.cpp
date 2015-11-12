@@ -1,10 +1,10 @@
 #include "qdateedit.h"
+#include <QUrl>
+#include <QModelIndex>
 #include <QDate>
 #include <QWidget>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QDateEdit>
 #include "_cgo_export.h"
 

@@ -1,11 +1,11 @@
 #include "qvideoprobe.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QMediaRecorder>
 #include <QMediaObject>
+#include <QMediaRecorder>
 #include <QObject>
-#include <QString>
 #include <QVideoProbe>
 #include "_cgo_export.h"
 

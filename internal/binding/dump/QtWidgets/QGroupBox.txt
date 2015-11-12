@@ -3,26 +3,26 @@
 &{isCheckable QGroupBox::isCheckable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  bool bool isCheckable() const [] }
 &{isChecked QGroupBox::isChecked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  bool bool isChecked() const [] }
 &{isFlat QGroupBox::isFlat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  bool bool isFlat() const [] }
-&{setAlignment QGroupBox::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  void void setAlignment(int alignment) [0xc8214051c0] }
-&{setCheckable QGroupBox::setCheckable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  void void setCheckable(bool checkable) [0xc821405520] }
-&{setChecked QGroupBox::setChecked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non slot false false  void void setChecked(bool checked) [0xc821405980] }
-&{setFlat QGroupBox::setFlat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  void void setFlat(bool flat) [0xc821405d60] }
-&{setTitle QGroupBox::setTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  void void setTitle(const QString &title) [0xc8213fe0c0] }
+&{setAlignment QGroupBox::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  void void setAlignment(int alignment) [0xc8221d2fc0] }
+&{setCheckable QGroupBox::setCheckable commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  void void setCheckable(bool checkable) [0xc8221d3260] }
+&{setChecked QGroupBox::setChecked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non slot false false  void void setChecked(bool checked) [0xc8221d34a0] }
+&{setFlat QGroupBox::setFlat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  void void setFlat(bool flat) [0xc8221d36e0] }
+&{setTitle QGroupBox::setTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  void void setTitle(const QString &title) [0xc8221d3960] }
 &{title QGroupBox::title commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.cpp non plain false false  QString QString title() const [] }
-&{QGroupBox QGroupBox::QGroupBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non constructor false false   QGroupBox(QWidget *parent) [0xc8213fe4c0] }
-&{QGroupBox QGroupBox::QGroupBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non constructor false true 2  QGroupBox(const QString &title, QWidget *parent) [0xc8213fe700 0xc8213fe7e0] }
-&{changeEvent QGroupBox::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void changeEvent(QEvent *ev) [0xc8213fed20] }
-&{childEvent QGroupBox::childEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void childEvent(QChildEvent *c) [0xc8213fefc0] }
-&{clicked QGroupBox::clicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non signal false false  void void clicked(bool checked) [0xc8213ff2a0] }
-&{event QGroupBox::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  bool bool event(QEvent *e) [0xc8213ff4e0] }
-&{focusInEvent QGroupBox::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void focusInEvent(QFocusEvent *fe) [0xc8213ff6e0] }
-&{initStyleOption QGroupBox::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non plain false false  void void initStyleOption(QStyleOptionGroupBox *option) const [0xc8213ff980] }
+&{QGroupBox QGroupBox::QGroupBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non constructor false false   QGroupBox(QWidget *parent) [0xc8221d3cc0] }
+&{QGroupBox QGroupBox::QGroupBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non constructor false true 2  QGroupBox(const QString &title, QWidget *parent) [0xc8221d3ee0 0xc8221d3f80] }
+&{changeEvent QGroupBox::changeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void changeEvent(QEvent *ev) [0xc82222c660] }
+&{childEvent QGroupBox::childEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void childEvent(QChildEvent *c) [0xc82222c980] }
+&{clicked QGroupBox::clicked commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non signal false false  void void clicked(bool checked) [0xc82222cd20] }
+&{event QGroupBox::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  bool bool event(QEvent *e) [0xc82222d000] }
+&{focusInEvent QGroupBox::focusInEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void focusInEvent(QFocusEvent *fe) [0xc82222d2e0] }
+&{initStyleOption QGroupBox::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non plain false false  void void initStyleOption(QStyleOptionGroupBox *option) const [0xc82222d620] }
 &{minimumSizeHint QGroupBox::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  QSize QSize minimumSizeHint() const [] }
-&{mouseMoveEvent QGroupBox::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void mouseMoveEvent(QMouseEvent *event) [0xc8213ffd40] }
-&{mousePressEvent QGroupBox::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void mousePressEvent(QMouseEvent *event) [0xc8213fff40] }
-&{mouseReleaseEvent QGroupBox::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *event) [0xc8213fa340] }
-&{paintEvent QGroupBox::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void paintEvent(QPaintEvent *event) [0xc8213fa6a0] }
-&{resizeEvent QGroupBox::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void resizeEvent(QResizeEvent *e) [0xc8213fa9c0] }
-&{toggled QGroupBox::toggled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non signal false false  void void toggled(bool on) [0xc8213fae20] }
+&{mouseMoveEvent QGroupBox::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void mouseMoveEvent(QMouseEvent *event) [0xc82222db80] }
+&{mousePressEvent QGroupBox::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void mousePressEvent(QMouseEvent *event) [0xc82222de40] }
+&{mouseReleaseEvent QGroupBox::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *event) [0xc822230280] }
+&{paintEvent QGroupBox::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void paintEvent(QPaintEvent *event) [0xc8222305a0] }
+&{resizeEvent QGroupBox::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h impure plain false false  void void resizeEvent(QResizeEvent *e) [0xc822230960] }
+&{toggled QGroupBox::toggled commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non signal false false  void void toggled(bool on) [0xc822230d60] }
 &{~QGroupBox QGroupBox::~QGroupBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qgroupbox.h non destructor false false   ~QGroupBox() [] }
 ########################################			ENUMS			########################################

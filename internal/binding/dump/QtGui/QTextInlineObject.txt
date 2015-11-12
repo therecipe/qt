@@ -6,9 +6,9 @@
 &{height QTextInlineObject::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal qreal height() const [] }
 &{isValid QTextInlineObject::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  bool bool isValid() const [] }
 &{rect QTextInlineObject::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  QRectF QRectF rect() const [] }
-&{setAscent QTextInlineObject::setAscent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void void setAscent(qreal a) [0xc8235341e0] }
-&{setDescent QTextInlineObject::setDescent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void void setDescent(qreal d) [0xc8235343e0] }
-&{setWidth QTextInlineObject::setWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void void setWidth(qreal w) [0xc823534600] }
+&{setAscent QTextInlineObject::setAscent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void void setAscent(qreal a) [0xc8235302c0] }
+&{setDescent QTextInlineObject::setDescent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void void setDescent(qreal d) [0xc8235304c0] }
+&{setWidth QTextInlineObject::setWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  void void setWidth(qreal w) [0xc8235306e0] }
 &{textDirection QTextInlineObject::textDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  Qt::LayoutDirection Qt::LayoutDirection textDirection() const [] }
 &{textPosition QTextInlineObject::textPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  int int textPosition() const [] }
 &{width QTextInlineObject::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextlayout.h non plain false false  qreal qreal width() const [] }

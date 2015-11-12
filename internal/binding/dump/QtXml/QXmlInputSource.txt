@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
 &{QXmlInputSource QXmlInputSource::QXmlInputSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false false   QXmlInputSource() [] }
-&{QXmlInputSource QXmlInputSource::QXmlInputSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false true 2  QXmlInputSource(QIODevice *dev) [0xc821936240] }
+&{QXmlInputSource QXmlInputSource::QXmlInputSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false true 2  QXmlInputSource(QIODevice *dev) [0xc82333dd00] }
 &{data QXmlInputSource::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QString QString data() const [] }
 &{fetchData QXmlInputSource::fetchData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void void fetchData() [] }
-&{fromRawData QXmlInputSource::fromRawData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QString QString fromRawData(const QByteArray &data, bool beginning) [0xc821936a40 0xc821936b80] }
+&{fromRawData QXmlInputSource::fromRawData commendable protected /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QString QString fromRawData(const QByteArray &data, bool beginning) [0xc823452260 0xc823452360] }
 &{next QXmlInputSource::next commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  QChar QChar next() [] }
 &{reset QXmlInputSource::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void void reset() [] }
-&{setData QXmlInputSource::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false true 2 void void setData(const QByteArray &dat) [0xc8219372a0] }
-&{setData QXmlInputSource::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void void setData(const QString &dat) [0xc8219376a0] }
+&{setData QXmlInputSource::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false true 2 void void setData(const QByteArray &dat) [0xc8234527c0] }
+&{setData QXmlInputSource::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure plain false false  void void setData(const QString &dat) [0xc823452ae0] }
 &{~QXmlInputSource QXmlInputSource::~QXmlInputSource commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   ~QXmlInputSource() [] }
 ########################################			ENUMS			########################################

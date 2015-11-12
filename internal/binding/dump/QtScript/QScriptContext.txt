@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
 &{activationObject QScriptContext::activationObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QScriptValue QScriptValue activationObject() const [] }
-&{argument QScriptContext::argument commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QScriptValue QScriptValue argument(int index) const [0xc82355bac0] }
+&{argument QScriptContext::argument commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QScriptValue QScriptValue argument(int index) const [0xc8233c81c0] }
 &{argumentCount QScriptContext::argumentCount commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  int int argumentCount() const [] }
 &{argumentsObject QScriptContext::argumentsObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QScriptValue QScriptValue argumentsObject() const [] }
 &{backtrace QScriptContext::backtrace commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QStringList QStringList backtrace() const [] }
@@ -8,15 +8,15 @@
 &{engine QScriptContext::engine commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QScriptEngine * QScriptEngine * engine() const [] }
 &{isCalledAsConstructor QScriptContext::isCalledAsConstructor commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  bool bool isCalledAsConstructor() const [] }
 &{parentContext QScriptContext::parentContext commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QScriptContext * QScriptContext * parentContext() const [] }
-&{setActivationObject QScriptContext::setActivationObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  void void setActivationObject(const QScriptValue &activation) [0xc823549560] }
-&{setThisObject QScriptContext::setThisObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  void void setThisObject(const QScriptValue &thisObject) [0xc8235498e0] }
+&{setActivationObject QScriptContext::setActivationObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  void void setActivationObject(const QScriptValue &activation) [0xc8233c96c0] }
+&{setThisObject QScriptContext::setThisObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  void void setThisObject(const QScriptValue &thisObject) [0xc8233c9980] }
 &{state QScriptContext::state commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  ExecutionState ExecutionState state() const [] }
 &{thisObject QScriptContext::thisObject commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QScriptValue QScriptValue thisObject() const [] }
-&{throwError QScriptContext::throwError commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QScriptValue QScriptValue throwError(Error error, const QString &text) [0xc823549fc0 0xc8235340e0] }
-&{throwError QScriptContext::throwError commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false true 2 QScriptValue QScriptValue throwError(const QString &text) [0xc8235343a0] }
-&{throwValue QScriptContext::throwValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QScriptValue QScriptValue throwValue(const QScriptValue &value) [0xc8235346e0] }
+&{throwError QScriptContext::throwError commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QScriptValue QScriptValue throwError(Error error, const QString &text) [0xc8233c9f20 0xc8233c9fc0] }
+&{throwError QScriptContext::throwError commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false true 2 QScriptValue QScriptValue throwError(const QString &text) [0xc8233b21c0] }
+&{throwValue QScriptContext::throwValue commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QScriptValue QScriptValue throwValue(const QScriptValue &value) [0xc8233b2440] }
 &{toString QScriptContext::toString commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non plain false false  QString QString toString() const [] }
 &{~QScriptContext QScriptContext::~QScriptContext commendable public /work/build/qt5_workdir/w/s/qtscript/src/script/api/qscriptcontext.h non destructor false false   ~QScriptContext() [] }
 ########################################			ENUMS			########################################
-&{Error QScriptContext::Error commendable public  [0xc82355aca0 0xc82355ad40 0xc82355ae60 0xc82355af20 0xc82355b040 0xc82355b140] false}
-&{ExecutionState QScriptContext::ExecutionState commendable public  [0xc82355b460 0xc82355b520] false}
+&{Error QScriptContext::Error commendable public  [0xc8233dd7c0 0xc8233dd860 0xc8233dd900 0xc8233dd9e0 0xc8233dda80 0xc8233ddb20] false}
+&{ExecutionState QScriptContext::ExecutionState commendable public  [0xc8233ddd40 0xc8233ddde0] false}

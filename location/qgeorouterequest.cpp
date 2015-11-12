@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QGeoRoute>
 #include <QGeoCoordinate>
+#include <QGeoRoute>
 #include <QGeoRouteRequest>
 #include "_cgo_export.h"
 

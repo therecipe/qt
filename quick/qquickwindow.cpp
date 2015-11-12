@@ -1,18 +1,18 @@
 #include "qquickwindow.h"
-#include <QWindow>
-#include <QOpenGLFramebufferObject>
-#include <QQuickItem>
 #include <QOpenGLContext>
-#include <QRunnable>
-#include <QUrl>
 #include <QMetaObject>
-#include <QEvent>
-#include <QObject>
-#include <QString>
-#include <QVariant>
 #include <QModelIndex>
 #include <QImage>
+#include <QWindow>
+#include <QEvent>
+#include <QUrl>
+#include <QQuickItem>
+#include <QOpenGLFramebufferObject>
+#include <QString>
+#include <QObject>
 #include <QColor>
+#include <QRunnable>
+#include <QVariant>
 #include <QQuickWindow>
 #include "_cgo_export.h"
 

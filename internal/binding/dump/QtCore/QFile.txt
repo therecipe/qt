@@ -1,33 +1,33 @@
 ########################################			FUNCTIONS			########################################
-&{QFile QFile::QFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non constructor false true 3  QFile(QObject *parent) [0xc8203b06a0] }
-&{QFile QFile::QFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non constructor false false   QFile(const QString &name) [0xc8203b0840] }
-&{QFile QFile::QFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non constructor false true 4  QFile(const QString &name, QObject *parent) [0xc8203b09a0 0xc8203b0a20] }
-&{copy QFile::copy commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool bool copy(const QString &fileName, const QString &newName) [0xc8203b0e00 0xc8203b0e80] }
-&{copy QFile::copy commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  bool bool copy(const QString &newName) [0xc8203b0fc0] }
-&{decodeName QFile::decodeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true false  QString QString decodeName(const QByteArray &localFileName) [0xc8203b11a0] }
-&{decodeName QFile::decodeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 QString QString decodeName(const char *localFileName) [0xc8203b13c0] }
-&{encodeName QFile::encodeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true false  QByteArray QByteArray encodeName(const QString &fileName) [0xc8203b1580] }
-&{exists QFile::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true false  bool bool exists(const QString &fileName) [0xc8203b16e0] }
+&{QFile QFile::QFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non constructor false true 3  QFile(QObject *parent) [0xc8203866a0] }
+&{QFile QFile::QFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non constructor false false   QFile(const QString &name) [0xc820386840] }
+&{QFile QFile::QFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non constructor false true 4  QFile(const QString &name, QObject *parent) [0xc8203869a0 0xc820386a20] }
+&{copy QFile::copy commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool bool copy(const QString &fileName, const QString &newName) [0xc820386e00 0xc820386e80] }
+&{copy QFile::copy commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  bool bool copy(const QString &newName) [0xc820386fc0] }
+&{decodeName QFile::decodeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true false  QString QString decodeName(const QByteArray &localFileName) [0xc8203871a0] }
+&{decodeName QFile::decodeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 QString QString decodeName(const char *localFileName) [0xc8203873c0] }
+&{encodeName QFile::encodeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true false  QByteArray QByteArray encodeName(const QString &fileName) [0xc820387580] }
+&{exists QFile::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true false  bool bool exists(const QString &fileName) [0xc8203876e0] }
 &{exists QFile::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false true 2 bool bool exists() const [] }
 &{fileName QFile::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  QString QString fileName() const [] }
-&{link QFile::link commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool bool link(const QString &fileName, const QString &linkName) [0xc8203b1a00 0xc8203b1a80] }
-&{link QFile::link commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  bool bool link(const QString &linkName) [0xc8203b1bc0] }
-&{open QFile::open commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false true 2 bool bool open(FILE *fh, OpenMode mode, FileHandleFlags handleFlags) [0xc8203b1d20 0xc8203b1da0 0xc8203b1e20] }
-&{open QFile::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  bool bool open(OpenMode mode) [0xc8203b1fe0] }
-&{open QFile::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false true 3 bool bool open(int fd, OpenMode mode, FileHandleFlags handleFlags) [0xc8203ca140 0xc8203ca1c0 0xc8203ca240] }
-&{permissions QFile::permissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 Permissions Permissions permissions(const QString &fileName) [0xc8203ca400] }
+&{link QFile::link commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool bool link(const QString &fileName, const QString &linkName) [0xc820387a00 0xc820387a80] }
+&{link QFile::link commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  bool bool link(const QString &linkName) [0xc820387bc0] }
+&{open QFile::open commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false true 2 bool bool open(FILE *fh, OpenMode mode, FileHandleFlags handleFlags) [0xc820387d20 0xc820387da0 0xc820387e20] }
+&{open QFile::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  bool bool open(OpenMode mode) [0xc820387fe0] }
+&{open QFile::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false true 3 bool bool open(int fd, OpenMode mode, FileHandleFlags handleFlags) [0xc8203a0140 0xc8203a01c0 0xc8203a0240] }
+&{permissions QFile::permissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 Permissions Permissions permissions(const QString &fileName) [0xc8203a0400] }
 &{permissions QFile::permissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  Permissions Permissions permissions() const [] }
 &{remove QFile::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  bool bool remove() [] }
-&{remove QFile::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool bool remove(const QString &fileName) [0xc8203ca960] }
-&{rename QFile::rename commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  bool bool rename(const QString &newName) [0xc8203caac0] }
-&{rename QFile::rename commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool bool rename(const QString &oldName, const QString &newName) [0xc8203cac20 0xc8203caca0] }
-&{resize QFile::resize commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool bool resize(const QString &fileName, qint64 sz) [0xc8203cae00 0xc8203cae80] }
-&{resize QFile::resize commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  bool bool resize(qint64 sz) [0xc8203cb040] }
-&{setFileName QFile::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  void void setFileName(const QString &name) [0xc8203cb600] }
-&{setPermissions QFile::setPermissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  bool bool setPermissions(Permissions permissions) [0xc8203cb7c0] }
-&{setPermissions QFile::setPermissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool bool setPermissions(const QString &fileName, Permissions permissions) [0xc8203cb9a0 0xc8203cba20] }
+&{remove QFile::remove commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool bool remove(const QString &fileName) [0xc8203a0960] }
+&{rename QFile::rename commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  bool bool rename(const QString &newName) [0xc8203a0ac0] }
+&{rename QFile::rename commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool bool rename(const QString &oldName, const QString &newName) [0xc8203a0c20 0xc8203a0ca0] }
+&{resize QFile::resize commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool bool resize(const QString &fileName, qint64 sz) [0xc8203a0e00 0xc8203a0e80] }
+&{resize QFile::resize commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  bool bool resize(qint64 sz) [0xc8203a1040] }
+&{setFileName QFile::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false false  void void setFileName(const QString &name) [0xc8203a1600] }
+&{setPermissions QFile::setPermissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  bool bool setPermissions(Permissions permissions) [0xc8203a17c0] }
+&{setPermissions QFile::setPermissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true true 2 bool bool setPermissions(const QString &fileName, Permissions permissions) [0xc8203a19a0 0xc8203a1a20] }
 &{size QFile::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h impure plain false false  qint64 qint64 size() const [] }
-&{symLinkTarget QFile::symLinkTarget commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true false  QString QString symLinkTarget(const QString &fileName) [0xc8203cbca0] }
+&{symLinkTarget QFile::symLinkTarget commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain true false  QString QString symLinkTarget(const QString &fileName) [0xc8203a1ca0] }
 &{symLinkTarget QFile::symLinkTarget commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non plain false true 2 QString QString symLinkTarget() const [] }
 &{~QFile QFile::~QFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfile.h non destructor false false   ~QFile() [] }
 ########################################			ENUMS			########################################

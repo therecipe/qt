@@ -1,9 +1,9 @@
 #include "qfontinfo.h"
+#include <QFont>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QFont>
 #include <QFontInfo>
 #include "_cgo_export.h"
 

@@ -1,16 +1,16 @@
 #include "qstylepainter.h"
-#include <QStyle>
-#include <QRect>
-#include <QWidget>
-#include <QPixmap>
-#include <QPalette>
 #include <QModelIndex>
-#include <QStyleOption>
-#include <QPaintDevice>
+#include <QWidget>
 #include <QStyleOptionComplex>
-#include <QString>
-#include <QVariant>
+#include <QPaintDevice>
+#include <QRect>
+#include <QPixmap>
 #include <QUrl>
+#include <QVariant>
+#include <QStyle>
+#include <QStyleOption>
+#include <QPalette>
+#include <QString>
 #include <QStylePainter>
 #include "_cgo_export.h"
 

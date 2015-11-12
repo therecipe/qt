@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{QSemaphore QSemaphore::QSemaphore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non constructor false false   QSemaphore(int n) [0xc82076b400] }
-&{acquire QSemaphore::acquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false false  void void acquire(int n) [0xc82076b620] }
+&{QSemaphore QSemaphore::QSemaphore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non constructor false false   QSemaphore(int n) [0xc820744fa0] }
+&{acquire QSemaphore::acquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false false  void void acquire(int n) [0xc8207451c0] }
 &{available QSemaphore::available commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false false  int int available() const [] }
-&{release QSemaphore::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false false  void void release(int n) [0xc82076b980] }
-&{tryAcquire QSemaphore::tryAcquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false false  bool bool tryAcquire(int n) [0xc82076bbc0] }
-&{tryAcquire QSemaphore::tryAcquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false true 2 bool bool tryAcquire(int n, int timeout) [0xc82076bd80 0xc82076be00] }
+&{release QSemaphore::release commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false false  void void release(int n) [0xc820745520] }
+&{tryAcquire QSemaphore::tryAcquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false false  bool bool tryAcquire(int n) [0xc820745760] }
+&{tryAcquire QSemaphore::tryAcquire commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non plain false true 2 bool bool tryAcquire(int n, int timeout) [0xc820745920 0xc8207459a0] }
 &{~QSemaphore QSemaphore::~QSemaphore commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qsemaphore.h non destructor false false   ~QSemaphore() [] }
 ########################################			ENUMS			########################################

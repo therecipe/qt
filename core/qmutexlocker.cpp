@@ -1,9 +1,9 @@
 #include "qmutexlocker.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMutex>
+#include <QString>
+#include <QVariant>
 #include <QMutexLocker>
 #include "_cgo_export.h"
 

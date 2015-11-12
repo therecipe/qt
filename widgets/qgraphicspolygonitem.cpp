@@ -1,18 +1,18 @@
 #include "qgraphicspolygonitem.h"
-#include <QPolygonF>
-#include <QStyleOptionGraphicsItem>
-#include <QPoint>
-#include <QVariant>
+#include <QWidget>
+#include <QStyle>
 #include <QModelIndex>
 #include <QPointF>
-#include <QPolygon>
-#include <QString>
-#include <QStyle>
+#include <QPolygonF>
+#include <QStyleOptionGraphicsItem>
 #include <QStyleOption>
-#include <QPainter>
+#include <QVariant>
 #include <QUrl>
-#include <QWidget>
+#include <QPolygon>
+#include <QPoint>
+#include <QString>
 #include <QGraphicsItem>
+#include <QPainter>
 #include <QGraphicsPolygonItem>
 #include "_cgo_export.h"
 

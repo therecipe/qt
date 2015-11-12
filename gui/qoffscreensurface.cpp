@@ -1,8 +1,8 @@
 #include "qoffscreensurface.h"
 #include <QModelIndex>
-#include <QSurfaceFormat>
 #include <QScreen>
 #include <QObject>
+#include <QSurfaceFormat>
 #include <QSurface>
 #include <QString>
 #include <QVariant>

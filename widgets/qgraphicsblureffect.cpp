@@ -1,10 +1,10 @@
 #include "qgraphicsblureffect.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
 #include <QMetaObject>
-#include <QString>
+#include <QObject>
 #include <QGraphicsBlurEffect>
 #include "_cgo_export.h"
 

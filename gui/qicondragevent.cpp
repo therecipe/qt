@@ -1,9 +1,9 @@
 #include "qicondragevent.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QIcon>
-#include <QString>
-#include <QVariant>
 #include <QIconDragEvent>
 #include "_cgo_export.h"
 

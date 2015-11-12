@@ -1,9 +1,9 @@
 #include "qsgbasicgeometrynode.h"
+#include <QSGGeometry>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSGGeometry>
 #include <QSGBasicGeometryNode>
 #include "_cgo_export.h"
 

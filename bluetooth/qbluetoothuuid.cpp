@@ -1,9 +1,9 @@
 #include "qbluetoothuuid.h"
-#include <QModelIndex>
-#include <QUuid>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QUuid>
 #include <QBluetoothUuid>
 #include "_cgo_export.h"
 

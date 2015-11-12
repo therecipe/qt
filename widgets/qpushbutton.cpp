@@ -2,10 +2,10 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QIcon>
-#include <QWidget>
-#include <QMenu>
 #include <QMetaObject>
+#include <QWidget>
+#include <QIcon>
+#include <QMenu>
 #include <QString>
 #include <QPushButton>
 #include "_cgo_export.h"

@@ -2,6 +2,6 @@
 &{QRunnable QRunnable::QRunnable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h non constructor false false   QRunnable() [] }
 &{autoDelete QRunnable::autoDelete commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h non plain false false  bool bool autoDelete() const [] }
 &{run QRunnable::run commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h pure plain false false  void void run() [] }
-&{setAutoDelete QRunnable::setAutoDelete commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h non plain false false  void void setAutoDelete(bool autoDelete) [0xc82076afc0] }
+&{setAutoDelete QRunnable::setAutoDelete commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h non plain false false  void void setAutoDelete(bool autoDelete) [0xc820744b60] }
 &{~QRunnable QRunnable::~QRunnable commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qrunnable.h impure destructor false false   ~QRunnable() [] }
 ########################################			ENUMS			########################################

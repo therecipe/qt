@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QSaveFile QSaveFile::QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non constructor false true 2  QSaveFile(QObject *parent) [0xc8202ba300] }
-&{QSaveFile QSaveFile::QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non constructor false false   QSaveFile(const QString &name) [0xc8202ba5e0] }
-&{QSaveFile QSaveFile::QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non constructor false true 3  QSaveFile(const QString &name, QObject *parent) [0xc8202ba800 0xc8202ba880] }
+&{QSaveFile QSaveFile::QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non constructor false true 2  QSaveFile(QObject *parent) [0xc820291120] }
+&{QSaveFile QSaveFile::QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non constructor false false   QSaveFile(const QString &name) [0xc820291340] }
+&{QSaveFile QSaveFile::QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non constructor false true 3  QSaveFile(const QString &name, QObject *parent) [0xc8202915a0 0xc820291620] }
 &{cancelWriting QSaveFile::cancelWriting commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  void void cancelWriting() [] }
 &{commit QSaveFile::commit commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  bool bool commit() [] }
 &{directWriteFallback QSaveFile::directWriteFallback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  bool bool directWriteFallback() const [] }
 &{fileName QSaveFile::fileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h impure plain false false  QString QString fileName() const [] }
-&{open QSaveFile::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h impure plain false false  bool bool open(OpenMode mode) [0xc8202bb160] }
-&{setDirectWriteFallback QSaveFile::setDirectWriteFallback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  void void setDirectWriteFallback(bool enabled) [0xc8202bb300] }
-&{setFileName QSaveFile::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  void void setFileName(const QString &name) [0xc8202bb560] }
-&{writeData QSaveFile::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h impure plain false false  qint64 qint64 writeData(const char *data, qint64 len) [0xc8202bb760 0xc8202bb820] }
+&{open QSaveFile::open commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h impure plain false false  bool bool open(OpenMode mode) [0xc820291fe0] }
+&{setDirectWriteFallback QSaveFile::setDirectWriteFallback commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  void void setDirectWriteFallback(bool enabled) [0xc82027a1e0] }
+&{setFileName QSaveFile::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non plain false false  void void setFileName(const QString &name) [0xc82027a440] }
+&{writeData QSaveFile::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h impure plain false false  qint64 qint64 writeData(const char *data, qint64 len) [0xc82027a660 0xc82027a720] }
 &{~QSaveFile QSaveFile::~QSaveFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qsavefile.h non destructor false false   ~QSaveFile() [] }
 ########################################			ENUMS			########################################

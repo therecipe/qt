@@ -3,8 +3,8 @@
 &{delta QPanGesture::delta commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF QPointF delta() const [] }
 &{lastOffset QPanGesture::lastOffset commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF QPointF lastOffset() const [] }
 &{offset QPanGesture::offset commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  QPointF QPointF offset() const [] }
-&{setAcceleration QPanGesture::setAcceleration commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setAcceleration(qreal value) [0xc822694c60] }
-&{setLastOffset QPanGesture::setLastOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setLastOffset(const QPointF &value) [0xc822694ec0] }
-&{setOffset QPanGesture::setOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setOffset(const QPointF &value) [0xc822695100] }
+&{setAcceleration QPanGesture::setAcceleration commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setAcceleration(qreal value) [0xc822062900] }
+&{setLastOffset QPanGesture::setLastOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setLastOffset(const QPointF &value) [0xc822062c00] }
+&{setOffset QPanGesture::setOffset commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setOffset(const QPointF &value) [0xc822062f60] }
 &{~QPanGesture QPanGesture::~QPanGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   ~QPanGesture() [] }
 ########################################			ENUMS			########################################

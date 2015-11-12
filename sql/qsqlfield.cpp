@@ -1,8 +1,8 @@
 #include "qsqlfield.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QSqlField>
 #include "_cgo_export.h"
 

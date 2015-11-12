@@ -1,10 +1,10 @@
 #include "qtranslator.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
 #include <QLocale>
-#include <QString>
+#include <QObject>
 #include <QTranslator>
 #include "_cgo_export.h"
 

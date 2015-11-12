@@ -1,12 +1,12 @@
 #include "qmetamethod.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
 #include <QGenericArgument>
-#include <QByteArray>
 #include <QGenericReturnArgument>
+#include <QByteArray>
+#include <QObject>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QMetaMethod>
 #include "_cgo_export.h"
 

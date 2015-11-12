@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
 &{temperature QAmbientTemperatureReading::temperature commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambienttemperaturesensor.cpp non plain false false  qreal qreal temperature() const [] }
-&{setTemperature QAmbientTemperatureReading::setTemperature commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambienttemperaturesensor.h non plain false false  void void setTemperature(qreal temperature) [0xc823507820] }
+&{setTemperature QAmbientTemperatureReading::setTemperature commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambienttemperaturesensor.h non plain false false  void void setTemperature(qreal temperature) [0xc823613180] }
 ########################################			ENUMS			########################################

@@ -1,9 +1,9 @@
 #include "qmoveevent.h"
+#include <QPoint>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPoint>
 #include <QMoveEvent>
 #include "_cgo_export.h"
 

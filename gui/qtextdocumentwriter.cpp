@@ -1,13 +1,13 @@
 #include "qtextdocumentwriter.h"
-#include <QString>
 #include <QModelIndex>
-#include <QTextDocument>
 #include <QByteArray>
-#include <QTextCodec>
 #include <QVariant>
 #include <QUrl>
 #include <QIODevice>
 #include <QTextDocumentFragment>
+#include <QTextCodec>
+#include <QString>
+#include <QTextDocument>
 #include <QTextDocumentWriter>
 #include "_cgo_export.h"
 

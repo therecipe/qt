@@ -1,12 +1,12 @@
 #include "qstackedwidget.h"
-#include <QMetaObject>
-#include <QWidget>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
 #include <QStack>
+#include <QMetaObject>
+#include <QWidget>
+#include <QObject>
+#include <QString>
 #include <QStackedWidget>
 #include "_cgo_export.h"
 

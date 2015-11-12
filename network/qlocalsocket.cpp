@@ -1,10 +1,10 @@
 #include "qlocalsocket.h"
-#include <QObject>
+#include <QIODevice>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QIODevice>
+#include <QObject>
 #include <QLocalSocket>
 #include "_cgo_export.h"
 

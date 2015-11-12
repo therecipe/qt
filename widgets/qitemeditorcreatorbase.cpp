@@ -1,11 +1,11 @@
 #include "qitemeditorcreatorbase.h"
-#include <QModelIndex>
-#include <QByteArray>
-#include <QWidget>
 #include <QItemEditorCreator>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QWidget>
+#include <QByteArray>
 #include <QItemEditorCreatorBase>
 #include "_cgo_export.h"
 

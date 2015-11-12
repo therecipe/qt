@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
-&{QRadioButton QRadioButton::QRadioButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h non constructor false false   QRadioButton(QWidget *parent) [0xc820fa7500] }
-&{QRadioButton QRadioButton::QRadioButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h non constructor false true 2  QRadioButton(const QString &text, QWidget *parent) [0xc820fa79c0 0xc820fa7aa0] }
-&{event QRadioButton::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h impure plain false false  bool bool event(QEvent *e) [0xc820f96060] }
-&{hitButton QRadioButton::hitButton commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h impure plain false false  bool bool hitButton(const QPoint &pos) const [0xc820f963e0] }
-&{initStyleOption QRadioButton::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h non plain false false  void void initStyleOption(QStyleOptionButton *option) const [0xc820f96920] }
+&{QRadioButton QRadioButton::QRadioButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h non constructor false false   QRadioButton(QWidget *parent) [0xc8218bce60] }
+&{QRadioButton QRadioButton::QRadioButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h non constructor false true 2  QRadioButton(const QString &text, QWidget *parent) [0xc8218bd260 0xc8218bd3a0] }
+&{event QRadioButton::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h impure plain false false  bool bool event(QEvent *e) [0xc8218bd760] }
+&{hitButton QRadioButton::hitButton commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h impure plain false false  bool bool hitButton(const QPoint &pos) const [0xc8218bdae0] }
+&{initStyleOption QRadioButton::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h non plain false false  void void initStyleOption(QStyleOptionButton *option) const [0xc8218bdec0] }
 &{minimumSizeHint QRadioButton::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h impure plain false false  QSize QSize minimumSizeHint() const [] }
-&{mouseMoveEvent QRadioButton::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc820f97040] }
-&{paintEvent QRadioButton::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc820f97580] }
+&{mouseMoveEvent QRadioButton::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc8218a84c0] }
+&{paintEvent QRadioButton::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc8218a8900] }
 &{sizeHint QRadioButton::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h impure plain false false  QSize QSize sizeHint() const [] }
 &{~QRadioButton QRadioButton::~QRadioButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qradiobutton.h non destructor false false   ~QRadioButton() [] }
 ########################################			ENUMS			########################################

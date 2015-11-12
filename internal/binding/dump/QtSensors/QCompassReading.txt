@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
 &{azimuth QCompassReading::azimuth commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.cpp non plain false false  qreal qreal azimuth() const [] }
 &{calibrationLevel QCompassReading::calibrationLevel commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.cpp non plain false false  qreal qreal calibrationLevel() const [] }
-&{setAzimuth QCompassReading::setAzimuth commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.h non plain false false  void void setAzimuth(qreal azimuth) [0xc8235e9c40] }
-&{setCalibrationLevel QCompassReading::setCalibrationLevel commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.h non plain false false  void void setCalibrationLevel(qreal calibrationLevel) [0xc8235e9f20] }
+&{setAzimuth QCompassReading::setAzimuth commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.h non plain false false  void void setAzimuth(qreal azimuth) [0xc8235fd340] }
+&{setCalibrationLevel QCompassReading::setCalibrationLevel commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qcompass.h non plain false false  void void setCalibrationLevel(qreal calibrationLevel) [0xc8235fd5c0] }
 ########################################			ENUMS			########################################

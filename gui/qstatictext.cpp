@@ -2,9 +2,9 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QFont>
 #include <QTextOption>
 #include <QTransform>
+#include <QFont>
 #include <QString>
 #include <QStaticText>
 #include "_cgo_export.h"

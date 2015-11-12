@@ -1,8 +1,8 @@
 #include "qsgdynamictexture.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
 #include <QSGDynamicTexture>
 #include "_cgo_export.h"
 

@@ -1,14 +1,14 @@
 #include "qlistview.h"
 #include <QList>
-#include <QModelIndex>
-#include <QWidget>
 #include <QString>
-#include <QVariant>
 #include <QUrl>
-#include <QSize>
 #include <QAbstractItemView>
-#include <QList>
+#include <QWidget>
+#include <QVariant>
+#include <QModelIndex>
 #include <QPoint>
+#include <QSize>
+#include <QList>
 #include <QListView>
 #include "_cgo_export.h"
 

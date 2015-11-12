@@ -1,11 +1,11 @@
 #include "qsignaltransition.h"
-#include <QByteArray>
-#include <QState>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QState>
+#include <QByteArray>
 #include <QObject>
+#include <QString>
+#include <QVariant>
 #include <QSignalTransition>
 #include "_cgo_export.h"
 

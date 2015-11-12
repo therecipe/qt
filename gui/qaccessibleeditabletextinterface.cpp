@@ -1,9 +1,9 @@
 #include "qaccessibleeditabletextinterface.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QAccessible>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QAccessibleEditableTextInterface>
 #include "_cgo_export.h"
 

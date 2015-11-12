@@ -2,9 +2,9 @@
 #include <QUrl>
 #include <QModelIndex>
 #include <QTextLength>
+#include <QTextFrame>
 #include <QTextFormat>
 #include <QBrush>
-#include <QTextFrame>
 #include <QString>
 #include <QVariant>
 #include <QTextFrameFormat>

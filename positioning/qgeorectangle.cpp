@@ -1,10 +1,10 @@
 #include "qgeorectangle.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QGeoShape>
-#include <QGeoCoordinate>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QGeoCoordinate>
+#include <QGeoShape>
 #include <QGeoRectangle>
 #include "_cgo_export.h"
 

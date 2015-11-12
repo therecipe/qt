@@ -1,11 +1,11 @@
 #include "qcameracapturedestinationcontrol.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QCamera>
-#include <QCameraImageCapture>
 #include <QObject>
-#include <QString>
+#include <QCameraImageCapture>
+#include <QCamera>
 #include <QCameraCaptureDestinationControl>
 #include "_cgo_export.h"
 

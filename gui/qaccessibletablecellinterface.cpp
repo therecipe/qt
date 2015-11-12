@@ -1,9 +1,9 @@
 #include "qaccessibletablecellinterface.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QAccessible>
-#include <QString>
-#include <QVariant>
 #include <QAccessibleTableCellInterface>
 #include "_cgo_export.h"
 

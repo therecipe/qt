@@ -1,9 +1,9 @@
 #include "qxmlname.h"
-#include <QXmlNamePool>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QXmlNamePool>
 #include <QXmlName>
 #include "_cgo_export.h"
 

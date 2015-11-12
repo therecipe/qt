@@ -1,11 +1,11 @@
 #include "qtcpserver.h"
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
 #include <QNetworkProxy>
 #include <QAbstractSocket>
 #include <QObject>
 #include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QTcpServer>
 #include "_cgo_export.h"
 

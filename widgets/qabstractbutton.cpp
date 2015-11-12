@@ -1,13 +1,13 @@
 #include "qabstractbutton.h"
+#include <QVariant>
+#include <QMetaObject>
+#include <QSize>
+#include <QIcon>
 #include <QString>
 #include <QUrl>
-#include <QMetaObject>
-#include <QIcon>
-#include <QKeySequence>
-#include <QVariant>
 #include <QModelIndex>
 #include <QObject>
-#include <QSize>
+#include <QKeySequence>
 #include <QAbstractButton>
 #include "_cgo_export.h"
 

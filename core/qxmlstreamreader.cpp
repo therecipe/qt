@@ -1,13 +1,13 @@
 #include "qxmlstreamreader.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QXmlStreamEntityResolver>
-#include <QString>
-#include <QStringRef>
-#include <QIODevice>
 #include <QXmlStreamNamespaceDeclaration>
 #include <QByteArray>
+#include <QIODevice>
+#include <QString>
+#include <QUrl>
+#include <QStringRef>
+#include <QVariant>
+#include <QModelIndex>
 #include <QXmlStreamReader>
 #include "_cgo_export.h"
 

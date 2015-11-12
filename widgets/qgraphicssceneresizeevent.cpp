@@ -1,9 +1,9 @@
 #include "qgraphicssceneresizeevent.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QGraphicsScene>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QGraphicsSceneResizeEvent>
 #include "_cgo_export.h"
 

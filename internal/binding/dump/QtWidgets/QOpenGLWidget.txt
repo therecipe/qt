@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QOpenGLWidget QOpenGLWidget::QOpenGLWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non constructor false false   QOpenGLWidget(QWidget *parent, Qt::WindowFlags f) [0xc822244fc0 0xc822245060] }
+&{QOpenGLWidget QOpenGLWidget::QOpenGLWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non constructor false false   QOpenGLWidget(QWidget *parent, Qt::WindowFlags f) [0xc821e42920 0xc821e429a0] }
 &{aboutToCompose QOpenGLWidget::aboutToCompose commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non signal false false  void void aboutToCompose() [] }
 &{aboutToResize QOpenGLWidget::aboutToResize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non signal false false  void void aboutToResize() [] }
 &{context QOpenGLWidget::context commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  QOpenGLContext * QOpenGLContext * context() const [] }
@@ -11,14 +11,14 @@
 &{makeCurrent QOpenGLWidget::makeCurrent commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  void void makeCurrent() [] }
 &{frameSwapped QOpenGLWidget::frameSwapped commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non signal false false  void void frameSwapped() [] }
 &{initializeGL QOpenGLWidget::initializeGL commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void void initializeGL() [] }
-&{paintEvent QOpenGLWidget::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void void paintEvent(QPaintEvent *e) [0xc822256bc0] }
+&{paintEvent QOpenGLWidget::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void void paintEvent(QPaintEvent *e) [0xc821e56540] }
 &{paintGL QOpenGLWidget::paintGL commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void void paintGL() [] }
-&{resizeEvent QOpenGLWidget::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void void resizeEvent(QResizeEvent *e) [0xc822256e60] }
-&{resizeGL QOpenGLWidget::resizeGL commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void void resizeGL(int w, int h) [0xc822257140 0xc8222571e0] }
+&{resizeEvent QOpenGLWidget::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void void resizeEvent(QResizeEvent *e) [0xc821e56880] }
+&{resizeGL QOpenGLWidget::resizeGL commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h impure plain false false  void void resizeGL(int w, int h) [0xc821e56aa0 0xc821e56b20] }
 &{resized QOpenGLWidget::resized commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non signal false false  void void resized() [] }
-&{setFormat QOpenGLWidget::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  void void setFormat(const QSurfaceFormat &format) [0xc8222575c0] }
-&{setUpdateBehavior QOpenGLWidget::setUpdateBehavior commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  void void setUpdateBehavior(UpdateBehavior updateBehavior) [0xc8222578c0] }
+&{setFormat QOpenGLWidget::setFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  void void setFormat(const QSurfaceFormat &format) [0xc821e56e40] }
+&{setUpdateBehavior QOpenGLWidget::setUpdateBehavior commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  void void setUpdateBehavior(UpdateBehavior updateBehavior) [0xc821e57080] }
 &{updateBehavior QOpenGLWidget::updateBehavior commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non plain false false  UpdateBehavior UpdateBehavior updateBehavior() const [] }
 &{~QOpenGLWidget QOpenGLWidget::~QOpenGLWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qopenglwidget.h non destructor false false   ~QOpenGLWidget() [] }
 ########################################			ENUMS			########################################
-&{UpdateBehavior QOpenGLWidget::UpdateBehavior commendable public  [0xc822244c60 0xc822244d40] false}
+&{UpdateBehavior QOpenGLWidget::UpdateBehavior commendable public  [0xc821e42640 0xc821e426e0] false}

@@ -1,10 +1,10 @@
 #include "qradialgradient.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QPoint>
 #include <QPointF>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QRadialGradient>
 #include "_cgo_export.h"
 

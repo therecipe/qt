@@ -1,9 +1,9 @@
 #include "qqmlextensionplugin.h"
+#include <QModelIndex>
 #include <QQmlEngine>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QQmlExtensionPlugin>
 #include "_cgo_export.h"
 

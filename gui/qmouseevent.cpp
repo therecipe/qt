@@ -1,11 +1,11 @@
 #include "qmouseevent.h"
-#include <QPoint>
-#include <QPointF>
-#include <QEvent>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QPointF>
+#include <QEvent>
+#include <QPoint>
+#include <QString>
+#include <QVariant>
 #include <QMouseEvent>
 #include "_cgo_export.h"
 

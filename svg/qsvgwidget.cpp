@@ -1,11 +1,11 @@
 #include "qsvgwidget.h"
-#include <QModelIndex>
-#include <QMetaObject>
-#include <QWidget>
-#include <QByteArray>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QWidget>
+#include <QByteArray>
+#include <QMetaObject>
 #include <QSvgWidget>
 #include "_cgo_export.h"
 

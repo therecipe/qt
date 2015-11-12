@@ -1,13 +1,13 @@
 #include "qquickrendercontrol.h"
-#include <QObject>
-#include <QThread>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
+#include <QThread>
 #include <QOpenGLContext>
+#include <QObject>
+#include <QUrl>
 #include <QModelIndex>
-#include <QPoint>
 #include <QQuickWindow>
+#include <QPoint>
 #include <QQuickRenderControl>
 #include "_cgo_export.h"
 

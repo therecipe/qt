@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QAccessible>
 #include <QColor>
+#include <QAccessible>
 #include <QAccessibleInterface>
 #include "_cgo_export.h"
 

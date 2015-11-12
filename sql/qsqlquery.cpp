@@ -1,11 +1,11 @@
 #include "qsqlquery.h"
-#include <QSqlDriver>
-#include <QSqlDatabase>
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QSqlDriver>
+#include <QSqlDatabase>
 #include <QSqlResult>
+#include <QString>
+#include <QVariant>
 #include <QSqlQuery>
 #include "_cgo_export.h"
 

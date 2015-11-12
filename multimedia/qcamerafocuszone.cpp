@@ -1,10 +1,10 @@
 #include "qcamerafocuszone.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QCamera>
 #include <QCameraFocus>
+#include <QString>
 #include <QCameraFocusZone>
 #include "_cgo_export.h"
 

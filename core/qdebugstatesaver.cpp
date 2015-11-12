@@ -1,9 +1,9 @@
 #include "qdebugstatesaver.h"
+#include <QModelIndex>
+#include <QDebug>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QDebug>
 #include <QDebugStateSaver>
 #include "_cgo_export.h"
 

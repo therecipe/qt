@@ -1,12 +1,12 @@
 #include "qtextlist.h"
 #include <QList>
-#include <QUrl>
 #include <QModelIndex>
-#include <QTextBlock>
 #include <QTextListFormat>
+#include <QTextBlock>
 #include <QList>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QTextList>
 #include "_cgo_export.h"
 

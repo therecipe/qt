@@ -1,11 +1,11 @@
 #include "qeventtransition.h"
+#include <QString>
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QState>
-#include <QObject>
 #include <QEvent>
-#include <QString>
-#include <QVariant>
+#include <QObject>
 #include <QEventTransition>
 #include "_cgo_export.h"
 

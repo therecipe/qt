@@ -1,17 +1,17 @@
 #include "qabstractitemview.h"
-#include <QString>
 #include <QModelIndex>
-#include <QWidget>
 #include <QAbstractItemModel>
-#include <QPoint>
-#include <QAbstractItemDelegate>
+#include <QItemSelectionModel>
+#include <QItemSelection>
+#include <QMetaObject>
+#include <QWidget>
 #include <QVariant>
 #include <QUrl>
 #include <QObject>
+#include <QPoint>
+#include <QAbstractItemDelegate>
+#include <QString>
 #include <QSize>
-#include <QItemSelection>
-#include <QMetaObject>
-#include <QItemSelectionModel>
 #include <QAbstractItemView>
 #include "_cgo_export.h"
 

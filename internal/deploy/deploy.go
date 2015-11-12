@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"path"
+	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
@@ -17,6 +17,7 @@ var (
 	appPath, appName       string
 	depPath                string
 	buildMode, buildTarget string
+	ending                 string
 )
 
 func main() {
@@ -87,20 +88,20 @@ func args() {
 		}
 	}
 
-	if !path.IsAbs(appPath) {
+	if !filepath.IsAbs(appPath) {
 		appPath = utils.GetAbsPath(appPath)
 	}
-	appName = path.Base(appPath)
+	appName = filepath.Base(appPath)
 
 	switch buildTarget {
 	case "android":
 		{
-			depPath = path.Join(appPath, "deploy", buildTarget)
+			depPath = filepath.Join(appPath, "deploy", buildTarget)
 		}
 
 	case "desktop":
 		{
-			depPath = path.Join(appPath, "deploy", runtime.GOOS)
+			depPath = filepath.Join(appPath, "deploy", runtime.GOOS)
 		}
 	}
 
@@ -111,17 +112,21 @@ func args() {
 			utils.MakeFolder(depPath)
 		}
 	}
+
+	if runtime.GOOS == "windows" && buildTarget != "android" {
+		ending = ".exe"
+	}
 }
 
 func qrc() {
 
-	utils.MakeFolder(path.Join(appPath, "qml"))
+	utils.MakeFolder(filepath.Join(appPath, "qml"))
 
 	var (
 		rccPath string
-		qmlGo   = path.Join(appPath, "qtQrc.go")
-		qmlQrc  = path.Join(appPath, "qtQrc.qrc")
-		qmlCpp  = path.Join(appPath, "qtQrc.cpp")
+		qmlGo   = filepath.Join(appPath, "qtQrc.go")
+		qmlQrc  = filepath.Join(appPath, "qtQrc.qrc")
+		qmlCpp  = filepath.Join(appPath, "qtQrc.cpp")
 	)
 
 	switch buildTarget {
@@ -151,7 +156,7 @@ func qrc() {
 
 			case "windows":
 				{
-					rccPath = "rcc" //TODO:
+					rccPath = "C:\\Qt\\Qt5.5.1\\5.5\\android_armv7\\bin\\rcc.exe"
 				}
 			}
 		}
@@ -182,34 +187,19 @@ func qrc() {
 
 			case "windows":
 				{
-					rccPath = "rcc"
+					rccPath = "C:\\Qt\\Qt5.5.1\\5.5\\mingw492_32\\bin\\rcc.exe"
 				}
 			}
 		}
 	}
 
-	utils.Save(qmlGo, `package main
-
-  /*
-  #cgo +build android,arm LDFLAGS: -L/usr/local/Qt5.5.1/5.5/android_armv7/lib -lQt5Core
-
-  #cgo +build darwin,amd64 LDFLAGS: -F/usr/local/Qt5.5.1/5.5/clang_64/lib -framework QtCore
-
-  #cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.5.1/5.5/gcc_64/lib
-  #cgo +build linux,amd64 LDFLAGS: -L/usr/local/Qt5.5.1/5.5/gcc_64/lib -lQt5Core
-
-	#cgo +build linux,386 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.5.1/5.5/gcc/lib
-  #cgo +build linux,386 LDFLAGS: -L/usr/local/Qt5.5.1/5.5/gcc/lib -lQt5Core
-
-  #cgo +build windows,386 LDFLAGS: -LC:/Qt/Qt5.5.1/5.5/mingw492_32/bin -lQt5Core
-  */
-  import "C"`)
+	utils.Save(qmlGo, qmlHeader())
 
 	var rcc = exec.Command(rccPath)
 	rcc.Args = append(rcc.Args,
 		"-project",
 		"-o", qmlQrc)
-	rcc.Dir = path.Join(appPath, "qml")
+	rcc.Dir = filepath.Join(appPath, "qml")
 	runCmd(rcc, "qrc.qrc")
 
 	utils.Save(qmlQrc, strings.Replace(utils.Load(qmlQrc), "<file>./", "<file>qml/", -1))
@@ -220,6 +210,38 @@ func qrc() {
 		"-o", qmlCpp,
 		qmlQrc)
 	runCmd(rcc, "qrc.cpp")
+}
+
+func qmlHeader() string {
+
+	var hloc string
+
+	switch runtime.GOOS {
+	case "darwin", "linux":
+		{
+			hloc = "/usr/local"
+		}
+	case "windows":
+		{
+			hloc = "C:/Qt"
+		}
+	}
+
+	return fmt.Sprintf(`package main
+
+  	/*
+  	#cgo +build android,arm LDFLAGS: -L%v/Qt5.5.1/5.5/android_armv7/lib -lQt5Core
+		#cgo +build darwin,amd64 LDFLAGS: -F/usr/local/Qt5.5.1/5.5/clang_64/lib -framework QtCore
+
+	  #cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.5.1/5.5/gcc_64/lib
+	  #cgo +build linux,amd64 LDFLAGS: -L/usr/local/Qt5.5.1/5.5/gcc_64/lib -lQt5Core
+
+	  #cgo +build linux,386 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.5.1/5.5/gcc/lib
+	  #cgo +build linux,386 LDFLAGS: -L/usr/local/Qt5.5.1/5.5/gcc/lib -lQt5Core
+
+	  #cgo +build windows,386 LDFLAGS: -LC:/Qt/Qt5.5.1/5.5/mingw492_32/lib -lQt5Core
+	  */
+	  import "C"`, hloc)
 }
 
 func build() {
@@ -234,7 +256,7 @@ func build() {
 	case "android":
 		{
 			ldFlags = "-ldflags=\"-s\" \"-w\""
-			outputFile = path.Join(depPath, fmt.Sprintf("lib%v.so", appName))
+			outputFile = filepath.Join(depPath, fmt.Sprintf("lib%v.so", appName))
 
 			switch runtime.GOOS {
 			case "darwin", "linux":
@@ -244,8 +266,8 @@ func build() {
 						"GOOS":         "android",
 						"GOARCH":       "arm",
 						"GOARM":        "7",
-						"CC":           path.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
-						"CXX":          path.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
+						"CC":           filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
+						"CXX":          filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
 						"CGO_ENABLED":  "1",
 						"CGO_CPPFLAGS": "-isystem /opt/android-ndk/platforms/android-9/arch-arm/usr/include",
 						"CGO_LDFLAGS":  "--sysroot=/opt/android-ndk/platforms/android-9/arch-arm/ -llog",
@@ -254,7 +276,17 @@ func build() {
 
 			case "windows":
 				{
-					//TODO:
+					env = map[string]string{
+						"GOPATH":       os.Getenv("GOPATH"),
+						"GOOS":         "android",
+						"GOARCH":       "arm",
+						"GOARM":        "7",
+						"CC":           "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows\\bin\\arm-linux-androideabi-gcc.exe",
+						"CXX":          "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows\\bin\\arm-linux-androideabi-g++.exe",
+						"CGO_ENABLED":  "1",
+						"CGO_CPPFLAGS": "-isystem C:\\android\\android-ndk\\platforms\\android-9\\arch-arm\\usr\\include",
+						"CGO_LDFLAGS":  "--sysroot=C:\\android\\android-ndk\\platforms\\android-9\\arch-arm\\ -llog",
+					}
 				}
 			}
 		}
@@ -265,19 +297,19 @@ func build() {
 			case "darwin":
 				{
 					ldFlags = "-ldflags=\"-w\" \"-r=/usr/local/Qt5.5.1/5.5/clang_64/lib\""
-					outputFile = path.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))
+					outputFile = filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))
 				}
 
 			case "linux":
 				{
 					ldFlags = "-ldflags=\"-s\" \"-w\""
-					outputFile = path.Join(depPath, appName)
+					outputFile = filepath.Join(depPath, appName)
 				}
 
 			case "windows":
 				{
 					ldFlags = "-ldflags=\"-s\" \"-w\" \"-H=windowsgui\""
-					outputFile = path.Join(depPath, appName)
+					outputFile = filepath.Join(depPath, appName)
 				}
 			}
 		}
@@ -288,12 +320,12 @@ func build() {
 		"build",
 		"-p", strconv.Itoa(runtime.NumCPU()),
 		ldFlags,
-		"-o", outputFile)
+		"-o", outputFile+ending)
 
 	cmd.Dir = appPath
 
 	if buildTarget != "desktop" {
-		cmd.Args = append(cmd.Args, "-buildmode", "c-shared")
+		cmd.Args = append(cmd.Args, "-buildmode", "c-shared") //TODO: pie in go 1.6
 		for key, value := range env {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
@@ -303,74 +335,119 @@ func build() {
 
 func predeploy() {
 
+	var copyCmd string
+
+	switch runtime.GOOS {
+	case "windows":
+		copyCmd = "xcopy"
+	default:
+		copyCmd = "cp"
+	}
+
 	switch buildTarget {
 	case "android":
 		{
-			utils.MakeFolder(path.Join(appPath, "android"))
+			utils.MakeFolder(filepath.Join(appPath, "android"))
+
+			for _, dir := range []string{"drawable-hdpi", "drawable-ldpi", "drawable-mdpi"} {
+				utils.MakeFolder(filepath.Join(depPath, "build", "res", dir))
+				runCmdOptional(exec.Command(copyCmd, filepath.Join(appPath, "android", "icon.png"), filepath.Join(depPath, "build", "res", dir, "icon.png")), "predeploy.cpicon")
+			}
+
+			var libPath = filepath.Join(depPath, "build", "libs", "armeabi-v7a")
+			utils.MakeFolder(libPath)
+			runCmd(exec.Command(copyCmd, filepath.Join(depPath, fmt.Sprintf("lib%v.so", appName)), libPath), "predeploy.cplib")
+
+			var (
+				qtPrefix      string
+				androidPrefix string
+				ndkhost       string
+			)
 
 			switch runtime.GOOS {
 			case "darwin", "linux":
 				{
+					qtPrefix = "/usr/local"
+					androidPrefix = "/opt"
+					ndkhost = runtime.GOOS + "-x86_64"
 
-					for _, dir := range []string{"drawable-hdpi", "drawable-ldpi", "drawable-mdpi"} {
-						utils.MakeFolder(path.Join(depPath, "build", "res", dir))
-						runCmdOptional(exec.Command("cp", path.Join(appPath, "android", "icon.png"), path.Join(depPath, "build", "res", dir, "icon.png")), "predeploy.cpicon")
-					}
+					runCmd(exec.Command("cp", "/usr/local/Qt5.5.1/5.5/android_armv7/jar/QtAndroid-bundled.jar", filepath.Join(depPath, "build", "libs")), "predeploy.cpqtandroid")
 
-					var libPath = path.Join(depPath, "build", "libs", "armeabi-v7a")
-					utils.MakeFolder(libPath)
-					runCmd(exec.Command("cp", path.Join(depPath, fmt.Sprintf("lib%v.so", appName)), libPath), "predeploy.cplib")
-
-					runCmd(exec.Command("cp", "/usr/local/Qt5.5.1/5.5/android_armv7/jar/QtAndroid-bundled.jar", path.Join(depPath, "build", "libs")), "predeploy.cpqtandroid")
-
-					runCmd(exec.Command("zip", "-d", path.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"), "org/qtproject/qt5/android/QtNative.class"), "predeploy.patchqtandroid_main")
+					runCmd(exec.Command("zip", "-d", filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"), "org/qtproject/qt5/android/QtNative.class"), "predeploy.patchqtandroid_main")
 					for i := 1; i < 19; i++ {
-						runCmd(exec.Command("zip", "-d", path.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"), fmt.Sprintf("org/qtproject/qt5/android/QtNative$%v.class", i)), fmt.Sprintf("predeploy.patchqtandroid_%v", i))
+						runCmd(exec.Command("zip", "-d", filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"), fmt.Sprintf("org/qtproject/qt5/android/QtNative$%v.class", i)), fmt.Sprintf("predeploy.patchqtandroid_%v", i))
 					}
-
-					utils.MakeFolder(path.Join(depPath, "build", "src", "org", "qtproject", "qt5", "android"))
-					runCmd(exec.Command("cp", utils.GetQtPkgPath("internal", "android", "patch", "QtNative.java"), path.Join(depPath, "build", "src", "org", "qtproject", "qt5", "android")), "predeploy.cpqtandroidpatched")
-
-					var out, err = json.Marshal(&struct {
-						Qt                            string `json:"qt"`
-						Sdk                           string `json:"sdk"`
-						SdkBuildToolsRevision         string `json:"sdkBuildToolsRevision"`
-						Ndk                           string `json:"ndk"`
-						Toolchainprefix               string `json:"toolchain-prefix"`
-						Toolprefix                    string `json:"tool-prefix"`
-						Toolchainversion              string `json:"toolchain-version"`
-						Ndkhost                       string `json:"ndk-host"`
-						Targetarchitecture            string `json:"target-architecture"`
-						AndroidPackageSourceDirectory string `json:"android-package-source-directory"`
-						Qmlrootpath                   string `json:"qml-root-path"`
-						Applicationbinary             string `json:"application-binary"`
-					}{
-						Qt:  "/usr/local/Qt5.5.1/5.5/android_armv7",
-						Sdk: "/opt/android-sdk",
-						SdkBuildToolsRevision: "23.0.1",
-						Ndk:                           "/opt/android-ndk",
-						Toolchainprefix:               "arm-linux-androideabi",
-						Toolprefix:                    "arm-linux-androideabi",
-						Toolchainversion:              "4.9",
-						Ndkhost:                       runtime.GOOS + "-x86_64",
-						Targetarchitecture:            "armeabi-v7a",
-						AndroidPackageSourceDirectory: path.Join(appPath, "android"),
-						Qmlrootpath:                   path.Join(appPath, "qml"),
-						Applicationbinary:             path.Join(depPath, fmt.Sprintf("lib%v.so", appName)),
-					})
-					if err != nil {
-						fmt.Println("predeploy.json", string(out), err)
-						os.Exit(1)
-					}
-
-					utils.Save(path.Join(depPath, fmt.Sprintf("android-lib%v.so-deployment-settings.json", appName)), string(out))
 				}
 
 			case "windows":
 				{
-					//TODO:
+					qtPrefix = "C:\\Qt"
+					androidPrefix = "C:\\android"
+					ndkhost = runtime.GOOS
+
+					var (
+						jdkVersion = strings.Split(runCmd(exec.Command("java", "-version"), "predeploy.jdk"), "\"")[1]
+						jarPath    = fmt.Sprintf("C:\\Program Files\\Java\\jdk%v\\bin\\jar.exe", jdkVersion)
+					)
+
+					runCmd(exec.Command("xcopy", "C:\\Qt\\Qt5.5.1\\5.5\\android_armv7\\jar\\QtAndroid-bundled.jar", filepath.Join(depPath, "build", "libs")), "predeploy.cpqtandroid")
+
+					var jarUnzip = exec.Command(jarPath, "-xf", filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"))
+					jarUnzip.Dir = filepath.Join(depPath, "build", "libs")
+					runCmd(jarUnzip, "predeploy.unzipqtandroid")
+
+					utils.RemoveAll(filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"))
+					utils.RemoveAll(filepath.Join(depPath, "build", "libs", "org", "qtproject", "qt5", "android", "QtNative.class"))
+					for i := 1; i < 19; i++ {
+						utils.RemoveAll(filepath.Join(depPath, "build", "libs", "org", "qtproject", "qt5", "android", fmt.Sprintf("QtNative$%v.class", i)))
+					}
+
+					var zipQtAndroid = exec.Command(jarPath, "-cmf", filepath.Join(depPath, "build", "libs", "META-INF", "MANIFEST.MF"), filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"), "org")
+					zipQtAndroid.Dir = filepath.Join(depPath, "build", "libs")
+					runCmd(zipQtAndroid, "predeploy.zipqtandroid")
+
+					utils.RemoveAll(filepath.Join(depPath, "build", "libs", "org"))
+					utils.RemoveAll(filepath.Join(depPath, "build", "libs", "META-INF"))
 				}
 			}
+
+			utils.MakeFolder(filepath.Join(depPath, "build", "src", "org", "qtproject", "qt5", "android"))
+			runCmd(exec.Command(copyCmd, utils.GetQtPkgPath("internal", "android", "patch", "QtNative.java"), filepath.Join(depPath, "build", "src", "org", "qtproject", "qt5", "android")), "predeploy.cpqtandroidpatched")
+
+			var out, err = json.Marshal(&struct {
+				Qt                            string `json:"qt"`
+				Sdk                           string `json:"sdk"`
+				SdkBuildToolsRevision         string `json:"sdkBuildToolsRevision"`
+				Ndk                           string `json:"ndk"`
+				Toolchainprefix               string `json:"toolchain-prefix"`
+				Toolprefix                    string `json:"tool-prefix"`
+				Toolchainversion              string `json:"toolchain-version"`
+				Ndkhost                       string `json:"ndk-host"`
+				Targetarchitecture            string `json:"target-architecture"`
+				AndroidPackageSourceDirectory string `json:"android-package-source-directory"`
+				Qmlrootpath                   string `json:"qml-root-path"`
+				Applicationbinary             string `json:"application-binary"`
+			}{
+				Qt:  filepath.Join(qtPrefix, "Qt5.5.1", "5.5", "android_armv7"),
+				Sdk: filepath.Join(androidPrefix, "android-sdk"),
+				SdkBuildToolsRevision: "23.0.2",
+				Ndk:                           filepath.Join(androidPrefix, "android-ndk"),
+				Toolchainprefix:               "arm-linux-androideabi",
+				Toolprefix:                    "arm-linux-androideabi",
+				Toolchainversion:              "4.9",
+				Ndkhost:                       ndkhost,
+				Targetarchitecture:            "armeabi-v7a",
+				AndroidPackageSourceDirectory: filepath.Join(appPath, "android"),
+				Qmlrootpath:                   filepath.Join(appPath, "qml"),
+				Applicationbinary:             filepath.Join(depPath, fmt.Sprintf("lib%v.so", appName)),
+			})
+			if err != nil {
+				fmt.Println("predeploy.json", string(out), err)
+				os.Exit(1)
+			}
+
+			utils.Save(filepath.Join(depPath, fmt.Sprintf("android-lib%v.so-deployment-settings.json", appName)), string(out))
+
 		}
 
 	case "desktop":
@@ -378,14 +455,14 @@ func predeploy() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					utils.Save(path.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_sh", appName, appName)), darwinSH())
-					utils.Save(path.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/Info.plist", appName)), darwinPLIST())
-					//TODO: icon
+					utils.Save(filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_sh", appName, appName)), darwinSH())
+					utils.Save(filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/Info.plist", appName)), darwinPLIST())
+					//TODO: icon + plist
 				}
 
 			case "linux":
 				{
-					utils.Save(path.Join(depPath, fmt.Sprintf("%v.sh", appName)), linuxSH())
+					utils.Save(filepath.Join(depPath, fmt.Sprintf("%v.sh", appName)), linuxSH())
 				}
 
 			case "windows":
@@ -402,49 +479,68 @@ func deploy() {
 	switch buildTarget {
 	case "android":
 		{
+
+			var (
+				jdkLib        string
+				qtPrefix      string
+				androidPrefix string
+				ending        string
+			)
+
 			switch runtime.GOOS {
 			case "darwin", "linux":
 				{
 
-					var jdkLib string
-					switch runtime.GOOS {
-					case "darwin":
-						jdkLib = "/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home" //TODO: Get on runtime (java -version)
-					case "linux":
+					if runtime.GOOS == "darwin" {
+						var version = strings.Split(runCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1]
+						jdkLib = fmt.Sprintf("/Library/Java/JavaVirtualMachines/jdk%v.jdk/Contents/Home", version)
+					} else {
 						jdkLib = "/opt/jdk"
 					}
 
-					var deploy = exec.Command("/usr/local/Qt5.5.1/5.5/android_armv7/bin/androiddeployqt")
-					deploy.Args = append(deploy.Args,
-						"--input", path.Join(depPath, fmt.Sprintf("android-lib%v.so-deployment-settings.json", appName)),
-						"--output", path.Join(depPath, "build"),
-						"--deployment", "bundled",
-						"--android-platform", "android-23",
-						"--jdk", jdkLib,
-						"--ant", "/opt/apache-ant/bin/ant")
-
-					if ks := utils.Load(path.Join(appPath, "android", appName+".keystore")); ks != "" {
-						deploy.Args = append(deploy.Args,
-							"--sign", path.Join(appPath, "android", appName+".keystore"),
-							strings.TrimSpace(utils.Load(path.Join(appPath, "android", "alias.txt"))),
-							"--storepass", strings.TrimSpace(utils.Load(path.Join(appPath, "android", "password.txt"))))
-					}
-
-					deploy.Dir = "/usr/local/Qt5.5.1/5.5/android_armv7/bin/"
-					if runtime.GOOS == "linux" {
-						deploy.Env = append(deploy.Env, "JAVA_HOME=/opt/jdk")
-					}
-
-					runCmd(deploy, "deploy")
+					qtPrefix = "/usr/local"
+					androidPrefix = "/opt"
 				}
-
 			case "windows":
 				{
-					//TODO:
+					var version = strings.Split(runCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1]
+					jdkLib = fmt.Sprintf("C:\\Program Files\\Java\\jdk%v", version)
+
+					qtPrefix = "C:\\Qt"
+					androidPrefix = "C:\\android"
+					ending = ".exe"
 				}
 			}
-		}
 
+			var deploy = exec.Command(filepath.Join(qtPrefix, "Qt5.5.1", "5.5", "android_armv7", "bin", "androiddeployqt"+ending))
+			deploy.Args = append(deploy.Args,
+				"--input", filepath.Join(depPath, fmt.Sprintf("android-lib%v.so-deployment-settings.json", appName)),
+				"--output", filepath.Join(depPath, "build"),
+				"--deployment", "bundled",
+				"--android-platform", "android-23",
+				"--jdk", jdkLib,
+				"--ant", filepath.Join(androidPrefix, "apache-ant", "bin", "ant"),
+			)
+
+			if ks := utils.Load(filepath.Join(appPath, "android", appName+".keystore")); ks != "" {
+				deploy.Args = append(deploy.Args,
+					"--sign", filepath.Join(appPath, "android", appName+".keystore"),
+					strings.TrimSpace(utils.Load(filepath.Join(appPath, "android", "alias.txt"))),
+					"--storepass", strings.TrimSpace(utils.Load(filepath.Join(appPath, "android", "password.txt"))),
+				)
+			}
+
+			deploy.Dir = filepath.Join(qtPrefix, "Qt5.5.1", "5.5", "android_armv7", "bin")
+			deploy.Env = append(deploy.Env, "JAVA_HOME="+jdkLib)
+
+			if runtime.GOOS == "windows" {
+				utils.Save(filepath.Join(depPath, "build.bat"), fmt.Sprintf("set JAVA_HOME=%v\r\n%v", jdkLib, strings.Join(deploy.Args, " ")))
+				runCmd(exec.Command(filepath.Join(depPath, "build.bat")), "deploy")
+				utils.RemoveAll(filepath.Join(depPath, "build.bat"))
+			} else {
+				runCmd(deploy, "deploy")
+			}
+		}
 	case "desktop":
 		{
 			switch runtime.GOOS {
@@ -452,8 +548,8 @@ func deploy() {
 				{
 					var deploy = exec.Command("/usr/local/Qt5.5.1/5.5/clang_64/bin/macdeployqt")
 					deploy.Args = append(deploy.Args,
-						path.Join(depPath, fmt.Sprintf("%v.app/", appName)),
-						fmt.Sprintf("-qmldir=%v", path.Join(appPath, "qml")),
+						filepath.Join(depPath, fmt.Sprintf("%v.app/", appName)),
+						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
 						"-always-overwrite")
 					deploy.Dir = "/usr/local/Qt5.5.1/5.5/clang_64/bin/"
 					runCmd(deploy, "deploy")
@@ -463,36 +559,36 @@ func deploy() {
 				{
 					var libraryPath string
 
-					for _, dep := range strings.Split(runCmd(exec.Command("ldd", path.Join(depPath, appName)), "deploy.ldd"), "\n") {
+					for _, dep := range strings.Split(runCmd(exec.Command("ldd", filepath.Join(depPath, appName)), "deploy.ldd"), "\n") {
 						if strings.Contains(dep, "libQt5") || strings.Contains(dep, "libicu") {
-							var libraryP, libName = path.Split(strings.Split(dep, " ")[2])
+							var libraryP, libName = filepath.Split(strings.Split(dep, " ")[2])
 							libraryPath = libraryP
-							runCmd(exec.Command("cp", "-L", path.Join(libraryPath, libName), path.Join(depPath, libName)), fmt.Sprintf("deploy.%v", libName))
+							runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, libName)), fmt.Sprintf("deploy.%v", libName))
 						}
 					}
 
 					for _, libName := range []string{"DBus", "XcbQpa", "Quick", "Widgets"} {
-						runCmd(exec.Command("cp", "-L", path.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), path.Join(depPath, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("deploy.%v", libName))
+						runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("deploy.%v", libName))
 					}
 
 					libraryPath = strings.TrimSuffix(libraryPath, "lib/")
 
 					for _, libDir := range []string{"platforms", "platformthemes", "xcbglintegrations"} {
-						utils.MakeFolder(path.Join(depPath, libDir))
+						utils.MakeFolder(filepath.Join(depPath, libDir))
 					}
 
-					runCmd(exec.Command("cp", "-R", path.Join(libraryPath, "qml/"), depPath), "deploy.qml")
-					runCmd(exec.Command("cp", "-L", path.Join(libraryPath, "plugins", "platforms", "libqxcb.so"), path.Join(depPath, "platforms", "libqxcb.so")), "deploy.qxcb")
-					runCmd(exec.Command("cp", "-L", path.Join(libraryPath, "plugins", "platformthemes", "libqgtk2.so"), path.Join(depPath, "platformthemes", "libqgtk2.so")), "deploy.qgtk2")
-					runCmd(exec.Command("cp", "-L", path.Join(libraryPath, "plugins", "xcbglintegrations", "libqxcb-glx-integration.so"), path.Join(depPath, "xcbglintegrations", "libqxcb-glx-integration.so")), "deploy.qxcb-glx-integration")
+					runCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/"), depPath), "deploy.qml")
+					runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "plugins", "platforms", "libqxcb.so"), filepath.Join(depPath, "platforms", "libqxcb.so")), "deploy.qxcb")
+					runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "plugins", "platformthemes", "libqgtk2.so"), filepath.Join(depPath, "platformthemes", "libqgtk2.so")), "deploy.qgtk2")
+					runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "plugins", "xcbglintegrations", "libqxcb-glx-integration.so"), filepath.Join(depPath, "xcbglintegrations", "libqxcb-glx-integration.so")), "deploy.qxcb-glx-integration")
 				}
 
 			case "windows":
 				{
-					var deploy = exec.Command("windeployqt")
+					var deploy = exec.Command("C:\\Qt\\Qt5.5.1\\5.5\\mingw492_32\\bin\\windeployqt.exe")
 					deploy.Args = append(deploy.Args,
-						path.Join(depPath, appName),
-						fmt.Sprintf("-qmldir=%v", path.Join(appPath, "qml")),
+						filepath.Join(depPath, appName+ending),
+						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
 						"-force")
 					runCmd(deploy, "deploy")
 				}
@@ -506,30 +602,37 @@ func pastdeploy() {
 	switch buildTarget {
 	case "android":
 		{
+			var (
+				copyCmd   string
+				apkEnding string
+			)
+
 			switch runtime.GOOS {
 			case "darwin", "linux":
 				{
-					if ks := utils.Load(path.Join(appPath, "android", appName+".keystore")); ks != "" {
-						runCmdOptional(exec.Command("mv", path.Join(depPath, "build", "bin", "QtApp-release-signed.apk"), path.Join(depPath, fmt.Sprintf("%v.apk", appName))), "pastdeploy.release")
-					} else {
-						runCmdOptional(exec.Command("mv", path.Join(depPath, "build", "bin", "QtApp-debug.apk"), path.Join(depPath, fmt.Sprintf("%v.apk", appName))), "pastdeploy.debug")
-					}
+					copyCmd = "cp"
+					apkEnding = "apk"
 				}
-
 			case "windows":
 				{
-					//TODO:
+					copyCmd = "xcopy"
+					apkEnding = "apk*"
 				}
 			}
-		}
 
+			if ks := utils.Load(filepath.Join(appPath, "android", appName+".keystore")); ks != "" {
+				runCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "bin", "QtApp-release-signed.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.release")
+			} else {
+				runCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "bin", "QtApp-debug.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.debug")
+			}
+		}
 	case "desktop":
 		{
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					runCmd(exec.Command("mv", path.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName)), path.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_app", appName, appName))), "pastdeploy.moveApp")
-					runCmd(exec.Command("mv", path.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_sh", appName, appName)), path.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))), "pastdeploy.moveSh")
+					runCmd(exec.Command("mv", filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName)), filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_app", appName, appName))), "pastdeploy.moveApp")
+					runCmd(exec.Command("mv", filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_sh", appName, appName)), filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))), "pastdeploy.moveSh")
 				}
 			}
 		}
@@ -538,9 +641,9 @@ func pastdeploy() {
 
 func cleanup() {
 	var (
-		qmlGo  = path.Join(appPath, "qtQrc.go")
-		qmlQrc = path.Join(appPath, "qtQrc.qrc")
-		qmlCpp = path.Join(appPath, "qtQrc.cpp")
+		qmlGo  = filepath.Join(appPath, "qtQrc.go")
+		qmlQrc = filepath.Join(appPath, "qtQrc.qrc")
+		qmlCpp = filepath.Join(appPath, "qtQrc.cpp")
 	)
 
 	utils.RemoveAll(qmlGo)
@@ -557,11 +660,11 @@ func run() {
 			case "darwin", "linux":
 				runCmdOptional(exec.Command("killall", "adb"), "run.killadb")
 				//runCmdOptional(exec.Command("/opt/android-sdk/platform-tools/adb", "logcat", "-c"), "run.adblogcat")
-				exec.Command("/opt/android-sdk/platform-tools/adb", "install", "-r", path.Join(depPath, fmt.Sprintf("%v.apk", appName))).Start() //TODO:
+				exec.Command("/opt/android-sdk/platform-tools/adb", "install", "-r", filepath.Join(depPath, fmt.Sprintf("%v.apk", appName))).Start()
 
 			case "windows":
 				{
-					//TODO:
+					exec.Command("C:\\android\\android-sdk\\platform-tools\\adb.exe", "install", "-r", filepath.Join(depPath, fmt.Sprintf("%v.apk", appName))).Start()
 				}
 			}
 		}
@@ -571,17 +674,17 @@ func run() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					runCmdOptional(exec.Command("open", path.Join(depPath, fmt.Sprintf("%v.app/", appName))), "run")
+					runCmdOptional(exec.Command("open", filepath.Join(depPath, fmt.Sprintf("%v.app/", appName))), "run")
 				}
 
 			case "linux":
 				{
-					exec.Command(path.Join(depPath, fmt.Sprintf("%v.sh", appName))).Start() //TODO:
+					exec.Command(filepath.Join(depPath, fmt.Sprintf("%v.sh", appName))).Start()
 				}
 
 			case "windows":
 				{
-					runCmdOptional(exec.Command(path.Join(depPath, appName)), "run")
+					exec.Command(filepath.Join(depPath, appName+ending)).Start()
 				}
 			}
 		}
@@ -591,7 +694,7 @@ func run() {
 func runCmd(cmd *exec.Cmd, n string) string {
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
-		fmt.Printf("=>%v<=\noutput:%s\nerror:%s\n\n", n, out, err)
+		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", n, out, err)
 		cleanup()
 		os.Exit(1)
 	}
@@ -601,7 +704,7 @@ func runCmd(cmd *exec.Cmd, n string) string {
 func runCmdOptional(cmd *exec.Cmd, n string) string {
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
-		fmt.Printf("=>%v<=\noutput:%s\n\n", n, out)
+		fmt.Printf("\n\n%v\noutput:%s\n\n", n, out)
 	}
 	return string(out)
 }

@@ -1,15 +1,15 @@
 #include "qpixmap.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QModelIndex>
 #include <QImage>
 #include <QByteArray>
 #include <QRegion>
-#include <QBitmap>
-#include <QUrl>
-#include <QVariant>
-#include <QIODevice>
 #include <QColor>
 #include <QRect>
-#include <QString>
+#include <QBitmap>
+#include <QIODevice>
 #include <QPixmap>
 #include "_cgo_export.h"
 

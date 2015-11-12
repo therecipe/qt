@@ -1,10 +1,10 @@
 #include "qabstractproxymodel.h"
+#include <QAbstractItemModel>
 #include <QMimeData>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QAbstractItemModel>
 #include <QObject>
 #include <QAbstractProxyModel>
 #include "_cgo_export.h"

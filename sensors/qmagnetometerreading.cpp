@@ -1,9 +1,9 @@
 #include "qmagnetometerreading.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMagnetometer>
+#include <QString>
 #include <QMagnetometerReading>
 #include "_cgo_export.h"
 

@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
-&{QTextFrame QTextFrame::QTextFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.cpp non constructor false false   QTextFrame(QTextDocument *document) [0xc8235d7ee0] }
-&{end QTextFrame::end commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  iterator iterator end() const [] }
-&{begin QTextFrame::begin commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  iterator iterator begin() const [] }
-&{childFrames QTextFrame::childFrames commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QList<QTextFrame *> QList<QTextFrame *> childFrames() const [] }
+&{QTextFrame QTextFrame::QTextFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.cpp non constructor false false   QTextFrame(QTextDocument *document) [0xc8235d1fc0] }
+&{end QTextFrame::end commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  iterator iterator end() const [] }
+&{begin QTextFrame::begin commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  iterator iterator begin() const [] }
+&{childFrames QTextFrame::childFrames commendable unsupported_cppType /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QList<QTextFrame *> QList<QTextFrame *> childFrames() const [] }
 &{firstCursorPosition QTextFrame::firstCursorPosition commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextCursor QTextCursor firstCursorPosition() const [] }
 &{firstPosition QTextFrame::firstPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int firstPosition() const [] }
 &{frameFormat QTextFrame::frameFormat commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextFrameFormat QTextFrameFormat frameFormat() const [] }
 &{lastCursorPosition QTextFrame::lastCursorPosition commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextCursor QTextCursor lastCursorPosition() const [] }
 &{lastPosition QTextFrame::lastPosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int lastPosition() const [] }
 &{parentFrame QTextFrame::parentFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextFrame * QTextFrame * parentFrame() const [] }
-&{setFrameFormat QTextFrame::setFrameFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void void setFrameFormat(const QTextFrameFormat &format) [0xc8235e9d00] }
+&{setFrameFormat QTextFrame::setFrameFormat commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void void setFrameFormat(const QTextFrameFormat &format) [0xc8235e3de0] }
 &{~QTextFrame QTextFrame::~QTextFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non destructor false false   ~QTextFrame() [] }
 ########################################			ENUMS			########################################

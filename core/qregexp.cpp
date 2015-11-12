@@ -1,8 +1,8 @@
 #include "qregexp.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
+#include <QVariant>
 #include <QRegExp>
 #include "_cgo_export.h"
 

@@ -1,8 +1,8 @@
 #include "qtextinlineobject.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QString>
-#include <QVariant>
 #include <QTextInlineObject>
 #include "_cgo_export.h"
 

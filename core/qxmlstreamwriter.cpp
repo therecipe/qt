@@ -1,13 +1,13 @@
 #include "qxmlstreamwriter.h"
 #include <QString>
-#include <QXmlStreamAttribute>
+#include <QModelIndex>
 #include <QTextCodec>
-#include <QXmlStreamAttributes>
-#include <QIODevice>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
+#include <QXmlStreamAttributes>
+#include <QXmlStreamAttribute>
 #include <QXmlStreamReader>
+#include <QIODevice>
 #include <QXmlStreamWriter>
 #include "_cgo_export.h"
 

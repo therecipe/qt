@@ -2,5 +2,5 @@
 &{x QRotationReading::x commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  qreal qreal x() const [] }
 &{y QRotationReading::y commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  qreal qreal y() const [] }
 &{z QRotationReading::z commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.cpp non plain false false  qreal qreal z() const [] }
-&{setFromEuler QRotationReading::setFromEuler commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non plain false false  void void setFromEuler(qreal x, qreal y, qreal z) [0xc8235a9720 0xc8235a9800 0xc8235a98e0] }
+&{setFromEuler QRotationReading::setFromEuler commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qrotationsensor.h non plain false false  void void setFromEuler(qreal x, qreal y, qreal z) [0xc8235430c0 0xc823543160 0xc823543220] }
 ########################################			ENUMS			########################################

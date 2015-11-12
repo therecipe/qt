@@ -1,20 +1,20 @@
 ########################################			FUNCTIONS			########################################
-&{QDrag QDrag::QDrag commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non constructor false false   QDrag(QObject *dragSource) [0xc8209a1e60] }
-&{actionChanged QDrag::actionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non signal false false  void void actionChanged(Qt::DropAction action) [0xc820998080] }
+&{QDrag QDrag::QDrag commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non constructor false false   QDrag(QObject *dragSource) [0xc8208b84a0] }
+&{actionChanged QDrag::actionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non signal false false  void void actionChanged(Qt::DropAction action) [0xc8208b86a0] }
 &{defaultAction QDrag::defaultAction commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  Qt::DropAction Qt::DropAction defaultAction() const [] }
-&{dragCursor QDrag::dragCursor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QPixmap QPixmap dragCursor(Qt::DropAction action) const [0xc820998380] }
-&{exec QDrag::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  Qt::DropAction Qt::DropAction exec(Qt::DropActions supportedActions) [0xc820998540] }
-&{exec QDrag::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false true 2 Qt::DropAction Qt::DropAction exec(Qt::DropActions supportedActions, Qt::DropAction defaultDropAction) [0xc8209986a0 0xc820998780] }
+&{dragCursor QDrag::dragCursor commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QPixmap QPixmap dragCursor(Qt::DropAction action) const [0xc8208b89c0] }
+&{exec QDrag::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  Qt::DropAction Qt::DropAction exec(Qt::DropActions supportedActions) [0xc8208b8b60] }
+&{exec QDrag::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false true 2 Qt::DropAction Qt::DropAction exec(Qt::DropActions supportedActions, Qt::DropAction defaultDropAction) [0xc8208b8ce0 0xc8208b8da0] }
 &{hotSpot QDrag::hotSpot commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QPoint QPoint hotSpot() const [] }
 &{mimeData QDrag::mimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QMimeData * QMimeData * mimeData() const [] }
 &{pixmap QDrag::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QPixmap QPixmap pixmap() const [] }
-&{setDragCursor QDrag::setDragCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  void void setDragCursor(const QPixmap &cursor, Qt::DropAction action) [0xc820998ce0 0xc820998d60] }
-&{setHotSpot QDrag::setHotSpot commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  void void setHotSpot(const QPoint &hotspot) [0xc820998f80] }
-&{setMimeData QDrag::setMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  void void setMimeData(QMimeData *data) [0xc820999140] }
-&{setPixmap QDrag::setPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  void void setPixmap(const QPixmap &pixmap) [0xc8209992e0] }
+&{setDragCursor QDrag::setDragCursor commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  void void setDragCursor(const QPixmap &cursor, Qt::DropAction action) [0xc8208b9320 0xc8208b93a0] }
+&{setHotSpot QDrag::setHotSpot commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  void void setHotSpot(const QPoint &hotspot) [0xc8208b9560] }
+&{setMimeData QDrag::setMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  void void setMimeData(QMimeData *data) [0xc8208b9780] }
+&{setPixmap QDrag::setPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  void void setPixmap(const QPixmap &pixmap) [0xc8208b9960] }
 &{source QDrag::source commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QObject * QObject * source() const [] }
 &{supportedActions QDrag::supportedActions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  Qt::DropActions Qt::DropActions supportedActions() const [] }
 &{target QDrag::target commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non plain false false  QObject * QObject * target() const [] }
-&{targetChanged QDrag::targetChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non signal false false  void void targetChanged(QObject *newTarget) [0xc820999980] }
+&{targetChanged QDrag::targetChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non signal false false  void void targetChanged(QObject *newTarget) [0xc8208b6000] }
 &{~QDrag QDrag::~QDrag commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qdrag.h non destructor false false   ~QDrag() [] }
 ########################################			ENUMS			########################################

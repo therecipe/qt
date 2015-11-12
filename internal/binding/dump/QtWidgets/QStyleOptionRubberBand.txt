@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
 &{QStyleOptionRubberBand QStyleOptionRubberBand::QStyleOptionRubberBand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionRubberBand() [] }
-&{QStyleOptionRubberBand QStyleOptionRubberBand::QStyleOptionRubberBand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionRubberBand(const QStyleOptionRubberBand &other) [0xc821cf0880] }
+&{QStyleOptionRubberBand QStyleOptionRubberBand::QStyleOptionRubberBand commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionRubberBand(const QStyleOptionRubberBand &other) [0xc821fabda0] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionRubberBand::StyleOptionType commendable public  [0xc821cf01c0] false}
-&{StyleOptionVersion QStyleOptionRubberBand::StyleOptionVersion commendable public  [0xc821cf04a0] false}
+&{StyleOptionType QStyleOptionRubberBand::StyleOptionType commendable public  [0xc821fab600] false}
+&{StyleOptionVersion QStyleOptionRubberBand::StyleOptionVersion commendable public  [0xc821fab8a0] false}

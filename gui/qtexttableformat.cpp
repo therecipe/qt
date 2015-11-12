@@ -1,9 +1,9 @@
 #include "qtexttableformat.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QTextTable>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QTextTableFormat>
 #include "_cgo_export.h"
 

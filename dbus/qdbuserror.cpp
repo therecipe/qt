@@ -1,8 +1,8 @@
 #include "qdbuserror.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
+#include <QVariant>
 #include <QDBusError>
 #include "_cgo_export.h"
 

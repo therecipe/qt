@@ -1,10 +1,10 @@
 #include "qnetworksession.h"
-#include <QNetworkConfiguration>
-#include <QMetaObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QMetaObject>
+#include <QNetworkConfiguration>
 #include <QObject>
 #include <QNetworkSession>
 #include "_cgo_export.h"

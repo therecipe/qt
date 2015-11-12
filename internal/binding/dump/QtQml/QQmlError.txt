@@ -1,17 +1,17 @@
 ########################################			FUNCTIONS			########################################
 &{QQmlError QQmlError::QQmlError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non constructor false false   QQmlError() [] }
-&{QQmlError QQmlError::QQmlError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non constructor false true 2  QQmlError(const QQmlError &other) [0xc822fb3420] }
+&{QQmlError QQmlError::QQmlError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non constructor false true 2  QQmlError(const QQmlError &other) [0xc821d3bda0] }
 &{column QQmlError::column commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  int int column() const [] }
 &{description QQmlError::description commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  QString QString description() const [] }
 &{isValid QQmlError::isValid commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  bool bool isValid() const [] }
 &{line QQmlError::line commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  int int line() const [] }
 &{object QQmlError::object commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  QObject * QObject * object() const [] }
-&{operator= QQmlError::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  QQmlError & QQmlError & operator=(const QQmlError &other) [0xc822fa4720] }
-&{setColumn QQmlError::setColumn commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void void setColumn(int column) [0xc822fa4c40] }
-&{setDescription QQmlError::setDescription commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void void setDescription(const QString &description) [0xc822fa5060] }
-&{setLine QQmlError::setLine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void void setLine(int line) [0xc822fa5400] }
-&{setObject QQmlError::setObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void void setObject(QObject *object) [0xc822fa58a0] }
-&{setUrl QQmlError::setUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void void setUrl(const QUrl &url) [0xc822fa5d40] }
+&{operator= QQmlError::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  QQmlError & QQmlError & operator=(const QQmlError &other) [0xc821d46b40] }
+&{setColumn QQmlError::setColumn commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void void setColumn(int column) [0xc821d46fc0] }
+&{setDescription QQmlError::setDescription commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void void setDescription(const QString &description) [0xc821d472a0] }
+&{setLine QQmlError::setLine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void void setLine(int line) [0xc821d476c0] }
+&{setObject QQmlError::setObject commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void void setObject(QObject *object) [0xc821d47b00] }
+&{setUrl QQmlError::setUrl commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  void void setUrl(const QUrl &url) [0xc821d47f00] }
 &{toString QQmlError::toString commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  QString QString toString() const [] }
 &{url QQmlError::url commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlerror.h non plain false false  QUrl QUrl url() const [] }
 ########################################			ENUMS			########################################

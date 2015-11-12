@@ -1,10 +1,10 @@
 #include "qimageencodersettings.h"
+#include <QSize>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QImage>
-#include <QSize>
 #include <QImageEncoderSettings>
 #include "_cgo_export.h"
 

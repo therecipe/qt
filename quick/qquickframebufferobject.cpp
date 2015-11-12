@@ -1,9 +1,9 @@
 #include "qquickframebufferobject.h"
-#include <QModelIndex>
 #include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QQuickFramebufferObject>
 #include "_cgo_export.h"
 

@@ -1,11 +1,11 @@
 #include "qbuffer.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QByteArray>
-#include <QIODevice>
 #include <QObject>
+#include <QIODevice>
+#include <QString>
+#include <QVariant>
 #include <QBuffer>
 #include "_cgo_export.h"
 

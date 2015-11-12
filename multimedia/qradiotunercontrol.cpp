@@ -1,10 +1,10 @@
 #include "qradiotunercontrol.h"
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QRadioTuner>
+#include <QObject>
 #include <QRadioTunerControl>
 #include "_cgo_export.h"
 

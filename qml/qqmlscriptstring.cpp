@@ -1,8 +1,8 @@
 #include "qqmlscriptstring.h"
+#include <QUrl>
 #include <QModelIndex>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
 #include <QQmlScriptString>
 #include "_cgo_export.h"
 

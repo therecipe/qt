@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{QDBusInterface QDBusInterface::QDBusInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusinterface.h non constructor false false   QDBusInterface(const QString &service, const QString &path, const QString &interface, const QDBusConnection &connection, QObject *parent) [0xc821578bc0 0xc821578c40 0xc821578cc0 0xc821578d80 0xc821578e60] }
+&{QDBusInterface QDBusInterface::QDBusInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusinterface.h non constructor false false   QDBusInterface(const QString &service, const QString &path, const QString &interface, const QDBusConnection &connection, QObject *parent) [0xc82161a9c0 0xc82161aa40 0xc82161aac0 0xc82161ab80 0xc82161ac60] }
 &{~QDBusInterface QDBusInterface::~QDBusInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusinterface.h non destructor false false   ~QDBusInterface() [] }
 ########################################			ENUMS			########################################

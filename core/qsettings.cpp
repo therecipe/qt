@@ -1,11 +1,11 @@
 #include "qsettings.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QSet>
 #include <QTextCodec>
+#include <QSet>
+#include <QObject>
+#include <QString>
 #include <QSettings>
 #include "_cgo_export.h"
 

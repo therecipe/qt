@@ -1,5 +1,4 @@
 #include "qgraphicsrotation.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QVector3D>
 #include <QObject>
@@ -7,6 +6,7 @@
 #include <QVector>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QGraphicsRotation>
 #include "_cgo_export.h"
 

@@ -1,11 +1,11 @@
 #include "qglyphrun.h"
+#include <QRawFont>
+#include <QRectF>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QRawFont>
-#include <QRectF>
 #include <QRect>
-#include <QString>
 #include <QGlyphRun>
 #include "_cgo_export.h"
 

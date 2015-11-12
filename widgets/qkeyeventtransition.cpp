@@ -1,12 +1,12 @@
 #include "qkeyeventtransition.h"
+#include <QKeyEvent>
+#include <QObject>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QEvent>
-#include <QKeyEvent>
 #include <QState>
-#include <QObject>
-#include <QString>
 #include <QKeyEventTransition>
 #include "_cgo_export.h"
 

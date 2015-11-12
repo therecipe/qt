@@ -1,12 +1,12 @@
 #include "qcamerafocus.h"
-#include <QCamera>
+#include <QPointF>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QPoint>
+#include <QCamera>
 #include <QObject>
-#include <QPointF>
 #include <QCameraFocus>
 #include "_cgo_export.h"
 

@@ -1,13 +1,13 @@
 #include "qgraphicsanchorlayout.h"
-#include <QRect>
-#include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QGraphicsLayoutItem>
-#include <QGraphicsLayout>
 #include <QModelIndex>
+#include <QRect>
+#include <QGraphicsLayout>
 #include <QGraphicsAnchor>
 #include <QRectF>
+#include <QString>
+#include <QUrl>
+#include <QGraphicsLayoutItem>
 #include <QGraphicsAnchorLayout>
 #include "_cgo_export.h"
 

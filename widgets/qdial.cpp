@@ -1,10 +1,10 @@
 #include "qdial.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QWidget>
 #include <QMetaObject>
+#include <QWidget>
 #include <QString>
-#include <QVariant>
 #include <QDial>
 #include "_cgo_export.h"
 

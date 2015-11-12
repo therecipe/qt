@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{filter QSensorFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h pure plain false false  bool bool filter(QSensorReading *reading) [0xc8234d10c0] }
+&{filter QSensorFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h pure plain false false  bool bool filter(QSensorReading *reading) [0xc8234b8860] }
 &{~QSensorFilter QSensorFilter::~QSensorFilter commendable protected /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensor.h impure destructor false false   ~QSensorFilter() [] }
 ########################################			ENUMS			########################################

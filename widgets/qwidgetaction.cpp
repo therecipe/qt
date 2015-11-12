@@ -1,10 +1,10 @@
 #include "qwidgetaction.h"
-#include <QObject>
+#include <QWidget>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QWidget>
+#include <QObject>
 #include <QWidgetAction>
 #include "_cgo_export.h"
 

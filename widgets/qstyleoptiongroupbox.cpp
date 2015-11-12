@@ -1,10 +1,10 @@
 #include "qstyleoptiongroupbox.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QStyle>
-#include <QStyleOption>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QStyleOption>
+#include <QStyle>
 #include <QStyleOptionGroupBox>
 #include "_cgo_export.h"
 

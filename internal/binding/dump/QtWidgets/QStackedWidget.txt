@@ -1,17 +1,17 @@
 ########################################			FUNCTIONS			########################################
 &{count QStackedWidget::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.cpp non plain false false  int int count() const [] }
 &{currentIndex QStackedWidget::currentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.cpp non plain false false  int int currentIndex() const [] }
-&{setCurrentIndex QStackedWidget::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.cpp non slot false false  void void setCurrentIndex(int index) [0xc822e04d00] }
-&{setCurrentWidget QStackedWidget::setCurrentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.cpp non slot false false  void void setCurrentWidget(QWidget *widget) [0xc822e04f20] }
-&{QStackedWidget QStackedWidget::QStackedWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non constructor false false   QStackedWidget(QWidget *parent) [0xc822e051c0] }
-&{addWidget QStackedWidget::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  int int addWidget(QWidget *widget) [0xc822e05480] }
-&{currentChanged QStackedWidget::currentChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non signal false false  void void currentChanged(int index) [0xc822e05720] }
+&{setCurrentIndex QStackedWidget::setCurrentIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.cpp non slot false false  void void setCurrentIndex(int index) [0xc822339200] }
+&{setCurrentWidget QStackedWidget::setCurrentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.cpp non slot false false  void void setCurrentWidget(QWidget *widget) [0xc8223394a0] }
+&{QStackedWidget QStackedWidget::QStackedWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non constructor false false   QStackedWidget(QWidget *parent) [0xc822339840] }
+&{addWidget QStackedWidget::addWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  int int addWidget(QWidget *widget) [0xc822339be0] }
+&{currentChanged QStackedWidget::currentChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non signal false false  void void currentChanged(int index) [0xc822339f40] }
 &{currentWidget QStackedWidget::currentWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  QWidget * QWidget * currentWidget() const [] }
-&{event QStackedWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h impure plain false false  bool bool event(QEvent *e) [0xc822e05bc0] }
-&{indexOf QStackedWidget::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  int int indexOf(QWidget *widget) const [0xc822e05de0] }
-&{insertWidget QStackedWidget::insertWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  int int insertWidget(int index, QWidget *widget) [0xc820dc4040 0xc820dc4100] }
-&{removeWidget QStackedWidget::removeWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  void void removeWidget(QWidget *widget) [0xc820dc4360] }
-&{widget QStackedWidget::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  QWidget * QWidget * widget(int index) const [0xc820dc4560] }
-&{widgetRemoved QStackedWidget::widgetRemoved commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non signal false false  void void widgetRemoved(int index) [0xc820dc4820] }
+&{event QStackedWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h impure plain false false  bool bool event(QEvent *e) [0xc821688620] }
+&{indexOf QStackedWidget::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  int int indexOf(QWidget *widget) const [0xc821688a40] }
+&{insertWidget QStackedWidget::insertWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  int int insertWidget(int index, QWidget *widget) [0xc821688ec0 0xc821689040] }
+&{removeWidget QStackedWidget::removeWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  void void removeWidget(QWidget *widget) [0xc821689460] }
+&{widget QStackedWidget::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non plain false false  QWidget * QWidget * widget(int index) const [0xc821689920] }
+&{widgetRemoved QStackedWidget::widgetRemoved commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non signal false false  void void widgetRemoved(int index) [0xc821689e80] }
 &{~QStackedWidget QStackedWidget::~QStackedWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qstackedwidget.h non destructor false false   ~QStackedWidget() [] }
 ########################################			ENUMS			########################################

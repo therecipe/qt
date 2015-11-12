@@ -1,10 +1,10 @@
 #include "qmediagaplessplaybackcontrol.h"
+#include <QModelIndex>
 #include <QMediaContent>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QObject>
 #include <QMediaGaplessPlaybackControl>
 #include "_cgo_export.h"
 

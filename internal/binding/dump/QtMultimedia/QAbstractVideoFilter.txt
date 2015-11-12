@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
 &{isActive QAbstractVideoFilter::isActive commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.cpp non plain false false  bool bool isActive() const [] }
-&{setActive QAbstractVideoFilter::setActive commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.cpp non plain false false  void void setActive(bool v) [0xc822cf6d20] }
-&{QAbstractVideoFilter QAbstractVideoFilter::QAbstractVideoFilter commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.h non constructor false false   QAbstractVideoFilter(QObject *parent) [0xc822cf7020] }
+&{setActive QAbstractVideoFilter::setActive commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.cpp non plain false false  void void setActive(bool v) [0xc820ea78c0] }
+&{QAbstractVideoFilter QAbstractVideoFilter::QAbstractVideoFilter commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.h non constructor false false   QAbstractVideoFilter(QObject *parent) [0xc820ea7d80] }
 &{activeChanged QAbstractVideoFilter::activeChanged commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.h non signal false false  void void activeChanged() [] }
 &{createFilterRunnable QAbstractVideoFilter::createFilterRunnable commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qabstractvideofilter.h pure plain false false  QVideoFilterRunnable * QVideoFilterRunnable * createFilterRunnable() [] }
 ########################################			ENUMS			########################################

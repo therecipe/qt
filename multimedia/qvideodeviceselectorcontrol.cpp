@@ -1,10 +1,10 @@
 #include "qvideodeviceselectorcontrol.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMetaObject>
 #include <QObject>
-#include <QString>
 #include <QVideoDeviceSelectorControl>
 #include "_cgo_export.h"
 

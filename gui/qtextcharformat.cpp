@@ -1,11 +1,11 @@
 #include "qtextcharformat.h"
-#include <QPen>
 #include <QColor>
 #include <QFont>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QPen>
 #include <QTextCharFormat>
 #include "_cgo_export.h"
 

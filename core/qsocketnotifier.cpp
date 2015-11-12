@@ -1,10 +1,10 @@
 #include "qsocketnotifier.h"
+#include <QModelIndex>
+#include <QMetaObject>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QMetaObject>
 #include <QSocketNotifier>
 #include "_cgo_export.h"
 

@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
 &{horizontalDirection QSwipeGesture::horizontalDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  SwipeDirection SwipeDirection horizontalDirection() const [] }
-&{setSwipeAngle QSwipeGesture::setSwipeAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setSwipeAngle(qreal value) [0xc8226648c0] }
+&{setSwipeAngle QSwipeGesture::setSwipeAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  void void setSwipeAngle(qreal value) [0xc82207c360] }
 &{swipeAngle QSwipeGesture::swipeAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  qreal qreal swipeAngle() const [] }
 &{verticalDirection QSwipeGesture::verticalDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.cpp non plain false false  SwipeDirection SwipeDirection verticalDirection() const [] }
 &{~QSwipeGesture QSwipeGesture::~QSwipeGesture commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qgesture.h non destructor false false   ~QSwipeGesture() [] }
 ########################################			ENUMS			########################################
-&{SwipeDirection QSwipeGesture::SwipeDirection commendable public  [0xc822664e40 0xc822664f20 0xc822664fc0 0xc822665060 0xc822665100] false}
+&{SwipeDirection QSwipeGesture::SwipeDirection commendable public  [0xc82207c940 0xc82207ca00 0xc82207caa0 0xc82207cb40 0xc82207cc20] false}

@@ -76,5 +76,13 @@ func goFunctionBody(f *parser.Function) (o string) {
 		}
 	}
 
+	if parser.ClassMap[f.Class()].Stub {
+		if f.Meta == "constructor" {
+			return fmt.Sprintf("\nreturn New%vFromPointer(%v)", f.Class(), converter.GoBodyOutputFailed(f.Class(), f))
+		} else {
+			return fmt.Sprintf("\nreturn %v", converter.GoBodyOutputFailed(f.Output, f))
+		}
+	}
+
 	return o
 }

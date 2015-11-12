@@ -1,19 +1,19 @@
 #include "qcommonstyle.h"
-#include <QApplication>
 #include <QStyleOptionComplex>
 #include <QStyleOption>
+#include <QPalette>
+#include <QPainter>
+#include <QStyleHintReturn>
+#include <QStyle>
 #include <QVariant>
 #include <QWidget>
+#include <QSizePolicy>
+#include <QApplication>
+#include <QString>
+#include <QSize>
 #include <QPoint>
-#include <QStyle>
-#include <QStyleHintReturn>
 #include <QUrl>
 #include <QModelIndex>
-#include <QPalette>
-#include <QSize>
-#include <QPainter>
-#include <QString>
-#include <QSizePolicy>
 #include <QCommonStyle>
 #include "_cgo_export.h"
 

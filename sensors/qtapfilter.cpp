@@ -1,9 +1,9 @@
 #include "qtapfilter.h"
-#include <QModelIndex>
-#include <QTapReading>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QTapReading>
 #include <QTapFilter>
 #include "_cgo_export.h"
 

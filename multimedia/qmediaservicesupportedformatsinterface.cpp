@@ -1,9 +1,9 @@
 #include "qmediaservicesupportedformatsinterface.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QMediaService>
+#include <QString>
 #include <QMediaServiceSupportedFormatsInterface>
 #include "_cgo_export.h"
 

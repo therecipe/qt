@@ -1,13 +1,13 @@
 #include "qcalendarwidget.h"
 #include <QUrl>
-#include <QObject>
+#include <QMetaObject>
+#include <QString>
+#include <QModelIndex>
 #include <QDate>
 #include <QWidget>
+#include <QObject>
 #include <QTextCharFormat>
-#include <QString>
 #include <QVariant>
-#include <QModelIndex>
-#include <QMetaObject>
 #include <QCalendarWidget>
 #include "_cgo_export.h"
 

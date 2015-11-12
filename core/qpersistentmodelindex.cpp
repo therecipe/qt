@@ -1,9 +1,9 @@
 #include "qpersistentmodelindex.h"
-#include <QModelIndex>
 #include <QAbstractItemModel>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QPersistentModelIndex>
 #include "_cgo_export.h"
 

@@ -1,8 +1,8 @@
 #include "qlockfile.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QString>
 #include <QLockFile>
 #include "_cgo_export.h"
 

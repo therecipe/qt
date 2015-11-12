@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QWidget>
 #include <QScrollBar>
+#include <QWidget>
 #include <QAbstractScrollArea>
 #include "_cgo_export.h"
 

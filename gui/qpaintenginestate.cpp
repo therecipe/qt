@@ -1,11 +1,11 @@
 #include "qpaintenginestate.h"
-#include <QPaintEngine>
+#include <QModelIndex>
 #include <QBrush>
+#include <QRegion>
+#include <QPaintEngine>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QRegion>
 #include <QPaintEngineState>
 #include "_cgo_export.h"
 

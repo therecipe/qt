@@ -1,9 +1,9 @@
 #include "qsgmaterialshader.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QSGMaterial>
+#include <QString>
+#include <QVariant>
 #include <QSGMaterialShader>
 #include "_cgo_export.h"
 

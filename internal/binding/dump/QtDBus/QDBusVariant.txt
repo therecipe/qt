@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
 &{QDBusVariant QDBusVariant::QDBusVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false false   QDBusVariant() [] }
-&{QDBusVariant QDBusVariant::QDBusVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 2  QDBusVariant(const QVariant &variant) [0xc821ae98c0] }
-&{setVariant QDBusVariant::setVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  void void setVariant(const QVariant &variant) [0xc821ae9aa0] }
+&{QDBusVariant QDBusVariant::QDBusVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 2  QDBusVariant(const QVariant &variant) [0xc821bd16c0] }
+&{setVariant QDBusVariant::setVariant commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  void void setVariant(const QVariant &variant) [0xc821bd18a0] }
 &{variant QDBusVariant::variant commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  QVariant QVariant variant() const [] }
 ########################################			ENUMS			########################################

@@ -1,11 +1,11 @@
 #include "qcameraviewfindersettings.h"
+#include <QVideoFrame>
+#include <QCamera>
+#include <QSize>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSize>
-#include <QCamera>
-#include <QVideoFrame>
 #include <QCameraViewfinderSettings>
 #include "_cgo_export.h"
 

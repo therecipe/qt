@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
 &{QDnsMailExchangeRecord QDnsMailExchangeRecord::QDnsMailExchangeRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false false   QDnsMailExchangeRecord() [] }
-&{QDnsMailExchangeRecord QDnsMailExchangeRecord::QDnsMailExchangeRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false true 2  QDnsMailExchangeRecord(const QDnsMailExchangeRecord &other) [0xc823406fa0] }
+&{QDnsMailExchangeRecord QDnsMailExchangeRecord::QDnsMailExchangeRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false true 2  QDnsMailExchangeRecord(const QDnsMailExchangeRecord &other) [0xc822791b60] }
 &{exchange QDnsMailExchangeRecord::exchange commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QString QString exchange() const [] }
 &{name QDnsMailExchangeRecord::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QString QString name() const [] }
-&{operator= QDnsMailExchangeRecord::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QDnsMailExchangeRecord & QDnsMailExchangeRecord & operator=(const QDnsMailExchangeRecord &other) [0xc823407540] }
+&{operator= QDnsMailExchangeRecord::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QDnsMailExchangeRecord & QDnsMailExchangeRecord & operator=(const QDnsMailExchangeRecord &other) [0xc8227540e0] }
 &{preference QDnsMailExchangeRecord::preference commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint16 quint16 preference() const [] }
-&{swap QDnsMailExchangeRecord::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  void void swap(QDnsMailExchangeRecord &other) [0xc8234078e0] }
+&{swap QDnsMailExchangeRecord::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  void void swap(QDnsMailExchangeRecord &other) [0xc8227544c0] }
 &{timeToLive QDnsMailExchangeRecord::timeToLive commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint32 quint32 timeToLive() const [] }
 &{~QDnsMailExchangeRecord QDnsMailExchangeRecord::~QDnsMailExchangeRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non destructor false false   ~QDnsMailExchangeRecord() [] }
 ########################################			ENUMS			########################################

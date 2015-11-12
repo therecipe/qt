@@ -3,9 +3,9 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QChar>
-#include <QByteArray>
 #include <QTextCodec>
+#include <QByteArray>
+#include <QChar>
 #include <QTextEncoder>
 #include "_cgo_export.h"
 

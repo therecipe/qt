@@ -1,9 +1,9 @@
 #include "qhelpindexmodel.h"
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
 #include <QHelpIndexModel>
 #include "_cgo_export.h"
 

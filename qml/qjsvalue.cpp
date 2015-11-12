@@ -1,12 +1,12 @@
 #include "qjsvalue.h"
+#include <QObject>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QLatin1String>
 #include <QDateTime>
 #include <QDate>
-#include <QObject>
-#include <QString>
+#include <QLatin1String>
 #include <QJSValue>
 #include "_cgo_export.h"
 

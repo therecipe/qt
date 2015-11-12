@@ -1,12 +1,12 @@
 #include "qsslcertificate.h"
-#include <QDateTime>
-#include <QCryptographicHash>
 #include <QDate>
+#include <QByteArray>
+#include <QCryptographicHash>
+#include <QDateTime>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QByteArray>
 #include <QSslCertificate>
 #include "_cgo_export.h"
 

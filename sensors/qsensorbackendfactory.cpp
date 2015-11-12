@@ -1,10 +1,10 @@
 #include "qsensorbackendfactory.h"
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QSensor>
 #include <QSensorBackend>
+#include <QString>
 #include <QSensorBackendFactory>
 #include "_cgo_export.h"
 

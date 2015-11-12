@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
 &{QGeoLocation QGeoLocation::QGeoLocation commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non constructor false false   QGeoLocation() [] }
-&{QGeoLocation QGeoLocation::QGeoLocation commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non constructor false true 2  QGeoLocation(const QGeoLocation &other) [0xc821869160] }
+&{QGeoLocation QGeoLocation::QGeoLocation commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non constructor false true 2  QGeoLocation(const QGeoLocation &other) [0xc821297460] }
 &{address QGeoLocation::address commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  QGeoAddress QGeoAddress address() const [] }
 &{boundingBox QGeoLocation::boundingBox commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  QGeoRectangle QGeoRectangle boundingBox() const [] }
 &{coordinate QGeoLocation::coordinate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  QGeoCoordinate QGeoCoordinate coordinate() const [] }
 &{isEmpty QGeoLocation::isEmpty commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  bool bool isEmpty() const [] }
-&{operator!= QGeoLocation::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  bool bool operator!=(const QGeoLocation &other) const [0xc821869f20] }
-&{operator= QGeoLocation::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  QGeoLocation & QGeoLocation & operator=(const QGeoLocation &other) [0xc821854400] }
-&{operator== QGeoLocation::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  bool bool operator==(const QGeoLocation &other) const [0xc821854920] }
-&{setAddress QGeoLocation::setAddress commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  void void setAddress(const QGeoAddress &address) [0xc821854d60] }
-&{setBoundingBox QGeoLocation::setBoundingBox commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  void void setBoundingBox(const QGeoRectangle &boundingBox) [0xc821855200] }
-&{setCoordinate QGeoLocation::setCoordinate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  void void setCoordinate(const QGeoCoordinate &coordinate) [0xc8218556c0] }
+&{operator!= QGeoLocation::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  bool bool operator!=(const QGeoLocation &other) const [0xc8212820c0] }
+&{operator= QGeoLocation::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  QGeoLocation & QGeoLocation & operator=(const QGeoLocation &other) [0xc821282500] }
+&{operator== QGeoLocation::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  bool bool operator==(const QGeoLocation &other) const [0xc821282960] }
+&{setAddress QGeoLocation::setAddress commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  void void setAddress(const QGeoAddress &address) [0xc821282d20] }
+&{setBoundingBox QGeoLocation::setBoundingBox commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  void void setBoundingBox(const QGeoRectangle &boundingBox) [0xc821283120] }
+&{setCoordinate QGeoLocation::setCoordinate commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non plain false false  void void setCoordinate(const QGeoCoordinate &coordinate) [0xc821283500] }
 &{~QGeoLocation QGeoLocation::~QGeoLocation commendable public /work/build/qt5_workdir/w/s/qtlocation/src/positioning/qgeolocation.h non destructor false false   ~QGeoLocation() [] }
 ########################################			ENUMS			########################################

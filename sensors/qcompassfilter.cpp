@@ -1,10 +1,10 @@
 #include "qcompassfilter.h"
-#include <QString>
-#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QCompassReading>
 #include <QCompass>
+#include <QString>
+#include <QVariant>
 #include <QCompassFilter>
 #include "_cgo_export.h"
 

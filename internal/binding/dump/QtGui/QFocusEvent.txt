@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QFocusEvent QFocusEvent::QFocusEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QFocusEvent(Type type, Qt::FocusReason reason) [0xc820733a20 0xc820733b20] }
+&{QFocusEvent QFocusEvent::QFocusEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QFocusEvent(Type type, Qt::FocusReason reason) [0xc82083e040 0xc82083e100] }
 &{gotFocus QFocusEvent::gotFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  bool bool gotFocus() const [] }
 &{lostFocus QFocusEvent::lostFocus commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  bool bool lostFocus() const [] }
 &{reason QFocusEvent::reason commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  Qt::FocusReason Qt::FocusReason reason() const [] }

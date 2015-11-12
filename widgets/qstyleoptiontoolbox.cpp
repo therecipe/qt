@@ -3,8 +3,8 @@
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QStyleOption>
 #include <QStyle>
+#include <QStyleOption>
 #include <QStyleOptionToolBox>
 #include "_cgo_export.h"
 

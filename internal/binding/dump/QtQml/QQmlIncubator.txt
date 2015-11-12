@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{QQmlIncubator QQmlIncubator::QQmlIncubator commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non constructor false false   QQmlIncubator(IncubationMode mode) [0xc822f10520] }
+&{QQmlIncubator QQmlIncubator::QQmlIncubator commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non constructor false false   QQmlIncubator(IncubationMode mode) [0xc821d81460] }
 &{clear QQmlIncubator::clear commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  void void clear() [] }
-&{errors QQmlIncubator::errors commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  QList<QQmlError> QList<QQmlError> errors() const [] }
+&{errors QQmlIncubator::errors commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  QList<QQmlError> QList<QQmlError> errors() const [] }
 &{forceCompletion QQmlIncubator::forceCompletion commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  void void forceCompletion() [] }
 &{incubationMode QQmlIncubator::incubationMode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  IncubationMode IncubationMode incubationMode() const [] }
 &{isError QQmlIncubator::isError commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  bool bool isError() const [] }
@@ -9,9 +9,9 @@
 &{isNull QQmlIncubator::isNull commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  bool bool isNull() const [] }
 &{isReady QQmlIncubator::isReady commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  bool bool isReady() const [] }
 &{object QQmlIncubator::object commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  QObject * QObject * object() const [] }
-&{setInitialState QQmlIncubator::setInitialState commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h impure plain false false  void void setInitialState(QObject *object) [0xc822efe020] }
+&{setInitialState QQmlIncubator::setInitialState commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h impure plain false false  void void setInitialState(QObject *object) [0xc821d8aae0] }
 &{status QQmlIncubator::status commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h non plain false false  Status Status status() const [] }
-&{statusChanged QQmlIncubator::statusChanged commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h impure plain false false  void void statusChanged(Status status) [0xc822efe620] }
+&{statusChanged QQmlIncubator::statusChanged commendable protected /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlincubator.h impure plain false false  void void statusChanged(Status status) [0xc821d8b120] }
 ########################################			ENUMS			########################################
-&{IncubationMode QQmlIncubator::IncubationMode commendable public  [0xc822f216a0 0xc822f21840 0xc822f21980] false}
-&{Status QQmlIncubator::Status commendable public  [0xc822f21dc0 0xc822f21e60 0xc822f21fc0 0xc822f10100] false}
+&{IncubationMode QQmlIncubator::IncubationMode commendable public  [0xc821d808e0 0xc821d80a00 0xc821d80b80] false}
+&{Status QQmlIncubator::Status commendable public  [0xc821d80ec0 0xc821d80f60 0xc821d81040 0xc821d810e0] false}

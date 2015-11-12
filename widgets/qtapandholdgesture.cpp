@@ -1,10 +1,10 @@
 #include "qtapandholdgesture.h"
+#include <QModelIndex>
+#include <QPointF>
+#include <QPoint>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QPoint>
-#include <QPointF>
 #include <QTapAndHoldGesture>
 #include "_cgo_export.h"
 

@@ -1,8 +1,8 @@
 #include "qhelpsearchresultwidget.h"
-#include <QModelIndex>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
 #include <QHelpSearchResultWidget>
 #include "_cgo_export.h"
 

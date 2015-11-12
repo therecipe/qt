@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QTiltSensor QTiltSensor::QTiltSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non constructor false false   QTiltSensor(QObject *parent) [0xc823459c60] }
+&{QTiltSensor QTiltSensor::QTiltSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non constructor false false   QTiltSensor(QObject *parent) [0xc823453640] }
 &{reading QTiltSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non plain false false  QTiltReading * QTiltReading * reading() const [] }
 &{~QTiltSensor QTiltSensor::~QTiltSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non destructor false false   ~QTiltSensor() [] }
 &{calibrate QTiltSensor::calibrate commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.h non plain false false  void void calibrate() [] }
