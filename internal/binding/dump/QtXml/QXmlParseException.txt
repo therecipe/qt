@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QXmlParseException QXmlParseException::QXmlParseException commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false false   QXmlParseException(const QString &name, int c, int l, const QString &p, const QString &s) [0xc823650320 0xc8236503a0 0xc823650440 0xc823650500 0xc8236505c0] }
-&{QXmlParseException QXmlParseException::QXmlParseException commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false true 2  QXmlParseException(const QXmlParseException &other) [0xc823650780] }
+&{QXmlParseException QXmlParseException::QXmlParseException commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false false   QXmlParseException(const QString &name, int c, int l, const QString &p, const QString &s) [0xc8217e7180 0xc8217e72c0 0xc8217e7360 0xc8217e7460 0xc8217e7620] }
+&{QXmlParseException QXmlParseException::QXmlParseException commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non constructor false true 2  QXmlParseException(const QXmlParseException &other) [0xc8217e7920] }
 &{columnNumber QXmlParseException::columnNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int int columnNumber() const [] }
 &{lineNumber QXmlParseException::lineNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  int int lineNumber() const [] }
 &{message QXmlParseException::message commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h non plain false false  QString QString message() const [] }

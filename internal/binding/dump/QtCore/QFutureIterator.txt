@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{QFutureIterator QFutureIterator::QFutureIterator commendable public qfuture.h non constructor false false   QFutureIterator(const QFuture<T> &future) [0xc820905f00] }
-&{findNext QFutureIterator::findNext commendable public qfuture.h non plain false false  bool bool findNext(const T &value) [0xc8202a2480] }
-&{findPrevious QFutureIterator::findPrevious commendable public qfuture.h non plain false false  bool bool findPrevious(const T &value) [0xc8202a2880] }
+&{QFutureIterator QFutureIterator::QFutureIterator commendable public qfuture.h non constructor false false   QFutureIterator(const QFuture<T> &future) [0xc820a7d200] }
+&{findNext QFutureIterator::findNext commendable public qfuture.h non plain false false  bool bool findNext(const T &value) [0xc820a7d5a0] }
+&{findPrevious QFutureIterator::findPrevious commendable public qfuture.h non plain false false  bool bool findPrevious(const T &value) [0xc820a7d7c0] }
 &{hasNext QFutureIterator::hasNext commendable public qfuture.h non plain false false  bool bool hasNext() const [] }
 &{hasPrevious QFutureIterator::hasPrevious commendable public qfuture.h non plain false false  bool bool hasPrevious() const [] }
 &{next QFutureIterator::next commendable public qfuture.h non plain false false  const T & const T & next() [] }
-&{operator= QFutureIterator::operator= commendable public qfuture.h non plain false false  QFutureIterator & QFutureIterator & operator=(const QFuture<T> &future) [0xc8202a3840] }
+&{operator= QFutureIterator::operator= commendable public qfuture.h non plain false false  QFutureIterator & QFutureIterator & operator=(const QFuture<T> &future) [0xc8202f6020] }
 &{peekNext QFutureIterator::peekNext commendable public qfuture.h non plain false false  const T & const T & peekNext() const [] }
 &{peekPrevious QFutureIterator::peekPrevious commendable public qfuture.h non plain false false  const T & const T & peekPrevious() const [] }
 &{previous QFutureIterator::previous commendable public qfuture.h non plain false false  const T & const T & previous() [] }

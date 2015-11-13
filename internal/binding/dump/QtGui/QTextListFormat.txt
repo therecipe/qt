@@ -4,10 +4,10 @@
 &{isValid QTextListFormat::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool bool isValid() const [] }
 &{numberPrefix QTextListFormat::numberPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QString QString numberPrefix() const [] }
 &{numberSuffix QTextListFormat::numberSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  QString QString numberSuffix() const [] }
-&{setIndent QTextListFormat::setIndent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setIndent(int indentation) [0xc8235004e0] }
-&{setNumberPrefix QTextListFormat::setNumberPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setNumberPrefix(const QString &numberPrefix) [0xc823500680] }
-&{setNumberSuffix QTextListFormat::setNumberSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setNumberSuffix(const QString &numberSuffix) [0xc823500840] }
-&{setStyle QTextListFormat::setStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setStyle(Style style) [0xc823500a60] }
+&{setIndent QTextListFormat::setIndent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setIndent(int indentation) [0xc8235ef540] }
+&{setNumberPrefix QTextListFormat::setNumberPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setNumberPrefix(const QString &numberPrefix) [0xc8235ef6e0] }
+&{setNumberSuffix QTextListFormat::setNumberSuffix commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setNumberSuffix(const QString &numberSuffix) [0xc8235ef8a0] }
+&{setStyle QTextListFormat::setStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  void void setStyle(Style style) [0xc8235efac0] }
 &{style QTextListFormat::style commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  Style Style style() const [] }
 ########################################			ENUMS			########################################
-&{Style QTextListFormat::Style commendable public  [0xc8234f3940 0xc8234f39c0 0xc8234f3a40 0xc8234f3ac0 0xc8234f3b60 0xc8234f3be0 0xc8234f3c60 0xc8234f3ce0 0xc8234f3da0] false}
+&{Style QTextListFormat::Style commendable public  [0xc8235ee9a0 0xc8235eea20 0xc8235eeaa0 0xc8235eeb20 0xc8235eebc0 0xc8235eec40 0xc8235eecc0 0xc8235eed40 0xc8235eee00] false}

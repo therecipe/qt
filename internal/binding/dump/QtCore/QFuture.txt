@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
 &{QFuture QFuture::QFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non constructor false false   QFuture() [] }
-&{QFuture QFuture::QFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non constructor false true 3  QFuture(const QFuture &other) [0xc8206dd580] }
+&{QFuture QFuture::QFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non constructor false true 3  QFuture(const QFuture &other) [0xc8206db5e0] }
 &{begin QFuture::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  const_iterator const_iterator begin() const [] }
 &{cancel QFuture::cancel commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void void cancel() [] }
 &{constBegin QFuture::constBegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  const_iterator const_iterator constBegin() const [] }
@@ -9,24 +9,24 @@
 &{isCanceled QFuture::isCanceled commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool bool isCanceled() const [] }
 &{isFinished QFuture::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool bool isFinished() const [] }
 &{isPaused QFuture::isPaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool bool isPaused() const [] }
-&{isResultReadyAt QFuture::isResultReadyAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool bool isResultReadyAt(int index) const [0xc8206f6140] }
+&{isResultReadyAt QFuture::isResultReadyAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool bool isResultReadyAt(int index) const [0xc8206f41a0] }
 &{isRunning QFuture::isRunning commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool bool isRunning() const [] }
 &{isStarted QFuture::isStarted commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool bool isStarted() const [] }
 &{operator T QFuture::operator T commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false   operator T() const [] }
-&{operator!= QFuture::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool bool operator!=(const QFuture &other) const [0xc8206f66c0] }
-&{operator= QFuture::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  QFuture & QFuture & operator=(const QFuture &other) [0xc8206f68a0] }
-&{operator== QFuture::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool bool operator==(const QFuture &other) const [0xc8206f6a60] }
+&{operator!= QFuture::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool bool operator!=(const QFuture &other) const [0xc8206f4720] }
+&{operator= QFuture::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  QFuture & QFuture & operator=(const QFuture &other) [0xc8206f4900] }
+&{operator== QFuture::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  bool bool operator==(const QFuture &other) const [0xc8206f4ac0] }
 &{pause QFuture::pause commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void void pause() [] }
 &{progressMaximum QFuture::progressMaximum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  int int progressMaximum() const [] }
 &{progressMinimum QFuture::progressMinimum commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  int int progressMinimum() const [] }
 &{progressText QFuture::progressText commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  QString QString progressText() const [] }
 &{progressValue QFuture::progressValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  int int progressValue() const [] }
 &{result QFuture::result commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  T T result() const [] }
-&{resultAt QFuture::resultAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  T T resultAt(int index) const [0xc8206f7280] }
+&{resultAt QFuture::resultAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  T T resultAt(int index) const [0xc8206f52e0] }
 &{resultCount QFuture::resultCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  int int resultCount() const [] }
 &{results QFuture::results commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  QList<T> QList<T> results() const [] }
 &{resume QFuture::resume commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void void resume() [] }
-&{setPaused QFuture::setPaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void void setPaused(bool paused) [0xc8206f7740] }
+&{setPaused QFuture::setPaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void void setPaused(bool paused) [0xc8206f57a0] }
 &{togglePaused QFuture::togglePaused commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void void togglePaused() [] }
 &{waitForFinished QFuture::waitForFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non plain false false  void void waitForFinished() [] }
 &{~QFuture QFuture::~QFuture commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qfuture.h non destructor false false   ~QFuture() [] }

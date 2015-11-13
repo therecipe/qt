@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
 &{QDnsTextRecord QDnsTextRecord::QDnsTextRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false false   QDnsTextRecord() [] }
-&{QDnsTextRecord QDnsTextRecord::QDnsTextRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false true 2  QDnsTextRecord(const QDnsTextRecord &other) [0xc822670240] }
+&{QDnsTextRecord QDnsTextRecord::QDnsTextRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false true 2  QDnsTextRecord(const QDnsTextRecord &other) [0xc822863dc0] }
 &{name QDnsTextRecord::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QString QString name() const [] }
-&{operator= QDnsTextRecord::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QDnsTextRecord & QDnsTextRecord & operator=(const QDnsTextRecord &other) [0xc822670660] }
-&{swap QDnsTextRecord::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  void void swap(QDnsTextRecord &other) [0xc822670980] }
+&{operator= QDnsTextRecord::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QDnsTextRecord & QDnsTextRecord & operator=(const QDnsTextRecord &other) [0xc822f22200] }
+&{swap QDnsTextRecord::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  void void swap(QDnsTextRecord &other) [0xc822f22520] }
 &{timeToLive QDnsTextRecord::timeToLive commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint32 quint32 timeToLive() const [] }
 &{values QDnsTextRecord::values commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QByteArray> QList<QByteArray> values() const [] }
 &{~QDnsTextRecord QDnsTextRecord::~QDnsTextRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non destructor false false   ~QDnsTextRecord() [] }

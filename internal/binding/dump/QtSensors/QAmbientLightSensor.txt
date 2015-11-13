@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
 &{reading QAmbientLightSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambientlightsensor.cpp non plain false false  QAmbientLightReading * QAmbientLightReading * reading() const [] }
-&{QAmbientLightSensor QAmbientLightSensor::QAmbientLightSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambientlightsensor.h non constructor false false   QAmbientLightSensor(QObject *parent) [0xc823629e20] }
+&{QAmbientLightSensor QAmbientLightSensor::QAmbientLightSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambientlightsensor.h non constructor false false   QAmbientLightSensor(QObject *parent) [0xc820e15940] }
 &{~QAmbientLightSensor QAmbientLightSensor::~QAmbientLightSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qambientlightsensor.h impure destructor false false   ~QAmbientLightSensor() [] }
 ########################################			ENUMS			########################################

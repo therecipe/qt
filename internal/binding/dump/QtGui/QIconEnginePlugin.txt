@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QIconEnginePlugin QIconEnginePlugin::QIconEnginePlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengineplugin.h non constructor false false   QIconEnginePlugin(QObject *parent) [0xc820dfb940] }
-&{create QIconEnginePlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengineplugin.h pure plain false false  QIconEngine * QIconEngine * create(const QString &filename) [0xc820dfbb40] }
+&{QIconEnginePlugin QIconEnginePlugin::QIconEnginePlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengineplugin.h non constructor false false   QIconEnginePlugin(QObject *parent) [0xc820dfb500] }
+&{create QIconEnginePlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengineplugin.h pure plain false false  QIconEngine * QIconEngine * create(const QString &filename) [0xc820dfb7c0] }
 &{~QIconEnginePlugin QIconEnginePlugin::~QIconEnginePlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qiconengineplugin.h non destructor false false   ~QIconEnginePlugin() [] }
 ########################################			ENUMS			########################################

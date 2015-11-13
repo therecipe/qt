@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
 &{QPlaceUser QPlaceUser::QPlaceUser commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non constructor false false   QPlaceUser() [] }
-&{QPlaceUser QPlaceUser::QPlaceUser commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non constructor false true 2  QPlaceUser(const QPlaceUser &other) [0xc82115c740] }
+&{QPlaceUser QPlaceUser::QPlaceUser commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non constructor false true 2  QPlaceUser(const QPlaceUser &other) [0xc821980940] }
 &{name QPlaceUser::name commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  QString QString name() const [] }
-&{operator!= QPlaceUser::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  bool bool operator!=(const QPlaceUser &other) const [0xc82115cec0] }
-&{operator= QPlaceUser::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  QPlaceUser & QPlaceUser & operator=(const QPlaceUser &other) [0xc82115d5e0] }
-&{operator== QPlaceUser::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  bool bool operator==(const QPlaceUser &other) const [0xc82115dca0] }
-&{setName QPlaceUser::setName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  void void setName(const QString &name) [0xc82238a160] }
-&{setUserId QPlaceUser::setUserId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  void void setUserId(const QString &identifier) [0xc82238a8a0] }
+&{operator!= QPlaceUser::operator!= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  bool bool operator!=(const QPlaceUser &other) const [0xc821980f80] }
+&{operator= QPlaceUser::operator= commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  QPlaceUser & QPlaceUser & operator=(const QPlaceUser &other) [0xc821981480] }
+&{operator== QPlaceUser::operator== commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  bool bool operator==(const QPlaceUser &other) const [0xc8219818a0] }
+&{setName QPlaceUser::setName commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  void void setName(const QString &name) [0xc821981de0] }
+&{setUserId QPlaceUser::setUserId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  void void setUserId(const QString &identifier) [0xc822014120] }
 &{userId QPlaceUser::userId commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non plain false false  QString QString userId() const [] }
 &{~QPlaceUser QPlaceUser::~QPlaceUser commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceuser.h non destructor false false   ~QPlaceUser() [] }
 ########################################			ENUMS			########################################

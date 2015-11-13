@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QSurface QSurface::QSurface commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurface.h non constructor false false   QSurface(SurfaceClass type) [0xc820349480] }
+&{QSurface QSurface::QSurface commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurface.h non constructor false false   QSurface(SurfaceClass type) [0xc82045e340] }
 &{format QSurface::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurface.h pure plain false false  QSurfaceFormat QSurfaceFormat format() const [] }
 &{size QSurface::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurface.h pure plain false false  QSize QSize size() const [] }
 &{supportsOpenGL QSurface::supportsOpenGL commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurface.h non plain false false  bool bool supportsOpenGL() const [] }
@@ -8,5 +8,5 @@
 &{surfaceType QSurface::surfaceType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurface.h pure plain false false  SurfaceType SurfaceType surfaceType() const [] }
 &{~QSurface QSurface::~QSurface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qsurface.h impure destructor false false   ~QSurface() [] }
 ########################################			ENUMS			########################################
-&{SurfaceClass QSurface::SurfaceClass commendable public  [0xc820348820 0xc820348920] false}
-&{SurfaceType QSurface::SurfaceType commendable public  [0xc820348d00 0xc820348de0 0xc820348fa0] false}
+&{SurfaceClass QSurface::SurfaceClass commendable public  [0xc820471b00 0xc820471ba0] false}
+&{SurfaceType QSurface::SurfaceType commendable public  [0xc820471dc0 0xc820471f00 0xc820471fe0] false}

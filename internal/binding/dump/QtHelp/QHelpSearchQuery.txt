@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
 &{QHelpSearchQuery QHelpSearchQuery::QHelpSearchQuery commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non constructor false false   QHelpSearchQuery() [] }
-&{QHelpSearchQuery QHelpSearchQuery::QHelpSearchQuery commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non constructor false true 2  QHelpSearchQuery(FieldName field, const QStringList &wordList) [0xc8233cb660 0xc8233cb700] }
+&{QHelpSearchQuery QHelpSearchQuery::QHelpSearchQuery commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpsearchengine.h non constructor false true 2  QHelpSearchQuery(FieldName field, const QStringList &wordList) [0xc822b6a260 0xc822b6a360] }
 ########################################			ENUMS			########################################
-&{FieldName QHelpSearchQuery::FieldName commendable public  [0xc8233cb140 0xc8233cb1c0 0xc8233cb240 0xc8233cb2c0 0xc8233cb360 0xc8233cb3e0] false}
+&{FieldName QHelpSearchQuery::FieldName commendable public  [0xc822aa7880 0xc822aa79c0 0xc822aa7a60 0xc822aa7b40 0xc822aa7ca0 0xc822aa7d60] false}

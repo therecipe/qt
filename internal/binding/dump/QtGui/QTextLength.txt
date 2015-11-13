@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
 &{QTextLength QTextLength::QTextLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non constructor false false   QTextLength() [] }
-&{QTextLength QTextLength::QTextLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non constructor false true 2  QTextLength(Type type, qreal value) [0xc8234f2880 0xc8234f2900] }
+&{QTextLength QTextLength::QTextLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non constructor false true 2  QTextLength(Type type, qreal value) [0xc8235df8e0 0xc8235df960] }
 &{operator QVariant QTextLength::operator QVariant commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false   operator QVariant() const [] }
-&{operator!= QTextLength::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool bool operator!=(const QTextLength &other) const [0xc8234f2c60] }
-&{operator== QTextLength::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool bool operator==(const QTextLength &other) const [0xc8234f2ea0] }
+&{operator!= QTextLength::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool bool operator!=(const QTextLength &other) const [0xc8235dfcc0] }
+&{operator== QTextLength::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  bool bool operator==(const QTextLength &other) const [0xc8235dff00] }
 &{rawValue QTextLength::rawValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal qreal rawValue() const [] }
 &{type QTextLength::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  Type Type type() const [] }
-&{value QTextLength::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal qreal value(qreal maximumLength) const [0xc8234f3320] }
+&{value QTextLength::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextformat.h non plain false false  qreal qreal value(qreal maximumLength) const [0xc8235ee380] }
 ########################################			ENUMS			########################################
-&{Type QTextLength::Type commendable public  [0xc8234f24a0 0xc8234f2520 0xc8234f25a0] false}
+&{Type QTextLength::Type commendable public  [0xc8235df500 0xc8235df580 0xc8235df600] false}

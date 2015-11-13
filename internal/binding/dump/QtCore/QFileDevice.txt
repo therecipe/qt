@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{seek QFileDevice::seek commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.cpp impure plain false false  bool bool seek(qint64 pos) [0xc8203b4140] }
+&{seek QFileDevice::seek commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.cpp impure plain false false  bool bool seek(qint64 pos) [0xc8203b2140] }
 &{atEnd QFileDevice::atEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  bool bool atEnd() const [] }
 &{close QFileDevice::close commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  void void close() [] }
 &{error QFileDevice::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  FileError FileError error() const [] }
@@ -7,20 +7,20 @@
 &{flush QFileDevice::flush commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  bool bool flush() [] }
 &{handle QFileDevice::handle commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  int int handle() const [] }
 &{isSequential QFileDevice::isSequential commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  bool bool isSequential() const [] }
-&{map QFileDevice::map commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  uchar * uchar * map(qint64 offset, qint64 size, MemoryMapFlags flags) [0xc8203c47a0 0xc8203c4820 0xc8203c48a0] }
+&{map QFileDevice::map commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  uchar * uchar * map(qint64 offset, qint64 size, MemoryMapFlags flags) [0xc8203c27a0 0xc8203c2820 0xc8203c28a0] }
 &{permissions QFileDevice::permissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  Permissions Permissions permissions() const [] }
 &{pos QFileDevice::pos commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 qint64 pos() const [] }
-&{readData QFileDevice::readData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 qint64 readData(char *data, qint64 len) [0xc8203c4c80 0xc8203c4d00] }
-&{readLineData QFileDevice::readLineData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 qint64 readLineData(char *data, qint64 maxlen) [0xc8203c4ec0 0xc8203c4f40] }
-&{resize QFileDevice::resize commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  bool bool resize(qint64 sz) [0xc8203c5180] }
-&{setPermissions QFileDevice::setPermissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  bool bool setPermissions(Permissions permissions) [0xc8203c5340] }
+&{readData QFileDevice::readData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 qint64 readData(char *data, qint64 len) [0xc8203c2c80 0xc8203c2d00] }
+&{readLineData QFileDevice::readLineData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 qint64 readLineData(char *data, qint64 maxlen) [0xc8203c2ec0 0xc8203c2f40] }
+&{resize QFileDevice::resize commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  bool bool resize(qint64 sz) [0xc8203c3180] }
+&{setPermissions QFileDevice::setPermissions commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  bool bool setPermissions(Permissions permissions) [0xc8203c3340] }
 &{size QFileDevice::size commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 qint64 size() const [] }
-&{unmap QFileDevice::unmap commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  bool bool unmap(uchar *address) [0xc8203c56a0] }
+&{unmap QFileDevice::unmap commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  bool bool unmap(uchar *address) [0xc8203c36a0] }
 &{unsetError QFileDevice::unsetError commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non plain false false  void void unsetError() [] }
-&{writeData QFileDevice::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 qint64 writeData(const char *data, qint64 len) [0xc8203c59a0 0xc8203c5a20] }
+&{writeData QFileDevice::writeData commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h impure plain false false  qint64 qint64 writeData(const char *data, qint64 len) [0xc8203c39a0 0xc8203c3a20] }
 &{~QFileDevice QFileDevice::~QFileDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfiledevice.h non destructor false false   ~QFileDevice() [] }
 ########################################			ENUMS			########################################
-&{FileError QFileDevice::FileError commendable public  [0xc8203b4340 0xc8203b43c0 0xc8203b4440 0xc8203b44c0 0xc8203b4560 0xc8203b45e0 0xc8203b4660 0xc8203b46e0 0xc8203b4780 0xc8203b4800 0xc8203b4880 0xc8203b4900 0xc8203b4980 0xc8203b4a00 0xc8203b4a80] false}
-&{FileHandleFlag QFileDevice::FileHandleFlag commendable public QFileDevice::FileHandleFlags [0xc8203b4c80 0xc8203b4d00] false}
-&{MemoryMapFlags QFileDevice::MemoryMapFlags commendable public  [0xc8203b4ea0 0xc8203b4f20] false}
-&{Permission QFileDevice::Permission commendable public QFileDevice::Permissions [0xc8203b5140 0xc8203b51c0 0xc8203b5240 0xc8203b52c0 0xc8203b5360 0xc8203b53e0 0xc8203b5460 0xc8203b54e0 0xc8203b5580 0xc8203b5600 0xc8203b5680 0xc8203b5700] false}
+&{FileError QFileDevice::FileError commendable public  [0xc8203b2340 0xc8203b23c0 0xc8203b2440 0xc8203b24c0 0xc8203b2560 0xc8203b25e0 0xc8203b2660 0xc8203b26e0 0xc8203b2780 0xc8203b2800 0xc8203b2880 0xc8203b2900 0xc8203b2980 0xc8203b2a00 0xc8203b2a80] false}
+&{FileHandleFlag QFileDevice::FileHandleFlag commendable public QFileDevice::FileHandleFlags [0xc8203b2c80 0xc8203b2d00] false}
+&{MemoryMapFlags QFileDevice::MemoryMapFlags commendable public  [0xc8203b2ea0 0xc8203b2f20] false}
+&{Permission QFileDevice::Permission commendable public QFileDevice::Permissions [0xc8203b3140 0xc8203b31c0 0xc8203b3240 0xc8203b32c0 0xc8203b3360 0xc8203b33e0 0xc8203b3460 0xc8203b34e0 0xc8203b3580 0xc8203b3600 0xc8203b3680 0xc8203b3700] false}

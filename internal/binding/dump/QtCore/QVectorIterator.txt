@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{QVectorIterator QVectorIterator::QVectorIterator commendable public qvector.h non constructor false false   QVectorIterator(const QVector<T> &vector) [0xc820211c60] }
-&{findNext QVectorIterator::findNext commendable public qvector.h non plain false false  bool bool findNext(const T &value) [0xc8204a82e0] }
-&{findPrevious QVectorIterator::findPrevious commendable public qvector.h non plain false false  bool bool findPrevious(const T &value) [0xc8204a8660] }
+&{QVectorIterator QVectorIterator::QVectorIterator commendable public qvector.h non constructor false false   QVectorIterator(const QVector<T> &vector) [0xc820881c00] }
+&{findNext QVectorIterator::findNext commendable public qvector.h non plain false false  bool bool findNext(const T &value) [0xc820238100] }
+&{findPrevious QVectorIterator::findPrevious commendable public qvector.h non plain false false  bool bool findPrevious(const T &value) [0xc820238860] }
 &{hasNext QVectorIterator::hasNext commendable public qvector.h non plain false false  bool bool hasNext() const [] }
 &{hasPrevious QVectorIterator::hasPrevious commendable public qvector.h non plain false false  bool bool hasPrevious() const [] }
 &{next QVectorIterator::next commendable public qvector.h non plain false false  const T & const T & next() [] }
-&{operator= QVectorIterator::operator= commendable public qvector.h non plain false false  QVectorIterator & QVectorIterator & operator=(const QVector<T> &vector) [0xc8204a9240] }
+&{operator= QVectorIterator::operator= commendable public qvector.h non plain false false  QVectorIterator & QVectorIterator & operator=(const QVector<T> &vector) [0xc8202399e0] }
 &{peekNext QVectorIterator::peekNext commendable public qvector.h non plain false false  const T & const T & peekNext() const [] }
 &{peekPrevious QVectorIterator::peekPrevious commendable public qvector.h non plain false false  const T & const T & peekPrevious() const [] }
 &{previous QVectorIterator::previous commendable public qvector.h non plain false false  const T & const T & previous() [] }

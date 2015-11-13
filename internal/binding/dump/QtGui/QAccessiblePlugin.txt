@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QAccessiblePlugin QAccessiblePlugin::QAccessiblePlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleplugin.h non constructor false false   QAccessiblePlugin(QObject *parent) [0xc820c6e5e0] }
-&{create QAccessiblePlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleplugin.h pure plain false false  QAccessibleInterface * QAccessibleInterface * create(const QString &key, QObject *object) [0xc820c6e8e0 0xc820c6e980] }
+&{QAccessiblePlugin QAccessiblePlugin::QAccessiblePlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleplugin.h non constructor false false   QAccessiblePlugin(QObject *parent) [0xc820d21620] }
+&{create QAccessiblePlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleplugin.h pure plain false false  QAccessibleInterface * QAccessibleInterface * create(const QString &key, QObject *object) [0xc820d21860 0xc820d218e0] }
 &{~QAccessiblePlugin QAccessiblePlugin::~QAccessiblePlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleplugin.h non destructor false false   ~QAccessiblePlugin() [] }
 ########################################			ENUMS			########################################

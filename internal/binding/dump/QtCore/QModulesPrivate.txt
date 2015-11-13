@@ -1,3 +1,3 @@
 ########################################			FUNCTIONS			########################################
 ########################################			ENUMS			########################################
-&{Names QModulesPrivate::Names commendable public  [0xc820759e80 0xc820759f20 0xc820759fc0 0xc820744100 0xc8207441c0] false}
+&{Names QModulesPrivate::Names commendable public  [0xc8207077e0 0xc8207078c0 0xc820707960 0xc820707a20 0xc820707b20] false}

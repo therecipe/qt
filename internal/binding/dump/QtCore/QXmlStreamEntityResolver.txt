@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{resolveUndeclaredEntity QXmlStreamEntityResolver::resolveUndeclaredEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h impure plain false false  QString QString resolveUndeclaredEntity(const QString &name) [0xc820a42cc0] }
+&{resolveUndeclaredEntity QXmlStreamEntityResolver::resolveUndeclaredEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h impure plain false false  QString QString resolveUndeclaredEntity(const QString &name) [0xc8203e2ae0] }
 &{~QXmlStreamEntityResolver QXmlStreamEntityResolver::~QXmlStreamEntityResolver commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/xml/qxmlstream.h impure destructor false false   ~QXmlStreamEntityResolver() [] }
 ########################################			ENUMS			########################################

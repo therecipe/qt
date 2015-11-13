@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{createAction QWhatsThis::createAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  QAction * QAction * createAction(QObject *parent) [0xc822180a80] }
+&{createAction QWhatsThis::createAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  QAction * QAction * createAction(QObject *parent) [0xc821f4b440] }
 &{enterWhatsThisMode QWhatsThis::enterWhatsThisMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  void void enterWhatsThisMode() [] }
 &{hideText QWhatsThis::hideText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  void void hideText() [] }
 &{inWhatsThisMode QWhatsThis::inWhatsThisMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  bool bool inWhatsThisMode() [] }
 &{leaveWhatsThisMode QWhatsThis::leaveWhatsThisMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  void void leaveWhatsThisMode() [] }
-&{showText QWhatsThis::showText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  void void showText(const QPoint &pos, const QString &text, QWidget *w) [0xc822181380 0xc822181420 0xc8221814c0] }
+&{showText QWhatsThis::showText commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwhatsthis.h non plain true false  void void showText(const QPoint &pos, const QString &text, QWidget *w) [0xc821f5a240 0xc821f5a2c0 0xc821f5a380] }
 ########################################			ENUMS			########################################

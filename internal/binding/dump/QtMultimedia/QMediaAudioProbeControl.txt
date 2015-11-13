@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QMediaAudioProbeControl QMediaAudioProbeControl::QMediaAudioProbeControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaaudioprobecontrol.h non constructor false false   QMediaAudioProbeControl(QObject *parent) [0xc822353000] }
-&{audioBufferProbed QMediaAudioProbeControl::audioBufferProbed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaaudioprobecontrol.h non signal false false  void void audioBufferProbed(const QAudioBuffer &buffer) [0xc822353240] }
+&{QMediaAudioProbeControl QMediaAudioProbeControl::QMediaAudioProbeControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaaudioprobecontrol.h non constructor false false   QMediaAudioProbeControl(QObject *parent) [0xc82092e980] }
+&{audioBufferProbed QMediaAudioProbeControl::audioBufferProbed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaaudioprobecontrol.h non signal false false  void void audioBufferProbed(const QAudioBuffer &buffer) [0xc82092ecc0] }
 &{flush QMediaAudioProbeControl::flush commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaaudioprobecontrol.h non signal false false  void void flush() [] }
 &{~QMediaAudioProbeControl QMediaAudioProbeControl::~QMediaAudioProbeControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaaudioprobecontrol.h impure destructor false false   ~QMediaAudioProbeControl() [] }
 ########################################			ENUMS			########################################

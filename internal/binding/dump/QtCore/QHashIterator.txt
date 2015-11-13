@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
-&{QHashIterator QHashIterator::QHashIterator commendable public qhash.h non constructor false false   QHashIterator(const QHash<Key, T> &hash) [0xc820291000] }
-&{findNext QHashIterator::findNext commendable public qhash.h non plain false false  bool bool findNext(const T &value) [0xc8202917e0] }
-&{findPrevious QHashIterator::findPrevious commendable public qhash.h non plain false false  bool bool findPrevious(const T &value) [0xc820291d80] }
+&{QHashIterator QHashIterator::QHashIterator commendable public qhash.h non constructor false false   QHashIterator(const QHash<Key, T> &hash) [0xc820a56120] }
+&{findNext QHashIterator::findNext commendable public qhash.h non plain false false  bool bool findNext(const T &value) [0xc820a564e0] }
+&{findPrevious QHashIterator::findPrevious commendable public qhash.h non plain false false  bool bool findPrevious(const T &value) [0xc820a567c0] }
 &{hasNext QHashIterator::hasNext commendable public qhash.h non plain false false  bool bool hasNext() const [] }
 &{hasPrevious QHashIterator::hasPrevious commendable public qhash.h non plain false false  bool bool hasPrevious() const [] }
 &{key QHashIterator::key commendable public qhash.h non plain false false  const Key & const Key & key() const [] }
 &{next QHashIterator::next commendable public qhash.h non plain false false  Item Item next() [] }
-&{operator= QHashIterator::operator= commendable public qhash.h non plain false false  QHashIterator & QHashIterator & operator=(const QHash<Key, T> &hash) [0xc820a6cb60] }
+&{operator= QHashIterator::operator= commendable public qhash.h non plain false false  QHashIterator & QHashIterator & operator=(const QHash<Key, T> &hash) [0xc820a57320] }
 &{peekNext QHashIterator::peekNext commendable public qhash.h non plain false false  Item Item peekNext() const [] }
 &{peekPrevious QHashIterator::peekPrevious commendable public qhash.h non plain false false  Item Item peekPrevious() const [] }
 &{previous QHashIterator::previous commendable public qhash.h non plain false false  Item Item previous() [] }

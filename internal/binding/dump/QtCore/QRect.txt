@@ -1,72 +1,72 @@
 ########################################			FUNCTIONS			########################################
-&{contains QRect::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.cpp non plain false false  bool bool contains(const QPoint &point, bool proper) const [0xc8206b8120 0xc8206b82c0] }
-&{contains QRect::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.cpp non plain false true 4 bool bool contains(const QRect &rectangle, bool proper) const [0xc8206b8620 0xc8206b87e0] }
-&{intersects QRect::intersects commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.cpp non plain false false  bool bool intersects(const QRect &rectangle) const [0xc8206b8c80] }
-&{operator& QRect::operator& commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.cpp non plain false false  QRect QRect operator&(const QRect &rectangle) const [0xc8206b8f80] }
-&{operator| QRect::operator| commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.cpp non plain false false  QRect QRect operator|(const QRect &rectangle) const [0xc8206b93a0] }
+&{contains QRect::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.cpp non plain false false  bool bool contains(const QPoint &point, bool proper) const [0xc82059cfc0 0xc82059d080] }
+&{contains QRect::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.cpp non plain false true 4 bool bool contains(const QRect &rectangle, bool proper) const [0xc82059d480 0xc82059d6a0] }
+&{intersects QRect::intersects commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.cpp non plain false false  bool bool intersects(const QRect &rectangle) const [0xc82059dce0] }
+&{operator& QRect::operator& commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.cpp non plain false false  QRect QRect operator&(const QRect &rectangle) const [0xc8206b6100] }
+&{operator| QRect::operator| commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.cpp non plain false false  QRect QRect operator|(const QRect &rectangle) const [0xc8206b64c0] }
 &{QRect QRect::QRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non constructor false false   QRect() [] }
-&{QRect QRect::QRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non constructor false true 2  QRect(const QPoint &topLeft, const QPoint &bottomRight) [0xc8206b97e0 0xc8206b9940] }
-&{QRect QRect::QRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non constructor false true 3  QRect(const QPoint &topLeft, const QSize &size) [0xc8206b9de0 0xc8206b9ee0] }
-&{QRect QRect::QRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non constructor false true 4  QRect(int x, int y, int width, int height) [0xc8207802e0 0xc820780400 0xc820780620 0xc820780720] }
-&{adjust QRect::adjust commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void adjust(int dx1, int dy1, int dx2, int dy2) [0xc8207809e0 0xc820780b60 0xc820780be0 0xc820780ca0] }
-&{adjusted QRect::adjusted commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect adjusted(int dx1, int dy1, int dx2, int dy2) const [0xc820780f00 0xc820781060 0xc820781160 0xc820781280] }
+&{QRect QRect::QRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non constructor false true 2  QRect(const QPoint &topLeft, const QPoint &bottomRight) [0xc8206b6960 0xc8206b6ac0] }
+&{QRect QRect::QRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non constructor false true 3  QRect(const QPoint &topLeft, const QSize &size) [0xc8206b6f20 0xc8206b6fc0] }
+&{QRect QRect::QRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non constructor false true 4  QRect(int x, int y, int width, int height) [0xc8206b72a0 0xc8206b7480 0xc8206b7540 0xc8206b77a0] }
+&{adjust QRect::adjust commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void adjust(int dx1, int dy1, int dx2, int dy2) [0xc8206b7a20 0xc8206b7c20 0xc8206b7d60 0xc8206b7e80] }
+&{adjusted QRect::adjusted commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect adjusted(int dx1, int dy1, int dx2, int dy2) const [0xc82076e300 0xc82076e400 0xc82076e5a0 0xc82076e6e0] }
 &{bottom QRect::bottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  int int bottom() const [] }
 &{bottomLeft QRect::bottomLeft commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QPoint QPoint bottomLeft() const [] }
 &{bottomRight QRect::bottomRight commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QPoint QPoint bottomRight() const [] }
 &{center QRect::center commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QPoint QPoint center() const [] }
-&{contains QRect::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false true 3 bool bool contains(int x, int y) const [0xc820781de0 0xc820781ec0] }
-&{contains QRect::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false true 2 bool bool contains(int x, int y, bool proper) const [0xc8208a4120 0xc8208a42c0 0xc8208a43a0] }
-&{getCoords QRect::getCoords commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void getCoords(int *x1, int *y1, int *x2, int *y2) const [0xc8208a4620 0xc8208a46c0 0xc8208a4760 0xc8208a4860] }
-&{getRect QRect::getRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void getRect(int *x, int *y, int *width, int *height) const [0xc8208a4b60 0xc8208a4ce0 0xc8208a4e40 0xc8208a4f20] }
+&{contains QRect::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false true 3 bool bool contains(int x, int y) const [0xc82076f100 0xc82076f220] }
+&{contains QRect::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false true 2 bool bool contains(int x, int y, bool proper) const [0xc82076f520 0xc82076f5e0 0xc82076f6a0] }
+&{getCoords QRect::getCoords commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void getCoords(int *x1, int *y1, int *x2, int *y2) const [0xc82076f980 0xc82076fb00 0xc82076fd00 0xc82076fe00] }
+&{getRect QRect::getRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void getRect(int *x, int *y, int *width, int *height) const [0xc8208cc160 0xc8208cc240 0xc8208cc320 0xc8208cc3c0] }
 &{height QRect::height commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  int int height() const [] }
-&{intersected QRect::intersected commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect intersected(const QRect &rectangle) const [0xc8208a5660] }
+&{intersected QRect::intersected commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect intersected(const QRect &rectangle) const [0xc8208ccd20] }
 &{isEmpty QRect::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  bool bool isEmpty() const [] }
 &{isNull QRect::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  bool bool isNull() const [] }
 &{isValid QRect::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  bool bool isValid() const [] }
 &{left QRect::left commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  int int left() const [] }
-&{marginsAdded QRect::marginsAdded commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect marginsAdded(const QMargins &margins) const [0xc820a30000] }
-&{marginsRemoved QRect::marginsRemoved commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect marginsRemoved(const QMargins &margins) const [0xc820a30260] }
-&{moveBottom QRect::moveBottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveBottom(int y) [0xc820a30560] }
-&{moveBottomLeft QRect::moveBottomLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveBottomLeft(const QPoint &position) [0xc820a30820] }
-&{moveBottomRight QRect::moveBottomRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveBottomRight(const QPoint &position) [0xc820a30aa0] }
-&{moveCenter QRect::moveCenter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveCenter(const QPoint &position) [0xc820a30c60] }
-&{moveLeft QRect::moveLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveLeft(int x) [0xc820a30ec0] }
-&{moveRight QRect::moveRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveRight(int x) [0xc820a31080] }
-&{moveTo QRect::moveTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false true 2 void void moveTo(const QPoint &position) [0xc820a31220] }
-&{moveTo QRect::moveTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveTo(int x, int y) [0xc820a31480 0xc820a31580] }
-&{moveTop QRect::moveTop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveTop(int y) [0xc820a31780] }
-&{moveTopLeft QRect::moveTopLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveTopLeft(const QPoint &position) [0xc820a31a20] }
-&{moveTopRight QRect::moveTopRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveTopRight(const QPoint &position) [0xc820a31c40] }
+&{marginsAdded QRect::marginsAdded commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect marginsAdded(const QMargins &margins) const [0xc8208cd640] }
+&{marginsRemoved QRect::marginsRemoved commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect marginsRemoved(const QMargins &margins) const [0xc8208cd940] }
+&{moveBottom QRect::moveBottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveBottom(int y) [0xc8208cdc00] }
+&{moveBottomLeft QRect::moveBottomLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveBottomLeft(const QPoint &position) [0xc8208cdde0] }
+&{moveBottomRight QRect::moveBottomRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveBottomRight(const QPoint &position) [0xc820ad00a0] }
+&{moveCenter QRect::moveCenter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveCenter(const QPoint &position) [0xc820ad0360] }
+&{moveLeft QRect::moveLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveLeft(int x) [0xc820ad06a0] }
+&{moveRight QRect::moveRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveRight(int x) [0xc820ad0960] }
+&{moveTo QRect::moveTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false true 2 void void moveTo(const QPoint &position) [0xc820ad0b80] }
+&{moveTo QRect::moveTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveTo(int x, int y) [0xc820ad0e00 0xc820ad0f00] }
+&{moveTop QRect::moveTop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveTop(int y) [0xc820ad11c0] }
+&{moveTopLeft QRect::moveTopLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveTopLeft(const QPoint &position) [0xc820ad13c0] }
+&{moveTopRight QRect::moveTopRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void moveTopRight(const QPoint &position) [0xc820ad1640] }
 &{normalized QRect::normalized commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect normalized() const [] }
-&{operator&= QRect::operator&= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect & QRect & operator&=(const QRect &rectangle) [0xc820c20020] }
-&{operator+= QRect::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect & QRect & operator+=(const QMargins &margins) [0xc820c201e0] }
-&{operator-= QRect::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect & QRect & operator-=(const QMargins &margins) [0xc820c20460] }
-&{operator|= QRect::operator|= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect & QRect & operator|=(const QRect &rectangle) [0xc820c20660] }
+&{operator&= QRect::operator&= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect & QRect & operator&=(const QRect &rectangle) [0xc820ad1b00] }
+&{operator+= QRect::operator+= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect & QRect & operator+=(const QMargins &margins) [0xc820ad1da0] }
+&{operator-= QRect::operator-= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect & QRect & operator-=(const QMargins &margins) [0xc820ad1fc0] }
+&{operator|= QRect::operator|= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect & QRect & operator|=(const QRect &rectangle) [0xc820c302a0] }
 &{right QRect::right commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  int int right() const [] }
-&{setBottom QRect::setBottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setBottom(int y) [0xc820c20940] }
-&{setBottomLeft QRect::setBottomLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setBottomLeft(const QPoint &position) [0xc820c20b60] }
-&{setBottomRight QRect::setBottomRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setBottomRight(const QPoint &position) [0xc820c20d80] }
-&{setCoords QRect::setCoords commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setCoords(int x1, int y1, int x2, int y2) [0xc820c20f40 0xc820c20fe0 0xc820c21060 0xc820c21120] }
-&{setHeight QRect::setHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setHeight(int height) [0xc820c21300] }
-&{setLeft QRect::setLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setLeft(int x) [0xc820c21580] }
-&{setRect QRect::setRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setRect(int x, int y, int width, int height) [0xc820c21760 0xc820c21820 0xc820c218e0 0xc820c219a0] }
-&{setRight QRect::setRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setRight(int x) [0xc820c21bc0] }
-&{setSize QRect::setSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setSize(const QSize &size) [0xc820c21dc0] }
-&{setTop QRect::setTop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setTop(int y) [0xc820db4020] }
-&{setTopLeft QRect::setTopLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setTopLeft(const QPoint &position) [0xc820db4240] }
-&{setTopRight QRect::setTopRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setTopRight(const QPoint &position) [0xc820db4480] }
-&{setWidth QRect::setWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setWidth(int width) [0xc820db46c0] }
-&{setX QRect::setX commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setX(int x) [0xc820db4860] }
-&{setY QRect::setY commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setY(int y) [0xc820db4a00] }
+&{setBottom QRect::setBottom commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setBottom(int y) [0xc820c30640] }
+&{setBottomLeft QRect::setBottomLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setBottomLeft(const QPoint &position) [0xc820c30880] }
+&{setBottomRight QRect::setBottomRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setBottomRight(const QPoint &position) [0xc820c30ae0] }
+&{setCoords QRect::setCoords commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setCoords(int x1, int y1, int x2, int y2) [0xc820c30cc0 0xc820c30d40 0xc820c30dc0 0xc820c30e40] }
+&{setHeight QRect::setHeight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setHeight(int height) [0xc820c31060] }
+&{setLeft QRect::setLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setLeft(int x) [0xc820c31280] }
+&{setRect QRect::setRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setRect(int x, int y, int width, int height) [0xc820c31440 0xc820c31520 0xc820c315a0 0xc820c31640] }
+&{setRight QRect::setRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setRight(int x) [0xc820c318a0] }
+&{setSize QRect::setSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setSize(const QSize &size) [0xc820c31ac0] }
+&{setTop QRect::setTop commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setTop(int y) [0xc820c31d20] }
+&{setTopLeft QRect::setTopLeft commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setTopLeft(const QPoint &position) [0xc820c31f20] }
+&{setTopRight QRect::setTopRight commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setTopRight(const QPoint &position) [0xc820dca160] }
+&{setWidth QRect::setWidth commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setWidth(int width) [0xc820dca3a0] }
+&{setX QRect::setX commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setX(int x) [0xc820dca540] }
+&{setY QRect::setY commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void setY(int y) [0xc820dca6c0] }
 &{size QRect::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QSize QSize size() const [] }
 &{top QRect::top commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  int int top() const [] }
 &{topLeft QRect::topLeft commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QPoint QPoint topLeft() const [] }
 &{topRight QRect::topRight commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QPoint QPoint topRight() const [] }
-&{translate QRect::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false true 2 void void translate(const QPoint &offset) [0xc820db4f80] }
-&{translate QRect::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void translate(int dx, int dy) [0xc820db51e0 0xc820db52a0] }
-&{translated QRect::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false true 2 QRect QRect translated(const QPoint &offset) const [0xc820db54e0] }
-&{translated QRect::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect translated(int dx, int dy) const [0xc820db56e0 0xc820db5780] }
-&{united QRect::united commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect united(const QRect &rectangle) const [0xc820db5a40] }
+&{translate QRect::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false true 2 void void translate(const QPoint &offset) [0xc820dcac80] }
+&{translate QRect::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  void void translate(int dx, int dy) [0xc820dcaec0 0xc820dcaf80] }
+&{translated QRect::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false true 2 QRect QRect translated(const QPoint &offset) const [0xc820dcb180] }
+&{translated QRect::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect translated(int dx, int dy) const [0xc820dcb360 0xc820dcb3e0] }
+&{united QRect::united commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  QRect QRect united(const QRect &rectangle) const [0xc820dcb6a0] }
 &{width QRect::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  int int width() const [] }
 &{x QRect::x commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  int int x() const [] }
 &{y QRect::y commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qrect.h non plain false false  int int y() const [] }

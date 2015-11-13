@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
-&{QTextOption QTextOption::QTextOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.cpp non constructor false true 3  QTextOption(const QTextOption &other) [0xc8235fd280] }
-&{operator= QTextOption::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.cpp non plain false false  QTextOption & QTextOption & operator=(const QTextOption &other) [0xc8235fd4a0] }
+&{QTextOption QTextOption::QTextOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.cpp non constructor false true 3  QTextOption(const QTextOption &other) [0xc8237064a0] }
+&{operator= QTextOption::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.cpp non plain false false  QTextOption & QTextOption & operator=(const QTextOption &other) [0xc8237066c0] }
 &{tabs QTextOption::tabs commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.cpp non plain false false  QList<Tab> QList<Tab> tabs() const [] }
 &{QTextOption QTextOption::QTextOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non constructor false false   QTextOption() [] }
-&{QTextOption QTextOption::QTextOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non constructor false true 2  QTextOption(Qt::Alignment alignment) [0xc8236132a0] }
+&{QTextOption QTextOption::QTextOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non constructor false true 2  QTextOption(Qt::Alignment alignment) [0xc823707fa0] }
 &{alignment QTextOption::alignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  Qt::Alignment Qt::Alignment alignment() const [] }
 &{flags QTextOption::flags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  Flags Flags flags() const [] }
-&{setAlignment QTextOption::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setAlignment(Qt::Alignment alignment) [0xc8236136e0] }
-&{setFlags QTextOption::setFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setFlags(Flags flags) [0xc823613920] }
-&{setTabArray QTextOption::setTabArray commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setTabArray(const QList<qreal> &tabStops) [0xc823613b00] }
-&{setTabStop QTextOption::setTabStop commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setTabStop(qreal tabStop) [0xc823613d60] }
-&{setTabs QTextOption::setTabs commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setTabs(const QList<Tab> &tabStops) [0xc823613f40] }
-&{setTextDirection QTextOption::setTextDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setTextDirection(Qt::LayoutDirection direction) [0xc823628140] }
-&{setUseDesignMetrics QTextOption::setUseDesignMetrics commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setUseDesignMetrics(bool enable) [0xc823628380] }
-&{setWrapMode QTextOption::setWrapMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setWrapMode(WrapMode mode) [0xc8236285a0] }
+&{setAlignment QTextOption::setAlignment commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setAlignment(Qt::Alignment alignment) [0xc82371a3e0] }
+&{setFlags QTextOption::setFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setFlags(Flags flags) [0xc82371a620] }
+&{setTabArray QTextOption::setTabArray commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setTabArray(const QList<qreal> &tabStops) [0xc8236e4140] }
+&{setTabStop QTextOption::setTabStop commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setTabStop(qreal tabStop) [0xc8236e4460] }
+&{setTabs QTextOption::setTabs commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setTabs(const QList<Tab> &tabStops) [0xc8236e46c0] }
+&{setTextDirection QTextOption::setTextDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setTextDirection(Qt::LayoutDirection direction) [0xc8236e4940] }
+&{setUseDesignMetrics QTextOption::setUseDesignMetrics commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setUseDesignMetrics(bool enable) [0xc8236e4c00] }
+&{setWrapMode QTextOption::setWrapMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  void void setWrapMode(WrapMode mode) [0xc8236e4ee0] }
 &{tabArray QTextOption::tabArray commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  QList<qreal> QList<qreal> tabArray() const [] }
 &{tabStop QTextOption::tabStop commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  qreal qreal tabStop() const [] }
 &{textDirection QTextOption::textDirection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  Qt::LayoutDirection Qt::LayoutDirection textDirection() const [] }
@@ -21,6 +21,6 @@
 &{wrapMode QTextOption::wrapMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non plain false false  WrapMode WrapMode wrapMode() const [] }
 &{~QTextOption QTextOption::~QTextOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextoption.h non destructor false false   ~QTextOption() [] }
 ########################################			ENUMS			########################################
-&{Flag QTextOption::Flag commendable public QTextOption::Flags [0xc823612480 0xc823612560 0xc823612620 0xc8236126a0 0xc823612760] false}
-&{TabType QTextOption::TabType commendable public  [0xc823612960 0xc8236129e0 0xc823612a60 0xc823612ae0] false}
-&{WrapMode QTextOption::WrapMode commendable public  [0xc823612ca0 0xc823612d20 0xc823612da0 0xc823612e20 0xc823612ee0] false}
+&{Flag QTextOption::Flag commendable public QTextOption::Flags [0xc823707180 0xc823707260 0xc823707320 0xc8237073a0 0xc823707460] false}
+&{TabType QTextOption::TabType commendable public  [0xc823707660 0xc8237076e0 0xc823707760 0xc8237077e0] false}
+&{WrapMode QTextOption::WrapMode commendable public  [0xc8237079a0 0xc823707a20 0xc823707aa0 0xc823707b20 0xc823707be0] false}

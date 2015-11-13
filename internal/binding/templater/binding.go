@@ -2,7 +2,6 @@ package templater
 
 import (
 	"fmt"
-	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
@@ -56,7 +55,7 @@ func GenModule(name string) {
 							c.Stub = false
 						}
 					} else {
-						if e == "cpp" && runtime.GOOS == "windows" {
+						if e == "cpp" {
 							cppTmp += f(c)
 						} else {
 							utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))

@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QWidgetAction QWidgetAction::QWidgetAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non constructor false false   QWidgetAction(QObject *parent) [0xc822a3cb40] }
-&{createWidget QWidgetAction::createWidget commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure plain false false  QWidget * QWidget * createWidget(QWidget *parent) [0xc822a3cf60] }
+&{QWidgetAction QWidgetAction::QWidgetAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non constructor false false   QWidgetAction(QObject *parent) [0xc822c218a0] }
+&{createWidget QWidgetAction::createWidget commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure plain false false  QWidget * QWidget * createWidget(QWidget *parent) [0xc822c21d60] }
 &{createdWidgets QWidgetAction::createdWidgets commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  QList<QWidget *> QList<QWidget *> createdWidgets() const [] }
 &{defaultWidget QWidgetAction::defaultWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  QWidget * QWidget * defaultWidget() const [] }
-&{deleteWidget QWidgetAction::deleteWidget commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure plain false false  void void deleteWidget(QWidget *widget) [0xc822a3d460] }
-&{event QWidgetAction::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure plain false false  bool bool event(QEvent *event) [0xc822a3d700] }
-&{eventFilter QWidgetAction::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure plain false false  bool bool eventFilter(QObject *obj, QEvent *event) [0xc822a3d920 0xc822a3da00] }
-&{releaseWidget QWidgetAction::releaseWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  void void releaseWidget(QWidget *widget) [0xc822a3dc40] }
-&{requestWidget QWidgetAction::requestWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  QWidget * QWidget * requestWidget(QWidget *parent) [0xc822a3dec0] }
-&{setDefaultWidget QWidgetAction::setDefaultWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  void void setDefaultWidget(QWidget *widget) [0xc822a520c0] }
+&{deleteWidget QWidgetAction::deleteWidget commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure plain false false  void void deleteWidget(QWidget *widget) [0xc822624280] }
+&{event QWidgetAction::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure plain false false  bool bool event(QEvent *event) [0xc822624500] }
+&{eventFilter QWidgetAction::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure plain false false  bool bool eventFilter(QObject *obj, QEvent *event) [0xc822624720 0xc8226247a0] }
+&{releaseWidget QWidgetAction::releaseWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  void void releaseWidget(QWidget *widget) [0xc8226249e0] }
+&{requestWidget QWidgetAction::requestWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  QWidget * QWidget * requestWidget(QWidget *parent) [0xc822624c00] }
+&{setDefaultWidget QWidgetAction::setDefaultWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h non plain false false  void void setDefaultWidget(QWidget *widget) [0xc822624de0] }
 &{~QWidgetAction QWidgetAction::~QWidgetAction commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qwidgetaction.h impure destructor false false   ~QWidgetAction() [] }
 ########################################			ENUMS			########################################

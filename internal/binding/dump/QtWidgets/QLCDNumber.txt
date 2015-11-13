@@ -2,29 +2,29 @@
 &{intValue QLCDNumber::intValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  int int intValue() const [] }
 &{mode QLCDNumber::mode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  Mode Mode mode() const [] }
 &{segmentStyle QLCDNumber::segmentStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  SegmentStyle SegmentStyle segmentStyle() const [] }
-&{setMode QLCDNumber::setMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  void void setMode(Mode ) [0xc822290100] }
-&{setSegmentStyle QLCDNumber::setSegmentStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  void void setSegmentStyle(SegmentStyle ) [0xc822290400] }
-&{setSmallDecimalPoint QLCDNumber::setSmallDecimalPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non slot false false  void void setSmallDecimalPoint(bool ) [0xc822290920] }
+&{setMode QLCDNumber::setMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  void void setMode(Mode ) [0xc821774520] }
+&{setSegmentStyle QLCDNumber::setSegmentStyle commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  void void setSegmentStyle(SegmentStyle ) [0xc821774960] }
+&{setSmallDecimalPoint QLCDNumber::setSmallDecimalPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non slot false false  void void setSmallDecimalPoint(bool ) [0xc821774f80] }
 &{smallDecimalPoint QLCDNumber::smallDecimalPoint commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  bool bool smallDecimalPoint() const [] }
 &{value QLCDNumber::value commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.cpp non plain false false  double double value() const [] }
-&{QLCDNumber QLCDNumber::QLCDNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non constructor false false   QLCDNumber(QWidget *parent) [0xc822291ac0] }
-&{QLCDNumber QLCDNumber::QLCDNumber commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non constructor false true 2  QLCDNumber(uint numDigits, QWidget *parent) [0xc822291e00 0xc822291ee0] }
-&{checkOverflow QLCDNumber::checkOverflow commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non plain false false  bool bool checkOverflow(double num) const [0xc82229c200] }
-&{checkOverflow QLCDNumber::checkOverflow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non plain false true 2 bool bool checkOverflow(int num) const [0xc82229c5e0] }
+&{QLCDNumber QLCDNumber::QLCDNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non constructor false false   QLCDNumber(QWidget *parent) [0xc822e6c640] }
+&{QLCDNumber QLCDNumber::QLCDNumber commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non constructor false true 2  QLCDNumber(uint numDigits, QWidget *parent) [0xc822e6c900 0xc822e6ca20] }
+&{checkOverflow QLCDNumber::checkOverflow commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non plain false false  bool bool checkOverflow(double num) const [0xc822e6cc60] }
+&{checkOverflow QLCDNumber::checkOverflow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non plain false true 2 bool bool checkOverflow(int num) const [0xc822e6cf60] }
 &{digitCount QLCDNumber::digitCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non plain false false  int int digitCount() const [] }
-&{display QLCDNumber::display commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false false  void void display(const QString &s) [0xc82229cca0] }
-&{display QLCDNumber::display commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false true 2 void void display(double num) [0xc82229d100] }
-&{display QLCDNumber::display commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false true 3 void void display(int num) [0xc82229d480] }
-&{event QLCDNumber::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h impure plain false false  bool bool event(QEvent *e) [0xc82229d800] }
+&{display QLCDNumber::display commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false false  void void display(const QString &s) [0xc822e6d560] }
+&{display QLCDNumber::display commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false true 2 void void display(double num) [0xc822e6d8e0] }
+&{display QLCDNumber::display commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false true 3 void void display(int num) [0xc822e6dc40] }
+&{event QLCDNumber::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h impure plain false false  bool bool event(QEvent *e) [0xc822e6df20] }
 &{overflow QLCDNumber::overflow commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non signal false false  void void overflow() [] }
-&{paintEvent QLCDNumber::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc82229de00] }
+&{paintEvent QLCDNumber::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc82174c5e0] }
 &{setBinMode QLCDNumber::setBinMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false false  void void setBinMode() [] }
 &{setDecMode QLCDNumber::setDecMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false false  void void setDecMode() [] }
-&{setDigitCount QLCDNumber::setDigitCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non plain false false  void void setDigitCount(int numDigits) [0xc8222ac6c0] }
+&{setDigitCount QLCDNumber::setDigitCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non plain false false  void void setDigitCount(int numDigits) [0xc82174cf80] }
 &{setHexMode QLCDNumber::setHexMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false false  void void setHexMode() [] }
 &{setOctMode QLCDNumber::setOctMode commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non slot false false  void void setOctMode() [] }
 &{sizeHint QLCDNumber::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h impure plain false false  QSize QSize sizeHint() const [] }
 &{~QLCDNumber QLCDNumber::~QLCDNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qlcdnumber.h non destructor false false   ~QLCDNumber() [] }
 ########################################			ENUMS			########################################
-&{Mode QLCDNumber::Mode commendable public  [0xc8222910c0 0xc822291180 0xc822291240 0xc822291340] false}
-&{SegmentStyle QLCDNumber::SegmentStyle commendable public  [0xc822291580 0xc822291640 0xc822291740] false}
+&{Mode QLCDNumber::Mode commendable public  [0xc821775a60 0xc821775c20 0xc821775ce0 0xc821775e20] false}
+&{SegmentStyle QLCDNumber::SegmentStyle commendable public  [0xc822e6c0a0 0xc822e6c1a0 0xc822e6c240] false}

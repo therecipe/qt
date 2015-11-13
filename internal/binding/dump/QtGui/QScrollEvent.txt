@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{QScrollEvent QScrollEvent::QScrollEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QScrollEvent(const QPointF &contentPos, const QPointF &overshootDistance, ScrollState scrollState) [0xc820794c40 0xc820794d40 0xc820794e20] }
+&{QScrollEvent QScrollEvent::QScrollEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QScrollEvent(const QPointF &contentPos, const QPointF &overshootDistance, ScrollState scrollState) [0xc8208b72e0 0xc8208b73a0 0xc8208b74a0] }
 &{contentPos QScrollEvent::contentPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPointF QPointF contentPos() const [] }
 &{overshootDistance QScrollEvent::overshootDistance commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QPointF QPointF overshootDistance() const [] }
 &{scrollState QScrollEvent::scrollState commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  ScrollState ScrollState scrollState() const [] }
 &{~QScrollEvent QScrollEvent::~QScrollEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non destructor false false   ~QScrollEvent() [] }
 ########################################			ENUMS			########################################
-&{ScrollState QScrollEvent::ScrollState commendable public  [0xc820794800 0xc8207948c0 0xc820794940] false}
+&{ScrollState QScrollEvent::ScrollState commendable public  [0xc8208b6c40 0xc8208b6de0 0xc8208b6e80] false}

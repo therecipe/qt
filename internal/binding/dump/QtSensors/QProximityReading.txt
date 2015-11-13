@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
 &{close QProximityReading::close commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qproximitysensor.cpp non plain false false  bool bool close() const [] }
-&{setClose QProximityReading::setClose commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qproximitysensor.h non plain false false  void void setClose(bool close) [0xc8235578a0] }
+&{setClose QProximityReading::setClose commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qproximitysensor.h non plain false false  void void setClose(bool close) [0xc822015820] }
 ########################################			ENUMS			########################################

@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
 &{QDnsServiceRecord QDnsServiceRecord::QDnsServiceRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false false   QDnsServiceRecord() [] }
-&{QDnsServiceRecord QDnsServiceRecord::QDnsServiceRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false true 2  QDnsServiceRecord(const QDnsServiceRecord &other) [0xc822754ce0] }
+&{QDnsServiceRecord QDnsServiceRecord::QDnsServiceRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false true 2  QDnsServiceRecord(const QDnsServiceRecord &other) [0xc822862880] }
 &{name QDnsServiceRecord::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QString QString name() const [] }
-&{operator= QDnsServiceRecord::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QDnsServiceRecord & QDnsServiceRecord & operator=(const QDnsServiceRecord &other) [0xc822755160] }
-&{port QDnsServiceRecord::port commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint16 quint16 port() const [] }
-&{priority QDnsServiceRecord::priority commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint16 quint16 priority() const [] }
-&{swap QDnsServiceRecord::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  void void swap(QDnsServiceRecord &other) [0xc822755760] }
+&{operator= QDnsServiceRecord::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QDnsServiceRecord & QDnsServiceRecord & operator=(const QDnsServiceRecord &other) [0xc822862ce0] }
+&{port QDnsServiceRecord::port commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint16 quint16 port() const [] }
+&{priority QDnsServiceRecord::priority commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint16 quint16 priority() const [] }
+&{swap QDnsServiceRecord::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  void void swap(QDnsServiceRecord &other) [0xc8228632c0] }
 &{target QDnsServiceRecord::target commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QString QString target() const [] }
-&{timeToLive QDnsServiceRecord::timeToLive commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint32 quint32 timeToLive() const [] }
-&{weight QDnsServiceRecord::weight commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint16 quint16 weight() const [] }
+&{timeToLive QDnsServiceRecord::timeToLive commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint32 quint32 timeToLive() const [] }
+&{weight QDnsServiceRecord::weight commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  quint16 quint16 weight() const [] }
 &{~QDnsServiceRecord QDnsServiceRecord::~QDnsServiceRecord commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non destructor false false   ~QDnsServiceRecord() [] }
 ########################################			ENUMS			########################################

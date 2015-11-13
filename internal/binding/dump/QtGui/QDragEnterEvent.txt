@@ -1,3 +1,3 @@
 ########################################			FUNCTIONS			########################################
-&{QDragEnterEvent QDragEnterEvent::QDragEnterEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QDragEnterEvent(const QPoint &point, Qt::DropActions actions, const QMimeData *data, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers) [0xc8208a50c0 0xc8208a5140 0xc8208a5280 0xc8208a5340 0xc8208a5440] }
+&{QDragEnterEvent QDragEnterEvent::QDragEnterEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QDragEnterEvent(const QPoint &point, Qt::DropActions actions, const QMimeData *data, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers) [0xc8209b35e0 0xc8209b3660 0xc8209b3720 0xc8209b3820 0xc8209b3900] }
 ########################################			ENUMS			########################################

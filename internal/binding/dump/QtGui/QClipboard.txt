@@ -1,22 +1,22 @@
 ########################################			FUNCTIONS			########################################
-&{clear QClipboard::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.cpp non plain false false  void void clear(Mode mode) [0xc82093d5a0] }
-&{mimeData QClipboard::mimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.cpp non plain false false  const QMimeData * const QMimeData * mimeData(Mode mode) const [0xc82093d840] }
-&{setMimeData QClipboard::setMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.cpp non plain false false  void void setMimeData(QMimeData *src, Mode mode) [0xc8208e6760 0xc8208e6800] }
-&{changed QClipboard::changed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non signal false false  void void changed(QClipboard::Mode mode) [0xc8208e6c00] }
+&{clear QClipboard::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.cpp non plain false false  void void clear(Mode mode) [0xc820a21100] }
+&{mimeData QClipboard::mimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.cpp non plain false false  const QMimeData * const QMimeData * mimeData(Mode mode) const [0xc820a21380] }
+&{setMimeData QClipboard::setMimeData commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.cpp non plain false false  void void setMimeData(QMimeData *src, Mode mode) [0xc820a100e0 0xc820a10160] }
+&{changed QClipboard::changed commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non signal false false  void void changed(QClipboard::Mode mode) [0xc820a10560] }
 &{dataChanged QClipboard::dataChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non signal false false  void void dataChanged() [] }
 &{findBufferChanged QClipboard::findBufferChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non signal false false  void void findBufferChanged() [] }
-&{image QClipboard::image commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  QImage QImage image(Mode mode) const [0xc8208e71e0] }
+&{image QClipboard::image commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  QImage QImage image(Mode mode) const [0xc820a10b20] }
 &{ownsClipboard QClipboard::ownsClipboard commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  bool bool ownsClipboard() const [] }
 &{ownsFindBuffer QClipboard::ownsFindBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  bool bool ownsFindBuffer() const [] }
 &{ownsSelection QClipboard::ownsSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  bool bool ownsSelection() const [] }
-&{pixmap QClipboard::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  QPixmap QPixmap pixmap(Mode mode) const [0xc8208e78e0] }
+&{pixmap QClipboard::pixmap commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  QPixmap QPixmap pixmap(Mode mode) const [0xc820a111a0] }
 &{selectionChanged QClipboard::selectionChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non signal false false  void void selectionChanged() [] }
-&{setImage QClipboard::setImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  void void setImage(const QImage &image, Mode mode) [0xc8208e7c40 0xc8208e7ce0] }
-&{setPixmap QClipboard::setPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  void void setPixmap(const QPixmap &pixmap, Mode mode) [0xc8208e7f20 0xc8208e7fa0] }
-&{setText QClipboard::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  void void setText(const QString &text, Mode mode) [0xc8208da2a0 0xc8208da3a0] }
+&{setImage QClipboard::setImage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  void void setImage(const QImage &image, Mode mode) [0xc820a11500 0xc820a115a0] }
+&{setPixmap QClipboard::setPixmap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  void void setPixmap(const QPixmap &pixmap, Mode mode) [0xc820a117a0 0xc820a11820] }
+&{setText QClipboard::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  void void setText(const QString &text, Mode mode) [0xc820a11a20 0xc820a11aa0] }
 &{supportsFindBuffer QClipboard::supportsFindBuffer commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  bool bool supportsFindBuffer() const [] }
 &{supportsSelection QClipboard::supportsSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  bool bool supportsSelection() const [] }
-&{text QClipboard::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  QString QString text(Mode mode) const [0xc8208daa60] }
-&{text QClipboard::text commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false true 2 QString QString text(QString &subtype, Mode mode) const [0xc8208dace0 0xc8208dadc0] }
+&{text QClipboard::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false false  QString QString text(Mode mode) const [0xc820a02000] }
+&{text QClipboard::text commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qclipboard.h non plain false true 2 QString QString text(QString &subtype, Mode mode) const [0xc820a02160 0xc820a02220] }
 ########################################			ENUMS			########################################
-&{Mode QClipboard::Mode commendable public  [0xc82093da60 0xc82093dae0 0xc82093db80 0xc82093dc60] false}
+&{Mode QClipboard::Mode commendable public  [0xc820a21560 0xc820a215e0 0xc820a21660 0xc820a216e0] false}

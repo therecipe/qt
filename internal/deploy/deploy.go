@@ -290,7 +290,6 @@ func build() {
 				}
 			}
 		}
-
 	case "desktop":
 		{
 			switch runtime.GOOS {
@@ -310,6 +309,13 @@ func build() {
 				{
 					ldFlags = "-ldflags=\"-s\" \"-w\" \"-H=windowsgui\""
 					outputFile = filepath.Join(depPath, appName)
+					env = map[string]string{
+						"PATH":        os.Getenv("PATH"),
+						"GOPATH":      os.Getenv("GOPATH"),
+						"GOOS":        runtime.GOOS,
+						"GOARCH":      "386",
+						"CGO_ENABLED": "1",
+					}
 				}
 			}
 		}
@@ -324,8 +330,10 @@ func build() {
 
 	cmd.Dir = appPath
 
-	if buildTarget != "desktop" {
-		cmd.Args = append(cmd.Args, "-buildmode", "c-shared") //TODO: pie in go 1.6
+	if buildTarget != "desktop" || runtime.GOOS == "windows" {
+		if buildTarget != "desktop" {
+			cmd.Args = append(cmd.Args, "-buildmode", "c-shared") //TODO: pie in go 1.6
+		}
 		for key, value := range env {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}

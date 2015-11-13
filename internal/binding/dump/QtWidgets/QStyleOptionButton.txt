@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
 &{QStyleOptionButton QStyleOptionButton::QStyleOptionButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionButton() [] }
-&{QStyleOptionButton QStyleOptionButton::QStyleOptionButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionButton(const QStyleOptionButton &other) [0xc822a85160] }
+&{QStyleOptionButton QStyleOptionButton::QStyleOptionButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionButton(const QStyleOptionButton &other) [0xc822999620] }
 ########################################			ENUMS			########################################
-&{ButtonFeature QStyleOptionButton::ButtonFeature commendable public QStyleOptionButton::ButtonFeatures [0xc822a841c0 0xc822a84260 0xc822a84320 0xc822a843e0 0xc822a84520 0xc822a84680] false}
-&{StyleOptionType QStyleOptionButton::StyleOptionType commendable public  [0xc822a848e0] false}
-&{StyleOptionVersion QStyleOptionButton::StyleOptionVersion commendable public  [0xc822a84bc0] false}
+&{ButtonFeature QStyleOptionButton::ButtonFeature commendable public QStyleOptionButton::ButtonFeatures [0xc8229985c0 0xc822998660 0xc8229987a0 0xc822998820 0xc822998960 0xc822998b00] false}
+&{StyleOptionType QStyleOptionButton::StyleOptionType commendable public  [0xc822998d80] false}
+&{StyleOptionVersion QStyleOptionButton::StyleOptionVersion commendable public  [0xc822999040] false}

@@ -1,33 +1,33 @@
 ########################################			FUNCTIONS			########################################
 &{QRegExp QRegExp::QRegExp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non constructor false false   QRegExp() [] }
-&{QRegExp QRegExp::QRegExp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non constructor false true 3  QRegExp(const QRegExp &rx) [0xc820d3ba20] }
-&{QRegExp QRegExp::QRegExp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non constructor false true 2  QRegExp(const QString &pattern, Qt::CaseSensitivity cs, PatternSyntax syntax) [0xc820d3bbe0 0xc820d3bcc0 0xc820d3bde0] }
-&{cap QRegExp::cap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  QString QString cap(int nth) const [0xc820d3bfc0] }
+&{QRegExp QRegExp::QRegExp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non constructor false true 3  QRegExp(const QRegExp &rx) [0xc820d57780] }
+&{QRegExp QRegExp::QRegExp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non constructor false true 2  QRegExp(const QString &pattern, Qt::CaseSensitivity cs, PatternSyntax syntax) [0xc820d57960 0xc820d57a40 0xc820d57b60] }
+&{cap QRegExp::cap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  QString QString cap(int nth) const [0xc820d57d40] }
 &{errorString QRegExp::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  QString QString errorString() const [] }
 &{captureCount QRegExp::captureCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  int int captureCount() const [] }
 &{capturedTexts QRegExp::capturedTexts commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  QStringList QStringList capturedTexts() const [] }
 &{caseSensitivity QRegExp::caseSensitivity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  Qt::CaseSensitivity Qt::CaseSensitivity caseSensitivity() const [] }
-&{escape QRegExp::escape commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain true false  QString QString escape(const QString &str) [0xc820d24a60] }
-&{exactMatch QRegExp::exactMatch commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  bool bool exactMatch(const QString &str) const [0xc820d24c20] }
-&{indexIn QRegExp::indexIn commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  int int indexIn(const QString &str, int offset, CaretMode caretMode) const [0xc820d24d80 0xc820d24e00 0xc820d24e80] }
+&{escape QRegExp::escape commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain true false  QString QString escape(const QString &str) [0xc820d3a840] }
+&{exactMatch QRegExp::exactMatch commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  bool bool exactMatch(const QString &str) const [0xc820d3aa00] }
+&{indexIn QRegExp::indexIn commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  int int indexIn(const QString &str, int offset, CaretMode caretMode) const [0xc820d3ab60 0xc820d3abe0 0xc820d3ac60] }
 &{isEmpty QRegExp::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  bool bool isEmpty() const [] }
 &{isMinimal QRegExp::isMinimal commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  bool bool isMinimal() const [] }
 &{isValid QRegExp::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  bool bool isValid() const [] }
-&{lastIndexIn QRegExp::lastIndexIn commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  int int lastIndexIn(const QString &str, int offset, CaretMode caretMode) const [0xc820d25360 0xc820d253e0 0xc820d25460] }
+&{lastIndexIn QRegExp::lastIndexIn commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  int int lastIndexIn(const QString &str, int offset, CaretMode caretMode) const [0xc820d3b140 0xc820d3b1c0 0xc820d3b240] }
 &{matchedLength QRegExp::matchedLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  int int matchedLength() const [] }
-&{operator!= QRegExp::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  bool bool operator!=(const QRegExp &rx) const [0xc820d25760] }
-&{operator= QRegExp::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false true 2 QRegExp & QRegExp & operator=(QRegExp &&other) [0xc820d25920] }
-&{operator= QRegExp::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  QRegExp & QRegExp & operator=(const QRegExp &rx) [0xc820d25ae0] }
-&{operator== QRegExp::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  bool bool operator==(const QRegExp &rx) const [0xc820d25d00] }
+&{operator!= QRegExp::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  bool bool operator!=(const QRegExp &rx) const [0xc820d3b540] }
+&{operator= QRegExp::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false true 2 QRegExp & QRegExp & operator=(QRegExp &&other) [0xc820d3b760] }
+&{operator= QRegExp::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  QRegExp & QRegExp & operator=(const QRegExp &rx) [0xc820d3b9a0] }
+&{operator== QRegExp::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  bool bool operator==(const QRegExp &rx) const [0xc820d3bbc0] }
 &{pattern QRegExp::pattern commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  QString QString pattern() const [] }
 &{patternSyntax QRegExp::patternSyntax commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  PatternSyntax PatternSyntax patternSyntax() const [] }
-&{pos QRegExp::pos commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  int int pos(int nth) const [0xc820d0c120] }
-&{setCaseSensitivity QRegExp::setCaseSensitivity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  void void setCaseSensitivity(Qt::CaseSensitivity cs) [0xc820d0c5e0] }
-&{setMinimal QRegExp::setMinimal commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  void void setMinimal(bool minimal) [0xc820d0c920] }
-&{setPattern QRegExp::setPattern commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  void void setPattern(const QString &pattern) [0xc820d0cb40] }
-&{setPatternSyntax QRegExp::setPatternSyntax commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  void void setPatternSyntax(PatternSyntax syntax) [0xc820d0cd40] }
-&{swap QRegExp::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  void void swap(QRegExp &other) [0xc820d0cf80] }
+&{pos QRegExp::pos commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  int int pos(int nth) const [0xc820d3bfc0] }
+&{setCaseSensitivity QRegExp::setCaseSensitivity commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  void void setCaseSensitivity(Qt::CaseSensitivity cs) [0xc820d20480] }
+&{setMinimal QRegExp::setMinimal commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  void void setMinimal(bool minimal) [0xc820d20760] }
+&{setPattern QRegExp::setPattern commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  void void setPattern(const QString &pattern) [0xc820d209a0] }
+&{setPatternSyntax QRegExp::setPatternSyntax commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  void void setPatternSyntax(PatternSyntax syntax) [0xc820d20b80] }
+&{swap QRegExp::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non plain false false  void void swap(QRegExp &other) [0xc820d20d40] }
 &{~QRegExp QRegExp::~QRegExp commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qregexp.h non destructor false false   ~QRegExp() [] }
 ########################################			ENUMS			########################################
-&{CaretMode QRegExp::CaretMode commendable public  [0xc820d3b020 0xc820d3b0e0 0xc820d3b1a0] false}
-&{PatternSyntax QRegExp::PatternSyntax commendable public  [0xc820d3b3c0 0xc820d3b4a0 0xc820d3b520 0xc820d3b5e0 0xc820d3b680 0xc820d3b700] false}
+&{CaretMode QRegExp::CaretMode commendable public  [0xc820d56de0 0xc820d56e60 0xc820d56f40] false}
+&{PatternSyntax QRegExp::PatternSyntax commendable public  [0xc820d57140 0xc820d571c0 0xc820d57260 0xc820d57300 0xc820d573e0 0xc820d57480] false}

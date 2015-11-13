@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
 &{QDomNodeList QDomNodeList::QDomNodeList commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   QDomNodeList() [] }
-&{QDomNodeList QDomNodeList::QDomNodeList commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomNodeList(const QDomNodeList &n) [0xc821de3ce0] }
-&{at QDomNodeList::at commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode at(int index) const [0xc821de3f20] }
+&{QDomNodeList QDomNodeList::QDomNodeList commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomNodeList(const QDomNodeList &n) [0xc8219629a0] }
+&{at QDomNodeList::at commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode at(int index) const [0xc821962d20] }
 &{count QDomNodeList::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int int count() const [] }
 &{isEmpty QDomNodeList::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isEmpty() const [] }
-&{item QDomNodeList::item commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode item(int index) const [0xc822038720] }
+&{item QDomNodeList::item commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode item(int index) const [0xc8219636c0] }
 &{length QDomNodeList::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int int length() const [] }
-&{operator!= QDomNodeList::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool operator!=(const QDomNodeList &n) const [0xc822038c80] }
-&{operator= QDomNodeList::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNodeList & QDomNodeList & operator=(const QDomNodeList &n) [0xc822039000] }
-&{operator== QDomNodeList::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool operator==(const QDomNodeList &n) const [0xc822039400] }
+&{operator!= QDomNodeList::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool operator!=(const QDomNodeList &n) const [0xc821963d40] }
+&{operator= QDomNodeList::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNodeList & QDomNodeList & operator=(const QDomNodeList &n) [0xc82193a200] }
+&{operator== QDomNodeList::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool operator==(const QDomNodeList &n) const [0xc82193a6a0] }
 &{size QDomNodeList::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int int size() const [] }
 &{~QDomNodeList QDomNodeList::~QDomNodeList commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non destructor false false   ~QDomNodeList() [] }
 ########################################			ENUMS			########################################

@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{QLinearGradient QLinearGradient::QLinearGradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non constructor false true 3  QLinearGradient(qreal x1, qreal y1, qreal x2, qreal y2) [0xc821e955e0 0xc821e95660 0xc821e956e0 0xc821e95760] }
+&{QLinearGradient QLinearGradient::QLinearGradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.cpp non constructor false true 3  QLinearGradient(qreal x1, qreal y1, qreal x2, qreal y2) [0xc82214a640 0xc82214a6c0 0xc82214a740 0xc82214a7c0] }
 &{QLinearGradient QLinearGradient::QLinearGradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false false   QLinearGradient() [] }
-&{QLinearGradient QLinearGradient::QLinearGradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 2  QLinearGradient(const QPointF &start, const QPointF &finalStop) [0xc821e95a20 0xc821e95aa0] }
+&{QLinearGradient QLinearGradient::QLinearGradient commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non constructor false true 2  QLinearGradient(const QPointF &start, const QPointF &finalStop) [0xc82214aa80 0xc82214ab00] }
 &{finalStop QLinearGradient::finalStop commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  QPointF QPointF finalStop() const [] }
-&{setFinalStop QLinearGradient::setFinalStop commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void void setFinalStop(const QPointF &stop) [0xc821e95da0] }
-&{setFinalStop QLinearGradient::setFinalStop commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false true 2 void void setFinalStop(qreal x, qreal y) [0xc821e95f40 0xc821e95fc0] }
-&{setStart QLinearGradient::setStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void void setStart(const QPointF &start) [0xc822144180] }
-&{setStart QLinearGradient::setStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false true 2 void void setStart(qreal x, qreal y) [0xc8221443a0 0xc822144420] }
+&{setFinalStop QLinearGradient::setFinalStop commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void void setFinalStop(const QPointF &stop) [0xc82214ae00] }
+&{setFinalStop QLinearGradient::setFinalStop commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false true 2 void void setFinalStop(qreal x, qreal y) [0xc82214afa0 0xc82214b020] }
+&{setStart QLinearGradient::setStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  void void setStart(const QPointF &start) [0xc82214b1e0] }
+&{setStart QLinearGradient::setStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false true 2 void void setStart(qreal x, qreal y) [0xc82214b400 0xc82214b480] }
 &{start QLinearGradient::start commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbrush.h non plain false false  QPointF QPointF start() const [] }
 ########################################			ENUMS			########################################

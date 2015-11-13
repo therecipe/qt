@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
-&{QFocusFrame QFocusFrame::QFocusFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non constructor false false   QFocusFrame(QWidget *parent) [0xc82253caa0] }
-&{event QFocusFrame::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h impure plain false false  bool bool event(QEvent *e) [0xc82253ce80] }
-&{eventFilter QFocusFrame::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h impure plain false false  bool bool eventFilter(QObject *o, QEvent *e) [0xc82253d160 0xc82253d1e0] }
-&{initStyleOption QFocusFrame::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non plain false false  void void initStyleOption(QStyleOption *option) const [0xc82253d4c0] }
-&{paintEvent QFocusFrame::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc82253d900] }
-&{setWidget QFocusFrame::setWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non plain false false  void void setWidget(QWidget *widget) [0xc82253dc80] }
+&{QFocusFrame QFocusFrame::QFocusFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non constructor false false   QFocusFrame(QWidget *parent) [0xc821917ac0] }
+&{event QFocusFrame::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h impure plain false false  bool bool event(QEvent *e) [0xc821917f80] }
+&{eventFilter QFocusFrame::eventFilter commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h impure plain false false  bool bool eventFilter(QObject *o, QEvent *e) [0xc8219003e0 0xc821900520] }
+&{initStyleOption QFocusFrame::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non plain false false  void void initStyleOption(QStyleOption *option) const [0xc821900ac0] }
+&{paintEvent QFocusFrame::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h impure plain false false  void void paintEvent(QPaintEvent *) [0xc821901320] }
+&{setWidget QFocusFrame::setWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non plain false false  void void setWidget(QWidget *widget) [0xc8219017c0] }
 &{widget QFocusFrame::widget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non plain false false  QWidget * QWidget * widget() const [] }
 &{~QFocusFrame QFocusFrame::~QFocusFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qfocusframe.h non destructor false false   ~QFocusFrame() [] }
 ########################################			ENUMS			########################################

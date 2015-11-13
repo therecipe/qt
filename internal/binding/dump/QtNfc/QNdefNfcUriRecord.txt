@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
 &{QNdefNfcUriRecord QNdefNfcUriRecord::QNdefNfcUriRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcurirecord.h non constructor false false   QNdefNfcUriRecord() [] }
-&{QNdefNfcUriRecord QNdefNfcUriRecord::QNdefNfcUriRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcurirecord.h non constructor false true 2  QNdefNfcUriRecord(const QNdefRecord &other) [0xc822f06100] }
-&{setUri QNdefNfcUriRecord::setUri commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcurirecord.h non plain false false  void void setUri(const QUrl &uri) [0xc822f064c0] }
+&{QNdefNfcUriRecord QNdefNfcUriRecord::QNdefNfcUriRecord commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcurirecord.h non constructor false true 2  QNdefNfcUriRecord(const QNdefRecord &other) [0xc8214ed460] }
+&{setUri QNdefNfcUriRecord::setUri commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcurirecord.h non plain false false  void void setUri(const QUrl &uri) [0xc8214ed6e0] }
 &{uri QNdefNfcUriRecord::uri commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefnfcurirecord.h non plain false false  QUrl QUrl uri() const [] }
 ########################################			ENUMS			########################################

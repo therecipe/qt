@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
 &{QStyleOptionToolButton QStyleOptionToolButton::QStyleOptionToolButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionToolButton() [] }
-&{QStyleOptionToolButton QStyleOptionToolButton::QStyleOptionToolButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionToolButton(const QStyleOptionToolButton &other) [0xc821fec060] }
+&{QStyleOptionToolButton QStyleOptionToolButton::QStyleOptionToolButton commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionToolButton(const QStyleOptionToolButton &other) [0xc8222c46e0] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionToolButton::StyleOptionType commendable public  [0xc821fe14c0] false}
-&{StyleOptionVersion QStyleOptionToolButton::StyleOptionVersion commendable public  [0xc821fe16c0] false}
-&{ToolButtonFeature QStyleOptionToolButton::ToolButtonFeature commendable public QStyleOptionToolButton::ToolButtonFeatures [0xc821fe18c0 0xc821fe1940 0xc821fe19c0 0xc821fe1a80 0xc821fe1b40 0xc821fe1bc0] false}
+&{StyleOptionType QStyleOptionToolButton::StyleOptionType commendable public  [0xc8222ad960] false}
+&{StyleOptionVersion QStyleOptionToolButton::StyleOptionVersion commendable public  [0xc8222adba0] false}
+&{ToolButtonFeature QStyleOptionToolButton::ToolButtonFeature commendable public QStyleOptionToolButton::ToolButtonFeatures [0xc8222adda0 0xc8222ade20 0xc8222adee0 0xc8222adf80 0xc8222c4060 0xc8222c4100] false}

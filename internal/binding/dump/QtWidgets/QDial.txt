@@ -2,20 +2,20 @@
 &{notchSize QDial::notchSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  int int notchSize() const [] }
 &{notchTarget QDial::notchTarget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  qreal qreal notchTarget() const [] }
 &{notchesVisible QDial::notchesVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  bool bool notchesVisible() const [] }
-&{setNotchTarget QDial::setNotchTarget commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  void void setNotchTarget(double target) [0xc8224ba7e0] }
-&{setNotchesVisible QDial::setNotchesVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non slot false false  void void setNotchesVisible(bool visible) [0xc8224bac00] }
-&{setWrapping QDial::setWrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non slot false false  void void setWrapping(bool on) [0xc8224bafc0] }
+&{setNotchTarget QDial::setNotchTarget commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  void void setNotchTarget(double target) [0xc822e34ec0] }
+&{setNotchesVisible QDial::setNotchesVisible commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non slot false false  void void setNotchesVisible(bool visible) [0xc822e353e0] }
+&{setWrapping QDial::setWrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non slot false false  void void setWrapping(bool on) [0xc822e358c0] }
 &{wrapping QDial::wrapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.cpp non plain false false  bool bool wrapping() const [] }
-&{QDial QDial::QDial commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h non constructor false false   QDial(QWidget *parent) [0xc8224bb440] }
-&{event QDial::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  bool bool event(QEvent *e) [0xc8224bb6e0] }
-&{initStyleOption QDial::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h non plain false false  void void initStyleOption(QStyleOptionSlider *option) const [0xc8224bb9e0] }
+&{QDial QDial::QDial commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h non constructor false false   QDial(QWidget *parent) [0xc822e35e80] }
+&{event QDial::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  bool bool event(QEvent *e) [0xc8219dc280] }
+&{initStyleOption QDial::initStyleOption commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h non plain false false  void void initStyleOption(QStyleOptionSlider *option) const [0xc8219dc6a0] }
 &{minimumSizeHint QDial::minimumSizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  QSize QSize minimumSizeHint() const [] }
-&{mouseMoveEvent QDial::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc8224cc120] }
-&{mousePressEvent QDial::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void mousePressEvent(QMouseEvent *e) [0xc8224cc4e0] }
-&{mouseReleaseEvent QDial::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *e) [0xc8224cc920] }
-&{paintEvent QDial::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void paintEvent(QPaintEvent *pe) [0xc8224ccd60] }
-&{resizeEvent QDial::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void resizeEvent(QResizeEvent *e) [0xc8224cd160] }
+&{mouseMoveEvent QDial::mouseMoveEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void mouseMoveEvent(QMouseEvent *e) [0xc8219dcda0] }
+&{mousePressEvent QDial::mousePressEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void mousePressEvent(QMouseEvent *e) [0xc8219dd0a0] }
+&{mouseReleaseEvent QDial::mouseReleaseEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void mouseReleaseEvent(QMouseEvent *e) [0xc8219dd520] }
+&{paintEvent QDial::paintEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void paintEvent(QPaintEvent *pe) [0xc8219dd940] }
+&{resizeEvent QDial::resizeEvent commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void resizeEvent(QResizeEvent *e) [0xc8219ddca0] }
 &{sizeHint QDial::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  QSize QSize sizeHint() const [] }
-&{sliderChange QDial::sliderChange commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void sliderChange(SliderChange change) [0xc8224cd6e0] }
+&{sliderChange QDial::sliderChange commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h impure plain false false  void void sliderChange(SliderChange change) [0xc8219ca320] }
 &{~QDial QDial::~QDial commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdial.h non destructor false false   ~QDial() [] }
 ########################################			ENUMS			########################################

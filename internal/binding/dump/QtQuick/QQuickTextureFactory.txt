@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
 &{image QQuickTextureFactory::image commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.cpp impure plain false false  QImage QImage image() const [] }
 &{QQuickTextureFactory QQuickTextureFactory::QQuickTextureFactory commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h non constructor false false   QQuickTextureFactory() [] }
-&{createTexture QQuickTextureFactory::createTexture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h pure plain false false  QSGTexture * QSGTexture * createTexture(QQuickWindow *window) const [0xc82242ec00] }
+&{createTexture QQuickTextureFactory::createTexture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h pure plain false false  QSGTexture * QSGTexture * createTexture(QQuickWindow *window) const [0xc826c595a0] }
 &{textureByteCount QQuickTextureFactory::textureByteCount commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h pure plain false false  int int textureByteCount() const [] }
 &{textureSize QQuickTextureFactory::textureSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h pure plain false false  QSize QSize textureSize() const [] }
 &{~QQuickTextureFactory QQuickTextureFactory::~QQuickTextureFactory commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/util/qquickimageprovider.h impure destructor false false   ~QQuickTextureFactory() [] }

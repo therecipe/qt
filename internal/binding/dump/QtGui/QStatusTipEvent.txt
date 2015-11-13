@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{QStatusTipEvent QStatusTipEvent::QStatusTipEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QStatusTipEvent(const QString &tip) [0xc8207701e0] }
+&{QStatusTipEvent QStatusTipEvent::QStatusTipEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QStatusTipEvent(const QString &tip) [0xc8208a2100] }
 &{tip QStatusTipEvent::tip commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QString QString tip() const [] }
 ########################################			ENUMS			########################################

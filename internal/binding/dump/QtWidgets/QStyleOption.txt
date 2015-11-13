@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
-&{QStyleOption QStyleOption::QStyleOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOption(const QStyleOption &other) [0xc8226eaac0] }
-&{QStyleOption QStyleOption::QStyleOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOption(int version, int type) [0xc8226eada0 0xc8226eaec0] }
-&{initFrom QStyleOption::initFrom commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non plain false false  void void initFrom(const QWidget *widget) [0xc8226eb360] }
-&{operator= QStyleOption::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non plain false false  QStyleOption & QStyleOption & operator=(const QStyleOption &other) [0xc8226eb5a0] }
+&{QStyleOption QStyleOption::QStyleOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOption(const QStyleOption &other) [0xc822986880] }
+&{QStyleOption QStyleOption::QStyleOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOption(int version, int type) [0xc822986c00 0xc822986d40] }
+&{initFrom QStyleOption::initFrom commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non plain false false  void void initFrom(const QWidget *widget) [0xc8229873a0] }
+&{operator= QStyleOption::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non plain false false  QStyleOption & QStyleOption & operator=(const QStyleOption &other) [0xc8229876c0] }
 &{~QStyleOption QStyleOption::~QStyleOption commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non destructor false false   ~QStyleOption() [] }
 ########################################			ENUMS			########################################
-&{OptionType QStyleOption::OptionType commendable public  [0xc8226df0e0 0xc8226df1a0 0xc8226df240 0xc8226df2e0 0xc8226df380 0xc8226df440 0xc8226df4e0 0xc8226df560 0xc8226df640 0xc8226df6c0 0xc8226df760 0xc8226df820 0xc8226df8e0 0xc8226df9a0 0xc8226dfa20 0xc8226dfb00 0xc8226dfbc0 0xc8226dfc40 0xc8226dfd00 0xc8226dfd80 0xc8226dfe40 0xc8226dff40 0xc8226ea060 0xc8226ea0e0 0xc8226ea1a0 0xc8226ea300] true}
-&{StyleOptionType QStyleOption::StyleOptionType commendable public  [0xc8226ea580] false}
-&{StyleOptionVersion QStyleOption::StyleOptionVersion commendable public  [0xc8226ea800] false}
+&{OptionType QStyleOption::OptionType commendable public  [0xc822972a80 0xc822972b20 0xc822972c00 0xc822972c80 0xc822972d60 0xc822972e40 0xc822972f20 0xc822972fe0 0xc8229730c0 0xc8229731c0 0xc822973280 0xc8229733a0 0xc8229734e0 0xc8229735a0 0xc822973660 0xc822973720 0xc822973820 0xc8229738e0 0xc8229739e0 0xc822973aa0 0xc822973b20 0xc822973be0 0xc822973c80 0xc822973d80 0xc822973e40 0xc822973f40] true}
+&{StyleOptionType QStyleOption::StyleOptionType commendable public  [0xc822986240] false}
+&{StyleOptionVersion QStyleOption::StyleOptionVersion commendable public  [0xc822986560] false}

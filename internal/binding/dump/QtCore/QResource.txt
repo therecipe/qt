@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{registerResource QResource::registerResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.cpp non plain true false  bool bool registerResource(const QString &rccFileName, const QString &mapRoot) [0xc8202a2820 0xc8202a28c0] }
-&{registerResource QResource::registerResource commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.cpp non plain true true 2 bool bool registerResource(const uchar *rccData, const QString &mapRoot) [0xc8202a2ae0 0xc8202a2ba0] }
-&{unregisterResource QResource::unregisterResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.cpp non plain true false  bool bool unregisterResource(const QString &rccFileName, const QString &mapRoot) [0xc8202a2e00 0xc8202a2e80] }
-&{unregisterResource QResource::unregisterResource commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.cpp non plain true true 2 bool bool unregisterResource(const uchar *rccData, const QString &mapRoot) [0xc8202a3140 0xc8202a3220] }
-&{QResource QResource::QResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non constructor false false   QResource(const QString &file, const QLocale &locale) [0xc8202a3440 0xc8202a3500] }
+&{registerResource QResource::registerResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.cpp non plain true false  bool bool registerResource(const QString &rccFileName, const QString &mapRoot) [0xc8202a00e0 0xc8202a0180] }
+&{registerResource QResource::registerResource commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.cpp non plain true true 2 bool bool registerResource(const uchar *rccData, const QString &mapRoot) [0xc8202a03a0 0xc8202a0460] }
+&{unregisterResource QResource::unregisterResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.cpp non plain true false  bool bool unregisterResource(const QString &rccFileName, const QString &mapRoot) [0xc8202a0700 0xc8202a07a0] }
+&{unregisterResource QResource::unregisterResource commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.cpp non plain true true 2 bool bool unregisterResource(const uchar *rccData, const QString &mapRoot) [0xc8202a0a40 0xc8202a0ae0] }
+&{QResource QResource::QResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non constructor false false   QResource(const QString &file, const QLocale &locale) [0xc8202a0d40 0xc8202a0de0] }
 &{absoluteFilePath QResource::absoluteFilePath commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  QString QString absoluteFilePath() const [] }
 &{children QResource::children commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  QStringList QStringList children() const [] }
 &{data QResource::data commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  const uchar * const uchar * data() const [] }
@@ -13,8 +13,8 @@
 &{isFile QResource::isFile commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  bool bool isFile() const [] }
 &{isValid QResource::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  bool bool isValid() const [] }
 &{locale QResource::locale commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  QLocale QLocale locale() const [] }
-&{setFileName QResource::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  void void setFileName(const QString &file) [0xc8202908a0] }
-&{setLocale QResource::setLocale commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  void void setLocale(const QLocale &locale) [0xc820290b00] }
+&{setFileName QResource::setFileName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  void void setFileName(const QString &file) [0xc82028e1c0] }
+&{setLocale QResource::setLocale commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  void void setLocale(const QLocale &locale) [0xc82028e420] }
 &{size QResource::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non plain false false  qint64 qint64 size() const [] }
 &{~QResource QResource::~QResource commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qresource.h non destructor false false   ~QResource() [] }
 ########################################			ENUMS			########################################

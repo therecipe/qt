@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QOpenGLTimerQuery QOpenGLTimerQuery::QOpenGLTimerQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non constructor false false   QOpenGLTimerQuery(QObject *parent) [0xc821e2aba0] }
+&{QOpenGLTimerQuery QOpenGLTimerQuery::QOpenGLTimerQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non constructor false false   QOpenGLTimerQuery(QObject *parent) [0xc822433c00] }
 &{begin QOpenGLTimerQuery::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void void begin() [] }
 &{create QOpenGLTimerQuery::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  bool bool create() [] }
 &{destroy QOpenGLTimerQuery::destroy commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopengltimerquery.h non plain false false  void void destroy() [] }

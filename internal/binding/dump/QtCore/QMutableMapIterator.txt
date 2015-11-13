@@ -1,17 +1,17 @@
 ########################################			FUNCTIONS			########################################
-&{QMutableMapIterator QMutableMapIterator::QMutableMapIterator commendable public qmap.h non constructor false false   QMutableMapIterator(QMap<Key, T> &map) [0xc82023ac60] }
-&{findNext QMutableMapIterator::findNext commendable public qmap.h non plain false false  bool bool findNext(const T &value) [0xc82023b0a0] }
-&{findPrevious QMutableMapIterator::findPrevious commendable public qmap.h non plain false false  bool bool findPrevious(const T &value) [0xc82023b3a0] }
+&{QMutableMapIterator QMutableMapIterator::QMutableMapIterator commendable public qmap.h non constructor false false   QMutableMapIterator(QMap<Key, T> &map) [0xc82025b440] }
+&{findNext QMutableMapIterator::findNext commendable public qmap.h non plain false false  bool bool findNext(const T &value) [0xc82025b980] }
+&{findPrevious QMutableMapIterator::findPrevious commendable public qmap.h non plain false false  bool bool findPrevious(const T &value) [0xc82025bd60] }
 &{hasNext QMutableMapIterator::hasNext commendable public qmap.h non plain false false  bool bool hasNext() const [] }
 &{hasPrevious QMutableMapIterator::hasPrevious commendable public qmap.h non plain false false  bool bool hasPrevious() const [] }
 &{key QMutableMapIterator::key commendable public qmap.h non plain false false  const Key & const Key & key() const [] }
 &{next QMutableMapIterator::next commendable public qmap.h non plain false false  Item Item next() [] }
-&{operator= QMutableMapIterator::operator= commendable public qmap.h non plain false false  QMutableMapIterator & QMutableMapIterator & operator=(QMap<Key, T> &map) [0xc820230580] }
+&{operator= QMutableMapIterator::operator= commendable public qmap.h non plain false false  QMutableMapIterator & QMutableMapIterator & operator=(QMap<Key, T> &map) [0xc82024d840] }
 &{peekNext QMutableMapIterator::peekNext commendable public qmap.h non plain false false  Item Item peekNext() const [] }
 &{peekPrevious QMutableMapIterator::peekPrevious commendable public qmap.h non plain false false  Item Item peekPrevious() const [] }
 &{previous QMutableMapIterator::previous commendable public qmap.h non plain false false  Item Item previous() [] }
 &{remove QMutableMapIterator::remove commendable public qmap.h non plain false false  void void remove() [] }
-&{setValue QMutableMapIterator::setValue commendable public qmap.h non plain false false  void void setValue(const T &value) [0xc8202315e0] }
+&{setValue QMutableMapIterator::setValue commendable public qmap.h non plain false false  void void setValue(const T &value) [0xc820246780] }
 &{toBack QMutableMapIterator::toBack commendable public qmap.h non plain false false  void void toBack() [] }
 &{toFront QMutableMapIterator::toFront commendable public qmap.h non plain false false  void void toFront() [] }
 &{value QMutableMapIterator::value commendable public qmap.h non plain false true 2 T & T & value() [] }

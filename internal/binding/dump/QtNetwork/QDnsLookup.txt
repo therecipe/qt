@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{QDnsLookup QDnsLookup::QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non constructor false true 3  QDnsLookup(Type type, const QString &name, const QHostAddress &nameserver, QObject *parent) [0xc822706380 0xc822706440 0xc822706500 0xc822706600] }
+&{QDnsLookup QDnsLookup::QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non constructor false true 3  QDnsLookup(Type type, const QString &name, const QHostAddress &nameserver, QObject *parent) [0xc822cbd980 0xc822cbda20 0xc822cbdae0 0xc822cbdbe0] }
 &{error QDnsLookup::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  Error Error error() const [] }
 &{errorString QDnsLookup::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  QString QString errorString() const [] }
 &{name QDnsLookup::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  QString QString name() const [] }
 &{nameserver QDnsLookup::nameserver commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  QHostAddress QHostAddress nameserver() const [] }
-&{setName QDnsLookup::setName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  void void setName(const QString &name) [0xc822706f20] }
-&{setNameserver QDnsLookup::setNameserver commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  void void setNameserver(const QHostAddress &nameserver) [0xc8227071c0] }
-&{setType QDnsLookup::setType commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  void void setType(QDnsLookup::Type ) [0xc8227074e0] }
+&{setName QDnsLookup::setName commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  void void setName(const QString &name) [0xc82200cc20] }
+&{setNameserver QDnsLookup::setNameserver commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  void void setNameserver(const QHostAddress &nameserver) [0xc82200cea0] }
+&{setType QDnsLookup::setType commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  void void setType(QDnsLookup::Type ) [0xc82200d180] }
 &{type QDnsLookup::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.cpp non plain false false  Type Type type() const [] }
-&{QDnsLookup QDnsLookup::QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false false   QDnsLookup(QObject *parent) [0xc822714980] }
-&{QDnsLookup QDnsLookup::QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false true 2  QDnsLookup(Type type, const QString &name, QObject *parent) [0xc822714c00 0xc822714ca0 0xc822714d20] }
+&{QDnsLookup QDnsLookup::QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false false   QDnsLookup(QObject *parent) [0xc82214a5a0] }
+&{QDnsLookup QDnsLookup::QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non constructor false true 2  QDnsLookup(Type type, const QString &name, QObject *parent) [0xc82214a820 0xc82214a8a0 0xc82214a960] }
 &{abort QDnsLookup::abort commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non slot false false  void void abort() [] }
 &{canonicalNameRecords QDnsLookup::canonicalNameRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsDomainNameRecord> QList<QDnsDomainNameRecord> canonicalNameRecords() const [] }
 &{finished QDnsLookup::finished commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void void finished() [] }
@@ -17,14 +17,14 @@
 &{isFinished QDnsLookup::isFinished commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  bool bool isFinished() const [] }
 &{lookup QDnsLookup::lookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non slot false false  void void lookup() [] }
 &{mailExchangeRecords QDnsLookup::mailExchangeRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsMailExchangeRecord> QList<QDnsMailExchangeRecord> mailExchangeRecords() const [] }
-&{nameChanged QDnsLookup::nameChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void void nameChanged(const QString &name) [0xc822715d80] }
+&{nameChanged QDnsLookup::nameChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void void nameChanged(const QString &name) [0xc82214b940] }
 &{nameServerRecords QDnsLookup::nameServerRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsDomainNameRecord> QList<QDnsDomainNameRecord> nameServerRecords() const [] }
-&{nameserverChanged QDnsLookup::nameserverChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void void nameserverChanged(const QHostAddress &nameserver) [0xc822790220] }
+&{nameserverChanged QDnsLookup::nameserverChanged commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void void nameserverChanged(const QHostAddress &nameserver) [0xc82214be60] }
 &{pointerRecords QDnsLookup::pointerRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsDomainNameRecord> QList<QDnsDomainNameRecord> pointerRecords() const [] }
 &{serviceRecords QDnsLookup::serviceRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsServiceRecord> QList<QDnsServiceRecord> serviceRecords() const [] }
 &{textRecords QDnsLookup::textRecords commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non plain false false  QList<QDnsTextRecord> QList<QDnsTextRecord> textRecords() const [] }
-&{typeChanged QDnsLookup::typeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void void typeChanged(Type type) [0xc822790a00] }
+&{typeChanged QDnsLookup::typeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non signal false false  void void typeChanged(Type type) [0xc822850680] }
 &{~QDnsLookup QDnsLookup::~QDnsLookup commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/kernel/qdnslookup.h non destructor false false   ~QDnsLookup() [] }
 ########################################			ENUMS			########################################
-&{Error QDnsLookup::Error commendable public  [0xc822707900 0xc8227079a0 0xc822707a60 0xc822707b80 0xc822707cc0 0xc822707dc0 0xc822707ee0 0xc822707fe0] false}
-&{Type QDnsLookup::Type commendable public  [0xc8227141a0 0xc822714240 0xc8227142c0 0xc822714360 0xc822714420 0xc8227144e0 0xc822714580 0xc822714600 0xc8227146e0] false}
+&{Error QDnsLookup::Error commendable public  [0xc82200d5a0 0xc82200d620 0xc82200d6e0 0xc82200d7c0 0xc82200d920 0xc82200da60 0xc82200db40 0xc82200dc20] false}
+&{Type QDnsLookup::Type commendable public  [0xc82200dde0 0xc82200de80 0xc82200df20 0xc82200dfc0 0xc82214a0e0 0xc82214a160 0xc82214a1e0 0xc82214a2a0 0xc82214a360] false}

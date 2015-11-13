@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QHelpEvent QHelpEvent::QHelpEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QHelpEvent(Type type, const QPoint &pos, const QPoint &globalPos) [0xc82083ede0 0xc82083ee60 0xc82083ef80] }
+&{QHelpEvent QHelpEvent::QHelpEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QHelpEvent(Type type, const QPoint &pos, const QPoint &globalPos) [0xc8209674e0 0xc8209675a0 0xc820967620] }
 &{globalPos QHelpEvent::globalPos commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QPoint & const QPoint & globalPos() const [] }
 &{globalX QHelpEvent::globalX commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalX() const [] }
 &{globalY QHelpEvent::globalY commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  int int globalY() const [] }

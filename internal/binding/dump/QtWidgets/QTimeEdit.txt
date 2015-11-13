@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QTimeEdit QTimeEdit::QTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non constructor false false   QTimeEdit(QWidget *parent) [0xc8224b3460] }
-&{QTimeEdit QTimeEdit::QTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non constructor false true 2  QTimeEdit(const QTime &time, QWidget *parent) [0xc8224b3700 0xc8224b3780] }
+&{QTimeEdit QTimeEdit::QTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non constructor false false   QTimeEdit(QWidget *parent) [0xc8219f1460] }
+&{QTimeEdit QTimeEdit::QTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non constructor false true 2  QTimeEdit(const QTime &time, QWidget *parent) [0xc8219f17e0 0xc8219f18a0] }
 &{~QTimeEdit QTimeEdit::~QTimeEdit commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qdatetimeedit.h non destructor false false   ~QTimeEdit() [] }
 ########################################			ENUMS			########################################

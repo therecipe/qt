@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
-&{QSignalMapper QSignalMapper::QSignalMapper commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non constructor false false   QSignalMapper(QObject *parent) [0xc8202a3460] }
+&{QSignalMapper QSignalMapper::QSignalMapper commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non constructor false false   QSignalMapper(QObject *parent) [0xc8202a1380] }
 &{map QSignalMapper::map commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non slot false false  void void map() [] }
-&{map QSignalMapper::map commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non slot false true 2 void void map(QObject *sender) [0xc8202a3c60] }
-&{mapped QSignalMapper::mapped commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non signal false true 4 void void mapped(QObject *object) [0xc820290020] }
-&{mapped QSignalMapper::mapped commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non signal false true 3 void void mapped(QWidget *widget) [0xc820290380] }
-&{mapped QSignalMapper::mapped commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non signal false true 2 void void mapped(const QString &text) [0xc820290700] }
-&{mapped QSignalMapper::mapped commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non signal false false  void void mapped(int i) [0xc820290a20] }
-&{mapping QSignalMapper::mapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false true 4 QObject * QObject * mapping(QObject *object) const [0xc820290d00] }
-&{mapping QSignalMapper::mapping commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false true 3 QObject * QObject * mapping(QWidget *widget) const [0xc820290f60] }
-&{mapping QSignalMapper::mapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false true 2 QObject * QObject * mapping(const QString &id) const [0xc8202911c0] }
-&{mapping QSignalMapper::mapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false false  QObject * QObject * mapping(int id) const [0xc8202914e0] }
-&{removeMappings QSignalMapper::removeMappings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false false  void void removeMappings(QObject *sender) [0xc820291760] }
-&{setMapping QSignalMapper::setMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false true 4 void void setMapping(QObject *sender, QObject *object) [0xc820291a40 0xc820291b40] }
-&{setMapping QSignalMapper::setMapping commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false true 3 void void setMapping(QObject *sender, QWidget *widget) [0xc820291e40 0xc820291f00] }
-&{setMapping QSignalMapper::setMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false true 2 void void setMapping(QObject *sender, const QString &text) [0xc82027a1a0 0xc82027a280] }
-&{setMapping QSignalMapper::setMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false false  void void setMapping(QObject *sender, int id) [0xc82027a580 0xc82027a680] }
+&{map QSignalMapper::map commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non slot false true 2 void void map(QObject *sender) [0xc8202a1b80] }
+&{mapped QSignalMapper::mapped commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non signal false true 4 void void mapped(QObject *object) [0xc8202a1f00] }
+&{mapped QSignalMapper::mapped commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non signal false true 3 void void mapped(QWidget *widget) [0xc82028e2a0] }
+&{mapped QSignalMapper::mapped commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non signal false true 2 void void mapped(const QString &text) [0xc82028e620] }
+&{mapped QSignalMapper::mapped commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non signal false false  void void mapped(int i) [0xc82028e8c0] }
+&{mapping QSignalMapper::mapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false true 4 QObject * QObject * mapping(QObject *object) const [0xc82028ebe0] }
+&{mapping QSignalMapper::mapping commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false true 3 QObject * QObject * mapping(QWidget *widget) const [0xc82028eec0] }
+&{mapping QSignalMapper::mapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false true 2 QObject * QObject * mapping(const QString &id) const [0xc82028f120] }
+&{mapping QSignalMapper::mapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false false  QObject * QObject * mapping(int id) const [0xc82028f3c0] }
+&{removeMappings QSignalMapper::removeMappings commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false false  void void removeMappings(QObject *sender) [0xc82028f680] }
+&{setMapping QSignalMapper::setMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false true 4 void void setMapping(QObject *sender, QObject *object) [0xc82028f9c0 0xc82028fa60] }
+&{setMapping QSignalMapper::setMapping commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false true 3 void void setMapping(QObject *sender, QWidget *widget) [0xc82028fda0 0xc82028fe40] }
+&{setMapping QSignalMapper::setMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false true 2 void void setMapping(QObject *sender, const QString &text) [0xc820278120 0xc8202781c0] }
+&{setMapping QSignalMapper::setMapping commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non plain false false  void void setMapping(QObject *sender, int id) [0xc820278440 0xc8202784c0] }
 &{~QSignalMapper QSignalMapper::~QSignalMapper commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qsignalmapper.h non destructor false false   ~QSignalMapper() [] }
 ########################################			ENUMS			########################################

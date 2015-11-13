@@ -1,10 +1,10 @@
 ########################################			FUNCTIONS			########################################
 &{QPlaceEditorial QPlaceEditorial::QPlaceEditorial commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non constructor false false   QPlaceEditorial() [] }
-&{QPlaceEditorial QPlaceEditorial::QPlaceEditorial commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non constructor false true 2  QPlaceEditorial(const QPlaceContent &other) [0xc820377100] }
+&{QPlaceEditorial QPlaceEditorial::QPlaceEditorial commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non constructor false true 2  QPlaceEditorial(const QPlaceContent &other) [0xc8226fb1a0] }
 &{language QPlaceEditorial::language commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  QString QString language() const [] }
-&{setLanguage QPlaceEditorial::setLanguage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  void void setLanguage(const QString &language) [0xc820377fe0] }
-&{setText QPlaceEditorial::setText commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  void void setText(const QString &text) [0xc82035c520] }
-&{setTitle QPlaceEditorial::setTitle commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  void void setTitle(const QString &title) [0xc82035cce0] }
+&{setLanguage QPlaceEditorial::setLanguage commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  void void setLanguage(const QString &language) [0xc8226fbbe0] }
+&{setText QPlaceEditorial::setText commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  void void setText(const QString &text) [0xc8226fbfa0] }
+&{setTitle QPlaceEditorial::setTitle commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  void void setTitle(const QString &title) [0xc822868380] }
 &{text QPlaceEditorial::text commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  QString QString text() const [] }
 &{title QPlaceEditorial::title commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceeditorial.h non plain false false  QString QString title() const [] }
 ########################################			ENUMS			########################################

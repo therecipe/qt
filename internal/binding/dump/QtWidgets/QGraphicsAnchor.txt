@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{setSizePolicy QGraphicsAnchor::setSizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void void setSizePolicy(QSizePolicy::Policy policy) [0xc821276660] }
-&{setSpacing QGraphicsAnchor::setSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void void setSpacing(qreal spacing) [0xc821276a60] }
+&{setSizePolicy QGraphicsAnchor::setSizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void void setSizePolicy(QSizePolicy::Policy policy) [0xc8206315c0] }
+&{setSpacing QGraphicsAnchor::setSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void void setSpacing(qreal spacing) [0xc820631980] }
 &{sizePolicy QGraphicsAnchor::sizePolicy commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  QSizePolicy::Policy QSizePolicy::Policy sizePolicy() const [] }
 &{spacing QGraphicsAnchor::spacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  qreal qreal spacing() const [] }
 &{unsetSpacing QGraphicsAnchor::unsetSpacing commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/graphicsview/qgraphicsanchorlayout.cpp non plain false false  void void unsetSpacing() [] }

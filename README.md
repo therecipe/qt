@@ -18,7 +18,7 @@
 	* Windows
 		* Add the directory that contains "gcc" to your PATH
 
-			`C:\Qt\Qt5.5.1\Tools\mingw492_32\bin\`
+			`C:\Qt\Qt5.5.1\Tools\mingw492_32\bin`
 
 	* Mac OS X
 		* Install Xcode >= 7.0.1
@@ -39,7 +39,7 @@
 
 5. Generate, install and test
 
-  	`github.com/therecipe/qt/setup.bat`
+  	`github.com/therecipe/qt/setup.bat` (run as admin)
 
   	or
 
@@ -78,7 +78,7 @@
 
 7. Install and test
 
-  	`github.com/therecipe/qt/setup.bat android`
+  	`github.com/therecipe/qt/setup.bat android` (run as admin)
 
     or
 

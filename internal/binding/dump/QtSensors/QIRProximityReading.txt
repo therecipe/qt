@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
 &{reflectance QIRProximityReading::reflectance commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qirproximitysensor.cpp non plain false false  qreal qreal reflectance() const [] }
-&{setReflectance QIRProximityReading::setReflectance commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qirproximitysensor.h non plain false false  void void setReflectance(qreal reflectance) [0xc8235b9180] }
+&{setReflectance QIRProximityReading::setReflectance commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qirproximitysensor.h non plain false false  void void setReflectance(qreal reflectance) [0xc8204bef20] }
 ########################################			ENUMS			########################################

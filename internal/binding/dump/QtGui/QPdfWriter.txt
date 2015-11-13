@@ -1,19 +1,19 @@
 ########################################			FUNCTIONS			########################################
-&{QPdfWriter QPdfWriter::QPdfWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non constructor false true 2  QPdfWriter(QIODevice *device) [0xc822b5ac00] }
-&{QPdfWriter QPdfWriter::QPdfWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non constructor false false   QPdfWriter(const QString &filename) [0xc822b5adc0] }
+&{QPdfWriter QPdfWriter::QPdfWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non constructor false true 2  QPdfWriter(QIODevice *device) [0xc8222d9c60] }
+&{QPdfWriter QPdfWriter::QPdfWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non constructor false false   QPdfWriter(const QString &filename) [0xc8222d9e20] }
 &{creator QPdfWriter::creator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  QString QString creator() const [] }
 &{newPage QPdfWriter::newPage commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h impure plain false false  bool bool newPage() [] }
 &{pageLayout QPdfWriter::pageLayout commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  QPageLayout QPageLayout pageLayout() const [] }
 &{paintEngine QPdfWriter::paintEngine commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h impure plain false false  QPaintEngine * QPaintEngine * paintEngine() const [] }
 &{resolution QPdfWriter::resolution commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  int int resolution() const [] }
-&{setCreator QPdfWriter::setCreator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  void void setCreator(const QString &creator) [0xc822b5b760] }
-&{setPageLayout QPdfWriter::setPageLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  bool bool setPageLayout(const QPageLayout &newPageLayout) [0xc822b5bae0] }
-&{setPageMargins QPdfWriter::setPageMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  bool bool setPageMargins(const QMarginsF &margins) [0xc822b5bd00] }
-&{setPageMargins QPdfWriter::setPageMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false true 2 bool bool setPageMargins(const QMarginsF &margins, QPageLayout::Unit units) [0xc822b5bf20 0xc822b6c000] }
-&{setPageOrientation QPdfWriter::setPageOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  bool bool setPageOrientation(QPageLayout::Orientation orientation) [0xc822b6c260] }
-&{setPageSize QPdfWriter::setPageSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  bool bool setPageSize(const QPageSize &pageSize) [0xc822b6c480] }
-&{setResolution QPdfWriter::setResolution commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  void void setResolution(int resolution) [0xc822b6ca40] }
-&{setTitle QPdfWriter::setTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  void void setTitle(const QString &title) [0xc822b6cc00] }
+&{setCreator QPdfWriter::setCreator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  void void setCreator(const QString &creator) [0xc8222ea7c0] }
+&{setPageLayout QPdfWriter::setPageLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  bool bool setPageLayout(const QPageLayout &newPageLayout) [0xc8222eab40] }
+&{setPageMargins QPdfWriter::setPageMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  bool bool setPageMargins(const QMarginsF &margins) [0xc8222ead60] }
+&{setPageMargins QPdfWriter::setPageMargins commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false true 2 bool bool setPageMargins(const QMarginsF &margins, QPageLayout::Unit units) [0xc8222eaf80 0xc8222eb060] }
+&{setPageOrientation QPdfWriter::setPageOrientation commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  bool bool setPageOrientation(QPageLayout::Orientation orientation) [0xc8222eb2c0] }
+&{setPageSize QPdfWriter::setPageSize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  bool bool setPageSize(const QPageSize &pageSize) [0xc8222eb4e0] }
+&{setResolution QPdfWriter::setResolution commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  void void setResolution(int resolution) [0xc8222ebaa0] }
+&{setTitle QPdfWriter::setTitle commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  void void setTitle(const QString &title) [0xc8222ebc60] }
 &{title QPdfWriter::title commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non plain false false  QString QString title() const [] }
 &{~QPdfWriter QPdfWriter::~QPdfWriter commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpdfwriter.h non destructor false false   ~QPdfWriter() [] }
 ########################################			ENUMS			########################################

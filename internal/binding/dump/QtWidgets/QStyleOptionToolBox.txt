@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
 &{QStyleOptionToolBox QStyleOptionToolBox::QStyleOptionToolBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionToolBox() [] }
-&{QStyleOptionToolBox QStyleOptionToolBox::QStyleOptionToolBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionToolBox(const QStyleOptionToolBox &other) [0xc821fe0ac0] }
+&{QStyleOptionToolBox QStyleOptionToolBox::QStyleOptionToolBox commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionToolBox(const QStyleOptionToolBox &other) [0xc8222acd60] }
 ########################################			ENUMS			########################################
-&{SelectedPosition QStyleOptionToolBox::SelectedPosition commendable public  [0xc821fd5b60 0xc821fd5be0 0xc821fd5d00] false}
-&{StyleOptionType QStyleOptionToolBox::StyleOptionType commendable public  [0xc821fd5f00] false}
-&{StyleOptionVersion QStyleOptionToolBox::StyleOptionVersion commendable public  [0xc821fe0180] false}
-&{TabPosition QStyleOptionToolBox::TabPosition commendable public  [0xc821fe03c0 0xc821fe04a0 0xc821fe0580 0xc821fe0620] false}
+&{SelectedPosition QStyleOptionToolBox::SelectedPosition commendable public  [0xc82229db60 0xc82229dca0 0xc82229dd60] false}
+&{StyleOptionType QStyleOptionToolBox::StyleOptionType commendable public  [0xc8222ac000] false}
+&{StyleOptionVersion QStyleOptionToolBox::StyleOptionVersion commendable public  [0xc8222ac2c0] false}
+&{TabPosition QStyleOptionToolBox::TabPosition commendable public  [0xc8222ac560 0xc8222ac660 0xc8222ac700 0xc8222ac800] false}

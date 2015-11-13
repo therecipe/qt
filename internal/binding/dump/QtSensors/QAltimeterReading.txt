@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
 &{altitude QAltimeterReading::altitude commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaltimeter.cpp non plain false false  qreal qreal altitude() const [] }
-&{setAltitude QAltimeterReading::setAltitude commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaltimeter.h non plain false false  void void setAltitude(qreal altitude) [0xc82363d980] }
+&{setAltitude QAltimeterReading::setAltitude commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaltimeter.h non plain false false  void void setAltitude(qreal altitude) [0xc822839b40] }
 ########################################			ENUMS			########################################

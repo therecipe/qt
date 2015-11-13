@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
-&{QScopedPointer QScopedPointer::QScopedPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non constructor false false   QScopedPointer(T *p) [0xc820c8ffe0] }
+&{QScopedPointer QScopedPointer::QScopedPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non constructor false false   QScopedPointer(T *p) [0xc820ca1cc0] }
 &{data QScopedPointer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false  T * T * data() const [] }
 &{isNull QScopedPointer::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false  bool bool isNull() const [] }
 &{operator bool QScopedPointer::operator bool commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false   operator bool() const [] }
 &{operator! QScopedPointer::operator! commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false  bool bool operator!() const [] }
 &{operator* QScopedPointer::operator* commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false  T & T & operator*() const [] }
 &{operator-> QScopedPointer::operator-> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false  T * T * operator->() const [] }
-&{reset QScopedPointer::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false  void void reset(T *other) [0xc820c84c20] }
-&{swap QScopedPointer::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false  void void swap(QScopedPointer<T, Cleanup> &other) [0xc820c84ee0] }
+&{reset QScopedPointer::reset commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false  void void reset(T *other) [0xc820c988e0] }
+&{swap QScopedPointer::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false  void void swap(QScopedPointer<T, Cleanup> &other) [0xc820c98b80] }
 &{take QScopedPointer::take commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non plain false false  T * T * take() [] }
 &{~QScopedPointer QScopedPointer::~QScopedPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qscopedpointer.h non destructor false false   ~QScopedPointer() [] }
 ########################################			ENUMS			########################################

@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
 &{QDomAttr QDomAttr::QDomAttr commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   QDomAttr() [] }
-&{QDomAttr QDomAttr::QDomAttr commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomAttr(const QDomAttr &x) [0xc82102f000] }
+&{QDomAttr QDomAttr::QDomAttr commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomAttr(const QDomAttr &x) [0xc821b4db80] }
 &{name QDomAttr::name commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString name() const [] }
 &{nodeType QDomAttr::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType QDomNode::NodeType nodeType() const [] }
-&{operator= QDomAttr::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomAttr & QDomAttr & operator=(const QDomAttr &x) [0xc82102f9c0] }
+&{operator= QDomAttr::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomAttr & QDomAttr & operator=(const QDomAttr &x) [0xc822e181c0] }
 &{ownerElement QDomAttr::ownerElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement ownerElement() const [] }
-&{setValue QDomAttr::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void setValue(const QString &v) [0xc8210d8180] }
+&{setValue QDomAttr::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void setValue(const QString &v) [0xc822e18520] }
 &{specified QDomAttr::specified commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool specified() const [] }
 &{value QDomAttr::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString value() const [] }
 ########################################			ENUMS			########################################

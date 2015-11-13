@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
 &{QDomCDATASection QDomCDATASection::QDomCDATASection commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   QDomCDATASection() [] }
-&{QDomCDATASection QDomCDATASection::QDomCDATASection commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomCDATASection(const QDomCDATASection &x) [0xc8210d9380] }
+&{QDomCDATASection QDomCDATASection::QDomCDATASection commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomCDATASection(const QDomCDATASection &x) [0xc822e18da0] }
 &{nodeType QDomCDATASection::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType QDomNode::NodeType nodeType() const [] }
-&{operator= QDomCDATASection::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomCDATASection & QDomCDATASection & operator=(const QDomCDATASection &x) [0xc8210d9ca0] }
+&{operator= QDomCDATASection::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomCDATASection & QDomCDATASection & operator=(const QDomCDATASection &x) [0xc822e191a0] }
 ########################################			ENUMS			########################################

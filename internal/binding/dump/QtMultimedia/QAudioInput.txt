@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QAudioInput QAudioInput::QAudioInput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non constructor false true 2  QAudioInput(const QAudioDeviceInfo &audioDevice, const QAudioFormat &format, QObject *parent) [0xc82183c840 0xc82183cb00 0xc82183cd80] }
-&{QAudioInput QAudioInput::QAudioInput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non constructor false false   QAudioInput(const QAudioFormat &format, QObject *parent) [0xc82183d220 0xc82183d440] }
+&{QAudioInput QAudioInput::QAudioInput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non constructor false true 2  QAudioInput(const QAudioDeviceInfo &audioDevice, const QAudioFormat &format, QObject *parent) [0xc8234513a0 0xc823451720 0xc823451960] }
+&{QAudioInput QAudioInput::QAudioInput commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non constructor false false   QAudioInput(const QAudioFormat &format, QObject *parent) [0xc823451f00 0xc82343e0e0] }
 &{bufferSize QAudioInput::bufferSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  int int bufferSize() const [] }
 &{bytesReady QAudioInput::bytesReady commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  int int bytesReady() const [] }
 &{elapsedUSecs QAudioInput::elapsedUSecs commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  qint64 qint64 elapsedUSecs() const [] }
@@ -12,13 +12,13 @@
 &{processedUSecs QAudioInput::processedUSecs commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  qint64 qint64 processedUSecs() const [] }
 &{reset QAudioInput::reset commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void void reset() [] }
 &{resume QAudioInput::resume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void void resume() [] }
-&{setBufferSize QAudioInput::setBufferSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void void setBufferSize(int value) [0xc82231b480] }
-&{setNotifyInterval QAudioInput::setNotifyInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void void setNotifyInterval(int ms) [0xc82231b940] }
-&{setVolume QAudioInput::setVolume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void void setVolume(qreal volume) [0xc82231bca0] }
+&{setBufferSize QAudioInput::setBufferSize commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void void setBufferSize(int value) [0xc823428660] }
+&{setNotifyInterval QAudioInput::setNotifyInterval commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void void setNotifyInterval(int ms) [0xc823428a20] }
+&{setVolume QAudioInput::setVolume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void void setVolume(qreal volume) [0xc823428de0] }
 &{start QAudioInput::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false true 2 QIODevice * QIODevice * start() [] }
-&{start QAudioInput::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void void start(QIODevice *device) [0xc82182a440] }
+&{start QAudioInput::start commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void void start(QIODevice *device) [0xc823429680] }
 &{state QAudioInput::state commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  QAudio::State QAudio::State state() const [] }
-&{stateChanged QAudioInput::stateChanged commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non signal false false  void void stateChanged(QAudio::State state) [0xc82182ac40] }
+&{stateChanged QAudioInput::stateChanged commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non signal false false  void void stateChanged(QAudio::State state) [0xc823429e80] }
 &{stop QAudioInput::stop commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void void stop() [] }
 &{suspend QAudioInput::suspend commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  void void suspend() [] }
 &{volume QAudioInput::volume commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioinput.h non plain false false  qreal qreal volume() const [] }

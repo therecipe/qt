@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
 &{QPlaceResult QPlaceResult::QPlaceResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h non constructor false false   QPlaceResult() [] }
-&{QPlaceResult QPlaceResult::QPlaceResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h non constructor false true 2  QPlaceResult(const QPlaceSearchResult &other) [0xc820685dc0] }
+&{QPlaceResult QPlaceResult::QPlaceResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h non constructor false true 2  QPlaceResult(const QPlaceSearchResult &other) [0xc8206384c0] }
 &{distance QPlaceResult::distance commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h non plain false false  qreal qreal distance() const [] }
 &{isSponsored QPlaceResult::isSponsored commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h non plain false false  bool bool isSponsored() const [] }
 &{place QPlaceResult::place commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h non plain false false  QPlace QPlace place() const [] }
-&{setDistance QPlaceResult::setDistance commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h non plain false false  void void setDistance(qreal distance) [0xc820781320] }
-&{setPlace QPlaceResult::setPlace commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h non plain false false  void void setPlace(const QPlace &place) [0xc820781880] }
-&{setSponsored QPlaceResult::setSponsored commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h non plain false false  void void setSponsored(bool sponsored) [0xc820781e00] }
+&{setDistance QPlaceResult::setDistance commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h non plain false false  void void setDistance(qreal distance) [0xc820639540] }
+&{setPlace QPlaceResult::setPlace commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h non plain false false  void void setPlace(const QPlace &place) [0xc820639880] }
+&{setSponsored QPlaceResult::setSponsored commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h non plain false false  void void setSponsored(bool sponsored) [0xc820639b20] }
 &{~QPlaceResult QPlaceResult::~QPlaceResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceresult.h impure destructor false false   ~QPlaceResult() [] }
 ########################################			ENUMS			########################################

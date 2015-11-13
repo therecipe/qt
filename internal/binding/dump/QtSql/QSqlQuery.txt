@@ -1,27 +1,27 @@
 ########################################			FUNCTIONS			########################################
-&{QSqlQuery QSqlQuery::QSqlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non constructor false true 3  QSqlQuery(QSqlDatabase db) [0xc82081b080] }
-&{QSqlQuery QSqlQuery::QSqlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non constructor false false   QSqlQuery(QSqlResult *result) [0xc82081b3c0] }
-&{QSqlQuery QSqlQuery::QSqlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non constructor false true 4  QSqlQuery(const QSqlQuery &other) [0xc82081b680] }
-&{QSqlQuery QSqlQuery::QSqlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non constructor false true 2  QSqlQuery(const QString &query, QSqlDatabase db) [0xc82081b9a0 0xc82081ba40] }
-&{addBindValue QSqlQuery::addBindValue commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  void void addBindValue(const QVariant &val, QSql::ParamType paramType) [0xc82081bd00 0xc82081be20] }
+&{QSqlQuery QSqlQuery::QSqlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non constructor false true 3  QSqlQuery(QSqlDatabase db) [0xc8210cb3c0] }
+&{QSqlQuery QSqlQuery::QSqlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non constructor false false   QSqlQuery(QSqlResult *result) [0xc8210cb5e0] }
+&{QSqlQuery QSqlQuery::QSqlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non constructor false true 4  QSqlQuery(const QSqlQuery &other) [0xc8210cb7c0] }
+&{QSqlQuery QSqlQuery::QSqlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non constructor false true 2  QSqlQuery(const QString &query, QSqlDatabase db) [0xc8210cb9c0 0xc8210cba40] }
+&{addBindValue QSqlQuery::addBindValue commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  void void addBindValue(const QVariant &val, QSql::ParamType paramType) [0xc8210cbc20 0xc8210cbca0] }
 &{at QSqlQuery::at commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  int int at() const [] }
-&{bindValue QSqlQuery::bindValue commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  void void bindValue(const QString &placeholder, const QVariant &val, QSql::ParamType paramType) [0xc8209cc200 0xc8209cc280 0xc8209cc400] }
-&{bindValue QSqlQuery::bindValue commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false true 2 void void bindValue(int pos, const QVariant &val, QSql::ParamType paramType) [0xc8209cc740 0xc8209cc800 0xc8209cc920] }
-&{boundValue QSqlQuery::boundValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  QVariant QVariant boundValue(const QString &placeholder) const [0xc8209ccc40] }
-&{boundValue QSqlQuery::boundValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false true 2 QVariant QVariant boundValue(int pos) const [0xc8209ccf80] }
+&{bindValue QSqlQuery::bindValue commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  void void bindValue(const QString &placeholder, const QVariant &val, QSql::ParamType paramType) [0xc8210cbee0 0xc8210cbf60 0xc8210cbfe0] }
+&{bindValue QSqlQuery::bindValue commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false true 2 void void bindValue(int pos, const QVariant &val, QSql::ParamType paramType) [0xc82109c1a0 0xc82109c220 0xc82109c2a0] }
+&{boundValue QSqlQuery::boundValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  QVariant QVariant boundValue(const QString &placeholder) const [0xc82109c480] }
+&{boundValue QSqlQuery::boundValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false true 2 QVariant QVariant boundValue(int pos) const [0xc82109c640] }
 &{boundValues QSqlQuery::boundValues commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  QMap<QString, QVariant> QMap<QString, QVariant> boundValues() const [] }
 &{clear QSqlQuery::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  void void clear() [] }
 &{driver QSqlQuery::driver commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  const QSqlDriver * const QSqlDriver * driver() const [] }
 &{exec QSqlQuery::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false true 2 bool bool exec() [] }
-&{exec QSqlQuery::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool exec(const QString &query) [0xc8209cdb40] }
-&{execBatch QSqlQuery::execBatch commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool execBatch(BatchExecutionMode mode) [0xc8209cdfa0] }
+&{exec QSqlQuery::exec commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool exec(const QString &query) [0xc82109cb80] }
+&{execBatch QSqlQuery::execBatch commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool execBatch(BatchExecutionMode mode) [0xc82109cd60] }
 &{executedQuery QSqlQuery::executedQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  QString QString executedQuery() const [] }
 &{finish QSqlQuery::finish commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  void void finish() [] }
 &{first QSqlQuery::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool first() [] }
 &{isActive QSqlQuery::isActive commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool isActive() const [] }
 &{isForwardOnly QSqlQuery::isForwardOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool isForwardOnly() const [] }
-&{isNull QSqlQuery::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false true 2 bool bool isNull(const QString &name) const [0xc821118a60] }
-&{isNull QSqlQuery::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool isNull(int field) const [0xc821118d60] }
+&{isNull QSqlQuery::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false true 2 bool bool isNull(const QString &name) const [0xc82109d4a0] }
+&{isNull QSqlQuery::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool isNull(int field) const [0xc82109d6c0] }
 &{isSelect QSqlQuery::isSelect commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool isSelect() const [] }
 &{isValid QSqlQuery::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool isValid() const [] }
 &{last QSqlQuery::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool last() [] }
@@ -32,17 +32,17 @@
 &{nextResult QSqlQuery::nextResult commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool nextResult() [] }
 &{numRowsAffected QSqlQuery::numRowsAffected commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  int int numRowsAffected() const [] }
 &{numericalPrecisionPolicy QSqlQuery::numericalPrecisionPolicy commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  QSql::NumericalPrecisionPolicy QSql::NumericalPrecisionPolicy numericalPrecisionPolicy() const [] }
-&{operator= QSqlQuery::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  QSqlQuery & QSqlQuery & operator=(const QSqlQuery &other) [0xc8209b81c0] }
-&{prepare QSqlQuery::prepare commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool prepare(const QString &query) [0xc8209b8600] }
+&{operator= QSqlQuery::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  QSqlQuery & QSqlQuery & operator=(const QSqlQuery &other) [0xc820f0a3a0] }
+&{prepare QSqlQuery::prepare commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool prepare(const QString &query) [0xc820f0a5a0] }
 &{previous QSqlQuery::previous commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool previous() [] }
 &{record QSqlQuery::record commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  QSqlRecord QSqlRecord record() const [] }
 &{result QSqlQuery::result commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  const QSqlResult * const QSqlResult * result() const [] }
-&{seek QSqlQuery::seek commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool seek(int index, bool relative) [0xc8209b9060 0xc8209b9180] }
-&{setForwardOnly QSqlQuery::setForwardOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  void void setForwardOnly(bool forward) [0xc8209b9500] }
-&{setNumericalPrecisionPolicy QSqlQuery::setNumericalPrecisionPolicy commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  void void setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy precisionPolicy) [0xc8209b9800] }
+&{seek QSqlQuery::seek commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  bool bool seek(int index, bool relative) [0xc820f0aa60 0xc820f0aae0] }
+&{setForwardOnly QSqlQuery::setForwardOnly commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  void void setForwardOnly(bool forward) [0xc820f0aca0] }
+&{setNumericalPrecisionPolicy QSqlQuery::setNumericalPrecisionPolicy commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  void void setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy precisionPolicy) [0xc820f0ae60] }
 &{size QSqlQuery::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  int int size() const [] }
-&{value QSqlQuery::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false true 2 QVariant QVariant value(const QString &name) const [0xc8209b9ba0] }
-&{value QSqlQuery::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  QVariant QVariant value(int index) const [0xc8209b9f20] }
+&{value QSqlQuery::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false true 2 QVariant QVariant value(const QString &name) const [0xc820f0b080] }
+&{value QSqlQuery::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non plain false false  QVariant QVariant value(int index) const [0xc820f0b240] }
 &{~QSqlQuery QSqlQuery::~QSqlQuery commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqlquery.h non destructor false false   ~QSqlQuery() [] }
 ########################################			ENUMS			########################################
-&{BatchExecutionMode QSqlQuery::BatchExecutionMode commendable public  [0xc82081ac20 0xc82081ace0] false}
+&{BatchExecutionMode QSqlQuery::BatchExecutionMode commendable public  [0xc8210cb0e0 0xc8210cb160] false}

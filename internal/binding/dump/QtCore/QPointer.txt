@@ -1,12 +1,12 @@
 ########################################			FUNCTIONS			########################################
 &{QPointer QPointer::QPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non constructor false false   QPointer() [] }
-&{QPointer QPointer::QPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non constructor false true 2  QPointer(T *p) [0xc8202f9200] }
+&{QPointer QPointer::QPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non constructor false true 2  QPointer(T *p) [0xc8202dd020] }
 &{clear QPointer::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  void void clear() [] }
 &{data QPointer::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  T * T * data() const [] }
 &{isNull QPointer::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  bool bool isNull() const [] }
 &{operator T * QPointer::operator T * commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false   operator T *() const [] }
 &{operator* QPointer::operator* commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  T & T & operator*() const [] }
 &{operator-> QPointer::operator-> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  T * T * operator->() const [] }
-&{operator= QPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  QPointer<T> & QPointer<T> & operator=(T *p) [0xc8202f9fc0] }
+&{operator= QPointer::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non plain false false  QPointer<T> & QPointer<T> & operator=(T *p) [0xc8202ddb40] }
 &{~QPointer QPointer::~QPointer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qpointer.h non destructor false false   ~QPointer() [] }
 ########################################			ENUMS			########################################

@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
 &{QList QList::QList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non constructor false false   QList() [] }
-&{QList QList::QList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non constructor false true 3  QList(QList<T> &&other) [0xc8200b0d20] }
-&{QList QList::QList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non constructor false true 2  QList(const QList<T> &other) [0xc8200b1420] }
-&{QList QList::QList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non constructor false true 4  QList(std::initializer_list<T> args) [0xc8200b18a0] }
-&{append QList::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 void void append(const QList<T> &value) [0xc8200b1e00] }
-&{append QList::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void append(const T &value) [0xc8215f42a0] }
-&{at QList::at commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  const T & const T & at(int i) const [0xc8215f48c0] }
+&{QList QList::QList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non constructor false true 3  QList(QList<T> &&other) [0xc820a916a0] }
+&{QList QList::QList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non constructor false true 2  QList(const QList<T> &other) [0xc820a918c0] }
+&{QList QList::QList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non constructor false true 4  QList(std::initializer_list<T> args) [0xc820a91ac0] }
+&{append QList::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 void void append(const QList<T> &value) [0xc820a91d00] }
+&{append QList::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void append(const T &value) [0xc820a91f60] }
+&{at QList::at commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  const T & const T & at(int i) const [0xc8200ea420] }
 &{back QList::back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  T & T & back() [] }
 &{back QList::back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 const T & const T & back() const [] }
 &{begin QList::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  iterator iterator begin() [] }
@@ -15,66 +15,66 @@
 &{clear QList::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void clear() [] }
 &{constBegin QList::constBegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  const_iterator const_iterator constBegin() const [] }
 &{constEnd QList::constEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  const_iterator const_iterator constEnd() const [] }
-&{contains QList::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool contains(const T &value) const [0xc8215f5b20] }
+&{contains QList::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool contains(const T &value) const [0xc8200ebac0] }
 &{count QList::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 int int count() const [] }
-&{count QList::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  int int count(const T &value) const [0xc8215e04e0] }
+&{count QList::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  int int count(const T &value) const [0xc8200d4280] }
 &{empty QList::empty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool empty() const [] }
 &{end QList::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  iterator iterator end() [] }
 &{end QList::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 const_iterator const_iterator end() const [] }
-&{endsWith QList::endsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool endsWith(const T &value) const [0xc820b98380] }
-&{erase QList::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 iterator iterator erase(iterator begin, iterator end) [0xc820b984e0 0xc820b98560] }
-&{erase QList::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  iterator iterator erase(iterator pos) [0xc820b98700] }
+&{endsWith QList::endsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool endsWith(const T &value) const [0xc8215f7940] }
+&{erase QList::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 iterator iterator erase(iterator begin, iterator end) [0xc8215f7e00 0xc8215f7ec0] }
+&{erase QList::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  iterator iterator erase(iterator pos) [0xc8215e25e0] }
 &{first QList::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  T & T & first() [] }
 &{first QList::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 const T & const T & first() const [] }
-&{fromSet QList::fromSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain true false  QList<T> QList<T> fromSet(const QSet<T> &set) [0xc820b989a0] }
-&{fromStdList QList::fromStdList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain true false  QList<T> QList<T> fromStdList(const std::list<T> &list) [0xc820b98b80] }
-&{fromVector QList::fromVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain true false  QList<T> QList<T> fromVector(const QVector<T> &vector) [0xc820b98da0] }
+&{fromSet QList::fromSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain true false  QList<T> QList<T> fromSet(const QSet<T> &set) [0xc8215e3060] }
+&{fromStdList QList::fromStdList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain true false  QList<T> QList<T> fromStdList(const std::list<T> &list) [0xc8215e36a0] }
+&{fromVector QList::fromVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain true false  QList<T> QList<T> fromVector(const QVector<T> &vector) [0xc8215e3ea0] }
 &{front QList::front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  T & T & front() [] }
 &{front QList::front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 const T & const T & front() const [] }
-&{indexOf QList::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  int int indexOf(const T &value, int from) const [0xc820b99080 0xc820b99100] }
-&{insert QList::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 iterator iterator insert(iterator before, const T &value) [0xc820b99260 0xc820b992e0] }
-&{insert QList::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void insert(int i, const T &value) [0xc820b99440 0xc820b994c0] }
+&{indexOf QList::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  int int indexOf(const T &value, int from) const [0xc8215c8800 0xc8215c8980] }
+&{insert QList::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 iterator iterator insert(iterator before, const T &value) [0xc8215c8e40 0xc8215c9020] }
+&{insert QList::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void insert(int i, const T &value) [0xc8215c9580 0xc8215c96e0] }
 &{isEmpty QList::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool isEmpty() const [] }
 &{last QList::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  T & T & last() [] }
 &{last QList::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 const T & const T & last() const [] }
-&{lastIndexOf QList::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  int int lastIndexOf(const T &value, int from) const [0xc820b99ba0 0xc820b99c20] }
+&{lastIndexOf QList::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  int int lastIndexOf(const T &value, int from) const [0xc82000f1e0 0xc82000f320] }
 &{length QList::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  int int length() const [] }
-&{mid QList::mid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  QList<T> QList<T> mid(int pos, int length) const [0xc820b99e40 0xc820b99ec0] }
-&{move QList::move commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void move(int from, int to) [0xc820a74060 0xc820a740e0] }
-&{operator!= QList::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool operator!=(const QList<T> &other) const [0xc820a742a0] }
-&{operator+ QList::operator+ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  QList<T> QList<T> operator+(const QList<T> &other) const [0xc820a74400] }
-&{operator+= QList::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  QList<T> & QList<T> & operator+=(const QList<T> &other) [0xc820a745c0] }
-&{operator+= QList::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 QList<T> & QList<T> & operator+=(const T &value) [0xc820a747a0] }
-&{operator<< QList::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  QList<T> & QList<T> & operator<<(const QList<T> &other) [0xc820a74960] }
-&{operator<< QList::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 QList<T> & QList<T> & operator<<(const T &value) [0xc820a74b20] }
-&{operator= QList::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 QList & QList & operator=(QList<T> &&other) [0xc820a74c80] }
-&{operator= QList::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  QList<T> & QList<T> & operator=(const QList<T> &other) [0xc820a74de0] }
-&{operator== QList::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool operator==(const QList<T> &other) const [0xc820a74fa0] }
-&{operator[] QList::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  T & T & operator[](int i) [0xc820a751c0] }
-&{operator[] QList::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 const T & const T & operator[](int i) const [0xc820a75380] }
+&{mid QList::mid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  QList<T> QList<T> mid(int pos, int length) const [0xc82000fb20 0xc82000fc60] }
+&{move QList::move commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void move(int from, int to) [0xc820c3c640 0xc820c3ccc0] }
+&{operator!= QList::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool operator!=(const QList<T> &other) const [0xc820c3dd40] }
+&{operator+ QList::operator+ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  QList<T> QList<T> operator+(const QList<T> &other) const [0xc820c3dea0] }
+&{operator+= QList::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  QList<T> & QList<T> & operator+=(const QList<T> &other) [0xc820aa8060] }
+&{operator+= QList::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 QList<T> & QList<T> & operator+=(const T &value) [0xc820aa8240] }
+&{operator<< QList::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  QList<T> & QList<T> & operator<<(const QList<T> &other) [0xc820aa8400] }
+&{operator<< QList::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 QList<T> & QList<T> & operator<<(const T &value) [0xc820aa85c0] }
+&{operator= QList::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 QList & QList & operator=(QList<T> &&other) [0xc820aa8720] }
+&{operator= QList::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  QList<T> & QList<T> & operator=(const QList<T> &other) [0xc820aa8880] }
+&{operator== QList::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool operator==(const QList<T> &other) const [0xc820aa8a40] }
+&{operator[] QList::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  T & T & operator[](int i) [0xc820aa8c60] }
+&{operator[] QList::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 const T & const T & operator[](int i) const [0xc820aa8e20] }
 &{pop_back QList::pop_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void pop_back() [] }
 &{pop_front QList::pop_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void pop_front() [] }
-&{prepend QList::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void prepend(const T &value) [0xc820a75640] }
-&{push_back QList::push_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void push_back(const T &value) [0xc820a75800] }
-&{push_front QList::push_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void push_front(const T &value) [0xc820a75a20] }
-&{removeAll QList::removeAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  int int removeAll(const T &value) [0xc820a75be0] }
-&{removeAt QList::removeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void removeAt(int i) [0xc820a75da0] }
+&{prepend QList::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void prepend(const T &value) [0xc820aa90e0] }
+&{push_back QList::push_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void push_back(const T &value) [0xc820aa92a0] }
+&{push_front QList::push_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void push_front(const T &value) [0xc820aa94c0] }
+&{removeAll QList::removeAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  int int removeAll(const T &value) [0xc820aa9680] }
+&{removeAt QList::removeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void removeAt(int i) [0xc820aa9840] }
 &{removeFirst QList::removeFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void removeFirst() [] }
 &{removeLast QList::removeLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void removeLast() [] }
-&{removeOne QList::removeOne commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool removeOne(const T &value) [0xc820b701e0] }
-&{replace QList::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void replace(int i, const T &value) [0xc820b70340 0xc820b703c0] }
-&{reserve QList::reserve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void reserve(int alloc) [0xc820b70580] }
+&{removeOne QList::removeOne commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool removeOne(const T &value) [0xc820aa9c80] }
+&{replace QList::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void replace(int i, const T &value) [0xc820aa9de0 0xc820aa9e60] }
+&{reserve QList::reserve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void reserve(int alloc) [0xc820b7a020] }
 &{size QList::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  int int size() const [] }
-&{startsWith QList::startsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool startsWith(const T &value) const [0xc820b709c0] }
-&{swap QList::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void swap(QList<T> &other) [0xc820b70b60] }
-&{swap QList::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 void void swap(int i, int j) [0xc820b70d20 0xc820b70da0] }
-&{takeAt QList::takeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  T T takeAt(int i) [0xc820b70f00] }
+&{startsWith QList::startsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  bool bool startsWith(const T &value) const [0xc820b7a460] }
+&{swap QList::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  void void swap(QList<T> &other) [0xc820b7a600] }
+&{swap QList::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 void void swap(int i, int j) [0xc820b7a7c0 0xc820b7a840] }
+&{takeAt QList::takeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  T T takeAt(int i) [0xc820b7a9a0] }
 &{takeFirst QList::takeFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  T T takeFirst() [] }
 &{takeLast QList::takeLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  T T takeLast() [] }
 &{toSet QList::toSet commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  QSet<T> QSet<T> toSet() const [] }
 &{toStdList QList::toStdList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  std::list<T> std::list<T> toStdList() const [] }
 &{toVector QList::toVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  QVector<T> QVector<T> toVector() const [] }
-&{value QList::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  T T value(int i) const [0xc820b71420] }
-&{value QList::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 T T value(int i, const T &defaultValue) const [0xc820b71580 0xc820b71600] }
+&{value QList::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false false  T T value(int i) const [0xc820b7aec0] }
+&{value QList::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non plain false true 2 T T value(int i, const T &defaultValue) const [0xc820b7b020 0xc820b7b0a0] }
 &{~QList QList::~QList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qlist.h non destructor false false   ~QList() [] }
 ########################################			ENUMS			########################################

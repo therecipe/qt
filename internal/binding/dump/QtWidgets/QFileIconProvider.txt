@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
 &{QFileIconProvider QFileIconProvider::QFileIconProvider commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qfileiconprovider.h non constructor false false   QFileIconProvider() [] }
-&{icon QFileIconProvider::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qfileiconprovider.h impure plain false false  QIcon QIcon icon(IconType type) const [0xc8232232c0] }
-&{icon QFileIconProvider::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qfileiconprovider.h impure plain false true 2 QIcon QIcon icon(const QFileInfo &info) const [0xc823223700] }
+&{icon QFileIconProvider::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qfileiconprovider.h impure plain false false  QIcon QIcon icon(IconType type) const [0xc82073c240] }
+&{icon QFileIconProvider::icon commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qfileiconprovider.h impure plain false true 2 QIcon QIcon icon(const QFileInfo &info) const [0xc82073c5e0] }
 &{options QFileIconProvider::options commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qfileiconprovider.h non plain false false  Options Options options() const [] }
-&{setOptions QFileIconProvider::setOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qfileiconprovider.h non plain false false  void void setOptions(Options options) [0xc823223ee0] }
-&{type QFileIconProvider::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qfileiconprovider.h impure plain false false  QString QString type(const QFileInfo &info) const [0xc82320e320] }
+&{setOptions QFileIconProvider::setOptions commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qfileiconprovider.h non plain false false  void void setOptions(Options options) [0xc82073cc20] }
+&{type QFileIconProvider::type commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qfileiconprovider.h impure plain false false  QString QString type(const QFileInfo &info) const [0xc82073cf60] }
 &{~QFileIconProvider QFileIconProvider::~QFileIconProvider commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qfileiconprovider.h impure destructor false false   ~QFileIconProvider() [] }
 ########################################			ENUMS			########################################
-&{IconType QFileIconProvider::IconType commendable public  [0xc823231ce0 0xc823231ea0 0xc823231fa0 0xc8232220c0 0xc8232221a0 0xc8232222a0 0xc8232223c0] false}
-&{Option QFileIconProvider::Option commendable public QFileIconProvider::Options [0xc823222880] false}
+&{IconType QFileIconProvider::IconType commendable public  [0xc820b27120 0xc820b27220 0xc820b27320 0xc820b273a0 0xc820b27520 0xc820b275c0 0xc820b27660] false}
+&{Option QFileIconProvider::Option commendable public QFileIconProvider::Options [0xc820b27a60] false}

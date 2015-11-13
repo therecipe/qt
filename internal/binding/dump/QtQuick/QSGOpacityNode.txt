@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
 &{QSGOpacityNode QSGOpacityNode::QSGOpacityNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non constructor false false   QSGOpacityNode() [] }
 &{opacity QSGOpacityNode::opacity commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  qreal qreal opacity() const [] }
-&{setOpacity QSGOpacityNode::setOpacity commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setOpacity(qreal opacity) [0xc820b28f40] }
+&{setOpacity QSGOpacityNode::setOpacity commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setOpacity(qreal opacity) [0xc820f87740] }
 &{~QSGOpacityNode QSGOpacityNode::~QSGOpacityNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non destructor false false   ~QSGOpacityNode() [] }
 ########################################			ENUMS			########################################

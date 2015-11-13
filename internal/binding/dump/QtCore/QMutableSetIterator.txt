@@ -1,11 +1,11 @@
 ########################################			FUNCTIONS			########################################
-&{QMutableSetIterator QMutableSetIterator::QMutableSetIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non constructor false false   QMutableSetIterator(QSet<T> &set) [0xc820c76560] }
-&{findNext QMutableSetIterator::findNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool bool findNext(const T &value) [0xc820c767c0] }
-&{findPrevious QMutableSetIterator::findPrevious commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool bool findPrevious(const T &value) [0xc820c769a0] }
+&{QMutableSetIterator QMutableSetIterator::QMutableSetIterator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non constructor false false   QMutableSetIterator(QSet<T> &set) [0xc820c8c1e0] }
+&{findNext QMutableSetIterator::findNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool bool findNext(const T &value) [0xc820c8c4a0] }
+&{findPrevious QMutableSetIterator::findPrevious commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool bool findPrevious(const T &value) [0xc820c8c600] }
 &{hasNext QMutableSetIterator::hasNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool bool hasNext() const [] }
 &{hasPrevious QMutableSetIterator::hasPrevious commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  bool bool hasPrevious() const [] }
 &{next QMutableSetIterator::next commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & const T & next() [] }
-&{operator= QMutableSetIterator::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QMutableSetIterator & QMutableSetIterator & operator=(QSet<T> &set) [0xc820c77200] }
+&{operator= QMutableSetIterator::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  QMutableSetIterator & QMutableSetIterator & operator=(QSet<T> &set) [0xc820c8cea0] }
 &{peekNext QMutableSetIterator::peekNext commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & const T & peekNext() const [] }
 &{peekPrevious QMutableSetIterator::peekPrevious commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & const T & peekPrevious() const [] }
 &{previous QMutableSetIterator::previous commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qset.h non plain false false  const T & const T & previous() [] }

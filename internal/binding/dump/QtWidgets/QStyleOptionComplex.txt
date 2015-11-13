@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{QStyleOptionComplex QStyleOptionComplex::QStyleOptionComplex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionComplex(const QStyleOptionComplex &other) [0xc82229b740] }
-&{QStyleOptionComplex QStyleOptionComplex::QStyleOptionComplex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionComplex(int version, int type) [0xc82229bae0 0xc82229bb60] }
+&{QStyleOptionComplex QStyleOptionComplex::QStyleOptionComplex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionComplex(const QStyleOptionComplex &other) [0xc8229bdba0] }
+&{QStyleOptionComplex QStyleOptionComplex::QStyleOptionComplex commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionComplex(int version, int type) [0xc8229bdf40 0xc8229cc020] }
 ########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionComplex::StyleOptionType commendable public  [0xc82229b1a0] false}
-&{StyleOptionVersion QStyleOptionComplex::StyleOptionVersion commendable public  [0xc82229b420] false}
+&{StyleOptionType QStyleOptionComplex::StyleOptionType commendable public  [0xc8229bd5c0] false}
+&{StyleOptionVersion QStyleOptionComplex::StyleOptionVersion commendable public  [0xc8229bd840] false}

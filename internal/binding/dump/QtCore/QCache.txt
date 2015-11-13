@@ -1,18 +1,18 @@
 ########################################			FUNCTIONS			########################################
-&{QCache QCache::QCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non constructor false false   QCache(int maxCost) [0xc8208a5900] }
+&{QCache QCache::QCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non constructor false false   QCache(int maxCost) [0xc8208a2d20] }
 &{clear QCache::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  void void clear() [] }
-&{contains QCache::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  bool bool contains(const Key &key) const [0xc8208a5b60] }
+&{contains QCache::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  bool bool contains(const Key &key) const [0xc8208a2f80] }
 &{count QCache::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  int int count() const [] }
-&{insert QCache::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  bool bool insert(const Key &key, T *object, int cost) [0xc8208a5e80 0xc8208a5f20 0xc8208a5fa0] }
+&{insert QCache::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  bool bool insert(const Key &key, T *object, int cost) [0xc8208a3260 0xc8208a3360 0xc8208a33e0] }
 &{isEmpty QCache::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  bool bool isEmpty() const [] }
 &{keys QCache::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  QList<Key> QList<Key> keys() const [] }
 &{maxCost QCache::maxCost commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  int int maxCost() const [] }
-&{object QCache::object commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  T * T * object(const Key &key) const [0xc820890560] }
-&{operator[] QCache::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  T * T * operator[](const Key &key) const [0xc8208907a0] }
-&{remove QCache::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  bool bool remove(const Key &key) [0xc8208909e0] }
-&{setMaxCost QCache::setMaxCost commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  void void setMaxCost(int cost) [0xc820890ce0] }
+&{object QCache::object commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  T * T * object(const Key &key) const [0xc8208a39a0] }
+&{operator[] QCache::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  T * T * operator[](const Key &key) const [0xc8208a3bc0] }
+&{remove QCache::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  bool bool remove(const Key &key) [0xc8208a3e20] }
+&{setMaxCost QCache::setMaxCost commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  void void setMaxCost(int cost) [0xc82088e080] }
 &{size QCache::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  int int size() const [] }
-&{take QCache::take commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  T * T * take(const Key &key) [0xc820890f60] }
+&{take QCache::take commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  T * T * take(const Key &key) [0xc82088e320] }
 &{totalCost QCache::totalCost commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non plain false false  int int totalCost() const [] }
 &{~QCache QCache::~QCache commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qcache.h non destructor false false   ~QCache() [] }
 ########################################			ENUMS			########################################

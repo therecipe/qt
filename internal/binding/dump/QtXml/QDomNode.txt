@@ -1,18 +1,18 @@
 ########################################			FUNCTIONS			########################################
 &{QDomNode QDomNode::QDomNode commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   QDomNode() [] }
-&{QDomNode QDomNode::QDomNode commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomNode(const QDomNode &n) [0xc8229da500] }
-&{appendChild QDomNode::appendChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode appendChild(const QDomNode &newChild) [0xc8229daaa0] }
+&{QDomNode QDomNode::QDomNode commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomNode(const QDomNode &n) [0xc8219bcc80] }
+&{appendChild QDomNode::appendChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode appendChild(const QDomNode &newChild) [0xc8219bd4e0] }
 &{attributes QDomNode::attributes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNamedNodeMap QDomNamedNodeMap attributes() const [] }
 &{childNodes QDomNode::childNodes commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNodeList QDomNodeList childNodes() const [] }
 &{clear QDomNode::clear commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void clear() [] }
-&{cloneNode QDomNode::cloneNode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode cloneNode(bool deep) const [0xc8229db060] }
+&{cloneNode QDomNode::cloneNode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode cloneNode(bool deep) const [0xc8219bdd40] }
 &{columnNumber QDomNode::columnNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int int columnNumber() const [] }
 &{firstChild QDomNode::firstChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode firstChild() const [] }
-&{firstChildElement QDomNode::firstChildElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement firstChildElement(const QString &tagName) const [0xc8229db580] }
+&{firstChildElement QDomNode::firstChildElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement firstChildElement(const QString &tagName) const [0xc82246c580] }
 &{hasAttributes QDomNode::hasAttributes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool hasAttributes() const [] }
 &{hasChildNodes QDomNode::hasChildNodes commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool hasChildNodes() const [] }
-&{insertAfter QDomNode::insertAfter commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode insertAfter(const QDomNode &newChild, const QDomNode &refChild) [0xc8229db9c0 0xc8229dba40] }
-&{insertBefore QDomNode::insertBefore commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode insertBefore(const QDomNode &newChild, const QDomNode &refChild) [0xc8229dbc00 0xc8229dbc80] }
+&{insertAfter QDomNode::insertAfter commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode insertAfter(const QDomNode &newChild, const QDomNode &refChild) [0xc82246cc20 0xc82246ccc0] }
+&{insertBefore QDomNode::insertBefore commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode insertBefore(const QDomNode &newChild, const QDomNode &refChild) [0xc82246cfa0 0xc82246d060] }
 &{isAttr QDomNode::isAttr commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isAttr() const [] }
 &{isCDATASection QDomNode::isCDATASection commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isCDATASection() const [] }
 &{isCharacterData QDomNode::isCharacterData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isCharacterData() const [] }
@@ -26,33 +26,33 @@
 &{isNotation QDomNode::isNotation commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isNotation() const [] }
 &{isNull QDomNode::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isNull() const [] }
 &{isProcessingInstruction QDomNode::isProcessingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isProcessingInstruction() const [] }
-&{isSupported QDomNode::isSupported commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isSupported(const QString &feature, const QString &version) const [0xc822b150a0 0xc822b15120] }
+&{isSupported QDomNode::isSupported commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isSupported(const QString &feature, const QString &version) const [0xc8219a8ea0 0xc8219a8fa0] }
 &{isText QDomNode::isText commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool isText() const [] }
 &{lastChild QDomNode::lastChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode lastChild() const [] }
-&{lastChildElement QDomNode::lastChildElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement lastChildElement(const QString &tagName) const [0xc822b15600] }
+&{lastChildElement QDomNode::lastChildElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement lastChildElement(const QString &tagName) const [0xc8219a96a0] }
 &{lineNumber QDomNode::lineNumber commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  int int lineNumber() const [] }
 &{localName QDomNode::localName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString localName() const [] }
-&{namedItem QDomNode::namedItem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode namedItem(const QString &name) const [0xc822b15b20] }
+&{namedItem QDomNode::namedItem commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode namedItem(const QString &name) const [0xc8219a9e60] }
 &{namespaceURI QDomNode::namespaceURI commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString namespaceURI() const [] }
 &{nextSibling QDomNode::nextSibling commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode nextSibling() const [] }
-&{nextSiblingElement QDomNode::nextSiblingElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement nextSiblingElement(const QString &tagName) const [0xc82268e0c0] }
+&{nextSiblingElement QDomNode::nextSiblingElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement nextSiblingElement(const QString &tagName) const [0xc821994680] }
 &{nodeName QDomNode::nodeName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString nodeName() const [] }
 &{nodeType QDomNode::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  NodeType NodeType nodeType() const [] }
 &{nodeValue QDomNode::nodeValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString nodeValue() const [] }
 &{normalize QDomNode::normalize commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void normalize() [] }
-&{operator!= QDomNode::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool operator!=(const QDomNode &n) const [0xc82268e8a0] }
-&{operator= QDomNode::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode & QDomNode & operator=(const QDomNode &n) [0xc82268eaa0] }
-&{operator== QDomNode::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool operator==(const QDomNode &n) const [0xc82268ece0] }
+&{operator!= QDomNode::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool operator!=(const QDomNode &n) const [0xc8219952c0] }
+&{operator= QDomNode::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode & QDomNode & operator=(const QDomNode &n) [0xc821995660] }
+&{operator== QDomNode::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  bool bool operator==(const QDomNode &n) const [0xc821995980] }
 &{ownerDocument QDomNode::ownerDocument commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomDocument QDomDocument ownerDocument() const [] }
 &{parentNode QDomNode::parentNode commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode parentNode() const [] }
 &{prefix QDomNode::prefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString prefix() const [] }
 &{previousSibling QDomNode::previousSibling commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode previousSibling() const [] }
-&{previousSiblingElement QDomNode::previousSiblingElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement previousSiblingElement(const QString &tagName) const [0xc82268f4a0] }
-&{removeChild QDomNode::removeChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode removeChild(const QDomNode &oldChild) [0xc82268f720] }
-&{replaceChild QDomNode::replaceChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode replaceChild(const QDomNode &newChild, const QDomNode &oldChild) [0xc82268f940 0xc82268f9e0] }
-&{save QDomNode::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void save(QTextStream &stream, int indent, EncodingPolicy encodingPolicy) const [0xc82268fba0 0xc82268fc80 0xc82268fd60] }
-&{setNodeValue QDomNode::setNodeValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void setNodeValue(const QString &v) [0xc82268ffa0] }
-&{setPrefix QDomNode::setPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void setPrefix(const QString &pre) [0xc821de21e0] }
+&{previousSiblingElement QDomNode::previousSiblingElement commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomElement QDomElement previousSiblingElement(const QString &tagName) const [0xc821988600] }
+&{removeChild QDomNode::removeChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode removeChild(const QDomNode &oldChild) [0xc821988900] }
+&{replaceChild QDomNode::replaceChild commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode QDomNode replaceChild(const QDomNode &newChild, const QDomNode &oldChild) [0xc821988ce0 0xc821988e00] }
+&{save QDomNode::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void save(QTextStream &stream, int indent, EncodingPolicy encodingPolicy) const [0xc8219890e0 0xc8219891c0 0xc821989300] }
+&{setNodeValue QDomNode::setNodeValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void setNodeValue(const QString &v) [0xc821989660] }
+&{setPrefix QDomNode::setPrefix commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void setPrefix(const QString &pre) [0xc8219899e0] }
 &{toAttr QDomNode::toAttr commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomAttr QDomAttr toAttr() const [] }
 &{toCDATASection QDomNode::toCDATASection commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomCDATASection QDomCDATASection toCDATASection() const [] }
 &{toCharacterData QDomNode::toCharacterData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomCharacterData QDomCharacterData toCharacterData() const [] }
@@ -68,5 +68,5 @@
 &{toText QDomNode::toText commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomText QDomText toText() const [] }
 &{~QDomNode QDomNode::~QDomNode commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non destructor false false   ~QDomNode() [] }
 ########################################			ENUMS			########################################
-&{EncodingPolicy QDomNode::EncodingPolicy commendable public  [0xc822c31300 0xc822c31420] false}
-&{NodeType QDomNode::NodeType commendable public  [0xc822c316a0 0xc822c31720 0xc822c31800 0xc822c31880 0xc822c31980 0xc822c31a40 0xc822c31b40 0xc822c31c00 0xc822c31d00 0xc822c31d80 0xc822c31e40 0xc822c31f40 0xc822c31fc0 0xc8229da0a0] false}
+&{EncodingPolicy QDomNode::EncodingPolicy commendable public  [0xc8219cb180 0xc8219cb2c0] false}
+&{NodeType QDomNode::NodeType commendable public  [0xc8219cb6e0 0xc8219cb820 0xc8219cb8c0 0xc8219cb9e0 0xc8219cbb40 0xc8219cbcc0 0xc8219cbe20 0xc8219cbfc0 0xc8219bc0c0 0xc8219bc1c0 0xc8219bc300 0xc8219bc440 0xc8219bc500 0xc8219bc5a0] false}

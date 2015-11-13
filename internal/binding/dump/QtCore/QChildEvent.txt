@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QChildEvent QChildEvent::QChildEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non constructor false false   QChildEvent(Type type, QObject *child) [0xc8205b0260 0xc8205b02e0] }
+&{QChildEvent QChildEvent::QChildEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non constructor false false   QChildEvent(Type type, QObject *child) [0xc820642360 0xc820642420] }
 &{added QChildEvent::added commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  bool bool added() const [] }
 &{child QChildEvent::child commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  QObject * QObject * child() const [] }
 &{polished QChildEvent::polished commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  bool bool polished() const [] }

@@ -1,37 +1,37 @@
 ########################################			FUNCTIONS			########################################
-&{angleTo QLineF::angleTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.cpp non plain false false  qreal qreal angleTo(const QLineF &line) const [0xc82018a600] }
-&{intersect QLineF::intersect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.cpp non plain false false  IntersectType IntersectType intersect(const QLineF &line, QPointF *intersectionPoint) const [0xc82018ac20 0xc82018adc0] }
+&{angleTo QLineF::angleTo commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.cpp non plain false false  qreal qreal angleTo(const QLineF &line) const [0xc8201c9b20] }
+&{intersect QLineF::intersect commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.cpp non plain false false  IntersectType IntersectType intersect(const QLineF &line, QPointF *intersectionPoint) const [0xc820544080 0xc820544160] }
 &{QLineF QLineF::QLineF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false false   QLineF() [] }
-&{QLineF QLineF::QLineF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 4  QLineF(const QLine &line) [0xc82018bec0] }
-&{QLineF QLineF::QLineF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 2  QLineF(const QPointF &p1, const QPointF &p2) [0xc8201782c0 0xc820178460] }
-&{QLineF QLineF::QLineF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 3  QLineF(qreal x1, qreal y1, qreal x2, qreal y2) [0xc820178620 0xc8201787e0 0xc820178880 0xc8201789a0] }
+&{QLineF QLineF::QLineF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 4  QLineF(const QLine &line) [0xc820544ca0] }
+&{QLineF QLineF::QLineF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 2  QLineF(const QPointF &p1, const QPointF &p2) [0xc820544ec0 0xc820544f60] }
+&{QLineF QLineF::QLineF commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non constructor false true 3  QLineF(qreal x1, qreal y1, qreal x2, qreal y2) [0xc8205451c0 0xc820545260 0xc820545380 0xc820545440] }
 &{angle QLineF::angle commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal qreal angle() const [] }
 &{dx QLineF::dx commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal qreal dx() const [] }
 &{dy QLineF::dy commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal qreal dy() const [] }
-&{fromPolar QLineF::fromPolar commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain true false  QLineF QLineF fromPolar(qreal length, qreal angle) [0xc820178fc0 0xc820179060] }
+&{fromPolar QLineF::fromPolar commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain true false  QLineF QLineF fromPolar(qreal length, qreal angle) [0xc820545a00 0xc820545c20] }
 &{isNull QLineF::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool bool isNull() const [] }
 &{length QLineF::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal qreal length() const [] }
 &{normalVector QLineF::normalVector commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QLineF QLineF normalVector() const [] }
-&{operator!= QLineF::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool bool operator!=(const QLineF &line) const [0xc820179840] }
-&{operator== QLineF::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool bool operator==(const QLineF &line) const [0xc820179be0] }
+&{operator!= QLineF::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool bool operator!=(const QLineF &line) const [0xc8201bcc60] }
+&{operator== QLineF::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  bool bool operator==(const QLineF &line) const [0xc8201bd2e0] }
 &{p1 QLineF::p1 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QPointF QPointF p1() const [] }
 &{p2 QLineF::p2 commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QPointF QPointF p2() const [] }
-&{pointAt QLineF::pointAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QPointF QPointF pointAt(qreal t) const [0xc8205cc1a0] }
-&{setAngle QLineF::setAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setAngle(qreal angle) [0xc8205cc360] }
-&{setLength QLineF::setLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setLength(qreal length) [0xc8205cc580] }
-&{setLine QLineF::setLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setLine(qreal x1, qreal y1, qreal x2, qreal y2) [0xc8205cc6e0 0xc8205cc760 0xc8205cc7e0 0xc8205cc860] }
-&{setP1 QLineF::setP1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setP1(const QPointF &p1) [0xc8205cca20] }
-&{setP2 QLineF::setP2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setP2(const QPointF &p2) [0xc8205ccbe0] }
-&{setPoints QLineF::setPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setPoints(const QPointF &p1, const QPointF &p2) [0xc8205cce20 0xc8205ccee0] }
+&{pointAt QLineF::pointAt commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QPointF QPointF pointAt(qreal t) const [0xc8201bdea0] }
+&{setAngle QLineF::setAngle commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setAngle(qreal angle) [0xc8205461e0] }
+&{setLength QLineF::setLength commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setLength(qreal length) [0xc820546400] }
+&{setLine QLineF::setLine commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setLine(qreal x1, qreal y1, qreal x2, qreal y2) [0xc820546560 0xc8205465e0 0xc820546660 0xc8205466e0] }
+&{setP1 QLineF::setP1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setP1(const QPointF &p1) [0xc8205468a0] }
+&{setP2 QLineF::setP2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setP2(const QPointF &p2) [0xc820546a60] }
+&{setPoints QLineF::setPoints commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void setPoints(const QPointF &p1, const QPointF &p2) [0xc820546ca0 0xc820546d40] }
 &{toLine QLineF::toLine commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QLine QLine toLine() const [] }
-&{translate QLineF::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void translate(const QPointF &offset) [0xc8205cd3c0] }
-&{translate QLineF::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false true 2 void void translate(qreal dx, qreal dy) [0xc8205cd6a0 0xc8205cd760] }
-&{translated QLineF::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QLineF QLineF translated(const QPointF &offset) const [0xc8205cda80] }
-&{translated QLineF::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false true 2 QLineF QLineF translated(qreal dx, qreal dy) const [0xc8205cdd80 0xc8205cde80] }
+&{translate QLineF::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  void void translate(const QPointF &offset) [0xc8205470e0] }
+&{translate QLineF::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false true 2 void void translate(qreal dx, qreal dy) [0xc820547300 0xc8205473c0] }
+&{translated QLineF::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QLineF QLineF translated(const QPointF &offset) const [0xc8205475e0] }
+&{translated QLineF::translated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false true 2 QLineF QLineF translated(qreal dx, qreal dy) const [0xc8205477e0 0xc8205478a0] }
 &{unitVector QLineF::unitVector commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  QLineF QLineF unitVector() const [] }
 &{x1 QLineF::x1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal qreal x1() const [] }
 &{x2 QLineF::x2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal qreal x2() const [] }
 &{y1 QLineF::y1 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal qreal y1() const [] }
 &{y2 QLineF::y2 commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qline.h non plain false false  qreal qreal y2() const [] }
 ########################################			ENUMS			########################################
-&{IntersectType QLineF::IntersectType commendable public  [0xc82018b420 0xc82018b5e0 0xc82018b880] false}
+&{IntersectType QLineF::IntersectType commendable public  [0xc8205445c0 0xc8205446e0 0xc820544820] false}

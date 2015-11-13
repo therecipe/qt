@@ -1,7 +1,7 @@
 ########################################			FUNCTIONS			########################################
-&{child QHelpContentItem::child commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  QHelpContentItem * QHelpContentItem * child(int row) const [0xc820232fe0] }
+&{child QHelpContentItem::child commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  QHelpContentItem * QHelpContentItem * child(int row) const [0xc820930280] }
 &{childCount QHelpContentItem::childCount commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  int int childCount() const [] }
-&{childPosition QHelpContentItem::childPosition commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  int int childPosition(QHelpContentItem *child) const [0xc820233340] }
+&{childPosition QHelpContentItem::childPosition commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  int int childPosition(QHelpContentItem *child) const [0xc8209306a0] }
 &{parent QHelpContentItem::parent commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  QHelpContentItem * QHelpContentItem * parent() const [] }
 &{row QHelpContentItem::row commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  int int row() const [] }
 &{title QHelpContentItem::title commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  QString QString title() const [] }

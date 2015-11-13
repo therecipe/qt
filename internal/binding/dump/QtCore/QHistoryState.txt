@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{QHistoryState QHistoryState::QHistoryState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non constructor false true 2  QHistoryState(HistoryType type, QState *parent) [0xc820325e60 0xc820325ee0] }
-&{QHistoryState QHistoryState::QHistoryState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non constructor false false   QHistoryState(QState *parent) [0xc820182100] }
+&{QHistoryState QHistoryState::QHistoryState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non constructor false true 2  QHistoryState(HistoryType type, QState *parent) [0xc820379ec0 0xc820379f40] }
+&{QHistoryState QHistoryState::QHistoryState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non constructor false false   QHistoryState(QState *parent) [0xc820282160] }
 &{defaultState QHistoryState::defaultState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non plain false false  QAbstractState * QAbstractState * defaultState() const [] }
 &{defaultStateChanged QHistoryState::defaultStateChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non signal false false  void void defaultStateChanged() [] }
-&{event QHistoryState::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h impure plain false false  bool bool event(QEvent *e) [0xc820182560] }
+&{event QHistoryState::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h impure plain false false  bool bool event(QEvent *e) [0xc8202825c0] }
 &{historyType QHistoryState::historyType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non plain false false  HistoryType HistoryType historyType() const [] }
 &{historyTypeChanged QHistoryState::historyTypeChanged commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non signal false false  void void historyTypeChanged() [] }
-&{onEntry QHistoryState::onEntry commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h impure plain false false  void void onEntry(QEvent *event) [0xc820182a00] }
-&{onExit QHistoryState::onExit commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h impure plain false false  void void onExit(QEvent *event) [0xc820182c40] }
-&{setDefaultState QHistoryState::setDefaultState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non plain false false  void void setDefaultState(QAbstractState *state) [0xc820182e00] }
-&{setHistoryType QHistoryState::setHistoryType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non plain false false  void void setHistoryType(HistoryType type) [0xc820182fc0] }
+&{onEntry QHistoryState::onEntry commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h impure plain false false  void void onEntry(QEvent *event) [0xc820282a60] }
+&{onExit QHistoryState::onExit commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h impure plain false false  void void onExit(QEvent *event) [0xc820282ca0] }
+&{setDefaultState QHistoryState::setDefaultState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non plain false false  void void setDefaultState(QAbstractState *state) [0xc820282e60] }
+&{setHistoryType QHistoryState::setHistoryType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non plain false false  void void setHistoryType(HistoryType type) [0xc820283020] }
 &{~QHistoryState QHistoryState::~QHistoryState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qhistorystate.h non destructor false false   ~QHistoryState() [] }
 ########################################			ENUMS			########################################
-&{HistoryType QHistoryState::HistoryType commendable public  [0xc820325c00 0xc820325c80] false}
+&{HistoryType QHistoryState::HistoryType commendable public  [0xc820379c60 0xc820379ce0] false}

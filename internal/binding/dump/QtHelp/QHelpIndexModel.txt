@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
-&{createIndex QHelpIndexModel::createIndex commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non plain false false  void void createIndex(const QString &customFilterName) [0xc821c9ff20] }
-&{filter QHelpIndexModel::filter commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non plain false false  QModelIndex QModelIndex filter(const QString &filter, const QString &wildcard) [0xc822884100 0xc822884180] }
+&{createIndex QHelpIndexModel::createIndex commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non plain false false  void void createIndex(const QString &customFilterName) [0xc822a83080] }
+&{filter QHelpIndexModel::filter commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non plain false false  QModelIndex QModelIndex filter(const QString &filter, const QString &wildcard) [0xc822a83560 0xc822a83640] }
 &{indexCreated QHelpIndexModel::indexCreated commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non signal false false  void void indexCreated() [] }
 &{indexCreationStarted QHelpIndexModel::indexCreationStarted commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non signal false false  void void indexCreationStarted() [] }
 &{isCreatingIndex QHelpIndexModel::isCreatingIndex commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non plain false false  bool bool isCreatingIndex() const [] }
-&{linksForKeyword QHelpIndexModel::linksForKeyword commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non plain false false  QMap<QString, QUrl> QMap<QString, QUrl> linksForKeyword(const QString &keyword) const [0xc822884780] }
+&{linksForKeyword QHelpIndexModel::linksForKeyword commendable unsupported_cppType /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpindexwidget.h non plain false false  QMap<QString, QUrl> QMap<QString, QUrl> linksForKeyword(const QString &keyword) const [0xc8229123a0] }
 ########################################			ENUMS			########################################

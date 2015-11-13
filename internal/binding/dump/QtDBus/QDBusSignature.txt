@@ -1,8 +1,8 @@
 ########################################			FUNCTIONS			########################################
 &{QDBusSignature QDBusSignature::QDBusSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false false   QDBusSignature() [] }
-&{QDBusSignature QDBusSignature::QDBusSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 3  QDBusSignature(QLatin1String signature) [0xc821bd0c00] }
-&{QDBusSignature QDBusSignature::QDBusSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 4  QDBusSignature(const QString &signature) [0xc821bd0dc0] }
-&{QDBusSignature QDBusSignature::QDBusSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 2  QDBusSignature(const char *signature) [0xc821bd0fa0] }
-&{setSignature QDBusSignature::setSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  void void setSignature(const QString &signature) [0xc821bd1180] }
+&{QDBusSignature QDBusSignature::QDBusSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 3  QDBusSignature(QLatin1String signature) [0xc821f4bf40] }
+&{QDBusSignature QDBusSignature::QDBusSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 4  QDBusSignature(const QString &signature) [0xc821f5a220] }
+&{QDBusSignature QDBusSignature::QDBusSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non constructor false true 2  QDBusSignature(const char *signature) [0xc821f5a4e0] }
+&{setSignature QDBusSignature::setSignature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  void void setSignature(const QString &signature) [0xc821f5a760] }
 &{signature QDBusSignature::signature commendable public /work/build/qt5_workdir/w/s/qtbase/src/dbus/qdbusextratypes.h non plain false false  QString QString signature() const [] }
 ########################################			ENUMS			########################################

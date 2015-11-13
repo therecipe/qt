@@ -24,7 +24,6 @@ func main() {
 	}
 
 	if buildTarget == "android" {
-
 		switch runtime.GOOS {
 		case "darwin", "linux":
 			{
@@ -56,6 +55,19 @@ func main() {
 				}
 			}
 		}
+	} else {
+		switch runtime.GOOS {
+		case "windows":
+			{
+				env = map[string]string{
+					"PATH":        os.Getenv("PATH"),
+					"GOPATH":      os.Getenv("GOPATH"),
+					"GOOS":        runtime.GOOS,
+					"GOARCH":      "386",
+					"CGO_ENABLED": "1",
+				}
+			}
+		}
 	}
 
 	var cmd = exec.Command("go")
@@ -64,7 +76,7 @@ func main() {
 		"-p", strconv.Itoa(runtime.NumCPU()),
 		"std")
 
-	if buildTarget != "desktop" {
+	if buildTarget != "desktop" || runtime.GOOS == "windows" {
 		for key, value := range env {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
@@ -91,7 +103,7 @@ func main() {
 					"-p", strconv.Itoa(runtime.NumCPU()),
 					fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(m)))
 
-				if buildTarget != "desktop" {
+				if buildTarget != "desktop" || runtime.GOOS == "windows" {
 					for key, value := range env {
 						cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 					}

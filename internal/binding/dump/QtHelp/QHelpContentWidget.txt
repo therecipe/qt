@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{indexOf QHelpContentWidget::indexOf commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  QModelIndex QModelIndex indexOf(const QUrl &link) [0xc8201ebfc0] }
-&{linkActivated QHelpContentWidget::linkActivated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non signal false false  void void linkActivated(const QUrl &link) [0xc820172140] }
+&{indexOf QHelpContentWidget::indexOf commendable public /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non plain false false  QModelIndex QModelIndex indexOf(const QUrl &link) [0xc820df5940] }
+&{linkActivated QHelpContentWidget::linkActivated commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qttools/src/assistant/help/qhelpcontentwidget.h non signal false false  void void linkActivated(const QUrl &link) [0xc820df5d60] }
 ########################################			ENUMS			########################################

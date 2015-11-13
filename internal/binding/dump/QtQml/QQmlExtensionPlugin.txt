@@ -1,6 +1,6 @@
 ########################################			FUNCTIONS			########################################
-&{initializeEngine QQmlExtensionPlugin::initializeEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlextensionplugin.cpp impure plain false false  void void initializeEngine(QQmlEngine *engine, const char *uri) [0xc821d66d80 0xc821d66ea0] }
-&{QQmlExtensionPlugin QQmlExtensionPlugin::QQmlExtensionPlugin commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlextensionplugin.h non constructor false false   QQmlExtensionPlugin(QObject *parent) [0xc821d671c0] }
+&{initializeEngine QQmlExtensionPlugin::initializeEngine commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlextensionplugin.cpp impure plain false false  void void initializeEngine(QQmlEngine *engine, const char *uri) [0xc821bb7da0 0xc821bb7e80] }
+&{QQmlExtensionPlugin QQmlExtensionPlugin::QQmlExtensionPlugin commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlextensionplugin.h non constructor false false   QQmlExtensionPlugin(QObject *parent) [0xc821ba8300] }
 &{baseUrl QQmlExtensionPlugin::baseUrl commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlextensionplugin.h non plain false false  QUrl QUrl baseUrl() const [] }
-&{registerTypes QQmlExtensionPlugin::registerTypes commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlextensionplugin.h pure plain false false  void void registerTypes(const char *uri) [0xc821d67720] }
+&{registerTypes QQmlExtensionPlugin::registerTypes commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlextensionplugin.h pure plain false false  void void registerTypes(const char *uri) [0xc821ba88e0] }
 ########################################			ENUMS			########################################

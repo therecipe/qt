@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
 &{QSGFlatColorMaterial QSGFlatColorMaterial::QSGFlatColorMaterial commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgflatcolormaterial.h non constructor false false   QSGFlatColorMaterial() [] }
 &{color QSGFlatColorMaterial::color commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgflatcolormaterial.h non plain false false  const QColor & const QColor & color() const [] }
-&{setColor QSGFlatColorMaterial::setColor commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgflatcolormaterial.h non plain false false  void void setColor(const QColor &color) [0xc820b01b80] }
+&{setColor QSGFlatColorMaterial::setColor commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgflatcolormaterial.h non plain false false  void void setColor(const QColor &color) [0xc820f4d1e0] }
 ########################################			ENUMS			########################################

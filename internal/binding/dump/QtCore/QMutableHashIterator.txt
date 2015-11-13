@@ -1,17 +1,17 @@
 ########################################			FUNCTIONS			########################################
-&{QMutableHashIterator QMutableHashIterator::QMutableHashIterator commendable public qhash.h non constructor false false   QMutableHashIterator(QHash<Key, T> &hash) [0xc820a6da80] }
-&{findNext QMutableHashIterator::findNext commendable public qhash.h non plain false false  bool bool findNext(const T &value) [0xc820a6dd40] }
-&{findPrevious QMutableHashIterator::findPrevious commendable public qhash.h non plain false false  bool bool findPrevious(const T &value) [0xc820a6df80] }
+&{QMutableHashIterator QMutableHashIterator::QMutableHashIterator commendable public qhash.h non constructor false false   QMutableHashIterator(QHash<Key, T> &hash) [0xc82093c2e0] }
+&{findNext QMutableHashIterator::findNext commendable public qhash.h non plain false false  bool bool findNext(const T &value) [0xc82093c560] }
+&{findPrevious QMutableHashIterator::findPrevious commendable public qhash.h non plain false false  bool bool findPrevious(const T &value) [0xc82093c700] }
 &{hasNext QMutableHashIterator::hasNext commendable public qhash.h non plain false false  bool bool hasNext() const [] }
 &{hasPrevious QMutableHashIterator::hasPrevious commendable public qhash.h non plain false false  bool bool hasPrevious() const [] }
 &{key QMutableHashIterator::key commendable public qhash.h non plain false false  const Key & const Key & key() const [] }
 &{next QMutableHashIterator::next commendable public qhash.h non plain false false  Item Item next() [] }
-&{operator= QMutableHashIterator::operator= commendable public qhash.h non plain false false  QMutableHashIterator & QMutableHashIterator & operator=(QHash<Key, T> &hash) [0xc82027b720] }
+&{operator= QMutableHashIterator::operator= commendable public qhash.h non plain false false  QMutableHashIterator & QMutableHashIterator & operator=(QHash<Key, T> &hash) [0xc82093d140] }
 &{peekNext QMutableHashIterator::peekNext commendable public qhash.h non plain false false  Item Item peekNext() const [] }
 &{peekPrevious QMutableHashIterator::peekPrevious commendable public qhash.h non plain false false  Item Item peekPrevious() const [] }
 &{previous QMutableHashIterator::previous commendable public qhash.h non plain false false  Item Item previous() [] }
 &{remove QMutableHashIterator::remove commendable public qhash.h non plain false false  void void remove() [] }
-&{setValue QMutableHashIterator::setValue commendable public qhash.h non plain false false  void void setValue(const T &value) [0xc820270840] }
+&{setValue QMutableHashIterator::setValue commendable public qhash.h non plain false false  void void setValue(const T &value) [0xc82093da40] }
 &{toBack QMutableHashIterator::toBack commendable public qhash.h non plain false false  void void toBack() [] }
 &{toFront QMutableHashIterator::toFront commendable public qhash.h non plain false false  void void toFront() [] }
 &{value QMutableHashIterator::value commendable public qhash.h non plain false true 2 T & T & value() [] }

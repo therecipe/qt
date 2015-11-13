@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{create QStyleFactory::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylefactory.h non plain true false  QStyle * QStyle * create(const QString &key) [0xc8226d0d20] }
+&{create QStyleFactory::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylefactory.h non plain true false  QStyle * QStyle * create(const QString &key) [0xc82295b9e0] }
 &{keys QStyleFactory::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstylefactory.h non plain true false  QStringList QStringList keys() [] }
 ########################################			ENUMS			########################################

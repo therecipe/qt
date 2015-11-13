@@ -1,5 +1,5 @@
 ########################################			FUNCTIONS			########################################
-&{QAnimationGroup QAnimationGroup::QAnimationGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qanimationgroup.h non constructor false false   QAnimationGroup(QObject *parent) [0xc8215f5f00] }
+&{QAnimationGroup QAnimationGroup::QAnimationGroup commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qanimationgroup.h non constructor false false   QAnimationGroup(QObject *parent) [0xc8215f7f00] }
 &{addAnimation QAnimationGroup::addAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qanimationgroup.h non plain false false  void void addAnimation(QAbstractAnimation *animation) [0xc8200b0380] }
 &{animationAt QAnimationGroup::animationAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qanimationgroup.h non plain false false  QAbstractAnimation * QAbstractAnimation * animationAt(int index) const [0xc8200b0600] }
 &{animationCount QAnimationGroup::animationCount commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qanimationgroup.h non plain false false  int int animationCount() const [] }

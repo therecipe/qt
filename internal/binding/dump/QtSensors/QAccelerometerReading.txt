@@ -2,7 +2,7 @@
 &{x QAccelerometerReading::x commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.cpp non plain false false  qreal qreal x() const [] }
 &{y QAccelerometerReading::y commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.cpp non plain false false  qreal qreal y() const [] }
 &{z QAccelerometerReading::z commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.cpp non plain false false  qreal qreal z() const [] }
-&{setX QAccelerometerReading::setX commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non plain false false  void void setX(qreal x) [0xc823651560] }
-&{setY QAccelerometerReading::setY commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non plain false false  void void setY(qreal y) [0xc823651880] }
-&{setZ QAccelerometerReading::setZ commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non plain false false  void void setZ(qreal z) [0xc823651b40] }
+&{setX QAccelerometerReading::setX commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non plain false false  void void setX(qreal x) [0xc820e63ca0] }
+&{setY QAccelerometerReading::setY commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non plain false false  void void setY(qreal y) [0xc820e63f80] }
+&{setZ QAccelerometerReading::setZ commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qaccelerometer.h non plain false false  void void setZ(qreal z) [0xc822838240] }
 ########################################			ENUMS			########################################

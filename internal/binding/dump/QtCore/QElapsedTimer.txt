@@ -1,18 +1,18 @@
 ########################################			FUNCTIONS			########################################
 &{QElapsedTimer QElapsedTimer::QElapsedTimer commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non constructor false false   QElapsedTimer() [] }
-&{hasExpired QElapsedTimer::hasExpired commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  bool bool hasExpired(qint64 timeout) const [0xc820553340] }
+&{hasExpired QElapsedTimer::hasExpired commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  bool bool hasExpired(qint64 timeout) const [0xc820524860] }
 &{invalidate QElapsedTimer::invalidate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  void void invalidate() [] }
 &{isValid QElapsedTimer::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  bool bool isValid() const [] }
-&{operator!= QElapsedTimer::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  bool bool operator!=(const QElapsedTimer &other) const [0xc820553a80] }
-&{operator== QElapsedTimer::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  bool bool operator==(const QElapsedTimer &other) const [0xc820553d60] }
+&{operator!= QElapsedTimer::operator!= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  bool bool operator!=(const QElapsedTimer &other) const [0xc820524de0] }
+&{operator== QElapsedTimer::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer.h non plain false false  bool bool operator==(const QElapsedTimer &other) const [0xc8205250a0] }
 &{clockType QElapsedTimer::clockType commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain true false  ClockType ClockType clockType() [] }
 &{elapsed QElapsedTimer::elapsed commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 qint64 elapsed() const [] }
 &{isMonotonic QElapsedTimer::isMonotonic commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain true false  bool bool isMonotonic() [] }
 &{msecsSinceReference QElapsedTimer::msecsSinceReference commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 qint64 msecsSinceReference() const [] }
-&{msecsTo QElapsedTimer::msecsTo commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 qint64 msecsTo(const QElapsedTimer &other) const [0xc8205407c0] }
+&{msecsTo QElapsedTimer::msecsTo commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 qint64 msecsTo(const QElapsedTimer &other) const [0xc820525a20] }
 &{nsecsElapsed QElapsedTimer::nsecsElapsed commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 qint64 nsecsElapsed() const [] }
 &{restart QElapsedTimer::restart commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 qint64 restart() [] }
-&{secsTo QElapsedTimer::secsTo commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 qint64 secsTo(const QElapsedTimer &other) const [0xc820540d80] }
+&{secsTo QElapsedTimer::secsTo commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  qint64 qint64 secsTo(const QElapsedTimer &other) const [0xc820525fc0] }
 &{start QElapsedTimer::start commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qelapsedtimer_win.cpp non plain false false  void void start() [] }
 ########################################			ENUMS			########################################
-&{ClockType QElapsedTimer::ClockType commendable public  [0xc820552c40 0xc820552cc0 0xc820552d60 0xc820552e00 0xc820552ee0] false}
+&{ClockType QElapsedTimer::ClockType commendable public  [0xc820524180 0xc820524220 0xc8205242a0 0xc820524340 0xc820524460] false}

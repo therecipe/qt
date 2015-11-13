@@ -2,18 +2,18 @@
 &{data QPicture::data commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.cpp non plain false false  const char * const char * data() const [] }
 &{isNull QPicture::isNull commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.cpp non plain false false  bool bool isNull() const [] }
 &{size QPicture::size commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.cpp non plain false false  uint uint size() const [] }
-&{QPicture QPicture::QPicture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non constructor false true 2  QPicture(const QPicture &pic) [0xc820b647e0] }
-&{QPicture QPicture::QPicture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non constructor false false   QPicture(int formatVersion) [0xc820b64a20] }
+&{QPicture QPicture::QPicture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non constructor false true 2  QPicture(const QPicture &pic) [0xc820c3d980] }
+&{QPicture QPicture::QPicture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non constructor false false   QPicture(int formatVersion) [0xc820c3dc00] }
 &{boundingRect QPicture::boundingRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  QRect QRect boundingRect() const [] }
-&{load QPicture::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false true 2 bool bool load(QIODevice *dev, const char *format) [0xc820b65d80 0xc820b65e60] }
-&{load QPicture::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  bool bool load(const QString &fileName, const char *format) [0xc820b50020 0xc820b500c0] }
-&{operator= QPicture::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false true 2 QPicture & QPicture & operator=(QPicture &&other) [0xc820b502c0] }
-&{operator= QPicture::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  QPicture & QPicture & operator=(const QPicture &p) [0xc820b50540] }
-&{play QPicture::play commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  bool bool play(QPainter *painter) [0xc820b50c80] }
-&{save QPicture::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false true 2 bool bool save(QIODevice *dev, const char *format) [0xc820b50e40 0xc820b50ec0] }
-&{save QPicture::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  bool bool save(const QString &fileName, const char *format) [0xc820b510a0 0xc820b51120] }
-&{setBoundingRect QPicture::setBoundingRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  void void setBoundingRect(const QRect &r) [0xc820b51340] }
-&{setData QPicture::setData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h impure plain false false  void void setData(const char *data, uint size) [0xc820b51560 0xc820b515e0] }
-&{swap QPicture::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  void void swap(QPicture &other) [0xc820b51820] }
+&{load QPicture::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false true 2 bool bool load(QIODevice *dev, const char *format) [0xc820c31240 0xc820c31300] }
+&{load QPicture::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  bool bool load(const QString &fileName, const char *format) [0xc820c314a0 0xc820c31540] }
+&{operator= QPicture::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false true 2 QPicture & QPicture & operator=(QPicture &&other) [0xc820c31740] }
+&{operator= QPicture::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  QPicture & QPicture & operator=(const QPicture &p) [0xc820c31960] }
+&{play QPicture::play commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  bool bool play(QPainter *painter) [0xc820c14060] }
+&{save QPicture::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false true 2 bool bool save(QIODevice *dev, const char *format) [0xc820c141e0 0xc820c14280] }
+&{save QPicture::save commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  bool bool save(const QString &fileName, const char *format) [0xc820c14440 0xc820c144c0] }
+&{setBoundingRect QPicture::setBoundingRect commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  void void setBoundingRect(const QRect &r) [0xc820c14700] }
+&{setData QPicture::setData commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h impure plain false false  void void setData(const char *data, uint size) [0xc820c14900 0xc820c149a0] }
+&{swap QPicture::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non plain false false  void void swap(QPicture &other) [0xc820c14bc0] }
 &{~QPicture QPicture::~QPicture commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qpicture.h non destructor false false   ~QPicture() [] }
 ########################################			ENUMS			########################################

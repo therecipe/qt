@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
-&{QJSValueIterator QJSValueIterator::QJSValueIterator commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non constructor false false   QJSValueIterator(const QJSValue &object) [0xc822c1d6a0] }
+&{QJSValueIterator QJSValueIterator::QJSValueIterator commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non constructor false false   QJSValueIterator(const QJSValue &object) [0xc82362fde0] }
 &{hasNext QJSValueIterator::hasNext commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non plain false false  bool bool hasNext() const [] }
 &{name QJSValueIterator::name commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non plain false false  QString QString name() const [] }
 &{next QJSValueIterator::next commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non plain false false  bool bool next() [] }
-&{operator= QJSValueIterator::operator= commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non plain false false  QJSValueIterator & QJSValueIterator & operator=(QJSValue &object) [0xc822c1dda0] }
+&{operator= QJSValueIterator::operator= commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non plain false false  QJSValueIterator & QJSValueIterator & operator=(QJSValue &object) [0xc82361c7e0] }
 &{value QJSValueIterator::value commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non plain false false  QJSValue QJSValue value() const [] }
 &{~QJSValueIterator QJSValueIterator::~QJSValueIterator commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/jsapi/qjsvalueiterator.h non destructor false false   ~QJSValueIterator() [] }
 ########################################			ENUMS			########################################

@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{defaultDevice QMediaServiceDefaultDeviceInterface::defaultDevice commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h pure plain false false  QByteArray QByteArray defaultDevice(const QByteArray &service) const [0xc822397aa0] }
+&{defaultDevice QMediaServiceDefaultDeviceInterface::defaultDevice commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h pure plain false false  QByteArray QByteArray defaultDevice(const QByteArray &service) const [0xc8223e6f80] }
 &{~QMediaServiceDefaultDeviceInterface QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h impure destructor false false   ~QMediaServiceDefaultDeviceInterface() [] }
 ########################################			ENUMS			########################################

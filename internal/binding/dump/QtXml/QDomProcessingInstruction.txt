@@ -1,9 +1,9 @@
 ########################################			FUNCTIONS			########################################
 &{QDomProcessingInstruction QDomProcessingInstruction::QDomProcessingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   QDomProcessingInstruction() [] }
-&{QDomProcessingInstruction QDomProcessingInstruction::QDomProcessingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomProcessingInstruction(const QDomProcessingInstruction &x) [0xc821f4d4c0] }
+&{QDomProcessingInstruction QDomProcessingInstruction::QDomProcessingInstruction commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomProcessingInstruction(const QDomProcessingInstruction &x) [0xc821928ee0] }
 &{data QDomProcessingInstruction::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString data() const [] }
 &{nodeType QDomProcessingInstruction::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType QDomNode::NodeType nodeType() const [] }
-&{operator= QDomProcessingInstruction::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomProcessingInstruction & QDomProcessingInstruction & operator=(const QDomProcessingInstruction &x) [0xc821f4da60] }
-&{setData QDomProcessingInstruction::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void setData(const QString &d) [0xc821f4dce0] }
+&{operator= QDomProcessingInstruction::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomProcessingInstruction & QDomProcessingInstruction & operator=(const QDomProcessingInstruction &x) [0xc8219295e0] }
+&{setData QDomProcessingInstruction::setData commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  void void setData(const QString &d) [0xc8219298e0] }
 &{target QDomProcessingInstruction::target commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString target() const [] }
 ########################################			ENUMS			########################################

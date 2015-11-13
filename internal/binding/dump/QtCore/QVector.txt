@@ -1,13 +1,13 @@
 ########################################			FUNCTIONS			########################################
 &{QVector QVector::QVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non constructor false false   QVector() [] }
-&{QVector QVector::QVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non constructor false true 5  QVector(QVector<T> &&other) [0xc8204606c0] }
-&{QVector QVector::QVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non constructor false true 4  QVector(const QVector<T> &other) [0xc820460aa0] }
-&{QVector QVector::QVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non constructor false true 2  QVector(int size) [0xc820460e40] }
-&{QVector QVector::QVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non constructor false true 3  QVector(int size, const T &value) [0xc8204610e0 0xc8204611e0] }
-&{QVector QVector::QVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non constructor false true 6  QVector(std::initializer_list<T> args) [0xc820461560] }
-&{append QVector::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 void void append(const QVector<T> &value) [0xc820461900] }
-&{append QVector::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void append(const T &value) [0xc820461d80] }
-&{at QVector::at commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  const T & const T & at(int i) const [0xc820450080] }
+&{QVector QVector::QVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non constructor false true 5  QVector(QVector<T> &&other) [0xc8204d9680] }
+&{QVector QVector::QVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non constructor false true 4  QVector(const QVector<T> &other) [0xc8204d9b40] }
+&{QVector QVector::QVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non constructor false true 2  QVector(int size) [0xc8204c6120] }
+&{QVector QVector::QVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non constructor false true 3  QVector(int size, const T &value) [0xc8204c64e0 0xc8204c6780] }
+&{QVector QVector::QVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non constructor false true 6  QVector(std::initializer_list<T> args) [0xc8204c6c00] }
+&{append QVector::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 void void append(const QVector<T> &value) [0xc8204c7080] }
+&{append QVector::append commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void append(const T &value) [0xc8204c77c0] }
+&{at QVector::at commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  const T & const T & at(int i) const [0xc8204c7c20] }
 &{back QVector::back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  reference reference back() [] }
 &{back QVector::back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 const_reference const_reference back() const [] }
 &{begin QVector::begin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  iterator iterator begin() [] }
@@ -19,71 +19,71 @@
 &{constBegin QVector::constBegin commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  const_iterator const_iterator constBegin() const [] }
 &{constData QVector::constData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  const T * const T * constData() const [] }
 &{constEnd QVector::constEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  const_iterator const_iterator constEnd() const [] }
-&{contains QVector::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool contains(const T &value) const [0xc820451d20] }
+&{contains QVector::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool contains(const T &value) const [0xc8209273a0] }
 &{count QVector::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 int int count() const [] }
-&{count QVector::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  int int count(const T &value) const [0xc820936780] }
+&{count QVector::count commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  int int count(const T &value) const [0xc820927d60] }
 &{data QVector::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  T * T * data() [] }
 &{data QVector::data commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 const T * const T * data() const [] }
 &{empty QVector::empty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool empty() const [] }
 &{end QVector::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  iterator iterator end() [] }
 &{end QVector::end commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 const_iterator const_iterator end() const [] }
-&{endsWith QVector::endsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool endsWith(const T &value) const [0xc820937240] }
-&{erase QVector::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 iterator iterator erase(iterator begin, iterator end) [0xc820937400 0xc8209374a0] }
-&{erase QVector::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  iterator iterator erase(iterator pos) [0xc820937700] }
-&{fill QVector::fill commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QVector<T> & QVector<T> & fill(const T &value, int size) [0xc820937920 0xc8209379e0] }
+&{endsWith QVector::endsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool endsWith(const T &value) const [0xc8204af320] }
+&{erase QVector::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 iterator iterator erase(iterator begin, iterator end) [0xc8204af640 0xc8204af760] }
+&{erase QVector::erase commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  iterator iterator erase(iterator pos) [0xc8204afc40] }
+&{fill QVector::fill commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QVector<T> & QVector<T> & fill(const T &value, int size) [0xc82049e0a0 0xc82049e1e0] }
 &{first QVector::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  T & T & first() [] }
 &{first QVector::first commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 const T & const T & first() const [] }
-&{fromList QVector::fromList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain true false  QVector<T> QVector<T> fromList(const QList<T> &list) [0xc8204404e0] }
-&{fromStdVector QVector::fromStdVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain true false  QVector<T> QVector<T> fromStdVector(const std::vector<T> &vector) [0xc8204408e0] }
+&{fromList QVector::fromList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain true false  QVector<T> QVector<T> fromList(const QList<T> &list) [0xc82049ef00] }
+&{fromStdVector QVector::fromStdVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain true false  QVector<T> QVector<T> fromStdVector(const std::vector<T> &vector) [0xc82049f340] }
 &{front QVector::front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  T & T & front() [] }
 &{front QVector::front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 const_reference const_reference front() const [] }
-&{indexOf QVector::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  int int indexOf(const T &value, int from) const [0xc820440ee0 0xc820440fa0] }
-&{insert QVector::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 4 iterator iterator insert(iterator before, const T &value) [0xc820441320 0xc820441460] }
-&{insert QVector::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 iterator iterator insert(iterator before, int count, const T &value) [0xc820441800 0xc820441940 0xc820441aa0] }
-&{insert QVector::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void insert(int i, const T &value) [0xc820441da0 0xc820441ec0] }
-&{insert QVector::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 3 void void insert(int i, int count, const T &value) [0xc82042c140 0xc82042c2a0 0xc82042c400] }
+&{indexOf QVector::indexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  int int indexOf(const T &value, int from) const [0xc82049fb20 0xc82049fc20] }
+&{insert QVector::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 4 iterator iterator insert(iterator before, const T &value) [0xc82048c1e0 0xc82048c360] }
+&{insert QVector::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 iterator iterator insert(iterator before, int count, const T &value) [0xc82048c740 0xc82048c920 0xc82048cbc0] }
+&{insert QVector::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void insert(int i, const T &value) [0xc82048cf60 0xc82048d000] }
+&{insert QVector::insert commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 3 void void insert(int i, int count, const T &value) [0xc82048d460 0xc82048d520 0xc82048d640] }
 &{isEmpty QVector::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool isEmpty() const [] }
 &{last QVector::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  T & T & last() [] }
 &{last QVector::last commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 const T & const T & last() const [] }
-&{lastIndexOf QVector::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  int int lastIndexOf(const T &value, int from) const [0xc82042df40 0xc82042dfc0] }
+&{lastIndexOf QVector::lastIndexOf commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  int int lastIndexOf(const T &value, int from) const [0xc82047eb40 0xc82047ec80] }
 &{length QVector::length commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  int int length() const [] }
-&{mid QVector::mid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QVector<T> QVector<T> mid(int pos, int length) const [0xc8204184e0 0xc820418620] }
-&{operator!= QVector::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool operator!=(const QVector<T> &other) const [0xc820418b80] }
-&{operator+ QVector::operator+ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QVector<T> QVector<T> operator+(const QVector<T> &other) const [0xc8204191e0] }
-&{operator+= QVector::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QVector<T> & QVector<T> & operator+=(const QVector<T> &other) [0xc820419760] }
-&{operator+= QVector::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 QVector<T> & QVector<T> & operator+=(const T &value) [0xc820419b20] }
-&{operator<< QVector::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 QVector<T> & QVector<T> & operator<<(const QVector<T> &other) [0xc820419fe0] }
-&{operator<< QVector::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QVector<T> & QVector<T> & operator<<(const T &value) [0xc8206b41e0] }
-&{operator= QVector::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QVector<T> & QVector<T> & operator=(const QVector<T> &other) [0xc8206b43e0] }
-&{operator= QVector::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 QVector<T> QVector<T> operator=(QVector<T> &&other) [0xc8206b45e0] }
-&{operator== QVector::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool operator==(const QVector<T> &other) const [0xc8206b4840] }
-&{operator[] QVector::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  T & T & operator[](int i) [0xc8206b4be0] }
-&{operator[] QVector::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 const T & const T & operator[](int i) const [0xc8206b4e60] }
+&{mid QVector::mid commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QVector<T> QVector<T> mid(int pos, int length) const [0xc82047f0e0 0xc82047f280] }
+&{operator!= QVector::operator!= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool operator!=(const QVector<T> &other) const [0xc82047f620] }
+&{operator+ QVector::operator+ commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QVector<T> QVector<T> operator+(const QVector<T> &other) const [0xc82047fb20] }
+&{operator+= QVector::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QVector<T> & QVector<T> & operator+=(const QVector<T> &other) [0xc8204700a0] }
+&{operator+= QVector::operator+= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 QVector<T> & QVector<T> & operator+=(const T &value) [0xc820470400] }
+&{operator<< QVector::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 QVector<T> & QVector<T> & operator<<(const QVector<T> &other) [0xc8204707c0] }
+&{operator<< QVector::operator<< commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QVector<T> & QVector<T> & operator<<(const T &value) [0xc820470c20] }
+&{operator= QVector::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QVector<T> & QVector<T> & operator=(const QVector<T> &other) [0xc820471100] }
+&{operator= QVector::operator= commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 QVector<T> QVector<T> operator=(QVector<T> &&other) [0xc820471640] }
+&{operator== QVector::operator== commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool operator==(const QVector<T> &other) const [0xc820471aa0] }
+&{operator[] QVector::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  T & T & operator[](int i) [0xc820471ee0] }
+&{operator[] QVector::operator[] commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 const T & const T & operator[](int i) const [0xc82045e140] }
 &{pop_back QVector::pop_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void pop_back() [] }
 &{pop_front QVector::pop_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void pop_front() [] }
-&{prepend QVector::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void prepend(const T &value) [0xc8206b5220] }
-&{push_back QVector::push_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void push_back(const T &value) [0xc8206b54e0] }
-&{push_front QVector::push_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void push_front(const T &value) [0xc8206b57a0] }
-&{remove QVector::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void remove(int i) [0xc8203e4520] }
-&{remove QVector::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 void void remove(int i, int count) [0xc8203e4b60 0xc8203e4d60] }
-&{removeAll QVector::removeAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  int int removeAll(const T &t) [0xc8203e52e0] }
-&{removeAt QVector::removeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void removeAt(int i) [0xc8203e5860] }
+&{prepend QVector::prepend commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void prepend(const T &value) [0xc82045e500] }
+&{push_back QVector::push_back commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void push_back(const T &value) [0xc82045e940] }
+&{push_front QVector::push_front commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void push_front(const T &value) [0xc82045ef00] }
+&{remove QVector::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void remove(int i) [0xc82045ff80] }
+&{remove QVector::remove commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 void void remove(int i, int count) [0xc82044e4c0 0xc82044e5e0] }
+&{removeAll QVector::removeAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  int int removeAll(const T &t) [0xc82044eac0] }
+&{removeAt QVector::removeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void removeAt(int i) [0xc82044f0c0] }
 &{removeFirst QVector::removeFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void removeFirst() [] }
 &{removeLast QVector::removeLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void removeLast() [] }
-&{removeOne QVector::removeOne commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool removeOne(const T &t) [0xc8203c49c0] }
-&{replace QVector::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void replace(int i, const T &value) [0xc8203c5040 0xc8203c5280] }
-&{reserve QVector::reserve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void reserve(int size) [0xc8203c5860] }
-&{resize QVector::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void resize(int size) [0xc8203c5d00] }
+&{removeOne QVector::removeOne commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool removeOne(const T &t) [0xc82044f8c0] }
+&{replace QVector::replace commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void replace(int i, const T &value) [0xc82044fba0 0xc82044fc80] }
+&{reserve QVector::reserve commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void reserve(int size) [0xc82044ffa0] }
+&{resize QVector::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void resize(int size) [0xc82042a360] }
 &{size QVector::size commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  int int size() const [] }
 &{squeeze QVector::squeeze commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void squeeze() [] }
-&{startsWith QVector::startsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool startsWith(const T &value) const [0xc8203b4de0] }
-&{swap QVector::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void swap(QVector<T> &other) [0xc8203b5180] }
-&{takeAt QVector::takeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  T T takeAt(int i) [0xc8203b54a0] }
+&{startsWith QVector::startsWith commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  bool bool startsWith(const T &value) const [0xc82042b320] }
+&{swap QVector::swap commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  void void swap(QVector<T> &other) [0xc82042b800] }
+&{takeAt QVector::takeAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  T T takeAt(int i) [0xc82042bd40] }
 &{takeFirst QVector::takeFirst commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  T T takeFirst() [] }
 &{takeLast QVector::takeLast commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  T T takeLast() [] }
 &{toList QVector::toList commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  QList<T> QList<T> toList() const [] }
 &{toStdVector QVector::toStdVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  std::vector<T> std::vector<T> toStdVector() const [] }
-&{value QVector::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  T T value(int i) const [0xc8203a02c0] }
-&{value QVector::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 T T value(int i, const T &defaultValue) const [0xc8203a0600 0xc8203a0700] }
+&{value QVector::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false false  T T value(int i) const [0xc820416b00] }
+&{value QVector::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non plain false true 2 T T value(int i, const T &defaultValue) const [0xc820416e60 0xc820416fe0] }
 &{~QVector QVector::~QVector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qvector.h non destructor false false   ~QVector() [] }
 ########################################			ENUMS			########################################

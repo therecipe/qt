@@ -2,7 +2,7 @@
 &{QSGGeometryNode QSGGeometryNode::QSGGeometryNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non constructor false false   QSGGeometryNode() [] }
 &{material QSGGeometryNode::material commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  QSGMaterial * QSGMaterial * material() const [] }
 &{opaqueMaterial QSGGeometryNode::opaqueMaterial commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  QSGMaterial * QSGMaterial * opaqueMaterial() const [] }
-&{setMaterial QSGGeometryNode::setMaterial commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setMaterial(QSGMaterial *material) [0xc820d28e80] }
-&{setOpaqueMaterial QSGGeometryNode::setOpaqueMaterial commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setOpaqueMaterial(QSGMaterial *material) [0xc820d29160] }
+&{setMaterial QSGGeometryNode::setMaterial commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setMaterial(QSGMaterial *material) [0xc820ea2fe0] }
+&{setOpaqueMaterial QSGGeometryNode::setOpaqueMaterial commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setOpaqueMaterial(QSGMaterial *material) [0xc820ea3220] }
 &{~QSGGeometryNode QSGGeometryNode::~QSGGeometryNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non destructor false false   ~QSGGeometryNode() [] }
 ########################################			ENUMS			########################################

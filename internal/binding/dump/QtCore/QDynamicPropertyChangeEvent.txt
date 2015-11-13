@@ -1,4 +1,4 @@
 ########################################			FUNCTIONS			########################################
-&{QDynamicPropertyChangeEvent QDynamicPropertyChangeEvent::QDynamicPropertyChangeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non constructor false false   QDynamicPropertyChangeEvent(const QByteArray &name) [0xc8205b0c40] }
+&{QDynamicPropertyChangeEvent QDynamicPropertyChangeEvent::QDynamicPropertyChangeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non constructor false false   QDynamicPropertyChangeEvent(const QByteArray &name) [0xc820642fa0] }
 &{propertyName QDynamicPropertyChangeEvent::propertyName commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qcoreevent.h non plain false false  QByteArray QByteArray propertyName() const [] }
 ########################################			ENUMS			########################################

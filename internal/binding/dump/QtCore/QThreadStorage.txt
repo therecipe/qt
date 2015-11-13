@@ -3,6 +3,6 @@
 &{hasLocalData QThreadStorage::hasLocalData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  bool bool hasLocalData() const [] }
 &{localData QThreadStorage::localData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  T & T & localData() [] }
 &{localData QThreadStorage::localData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false true 2 T T localData() const [] }
-&{setLocalData QThreadStorage::setLocalData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  void void setLocalData(T data) [0xc820781580] }
+&{setLocalData QThreadStorage::setLocalData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non plain false false  void void setLocalData(T data) [0xc82077f5e0] }
 &{~QThreadStorage QThreadStorage::~QThreadStorage commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qthreadstorage.h non destructor false false   ~QThreadStorage() [] }
 ########################################			ENUMS			########################################

@@ -1,15 +1,15 @@
 ########################################			FUNCTIONS			########################################
-&{QPlaceReply QPlaceReply::QPlaceReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non constructor false false   QPlaceReply(QObject *parent) [0xc820a885a0] }
+&{QPlaceReply QPlaceReply::QPlaceReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non constructor false false   QPlaceReply(QObject *parent) [0xc822839140] }
 &{abort QPlaceReply::abort commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h impure slot false false  void void abort() [] }
-&{error QPlaceReply::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non signal false true 2 void void error(QPlaceReply::Error error, const QString &errorString) [0xc820a891e0 0xc820a893a0] }
+&{error QPlaceReply::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non signal false true 2 void void error(QPlaceReply::Error error, const QString &errorString) [0xc822839d20 0xc822839ea0] }
 &{error QPlaceReply::error commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non plain false false  QPlaceReply::Error QPlaceReply::Error error() const [] }
 &{errorString QPlaceReply::errorString commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non plain false false  QString QString errorString() const [] }
 &{finished QPlaceReply::finished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non signal false false  void void finished() [] }
 &{isFinished QPlaceReply::isFinished commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non plain false false  bool bool isFinished() const [] }
-&{setError QPlaceReply::setError commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non plain false false  void void setError(QPlaceReply::Error error, const QString &errorString) [0xc820684820 0xc820684a00] }
-&{setFinished QPlaceReply::setFinished commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non plain false false  void void setFinished(bool finished) [0xc820685000] }
+&{setError QPlaceReply::setError commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non plain false false  void void setError(QPlaceReply::Error error, const QString &errorString) [0xc820e14fc0 0xc820e15120] }
+&{setFinished QPlaceReply::setFinished commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non plain false false  void void setFinished(bool finished) [0xc820e15580] }
 &{type QPlaceReply::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h impure plain false false  Type Type type() const [] }
 &{~QPlaceReply QPlaceReply::~QPlaceReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacereply.h non destructor false false   ~QPlaceReply() [] }
 ########################################			ENUMS			########################################
-&{Error QPlaceReply::Error commendable public  [0xc8205681c0 0xc820568560 0xc820568780 0xc820568be0 0xc8205691e0 0xc8205693c0 0xc8205697c0 0xc820569c80 0xc820569ea0 0xc82058c360] false}
-&{Type QPlaceReply::Type commendable public  [0xc82058cba0 0xc82058cda0 0xc82058d0a0 0xc82058d360 0xc82058d860 0xc82058dd20 0xc82058de00] false}
+&{Error QPlaceReply::Error commendable public  [0xc8226a52a0 0xc8226a5420 0xc8226a55e0 0xc8226a5740 0xc8226a5960 0xc8226a5b00 0xc8226a5c00 0xc8226a5d40 0xc8226a5ec0 0xc822838060] false}
+&{Type QPlaceReply::Type commendable public  [0xc822838420 0xc822838540 0xc822838600 0xc822838760 0xc822838980 0xc822838b40 0xc822838c40] false}

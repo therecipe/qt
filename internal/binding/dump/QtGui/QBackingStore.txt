@@ -1,14 +1,14 @@
 ########################################			FUNCTIONS			########################################
 &{paintDevice QBackingStore::paintDevice commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.cpp non plain false false  QPaintDevice * QPaintDevice * paintDevice() [] }
-&{QBackingStore QBackingStore::QBackingStore commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non constructor false false   QBackingStore(QWindow *window) [0xc821e433c0] }
-&{beginPaint QBackingStore::beginPaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void void beginPaint(const QRegion &region) [0xc821e43580] }
+&{QBackingStore QBackingStore::QBackingStore commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non constructor false false   QBackingStore(QWindow *window) [0xc822460420] }
+&{beginPaint QBackingStore::beginPaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void void beginPaint(const QRegion &region) [0xc8224605e0] }
 &{endPaint QBackingStore::endPaint commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void void endPaint() [] }
-&{flush QBackingStore::flush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void void flush(const QRegion &region, QWindow *win, const QPoint &offset) [0xc821e43840 0xc821e438c0 0xc821e43940] }
+&{flush QBackingStore::flush commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void void flush(const QRegion &region, QWindow *win, const QPoint &offset) [0xc8224608a0 0xc822460920 0xc8224609a0] }
 &{handle QBackingStore::handle commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  QPlatformBackingStore * QPlatformBackingStore * handle() const [] }
 &{hasStaticContents QBackingStore::hasStaticContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  bool bool hasStaticContents() const [] }
-&{resize QBackingStore::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void void resize(const QSize &size) [0xc821e43e20] }
-&{scroll QBackingStore::scroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  bool bool scroll(const QRegion &area, int dx, int dy) [0xc821e56000 0xc821e56080 0xc821e56100] }
-&{setStaticContents QBackingStore::setStaticContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void void setStaticContents(const QRegion &region) [0xc821e56300] }
+&{resize QBackingStore::resize commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void void resize(const QSize &size) [0xc822460e80] }
+&{scroll QBackingStore::scroll commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  bool bool scroll(const QRegion &area, int dx, int dy) [0xc822461060 0xc8224610e0 0xc822461160] }
+&{setStaticContents QBackingStore::setStaticContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  void void setStaticContents(const QRegion &region) [0xc822461360] }
 &{size QBackingStore::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  QSize QSize size() const [] }
 &{staticContents QBackingStore::staticContents commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  QRegion QRegion staticContents() const [] }
 &{window QBackingStore::window commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qbackingstore.h non plain false false  QWindow * QWindow * window() const [] }
