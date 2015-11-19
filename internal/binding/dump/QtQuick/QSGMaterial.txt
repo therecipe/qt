@@ -1,8 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{compare QSGMaterial::compare commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h impure plain false false  int int compare(const QSGMaterial *other) const [0xc82250dc00] }
-&{createShader QSGMaterial::createShader commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h pure plain false false  QSGMaterialShader * QSGMaterialShader * createShader() const [] }
-&{flags QSGMaterial::flags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  QSGMaterial::Flags QSGMaterial::Flags flags() const [] }
-&{setFlag QSGMaterial::setFlag commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h non plain false false  void void setFlag(Flags flags, bool on) [0xc820ffc8c0 0xc820ffca20] }
-&{type QSGMaterial::type commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgmaterial.h pure plain false false  QSGMaterialType * QSGMaterialType * type() const [] }
-########################################			ENUMS			########################################
-&{Flag QSGMaterial::Flag commendable public QSGMaterial::Flags [0xc82250d000 0xc82250d100 0xc82250d260 0xc82250d400 0xc82250d580] false}

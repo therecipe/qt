@@ -26,7 +26,7 @@ func PointerFromQSignalMapper(ptr QSignalMapper_ITF) unsafe.Pointer {
 func NewQSignalMapperFromPointer(ptr unsafe.Pointer) *QSignalMapper {
 	var n = new(QSignalMapper)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSignalMapper_" + qt.RandomIdentifier())
 	}
 	return n

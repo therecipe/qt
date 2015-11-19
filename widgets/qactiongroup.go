@@ -28,7 +28,7 @@ func PointerFromQActionGroup(ptr QActionGroup_ITF) unsafe.Pointer {
 func NewQActionGroupFromPointer(ptr unsafe.Pointer) *QActionGroup {
 	var n = new(QActionGroup)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QActionGroup_" + qt.RandomIdentifier())
 	}
 	return n

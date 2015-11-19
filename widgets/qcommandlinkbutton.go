@@ -26,7 +26,7 @@ func PointerFromQCommandLinkButton(ptr QCommandLinkButton_ITF) unsafe.Pointer {
 func NewQCommandLinkButtonFromPointer(ptr unsafe.Pointer) *QCommandLinkButton {
 	var n = new(QCommandLinkButton)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCommandLinkButton_" + qt.RandomIdentifier())
 	}
 	return n

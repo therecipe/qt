@@ -1,3 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{filter QProximityFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qproximitysensor.h pure plain false false  bool bool filter(QProximityReading *reading) [0xc822014e40] }
-########################################			ENUMS			########################################

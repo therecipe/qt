@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QStyleOptionTabWidgetFrame QStyleOptionTabWidgetFrame::QStyleOptionTabWidgetFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionTabWidgetFrame() [] }
-&{QStyleOptionTabWidgetFrame QStyleOptionTabWidgetFrame::QStyleOptionTabWidgetFrame commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionTabWidgetFrame(const QStyleOptionTabWidgetFrame &other) [0xc82228a520] }
-########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionTabWidgetFrame::StyleOptionType commendable public  [0xc822275ee0] false}
-&{StyleOptionVersion QStyleOptionTabWidgetFrame::StyleOptionVersion commendable public  [0xc82228a120] false}

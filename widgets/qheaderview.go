@@ -27,7 +27,7 @@ func PointerFromQHeaderView(ptr QHeaderView_ITF) unsafe.Pointer {
 func NewQHeaderViewFromPointer(ptr unsafe.Pointer) *QHeaderView {
 	var n = new(QHeaderView)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QHeaderView_" + qt.RandomIdentifier())
 	}
 	return n

@@ -27,7 +27,7 @@ func PointerFromQValidator(ptr QValidator_ITF) unsafe.Pointer {
 func NewQValidatorFromPointer(ptr unsafe.Pointer) *QValidator {
 	var n = new(QValidator)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QValidator_" + qt.RandomIdentifier())
 	}
 	return n

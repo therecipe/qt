@@ -28,7 +28,7 @@ func PointerFromQSGAbstractRenderer(ptr QSGAbstractRenderer_ITF) unsafe.Pointer 
 func NewQSGAbstractRendererFromPointer(ptr unsafe.Pointer) *QSGAbstractRenderer {
 	var n = new(QSGAbstractRenderer)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSGAbstractRenderer_" + qt.RandomIdentifier())
 	}
 	return n

@@ -27,7 +27,7 @@ func PointerFromQAbstractMessageHandler(ptr QAbstractMessageHandler_ITF) unsafe.
 func NewQAbstractMessageHandlerFromPointer(ptr unsafe.Pointer) *QAbstractMessageHandler {
 	var n = new(QAbstractMessageHandler)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractMessageHandler_" + qt.RandomIdentifier())
 	}
 	return n

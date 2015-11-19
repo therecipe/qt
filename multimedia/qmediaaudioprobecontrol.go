@@ -26,7 +26,7 @@ func PointerFromQMediaAudioProbeControl(ptr QMediaAudioProbeControl_ITF) unsafe.
 func NewQMediaAudioProbeControlFromPointer(ptr unsafe.Pointer) *QMediaAudioProbeControl {
 	var n = new(QMediaAudioProbeControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMediaAudioProbeControl_" + qt.RandomIdentifier())
 	}
 	return n

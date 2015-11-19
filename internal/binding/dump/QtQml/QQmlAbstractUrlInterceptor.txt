@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QQmlAbstractUrlInterceptor QQmlAbstractUrlInterceptor::QQmlAbstractUrlInterceptor commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlabstracturlinterceptor.h non constructor false false   QQmlAbstractUrlInterceptor() [] }
-&{intercept QQmlAbstractUrlInterceptor::intercept commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlabstracturlinterceptor.h pure plain false false  QUrl QUrl intercept(const QUrl &url, DataType type) [0xc8235de8e0 0xc8235de980] }
-&{~QQmlAbstractUrlInterceptor QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlabstracturlinterceptor.h impure destructor false false   ~QQmlAbstractUrlInterceptor() [] }
-########################################			ENUMS			########################################
-&{DataType QQmlAbstractUrlInterceptor::DataType commendable public  [0xc8235de0a0 0xc8235de220 0xc8235de300 0xc8235de3c0] false}

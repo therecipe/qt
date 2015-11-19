@@ -27,7 +27,7 @@ func PointerFromQGridLayout(ptr QGridLayout_ITF) unsafe.Pointer {
 func NewQGridLayoutFromPointer(ptr unsafe.Pointer) *QGridLayout {
 	var n = new(QGridLayout)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGridLayout_" + qt.RandomIdentifier())
 	}
 	return n

@@ -1,3 +1,0 @@
-########################################			FUNCTIONS			########################################
-########################################			ENUMS			########################################
-&{CharAttributeOption QUnicodeTools::CharAttributeOption commendable public QUnicodeTools::CharAttributeOptions [0xc820546b40 0xc820546bc0 0xc820546c40 0xc820546cc0 0xc820546d60 0xc820546e00 0xc820546ee0] false}

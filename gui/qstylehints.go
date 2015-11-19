@@ -27,7 +27,7 @@ func PointerFromQStyleHints(ptr QStyleHints_ITF) unsafe.Pointer {
 func NewQStyleHintsFromPointer(ptr unsafe.Pointer) *QStyleHints {
 	var n = new(QStyleHints)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QStyleHints_" + qt.RandomIdentifier())
 	}
 	return n

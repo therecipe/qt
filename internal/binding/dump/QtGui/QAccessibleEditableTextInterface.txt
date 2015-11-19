@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{deleteText QAccessibleEditableTextInterface::deleteText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void void deleteText(int startOffset, int endOffset) [0xc820e10cc0 0xc820e10d40] }
-&{insertText QAccessibleEditableTextInterface::insertText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void void insertText(int offset, const QString &text) [0xc820e10e80 0xc820e10f00] }
-&{replaceText QAccessibleEditableTextInterface::replaceText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h pure plain false false  void void replaceText(int startOffset, int endOffset, const QString &text) [0xc820e110a0 0xc820e11140 0xc820e111c0] }
-&{~QAccessibleEditableTextInterface QAccessibleEditableTextInterface::~QAccessibleEditableTextInterface commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h impure destructor false false   ~QAccessibleEditableTextInterface() [] }
-########################################			ENUMS			########################################

@@ -26,7 +26,7 @@ func PointerFromQVideoDeviceSelectorControl(ptr QVideoDeviceSelectorControl_ITF)
 func NewQVideoDeviceSelectorControlFromPointer(ptr unsafe.Pointer) *QVideoDeviceSelectorControl {
 	var n = new(QVideoDeviceSelectorControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QVideoDeviceSelectorControl_" + qt.RandomIdentifier())
 	}
 	return n

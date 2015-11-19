@@ -27,7 +27,7 @@ func PointerFromQAbstractVideoFilter(ptr QAbstractVideoFilter_ITF) unsafe.Pointe
 func NewQAbstractVideoFilterFromPointer(ptr unsafe.Pointer) *QAbstractVideoFilter {
 	var n = new(QAbstractVideoFilter)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractVideoFilter_" + qt.RandomIdentifier())
 	}
 	return n

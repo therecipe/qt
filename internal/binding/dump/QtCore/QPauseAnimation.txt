@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{duration QPauseAnimation::duration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpauseanimation.cpp impure plain false false  int int duration() const [] }
-&{setDuration QPauseAnimation::setDuration commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpauseanimation.cpp non plain false false  void void setDuration(int msecs) [0xc8200c2bc0] }
-&{QPauseAnimation QPauseAnimation::QPauseAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpauseanimation.h non constructor false false   QPauseAnimation(QObject *parent) [0xc8200c2de0] }
-&{QPauseAnimation QPauseAnimation::QPauseAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpauseanimation.h non constructor false true 2  QPauseAnimation(int msecs, QObject *parent) [0xc8200c2fa0 0xc8200c3020] }
-&{event QPauseAnimation::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpauseanimation.h impure plain false false  bool bool event(QEvent *e) [0xc8200c3280] }
-&{updateCurrentTime QPauseAnimation::updateCurrentTime commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpauseanimation.h impure plain false false  void void updateCurrentTime(int ) [0xc8200c34a0] }
-&{~QPauseAnimation QPauseAnimation::~QPauseAnimation commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/animation/qpauseanimation.h non destructor false false   ~QPauseAnimation() [] }
-########################################			ENUMS			########################################

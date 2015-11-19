@@ -27,7 +27,7 @@ func PointerFromQClipboard(ptr QClipboard_ITF) unsafe.Pointer {
 func NewQClipboardFromPointer(ptr unsafe.Pointer) *QClipboard {
 	var n = new(QClipboard)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QClipboard_" + qt.RandomIdentifier())
 	}
 	return n

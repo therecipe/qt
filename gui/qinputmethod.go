@@ -27,7 +27,7 @@ func PointerFromQInputMethod(ptr QInputMethod_ITF) unsafe.Pointer {
 func NewQInputMethodFromPointer(ptr unsafe.Pointer) *QInputMethod {
 	var n = new(QInputMethod)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QInputMethod_" + qt.RandomIdentifier())
 	}
 	return n

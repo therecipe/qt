@@ -28,7 +28,7 @@ func PointerFromQFontDialog(ptr QFontDialog_ITF) unsafe.Pointer {
 func NewQFontDialogFromPointer(ptr unsafe.Pointer) *QFontDialog {
 	var n = new(QFontDialog)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QFontDialog_" + qt.RandomIdentifier())
 	}
 	return n

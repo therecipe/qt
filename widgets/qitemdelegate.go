@@ -28,7 +28,7 @@ func PointerFromQItemDelegate(ptr QItemDelegate_ITF) unsafe.Pointer {
 func NewQItemDelegateFromPointer(ptr unsafe.Pointer) *QItemDelegate {
 	var n = new(QItemDelegate)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QItemDelegate_" + qt.RandomIdentifier())
 	}
 	return n

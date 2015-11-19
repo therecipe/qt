@@ -26,7 +26,7 @@ func PointerFromQMediaAvailabilityControl(ptr QMediaAvailabilityControl_ITF) uns
 func NewQMediaAvailabilityControlFromPointer(ptr unsafe.Pointer) *QMediaAvailabilityControl {
 	var n = new(QMediaAvailabilityControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMediaAvailabilityControl_" + qt.RandomIdentifier())
 	}
 	return n

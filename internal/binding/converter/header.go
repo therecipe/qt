@@ -29,6 +29,8 @@ func GoHeaderName(f *parser.Function) (o string) {
 
 	o += strings.Title(f.Name)
 
+	o += f.TemplateMode
+
 	if f.Overload {
 		o += f.OverloadNumber
 	}
@@ -76,7 +78,7 @@ func GoHeaderInput(f *parser.Function) (o string) {
 	if f.SignalMode == "callback" {
 		o += "ptrName *C.char"
 		for _, p := range f.Parameters {
-			if v := cgoType(f, p.Value); !(v == "" || p.Value == "...") {
+			if v := cgoType(f, p.Value); !(v == "") {
 				o += fmt.Sprintf(", %v %v", cleanName(p.Name), v)
 			}
 		}
@@ -151,7 +153,7 @@ func CppHeaderInput(f *parser.Function) (o string) {
 	}
 
 	for _, p := range f.Parameters {
-		if v := cppType(f, p.Value); !(v == "" || p.Value == "...") {
+		if v := cppType(f, p.Value); !(v == "") {
 			o += fmt.Sprintf("%v %v, ", v, cleanName(p.Name))
 		} else {
 			f.Access = "unsupported_CppHeaderInput"

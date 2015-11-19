@@ -1,8 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{toUnicode QTextDecoder::toUnicode commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.cpp non plain false false  QString QString toUnicode(const char *chars, int len) [0xc820132a60 0xc820132ae0] }
-&{QTextDecoder QTextDecoder::QTextDecoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non constructor false false   QTextDecoder(const QTextCodec *codec) [0xc820132cc0] }
-&{QTextDecoder QTextDecoder::QTextDecoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non constructor false true 2  QTextDecoder(const QTextCodec *codec, QTextCodec::ConversionFlags flags) [0xc820132ee0 0xc820132fc0] }
-&{toUnicode QTextDecoder::toUnicode commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false true 3 QString QString toUnicode(const QByteArray &ba) [0xc820133340] }
-&{toUnicode QTextDecoder::toUnicode commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non plain false true 2 void void toUnicode(QString *target, const char *chars, int len) [0xc820133540 0xc8201335c0 0xc820133640] }
-&{~QTextDecoder QTextDecoder::~QTextDecoder commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/codecs/qtextcodec.h non destructor false false   ~QTextDecoder() [] }
-########################################			ENUMS			########################################

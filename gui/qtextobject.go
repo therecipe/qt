@@ -27,7 +27,7 @@ func PointerFromQTextObject(ptr QTextObject_ITF) unsafe.Pointer {
 func NewQTextObjectFromPointer(ptr unsafe.Pointer) *QTextObject {
 	var n = new(QTextObject)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTextObject_" + qt.RandomIdentifier())
 	}
 	return n

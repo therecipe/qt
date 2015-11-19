@@ -27,7 +27,7 @@ func PointerFromQTcpServer(ptr QTcpServer_ITF) unsafe.Pointer {
 func NewQTcpServerFromPointer(ptr unsafe.Pointer) *QTcpServer {
 	var n = new(QTcpServer)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTcpServer_" + qt.RandomIdentifier())
 	}
 	return n

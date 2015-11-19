@@ -27,7 +27,7 @@ func PointerFromQDBusAbstractAdaptor(ptr QDBusAbstractAdaptor_ITF) unsafe.Pointe
 func NewQDBusAbstractAdaptorFromPointer(ptr unsafe.Pointer) *QDBusAbstractAdaptor {
 	var n = new(QDBusAbstractAdaptor)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDBusAbstractAdaptor_" + qt.RandomIdentifier())
 	}
 	return n

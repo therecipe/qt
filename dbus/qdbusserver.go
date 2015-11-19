@@ -27,7 +27,7 @@ func PointerFromQDBusServer(ptr QDBusServer_ITF) unsafe.Pointer {
 func NewQDBusServerFromPointer(ptr unsafe.Pointer) *QDBusServer {
 	var n = new(QDBusServer)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDBusServer_" + qt.RandomIdentifier())
 	}
 	return n

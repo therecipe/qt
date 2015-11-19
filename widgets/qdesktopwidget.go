@@ -27,7 +27,7 @@ func PointerFromQDesktopWidget(ptr QDesktopWidget_ITF) unsafe.Pointer {
 func NewQDesktopWidgetFromPointer(ptr unsafe.Pointer) *QDesktopWidget {
 	var n = new(QDesktopWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDesktopWidget_" + qt.RandomIdentifier())
 	}
 	return n

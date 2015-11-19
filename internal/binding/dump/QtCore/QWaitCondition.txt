@@ -1,8 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QWaitCondition QWaitCondition::QWaitCondition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non constructor false false   QWaitCondition() [] }
-&{wait QWaitCondition::wait commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non plain false false  bool bool wait(QMutex *lockedMutex, unsigned long time) [0xc82077faa0 0xc82077fb20] }
-&{wait QWaitCondition::wait commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non plain false true 2 bool bool wait(QReadWriteLock *lockedReadWriteLock, unsigned long time) [0xc82077fd20 0xc82077fde0] }
-&{wakeAll QWaitCondition::wakeAll commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non plain false false  void void wakeAll() [] }
-&{wakeOne QWaitCondition::wakeOne commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non plain false false  void void wakeOne() [] }
-&{~QWaitCondition QWaitCondition::~QWaitCondition commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qwaitcondition_win.cpp non destructor false false   ~QWaitCondition() [] }
-########################################			ENUMS			########################################

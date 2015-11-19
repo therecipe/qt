@@ -16,7 +16,7 @@
 
 3. Setup the environment
 	* Windows
-		* Add the directory that contains "gcc" to your PATH
+		* Add the directory that contains "gcc.exe" to your PATH
 
 			`C:\Qt\Qt5.5.1\Tools\mingw492_32\bin`
 
@@ -83,40 +83,41 @@
     or
 
   	`github.com/therecipe/qt/setup.sh android`
-  	
-  	
-# Desktop(Windows) Quick Start
 
-1. Create a folder: [GoPath]\src\qtExample.
-2. Create a file named main.go in this folder.
-```
+# Quick Start
+
+1. Create a folder: [GoPath]/src/qtExample
+
+2. Create a file named main.go in this folder
+```go
 package main
 
 import (
 	"os"
+
 	"github.com/therecipe/qt/widgets"
 )
 
 func main() {
 	widgets.NewQApplication(len(os.Args), os.Args)
-	var btn = widgets.NewQPushButton2("Hello World",nil)
-    btn.Resize2(180,44)
-    btn.ConnectClicked(func(flag bool) {
-        widgets.QMessageBox_Information(nil,"OK","You Clicked me!",widgets.QMessageBox__Ok,widgets.QMessageBox__Ok)
-    })
-    var window = widgets.NewQMainWindow(nil, 0)
+
+	var btn = widgets.NewQPushButton2("Hello World", nil)
+	btn.Resize2(180, 44)
+	btn.ConnectClicked(func(flag bool) {
+		widgets.QMessageBox_Information(nil, "OK", "You Clicked me!", widgets.QMessageBox__Ok, widgets.QMessageBox__Ok)
+	})
+
+	var window = widgets.NewQMainWindow(nil, 0)
 	window.SetWindowTitle("Hello World Example")
 	window.Layout().AddWidget(btn)
 	window.Show()
+
 	widgets.QApplication_Exec()
 }
 ```
-3.Open the command line in [GoPath]\src,And run:
-```
-qtdeploy build desktop qtExample
-```
-4.Wait a minute,and then you will find the executable file here.
-```
-[GoPath]\src\qtExample\deploy\windows\qtExample.exe
-```
 
+3.Open the command line in [GoPath]/src, and run:
+`qtdeploy build desktop qtExample`
+
+4.Wait a minute,and then you will find the executable file here.
+`[GoPath]/src/qtExample/deploy/{windows|darwin|linux}/qtExample(.exe)`

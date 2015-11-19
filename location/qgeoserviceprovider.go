@@ -28,7 +28,7 @@ func PointerFromQGeoServiceProvider(ptr QGeoServiceProvider_ITF) unsafe.Pointer 
 func NewQGeoServiceProviderFromPointer(ptr unsafe.Pointer) *QGeoServiceProvider {
 	var n = new(QGeoServiceProvider)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGeoServiceProvider_" + qt.RandomIdentifier())
 	}
 	return n

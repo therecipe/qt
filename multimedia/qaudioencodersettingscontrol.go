@@ -27,7 +27,7 @@ func PointerFromQAudioEncoderSettingsControl(ptr QAudioEncoderSettingsControl_IT
 func NewQAudioEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QAudioEncoderSettingsControl {
 	var n = new(QAudioEncoderSettingsControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAudioEncoderSettingsControl_" + qt.RandomIdentifier())
 	}
 	return n

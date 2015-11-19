@@ -1,11 +1,11 @@
 #include "qscriptenginedebugger.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QObject>
 #include <QWidget>
 #include <QScriptEngine>
 #include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QScriptEngineDebugger>
 #include "_cgo_export.h"
 

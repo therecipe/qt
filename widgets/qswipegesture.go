@@ -26,7 +26,7 @@ func PointerFromQSwipeGesture(ptr QSwipeGesture_ITF) unsafe.Pointer {
 func NewQSwipeGestureFromPointer(ptr unsafe.Pointer) *QSwipeGesture {
 	var n = new(QSwipeGesture)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSwipeGesture_" + qt.RandomIdentifier())
 	}
 	return n

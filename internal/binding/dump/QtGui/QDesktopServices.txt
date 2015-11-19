@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{openUrl QDesktopServices::openUrl commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qdesktopservices.h non plain true false  bool bool openUrl(const QUrl &url) [0xc8206db720] }
-&{setUrlHandler QDesktopServices::setUrlHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qdesktopservices.h non plain true false  void void setUrlHandler(const QString &scheme, QObject *receiver, const char *method) [0xc8206dbf40 0xc820744120 0xc820744260] }
-&{unsetUrlHandler QDesktopServices::unsetUrlHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qdesktopservices.h non plain true false  void void unsetUrlHandler(const QString &scheme) [0xc820744a60] }
-########################################			ENUMS			########################################

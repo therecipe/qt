@@ -26,7 +26,7 @@ func PointerFromQAbstractTransition(ptr QAbstractTransition_ITF) unsafe.Pointer 
 func NewQAbstractTransitionFromPointer(ptr unsafe.Pointer) *QAbstractTransition {
 	var n = new(QAbstractTransition)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractTransition_" + qt.RandomIdentifier())
 	}
 	return n

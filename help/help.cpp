@@ -1,11 +1,11 @@
 #include "qhelpsearchquerywidget.h"
-#include <QWidget>
-#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QHelpSearchQuery>
 #include <QObject>
+#include <QWidget>
+#include <QString>
 #include <QHelpSearchQueryWidget>
 #include "_cgo_export.h"
 
@@ -42,13 +42,248 @@ void QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(void* ptr){
 	static_cast<QHelpSearchQueryWidget*>(ptr)->~QHelpSearchQueryWidget();
 }
 
+#include "qhelpindexwidget.h"
+#include <QMetaObject>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QHelpIndexWidget>
+#include "_cgo_export.h"
+
+class MyQHelpIndexWidget: public QHelpIndexWidget {
+public:
+};
+
+void QHelpIndexWidget_ActivateCurrentItem(void* ptr){
+	QMetaObject::invokeMethod(static_cast<QHelpIndexWidget*>(ptr), "activateCurrentItem");
+}
+
+void QHelpIndexWidget_FilterIndices(void* ptr, char* filter, char* wildcard){
+	QMetaObject::invokeMethod(static_cast<QHelpIndexWidget*>(ptr), "filterIndices", Q_ARG(QString, QString(filter)), Q_ARG(QString, QString(wildcard)));
+}
+
+#include "qhelpsearchquery.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QHelpSearchQuery>
+#include "_cgo_export.h"
+
+class MyQHelpSearchQuery: public QHelpSearchQuery {
+public:
+};
+
+void* QHelpSearchQuery_NewQHelpSearchQuery(){
+	return new QHelpSearchQuery();
+}
+
+void* QHelpSearchQuery_NewQHelpSearchQuery2(int field, char* wordList){
+	return new QHelpSearchQuery(static_cast<QHelpSearchQuery::FieldName>(field), QString(wordList).split("|", QString::SkipEmptyParts));
+}
+
+#include "qhelpindexmodel.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QString>
+#include <QVariant>
+#include <QHelpIndexModel>
+#include "_cgo_export.h"
+
+class MyQHelpIndexModel: public QHelpIndexModel {
+public:
+void Signal_IndexCreated(){callbackQHelpIndexModelIndexCreated(this->objectName().toUtf8().data());};
+void Signal_IndexCreationStarted(){callbackQHelpIndexModelIndexCreationStarted(this->objectName().toUtf8().data());};
+};
+
+void QHelpIndexModel_CreateIndex(void* ptr, char* customFilterName){
+	static_cast<QHelpIndexModel*>(ptr)->createIndex(QString(customFilterName));
+}
+
+void* QHelpIndexModel_Filter(void* ptr, char* filter, char* wildcard){
+	return static_cast<QHelpIndexModel*>(ptr)->filter(QString(filter), QString(wildcard)).internalPointer();
+}
+
+void QHelpIndexModel_ConnectIndexCreated(void* ptr){
+	QObject::connect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreated), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreated));;
+}
+
+void QHelpIndexModel_DisconnectIndexCreated(void* ptr){
+	QObject::disconnect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreated), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreated));;
+}
+
+void QHelpIndexModel_ConnectIndexCreationStarted(void* ptr){
+	QObject::connect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreationStarted), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreationStarted));;
+}
+
+void QHelpIndexModel_DisconnectIndexCreationStarted(void* ptr){
+	QObject::disconnect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreationStarted), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreationStarted));;
+}
+
+int QHelpIndexModel_IsCreatingIndex(void* ptr){
+	return static_cast<QHelpIndexModel*>(ptr)->isCreatingIndex();
+}
+
+#include "qhelpcontentmodel.h"
+#include <QObject>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QHelpContentModel>
+#include "_cgo_export.h"
+
+class MyQHelpContentModel: public QHelpContentModel {
+public:
+void Signal_ContentsCreated(){callbackQHelpContentModelContentsCreated(this->objectName().toUtf8().data());};
+void Signal_ContentsCreationStarted(){callbackQHelpContentModelContentsCreationStarted(this->objectName().toUtf8().data());};
+};
+
+int QHelpContentModel_ColumnCount(void* ptr, void* parent){
+	return static_cast<QHelpContentModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
+}
+
+void* QHelpContentModel_ContentItemAt(void* ptr, void* index){
+	return static_cast<QHelpContentModel*>(ptr)->contentItemAt(*static_cast<QModelIndex*>(index));
+}
+
+void QHelpContentModel_ConnectContentsCreated(void* ptr){
+	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreated), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreated));;
+}
+
+void QHelpContentModel_DisconnectContentsCreated(void* ptr){
+	QObject::disconnect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreated), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreated));;
+}
+
+void QHelpContentModel_ConnectContentsCreationStarted(void* ptr){
+	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreationStarted), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreationStarted));;
+}
+
+void QHelpContentModel_DisconnectContentsCreationStarted(void* ptr){
+	QObject::disconnect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreationStarted), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreationStarted));;
+}
+
+void QHelpContentModel_CreateContents(void* ptr, char* customFilterName){
+	static_cast<QHelpContentModel*>(ptr)->createContents(QString(customFilterName));
+}
+
+void* QHelpContentModel_Data(void* ptr, void* index, int role){
+	return new QVariant(static_cast<QHelpContentModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
+}
+
+void* QHelpContentModel_Index(void* ptr, int row, int column, void* parent){
+	return static_cast<QHelpContentModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)).internalPointer();
+}
+
+int QHelpContentModel_IsCreatingContents(void* ptr){
+	return static_cast<QHelpContentModel*>(ptr)->isCreatingContents();
+}
+
+void* QHelpContentModel_Parent(void* ptr, void* index){
+	return static_cast<QHelpContentModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)).internalPointer();
+}
+
+int QHelpContentModel_RowCount(void* ptr, void* parent){
+	return static_cast<QHelpContentModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
+}
+
+void QHelpContentModel_DestroyQHelpContentModel(void* ptr){
+	static_cast<QHelpContentModel*>(ptr)->~QHelpContentModel();
+}
+
+#include "qhelpsearchengine.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QMetaObject>
+#include <QObject>
+#include <QHelpEngineCore>
+#include <QHelpEngine>
+#include <QString>
+#include <QVariant>
+#include <QHelpSearchEngine>
+#include "_cgo_export.h"
+
+class MyQHelpSearchEngine: public QHelpSearchEngine {
+public:
+void Signal_IndexingFinished(){callbackQHelpSearchEngineIndexingFinished(this->objectName().toUtf8().data());};
+void Signal_IndexingStarted(){callbackQHelpSearchEngineIndexingStarted(this->objectName().toUtf8().data());};
+void Signal_SearchingFinished(int hits){callbackQHelpSearchEngineSearchingFinished(this->objectName().toUtf8().data(), hits);};
+void Signal_SearchingStarted(){callbackQHelpSearchEngineSearchingStarted(this->objectName().toUtf8().data());};
+};
+
+void* QHelpSearchEngine_NewQHelpSearchEngine(void* helpEngine, void* parent){
+	return new QHelpSearchEngine(static_cast<QHelpEngineCore*>(helpEngine), static_cast<QObject*>(parent));
+}
+
+void QHelpSearchEngine_CancelIndexing(void* ptr){
+	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "cancelIndexing");
+}
+
+void QHelpSearchEngine_CancelSearching(void* ptr){
+	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "cancelSearching");
+}
+
+int QHelpSearchEngine_HitCount(void* ptr){
+	return static_cast<QHelpSearchEngine*>(ptr)->hitCount();
+}
+
+void QHelpSearchEngine_ConnectIndexingFinished(void* ptr){
+	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingFinished));;
+}
+
+void QHelpSearchEngine_DisconnectIndexingFinished(void* ptr){
+	QObject::disconnect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingFinished));;
+}
+
+void QHelpSearchEngine_ConnectIndexingStarted(void* ptr){
+	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingStarted));;
+}
+
+void QHelpSearchEngine_DisconnectIndexingStarted(void* ptr){
+	QObject::disconnect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingStarted));;
+}
+
+void* QHelpSearchEngine_QueryWidget(void* ptr){
+	return static_cast<QHelpSearchEngine*>(ptr)->queryWidget();
+}
+
+void QHelpSearchEngine_ReindexDocumentation(void* ptr){
+	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "reindexDocumentation");
+}
+
+void* QHelpSearchEngine_ResultWidget(void* ptr){
+	return static_cast<QHelpSearchEngine*>(ptr)->resultWidget();
+}
+
+void QHelpSearchEngine_ConnectSearchingFinished(void* ptr){
+	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)(int)>(&QHelpSearchEngine::searchingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)(int)>(&MyQHelpSearchEngine::Signal_SearchingFinished));;
+}
+
+void QHelpSearchEngine_DisconnectSearchingFinished(void* ptr){
+	QObject::disconnect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)(int)>(&QHelpSearchEngine::searchingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)(int)>(&MyQHelpSearchEngine::Signal_SearchingFinished));;
+}
+
+void QHelpSearchEngine_ConnectSearchingStarted(void* ptr){
+	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::searchingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_SearchingStarted));;
+}
+
+void QHelpSearchEngine_DisconnectSearchingStarted(void* ptr){
+	QObject::disconnect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::searchingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_SearchingStarted));;
+}
+
+void QHelpSearchEngine_DestroyQHelpSearchEngine(void* ptr){
+	static_cast<QHelpSearchEngine*>(ptr)->~QHelpSearchEngine();
+}
+
 #include "qhelpenginecore.h"
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QHelpEngine>
-#include <QObject>
 #include <QByteArray>
+#include <QObject>
+#include <QHelpEngine>
 #include <QString>
 #include <QHelpEngineCore>
 #include "_cgo_export.h"
@@ -206,152 +441,20 @@ void QHelpEngineCore_DestroyQHelpEngineCore(void* ptr){
 	static_cast<QHelpEngineCore*>(ptr)->~QHelpEngineCore();
 }
 
-#include "qhelpcontentmodel.h"
-#include <QModelIndex>
-#include <QObject>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QHelpContentModel>
-#include "_cgo_export.h"
-
-class MyQHelpContentModel: public QHelpContentModel {
-public:
-void Signal_ContentsCreated(){callbackQHelpContentModelContentsCreated(this->objectName().toUtf8().data());};
-void Signal_ContentsCreationStarted(){callbackQHelpContentModelContentsCreationStarted(this->objectName().toUtf8().data());};
-};
-
-int QHelpContentModel_ColumnCount(void* ptr, void* parent){
-	return static_cast<QHelpContentModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
-}
-
-void* QHelpContentModel_ContentItemAt(void* ptr, void* index){
-	return static_cast<QHelpContentModel*>(ptr)->contentItemAt(*static_cast<QModelIndex*>(index));
-}
-
-void QHelpContentModel_ConnectContentsCreated(void* ptr){
-	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreated), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreated));;
-}
-
-void QHelpContentModel_DisconnectContentsCreated(void* ptr){
-	QObject::disconnect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreated), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreated));;
-}
-
-void QHelpContentModel_ConnectContentsCreationStarted(void* ptr){
-	QObject::connect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreationStarted), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreationStarted));;
-}
-
-void QHelpContentModel_DisconnectContentsCreationStarted(void* ptr){
-	QObject::disconnect(static_cast<QHelpContentModel*>(ptr), static_cast<void (QHelpContentModel::*)()>(&QHelpContentModel::contentsCreationStarted), static_cast<MyQHelpContentModel*>(ptr), static_cast<void (MyQHelpContentModel::*)()>(&MyQHelpContentModel::Signal_ContentsCreationStarted));;
-}
-
-void QHelpContentModel_CreateContents(void* ptr, char* customFilterName){
-	static_cast<QHelpContentModel*>(ptr)->createContents(QString(customFilterName));
-}
-
-void* QHelpContentModel_Data(void* ptr, void* index, int role){
-	return new QVariant(static_cast<QHelpContentModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
-}
-
-void* QHelpContentModel_Index(void* ptr, int row, int column, void* parent){
-	return static_cast<QHelpContentModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)).internalPointer();
-}
-
-int QHelpContentModel_IsCreatingContents(void* ptr){
-	return static_cast<QHelpContentModel*>(ptr)->isCreatingContents();
-}
-
-void* QHelpContentModel_Parent(void* ptr, void* index){
-	return static_cast<QHelpContentModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)).internalPointer();
-}
-
-int QHelpContentModel_RowCount(void* ptr, void* parent){
-	return static_cast<QHelpContentModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
-}
-
-void QHelpContentModel_DestroyQHelpContentModel(void* ptr){
-	static_cast<QHelpContentModel*>(ptr)->~QHelpContentModel();
-}
-
-#include "qhelpcontentitem.h"
+#include "qhelpcontentwidget.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QHelpContentItem>
+#include <QHelpContentWidget>
 #include "_cgo_export.h"
 
-class MyQHelpContentItem: public QHelpContentItem {
+class MyQHelpContentWidget: public QHelpContentWidget {
 public:
 };
 
-void* QHelpContentItem_Child(void* ptr, int row){
-	return static_cast<QHelpContentItem*>(ptr)->child(row);
-}
-
-int QHelpContentItem_ChildCount(void* ptr){
-	return static_cast<QHelpContentItem*>(ptr)->childCount();
-}
-
-int QHelpContentItem_ChildPosition(void* ptr, void* child){
-	return static_cast<QHelpContentItem*>(ptr)->childPosition(static_cast<QHelpContentItem*>(child));
-}
-
-void* QHelpContentItem_Parent(void* ptr){
-	return static_cast<QHelpContentItem*>(ptr)->parent();
-}
-
-int QHelpContentItem_Row(void* ptr){
-	return static_cast<QHelpContentItem*>(ptr)->row();
-}
-
-char* QHelpContentItem_Title(void* ptr){
-	return static_cast<QHelpContentItem*>(ptr)->title().toUtf8().data();
-}
-
-void QHelpContentItem_DestroyQHelpContentItem(void* ptr){
-	static_cast<QHelpContentItem*>(ptr)->~QHelpContentItem();
-}
-
-#include "qhelpindexwidget.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QMetaObject>
-#include <QHelpIndexWidget>
-#include "_cgo_export.h"
-
-class MyQHelpIndexWidget: public QHelpIndexWidget {
-public:
-};
-
-void QHelpIndexWidget_ActivateCurrentItem(void* ptr){
-	QMetaObject::invokeMethod(static_cast<QHelpIndexWidget*>(ptr), "activateCurrentItem");
-}
-
-void QHelpIndexWidget_FilterIndices(void* ptr, char* filter, char* wildcard){
-	QMetaObject::invokeMethod(static_cast<QHelpIndexWidget*>(ptr), "filterIndices", Q_ARG(QString, QString(filter)), Q_ARG(QString, QString(wildcard)));
-}
-
-#include "qhelpsearchquery.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QString>
-#include <QHelpSearchQuery>
-#include "_cgo_export.h"
-
-class MyQHelpSearchQuery: public QHelpSearchQuery {
-public:
-};
-
-void* QHelpSearchQuery_NewQHelpSearchQuery(){
-	return new QHelpSearchQuery();
-}
-
-void* QHelpSearchQuery_NewQHelpSearchQuery2(int field, char* wordList){
-	return new QHelpSearchQuery(static_cast<QHelpSearchQuery::FieldName>(field), QString(wordList).split("|", QString::SkipEmptyParts));
+void* QHelpContentWidget_IndexOf(void* ptr, void* link){
+	return static_cast<QHelpContentWidget*>(ptr)->indexOf(*static_cast<QUrl*>(link)).internalPointer();
 }
 
 #include "qhelpengine.h"
@@ -395,95 +498,11 @@ void QHelpEngine_DestroyQHelpEngine(void* ptr){
 	static_cast<QHelpEngine*>(ptr)->~QHelpEngine();
 }
 
-#include "qhelpsearchengine.h"
-#include <QHelpEngineCore>
-#include <QMetaObject>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QHelpEngine>
-#include <QObject>
-#include <QHelpSearchEngine>
-#include "_cgo_export.h"
-
-class MyQHelpSearchEngine: public QHelpSearchEngine {
-public:
-void Signal_IndexingFinished(){callbackQHelpSearchEngineIndexingFinished(this->objectName().toUtf8().data());};
-void Signal_IndexingStarted(){callbackQHelpSearchEngineIndexingStarted(this->objectName().toUtf8().data());};
-void Signal_SearchingFinished(int hits){callbackQHelpSearchEngineSearchingFinished(this->objectName().toUtf8().data(), hits);};
-void Signal_SearchingStarted(){callbackQHelpSearchEngineSearchingStarted(this->objectName().toUtf8().data());};
-};
-
-void* QHelpSearchEngine_NewQHelpSearchEngine(void* helpEngine, void* parent){
-	return new QHelpSearchEngine(static_cast<QHelpEngineCore*>(helpEngine), static_cast<QObject*>(parent));
-}
-
-void QHelpSearchEngine_CancelIndexing(void* ptr){
-	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "cancelIndexing");
-}
-
-void QHelpSearchEngine_CancelSearching(void* ptr){
-	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "cancelSearching");
-}
-
-int QHelpSearchEngine_HitCount(void* ptr){
-	return static_cast<QHelpSearchEngine*>(ptr)->hitCount();
-}
-
-void QHelpSearchEngine_ConnectIndexingFinished(void* ptr){
-	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingFinished));;
-}
-
-void QHelpSearchEngine_DisconnectIndexingFinished(void* ptr){
-	QObject::disconnect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingFinished));;
-}
-
-void QHelpSearchEngine_ConnectIndexingStarted(void* ptr){
-	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingStarted));;
-}
-
-void QHelpSearchEngine_DisconnectIndexingStarted(void* ptr){
-	QObject::disconnect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::indexingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_IndexingStarted));;
-}
-
-void* QHelpSearchEngine_QueryWidget(void* ptr){
-	return static_cast<QHelpSearchEngine*>(ptr)->queryWidget();
-}
-
-void QHelpSearchEngine_ReindexDocumentation(void* ptr){
-	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "reindexDocumentation");
-}
-
-void* QHelpSearchEngine_ResultWidget(void* ptr){
-	return static_cast<QHelpSearchEngine*>(ptr)->resultWidget();
-}
-
-void QHelpSearchEngine_ConnectSearchingFinished(void* ptr){
-	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)(int)>(&QHelpSearchEngine::searchingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)(int)>(&MyQHelpSearchEngine::Signal_SearchingFinished));;
-}
-
-void QHelpSearchEngine_DisconnectSearchingFinished(void* ptr){
-	QObject::disconnect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)(int)>(&QHelpSearchEngine::searchingFinished), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)(int)>(&MyQHelpSearchEngine::Signal_SearchingFinished));;
-}
-
-void QHelpSearchEngine_ConnectSearchingStarted(void* ptr){
-	QObject::connect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::searchingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_SearchingStarted));;
-}
-
-void QHelpSearchEngine_DisconnectSearchingStarted(void* ptr){
-	QObject::disconnect(static_cast<QHelpSearchEngine*>(ptr), static_cast<void (QHelpSearchEngine::*)()>(&QHelpSearchEngine::searchingStarted), static_cast<MyQHelpSearchEngine*>(ptr), static_cast<void (MyQHelpSearchEngine::*)()>(&MyQHelpSearchEngine::Signal_SearchingStarted));;
-}
-
-void QHelpSearchEngine_DestroyQHelpSearchEngine(void* ptr){
-	static_cast<QHelpSearchEngine*>(ptr)->~QHelpSearchEngine();
-}
-
 #include "qhelpsearchresultwidget.h"
-#include <QUrl>
 #include <QModelIndex>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
 #include <QHelpSearchResultWidget>
 #include "_cgo_export.h"
 
@@ -495,62 +514,43 @@ void QHelpSearchResultWidget_DestroyQHelpSearchResultWidget(void* ptr){
 	static_cast<QHelpSearchResultWidget*>(ptr)->~QHelpSearchResultWidget();
 }
 
-#include "qhelpcontentwidget.h"
+#include "qhelpcontentitem.h"
 #include <QUrl>
 #include <QModelIndex>
 #include <QString>
 #include <QVariant>
-#include <QHelpContentWidget>
+#include <QHelpContentItem>
 #include "_cgo_export.h"
 
-class MyQHelpContentWidget: public QHelpContentWidget {
+class MyQHelpContentItem: public QHelpContentItem {
 public:
 };
 
-void* QHelpContentWidget_IndexOf(void* ptr, void* link){
-	return static_cast<QHelpContentWidget*>(ptr)->indexOf(*static_cast<QUrl*>(link)).internalPointer();
+void* QHelpContentItem_Child(void* ptr, int row){
+	return static_cast<QHelpContentItem*>(ptr)->child(row);
 }
 
-#include "qhelpindexmodel.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QString>
-#include <QVariant>
-#include <QHelpIndexModel>
-#include "_cgo_export.h"
-
-class MyQHelpIndexModel: public QHelpIndexModel {
-public:
-void Signal_IndexCreated(){callbackQHelpIndexModelIndexCreated(this->objectName().toUtf8().data());};
-void Signal_IndexCreationStarted(){callbackQHelpIndexModelIndexCreationStarted(this->objectName().toUtf8().data());};
-};
-
-void QHelpIndexModel_CreateIndex(void* ptr, char* customFilterName){
-	static_cast<QHelpIndexModel*>(ptr)->createIndex(QString(customFilterName));
+int QHelpContentItem_ChildCount(void* ptr){
+	return static_cast<QHelpContentItem*>(ptr)->childCount();
 }
 
-void* QHelpIndexModel_Filter(void* ptr, char* filter, char* wildcard){
-	return static_cast<QHelpIndexModel*>(ptr)->filter(QString(filter), QString(wildcard)).internalPointer();
+int QHelpContentItem_ChildPosition(void* ptr, void* child){
+	return static_cast<QHelpContentItem*>(ptr)->childPosition(static_cast<QHelpContentItem*>(child));
 }
 
-void QHelpIndexModel_ConnectIndexCreated(void* ptr){
-	QObject::connect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreated), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreated));;
+void* QHelpContentItem_Parent(void* ptr){
+	return static_cast<QHelpContentItem*>(ptr)->parent();
 }
 
-void QHelpIndexModel_DisconnectIndexCreated(void* ptr){
-	QObject::disconnect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreated), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreated));;
+int QHelpContentItem_Row(void* ptr){
+	return static_cast<QHelpContentItem*>(ptr)->row();
 }
 
-void QHelpIndexModel_ConnectIndexCreationStarted(void* ptr){
-	QObject::connect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreationStarted), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreationStarted));;
+char* QHelpContentItem_Title(void* ptr){
+	return static_cast<QHelpContentItem*>(ptr)->title().toUtf8().data();
 }
 
-void QHelpIndexModel_DisconnectIndexCreationStarted(void* ptr){
-	QObject::disconnect(static_cast<QHelpIndexModel*>(ptr), static_cast<void (QHelpIndexModel::*)()>(&QHelpIndexModel::indexCreationStarted), static_cast<MyQHelpIndexModel*>(ptr), static_cast<void (MyQHelpIndexModel::*)()>(&MyQHelpIndexModel::Signal_IndexCreationStarted));;
-}
-
-int QHelpIndexModel_IsCreatingIndex(void* ptr){
-	return static_cast<QHelpIndexModel*>(ptr)->isCreatingIndex();
+void QHelpContentItem_DestroyQHelpContentItem(void* ptr){
+	static_cast<QHelpContentItem*>(ptr)->~QHelpContentItem();
 }
 

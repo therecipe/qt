@@ -26,7 +26,7 @@ func PointerFromQPluginLoader(ptr QPluginLoader_ITF) unsafe.Pointer {
 func NewQPluginLoaderFromPointer(ptr unsafe.Pointer) *QPluginLoader {
 	var n = new(QPluginLoader)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QPluginLoader_" + qt.RandomIdentifier())
 	}
 	return n

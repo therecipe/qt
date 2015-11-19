@@ -28,7 +28,7 @@ func PointerFromQCalendarWidget(ptr QCalendarWidget_ITF) unsafe.Pointer {
 func NewQCalendarWidgetFromPointer(ptr unsafe.Pointer) *QCalendarWidget {
 	var n = new(QCalendarWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCalendarWidget_" + qt.RandomIdentifier())
 	}
 	return n

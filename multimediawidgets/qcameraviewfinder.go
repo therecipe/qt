@@ -28,7 +28,7 @@ func PointerFromQCameraViewfinder(ptr QCameraViewfinder_ITF) unsafe.Pointer {
 func NewQCameraViewfinderFromPointer(ptr unsafe.Pointer) *QCameraViewfinder {
 	var n = new(QCameraViewfinder)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCameraViewfinder_" + qt.RandomIdentifier())
 	}
 	return n

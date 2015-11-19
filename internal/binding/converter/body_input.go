@@ -18,9 +18,7 @@ func GoBodyInput(f *parser.Function) (o string) {
 
 	if f.Meta != "signal" {
 		for _, p := range f.Parameters {
-			if p.Value != "..." {
-				o += fmt.Sprintf("%v, ", goInput(p.Name, p.Value, f))
-			}
+			o += fmt.Sprintf("%v, ", goInput(p.Name, p.Value, f))
 		}
 	}
 

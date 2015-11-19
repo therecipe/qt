@@ -26,7 +26,7 @@ func PointerFromQAbstractEventDispatcher(ptr QAbstractEventDispatcher_ITF) unsaf
 func NewQAbstractEventDispatcherFromPointer(ptr unsafe.Pointer) *QAbstractEventDispatcher {
 	var n = new(QAbstractEventDispatcher)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractEventDispatcher_" + qt.RandomIdentifier())
 	}
 	return n

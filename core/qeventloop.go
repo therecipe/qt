@@ -26,7 +26,7 @@ func PointerFromQEventLoop(ptr QEventLoop_ITF) unsafe.Pointer {
 func NewQEventLoopFromPointer(ptr unsafe.Pointer) *QEventLoop {
 	var n = new(QEventLoop)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QEventLoop_" + qt.RandomIdentifier())
 	}
 	return n

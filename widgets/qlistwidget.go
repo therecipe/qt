@@ -29,7 +29,7 @@ func PointerFromQListWidget(ptr QListWidget_ITF) unsafe.Pointer {
 func NewQListWidgetFromPointer(ptr unsafe.Pointer) *QListWidget {
 	var n = new(QListWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QListWidget_" + qt.RandomIdentifier())
 	}
 	return n

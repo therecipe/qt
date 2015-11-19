@@ -26,7 +26,7 @@ func PointerFromQHistoryState(ptr QHistoryState_ITF) unsafe.Pointer {
 func NewQHistoryStateFromPointer(ptr unsafe.Pointer) *QHistoryState {
 	var n = new(QHistoryState)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QHistoryState_" + qt.RandomIdentifier())
 	}
 	return n

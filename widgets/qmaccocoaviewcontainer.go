@@ -26,7 +26,7 @@ func PointerFromQMacCocoaViewContainer(ptr QMacCocoaViewContainer_ITF) unsafe.Po
 func NewQMacCocoaViewContainerFromPointer(ptr unsafe.Pointer) *QMacCocoaViewContainer {
 	var n = new(QMacCocoaViewContainer)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMacCocoaViewContainer_" + qt.RandomIdentifier())
 	}
 	return n

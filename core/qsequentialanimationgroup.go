@@ -26,7 +26,7 @@ func PointerFromQSequentialAnimationGroup(ptr QSequentialAnimationGroup_ITF) uns
 func NewQSequentialAnimationGroupFromPointer(ptr unsafe.Pointer) *QSequentialAnimationGroup {
 	var n = new(QSequentialAnimationGroup)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSequentialAnimationGroup_" + qt.RandomIdentifier())
 	}
 	return n

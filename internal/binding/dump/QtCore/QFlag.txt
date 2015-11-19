@@ -1,8 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QFlag QFlag::QFlag commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false false   QFlag(int value) [0xc820163860] }
-&{QFlag QFlag::QFlag commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 3  QFlag(short value) [0xc820163a20] }
-&{QFlag QFlag::QFlag commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 2  QFlag(uint value) [0xc820163be0] }
-&{QFlag QFlag::QFlag commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non constructor false true 4  QFlag(ushort value) [0xc8201780c0] }
-&{operator int QFlag::operator int commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false   operator int() const [] }
-&{operator uint QFlag::operator uint commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qflags.h non plain false false   operator uint() const [] }
-########################################			ENUMS			########################################

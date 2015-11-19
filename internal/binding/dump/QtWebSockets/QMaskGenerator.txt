@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QMaskGenerator QMaskGenerator::QMaskGenerator commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qmaskgenerator.h non constructor false false   QMaskGenerator(QObject *parent) [0xc822237e20] }
-&{nextMask QMaskGenerator::nextMask commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qmaskgenerator.h pure plain false false  quint32 quint32 nextMask() [] }
-&{seed QMaskGenerator::seed commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qmaskgenerator.h pure plain false false  bool bool seed() [] }
-&{~QMaskGenerator QMaskGenerator::~QMaskGenerator commendable public /work/build/qt5_workdir/w/s/qtwebsockets/src/websockets/qmaskgenerator.h impure destructor false false   ~QMaskGenerator() [] }
-########################################			ENUMS			########################################

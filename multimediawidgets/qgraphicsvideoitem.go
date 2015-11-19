@@ -41,7 +41,7 @@ func PointerFromQGraphicsVideoItem(ptr QGraphicsVideoItem_ITF) unsafe.Pointer {
 func NewQGraphicsVideoItemFromPointer(ptr unsafe.Pointer) *QGraphicsVideoItem {
 	var n = new(QGraphicsVideoItem)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsVideoItem_" + qt.RandomIdentifier())
 	}
 	return n

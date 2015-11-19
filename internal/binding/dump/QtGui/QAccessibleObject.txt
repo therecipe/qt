@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QAccessibleObject QAccessibleObject::QAccessibleObject commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h non constructor false false   QAccessibleObject(QObject *object) [0xc820d204e0] }
-&{childAt QAccessibleObject::childAt commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  QAccessibleInterface * QAccessibleInterface * childAt(int x, int y) const [0xc820d20860 0xc820d20900] }
-&{isValid QAccessibleObject::isValid commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  bool bool isValid() const [] }
-&{object QAccessibleObject::object commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  QObject * QObject * object() const [] }
-&{rect QAccessibleObject::rect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  QRect QRect rect() const [] }
-&{setText QAccessibleObject::setText commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure plain false false  void void setText(QAccessible::Text t, const QString &text) [0xc820d210c0 0xc820d21180] }
-&{~QAccessibleObject QAccessibleObject::~QAccessibleObject commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessibleobject.h impure destructor false false   ~QAccessibleObject() [] }
-########################################			ENUMS			########################################

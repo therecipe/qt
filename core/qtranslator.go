@@ -26,7 +26,7 @@ func PointerFromQTranslator(ptr QTranslator_ITF) unsafe.Pointer {
 func NewQTranslatorFromPointer(ptr unsafe.Pointer) *QTranslator {
 	var n = new(QTranslator)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTranslator_" + qt.RandomIdentifier())
 	}
 	return n

@@ -30,6 +30,17 @@ func HTemplate(c *parser.Class) (o string) {
 					}
 				}
 				f.SignalMode = ""
+			} else if isTemplate(f) {
+				for _, m := range []string{"Int", "Boolean", "Void"} {
+					if m == "Void" && (f.Fullname == "QAndroidJniObject::getField" || f.Fullname == "QAndroidJniObject::getStaticField") {
+					} else {
+						f.TemplateMode = m
+						if i := cppFunctionHeader(f); isSupportedFunction(c, f) {
+							o += fmt.Sprintf("%v;\n", i)
+						}
+					}
+					f.TemplateMode = ""
+				}
 			} else {
 				if i := cppFunctionHeader(f); isSupportedFunction(c, f) {
 					o += fmt.Sprintf("%v;\n", i)

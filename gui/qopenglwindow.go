@@ -26,7 +26,7 @@ func PointerFromQOpenGLWindow(ptr QOpenGLWindow_ITF) unsafe.Pointer {
 func NewQOpenGLWindowFromPointer(ptr unsafe.Pointer) *QOpenGLWindow {
 	var n = new(QOpenGLWindow)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QOpenGLWindow_" + qt.RandomIdentifier())
 	}
 	return n

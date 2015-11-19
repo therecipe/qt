@@ -27,7 +27,7 @@ func PointerFromQSensorBackend(ptr QSensorBackend_ITF) unsafe.Pointer {
 func NewQSensorBackendFromPointer(ptr unsafe.Pointer) *QSensorBackend {
 	var n = new(QSensorBackend)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSensorBackend_" + qt.RandomIdentifier())
 	}
 	return n

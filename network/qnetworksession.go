@@ -27,7 +27,7 @@ func PointerFromQNetworkSession(ptr QNetworkSession_ITF) unsafe.Pointer {
 func NewQNetworkSessionFromPointer(ptr unsafe.Pointer) *QNetworkSession {
 	var n = new(QNetworkSession)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QNetworkSession_" + qt.RandomIdentifier())
 	}
 	return n

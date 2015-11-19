@@ -27,7 +27,7 @@ func PointerFromQPinchGesture(ptr QPinchGesture_ITF) unsafe.Pointer {
 func NewQPinchGestureFromPointer(ptr unsafe.Pointer) *QPinchGesture {
 	var n = new(QPinchGesture)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QPinchGesture_" + qt.RandomIdentifier())
 	}
 	return n

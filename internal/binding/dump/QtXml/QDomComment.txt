@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QDomComment QDomComment::QDomComment commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   QDomComment() [] }
-&{QDomComment QDomComment::QDomComment commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomComment(const QDomComment &x) [0xc821b16480] }
-&{nodeType QDomComment::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType QDomNode::NodeType nodeType() const [] }
-&{operator= QDomComment::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomComment & QDomComment & operator=(const QDomComment &x) [0xc821b16b80] }
-########################################			ENUMS			########################################

@@ -27,7 +27,7 @@ func PointerFromQHelpIndexWidget(ptr QHelpIndexWidget_ITF) unsafe.Pointer {
 func NewQHelpIndexWidgetFromPointer(ptr unsafe.Pointer) *QHelpIndexWidget {
 	var n = new(QHelpIndexWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QHelpIndexWidget_" + qt.RandomIdentifier())
 	}
 	return n

@@ -27,7 +27,7 @@ func PointerFromQToolButton(ptr QToolButton_ITF) unsafe.Pointer {
 func NewQToolButtonFromPointer(ptr unsafe.Pointer) *QToolButton {
 	var n = new(QToolButton)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QToolButton_" + qt.RandomIdentifier())
 	}
 	return n

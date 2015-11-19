@@ -27,7 +27,7 @@ func PointerFromQBluetoothServiceDiscoveryAgent(ptr QBluetoothServiceDiscoveryAg
 func NewQBluetoothServiceDiscoveryAgentFromPointer(ptr unsafe.Pointer) *QBluetoothServiceDiscoveryAgent {
 	var n = new(QBluetoothServiceDiscoveryAgent)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QBluetoothServiceDiscoveryAgent_" + qt.RandomIdentifier())
 	}
 	return n

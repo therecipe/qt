@@ -27,7 +27,7 @@ func PointerFromQUdpSocket(ptr QUdpSocket_ITF) unsafe.Pointer {
 func NewQUdpSocketFromPointer(ptr unsafe.Pointer) *QUdpSocket {
 	var n = new(QUdpSocket)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QUdpSocket_" + qt.RandomIdentifier())
 	}
 	return n

@@ -27,7 +27,7 @@ func PointerFromQSlider(ptr QSlider_ITF) unsafe.Pointer {
 func NewQSliderFromPointer(ptr unsafe.Pointer) *QSlider {
 	var n = new(QSlider)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSlider_" + qt.RandomIdentifier())
 	}
 	return n

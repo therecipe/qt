@@ -26,7 +26,7 @@ func PointerFromQTapReading(ptr QTapReading_ITF) unsafe.Pointer {
 func NewQTapReadingFromPointer(ptr unsafe.Pointer) *QTapReading {
 	var n = new(QTapReading)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTapReading_" + qt.RandomIdentifier())
 	}
 	return n

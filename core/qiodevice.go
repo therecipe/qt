@@ -26,7 +26,7 @@ func PointerFromQIODevice(ptr QIODevice_ITF) unsafe.Pointer {
 func NewQIODeviceFromPointer(ptr unsafe.Pointer) *QIODevice {
 	var n = new(QIODevice)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QIODevice_" + qt.RandomIdentifier())
 	}
 	return n

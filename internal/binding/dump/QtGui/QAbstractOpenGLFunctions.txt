@@ -1,4 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QAbstractOpenGLFunctions QAbstractOpenGLFunctions::QAbstractOpenGLFunctions commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglversionfunctions.h non constructor false false   QAbstractOpenGLFunctions() [] }
-&{~QAbstractOpenGLFunctions QAbstractOpenGLFunctions::~QAbstractOpenGLFunctions commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/opengl/qopenglversionfunctions.h impure destructor false false   ~QAbstractOpenGLFunctions() [] }
-########################################			ENUMS			########################################

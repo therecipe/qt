@@ -27,7 +27,7 @@ func PointerFromQKeySequenceEdit(ptr QKeySequenceEdit_ITF) unsafe.Pointer {
 func NewQKeySequenceEditFromPointer(ptr unsafe.Pointer) *QKeySequenceEdit {
 	var n = new(QKeySequenceEdit)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QKeySequenceEdit_" + qt.RandomIdentifier())
 	}
 	return n

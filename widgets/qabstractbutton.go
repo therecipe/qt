@@ -28,7 +28,7 @@ func PointerFromQAbstractButton(ptr QAbstractButton_ITF) unsafe.Pointer {
 func NewQAbstractButtonFromPointer(ptr unsafe.Pointer) *QAbstractButton {
 	var n = new(QAbstractButton)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractButton_" + qt.RandomIdentifier())
 	}
 	return n

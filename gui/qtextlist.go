@@ -26,7 +26,7 @@ func PointerFromQTextList(ptr QTextList_ITF) unsafe.Pointer {
 func NewQTextListFromPointer(ptr unsafe.Pointer) *QTextList {
 	var n = new(QTextList)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTextList_" + qt.RandomIdentifier())
 	}
 	return n

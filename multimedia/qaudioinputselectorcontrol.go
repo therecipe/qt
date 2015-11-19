@@ -26,7 +26,7 @@ func PointerFromQAudioInputSelectorControl(ptr QAudioInputSelectorControl_ITF) u
 func NewQAudioInputSelectorControlFromPointer(ptr unsafe.Pointer) *QAudioInputSelectorControl {
 	var n = new(QAudioInputSelectorControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAudioInputSelectorControl_" + qt.RandomIdentifier())
 	}
 	return n

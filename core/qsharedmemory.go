@@ -26,7 +26,7 @@ func PointerFromQSharedMemory(ptr QSharedMemory_ITF) unsafe.Pointer {
 func NewQSharedMemoryFromPointer(ptr unsafe.Pointer) *QSharedMemory {
 	var n = new(QSharedMemory)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSharedMemory_" + qt.RandomIdentifier())
 	}
 	return n

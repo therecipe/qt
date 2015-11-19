@@ -28,7 +28,7 @@ func PointerFromQSGEngine(ptr QSGEngine_ITF) unsafe.Pointer {
 func NewQSGEngineFromPointer(ptr unsafe.Pointer) *QSGEngine {
 	var n = new(QSGEngine)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSGEngine_" + qt.RandomIdentifier())
 	}
 	return n

@@ -27,7 +27,7 @@ func PointerFromQHelpContentModel(ptr QHelpContentModel_ITF) unsafe.Pointer {
 func NewQHelpContentModelFromPointer(ptr unsafe.Pointer) *QHelpContentModel {
 	var n = new(QHelpContentModel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QHelpContentModel_" + qt.RandomIdentifier())
 	}
 	return n

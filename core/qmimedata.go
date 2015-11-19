@@ -27,7 +27,7 @@ func PointerFromQMimeData(ptr QMimeData_ITF) unsafe.Pointer {
 func NewQMimeDataFromPointer(ptr unsafe.Pointer) *QMimeData {
 	var n = new(QMimeData)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMimeData_" + qt.RandomIdentifier())
 	}
 	return n

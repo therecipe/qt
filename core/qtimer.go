@@ -26,7 +26,7 @@ func PointerFromQTimer(ptr QTimer_ITF) unsafe.Pointer {
 func NewQTimerFromPointer(ptr unsafe.Pointer) *QTimer {
 	var n = new(QTimer)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTimer_" + qt.RandomIdentifier())
 	}
 	return n

@@ -21,6 +21,21 @@ func goFunction(f *parser.Function) string {
 		f.SignalMode = ""
 		return tmp
 	}
+
+	if isTemplate(f) {
+		var tmp string
+		for _, m := range []string{"Int", "Boolean", "Void"} {
+			if m == "Void" && (f.Fullname == "QAndroidJniObject::getField" || f.Fullname == "QAndroidJniObject::getStaticField") {
+			} else {
+				f.TemplateMode = m
+				tmp += fmt.Sprintf("%v{\n%v\n}\n", goFunctionHeader(f), goFunctionBody(f))
+			}
+			f.TemplateMode = ""
+		}
+
+		return tmp
+	}
+
 	return fmt.Sprintf("%v{\n%v\n}", goFunctionHeader(f), goFunctionBody(f))
 }
 
@@ -36,6 +51,10 @@ func goInterface(f *parser.Function) string {
 }
 
 func goFunctionBody(f *parser.Function) (o string) {
+
+	if parser.ClassMap[f.Class()].Stub {
+		return fmt.Sprintf("\nreturn %v", converter.GoBodyOutputFailed(f))
+	}
 
 	if !f.Static && f.Meta != "constructor" && f.SignalMode != "callback" {
 		o += fmt.Sprintf("if ptr.Pointer() != nil {\n")
@@ -72,15 +91,7 @@ func goFunctionBody(f *parser.Function) (o string) {
 	if !f.Static && f.Meta != "constructor" && f.SignalMode != "callback" {
 		o += "\n}"
 		if converter.GoHeaderOutput(f) != "" {
-			o += fmt.Sprintf("\nreturn %v", converter.GoBodyOutputFailed(f.Output, f))
-		}
-	}
-
-	if parser.ClassMap[f.Class()].Stub {
-		if f.Meta == "constructor" {
-			return fmt.Sprintf("\nreturn New%vFromPointer(%v)", f.Class(), converter.GoBodyOutputFailed(f.Class(), f))
-		} else {
-			return fmt.Sprintf("\nreturn %v", converter.GoBodyOutputFailed(f.Output, f))
+			o += fmt.Sprintf("\nreturn %v", converter.GoBodyOutputFailed(f))
 		}
 	}
 

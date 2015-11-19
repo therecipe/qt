@@ -1,3 +1,0 @@
-########################################			FUNCTIONS			########################################
-########################################			ENUMS			########################################
-&{GuardValues QtGlobalStatic::GuardValues commendable public  [0xc820abdc00 0xc820abdcc0 0xc820abdd40 0xc820abde00] false}

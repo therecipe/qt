@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{reading QDistanceSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qdistancesensor.cpp non plain false false  QDistanceReading * QDistanceReading * reading() const [] }
-&{QDistanceSensor QDistanceSensor::QDistanceSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qdistancesensor.h non constructor false false   QDistanceSensor(QObject *parent) [0xc82030a3c0] }
-&{~QDistanceSensor QDistanceSensor::~QDistanceSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qdistancesensor.h non destructor false false   ~QDistanceSensor() [] }
-########################################			ENUMS			########################################

@@ -26,7 +26,7 @@ func PointerFromQPauseAnimation(ptr QPauseAnimation_ITF) unsafe.Pointer {
 func NewQPauseAnimationFromPointer(ptr unsafe.Pointer) *QPauseAnimation {
 	var n = new(QPauseAnimation)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QPauseAnimation_" + qt.RandomIdentifier())
 	}
 	return n

@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{errorString QXmlEntityResolver::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString QString errorString() const [] }
-&{resolveEntity QXmlEntityResolver::resolveEntity commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool resolveEntity(const QString &publicId, const QString &systemId, QXmlInputSource *&ret) [0xc82182d2a0 0xc82182d3e0 0xc82182d560] }
-&{~QXmlEntityResolver QXmlEntityResolver::~QXmlEntityResolver commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   ~QXmlEntityResolver() [] }
-########################################			ENUMS			########################################

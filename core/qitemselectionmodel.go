@@ -26,7 +26,7 @@ func PointerFromQItemSelectionModel(ptr QItemSelectionModel_ITF) unsafe.Pointer 
 func NewQItemSelectionModelFromPointer(ptr unsafe.Pointer) *QItemSelectionModel {
 	var n = new(QItemSelectionModel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QItemSelectionModel_" + qt.RandomIdentifier())
 	}
 	return n

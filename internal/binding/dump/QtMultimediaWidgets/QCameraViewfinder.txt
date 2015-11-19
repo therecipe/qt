@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QCameraViewfinder QCameraViewfinder::QCameraViewfinder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qcameraviewfinder.h non constructor false false   QCameraViewfinder(QWidget *parent) [0xc8220d44e0] }
-&{mediaObject QCameraViewfinder::mediaObject commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qcameraviewfinder.h impure plain false false  QMediaObject * QMediaObject * mediaObject() const [] }
-&{setMediaObject QCameraViewfinder::setMediaObject commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qcameraviewfinder.h impure plain false false  bool bool setMediaObject(QMediaObject *object) [0xc8220d4720] }
-&{~QCameraViewfinder QCameraViewfinder::~QCameraViewfinder commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimediawidgets/qcameraviewfinder.h non destructor false false   ~QCameraViewfinder() [] }
-########################################			ENUMS			########################################

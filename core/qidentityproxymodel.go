@@ -26,7 +26,7 @@ func PointerFromQIdentityProxyModel(ptr QIdentityProxyModel_ITF) unsafe.Pointer 
 func NewQIdentityProxyModelFromPointer(ptr unsafe.Pointer) *QIdentityProxyModel {
 	var n = new(QIdentityProxyModel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QIdentityProxyModel_" + qt.RandomIdentifier())
 	}
 	return n

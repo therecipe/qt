@@ -1,4 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{create QGenericPluginFactory::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qgenericpluginfactory.h non plain true false  QObject * QObject * create(const QString &key, const QString &specification) [0xc8207f55e0 0xc8207f5720] }
-&{keys QGenericPluginFactory::keys commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qgenericpluginfactory.h non plain true false  QStringList QStringList keys() [] }
-########################################			ENUMS			########################################

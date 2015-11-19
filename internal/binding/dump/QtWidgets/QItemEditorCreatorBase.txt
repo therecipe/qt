@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{~QItemEditorCreatorBase QItemEditorCreatorBase::~QItemEditorCreatorBase commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.cpp impure destructor false false   ~QItemEditorCreatorBase() [] }
-&{createWidget QItemEditorCreatorBase::createWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.h pure plain false false  QWidget * QWidget * createWidget(QWidget *parent) const [0xc822080000] }
-&{valuePropertyName QItemEditorCreatorBase::valuePropertyName commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.h pure plain false false  QByteArray QByteArray valuePropertyName() const [] }
-########################################			ENUMS			########################################

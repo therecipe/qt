@@ -28,7 +28,7 @@ func PointerFromQMouseEventTransition(ptr QMouseEventTransition_ITF) unsafe.Poin
 func NewQMouseEventTransitionFromPointer(ptr unsafe.Pointer) *QMouseEventTransition {
 	var n = new(QMouseEventTransition)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMouseEventTransition_" + qt.RandomIdentifier())
 	}
 	return n

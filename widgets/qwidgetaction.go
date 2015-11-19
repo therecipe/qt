@@ -27,7 +27,7 @@ func PointerFromQWidgetAction(ptr QWidgetAction_ITF) unsafe.Pointer {
 func NewQWidgetActionFromPointer(ptr unsafe.Pointer) *QWidgetAction {
 	var n = new(QWidgetAction)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QWidgetAction_" + qt.RandomIdentifier())
 	}
 	return n

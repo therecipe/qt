@@ -17,6 +17,7 @@ type Function struct {
 	Signature      string       `xml:"signature,attr"`
 	Parameters     []*Parameter `xml:"parameter"`
 	SignalMode     string
+	TemplateMode   string
 }
 
 type Parameter struct {

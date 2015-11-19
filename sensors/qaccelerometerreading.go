@@ -26,7 +26,7 @@ func PointerFromQAccelerometerReading(ptr QAccelerometerReading_ITF) unsafe.Poin
 func NewQAccelerometerReadingFromPointer(ptr unsafe.Pointer) *QAccelerometerReading {
 	var n = new(QAccelerometerReading)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAccelerometerReading_" + qt.RandomIdentifier())
 	}
 	return n

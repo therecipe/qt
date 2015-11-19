@@ -27,7 +27,7 @@ func PointerFromQVideoProbe(ptr QVideoProbe_ITF) unsafe.Pointer {
 func NewQVideoProbeFromPointer(ptr unsafe.Pointer) *QVideoProbe {
 	var n = new(QVideoProbe)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QVideoProbe_" + qt.RandomIdentifier())
 	}
 	return n

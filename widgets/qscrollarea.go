@@ -27,7 +27,7 @@ func PointerFromQScrollArea(ptr QScrollArea_ITF) unsafe.Pointer {
 func NewQScrollAreaFromPointer(ptr unsafe.Pointer) *QScrollArea {
 	var n = new(QScrollArea)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QScrollArea_" + qt.RandomIdentifier())
 	}
 	return n

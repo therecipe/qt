@@ -29,7 +29,7 @@ func PointerFromQGraphicsSvgItem(ptr QGraphicsSvgItem_ITF) unsafe.Pointer {
 func NewQGraphicsSvgItemFromPointer(ptr unsafe.Pointer) *QGraphicsSvgItem {
 	var n = new(QGraphicsSvgItem)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsSvgItem_" + qt.RandomIdentifier())
 	}
 	return n

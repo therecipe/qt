@@ -1,4 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{errorString QJsonParseError::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/json/qjsondocument.h non plain false false  QString QString errorString() const [] }
-########################################			ENUMS			########################################
-&{ParseError QJsonParseError::ParseError commendable public  [0xc82059d180 0xc82059d220 0xc82059d300 0xc82059d3e0 0xc82059d4e0 0xc82059d5a0 0xc82059d640 0xc82059d700 0xc82059d7c0 0xc82059d8a0 0xc82059d980 0xc82059da40 0xc82059dac0 0xc82059db40 0xc82059dbc0] false}

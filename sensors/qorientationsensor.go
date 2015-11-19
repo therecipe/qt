@@ -27,7 +27,7 @@ func PointerFromQOrientationSensor(ptr QOrientationSensor_ITF) unsafe.Pointer {
 func NewQOrientationSensorFromPointer(ptr unsafe.Pointer) *QOrientationSensor {
 	var n = new(QOrientationSensor)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QOrientationSensor_" + qt.RandomIdentifier())
 	}
 	return n

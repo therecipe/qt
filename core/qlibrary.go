@@ -26,7 +26,7 @@ func PointerFromQLibrary(ptr QLibrary_ITF) unsafe.Pointer {
 func NewQLibraryFromPointer(ptr unsafe.Pointer) *QLibrary {
 	var n = new(QLibrary)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QLibrary_" + qt.RandomIdentifier())
 	}
 	return n

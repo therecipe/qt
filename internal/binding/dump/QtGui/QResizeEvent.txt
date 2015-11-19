@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QResizeEvent QResizeEvent::QResizeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QResizeEvent(const QSize &size, const QSize &oldSize) [0xc8208b60e0 0xc8208b61a0] }
-&{oldSize QResizeEvent::oldSize commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QSize & const QSize & oldSize() const [] }
-&{size QResizeEvent::size commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  const QSize & const QSize & size() const [] }
-########################################			ENUMS			########################################

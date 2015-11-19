@@ -27,7 +27,7 @@ func PointerFromQSortFilterProxyModel(ptr QSortFilterProxyModel_ITF) unsafe.Poin
 func NewQSortFilterProxyModelFromPointer(ptr unsafe.Pointer) *QSortFilterProxyModel {
 	var n = new(QSortFilterProxyModel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSortFilterProxyModel_" + qt.RandomIdentifier())
 	}
 	return n

@@ -27,7 +27,7 @@ func PointerFromQStylePlugin(ptr QStylePlugin_ITF) unsafe.Pointer {
 func NewQStylePluginFromPointer(ptr unsafe.Pointer) *QStylePlugin {
 	var n = new(QStylePlugin)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QStylePlugin_" + qt.RandomIdentifier())
 	}
 	return n

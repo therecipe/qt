@@ -28,7 +28,7 @@ func PointerFromQWebSocket(ptr QWebSocket_ITF) unsafe.Pointer {
 func NewQWebSocketFromPointer(ptr unsafe.Pointer) *QWebSocket {
 	var n = new(QWebSocket)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QWebSocket_" + qt.RandomIdentifier())
 	}
 	return n

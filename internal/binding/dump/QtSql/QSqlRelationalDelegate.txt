@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QSqlRelationalDelegate QSqlRelationalDelegate::QSqlRelationalDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaldelegate.h non constructor false false   QSqlRelationalDelegate(QObject *parent) [0xc820630540] }
-&{createEditor QSqlRelationalDelegate::createEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaldelegate.h non plain false false  QWidget * QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const [0xc820630720 0xc820630800 0xc820630900] }
-&{setModelData QSqlRelationalDelegate::setModelData commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaldelegate.h non plain false false  void void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const [0xc820630b20 0xc820630be0 0xc820630ce0] }
-&{~QSqlRelationalDelegate QSqlRelationalDelegate::~QSqlRelationalDelegate commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/models/qsqlrelationaldelegate.h non destructor false false   ~QSqlRelationalDelegate() [] }
-########################################			ENUMS			########################################

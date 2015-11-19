@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QTextObject QTextObject::QTextObject commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.cpp non constructor false false   QTextObject(QTextDocument *document) [0xc8236e5420] }
-&{document QTextObject::document commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextDocument * QTextDocument * document() const [] }
-&{format QTextObject::format commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  QTextFormat QTextFormat format() const [] }
-&{formatIndex QTextObject::formatIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int formatIndex() const [] }
-&{objectIndex QTextObject::objectIndex commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  int int objectIndex() const [] }
-&{setFormat QTextObject::setFormat commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non plain false false  void void setFormat(const QTextFormat &format) [0xc8237060c0] }
-&{~QTextObject QTextObject::~QTextObject commendable protected /work/build/qt5_workdir/w/s/qtbase/src/gui/text/qtextobject.h non destructor false false   ~QTextObject() [] }
-########################################			ENUMS			########################################

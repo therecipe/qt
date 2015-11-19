@@ -28,7 +28,7 @@ func PointerFromQLineEdit(ptr QLineEdit_ITF) unsafe.Pointer {
 func NewQLineEditFromPointer(ptr unsafe.Pointer) *QLineEdit {
 	var n = new(QLineEdit)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QLineEdit_" + qt.RandomIdentifier())
 	}
 	return n

@@ -26,7 +26,7 @@ func PointerFromQDoubleSpinBox(ptr QDoubleSpinBox_ITF) unsafe.Pointer {
 func NewQDoubleSpinBoxFromPointer(ptr unsafe.Pointer) *QDoubleSpinBox {
 	var n = new(QDoubleSpinBox)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDoubleSpinBox_" + qt.RandomIdentifier())
 	}
 	return n

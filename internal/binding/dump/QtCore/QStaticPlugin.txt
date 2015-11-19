@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{instance QStaticPlugin::instance commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qplugin.h non plain false false  QObject * QObject * instance() [] }
-&{metaData QStaticPlugin::metaData commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qplugin.h non plain false false  QJsonObject QJsonObject metaData() const [] }
-&{rawMetaData QStaticPlugin::rawMetaData commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/plugin/qplugin.h non plain false false  const char * const char * rawMetaData() [] }
-########################################			ENUMS			########################################

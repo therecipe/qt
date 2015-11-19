@@ -27,7 +27,7 @@ func PointerFromQGraphicsEffect(ptr QGraphicsEffect_ITF) unsafe.Pointer {
 func NewQGraphicsEffectFromPointer(ptr unsafe.Pointer) *QGraphicsEffect {
 	var n = new(QGraphicsEffect)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsEffect_" + qt.RandomIdentifier())
 	}
 	return n

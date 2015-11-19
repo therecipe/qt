@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QPlatformSurfaceEvent QPlatformSurfaceEvent::QPlatformSurfaceEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QPlatformSurfaceEvent(SurfaceEventType surfaceEventType) [0xc8208c9940] }
-&{surfaceEventType QPlatformSurfaceEvent::surfaceEventType commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  SurfaceEventType SurfaceEventType surfaceEventType() const [] }
-########################################			ENUMS			########################################
-&{SurfaceEventType QPlatformSurfaceEvent::SurfaceEventType commendable public  [0xc8208c9560 0xc8208c9640] false}

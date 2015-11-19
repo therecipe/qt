@@ -26,7 +26,7 @@ func PointerFromQIRProximityReading(ptr QIRProximityReading_ITF) unsafe.Pointer 
 func NewQIRProximityReadingFromPointer(ptr unsafe.Pointer) *QIRProximityReading {
 	var n = new(QIRProximityReading)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QIRProximityReading_" + qt.RandomIdentifier())
 	}
 	return n

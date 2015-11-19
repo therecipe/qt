@@ -27,7 +27,7 @@ func PointerFromQQmlComponent(ptr QQmlComponent_ITF) unsafe.Pointer {
 func NewQQmlComponentFromPointer(ptr unsafe.Pointer) *QQmlComponent {
 	var n = new(QQmlComponent)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQmlComponent_" + qt.RandomIdentifier())
 	}
 	return n

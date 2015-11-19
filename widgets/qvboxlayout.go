@@ -26,7 +26,7 @@ func PointerFromQVBoxLayout(ptr QVBoxLayout_ITF) unsafe.Pointer {
 func NewQVBoxLayoutFromPointer(ptr unsafe.Pointer) *QVBoxLayout {
 	var n = new(QVBoxLayout)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QVBoxLayout_" + qt.RandomIdentifier())
 	}
 	return n

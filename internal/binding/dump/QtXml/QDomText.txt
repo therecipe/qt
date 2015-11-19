@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QDomText QDomText::QDomText commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   QDomText() [] }
-&{QDomText QDomText::QDomText commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomText(const QDomText &x) [0xc821900800] }
-&{nodeType QDomText::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType QDomNode::NodeType nodeType() const [] }
-&{operator= QDomText::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomText & QDomText & operator=(const QDomText &x) [0xc821900ea0] }
-&{splitText QDomText::splitText commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomText QDomText splitText(int offset) [0xc8219012e0] }
-########################################			ENUMS			########################################

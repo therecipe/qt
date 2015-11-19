@@ -27,7 +27,7 @@ func PointerFromQAbstractSlider(ptr QAbstractSlider_ITF) unsafe.Pointer {
 func NewQAbstractSliderFromPointer(ptr unsafe.Pointer) *QAbstractSlider {
 	var n = new(QAbstractSlider)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractSlider_" + qt.RandomIdentifier())
 	}
 	return n

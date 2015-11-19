@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QStyleOptionProgressBar QStyleOptionProgressBar::QStyleOptionProgressBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionProgressBar() [] }
-&{QStyleOptionProgressBar QStyleOptionProgressBar::QStyleOptionProgressBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionProgressBar(const QStyleOptionProgressBar &other) [0xc822228a60] }
-########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionProgressBar::StyleOptionType commendable public  [0xc822228280] false}
-&{StyleOptionVersion QStyleOptionProgressBar::StyleOptionVersion commendable public  [0xc8222284c0] false}

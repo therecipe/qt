@@ -13,6 +13,20 @@ func cppFunctionSignal(f *parser.Function) string {
 }
 
 func cppFunction(f *parser.Function) string {
+
+	if isTemplate(f) {
+		var tmp string
+		for _, m := range []string{"Int", "Boolean", "Void"} {
+			if m == "Void" && (f.Fullname == "QAndroidJniObject::getField" || f.Fullname == "QAndroidJniObject::getStaticField") {
+			} else {
+				f.TemplateMode = m
+				tmp += fmt.Sprintf("%v{\n\t%v\n}\n", cppFunctionHeader(f), cppFunctionBody(f))
+			}
+		}
+		f.TemplateMode = ""
+		return tmp
+	}
+
 	return fmt.Sprintf("%v{\n\t%v\n}", cppFunctionHeader(f), cppFunctionBody(f))
 }
 
@@ -61,14 +75,14 @@ func cppFunctionBody(f *parser.Function) (o string) {
 
 	case "plain", "destructor":
 		if f.Static {
-			o += converter.CppBodyOutput(f, fmt.Sprintf("%v::%v(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
+			o += converter.CppBodyOutput(f, fmt.Sprintf("%v::%v%v(%v)", f.Class(), f.Name, converter.DeduceTemplate(f), converter.CppBodyInput(f)))
 		} else {
 			if f.Output == "T" && f.Class() == "QObject" {
 				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v<QObject*>(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
 			} else if f.Output == "T" && f.Class() == "QMediaService" {
 				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v<QMediaControl*>(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
 			} else {
-				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
+				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v%v(%v)", f.Class(), f.Name, converter.DeduceTemplate(f), converter.CppBodyInput(f)))
 			}
 		}
 

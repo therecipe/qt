@@ -26,7 +26,7 @@ func PointerFromQMediaNetworkAccessControl(ptr QMediaNetworkAccessControl_ITF) u
 func NewQMediaNetworkAccessControlFromPointer(ptr unsafe.Pointer) *QMediaNetworkAccessControl {
 	var n = new(QMediaNetworkAccessControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMediaNetworkAccessControl_" + qt.RandomIdentifier())
 	}
 	return n

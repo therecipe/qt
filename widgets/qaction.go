@@ -28,7 +28,7 @@ func PointerFromQAction(ptr QAction_ITF) unsafe.Pointer {
 func NewQActionFromPointer(ptr unsafe.Pointer) *QAction {
 	var n = new(QAction)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAction_" + qt.RandomIdentifier())
 	}
 	return n

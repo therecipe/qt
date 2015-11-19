@@ -27,7 +27,7 @@ func PointerFromQAudioDecoder(ptr QAudioDecoder_ITF) unsafe.Pointer {
 func NewQAudioDecoderFromPointer(ptr unsafe.Pointer) *QAudioDecoder {
 	var n = new(QAudioDecoder)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAudioDecoder_" + qt.RandomIdentifier())
 	}
 	return n

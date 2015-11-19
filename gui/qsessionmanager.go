@@ -28,7 +28,7 @@ func PointerFromQSessionManager(ptr QSessionManager_ITF) unsafe.Pointer {
 func NewQSessionManagerFromPointer(ptr unsafe.Pointer) *QSessionManager {
 	var n = new(QSessionManager)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSessionManager_" + qt.RandomIdentifier())
 	}
 	return n

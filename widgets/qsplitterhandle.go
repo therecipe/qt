@@ -27,7 +27,7 @@ func PointerFromQSplitterHandle(ptr QSplitterHandle_ITF) unsafe.Pointer {
 func NewQSplitterHandleFromPointer(ptr unsafe.Pointer) *QSplitterHandle {
 	var n = new(QSplitterHandle)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSplitterHandle_" + qt.RandomIdentifier())
 	}
 	return n

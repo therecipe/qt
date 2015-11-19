@@ -27,7 +27,7 @@ func PointerFromQWebChannelAbstractTransport(ptr QWebChannelAbstractTransport_IT
 func NewQWebChannelAbstractTransportFromPointer(ptr unsafe.Pointer) *QWebChannelAbstractTransport {
 	var n = new(QWebChannelAbstractTransport)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QWebChannelAbstractTransport_" + qt.RandomIdentifier())
 	}
 	return n

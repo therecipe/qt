@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QStyleOptionSlider QStyleOptionSlider::QStyleOptionSlider commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionSlider() [] }
-&{QStyleOptionSlider QStyleOptionSlider::QStyleOptionSlider commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionSlider(const QStyleOptionSlider &other) [0xc82224c140] }
-########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionSlider::StyleOptionType commendable public  [0xc822239900] false}
-&{StyleOptionVersion QStyleOptionSlider::StyleOptionVersion commendable public  [0xc822239c00] false}

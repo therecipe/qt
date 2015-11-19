@@ -1,8 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QStyleOptionToolBar QStyleOptionToolBar::QStyleOptionToolBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionToolBar() [] }
-&{QStyleOptionToolBar QStyleOptionToolBar::QStyleOptionToolBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionToolBar(const QStyleOptionToolBar &other) [0xc82229d060] }
-########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionToolBar::StyleOptionType commendable public  [0xc82229c140] false}
-&{StyleOptionVersion QStyleOptionToolBar::StyleOptionVersion commendable public  [0xc82229c420] false}
-&{ToolBarFeature QStyleOptionToolBar::ToolBarFeature commendable public QStyleOptionToolBar::ToolBarFeatures [0xc82229c600 0xc82229c680] false}
-&{ToolBarPosition QStyleOptionToolBar::ToolBarPosition commendable public  [0xc82229c8e0 0xc82229c960 0xc82229ca40 0xc82229cae0] false}

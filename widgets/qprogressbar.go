@@ -27,7 +27,7 @@ func PointerFromQProgressBar(ptr QProgressBar_ITF) unsafe.Pointer {
 func NewQProgressBarFromPointer(ptr unsafe.Pointer) *QProgressBar {
 	var n = new(QProgressBar)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QProgressBar_" + qt.RandomIdentifier())
 	}
 	return n

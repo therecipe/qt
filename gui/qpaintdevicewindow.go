@@ -38,7 +38,7 @@ func PointerFromQPaintDeviceWindow(ptr QPaintDeviceWindow_ITF) unsafe.Pointer {
 func NewQPaintDeviceWindowFromPointer(ptr unsafe.Pointer) *QPaintDeviceWindow {
 	var n = new(QPaintDeviceWindow)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QPaintDeviceWindow_" + qt.RandomIdentifier())
 	}
 	return n

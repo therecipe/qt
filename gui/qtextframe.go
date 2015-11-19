@@ -26,7 +26,7 @@ func PointerFromQTextFrame(ptr QTextFrame_ITF) unsafe.Pointer {
 func NewQTextFrameFromPointer(ptr unsafe.Pointer) *QTextFrame {
 	var n = new(QTextFrame)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTextFrame_" + qt.RandomIdentifier())
 	}
 	return n

@@ -26,7 +26,7 @@ func PointerFromQRadioButton(ptr QRadioButton_ITF) unsafe.Pointer {
 func NewQRadioButtonFromPointer(ptr unsafe.Pointer) *QRadioButton {
 	var n = new(QRadioButton)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QRadioButton_" + qt.RandomIdentifier())
 	}
 	return n

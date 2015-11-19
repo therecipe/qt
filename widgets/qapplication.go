@@ -29,7 +29,7 @@ func PointerFromQApplication(ptr QApplication_ITF) unsafe.Pointer {
 func NewQApplicationFromPointer(ptr unsafe.Pointer) *QApplication {
 	var n = new(QApplication)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QApplication_" + qt.RandomIdentifier())
 	}
 	return n

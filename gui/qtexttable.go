@@ -26,7 +26,7 @@ func PointerFromQTextTable(ptr QTextTable_ITF) unsafe.Pointer {
 func NewQTextTableFromPointer(ptr unsafe.Pointer) *QTextTable {
 	var n = new(QTextTable)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTextTable_" + qt.RandomIdentifier())
 	}
 	return n

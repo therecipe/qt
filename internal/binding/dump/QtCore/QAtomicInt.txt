@@ -1,3 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QAtomicInt QAtomicInt::QAtomicInt commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qatomic.h non constructor false false   QAtomicInt(int value) [0xc8205caf40] }
-########################################			ENUMS			########################################

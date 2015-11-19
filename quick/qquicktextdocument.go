@@ -28,7 +28,7 @@ func PointerFromQQuickTextDocument(ptr QQuickTextDocument_ITF) unsafe.Pointer {
 func NewQQuickTextDocumentFromPointer(ptr unsafe.Pointer) *QQuickTextDocument {
 	var n = new(QQuickTextDocument)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQuickTextDocument_" + qt.RandomIdentifier())
 	}
 	return n

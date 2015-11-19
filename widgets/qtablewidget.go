@@ -28,7 +28,7 @@ func PointerFromQTableWidget(ptr QTableWidget_ITF) unsafe.Pointer {
 func NewQTableWidgetFromPointer(ptr unsafe.Pointer) *QTableWidget {
 	var n = new(QTableWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTableWidget_" + qt.RandomIdentifier())
 	}
 	return n

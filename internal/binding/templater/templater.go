@@ -182,7 +182,7 @@ func ShouldBuild(module string) bool {
 
 var Build = map[string]bool{
 	"Core":              false,
-	"AndroidExtras":     false,
+	"AndroidExtras":     true,
 	"Gui":               false,
 	"Network":           false,
 	"Sql":               false,
@@ -201,7 +201,7 @@ var Build = map[string]bool{
 	"WebChannel":        false,
 	"Svg":               false,
 	"Multimedia":        false,
-	"Quick":             true,
+	"Quick":             false,
 	"Help":              false,
 	"Location":          false,
 	"ScriptTools":       false,
@@ -241,8 +241,7 @@ func GetLibs() []string {
 		switch {
 		case
 			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
-			runtime.GOOS != "windows" && Libs[i] == "WinExtras",
-			runtime.GOOS != "android" && (Libs[i] == "AndroidExtras"):
+			runtime.GOOS != "windows" && Libs[i] == "WinExtras":
 			{
 				Libs = append(Libs[:i], Libs[i+1:]...)
 			}
@@ -287,4 +286,12 @@ var LibDeps = map[string][]string{
 		WinExtras
 		UiTools
 	*/
+}
+
+func isTemplate(f *parser.Function) bool {
+	switch f.Fullname {
+	case "QAndroidJniObject::getStaticField", "QAndroidJniObject::getField", "QAndroidJniObject::callMethod", "QAndroidJniObject::callStaticMethod":
+		return true
+	}
+	return false
 }

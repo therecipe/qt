@@ -28,7 +28,7 @@ func PointerFromQAbstractItemDelegate(ptr QAbstractItemDelegate_ITF) unsafe.Poin
 func NewQAbstractItemDelegateFromPointer(ptr unsafe.Pointer) *QAbstractItemDelegate {
 	var n = new(QAbstractItemDelegate)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractItemDelegate_" + qt.RandomIdentifier())
 	}
 	return n

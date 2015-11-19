@@ -27,7 +27,7 @@ func PointerFromQBluetoothTransferManager(ptr QBluetoothTransferManager_ITF) uns
 func NewQBluetoothTransferManagerFromPointer(ptr unsafe.Pointer) *QBluetoothTransferManager {
 	var n = new(QBluetoothTransferManager)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QBluetoothTransferManager_" + qt.RandomIdentifier())
 	}
 	return n

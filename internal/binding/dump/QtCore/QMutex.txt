@@ -1,8 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{lock QMutex::lock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.cpp non plain false false  void void lock() [] }
-&{tryLock QMutex::tryLock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.cpp non plain false false  bool bool tryLock(int timeout) [0xc82071bda0] }
-&{unlock QMutex::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.cpp non plain false false  void void unlock() [] }
-&{QMutex QMutex::QMutex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.h non constructor false false   QMutex(RecursionMode mode) [0xc82072e260] }
-&{isRecursive QMutex::isRecursive commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.h non plain false false  bool bool isRecursive() [] }
-########################################			ENUMS			########################################
-&{RecursionMode QMutex::RecursionMode commendable public  [0xc82072e020 0xc82072e0a0] false}

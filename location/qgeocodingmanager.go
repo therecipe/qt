@@ -27,7 +27,7 @@ func PointerFromQGeoCodingManager(ptr QGeoCodingManager_ITF) unsafe.Pointer {
 func NewQGeoCodingManagerFromPointer(ptr unsafe.Pointer) *QGeoCodingManager {
 	var n = new(QGeoCodingManager)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGeoCodingManager_" + qt.RandomIdentifier())
 	}
 	return n

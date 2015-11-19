@@ -27,7 +27,7 @@ func PointerFromQTcpSocket(ptr QTcpSocket_ITF) unsafe.Pointer {
 func NewQTcpSocketFromPointer(ptr unsafe.Pointer) *QTcpSocket {
 	var n = new(QTcpSocket)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTcpSocket_" + qt.RandomIdentifier())
 	}
 	return n

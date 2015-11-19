@@ -27,7 +27,7 @@ func PointerFromQHolsterSensor(ptr QHolsterSensor_ITF) unsafe.Pointer {
 func NewQHolsterSensorFromPointer(ptr unsafe.Pointer) *QHolsterSensor {
 	var n = new(QHolsterSensor)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QHolsterSensor_" + qt.RandomIdentifier())
 	}
 	return n

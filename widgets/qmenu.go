@@ -28,7 +28,7 @@ func PointerFromQMenu(ptr QMenu_ITF) unsafe.Pointer {
 func NewQMenuFromPointer(ptr unsafe.Pointer) *QMenu {
 	var n = new(QMenu)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMenu_" + qt.RandomIdentifier())
 	}
 	return n

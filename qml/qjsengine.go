@@ -27,7 +27,7 @@ func PointerFromQJSEngine(ptr QJSEngine_ITF) unsafe.Pointer {
 func NewQJSEngineFromPointer(ptr unsafe.Pointer) *QJSEngine {
 	var n = new(QJSEngine)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QJSEngine_" + qt.RandomIdentifier())
 	}
 	return n

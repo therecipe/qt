@@ -27,7 +27,7 @@ func PointerFromQNetworkCookieJar(ptr QNetworkCookieJar_ITF) unsafe.Pointer {
 func NewQNetworkCookieJarFromPointer(ptr unsafe.Pointer) *QNetworkCookieJar {
 	var n = new(QNetworkCookieJar)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QNetworkCookieJar_" + qt.RandomIdentifier())
 	}
 	return n

@@ -28,7 +28,7 @@ func PointerFromQScriptExtensionPlugin(ptr QScriptExtensionPlugin_ITF) unsafe.Po
 func NewQScriptExtensionPluginFromPointer(ptr unsafe.Pointer) *QScriptExtensionPlugin {
 	var n = new(QScriptExtensionPlugin)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QScriptExtensionPlugin_" + qt.RandomIdentifier())
 	}
 	return n

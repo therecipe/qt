@@ -26,7 +26,7 @@ func PointerFromQAmbientTemperatureReading(ptr QAmbientTemperatureReading_ITF) u
 func NewQAmbientTemperatureReadingFromPointer(ptr unsafe.Pointer) *QAmbientTemperatureReading {
 	var n = new(QAmbientTemperatureReading)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAmbientTemperatureReading_" + qt.RandomIdentifier())
 	}
 	return n

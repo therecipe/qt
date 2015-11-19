@@ -1,908 +1,9 @@
-#include "qquickrendercontrol.h"
-#include <QModelIndex>
-#include <QOpenGLContext>
-#include <QPoint>
-#include <QString>
-#include <QUrl>
-#include <QObject>
-#include <QThread>
-#include <QVariant>
-#include <QQuickWindow>
-#include <QQuickRenderControl>
-#include "_cgo_export.h"
-
-class MyQQuickRenderControl: public QQuickRenderControl {
-public:
-void Signal_RenderRequested(){callbackQQuickRenderControlRenderRequested(this->objectName().toUtf8().data());};
-void Signal_SceneChanged(){callbackQQuickRenderControlSceneChanged(this->objectName().toUtf8().data());};
-};
-
-void* QQuickRenderControl_NewQQuickRenderControl(void* parent){
-	return new QQuickRenderControl(static_cast<QObject*>(parent));
-}
-
-void QQuickRenderControl_Initialize(void* ptr, void* gl){
-	static_cast<QQuickRenderControl*>(ptr)->initialize(static_cast<QOpenGLContext*>(gl));
-}
-
-void QQuickRenderControl_Invalidate(void* ptr){
-	static_cast<QQuickRenderControl*>(ptr)->invalidate();
-}
-
-void QQuickRenderControl_PolishItems(void* ptr){
-	static_cast<QQuickRenderControl*>(ptr)->polishItems();
-}
-
-void QQuickRenderControl_PrepareThread(void* ptr, void* targetThread){
-	static_cast<QQuickRenderControl*>(ptr)->prepareThread(static_cast<QThread*>(targetThread));
-}
-
-void QQuickRenderControl_Render(void* ptr){
-	static_cast<QQuickRenderControl*>(ptr)->render();
-}
-
-void QQuickRenderControl_ConnectRenderRequested(void* ptr){
-	QObject::connect(static_cast<QQuickRenderControl*>(ptr), static_cast<void (QQuickRenderControl::*)()>(&QQuickRenderControl::renderRequested), static_cast<MyQQuickRenderControl*>(ptr), static_cast<void (MyQQuickRenderControl::*)()>(&MyQQuickRenderControl::Signal_RenderRequested));;
-}
-
-void QQuickRenderControl_DisconnectRenderRequested(void* ptr){
-	QObject::disconnect(static_cast<QQuickRenderControl*>(ptr), static_cast<void (QQuickRenderControl::*)()>(&QQuickRenderControl::renderRequested), static_cast<MyQQuickRenderControl*>(ptr), static_cast<void (MyQQuickRenderControl::*)()>(&MyQQuickRenderControl::Signal_RenderRequested));;
-}
-
-void* QQuickRenderControl_RenderWindow(void* ptr, void* offset){
-	return static_cast<QQuickRenderControl*>(ptr)->renderWindow(static_cast<QPoint*>(offset));
-}
-
-void* QQuickRenderControl_QQuickRenderControl_RenderWindowFor(void* win, void* offset){
-	return QQuickRenderControl::renderWindowFor(static_cast<QQuickWindow*>(win), static_cast<QPoint*>(offset));
-}
-
-void QQuickRenderControl_ConnectSceneChanged(void* ptr){
-	QObject::connect(static_cast<QQuickRenderControl*>(ptr), static_cast<void (QQuickRenderControl::*)()>(&QQuickRenderControl::sceneChanged), static_cast<MyQQuickRenderControl*>(ptr), static_cast<void (MyQQuickRenderControl::*)()>(&MyQQuickRenderControl::Signal_SceneChanged));;
-}
-
-void QQuickRenderControl_DisconnectSceneChanged(void* ptr){
-	QObject::disconnect(static_cast<QQuickRenderControl*>(ptr), static_cast<void (QQuickRenderControl::*)()>(&QQuickRenderControl::sceneChanged), static_cast<MyQQuickRenderControl*>(ptr), static_cast<void (MyQQuickRenderControl::*)()>(&MyQQuickRenderControl::Signal_SceneChanged));;
-}
-
-int QQuickRenderControl_Sync(void* ptr){
-	return static_cast<QQuickRenderControl*>(ptr)->sync();
-}
-
-void QQuickRenderControl_DestroyQQuickRenderControl(void* ptr){
-	static_cast<QQuickRenderControl*>(ptr)->~QQuickRenderControl();
-}
-
-#include "qquickframebufferobject.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QQuickFramebufferObject>
-#include "_cgo_export.h"
-
-class MyQQuickFramebufferObject: public QQuickFramebufferObject {
-public:
-void Signal_TextureFollowsItemSizeChanged(bool v){callbackQQuickFramebufferObjectTextureFollowsItemSizeChanged(this->objectName().toUtf8().data(), v);};
-};
-
-void QQuickFramebufferObject_SetTextureFollowsItemSize(void* ptr, int follows){
-	static_cast<QQuickFramebufferObject*>(ptr)->setTextureFollowsItemSize(follows != 0);
-}
-
-int QQuickFramebufferObject_TextureFollowsItemSize(void* ptr){
-	return static_cast<QQuickFramebufferObject*>(ptr)->textureFollowsItemSize();
-}
-
-int QQuickFramebufferObject_IsTextureProvider(void* ptr){
-	return static_cast<QQuickFramebufferObject*>(ptr)->isTextureProvider();
-}
-
-void QQuickFramebufferObject_ReleaseResources(void* ptr){
-	static_cast<QQuickFramebufferObject*>(ptr)->releaseResources();
-}
-
-void QQuickFramebufferObject_ConnectTextureFollowsItemSizeChanged(void* ptr){
-	QObject::connect(static_cast<QQuickFramebufferObject*>(ptr), static_cast<void (QQuickFramebufferObject::*)(bool)>(&QQuickFramebufferObject::textureFollowsItemSizeChanged), static_cast<MyQQuickFramebufferObject*>(ptr), static_cast<void (MyQQuickFramebufferObject::*)(bool)>(&MyQQuickFramebufferObject::Signal_TextureFollowsItemSizeChanged));;
-}
-
-void QQuickFramebufferObject_DisconnectTextureFollowsItemSizeChanged(void* ptr){
-	QObject::disconnect(static_cast<QQuickFramebufferObject*>(ptr), static_cast<void (QQuickFramebufferObject::*)(bool)>(&QQuickFramebufferObject::textureFollowsItemSizeChanged), static_cast<MyQQuickFramebufferObject*>(ptr), static_cast<void (MyQQuickFramebufferObject::*)(bool)>(&MyQQuickFramebufferObject::Signal_TextureFollowsItemSizeChanged));;
-}
-
-void* QQuickFramebufferObject_TextureProvider(void* ptr){
-	return static_cast<QQuickFramebufferObject*>(ptr)->textureProvider();
-}
-
-#include "qsggeometry.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QRect>
-#include <QRectF>
-#include <QString>
-#include <QSGGeometry>
-#include "_cgo_export.h"
-
-class MyQSGGeometry: public QSGGeometry {
-public:
-};
-
-void QSGGeometry_Allocate(void* ptr, int vertexCount, int indexCount){
-	static_cast<QSGGeometry*>(ptr)->allocate(vertexCount, indexCount);
-}
-
-int QSGGeometry_AttributeCount(void* ptr){
-	return static_cast<QSGGeometry*>(ptr)->attributeCount();
-}
-
-int QSGGeometry_IndexCount(void* ptr){
-	return static_cast<QSGGeometry*>(ptr)->indexCount();
-}
-
-void* QSGGeometry_IndexData(void* ptr){
-	return static_cast<QSGGeometry*>(ptr)->indexData();
-}
-
-void* QSGGeometry_IndexData2(void* ptr){
-	return const_cast<void*>(static_cast<QSGGeometry*>(ptr)->indexData());
-}
-
-int QSGGeometry_IndexDataPattern(void* ptr){
-	return static_cast<QSGGeometry*>(ptr)->indexDataPattern();
-}
-
-int QSGGeometry_IndexType(void* ptr){
-	return static_cast<QSGGeometry*>(ptr)->indexType();
-}
-
-void QSGGeometry_MarkIndexDataDirty(void* ptr){
-	static_cast<QSGGeometry*>(ptr)->markIndexDataDirty();
-}
-
-void QSGGeometry_MarkVertexDataDirty(void* ptr){
-	static_cast<QSGGeometry*>(ptr)->markVertexDataDirty();
-}
-
-void QSGGeometry_SetIndexDataPattern(void* ptr, int p){
-	static_cast<QSGGeometry*>(ptr)->setIndexDataPattern(static_cast<QSGGeometry::DataPattern>(p));
-}
-
-void QSGGeometry_SetVertexDataPattern(void* ptr, int p){
-	static_cast<QSGGeometry*>(ptr)->setVertexDataPattern(static_cast<QSGGeometry::DataPattern>(p));
-}
-
-int QSGGeometry_SizeOfIndex(void* ptr){
-	return static_cast<QSGGeometry*>(ptr)->sizeOfIndex();
-}
-
-int QSGGeometry_SizeOfVertex(void* ptr){
-	return static_cast<QSGGeometry*>(ptr)->sizeOfVertex();
-}
-
-void QSGGeometry_QSGGeometry_UpdateRectGeometry(void* g, void* rect){
-	QSGGeometry::updateRectGeometry(static_cast<QSGGeometry*>(g), *static_cast<QRectF*>(rect));
-}
-
-void QSGGeometry_QSGGeometry_UpdateTexturedRectGeometry(void* g, void* rect, void* textureRect){
-	QSGGeometry::updateTexturedRectGeometry(static_cast<QSGGeometry*>(g), *static_cast<QRectF*>(rect), *static_cast<QRectF*>(textureRect));
-}
-
-int QSGGeometry_VertexCount(void* ptr){
-	return static_cast<QSGGeometry*>(ptr)->vertexCount();
-}
-
-void* QSGGeometry_VertexData(void* ptr){
-	return static_cast<QSGGeometry*>(ptr)->vertexData();
-}
-
-void* QSGGeometry_VertexData2(void* ptr){
-	return const_cast<void*>(static_cast<QSGGeometry*>(ptr)->vertexData());
-}
-
-int QSGGeometry_VertexDataPattern(void* ptr){
-	return static_cast<QSGGeometry*>(ptr)->vertexDataPattern();
-}
-
-void QSGGeometry_DestroyQSGGeometry(void* ptr){
-	static_cast<QSGGeometry*>(ptr)->~QSGGeometry();
-}
-
-#include "qsgabstractrenderer.h"
-#include <QRectF>
-#include <QMatrix4x4>
-#include <QRect>
-#include <QString>
-#include <QModelIndex>
-#include <QColor>
-#include <QSize>
-#include <QObject>
-#include <QVariant>
-#include <QUrl>
-#include <QSGAbstractRenderer>
-#include "_cgo_export.h"
-
-class MyQSGAbstractRenderer: public QSGAbstractRenderer {
-public:
-void Signal_SceneGraphChanged(){callbackQSGAbstractRendererSceneGraphChanged(this->objectName().toUtf8().data());};
-};
-
-void* QSGAbstractRenderer_ClearColor(void* ptr){
-	return new QColor(static_cast<QSGAbstractRenderer*>(ptr)->clearColor());
-}
-
-int QSGAbstractRenderer_ClearMode(void* ptr){
-	return static_cast<QSGAbstractRenderer*>(ptr)->clearMode();
-}
-
-void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr){
-	QObject::connect(static_cast<QSGAbstractRenderer*>(ptr), static_cast<void (QSGAbstractRenderer::*)()>(&QSGAbstractRenderer::sceneGraphChanged), static_cast<MyQSGAbstractRenderer*>(ptr), static_cast<void (MyQSGAbstractRenderer::*)()>(&MyQSGAbstractRenderer::Signal_SceneGraphChanged));;
-}
-
-void QSGAbstractRenderer_DisconnectSceneGraphChanged(void* ptr){
-	QObject::disconnect(static_cast<QSGAbstractRenderer*>(ptr), static_cast<void (QSGAbstractRenderer::*)()>(&QSGAbstractRenderer::sceneGraphChanged), static_cast<MyQSGAbstractRenderer*>(ptr), static_cast<void (MyQSGAbstractRenderer::*)()>(&MyQSGAbstractRenderer::Signal_SceneGraphChanged));;
-}
-
-void QSGAbstractRenderer_SetClearColor(void* ptr, void* color){
-	static_cast<QSGAbstractRenderer*>(ptr)->setClearColor(*static_cast<QColor*>(color));
-}
-
-void QSGAbstractRenderer_SetClearMode(void* ptr, int mode){
-	static_cast<QSGAbstractRenderer*>(ptr)->setClearMode(static_cast<QSGAbstractRenderer::ClearModeBit>(mode));
-}
-
-void QSGAbstractRenderer_SetDeviceRect(void* ptr, void* rect){
-	static_cast<QSGAbstractRenderer*>(ptr)->setDeviceRect(*static_cast<QRect*>(rect));
-}
-
-void QSGAbstractRenderer_SetDeviceRect2(void* ptr, void* size){
-	static_cast<QSGAbstractRenderer*>(ptr)->setDeviceRect(*static_cast<QSize*>(size));
-}
-
-void QSGAbstractRenderer_SetProjectionMatrix(void* ptr, void* matrix){
-	static_cast<QSGAbstractRenderer*>(ptr)->setProjectionMatrix(*static_cast<QMatrix4x4*>(matrix));
-}
-
-void QSGAbstractRenderer_SetProjectionMatrixToRect(void* ptr, void* rect){
-	static_cast<QSGAbstractRenderer*>(ptr)->setProjectionMatrixToRect(*static_cast<QRectF*>(rect));
-}
-
-void QSGAbstractRenderer_SetViewportRect(void* ptr, void* rect){
-	static_cast<QSGAbstractRenderer*>(ptr)->setViewportRect(*static_cast<QRect*>(rect));
-}
-
-void QSGAbstractRenderer_SetViewportRect2(void* ptr, void* size){
-	static_cast<QSGAbstractRenderer*>(ptr)->setViewportRect(*static_cast<QSize*>(size));
-}
-
-#include "qquicktexturefactory.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QQuickWindow>
-#include <QQuickTextureFactory>
-#include "_cgo_export.h"
-
-class MyQQuickTextureFactory: public QQuickTextureFactory {
-public:
-};
-
-void* QQuickTextureFactory_CreateTexture(void* ptr, void* window){
-	return static_cast<QQuickTextureFactory*>(ptr)->createTexture(static_cast<QQuickWindow*>(window));
-}
-
-int QQuickTextureFactory_TextureByteCount(void* ptr){
-	return static_cast<QQuickTextureFactory*>(ptr)->textureByteCount();
-}
-
-void QQuickTextureFactory_DestroyQQuickTextureFactory(void* ptr){
-	static_cast<QQuickTextureFactory*>(ptr)->~QQuickTextureFactory();
-}
-
-#include "qquickpainteditem.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSize>
-#include <QColor>
-#include <QString>
-#include <QObject>
-#include <QPainter>
-#include <QRect>
-#include <QQuickPaintedItem>
-#include "_cgo_export.h"
-
-class MyQQuickPaintedItem: public QQuickPaintedItem {
-public:
-void Signal_ContentsScaleChanged(){callbackQQuickPaintedItemContentsScaleChanged(this->objectName().toUtf8().data());};
-void Signal_ContentsSizeChanged(){callbackQQuickPaintedItemContentsSizeChanged(this->objectName().toUtf8().data());};
-void Signal_FillColorChanged(){callbackQQuickPaintedItemFillColorChanged(this->objectName().toUtf8().data());};
-void Signal_RenderTargetChanged(){callbackQQuickPaintedItemRenderTargetChanged(this->objectName().toUtf8().data());};
-};
-
-double QQuickPaintedItem_ContentsScale(void* ptr){
-	return static_cast<double>(static_cast<QQuickPaintedItem*>(ptr)->contentsScale());
-}
-
-void* QQuickPaintedItem_FillColor(void* ptr){
-	return new QColor(static_cast<QQuickPaintedItem*>(ptr)->fillColor());
-}
-
-int QQuickPaintedItem_RenderTarget(void* ptr){
-	return static_cast<QQuickPaintedItem*>(ptr)->renderTarget();
-}
-
-void QQuickPaintedItem_SetContentsScale(void* ptr, double v){
-	static_cast<QQuickPaintedItem*>(ptr)->setContentsScale(static_cast<qreal>(v));
-}
-
-void QQuickPaintedItem_SetContentsSize(void* ptr, void* v){
-	static_cast<QQuickPaintedItem*>(ptr)->setContentsSize(*static_cast<QSize*>(v));
-}
-
-void QQuickPaintedItem_SetFillColor(void* ptr, void* v){
-	static_cast<QQuickPaintedItem*>(ptr)->setFillColor(*static_cast<QColor*>(v));
-}
-
-void QQuickPaintedItem_SetRenderTarget(void* ptr, int target){
-	static_cast<QQuickPaintedItem*>(ptr)->setRenderTarget(static_cast<QQuickPaintedItem::RenderTarget>(target));
-}
-
-int QQuickPaintedItem_Antialiasing(void* ptr){
-	return static_cast<QQuickPaintedItem*>(ptr)->antialiasing();
-}
-
-void QQuickPaintedItem_ConnectContentsScaleChanged(void* ptr){
-	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::contentsScaleChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_ContentsScaleChanged));;
-}
-
-void QQuickPaintedItem_DisconnectContentsScaleChanged(void* ptr){
-	QObject::disconnect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::contentsScaleChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_ContentsScaleChanged));;
-}
-
-void QQuickPaintedItem_ConnectContentsSizeChanged(void* ptr){
-	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::contentsSizeChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_ContentsSizeChanged));;
-}
-
-void QQuickPaintedItem_DisconnectContentsSizeChanged(void* ptr){
-	QObject::disconnect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::contentsSizeChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_ContentsSizeChanged));;
-}
-
-void QQuickPaintedItem_ConnectFillColorChanged(void* ptr){
-	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::fillColorChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_FillColorChanged));;
-}
-
-void QQuickPaintedItem_DisconnectFillColorChanged(void* ptr){
-	QObject::disconnect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::fillColorChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_FillColorChanged));;
-}
-
-int QQuickPaintedItem_IsTextureProvider(void* ptr){
-	return static_cast<QQuickPaintedItem*>(ptr)->isTextureProvider();
-}
-
-int QQuickPaintedItem_Mipmap(void* ptr){
-	return static_cast<QQuickPaintedItem*>(ptr)->mipmap();
-}
-
-int QQuickPaintedItem_OpaquePainting(void* ptr){
-	return static_cast<QQuickPaintedItem*>(ptr)->opaquePainting();
-}
-
-void QQuickPaintedItem_Paint(void* ptr, void* painter){
-	static_cast<QQuickPaintedItem*>(ptr)->paint(static_cast<QPainter*>(painter));
-}
-
-int QQuickPaintedItem_PerformanceHints(void* ptr){
-	return static_cast<QQuickPaintedItem*>(ptr)->performanceHints();
-}
-
-void QQuickPaintedItem_ConnectRenderTargetChanged(void* ptr){
-	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::renderTargetChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_RenderTargetChanged));;
-}
-
-void QQuickPaintedItem_DisconnectRenderTargetChanged(void* ptr){
-	QObject::disconnect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::renderTargetChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_RenderTargetChanged));;
-}
-
-void QQuickPaintedItem_ResetContentsSize(void* ptr){
-	static_cast<QQuickPaintedItem*>(ptr)->resetContentsSize();
-}
-
-void QQuickPaintedItem_SetAntialiasing(void* ptr, int enable){
-	static_cast<QQuickPaintedItem*>(ptr)->setAntialiasing(enable != 0);
-}
-
-void QQuickPaintedItem_SetMipmap(void* ptr, int enable){
-	static_cast<QQuickPaintedItem*>(ptr)->setMipmap(enable != 0);
-}
-
-void QQuickPaintedItem_SetOpaquePainting(void* ptr, int opaque){
-	static_cast<QQuickPaintedItem*>(ptr)->setOpaquePainting(opaque != 0);
-}
-
-void QQuickPaintedItem_SetPerformanceHint(void* ptr, int hint, int enabled){
-	static_cast<QQuickPaintedItem*>(ptr)->setPerformanceHint(static_cast<QQuickPaintedItem::PerformanceHint>(hint), enabled != 0);
-}
-
-void QQuickPaintedItem_SetPerformanceHints(void* ptr, int hints){
-	static_cast<QQuickPaintedItem*>(ptr)->setPerformanceHints(static_cast<QQuickPaintedItem::PerformanceHint>(hints));
-}
-
-void* QQuickPaintedItem_TextureProvider(void* ptr){
-	return static_cast<QQuickPaintedItem*>(ptr)->textureProvider();
-}
-
-void QQuickPaintedItem_Update(void* ptr, void* rect){
-	static_cast<QQuickPaintedItem*>(ptr)->update(*static_cast<QRect*>(rect));
-}
-
-void QQuickPaintedItem_DestroyQQuickPaintedItem(void* ptr){
-	static_cast<QQuickPaintedItem*>(ptr)->~QQuickPaintedItem();
-}
-
-#include "qsgsimpletexturenode.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSGTexture>
-#include <QRectF>
-#include <QRect>
-#include <QSGSimpleTextureNode>
-#include "_cgo_export.h"
-
-class MyQSGSimpleTextureNode: public QSGSimpleTextureNode {
-public:
-};
-
-void* QSGSimpleTextureNode_NewQSGSimpleTextureNode(){
-	return new QSGSimpleTextureNode();
-}
-
-int QSGSimpleTextureNode_Filtering(void* ptr){
-	return static_cast<QSGSimpleTextureNode*>(ptr)->filtering();
-}
-
-int QSGSimpleTextureNode_OwnsTexture(void* ptr){
-	return static_cast<QSGSimpleTextureNode*>(ptr)->ownsTexture();
-}
-
-void QSGSimpleTextureNode_SetFiltering(void* ptr, int filtering){
-	static_cast<QSGSimpleTextureNode*>(ptr)->setFiltering(static_cast<QSGTexture::Filtering>(filtering));
-}
-
-void QSGSimpleTextureNode_SetOwnsTexture(void* ptr, int owns){
-	static_cast<QSGSimpleTextureNode*>(ptr)->setOwnsTexture(owns != 0);
-}
-
-void QSGSimpleTextureNode_SetRect(void* ptr, void* r){
-	static_cast<QSGSimpleTextureNode*>(ptr)->setRect(*static_cast<QRectF*>(r));
-}
-
-void QSGSimpleTextureNode_SetRect2(void* ptr, double x, double y, double w, double h){
-	static_cast<QSGSimpleTextureNode*>(ptr)->setRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
-}
-
-void QSGSimpleTextureNode_SetSourceRect(void* ptr, void* r){
-	static_cast<QSGSimpleTextureNode*>(ptr)->setSourceRect(*static_cast<QRectF*>(r));
-}
-
-void QSGSimpleTextureNode_SetSourceRect2(void* ptr, double x, double y, double w, double h){
-	static_cast<QSGSimpleTextureNode*>(ptr)->setSourceRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
-}
-
-void QSGSimpleTextureNode_SetTexture(void* ptr, void* texture){
-	static_cast<QSGSimpleTextureNode*>(ptr)->setTexture(static_cast<QSGTexture*>(texture));
-}
-
-void QSGSimpleTextureNode_SetTextureCoordinatesTransform(void* ptr, int mode){
-	static_cast<QSGSimpleTextureNode*>(ptr)->setTextureCoordinatesTransform(static_cast<QSGSimpleTextureNode::TextureCoordinatesTransformFlag>(mode));
-}
-
-void* QSGSimpleTextureNode_Texture(void* ptr){
-	return static_cast<QSGSimpleTextureNode*>(ptr)->texture();
-}
-
-int QSGSimpleTextureNode_TextureCoordinatesTransform(void* ptr){
-	return static_cast<QSGSimpleTextureNode*>(ptr)->textureCoordinatesTransform();
-}
-
-void QSGSimpleTextureNode_DestroyQSGSimpleTextureNode(void* ptr){
-	static_cast<QSGSimpleTextureNode*>(ptr)->~QSGSimpleTextureNode();
-}
-
-#include "qquickimageprovider.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QQmlImageProviderBase>
-#include <QQuickImageProvider>
-#include "_cgo_export.h"
-
-class MyQQuickImageProvider: public QQuickImageProvider {
-public:
-};
-
-void* QQuickImageProvider_NewQQuickImageProvider(int ty, int flags){
-	return new QQuickImageProvider(static_cast<QQmlImageProviderBase::ImageType>(ty), static_cast<QQmlImageProviderBase::Flag>(flags));
-}
-
-int QQuickImageProvider_Flags(void* ptr){
-	return static_cast<QQuickImageProvider*>(ptr)->flags();
-}
-
-int QQuickImageProvider_ImageType(void* ptr){
-	return static_cast<QQuickImageProvider*>(ptr)->imageType();
-}
-
-void QQuickImageProvider_DestroyQQuickImageProvider(void* ptr){
-	static_cast<QQuickImageProvider*>(ptr)->~QQuickImageProvider();
-}
-
-#include "qsgopacitynode.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSGOpacityNode>
-#include "_cgo_export.h"
-
-class MyQSGOpacityNode: public QSGOpacityNode {
-public:
-};
-
-void* QSGOpacityNode_NewQSGOpacityNode(){
-	return new QSGOpacityNode();
-}
-
-double QSGOpacityNode_Opacity(void* ptr){
-	return static_cast<double>(static_cast<QSGOpacityNode*>(ptr)->opacity());
-}
-
-void QSGOpacityNode_SetOpacity(void* ptr, double opacity){
-	static_cast<QSGOpacityNode*>(ptr)->setOpacity(static_cast<qreal>(opacity));
-}
-
-void QSGOpacityNode_DestroyQSGOpacityNode(void* ptr){
-	static_cast<QSGOpacityNode*>(ptr)->~QSGOpacityNode();
-}
-
-#include "qsgnode.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QString>
-#include <QSGNode>
-#include "_cgo_export.h"
-
-class MyQSGNode: public QSGNode {
-public:
-};
-
-void* QSGNode_ChildAtIndex(void* ptr, int i){
-	return static_cast<QSGNode*>(ptr)->childAtIndex(i);
-}
-
-int QSGNode_ChildCount(void* ptr){
-	return static_cast<QSGNode*>(ptr)->childCount();
-}
-
-void* QSGNode_NewQSGNode(){
-	return new QSGNode();
-}
-
-void QSGNode_AppendChildNode(void* ptr, void* node){
-	static_cast<QSGNode*>(ptr)->appendChildNode(static_cast<QSGNode*>(node));
-}
-
-void* QSGNode_FirstChild(void* ptr){
-	return static_cast<QSGNode*>(ptr)->firstChild();
-}
-
-int QSGNode_Flags(void* ptr){
-	return static_cast<QSGNode*>(ptr)->flags();
-}
-
-void QSGNode_InsertChildNodeAfter(void* ptr, void* node, void* after){
-	static_cast<QSGNode*>(ptr)->insertChildNodeAfter(static_cast<QSGNode*>(node), static_cast<QSGNode*>(after));
-}
-
-void QSGNode_InsertChildNodeBefore(void* ptr, void* node, void* before){
-	static_cast<QSGNode*>(ptr)->insertChildNodeBefore(static_cast<QSGNode*>(node), static_cast<QSGNode*>(before));
-}
-
-int QSGNode_IsSubtreeBlocked(void* ptr){
-	return static_cast<QSGNode*>(ptr)->isSubtreeBlocked();
-}
-
-void* QSGNode_LastChild(void* ptr){
-	return static_cast<QSGNode*>(ptr)->lastChild();
-}
-
-void QSGNode_MarkDirty(void* ptr, int bits){
-	static_cast<QSGNode*>(ptr)->markDirty(static_cast<QSGNode::DirtyStateBit>(bits));
-}
-
-void* QSGNode_NextSibling(void* ptr){
-	return static_cast<QSGNode*>(ptr)->nextSibling();
-}
-
-void* QSGNode_Parent(void* ptr){
-	return static_cast<QSGNode*>(ptr)->parent();
-}
-
-void QSGNode_PrependChildNode(void* ptr, void* node){
-	static_cast<QSGNode*>(ptr)->prependChildNode(static_cast<QSGNode*>(node));
-}
-
-void QSGNode_Preprocess(void* ptr){
-	static_cast<QSGNode*>(ptr)->preprocess();
-}
-
-void* QSGNode_PreviousSibling(void* ptr){
-	return static_cast<QSGNode*>(ptr)->previousSibling();
-}
-
-void QSGNode_RemoveAllChildNodes(void* ptr){
-	static_cast<QSGNode*>(ptr)->removeAllChildNodes();
-}
-
-void QSGNode_RemoveChildNode(void* ptr, void* node){
-	static_cast<QSGNode*>(ptr)->removeChildNode(static_cast<QSGNode*>(node));
-}
-
-void QSGNode_SetFlag(void* ptr, int f, int enabled){
-	static_cast<QSGNode*>(ptr)->setFlag(static_cast<QSGNode::Flag>(f), enabled != 0);
-}
-
-void QSGNode_SetFlags(void* ptr, int f, int enabled){
-	static_cast<QSGNode*>(ptr)->setFlags(static_cast<QSGNode::Flag>(f), enabled != 0);
-}
-
-int QSGNode_Type(void* ptr){
-	return static_cast<QSGNode*>(ptr)->type();
-}
-
-void QSGNode_DestroyQSGNode(void* ptr){
-	static_cast<QSGNode*>(ptr)->~QSGNode();
-}
-
-#include "qsgengine.h"
-#include <QModelIndex>
-#include <QImage>
-#include <QOpenGLContext>
-#include <QObject>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QSGEngine>
-#include "_cgo_export.h"
-
-class MyQSGEngine: public QSGEngine {
-public:
-};
-
-void* QSGEngine_NewQSGEngine(void* parent){
-	return new QSGEngine(static_cast<QObject*>(parent));
-}
-
-void* QSGEngine_CreateRenderer(void* ptr){
-	return static_cast<QSGEngine*>(ptr)->createRenderer();
-}
-
-void* QSGEngine_CreateTextureFromImage(void* ptr, void* image, int options){
-	return static_cast<QSGEngine*>(ptr)->createTextureFromImage(*static_cast<QImage*>(image), static_cast<QSGEngine::CreateTextureOption>(options));
-}
-
-void QSGEngine_Initialize(void* ptr, void* context){
-	static_cast<QSGEngine*>(ptr)->initialize(static_cast<QOpenGLContext*>(context));
-}
-
-void QSGEngine_Invalidate(void* ptr){
-	static_cast<QSGEngine*>(ptr)->invalidate();
-}
-
-void QSGEngine_DestroyQSGEngine(void* ptr){
-	static_cast<QSGEngine*>(ptr)->~QSGEngine();
-}
-
-#include "qsgopaquetexturematerial.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSGTexture>
-#include <QString>
-#include <QSGOpaqueTextureMaterial>
-#include "_cgo_export.h"
-
-class MyQSGOpaqueTextureMaterial: public QSGOpaqueTextureMaterial {
-public:
-};
-
-int QSGOpaqueTextureMaterial_Filtering(void* ptr){
-	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->filtering();
-}
-
-int QSGOpaqueTextureMaterial_HorizontalWrapMode(void* ptr){
-	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->horizontalWrapMode();
-}
-
-int QSGOpaqueTextureMaterial_MipmapFiltering(void* ptr){
-	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->mipmapFiltering();
-}
-
-void QSGOpaqueTextureMaterial_SetFiltering(void* ptr, int filtering){
-	static_cast<QSGOpaqueTextureMaterial*>(ptr)->setFiltering(static_cast<QSGTexture::Filtering>(filtering));
-}
-
-void QSGOpaqueTextureMaterial_SetHorizontalWrapMode(void* ptr, int mode){
-	static_cast<QSGOpaqueTextureMaterial*>(ptr)->setHorizontalWrapMode(static_cast<QSGTexture::WrapMode>(mode));
-}
-
-void QSGOpaqueTextureMaterial_SetMipmapFiltering(void* ptr, int filtering){
-	static_cast<QSGOpaqueTextureMaterial*>(ptr)->setMipmapFiltering(static_cast<QSGTexture::Filtering>(filtering));
-}
-
-void QSGOpaqueTextureMaterial_SetTexture(void* ptr, void* texture){
-	static_cast<QSGOpaqueTextureMaterial*>(ptr)->setTexture(static_cast<QSGTexture*>(texture));
-}
-
-void QSGOpaqueTextureMaterial_SetVerticalWrapMode(void* ptr, int mode){
-	static_cast<QSGOpaqueTextureMaterial*>(ptr)->setVerticalWrapMode(static_cast<QSGTexture::WrapMode>(mode));
-}
-
-void* QSGOpaqueTextureMaterial_Texture(void* ptr){
-	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->texture();
-}
-
-int QSGOpaqueTextureMaterial_VerticalWrapMode(void* ptr){
-	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->verticalWrapMode();
-}
-
-#include "qsgflatcolormaterial.h"
-#include <QModelIndex>
-#include <QColor>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QSGFlatColorMaterial>
-#include "_cgo_export.h"
-
-class MyQSGFlatColorMaterial: public QSGFlatColorMaterial {
-public:
-};
-
-void* QSGFlatColorMaterial_Color(void* ptr){
-	return new QColor(static_cast<QSGFlatColorMaterial*>(ptr)->color());
-}
-
-void QSGFlatColorMaterial_SetColor(void* ptr, void* color){
-	static_cast<QSGFlatColorMaterial*>(ptr)->setColor(*static_cast<QColor*>(color));
-}
-
-#include "qsgmaterialshader.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QSGMaterial>
-#include <QString>
-#include <QVariant>
-#include <QSGMaterialShader>
-#include "_cgo_export.h"
-
-class MyQSGMaterialShader: public QSGMaterialShader {
-public:
-};
-
-void QSGMaterialShader_Activate(void* ptr){
-	static_cast<QSGMaterialShader*>(ptr)->activate();
-}
-
-void QSGMaterialShader_Deactivate(void* ptr){
-	static_cast<QSGMaterialShader*>(ptr)->deactivate();
-}
-
-void* QSGMaterialShader_Program(void* ptr){
-	return static_cast<QSGMaterialShader*>(ptr)->program();
-}
-
-#include "qsgmaterialtype.h"
-#include <QSGMaterial>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSGMaterialType>
-#include "_cgo_export.h"
-
-class MyQSGMaterialType: public QSGMaterialType {
-public:
-};
-
-#include "qsgtexture.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSGTexture>
-#include "_cgo_export.h"
-
-class MyQSGTexture: public QSGTexture {
-public:
-};
-
-void QSGTexture_Bind(void* ptr){
-	static_cast<QSGTexture*>(ptr)->bind();
-}
-
-int QSGTexture_Filtering(void* ptr){
-	return static_cast<QSGTexture*>(ptr)->filtering();
-}
-
-int QSGTexture_HasAlphaChannel(void* ptr){
-	return static_cast<QSGTexture*>(ptr)->hasAlphaChannel();
-}
-
-int QSGTexture_HasMipmaps(void* ptr){
-	return static_cast<QSGTexture*>(ptr)->hasMipmaps();
-}
-
-int QSGTexture_HorizontalWrapMode(void* ptr){
-	return static_cast<QSGTexture*>(ptr)->horizontalWrapMode();
-}
-
-int QSGTexture_IsAtlasTexture(void* ptr){
-	return static_cast<QSGTexture*>(ptr)->isAtlasTexture();
-}
-
-int QSGTexture_MipmapFiltering(void* ptr){
-	return static_cast<QSGTexture*>(ptr)->mipmapFiltering();
-}
-
-void* QSGTexture_RemovedFromAtlas(void* ptr){
-	return static_cast<QSGTexture*>(ptr)->removedFromAtlas();
-}
-
-void QSGTexture_SetFiltering(void* ptr, int filter){
-	static_cast<QSGTexture*>(ptr)->setFiltering(static_cast<QSGTexture::Filtering>(filter));
-}
-
-void QSGTexture_SetHorizontalWrapMode(void* ptr, int hwrap){
-	static_cast<QSGTexture*>(ptr)->setHorizontalWrapMode(static_cast<QSGTexture::WrapMode>(hwrap));
-}
-
-void QSGTexture_SetMipmapFiltering(void* ptr, int filter){
-	static_cast<QSGTexture*>(ptr)->setMipmapFiltering(static_cast<QSGTexture::Filtering>(filter));
-}
-
-void QSGTexture_SetVerticalWrapMode(void* ptr, int vwrap){
-	static_cast<QSGTexture*>(ptr)->setVerticalWrapMode(static_cast<QSGTexture::WrapMode>(vwrap));
-}
-
-int QSGTexture_TextureId(void* ptr){
-	return static_cast<QSGTexture*>(ptr)->textureId();
-}
-
-void QSGTexture_UpdateBindOptions(void* ptr, int force){
-	static_cast<QSGTexture*>(ptr)->updateBindOptions(force != 0);
-}
-
-int QSGTexture_VerticalWrapMode(void* ptr){
-	return static_cast<QSGTexture*>(ptr)->verticalWrapMode();
-}
-
-void QSGTexture_DestroyQSGTexture(void* ptr){
-	static_cast<QSGTexture*>(ptr)->~QSGTexture();
-}
-
 #include "qsgtextureprovider.h"
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QObject>
 #include <QSGTexture>
 #include <QSGTextureProvider>
 #include "_cgo_export.h"
@@ -924,59 +25,136 @@ void QSGTextureProvider_DisconnectTextureChanged(void* ptr){
 	QObject::disconnect(static_cast<QSGTextureProvider*>(ptr), static_cast<void (QSGTextureProvider::*)()>(&QSGTextureProvider::textureChanged), static_cast<MyQSGTextureProvider*>(ptr), static_cast<void (MyQSGTextureProvider::*)()>(&MyQSGTextureProvider::Signal_TextureChanged));;
 }
 
-#include "qsggeometrynode.h"
-#include <QModelIndex>
-#include <QSGMaterial>
-#include <QSGGeometry>
+#include "qsgclipnode.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QSGGeometryNode>
+#include <QModelIndex>
+#include <QRect>
+#include <QRectF>
+#include <QSGClipNode>
 #include "_cgo_export.h"
 
-class MyQSGGeometryNode: public QSGGeometryNode {
+class MyQSGClipNode: public QSGClipNode {
 public:
 };
 
-void* QSGGeometryNode_NewQSGGeometryNode(){
-	return new QSGGeometryNode();
+void* QSGClipNode_NewQSGClipNode(){
+	return new QSGClipNode();
 }
 
-void* QSGGeometryNode_Material(void* ptr){
-	return static_cast<QSGGeometryNode*>(ptr)->material();
+int QSGClipNode_IsRectangular(void* ptr){
+	return static_cast<QSGClipNode*>(ptr)->isRectangular();
 }
 
-void* QSGGeometryNode_OpaqueMaterial(void* ptr){
-	return static_cast<QSGGeometryNode*>(ptr)->opaqueMaterial();
+void QSGClipNode_SetClipRect(void* ptr, void* rect){
+	static_cast<QSGClipNode*>(ptr)->setClipRect(*static_cast<QRectF*>(rect));
 }
 
-void QSGGeometryNode_SetMaterial(void* ptr, void* material){
-	static_cast<QSGGeometryNode*>(ptr)->setMaterial(static_cast<QSGMaterial*>(material));
+void QSGClipNode_SetIsRectangular(void* ptr, int rectHint){
+	static_cast<QSGClipNode*>(ptr)->setIsRectangular(rectHint != 0);
 }
 
-void QSGGeometryNode_SetOpaqueMaterial(void* ptr, void* material){
-	static_cast<QSGGeometryNode*>(ptr)->setOpaqueMaterial(static_cast<QSGMaterial*>(material));
+void QSGClipNode_DestroyQSGClipNode(void* ptr){
+	static_cast<QSGClipNode*>(ptr)->~QSGClipNode();
 }
 
-void QSGGeometryNode_DestroyQSGGeometryNode(void* ptr){
-	static_cast<QSGGeometryNode*>(ptr)->~QSGGeometryNode();
-}
-
-#include "qquickwindow.h"
-#include <QQuickItem>
-#include <QEvent>
-#include <QOpenGLContext>
-#include <QOpenGLFramebufferObject>
-#include <QWindow>
-#include <QObject>
-#include <QModelIndex>
-#include <QMetaObject>
-#include <QRunnable>
+#include "qquicktextdocument.h"
 #include <QString>
 #include <QVariant>
-#include <QImage>
 #include <QUrl>
+#include <QModelIndex>
+#include <QQuickItem>
+#include <QQuickTextDocument>
+#include "_cgo_export.h"
+
+class MyQQuickTextDocument: public QQuickTextDocument {
+public:
+};
+
+void* QQuickTextDocument_NewQQuickTextDocument(void* parent){
+	return new QQuickTextDocument(static_cast<QQuickItem*>(parent));
+}
+
+void* QQuickTextDocument_TextDocument(void* ptr){
+	return static_cast<QQuickTextDocument*>(ptr)->textDocument();
+}
+
+#include "qsgsimplerectnode.h"
+#include <QUrl>
+#include <QModelIndex>
 #include <QColor>
+#include <QRect>
+#include <QRectF>
+#include <QString>
+#include <QVariant>
+#include <QSGSimpleRectNode>
+#include "_cgo_export.h"
+
+class MyQSGSimpleRectNode: public QSGSimpleRectNode {
+public:
+};
+
+void* QSGSimpleRectNode_NewQSGSimpleRectNode2(){
+	return new QSGSimpleRectNode();
+}
+
+void* QSGSimpleRectNode_NewQSGSimpleRectNode(void* rect, void* color){
+	return new QSGSimpleRectNode(*static_cast<QRectF*>(rect), *static_cast<QColor*>(color));
+}
+
+void* QSGSimpleRectNode_Color(void* ptr){
+	return new QColor(static_cast<QSGSimpleRectNode*>(ptr)->color());
+}
+
+void QSGSimpleRectNode_SetColor(void* ptr, void* color){
+	static_cast<QSGSimpleRectNode*>(ptr)->setColor(*static_cast<QColor*>(color));
+}
+
+void QSGSimpleRectNode_SetRect(void* ptr, void* rect){
+	static_cast<QSGSimpleRectNode*>(ptr)->setRect(*static_cast<QRectF*>(rect));
+}
+
+void QSGSimpleRectNode_SetRect2(void* ptr, double x, double y, double w, double h){
+	static_cast<QSGSimpleRectNode*>(ptr)->setRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
+}
+
+#include "qsgsimplematerial.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QSGSimpleMaterial>
+#include "_cgo_export.h"
+
+#include "qsgmaterialtype.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QSGMaterial>
+#include <QSGMaterialType>
+#include "_cgo_export.h"
+
+class MyQSGMaterialType: public QSGMaterialType {
+public:
+};
+
+#include "qquickwindow.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QMetaObject>
+#include <QEvent>
+#include <QOpenGLFramebufferObject>
+#include <QObject>
+#include <QColor>
+#include <QOpenGLContext>
+#include <QQuickItem>
+#include <QImage>
+#include <QWindow>
+#include <QRunnable>
 #include <QQuickWindow>
 #include "_cgo_export.h"
 
@@ -1217,59 +395,204 @@ void QQuickWindow_DestroyQQuickWindow(void* ptr){
 	static_cast<QQuickWindow*>(ptr)->~QQuickWindow();
 }
 
-#include "qsgsimplematerial.h"
-#include <QModelIndex>
-#include <QString>
+#include "qquickpainteditem.h"
+#include <QPainter>
 #include <QVariant>
-#include <QUrl>
-#include <QSGSimpleMaterial>
-#include "_cgo_export.h"
-
-#include "qsgclipnode.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
-#include <QRectF>
+#include <QSize>
+#include <QObject>
+#include <QColor>
 #include <QRect>
-#include <QSGClipNode>
+#include <QString>
+#include <QUrl>
+#include <QQuickPaintedItem>
 #include "_cgo_export.h"
 
-class MyQSGClipNode: public QSGClipNode {
+class MyQQuickPaintedItem: public QQuickPaintedItem {
+public:
+void Signal_ContentsScaleChanged(){callbackQQuickPaintedItemContentsScaleChanged(this->objectName().toUtf8().data());};
+void Signal_ContentsSizeChanged(){callbackQQuickPaintedItemContentsSizeChanged(this->objectName().toUtf8().data());};
+void Signal_FillColorChanged(){callbackQQuickPaintedItemFillColorChanged(this->objectName().toUtf8().data());};
+void Signal_RenderTargetChanged(){callbackQQuickPaintedItemRenderTargetChanged(this->objectName().toUtf8().data());};
+};
+
+double QQuickPaintedItem_ContentsScale(void* ptr){
+	return static_cast<double>(static_cast<QQuickPaintedItem*>(ptr)->contentsScale());
+}
+
+void* QQuickPaintedItem_FillColor(void* ptr){
+	return new QColor(static_cast<QQuickPaintedItem*>(ptr)->fillColor());
+}
+
+int QQuickPaintedItem_RenderTarget(void* ptr){
+	return static_cast<QQuickPaintedItem*>(ptr)->renderTarget();
+}
+
+void QQuickPaintedItem_SetContentsScale(void* ptr, double v){
+	static_cast<QQuickPaintedItem*>(ptr)->setContentsScale(static_cast<qreal>(v));
+}
+
+void QQuickPaintedItem_SetContentsSize(void* ptr, void* v){
+	static_cast<QQuickPaintedItem*>(ptr)->setContentsSize(*static_cast<QSize*>(v));
+}
+
+void QQuickPaintedItem_SetFillColor(void* ptr, void* v){
+	static_cast<QQuickPaintedItem*>(ptr)->setFillColor(*static_cast<QColor*>(v));
+}
+
+void QQuickPaintedItem_SetRenderTarget(void* ptr, int target){
+	static_cast<QQuickPaintedItem*>(ptr)->setRenderTarget(static_cast<QQuickPaintedItem::RenderTarget>(target));
+}
+
+int QQuickPaintedItem_Antialiasing(void* ptr){
+	return static_cast<QQuickPaintedItem*>(ptr)->antialiasing();
+}
+
+void QQuickPaintedItem_ConnectContentsScaleChanged(void* ptr){
+	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::contentsScaleChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_ContentsScaleChanged));;
+}
+
+void QQuickPaintedItem_DisconnectContentsScaleChanged(void* ptr){
+	QObject::disconnect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::contentsScaleChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_ContentsScaleChanged));;
+}
+
+void QQuickPaintedItem_ConnectContentsSizeChanged(void* ptr){
+	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::contentsSizeChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_ContentsSizeChanged));;
+}
+
+void QQuickPaintedItem_DisconnectContentsSizeChanged(void* ptr){
+	QObject::disconnect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::contentsSizeChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_ContentsSizeChanged));;
+}
+
+void QQuickPaintedItem_ConnectFillColorChanged(void* ptr){
+	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::fillColorChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_FillColorChanged));;
+}
+
+void QQuickPaintedItem_DisconnectFillColorChanged(void* ptr){
+	QObject::disconnect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::fillColorChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_FillColorChanged));;
+}
+
+int QQuickPaintedItem_IsTextureProvider(void* ptr){
+	return static_cast<QQuickPaintedItem*>(ptr)->isTextureProvider();
+}
+
+int QQuickPaintedItem_Mipmap(void* ptr){
+	return static_cast<QQuickPaintedItem*>(ptr)->mipmap();
+}
+
+int QQuickPaintedItem_OpaquePainting(void* ptr){
+	return static_cast<QQuickPaintedItem*>(ptr)->opaquePainting();
+}
+
+void QQuickPaintedItem_Paint(void* ptr, void* painter){
+	static_cast<QQuickPaintedItem*>(ptr)->paint(static_cast<QPainter*>(painter));
+}
+
+int QQuickPaintedItem_PerformanceHints(void* ptr){
+	return static_cast<QQuickPaintedItem*>(ptr)->performanceHints();
+}
+
+void QQuickPaintedItem_ConnectRenderTargetChanged(void* ptr){
+	QObject::connect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::renderTargetChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_RenderTargetChanged));;
+}
+
+void QQuickPaintedItem_DisconnectRenderTargetChanged(void* ptr){
+	QObject::disconnect(static_cast<QQuickPaintedItem*>(ptr), static_cast<void (QQuickPaintedItem::*)()>(&QQuickPaintedItem::renderTargetChanged), static_cast<MyQQuickPaintedItem*>(ptr), static_cast<void (MyQQuickPaintedItem::*)()>(&MyQQuickPaintedItem::Signal_RenderTargetChanged));;
+}
+
+void QQuickPaintedItem_ResetContentsSize(void* ptr){
+	static_cast<QQuickPaintedItem*>(ptr)->resetContentsSize();
+}
+
+void QQuickPaintedItem_SetAntialiasing(void* ptr, int enable){
+	static_cast<QQuickPaintedItem*>(ptr)->setAntialiasing(enable != 0);
+}
+
+void QQuickPaintedItem_SetMipmap(void* ptr, int enable){
+	static_cast<QQuickPaintedItem*>(ptr)->setMipmap(enable != 0);
+}
+
+void QQuickPaintedItem_SetOpaquePainting(void* ptr, int opaque){
+	static_cast<QQuickPaintedItem*>(ptr)->setOpaquePainting(opaque != 0);
+}
+
+void QQuickPaintedItem_SetPerformanceHint(void* ptr, int hint, int enabled){
+	static_cast<QQuickPaintedItem*>(ptr)->setPerformanceHint(static_cast<QQuickPaintedItem::PerformanceHint>(hint), enabled != 0);
+}
+
+void QQuickPaintedItem_SetPerformanceHints(void* ptr, int hints){
+	static_cast<QQuickPaintedItem*>(ptr)->setPerformanceHints(static_cast<QQuickPaintedItem::PerformanceHint>(hints));
+}
+
+void* QQuickPaintedItem_TextureProvider(void* ptr){
+	return static_cast<QQuickPaintedItem*>(ptr)->textureProvider();
+}
+
+void QQuickPaintedItem_Update(void* ptr, void* rect){
+	static_cast<QQuickPaintedItem*>(ptr)->update(*static_cast<QRect*>(rect));
+}
+
+void QQuickPaintedItem_DestroyQQuickPaintedItem(void* ptr){
+	static_cast<QQuickPaintedItem*>(ptr)->~QQuickPaintedItem();
+}
+
+#include "qsgflatcolormaterial.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QColor>
+#include <QSGFlatColorMaterial>
+#include "_cgo_export.h"
+
+class MyQSGFlatColorMaterial: public QSGFlatColorMaterial {
 public:
 };
 
-void* QSGClipNode_NewQSGClipNode(){
-	return new QSGClipNode();
+void* QSGFlatColorMaterial_Color(void* ptr){
+	return new QColor(static_cast<QSGFlatColorMaterial*>(ptr)->color());
 }
 
-int QSGClipNode_IsRectangular(void* ptr){
-	return static_cast<QSGClipNode*>(ptr)->isRectangular();
+void QSGFlatColorMaterial_SetColor(void* ptr, void* color){
+	static_cast<QSGFlatColorMaterial*>(ptr)->setColor(*static_cast<QColor*>(color));
 }
 
-void QSGClipNode_SetClipRect(void* ptr, void* rect){
-	static_cast<QSGClipNode*>(ptr)->setClipRect(*static_cast<QRectF*>(rect));
+#include "qsgmaterialshader.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QSGMaterial>
+#include <QSGMaterialShader>
+#include "_cgo_export.h"
+
+class MyQSGMaterialShader: public QSGMaterialShader {
+public:
+};
+
+void QSGMaterialShader_Activate(void* ptr){
+	static_cast<QSGMaterialShader*>(ptr)->activate();
 }
 
-void QSGClipNode_SetIsRectangular(void* ptr, int rectHint){
-	static_cast<QSGClipNode*>(ptr)->setIsRectangular(rectHint != 0);
+void QSGMaterialShader_Deactivate(void* ptr){
+	static_cast<QSGMaterialShader*>(ptr)->deactivate();
 }
 
-void QSGClipNode_DestroyQSGClipNode(void* ptr){
-	static_cast<QSGClipNode*>(ptr)->~QSGClipNode();
+void* QSGMaterialShader_Program(void* ptr){
+	return static_cast<QSGMaterialShader*>(ptr)->program();
 }
 
 #include "qquickitem.h"
 #include <QVariant>
-#include <QUrl>
-#include <QCursor>
-#include <QPoint>
-#include <QMetaObject>
-#include <QObject>
-#include <QString>
 #include <QModelIndex>
-#include <QPointF>
+#include <QCursor>
+#include <QMetaObject>
+#include <QPoint>
+#include <QString>
+#include <QUrl>
+#include <QObject>
 #include <QQuickWindow>
+#include <QPointF>
 #include <QQuickItem>
 #include "_cgo_export.h"
 
@@ -1610,12 +933,190 @@ void QQuickItem_DestroyQQuickItem(void* ptr){
 	static_cast<QQuickItem*>(ptr)->~QQuickItem();
 }
 
+#include "qsgnode.h"
+#include <QModelIndex>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QSGNode>
+#include "_cgo_export.h"
+
+class MyQSGNode: public QSGNode {
+public:
+};
+
+void* QSGNode_ChildAtIndex(void* ptr, int i){
+	return static_cast<QSGNode*>(ptr)->childAtIndex(i);
+}
+
+int QSGNode_ChildCount(void* ptr){
+	return static_cast<QSGNode*>(ptr)->childCount();
+}
+
+void* QSGNode_NewQSGNode(){
+	return new QSGNode();
+}
+
+void QSGNode_AppendChildNode(void* ptr, void* node){
+	static_cast<QSGNode*>(ptr)->appendChildNode(static_cast<QSGNode*>(node));
+}
+
+void* QSGNode_FirstChild(void* ptr){
+	return static_cast<QSGNode*>(ptr)->firstChild();
+}
+
+int QSGNode_Flags(void* ptr){
+	return static_cast<QSGNode*>(ptr)->flags();
+}
+
+void QSGNode_InsertChildNodeAfter(void* ptr, void* node, void* after){
+	static_cast<QSGNode*>(ptr)->insertChildNodeAfter(static_cast<QSGNode*>(node), static_cast<QSGNode*>(after));
+}
+
+void QSGNode_InsertChildNodeBefore(void* ptr, void* node, void* before){
+	static_cast<QSGNode*>(ptr)->insertChildNodeBefore(static_cast<QSGNode*>(node), static_cast<QSGNode*>(before));
+}
+
+int QSGNode_IsSubtreeBlocked(void* ptr){
+	return static_cast<QSGNode*>(ptr)->isSubtreeBlocked();
+}
+
+void* QSGNode_LastChild(void* ptr){
+	return static_cast<QSGNode*>(ptr)->lastChild();
+}
+
+void QSGNode_MarkDirty(void* ptr, int bits){
+	static_cast<QSGNode*>(ptr)->markDirty(static_cast<QSGNode::DirtyStateBit>(bits));
+}
+
+void* QSGNode_NextSibling(void* ptr){
+	return static_cast<QSGNode*>(ptr)->nextSibling();
+}
+
+void* QSGNode_Parent(void* ptr){
+	return static_cast<QSGNode*>(ptr)->parent();
+}
+
+void QSGNode_PrependChildNode(void* ptr, void* node){
+	static_cast<QSGNode*>(ptr)->prependChildNode(static_cast<QSGNode*>(node));
+}
+
+void QSGNode_Preprocess(void* ptr){
+	static_cast<QSGNode*>(ptr)->preprocess();
+}
+
+void* QSGNode_PreviousSibling(void* ptr){
+	return static_cast<QSGNode*>(ptr)->previousSibling();
+}
+
+void QSGNode_RemoveAllChildNodes(void* ptr){
+	static_cast<QSGNode*>(ptr)->removeAllChildNodes();
+}
+
+void QSGNode_RemoveChildNode(void* ptr, void* node){
+	static_cast<QSGNode*>(ptr)->removeChildNode(static_cast<QSGNode*>(node));
+}
+
+void QSGNode_SetFlag(void* ptr, int f, int enabled){
+	static_cast<QSGNode*>(ptr)->setFlag(static_cast<QSGNode::Flag>(f), enabled != 0);
+}
+
+void QSGNode_SetFlags(void* ptr, int f, int enabled){
+	static_cast<QSGNode*>(ptr)->setFlags(static_cast<QSGNode::Flag>(f), enabled != 0);
+}
+
+int QSGNode_Type(void* ptr){
+	return static_cast<QSGNode*>(ptr)->type();
+}
+
+void QSGNode_DestroyQSGNode(void* ptr){
+	static_cast<QSGNode*>(ptr)->~QSGNode();
+}
+
+#include "qsgsimpletexturenode.h"
+#include <QRect>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QRectF>
+#include <QSGTexture>
+#include <QSGSimpleTextureNode>
+#include "_cgo_export.h"
+
+class MyQSGSimpleTextureNode: public QSGSimpleTextureNode {
+public:
+};
+
+void* QSGSimpleTextureNode_NewQSGSimpleTextureNode(){
+	return new QSGSimpleTextureNode();
+}
+
+int QSGSimpleTextureNode_Filtering(void* ptr){
+	return static_cast<QSGSimpleTextureNode*>(ptr)->filtering();
+}
+
+int QSGSimpleTextureNode_OwnsTexture(void* ptr){
+	return static_cast<QSGSimpleTextureNode*>(ptr)->ownsTexture();
+}
+
+void QSGSimpleTextureNode_SetFiltering(void* ptr, int filtering){
+	static_cast<QSGSimpleTextureNode*>(ptr)->setFiltering(static_cast<QSGTexture::Filtering>(filtering));
+}
+
+void QSGSimpleTextureNode_SetOwnsTexture(void* ptr, int owns){
+	static_cast<QSGSimpleTextureNode*>(ptr)->setOwnsTexture(owns != 0);
+}
+
+void QSGSimpleTextureNode_SetRect(void* ptr, void* r){
+	static_cast<QSGSimpleTextureNode*>(ptr)->setRect(*static_cast<QRectF*>(r));
+}
+
+void QSGSimpleTextureNode_SetRect2(void* ptr, double x, double y, double w, double h){
+	static_cast<QSGSimpleTextureNode*>(ptr)->setRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
+}
+
+void QSGSimpleTextureNode_SetSourceRect(void* ptr, void* r){
+	static_cast<QSGSimpleTextureNode*>(ptr)->setSourceRect(*static_cast<QRectF*>(r));
+}
+
+void QSGSimpleTextureNode_SetSourceRect2(void* ptr, double x, double y, double w, double h){
+	static_cast<QSGSimpleTextureNode*>(ptr)->setSourceRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
+}
+
+void QSGSimpleTextureNode_SetTexture(void* ptr, void* texture){
+	static_cast<QSGSimpleTextureNode*>(ptr)->setTexture(static_cast<QSGTexture*>(texture));
+}
+
+void QSGSimpleTextureNode_SetTextureCoordinatesTransform(void* ptr, int mode){
+	static_cast<QSGSimpleTextureNode*>(ptr)->setTextureCoordinatesTransform(static_cast<QSGSimpleTextureNode::TextureCoordinatesTransformFlag>(mode));
+}
+
+void* QSGSimpleTextureNode_Texture(void* ptr){
+	return static_cast<QSGSimpleTextureNode*>(ptr)->texture();
+}
+
+int QSGSimpleTextureNode_TextureCoordinatesTransform(void* ptr){
+	return static_cast<QSGSimpleTextureNode*>(ptr)->textureCoordinatesTransform();
+}
+
+void QSGSimpleTextureNode_DestroyQSGSimpleTextureNode(void* ptr){
+	static_cast<QSGSimpleTextureNode*>(ptr)->~QSGSimpleTextureNode();
+}
+
+#include "qsgsimplematerialshader.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QString>
+#include <QVariant>
+#include "_cgo_export.h"
+
 #include "qsgbasicgeometrynode.h"
+#include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QSGGeometry>
 #include <QString>
-#include <QVariant>
 #include <QSGBasicGeometryNode>
 #include "_cgo_export.h"
 
@@ -1639,113 +1140,180 @@ void QSGBasicGeometryNode_DestroyQSGBasicGeometryNode(void* ptr){
 	static_cast<QSGBasicGeometryNode*>(ptr)->~QSGBasicGeometryNode();
 }
 
-#include "qsgtransformnode.h"
+#include "qquickview.h"
+#include <QQmlEngine>
+#include <QMetaObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QMatrix4x4>
-#include <QSGTransformNode>
+#include <QWindow>
+#include <QObject>
+#include <QQuickView>
 #include "_cgo_export.h"
 
-class MyQSGTransformNode: public QSGTransformNode {
+class MyQQuickView: public QQuickView {
 public:
+void Signal_StatusChanged(QQuickView::Status status){callbackQQuickViewStatusChanged(this->objectName().toUtf8().data(), status);};
 };
 
-void* QSGTransformNode_NewQSGTransformNode(){
-	return new QSGTransformNode();
+int QQuickView_ResizeMode(void* ptr){
+	return static_cast<QQuickView*>(ptr)->resizeMode();
 }
 
-void QSGTransformNode_SetMatrix(void* ptr, void* matrix){
-	static_cast<QSGTransformNode*>(ptr)->setMatrix(*static_cast<QMatrix4x4*>(matrix));
+void QQuickView_SetResizeMode(void* ptr, int v){
+	static_cast<QQuickView*>(ptr)->setResizeMode(static_cast<QQuickView::ResizeMode>(v));
 }
 
-void QSGTransformNode_DestroyQSGTransformNode(void* ptr){
-	static_cast<QSGTransformNode*>(ptr)->~QSGTransformNode();
+int QQuickView_Status(void* ptr){
+	return static_cast<QQuickView*>(ptr)->status();
 }
 
-#include "qquicktextdocument.h"
+void* QQuickView_NewQQuickView2(void* engine, void* parent){
+	return new QQuickView(static_cast<QQmlEngine*>(engine), static_cast<QWindow*>(parent));
+}
+
+void* QQuickView_NewQQuickView(void* parent){
+	return new QQuickView(static_cast<QWindow*>(parent));
+}
+
+void* QQuickView_NewQQuickView3(void* source, void* parent){
+	return new QQuickView(*static_cast<QUrl*>(source), static_cast<QWindow*>(parent));
+}
+
+void* QQuickView_Engine(void* ptr){
+	return static_cast<QQuickView*>(ptr)->engine();
+}
+
+void* QQuickView_RootContext(void* ptr){
+	return static_cast<QQuickView*>(ptr)->rootContext();
+}
+
+void* QQuickView_RootObject(void* ptr){
+	return static_cast<QQuickView*>(ptr)->rootObject();
+}
+
+void QQuickView_SetSource(void* ptr, void* url){
+	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setSource", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+}
+
+void QQuickView_ConnectStatusChanged(void* ptr){
+	QObject::connect(static_cast<QQuickView*>(ptr), static_cast<void (QQuickView::*)(QQuickView::Status)>(&QQuickView::statusChanged), static_cast<MyQQuickView*>(ptr), static_cast<void (MyQQuickView::*)(QQuickView::Status)>(&MyQQuickView::Signal_StatusChanged));;
+}
+
+void QQuickView_DisconnectStatusChanged(void* ptr){
+	QObject::disconnect(static_cast<QQuickView*>(ptr), static_cast<void (QQuickView::*)(QQuickView::Status)>(&QQuickView::statusChanged), static_cast<MyQQuickView*>(ptr), static_cast<void (MyQQuickView::*)(QQuickView::Status)>(&MyQQuickView::Signal_StatusChanged));;
+}
+
+void QQuickView_DestroyQQuickView(void* ptr){
+	static_cast<QQuickView*>(ptr)->~QQuickView();
+}
+
+#include "qquicktexturefactory.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QQuickItem>
-#include <QQuickTextDocument>
+#include <QQuickWindow>
+#include <QQuickTextureFactory>
 #include "_cgo_export.h"
 
-class MyQQuickTextDocument: public QQuickTextDocument {
+class MyQQuickTextureFactory: public QQuickTextureFactory {
 public:
 };
 
-void* QQuickTextDocument_NewQQuickTextDocument(void* parent){
-	return new QQuickTextDocument(static_cast<QQuickItem*>(parent));
+void* QQuickTextureFactory_CreateTexture(void* ptr, void* window){
+	return static_cast<QQuickTextureFactory*>(ptr)->createTexture(static_cast<QQuickWindow*>(window));
 }
 
-void* QQuickTextDocument_TextDocument(void* ptr){
-	return static_cast<QQuickTextDocument*>(ptr)->textDocument();
+int QQuickTextureFactory_TextureByteCount(void* ptr){
+	return static_cast<QQuickTextureFactory*>(ptr)->textureByteCount();
 }
 
-#include "qsgdynamictexture.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSGDynamicTexture>
-#include "_cgo_export.h"
-
-class MyQSGDynamicTexture: public QSGDynamicTexture {
-public:
-};
-
-int QSGDynamicTexture_UpdateTexture(void* ptr){
-	return static_cast<QSGDynamicTexture*>(ptr)->updateTexture();
+void QQuickTextureFactory_DestroyQQuickTextureFactory(void* ptr){
+	static_cast<QQuickTextureFactory*>(ptr)->~QQuickTextureFactory();
 }
 
-#include "qsgtexturematerial.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
+#include "qsgopaquetexturematerial.h"
 #include <QModelIndex>
 #include <QSGTexture>
-#include <QSGTextureMaterial>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QSGOpaqueTextureMaterial>
 #include "_cgo_export.h"
 
-class MyQSGTextureMaterial: public QSGTextureMaterial {
+class MyQSGOpaqueTextureMaterial: public QSGOpaqueTextureMaterial {
 public:
 };
 
-#include "qsgsimplematerialshader.h"
+int QSGOpaqueTextureMaterial_Filtering(void* ptr){
+	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->filtering();
+}
+
+int QSGOpaqueTextureMaterial_HorizontalWrapMode(void* ptr){
+	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->horizontalWrapMode();
+}
+
+int QSGOpaqueTextureMaterial_MipmapFiltering(void* ptr){
+	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->mipmapFiltering();
+}
+
+void QSGOpaqueTextureMaterial_SetFiltering(void* ptr, int filtering){
+	static_cast<QSGOpaqueTextureMaterial*>(ptr)->setFiltering(static_cast<QSGTexture::Filtering>(filtering));
+}
+
+void QSGOpaqueTextureMaterial_SetHorizontalWrapMode(void* ptr, int mode){
+	static_cast<QSGOpaqueTextureMaterial*>(ptr)->setHorizontalWrapMode(static_cast<QSGTexture::WrapMode>(mode));
+}
+
+void QSGOpaqueTextureMaterial_SetMipmapFiltering(void* ptr, int filtering){
+	static_cast<QSGOpaqueTextureMaterial*>(ptr)->setMipmapFiltering(static_cast<QSGTexture::Filtering>(filtering));
+}
+
+void QSGOpaqueTextureMaterial_SetTexture(void* ptr, void* texture){
+	static_cast<QSGOpaqueTextureMaterial*>(ptr)->setTexture(static_cast<QSGTexture*>(texture));
+}
+
+void QSGOpaqueTextureMaterial_SetVerticalWrapMode(void* ptr, int mode){
+	static_cast<QSGOpaqueTextureMaterial*>(ptr)->setVerticalWrapMode(static_cast<QSGTexture::WrapMode>(mode));
+}
+
+void* QSGOpaqueTextureMaterial_Texture(void* ptr){
+	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->texture();
+}
+
+int QSGOpaqueTextureMaterial_VerticalWrapMode(void* ptr){
+	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->verticalWrapMode();
+}
+
+#include "qquickimageprovider.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QQmlImageProviderBase>
+#include <QQuickImageProvider>
 #include "_cgo_export.h"
 
-#include "qquickitemgrabresult.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QQuickItem>
-#include <QObject>
-#include <QQuickItemGrabResult>
-#include "_cgo_export.h"
-
-class MyQQuickItemGrabResult: public QQuickItemGrabResult {
+class MyQQuickImageProvider: public QQuickImageProvider {
 public:
-void Signal_Ready(){callbackQQuickItemGrabResultReady(this->objectName().toUtf8().data());};
 };
 
-void QQuickItemGrabResult_ConnectReady(void* ptr){
-	QObject::connect(static_cast<QQuickItemGrabResult*>(ptr), static_cast<void (QQuickItemGrabResult::*)()>(&QQuickItemGrabResult::ready), static_cast<MyQQuickItemGrabResult*>(ptr), static_cast<void (MyQQuickItemGrabResult::*)()>(&MyQQuickItemGrabResult::Signal_Ready));;
+void* QQuickImageProvider_NewQQuickImageProvider(int ty, int flags){
+	return new QQuickImageProvider(static_cast<QQmlImageProviderBase::ImageType>(ty), static_cast<QQmlImageProviderBase::Flag>(flags));
 }
 
-void QQuickItemGrabResult_DisconnectReady(void* ptr){
-	QObject::disconnect(static_cast<QQuickItemGrabResult*>(ptr), static_cast<void (QQuickItemGrabResult::*)()>(&QQuickItemGrabResult::ready), static_cast<MyQQuickItemGrabResult*>(ptr), static_cast<void (MyQQuickItemGrabResult::*)()>(&MyQQuickItemGrabResult::Signal_Ready));;
+int QQuickImageProvider_Flags(void* ptr){
+	return static_cast<QQuickImageProvider*>(ptr)->flags();
 }
 
-int QQuickItemGrabResult_SaveToFile(void* ptr, char* fileName){
-	return static_cast<QQuickItemGrabResult*>(ptr)->saveToFile(QString(fileName));
+int QQuickImageProvider_ImageType(void* ptr){
+	return static_cast<QQuickImageProvider*>(ptr)->imageType();
+}
+
+void QQuickImageProvider_DestroyQQuickImageProvider(void* ptr){
+	static_cast<QQuickImageProvider*>(ptr)->~QQuickImageProvider();
 }
 
 #include "qsgvertexcolormaterial.h"
@@ -1760,19 +1328,51 @@ class MyQSGVertexColorMaterial: public QSGVertexColorMaterial {
 public:
 };
 
-#include "qquickwidget.h"
+#include "qsgmaterial.h"
 #include <QVariant>
-#include <QMetaObject>
-#include <QQmlEngine>
+#include <QUrl>
+#include <QModelIndex>
 #include <QString>
+#include <QSGMaterial>
+#include "_cgo_export.h"
+
+class MyQSGMaterial: public QSGMaterial {
+public:
+};
+
+int QSGMaterial_Compare(void* ptr, void* other){
+	return static_cast<QSGMaterial*>(ptr)->compare(static_cast<QSGMaterial*>(other));
+}
+
+void* QSGMaterial_CreateShader(void* ptr){
+	return static_cast<QSGMaterial*>(ptr)->createShader();
+}
+
+int QSGMaterial_Flags(void* ptr){
+	return static_cast<QSGMaterial*>(ptr)->flags();
+}
+
+void QSGMaterial_SetFlag(void* ptr, int flags, int on){
+	static_cast<QSGMaterial*>(ptr)->setFlag(static_cast<QSGMaterial::Flag>(flags), on != 0);
+}
+
+void* QSGMaterial_Type(void* ptr){
+	return static_cast<QSGMaterial*>(ptr)->type();
+}
+
+#include "qquickwidget.h"
+#include <QString>
+#include <QUrl>
 #include <QModelIndex>
 #include <QSurface>
-#include <QColor>
-#include <QSurfaceFormat>
-#include <QQuickWindow>
 #include <QObject>
 #include <QWidget>
-#include <QUrl>
+#include <QQmlEngine>
+#include <QVariant>
+#include <QSurfaceFormat>
+#include <QQuickWindow>
+#include <QColor>
+#include <QMetaObject>
 #include <QQuickWidget>
 #include "_cgo_export.h"
 
@@ -1854,143 +1454,543 @@ void QQuickWidget_DestroyQQuickWidget(void* ptr){
 	static_cast<QQuickWidget*>(ptr)->~QQuickWidget();
 }
 
-#include "qsgsimplerectnode.h"
-#include <QColor>
-#include <QRectF>
+#include "qsgtexture.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QString>
+#include <QVariant>
+#include <QSGTexture>
+#include "_cgo_export.h"
+
+class MyQSGTexture: public QSGTexture {
+public:
+};
+
+void QSGTexture_Bind(void* ptr){
+	static_cast<QSGTexture*>(ptr)->bind();
+}
+
+int QSGTexture_Filtering(void* ptr){
+	return static_cast<QSGTexture*>(ptr)->filtering();
+}
+
+int QSGTexture_HasAlphaChannel(void* ptr){
+	return static_cast<QSGTexture*>(ptr)->hasAlphaChannel();
+}
+
+int QSGTexture_HasMipmaps(void* ptr){
+	return static_cast<QSGTexture*>(ptr)->hasMipmaps();
+}
+
+int QSGTexture_HorizontalWrapMode(void* ptr){
+	return static_cast<QSGTexture*>(ptr)->horizontalWrapMode();
+}
+
+int QSGTexture_IsAtlasTexture(void* ptr){
+	return static_cast<QSGTexture*>(ptr)->isAtlasTexture();
+}
+
+int QSGTexture_MipmapFiltering(void* ptr){
+	return static_cast<QSGTexture*>(ptr)->mipmapFiltering();
+}
+
+void* QSGTexture_RemovedFromAtlas(void* ptr){
+	return static_cast<QSGTexture*>(ptr)->removedFromAtlas();
+}
+
+void QSGTexture_SetFiltering(void* ptr, int filter){
+	static_cast<QSGTexture*>(ptr)->setFiltering(static_cast<QSGTexture::Filtering>(filter));
+}
+
+void QSGTexture_SetHorizontalWrapMode(void* ptr, int hwrap){
+	static_cast<QSGTexture*>(ptr)->setHorizontalWrapMode(static_cast<QSGTexture::WrapMode>(hwrap));
+}
+
+void QSGTexture_SetMipmapFiltering(void* ptr, int filter){
+	static_cast<QSGTexture*>(ptr)->setMipmapFiltering(static_cast<QSGTexture::Filtering>(filter));
+}
+
+void QSGTexture_SetVerticalWrapMode(void* ptr, int vwrap){
+	static_cast<QSGTexture*>(ptr)->setVerticalWrapMode(static_cast<QSGTexture::WrapMode>(vwrap));
+}
+
+int QSGTexture_TextureId(void* ptr){
+	return static_cast<QSGTexture*>(ptr)->textureId();
+}
+
+void QSGTexture_UpdateBindOptions(void* ptr, int force){
+	static_cast<QSGTexture*>(ptr)->updateBindOptions(force != 0);
+}
+
+int QSGTexture_VerticalWrapMode(void* ptr){
+	return static_cast<QSGTexture*>(ptr)->verticalWrapMode();
+}
+
+void QSGTexture_DestroyQSGTexture(void* ptr){
+	static_cast<QSGTexture*>(ptr)->~QSGTexture();
+}
+
+#include "qsgtransformnode.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QMatrix4x4>
+#include <QSGTransformNode>
+#include "_cgo_export.h"
+
+class MyQSGTransformNode: public QSGTransformNode {
+public:
+};
+
+void* QSGTransformNode_NewQSGTransformNode(){
+	return new QSGTransformNode();
+}
+
+void QSGTransformNode_SetMatrix(void* ptr, void* matrix){
+	static_cast<QSGTransformNode*>(ptr)->setMatrix(*static_cast<QMatrix4x4*>(matrix));
+}
+
+void QSGTransformNode_DestroyQSGTransformNode(void* ptr){
+	static_cast<QSGTransformNode*>(ptr)->~QSGTransformNode();
+}
+
+#include "qsgabstractrenderer.h"
+#include <QVariant>
+#include <QModelIndex>
 #include <QRect>
+#include <QRectF>
+#include <QSize>
+#include <QObject>
+#include <QString>
+#include <QUrl>
+#include <QMatrix4x4>
+#include <QColor>
+#include <QSGAbstractRenderer>
+#include "_cgo_export.h"
+
+class MyQSGAbstractRenderer: public QSGAbstractRenderer {
+public:
+void Signal_SceneGraphChanged(){callbackQSGAbstractRendererSceneGraphChanged(this->objectName().toUtf8().data());};
+};
+
+void* QSGAbstractRenderer_ClearColor(void* ptr){
+	return new QColor(static_cast<QSGAbstractRenderer*>(ptr)->clearColor());
+}
+
+int QSGAbstractRenderer_ClearMode(void* ptr){
+	return static_cast<QSGAbstractRenderer*>(ptr)->clearMode();
+}
+
+void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr){
+	QObject::connect(static_cast<QSGAbstractRenderer*>(ptr), static_cast<void (QSGAbstractRenderer::*)()>(&QSGAbstractRenderer::sceneGraphChanged), static_cast<MyQSGAbstractRenderer*>(ptr), static_cast<void (MyQSGAbstractRenderer::*)()>(&MyQSGAbstractRenderer::Signal_SceneGraphChanged));;
+}
+
+void QSGAbstractRenderer_DisconnectSceneGraphChanged(void* ptr){
+	QObject::disconnect(static_cast<QSGAbstractRenderer*>(ptr), static_cast<void (QSGAbstractRenderer::*)()>(&QSGAbstractRenderer::sceneGraphChanged), static_cast<MyQSGAbstractRenderer*>(ptr), static_cast<void (MyQSGAbstractRenderer::*)()>(&MyQSGAbstractRenderer::Signal_SceneGraphChanged));;
+}
+
+void QSGAbstractRenderer_SetClearColor(void* ptr, void* color){
+	static_cast<QSGAbstractRenderer*>(ptr)->setClearColor(*static_cast<QColor*>(color));
+}
+
+void QSGAbstractRenderer_SetClearMode(void* ptr, int mode){
+	static_cast<QSGAbstractRenderer*>(ptr)->setClearMode(static_cast<QSGAbstractRenderer::ClearModeBit>(mode));
+}
+
+void QSGAbstractRenderer_SetDeviceRect(void* ptr, void* rect){
+	static_cast<QSGAbstractRenderer*>(ptr)->setDeviceRect(*static_cast<QRect*>(rect));
+}
+
+void QSGAbstractRenderer_SetDeviceRect2(void* ptr, void* size){
+	static_cast<QSGAbstractRenderer*>(ptr)->setDeviceRect(*static_cast<QSize*>(size));
+}
+
+void QSGAbstractRenderer_SetProjectionMatrix(void* ptr, void* matrix){
+	static_cast<QSGAbstractRenderer*>(ptr)->setProjectionMatrix(*static_cast<QMatrix4x4*>(matrix));
+}
+
+void QSGAbstractRenderer_SetProjectionMatrixToRect(void* ptr, void* rect){
+	static_cast<QSGAbstractRenderer*>(ptr)->setProjectionMatrixToRect(*static_cast<QRectF*>(rect));
+}
+
+void QSGAbstractRenderer_SetViewportRect(void* ptr, void* rect){
+	static_cast<QSGAbstractRenderer*>(ptr)->setViewportRect(*static_cast<QRect*>(rect));
+}
+
+void QSGAbstractRenderer_SetViewportRect2(void* ptr, void* size){
+	static_cast<QSGAbstractRenderer*>(ptr)->setViewportRect(*static_cast<QSize*>(size));
+}
+
+#include "qquickframebufferobject.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QSGSimpleRectNode>
-#include "_cgo_export.h"
-
-class MyQSGSimpleRectNode: public QSGSimpleRectNode {
-public:
-};
-
-void* QSGSimpleRectNode_NewQSGSimpleRectNode2(){
-	return new QSGSimpleRectNode();
-}
-
-void* QSGSimpleRectNode_NewQSGSimpleRectNode(void* rect, void* color){
-	return new QSGSimpleRectNode(*static_cast<QRectF*>(rect), *static_cast<QColor*>(color));
-}
-
-void* QSGSimpleRectNode_Color(void* ptr){
-	return new QColor(static_cast<QSGSimpleRectNode*>(ptr)->color());
-}
-
-void QSGSimpleRectNode_SetColor(void* ptr, void* color){
-	static_cast<QSGSimpleRectNode*>(ptr)->setColor(*static_cast<QColor*>(color));
-}
-
-void QSGSimpleRectNode_SetRect(void* ptr, void* rect){
-	static_cast<QSGSimpleRectNode*>(ptr)->setRect(*static_cast<QRectF*>(rect));
-}
-
-void QSGSimpleRectNode_SetRect2(void* ptr, double x, double y, double w, double h){
-	static_cast<QSGSimpleRectNode*>(ptr)->setRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
-}
-
-#include "qsgmaterial.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSGMaterial>
-#include "_cgo_export.h"
-
-class MyQSGMaterial: public QSGMaterial {
-public:
-};
-
-int QSGMaterial_Compare(void* ptr, void* other){
-	return static_cast<QSGMaterial*>(ptr)->compare(static_cast<QSGMaterial*>(other));
-}
-
-void* QSGMaterial_CreateShader(void* ptr){
-	return static_cast<QSGMaterial*>(ptr)->createShader();
-}
-
-int QSGMaterial_Flags(void* ptr){
-	return static_cast<QSGMaterial*>(ptr)->flags();
-}
-
-void QSGMaterial_SetFlag(void* ptr, int flags, int on){
-	static_cast<QSGMaterial*>(ptr)->setFlag(static_cast<QSGMaterial::Flag>(flags), on != 0);
-}
-
-void* QSGMaterial_Type(void* ptr){
-	return static_cast<QSGMaterial*>(ptr)->type();
-}
-
-#include "qquickview.h"
 #include <QModelIndex>
 #include <QObject>
-#include <QMetaObject>
-#include <QWindow>
-#include <QQmlEngine>
+#include <QQuickFramebufferObject>
+#include "_cgo_export.h"
+
+class MyQQuickFramebufferObject: public QQuickFramebufferObject {
+public:
+void Signal_TextureFollowsItemSizeChanged(bool v){callbackQQuickFramebufferObjectTextureFollowsItemSizeChanged(this->objectName().toUtf8().data(), v);};
+};
+
+void QQuickFramebufferObject_SetTextureFollowsItemSize(void* ptr, int follows){
+	static_cast<QQuickFramebufferObject*>(ptr)->setTextureFollowsItemSize(follows != 0);
+}
+
+int QQuickFramebufferObject_TextureFollowsItemSize(void* ptr){
+	return static_cast<QQuickFramebufferObject*>(ptr)->textureFollowsItemSize();
+}
+
+int QQuickFramebufferObject_IsTextureProvider(void* ptr){
+	return static_cast<QQuickFramebufferObject*>(ptr)->isTextureProvider();
+}
+
+void QQuickFramebufferObject_ReleaseResources(void* ptr){
+	static_cast<QQuickFramebufferObject*>(ptr)->releaseResources();
+}
+
+void QQuickFramebufferObject_ConnectTextureFollowsItemSizeChanged(void* ptr){
+	QObject::connect(static_cast<QQuickFramebufferObject*>(ptr), static_cast<void (QQuickFramebufferObject::*)(bool)>(&QQuickFramebufferObject::textureFollowsItemSizeChanged), static_cast<MyQQuickFramebufferObject*>(ptr), static_cast<void (MyQQuickFramebufferObject::*)(bool)>(&MyQQuickFramebufferObject::Signal_TextureFollowsItemSizeChanged));;
+}
+
+void QQuickFramebufferObject_DisconnectTextureFollowsItemSizeChanged(void* ptr){
+	QObject::disconnect(static_cast<QQuickFramebufferObject*>(ptr), static_cast<void (QQuickFramebufferObject::*)(bool)>(&QQuickFramebufferObject::textureFollowsItemSizeChanged), static_cast<MyQQuickFramebufferObject*>(ptr), static_cast<void (MyQQuickFramebufferObject::*)(bool)>(&MyQQuickFramebufferObject::Signal_TextureFollowsItemSizeChanged));;
+}
+
+void* QQuickFramebufferObject_TextureProvider(void* ptr){
+	return static_cast<QQuickFramebufferObject*>(ptr)->textureProvider();
+}
+
+#include "qsggeometrynode.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QSGGeometry>
+#include <QSGMaterial>
+#include <QString>
+#include <QVariant>
+#include <QSGGeometryNode>
+#include "_cgo_export.h"
+
+class MyQSGGeometryNode: public QSGGeometryNode {
+public:
+};
+
+void* QSGGeometryNode_NewQSGGeometryNode(){
+	return new QSGGeometryNode();
+}
+
+void* QSGGeometryNode_Material(void* ptr){
+	return static_cast<QSGGeometryNode*>(ptr)->material();
+}
+
+void* QSGGeometryNode_OpaqueMaterial(void* ptr){
+	return static_cast<QSGGeometryNode*>(ptr)->opaqueMaterial();
+}
+
+void QSGGeometryNode_SetMaterial(void* ptr, void* material){
+	static_cast<QSGGeometryNode*>(ptr)->setMaterial(static_cast<QSGMaterial*>(material));
+}
+
+void QSGGeometryNode_SetOpaqueMaterial(void* ptr, void* material){
+	static_cast<QSGGeometryNode*>(ptr)->setOpaqueMaterial(static_cast<QSGMaterial*>(material));
+}
+
+void QSGGeometryNode_DestroyQSGGeometryNode(void* ptr){
+	static_cast<QSGGeometryNode*>(ptr)->~QSGGeometryNode();
+}
+
+#include "qsgengine.h"
+#include <QModelIndex>
+#include <QObject>
+#include <QImage>
+#include <QOpenGLContext>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QQuickView>
+#include <QSGEngine>
 #include "_cgo_export.h"
 
-class MyQQuickView: public QQuickView {
+class MyQSGEngine: public QSGEngine {
 public:
-void Signal_StatusChanged(QQuickView::Status status){callbackQQuickViewStatusChanged(this->objectName().toUtf8().data(), status);};
 };
 
-int QQuickView_ResizeMode(void* ptr){
-	return static_cast<QQuickView*>(ptr)->resizeMode();
+void* QSGEngine_NewQSGEngine(void* parent){
+	return new QSGEngine(static_cast<QObject*>(parent));
 }
 
-void QQuickView_SetResizeMode(void* ptr, int v){
-	static_cast<QQuickView*>(ptr)->setResizeMode(static_cast<QQuickView::ResizeMode>(v));
+void* QSGEngine_CreateRenderer(void* ptr){
+	return static_cast<QSGEngine*>(ptr)->createRenderer();
 }
 
-int QQuickView_Status(void* ptr){
-	return static_cast<QQuickView*>(ptr)->status();
+void* QSGEngine_CreateTextureFromImage(void* ptr, void* image, int options){
+	return static_cast<QSGEngine*>(ptr)->createTextureFromImage(*static_cast<QImage*>(image), static_cast<QSGEngine::CreateTextureOption>(options));
 }
 
-void* QQuickView_NewQQuickView2(void* engine, void* parent){
-	return new QQuickView(static_cast<QQmlEngine*>(engine), static_cast<QWindow*>(parent));
+void QSGEngine_Initialize(void* ptr, void* context){
+	static_cast<QSGEngine*>(ptr)->initialize(static_cast<QOpenGLContext*>(context));
 }
 
-void* QQuickView_NewQQuickView(void* parent){
-	return new QQuickView(static_cast<QWindow*>(parent));
+void QSGEngine_Invalidate(void* ptr){
+	static_cast<QSGEngine*>(ptr)->invalidate();
 }
 
-void* QQuickView_NewQQuickView3(void* source, void* parent){
-	return new QQuickView(*static_cast<QUrl*>(source), static_cast<QWindow*>(parent));
+void QSGEngine_DestroyQSGEngine(void* ptr){
+	static_cast<QSGEngine*>(ptr)->~QSGEngine();
 }
 
-void* QQuickView_Engine(void* ptr){
-	return static_cast<QQuickView*>(ptr)->engine();
+#include "qsgtexturematerial.h"
+#include <QSGTexture>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QSGTextureMaterial>
+#include "_cgo_export.h"
+
+class MyQSGTextureMaterial: public QSGTextureMaterial {
+public:
+};
+
+#include "qquickitemgrabresult.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QQuickItem>
+#include <QString>
+#include <QVariant>
+#include <QQuickItemGrabResult>
+#include "_cgo_export.h"
+
+class MyQQuickItemGrabResult: public QQuickItemGrabResult {
+public:
+void Signal_Ready(){callbackQQuickItemGrabResultReady(this->objectName().toUtf8().data());};
+};
+
+void QQuickItemGrabResult_ConnectReady(void* ptr){
+	QObject::connect(static_cast<QQuickItemGrabResult*>(ptr), static_cast<void (QQuickItemGrabResult::*)()>(&QQuickItemGrabResult::ready), static_cast<MyQQuickItemGrabResult*>(ptr), static_cast<void (MyQQuickItemGrabResult::*)()>(&MyQQuickItemGrabResult::Signal_Ready));;
 }
 
-void* QQuickView_RootContext(void* ptr){
-	return static_cast<QQuickView*>(ptr)->rootContext();
+void QQuickItemGrabResult_DisconnectReady(void* ptr){
+	QObject::disconnect(static_cast<QQuickItemGrabResult*>(ptr), static_cast<void (QQuickItemGrabResult::*)()>(&QQuickItemGrabResult::ready), static_cast<MyQQuickItemGrabResult*>(ptr), static_cast<void (MyQQuickItemGrabResult::*)()>(&MyQQuickItemGrabResult::Signal_Ready));;
 }
 
-void* QQuickView_RootObject(void* ptr){
-	return static_cast<QQuickView*>(ptr)->rootObject();
+int QQuickItemGrabResult_SaveToFile(void* ptr, char* fileName){
+	return static_cast<QQuickItemGrabResult*>(ptr)->saveToFile(QString(fileName));
 }
 
-void QQuickView_SetSource(void* ptr, void* url){
-	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setSource", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+#include "qquickrendercontrol.h"
+#include <QString>
+#include <QVariant>
+#include <QModelIndex>
+#include <QThread>
+#include <QObject>
+#include <QUrl>
+#include <QOpenGLContext>
+#include <QPoint>
+#include <QQuickWindow>
+#include <QQuickRenderControl>
+#include "_cgo_export.h"
+
+class MyQQuickRenderControl: public QQuickRenderControl {
+public:
+void Signal_RenderRequested(){callbackQQuickRenderControlRenderRequested(this->objectName().toUtf8().data());};
+void Signal_SceneChanged(){callbackQQuickRenderControlSceneChanged(this->objectName().toUtf8().data());};
+};
+
+void* QQuickRenderControl_NewQQuickRenderControl(void* parent){
+	return new QQuickRenderControl(static_cast<QObject*>(parent));
 }
 
-void QQuickView_ConnectStatusChanged(void* ptr){
-	QObject::connect(static_cast<QQuickView*>(ptr), static_cast<void (QQuickView::*)(QQuickView::Status)>(&QQuickView::statusChanged), static_cast<MyQQuickView*>(ptr), static_cast<void (MyQQuickView::*)(QQuickView::Status)>(&MyQQuickView::Signal_StatusChanged));;
+void QQuickRenderControl_Initialize(void* ptr, void* gl){
+	static_cast<QQuickRenderControl*>(ptr)->initialize(static_cast<QOpenGLContext*>(gl));
 }
 
-void QQuickView_DisconnectStatusChanged(void* ptr){
-	QObject::disconnect(static_cast<QQuickView*>(ptr), static_cast<void (QQuickView::*)(QQuickView::Status)>(&QQuickView::statusChanged), static_cast<MyQQuickView*>(ptr), static_cast<void (MyQQuickView::*)(QQuickView::Status)>(&MyQQuickView::Signal_StatusChanged));;
+void QQuickRenderControl_Invalidate(void* ptr){
+	static_cast<QQuickRenderControl*>(ptr)->invalidate();
 }
 
-void QQuickView_DestroyQQuickView(void* ptr){
-	static_cast<QQuickView*>(ptr)->~QQuickView();
+void QQuickRenderControl_PolishItems(void* ptr){
+	static_cast<QQuickRenderControl*>(ptr)->polishItems();
+}
+
+void QQuickRenderControl_PrepareThread(void* ptr, void* targetThread){
+	static_cast<QQuickRenderControl*>(ptr)->prepareThread(static_cast<QThread*>(targetThread));
+}
+
+void QQuickRenderControl_Render(void* ptr){
+	static_cast<QQuickRenderControl*>(ptr)->render();
+}
+
+void QQuickRenderControl_ConnectRenderRequested(void* ptr){
+	QObject::connect(static_cast<QQuickRenderControl*>(ptr), static_cast<void (QQuickRenderControl::*)()>(&QQuickRenderControl::renderRequested), static_cast<MyQQuickRenderControl*>(ptr), static_cast<void (MyQQuickRenderControl::*)()>(&MyQQuickRenderControl::Signal_RenderRequested));;
+}
+
+void QQuickRenderControl_DisconnectRenderRequested(void* ptr){
+	QObject::disconnect(static_cast<QQuickRenderControl*>(ptr), static_cast<void (QQuickRenderControl::*)()>(&QQuickRenderControl::renderRequested), static_cast<MyQQuickRenderControl*>(ptr), static_cast<void (MyQQuickRenderControl::*)()>(&MyQQuickRenderControl::Signal_RenderRequested));;
+}
+
+void* QQuickRenderControl_RenderWindow(void* ptr, void* offset){
+	return static_cast<QQuickRenderControl*>(ptr)->renderWindow(static_cast<QPoint*>(offset));
+}
+
+void* QQuickRenderControl_QQuickRenderControl_RenderWindowFor(void* win, void* offset){
+	return QQuickRenderControl::renderWindowFor(static_cast<QQuickWindow*>(win), static_cast<QPoint*>(offset));
+}
+
+void QQuickRenderControl_ConnectSceneChanged(void* ptr){
+	QObject::connect(static_cast<QQuickRenderControl*>(ptr), static_cast<void (QQuickRenderControl::*)()>(&QQuickRenderControl::sceneChanged), static_cast<MyQQuickRenderControl*>(ptr), static_cast<void (MyQQuickRenderControl::*)()>(&MyQQuickRenderControl::Signal_SceneChanged));;
+}
+
+void QQuickRenderControl_DisconnectSceneChanged(void* ptr){
+	QObject::disconnect(static_cast<QQuickRenderControl*>(ptr), static_cast<void (QQuickRenderControl::*)()>(&QQuickRenderControl::sceneChanged), static_cast<MyQQuickRenderControl*>(ptr), static_cast<void (MyQQuickRenderControl::*)()>(&MyQQuickRenderControl::Signal_SceneChanged));;
+}
+
+int QQuickRenderControl_Sync(void* ptr){
+	return static_cast<QQuickRenderControl*>(ptr)->sync();
+}
+
+void QQuickRenderControl_DestroyQQuickRenderControl(void* ptr){
+	static_cast<QQuickRenderControl*>(ptr)->~QQuickRenderControl();
+}
+
+#include "qsgopacitynode.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QString>
+#include <QVariant>
+#include <QSGOpacityNode>
+#include "_cgo_export.h"
+
+class MyQSGOpacityNode: public QSGOpacityNode {
+public:
+};
+
+void* QSGOpacityNode_NewQSGOpacityNode(){
+	return new QSGOpacityNode();
+}
+
+double QSGOpacityNode_Opacity(void* ptr){
+	return static_cast<double>(static_cast<QSGOpacityNode*>(ptr)->opacity());
+}
+
+void QSGOpacityNode_SetOpacity(void* ptr, double opacity){
+	static_cast<QSGOpacityNode*>(ptr)->setOpacity(static_cast<qreal>(opacity));
+}
+
+void QSGOpacityNode_DestroyQSGOpacityNode(void* ptr){
+	static_cast<QSGOpacityNode*>(ptr)->~QSGOpacityNode();
+}
+
+#include "qsgdynamictexture.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QSGDynamicTexture>
+#include "_cgo_export.h"
+
+class MyQSGDynamicTexture: public QSGDynamicTexture {
+public:
+};
+
+int QSGDynamicTexture_UpdateTexture(void* ptr){
+	return static_cast<QSGDynamicTexture*>(ptr)->updateTexture();
+}
+
+#include "qsggeometry.h"
+#include <QRect>
+#include <QRectF>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QSGGeometry>
+#include "_cgo_export.h"
+
+class MyQSGGeometry: public QSGGeometry {
+public:
+};
+
+void QSGGeometry_Allocate(void* ptr, int vertexCount, int indexCount){
+	static_cast<QSGGeometry*>(ptr)->allocate(vertexCount, indexCount);
+}
+
+int QSGGeometry_AttributeCount(void* ptr){
+	return static_cast<QSGGeometry*>(ptr)->attributeCount();
+}
+
+int QSGGeometry_IndexCount(void* ptr){
+	return static_cast<QSGGeometry*>(ptr)->indexCount();
+}
+
+void* QSGGeometry_IndexData(void* ptr){
+	return static_cast<QSGGeometry*>(ptr)->indexData();
+}
+
+void* QSGGeometry_IndexData2(void* ptr){
+	return const_cast<void*>(static_cast<QSGGeometry*>(ptr)->indexData());
+}
+
+int QSGGeometry_IndexDataPattern(void* ptr){
+	return static_cast<QSGGeometry*>(ptr)->indexDataPattern();
+}
+
+int QSGGeometry_IndexType(void* ptr){
+	return static_cast<QSGGeometry*>(ptr)->indexType();
+}
+
+void QSGGeometry_MarkIndexDataDirty(void* ptr){
+	static_cast<QSGGeometry*>(ptr)->markIndexDataDirty();
+}
+
+void QSGGeometry_MarkVertexDataDirty(void* ptr){
+	static_cast<QSGGeometry*>(ptr)->markVertexDataDirty();
+}
+
+void QSGGeometry_SetIndexDataPattern(void* ptr, int p){
+	static_cast<QSGGeometry*>(ptr)->setIndexDataPattern(static_cast<QSGGeometry::DataPattern>(p));
+}
+
+void QSGGeometry_SetVertexDataPattern(void* ptr, int p){
+	static_cast<QSGGeometry*>(ptr)->setVertexDataPattern(static_cast<QSGGeometry::DataPattern>(p));
+}
+
+int QSGGeometry_SizeOfIndex(void* ptr){
+	return static_cast<QSGGeometry*>(ptr)->sizeOfIndex();
+}
+
+int QSGGeometry_SizeOfVertex(void* ptr){
+	return static_cast<QSGGeometry*>(ptr)->sizeOfVertex();
+}
+
+void QSGGeometry_QSGGeometry_UpdateRectGeometry(void* g, void* rect){
+	QSGGeometry::updateRectGeometry(static_cast<QSGGeometry*>(g), *static_cast<QRectF*>(rect));
+}
+
+void QSGGeometry_QSGGeometry_UpdateTexturedRectGeometry(void* g, void* rect, void* textureRect){
+	QSGGeometry::updateTexturedRectGeometry(static_cast<QSGGeometry*>(g), *static_cast<QRectF*>(rect), *static_cast<QRectF*>(textureRect));
+}
+
+int QSGGeometry_VertexCount(void* ptr){
+	return static_cast<QSGGeometry*>(ptr)->vertexCount();
+}
+
+void* QSGGeometry_VertexData(void* ptr){
+	return static_cast<QSGGeometry*>(ptr)->vertexData();
+}
+
+void* QSGGeometry_VertexData2(void* ptr){
+	return const_cast<void*>(static_cast<QSGGeometry*>(ptr)->vertexData());
+}
+
+int QSGGeometry_VertexDataPattern(void* ptr){
+	return static_cast<QSGGeometry*>(ptr)->vertexDataPattern();
+}
+
+void QSGGeometry_DestroyQSGGeometry(void* ptr){
+	static_cast<QSGGeometry*>(ptr)->~QSGGeometry();
 }
 

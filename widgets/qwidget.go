@@ -39,7 +39,7 @@ func PointerFromQWidget(ptr QWidget_ITF) unsafe.Pointer {
 func NewQWidgetFromPointer(ptr unsafe.Pointer) *QWidget {
 	var n = new(QWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QWidget_" + qt.RandomIdentifier())
 	}
 	return n

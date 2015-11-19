@@ -27,7 +27,7 @@ func PointerFromQPlatformSystemTrayIcon(ptr QPlatformSystemTrayIcon_ITF) unsafe.
 func NewQPlatformSystemTrayIconFromPointer(ptr unsafe.Pointer) *QPlatformSystemTrayIcon {
 	var n = new(QPlatformSystemTrayIcon)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QPlatformSystemTrayIcon_" + qt.RandomIdentifier())
 	}
 	return n

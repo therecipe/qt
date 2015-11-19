@@ -27,7 +27,7 @@ func PointerFromQPanGesture(ptr QPanGesture_ITF) unsafe.Pointer {
 func NewQPanGestureFromPointer(ptr unsafe.Pointer) *QPanGesture {
 	var n = new(QPanGesture)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QPanGesture_" + qt.RandomIdentifier())
 	}
 	return n

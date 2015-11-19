@@ -27,7 +27,7 @@ func PointerFromQProcess(ptr QProcess_ITF) unsafe.Pointer {
 func NewQProcessFromPointer(ptr unsafe.Pointer) *QProcess {
 	var n = new(QProcess)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QProcess_" + qt.RandomIdentifier())
 	}
 	return n

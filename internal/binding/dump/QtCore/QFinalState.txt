@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QFinalState QFinalState::QFinalState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qfinalstate.h non constructor false false   QFinalState(QState *parent) [0xc8203792a0] }
-&{event QFinalState::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qfinalstate.h impure plain false false  bool bool event(QEvent *e) [0xc8203794c0] }
-&{onEntry QFinalState::onEntry commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qfinalstate.h impure plain false false  void void onEntry(QEvent *event) [0xc8203796e0] }
-&{onExit QFinalState::onExit commendable protected /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qfinalstate.h impure plain false false  void void onExit(QEvent *event) [0xc820379900] }
-&{~QFinalState QFinalState::~QFinalState commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/statemachine/qfinalstate.h non destructor false false   ~QFinalState() [] }
-########################################			ENUMS			########################################

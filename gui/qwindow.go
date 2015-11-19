@@ -38,7 +38,7 @@ func PointerFromQWindow(ptr QWindow_ITF) unsafe.Pointer {
 func NewQWindowFromPointer(ptr unsafe.Pointer) *QWindow {
 	var n = new(QWindow)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QWindow_" + qt.RandomIdentifier())
 	}
 	return n

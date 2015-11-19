@@ -28,7 +28,7 @@ func PointerFromQShortcut(ptr QShortcut_ITF) unsafe.Pointer {
 func NewQShortcutFromPointer(ptr unsafe.Pointer) *QShortcut {
 	var n = new(QShortcut)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QShortcut_" + qt.RandomIdentifier())
 	}
 	return n

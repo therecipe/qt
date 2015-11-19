@@ -1,6 +1,7 @@
 package converter
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
@@ -39,19 +40,39 @@ func goType(f *parser.Function, value string) string {
 			return value
 		}
 
-	case "T", "JavaVM", "jclass":
+	case "T":
+		{
+			switch f.TemplateMode {
+			case "Int":
+				{
+					return "int"
+				}
+			case "Boolean":
+				{
+					return "bool"
+				}
+			case "Void":
+				return ""
+			}
+
+			return "unsafe.Pointer"
+		}
+
+	case "JavaVM", "jclass", "jobject":
 		{
 			return "unsafe.Pointer"
+		}
+
+	case "...":
+		{
+			if parser.ClassMap[f.Class()].Module == "androidextras" {
+				return "...interface{}"
+			}
 		}
 
 	case "qreal":
 		{
 			return "float64"
-		}
-
-	case "...":
-		{
-			return ""
 		}
 	}
 
@@ -138,19 +159,47 @@ func cppType(f *parser.Function, value string) string {
 			return "void"
 		}
 
-	case "T", "JavaVM", "jclass":
+	case "T":
+		{
+			switch f.TemplateMode {
+			case "Int":
+				{
+					return "int"
+				}
+			case "Boolean":
+				{
+					return "int"
+				}
+			case "Void":
+				{
+					return "void"
+				}
+			}
+
+			return "void*"
+		}
+
+	case "JavaVM", "jclass", "jobject":
 		{
 			return "void*"
+		}
+
+	case "...":
+		{
+			var tmp string
+			for i := 0; i < 10; i++ {
+				if i == 9 {
+					tmp += "void*"
+				} else {
+					tmp += fmt.Sprintf("void* %v%v, ", "v", i)
+				}
+			}
+			return strings.TrimSuffix(tmp, ", ")
 		}
 
 	case "qreal":
 		{
 			return "double"
-		}
-
-	case "...":
-		{
-			return ""
 		}
 	}
 

@@ -27,7 +27,7 @@ func PointerFromQGenericPlugin(ptr QGenericPlugin_ITF) unsafe.Pointer {
 func NewQGenericPluginFromPointer(ptr unsafe.Pointer) *QGenericPlugin {
 	var n = new(QGenericPlugin)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGenericPlugin_" + qt.RandomIdentifier())
 	}
 	return n

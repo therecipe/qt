@@ -28,7 +28,7 @@ func PointerFromQBluetoothSocket(ptr QBluetoothSocket_ITF) unsafe.Pointer {
 func NewQBluetoothSocketFromPointer(ptr unsafe.Pointer) *QBluetoothSocket {
 	var n = new(QBluetoothSocket)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QBluetoothSocket_" + qt.RandomIdentifier())
 	}
 	return n

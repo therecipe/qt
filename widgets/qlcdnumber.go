@@ -26,7 +26,7 @@ func PointerFromQLCDNumber(ptr QLCDNumber_ITF) unsafe.Pointer {
 func NewQLCDNumberFromPointer(ptr unsafe.Pointer) *QLCDNumber {
 	var n = new(QLCDNumber)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QLCDNumber_" + qt.RandomIdentifier())
 	}
 	return n

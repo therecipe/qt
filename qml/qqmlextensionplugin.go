@@ -27,7 +27,7 @@ func PointerFromQQmlExtensionPlugin(ptr QQmlExtensionPlugin_ITF) unsafe.Pointer 
 func NewQQmlExtensionPluginFromPointer(ptr unsafe.Pointer) *QQmlExtensionPlugin {
 	var n = new(QQmlExtensionPlugin)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQmlExtensionPlugin_" + qt.RandomIdentifier())
 	}
 	return n

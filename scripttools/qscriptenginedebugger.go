@@ -29,7 +29,7 @@ func PointerFromQScriptEngineDebugger(ptr QScriptEngineDebugger_ITF) unsafe.Poin
 func NewQScriptEngineDebuggerFromPointer(ptr unsafe.Pointer) *QScriptEngineDebugger {
 	var n = new(QScriptEngineDebugger)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QScriptEngineDebugger_" + qt.RandomIdentifier())
 	}
 	return n

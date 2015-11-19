@@ -26,7 +26,7 @@ func PointerFromQStateMachine(ptr QStateMachine_ITF) unsafe.Pointer {
 func NewQStateMachineFromPointer(ptr unsafe.Pointer) *QStateMachine {
 	var n = new(QStateMachine)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QStateMachine_" + qt.RandomIdentifier())
 	}
 	return n

@@ -47,29 +47,77 @@ func GenModule(name string) {
 				for e, f := range map[string]func(*parser.Class) string{"cpp": CppTemplate, "h": HTemplate, "go": GoTemplate} {
 					utils.MakeFolder(utils.GetQtPkgPath(name))
 					CopyCgo(moduleT)
-					if moduleT == "AndroidExtras" {
-						utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v_android.%v", strings.ToLower(c.Name), e)), f(c))
-						if e == "go" {
-							c.Stub = true
-							utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))
-							c.Stub = false
-						}
+
+					if e == "cpp" {
+						cppTmp += f(c)
 					} else {
-						if e == "cpp" {
-							cppTmp += f(c)
+						if moduleT == "AndroidExtras" {
+							utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v_android.%v", strings.ToLower(c.Name), e)), f(c))
+							if e == "go" {
+								c.Stub = true
+								utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))
+								c.Stub = false
+							}
 						} else {
 							utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))
 						}
 					}
 				}
 
-				c.Dump()
+				//c.Dump()
 
 				fcount += len(c.Functions)
 			}
 
 		}
-		utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.cpp", strings.ToLower(moduleT))), cppTmp)
+
+		if moduleT == "AndroidExtras" {
+			utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v_android.cpp", strings.ToLower(moduleT))), cppTmp)
+		} else {
+			utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.cpp", strings.ToLower(moduleT))), cppTmp)
+		}
+
 		fmt.Printf("%v%v\tfunctions:%v", name, terminalSeperator(name), fcount)
+
+		if name == "androidextras" {
+			utils.Save(utils.GetQtPkgPath(name, "androidextras_android.go"), `package androidextras
+
+			import (
+				"C"
+				"unsafe"
+
+				"github.com/therecipe/qt"
+			)
+
+			func assertion(key int, input ...interface{}) unsafe.Pointer {
+				if len(input) > key {
+					switch input[key].(type) {
+					case string:
+						{
+							return QAndroidJniObject_FromString(input[key].(string)).Object()
+						}
+					case int:
+						{
+							return unsafe.Pointer(uintptr(C.int(input[key].(int))))
+						}
+					case bool:
+						{
+							return unsafe.Pointer(uintptr(C.int(qt.GoBoolToInt(input[key].(bool)))))
+						}
+					case unsafe.Pointer:
+						{
+							return input[key].(unsafe.Pointer)
+						}
+					case *QAndroidJniObject:
+						{
+							return input[key].(*QAndroidJniObject).Object()
+						}
+					}
+				}
+				return nil
+			}
+`)
+		}
+
 	}
 }

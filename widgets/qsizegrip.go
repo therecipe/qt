@@ -26,7 +26,7 @@ func PointerFromQSizeGrip(ptr QSizeGrip_ITF) unsafe.Pointer {
 func NewQSizeGripFromPointer(ptr unsafe.Pointer) *QSizeGrip {
 	var n = new(QSizeGrip)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSizeGrip_" + qt.RandomIdentifier())
 	}
 	return n

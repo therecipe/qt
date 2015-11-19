@@ -26,7 +26,7 @@ func PointerFromQVariantAnimation(ptr QVariantAnimation_ITF) unsafe.Pointer {
 func NewQVariantAnimationFromPointer(ptr unsafe.Pointer) *QVariantAnimation {
 	var n = new(QVariantAnimation)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QVariantAnimation_" + qt.RandomIdentifier())
 	}
 	return n

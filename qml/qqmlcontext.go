@@ -27,7 +27,7 @@ func PointerFromQQmlContext(ptr QQmlContext_ITF) unsafe.Pointer {
 func NewQQmlContextFromPointer(ptr unsafe.Pointer) *QQmlContext {
 	var n = new(QQmlContext)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQmlContext_" + qt.RandomIdentifier())
 	}
 	return n

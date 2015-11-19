@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{flags QQmlImageProviderBase::flags commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h pure plain false false  Flags Flags flags() const [] }
-&{imageType QQmlImageProviderBase::imageType commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlengine.h pure plain false false  ImageType ImageType imageType() const [] }
-########################################			ENUMS			########################################
-&{Flag QQmlImageProviderBase::Flag commendable public QQmlImageProviderBase::Flags [0xc821bea720] false}
-&{ImageType QQmlImageProviderBase::ImageType commendable public  [0xc821beaa40 0xc821beabe0 0xc821bead20 0xc821beae80] false}

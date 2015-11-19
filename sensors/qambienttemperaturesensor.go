@@ -27,7 +27,7 @@ func PointerFromQAmbientTemperatureSensor(ptr QAmbientTemperatureSensor_ITF) uns
 func NewQAmbientTemperatureSensorFromPointer(ptr unsafe.Pointer) *QAmbientTemperatureSensor {
 	var n = new(QAmbientTemperatureSensor)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAmbientTemperatureSensor_" + qt.RandomIdentifier())
 	}
 	return n

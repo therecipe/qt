@@ -28,7 +28,7 @@ func PointerFromQQmlFileSelector(ptr QQmlFileSelector_ITF) unsafe.Pointer {
 func NewQQmlFileSelectorFromPointer(ptr unsafe.Pointer) *QQmlFileSelector {
 	var n = new(QQmlFileSelector)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQmlFileSelector_" + qt.RandomIdentifier())
 	}
 	return n

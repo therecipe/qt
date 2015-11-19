@@ -27,7 +27,7 @@ func PointerFromQCoreApplication(ptr QCoreApplication_ITF) unsafe.Pointer {
 func NewQCoreApplicationFromPointer(ptr unsafe.Pointer) *QCoreApplication {
 	var n = new(QCoreApplication)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCoreApplication_" + qt.RandomIdentifier())
 	}
 	return n

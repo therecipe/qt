@@ -26,7 +26,7 @@ func PointerFromQAbstractTableModel(ptr QAbstractTableModel_ITF) unsafe.Pointer 
 func NewQAbstractTableModelFromPointer(ptr unsafe.Pointer) *QAbstractTableModel {
 	var n = new(QAbstractTableModel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractTableModel_" + qt.RandomIdentifier())
 	}
 	return n

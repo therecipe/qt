@@ -27,7 +27,7 @@ func PointerFromQIntValidator(ptr QIntValidator_ITF) unsafe.Pointer {
 func NewQIntValidatorFromPointer(ptr unsafe.Pointer) *QIntValidator {
 	var n = new(QIntValidator)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QIntValidator_" + qt.RandomIdentifier())
 	}
 	return n

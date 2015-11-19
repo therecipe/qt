@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QMacNativeWidget QMacNativeWidget::QMacNativeWidget commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmacnativewidget_mac.h non constructor false false   QMacNativeWidget(NSView *parentView) [0xc8214ebee0] }
-&{event QMacNativeWidget::event commendable protected /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmacnativewidget_mac.h impure plain false false  bool bool event(QEvent *ev) [0xc8214d6360] }
-&{sizeHint QMacNativeWidget::sizeHint commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmacnativewidget_mac.h impure plain false false  QSize QSize sizeHint() const [] }
-&{~QMacNativeWidget QMacNativeWidget::~QMacNativeWidget commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmacnativewidget_mac.h non destructor false false   ~QMacNativeWidget() [] }
-&{nativeView QMacNativeWidget::nativeView commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmacnativewidget_mac.mm non plain false false  NSView * NSView * nativeView() const [] }
-########################################			ENUMS			########################################

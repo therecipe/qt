@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{attributes QSGSimpleMaterialShader::attributes commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimplematerial.h pure plain false false  QList<QByteArray> QList<QByteArray> attributes() const [] }
-&{resolveUniforms QSGSimpleMaterialShader::resolveUniforms commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimplematerial.h impure plain false false  void void resolveUniforms() [] }
-&{uniformMatrixName QSGSimpleMaterialShader::uniformMatrixName commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimplematerial.h non plain false false  const char * const char * uniformMatrixName() const [] }
-&{uniformOpacityName QSGSimpleMaterialShader::uniformOpacityName commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimplematerial.h non plain false false  const char * const char * uniformOpacityName() const [] }
-&{updateState QSGSimpleMaterialShader::updateState commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgsimplematerial.h pure plain false false  void void updateState(const State *newState, const State *oldState) [0xc820f3d420 0xc820f3d620] }
-########################################			ENUMS			########################################

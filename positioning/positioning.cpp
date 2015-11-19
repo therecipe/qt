@@ -1,45 +1,65 @@
-#include "qgeocoordinate.h"
+#include "qgeoareamonitorsource.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QGeoCoordinate>
+#include <QGeoPositionInfo>
+#include <QGeoPositionInfoSource>
+#include <QGeoAreaMonitorInfo>
+#include <QObject>
+#include <QGeoAreaMonitorSource>
 #include "_cgo_export.h"
 
-class MyQGeoCoordinate: public QGeoCoordinate {
+class MyQGeoAreaMonitorSource: public QGeoAreaMonitorSource {
 public:
 };
 
-void* QGeoCoordinate_NewQGeoCoordinate(){
-	return new QGeoCoordinate();
+char* QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources(){
+	return QGeoAreaMonitorSource::availableSources().join("|").toUtf8().data();
 }
 
-void* QGeoCoordinate_NewQGeoCoordinate4(void* other){
-	return new QGeoCoordinate(*static_cast<QGeoCoordinate*>(other));
+void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateDefaultSource(void* parent){
+	return QGeoAreaMonitorSource::createDefaultSource(static_cast<QObject*>(parent));
 }
 
-double QGeoCoordinate_AzimuthTo(void* ptr, void* other){
-	return static_cast<double>(static_cast<QGeoCoordinate*>(ptr)->azimuthTo(*static_cast<QGeoCoordinate*>(other)));
+void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(char* sourceName, void* parent){
+	return QGeoAreaMonitorSource::createSource(QString(sourceName), static_cast<QObject*>(parent));
 }
 
-double QGeoCoordinate_DistanceTo(void* ptr, void* other){
-	return static_cast<double>(static_cast<QGeoCoordinate*>(ptr)->distanceTo(*static_cast<QGeoCoordinate*>(other)));
+int QGeoAreaMonitorSource_Error(void* ptr){
+	return static_cast<QGeoAreaMonitorSource*>(ptr)->error();
 }
 
-int QGeoCoordinate_IsValid(void* ptr){
-	return static_cast<QGeoCoordinate*>(ptr)->isValid();
+void* QGeoAreaMonitorSource_PositionInfoSource(void* ptr){
+	return static_cast<QGeoAreaMonitorSource*>(ptr)->positionInfoSource();
 }
 
-char* QGeoCoordinate_ToString(void* ptr, int format){
-	return static_cast<QGeoCoordinate*>(ptr)->toString(static_cast<QGeoCoordinate::CoordinateFormat>(format)).toUtf8().data();
+int QGeoAreaMonitorSource_RequestUpdate(void* ptr, void* monitor, char* signal){
+	return static_cast<QGeoAreaMonitorSource*>(ptr)->requestUpdate(*static_cast<QGeoAreaMonitorInfo*>(monitor), const_cast<const char*>(signal));
 }
 
-int QGeoCoordinate_Type(void* ptr){
-	return static_cast<QGeoCoordinate*>(ptr)->type();
+void QGeoAreaMonitorSource_SetPositionInfoSource(void* ptr, void* newSource){
+	static_cast<QGeoAreaMonitorSource*>(ptr)->setPositionInfoSource(static_cast<QGeoPositionInfoSource*>(newSource));
 }
 
-void QGeoCoordinate_DestroyQGeoCoordinate(void* ptr){
-	static_cast<QGeoCoordinate*>(ptr)->~QGeoCoordinate();
+char* QGeoAreaMonitorSource_SourceName(void* ptr){
+	return static_cast<QGeoAreaMonitorSource*>(ptr)->sourceName().toUtf8().data();
+}
+
+int QGeoAreaMonitorSource_StartMonitoring(void* ptr, void* monitor){
+	return static_cast<QGeoAreaMonitorSource*>(ptr)->startMonitoring(*static_cast<QGeoAreaMonitorInfo*>(monitor));
+}
+
+int QGeoAreaMonitorSource_StopMonitoring(void* ptr, void* monitor){
+	return static_cast<QGeoAreaMonitorSource*>(ptr)->stopMonitoring(*static_cast<QGeoAreaMonitorInfo*>(monitor));
+}
+
+int QGeoAreaMonitorSource_SupportedAreaMonitorFeatures(void* ptr){
+	return static_cast<QGeoAreaMonitorSource*>(ptr)->supportedAreaMonitorFeatures();
+}
+
+void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(void* ptr){
+	static_cast<QGeoAreaMonitorSource*>(ptr)->~QGeoAreaMonitorSource();
 }
 
 #include "qgeopositioninfosource.h"
@@ -126,14 +146,127 @@ void QGeoPositionInfoSource_DestroyQGeoPositionInfoSource(void* ptr){
 	static_cast<QGeoPositionInfoSource*>(ptr)->~QGeoPositionInfoSource();
 }
 
-#include "qgeoareamonitorinfo.h"
+#include "qgeoshape.h"
+#include <QModelIndex>
+#include <QGeoCoordinate>
+#include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QGeoShape>
+#include "_cgo_export.h"
+
+class MyQGeoShape: public QGeoShape {
+public:
+};
+
+void* QGeoShape_NewQGeoShape(){
+	return new QGeoShape();
+}
+
+void* QGeoShape_NewQGeoShape2(void* other){
+	return new QGeoShape(*static_cast<QGeoShape*>(other));
+}
+
+int QGeoShape_Contains(void* ptr, void* coordinate){
+	return static_cast<QGeoShape*>(ptr)->contains(*static_cast<QGeoCoordinate*>(coordinate));
+}
+
+void QGeoShape_ExtendShape(void* ptr, void* coordinate){
+	static_cast<QGeoShape*>(ptr)->extendShape(*static_cast<QGeoCoordinate*>(coordinate));
+}
+
+int QGeoShape_IsEmpty(void* ptr){
+	return static_cast<QGeoShape*>(ptr)->isEmpty();
+}
+
+int QGeoShape_IsValid(void* ptr){
+	return static_cast<QGeoShape*>(ptr)->isValid();
+}
+
+char* QGeoShape_ToString(void* ptr){
+	return static_cast<QGeoShape*>(ptr)->toString().toUtf8().data();
+}
+
+int QGeoShape_Type(void* ptr){
+	return static_cast<QGeoShape*>(ptr)->type();
+}
+
+void QGeoShape_DestroyQGeoShape(void* ptr){
+	static_cast<QGeoShape*>(ptr)->~QGeoShape();
+}
+
+#include "qgeosatelliteinfo.h"
+#include <QModelIndex>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QGeoSatelliteInfo>
+#include "_cgo_export.h"
+
+class MyQGeoSatelliteInfo: public QGeoSatelliteInfo {
+public:
+};
+
+void* QGeoSatelliteInfo_NewQGeoSatelliteInfo(){
+	return new QGeoSatelliteInfo();
+}
+
+void* QGeoSatelliteInfo_NewQGeoSatelliteInfo2(void* other){
+	return new QGeoSatelliteInfo(*static_cast<QGeoSatelliteInfo*>(other));
+}
+
+double QGeoSatelliteInfo_Attribute(void* ptr, int attribute){
+	return static_cast<double>(static_cast<QGeoSatelliteInfo*>(ptr)->attribute(static_cast<QGeoSatelliteInfo::Attribute>(attribute)));
+}
+
+int QGeoSatelliteInfo_HasAttribute(void* ptr, int attribute){
+	return static_cast<QGeoSatelliteInfo*>(ptr)->hasAttribute(static_cast<QGeoSatelliteInfo::Attribute>(attribute));
+}
+
+void QGeoSatelliteInfo_RemoveAttribute(void* ptr, int attribute){
+	static_cast<QGeoSatelliteInfo*>(ptr)->removeAttribute(static_cast<QGeoSatelliteInfo::Attribute>(attribute));
+}
+
+int QGeoSatelliteInfo_SatelliteIdentifier(void* ptr){
+	return static_cast<QGeoSatelliteInfo*>(ptr)->satelliteIdentifier();
+}
+
+int QGeoSatelliteInfo_SatelliteSystem(void* ptr){
+	return static_cast<QGeoSatelliteInfo*>(ptr)->satelliteSystem();
+}
+
+void QGeoSatelliteInfo_SetAttribute(void* ptr, int attribute, double value){
+	static_cast<QGeoSatelliteInfo*>(ptr)->setAttribute(static_cast<QGeoSatelliteInfo::Attribute>(attribute), static_cast<qreal>(value));
+}
+
+void QGeoSatelliteInfo_SetSatelliteIdentifier(void* ptr, int satId){
+	static_cast<QGeoSatelliteInfo*>(ptr)->setSatelliteIdentifier(satId);
+}
+
+void QGeoSatelliteInfo_SetSatelliteSystem(void* ptr, int system){
+	static_cast<QGeoSatelliteInfo*>(ptr)->setSatelliteSystem(static_cast<QGeoSatelliteInfo::SatelliteSystem>(system));
+}
+
+void QGeoSatelliteInfo_SetSignalStrength(void* ptr, int signalStrength){
+	static_cast<QGeoSatelliteInfo*>(ptr)->setSignalStrength(signalStrength);
+}
+
+int QGeoSatelliteInfo_SignalStrength(void* ptr){
+	return static_cast<QGeoSatelliteInfo*>(ptr)->signalStrength();
+}
+
+void QGeoSatelliteInfo_DestroyQGeoSatelliteInfo(void* ptr){
+	static_cast<QGeoSatelliteInfo*>(ptr)->~QGeoSatelliteInfo();
+}
+
+#include "qgeoareamonitorinfo.h"
 #include <QUrl>
 #include <QModelIndex>
 #include <QDateTime>
 #include <QDate>
 #include <QGeoShape>
 #include <QString>
+#include <QVariant>
 #include <QGeoAreaMonitorInfo>
 #include "_cgo_export.h"
 
@@ -189,141 +322,13 @@ void QGeoAreaMonitorInfo_DestroyQGeoAreaMonitorInfo(void* ptr){
 	static_cast<QGeoAreaMonitorInfo*>(ptr)->~QGeoAreaMonitorInfo();
 }
 
-#include "qgeolocation.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qgeoshape.h"
-#include <QModelIndex>
-#include <QGeoCoordinate>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QGeoShape>
-#include "_cgo_export.h"
-
-class MyQGeoShape: public QGeoShape {
-public:
-};
-
-void* QGeoShape_NewQGeoShape(){
-	return new QGeoShape();
-}
-
-void* QGeoShape_NewQGeoShape2(void* other){
-	return new QGeoShape(*static_cast<QGeoShape*>(other));
-}
-
-int QGeoShape_Contains(void* ptr, void* coordinate){
-	return static_cast<QGeoShape*>(ptr)->contains(*static_cast<QGeoCoordinate*>(coordinate));
-}
-
-void QGeoShape_ExtendShape(void* ptr, void* coordinate){
-	static_cast<QGeoShape*>(ptr)->extendShape(*static_cast<QGeoCoordinate*>(coordinate));
-}
-
-int QGeoShape_IsEmpty(void* ptr){
-	return static_cast<QGeoShape*>(ptr)->isEmpty();
-}
-
-int QGeoShape_IsValid(void* ptr){
-	return static_cast<QGeoShape*>(ptr)->isValid();
-}
-
-char* QGeoShape_ToString(void* ptr){
-	return static_cast<QGeoShape*>(ptr)->toString().toUtf8().data();
-}
-
-int QGeoShape_Type(void* ptr){
-	return static_cast<QGeoShape*>(ptr)->type();
-}
-
-void QGeoShape_DestroyQGeoShape(void* ptr){
-	static_cast<QGeoShape*>(ptr)->~QGeoShape();
-}
-
-#include "qgeosatelliteinfosource.h"
-#include <QMetaObject>
-#include <QGeoSatelliteInfo>
-#include <QObject>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QGeoSatelliteInfoSource>
-#include "_cgo_export.h"
-
-class MyQGeoSatelliteInfoSource: public QGeoSatelliteInfoSource {
-public:
-void Signal_RequestTimeout(){callbackQGeoSatelliteInfoSourceRequestTimeout(this->objectName().toUtf8().data());};
-};
-
-void QGeoSatelliteInfoSource_SetUpdateInterval(void* ptr, int msec){
-	static_cast<QGeoSatelliteInfoSource*>(ptr)->setUpdateInterval(msec);
-}
-
-int QGeoSatelliteInfoSource_UpdateInterval(void* ptr){
-	return static_cast<QGeoSatelliteInfoSource*>(ptr)->updateInterval();
-}
-
-char* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources(){
-	return QGeoSatelliteInfoSource::availableSources().join("|").toUtf8().data();
-}
-
-void* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateDefaultSource(void* parent){
-	return QGeoSatelliteInfoSource::createDefaultSource(static_cast<QObject*>(parent));
-}
-
-void* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(char* sourceName, void* parent){
-	return QGeoSatelliteInfoSource::createSource(QString(sourceName), static_cast<QObject*>(parent));
-}
-
-int QGeoSatelliteInfoSource_Error(void* ptr){
-	return static_cast<QGeoSatelliteInfoSource*>(ptr)->error();
-}
-
-int QGeoSatelliteInfoSource_MinimumUpdateInterval(void* ptr){
-	return static_cast<QGeoSatelliteInfoSource*>(ptr)->minimumUpdateInterval();
-}
-
-void QGeoSatelliteInfoSource_ConnectRequestTimeout(void* ptr){
-	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)()>(&QGeoSatelliteInfoSource::requestTimeout), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)()>(&MyQGeoSatelliteInfoSource::Signal_RequestTimeout));;
-}
-
-void QGeoSatelliteInfoSource_DisconnectRequestTimeout(void* ptr){
-	QObject::disconnect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)()>(&QGeoSatelliteInfoSource::requestTimeout), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)()>(&MyQGeoSatelliteInfoSource::Signal_RequestTimeout));;
-}
-
-void QGeoSatelliteInfoSource_RequestUpdate(void* ptr, int timeout){
-	QMetaObject::invokeMethod(static_cast<QGeoSatelliteInfoSource*>(ptr), "requestUpdate", Q_ARG(int, timeout));
-}
-
-char* QGeoSatelliteInfoSource_SourceName(void* ptr){
-	return static_cast<QGeoSatelliteInfoSource*>(ptr)->sourceName().toUtf8().data();
-}
-
-void QGeoSatelliteInfoSource_StartUpdates(void* ptr){
-	QMetaObject::invokeMethod(static_cast<QGeoSatelliteInfoSource*>(ptr), "startUpdates");
-}
-
-void QGeoSatelliteInfoSource_StopUpdates(void* ptr){
-	QMetaObject::invokeMethod(static_cast<QGeoSatelliteInfoSource*>(ptr), "stopUpdates");
-}
-
-void QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSource(void* ptr){
-	static_cast<QGeoSatelliteInfoSource*>(ptr)->~QGeoSatelliteInfoSource();
-}
-
 #include "qgeocircle.h"
-#include <QGeoShape>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QGeoCoordinate>
+#include <QGeoShape>
 #include <QGeoCircle>
 #include "_cgo_export.h"
 
@@ -471,76 +476,13 @@ void QGeoAddress_DestroyQGeoAddress(void* ptr){
 	static_cast<QGeoAddress*>(ptr)->~QGeoAddress();
 }
 
-#include "qnmeapositioninfosource.h"
-#include <QIODevice>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QMetaObject>
-#include <QObject>
-#include <QNmeaPositionInfoSource>
-#include "_cgo_export.h"
-
-class MyQNmeaPositionInfoSource: public QNmeaPositionInfoSource {
-public:
-};
-
-void* QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(int updateMode, void* parent){
-	return new QNmeaPositionInfoSource(static_cast<QNmeaPositionInfoSource::UpdateMode>(updateMode), static_cast<QObject*>(parent));
-}
-
-void* QNmeaPositionInfoSource_Device(void* ptr){
-	return static_cast<QNmeaPositionInfoSource*>(ptr)->device();
-}
-
-int QNmeaPositionInfoSource_Error(void* ptr){
-	return static_cast<QNmeaPositionInfoSource*>(ptr)->error();
-}
-
-int QNmeaPositionInfoSource_MinimumUpdateInterval(void* ptr){
-	return static_cast<QNmeaPositionInfoSource*>(ptr)->minimumUpdateInterval();
-}
-
-void QNmeaPositionInfoSource_RequestUpdate(void* ptr, int msec){
-	QMetaObject::invokeMethod(static_cast<QNmeaPositionInfoSource*>(ptr), "requestUpdate", Q_ARG(int, msec));
-}
-
-void QNmeaPositionInfoSource_SetDevice(void* ptr, void* device){
-	static_cast<QNmeaPositionInfoSource*>(ptr)->setDevice(static_cast<QIODevice*>(device));
-}
-
-void QNmeaPositionInfoSource_SetUpdateInterval(void* ptr, int msec){
-	static_cast<QNmeaPositionInfoSource*>(ptr)->setUpdateInterval(msec);
-}
-
-void QNmeaPositionInfoSource_StartUpdates(void* ptr){
-	QMetaObject::invokeMethod(static_cast<QNmeaPositionInfoSource*>(ptr), "startUpdates");
-}
-
-void QNmeaPositionInfoSource_StopUpdates(void* ptr){
-	QMetaObject::invokeMethod(static_cast<QNmeaPositionInfoSource*>(ptr), "stopUpdates");
-}
-
-int QNmeaPositionInfoSource_SupportedPositioningMethods(void* ptr){
-	return static_cast<QNmeaPositionInfoSource*>(ptr)->supportedPositioningMethods();
-}
-
-int QNmeaPositionInfoSource_UpdateMode(void* ptr){
-	return static_cast<QNmeaPositionInfoSource*>(ptr)->updateMode();
-}
-
-void QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(void* ptr){
-	static_cast<QNmeaPositionInfoSource*>(ptr)->~QNmeaPositionInfoSource();
-}
-
 #include "qgeorectangle.h"
-#include <QGeoShape>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QGeoCoordinate>
+#include <QGeoShape>
 #include <QGeoRectangle>
 #include "_cgo_export.h"
 
@@ -600,78 +542,193 @@ void QGeoRectangle_DestroyQGeoRectangle(void* ptr){
 	static_cast<QGeoRectangle*>(ptr)->~QGeoRectangle();
 }
 
-#include "qgeosatelliteinfo.h"
+#include "qnmeapositioninfosource.h"
+#include <QIODevice>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QGeoSatelliteInfo>
+#include <QObject>
+#include <QMetaObject>
+#include <QNmeaPositionInfoSource>
 #include "_cgo_export.h"
 
-class MyQGeoSatelliteInfo: public QGeoSatelliteInfo {
+class MyQNmeaPositionInfoSource: public QNmeaPositionInfoSource {
 public:
 };
 
-void* QGeoSatelliteInfo_NewQGeoSatelliteInfo(){
-	return new QGeoSatelliteInfo();
+void* QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(int updateMode, void* parent){
+	return new QNmeaPositionInfoSource(static_cast<QNmeaPositionInfoSource::UpdateMode>(updateMode), static_cast<QObject*>(parent));
 }
 
-void* QGeoSatelliteInfo_NewQGeoSatelliteInfo2(void* other){
-	return new QGeoSatelliteInfo(*static_cast<QGeoSatelliteInfo*>(other));
+void* QNmeaPositionInfoSource_Device(void* ptr){
+	return static_cast<QNmeaPositionInfoSource*>(ptr)->device();
 }
 
-double QGeoSatelliteInfo_Attribute(void* ptr, int attribute){
-	return static_cast<double>(static_cast<QGeoSatelliteInfo*>(ptr)->attribute(static_cast<QGeoSatelliteInfo::Attribute>(attribute)));
+int QNmeaPositionInfoSource_Error(void* ptr){
+	return static_cast<QNmeaPositionInfoSource*>(ptr)->error();
 }
 
-int QGeoSatelliteInfo_HasAttribute(void* ptr, int attribute){
-	return static_cast<QGeoSatelliteInfo*>(ptr)->hasAttribute(static_cast<QGeoSatelliteInfo::Attribute>(attribute));
+int QNmeaPositionInfoSource_MinimumUpdateInterval(void* ptr){
+	return static_cast<QNmeaPositionInfoSource*>(ptr)->minimumUpdateInterval();
 }
 
-void QGeoSatelliteInfo_RemoveAttribute(void* ptr, int attribute){
-	static_cast<QGeoSatelliteInfo*>(ptr)->removeAttribute(static_cast<QGeoSatelliteInfo::Attribute>(attribute));
+void QNmeaPositionInfoSource_RequestUpdate(void* ptr, int msec){
+	QMetaObject::invokeMethod(static_cast<QNmeaPositionInfoSource*>(ptr), "requestUpdate", Q_ARG(int, msec));
 }
 
-int QGeoSatelliteInfo_SatelliteIdentifier(void* ptr){
-	return static_cast<QGeoSatelliteInfo*>(ptr)->satelliteIdentifier();
+void QNmeaPositionInfoSource_SetDevice(void* ptr, void* device){
+	static_cast<QNmeaPositionInfoSource*>(ptr)->setDevice(static_cast<QIODevice*>(device));
 }
 
-int QGeoSatelliteInfo_SatelliteSystem(void* ptr){
-	return static_cast<QGeoSatelliteInfo*>(ptr)->satelliteSystem();
+void QNmeaPositionInfoSource_SetUpdateInterval(void* ptr, int msec){
+	static_cast<QNmeaPositionInfoSource*>(ptr)->setUpdateInterval(msec);
 }
 
-void QGeoSatelliteInfo_SetAttribute(void* ptr, int attribute, double value){
-	static_cast<QGeoSatelliteInfo*>(ptr)->setAttribute(static_cast<QGeoSatelliteInfo::Attribute>(attribute), static_cast<qreal>(value));
+void QNmeaPositionInfoSource_StartUpdates(void* ptr){
+	QMetaObject::invokeMethod(static_cast<QNmeaPositionInfoSource*>(ptr), "startUpdates");
 }
 
-void QGeoSatelliteInfo_SetSatelliteIdentifier(void* ptr, int satId){
-	static_cast<QGeoSatelliteInfo*>(ptr)->setSatelliteIdentifier(satId);
+void QNmeaPositionInfoSource_StopUpdates(void* ptr){
+	QMetaObject::invokeMethod(static_cast<QNmeaPositionInfoSource*>(ptr), "stopUpdates");
 }
 
-void QGeoSatelliteInfo_SetSatelliteSystem(void* ptr, int system){
-	static_cast<QGeoSatelliteInfo*>(ptr)->setSatelliteSystem(static_cast<QGeoSatelliteInfo::SatelliteSystem>(system));
+int QNmeaPositionInfoSource_SupportedPositioningMethods(void* ptr){
+	return static_cast<QNmeaPositionInfoSource*>(ptr)->supportedPositioningMethods();
 }
 
-void QGeoSatelliteInfo_SetSignalStrength(void* ptr, int signalStrength){
-	static_cast<QGeoSatelliteInfo*>(ptr)->setSignalStrength(signalStrength);
+int QNmeaPositionInfoSource_UpdateMode(void* ptr){
+	return static_cast<QNmeaPositionInfoSource*>(ptr)->updateMode();
 }
 
-int QGeoSatelliteInfo_SignalStrength(void* ptr){
-	return static_cast<QGeoSatelliteInfo*>(ptr)->signalStrength();
+void QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(void* ptr){
+	static_cast<QNmeaPositionInfoSource*>(ptr)->~QNmeaPositionInfoSource();
 }
 
-void QGeoSatelliteInfo_DestroyQGeoSatelliteInfo(void* ptr){
-	static_cast<QGeoSatelliteInfo*>(ptr)->~QGeoSatelliteInfo();
-}
-
-#include "qgeopositioninfosourcefactory.h"
-#include <QModelIndex>
-#include <QGeoPositionInfoSource>
-#include <QObject>
-#include <QGeoPositionInfo>
+#include "qgeosatelliteinfosource.h"
+#include <QGeoSatelliteInfo>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QMetaObject>
+#include <QGeoSatelliteInfoSource>
+#include "_cgo_export.h"
+
+class MyQGeoSatelliteInfoSource: public QGeoSatelliteInfoSource {
+public:
+void Signal_RequestTimeout(){callbackQGeoSatelliteInfoSourceRequestTimeout(this->objectName().toUtf8().data());};
+};
+
+void QGeoSatelliteInfoSource_SetUpdateInterval(void* ptr, int msec){
+	static_cast<QGeoSatelliteInfoSource*>(ptr)->setUpdateInterval(msec);
+}
+
+int QGeoSatelliteInfoSource_UpdateInterval(void* ptr){
+	return static_cast<QGeoSatelliteInfoSource*>(ptr)->updateInterval();
+}
+
+char* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_AvailableSources(){
+	return QGeoSatelliteInfoSource::availableSources().join("|").toUtf8().data();
+}
+
+void* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateDefaultSource(void* parent){
+	return QGeoSatelliteInfoSource::createDefaultSource(static_cast<QObject*>(parent));
+}
+
+void* QGeoSatelliteInfoSource_QGeoSatelliteInfoSource_CreateSource(char* sourceName, void* parent){
+	return QGeoSatelliteInfoSource::createSource(QString(sourceName), static_cast<QObject*>(parent));
+}
+
+int QGeoSatelliteInfoSource_Error(void* ptr){
+	return static_cast<QGeoSatelliteInfoSource*>(ptr)->error();
+}
+
+int QGeoSatelliteInfoSource_MinimumUpdateInterval(void* ptr){
+	return static_cast<QGeoSatelliteInfoSource*>(ptr)->minimumUpdateInterval();
+}
+
+void QGeoSatelliteInfoSource_ConnectRequestTimeout(void* ptr){
+	QObject::connect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)()>(&QGeoSatelliteInfoSource::requestTimeout), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)()>(&MyQGeoSatelliteInfoSource::Signal_RequestTimeout));;
+}
+
+void QGeoSatelliteInfoSource_DisconnectRequestTimeout(void* ptr){
+	QObject::disconnect(static_cast<QGeoSatelliteInfoSource*>(ptr), static_cast<void (QGeoSatelliteInfoSource::*)()>(&QGeoSatelliteInfoSource::requestTimeout), static_cast<MyQGeoSatelliteInfoSource*>(ptr), static_cast<void (MyQGeoSatelliteInfoSource::*)()>(&MyQGeoSatelliteInfoSource::Signal_RequestTimeout));;
+}
+
+void QGeoSatelliteInfoSource_RequestUpdate(void* ptr, int timeout){
+	QMetaObject::invokeMethod(static_cast<QGeoSatelliteInfoSource*>(ptr), "requestUpdate", Q_ARG(int, timeout));
+}
+
+char* QGeoSatelliteInfoSource_SourceName(void* ptr){
+	return static_cast<QGeoSatelliteInfoSource*>(ptr)->sourceName().toUtf8().data();
+}
+
+void QGeoSatelliteInfoSource_StartUpdates(void* ptr){
+	QMetaObject::invokeMethod(static_cast<QGeoSatelliteInfoSource*>(ptr), "startUpdates");
+}
+
+void QGeoSatelliteInfoSource_StopUpdates(void* ptr){
+	QMetaObject::invokeMethod(static_cast<QGeoSatelliteInfoSource*>(ptr), "stopUpdates");
+}
+
+void QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSource(void* ptr){
+	static_cast<QGeoSatelliteInfoSource*>(ptr)->~QGeoSatelliteInfoSource();
+}
+
+#include "qgeocoordinate.h"
+#include <QModelIndex>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QGeoCoordinate>
+#include "_cgo_export.h"
+
+class MyQGeoCoordinate: public QGeoCoordinate {
+public:
+};
+
+void* QGeoCoordinate_NewQGeoCoordinate(){
+	return new QGeoCoordinate();
+}
+
+void* QGeoCoordinate_NewQGeoCoordinate4(void* other){
+	return new QGeoCoordinate(*static_cast<QGeoCoordinate*>(other));
+}
+
+double QGeoCoordinate_AzimuthTo(void* ptr, void* other){
+	return static_cast<double>(static_cast<QGeoCoordinate*>(ptr)->azimuthTo(*static_cast<QGeoCoordinate*>(other)));
+}
+
+double QGeoCoordinate_DistanceTo(void* ptr, void* other){
+	return static_cast<double>(static_cast<QGeoCoordinate*>(ptr)->distanceTo(*static_cast<QGeoCoordinate*>(other)));
+}
+
+int QGeoCoordinate_IsValid(void* ptr){
+	return static_cast<QGeoCoordinate*>(ptr)->isValid();
+}
+
+char* QGeoCoordinate_ToString(void* ptr, int format){
+	return static_cast<QGeoCoordinate*>(ptr)->toString(static_cast<QGeoCoordinate::CoordinateFormat>(format)).toUtf8().data();
+}
+
+int QGeoCoordinate_Type(void* ptr){
+	return static_cast<QGeoCoordinate*>(ptr)->type();
+}
+
+void QGeoCoordinate_DestroyQGeoCoordinate(void* ptr){
+	static_cast<QGeoCoordinate*>(ptr)->~QGeoCoordinate();
+}
+
+#include "qgeopositioninfosourcefactory.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QGeoPositionInfo>
+#include <QGeoPositionInfoSource>
+#include <QString>
+#include <QVariant>
 #include <QGeoPositionInfoSourceFactory>
 #include "_cgo_export.h"
 
@@ -696,13 +753,13 @@ void QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(void* pt
 }
 
 #include "qgeopositioninfo.h"
-#include <QModelIndex>
-#include <QGeoCoordinate>
-#include <QDateTime>
-#include <QDate>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QDateTime>
+#include <QDate>
+#include <QGeoCoordinate>
 #include <QGeoPositionInfo>
 #include "_cgo_export.h"
 
@@ -758,67 +815,10 @@ void QGeoPositionInfo_DestroyQGeoPositionInfo(void* ptr){
 	static_cast<QGeoPositionInfo*>(ptr)->~QGeoPositionInfo();
 }
 
-#include "qgeoareamonitorsource.h"
+#include "qgeolocation.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QGeoPositionInfo>
-#include <QGeoPositionInfoSource>
-#include <QGeoAreaMonitorInfo>
-#include <QObject>
-#include <QString>
-#include <QGeoAreaMonitorSource>
 #include "_cgo_export.h"
-
-class MyQGeoAreaMonitorSource: public QGeoAreaMonitorSource {
-public:
-};
-
-char* QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources(){
-	return QGeoAreaMonitorSource::availableSources().join("|").toUtf8().data();
-}
-
-void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateDefaultSource(void* parent){
-	return QGeoAreaMonitorSource::createDefaultSource(static_cast<QObject*>(parent));
-}
-
-void* QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(char* sourceName, void* parent){
-	return QGeoAreaMonitorSource::createSource(QString(sourceName), static_cast<QObject*>(parent));
-}
-
-int QGeoAreaMonitorSource_Error(void* ptr){
-	return static_cast<QGeoAreaMonitorSource*>(ptr)->error();
-}
-
-void* QGeoAreaMonitorSource_PositionInfoSource(void* ptr){
-	return static_cast<QGeoAreaMonitorSource*>(ptr)->positionInfoSource();
-}
-
-int QGeoAreaMonitorSource_RequestUpdate(void* ptr, void* monitor, char* signal){
-	return static_cast<QGeoAreaMonitorSource*>(ptr)->requestUpdate(*static_cast<QGeoAreaMonitorInfo*>(monitor), const_cast<const char*>(signal));
-}
-
-void QGeoAreaMonitorSource_SetPositionInfoSource(void* ptr, void* newSource){
-	static_cast<QGeoAreaMonitorSource*>(ptr)->setPositionInfoSource(static_cast<QGeoPositionInfoSource*>(newSource));
-}
-
-char* QGeoAreaMonitorSource_SourceName(void* ptr){
-	return static_cast<QGeoAreaMonitorSource*>(ptr)->sourceName().toUtf8().data();
-}
-
-int QGeoAreaMonitorSource_StartMonitoring(void* ptr, void* monitor){
-	return static_cast<QGeoAreaMonitorSource*>(ptr)->startMonitoring(*static_cast<QGeoAreaMonitorInfo*>(monitor));
-}
-
-int QGeoAreaMonitorSource_StopMonitoring(void* ptr, void* monitor){
-	return static_cast<QGeoAreaMonitorSource*>(ptr)->stopMonitoring(*static_cast<QGeoAreaMonitorInfo*>(monitor));
-}
-
-int QGeoAreaMonitorSource_SupportedAreaMonitorFeatures(void* ptr){
-	return static_cast<QGeoAreaMonitorSource*>(ptr)->supportedAreaMonitorFeatures();
-}
-
-void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(void* ptr){
-	static_cast<QGeoAreaMonitorSource*>(ptr)->~QGeoAreaMonitorSource();
-}
 

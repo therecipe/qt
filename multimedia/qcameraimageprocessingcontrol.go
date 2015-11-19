@@ -27,7 +27,7 @@ func PointerFromQCameraImageProcessingControl(ptr QCameraImageProcessingControl_
 func NewQCameraImageProcessingControlFromPointer(ptr unsafe.Pointer) *QCameraImageProcessingControl {
 	var n = new(QCameraImageProcessingControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCameraImageProcessingControl_" + qt.RandomIdentifier())
 	}
 	return n

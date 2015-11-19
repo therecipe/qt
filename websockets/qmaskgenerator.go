@@ -27,7 +27,7 @@ func PointerFromQMaskGenerator(ptr QMaskGenerator_ITF) unsafe.Pointer {
 func NewQMaskGeneratorFromPointer(ptr unsafe.Pointer) *QMaskGenerator {
 	var n = new(QMaskGenerator)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMaskGenerator_" + qt.RandomIdentifier())
 	}
 	return n

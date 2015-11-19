@@ -27,7 +27,7 @@ func PointerFromQWebChannel(ptr QWebChannel_ITF) unsafe.Pointer {
 func NewQWebChannelFromPointer(ptr unsafe.Pointer) *QWebChannel {
 	var n = new(QWebChannel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QWebChannel_" + qt.RandomIdentifier())
 	}
 	return n

@@ -27,7 +27,7 @@ func PointerFromQButtonGroup(ptr QButtonGroup_ITF) unsafe.Pointer {
 func NewQButtonGroupFromPointer(ptr unsafe.Pointer) *QButtonGroup {
 	var n = new(QButtonGroup)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QButtonGroup_" + qt.RandomIdentifier())
 	}
 	return n

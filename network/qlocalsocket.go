@@ -27,7 +27,7 @@ func PointerFromQLocalSocket(ptr QLocalSocket_ITF) unsafe.Pointer {
 func NewQLocalSocketFromPointer(ptr unsafe.Pointer) *QLocalSocket {
 	var n = new(QLocalSocket)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QLocalSocket_" + qt.RandomIdentifier())
 	}
 	return n

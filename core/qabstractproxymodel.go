@@ -27,7 +27,7 @@ func PointerFromQAbstractProxyModel(ptr QAbstractProxyModel_ITF) unsafe.Pointer 
 func NewQAbstractProxyModelFromPointer(ptr unsafe.Pointer) *QAbstractProxyModel {
 	var n = new(QAbstractProxyModel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractProxyModel_" + qt.RandomIdentifier())
 	}
 	return n

@@ -1,4 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{create QMediaServiceProviderPlugin::create commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h pure plain false false  QMediaService * QMediaService * create(const QString &key) [0xc8223e7fc0] }
-&{release QMediaServiceProviderPlugin::release commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h pure plain false false  void void release(QMediaService *service) [0xc8228d6300] }
-########################################			ENUMS			########################################

@@ -42,8 +42,22 @@ func goOutput(name string, value string, f *parser.Function) string {
 			return name
 		}
 
-	case "T", "JavaVM", "jclass":
+	case "T", "JavaVM", "jclass", "jobject":
 		{
+			switch f.TemplateMode {
+			case "Int":
+				{
+					return fmt.Sprintf("int(%v)", name)
+				}
+			case "Boolean":
+				{
+					return fmt.Sprintf("int(%v) != 0", name)
+				}
+			case "Void":
+				{
+					return name
+				}
+			}
 			return fmt.Sprintf("unsafe.Pointer(%v)", name)
 		}
 
@@ -73,6 +87,63 @@ func goOutput(name string, value string, f *parser.Function) string {
 
 	f.Access = "unsupported_goOutput"
 	return f.Access
+}
+
+func goOutputFailed(value string, f *parser.Function) string {
+	var vOld = value
+
+	value = cleanValue(value)
+
+	switch value {
+	case "bool":
+		return "false"
+
+	case "int", "qreal":
+		return "0"
+
+	case "uchar", "char", "QString":
+		return "\"\""
+
+	case "QStringList":
+		return "make([]string, 0)"
+
+	case "void", "":
+		if strings.Contains(vOld, "*") {
+			return "nil"
+		}
+		return ""
+
+	case "T", "JavaVM", "jclass", "jobject":
+
+		switch f.TemplateMode {
+		case "Int":
+			{
+				return "0"
+			}
+		case "Boolean":
+			{
+				return "false"
+			}
+		case "Void":
+			{
+				return ""
+			}
+		}
+
+		return "nil"
+	}
+
+	switch {
+	case isEnum(f.Class(), value):
+		return "0"
+
+	case isClass(value):
+		return "nil"
+
+	default:
+		f.Access = "unsupported_GoBodyOutputFailed"
+		return f.Access
+	}
 }
 
 func cgoOutput(name string, value string, f *parser.Function) string {
@@ -150,7 +221,7 @@ func cppOutput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("%v.toUtf8().data()", name)
 		}
 
-	case "bool", "int", "void", "", "T", "JavaVM", "jclass":
+	case "bool", "int", "void", "", "T", "JavaVM", "jclass", "jobject":
 		{
 			if value == "void" {
 				if strings.Contains(vOld, "*") {
@@ -197,7 +268,7 @@ func cppOutput(name string, value string, f *parser.Function) string {
 
 			case "QAndroidJniObject":
 				{
-					return name
+					return fmt.Sprintf("new %v(%v.object())", value, name)
 				}
 			}
 		}

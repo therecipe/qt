@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QMediaService QMediaService::QMediaService commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaservice.h non constructor false false   QMediaService(QObject *parent) [0xc822720d80] }
-&{releaseControl QMediaService::releaseControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaservice.h pure plain false false  void void releaseControl(QMediaControl *control) [0xc8227215a0] }
-&{requestControl QMediaService::requestControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaservice.h pure plain false false  QMediaControl * QMediaControl * requestControl(const char *interface) [0xc8227219a0] }
-&{requestControl QMediaService::requestControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaservice.h non plain false true 2 T T requestControl() [] }
-&{~QMediaService QMediaService::~QMediaService commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaservice.h non destructor false false   ~QMediaService() [] }
-########################################			ENUMS			########################################

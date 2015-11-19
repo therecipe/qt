@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{openFile QFileOpenEvent::openFile commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.cpp non plain false false  bool bool openFile(QFile &file, QIODevice::OpenMode flags) const [0xc8209660a0 0xc820966160] }
-&{file QFileOpenEvent::file commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QString QString file() const [] }
-&{url QFileOpenEvent::url commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QUrl QUrl url() const [] }
-########################################			ENUMS			########################################

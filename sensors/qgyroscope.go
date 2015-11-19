@@ -27,7 +27,7 @@ func PointerFromQGyroscope(ptr QGyroscope_ITF) unsafe.Pointer {
 func NewQGyroscopeFromPointer(ptr unsafe.Pointer) *QGyroscope {
 	var n = new(QGyroscope)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGyroscope_" + qt.RandomIdentifier())
 	}
 	return n

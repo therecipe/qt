@@ -27,7 +27,7 @@ func PointerFromQColumnView(ptr QColumnView_ITF) unsafe.Pointer {
 func NewQColumnViewFromPointer(ptr unsafe.Pointer) *QColumnView {
 	var n = new(QColumnView)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QColumnView_" + qt.RandomIdentifier())
 	}
 	return n

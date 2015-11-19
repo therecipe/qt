@@ -27,7 +27,7 @@ func PointerFromQPlaceReply(ptr QPlaceReply_ITF) unsafe.Pointer {
 func NewQPlaceReplyFromPointer(ptr unsafe.Pointer) *QPlaceReply {
 	var n = new(QPlaceReply)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QPlaceReply_" + qt.RandomIdentifier())
 	}
 	return n

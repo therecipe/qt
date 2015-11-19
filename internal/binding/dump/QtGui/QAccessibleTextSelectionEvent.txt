@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QAccessibleTextSelectionEvent QAccessibleTextSelectionEvent::QAccessibleTextSelectionEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  QAccessibleTextSelectionEvent(QAccessibleInterface *iface, int start, int end) [0xc820d570e0 0xc820d571e0 0xc820d572a0] }
-&{QAccessibleTextSelectionEvent QAccessibleTextSelectionEvent::QAccessibleTextSelectionEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   QAccessibleTextSelectionEvent(QObject *object, int start, int end) [0xc820d57520 0xc820d575e0 0xc820d57680] }
-&{selectionEnd QAccessibleTextSelectionEvent::selectionEnd commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int int selectionEnd() const [] }
-&{selectionStart QAccessibleTextSelectionEvent::selectionStart commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int int selectionStart() const [] }
-&{setSelection QAccessibleTextSelectionEvent::setSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  void void setSelection(int start, int end) [0xc820d57b80 0xc820d57c20] }
-########################################			ENUMS			########################################

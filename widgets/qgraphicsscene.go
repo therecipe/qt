@@ -28,7 +28,7 @@ func PointerFromQGraphicsScene(ptr QGraphicsScene_ITF) unsafe.Pointer {
 func NewQGraphicsSceneFromPointer(ptr unsafe.Pointer) *QGraphicsScene {
 	var n = new(QGraphicsScene)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsScene_" + qt.RandomIdentifier())
 	}
 	return n

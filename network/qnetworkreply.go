@@ -27,7 +27,7 @@ func PointerFromQNetworkReply(ptr QNetworkReply_ITF) unsafe.Pointer {
 func NewQNetworkReplyFromPointer(ptr unsafe.Pointer) *QNetworkReply {
 	var n = new(QNetworkReply)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QNetworkReply_" + qt.RandomIdentifier())
 	}
 	return n

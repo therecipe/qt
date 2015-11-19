@@ -27,7 +27,7 @@ func PointerFromQBluetoothTransferReply(ptr QBluetoothTransferReply_ITF) unsafe.
 func NewQBluetoothTransferReplyFromPointer(ptr unsafe.Pointer) *QBluetoothTransferReply {
 	var n = new(QBluetoothTransferReply)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QBluetoothTransferReply_" + qt.RandomIdentifier())
 	}
 	return n

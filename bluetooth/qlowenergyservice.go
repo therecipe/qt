@@ -27,7 +27,7 @@ func PointerFromQLowEnergyService(ptr QLowEnergyService_ITF) unsafe.Pointer {
 func NewQLowEnergyServiceFromPointer(ptr unsafe.Pointer) *QLowEnergyService {
 	var n = new(QLowEnergyService)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QLowEnergyService_" + qt.RandomIdentifier())
 	}
 	return n

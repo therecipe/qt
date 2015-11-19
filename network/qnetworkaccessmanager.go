@@ -28,7 +28,7 @@ func PointerFromQNetworkAccessManager(ptr QNetworkAccessManager_ITF) unsafe.Poin
 func NewQNetworkAccessManagerFromPointer(ptr unsafe.Pointer) *QNetworkAccessManager {
 	var n = new(QNetworkAccessManager)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QNetworkAccessManager_" + qt.RandomIdentifier())
 	}
 	return n

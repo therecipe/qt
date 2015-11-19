@@ -28,7 +28,7 @@ func PointerFromQGeoPositionInfoSource(ptr QGeoPositionInfoSource_ITF) unsafe.Po
 func NewQGeoPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QGeoPositionInfoSource {
 	var n = new(QGeoPositionInfoSource)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGeoPositionInfoSource_" + qt.RandomIdentifier())
 	}
 	return n

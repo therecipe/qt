@@ -1,4 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{create QQmlNetworkAccessManagerFactory::create commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlnetworkaccessmanagerfactory.h pure plain false false  QNetworkAccessManager * QNetworkAccessManager * create(QObject *parent) [0xc821b3bc60] }
-&{~QQmlNetworkAccessManagerFactory QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlnetworkaccessmanagerfactory.h impure destructor false false   ~QQmlNetworkAccessManagerFactory() [] }
-########################################			ENUMS			########################################

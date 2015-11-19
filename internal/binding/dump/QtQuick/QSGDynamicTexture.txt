@@ -1,3 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{updateTexture QSGDynamicTexture::updateTexture commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/util/qsgtexture.h pure plain false false  bool bool updateTexture() [] }
-########################################			ENUMS			########################################

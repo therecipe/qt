@@ -27,7 +27,7 @@ func PointerFromQStackedLayout(ptr QStackedLayout_ITF) unsafe.Pointer {
 func NewQStackedLayoutFromPointer(ptr unsafe.Pointer) *QStackedLayout {
 	var n = new(QStackedLayout)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QStackedLayout_" + qt.RandomIdentifier())
 	}
 	return n

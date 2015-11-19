@@ -26,7 +26,7 @@ func PointerFromQRadioTunerControl(ptr QRadioTunerControl_ITF) unsafe.Pointer {
 func NewQRadioTunerControlFromPointer(ptr unsafe.Pointer) *QRadioTunerControl {
 	var n = new(QRadioTunerControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QRadioTunerControl_" + qt.RandomIdentifier())
 	}
 	return n

@@ -38,7 +38,7 @@ func PointerFromQGraphicsObject(ptr QGraphicsObject_ITF) unsafe.Pointer {
 func NewQGraphicsObjectFromPointer(ptr unsafe.Pointer) *QGraphicsObject {
 	var n = new(QGraphicsObject)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsObject_" + qt.RandomIdentifier())
 	}
 	return n

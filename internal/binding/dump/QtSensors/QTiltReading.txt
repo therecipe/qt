@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{xRotation QTiltReading::xRotation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non plain false false  qreal qreal xRotation() const [] }
-&{yRotation QTiltReading::yRotation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.cpp non plain false false  qreal qreal yRotation() const [] }
-&{setXRotation QTiltReading::setXRotation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.h non plain false false  void void setXRotation(qreal x) [0xc822b79380] }
-&{setYRotation QTiltReading::setYRotation commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtiltsensor.h non plain false false  void void setYRotation(qreal y) [0xc822b795c0] }
-########################################			ENUMS			########################################

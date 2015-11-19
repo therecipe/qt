@@ -1,3 +1,0 @@
-########################################			FUNCTIONS			########################################
-########################################			ENUMS			########################################
-&{IteratorCapability QtMetaTypePrivate::IteratorCapability commendable public  [0xc820205620 0xc820205920 0xc820205b60] false}

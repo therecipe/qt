@@ -27,7 +27,7 @@ func PointerFromQQmlNdefRecord(ptr QQmlNdefRecord_ITF) unsafe.Pointer {
 func NewQQmlNdefRecordFromPointer(ptr unsafe.Pointer) *QQmlNdefRecord {
 	var n = new(QQmlNdefRecord)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQmlNdefRecord_" + qt.RandomIdentifier())
 	}
 	return n

@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QStyleOptionGraphicsItem QStyleOptionGraphicsItem::QStyleOptionGraphicsItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionGraphicsItem() [] }
-&{QStyleOptionGraphicsItem QStyleOptionGraphicsItem::QStyleOptionGraphicsItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionGraphicsItem(const QStyleOptionGraphicsItem &other) [0xc8229fa600] }
-&{levelOfDetailFromTransform QStyleOptionGraphicsItem::levelOfDetailFromTransform commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non plain true false  qreal qreal levelOfDetailFromTransform(const QTransform &worldTransform) [0xc8229fabc0] }
-########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionGraphicsItem::StyleOptionType commendable public  [0xc8229e7d60] false}
-&{StyleOptionVersion QStyleOptionGraphicsItem::StyleOptionVersion commendable public  [0xc8229fa060] false}

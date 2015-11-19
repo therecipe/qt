@@ -27,7 +27,7 @@ func PointerFromQAbstractSocket(ptr QAbstractSocket_ITF) unsafe.Pointer {
 func NewQAbstractSocketFromPointer(ptr unsafe.Pointer) *QAbstractSocket {
 	var n = new(QAbstractSocket)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractSocket_" + qt.RandomIdentifier())
 	}
 	return n

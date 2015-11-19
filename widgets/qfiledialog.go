@@ -28,7 +28,7 @@ func PointerFromQFileDialog(ptr QFileDialog_ITF) unsafe.Pointer {
 func NewQFileDialogFromPointer(ptr unsafe.Pointer) *QFileDialog {
 	var n = new(QFileDialog)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QFileDialog_" + qt.RandomIdentifier())
 	}
 	return n

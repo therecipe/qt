@@ -1,11 +1,11 @@
 #include "qwebchannel.h"
-#include <QMetaObject>
+#include <QModelIndex>
 #include <QWebChannelAbstractTransport>
 #include <QObject>
+#include <QMetaObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
 #include <QWebChannel>
 #include "_cgo_export.h"
 
@@ -55,14 +55,14 @@ void QWebChannel_DestroyQWebChannel(void* ptr){
 }
 
 #include "qwebchannelabstracttransport.h"
+#include <QJsonObject>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QJsonObject>
+#include <QObject>
 #include <QMetaObject>
 #include <QWebChannel>
-#include <QObject>
-#include <QString>
 #include <QWebChannelAbstractTransport>
 #include "_cgo_export.h"
 

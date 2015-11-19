@@ -1,4 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{supportedFeatures QMediaServiceFeaturesInterface::supportedFeatures commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h pure plain false false  QMediaServiceProviderHint::Features QMediaServiceProviderHint::Features supportedFeatures(const QByteArray &service) const [0xc8223e7720] }
-&{~QMediaServiceFeaturesInterface QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h impure destructor false false   ~QMediaServiceFeaturesInterface() [] }
-########################################			ENUMS			########################################

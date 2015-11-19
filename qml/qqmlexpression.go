@@ -27,7 +27,7 @@ func PointerFromQQmlExpression(ptr QQmlExpression_ITF) unsafe.Pointer {
 func NewQQmlExpressionFromPointer(ptr unsafe.Pointer) *QQmlExpression {
 	var n = new(QQmlExpression)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQmlExpression_" + qt.RandomIdentifier())
 	}
 	return n

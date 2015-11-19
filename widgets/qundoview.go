@@ -27,7 +27,7 @@ func PointerFromQUndoView(ptr QUndoView_ITF) unsafe.Pointer {
 func NewQUndoViewFromPointer(ptr unsafe.Pointer) *QUndoView {
 	var n = new(QUndoView)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QUndoView_" + qt.RandomIdentifier())
 	}
 	return n

@@ -27,7 +27,7 @@ func PointerFromQDialog(ptr QDialog_ITF) unsafe.Pointer {
 func NewQDialogFromPointer(ptr unsafe.Pointer) *QDialog {
 	var n = new(QDialog)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDialog_" + qt.RandomIdentifier())
 	}
 	return n

@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QAbstractUriResolver QAbstractUriResolver::QAbstractUriResolver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstracturiresolver.h non constructor false false   QAbstractUriResolver(QObject *parent) [0xc820c15f80] }
-&{resolve QAbstractUriResolver::resolve commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstracturiresolver.h pure plain false false  QUrl QUrl resolve(const QUrl &relative, const QUrl &baseURI) const [0xc82160a340 0xc82160a400] }
-&{~QAbstractUriResolver QAbstractUriResolver::~QAbstractUriResolver commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qabstracturiresolver.h impure destructor false false   ~QAbstractUriResolver() [] }
-########################################			ENUMS			########################################

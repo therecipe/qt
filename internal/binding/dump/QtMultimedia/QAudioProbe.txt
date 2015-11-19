@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QAudioProbe QAudioProbe::QAudioProbe commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non constructor false false   QAudioProbe(QObject *parent) [0xc8233d1440] }
-&{audioBufferProbed QAudioProbe::audioBufferProbed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non signal false false  void void audioBufferProbed(const QAudioBuffer &buffer) [0xc8233d1820] }
-&{flush QAudioProbe::flush commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non signal false false  void void flush() [] }
-&{isActive QAudioProbe::isActive commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non plain false false  bool bool isActive() const [] }
-&{setSource QAudioProbe::setSource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non plain false false  bool bool setSource(QMediaObject *source) [0xc8233be1e0] }
-&{setSource QAudioProbe::setSource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non plain false true 2 bool bool setSource(QMediaRecorder *mediaRecorder) [0xc8233be520] }
-&{~QAudioProbe QAudioProbe::~QAudioProbe commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/audio/qaudioprobe.h non destructor false false   ~QAudioProbe() [] }
-########################################			ENUMS			########################################

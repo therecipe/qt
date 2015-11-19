@@ -28,7 +28,7 @@ func PointerFromQWizard(ptr QWizard_ITF) unsafe.Pointer {
 func NewQWizardFromPointer(ptr unsafe.Pointer) *QWizard {
 	var n = new(QWizard)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QWizard_" + qt.RandomIdentifier())
 	}
 	return n

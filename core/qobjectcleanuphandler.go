@@ -26,7 +26,7 @@ func PointerFromQObjectCleanupHandler(ptr QObjectCleanupHandler_ITF) unsafe.Poin
 func NewQObjectCleanupHandlerFromPointer(ptr unsafe.Pointer) *QObjectCleanupHandler {
 	var n = new(QObjectCleanupHandler)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QObjectCleanupHandler_" + qt.RandomIdentifier())
 	}
 	return n

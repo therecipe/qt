@@ -27,7 +27,7 @@ func PointerFromQScreen(ptr QScreen_ITF) unsafe.Pointer {
 func NewQScreenFromPointer(ptr unsafe.Pointer) *QScreen {
 	var n = new(QScreen)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QScreen_" + qt.RandomIdentifier())
 	}
 	return n

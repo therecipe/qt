@@ -27,7 +27,7 @@ func PointerFromQFontComboBox(ptr QFontComboBox_ITF) unsafe.Pointer {
 func NewQFontComboBoxFromPointer(ptr unsafe.Pointer) *QFontComboBox {
 	var n = new(QFontComboBox)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QFontComboBox_" + qt.RandomIdentifier())
 	}
 	return n

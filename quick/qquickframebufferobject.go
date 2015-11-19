@@ -26,7 +26,7 @@ func PointerFromQQuickFramebufferObject(ptr QQuickFramebufferObject_ITF) unsafe.
 func NewQQuickFramebufferObjectFromPointer(ptr unsafe.Pointer) *QQuickFramebufferObject {
 	var n = new(QQuickFramebufferObject)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQuickFramebufferObject_" + qt.RandomIdentifier())
 	}
 	return n

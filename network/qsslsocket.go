@@ -27,7 +27,7 @@ func PointerFromQSslSocket(ptr QSslSocket_ITF) unsafe.Pointer {
 func NewQSslSocketFromPointer(ptr unsafe.Pointer) *QSslSocket {
 	var n = new(QSslSocket)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSslSocket_" + qt.RandomIdentifier())
 	}
 	return n

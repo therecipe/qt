@@ -27,7 +27,7 @@ func PointerFromQRubberBand(ptr QRubberBand_ITF) unsafe.Pointer {
 func NewQRubberBandFromPointer(ptr unsafe.Pointer) *QRubberBand {
 	var n = new(QRubberBand)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QRubberBand_" + qt.RandomIdentifier())
 	}
 	return n

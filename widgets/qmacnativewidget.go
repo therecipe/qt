@@ -26,7 +26,7 @@ func PointerFromQMacNativeWidget(ptr QMacNativeWidget_ITF) unsafe.Pointer {
 func NewQMacNativeWidgetFromPointer(ptr unsafe.Pointer) *QMacNativeWidget {
 	var n = new(QMacNativeWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMacNativeWidget_" + qt.RandomIdentifier())
 	}
 	return n

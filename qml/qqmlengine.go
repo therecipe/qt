@@ -29,7 +29,7 @@ func PointerFromQQmlEngine(ptr QQmlEngine_ITF) unsafe.Pointer {
 func NewQQmlEngineFromPointer(ptr unsafe.Pointer) *QQmlEngine {
 	var n = new(QQmlEngine)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQmlEngine_" + qt.RandomIdentifier())
 	}
 	return n

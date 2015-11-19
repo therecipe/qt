@@ -28,7 +28,7 @@ func PointerFromQProxyStyle(ptr QProxyStyle_ITF) unsafe.Pointer {
 func NewQProxyStyleFromPointer(ptr unsafe.Pointer) *QProxyStyle {
 	var n = new(QProxyStyle)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QProxyStyle_" + qt.RandomIdentifier())
 	}
 	return n

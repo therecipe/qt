@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{join QByteArrayList::join commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraylist.h non plain false false  QByteArray QByteArray join() const [] }
-&{join QByteArrayList::join commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraylist.h non plain false true 3 QByteArray QByteArray join(char separator) const [0xc820745c80] }
-&{join QByteArrayList::join commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/tools/qbytearraylist.h non plain false true 2 QByteArray QByteArray join(const QByteArray &separator) const [0xc820745ec0] }
-########################################			ENUMS			########################################

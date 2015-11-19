@@ -28,7 +28,7 @@ func PointerFromQQuickRenderControl(ptr QQuickRenderControl_ITF) unsafe.Pointer 
 func NewQQuickRenderControlFromPointer(ptr unsafe.Pointer) *QQuickRenderControl {
 	var n = new(QQuickRenderControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQuickRenderControl_" + qt.RandomIdentifier())
 	}
 	return n

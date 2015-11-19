@@ -27,7 +27,7 @@ func PointerFromQScroller(ptr QScroller_ITF) unsafe.Pointer {
 func NewQScrollerFromPointer(ptr unsafe.Pointer) *QScroller {
 	var n = new(QScroller)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QScroller_" + qt.RandomIdentifier())
 	}
 	return n

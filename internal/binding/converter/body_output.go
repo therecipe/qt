@@ -1,9 +1,6 @@
 package converter
 
-import (
-	"github.com/therecipe/qt/internal/binding/parser"
-	"strings"
-)
+import "github.com/therecipe/qt/internal/binding/parser"
 
 func GoBodyOutput(f *parser.Function, name string) string {
 
@@ -16,45 +13,15 @@ func GoBodyOutput(f *parser.Function, name string) string {
 	return goOutput(name, value, f)
 }
 
-func GoBodyOutputFailed(value string, f *parser.Function) string {
-	var vOld = value
+func GoBodyOutputFailed(f *parser.Function) string {
 
-	value = cleanValue(value)
+	var value = f.Output
 
-	switch value {
-	case "bool":
-		return "false"
-
-	case "int", "qreal":
-		return "0"
-
-	case "uchar", "char", "QString":
-		return "\"\""
-
-	case "QStringList":
-		return "make([]string, 0)"
-
-	case "void", "":
-		if strings.Contains(vOld, "*") {
-			return "nil"
-		}
-		return ""
-
-	case "T", "JavaVM", "jclass":
-		return "nil"
+	if f.Meta == "constructor" && f.Output == "" {
+		value = f.Name
 	}
 
-	switch {
-	case isEnum(f.Class(), value):
-		return "0"
-
-	case isClass(value):
-		return "nil"
-
-	default:
-		f.Access = "unsupported_GoBodyOutputFailed"
-		return f.Access
-	}
+	return goOutputFailed(value, f)
 }
 
 func CppBodyOutput(f *parser.Function, name string) string {
@@ -65,4 +32,44 @@ func CppBodyOutput(f *parser.Function, name string) string {
 	}
 
 	return cppOutput(name, value, f)
+}
+
+func DeduceTemplate(f *parser.Function) string {
+
+	switch f.TemplateMode {
+	case "Int":
+		{
+			return "<jint>"
+		}
+	case "Boolean":
+		{
+			return "<jboolean>"
+		}
+	case "Void":
+		{
+			return "<void>"
+		}
+	}
+
+	if f.Fullname == "QAndroidJniObject::getStaticObjectField" || f.Fullname == "QAndroidJniObject::getObjectField" || f.Fullname == "QAndroidJniObject::callObjectMethod" || f.Fullname == "QAndroidJniObject::callStaticObjectMethod" {
+
+		if (f.Fullname == "QAndroidJniObject::callObjectMethod" || f.Fullname == "QAndroidJniObject::callStaticObjectMethod") && containsT(f) {
+			return ""
+		}
+
+		return "<jobject>"
+	}
+
+	return ""
+}
+
+func containsT(f *parser.Function) bool {
+
+	for _, p := range f.Parameters {
+		if p.Value == "..." {
+			return true
+		}
+	}
+
+	return false
 }

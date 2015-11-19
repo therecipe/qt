@@ -28,7 +28,7 @@ func PointerFromQColorDialog(ptr QColorDialog_ITF) unsafe.Pointer {
 func NewQColorDialogFromPointer(ptr unsafe.Pointer) *QColorDialog {
 	var n = new(QColorDialog)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QColorDialog_" + qt.RandomIdentifier())
 	}
 	return n

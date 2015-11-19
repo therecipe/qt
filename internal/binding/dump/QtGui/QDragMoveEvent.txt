@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QDragMoveEvent QDragMoveEvent::QDragMoveEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non constructor false false   QDragMoveEvent(const QPoint &pos, Qt::DropActions actions, const QMimeData *data, Qt::MouseButtons buttons, Qt::KeyboardModifiers modifiers, Type type) [0xc820980020 0xc8209800a0 0xc820980140 0xc820980200 0xc8209802c0 0xc820980380] }
-&{accept QDragMoveEvent::accept commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false true 2 void void accept() [] }
-&{accept QDragMoveEvent::accept commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void void accept(const QRect &rectangle) [0xc820980660] }
-&{answerRect QDragMoveEvent::answerRect commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  QRect QRect answerRect() const [] }
-&{ignore QDragMoveEvent::ignore commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false true 2 void void ignore() [] }
-&{ignore QDragMoveEvent::ignore commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non plain false false  void void ignore(const QRect &rectangle) [0xc820980b20] }
-&{~QDragMoveEvent QDragMoveEvent::~QDragMoveEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qevent.h non destructor false false   ~QDragMoveEvent() [] }
-########################################			ENUMS			########################################

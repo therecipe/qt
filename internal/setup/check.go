@@ -70,7 +70,7 @@ func main() {
 		{
 			var _, err = exec.LookPath("gcc.exe")
 			if err != nil {
-				fmt.Printf("\nerror: gcc.exe not found\nsolution: add the directory that contains \"gcc\" to your PATH\n\n")
+				fmt.Printf("\nerror: gcc.exe not found\nsolution: add the directory that contains \"gcc.exe\" to your PATH\n\n")
 				os.Exit(1)
 			}
 		}

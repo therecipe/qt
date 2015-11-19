@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QQmlPropertyValueSource QQmlPropertyValueSource::QQmlPropertyValueSource commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlpropertyvaluesource.h non constructor false false   QQmlPropertyValueSource() [] }
-&{setTarget QQmlPropertyValueSource::setTarget commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlpropertyvaluesource.h pure plain false false  void void setTarget(const QQmlProperty &property) [0xc821ac7240] }
-&{~QQmlPropertyValueSource QQmlPropertyValueSource::~QQmlPropertyValueSource commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/qml/qml/qqmlpropertyvaluesource.h impure destructor false false   ~QQmlPropertyValueSource() [] }
-########################################			ENUMS			########################################

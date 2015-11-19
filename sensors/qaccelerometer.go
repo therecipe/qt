@@ -27,7 +27,7 @@ func PointerFromQAccelerometer(ptr QAccelerometer_ITF) unsafe.Pointer {
 func NewQAccelerometerFromPointer(ptr unsafe.Pointer) *QAccelerometer {
 	var n = new(QAccelerometer)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAccelerometer_" + qt.RandomIdentifier())
 	}
 	return n

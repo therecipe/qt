@@ -27,7 +27,7 @@ func PointerFromQFrame(ptr QFrame_ITF) unsafe.Pointer {
 func NewQFrameFromPointer(ptr unsafe.Pointer) *QFrame {
 	var n = new(QFrame)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QFrame_" + qt.RandomIdentifier())
 	}
 	return n

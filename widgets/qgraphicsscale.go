@@ -28,7 +28,7 @@ func PointerFromQGraphicsScale(ptr QGraphicsScale_ITF) unsafe.Pointer {
 func NewQGraphicsScaleFromPointer(ptr unsafe.Pointer) *QGraphicsScale {
 	var n = new(QGraphicsScale)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsScale_" + qt.RandomIdentifier())
 	}
 	return n

@@ -26,7 +26,7 @@ func PointerFromQCameraInfoControl(ptr QCameraInfoControl_ITF) unsafe.Pointer {
 func NewQCameraInfoControlFromPointer(ptr unsafe.Pointer) *QCameraInfoControl {
 	var n = new(QCameraInfoControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCameraInfoControl_" + qt.RandomIdentifier())
 	}
 	return n

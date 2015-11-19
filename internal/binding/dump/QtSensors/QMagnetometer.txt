@@ -1,8 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{reading QMagnetometer::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.cpp non plain false false  QMagnetometerReading * QMagnetometerReading * reading() const [] }
-&{returnGeoValues QMagnetometer::returnGeoValues commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.cpp non plain false false  bool bool returnGeoValues() const [] }
-&{setReturnGeoValues QMagnetometer::setReturnGeoValues commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.cpp non plain false false  void void setReturnGeoValues(bool returnGeoValues) [0xc8223ea100] }
-&{QMagnetometer QMagnetometer::QMagnetometer commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.h non constructor false false   QMagnetometer(QObject *parent) [0xc8223ea380] }
-&{returnGeoValuesChanged QMagnetometer::returnGeoValuesChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.h non signal false false  void void returnGeoValuesChanged(bool returnGeoValues) [0xc8223ea5e0] }
-&{~QMagnetometer QMagnetometer::~QMagnetometer commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qmagnetometer.h impure destructor false false   ~QMagnetometer() [] }
-########################################			ENUMS			########################################

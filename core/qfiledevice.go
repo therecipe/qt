@@ -26,7 +26,7 @@ func PointerFromQFileDevice(ptr QFileDevice_ITF) unsafe.Pointer {
 func NewQFileDeviceFromPointer(ptr unsafe.Pointer) *QFileDevice {
 	var n = new(QFileDevice)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QFileDevice_" + qt.RandomIdentifier())
 	}
 	return n

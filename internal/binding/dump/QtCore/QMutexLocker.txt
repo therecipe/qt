@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QMutexLocker QMutexLocker::QMutexLocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.h non constructor false false   QMutexLocker(QMutex *mutex) [0xc82072e6c0] }
-&{mutex QMutexLocker::mutex commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.h non plain false false  QMutex * QMutex * mutex() const [] }
-&{relock QMutexLocker::relock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.h non plain false false  void void relock() [] }
-&{unlock QMutexLocker::unlock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.h non plain false false  void void unlock() [] }
-&{~QMutexLocker QMutexLocker::~QMutexLocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/thread/qmutex.h non destructor false false   ~QMutexLocker() [] }
-########################################			ENUMS			########################################

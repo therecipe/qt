@@ -27,7 +27,7 @@ func PointerFromQLocalServer(ptr QLocalServer_ITF) unsafe.Pointer {
 func NewQLocalServerFromPointer(ptr unsafe.Pointer) *QLocalServer {
 	var n = new(QLocalServer)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QLocalServer_" + qt.RandomIdentifier())
 	}
 	return n

@@ -26,7 +26,7 @@ func PointerFromQStatusBar(ptr QStatusBar_ITF) unsafe.Pointer {
 func NewQStatusBarFromPointer(ptr unsafe.Pointer) *QStatusBar {
 	var n = new(QStatusBar)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QStatusBar_" + qt.RandomIdentifier())
 	}
 	return n

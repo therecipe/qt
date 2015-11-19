@@ -28,7 +28,7 @@ func PointerFromQCommonStyle(ptr QCommonStyle_ITF) unsafe.Pointer {
 func NewQCommonStyleFromPointer(ptr unsafe.Pointer) *QCommonStyle {
 	var n = new(QCommonStyle)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCommonStyle_" + qt.RandomIdentifier())
 	}
 	return n

@@ -26,7 +26,7 @@ func PointerFromQParallelAnimationGroup(ptr QParallelAnimationGroup_ITF) unsafe.
 func NewQParallelAnimationGroupFromPointer(ptr unsafe.Pointer) *QParallelAnimationGroup {
 	var n = new(QParallelAnimationGroup)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QParallelAnimationGroup_" + qt.RandomIdentifier())
 	}
 	return n

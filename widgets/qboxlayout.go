@@ -27,7 +27,7 @@ func PointerFromQBoxLayout(ptr QBoxLayout_ITF) unsafe.Pointer {
 func NewQBoxLayoutFromPointer(ptr unsafe.Pointer) *QBoxLayout {
 	var n = new(QBoxLayout)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QBoxLayout_" + qt.RandomIdentifier())
 	}
 	return n

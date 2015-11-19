@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QEventLoopLocker QEventLoopLocker::QEventLoopLocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non constructor false false   QEventLoopLocker() [] }
-&{QEventLoopLocker QEventLoopLocker::QEventLoopLocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non constructor false true 2  QEventLoopLocker(QEventLoop *loop) [0xc8205cdae0] }
-&{QEventLoopLocker QEventLoopLocker::QEventLoopLocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non constructor false true 3  QEventLoopLocker(QThread *thread) [0xc8205cdc40] }
-&{~QEventLoopLocker QEventLoopLocker::~QEventLoopLocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qeventloop.h non destructor false false   ~QEventLoopLocker() [] }
-########################################			ENUMS			########################################

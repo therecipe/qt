@@ -1,3 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{createBackend QSensorBackendFactory::createBackend commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qsensormanager.h pure plain false false  QSensorBackend * QSensorBackend * createBackend(QSensor *sensor) [0xc822a97c60] }
-########################################			ENUMS			########################################

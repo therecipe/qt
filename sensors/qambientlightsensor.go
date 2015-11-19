@@ -27,7 +27,7 @@ func PointerFromQAmbientLightSensor(ptr QAmbientLightSensor_ITF) unsafe.Pointer 
 func NewQAmbientLightSensorFromPointer(ptr unsafe.Pointer) *QAmbientLightSensor {
 	var n = new(QAmbientLightSensor)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAmbientLightSensor_" + qt.RandomIdentifier())
 	}
 	return n

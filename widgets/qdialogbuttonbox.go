@@ -27,7 +27,7 @@ func PointerFromQDialogButtonBox(ptr QDialogButtonBox_ITF) unsafe.Pointer {
 func NewQDialogButtonBoxFromPointer(ptr unsafe.Pointer) *QDialogButtonBox {
 	var n = new(QDialogButtonBox)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDialogButtonBox_" + qt.RandomIdentifier())
 	}
 	return n

@@ -26,7 +26,7 @@ func PointerFromQStackedWidget(ptr QStackedWidget_ITF) unsafe.Pointer {
 func NewQStackedWidgetFromPointer(ptr unsafe.Pointer) *QStackedWidget {
 	var n = new(QStackedWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QStackedWidget_" + qt.RandomIdentifier())
 	}
 	return n

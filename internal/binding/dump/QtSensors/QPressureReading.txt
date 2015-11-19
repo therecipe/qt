@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{pressure QPressureReading::pressure commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qpressuresensor.cpp non plain false false  qreal qreal pressure() const [] }
-&{temperature QPressureReading::temperature commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qpressuresensor.cpp non plain false false  qreal qreal temperature() const [] }
-&{setPressure QPressureReading::setPressure commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qpressuresensor.h non plain false false  void void setPressure(qreal pressure) [0xc821981ac0] }
-&{setTemperature QPressureReading::setTemperature commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qpressuresensor.h non plain false false  void void setTemperature(qreal temperature) [0xc821981d40] }
-########################################			ENUMS			########################################

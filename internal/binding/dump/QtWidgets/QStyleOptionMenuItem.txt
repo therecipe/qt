@@ -1,8 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QStyleOptionMenuItem QStyleOptionMenuItem::QStyleOptionMenuItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionMenuItem() [] }
-&{QStyleOptionMenuItem QStyleOptionMenuItem::QStyleOptionMenuItem commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionMenuItem(const QStyleOptionMenuItem &other) [0xc822215460] }
-########################################			ENUMS			########################################
-&{CheckType QStyleOptionMenuItem::CheckType commendable public  [0xc8222146a0 0xc822214740 0xc8222147e0] false}
-&{MenuItemType QStyleOptionMenuItem::MenuItemType commendable public  [0xc822214980 0xc822214a00 0xc822214ac0 0xc822214b40 0xc822214be0 0xc822214c60 0xc822214ce0 0xc822214d60] false}
-&{StyleOptionType QStyleOptionMenuItem::StyleOptionType commendable public  [0xc822214f00] false}
-&{StyleOptionVersion QStyleOptionMenuItem::StyleOptionVersion commendable public  [0xc8222150c0] false}

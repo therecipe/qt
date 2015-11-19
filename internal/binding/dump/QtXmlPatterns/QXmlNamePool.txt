@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QXmlNamePool QXmlNamePool::QXmlNamePool commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlnamepool.h non constructor false false   QXmlNamePool() [] }
-&{QXmlNamePool QXmlNamePool::QXmlNamePool commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlnamepool.h non constructor false true 2  QXmlNamePool(const QXmlNamePool &other) [0xc821653a00] }
-&{operator= QXmlNamePool::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlnamepool.h non plain false false  QXmlNamePool & QXmlNamePool & operator=(const QXmlNamePool &other) [0xc821653d60] }
-&{~QXmlNamePool QXmlNamePool::~QXmlNamePool commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlnamepool.h non destructor false false   ~QXmlNamePool() [] }
-########################################			ENUMS			########################################

@@ -28,7 +28,7 @@ func PointerFromQMetaDataWriterControl(ptr QMetaDataWriterControl_ITF) unsafe.Po
 func NewQMetaDataWriterControlFromPointer(ptr unsafe.Pointer) *QMetaDataWriterControl {
 	var n = new(QMetaDataWriterControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMetaDataWriterControl_" + qt.RandomIdentifier())
 	}
 	return n

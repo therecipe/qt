@@ -28,7 +28,7 @@ func PointerFromQSensorGestureRecognizer(ptr QSensorGestureRecognizer_ITF) unsaf
 func NewQSensorGestureRecognizerFromPointer(ptr unsafe.Pointer) *QSensorGestureRecognizer {
 	var n = new(QSensorGestureRecognizer)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSensorGestureRecognizer_" + qt.RandomIdentifier())
 	}
 	return n

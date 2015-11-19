@@ -26,7 +26,7 @@ func PointerFromQState(ptr QState_ITF) unsafe.Pointer {
 func NewQStateFromPointer(ptr unsafe.Pointer) *QState {
 	var n = new(QState)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QState_" + qt.RandomIdentifier())
 	}
 	return n

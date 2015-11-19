@@ -1,8 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{setRegExp QRegExpValidator::setRegExp commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.cpp non plain false false  void void setRegExp(const QRegExp &rx) [0xc82247be00] }
-&{QRegExpValidator QRegExpValidator::QRegExpValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false false   QRegExpValidator(QObject *parent) [0xc820d56000] }
-&{QRegExpValidator QRegExpValidator::QRegExpValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non constructor false true 2  QRegExpValidator(const QRegExp &rx, QObject *parent) [0xc820d568a0 0xc820d56b80] }
-&{regExp QRegExpValidator::regExp commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non plain false false  const QRegExp & const QRegExp & regExp() const [] }
-&{validate QRegExpValidator::validate commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h impure plain false false  QValidator::State QValidator::State validate(QString &input, int &pos) const [0xc820de0ba0 0xc820de0f80] }
-&{~QRegExpValidator QRegExpValidator::~QRegExpValidator commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/util/qvalidator.h non destructor false false   ~QRegExpValidator() [] }
-########################################			ENUMS			########################################

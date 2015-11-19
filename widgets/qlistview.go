@@ -27,7 +27,7 @@ func PointerFromQListView(ptr QListView_ITF) unsafe.Pointer {
 func NewQListViewFromPointer(ptr unsafe.Pointer) *QListView {
 	var n = new(QListView)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QListView_" + qt.RandomIdentifier())
 	}
 	return n

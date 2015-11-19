@@ -1,110 +1,10 @@
-#include "qndefmessage.h"
-#include <QNdefRecord>
-#include <QByteArray>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QNdefMessage>
-#include "_cgo_export.h"
-
-class MyQNdefMessage: public QNdefMessage {
-public:
-};
-
-void* QNdefMessage_NewQNdefMessage(){
-	return new QNdefMessage();
-}
-
-void* QNdefMessage_NewQNdefMessage3(void* message){
-	return new QNdefMessage(*static_cast<QNdefMessage*>(message));
-}
-
-void* QNdefMessage_NewQNdefMessage2(void* record){
-	return new QNdefMessage(*static_cast<QNdefRecord*>(record));
-}
-
-void* QNdefMessage_ToByteArray(void* ptr){
-	return new QByteArray(static_cast<QNdefMessage*>(ptr)->toByteArray());
-}
-
-#include "qndefnfcurirecord.h"
-#include <QModelIndex>
-#include <QNdefRecord>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QNdefNfcUriRecord>
-#include "_cgo_export.h"
-
-class MyQNdefNfcUriRecord: public QNdefNfcUriRecord {
-public:
-};
-
-void* QNdefNfcUriRecord_NewQNdefNfcUriRecord(){
-	return new QNdefNfcUriRecord();
-}
-
-void* QNdefNfcUriRecord_NewQNdefNfcUriRecord2(void* other){
-	return new QNdefNfcUriRecord(*static_cast<QNdefRecord*>(other));
-}
-
-void QNdefNfcUriRecord_SetUri(void* ptr, void* uri){
-	static_cast<QNdefNfcUriRecord*>(ptr)->setUri(*static_cast<QUrl*>(uri));
-}
-
-#include "qndefnfctextrecord.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QNdefRecord>
-#include <QString>
-#include <QVariant>
-#include <QNdefNfcTextRecord>
-#include "_cgo_export.h"
-
-class MyQNdefNfcTextRecord: public QNdefNfcTextRecord {
-public:
-};
-
-void* QNdefNfcTextRecord_NewQNdefNfcTextRecord(){
-	return new QNdefNfcTextRecord();
-}
-
-void* QNdefNfcTextRecord_NewQNdefNfcTextRecord2(void* other){
-	return new QNdefNfcTextRecord(*static_cast<QNdefRecord*>(other));
-}
-
-int QNdefNfcTextRecord_Encoding(void* ptr){
-	return static_cast<QNdefNfcTextRecord*>(ptr)->encoding();
-}
-
-char* QNdefNfcTextRecord_Locale(void* ptr){
-	return static_cast<QNdefNfcTextRecord*>(ptr)->locale().toUtf8().data();
-}
-
-void QNdefNfcTextRecord_SetEncoding(void* ptr, int encoding){
-	static_cast<QNdefNfcTextRecord*>(ptr)->setEncoding(static_cast<QNdefNfcTextRecord::Encoding>(encoding));
-}
-
-void QNdefNfcTextRecord_SetLocale(void* ptr, char* locale){
-	static_cast<QNdefNfcTextRecord*>(ptr)->setLocale(QString(locale));
-}
-
-void QNdefNfcTextRecord_SetText(void* ptr, char* text){
-	static_cast<QNdefNfcTextRecord*>(ptr)->setText(QString(text));
-}
-
-char* QNdefNfcTextRecord_Text(void* ptr){
-	return static_cast<QNdefNfcTextRecord*>(ptr)->text().toUtf8().data();
-}
-
 #include "qnearfieldtarget.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QByteArray>
-#include <QObject>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QByteArray>
 #include <QNearFieldTarget>
 #include "_cgo_export.h"
 
@@ -154,70 +54,209 @@ void QNearFieldTarget_DestroyQNearFieldTarget(void* ptr){
 	static_cast<QNearFieldTarget*>(ptr)->~QNearFieldTarget();
 }
 
-#include "qnearfieldsharetarget.h"
-#include <QObject>
+#include "qndefrecord.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QNearFieldShareManager>
-#include <QNdefMessage>
-#include <QNearFieldShareTarget>
+#include <QByteArray>
+#include <QNdefRecord>
 #include "_cgo_export.h"
 
-class MyQNearFieldShareTarget: public QNearFieldShareTarget {
+class MyQNdefRecord: public QNdefRecord {
 public:
-void Signal_Error(QNearFieldShareManager::ShareError error){callbackQNearFieldShareTargetError(this->objectName().toUtf8().data(), error);};
-void Signal_ShareFinished(){callbackQNearFieldShareTargetShareFinished(this->objectName().toUtf8().data());};
 };
 
-void QNearFieldShareTarget_Cancel(void* ptr){
-	static_cast<QNearFieldShareTarget*>(ptr)->cancel();
+void* QNdefRecord_NewQNdefRecord(){
+	return new QNdefRecord();
 }
 
-void QNearFieldShareTarget_ConnectError(void* ptr){
-	QObject::connect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareTarget::error), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareTarget::Signal_Error));;
+void* QNdefRecord_NewQNdefRecord2(void* other){
+	return new QNdefRecord(*static_cast<QNdefRecord*>(other));
 }
 
-void QNearFieldShareTarget_DisconnectError(void* ptr){
-	QObject::disconnect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareTarget::error), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareTarget::Signal_Error));;
+void* QNdefRecord_Id(void* ptr){
+	return new QByteArray(static_cast<QNdefRecord*>(ptr)->id());
 }
 
-int QNearFieldShareTarget_IsShareInProgress(void* ptr){
-	return static_cast<QNearFieldShareTarget*>(ptr)->isShareInProgress();
+int QNdefRecord_IsEmpty(void* ptr){
+	return static_cast<QNdefRecord*>(ptr)->isEmpty();
 }
 
-int QNearFieldShareTarget_Share(void* ptr, void* message){
-	return static_cast<QNearFieldShareTarget*>(ptr)->share(*static_cast<QNdefMessage*>(message));
+void* QNdefRecord_Payload(void* ptr){
+	return new QByteArray(static_cast<QNdefRecord*>(ptr)->payload());
 }
 
-int QNearFieldShareTarget_ShareError(void* ptr){
-	return static_cast<QNearFieldShareTarget*>(ptr)->shareError();
+void QNdefRecord_SetId(void* ptr, void* id){
+	static_cast<QNdefRecord*>(ptr)->setId(*static_cast<QByteArray*>(id));
 }
 
-void QNearFieldShareTarget_ConnectShareFinished(void* ptr){
-	QObject::connect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)()>(&QNearFieldShareTarget::shareFinished), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)()>(&MyQNearFieldShareTarget::Signal_ShareFinished));;
+void QNdefRecord_SetPayload(void* ptr, void* payload){
+	static_cast<QNdefRecord*>(ptr)->setPayload(*static_cast<QByteArray*>(payload));
 }
 
-void QNearFieldShareTarget_DisconnectShareFinished(void* ptr){
-	QObject::disconnect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)()>(&QNearFieldShareTarget::shareFinished), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)()>(&MyQNearFieldShareTarget::Signal_ShareFinished));;
+void QNdefRecord_SetType(void* ptr, void* ty){
+	static_cast<QNdefRecord*>(ptr)->setType(*static_cast<QByteArray*>(ty));
 }
 
-int QNearFieldShareTarget_ShareModes(void* ptr){
-	return static_cast<QNearFieldShareTarget*>(ptr)->shareModes();
+void QNdefRecord_SetTypeNameFormat(void* ptr, int typeNameFormat){
+	static_cast<QNdefRecord*>(ptr)->setTypeNameFormat(static_cast<QNdefRecord::TypeNameFormat>(typeNameFormat));
 }
 
-void QNearFieldShareTarget_DestroyQNearFieldShareTarget(void* ptr){
-	static_cast<QNearFieldShareTarget*>(ptr)->~QNearFieldShareTarget();
+void* QNdefRecord_Type(void* ptr){
+	return new QByteArray(static_cast<QNdefRecord*>(ptr)->type());
+}
+
+int QNdefRecord_TypeNameFormat(void* ptr){
+	return static_cast<QNdefRecord*>(ptr)->typeNameFormat();
+}
+
+void QNdefRecord_DestroyQNdefRecord(void* ptr){
+	static_cast<QNdefRecord*>(ptr)->~QNdefRecord();
+}
+
+#include "qnearfieldsharemanager.h"
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QNearFieldShareTarget>
+#include <QObject>
+#include <QString>
+#include <QNearFieldShareManager>
+#include "_cgo_export.h"
+
+class MyQNearFieldShareManager: public QNearFieldShareManager {
+public:
+void Signal_Error(QNearFieldShareManager::ShareError error){callbackQNearFieldShareManagerError(this->objectName().toUtf8().data(), error);};
+void Signal_ShareModesChanged(QNearFieldShareManager::ShareModes modes){callbackQNearFieldShareManagerShareModesChanged(this->objectName().toUtf8().data(), modes);};
+void Signal_TargetDetected(QNearFieldShareTarget * shareTarget){callbackQNearFieldShareManagerTargetDetected(this->objectName().toUtf8().data(), shareTarget);};
+};
+
+void* QNearFieldShareManager_NewQNearFieldShareManager(void* parent){
+	return new QNearFieldShareManager(static_cast<QObject*>(parent));
+}
+
+void QNearFieldShareManager_ConnectError(void* ptr){
+	QObject::connect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareManager::error), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareManager::Signal_Error));;
+}
+
+void QNearFieldShareManager_DisconnectError(void* ptr){
+	QObject::disconnect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareManager::error), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareManager::Signal_Error));;
+}
+
+void QNearFieldShareManager_SetShareModes(void* ptr, int mode){
+	static_cast<QNearFieldShareManager*>(ptr)->setShareModes(static_cast<QNearFieldShareManager::ShareMode>(mode));
+}
+
+int QNearFieldShareManager_ShareError(void* ptr){
+	return static_cast<QNearFieldShareManager*>(ptr)->shareError();
+}
+
+int QNearFieldShareManager_ShareModes(void* ptr){
+	return static_cast<QNearFieldShareManager*>(ptr)->shareModes();
+}
+
+void QNearFieldShareManager_ConnectShareModesChanged(void* ptr){
+	QObject::connect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareManager::ShareModes)>(&QNearFieldShareManager::shareModesChanged), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareManager::ShareModes)>(&MyQNearFieldShareManager::Signal_ShareModesChanged));;
+}
+
+void QNearFieldShareManager_DisconnectShareModesChanged(void* ptr){
+	QObject::disconnect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareManager::ShareModes)>(&QNearFieldShareManager::shareModesChanged), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareManager::ShareModes)>(&MyQNearFieldShareManager::Signal_ShareModesChanged));;
+}
+
+int QNearFieldShareManager_QNearFieldShareManager_SupportedShareModes(){
+	return QNearFieldShareManager::supportedShareModes();
+}
+
+void QNearFieldShareManager_ConnectTargetDetected(void* ptr){
+	QObject::connect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareTarget *)>(&QNearFieldShareManager::targetDetected), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareTarget *)>(&MyQNearFieldShareManager::Signal_TargetDetected));;
+}
+
+void QNearFieldShareManager_DisconnectTargetDetected(void* ptr){
+	QObject::disconnect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareTarget *)>(&QNearFieldShareManager::targetDetected), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareTarget *)>(&MyQNearFieldShareManager::Signal_TargetDetected));;
+}
+
+void QNearFieldShareManager_DestroyQNearFieldShareManager(void* ptr){
+	static_cast<QNearFieldShareManager*>(ptr)->~QNearFieldShareManager();
+}
+
+#include "qndefnfctextrecord.h"
+#include <QNdefRecord>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QNdefNfcTextRecord>
+#include "_cgo_export.h"
+
+class MyQNdefNfcTextRecord: public QNdefNfcTextRecord {
+public:
+};
+
+void* QNdefNfcTextRecord_NewQNdefNfcTextRecord(){
+	return new QNdefNfcTextRecord();
+}
+
+void* QNdefNfcTextRecord_NewQNdefNfcTextRecord2(void* other){
+	return new QNdefNfcTextRecord(*static_cast<QNdefRecord*>(other));
+}
+
+int QNdefNfcTextRecord_Encoding(void* ptr){
+	return static_cast<QNdefNfcTextRecord*>(ptr)->encoding();
+}
+
+char* QNdefNfcTextRecord_Locale(void* ptr){
+	return static_cast<QNdefNfcTextRecord*>(ptr)->locale().toUtf8().data();
+}
+
+void QNdefNfcTextRecord_SetEncoding(void* ptr, int encoding){
+	static_cast<QNdefNfcTextRecord*>(ptr)->setEncoding(static_cast<QNdefNfcTextRecord::Encoding>(encoding));
+}
+
+void QNdefNfcTextRecord_SetLocale(void* ptr, char* locale){
+	static_cast<QNdefNfcTextRecord*>(ptr)->setLocale(QString(locale));
+}
+
+void QNdefNfcTextRecord_SetText(void* ptr, char* text){
+	static_cast<QNdefNfcTextRecord*>(ptr)->setText(QString(text));
+}
+
+char* QNdefNfcTextRecord_Text(void* ptr){
+	return static_cast<QNdefNfcTextRecord*>(ptr)->text().toUtf8().data();
+}
+
+#include "qndefnfcurirecord.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QNdefRecord>
+#include <QNdefNfcUriRecord>
+#include "_cgo_export.h"
+
+class MyQNdefNfcUriRecord: public QNdefNfcUriRecord {
+public:
+};
+
+void* QNdefNfcUriRecord_NewQNdefNfcUriRecord(){
+	return new QNdefNfcUriRecord();
+}
+
+void* QNdefNfcUriRecord_NewQNdefNfcUriRecord2(void* other){
+	return new QNdefNfcUriRecord(*static_cast<QNdefRecord*>(other));
+}
+
+void QNdefNfcUriRecord_SetUri(void* ptr, void* uri){
+	static_cast<QNdefNfcUriRecord*>(ptr)->setUri(*static_cast<QUrl*>(uri));
 }
 
 #include "qqmlndefrecord.h"
-#include <QNdefRecord>
-#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
+#include <QNdefRecord>
+#include <QObject>
 #include <QQmlNdefRecord>
 #include "_cgo_export.h"
 
@@ -280,79 +319,93 @@ void QQmlNdefRecord_DisconnectTypeNameFormatChanged(void* ptr){
 	QObject::disconnect(static_cast<QQmlNdefRecord*>(ptr), static_cast<void (QQmlNdefRecord::*)()>(&QQmlNdefRecord::typeNameFormatChanged), static_cast<MyQQmlNdefRecord*>(ptr), static_cast<void (MyQQmlNdefRecord::*)()>(&MyQQmlNdefRecord::Signal_TypeNameFormatChanged));;
 }
 
-#include "qnearfieldsharemanager.h"
-#include <QModelIndex>
-#include <QObject>
-#include <QNearFieldShareTarget>
+#include "qnearfieldmanager.h"
 #include <QString>
 #include <QVariant>
+#include <QModelIndex>
+#include <QNearFieldTarget>
+#include <QByteArray>
 #include <QUrl>
-#include <QNearFieldShareManager>
+#include <QObject>
+#include <QNdefRecord>
+#include <QNdefFilter>
+#include <QNearFieldManager>
 #include "_cgo_export.h"
 
-class MyQNearFieldShareManager: public QNearFieldShareManager {
+class MyQNearFieldManager: public QNearFieldManager {
 public:
-void Signal_Error(QNearFieldShareManager::ShareError error){callbackQNearFieldShareManagerError(this->objectName().toUtf8().data(), error);};
-void Signal_ShareModesChanged(QNearFieldShareManager::ShareModes modes){callbackQNearFieldShareManagerShareModesChanged(this->objectName().toUtf8().data(), modes);};
-void Signal_TargetDetected(QNearFieldShareTarget * shareTarget){callbackQNearFieldShareManagerTargetDetected(this->objectName().toUtf8().data(), shareTarget);};
+void Signal_TargetDetected(QNearFieldTarget * target){callbackQNearFieldManagerTargetDetected(this->objectName().toUtf8().data(), target);};
+void Signal_TargetLost(QNearFieldTarget * target){callbackQNearFieldManagerTargetLost(this->objectName().toUtf8().data(), target);};
 };
 
-void* QNearFieldShareManager_NewQNearFieldShareManager(void* parent){
-	return new QNearFieldShareManager(static_cast<QObject*>(parent));
+int QNearFieldManager_RegisterNdefMessageHandler(void* ptr, void* object, char* method){
+	return static_cast<QNearFieldManager*>(ptr)->registerNdefMessageHandler(static_cast<QObject*>(object), const_cast<const char*>(method));
 }
 
-void QNearFieldShareManager_ConnectError(void* ptr){
-	QObject::connect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareManager::error), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareManager::Signal_Error));;
+int QNearFieldManager_StartTargetDetection(void* ptr){
+	return static_cast<QNearFieldManager*>(ptr)->startTargetDetection();
 }
 
-void QNearFieldShareManager_DisconnectError(void* ptr){
-	QObject::disconnect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareManager::error), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareManager::Signal_Error));;
+void* QNearFieldManager_NewQNearFieldManager(void* parent){
+	return new QNearFieldManager(static_cast<QObject*>(parent));
 }
 
-void QNearFieldShareManager_SetShareModes(void* ptr, int mode){
-	static_cast<QNearFieldShareManager*>(ptr)->setShareModes(static_cast<QNearFieldShareManager::ShareMode>(mode));
+int QNearFieldManager_IsAvailable(void* ptr){
+	return static_cast<QNearFieldManager*>(ptr)->isAvailable();
 }
 
-int QNearFieldShareManager_ShareError(void* ptr){
-	return static_cast<QNearFieldShareManager*>(ptr)->shareError();
+int QNearFieldManager_RegisterNdefMessageHandler2(void* ptr, int typeNameFormat, void* ty, void* object, char* method){
+	return static_cast<QNearFieldManager*>(ptr)->registerNdefMessageHandler(static_cast<QNdefRecord::TypeNameFormat>(typeNameFormat), *static_cast<QByteArray*>(ty), static_cast<QObject*>(object), const_cast<const char*>(method));
 }
 
-int QNearFieldShareManager_ShareModes(void* ptr){
-	return static_cast<QNearFieldShareManager*>(ptr)->shareModes();
+int QNearFieldManager_RegisterNdefMessageHandler3(void* ptr, void* filter, void* object, char* method){
+	return static_cast<QNearFieldManager*>(ptr)->registerNdefMessageHandler(*static_cast<QNdefFilter*>(filter), static_cast<QObject*>(object), const_cast<const char*>(method));
 }
 
-void QNearFieldShareManager_ConnectShareModesChanged(void* ptr){
-	QObject::connect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareManager::ShareModes)>(&QNearFieldShareManager::shareModesChanged), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareManager::ShareModes)>(&MyQNearFieldShareManager::Signal_ShareModesChanged));;
+void QNearFieldManager_SetTargetAccessModes(void* ptr, int accessModes){
+	static_cast<QNearFieldManager*>(ptr)->setTargetAccessModes(static_cast<QNearFieldManager::TargetAccessMode>(accessModes));
 }
 
-void QNearFieldShareManager_DisconnectShareModesChanged(void* ptr){
-	QObject::disconnect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareManager::ShareModes)>(&QNearFieldShareManager::shareModesChanged), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareManager::ShareModes)>(&MyQNearFieldShareManager::Signal_ShareModesChanged));;
+void QNearFieldManager_StopTargetDetection(void* ptr){
+	static_cast<QNearFieldManager*>(ptr)->stopTargetDetection();
 }
 
-int QNearFieldShareManager_QNearFieldShareManager_SupportedShareModes(){
-	return QNearFieldShareManager::supportedShareModes();
+int QNearFieldManager_TargetAccessModes(void* ptr){
+	return static_cast<QNearFieldManager*>(ptr)->targetAccessModes();
 }
 
-void QNearFieldShareManager_ConnectTargetDetected(void* ptr){
-	QObject::connect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareTarget *)>(&QNearFieldShareManager::targetDetected), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareTarget *)>(&MyQNearFieldShareManager::Signal_TargetDetected));;
+void QNearFieldManager_ConnectTargetDetected(void* ptr){
+	QObject::connect(static_cast<QNearFieldManager*>(ptr), static_cast<void (QNearFieldManager::*)(QNearFieldTarget *)>(&QNearFieldManager::targetDetected), static_cast<MyQNearFieldManager*>(ptr), static_cast<void (MyQNearFieldManager::*)(QNearFieldTarget *)>(&MyQNearFieldManager::Signal_TargetDetected));;
 }
 
-void QNearFieldShareManager_DisconnectTargetDetected(void* ptr){
-	QObject::disconnect(static_cast<QNearFieldShareManager*>(ptr), static_cast<void (QNearFieldShareManager::*)(QNearFieldShareTarget *)>(&QNearFieldShareManager::targetDetected), static_cast<MyQNearFieldShareManager*>(ptr), static_cast<void (MyQNearFieldShareManager::*)(QNearFieldShareTarget *)>(&MyQNearFieldShareManager::Signal_TargetDetected));;
+void QNearFieldManager_DisconnectTargetDetected(void* ptr){
+	QObject::disconnect(static_cast<QNearFieldManager*>(ptr), static_cast<void (QNearFieldManager::*)(QNearFieldTarget *)>(&QNearFieldManager::targetDetected), static_cast<MyQNearFieldManager*>(ptr), static_cast<void (MyQNearFieldManager::*)(QNearFieldTarget *)>(&MyQNearFieldManager::Signal_TargetDetected));;
 }
 
-void QNearFieldShareManager_DestroyQNearFieldShareManager(void* ptr){
-	static_cast<QNearFieldShareManager*>(ptr)->~QNearFieldShareManager();
+void QNearFieldManager_ConnectTargetLost(void* ptr){
+	QObject::connect(static_cast<QNearFieldManager*>(ptr), static_cast<void (QNearFieldManager::*)(QNearFieldTarget *)>(&QNearFieldManager::targetLost), static_cast<MyQNearFieldManager*>(ptr), static_cast<void (MyQNearFieldManager::*)(QNearFieldTarget *)>(&MyQNearFieldManager::Signal_TargetLost));;
+}
+
+void QNearFieldManager_DisconnectTargetLost(void* ptr){
+	QObject::disconnect(static_cast<QNearFieldManager*>(ptr), static_cast<void (QNearFieldManager::*)(QNearFieldTarget *)>(&QNearFieldManager::targetLost), static_cast<MyQNearFieldManager*>(ptr), static_cast<void (MyQNearFieldManager::*)(QNearFieldTarget *)>(&MyQNearFieldManager::Signal_TargetLost));;
+}
+
+int QNearFieldManager_UnregisterNdefMessageHandler(void* ptr, int handlerId){
+	return static_cast<QNearFieldManager*>(ptr)->unregisterNdefMessageHandler(handlerId);
+}
+
+void QNearFieldManager_DestroyQNearFieldManager(void* ptr){
+	static_cast<QNearFieldManager*>(ptr)->~QNearFieldManager();
 }
 
 #include "qndefnfcsmartposterrecord.h"
-#include <QNdefRecord>
-#include <QByteArray>
+#include <QNdefNfcUriRecord>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QNdefNfcUriRecord>
+#include <QByteArray>
+#include <QNdefRecord>
 #include <QNdefNfcTextRecord>
 #include <QNdefNfcSmartPosterRecord>
 #include "_cgo_export.h"
@@ -461,83 +514,91 @@ void QNdefNfcSmartPosterRecord_DestroyQNdefNfcSmartPosterRecord(void* ptr){
 	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->~QNdefNfcSmartPosterRecord();
 }
 
-#include "qnearfieldmanager.h"
+#include "qnearfieldsharetarget.h"
+#include <QModelIndex>
+#include <QNdefMessage>
+#include <QObject>
+#include <QNearFieldShareManager>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QObject>
-#include <QString>
-#include <QModelIndex>
-#include <QNdefFilter>
-#include <QNdefRecord>
-#include <QByteArray>
-#include <QNearFieldTarget>
-#include <QNearFieldManager>
+#include <QNearFieldShareTarget>
 #include "_cgo_export.h"
 
-class MyQNearFieldManager: public QNearFieldManager {
+class MyQNearFieldShareTarget: public QNearFieldShareTarget {
 public:
-void Signal_TargetDetected(QNearFieldTarget * target){callbackQNearFieldManagerTargetDetected(this->objectName().toUtf8().data(), target);};
-void Signal_TargetLost(QNearFieldTarget * target){callbackQNearFieldManagerTargetLost(this->objectName().toUtf8().data(), target);};
+void Signal_Error(QNearFieldShareManager::ShareError error){callbackQNearFieldShareTargetError(this->objectName().toUtf8().data(), error);};
+void Signal_ShareFinished(){callbackQNearFieldShareTargetShareFinished(this->objectName().toUtf8().data());};
 };
 
-int QNearFieldManager_RegisterNdefMessageHandler(void* ptr, void* object, char* method){
-	return static_cast<QNearFieldManager*>(ptr)->registerNdefMessageHandler(static_cast<QObject*>(object), const_cast<const char*>(method));
+void QNearFieldShareTarget_Cancel(void* ptr){
+	static_cast<QNearFieldShareTarget*>(ptr)->cancel();
 }
 
-int QNearFieldManager_StartTargetDetection(void* ptr){
-	return static_cast<QNearFieldManager*>(ptr)->startTargetDetection();
+void QNearFieldShareTarget_ConnectError(void* ptr){
+	QObject::connect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareTarget::error), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareTarget::Signal_Error));;
 }
 
-void* QNearFieldManager_NewQNearFieldManager(void* parent){
-	return new QNearFieldManager(static_cast<QObject*>(parent));
+void QNearFieldShareTarget_DisconnectError(void* ptr){
+	QObject::disconnect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&QNearFieldShareTarget::error), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)(QNearFieldShareManager::ShareError)>(&MyQNearFieldShareTarget::Signal_Error));;
 }
 
-int QNearFieldManager_IsAvailable(void* ptr){
-	return static_cast<QNearFieldManager*>(ptr)->isAvailable();
+int QNearFieldShareTarget_IsShareInProgress(void* ptr){
+	return static_cast<QNearFieldShareTarget*>(ptr)->isShareInProgress();
 }
 
-int QNearFieldManager_RegisterNdefMessageHandler2(void* ptr, int typeNameFormat, void* ty, void* object, char* method){
-	return static_cast<QNearFieldManager*>(ptr)->registerNdefMessageHandler(static_cast<QNdefRecord::TypeNameFormat>(typeNameFormat), *static_cast<QByteArray*>(ty), static_cast<QObject*>(object), const_cast<const char*>(method));
+int QNearFieldShareTarget_Share(void* ptr, void* message){
+	return static_cast<QNearFieldShareTarget*>(ptr)->share(*static_cast<QNdefMessage*>(message));
 }
 
-int QNearFieldManager_RegisterNdefMessageHandler3(void* ptr, void* filter, void* object, char* method){
-	return static_cast<QNearFieldManager*>(ptr)->registerNdefMessageHandler(*static_cast<QNdefFilter*>(filter), static_cast<QObject*>(object), const_cast<const char*>(method));
+int QNearFieldShareTarget_ShareError(void* ptr){
+	return static_cast<QNearFieldShareTarget*>(ptr)->shareError();
 }
 
-void QNearFieldManager_SetTargetAccessModes(void* ptr, int accessModes){
-	static_cast<QNearFieldManager*>(ptr)->setTargetAccessModes(static_cast<QNearFieldManager::TargetAccessMode>(accessModes));
+void QNearFieldShareTarget_ConnectShareFinished(void* ptr){
+	QObject::connect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)()>(&QNearFieldShareTarget::shareFinished), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)()>(&MyQNearFieldShareTarget::Signal_ShareFinished));;
 }
 
-void QNearFieldManager_StopTargetDetection(void* ptr){
-	static_cast<QNearFieldManager*>(ptr)->stopTargetDetection();
+void QNearFieldShareTarget_DisconnectShareFinished(void* ptr){
+	QObject::disconnect(static_cast<QNearFieldShareTarget*>(ptr), static_cast<void (QNearFieldShareTarget::*)()>(&QNearFieldShareTarget::shareFinished), static_cast<MyQNearFieldShareTarget*>(ptr), static_cast<void (MyQNearFieldShareTarget::*)()>(&MyQNearFieldShareTarget::Signal_ShareFinished));;
 }
 
-int QNearFieldManager_TargetAccessModes(void* ptr){
-	return static_cast<QNearFieldManager*>(ptr)->targetAccessModes();
+int QNearFieldShareTarget_ShareModes(void* ptr){
+	return static_cast<QNearFieldShareTarget*>(ptr)->shareModes();
 }
 
-void QNearFieldManager_ConnectTargetDetected(void* ptr){
-	QObject::connect(static_cast<QNearFieldManager*>(ptr), static_cast<void (QNearFieldManager::*)(QNearFieldTarget *)>(&QNearFieldManager::targetDetected), static_cast<MyQNearFieldManager*>(ptr), static_cast<void (MyQNearFieldManager::*)(QNearFieldTarget *)>(&MyQNearFieldManager::Signal_TargetDetected));;
+void QNearFieldShareTarget_DestroyQNearFieldShareTarget(void* ptr){
+	static_cast<QNearFieldShareTarget*>(ptr)->~QNearFieldShareTarget();
 }
 
-void QNearFieldManager_DisconnectTargetDetected(void* ptr){
-	QObject::disconnect(static_cast<QNearFieldManager*>(ptr), static_cast<void (QNearFieldManager::*)(QNearFieldTarget *)>(&QNearFieldManager::targetDetected), static_cast<MyQNearFieldManager*>(ptr), static_cast<void (MyQNearFieldManager::*)(QNearFieldTarget *)>(&MyQNearFieldManager::Signal_TargetDetected));;
+#include "qndefmessage.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QByteArray>
+#include <QNdefRecord>
+#include <QString>
+#include <QVariant>
+#include <QNdefMessage>
+#include "_cgo_export.h"
+
+class MyQNdefMessage: public QNdefMessage {
+public:
+};
+
+void* QNdefMessage_NewQNdefMessage(){
+	return new QNdefMessage();
 }
 
-void QNearFieldManager_ConnectTargetLost(void* ptr){
-	QObject::connect(static_cast<QNearFieldManager*>(ptr), static_cast<void (QNearFieldManager::*)(QNearFieldTarget *)>(&QNearFieldManager::targetLost), static_cast<MyQNearFieldManager*>(ptr), static_cast<void (MyQNearFieldManager::*)(QNearFieldTarget *)>(&MyQNearFieldManager::Signal_TargetLost));;
+void* QNdefMessage_NewQNdefMessage3(void* message){
+	return new QNdefMessage(*static_cast<QNdefMessage*>(message));
 }
 
-void QNearFieldManager_DisconnectTargetLost(void* ptr){
-	QObject::disconnect(static_cast<QNearFieldManager*>(ptr), static_cast<void (QNearFieldManager::*)(QNearFieldTarget *)>(&QNearFieldManager::targetLost), static_cast<MyQNearFieldManager*>(ptr), static_cast<void (MyQNearFieldManager::*)(QNearFieldTarget *)>(&MyQNearFieldManager::Signal_TargetLost));;
+void* QNdefMessage_NewQNdefMessage2(void* record){
+	return new QNdefMessage(*static_cast<QNdefRecord*>(record));
 }
 
-int QNearFieldManager_UnregisterNdefMessageHandler(void* ptr, int handlerId){
-	return static_cast<QNearFieldManager*>(ptr)->unregisterNdefMessageHandler(handlerId);
-}
-
-void QNearFieldManager_DestroyQNearFieldManager(void* ptr){
-	static_cast<QNearFieldManager*>(ptr)->~QNearFieldManager();
+void* QNdefMessage_ToByteArray(void* ptr){
+	return new QByteArray(static_cast<QNdefMessage*>(ptr)->toByteArray());
 }
 
 #include "qndeffilter.h"
@@ -578,66 +639,5 @@ void QNdefFilter_SetOrderMatch(void* ptr, int on){
 
 void QNdefFilter_DestroyQNdefFilter(void* ptr){
 	static_cast<QNdefFilter*>(ptr)->~QNdefFilter();
-}
-
-#include "qndefrecord.h"
-#include <QByteArray>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QNdefRecord>
-#include "_cgo_export.h"
-
-class MyQNdefRecord: public QNdefRecord {
-public:
-};
-
-void* QNdefRecord_NewQNdefRecord(){
-	return new QNdefRecord();
-}
-
-void* QNdefRecord_NewQNdefRecord2(void* other){
-	return new QNdefRecord(*static_cast<QNdefRecord*>(other));
-}
-
-void* QNdefRecord_Id(void* ptr){
-	return new QByteArray(static_cast<QNdefRecord*>(ptr)->id());
-}
-
-int QNdefRecord_IsEmpty(void* ptr){
-	return static_cast<QNdefRecord*>(ptr)->isEmpty();
-}
-
-void* QNdefRecord_Payload(void* ptr){
-	return new QByteArray(static_cast<QNdefRecord*>(ptr)->payload());
-}
-
-void QNdefRecord_SetId(void* ptr, void* id){
-	static_cast<QNdefRecord*>(ptr)->setId(*static_cast<QByteArray*>(id));
-}
-
-void QNdefRecord_SetPayload(void* ptr, void* payload){
-	static_cast<QNdefRecord*>(ptr)->setPayload(*static_cast<QByteArray*>(payload));
-}
-
-void QNdefRecord_SetType(void* ptr, void* ty){
-	static_cast<QNdefRecord*>(ptr)->setType(*static_cast<QByteArray*>(ty));
-}
-
-void QNdefRecord_SetTypeNameFormat(void* ptr, int typeNameFormat){
-	static_cast<QNdefRecord*>(ptr)->setTypeNameFormat(static_cast<QNdefRecord::TypeNameFormat>(typeNameFormat));
-}
-
-void* QNdefRecord_Type(void* ptr){
-	return new QByteArray(static_cast<QNdefRecord*>(ptr)->type());
-}
-
-int QNdefRecord_TypeNameFormat(void* ptr){
-	return static_cast<QNdefRecord*>(ptr)->typeNameFormat();
-}
-
-void QNdefRecord_DestroyQNdefRecord(void* ptr){
-	static_cast<QNdefRecord*>(ptr)->~QNdefRecord();
 }
 

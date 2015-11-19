@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{ascent QTextItem::ascent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  qreal qreal ascent() const [] }
-&{descent QTextItem::descent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  qreal qreal descent() const [] }
-&{font QTextItem::font commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  QFont QFont font() const [] }
-&{renderFlags QTextItem::renderFlags commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  RenderFlags RenderFlags renderFlags() const [] }
-&{text QTextItem::text commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  QString QString text() const [] }
-&{width QTextItem::width commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/painting/qpaintengine.cpp non plain false false  qreal qreal width() const [] }
-########################################			ENUMS			########################################
-&{RenderFlag QTextItem::RenderFlag commendable public QTextItem::RenderFlags [0xc821e6d2e0 0xc821e6d360 0xc821e6d3e0 0xc821e6d460 0xc821e6d500] false}

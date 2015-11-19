@@ -27,7 +27,7 @@ func PointerFromQCameraFocus(ptr QCameraFocus_ITF) unsafe.Pointer {
 func NewQCameraFocusFromPointer(ptr unsafe.Pointer) *QCameraFocus {
 	var n = new(QCameraFocus)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCameraFocus_" + qt.RandomIdentifier())
 	}
 	return n

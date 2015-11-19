@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QAbstractNativeEventFilter QAbstractNativeEventFilter::QAbstractNativeEventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstractnativeeventfilter.h non constructor false false   QAbstractNativeEventFilter() [] }
-&{nativeEventFilter QAbstractNativeEventFilter::nativeEventFilter commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstractnativeeventfilter.h pure plain false false  bool bool nativeEventFilter(const QByteArray &eventType, void *message, long *result) [0xc820642c00 0xc820642cc0 0xc820642d40] }
-&{~QAbstractNativeEventFilter QAbstractNativeEventFilter::~QAbstractNativeEventFilter commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qabstractnativeeventfilter.h impure destructor false false   ~QAbstractNativeEventFilter() [] }
-########################################			ENUMS			########################################

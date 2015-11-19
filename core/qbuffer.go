@@ -26,7 +26,7 @@ func PointerFromQBuffer(ptr QBuffer_ITF) unsafe.Pointer {
 func NewQBufferFromPointer(ptr unsafe.Pointer) *QBuffer {
 	var n = new(QBuffer)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QBuffer_" + qt.RandomIdentifier())
 	}
 	return n

@@ -28,7 +28,7 @@ func PointerFromQTextEdit(ptr QTextEdit_ITF) unsafe.Pointer {
 func NewQTextEditFromPointer(ptr unsafe.Pointer) *QTextEdit {
 	var n = new(QTextEdit)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTextEdit_" + qt.RandomIdentifier())
 	}
 	return n

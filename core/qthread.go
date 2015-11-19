@@ -26,7 +26,7 @@ func PointerFromQThread(ptr QThread_ITF) unsafe.Pointer {
 func NewQThreadFromPointer(ptr unsafe.Pointer) *QThread {
 	var n = new(QThread)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QThread_" + qt.RandomIdentifier())
 	}
 	return n

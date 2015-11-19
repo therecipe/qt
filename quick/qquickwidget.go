@@ -30,7 +30,7 @@ func PointerFromQQuickWidget(ptr QQuickWidget_ITF) unsafe.Pointer {
 func NewQQuickWidgetFromPointer(ptr unsafe.Pointer) *QQuickWidget {
 	var n = new(QQuickWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQuickWidget_" + qt.RandomIdentifier())
 	}
 	return n

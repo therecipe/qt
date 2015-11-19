@@ -28,7 +28,7 @@ func PointerFromQGeoRoutingManagerEngine(ptr QGeoRoutingManagerEngine_ITF) unsaf
 func NewQGeoRoutingManagerEngineFromPointer(ptr unsafe.Pointer) *QGeoRoutingManagerEngine {
 	var n = new(QGeoRoutingManagerEngine)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGeoRoutingManagerEngine_" + qt.RandomIdentifier())
 	}
 	return n

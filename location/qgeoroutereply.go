@@ -27,7 +27,7 @@ func PointerFromQGeoRouteReply(ptr QGeoRouteReply_ITF) unsafe.Pointer {
 func NewQGeoRouteReplyFromPointer(ptr unsafe.Pointer) *QGeoRouteReply {
 	var n = new(QGeoRouteReply)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGeoRouteReply_" + qt.RandomIdentifier())
 	}
 	return n

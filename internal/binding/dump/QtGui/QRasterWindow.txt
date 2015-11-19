@@ -1,3 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QRasterWindow QRasterWindow::QRasterWindow commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qrasterwindow.h non constructor false false   QRasterWindow(QWindow *parent) [0xc8204fa3c0] }
-########################################			ENUMS			########################################

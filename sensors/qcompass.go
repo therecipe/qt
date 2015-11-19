@@ -27,7 +27,7 @@ func PointerFromQCompass(ptr QCompass_ITF) unsafe.Pointer {
 func NewQCompassFromPointer(ptr unsafe.Pointer) *QCompass {
 	var n = new(QCompass)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCompass_" + qt.RandomIdentifier())
 	}
 	return n

@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{exists QGlobalStatic::exists commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qglobalstatic.h non plain false false  bool bool exists() const [] }
-&{isDestroyed QGlobalStatic::isDestroyed commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qglobalstatic.h non plain false false  bool bool isDestroyed() const [] }
-&{operator Type * QGlobalStatic::operator Type * commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qglobalstatic.h non plain false false   operator Type *() [] }
-&{operator* QGlobalStatic::operator* commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qglobalstatic.h non plain false false  Type & Type & operator*() [] }
-&{operator-> QGlobalStatic::operator-> commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/global/qglobalstatic.h non plain false false  Type * Type * operator->() [] }
-########################################			ENUMS			########################################

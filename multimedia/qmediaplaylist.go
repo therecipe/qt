@@ -39,7 +39,7 @@ func PointerFromQMediaPlaylist(ptr QMediaPlaylist_ITF) unsafe.Pointer {
 func NewQMediaPlaylistFromPointer(ptr unsafe.Pointer) *QMediaPlaylist {
 	var n = new(QMediaPlaylist)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMediaPlaylist_" + qt.RandomIdentifier())
 	}
 	return n

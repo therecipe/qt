@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QTranslator QTranslator::QTranslator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtranslator.h non constructor false false   QTranslator(QObject *parent) [0xc82023ed60] }
-&{isEmpty QTranslator::isEmpty commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtranslator.h impure plain false false  bool bool isEmpty() const [] }
-&{load QTranslator::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtranslator.h non plain false true 2 bool bool load(const QLocale &locale, const QString &filename, const QString &prefix, const QString &directory, const QString &suffix) [0xc82023f2e0 0xc82023f3e0 0xc82023f4a0 0xc82023f560 0xc82023f660] }
-&{load QTranslator::load commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtranslator.h non plain false false  bool bool load(const QString &filename, const QString &directory, const QString &search_delimiters, const QString &suffix) [0xc82023f9c0 0xc82023fa60 0xc82023fbe0 0xc82023fd40] }
-&{load QTranslator::load commendable unsupported_CppInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtranslator.h non plain false true 3 bool bool load(const uchar *data, int len, const QString &directory) [0xc820238080 0xc820238160 0xc820238200] }
-&{translate QTranslator::translate commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtranslator.h impure plain false false  QString QString translate(const char *context, const char *sourceText, const char *disambiguation, int n) const [0xc820238540 0xc820238600 0xc8202386e0 0xc8202387e0] }
-&{~QTranslator QTranslator::~QTranslator commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qtranslator.h non destructor false false   ~QTranslator() [] }
-########################################			ENUMS			########################################

@@ -26,7 +26,7 @@ func PointerFromQCameraFeedbackControl(ptr QCameraFeedbackControl_ITF) unsafe.Po
 func NewQCameraFeedbackControlFromPointer(ptr unsafe.Pointer) *QCameraFeedbackControl {
 	var n = new(QCameraFeedbackControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCameraFeedbackControl_" + qt.RandomIdentifier())
 	}
 	return n

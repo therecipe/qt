@@ -27,7 +27,7 @@ func PointerFromQBluetoothLocalDevice(ptr QBluetoothLocalDevice_ITF) unsafe.Poin
 func NewQBluetoothLocalDeviceFromPointer(ptr unsafe.Pointer) *QBluetoothLocalDevice {
 	var n = new(QBluetoothLocalDevice)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QBluetoothLocalDevice_" + qt.RandomIdentifier())
 	}
 	return n

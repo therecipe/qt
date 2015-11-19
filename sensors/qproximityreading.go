@@ -26,7 +26,7 @@ func PointerFromQProximityReading(ptr QProximityReading_ITF) unsafe.Pointer {
 func NewQProximityReadingFromPointer(ptr unsafe.Pointer) *QProximityReading {
 	var n = new(QProximityReading)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QProximityReading_" + qt.RandomIdentifier())
 	}
 	return n

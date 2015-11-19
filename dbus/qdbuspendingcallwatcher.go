@@ -38,7 +38,7 @@ func PointerFromQDBusPendingCallWatcher(ptr QDBusPendingCallWatcher_ITF) unsafe.
 func NewQDBusPendingCallWatcherFromPointer(ptr unsafe.Pointer) *QDBusPendingCallWatcher {
 	var n = new(QDBusPendingCallWatcher)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDBusPendingCallWatcher_" + qt.RandomIdentifier())
 	}
 	return n

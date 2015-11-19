@@ -27,7 +27,7 @@ func PointerFromQDockWidget(ptr QDockWidget_ITF) unsafe.Pointer {
 func NewQDockWidgetFromPointer(ptr unsafe.Pointer) *QDockWidget {
 	var n = new(QDockWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDockWidget_" + qt.RandomIdentifier())
 	}
 	return n

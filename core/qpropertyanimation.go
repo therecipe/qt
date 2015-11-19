@@ -26,7 +26,7 @@ func PointerFromQPropertyAnimation(ptr QPropertyAnimation_ITF) unsafe.Pointer {
 func NewQPropertyAnimationFromPointer(ptr unsafe.Pointer) *QPropertyAnimation {
 	var n = new(QPropertyAnimation)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QPropertyAnimation_" + qt.RandomIdentifier())
 	}
 	return n

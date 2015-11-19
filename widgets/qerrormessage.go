@@ -26,7 +26,7 @@ func PointerFromQErrorMessage(ptr QErrorMessage_ITF) unsafe.Pointer {
 func NewQErrorMessageFromPointer(ptr unsafe.Pointer) *QErrorMessage {
 	var n = new(QErrorMessage)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QErrorMessage_" + qt.RandomIdentifier())
 	}
 	return n

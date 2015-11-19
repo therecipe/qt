@@ -27,7 +27,7 @@ func PointerFromQNearFieldShareTarget(ptr QNearFieldShareTarget_ITF) unsafe.Poin
 func NewQNearFieldShareTargetFromPointer(ptr unsafe.Pointer) *QNearFieldShareTarget {
 	var n = new(QNearFieldShareTarget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QNearFieldShareTarget_" + qt.RandomIdentifier())
 	}
 	return n

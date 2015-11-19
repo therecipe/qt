@@ -27,7 +27,7 @@ func PointerFromQOpenGLTimeMonitor(ptr QOpenGLTimeMonitor_ITF) unsafe.Pointer {
 func NewQOpenGLTimeMonitorFromPointer(ptr unsafe.Pointer) *QOpenGLTimeMonitor {
 	var n = new(QOpenGLTimeMonitor)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QOpenGLTimeMonitor_" + qt.RandomIdentifier())
 	}
 	return n

@@ -28,7 +28,7 @@ func PointerFromQFileSystemModel(ptr QFileSystemModel_ITF) unsafe.Pointer {
 func NewQFileSystemModelFromPointer(ptr unsafe.Pointer) *QFileSystemModel {
 	var n = new(QFileSystemModel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QFileSystemModel_" + qt.RandomIdentifier())
 	}
 	return n

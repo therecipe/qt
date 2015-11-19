@@ -27,7 +27,7 @@ func PointerFromQVideoEncoderSettingsControl(ptr QVideoEncoderSettingsControl_IT
 func NewQVideoEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QVideoEncoderSettingsControl {
 	var n = new(QVideoEncoderSettingsControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QVideoEncoderSettingsControl_" + qt.RandomIdentifier())
 	}
 	return n

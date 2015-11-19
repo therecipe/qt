@@ -27,7 +27,7 @@ func PointerFromQPressureSensor(ptr QPressureSensor_ITF) unsafe.Pointer {
 func NewQPressureSensorFromPointer(ptr unsafe.Pointer) *QPressureSensor {
 	var n = new(QPressureSensor)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QPressureSensor_" + qt.RandomIdentifier())
 	}
 	return n

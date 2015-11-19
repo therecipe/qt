@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QSqlDriverPlugin QSqlDriverPlugin::QSqlDriverPlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriverplugin.h non constructor false false   QSqlDriverPlugin(QObject *parent) [0xc820d11140] }
-&{create QSqlDriverPlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriverplugin.h pure plain false false  QSqlDriver * QSqlDriver * create(const QString &key) [0xc820d11320] }
-&{~QSqlDriverPlugin QSqlDriverPlugin::~QSqlDriverPlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/sql/kernel/qsqldriverplugin.h non destructor false false   ~QSqlDriverPlugin() [] }
-########################################			ENUMS			########################################

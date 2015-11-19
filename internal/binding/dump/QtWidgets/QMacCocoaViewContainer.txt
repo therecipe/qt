@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{cocoaView QMacCocoaViewContainer::cocoaView commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmaccocoaviewcontainer_mac.h non plain false false  NSView * NSView * cocoaView() const [] }
-&{setCocoaView QMacCocoaViewContainer::setCocoaView commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmaccocoaviewcontainer_mac.h non plain false false  void void setCocoaView(NSView *view) [0xc8214eb3a0] }
-&{~QMacCocoaViewContainer QMacCocoaViewContainer::~QMacCocoaViewContainer commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmaccocoaviewcontainer_mac.h impure destructor false false   ~QMacCocoaViewContainer() [] }
-&{QMacCocoaViewContainer QMacCocoaViewContainer::QMacCocoaViewContainer commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/widgets/widgets/qmaccocoaviewcontainer_mac.mm non constructor false false   QMacCocoaViewContainer(NSView *cocoaViewToWrap, QWidget *parent) [0xc8214eb920 0xc8214eba60] }
-########################################			ENUMS			########################################

@@ -40,7 +40,7 @@ func PointerFromQQuickItem(ptr QQuickItem_ITF) unsafe.Pointer {
 func NewQQuickItemFromPointer(ptr unsafe.Pointer) *QQuickItem {
 	var n = new(QQuickItem)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQuickItem_" + qt.RandomIdentifier())
 	}
 	return n

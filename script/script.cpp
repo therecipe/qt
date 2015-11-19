@@ -1,134 +1,8 @@
-#include "qscriptengineagent.h"
-#include <QModelIndex>
-#include <QScriptEngine>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QScriptEngineAgent>
-#include "_cgo_export.h"
-
-class MyQScriptEngineAgent: public QScriptEngineAgent {
-public:
-};
-
-void* QScriptEngineAgent_NewQScriptEngineAgent(void* engine){
-	return new QScriptEngineAgent(static_cast<QScriptEngine*>(engine));
-}
-
-void QScriptEngineAgent_ContextPop(void* ptr){
-	static_cast<QScriptEngineAgent*>(ptr)->contextPop();
-}
-
-void QScriptEngineAgent_ContextPush(void* ptr){
-	static_cast<QScriptEngineAgent*>(ptr)->contextPush();
-}
-
-void* QScriptEngineAgent_Engine(void* ptr){
-	return static_cast<QScriptEngineAgent*>(ptr)->engine();
-}
-
-void* QScriptEngineAgent_Extension(void* ptr, int extension, void* argument){
-	return new QVariant(static_cast<QScriptEngineAgent*>(ptr)->extension(static_cast<QScriptEngineAgent::Extension>(extension), *static_cast<QVariant*>(argument)));
-}
-
-int QScriptEngineAgent_SupportsExtension(void* ptr, int extension){
-	return static_cast<QScriptEngineAgent*>(ptr)->supportsExtension(static_cast<QScriptEngineAgent::Extension>(extension));
-}
-
-void QScriptEngineAgent_DestroyQScriptEngineAgent(void* ptr){
-	static_cast<QScriptEngineAgent*>(ptr)->~QScriptEngineAgent();
-}
-
-#include "qscriptclass.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QScriptEngine>
-#include <QScriptValue>
-#include <QScriptClass>
-#include "_cgo_export.h"
-
-class MyQScriptClass: public QScriptClass {
-public:
-};
-
-void* QScriptClass_NewQScriptClass(void* engine){
-	return new QScriptClass(static_cast<QScriptEngine*>(engine));
-}
-
-void* QScriptClass_Engine(void* ptr){
-	return static_cast<QScriptClass*>(ptr)->engine();
-}
-
-void* QScriptClass_Extension(void* ptr, int extension, void* argument){
-	return new QVariant(static_cast<QScriptClass*>(ptr)->extension(static_cast<QScriptClass::Extension>(extension), *static_cast<QVariant*>(argument)));
-}
-
-char* QScriptClass_Name(void* ptr){
-	return static_cast<QScriptClass*>(ptr)->name().toUtf8().data();
-}
-
-void* QScriptClass_NewIterator(void* ptr, void* object){
-	return static_cast<QScriptClass*>(ptr)->newIterator(*static_cast<QScriptValue*>(object));
-}
-
-void* QScriptClass_Prototype(void* ptr){
-	return new QScriptValue(static_cast<QScriptClass*>(ptr)->prototype());
-}
-
-int QScriptClass_SupportsExtension(void* ptr, int extension){
-	return static_cast<QScriptClass*>(ptr)->supportsExtension(static_cast<QScriptClass::Extension>(extension));
-}
-
-void QScriptClass_DestroyQScriptClass(void* ptr){
-	static_cast<QScriptClass*>(ptr)->~QScriptClass();
-}
-
-#include "qscriptextensionplugin.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QScriptEngine>
-#include <QScriptValue>
-#include <QScriptExtensionPlugin>
-#include "_cgo_export.h"
-
-class MyQScriptExtensionPlugin: public QScriptExtensionPlugin {
-public:
-};
-
-void QScriptExtensionPlugin_Initialize(void* ptr, char* key, void* engine){
-	static_cast<QScriptExtensionPlugin*>(ptr)->initialize(QString(key), static_cast<QScriptEngine*>(engine));
-}
-
-char* QScriptExtensionPlugin_Keys(void* ptr){
-	return static_cast<QScriptExtensionPlugin*>(ptr)->keys().join("|").toUtf8().data();
-}
-
-void* QScriptExtensionPlugin_SetupPackage(void* ptr, char* key, void* engine){
-	return new QScriptValue(static_cast<QScriptExtensionPlugin*>(ptr)->setupPackage(QString(key), static_cast<QScriptEngine*>(engine)));
-}
-
-void QScriptExtensionPlugin_DestroyQScriptExtensionPlugin(void* ptr){
-	static_cast<QScriptExtensionPlugin*>(ptr)->~QScriptExtensionPlugin();
-}
-
-#include "qscriptvalueiterator.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QScriptValue>
-#include <QScriptValueIterator>
-#include "_cgo_export.h"
-
 #include "qscriptprogram.h"
-#include <QUrl>
-#include <QModelIndex>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
 #include <QScriptProgram>
 #include "_cgo_export.h"
 
@@ -168,469 +42,108 @@ void QScriptProgram_DestroyQScriptProgram(void* ptr){
 	static_cast<QScriptProgram*>(ptr)->~QScriptProgram();
 }
 
-#include "qscriptcontextinfo.h"
+#include "qscriptengineagent.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QScriptContext>
-#include <QScriptContextInfo>
+#include <QScriptEngine>
+#include <QScriptEngineAgent>
 #include "_cgo_export.h"
 
-class MyQScriptContextInfo: public QScriptContextInfo {
+class MyQScriptEngineAgent: public QScriptEngineAgent {
 public:
 };
 
-void* QScriptContextInfo_NewQScriptContextInfo3(){
-	return new QScriptContextInfo();
+void* QScriptEngineAgent_NewQScriptEngineAgent(void* engine){
+	return new QScriptEngineAgent(static_cast<QScriptEngine*>(engine));
 }
 
-void* QScriptContextInfo_NewQScriptContextInfo(void* context){
-	return new QScriptContextInfo(static_cast<QScriptContext*>(context));
+void QScriptEngineAgent_ContextPop(void* ptr){
+	static_cast<QScriptEngineAgent*>(ptr)->contextPop();
 }
 
-void* QScriptContextInfo_NewQScriptContextInfo2(void* other){
-	return new QScriptContextInfo(*static_cast<QScriptContextInfo*>(other));
+void QScriptEngineAgent_ContextPush(void* ptr){
+	static_cast<QScriptEngineAgent*>(ptr)->contextPush();
 }
 
-char* QScriptContextInfo_FileName(void* ptr){
-	return static_cast<QScriptContextInfo*>(ptr)->fileName().toUtf8().data();
+void* QScriptEngineAgent_Engine(void* ptr){
+	return static_cast<QScriptEngineAgent*>(ptr)->engine();
 }
 
-int QScriptContextInfo_FunctionEndLineNumber(void* ptr){
-	return static_cast<QScriptContextInfo*>(ptr)->functionEndLineNumber();
+void* QScriptEngineAgent_Extension(void* ptr, int extension, void* argument){
+	return new QVariant(static_cast<QScriptEngineAgent*>(ptr)->extension(static_cast<QScriptEngineAgent::Extension>(extension), *static_cast<QVariant*>(argument)));
 }
 
-int QScriptContextInfo_FunctionMetaIndex(void* ptr){
-	return static_cast<QScriptContextInfo*>(ptr)->functionMetaIndex();
+int QScriptEngineAgent_SupportsExtension(void* ptr, int extension){
+	return static_cast<QScriptEngineAgent*>(ptr)->supportsExtension(static_cast<QScriptEngineAgent::Extension>(extension));
 }
 
-char* QScriptContextInfo_FunctionName(void* ptr){
-	return static_cast<QScriptContextInfo*>(ptr)->functionName().toUtf8().data();
+void QScriptEngineAgent_DestroyQScriptEngineAgent(void* ptr){
+	static_cast<QScriptEngineAgent*>(ptr)->~QScriptEngineAgent();
 }
 
-char* QScriptContextInfo_FunctionParameterNames(void* ptr){
-	return static_cast<QScriptContextInfo*>(ptr)->functionParameterNames().join("|").toUtf8().data();
+#include "qscriptextensionplugin.h"
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QScriptEngine>
+#include <QScriptValue>
+#include <QString>
+#include <QScriptExtensionPlugin>
+#include "_cgo_export.h"
+
+class MyQScriptExtensionPlugin: public QScriptExtensionPlugin {
+public:
+};
+
+void QScriptExtensionPlugin_Initialize(void* ptr, char* key, void* engine){
+	static_cast<QScriptExtensionPlugin*>(ptr)->initialize(QString(key), static_cast<QScriptEngine*>(engine));
 }
 
-int QScriptContextInfo_FunctionStartLineNumber(void* ptr){
-	return static_cast<QScriptContextInfo*>(ptr)->functionStartLineNumber();
+char* QScriptExtensionPlugin_Keys(void* ptr){
+	return static_cast<QScriptExtensionPlugin*>(ptr)->keys().join("|").toUtf8().data();
 }
 
-int QScriptContextInfo_FunctionType(void* ptr){
-	return static_cast<QScriptContextInfo*>(ptr)->functionType();
+void* QScriptExtensionPlugin_SetupPackage(void* ptr, char* key, void* engine){
+	return new QScriptValue(static_cast<QScriptExtensionPlugin*>(ptr)->setupPackage(QString(key), static_cast<QScriptEngine*>(engine)));
 }
 
-int QScriptContextInfo_IsNull(void* ptr){
-	return static_cast<QScriptContextInfo*>(ptr)->isNull();
+void QScriptExtensionPlugin_DestroyQScriptExtensionPlugin(void* ptr){
+	static_cast<QScriptExtensionPlugin*>(ptr)->~QScriptExtensionPlugin();
 }
 
-int QScriptContextInfo_LineNumber(void* ptr){
-	return static_cast<QScriptContextInfo*>(ptr)->lineNumber();
-}
-
-void QScriptContextInfo_DestroyQScriptContextInfo(void* ptr){
-	static_cast<QScriptContextInfo*>(ptr)->~QScriptContextInfo();
-}
-
-#include "qscriptstring.h"
+#include "qscriptvalueiterator.h"
+#include <QScriptValue>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QScriptString>
+#include <QScriptValueIterator>
 #include "_cgo_export.h"
-
-class MyQScriptString: public QScriptString {
-public:
-};
-
-void* QScriptString_NewQScriptString(){
-	return new QScriptString();
-}
-
-void* QScriptString_NewQScriptString2(void* other){
-	return new QScriptString(*static_cast<QScriptString*>(other));
-}
-
-int QScriptString_IsValid(void* ptr){
-	return static_cast<QScriptString*>(ptr)->isValid();
-}
-
-char* QScriptString_ToString(void* ptr){
-	return static_cast<QScriptString*>(ptr)->toString().toUtf8().data();
-}
-
-void QScriptString_DestroyQScriptString(void* ptr){
-	static_cast<QScriptString*>(ptr)->~QScriptString();
-}
-
-#include "qscriptsyntaxcheckresult.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QScriptSyntaxCheckResult>
-#include "_cgo_export.h"
-
-class MyQScriptSyntaxCheckResult: public QScriptSyntaxCheckResult {
-public:
-};
-
-void* QScriptSyntaxCheckResult_NewQScriptSyntaxCheckResult(void* other){
-	return new QScriptSyntaxCheckResult(*static_cast<QScriptSyntaxCheckResult*>(other));
-}
-
-int QScriptSyntaxCheckResult_ErrorColumnNumber(void* ptr){
-	return static_cast<QScriptSyntaxCheckResult*>(ptr)->errorColumnNumber();
-}
-
-int QScriptSyntaxCheckResult_ErrorLineNumber(void* ptr){
-	return static_cast<QScriptSyntaxCheckResult*>(ptr)->errorLineNumber();
-}
-
-char* QScriptSyntaxCheckResult_ErrorMessage(void* ptr){
-	return static_cast<QScriptSyntaxCheckResult*>(ptr)->errorMessage().toUtf8().data();
-}
-
-void QScriptSyntaxCheckResult_DestroyQScriptSyntaxCheckResult(void* ptr){
-	static_cast<QScriptSyntaxCheckResult*>(ptr)->~QScriptSyntaxCheckResult();
-}
 
 #include "qscriptclasspropertyiterator.h"
+#include <QScriptClass>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QScriptClass>
 #include <QScriptClassPropertyIterator>
 #include "_cgo_export.h"
 
-#include "qscriptengine.h"
-#include <QScriptValue>
-#include <QRegExp>
-#include <QScriptClass>
-#include <QScriptProgram>
-#include <QString>
-#include <QUrl>
-#include <QModelIndex>
-#include <QMetaObject>
-#include <QDate>
-#include <QVariant>
-#include <QScriptEngineAgent>
-#include <QDateTime>
-#include <QObject>
-#include <QScriptEngine>
-#include "_cgo_export.h"
-
-class MyQScriptEngine: public QScriptEngine {
-public:
-void Signal_SignalHandlerException(const QScriptValue & exception){callbackQScriptEngineSignalHandlerException(this->objectName().toUtf8().data(), new QScriptValue(exception));};
-};
-
-void* QScriptEngine_NewQScriptEngine(){
-	return new QScriptEngine();
-}
-
-void* QScriptEngine_NewQScriptEngine2(void* parent){
-	return new QScriptEngine(static_cast<QObject*>(parent));
-}
-
-void QScriptEngine_AbortEvaluation(void* ptr, void* result){
-	static_cast<QScriptEngine*>(ptr)->abortEvaluation(*static_cast<QScriptValue*>(result));
-}
-
-void* QScriptEngine_Agent(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->agent();
-}
-
-char* QScriptEngine_AvailableExtensions(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->availableExtensions().join("|").toUtf8().data();
-}
-
-void QScriptEngine_ClearExceptions(void* ptr){
-	static_cast<QScriptEngine*>(ptr)->clearExceptions();
-}
-
-void QScriptEngine_CollectGarbage(void* ptr){
-	static_cast<QScriptEngine*>(ptr)->collectGarbage();
-}
-
-void* QScriptEngine_CurrentContext(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->currentContext();
-}
-
-void* QScriptEngine_DefaultPrototype(void* ptr, int metaTypeId){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->defaultPrototype(metaTypeId));
-}
-
-void* QScriptEngine_Evaluate2(void* ptr, void* program){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->evaluate(*static_cast<QScriptProgram*>(program)));
-}
-
-void* QScriptEngine_Evaluate(void* ptr, char* program, char* fileName, int lineNumber){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->evaluate(QString(program), QString(fileName), lineNumber));
-}
-
-void* QScriptEngine_GlobalObject(void* ptr){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->globalObject());
-}
-
-int QScriptEngine_HasUncaughtException(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->hasUncaughtException();
-}
-
-void* QScriptEngine_ImportExtension(void* ptr, char* extension){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->importExtension(QString(extension)));
-}
-
-char* QScriptEngine_ImportedExtensions(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->importedExtensions().join("|").toUtf8().data();
-}
-
-void QScriptEngine_InstallTranslatorFunctions(void* ptr, void* object){
-	static_cast<QScriptEngine*>(ptr)->installTranslatorFunctions(*static_cast<QScriptValue*>(object));
-}
-
-int QScriptEngine_IsEvaluating(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->isEvaluating();
-}
-
-void* QScriptEngine_NewDate2(void* ptr, void* value){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newDate(*static_cast<QDateTime*>(value)));
-}
-
-void* QScriptEngine_NewObject(void* ptr){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newObject());
-}
-
-void* QScriptEngine_NewObject2(void* ptr, void* scriptClass, void* data){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newObject(static_cast<QScriptClass*>(scriptClass), *static_cast<QScriptValue*>(data)));
-}
-
-void* QScriptEngine_NewQMetaObject(void* ptr, void* metaObject, void* ctor){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQMetaObject(static_cast<QMetaObject*>(metaObject), *static_cast<QScriptValue*>(ctor)));
-}
-
-void* QScriptEngine_NewQObject(void* ptr, void* object, int ownership, int options){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQObject(static_cast<QObject*>(object), static_cast<QScriptEngine::ValueOwnership>(ownership), static_cast<QScriptEngine::QObjectWrapOption>(options)));
-}
-
-void* QScriptEngine_NewQObject2(void* ptr, void* scriptObject, void* qtObject, int ownership, int options){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQObject(*static_cast<QScriptValue*>(scriptObject), static_cast<QObject*>(qtObject), static_cast<QScriptEngine::ValueOwnership>(ownership), static_cast<QScriptEngine::QObjectWrapOption>(options)));
-}
-
-void* QScriptEngine_NewRegExp(void* ptr, void* regexp){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newRegExp(*static_cast<QRegExp*>(regexp)));
-}
-
-void* QScriptEngine_NewRegExp2(void* ptr, char* pattern, char* flags){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newRegExp(QString(pattern), QString(flags)));
-}
-
-void* QScriptEngine_NewVariant2(void* ptr, void* object, void* value){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newVariant(*static_cast<QScriptValue*>(object), *static_cast<QVariant*>(value)));
-}
-
-void* QScriptEngine_NewVariant(void* ptr, void* value){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newVariant(*static_cast<QVariant*>(value)));
-}
-
-void* QScriptEngine_NullValue(void* ptr){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->nullValue());
-}
-
-void QScriptEngine_PopContext(void* ptr){
-	static_cast<QScriptEngine*>(ptr)->popContext();
-}
-
-int QScriptEngine_ProcessEventsInterval(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->processEventsInterval();
-}
-
-void* QScriptEngine_PushContext(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->pushContext();
-}
-
-void QScriptEngine_ReportAdditionalMemoryCost(void* ptr, int size){
-	static_cast<QScriptEngine*>(ptr)->reportAdditionalMemoryCost(size);
-}
-
-void QScriptEngine_SetAgent(void* ptr, void* agent){
-	static_cast<QScriptEngine*>(ptr)->setAgent(static_cast<QScriptEngineAgent*>(agent));
-}
-
-void QScriptEngine_SetDefaultPrototype(void* ptr, int metaTypeId, void* prototype){
-	static_cast<QScriptEngine*>(ptr)->setDefaultPrototype(metaTypeId, *static_cast<QScriptValue*>(prototype));
-}
-
-void QScriptEngine_SetGlobalObject(void* ptr, void* object){
-	static_cast<QScriptEngine*>(ptr)->setGlobalObject(*static_cast<QScriptValue*>(object));
-}
-
-void QScriptEngine_SetProcessEventsInterval(void* ptr, int interval){
-	static_cast<QScriptEngine*>(ptr)->setProcessEventsInterval(interval);
-}
-
-void QScriptEngine_ConnectSignalHandlerException(void* ptr){
-	QObject::connect(static_cast<QScriptEngine*>(ptr), static_cast<void (QScriptEngine::*)(const QScriptValue &)>(&QScriptEngine::signalHandlerException), static_cast<MyQScriptEngine*>(ptr), static_cast<void (MyQScriptEngine::*)(const QScriptValue &)>(&MyQScriptEngine::Signal_SignalHandlerException));;
-}
-
-void QScriptEngine_DisconnectSignalHandlerException(void* ptr){
-	QObject::disconnect(static_cast<QScriptEngine*>(ptr), static_cast<void (QScriptEngine::*)(const QScriptValue &)>(&QScriptEngine::signalHandlerException), static_cast<MyQScriptEngine*>(ptr), static_cast<void (MyQScriptEngine::*)(const QScriptValue &)>(&MyQScriptEngine::Signal_SignalHandlerException));;
-}
-
-void* QScriptEngine_ToObject(void* ptr, void* value){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->toObject(*static_cast<QScriptValue*>(value)));
-}
-
-void* QScriptEngine_UncaughtException(void* ptr){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->uncaughtException());
-}
-
-char* QScriptEngine_UncaughtExceptionBacktrace(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->uncaughtExceptionBacktrace().join("|").toUtf8().data();
-}
-
-int QScriptEngine_UncaughtExceptionLineNumber(void* ptr){
-	return static_cast<QScriptEngine*>(ptr)->uncaughtExceptionLineNumber();
-}
-
-void* QScriptEngine_UndefinedValue(void* ptr){
-	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->undefinedValue());
-}
-
-void QScriptEngine_DestroyQScriptEngine(void* ptr){
-	static_cast<QScriptEngine*>(ptr)->~QScriptEngine();
-}
-
-#include "qscriptcontext.h"
-#include <QModelIndex>
-#include <QScriptValue>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QScriptContext>
-#include "_cgo_export.h"
-
-class MyQScriptContext: public QScriptContext {
-public:
-};
-
-void* QScriptContext_ActivationObject(void* ptr){
-	return new QScriptValue(static_cast<QScriptContext*>(ptr)->activationObject());
-}
-
-void* QScriptContext_Argument(void* ptr, int index){
-	return new QScriptValue(static_cast<QScriptContext*>(ptr)->argument(index));
-}
-
-int QScriptContext_ArgumentCount(void* ptr){
-	return static_cast<QScriptContext*>(ptr)->argumentCount();
-}
-
-void* QScriptContext_ArgumentsObject(void* ptr){
-	return new QScriptValue(static_cast<QScriptContext*>(ptr)->argumentsObject());
-}
-
-char* QScriptContext_Backtrace(void* ptr){
-	return static_cast<QScriptContext*>(ptr)->backtrace().join("|").toUtf8().data();
-}
-
-void* QScriptContext_Callee(void* ptr){
-	return new QScriptValue(static_cast<QScriptContext*>(ptr)->callee());
-}
-
-void* QScriptContext_Engine(void* ptr){
-	return static_cast<QScriptContext*>(ptr)->engine();
-}
-
-int QScriptContext_IsCalledAsConstructor(void* ptr){
-	return static_cast<QScriptContext*>(ptr)->isCalledAsConstructor();
-}
-
-void* QScriptContext_ParentContext(void* ptr){
-	return static_cast<QScriptContext*>(ptr)->parentContext();
-}
-
-void QScriptContext_SetActivationObject(void* ptr, void* activation){
-	static_cast<QScriptContext*>(ptr)->setActivationObject(*static_cast<QScriptValue*>(activation));
-}
-
-void QScriptContext_SetThisObject(void* ptr, void* thisObject){
-	static_cast<QScriptContext*>(ptr)->setThisObject(*static_cast<QScriptValue*>(thisObject));
-}
-
-void* QScriptContext_ThisObject(void* ptr){
-	return new QScriptValue(static_cast<QScriptContext*>(ptr)->thisObject());
-}
-
-void* QScriptContext_ThrowError(void* ptr, int error, char* text){
-	return new QScriptValue(static_cast<QScriptContext*>(ptr)->throwError(static_cast<QScriptContext::Error>(error), QString(text)));
-}
-
-void* QScriptContext_ThrowError2(void* ptr, char* text){
-	return new QScriptValue(static_cast<QScriptContext*>(ptr)->throwError(QString(text)));
-}
-
-void* QScriptContext_ThrowValue(void* ptr, void* value){
-	return new QScriptValue(static_cast<QScriptContext*>(ptr)->throwValue(*static_cast<QScriptValue*>(value)));
-}
-
-char* QScriptContext_ToString(void* ptr){
-	return static_cast<QScriptContext*>(ptr)->toString().toUtf8().data();
-}
-
-void QScriptContext_DestroyQScriptContext(void* ptr){
-	static_cast<QScriptContext*>(ptr)->~QScriptContext();
-}
-
-#include "qscriptable.h"
-#include <QScriptValue>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QScriptable>
-#include "_cgo_export.h"
-
-class MyQScriptable: public QScriptable {
-public:
-};
-
-void* QScriptable_Argument(void* ptr, int index){
-	return new QScriptValue(static_cast<QScriptable*>(ptr)->argument(index));
-}
-
-int QScriptable_ArgumentCount(void* ptr){
-	return static_cast<QScriptable*>(ptr)->argumentCount();
-}
-
-void* QScriptable_Context(void* ptr){
-	return static_cast<QScriptable*>(ptr)->context();
-}
-
-void* QScriptable_Engine(void* ptr){
-	return static_cast<QScriptable*>(ptr)->engine();
-}
-
-void* QScriptable_ThisObject(void* ptr){
-	return new QScriptValue(static_cast<QScriptable*>(ptr)->thisObject());
-}
-
 #include "qscriptvalue.h"
-#include <QScriptClass>
-#include <QString>
-#include <QDateTime>
-#include <QObject>
-#include <QRegExp>
-#include <QLatin1String>
-#include <QScriptString>
 #include <QMetaObject>
+#include <QDate>
+#include <QRegExp>
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QDate>
+#include <QObject>
+#include <QScriptString>
+#include <QLatin1String>
+#include <QScriptClass>
+#include <QDateTime>
 #include <QScriptValue>
 #include "_cgo_export.h"
 
@@ -836,5 +349,492 @@ void* QScriptValue_ToVariant(void* ptr){
 
 void QScriptValue_DestroyQScriptValue(void* ptr){
 	static_cast<QScriptValue*>(ptr)->~QScriptValue();
+}
+
+#include "qscriptcontext.h"
+#include <QModelIndex>
+#include <QScriptValue>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QScriptContext>
+#include "_cgo_export.h"
+
+class MyQScriptContext: public QScriptContext {
+public:
+};
+
+void* QScriptContext_ActivationObject(void* ptr){
+	return new QScriptValue(static_cast<QScriptContext*>(ptr)->activationObject());
+}
+
+void* QScriptContext_Argument(void* ptr, int index){
+	return new QScriptValue(static_cast<QScriptContext*>(ptr)->argument(index));
+}
+
+int QScriptContext_ArgumentCount(void* ptr){
+	return static_cast<QScriptContext*>(ptr)->argumentCount();
+}
+
+void* QScriptContext_ArgumentsObject(void* ptr){
+	return new QScriptValue(static_cast<QScriptContext*>(ptr)->argumentsObject());
+}
+
+char* QScriptContext_Backtrace(void* ptr){
+	return static_cast<QScriptContext*>(ptr)->backtrace().join("|").toUtf8().data();
+}
+
+void* QScriptContext_Callee(void* ptr){
+	return new QScriptValue(static_cast<QScriptContext*>(ptr)->callee());
+}
+
+void* QScriptContext_Engine(void* ptr){
+	return static_cast<QScriptContext*>(ptr)->engine();
+}
+
+int QScriptContext_IsCalledAsConstructor(void* ptr){
+	return static_cast<QScriptContext*>(ptr)->isCalledAsConstructor();
+}
+
+void* QScriptContext_ParentContext(void* ptr){
+	return static_cast<QScriptContext*>(ptr)->parentContext();
+}
+
+void QScriptContext_SetActivationObject(void* ptr, void* activation){
+	static_cast<QScriptContext*>(ptr)->setActivationObject(*static_cast<QScriptValue*>(activation));
+}
+
+void QScriptContext_SetThisObject(void* ptr, void* thisObject){
+	static_cast<QScriptContext*>(ptr)->setThisObject(*static_cast<QScriptValue*>(thisObject));
+}
+
+void* QScriptContext_ThisObject(void* ptr){
+	return new QScriptValue(static_cast<QScriptContext*>(ptr)->thisObject());
+}
+
+void* QScriptContext_ThrowError(void* ptr, int error, char* text){
+	return new QScriptValue(static_cast<QScriptContext*>(ptr)->throwError(static_cast<QScriptContext::Error>(error), QString(text)));
+}
+
+void* QScriptContext_ThrowError2(void* ptr, char* text){
+	return new QScriptValue(static_cast<QScriptContext*>(ptr)->throwError(QString(text)));
+}
+
+void* QScriptContext_ThrowValue(void* ptr, void* value){
+	return new QScriptValue(static_cast<QScriptContext*>(ptr)->throwValue(*static_cast<QScriptValue*>(value)));
+}
+
+char* QScriptContext_ToString(void* ptr){
+	return static_cast<QScriptContext*>(ptr)->toString().toUtf8().data();
+}
+
+void QScriptContext_DestroyQScriptContext(void* ptr){
+	static_cast<QScriptContext*>(ptr)->~QScriptContext();
+}
+
+#include "qscriptsyntaxcheckresult.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QScriptSyntaxCheckResult>
+#include "_cgo_export.h"
+
+class MyQScriptSyntaxCheckResult: public QScriptSyntaxCheckResult {
+public:
+};
+
+void* QScriptSyntaxCheckResult_NewQScriptSyntaxCheckResult(void* other){
+	return new QScriptSyntaxCheckResult(*static_cast<QScriptSyntaxCheckResult*>(other));
+}
+
+int QScriptSyntaxCheckResult_ErrorColumnNumber(void* ptr){
+	return static_cast<QScriptSyntaxCheckResult*>(ptr)->errorColumnNumber();
+}
+
+int QScriptSyntaxCheckResult_ErrorLineNumber(void* ptr){
+	return static_cast<QScriptSyntaxCheckResult*>(ptr)->errorLineNumber();
+}
+
+char* QScriptSyntaxCheckResult_ErrorMessage(void* ptr){
+	return static_cast<QScriptSyntaxCheckResult*>(ptr)->errorMessage().toUtf8().data();
+}
+
+void QScriptSyntaxCheckResult_DestroyQScriptSyntaxCheckResult(void* ptr){
+	static_cast<QScriptSyntaxCheckResult*>(ptr)->~QScriptSyntaxCheckResult();
+}
+
+#include "qscriptstring.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QScriptString>
+#include "_cgo_export.h"
+
+class MyQScriptString: public QScriptString {
+public:
+};
+
+void* QScriptString_NewQScriptString(){
+	return new QScriptString();
+}
+
+void* QScriptString_NewQScriptString2(void* other){
+	return new QScriptString(*static_cast<QScriptString*>(other));
+}
+
+int QScriptString_IsValid(void* ptr){
+	return static_cast<QScriptString*>(ptr)->isValid();
+}
+
+char* QScriptString_ToString(void* ptr){
+	return static_cast<QScriptString*>(ptr)->toString().toUtf8().data();
+}
+
+void QScriptString_DestroyQScriptString(void* ptr){
+	static_cast<QScriptString*>(ptr)->~QScriptString();
+}
+
+#include "qscriptengine.h"
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QDateTime>
+#include <QObject>
+#include <QMetaObject>
+#include <QDate>
+#include <QRegExp>
+#include <QString>
+#include <QScriptClass>
+#include <QScriptProgram>
+#include <QScriptEngineAgent>
+#include <QScriptValue>
+#include <QScriptEngine>
+#include "_cgo_export.h"
+
+class MyQScriptEngine: public QScriptEngine {
+public:
+void Signal_SignalHandlerException(const QScriptValue & exception){callbackQScriptEngineSignalHandlerException(this->objectName().toUtf8().data(), new QScriptValue(exception));};
+};
+
+void* QScriptEngine_NewQScriptEngine(){
+	return new QScriptEngine();
+}
+
+void* QScriptEngine_NewQScriptEngine2(void* parent){
+	return new QScriptEngine(static_cast<QObject*>(parent));
+}
+
+void QScriptEngine_AbortEvaluation(void* ptr, void* result){
+	static_cast<QScriptEngine*>(ptr)->abortEvaluation(*static_cast<QScriptValue*>(result));
+}
+
+void* QScriptEngine_Agent(void* ptr){
+	return static_cast<QScriptEngine*>(ptr)->agent();
+}
+
+char* QScriptEngine_AvailableExtensions(void* ptr){
+	return static_cast<QScriptEngine*>(ptr)->availableExtensions().join("|").toUtf8().data();
+}
+
+void QScriptEngine_ClearExceptions(void* ptr){
+	static_cast<QScriptEngine*>(ptr)->clearExceptions();
+}
+
+void QScriptEngine_CollectGarbage(void* ptr){
+	static_cast<QScriptEngine*>(ptr)->collectGarbage();
+}
+
+void* QScriptEngine_CurrentContext(void* ptr){
+	return static_cast<QScriptEngine*>(ptr)->currentContext();
+}
+
+void* QScriptEngine_DefaultPrototype(void* ptr, int metaTypeId){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->defaultPrototype(metaTypeId));
+}
+
+void* QScriptEngine_Evaluate2(void* ptr, void* program){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->evaluate(*static_cast<QScriptProgram*>(program)));
+}
+
+void* QScriptEngine_Evaluate(void* ptr, char* program, char* fileName, int lineNumber){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->evaluate(QString(program), QString(fileName), lineNumber));
+}
+
+void* QScriptEngine_GlobalObject(void* ptr){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->globalObject());
+}
+
+int QScriptEngine_HasUncaughtException(void* ptr){
+	return static_cast<QScriptEngine*>(ptr)->hasUncaughtException();
+}
+
+void* QScriptEngine_ImportExtension(void* ptr, char* extension){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->importExtension(QString(extension)));
+}
+
+char* QScriptEngine_ImportedExtensions(void* ptr){
+	return static_cast<QScriptEngine*>(ptr)->importedExtensions().join("|").toUtf8().data();
+}
+
+void QScriptEngine_InstallTranslatorFunctions(void* ptr, void* object){
+	static_cast<QScriptEngine*>(ptr)->installTranslatorFunctions(*static_cast<QScriptValue*>(object));
+}
+
+int QScriptEngine_IsEvaluating(void* ptr){
+	return static_cast<QScriptEngine*>(ptr)->isEvaluating();
+}
+
+void* QScriptEngine_NewDate2(void* ptr, void* value){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newDate(*static_cast<QDateTime*>(value)));
+}
+
+void* QScriptEngine_NewObject(void* ptr){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newObject());
+}
+
+void* QScriptEngine_NewObject2(void* ptr, void* scriptClass, void* data){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newObject(static_cast<QScriptClass*>(scriptClass), *static_cast<QScriptValue*>(data)));
+}
+
+void* QScriptEngine_NewQMetaObject(void* ptr, void* metaObject, void* ctor){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQMetaObject(static_cast<QMetaObject*>(metaObject), *static_cast<QScriptValue*>(ctor)));
+}
+
+void* QScriptEngine_NewQObject(void* ptr, void* object, int ownership, int options){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQObject(static_cast<QObject*>(object), static_cast<QScriptEngine::ValueOwnership>(ownership), static_cast<QScriptEngine::QObjectWrapOption>(options)));
+}
+
+void* QScriptEngine_NewQObject2(void* ptr, void* scriptObject, void* qtObject, int ownership, int options){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newQObject(*static_cast<QScriptValue*>(scriptObject), static_cast<QObject*>(qtObject), static_cast<QScriptEngine::ValueOwnership>(ownership), static_cast<QScriptEngine::QObjectWrapOption>(options)));
+}
+
+void* QScriptEngine_NewRegExp(void* ptr, void* regexp){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newRegExp(*static_cast<QRegExp*>(regexp)));
+}
+
+void* QScriptEngine_NewRegExp2(void* ptr, char* pattern, char* flags){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newRegExp(QString(pattern), QString(flags)));
+}
+
+void* QScriptEngine_NewVariant2(void* ptr, void* object, void* value){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newVariant(*static_cast<QScriptValue*>(object), *static_cast<QVariant*>(value)));
+}
+
+void* QScriptEngine_NewVariant(void* ptr, void* value){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->newVariant(*static_cast<QVariant*>(value)));
+}
+
+void* QScriptEngine_NullValue(void* ptr){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->nullValue());
+}
+
+void QScriptEngine_PopContext(void* ptr){
+	static_cast<QScriptEngine*>(ptr)->popContext();
+}
+
+int QScriptEngine_ProcessEventsInterval(void* ptr){
+	return static_cast<QScriptEngine*>(ptr)->processEventsInterval();
+}
+
+void* QScriptEngine_PushContext(void* ptr){
+	return static_cast<QScriptEngine*>(ptr)->pushContext();
+}
+
+void QScriptEngine_ReportAdditionalMemoryCost(void* ptr, int size){
+	static_cast<QScriptEngine*>(ptr)->reportAdditionalMemoryCost(size);
+}
+
+void QScriptEngine_SetAgent(void* ptr, void* agent){
+	static_cast<QScriptEngine*>(ptr)->setAgent(static_cast<QScriptEngineAgent*>(agent));
+}
+
+void QScriptEngine_SetDefaultPrototype(void* ptr, int metaTypeId, void* prototype){
+	static_cast<QScriptEngine*>(ptr)->setDefaultPrototype(metaTypeId, *static_cast<QScriptValue*>(prototype));
+}
+
+void QScriptEngine_SetGlobalObject(void* ptr, void* object){
+	static_cast<QScriptEngine*>(ptr)->setGlobalObject(*static_cast<QScriptValue*>(object));
+}
+
+void QScriptEngine_SetProcessEventsInterval(void* ptr, int interval){
+	static_cast<QScriptEngine*>(ptr)->setProcessEventsInterval(interval);
+}
+
+void QScriptEngine_ConnectSignalHandlerException(void* ptr){
+	QObject::connect(static_cast<QScriptEngine*>(ptr), static_cast<void (QScriptEngine::*)(const QScriptValue &)>(&QScriptEngine::signalHandlerException), static_cast<MyQScriptEngine*>(ptr), static_cast<void (MyQScriptEngine::*)(const QScriptValue &)>(&MyQScriptEngine::Signal_SignalHandlerException));;
+}
+
+void QScriptEngine_DisconnectSignalHandlerException(void* ptr){
+	QObject::disconnect(static_cast<QScriptEngine*>(ptr), static_cast<void (QScriptEngine::*)(const QScriptValue &)>(&QScriptEngine::signalHandlerException), static_cast<MyQScriptEngine*>(ptr), static_cast<void (MyQScriptEngine::*)(const QScriptValue &)>(&MyQScriptEngine::Signal_SignalHandlerException));;
+}
+
+void* QScriptEngine_ToObject(void* ptr, void* value){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->toObject(*static_cast<QScriptValue*>(value)));
+}
+
+void* QScriptEngine_UncaughtException(void* ptr){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->uncaughtException());
+}
+
+char* QScriptEngine_UncaughtExceptionBacktrace(void* ptr){
+	return static_cast<QScriptEngine*>(ptr)->uncaughtExceptionBacktrace().join("|").toUtf8().data();
+}
+
+int QScriptEngine_UncaughtExceptionLineNumber(void* ptr){
+	return static_cast<QScriptEngine*>(ptr)->uncaughtExceptionLineNumber();
+}
+
+void* QScriptEngine_UndefinedValue(void* ptr){
+	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->undefinedValue());
+}
+
+void QScriptEngine_DestroyQScriptEngine(void* ptr){
+	static_cast<QScriptEngine*>(ptr)->~QScriptEngine();
+}
+
+#include "qscriptcontextinfo.h"
+#include <QScriptContext>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QScriptContextInfo>
+#include "_cgo_export.h"
+
+class MyQScriptContextInfo: public QScriptContextInfo {
+public:
+};
+
+void* QScriptContextInfo_NewQScriptContextInfo3(){
+	return new QScriptContextInfo();
+}
+
+void* QScriptContextInfo_NewQScriptContextInfo(void* context){
+	return new QScriptContextInfo(static_cast<QScriptContext*>(context));
+}
+
+void* QScriptContextInfo_NewQScriptContextInfo2(void* other){
+	return new QScriptContextInfo(*static_cast<QScriptContextInfo*>(other));
+}
+
+char* QScriptContextInfo_FileName(void* ptr){
+	return static_cast<QScriptContextInfo*>(ptr)->fileName().toUtf8().data();
+}
+
+int QScriptContextInfo_FunctionEndLineNumber(void* ptr){
+	return static_cast<QScriptContextInfo*>(ptr)->functionEndLineNumber();
+}
+
+int QScriptContextInfo_FunctionMetaIndex(void* ptr){
+	return static_cast<QScriptContextInfo*>(ptr)->functionMetaIndex();
+}
+
+char* QScriptContextInfo_FunctionName(void* ptr){
+	return static_cast<QScriptContextInfo*>(ptr)->functionName().toUtf8().data();
+}
+
+char* QScriptContextInfo_FunctionParameterNames(void* ptr){
+	return static_cast<QScriptContextInfo*>(ptr)->functionParameterNames().join("|").toUtf8().data();
+}
+
+int QScriptContextInfo_FunctionStartLineNumber(void* ptr){
+	return static_cast<QScriptContextInfo*>(ptr)->functionStartLineNumber();
+}
+
+int QScriptContextInfo_FunctionType(void* ptr){
+	return static_cast<QScriptContextInfo*>(ptr)->functionType();
+}
+
+int QScriptContextInfo_IsNull(void* ptr){
+	return static_cast<QScriptContextInfo*>(ptr)->isNull();
+}
+
+int QScriptContextInfo_LineNumber(void* ptr){
+	return static_cast<QScriptContextInfo*>(ptr)->lineNumber();
+}
+
+void QScriptContextInfo_DestroyQScriptContextInfo(void* ptr){
+	static_cast<QScriptContextInfo*>(ptr)->~QScriptContextInfo();
+}
+
+#include "qscriptable.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QScriptValue>
+#include <QScriptable>
+#include "_cgo_export.h"
+
+class MyQScriptable: public QScriptable {
+public:
+};
+
+void* QScriptable_Argument(void* ptr, int index){
+	return new QScriptValue(static_cast<QScriptable*>(ptr)->argument(index));
+}
+
+int QScriptable_ArgumentCount(void* ptr){
+	return static_cast<QScriptable*>(ptr)->argumentCount();
+}
+
+void* QScriptable_Context(void* ptr){
+	return static_cast<QScriptable*>(ptr)->context();
+}
+
+void* QScriptable_Engine(void* ptr){
+	return static_cast<QScriptable*>(ptr)->engine();
+}
+
+void* QScriptable_ThisObject(void* ptr){
+	return new QScriptValue(static_cast<QScriptable*>(ptr)->thisObject());
+}
+
+#include "qscriptclass.h"
+#include <QScriptValue>
+#include <QScriptEngine>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QScriptClass>
+#include "_cgo_export.h"
+
+class MyQScriptClass: public QScriptClass {
+public:
+};
+
+void* QScriptClass_NewQScriptClass(void* engine){
+	return new QScriptClass(static_cast<QScriptEngine*>(engine));
+}
+
+void* QScriptClass_Engine(void* ptr){
+	return static_cast<QScriptClass*>(ptr)->engine();
+}
+
+void* QScriptClass_Extension(void* ptr, int extension, void* argument){
+	return new QVariant(static_cast<QScriptClass*>(ptr)->extension(static_cast<QScriptClass::Extension>(extension), *static_cast<QVariant*>(argument)));
+}
+
+char* QScriptClass_Name(void* ptr){
+	return static_cast<QScriptClass*>(ptr)->name().toUtf8().data();
+}
+
+void* QScriptClass_NewIterator(void* ptr, void* object){
+	return static_cast<QScriptClass*>(ptr)->newIterator(*static_cast<QScriptValue*>(object));
+}
+
+void* QScriptClass_Prototype(void* ptr){
+	return new QScriptValue(static_cast<QScriptClass*>(ptr)->prototype());
+}
+
+int QScriptClass_SupportsExtension(void* ptr, int extension){
+	return static_cast<QScriptClass*>(ptr)->supportsExtension(static_cast<QScriptClass::Extension>(extension));
+}
+
+void QScriptClass_DestroyQScriptClass(void* ptr){
+	static_cast<QScriptClass*>(ptr)->~QScriptClass();
 }
 

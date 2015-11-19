@@ -28,7 +28,7 @@ func PointerFromQSplashScreen(ptr QSplashScreen_ITF) unsafe.Pointer {
 func NewQSplashScreenFromPointer(ptr unsafe.Pointer) *QSplashScreen {
 	var n = new(QSplashScreen)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSplashScreen_" + qt.RandomIdentifier())
 	}
 	return n

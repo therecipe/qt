@@ -27,7 +27,7 @@ func PointerFromQGraphicsTransform(ptr QGraphicsTransform_ITF) unsafe.Pointer {
 func NewQGraphicsTransformFromPointer(ptr unsafe.Pointer) *QGraphicsTransform {
 	var n = new(QGraphicsTransform)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsTransform_" + qt.RandomIdentifier())
 	}
 	return n

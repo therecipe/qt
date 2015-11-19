@@ -27,7 +27,7 @@ func PointerFromQHelpSearchQueryWidget(ptr QHelpSearchQueryWidget_ITF) unsafe.Po
 func NewQHelpSearchQueryWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchQueryWidget {
 	var n = new(QHelpSearchQueryWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QHelpSearchQueryWidget_" + qt.RandomIdentifier())
 	}
 	return n

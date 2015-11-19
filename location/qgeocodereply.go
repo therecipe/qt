@@ -27,7 +27,7 @@ func PointerFromQGeoCodeReply(ptr QGeoCodeReply_ITF) unsafe.Pointer {
 func NewQGeoCodeReplyFromPointer(ptr unsafe.Pointer) *QGeoCodeReply {
 	var n = new(QGeoCodeReply)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGeoCodeReply_" + qt.RandomIdentifier())
 	}
 	return n

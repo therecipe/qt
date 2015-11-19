@@ -29,7 +29,7 @@ func PointerFromQQuickView(ptr QQuickView_ITF) unsafe.Pointer {
 func NewQQuickViewFromPointer(ptr unsafe.Pointer) *QQuickView {
 	var n = new(QQuickView)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQuickView_" + qt.RandomIdentifier())
 	}
 	return n

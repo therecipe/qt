@@ -28,7 +28,7 @@ func PointerFromQLabel(ptr QLabel_ITF) unsafe.Pointer {
 func NewQLabelFromPointer(ptr unsafe.Pointer) *QLabel {
 	var n = new(QLabel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QLabel_" + qt.RandomIdentifier())
 	}
 	return n

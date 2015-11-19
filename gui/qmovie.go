@@ -27,7 +27,7 @@ func PointerFromQMovie(ptr QMovie_ITF) unsafe.Pointer {
 func NewQMovieFromPointer(ptr unsafe.Pointer) *QMovie {
 	var n = new(QMovie)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMovie_" + qt.RandomIdentifier())
 	}
 	return n

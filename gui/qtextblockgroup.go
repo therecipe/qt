@@ -26,7 +26,7 @@ func PointerFromQTextBlockGroup(ptr QTextBlockGroup_ITF) unsafe.Pointer {
 func NewQTextBlockGroupFromPointer(ptr unsafe.Pointer) *QTextBlockGroup {
 	var n = new(QTextBlockGroup)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTextBlockGroup_" + qt.RandomIdentifier())
 	}
 	return n

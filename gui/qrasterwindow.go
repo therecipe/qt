@@ -26,7 +26,7 @@ func PointerFromQRasterWindow(ptr QRasterWindow_ITF) unsafe.Pointer {
 func NewQRasterWindowFromPointer(ptr unsafe.Pointer) *QRasterWindow {
 	var n = new(QRasterWindow)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QRasterWindow_" + qt.RandomIdentifier())
 	}
 	return n

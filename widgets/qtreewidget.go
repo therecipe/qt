@@ -28,7 +28,7 @@ func PointerFromQTreeWidget(ptr QTreeWidget_ITF) unsafe.Pointer {
 func NewQTreeWidgetFromPointer(ptr unsafe.Pointer) *QTreeWidget {
 	var n = new(QTreeWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTreeWidget_" + qt.RandomIdentifier())
 	}
 	return n

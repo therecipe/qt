@@ -27,7 +27,7 @@ func PointerFromQSettings(ptr QSettings_ITF) unsafe.Pointer {
 func NewQSettingsFromPointer(ptr unsafe.Pointer) *QSettings {
 	var n = new(QSettings)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSettings_" + qt.RandomIdentifier())
 	}
 	return n

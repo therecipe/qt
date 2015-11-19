@@ -27,7 +27,7 @@ func PointerFromQLowEnergyController(ptr QLowEnergyController_ITF) unsafe.Pointe
 func NewQLowEnergyControllerFromPointer(ptr unsafe.Pointer) *QLowEnergyController {
 	var n = new(QLowEnergyController)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QLowEnergyController_" + qt.RandomIdentifier())
 	}
 	return n

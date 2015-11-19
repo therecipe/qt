@@ -27,7 +27,7 @@ func PointerFromQMediaServiceProviderPlugin(ptr QMediaServiceProviderPlugin_ITF)
 func NewQMediaServiceProviderPluginFromPointer(ptr unsafe.Pointer) *QMediaServiceProviderPlugin {
 	var n = new(QMediaServiceProviderPlugin)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMediaServiceProviderPlugin_" + qt.RandomIdentifier())
 	}
 	return n

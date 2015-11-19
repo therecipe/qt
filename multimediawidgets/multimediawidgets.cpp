@@ -114,12 +114,12 @@ void QVideoWidgetControl_DestroyQVideoWidgetControl(void* ptr){
 }
 
 #include "qcameraviewfinder.h"
-#include <QCamera>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QWidget>
+#include <QCamera>
 #include <QCameraViewfinder>
 #include "_cgo_export.h"
 
@@ -140,13 +140,13 @@ void QCameraViewfinder_DestroyQCameraViewfinder(void* ptr){
 }
 
 #include "qvideowidget.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
 #include <QMetaObject>
 #include <QObject>
 #include <QWidget>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QVideoWidget>
 #include "_cgo_export.h"
 
@@ -260,20 +260,20 @@ void QVideoWidget_DestroyQVideoWidget(void* ptr){
 }
 
 #include "qgraphicsvideoitem.h"
-#include <QUrl>
-#include <QStyleOption>
-#include <QSizeF>
-#include <QWidget>
-#include <QPointF>
-#include <QString>
-#include <QModelIndex>
-#include <QGraphicsItem>
-#include <QStyle>
-#include <QPainter>
-#include <QVariant>
 #include <QPoint>
 #include <QSize>
+#include <QString>
 #include <QStyleOptionGraphicsItem>
+#include <QStyle>
+#include <QVariant>
+#include <QPainter>
+#include <QSizeF>
+#include <QStyleOption>
+#include <QGraphicsItem>
+#include <QWidget>
+#include <QUrl>
+#include <QModelIndex>
+#include <QPointF>
 #include <QGraphicsVideoItem>
 #include "_cgo_export.h"
 

@@ -28,7 +28,7 @@ func PointerFromQGraphicsDropShadowEffect(ptr QGraphicsDropShadowEffect_ITF) uns
 func NewQGraphicsDropShadowEffectFromPointer(ptr unsafe.Pointer) *QGraphicsDropShadowEffect {
 	var n = new(QGraphicsDropShadowEffect)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsDropShadowEffect_" + qt.RandomIdentifier())
 	}
 	return n

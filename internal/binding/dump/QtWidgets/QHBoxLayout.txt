@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QHBoxLayout QHBoxLayout::QHBoxLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non constructor false false   QHBoxLayout() [] }
-&{QHBoxLayout QHBoxLayout::QHBoxLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non constructor false true 2  QHBoxLayout(QWidget *parent) [0xc8232794a0] }
-&{~QHBoxLayout QHBoxLayout::~QHBoxLayout commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/kernel/qboxlayout.h non destructor false false   ~QHBoxLayout() [] }
-########################################			ENUMS			########################################

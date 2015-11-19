@@ -27,7 +27,7 @@ func PointerFromQKeyEventTransition(ptr QKeyEventTransition_ITF) unsafe.Pointer 
 func NewQKeyEventTransitionFromPointer(ptr unsafe.Pointer) *QKeyEventTransition {
 	var n = new(QKeyEventTransition)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QKeyEventTransition_" + qt.RandomIdentifier())
 	}
 	return n

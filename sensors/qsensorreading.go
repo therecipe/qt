@@ -27,7 +27,7 @@ func PointerFromQSensorReading(ptr QSensorReading_ITF) unsafe.Pointer {
 func NewQSensorReadingFromPointer(ptr unsafe.Pointer) *QSensorReading {
 	var n = new(QSensorReading)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSensorReading_" + qt.RandomIdentifier())
 	}
 	return n

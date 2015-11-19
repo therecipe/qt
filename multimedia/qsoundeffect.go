@@ -28,7 +28,7 @@ func PointerFromQSoundEffect(ptr QSoundEffect_ITF) unsafe.Pointer {
 func NewQSoundEffectFromPointer(ptr unsafe.Pointer) *QSoundEffect {
 	var n = new(QSoundEffect)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSoundEffect_" + qt.RandomIdentifier())
 	}
 	return n

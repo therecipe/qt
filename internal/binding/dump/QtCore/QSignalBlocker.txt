@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QSignalBlocker QSignalBlocker::QSignalBlocker commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non constructor false true 3  QSignalBlocker(QObject &object) [0xc8203b3720] }
-&{QSignalBlocker QSignalBlocker::QSignalBlocker commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non constructor false false   QSignalBlocker(QObject *object) [0xc8203b39c0] }
-&{QSignalBlocker QSignalBlocker::QSignalBlocker commendable unsupported_isBlocked /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non constructor false true 2  QSignalBlocker(QSignalBlocker &&other) [0xc8203b3ce0] }
-&{operator= QSignalBlocker::operator= commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  QSignalBlocker & QSignalBlocker & operator=(QSignalBlocker &&other) [0xc82039e060] }
-&{reblock QSignalBlocker::reblock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  void void reblock() [] }
-&{unblock QSignalBlocker::unblock commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non plain false false  void void unblock() [] }
-&{~QSignalBlocker QSignalBlocker::~QSignalBlocker commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobject.h non destructor false false   ~QSignalBlocker() [] }
-########################################			ENUMS			########################################

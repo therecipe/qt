@@ -26,7 +26,7 @@ func PointerFromQThreadPool(ptr QThreadPool_ITF) unsafe.Pointer {
 func NewQThreadPoolFromPointer(ptr unsafe.Pointer) *QThreadPool {
 	var n = new(QThreadPool)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QThreadPool_" + qt.RandomIdentifier())
 	}
 	return n

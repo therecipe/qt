@@ -27,7 +27,7 @@ func PointerFromQPlainTextDocumentLayout(ptr QPlainTextDocumentLayout_ITF) unsaf
 func NewQPlainTextDocumentLayoutFromPointer(ptr unsafe.Pointer) *QPlainTextDocumentLayout {
 	var n = new(QPlainTextDocumentLayout)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QPlainTextDocumentLayout_" + qt.RandomIdentifier())
 	}
 	return n

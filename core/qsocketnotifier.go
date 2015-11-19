@@ -26,7 +26,7 @@ func PointerFromQSocketNotifier(ptr QSocketNotifier_ITF) unsafe.Pointer {
 func NewQSocketNotifierFromPointer(ptr unsafe.Pointer) *QSocketNotifier {
 	var n = new(QSocketNotifier)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSocketNotifier_" + qt.RandomIdentifier())
 	}
 	return n

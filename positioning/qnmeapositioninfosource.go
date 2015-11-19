@@ -27,7 +27,7 @@ func PointerFromQNmeaPositionInfoSource(ptr QNmeaPositionInfoSource_ITF) unsafe.
 func NewQNmeaPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QNmeaPositionInfoSource {
 	var n = new(QNmeaPositionInfoSource)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QNmeaPositionInfoSource_" + qt.RandomIdentifier())
 	}
 	return n

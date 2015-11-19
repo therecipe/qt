@@ -28,7 +28,7 @@ func PointerFromQTextBrowser(ptr QTextBrowser_ITF) unsafe.Pointer {
 func NewQTextBrowserFromPointer(ptr unsafe.Pointer) *QTextBrowser {
 	var n = new(QTextBrowser)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTextBrowser_" + qt.RandomIdentifier())
 	}
 	return n

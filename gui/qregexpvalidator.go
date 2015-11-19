@@ -27,7 +27,7 @@ func PointerFromQRegExpValidator(ptr QRegExpValidator_ITF) unsafe.Pointer {
 func NewQRegExpValidatorFromPointer(ptr unsafe.Pointer) *QRegExpValidator {
 	var n = new(QRegExpValidator)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QRegExpValidator_" + qt.RandomIdentifier())
 	}
 	return n

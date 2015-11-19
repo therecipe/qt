@@ -27,7 +27,7 @@ func PointerFromQRegularExpressionValidator(ptr QRegularExpressionValidator_ITF)
 func NewQRegularExpressionValidatorFromPointer(ptr unsafe.Pointer) *QRegularExpressionValidator {
 	var n = new(QRegularExpressionValidator)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QRegularExpressionValidator_" + qt.RandomIdentifier())
 	}
 	return n

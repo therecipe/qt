@@ -9,31 +9,31 @@ import (
 )
 
 var (
-	signalTable = make(map[string]interface{})
-	ids         int
+	signals = make(map[string]interface{})
+	ids     int
 )
 
 func init() { runtime.LockOSThread() }
 
 func ConnectSignal(name string, signal string, function interface{}) {
-	signalTable[name+":"+signal] = function
+	signals[name+":"+signal] = function
 }
 
 func GetSignal(name string, signal string) interface{} {
 	if signal == "destroyed" {
 		defer DisconnectAllSignals(name)
 	}
-	return signalTable[name+":"+signal]
+	return signals[name+":"+signal]
 }
 
 func DisconnectSignal(name string, signal string) {
-	delete(signalTable, name+":"+signal)
+	delete(signals, name+":"+signal)
 }
 
 func DisconnectAllSignals(name string) {
-	for entry := range signalTable {
+	for entry := range signals {
 		if strings.Contains(entry, name) {
-			delete(signalTable, entry)
+			delete(signals, entry)
 		}
 	}
 }
@@ -43,9 +43,9 @@ func RandomIdentifier() string {
 	return strconv.Itoa(ids)
 }
 
-func DumpSignalTable() {
+func DumpSignals() {
 	println("##############################\tDUMP_SIGNALTABLE_START\t##############################")
-	for entry := range signalTable {
+	for entry := range signals {
 		println(entry)
 	}
 	println("##############################\tDUMP_SIGNALTABLE_END\t##############################")

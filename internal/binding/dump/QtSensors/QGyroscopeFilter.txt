@@ -1,3 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{filter QGyroscopeFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h pure plain false false  bool bool filter(QGyroscopeReading *reading) [0xc82030b2e0] }
-########################################			ENUMS			########################################

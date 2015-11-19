@@ -27,7 +27,7 @@ func PointerFromQScrollBar(ptr QScrollBar_ITF) unsafe.Pointer {
 func NewQScrollBarFromPointer(ptr unsafe.Pointer) *QScrollBar {
 	var n = new(QScrollBar)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QScrollBar_" + qt.RandomIdentifier())
 	}
 	return n

@@ -27,7 +27,7 @@ func PointerFromQTableView(ptr QTableView_ITF) unsafe.Pointer {
 func NewQTableViewFromPointer(ptr unsafe.Pointer) *QTableView {
 	var n = new(QTableView)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTableView_" + qt.RandomIdentifier())
 	}
 	return n

@@ -26,7 +26,7 @@ func PointerFromQAudioOutputSelectorControl(ptr QAudioOutputSelectorControl_ITF)
 func NewQAudioOutputSelectorControlFromPointer(ptr unsafe.Pointer) *QAudioOutputSelectorControl {
 	var n = new(QAudioOutputSelectorControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAudioOutputSelectorControl_" + qt.RandomIdentifier())
 	}
 	return n

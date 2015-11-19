@@ -28,7 +28,7 @@ func PointerFromQGraphicsRotation(ptr QGraphicsRotation_ITF) unsafe.Pointer {
 func NewQGraphicsRotationFromPointer(ptr unsafe.Pointer) *QGraphicsRotation {
 	var n = new(QGraphicsRotation)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsRotation_" + qt.RandomIdentifier())
 	}
 	return n

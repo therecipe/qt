@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{reading QOrientationSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qorientationsensor.cpp non plain false false  QOrientationReading * QOrientationReading * reading() const [] }
-&{QOrientationSensor QOrientationSensor::QOrientationSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qorientationsensor.h non constructor false false   QOrientationSensor(QObject *parent) [0xc8219807e0] }
-&{~QOrientationSensor QOrientationSensor::~QOrientationSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qorientationsensor.h impure destructor false false   ~QOrientationSensor() [] }
-########################################			ENUMS			########################################

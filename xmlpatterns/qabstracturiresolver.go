@@ -27,7 +27,7 @@ func PointerFromQAbstractUriResolver(ptr QAbstractUriResolver_ITF) unsafe.Pointe
 func NewQAbstractUriResolverFromPointer(ptr unsafe.Pointer) *QAbstractUriResolver {
 	var n = new(QAbstractUriResolver)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractUriResolver_" + qt.RandomIdentifier())
 	}
 	return n

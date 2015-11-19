@@ -28,7 +28,7 @@ func PointerFromQSqlDriver(ptr QSqlDriver_ITF) unsafe.Pointer {
 func NewQSqlDriverFromPointer(ptr unsafe.Pointer) *QSqlDriver {
 	var n = new(QSqlDriver)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSqlDriver_" + qt.RandomIdentifier())
 	}
 	return n

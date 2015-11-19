@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QGenericPlugin QGenericPlugin::QGenericPlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qgenericplugin.h non constructor false false   QGenericPlugin(QObject *parent) [0xc8207f4b20] }
-&{create QGenericPlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qgenericplugin.h pure plain false false  QObject * QObject * create(const QString &key, const QString &specification) [0xc8207f4e00 0xc8207f4f00] }
-&{~QGenericPlugin QGenericPlugin::~QGenericPlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/kernel/qgenericplugin.h non destructor false false   ~QGenericPlugin() [] }
-########################################			ENUMS			########################################

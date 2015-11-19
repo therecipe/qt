@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{geometry QSGBasicGeometryNode::geometry commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false true 2 QSGGeometry * QSGGeometry * geometry() [] }
-&{geometry QSGBasicGeometryNode::geometry commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  const QSGGeometry * const QSGGeometry * geometry() const [] }
-&{setGeometry QSGBasicGeometryNode::setGeometry commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non plain false false  void void setGeometry(QSGGeometry *geometry) [0xc820fc0800] }
-&{~QSGBasicGeometryNode QSGBasicGeometryNode::~QSGBasicGeometryNode commendable public /work/build/qt5_workdir/w/s/qtdeclarative/src/quick/scenegraph/coreapi/qsgnode.h non destructor false false   ~QSGBasicGeometryNode() [] }
-########################################			ENUMS			########################################

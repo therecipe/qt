@@ -28,7 +28,7 @@ func PointerFromQDBusServiceWatcher(ptr QDBusServiceWatcher_ITF) unsafe.Pointer 
 func NewQDBusServiceWatcherFromPointer(ptr unsafe.Pointer) *QDBusServiceWatcher {
 	var n = new(QDBusServiceWatcher)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDBusServiceWatcher_" + qt.RandomIdentifier())
 	}
 	return n

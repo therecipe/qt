@@ -27,7 +27,7 @@ func PointerFromQDnsLookup(ptr QDnsLookup_ITF) unsafe.Pointer {
 func NewQDnsLookupFromPointer(ptr unsafe.Pointer) *QDnsLookup {
 	var n = new(QDnsLookup)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDnsLookup_" + qt.RandomIdentifier())
 	}
 	return n

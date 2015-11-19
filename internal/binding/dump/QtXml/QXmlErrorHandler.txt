@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{error QXmlErrorHandler::error commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool error(const QXmlParseException &exception) [0xc82182ddc0] }
-&{errorString QXmlErrorHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString QString errorString() const [] }
-&{fatalError QXmlErrorHandler::fatalError commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool fatalError(const QXmlParseException &exception) [0xc82248a280] }
-&{warning QXmlErrorHandler::warning commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool warning(const QXmlParseException &exception) [0xc82248a540] }
-&{~QXmlErrorHandler QXmlErrorHandler::~QXmlErrorHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   ~QXmlErrorHandler() [] }
-########################################			ENUMS			########################################

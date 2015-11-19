@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QPlaceMatchReply QPlaceMatchReply::QPlaceMatchReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchreply.h non constructor false false   QPlaceMatchReply(QObject *parent) [0xc8223b71e0] }
-&{places QPlaceMatchReply::places commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchreply.h non plain false false  QList<QPlace> QList<QPlace> places() const [] }
-&{request QPlaceMatchReply::request commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchreply.h non plain false false  QPlaceMatchRequest QPlaceMatchRequest request() const [] }
-&{setPlaces QPlaceMatchReply::setPlaces commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchreply.h non plain false false  void void setPlaces(const QList<QPlace> &places) [0xc8223b7d80] }
-&{setRequest QPlaceMatchReply::setRequest commendable protected /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchreply.h non plain false false  void void setRequest(const QPlaceMatchRequest &request) [0xc8223c43e0] }
-&{type QPlaceMatchReply::type commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchreply.h impure plain false false  QPlaceReply::Type QPlaceReply::Type type() const [] }
-&{~QPlaceMatchReply QPlaceMatchReply::~QPlaceMatchReply commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplacematchreply.h non destructor false false   ~QPlaceMatchReply() [] }
-########################################			ENUMS			########################################

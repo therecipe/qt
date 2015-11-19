@@ -27,7 +27,7 @@ func PointerFromQQmlApplicationEngine(ptr QQmlApplicationEngine_ITF) unsafe.Poin
 func NewQQmlApplicationEngineFromPointer(ptr unsafe.Pointer) *QQmlApplicationEngine {
 	var n = new(QQmlApplicationEngine)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQmlApplicationEngine_" + qt.RandomIdentifier())
 	}
 	return n

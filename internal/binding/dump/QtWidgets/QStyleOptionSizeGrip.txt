@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QStyleOptionSizeGrip QStyleOptionSizeGrip::QStyleOptionSizeGrip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionSizeGrip() [] }
-&{QStyleOptionSizeGrip QStyleOptionSizeGrip::QStyleOptionSizeGrip commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionSizeGrip(const QStyleOptionSizeGrip &other) [0xc822239120] }
-########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionSizeGrip::StyleOptionType commendable public  [0xc8222388a0] false}
-&{StyleOptionVersion QStyleOptionSizeGrip::StyleOptionVersion commendable public  [0xc822238b60] false}

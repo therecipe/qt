@@ -38,7 +38,7 @@ func PointerFromQRadioData(ptr QRadioData_ITF) unsafe.Pointer {
 func NewQRadioDataFromPointer(ptr unsafe.Pointer) *QRadioData {
 	var n = new(QRadioData)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QRadioData_" + qt.RandomIdentifier())
 	}
 	return n

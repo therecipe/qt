@@ -28,7 +28,7 @@ func PointerFromQSensorGestureManager(ptr QSensorGestureManager_ITF) unsafe.Poin
 func NewQSensorGestureManagerFromPointer(ptr unsafe.Pointer) *QSensorGestureManager {
 	var n = new(QSensorGestureManager)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSensorGestureManager_" + qt.RandomIdentifier())
 	}
 	return n

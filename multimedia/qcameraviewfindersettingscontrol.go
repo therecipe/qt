@@ -27,7 +27,7 @@ func PointerFromQCameraViewfinderSettingsControl(ptr QCameraViewfinderSettingsCo
 func NewQCameraViewfinderSettingsControlFromPointer(ptr unsafe.Pointer) *QCameraViewfinderSettingsControl {
 	var n = new(QCameraViewfinderSettingsControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCameraViewfinderSettingsControl_" + qt.RandomIdentifier())
 	}
 	return n

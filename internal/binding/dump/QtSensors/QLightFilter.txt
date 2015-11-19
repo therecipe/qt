@@ -1,3 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{filter QLightFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qlightsensor.h pure plain false false  bool bool filter(QLightReading *reading) [0xc8204bff40] }
-########################################			ENUMS			########################################

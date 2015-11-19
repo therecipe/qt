@@ -26,7 +26,7 @@ func PointerFromQDial(ptr QDial_ITF) unsafe.Pointer {
 func NewQDialFromPointer(ptr unsafe.Pointer) *QDial {
 	var n = new(QDial)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDial_" + qt.RandomIdentifier())
 	}
 	return n

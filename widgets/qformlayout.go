@@ -27,7 +27,7 @@ func PointerFromQFormLayout(ptr QFormLayout_ITF) unsafe.Pointer {
 func NewQFormLayoutFromPointer(ptr unsafe.Pointer) *QFormLayout {
 	var n = new(QFormLayout)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QFormLayout_" + qt.RandomIdentifier())
 	}
 	return n

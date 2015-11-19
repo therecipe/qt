@@ -26,7 +26,7 @@ func PointerFromQCameraCaptureBufferFormatControl(ptr QCameraCaptureBufferFormat
 func NewQCameraCaptureBufferFormatControlFromPointer(ptr unsafe.Pointer) *QCameraCaptureBufferFormatControl {
 	var n = new(QCameraCaptureBufferFormatControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCameraCaptureBufferFormatControl_" + qt.RandomIdentifier())
 	}
 	return n

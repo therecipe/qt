@@ -27,7 +27,7 @@ func PointerFromQImageEncoderControl(ptr QImageEncoderControl_ITF) unsafe.Pointe
 func NewQImageEncoderControlFromPointer(ptr unsafe.Pointer) *QImageEncoderControl {
 	var n = new(QImageEncoderControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QImageEncoderControl_" + qt.RandomIdentifier())
 	}
 	return n

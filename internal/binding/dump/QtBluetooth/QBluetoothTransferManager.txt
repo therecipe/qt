@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{put QBluetoothTransferManager::put commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothtransfermanager.cpp non plain false false  QBluetoothTransferReply * QBluetoothTransferReply * put(const QBluetoothTransferRequest &request, QIODevice *data) [0xc82299bc00 0xc82299bc80] }
-&{QBluetoothTransferManager QBluetoothTransferManager::QBluetoothTransferManager commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothtransfermanager.h non constructor false false   QBluetoothTransferManager(QObject *parent) [0xc82299be40] }
-&{finished QBluetoothTransferManager::finished commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothtransfermanager.h non signal false false  void void finished(QBluetoothTransferReply *reply) [0xc82299bfc0] }
-&{~QBluetoothTransferManager QBluetoothTransferManager::~QBluetoothTransferManager commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/bluetooth/qbluetoothtransfermanager.h non destructor false false   ~QBluetoothTransferManager() [] }
-########################################			ENUMS			########################################

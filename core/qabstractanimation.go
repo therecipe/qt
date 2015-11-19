@@ -26,7 +26,7 @@ func PointerFromQAbstractAnimation(ptr QAbstractAnimation_ITF) unsafe.Pointer {
 func NewQAbstractAnimationFromPointer(ptr unsafe.Pointer) *QAbstractAnimation {
 	var n = new(QAbstractAnimation)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractAnimation_" + qt.RandomIdentifier())
 	}
 	return n

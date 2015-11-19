@@ -26,7 +26,7 @@ func PointerFromQFocusFrame(ptr QFocusFrame_ITF) unsafe.Pointer {
 func NewQFocusFrameFromPointer(ptr unsafe.Pointer) *QFocusFrame {
 	var n = new(QFocusFrame)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QFocusFrame_" + qt.RandomIdentifier())
 	}
 	return n

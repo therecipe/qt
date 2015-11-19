@@ -27,7 +27,7 @@ func PointerFromQSGTextureProvider(ptr QSGTextureProvider_ITF) unsafe.Pointer {
 func NewQSGTextureProviderFromPointer(ptr unsafe.Pointer) *QSGTextureProvider {
 	var n = new(QSGTextureProvider)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSGTextureProvider_" + qt.RandomIdentifier())
 	}
 	return n

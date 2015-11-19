@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QVideoProbe QVideoProbe::QVideoProbe commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non constructor false false   QVideoProbe(QObject *parent) [0xc821f1ea40] }
-&{flush QVideoProbe::flush commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non signal false false  void void flush() [] }
-&{isActive QVideoProbe::isActive commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non plain false false  bool bool isActive() const [] }
-&{setSource QVideoProbe::setSource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non plain false false  bool bool setSource(QMediaObject *source) [0xc821f1f020] }
-&{setSource QVideoProbe::setSource commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non plain false true 2 bool bool setSource(QMediaRecorder *mediaRecorder) [0xc821f1f320] }
-&{videoFrameProbed QVideoProbe::videoFrameProbed commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non signal false false  void void videoFrameProbed(const QVideoFrame &frame) [0xc821f1f620] }
-&{~QVideoProbe QVideoProbe::~QVideoProbe commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/video/qvideoprobe.h non destructor false false   ~QVideoProbe() [] }
-########################################			ENUMS			########################################

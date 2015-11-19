@@ -28,7 +28,7 @@ func PointerFromQSvgRenderer(ptr QSvgRenderer_ITF) unsafe.Pointer {
 func NewQSvgRendererFromPointer(ptr unsafe.Pointer) *QSvgRenderer {
 	var n = new(QSvgRenderer)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSvgRenderer_" + qt.RandomIdentifier())
 	}
 	return n

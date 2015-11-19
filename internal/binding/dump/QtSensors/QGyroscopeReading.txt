@@ -1,8 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{x QGyroscopeReading::x commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  qreal qreal x() const [] }
-&{y QGyroscopeReading::y commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  qreal qreal y() const [] }
-&{z QGyroscopeReading::z commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.cpp non plain false false  qreal qreal z() const [] }
-&{setX QGyroscopeReading::setX commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non plain false false  void void setX(qreal x) [0xc82030be40] }
-&{setY QGyroscopeReading::setY commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non plain false false  void void setY(qreal y) [0xc8205a8100] }
-&{setZ QGyroscopeReading::setZ commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qgyroscope.h non plain false false  void void setZ(qreal z) [0xc8205a83e0] }
-########################################			ENUMS			########################################

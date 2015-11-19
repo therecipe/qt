@@ -27,7 +27,7 @@ func PointerFromQFileSystemWatcher(ptr QFileSystemWatcher_ITF) unsafe.Pointer {
 func NewQFileSystemWatcherFromPointer(ptr unsafe.Pointer) *QFileSystemWatcher {
 	var n = new(QFileSystemWatcher)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QFileSystemWatcher_" + qt.RandomIdentifier())
 	}
 	return n

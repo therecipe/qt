@@ -38,7 +38,7 @@ func PointerFromQPdfWriter(ptr QPdfWriter_ITF) unsafe.Pointer {
 func NewQPdfWriterFromPointer(ptr unsafe.Pointer) *QPdfWriter {
 	var n = new(QPdfWriter)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QPdfWriter_" + qt.RandomIdentifier())
 	}
 	return n

@@ -27,7 +27,7 @@ func PointerFromQNearFieldShareManager(ptr QNearFieldShareManager_ITF) unsafe.Po
 func NewQNearFieldShareManagerFromPointer(ptr unsafe.Pointer) *QNearFieldShareManager {
 	var n = new(QNearFieldShareManager)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QNearFieldShareManager_" + qt.RandomIdentifier())
 	}
 	return n

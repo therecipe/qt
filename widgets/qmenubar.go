@@ -28,7 +28,7 @@ func PointerFromQMenuBar(ptr QMenuBar_ITF) unsafe.Pointer {
 func NewQMenuBarFromPointer(ptr unsafe.Pointer) *QMenuBar {
 	var n = new(QMenuBar)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMenuBar_" + qt.RandomIdentifier())
 	}
 	return n

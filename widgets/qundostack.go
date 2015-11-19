@@ -27,7 +27,7 @@ func PointerFromQUndoStack(ptr QUndoStack_ITF) unsafe.Pointer {
 func NewQUndoStackFromPointer(ptr unsafe.Pointer) *QUndoStack {
 	var n = new(QUndoStack)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QUndoStack_" + qt.RandomIdentifier())
 	}
 	return n

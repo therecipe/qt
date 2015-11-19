@@ -27,7 +27,7 @@ func PointerFromQProgressDialog(ptr QProgressDialog_ITF) unsafe.Pointer {
 func NewQProgressDialogFromPointer(ptr unsafe.Pointer) *QProgressDialog {
 	var n = new(QProgressDialog)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QProgressDialog_" + qt.RandomIdentifier())
 	}
 	return n

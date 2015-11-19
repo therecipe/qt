@@ -26,7 +26,7 @@ func PointerFromQTimeLine(ptr QTimeLine_ITF) unsafe.Pointer {
 func NewQTimeLineFromPointer(ptr unsafe.Pointer) *QTimeLine {
 	var n = new(QTimeLine)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTimeLine_" + qt.RandomIdentifier())
 	}
 	return n

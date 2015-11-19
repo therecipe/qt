@@ -38,7 +38,7 @@ func PointerFromQOffscreenSurface(ptr QOffscreenSurface_ITF) unsafe.Pointer {
 func NewQOffscreenSurfaceFromPointer(ptr unsafe.Pointer) *QOffscreenSurface {
 	var n = new(QOffscreenSurface)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QOffscreenSurface_" + qt.RandomIdentifier())
 	}
 	return n

@@ -28,7 +28,7 @@ func PointerFromQCompleter(ptr QCompleter_ITF) unsafe.Pointer {
 func NewQCompleterFromPointer(ptr unsafe.Pointer) *QCompleter {
 	var n = new(QCompleter)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCompleter_" + qt.RandomIdentifier())
 	}
 	return n

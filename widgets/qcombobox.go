@@ -29,7 +29,7 @@ func PointerFromQComboBox(ptr QComboBox_ITF) unsafe.Pointer {
 func NewQComboBoxFromPointer(ptr unsafe.Pointer) *QComboBox {
 	var n = new(QComboBox)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QComboBox_" + qt.RandomIdentifier())
 	}
 	return n

@@ -1,3 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QGenericReturnArgument QGenericReturnArgument::QGenericReturnArgument commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qobjectdefs.h non constructor false false   QGenericReturnArgument(const char *name, void *data) [0xc820384c80 0xc820384d20] }
-########################################			ENUMS			########################################

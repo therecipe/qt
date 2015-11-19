@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QXmlResultItems QXmlResultItems::QXmlResultItems commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlresultitems.h non constructor false false   QXmlResultItems() [] }
-&{current QXmlResultItems::current commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlresultitems.h non plain false false  QXmlItem QXmlItem current() const [] }
-&{hasError QXmlResultItems::hasError commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlresultitems.h non plain false false  bool bool hasError() const [] }
-&{next QXmlResultItems::next commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlresultitems.h non plain false false  QXmlItem QXmlItem next() [] }
-&{~QXmlResultItems QXmlResultItems::~QXmlResultItems commendable public /work/build/qt5_workdir/w/s/qtxmlpatterns/src/xmlpatterns/api/qxmlresultitems.h impure destructor false false   ~QXmlResultItems() [] }
-########################################			ENUMS			########################################

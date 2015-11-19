@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QMediaAvailabilityControl QMediaAvailabilityControl::QMediaAvailabilityControl commendable protected /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaavailabilitycontrol.h non constructor false false   QMediaAvailabilityControl(QObject *parent) [0xc82092f9c0] }
-&{availability QMediaAvailabilityControl::availability commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaavailabilitycontrol.h pure plain false false  QMultimedia::AvailabilityStatus QMultimedia::AvailabilityStatus availability() const [] }
-&{availabilityChanged QMediaAvailabilityControl::availabilityChanged commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaavailabilitycontrol.h non signal false false  void void availabilityChanged(QMultimedia::AvailabilityStatus availability) [0xc82092ffe0] }
-&{~QMediaAvailabilityControl QMediaAvailabilityControl::~QMediaAvailabilityControl commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/controls/qmediaavailabilitycontrol.h non destructor false false   ~QMediaAvailabilityControl() [] }
-########################################			ENUMS			########################################

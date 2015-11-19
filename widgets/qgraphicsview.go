@@ -28,7 +28,7 @@ func PointerFromQGraphicsView(ptr QGraphicsView_ITF) unsafe.Pointer {
 func NewQGraphicsViewFromPointer(ptr unsafe.Pointer) *QGraphicsView {
 	var n = new(QGraphicsView)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsView_" + qt.RandomIdentifier())
 	}
 	return n

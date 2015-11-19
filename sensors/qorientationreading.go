@@ -26,7 +26,7 @@ func PointerFromQOrientationReading(ptr QOrientationReading_ITF) unsafe.Pointer 
 func NewQOrientationReadingFromPointer(ptr unsafe.Pointer) *QOrientationReading {
 	var n = new(QOrientationReading)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QOrientationReading_" + qt.RandomIdentifier())
 	}
 	return n

@@ -27,7 +27,7 @@ func PointerFromQHelpEngine(ptr QHelpEngine_ITF) unsafe.Pointer {
 func NewQHelpEngineFromPointer(ptr unsafe.Pointer) *QHelpEngine {
 	var n = new(QHelpEngine)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QHelpEngine_" + qt.RandomIdentifier())
 	}
 	return n

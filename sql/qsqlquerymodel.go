@@ -27,7 +27,7 @@ func PointerFromQSqlQueryModel(ptr QSqlQueryModel_ITF) unsafe.Pointer {
 func NewQSqlQueryModelFromPointer(ptr unsafe.Pointer) *QSqlQueryModel {
 	var n = new(QSqlQueryModel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSqlQueryModel_" + qt.RandomIdentifier())
 	}
 	return n

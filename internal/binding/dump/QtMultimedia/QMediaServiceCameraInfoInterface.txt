@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{cameraOrientation QMediaServiceCameraInfoInterface::cameraOrientation commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h pure plain false false  int int cameraOrientation(const QByteArray &device) const [0xc8223e6580] }
-&{cameraPosition QMediaServiceCameraInfoInterface::cameraPosition commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h pure plain false false  QCamera::Position QCamera::Position cameraPosition(const QByteArray &device) const [0xc8223e6900] }
-&{~QMediaServiceCameraInfoInterface QMediaServiceCameraInfoInterface::~QMediaServiceCameraInfoInterface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h impure destructor false false   ~QMediaServiceCameraInfoInterface() [] }
-########################################			ENUMS			########################################

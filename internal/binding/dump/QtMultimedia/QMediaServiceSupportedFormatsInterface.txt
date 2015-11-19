@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{hasSupport QMediaServiceSupportedFormatsInterface::hasSupport commendable unsupported_goEnum /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h pure plain false false  QMultimedia::SupportEstimate QMultimedia::SupportEstimate hasSupport(const QString &mimeType, const QStringList &codecs) const [0xc8228d7480 0xc8228d75c0] }
-&{supportedMimeTypes QMediaServiceSupportedFormatsInterface::supportedMimeTypes commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h pure plain false false  QStringList QStringList supportedMimeTypes() const [] }
-&{~QMediaServiceSupportedFormatsInterface QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface commendable public /work/build/qt5_workdir/w/s/qtmultimedia/src/multimedia/qmediaserviceproviderplugin.h impure destructor false false   ~QMediaServiceSupportedFormatsInterface() [] }
-########################################			ENUMS			########################################

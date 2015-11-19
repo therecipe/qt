@@ -27,7 +27,7 @@ func PointerFromQAudioProbe(ptr QAudioProbe_ITF) unsafe.Pointer {
 func NewQAudioProbeFromPointer(ptr unsafe.Pointer) *QAudioProbe {
 	var n = new(QAudioProbe)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAudioProbe_" + qt.RandomIdentifier())
 	}
 	return n

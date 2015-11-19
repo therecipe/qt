@@ -27,7 +27,7 @@ func PointerFromQHttpMultiPart(ptr QHttpMultiPart_ITF) unsafe.Pointer {
 func NewQHttpMultiPartFromPointer(ptr unsafe.Pointer) *QHttpMultiPart {
 	var n = new(QHttpMultiPart)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QHttpMultiPart_" + qt.RandomIdentifier())
 	}
 	return n

@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QItemEditorFactory QItemEditorFactory::QItemEditorFactory commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.h non constructor false false   QItemEditorFactory() [] }
-&{createEditor QItemEditorFactory::createEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.h impure plain false false  QWidget * QWidget * createEditor(int userType, QWidget *parent) const [0xc822080740 0xc8220807e0] }
-&{defaultFactory QItemEditorFactory::defaultFactory commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.h non plain true false  const QItemEditorFactory * const QItemEditorFactory * defaultFactory() [] }
-&{registerEditor QItemEditorFactory::registerEditor commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.h non plain false false  void void registerEditor(int userType, QItemEditorCreatorBase *creator) [0xc822080ac0 0xc822080bc0] }
-&{setDefaultFactory QItemEditorFactory::setDefaultFactory commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.h non plain true false  void void setDefaultFactory(QItemEditorFactory *factory) [0xc822080e80] }
-&{valuePropertyName QItemEditorFactory::valuePropertyName commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.h impure plain false false  QByteArray QByteArray valuePropertyName(int userType) const [0xc822081120] }
-&{~QItemEditorFactory QItemEditorFactory::~QItemEditorFactory commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/itemviews/qitemeditorfactory.h impure destructor false false   ~QItemEditorFactory() [] }
-########################################			ENUMS			########################################

@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QNdefMessage QNdefMessage::QNdefMessage commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non constructor false false   QNdefMessage() [] }
-&{QNdefMessage QNdefMessage::QNdefMessage commendable unsupported_goInput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non constructor false true 4  QNdefMessage(const QList<QNdefRecord> &records) [0xc8215bcfa0] }
-&{QNdefMessage QNdefMessage::QNdefMessage commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non constructor false true 3  QNdefMessage(const QNdefMessage &message) [0xc8215bd1c0] }
-&{QNdefMessage QNdefMessage::QNdefMessage commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non constructor false true 2  QNdefMessage(const QNdefRecord &record) [0xc8215bd3e0] }
-&{fromByteArray QNdefMessage::fromByteArray commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non plain true false  QNdefMessage QNdefMessage fromByteArray(const QByteArray &message) [0xc8215bd620] }
-&{operator== QNdefMessage::operator== commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non plain false false  bool bool operator==(const QNdefMessage &other) const [0xc8215bd840] }
-&{toByteArray QNdefMessage::toByteArray commendable public /work/build/qt5_workdir/w/s/qtconnectivity/src/nfc/qndefmessage.h non plain false false  QByteArray QByteArray toByteArray() const [] }
-########################################			ENUMS			########################################

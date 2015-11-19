@@ -27,7 +27,7 @@ func PointerFromQSqlRelationalTableModel(ptr QSqlRelationalTableModel_ITF) unsaf
 func NewQSqlRelationalTableModelFromPointer(ptr unsafe.Pointer) *QSqlRelationalTableModel {
 	var n = new(QSqlRelationalTableModel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSqlRelationalTableModel_" + qt.RandomIdentifier())
 	}
 	return n

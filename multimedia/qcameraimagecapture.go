@@ -39,7 +39,7 @@ func PointerFromQCameraImageCapture(ptr QCameraImageCapture_ITF) unsafe.Pointer 
 func NewQCameraImageCaptureFromPointer(ptr unsafe.Pointer) *QCameraImageCapture {
 	var n = new(QCameraImageCapture)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCameraImageCapture_" + qt.RandomIdentifier())
 	}
 	return n

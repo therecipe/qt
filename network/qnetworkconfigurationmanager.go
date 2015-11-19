@@ -27,7 +27,7 @@ func PointerFromQNetworkConfigurationManager(ptr QNetworkConfigurationManager_IT
 func NewQNetworkConfigurationManagerFromPointer(ptr unsafe.Pointer) *QNetworkConfigurationManager {
 	var n = new(QNetworkConfigurationManager)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QNetworkConfigurationManager_" + qt.RandomIdentifier())
 	}
 	return n

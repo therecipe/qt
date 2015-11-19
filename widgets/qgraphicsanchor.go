@@ -27,7 +27,7 @@ func PointerFromQGraphicsAnchor(ptr QGraphicsAnchor_ITF) unsafe.Pointer {
 func NewQGraphicsAnchorFromPointer(ptr unsafe.Pointer) *QGraphicsAnchor {
 	var n = new(QGraphicsAnchor)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsAnchor_" + qt.RandomIdentifier())
 	}
 	return n

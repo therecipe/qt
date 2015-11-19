@@ -28,7 +28,7 @@ func PointerFromQMdiArea(ptr QMdiArea_ITF) unsafe.Pointer {
 func NewQMdiAreaFromPointer(ptr unsafe.Pointer) *QMdiArea {
 	var n = new(QMdiArea)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMdiArea_" + qt.RandomIdentifier())
 	}
 	return n

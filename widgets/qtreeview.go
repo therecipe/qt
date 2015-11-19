@@ -27,7 +27,7 @@ func PointerFromQTreeView(ptr QTreeView_ITF) unsafe.Pointer {
 func NewQTreeViewFromPointer(ptr unsafe.Pointer) *QTreeView {
 	var n = new(QTreeView)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTreeView_" + qt.RandomIdentifier())
 	}
 	return n

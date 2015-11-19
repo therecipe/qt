@@ -1,8 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{reading QTapSensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.cpp non plain false false  QTapReading * QTapReading * reading() const [] }
-&{returnDoubleTapEvents QTapSensor::returnDoubleTapEvents commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.cpp non plain false false  bool bool returnDoubleTapEvents() const [] }
-&{setReturnDoubleTapEvents QTapSensor::setReturnDoubleTapEvents commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.cpp non plain false false  void void setReturnDoubleTapEvents(bool returnDoubleTapEvents) [0xc822b6bee0] }
-&{QTapSensor QTapSensor::QTapSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.h non constructor false false   QTapSensor(QObject *parent) [0xc822b78180] }
-&{returnDoubleTapEventsChanged QTapSensor::returnDoubleTapEventsChanged commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.h non signal false false  void void returnDoubleTapEventsChanged(bool returnDoubleTapEvents) [0xc822b783a0] }
-&{~QTapSensor QTapSensor::~QTapSensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qtapsensor.h impure destructor false false   ~QTapSensor() [] }
-########################################			ENUMS			########################################

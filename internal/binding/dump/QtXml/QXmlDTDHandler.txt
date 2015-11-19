@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{errorString QXmlDTDHandler::errorString commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  QString QString errorString() const [] }
-&{notationDecl QXmlDTDHandler::notationDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool notationDecl(const QString &name, const QString &publicId, const QString &systemId) [0xc8218a5540 0xc8218a5620 0xc8218a5740] }
-&{unparsedEntityDecl QXmlDTDHandler::unparsedEntityDecl commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h pure plain false false  bool bool unparsedEntityDecl(const QString &name, const QString &publicId, const QString &systemId, const QString &notationName) [0xc8218a5a80 0xc8218a5b40 0xc8218a5c60 0xc8218a5da0] }
-&{~QXmlDTDHandler QXmlDTDHandler::~QXmlDTDHandler commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/sax/qxml.h impure destructor false false   ~QXmlDTDHandler() [] }
-########################################			ENUMS			########################################

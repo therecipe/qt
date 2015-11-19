@@ -27,7 +27,7 @@ func PointerFromQMagnetometer(ptr QMagnetometer_ITF) unsafe.Pointer {
 func NewQMagnetometerFromPointer(ptr unsafe.Pointer) *QMagnetometer {
 	var n = new(QMagnetometer)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMagnetometer_" + qt.RandomIdentifier())
 	}
 	return n

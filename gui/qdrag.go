@@ -27,7 +27,7 @@ func PointerFromQDrag(ptr QDrag_ITF) unsafe.Pointer {
 func NewQDragFromPointer(ptr unsafe.Pointer) *QDrag {
 	var n = new(QDrag)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDrag_" + qt.RandomIdentifier())
 	}
 	return n

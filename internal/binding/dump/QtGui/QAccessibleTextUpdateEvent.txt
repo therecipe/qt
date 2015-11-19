@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QAccessibleTextUpdateEvent QAccessibleTextUpdateEvent::QAccessibleTextUpdateEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  QAccessibleTextUpdateEvent(QAccessibleInterface *iface, int position, const QString &oldText, const QString &text) [0xc820d3a100 0xc820d3a1c0 0xc820d3a240 0xc820d3a2c0] }
-&{QAccessibleTextUpdateEvent QAccessibleTextUpdateEvent::QAccessibleTextUpdateEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   QAccessibleTextUpdateEvent(QObject *object, int position, const QString &oldText, const QString &text) [0xc820d3a4a0 0xc820d3a540 0xc820d3a5c0 0xc820d3a640] }
-&{changePosition QAccessibleTextUpdateEvent::changePosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int int changePosition() const [] }
-&{textInserted QAccessibleTextUpdateEvent::textInserted commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QString QString textInserted() const [] }
-&{textRemoved QAccessibleTextUpdateEvent::textRemoved commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QString QString textRemoved() const [] }
-########################################			ENUMS			########################################

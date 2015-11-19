@@ -27,7 +27,7 @@ func PointerFromQAbstractItemView(ptr QAbstractItemView_ITF) unsafe.Pointer {
 func NewQAbstractItemViewFromPointer(ptr unsafe.Pointer) *QAbstractItemView {
 	var n = new(QAbstractItemView)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractItemView_" + qt.RandomIdentifier())
 	}
 	return n

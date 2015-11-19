@@ -28,7 +28,7 @@ func PointerFromQGraphicsOpacityEffect(ptr QGraphicsOpacityEffect_ITF) unsafe.Po
 func NewQGraphicsOpacityEffectFromPointer(ptr unsafe.Pointer) *QGraphicsOpacityEffect {
 	var n = new(QGraphicsOpacityEffect)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsOpacityEffect_" + qt.RandomIdentifier())
 	}
 	return n

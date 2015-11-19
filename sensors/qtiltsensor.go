@@ -27,7 +27,7 @@ func PointerFromQTiltSensor(ptr QTiltSensor_ITF) unsafe.Pointer {
 func NewQTiltSensorFromPointer(ptr unsafe.Pointer) *QTiltSensor {
 	var n = new(QTiltSensor)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTiltSensor_" + qt.RandomIdentifier())
 	}
 	return n

@@ -29,7 +29,7 @@ func PointerFromQVideoWidgetControl(ptr QVideoWidgetControl_ITF) unsafe.Pointer 
 func NewQVideoWidgetControlFromPointer(ptr unsafe.Pointer) *QVideoWidgetControl {
 	var n = new(QVideoWidgetControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QVideoWidgetControl_" + qt.RandomIdentifier())
 	}
 	return n

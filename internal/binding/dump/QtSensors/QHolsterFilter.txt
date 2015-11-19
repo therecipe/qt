@@ -1,3 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{filter QHolsterFilter::filter commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qholstersensor.h pure plain false false  bool bool filter(QHolsterReading *reading) [0xc8205a8e40] }
-########################################			ENUMS			########################################

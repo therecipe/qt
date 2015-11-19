@@ -26,7 +26,7 @@ func PointerFromQAbstractState(ptr QAbstractState_ITF) unsafe.Pointer {
 func NewQAbstractStateFromPointer(ptr unsafe.Pointer) *QAbstractState {
 	var n = new(QAbstractState)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractState_" + qt.RandomIdentifier())
 	}
 	return n

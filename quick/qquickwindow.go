@@ -29,7 +29,7 @@ func PointerFromQQuickWindow(ptr QQuickWindow_ITF) unsafe.Pointer {
 func NewQQuickWindowFromPointer(ptr unsafe.Pointer) *QQuickWindow {
 	var n = new(QQuickWindow)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQuickWindow_" + qt.RandomIdentifier())
 	}
 	return n

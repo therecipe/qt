@@ -27,7 +27,7 @@ func PointerFromQWizardPage(ptr QWizardPage_ITF) unsafe.Pointer {
 func NewQWizardPageFromPointer(ptr unsafe.Pointer) *QWizardPage {
 	var n = new(QWizardPage)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QWizardPage_" + qt.RandomIdentifier())
 	}
 	return n

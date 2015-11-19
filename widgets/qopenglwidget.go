@@ -26,7 +26,7 @@ func PointerFromQOpenGLWidget(ptr QOpenGLWidget_ITF) unsafe.Pointer {
 func NewQOpenGLWidgetFromPointer(ptr unsafe.Pointer) *QOpenGLWidget {
 	var n = new(QOpenGLWidget)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QOpenGLWidget_" + qt.RandomIdentifier())
 	}
 	return n

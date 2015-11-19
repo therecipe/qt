@@ -26,7 +26,7 @@ func PointerFromQFinalState(ptr QFinalState_ITF) unsafe.Pointer {
 func NewQFinalStateFromPointer(ptr unsafe.Pointer) *QFinalState {
 	var n = new(QFinalState)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QFinalState_" + qt.RandomIdentifier())
 	}
 	return n

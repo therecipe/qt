@@ -28,7 +28,7 @@ func PointerFromQMessageBox(ptr QMessageBox_ITF) unsafe.Pointer {
 func NewQMessageBoxFromPointer(ptr unsafe.Pointer) *QMessageBox {
 	var n = new(QMessageBox)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMessageBox_" + qt.RandomIdentifier())
 	}
 	return n

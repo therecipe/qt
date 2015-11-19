@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QFileSelector QFileSelector::QFileSelector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileselector.h non constructor false false   QFileSelector(QObject *parent) [0xc8203c2aa0] }
-&{allSelectors QFileSelector::allSelectors commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileselector.h non plain false false  QStringList QStringList allSelectors() const [] }
-&{extraSelectors QFileSelector::extraSelectors commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileselector.h non plain false false  QStringList QStringList extraSelectors() const [] }
-&{select QFileSelector::select commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileselector.h non plain false false  QString QString select(const QString &filePath) const [0xc8203c2f80] }
-&{select QFileSelector::select commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileselector.h non plain false true 2 QUrl QUrl select(const QUrl &filePath) const [0xc8203c31e0] }
-&{setExtraSelectors QFileSelector::setExtraSelectors commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileselector.h non plain false false  void void setExtraSelectors(const QStringList &list) [0xc8203c3460] }
-&{~QFileSelector QFileSelector::~QFileSelector commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/io/qfileselector.h non destructor false false   ~QFileSelector() [] }
-########################################			ENUMS			########################################

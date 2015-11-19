@@ -28,7 +28,7 @@ func PointerFromQScriptEngine(ptr QScriptEngine_ITF) unsafe.Pointer {
 func NewQScriptEngineFromPointer(ptr unsafe.Pointer) *QScriptEngine {
 	var n = new(QScriptEngine)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QScriptEngine_" + qt.RandomIdentifier())
 	}
 	return n

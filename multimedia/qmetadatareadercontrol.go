@@ -28,7 +28,7 @@ func PointerFromQMetaDataReaderControl(ptr QMetaDataReaderControl_ITF) unsafe.Po
 func NewQMetaDataReaderControlFromPointer(ptr unsafe.Pointer) *QMetaDataReaderControl {
 	var n = new(QMetaDataReaderControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMetaDataReaderControl_" + qt.RandomIdentifier())
 	}
 	return n

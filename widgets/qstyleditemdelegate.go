@@ -28,7 +28,7 @@ func PointerFromQStyledItemDelegate(ptr QStyledItemDelegate_ITF) unsafe.Pointer 
 func NewQStyledItemDelegateFromPointer(ptr unsafe.Pointer) *QStyledItemDelegate {
 	var n = new(QStyledItemDelegate)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QStyledItemDelegate_" + qt.RandomIdentifier())
 	}
 	return n

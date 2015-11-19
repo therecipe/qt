@@ -1,5 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{reading QProximitySensor::reading commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qproximitysensor.cpp non plain false false  QProximityReading * QProximityReading * reading() const [] }
-&{QProximitySensor QProximitySensor::QProximitySensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qproximitysensor.h non constructor false false   QProximitySensor(QObject *parent) [0xc822015e40] }
-&{~QProximitySensor QProximitySensor::~QProximitySensor commendable public /work/build/qt5_workdir/w/s/qtsensors/src/sensors/qproximitysensor.h impure destructor false false   ~QProximitySensor() [] }
-########################################			ENUMS			########################################

@@ -27,7 +27,7 @@ func PointerFromQCheckBox(ptr QCheckBox_ITF) unsafe.Pointer {
 func NewQCheckBoxFromPointer(ptr unsafe.Pointer) *QCheckBox {
 	var n = new(QCheckBox)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCheckBox_" + qt.RandomIdentifier())
 	}
 	return n

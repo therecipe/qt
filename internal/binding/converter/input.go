@@ -42,9 +42,18 @@ func goInput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("C.double(%v)", name)
 		}
 
-	case "jclass":
+	case "jclass", "jobject":
 		{
 			return name
+		}
+
+	case "...":
+		{
+			var tmp string
+			for i := 0; i < 10; i++ {
+				tmp += fmt.Sprintf("assertion(%v, %v...), ", i, name)
+			}
+			return strings.TrimSuffix(tmp, ", ")
 		}
 	}
 
@@ -148,9 +157,22 @@ func cppInput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("static_cast<qreal>(%v)", name)
 		}
 
-	case "jclass":
+	case "jclass", "jobject":
 		{
 			return fmt.Sprintf("static_cast<%v>(%v)", value, name)
+		}
+
+	case "...":
+		{
+			var tmp string
+			for i := 0; i < 10; i++ {
+				if i == 9 {
+					tmp += fmt.Sprintf("static_cast<jobject>(%v), ", name)
+				} else {
+					tmp += fmt.Sprintf("static_cast<jobject>(%v%v), ", name, i)
+				}
+			}
+			return strings.TrimSuffix(tmp, ", ")
 		}
 	}
 

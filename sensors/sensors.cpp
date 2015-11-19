@@ -1,91 +1,148 @@
-#include "qambientlightfilter.h"
+#include "qsensorgestureplugininterface.h"
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QSensorGesture>
+#include <QSensor>
+#include <QString>
+#include <QSensorGesturePluginInterface>
+#include "_cgo_export.h"
+
+class MyQSensorGesturePluginInterface: public QSensorGesturePluginInterface {
+public:
+};
+
+char* QSensorGesturePluginInterface_Name(void* ptr){
+	return static_cast<QSensorGesturePluginInterface*>(ptr)->name().toUtf8().data();
+}
+
+char* QSensorGesturePluginInterface_SupportedIds(void* ptr){
+	return static_cast<QSensorGesturePluginInterface*>(ptr)->supportedIds().join("|").toUtf8().data();
+}
+
+void QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(void* ptr){
+	static_cast<QSensorGesturePluginInterface*>(ptr)->~QSensorGesturePluginInterface();
+}
+
+#include "qtapfilter.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QTapReading>
+#include <QTapFilter>
+#include "_cgo_export.h"
+
+class MyQTapFilter: public QTapFilter {
+public:
+};
+
+int QTapFilter_Filter(void* ptr, void* reading){
+	return static_cast<QTapFilter*>(ptr)->filter(static_cast<QTapReading*>(reading));
+}
+
+#include "qlightsensor.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QString>
+#include <QVariant>
+#include <QLightSensor>
+#include "_cgo_export.h"
+
+class MyQLightSensor: public QLightSensor {
+public:
+};
+
+double QLightSensor_FieldOfView(void* ptr){
+	return static_cast<double>(static_cast<QLightSensor*>(ptr)->fieldOfView());
+}
+
+void* QLightSensor_Reading(void* ptr){
+	return static_cast<QLightSensor*>(ptr)->reading();
+}
+
+void* QLightSensor_NewQLightSensor(void* parent){
+	return new QLightSensor(static_cast<QObject*>(parent));
+}
+
+void QLightSensor_SetFieldOfView(void* ptr, double fieldOfView){
+	static_cast<QLightSensor*>(ptr)->setFieldOfView(static_cast<qreal>(fieldOfView));
+}
+
+void QLightSensor_DestroyQLightSensor(void* ptr){
+	static_cast<QLightSensor*>(ptr)->~QLightSensor();
+}
+
+#include "qambientlightreading.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QAmbientLightReading>
-#include <QAmbientLightFilter>
 #include "_cgo_export.h"
 
-class MyQAmbientLightFilter: public QAmbientLightFilter {
+class MyQAmbientLightReading: public QAmbientLightReading {
 public:
 };
 
-int QAmbientLightFilter_Filter(void* ptr, void* reading){
-	return static_cast<QAmbientLightFilter*>(ptr)->filter(static_cast<QAmbientLightReading*>(reading));
+int QAmbientLightReading_LightLevel(void* ptr){
+	return static_cast<QAmbientLightReading*>(ptr)->lightLevel();
 }
 
-#include "qpressurefilter.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QPressureReading>
-#include <QString>
-#include <QVariant>
-#include <QPressureFilter>
-#include "_cgo_export.h"
-
-class MyQPressureFilter: public QPressureFilter {
-public:
-};
-
-int QPressureFilter_Filter(void* ptr, void* reading){
-	return static_cast<QPressureFilter*>(ptr)->filter(static_cast<QPressureReading*>(reading));
+void QAmbientLightReading_SetLightLevel(void* ptr, int lightLevel){
+	static_cast<QAmbientLightReading*>(ptr)->setLightLevel(static_cast<QAmbientLightReading::LightLevel>(lightLevel));
 }
 
-#include "qsensorfilter.h"
-#include <QString>
+#include "qsensorgesturerecognizer.h"
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QSensor>
-#include <QSensorReading>
-#include <QSensorFilter>
-#include "_cgo_export.h"
-
-class MyQSensorFilter: public QSensorFilter {
-public:
-};
-
-int QSensorFilter_Filter(void* ptr, void* reading){
-	return static_cast<QSensorFilter*>(ptr)->filter(static_cast<QSensorReading*>(reading));
-}
-
-#include "qcompassreading.h"
+#include <QSensorGesture>
 #include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QCompass>
-#include <QCompassReading>
+#include <QSensorGestureRecognizer>
 #include "_cgo_export.h"
 
-class MyQCompassReading: public QCompassReading {
+class MyQSensorGestureRecognizer: public QSensorGestureRecognizer {
 public:
 };
 
-double QCompassReading_Azimuth(void* ptr){
-	return static_cast<double>(static_cast<QCompassReading*>(ptr)->azimuth());
+void QSensorGestureRecognizer_CreateBackend(void* ptr){
+	static_cast<QSensorGestureRecognizer*>(ptr)->createBackend();
 }
 
-double QCompassReading_CalibrationLevel(void* ptr){
-	return static_cast<double>(static_cast<QCompassReading*>(ptr)->calibrationLevel());
+char* QSensorGestureRecognizer_GestureSignals(void* ptr){
+	return static_cast<QSensorGestureRecognizer*>(ptr)->gestureSignals().join("|").toUtf8().data();
 }
 
-void QCompassReading_SetAzimuth(void* ptr, double azimuth){
-	static_cast<QCompassReading*>(ptr)->setAzimuth(static_cast<qreal>(azimuth));
+char* QSensorGestureRecognizer_Id(void* ptr){
+	return static_cast<QSensorGestureRecognizer*>(ptr)->id().toUtf8().data();
 }
 
-void QCompassReading_SetCalibrationLevel(void* ptr, double calibrationLevel){
-	static_cast<QCompassReading*>(ptr)->setCalibrationLevel(static_cast<qreal>(calibrationLevel));
+int QSensorGestureRecognizer_IsActive(void* ptr){
+	return static_cast<QSensorGestureRecognizer*>(ptr)->isActive();
+}
+
+void QSensorGestureRecognizer_StartBackend(void* ptr){
+	static_cast<QSensorGestureRecognizer*>(ptr)->startBackend();
+}
+
+void QSensorGestureRecognizer_StopBackend(void* ptr){
+	static_cast<QSensorGestureRecognizer*>(ptr)->stopBackend();
+}
+
+void QSensorGestureRecognizer_DestroyQSensorGestureRecognizer(void* ptr){
+	static_cast<QSensorGestureRecognizer*>(ptr)->~QSensorGestureRecognizer();
 }
 
 #include "qsensorbackendfactory.h"
-#include <QModelIndex>
-#include <QSensor>
-#include <QSensorBackend>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
+#include <QModelIndex>
+#include <QSensor>
+#include <QSensorBackend>
 #include <QSensorBackendFactory>
 #include "_cgo_export.h"
 
@@ -97,90 +154,63 @@ void* QSensorBackendFactory_CreateBackend(void* ptr, void* sensor){
 	return static_cast<QSensorBackendFactory*>(ptr)->createBackend(static_cast<QSensor*>(sensor));
 }
 
-#include "qambienttemperaturereading.h"
+#include "qdistancefilter.h"
 #include <QModelIndex>
+#include <QDistanceReading>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QAmbientTemperatureReading>
+#include <QDistanceFilter>
 #include "_cgo_export.h"
 
-class MyQAmbientTemperatureReading: public QAmbientTemperatureReading {
+class MyQDistanceFilter: public QDistanceFilter {
 public:
 };
 
-double QAmbientTemperatureReading_Temperature(void* ptr){
-	return static_cast<double>(static_cast<QAmbientTemperatureReading*>(ptr)->temperature());
+int QDistanceFilter_Filter(void* ptr, void* reading){
+	return static_cast<QDistanceFilter*>(ptr)->filter(static_cast<QDistanceReading*>(reading));
 }
 
-void QAmbientTemperatureReading_SetTemperature(void* ptr, double temperature){
-	static_cast<QAmbientTemperatureReading*>(ptr)->setTemperature(static_cast<qreal>(temperature));
-}
-
-#include "qsensorplugininterface.h"
+#include "qaltimeter.h"
+#include <QObject>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
 #include <QModelIndex>
+#include <QAltimeter>
+#include "_cgo_export.h"
+
+class MyQAltimeter: public QAltimeter {
+public:
+};
+
+void* QAltimeter_Reading(void* ptr){
+	return static_cast<QAltimeter*>(ptr)->reading();
+}
+
+void* QAltimeter_NewQAltimeter(void* parent){
+	return new QAltimeter(static_cast<QObject*>(parent));
+}
+
+void QAltimeter_DestroyQAltimeter(void* ptr){
+	static_cast<QAltimeter*>(ptr)->~QAltimeter();
+}
+
+#include "qsensorchangesinterface.h"
 #include <QSensor>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QSensorPluginInterface>
-#include "_cgo_export.h"
-
-class MyQSensorPluginInterface: public QSensorPluginInterface {
-public:
-};
-
-void QSensorPluginInterface_RegisterSensors(void* ptr){
-	static_cast<QSensorPluginInterface*>(ptr)->registerSensors();
-}
-
-#include "qtiltsensor.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QTiltSensor>
+#include <QSensorChangesInterface>
 #include "_cgo_export.h"
 
-class MyQTiltSensor: public QTiltSensor {
+class MyQSensorChangesInterface: public QSensorChangesInterface {
 public:
 };
 
-void* QTiltSensor_NewQTiltSensor(void* parent){
-	return new QTiltSensor(static_cast<QObject*>(parent));
-}
-
-void* QTiltSensor_Reading(void* ptr){
-	return static_cast<QTiltSensor*>(ptr)->reading();
-}
-
-void QTiltSensor_DestroyQTiltSensor(void* ptr){
-	static_cast<QTiltSensor*>(ptr)->~QTiltSensor();
-}
-
-void QTiltSensor_Calibrate(void* ptr){
-	static_cast<QTiltSensor*>(ptr)->calibrate();
-}
-
-#include "qdistancereading.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QString>
-#include <QDistanceReading>
-#include "_cgo_export.h"
-
-class MyQDistanceReading: public QDistanceReading {
-public:
-};
-
-double QDistanceReading_Distance(void* ptr){
-	return static_cast<double>(static_cast<QDistanceReading*>(ptr)->distance());
-}
-
-void QDistanceReading_SetDistance(void* ptr, double distance){
-	static_cast<QDistanceReading*>(ptr)->setDistance(static_cast<qreal>(distance));
+void QSensorChangesInterface_SensorsChanged(void* ptr){
+	static_cast<QSensorChangesInterface*>(ptr)->sensorsChanged();
 }
 
 #include "qpressurereading.h"
@@ -212,13 +242,13 @@ void QPressureReading_SetTemperature(void* ptr, double temperature){
 }
 
 #include "qsensormanager.h"
-#include <QSensorBackendFactory>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSensor>
 #include <QByteArray>
+#include <QSensor>
+#include <QSensorBackendFactory>
 #include <QSensorBackend>
 #include <QSensorManager>
 #include "_cgo_export.h"
@@ -247,21 +277,153 @@ void QSensorManager_QSensorManager_UnregisterBackend(void* ty, void* identifier)
 	QSensorManager::unregisterBackend(*static_cast<QByteArray*>(ty), *static_cast<QByteArray*>(identifier));
 }
 
-#include "qsensorchangesinterface.h"
+#include "qcompass.h"
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QString>
+#include <QCompass>
+#include "_cgo_export.h"
+
+class MyQCompass: public QCompass {
+public:
+};
+
+void* QCompass_Reading(void* ptr){
+	return static_cast<QCompass*>(ptr)->reading();
+}
+
+void* QCompass_NewQCompass(void* parent){
+	return new QCompass(static_cast<QObject*>(parent));
+}
+
+void QCompass_DestroyQCompass(void* ptr){
+	static_cast<QCompass*>(ptr)->~QCompass();
+}
+
+#include "qsensorreading.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QSensor>
-#include <QSensorChangesInterface>
+#include <QSensorReading>
 #include "_cgo_export.h"
 
-class MyQSensorChangesInterface: public QSensorChangesInterface {
+class MyQSensorReading: public QSensorReading {
 public:
 };
 
-void QSensorChangesInterface_SensorsChanged(void* ptr){
-	static_cast<QSensorChangesInterface*>(ptr)->sensorsChanged();
+void* QSensorReading_Value(void* ptr, int index){
+	return new QVariant(static_cast<QSensorReading*>(ptr)->value(index));
+}
+
+int QSensorReading_ValueCount(void* ptr){
+	return static_cast<QSensorReading*>(ptr)->valueCount();
+}
+
+#include "qaltimeterfilter.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QAltimeterReading>
+#include <QAltimeter>
+#include <QAltimeterFilter>
+#include "_cgo_export.h"
+
+class MyQAltimeterFilter: public QAltimeterFilter {
+public:
+};
+
+int QAltimeterFilter_Filter(void* ptr, void* reading){
+	return static_cast<QAltimeterFilter*>(ptr)->filter(static_cast<QAltimeterReading*>(reading));
+}
+
+#include "qorientationreading.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QOrientationReading>
+#include "_cgo_export.h"
+
+class MyQOrientationReading: public QOrientationReading {
+public:
+};
+
+int QOrientationReading_Orientation(void* ptr){
+	return static_cast<QOrientationReading*>(ptr)->orientation();
+}
+
+void QOrientationReading_SetOrientation(void* ptr, int orientation){
+	static_cast<QOrientationReading*>(ptr)->setOrientation(static_cast<QOrientationReading::Orientation>(orientation));
+}
+
+#include "qsensorbackend.h"
+#include <QModelIndex>
+#include <QSensor>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QSensorBackend>
+#include "_cgo_export.h"
+
+class MyQSensorBackend: public QSensorBackend {
+public:
+};
+
+void QSensorBackend_AddDataRate(void* ptr, double min, double max){
+	static_cast<QSensorBackend*>(ptr)->addDataRate(static_cast<qreal>(min), static_cast<qreal>(max));
+}
+
+int QSensorBackend_IsFeatureSupported(void* ptr, int feature){
+	return static_cast<QSensorBackend*>(ptr)->isFeatureSupported(static_cast<QSensor::Feature>(feature));
+}
+
+void QSensorBackend_SensorBusy(void* ptr){
+	static_cast<QSensorBackend*>(ptr)->sensorBusy();
+}
+
+void QSensorBackend_SensorError(void* ptr, int error){
+	static_cast<QSensorBackend*>(ptr)->sensorError(error);
+}
+
+void QSensorBackend_AddOutputRange(void* ptr, double min, double max, double accuracy){
+	static_cast<QSensorBackend*>(ptr)->addOutputRange(static_cast<qreal>(min), static_cast<qreal>(max), static_cast<qreal>(accuracy));
+}
+
+void QSensorBackend_NewReadingAvailable(void* ptr){
+	static_cast<QSensorBackend*>(ptr)->newReadingAvailable();
+}
+
+void* QSensorBackend_Reading(void* ptr){
+	return static_cast<QSensorBackend*>(ptr)->reading();
+}
+
+void* QSensorBackend_Sensor(void* ptr){
+	return static_cast<QSensorBackend*>(ptr)->sensor();
+}
+
+void QSensorBackend_SensorStopped(void* ptr){
+	static_cast<QSensorBackend*>(ptr)->sensorStopped();
+}
+
+void QSensorBackend_SetDataRates(void* ptr, void* otherSensor){
+	static_cast<QSensorBackend*>(ptr)->setDataRates(static_cast<QSensor*>(otherSensor));
+}
+
+void QSensorBackend_SetDescription(void* ptr, char* description){
+	static_cast<QSensorBackend*>(ptr)->setDescription(QString(description));
+}
+
+void QSensorBackend_Start(void* ptr){
+	static_cast<QSensorBackend*>(ptr)->start();
+}
+
+void QSensorBackend_Stop(void* ptr){
+	static_cast<QSensorBackend*>(ptr)->stop();
 }
 
 #include "qtiltfilter.h"
@@ -281,222 +443,343 @@ int QTiltFilter_Filter(void* ptr, void* reading){
 	return static_cast<QTiltFilter*>(ptr)->filter(static_cast<QTiltReading*>(reading));
 }
 
-#include "qaccelerometer.h"
+#include "qcompassreading.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QAccelerometer>
+#include <QCompass>
+#include <QCompassReading>
 #include "_cgo_export.h"
 
-class MyQAccelerometer: public QAccelerometer {
+class MyQCompassReading: public QCompassReading {
 public:
-void Signal_AccelerationModeChanged(QAccelerometer::AccelerationMode accelerationMode){callbackQAccelerometerAccelerationModeChanged(this->objectName().toUtf8().data(), accelerationMode);};
 };
 
-int QAccelerometer_AccelerationMode(void* ptr){
-	return static_cast<QAccelerometer*>(ptr)->accelerationMode();
+double QCompassReading_Azimuth(void* ptr){
+	return static_cast<double>(static_cast<QCompassReading*>(ptr)->azimuth());
 }
 
-void* QAccelerometer_Reading(void* ptr){
-	return static_cast<QAccelerometer*>(ptr)->reading();
+double QCompassReading_CalibrationLevel(void* ptr){
+	return static_cast<double>(static_cast<QCompassReading*>(ptr)->calibrationLevel());
 }
 
-void* QAccelerometer_NewQAccelerometer(void* parent){
-	return new QAccelerometer(static_cast<QObject*>(parent));
+void QCompassReading_SetAzimuth(void* ptr, double azimuth){
+	static_cast<QCompassReading*>(ptr)->setAzimuth(static_cast<qreal>(azimuth));
 }
 
-void QAccelerometer_ConnectAccelerationModeChanged(void* ptr){
-	QObject::connect(static_cast<QAccelerometer*>(ptr), static_cast<void (QAccelerometer::*)(QAccelerometer::AccelerationMode)>(&QAccelerometer::accelerationModeChanged), static_cast<MyQAccelerometer*>(ptr), static_cast<void (MyQAccelerometer::*)(QAccelerometer::AccelerationMode)>(&MyQAccelerometer::Signal_AccelerationModeChanged));;
+void QCompassReading_SetCalibrationLevel(void* ptr, double calibrationLevel){
+	static_cast<QCompassReading*>(ptr)->setCalibrationLevel(static_cast<qreal>(calibrationLevel));
 }
 
-void QAccelerometer_DisconnectAccelerationModeChanged(void* ptr){
-	QObject::disconnect(static_cast<QAccelerometer*>(ptr), static_cast<void (QAccelerometer::*)(QAccelerometer::AccelerationMode)>(&QAccelerometer::accelerationModeChanged), static_cast<MyQAccelerometer*>(ptr), static_cast<void (MyQAccelerometer::*)(QAccelerometer::AccelerationMode)>(&MyQAccelerometer::Signal_AccelerationModeChanged));;
-}
-
-void QAccelerometer_SetAccelerationMode(void* ptr, int accelerationMode){
-	static_cast<QAccelerometer*>(ptr)->setAccelerationMode(static_cast<QAccelerometer::AccelerationMode>(accelerationMode));
-}
-
-void QAccelerometer_DestroyQAccelerometer(void* ptr){
-	static_cast<QAccelerometer*>(ptr)->~QAccelerometer();
-}
-
-#include "qholstersensor.h"
+#include "qmagnetometerreading.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QObject>
-#include <QHolsterSensor>
+#include <QMagnetometer>
+#include <QMagnetometerReading>
 #include "_cgo_export.h"
 
-class MyQHolsterSensor: public QHolsterSensor {
+class MyQMagnetometerReading: public QMagnetometerReading {
 public:
 };
 
-void* QHolsterSensor_Reading(void* ptr){
-	return static_cast<QHolsterSensor*>(ptr)->reading();
+double QMagnetometerReading_CalibrationLevel(void* ptr){
+	return static_cast<double>(static_cast<QMagnetometerReading*>(ptr)->calibrationLevel());
 }
 
-void* QHolsterSensor_NewQHolsterSensor(void* parent){
-	return new QHolsterSensor(static_cast<QObject*>(parent));
+double QMagnetometerReading_X(void* ptr){
+	return static_cast<double>(static_cast<QMagnetometerReading*>(ptr)->x());
 }
 
-void QHolsterSensor_DestroyQHolsterSensor(void* ptr){
-	static_cast<QHolsterSensor*>(ptr)->~QHolsterSensor();
+double QMagnetometerReading_Y(void* ptr){
+	return static_cast<double>(static_cast<QMagnetometerReading*>(ptr)->y());
 }
 
-#include "qsensorgesture.h"
+double QMagnetometerReading_Z(void* ptr){
+	return static_cast<double>(static_cast<QMagnetometerReading*>(ptr)->z());
+}
+
+void QMagnetometerReading_SetCalibrationLevel(void* ptr, double calibrationLevel){
+	static_cast<QMagnetometerReading*>(ptr)->setCalibrationLevel(static_cast<qreal>(calibrationLevel));
+}
+
+void QMagnetometerReading_SetX(void* ptr, double x){
+	static_cast<QMagnetometerReading*>(ptr)->setX(static_cast<qreal>(x));
+}
+
+void QMagnetometerReading_SetY(void* ptr, double y){
+	static_cast<QMagnetometerReading*>(ptr)->setY(static_cast<qreal>(y));
+}
+
+void QMagnetometerReading_SetZ(void* ptr, double z){
+	static_cast<QMagnetometerReading*>(ptr)->setZ(static_cast<qreal>(z));
+}
+
+#include "qholsterfilter.h"
+#include <QHolsterReading>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QSensor>
-#include <QObject>
-#include <QSensorGesture>
+#include <QHolsterFilter>
 #include "_cgo_export.h"
 
-class MyQSensorGesture: public QSensorGesture {
+class MyQHolsterFilter: public QHolsterFilter {
 public:
 };
 
-void* QSensorGesture_NewQSensorGesture(char* ids, void* parent){
-	return new QSensorGesture(QString(ids).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+int QHolsterFilter_Filter(void* ptr, void* reading){
+	return static_cast<QHolsterFilter*>(ptr)->filter(static_cast<QHolsterReading*>(reading));
 }
 
-char* QSensorGesture_GestureSignals(void* ptr){
-	return static_cast<QSensorGesture*>(ptr)->gestureSignals().join("|").toUtf8().data();
-}
-
-char* QSensorGesture_InvalidIds(void* ptr){
-	return static_cast<QSensorGesture*>(ptr)->invalidIds().join("|").toUtf8().data();
-}
-
-int QSensorGesture_IsActive(void* ptr){
-	return static_cast<QSensorGesture*>(ptr)->isActive();
-}
-
-void QSensorGesture_StartDetection(void* ptr){
-	static_cast<QSensorGesture*>(ptr)->startDetection();
-}
-
-void QSensorGesture_StopDetection(void* ptr){
-	static_cast<QSensorGesture*>(ptr)->stopDetection();
-}
-
-char* QSensorGesture_ValidIds(void* ptr){
-	return static_cast<QSensorGesture*>(ptr)->validIds().join("|").toUtf8().data();
-}
-
-void QSensorGesture_DestroyQSensorGesture(void* ptr){
-	static_cast<QSensorGesture*>(ptr)->~QSensorGesture();
-}
-
-#include "qaccelerometerfilter.h"
-#include <QAccelerometer>
-#include <QAccelerometerReading>
+#include "qtiltreading.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
-#include <QAccelerometerFilter>
+#include <QTiltReading>
 #include "_cgo_export.h"
 
-class MyQAccelerometerFilter: public QAccelerometerFilter {
+class MyQTiltReading: public QTiltReading {
 public:
 };
 
-int QAccelerometerFilter_Filter(void* ptr, void* reading){
-	return static_cast<QAccelerometerFilter*>(ptr)->filter(static_cast<QAccelerometerReading*>(reading));
+double QTiltReading_XRotation(void* ptr){
+	return static_cast<double>(static_cast<QTiltReading*>(ptr)->xRotation());
 }
 
-#include "qambienttemperaturefilter.h"
-#include <QVariant>
+double QTiltReading_YRotation(void* ptr){
+	return static_cast<double>(static_cast<QTiltReading*>(ptr)->yRotation());
+}
+
+void QTiltReading_SetXRotation(void* ptr, double x){
+	static_cast<QTiltReading*>(ptr)->setXRotation(static_cast<qreal>(x));
+}
+
+void QTiltReading_SetYRotation(void* ptr, double y){
+	static_cast<QTiltReading*>(ptr)->setYRotation(static_cast<qreal>(y));
+}
+
+#include "qdistancereading.h"
 #include <QUrl>
 #include <QModelIndex>
-#include <QAmbientTemperatureReading>
-#include <QString>
-#include <QAmbientTemperatureFilter>
-#include "_cgo_export.h"
-
-class MyQAmbientTemperatureFilter: public QAmbientTemperatureFilter {
-public:
-};
-
-int QAmbientTemperatureFilter_Filter(void* ptr, void* reading){
-	return static_cast<QAmbientTemperatureFilter*>(ptr)->filter(static_cast<QAmbientTemperatureReading*>(reading));
-}
-
-#include "qtapfilter.h"
 #include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QTapReading>
-#include <QTapFilter>
-#include "_cgo_export.h"
-
-class MyQTapFilter: public QTapFilter {
-public:
-};
-
-int QTapFilter_Filter(void* ptr, void* reading){
-	return static_cast<QTapFilter*>(ptr)->filter(static_cast<QTapReading*>(reading));
-}
-
-#include "qdistancefilter.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QDistanceReading>
-#include <QString>
-#include <QDistanceFilter>
 #include "_cgo_export.h"
 
-class MyQDistanceFilter: public QDistanceFilter {
+class MyQDistanceReading: public QDistanceReading {
 public:
 };
 
-int QDistanceFilter_Filter(void* ptr, void* reading){
-	return static_cast<QDistanceFilter*>(ptr)->filter(static_cast<QDistanceReading*>(reading));
+double QDistanceReading_Distance(void* ptr){
+	return static_cast<double>(static_cast<QDistanceReading*>(ptr)->distance());
 }
 
-#include "qaltimeter.h"
+void QDistanceReading_SetDistance(void* ptr, double distance){
+	static_cast<QDistanceReading*>(ptr)->setDistance(static_cast<qreal>(distance));
+}
+
+#include "qirproximityreading.h"
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QString>
+#include <QIRProximityReading>
+#include "_cgo_export.h"
+
+class MyQIRProximityReading: public QIRProximityReading {
+public:
+};
+
+double QIRProximityReading_Reflectance(void* ptr){
+	return static_cast<double>(static_cast<QIRProximityReading*>(ptr)->reflectance());
+}
+
+void QIRProximityReading_SetReflectance(void* ptr, double reflectance){
+	static_cast<QIRProximityReading*>(ptr)->setReflectance(static_cast<qreal>(reflectance));
+}
+
+#include "qaccelerometerreading.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QAccelerometer>
+#include <QString>
+#include <QVariant>
+#include <QAccelerometerReading>
+#include "_cgo_export.h"
+
+class MyQAccelerometerReading: public QAccelerometerReading {
+public:
+};
+
+double QAccelerometerReading_X(void* ptr){
+	return static_cast<double>(static_cast<QAccelerometerReading*>(ptr)->x());
+}
+
+double QAccelerometerReading_Y(void* ptr){
+	return static_cast<double>(static_cast<QAccelerometerReading*>(ptr)->y());
+}
+
+double QAccelerometerReading_Z(void* ptr){
+	return static_cast<double>(static_cast<QAccelerometerReading*>(ptr)->z());
+}
+
+void QAccelerometerReading_SetX(void* ptr, double x){
+	static_cast<QAccelerometerReading*>(ptr)->setX(static_cast<qreal>(x));
+}
+
+void QAccelerometerReading_SetY(void* ptr, double y){
+	static_cast<QAccelerometerReading*>(ptr)->setY(static_cast<qreal>(y));
+}
+
+void QAccelerometerReading_SetZ(void* ptr, double z){
+	static_cast<QAccelerometerReading*>(ptr)->setZ(static_cast<qreal>(z));
+}
+
+#include "qambientlightsensor.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
-#include <QAltimeter>
+#include <QAmbientLightSensor>
 #include "_cgo_export.h"
 
-class MyQAltimeter: public QAltimeter {
+class MyQAmbientLightSensor: public QAmbientLightSensor {
 public:
 };
 
-void* QAltimeter_Reading(void* ptr){
-	return static_cast<QAltimeter*>(ptr)->reading();
+void* QAmbientLightSensor_Reading(void* ptr){
+	return static_cast<QAmbientLightSensor*>(ptr)->reading();
 }
 
-void* QAltimeter_NewQAltimeter(void* parent){
-	return new QAltimeter(static_cast<QObject*>(parent));
+void* QAmbientLightSensor_NewQAmbientLightSensor(void* parent){
+	return new QAmbientLightSensor(static_cast<QObject*>(parent));
 }
 
-void QAltimeter_DestroyQAltimeter(void* ptr){
-	static_cast<QAltimeter*>(ptr)->~QAltimeter();
+void QAmbientLightSensor_DestroyQAmbientLightSensor(void* ptr){
+	static_cast<QAmbientLightSensor*>(ptr)->~QAmbientLightSensor();
+}
+
+#include "qgyroscope.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QGyroscope>
+#include "_cgo_export.h"
+
+class MyQGyroscope: public QGyroscope {
+public:
+};
+
+void* QGyroscope_Reading(void* ptr){
+	return static_cast<QGyroscope*>(ptr)->reading();
+}
+
+void* QGyroscope_NewQGyroscope(void* parent){
+	return new QGyroscope(static_cast<QObject*>(parent));
+}
+
+void QGyroscope_DestroyQGyroscope(void* ptr){
+	static_cast<QGyroscope*>(ptr)->~QGyroscope();
+}
+
+#include "qgyroscopereading.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QGyroscope>
+#include <QGyroscopeReading>
+#include "_cgo_export.h"
+
+class MyQGyroscopeReading: public QGyroscopeReading {
+public:
+};
+
+double QGyroscopeReading_X(void* ptr){
+	return static_cast<double>(static_cast<QGyroscopeReading*>(ptr)->x());
+}
+
+double QGyroscopeReading_Y(void* ptr){
+	return static_cast<double>(static_cast<QGyroscopeReading*>(ptr)->y());
+}
+
+double QGyroscopeReading_Z(void* ptr){
+	return static_cast<double>(static_cast<QGyroscopeReading*>(ptr)->z());
+}
+
+void QGyroscopeReading_SetX(void* ptr, double x){
+	static_cast<QGyroscopeReading*>(ptr)->setX(static_cast<qreal>(x));
+}
+
+void QGyroscopeReading_SetY(void* ptr, double y){
+	static_cast<QGyroscopeReading*>(ptr)->setY(static_cast<qreal>(y));
+}
+
+void QGyroscopeReading_SetZ(void* ptr, double z){
+	static_cast<QGyroscopeReading*>(ptr)->setZ(static_cast<qreal>(z));
+}
+
+#include "qtapreading.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QString>
+#include <QVariant>
+#include <QTapReading>
+#include "_cgo_export.h"
+
+class MyQTapReading: public QTapReading {
+public:
+};
+
+int QTapReading_IsDoubleTap(void* ptr){
+	return static_cast<QTapReading*>(ptr)->isDoubleTap();
+}
+
+int QTapReading_TapDirection(void* ptr){
+	return static_cast<QTapReading*>(ptr)->tapDirection();
+}
+
+void QTapReading_SetDoubleTap(void* ptr, int doubleTap){
+	static_cast<QTapReading*>(ptr)->setDoubleTap(doubleTap != 0);
+}
+
+void QTapReading_SetTapDirection(void* ptr, int tapDirection){
+	static_cast<QTapReading*>(ptr)->setTapDirection(static_cast<QTapReading::TapDirection>(tapDirection));
+}
+
+#include "qproximityfilter.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QProximityReading>
+#include <QProximityFilter>
+#include "_cgo_export.h"
+
+class MyQProximityFilter: public QProximityFilter {
+public:
+};
+
+int QProximityFilter_Filter(void* ptr, void* reading){
+	return static_cast<QProximityFilter*>(ptr)->filter(static_cast<QProximityReading*>(reading));
 }
 
 #include "qsensorgesturemanager.h"
+#include <QModelIndex>
+#include <QSensorGesture>
+#include <QSensor>
 #include <QSensorGestureRecognizer>
+#include <QObject>
 #include <QString>
 #include <QVariant>
 #include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QSensorGesture>
-#include <QSensor>
 #include <QSensorGestureManager>
 #include "_cgo_export.h"
 
@@ -537,112 +820,173 @@ void QSensorGestureManager_DestroyQSensorGestureManager(void* ptr){
 	static_cast<QSensorGestureManager*>(ptr)->~QSensorGestureManager();
 }
 
-#include "qlightreading.h"
+#include "qirproximitysensor.h"
+#include <QObject>
 #include <QString>
 #include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QIRProximitySensor>
+#include "_cgo_export.h"
+
+class MyQIRProximitySensor: public QIRProximitySensor {
+public:
+};
+
+void* QIRProximitySensor_Reading(void* ptr){
+	return static_cast<QIRProximitySensor*>(ptr)->reading();
+}
+
+void* QIRProximitySensor_NewQIRProximitySensor(void* parent){
+	return new QIRProximitySensor(static_cast<QObject*>(parent));
+}
+
+void QIRProximitySensor_DestroyQIRProximitySensor(void* ptr){
+	static_cast<QIRProximitySensor*>(ptr)->~QIRProximitySensor();
+}
+
+#include "qholstersensor.h"
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QString>
+#include <QHolsterSensor>
+#include "_cgo_export.h"
+
+class MyQHolsterSensor: public QHolsterSensor {
+public:
+};
+
+void* QHolsterSensor_Reading(void* ptr){
+	return static_cast<QHolsterSensor*>(ptr)->reading();
+}
+
+void* QHolsterSensor_NewQHolsterSensor(void* parent){
+	return new QHolsterSensor(static_cast<QObject*>(parent));
+}
+
+void QHolsterSensor_DestroyQHolsterSensor(void* ptr){
+	static_cast<QHolsterSensor*>(ptr)->~QHolsterSensor();
+}
+
+#include "qirproximityfilter.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QIRProximityReading>
+#include <QIRProximityFilter>
+#include "_cgo_export.h"
+
+class MyQIRProximityFilter: public QIRProximityFilter {
+public:
+};
+
+int QIRProximityFilter_Filter(void* ptr, void* reading){
+	return static_cast<QIRProximityFilter*>(ptr)->filter(static_cast<QIRProximityReading*>(reading));
+}
+
+#include "qmagnetometerfilter.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QMagnetometer>
+#include <QMagnetometerReading>
+#include <QMagnetometerFilter>
+#include "_cgo_export.h"
+
+class MyQMagnetometerFilter: public QMagnetometerFilter {
+public:
+};
+
+int QMagnetometerFilter_Filter(void* ptr, void* reading){
+	return static_cast<QMagnetometerFilter*>(ptr)->filter(static_cast<QMagnetometerReading*>(reading));
+}
+
+#include "qpressurefilter.h"
+#include <QPressureReading>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QPressureFilter>
+#include "_cgo_export.h"
+
+class MyQPressureFilter: public QPressureFilter {
+public:
+};
+
+int QPressureFilter_Filter(void* ptr, void* reading){
+	return static_cast<QPressureFilter*>(ptr)->filter(static_cast<QPressureReading*>(reading));
+}
+
+#include "qlightfilter.h"
 #include <QUrl>
 #include <QModelIndex>
 #include <QLightReading>
+#include <QString>
+#include <QVariant>
+#include <QLightFilter>
 #include "_cgo_export.h"
 
-class MyQLightReading: public QLightReading {
+class MyQLightFilter: public QLightFilter {
 public:
 };
 
-double QLightReading_Lux(void* ptr){
-	return static_cast<double>(static_cast<QLightReading*>(ptr)->lux());
+int QLightFilter_Filter(void* ptr, void* reading){
+	return static_cast<QLightFilter*>(ptr)->filter(static_cast<QLightReading*>(reading));
 }
 
-void QLightReading_SetLux(void* ptr, double lux){
-	static_cast<QLightReading*>(ptr)->setLux(static_cast<qreal>(lux));
-}
-
-#include "qgyroscope.h"
+#include "qproximitysensor.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
-#include <QGyroscope>
+#include <QProximitySensor>
 #include "_cgo_export.h"
 
-class MyQGyroscope: public QGyroscope {
+class MyQProximitySensor: public QProximitySensor {
 public:
 };
 
-void* QGyroscope_Reading(void* ptr){
-	return static_cast<QGyroscope*>(ptr)->reading();
+void* QProximitySensor_Reading(void* ptr){
+	return static_cast<QProximitySensor*>(ptr)->reading();
 }
 
-void* QGyroscope_NewQGyroscope(void* parent){
-	return new QGyroscope(static_cast<QObject*>(parent));
+void* QProximitySensor_NewQProximitySensor(void* parent){
+	return new QProximitySensor(static_cast<QObject*>(parent));
 }
 
-void QGyroscope_DestroyQGyroscope(void* ptr){
-	static_cast<QGyroscope*>(ptr)->~QGyroscope();
+void QProximitySensor_DestroyQProximitySensor(void* ptr){
+	static_cast<QProximitySensor*>(ptr)->~QProximitySensor();
 }
 
-#include "qambientlightreading.h"
-#include <QString>
-#include <QVariant>
+#include "qambienttemperaturefilter.h"
 #include <QUrl>
 #include <QModelIndex>
-#include <QAmbientLightReading>
-#include "_cgo_export.h"
-
-class MyQAmbientLightReading: public QAmbientLightReading {
-public:
-};
-
-int QAmbientLightReading_LightLevel(void* ptr){
-	return static_cast<QAmbientLightReading*>(ptr)->lightLevel();
-}
-
-void QAmbientLightReading_SetLightLevel(void* ptr, int lightLevel){
-	static_cast<QAmbientLightReading*>(ptr)->setLightLevel(static_cast<QAmbientLightReading::LightLevel>(lightLevel));
-}
-
-#include "qorientationfilter.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QOrientationReading>
-#include <QString>
-#include <QOrientationFilter>
-#include "_cgo_export.h"
-
-class MyQOrientationFilter: public QOrientationFilter {
-public:
-};
-
-int QOrientationFilter_Filter(void* ptr, void* reading){
-	return static_cast<QOrientationFilter*>(ptr)->filter(static_cast<QOrientationReading*>(reading));
-}
-
-#include "qgyroscopefilter.h"
+#include <QAmbientTemperatureReading>
 #include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QGyroscope>
-#include <QGyroscopeReading>
-#include <QGyroscopeFilter>
+#include <QAmbientTemperatureFilter>
 #include "_cgo_export.h"
 
-class MyQGyroscopeFilter: public QGyroscopeFilter {
+class MyQAmbientTemperatureFilter: public QAmbientTemperatureFilter {
 public:
 };
 
-int QGyroscopeFilter_Filter(void* ptr, void* reading){
-	return static_cast<QGyroscopeFilter*>(ptr)->filter(static_cast<QGyroscopeReading*>(reading));
+int QAmbientTemperatureFilter_Filter(void* ptr, void* reading){
+	return static_cast<QAmbientTemperatureFilter*>(ptr)->filter(static_cast<QAmbientTemperatureReading*>(reading));
 }
 
 #include "qrotationsensor.h"
+#include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
-#include <QString>
 #include <QRotationSensor>
 #include "_cgo_export.h"
 
@@ -679,107 +1023,21 @@ void QRotationSensor_DestroyQRotationSensor(void* ptr){
 	static_cast<QRotationSensor*>(ptr)->~QRotationSensor();
 }
 
-#include "qholsterfilter.h"
-#include <QString>
-#include <QVariant>
+#include "qrotationfilter.h"
 #include <QUrl>
 #include <QModelIndex>
-#include <QHolsterReading>
-#include <QHolsterFilter>
+#include <QRotationReading>
+#include <QString>
+#include <QVariant>
+#include <QRotationFilter>
 #include "_cgo_export.h"
 
-class MyQHolsterFilter: public QHolsterFilter {
+class MyQRotationFilter: public QRotationFilter {
 public:
 };
 
-int QHolsterFilter_Filter(void* ptr, void* reading){
-	return static_cast<QHolsterFilter*>(ptr)->filter(static_cast<QHolsterReading*>(reading));
-}
-
-#include "qorientationsensor.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QOrientationSensor>
-#include "_cgo_export.h"
-
-class MyQOrientationSensor: public QOrientationSensor {
-public:
-};
-
-void* QOrientationSensor_Reading(void* ptr){
-	return static_cast<QOrientationSensor*>(ptr)->reading();
-}
-
-void* QOrientationSensor_NewQOrientationSensor(void* parent){
-	return new QOrientationSensor(static_cast<QObject*>(parent));
-}
-
-void QOrientationSensor_DestroyQOrientationSensor(void* ptr){
-	static_cast<QOrientationSensor*>(ptr)->~QOrientationSensor();
-}
-
-#include "qtiltreading.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QString>
-#include <QTiltReading>
-#include "_cgo_export.h"
-
-class MyQTiltReading: public QTiltReading {
-public:
-};
-
-double QTiltReading_XRotation(void* ptr){
-	return static_cast<double>(static_cast<QTiltReading*>(ptr)->xRotation());
-}
-
-double QTiltReading_YRotation(void* ptr){
-	return static_cast<double>(static_cast<QTiltReading*>(ptr)->yRotation());
-}
-
-void QTiltReading_SetXRotation(void* ptr, double x){
-	static_cast<QTiltReading*>(ptr)->setXRotation(static_cast<qreal>(x));
-}
-
-void QTiltReading_SetYRotation(void* ptr, double y){
-	static_cast<QTiltReading*>(ptr)->setYRotation(static_cast<qreal>(y));
-}
-
-#include "qlightsensor.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QString>
-#include <QVariant>
-#include <QLightSensor>
-#include "_cgo_export.h"
-
-class MyQLightSensor: public QLightSensor {
-public:
-};
-
-double QLightSensor_FieldOfView(void* ptr){
-	return static_cast<double>(static_cast<QLightSensor*>(ptr)->fieldOfView());
-}
-
-void* QLightSensor_Reading(void* ptr){
-	return static_cast<QLightSensor*>(ptr)->reading();
-}
-
-void* QLightSensor_NewQLightSensor(void* parent){
-	return new QLightSensor(static_cast<QObject*>(parent));
-}
-
-void QLightSensor_SetFieldOfView(void* ptr, double fieldOfView){
-	static_cast<QLightSensor*>(ptr)->setFieldOfView(static_cast<qreal>(fieldOfView));
-}
-
-void QLightSensor_DestroyQLightSensor(void* ptr){
-	static_cast<QLightSensor*>(ptr)->~QLightSensor();
+int QRotationFilter_Filter(void* ptr, void* reading){
+	return static_cast<QRotationFilter*>(ptr)->filter(static_cast<QRotationReading*>(reading));
 }
 
 #include "qpressuresensor.h"
@@ -807,6 +1065,457 @@ void QPressureSensor_DestroyQPressureSensor(void* ptr){
 	static_cast<QPressureSensor*>(ptr)->~QPressureSensor();
 }
 
+#include "qdistancesensor.h"
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QString>
+#include <QDistanceSensor>
+#include "_cgo_export.h"
+
+class MyQDistanceSensor: public QDistanceSensor {
+public:
+};
+
+void* QDistanceSensor_Reading(void* ptr){
+	return static_cast<QDistanceSensor*>(ptr)->reading();
+}
+
+void* QDistanceSensor_NewQDistanceSensor(void* parent){
+	return new QDistanceSensor(static_cast<QObject*>(parent));
+}
+
+void QDistanceSensor_DestroyQDistanceSensor(void* ptr){
+	static_cast<QDistanceSensor*>(ptr)->~QDistanceSensor();
+}
+
+#include "qambientlightfilter.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QAmbientLightReading>
+#include <QAmbientLightFilter>
+#include "_cgo_export.h"
+
+class MyQAmbientLightFilter: public QAmbientLightFilter {
+public:
+};
+
+int QAmbientLightFilter_Filter(void* ptr, void* reading){
+	return static_cast<QAmbientLightFilter*>(ptr)->filter(static_cast<QAmbientLightReading*>(reading));
+}
+
+#include "qtiltsensor.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QTiltSensor>
+#include "_cgo_export.h"
+
+class MyQTiltSensor: public QTiltSensor {
+public:
+};
+
+void* QTiltSensor_NewQTiltSensor(void* parent){
+	return new QTiltSensor(static_cast<QObject*>(parent));
+}
+
+void* QTiltSensor_Reading(void* ptr){
+	return static_cast<QTiltSensor*>(ptr)->reading();
+}
+
+void QTiltSensor_DestroyQTiltSensor(void* ptr){
+	static_cast<QTiltSensor*>(ptr)->~QTiltSensor();
+}
+
+void QTiltSensor_Calibrate(void* ptr){
+	static_cast<QTiltSensor*>(ptr)->calibrate();
+}
+
+#include "qlightreading.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QLightReading>
+#include "_cgo_export.h"
+
+class MyQLightReading: public QLightReading {
+public:
+};
+
+double QLightReading_Lux(void* ptr){
+	return static_cast<double>(static_cast<QLightReading*>(ptr)->lux());
+}
+
+void QLightReading_SetLux(void* ptr, double lux){
+	static_cast<QLightReading*>(ptr)->setLux(static_cast<qreal>(lux));
+}
+
+#include "qproximityreading.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QProximityReading>
+#include "_cgo_export.h"
+
+class MyQProximityReading: public QProximityReading {
+public:
+};
+
+int QProximityReading_Close(void* ptr){
+	return static_cast<QProximityReading*>(ptr)->close();
+}
+
+void QProximityReading_SetClose(void* ptr, int close){
+	static_cast<QProximityReading*>(ptr)->setClose(close != 0);
+}
+
+#include "qambienttemperaturesensor.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QAmbientTemperatureSensor>
+#include "_cgo_export.h"
+
+class MyQAmbientTemperatureSensor: public QAmbientTemperatureSensor {
+public:
+};
+
+void* QAmbientTemperatureSensor_Reading(void* ptr){
+	return static_cast<QAmbientTemperatureSensor*>(ptr)->reading();
+}
+
+void* QAmbientTemperatureSensor_NewQAmbientTemperatureSensor(void* parent){
+	return new QAmbientTemperatureSensor(static_cast<QObject*>(parent));
+}
+
+void QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(void* ptr){
+	static_cast<QAmbientTemperatureSensor*>(ptr)->~QAmbientTemperatureSensor();
+}
+
+#include "qsensorgesture.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QSensor>
+#include <QSensorGesture>
+#include "_cgo_export.h"
+
+class MyQSensorGesture: public QSensorGesture {
+public:
+};
+
+void* QSensorGesture_NewQSensorGesture(char* ids, void* parent){
+	return new QSensorGesture(QString(ids).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
+}
+
+char* QSensorGesture_GestureSignals(void* ptr){
+	return static_cast<QSensorGesture*>(ptr)->gestureSignals().join("|").toUtf8().data();
+}
+
+char* QSensorGesture_InvalidIds(void* ptr){
+	return static_cast<QSensorGesture*>(ptr)->invalidIds().join("|").toUtf8().data();
+}
+
+int QSensorGesture_IsActive(void* ptr){
+	return static_cast<QSensorGesture*>(ptr)->isActive();
+}
+
+void QSensorGesture_StartDetection(void* ptr){
+	static_cast<QSensorGesture*>(ptr)->startDetection();
+}
+
+void QSensorGesture_StopDetection(void* ptr){
+	static_cast<QSensorGesture*>(ptr)->stopDetection();
+}
+
+char* QSensorGesture_ValidIds(void* ptr){
+	return static_cast<QSensorGesture*>(ptr)->validIds().join("|").toUtf8().data();
+}
+
+void QSensorGesture_DestroyQSensorGesture(void* ptr){
+	static_cast<QSensorGesture*>(ptr)->~QSensorGesture();
+}
+
+#include "qaccelerometerfilter.h"
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QAccelerometerReading>
+#include <QAccelerometer>
+#include <QString>
+#include <QAccelerometerFilter>
+#include "_cgo_export.h"
+
+class MyQAccelerometerFilter: public QAccelerometerFilter {
+public:
+};
+
+int QAccelerometerFilter_Filter(void* ptr, void* reading){
+	return static_cast<QAccelerometerFilter*>(ptr)->filter(static_cast<QAccelerometerReading*>(reading));
+}
+
+#include "qambienttemperaturereading.h"
+#include <QModelIndex>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QAmbientTemperatureReading>
+#include "_cgo_export.h"
+
+class MyQAmbientTemperatureReading: public QAmbientTemperatureReading {
+public:
+};
+
+double QAmbientTemperatureReading_Temperature(void* ptr){
+	return static_cast<double>(static_cast<QAmbientTemperatureReading*>(ptr)->temperature());
+}
+
+void QAmbientTemperatureReading_SetTemperature(void* ptr, double temperature){
+	static_cast<QAmbientTemperatureReading*>(ptr)->setTemperature(static_cast<qreal>(temperature));
+}
+
+#include "qorientationsensor.h"
+#include <QObject>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QOrientationSensor>
+#include "_cgo_export.h"
+
+class MyQOrientationSensor: public QOrientationSensor {
+public:
+};
+
+void* QOrientationSensor_Reading(void* ptr){
+	return static_cast<QOrientationSensor*>(ptr)->reading();
+}
+
+void* QOrientationSensor_NewQOrientationSensor(void* parent){
+	return new QOrientationSensor(static_cast<QObject*>(parent));
+}
+
+void QOrientationSensor_DestroyQOrientationSensor(void* ptr){
+	static_cast<QOrientationSensor*>(ptr)->~QOrientationSensor();
+}
+
+#include "qmagnetometer.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QObject>
+#include <QMagnetometer>
+#include "_cgo_export.h"
+
+class MyQMagnetometer: public QMagnetometer {
+public:
+void Signal_ReturnGeoValuesChanged(bool returnGeoValues){callbackQMagnetometerReturnGeoValuesChanged(this->objectName().toUtf8().data(), returnGeoValues);};
+};
+
+void* QMagnetometer_Reading(void* ptr){
+	return static_cast<QMagnetometer*>(ptr)->reading();
+}
+
+int QMagnetometer_ReturnGeoValues(void* ptr){
+	return static_cast<QMagnetometer*>(ptr)->returnGeoValues();
+}
+
+void QMagnetometer_SetReturnGeoValues(void* ptr, int returnGeoValues){
+	static_cast<QMagnetometer*>(ptr)->setReturnGeoValues(returnGeoValues != 0);
+}
+
+void* QMagnetometer_NewQMagnetometer(void* parent){
+	return new QMagnetometer(static_cast<QObject*>(parent));
+}
+
+void QMagnetometer_ConnectReturnGeoValuesChanged(void* ptr){
+	QObject::connect(static_cast<QMagnetometer*>(ptr), static_cast<void (QMagnetometer::*)(bool)>(&QMagnetometer::returnGeoValuesChanged), static_cast<MyQMagnetometer*>(ptr), static_cast<void (MyQMagnetometer::*)(bool)>(&MyQMagnetometer::Signal_ReturnGeoValuesChanged));;
+}
+
+void QMagnetometer_DisconnectReturnGeoValuesChanged(void* ptr){
+	QObject::disconnect(static_cast<QMagnetometer*>(ptr), static_cast<void (QMagnetometer::*)(bool)>(&QMagnetometer::returnGeoValuesChanged), static_cast<MyQMagnetometer*>(ptr), static_cast<void (MyQMagnetometer::*)(bool)>(&MyQMagnetometer::Signal_ReturnGeoValuesChanged));;
+}
+
+void QMagnetometer_DestroyQMagnetometer(void* ptr){
+	static_cast<QMagnetometer*>(ptr)->~QMagnetometer();
+}
+
+#include "qrotationreading.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QRotationReading>
+#include "_cgo_export.h"
+
+class MyQRotationReading: public QRotationReading {
+public:
+};
+
+double QRotationReading_X(void* ptr){
+	return static_cast<double>(static_cast<QRotationReading*>(ptr)->x());
+}
+
+double QRotationReading_Y(void* ptr){
+	return static_cast<double>(static_cast<QRotationReading*>(ptr)->y());
+}
+
+double QRotationReading_Z(void* ptr){
+	return static_cast<double>(static_cast<QRotationReading*>(ptr)->z());
+}
+
+void QRotationReading_SetFromEuler(void* ptr, double x, double y, double z){
+	static_cast<QRotationReading*>(ptr)->setFromEuler(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(z));
+}
+
+#include "qtapsensor.h"
+#include <QObject>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QTapSensor>
+#include "_cgo_export.h"
+
+class MyQTapSensor: public QTapSensor {
+public:
+void Signal_ReturnDoubleTapEventsChanged(bool returnDoubleTapEvents){callbackQTapSensorReturnDoubleTapEventsChanged(this->objectName().toUtf8().data(), returnDoubleTapEvents);};
+};
+
+void* QTapSensor_Reading(void* ptr){
+	return static_cast<QTapSensor*>(ptr)->reading();
+}
+
+int QTapSensor_ReturnDoubleTapEvents(void* ptr){
+	return static_cast<QTapSensor*>(ptr)->returnDoubleTapEvents();
+}
+
+void QTapSensor_SetReturnDoubleTapEvents(void* ptr, int returnDoubleTapEvents){
+	static_cast<QTapSensor*>(ptr)->setReturnDoubleTapEvents(returnDoubleTapEvents != 0);
+}
+
+void* QTapSensor_NewQTapSensor(void* parent){
+	return new QTapSensor(static_cast<QObject*>(parent));
+}
+
+void QTapSensor_ConnectReturnDoubleTapEventsChanged(void* ptr){
+	QObject::connect(static_cast<QTapSensor*>(ptr), static_cast<void (QTapSensor::*)(bool)>(&QTapSensor::returnDoubleTapEventsChanged), static_cast<MyQTapSensor*>(ptr), static_cast<void (MyQTapSensor::*)(bool)>(&MyQTapSensor::Signal_ReturnDoubleTapEventsChanged));;
+}
+
+void QTapSensor_DisconnectReturnDoubleTapEventsChanged(void* ptr){
+	QObject::disconnect(static_cast<QTapSensor*>(ptr), static_cast<void (QTapSensor::*)(bool)>(&QTapSensor::returnDoubleTapEventsChanged), static_cast<MyQTapSensor*>(ptr), static_cast<void (MyQTapSensor::*)(bool)>(&MyQTapSensor::Signal_ReturnDoubleTapEventsChanged));;
+}
+
+void QTapSensor_DestroyQTapSensor(void* ptr){
+	static_cast<QTapSensor*>(ptr)->~QTapSensor();
+}
+
+#include "qsensorfilter.h"
+#include <QSensorReading>
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QSensor>
+#include <QSensorFilter>
+#include "_cgo_export.h"
+
+class MyQSensorFilter: public QSensorFilter {
+public:
+};
+
+int QSensorFilter_Filter(void* ptr, void* reading){
+	return static_cast<QSensorFilter*>(ptr)->filter(static_cast<QSensorReading*>(reading));
+}
+
+#include "qholsterreading.h"
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QString>
+#include <QHolsterReading>
+#include "_cgo_export.h"
+
+class MyQHolsterReading: public QHolsterReading {
+public:
+};
+
+int QHolsterReading_Holstered(void* ptr){
+	return static_cast<QHolsterReading*>(ptr)->holstered();
+}
+
+void QHolsterReading_SetHolstered(void* ptr, int holstered){
+	static_cast<QHolsterReading*>(ptr)->setHolstered(holstered != 0);
+}
+
+#include "qgyroscopefilter.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QGyroscope>
+#include <QGyroscopeReading>
+#include <QString>
+#include <QVariant>
+#include <QGyroscopeFilter>
+#include "_cgo_export.h"
+
+class MyQGyroscopeFilter: public QGyroscopeFilter {
+public:
+};
+
+int QGyroscopeFilter_Filter(void* ptr, void* reading){
+	return static_cast<QGyroscopeFilter*>(ptr)->filter(static_cast<QGyroscopeReading*>(reading));
+}
+
+#include "qsensorplugininterface.h"
+#include <QString>
+#include <QVariant>
+#include <QUrl>
+#include <QModelIndex>
+#include <QSensor>
+#include <QSensorPluginInterface>
+#include "_cgo_export.h"
+
+class MyQSensorPluginInterface: public QSensorPluginInterface {
+public:
+};
+
+void QSensorPluginInterface_RegisterSensors(void* ptr){
+	static_cast<QSensorPluginInterface*>(ptr)->registerSensors();
+}
+
+#include "qaltimeterreading.h"
+#include <QUrl>
+#include <QModelIndex>
+#include <QAltimeter>
+#include <QString>
+#include <QVariant>
+#include <QAltimeterReading>
+#include "_cgo_export.h"
+
+class MyQAltimeterReading: public QAltimeterReading {
+public:
+};
+
+double QAltimeterReading_Altitude(void* ptr){
+	return static_cast<double>(static_cast<QAltimeterReading*>(ptr)->altitude());
+}
+
+void QAltimeterReading_SetAltitude(void* ptr, double altitude){
+	static_cast<QAltimeterReading*>(ptr)->setAltitude(static_cast<qreal>(altitude));
+}
+
 #include "qcompassfilter.h"
 #include <QString>
 #include <QVariant>
@@ -825,97 +1534,16 @@ int QCompassFilter_Filter(void* ptr, void* reading){
 	return static_cast<QCompassFilter*>(ptr)->filter(static_cast<QCompassReading*>(reading));
 }
 
-#include "qaltimeterreading.h"
-#include <QAltimeter>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QAltimeterReading>
-#include "_cgo_export.h"
-
-class MyQAltimeterReading: public QAltimeterReading {
-public:
-};
-
-double QAltimeterReading_Altitude(void* ptr){
-	return static_cast<double>(static_cast<QAltimeterReading*>(ptr)->altitude());
-}
-
-void QAltimeterReading_SetAltitude(void* ptr, double altitude){
-	static_cast<QAltimeterReading*>(ptr)->setAltitude(static_cast<qreal>(altitude));
-}
-
-#include "qcompass.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QCompass>
-#include "_cgo_export.h"
-
-class MyQCompass: public QCompass {
-public:
-};
-
-void* QCompass_Reading(void* ptr){
-	return static_cast<QCompass*>(ptr)->reading();
-}
-
-void* QCompass_NewQCompass(void* parent){
-	return new QCompass(static_cast<QObject*>(parent));
-}
-
-void QCompass_DestroyQCompass(void* ptr){
-	static_cast<QCompass*>(ptr)->~QCompass();
-}
-
-#include "qmagnetometerfilter.h"
-#include <QModelIndex>
-#include <QMagnetometer>
-#include <QMagnetometerReading>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QMagnetometerFilter>
-#include "_cgo_export.h"
-
-class MyQMagnetometerFilter: public QMagnetometerFilter {
-public:
-};
-
-int QMagnetometerFilter_Filter(void* ptr, void* reading){
-	return static_cast<QMagnetometerFilter*>(ptr)->filter(static_cast<QMagnetometerReading*>(reading));
-}
-
-#include "qproximityfilter.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QProximityReading>
-#include <QProximityFilter>
-#include "_cgo_export.h"
-
-class MyQProximityFilter: public QProximityFilter {
-public:
-};
-
-int QProximityFilter_Filter(void* ptr, void* reading){
-	return static_cast<QProximityFilter*>(ptr)->filter(static_cast<QProximityReading*>(reading));
-}
-
 #include "qsensor.h"
+#include <QModelIndex>
+#include <QByteArray>
+#include <QSensorReading>
 #include <QMetaObject>
+#include <QSensorFilter>
+#include <QObject>
 #include <QString>
 #include <QVariant>
-#include <QModelIndex>
-#include <QSensorReading>
-#include <QByteArray>
-#include <QSensorFilter>
 #include <QUrl>
-#include <QObject>
 #include <QSensor>
 #include "_cgo_export.h"
 
@@ -1205,690 +1833,62 @@ void QSensor_DestroyQSensor(void* ptr){
 	static_cast<QSensor*>(ptr)->~QSensor();
 }
 
-#include "qgyroscopereading.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QGyroscope>
-#include <QGyroscopeReading>
-#include "_cgo_export.h"
-
-class MyQGyroscopeReading: public QGyroscopeReading {
-public:
-};
-
-double QGyroscopeReading_X(void* ptr){
-	return static_cast<double>(static_cast<QGyroscopeReading*>(ptr)->x());
-}
-
-double QGyroscopeReading_Y(void* ptr){
-	return static_cast<double>(static_cast<QGyroscopeReading*>(ptr)->y());
-}
-
-double QGyroscopeReading_Z(void* ptr){
-	return static_cast<double>(static_cast<QGyroscopeReading*>(ptr)->z());
-}
-
-void QGyroscopeReading_SetX(void* ptr, double x){
-	static_cast<QGyroscopeReading*>(ptr)->setX(static_cast<qreal>(x));
-}
-
-void QGyroscopeReading_SetY(void* ptr, double y){
-	static_cast<QGyroscopeReading*>(ptr)->setY(static_cast<qreal>(y));
-}
-
-void QGyroscopeReading_SetZ(void* ptr, double z){
-	static_cast<QGyroscopeReading*>(ptr)->setZ(static_cast<qreal>(z));
-}
-
-#include "qsensorreading.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSensor>
-#include <QSensorReading>
-#include "_cgo_export.h"
-
-class MyQSensorReading: public QSensorReading {
-public:
-};
-
-void* QSensorReading_Value(void* ptr, int index){
-	return new QVariant(static_cast<QSensorReading*>(ptr)->value(index));
-}
-
-int QSensorReading_ValueCount(void* ptr){
-	return static_cast<QSensorReading*>(ptr)->valueCount();
-}
-
-#include "qtapreading.h"
-#include <QModelIndex>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QTapReading>
-#include "_cgo_export.h"
-
-class MyQTapReading: public QTapReading {
-public:
-};
-
-int QTapReading_IsDoubleTap(void* ptr){
-	return static_cast<QTapReading*>(ptr)->isDoubleTap();
-}
-
-int QTapReading_TapDirection(void* ptr){
-	return static_cast<QTapReading*>(ptr)->tapDirection();
-}
-
-void QTapReading_SetDoubleTap(void* ptr, int doubleTap){
-	static_cast<QTapReading*>(ptr)->setDoubleTap(doubleTap != 0);
-}
-
-void QTapReading_SetTapDirection(void* ptr, int tapDirection){
-	static_cast<QTapReading*>(ptr)->setTapDirection(static_cast<QTapReading::TapDirection>(tapDirection));
-}
-
-#include "qirproximityreading.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QIRProximityReading>
-#include "_cgo_export.h"
-
-class MyQIRProximityReading: public QIRProximityReading {
-public:
-};
-
-double QIRProximityReading_Reflectance(void* ptr){
-	return static_cast<double>(static_cast<QIRProximityReading*>(ptr)->reflectance());
-}
-
-void QIRProximityReading_SetReflectance(void* ptr, double reflectance){
-	static_cast<QIRProximityReading*>(ptr)->setReflectance(static_cast<qreal>(reflectance));
-}
-
-#include "qaltimeterfilter.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QAltimeter>
-#include <QAltimeterReading>
-#include <QString>
-#include <QAltimeterFilter>
-#include "_cgo_export.h"
-
-class MyQAltimeterFilter: public QAltimeterFilter {
-public:
-};
-
-int QAltimeterFilter_Filter(void* ptr, void* reading){
-	return static_cast<QAltimeterFilter*>(ptr)->filter(static_cast<QAltimeterReading*>(reading));
-}
-
-#include "qholsterreading.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QHolsterReading>
-#include "_cgo_export.h"
-
-class MyQHolsterReading: public QHolsterReading {
-public:
-};
-
-int QHolsterReading_Holstered(void* ptr){
-	return static_cast<QHolsterReading*>(ptr)->holstered();
-}
-
-void QHolsterReading_SetHolstered(void* ptr, int holstered){
-	static_cast<QHolsterReading*>(ptr)->setHolstered(holstered != 0);
-}
-
-#include "qdistancesensor.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QString>
-#include <QVariant>
-#include <QDistanceSensor>
-#include "_cgo_export.h"
-
-class MyQDistanceSensor: public QDistanceSensor {
-public:
-};
-
-void* QDistanceSensor_Reading(void* ptr){
-	return static_cast<QDistanceSensor*>(ptr)->reading();
-}
-
-void* QDistanceSensor_NewQDistanceSensor(void* parent){
-	return new QDistanceSensor(static_cast<QObject*>(parent));
-}
-
-void QDistanceSensor_DestroyQDistanceSensor(void* ptr){
-	static_cast<QDistanceSensor*>(ptr)->~QDistanceSensor();
-}
-
-#include "qirproximitysensor.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QIRProximitySensor>
-#include "_cgo_export.h"
-
-class MyQIRProximitySensor: public QIRProximitySensor {
-public:
-};
-
-void* QIRProximitySensor_Reading(void* ptr){
-	return static_cast<QIRProximitySensor*>(ptr)->reading();
-}
-
-void* QIRProximitySensor_NewQIRProximitySensor(void* parent){
-	return new QIRProximitySensor(static_cast<QObject*>(parent));
-}
-
-void QIRProximitySensor_DestroyQIRProximitySensor(void* ptr){
-	static_cast<QIRProximitySensor*>(ptr)->~QIRProximitySensor();
-}
-
-#include "qambienttemperaturesensor.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QAmbientTemperatureSensor>
-#include "_cgo_export.h"
-
-class MyQAmbientTemperatureSensor: public QAmbientTemperatureSensor {
-public:
-};
-
-void* QAmbientTemperatureSensor_Reading(void* ptr){
-	return static_cast<QAmbientTemperatureSensor*>(ptr)->reading();
-}
-
-void* QAmbientTemperatureSensor_NewQAmbientTemperatureSensor(void* parent){
-	return new QAmbientTemperatureSensor(static_cast<QObject*>(parent));
-}
-
-void QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(void* ptr){
-	static_cast<QAmbientTemperatureSensor*>(ptr)->~QAmbientTemperatureSensor();
-}
-
-#include "qrotationreading.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QString>
-#include <QRotationReading>
-#include "_cgo_export.h"
-
-class MyQRotationReading: public QRotationReading {
-public:
-};
-
-double QRotationReading_X(void* ptr){
-	return static_cast<double>(static_cast<QRotationReading*>(ptr)->x());
-}
-
-double QRotationReading_Y(void* ptr){
-	return static_cast<double>(static_cast<QRotationReading*>(ptr)->y());
-}
-
-double QRotationReading_Z(void* ptr){
-	return static_cast<double>(static_cast<QRotationReading*>(ptr)->z());
-}
-
-void QRotationReading_SetFromEuler(void* ptr, double x, double y, double z){
-	static_cast<QRotationReading*>(ptr)->setFromEuler(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(z));
-}
-
-#include "qorientationreading.h"
+#include "qorientationfilter.h"
 #include <QString>
 #include <QVariant>
 #include <QUrl>
 #include <QModelIndex>
 #include <QOrientationReading>
+#include <QOrientationFilter>
 #include "_cgo_export.h"
 
-class MyQOrientationReading: public QOrientationReading {
+class MyQOrientationFilter: public QOrientationFilter {
 public:
 };
 
-int QOrientationReading_Orientation(void* ptr){
-	return static_cast<QOrientationReading*>(ptr)->orientation();
+int QOrientationFilter_Filter(void* ptr, void* reading){
+	return static_cast<QOrientationFilter*>(ptr)->filter(static_cast<QOrientationReading*>(reading));
 }
 
-void QOrientationReading_SetOrientation(void* ptr, int orientation){
-	static_cast<QOrientationReading*>(ptr)->setOrientation(static_cast<QOrientationReading::Orientation>(orientation));
-}
-
-#include "qirproximityfilter.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QIRProximityReading>
+#include "qaccelerometer.h"
 #include <QString>
 #include <QVariant>
-#include <QIRProximityFilter>
-#include "_cgo_export.h"
-
-class MyQIRProximityFilter: public QIRProximityFilter {
-public:
-};
-
-int QIRProximityFilter_Filter(void* ptr, void* reading){
-	return static_cast<QIRProximityFilter*>(ptr)->filter(static_cast<QIRProximityReading*>(reading));
-}
-
-#include "qproximityreading.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QProximityReading>
-#include "_cgo_export.h"
-
-class MyQProximityReading: public QProximityReading {
-public:
-};
-
-int QProximityReading_Close(void* ptr){
-	return static_cast<QProximityReading*>(ptr)->close();
-}
-
-void QProximityReading_SetClose(void* ptr, int close){
-	static_cast<QProximityReading*>(ptr)->setClose(close != 0);
-}
-
-#include "qambientlightsensor.h"
 #include <QUrl>
 #include <QModelIndex>
 #include <QObject>
-#include <QString>
-#include <QVariant>
-#include <QAmbientLightSensor>
-#include "_cgo_export.h"
-
-class MyQAmbientLightSensor: public QAmbientLightSensor {
-public:
-};
-
-void* QAmbientLightSensor_Reading(void* ptr){
-	return static_cast<QAmbientLightSensor*>(ptr)->reading();
-}
-
-void* QAmbientLightSensor_NewQAmbientLightSensor(void* parent){
-	return new QAmbientLightSensor(static_cast<QObject*>(parent));
-}
-
-void QAmbientLightSensor_DestroyQAmbientLightSensor(void* ptr){
-	static_cast<QAmbientLightSensor*>(ptr)->~QAmbientLightSensor();
-}
-
-#include "qmagnetometer.h"
-#include <QObject>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QMagnetometer>
-#include "_cgo_export.h"
-
-class MyQMagnetometer: public QMagnetometer {
-public:
-void Signal_ReturnGeoValuesChanged(bool returnGeoValues){callbackQMagnetometerReturnGeoValuesChanged(this->objectName().toUtf8().data(), returnGeoValues);};
-};
-
-void* QMagnetometer_Reading(void* ptr){
-	return static_cast<QMagnetometer*>(ptr)->reading();
-}
-
-int QMagnetometer_ReturnGeoValues(void* ptr){
-	return static_cast<QMagnetometer*>(ptr)->returnGeoValues();
-}
-
-void QMagnetometer_SetReturnGeoValues(void* ptr, int returnGeoValues){
-	static_cast<QMagnetometer*>(ptr)->setReturnGeoValues(returnGeoValues != 0);
-}
-
-void* QMagnetometer_NewQMagnetometer(void* parent){
-	return new QMagnetometer(static_cast<QObject*>(parent));
-}
-
-void QMagnetometer_ConnectReturnGeoValuesChanged(void* ptr){
-	QObject::connect(static_cast<QMagnetometer*>(ptr), static_cast<void (QMagnetometer::*)(bool)>(&QMagnetometer::returnGeoValuesChanged), static_cast<MyQMagnetometer*>(ptr), static_cast<void (MyQMagnetometer::*)(bool)>(&MyQMagnetometer::Signal_ReturnGeoValuesChanged));;
-}
-
-void QMagnetometer_DisconnectReturnGeoValuesChanged(void* ptr){
-	QObject::disconnect(static_cast<QMagnetometer*>(ptr), static_cast<void (QMagnetometer::*)(bool)>(&QMagnetometer::returnGeoValuesChanged), static_cast<MyQMagnetometer*>(ptr), static_cast<void (MyQMagnetometer::*)(bool)>(&MyQMagnetometer::Signal_ReturnGeoValuesChanged));;
-}
-
-void QMagnetometer_DestroyQMagnetometer(void* ptr){
-	static_cast<QMagnetometer*>(ptr)->~QMagnetometer();
-}
-
-#include "qmagnetometerreading.h"
-#include <QModelIndex>
-#include <QMagnetometer>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QMagnetometerReading>
-#include "_cgo_export.h"
-
-class MyQMagnetometerReading: public QMagnetometerReading {
-public:
-};
-
-double QMagnetometerReading_CalibrationLevel(void* ptr){
-	return static_cast<double>(static_cast<QMagnetometerReading*>(ptr)->calibrationLevel());
-}
-
-double QMagnetometerReading_X(void* ptr){
-	return static_cast<double>(static_cast<QMagnetometerReading*>(ptr)->x());
-}
-
-double QMagnetometerReading_Y(void* ptr){
-	return static_cast<double>(static_cast<QMagnetometerReading*>(ptr)->y());
-}
-
-double QMagnetometerReading_Z(void* ptr){
-	return static_cast<double>(static_cast<QMagnetometerReading*>(ptr)->z());
-}
-
-void QMagnetometerReading_SetCalibrationLevel(void* ptr, double calibrationLevel){
-	static_cast<QMagnetometerReading*>(ptr)->setCalibrationLevel(static_cast<qreal>(calibrationLevel));
-}
-
-void QMagnetometerReading_SetX(void* ptr, double x){
-	static_cast<QMagnetometerReading*>(ptr)->setX(static_cast<qreal>(x));
-}
-
-void QMagnetometerReading_SetY(void* ptr, double y){
-	static_cast<QMagnetometerReading*>(ptr)->setY(static_cast<qreal>(y));
-}
-
-void QMagnetometerReading_SetZ(void* ptr, double z){
-	static_cast<QMagnetometerReading*>(ptr)->setZ(static_cast<qreal>(z));
-}
-
-#include "qtapsensor.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QString>
-#include <QVariant>
-#include <QTapSensor>
-#include "_cgo_export.h"
-
-class MyQTapSensor: public QTapSensor {
-public:
-void Signal_ReturnDoubleTapEventsChanged(bool returnDoubleTapEvents){callbackQTapSensorReturnDoubleTapEventsChanged(this->objectName().toUtf8().data(), returnDoubleTapEvents);};
-};
-
-void* QTapSensor_Reading(void* ptr){
-	return static_cast<QTapSensor*>(ptr)->reading();
-}
-
-int QTapSensor_ReturnDoubleTapEvents(void* ptr){
-	return static_cast<QTapSensor*>(ptr)->returnDoubleTapEvents();
-}
-
-void QTapSensor_SetReturnDoubleTapEvents(void* ptr, int returnDoubleTapEvents){
-	static_cast<QTapSensor*>(ptr)->setReturnDoubleTapEvents(returnDoubleTapEvents != 0);
-}
-
-void* QTapSensor_NewQTapSensor(void* parent){
-	return new QTapSensor(static_cast<QObject*>(parent));
-}
-
-void QTapSensor_ConnectReturnDoubleTapEventsChanged(void* ptr){
-	QObject::connect(static_cast<QTapSensor*>(ptr), static_cast<void (QTapSensor::*)(bool)>(&QTapSensor::returnDoubleTapEventsChanged), static_cast<MyQTapSensor*>(ptr), static_cast<void (MyQTapSensor::*)(bool)>(&MyQTapSensor::Signal_ReturnDoubleTapEventsChanged));;
-}
-
-void QTapSensor_DisconnectReturnDoubleTapEventsChanged(void* ptr){
-	QObject::disconnect(static_cast<QTapSensor*>(ptr), static_cast<void (QTapSensor::*)(bool)>(&QTapSensor::returnDoubleTapEventsChanged), static_cast<MyQTapSensor*>(ptr), static_cast<void (MyQTapSensor::*)(bool)>(&MyQTapSensor::Signal_ReturnDoubleTapEventsChanged));;
-}
-
-void QTapSensor_DestroyQTapSensor(void* ptr){
-	static_cast<QTapSensor*>(ptr)->~QTapSensor();
-}
-
-#include "qsensorgesturerecognizer.h"
-#include <QSensorGesture>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSensor>
-#include <QSensorGestureRecognizer>
-#include "_cgo_export.h"
-
-class MyQSensorGestureRecognizer: public QSensorGestureRecognizer {
-public:
-};
-
-void QSensorGestureRecognizer_CreateBackend(void* ptr){
-	static_cast<QSensorGestureRecognizer*>(ptr)->createBackend();
-}
-
-char* QSensorGestureRecognizer_GestureSignals(void* ptr){
-	return static_cast<QSensorGestureRecognizer*>(ptr)->gestureSignals().join("|").toUtf8().data();
-}
-
-char* QSensorGestureRecognizer_Id(void* ptr){
-	return static_cast<QSensorGestureRecognizer*>(ptr)->id().toUtf8().data();
-}
-
-int QSensorGestureRecognizer_IsActive(void* ptr){
-	return static_cast<QSensorGestureRecognizer*>(ptr)->isActive();
-}
-
-void QSensorGestureRecognizer_StartBackend(void* ptr){
-	static_cast<QSensorGestureRecognizer*>(ptr)->startBackend();
-}
-
-void QSensorGestureRecognizer_StopBackend(void* ptr){
-	static_cast<QSensorGestureRecognizer*>(ptr)->stopBackend();
-}
-
-void QSensorGestureRecognizer_DestroyQSensorGestureRecognizer(void* ptr){
-	static_cast<QSensorGestureRecognizer*>(ptr)->~QSensorGestureRecognizer();
-}
-
-#include "qsensorgestureplugininterface.h"
-#include <QSensorGesture>
-#include <QSensor>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSensorGesturePluginInterface>
-#include "_cgo_export.h"
-
-class MyQSensorGesturePluginInterface: public QSensorGesturePluginInterface {
-public:
-};
-
-char* QSensorGesturePluginInterface_Name(void* ptr){
-	return static_cast<QSensorGesturePluginInterface*>(ptr)->name().toUtf8().data();
-}
-
-char* QSensorGesturePluginInterface_SupportedIds(void* ptr){
-	return static_cast<QSensorGesturePluginInterface*>(ptr)->supportedIds().join("|").toUtf8().data();
-}
-
-void QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(void* ptr){
-	static_cast<QSensorGesturePluginInterface*>(ptr)->~QSensorGesturePluginInterface();
-}
-
-#include "qaccelerometerreading.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
 #include <QAccelerometer>
-#include <QAccelerometerReading>
 #include "_cgo_export.h"
 
-class MyQAccelerometerReading: public QAccelerometerReading {
+class MyQAccelerometer: public QAccelerometer {
 public:
+void Signal_AccelerationModeChanged(QAccelerometer::AccelerationMode accelerationMode){callbackQAccelerometerAccelerationModeChanged(this->objectName().toUtf8().data(), accelerationMode);};
 };
 
-double QAccelerometerReading_X(void* ptr){
-	return static_cast<double>(static_cast<QAccelerometerReading*>(ptr)->x());
+int QAccelerometer_AccelerationMode(void* ptr){
+	return static_cast<QAccelerometer*>(ptr)->accelerationMode();
 }
 
-double QAccelerometerReading_Y(void* ptr){
-	return static_cast<double>(static_cast<QAccelerometerReading*>(ptr)->y());
+void* QAccelerometer_Reading(void* ptr){
+	return static_cast<QAccelerometer*>(ptr)->reading();
 }
 
-double QAccelerometerReading_Z(void* ptr){
-	return static_cast<double>(static_cast<QAccelerometerReading*>(ptr)->z());
+void* QAccelerometer_NewQAccelerometer(void* parent){
+	return new QAccelerometer(static_cast<QObject*>(parent));
 }
 
-void QAccelerometerReading_SetX(void* ptr, double x){
-	static_cast<QAccelerometerReading*>(ptr)->setX(static_cast<qreal>(x));
+void QAccelerometer_ConnectAccelerationModeChanged(void* ptr){
+	QObject::connect(static_cast<QAccelerometer*>(ptr), static_cast<void (QAccelerometer::*)(QAccelerometer::AccelerationMode)>(&QAccelerometer::accelerationModeChanged), static_cast<MyQAccelerometer*>(ptr), static_cast<void (MyQAccelerometer::*)(QAccelerometer::AccelerationMode)>(&MyQAccelerometer::Signal_AccelerationModeChanged));;
 }
 
-void QAccelerometerReading_SetY(void* ptr, double y){
-	static_cast<QAccelerometerReading*>(ptr)->setY(static_cast<qreal>(y));
+void QAccelerometer_DisconnectAccelerationModeChanged(void* ptr){
+	QObject::disconnect(static_cast<QAccelerometer*>(ptr), static_cast<void (QAccelerometer::*)(QAccelerometer::AccelerationMode)>(&QAccelerometer::accelerationModeChanged), static_cast<MyQAccelerometer*>(ptr), static_cast<void (MyQAccelerometer::*)(QAccelerometer::AccelerationMode)>(&MyQAccelerometer::Signal_AccelerationModeChanged));;
 }
 
-void QAccelerometerReading_SetZ(void* ptr, double z){
-	static_cast<QAccelerometerReading*>(ptr)->setZ(static_cast<qreal>(z));
+void QAccelerometer_SetAccelerationMode(void* ptr, int accelerationMode){
+	static_cast<QAccelerometer*>(ptr)->setAccelerationMode(static_cast<QAccelerometer::AccelerationMode>(accelerationMode));
 }
 
-#include "qproximitysensor.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QProximitySensor>
-#include "_cgo_export.h"
-
-class MyQProximitySensor: public QProximitySensor {
-public:
-};
-
-void* QProximitySensor_Reading(void* ptr){
-	return static_cast<QProximitySensor*>(ptr)->reading();
-}
-
-void* QProximitySensor_NewQProximitySensor(void* parent){
-	return new QProximitySensor(static_cast<QObject*>(parent));
-}
-
-void QProximitySensor_DestroyQProximitySensor(void* ptr){
-	static_cast<QProximitySensor*>(ptr)->~QProximitySensor();
-}
-
-#include "qlightfilter.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QLightReading>
-#include <QLightFilter>
-#include "_cgo_export.h"
-
-class MyQLightFilter: public QLightFilter {
-public:
-};
-
-int QLightFilter_Filter(void* ptr, void* reading){
-	return static_cast<QLightFilter*>(ptr)->filter(static_cast<QLightReading*>(reading));
-}
-
-#include "qsensorbackend.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSensor>
-#include <QSensorBackend>
-#include "_cgo_export.h"
-
-class MyQSensorBackend: public QSensorBackend {
-public:
-};
-
-void QSensorBackend_AddDataRate(void* ptr, double min, double max){
-	static_cast<QSensorBackend*>(ptr)->addDataRate(static_cast<qreal>(min), static_cast<qreal>(max));
-}
-
-int QSensorBackend_IsFeatureSupported(void* ptr, int feature){
-	return static_cast<QSensorBackend*>(ptr)->isFeatureSupported(static_cast<QSensor::Feature>(feature));
-}
-
-void QSensorBackend_SensorBusy(void* ptr){
-	static_cast<QSensorBackend*>(ptr)->sensorBusy();
-}
-
-void QSensorBackend_SensorError(void* ptr, int error){
-	static_cast<QSensorBackend*>(ptr)->sensorError(error);
-}
-
-void QSensorBackend_AddOutputRange(void* ptr, double min, double max, double accuracy){
-	static_cast<QSensorBackend*>(ptr)->addOutputRange(static_cast<qreal>(min), static_cast<qreal>(max), static_cast<qreal>(accuracy));
-}
-
-void QSensorBackend_NewReadingAvailable(void* ptr){
-	static_cast<QSensorBackend*>(ptr)->newReadingAvailable();
-}
-
-void* QSensorBackend_Reading(void* ptr){
-	return static_cast<QSensorBackend*>(ptr)->reading();
-}
-
-void* QSensorBackend_Sensor(void* ptr){
-	return static_cast<QSensorBackend*>(ptr)->sensor();
-}
-
-void QSensorBackend_SensorStopped(void* ptr){
-	static_cast<QSensorBackend*>(ptr)->sensorStopped();
-}
-
-void QSensorBackend_SetDataRates(void* ptr, void* otherSensor){
-	static_cast<QSensorBackend*>(ptr)->setDataRates(static_cast<QSensor*>(otherSensor));
-}
-
-void QSensorBackend_SetDescription(void* ptr, char* description){
-	static_cast<QSensorBackend*>(ptr)->setDescription(QString(description));
-}
-
-void QSensorBackend_Start(void* ptr){
-	static_cast<QSensorBackend*>(ptr)->start();
-}
-
-void QSensorBackend_Stop(void* ptr){
-	static_cast<QSensorBackend*>(ptr)->stop();
-}
-
-#include "qrotationfilter.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QRotationReading>
-#include <QString>
-#include <QVariant>
-#include <QRotationFilter>
-#include "_cgo_export.h"
-
-class MyQRotationFilter: public QRotationFilter {
-public:
-};
-
-int QRotationFilter_Filter(void* ptr, void* reading){
-	return static_cast<QRotationFilter*>(ptr)->filter(static_cast<QRotationReading*>(reading));
+void QAccelerometer_DestroyQAccelerometer(void* ptr){
+	static_cast<QAccelerometer*>(ptr)->~QAccelerometer();
 }
 

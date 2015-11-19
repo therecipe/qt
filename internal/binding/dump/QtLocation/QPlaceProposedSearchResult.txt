@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QPlaceProposedSearchResult QPlaceProposedSearchResult::QPlaceProposedSearchResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceproposedsearchresult.h non constructor false false   QPlaceProposedSearchResult() [] }
-&{QPlaceProposedSearchResult QPlaceProposedSearchResult::QPlaceProposedSearchResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceproposedsearchresult.h non constructor false true 2  QPlaceProposedSearchResult(const QPlaceSearchRequest &other) [0xc822d7cd60] }
-&{searchRequest QPlaceProposedSearchResult::searchRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceproposedsearchresult.h non plain false false  QPlaceSearchRequest QPlaceSearchRequest searchRequest() const [] }
-&{setSearchRequest QPlaceProposedSearchResult::setSearchRequest commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceproposedsearchresult.h non plain false false  void void setSearchRequest(const QPlaceSearchRequest &request) [0xc822d7d7e0] }
-&{~QPlaceProposedSearchResult QPlaceProposedSearchResult::~QPlaceProposedSearchResult commendable public /work/build/qt5_workdir/w/s/qtlocation/src/location/places/qplaceproposedsearchresult.h non destructor false false   ~QPlaceProposedSearchResult() [] }
-########################################			ENUMS			########################################

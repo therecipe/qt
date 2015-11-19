@@ -27,7 +27,7 @@ func PointerFromQAbstractNetworkCache(ptr QAbstractNetworkCache_ITF) unsafe.Poin
 func NewQAbstractNetworkCacheFromPointer(ptr unsafe.Pointer) *QAbstractNetworkCache {
 	var n = new(QAbstractNetworkCache)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractNetworkCache_" + qt.RandomIdentifier())
 	}
 	return n

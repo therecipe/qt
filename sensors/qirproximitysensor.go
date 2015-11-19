@@ -27,7 +27,7 @@ func PointerFromQIRProximitySensor(ptr QIRProximitySensor_ITF) unsafe.Pointer {
 func NewQIRProximitySensorFromPointer(ptr unsafe.Pointer) *QIRProximitySensor {
 	var n = new(QIRProximitySensor)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QIRProximitySensor_" + qt.RandomIdentifier())
 	}
 	return n

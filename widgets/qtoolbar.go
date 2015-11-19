@@ -28,7 +28,7 @@ func PointerFromQToolBar(ptr QToolBar_ITF) unsafe.Pointer {
 func NewQToolBarFromPointer(ptr unsafe.Pointer) *QToolBar {
 	var n = new(QToolBar)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QToolBar_" + qt.RandomIdentifier())
 	}
 	return n

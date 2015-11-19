@@ -38,7 +38,7 @@ func PointerFromQLayout(ptr QLayout_ITF) unsafe.Pointer {
 func NewQLayoutFromPointer(ptr unsafe.Pointer) *QLayout {
 	var n = new(QLayout)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QLayout_" + qt.RandomIdentifier())
 	}
 	return n

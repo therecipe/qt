@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QWebChannelAbstractTransport QWebChannelAbstractTransport::QWebChannelAbstractTransport commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannelabstracttransport.h non constructor false false   QWebChannelAbstractTransport(QObject *parent) [0xc822812fc0] }
-&{messageReceived QWebChannelAbstractTransport::messageReceived commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannelabstracttransport.h non signal false false  void void messageReceived(const QJsonObject &message, QWebChannelAbstractTransport *transport) [0xc822813260 0xc8228133e0] }
-&{sendMessage QWebChannelAbstractTransport::sendMessage commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannelabstracttransport.h pure slot false false  void void sendMessage(const QJsonObject &message) [0xc822813680] }
-&{~QWebChannelAbstractTransport QWebChannelAbstractTransport::~QWebChannelAbstractTransport commendable public /work/build/qt5_workdir/w/s/qtwebchannel/src/webchannel/qwebchannelabstracttransport.h impure destructor false false   ~QWebChannelAbstractTransport() [] }
-########################################			ENUMS			########################################

@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QAccessibleValueChangeEvent QAccessibleValueChangeEvent::QAccessibleValueChangeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  QAccessibleValueChangeEvent(QAccessibleInterface *iface, const QVariant &val) [0xc820d3ae40 0xc820d3af40] }
-&{QAccessibleValueChangeEvent QAccessibleValueChangeEvent::QAccessibleValueChangeEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   QAccessibleValueChangeEvent(QObject *object, const QVariant &value) [0xc820d3b160 0xc820d3b200] }
-&{setValue QAccessibleValueChangeEvent::setValue commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  void void setValue(const QVariant &value) [0xc820d3b360] }
-&{value QAccessibleValueChangeEvent::value commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QVariant QVariant value() const [] }
-########################################			ENUMS			########################################

@@ -26,7 +26,7 @@ func PointerFromQLightReading(ptr QLightReading_ITF) unsafe.Pointer {
 func NewQLightReadingFromPointer(ptr unsafe.Pointer) *QLightReading {
 	var n = new(QLightReading)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QLightReading_" + qt.RandomIdentifier())
 	}
 	return n

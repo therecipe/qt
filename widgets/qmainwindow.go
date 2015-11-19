@@ -27,7 +27,7 @@ func PointerFromQMainWindow(ptr QMainWindow_ITF) unsafe.Pointer {
 func NewQMainWindowFromPointer(ptr unsafe.Pointer) *QMainWindow {
 	var n = new(QMainWindow)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMainWindow_" + qt.RandomIdentifier())
 	}
 	return n

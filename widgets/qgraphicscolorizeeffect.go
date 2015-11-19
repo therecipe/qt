@@ -28,7 +28,7 @@ func PointerFromQGraphicsColorizeEffect(ptr QGraphicsColorizeEffect_ITF) unsafe.
 func NewQGraphicsColorizeEffectFromPointer(ptr unsafe.Pointer) *QGraphicsColorizeEffect {
 	var n = new(QGraphicsColorizeEffect)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsColorizeEffect_" + qt.RandomIdentifier())
 	}
 	return n

@@ -27,7 +27,7 @@ func PointerFromQNearFieldManager(ptr QNearFieldManager_ITF) unsafe.Pointer {
 func NewQNearFieldManagerFromPointer(ptr unsafe.Pointer) *QNearFieldManager {
 	var n = new(QNearFieldManager)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QNearFieldManager_" + qt.RandomIdentifier())
 	}
 	return n

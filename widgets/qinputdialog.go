@@ -28,7 +28,7 @@ func PointerFromQInputDialog(ptr QInputDialog_ITF) unsafe.Pointer {
 func NewQInputDialogFromPointer(ptr unsafe.Pointer) *QInputDialog {
 	var n = new(QInputDialog)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QInputDialog_" + qt.RandomIdentifier())
 	}
 	return n

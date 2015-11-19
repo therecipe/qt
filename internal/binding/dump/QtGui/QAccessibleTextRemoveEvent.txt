@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QAccessibleTextRemoveEvent QAccessibleTextRemoveEvent::QAccessibleTextRemoveEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false true 2  QAccessibleTextRemoveEvent(QAccessibleInterface *iface, int position, const QString &text) [0xc820d56460 0xc820d56540 0xc820d565e0] }
-&{QAccessibleTextRemoveEvent QAccessibleTextRemoveEvent::QAccessibleTextRemoveEvent commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non constructor false false   QAccessibleTextRemoveEvent(QObject *object, int position, const QString &text) [0xc820d567c0 0xc820d56840 0xc820d568c0] }
-&{changePosition QAccessibleTextRemoveEvent::changePosition commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  int int changePosition() const [] }
-&{textRemoved QAccessibleTextRemoveEvent::textRemoved commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/accessible/qaccessible.h non plain false false  QString QString textRemoved() const [] }
-########################################			ENUMS			########################################

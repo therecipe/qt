@@ -27,7 +27,7 @@ func PointerFromQMediaControl(ptr QMediaControl_ITF) unsafe.Pointer {
 func NewQMediaControlFromPointer(ptr unsafe.Pointer) *QMediaControl {
 	var n = new(QMediaControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMediaControl_" + qt.RandomIdentifier())
 	}
 	return n

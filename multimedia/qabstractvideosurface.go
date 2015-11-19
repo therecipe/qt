@@ -27,7 +27,7 @@ func PointerFromQAbstractVideoSurface(ptr QAbstractVideoSurface_ITF) unsafe.Poin
 func NewQAbstractVideoSurfaceFromPointer(ptr unsafe.Pointer) *QAbstractVideoSurface {
 	var n = new(QAbstractVideoSurface)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractVideoSurface_" + qt.RandomIdentifier())
 	}
 	return n

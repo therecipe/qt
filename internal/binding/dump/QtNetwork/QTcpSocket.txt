@@ -1,4 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QTcpSocket QTcpSocket::QTcpSocket commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpsocket.h non constructor false false   QTcpSocket(QObject *parent) [0xc8236e5940] }
-&{~QTcpSocket QTcpSocket::~QTcpSocket commendable public /work/build/qt5_workdir/w/s/qtbase/src/network/socket/qtcpsocket.h impure destructor false false   ~QTcpSocket() [] }
-########################################			ENUMS			########################################

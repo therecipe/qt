@@ -26,7 +26,7 @@ func PointerFromQMediaGaplessPlaybackControl(ptr QMediaGaplessPlaybackControl_IT
 func NewQMediaGaplessPlaybackControlFromPointer(ptr unsafe.Pointer) *QMediaGaplessPlaybackControl {
 	var n = new(QMediaGaplessPlaybackControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMediaGaplessPlaybackControl_" + qt.RandomIdentifier())
 	}
 	return n

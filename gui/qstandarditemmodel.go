@@ -28,7 +28,7 @@ func PointerFromQStandardItemModel(ptr QStandardItemModel_ITF) unsafe.Pointer {
 func NewQStandardItemModelFromPointer(ptr unsafe.Pointer) *QStandardItemModel {
 	var n = new(QStandardItemModel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QStandardItemModel_" + qt.RandomIdentifier())
 	}
 	return n

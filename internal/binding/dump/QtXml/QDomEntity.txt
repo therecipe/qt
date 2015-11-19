@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QDomEntity QDomEntity::QDomEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false false   QDomEntity() [] }
-&{QDomEntity QDomEntity::QDomEntity commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non constructor false true 2  QDomEntity(const QDomEntity &x) [0xc821a0ce20] }
-&{nodeType QDomEntity::nodeType commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomNode::NodeType QDomNode::NodeType nodeType() const [] }
-&{notationName QDomEntity::notationName commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString notationName() const [] }
-&{operator= QDomEntity::operator= commendable unsupported_GoHeaderName /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QDomEntity & QDomEntity & operator=(const QDomEntity &x) [0xc821a0d740] }
-&{publicId QDomEntity::publicId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString publicId() const [] }
-&{systemId QDomEntity::systemId commendable public /work/build/qt5_workdir/w/s/qtbase/src/xml/dom/qdom.h non plain false false  QString QString systemId() const [] }
-########################################			ENUMS			########################################

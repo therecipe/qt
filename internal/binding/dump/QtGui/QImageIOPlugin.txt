@@ -1,7 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QImageIOPlugin QImageIOPlugin::QImageIOPlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h non constructor false false   QImageIOPlugin(QObject *parent) [0xc820c986a0] }
-&{capabilities QImageIOPlugin::capabilities commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h pure plain false false  Capabilities Capabilities capabilities(QIODevice *device, const QByteArray &format) const [0xc820c989e0 0xc820c98ae0] }
-&{create QImageIOPlugin::create commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h pure plain false false  QImageIOHandler * QImageIOHandler * create(QIODevice *device, const QByteArray &format) const [0xc820c98f40 0xc820c99020] }
-&{~QImageIOPlugin QImageIOPlugin::~QImageIOPlugin commendable public /work/build/qt5_workdir/w/s/qtbase/src/gui/image/qimageiohandler.h impure destructor false false   ~QImageIOPlugin() [] }
-########################################			ENUMS			########################################
-&{Capability QImageIOPlugin::Capability commendable public QImageIOPlugin::Capabilities [0xc820ca1f20 0xc820ca1fe0 0xc820c980c0] false}

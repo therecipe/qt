@@ -39,7 +39,7 @@ func PointerFromQMediaRecorder(ptr QMediaRecorder_ITF) unsafe.Pointer {
 func NewQMediaRecorderFromPointer(ptr unsafe.Pointer) *QMediaRecorder {
 	var n = new(QMediaRecorder)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMediaRecorder_" + qt.RandomIdentifier())
 	}
 	return n

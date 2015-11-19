@@ -28,7 +28,7 @@ func PointerFromQGuiApplication(ptr QGuiApplication_ITF) unsafe.Pointer {
 func NewQGuiApplicationFromPointer(ptr unsafe.Pointer) *QGuiApplication {
 	var n = new(QGuiApplication)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGuiApplication_" + qt.RandomIdentifier())
 	}
 	return n

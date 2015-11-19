@@ -27,7 +27,7 @@ func PointerFromQAltimeter(ptr QAltimeter_ITF) unsafe.Pointer {
 func NewQAltimeterFromPointer(ptr unsafe.Pointer) *QAltimeter {
 	var n = new(QAltimeter)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAltimeter_" + qt.RandomIdentifier())
 	}
 	return n

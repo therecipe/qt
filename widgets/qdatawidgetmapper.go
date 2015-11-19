@@ -27,7 +27,7 @@ func PointerFromQDataWidgetMapper(ptr QDataWidgetMapper_ITF) unsafe.Pointer {
 func NewQDataWidgetMapperFromPointer(ptr unsafe.Pointer) *QDataWidgetMapper {
 	var n = new(QDataWidgetMapper)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDataWidgetMapper_" + qt.RandomIdentifier())
 	}
 	return n

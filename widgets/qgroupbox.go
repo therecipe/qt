@@ -27,7 +27,7 @@ func PointerFromQGroupBox(ptr QGroupBox_ITF) unsafe.Pointer {
 func NewQGroupBoxFromPointer(ptr unsafe.Pointer) *QGroupBox {
 	var n = new(QGroupBox)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGroupBox_" + qt.RandomIdentifier())
 	}
 	return n

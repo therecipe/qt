@@ -27,7 +27,7 @@ func PointerFromQStringListModel(ptr QStringListModel_ITF) unsafe.Pointer {
 func NewQStringListModelFromPointer(ptr unsafe.Pointer) *QStringListModel {
 	var n = new(QStringListModel)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QStringListModel_" + qt.RandomIdentifier())
 	}
 	return n

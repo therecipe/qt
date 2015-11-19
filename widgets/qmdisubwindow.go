@@ -27,7 +27,7 @@ func PointerFromQMdiSubWindow(ptr QMdiSubWindow_ITF) unsafe.Pointer {
 func NewQMdiSubWindowFromPointer(ptr unsafe.Pointer) *QMdiSubWindow {
 	var n = new(QMdiSubWindow)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QMdiSubWindow_" + qt.RandomIdentifier())
 	}
 	return n

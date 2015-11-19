@@ -27,7 +27,7 @@ func PointerFromQQuickItemGrabResult(ptr QQuickItemGrabResult_ITF) unsafe.Pointe
 func NewQQuickItemGrabResultFromPointer(ptr unsafe.Pointer) *QQuickItemGrabResult {
 	var n = new(QQuickItemGrabResult)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQuickItemGrabResult_" + qt.RandomIdentifier())
 	}
 	return n

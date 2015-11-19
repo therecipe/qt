@@ -26,7 +26,7 @@ func PointerFromQCameraCaptureDestinationControl(ptr QCameraCaptureDestinationCo
 func NewQCameraCaptureDestinationControlFromPointer(ptr unsafe.Pointer) *QCameraCaptureDestinationControl {
 	var n = new(QCameraCaptureDestinationControl)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QCameraCaptureDestinationControl_" + qt.RandomIdentifier())
 	}
 	return n

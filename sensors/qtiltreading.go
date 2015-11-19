@@ -26,7 +26,7 @@ func PointerFromQTiltReading(ptr QTiltReading_ITF) unsafe.Pointer {
 func NewQTiltReadingFromPointer(ptr unsafe.Pointer) *QTiltReading {
 	var n = new(QTiltReading)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QTiltReading_" + qt.RandomIdentifier())
 	}
 	return n

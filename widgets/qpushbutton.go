@@ -27,7 +27,7 @@ func PointerFromQPushButton(ptr QPushButton_ITF) unsafe.Pointer {
 func NewQPushButtonFromPointer(ptr unsafe.Pointer) *QPushButton {
 	var n = new(QPushButton)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QPushButton_" + qt.RandomIdentifier())
 	}
 	return n

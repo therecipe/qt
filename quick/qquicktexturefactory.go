@@ -27,7 +27,7 @@ func PointerFromQQuickTextureFactory(ptr QQuickTextureFactory_ITF) unsafe.Pointe
 func NewQQuickTextureFactoryFromPointer(ptr unsafe.Pointer) *QQuickTextureFactory {
 	var n = new(QQuickTextureFactory)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QQuickTextureFactory_" + qt.RandomIdentifier())
 	}
 	return n

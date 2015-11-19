@@ -1,4 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{name QMetaClassInfo::name commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * const char * name() const [] }
-&{value QMetaClassInfo::value commendable unsupported_cppOutput /work/build/qt5_workdir/w/s/qtbase/src/corelib/kernel/qmetaobject.h non plain false false  const char * const char * value() const [] }
-########################################			ENUMS			########################################

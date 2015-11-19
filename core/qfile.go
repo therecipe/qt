@@ -26,7 +26,7 @@ func PointerFromQFile(ptr QFile_ITF) unsafe.Pointer {
 func NewQFileFromPointer(ptr unsafe.Pointer) *QFile {
 	var n = new(QFile)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QFile_" + qt.RandomIdentifier())
 	}
 	return n

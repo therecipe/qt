@@ -1,6 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QStyleOptionTitleBar QStyleOptionTitleBar::QStyleOptionTitleBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false false   QStyleOptionTitleBar() [] }
-&{QStyleOptionTitleBar QStyleOptionTitleBar::QStyleOptionTitleBar commendable public /work/build/qt5_workdir/w/s/qtbase/src/widgets/styles/qstyleoption.h non constructor false true 2  QStyleOptionTitleBar(const QStyleOptionTitleBar &other) [0xc82228b6e0] }
-########################################			ENUMS			########################################
-&{StyleOptionType QStyleOptionTitleBar::StyleOptionType commendable public  [0xc82228aee0] false}
-&{StyleOptionVersion QStyleOptionTitleBar::StyleOptionVersion commendable public  [0xc82228b1a0] false}

@@ -26,7 +26,7 @@ func PointerFromQDBusConnectionInterface(ptr QDBusConnectionInterface_ITF) unsaf
 func NewQDBusConnectionInterfaceFromPointer(ptr unsafe.Pointer) *QDBusConnectionInterface {
 	var n = new(QDBusConnectionInterface)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QDBusConnectionInterface_" + qt.RandomIdentifier())
 	}
 	return n

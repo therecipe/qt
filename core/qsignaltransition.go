@@ -26,7 +26,7 @@ func PointerFromQSignalTransition(ptr QSignalTransition_ITF) unsafe.Pointer {
 func NewQSignalTransitionFromPointer(ptr unsafe.Pointer) *QSignalTransition {
 	var n = new(QSignalTransition)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QSignalTransition_" + qt.RandomIdentifier())
 	}
 	return n

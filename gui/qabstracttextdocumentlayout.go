@@ -27,7 +27,7 @@ func PointerFromQAbstractTextDocumentLayout(ptr QAbstractTextDocumentLayout_ITF)
 func NewQAbstractTextDocumentLayoutFromPointer(ptr unsafe.Pointer) *QAbstractTextDocumentLayout {
 	var n = new(QAbstractTextDocumentLayout)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QAbstractTextDocumentLayout_" + qt.RandomIdentifier())
 	}
 	return n

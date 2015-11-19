@@ -28,7 +28,7 @@ func PointerFromQGraphicsTextItem(ptr QGraphicsTextItem_ITF) unsafe.Pointer {
 func NewQGraphicsTextItemFromPointer(ptr unsafe.Pointer) *QGraphicsTextItem {
 	var n = new(QGraphicsTextItem)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QGraphicsTextItem_" + qt.RandomIdentifier())
 	}
 	return n

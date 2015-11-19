@@ -27,7 +27,7 @@ func PointerFromQUndoGroup(ptr QUndoGroup_ITF) unsafe.Pointer {
 func NewQUndoGroupFromPointer(ptr unsafe.Pointer) *QUndoGroup {
 	var n = new(QUndoGroup)
 	n.SetPointer(ptr)
-	if len(n.ObjectName()) == 0 {
+	if n.ObjectName() == "" {
 		n.SetObjectName("QUndoGroup_" + qt.RandomIdentifier())
 	}
 	return n

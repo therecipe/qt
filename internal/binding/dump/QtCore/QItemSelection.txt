@@ -1,9 +1,0 @@
-########################################			FUNCTIONS			########################################
-&{QItemSelection QItemSelection::QItemSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non constructor false false   QItemSelection() [] }
-&{QItemSelection QItemSelection::QItemSelection commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non constructor false true 2  QItemSelection(const QModelIndex &topLeft, const QModelIndex &bottomRight) [0xc820471f60 0xc82047e040] }
-&{contains QItemSelection::contains commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  bool bool contains(const QModelIndex &index) const [0xc82047e280] }
-&{indexes QItemSelection::indexes commendable unsupported_GoBodyOutputFailed /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  QModelIndexList QModelIndexList indexes() const [] }
-&{merge QItemSelection::merge commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  void void merge(const QItemSelection &other, QItemSelectionModel::SelectionFlags command) [0xc82047e640 0xc82047e700] }
-&{select QItemSelection::select commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain false false  void void select(const QModelIndex &topLeft, const QModelIndex &bottomRight) [0xc82047e900 0xc82047e9e0] }
-&{split QItemSelection::split commendable public /work/build/qt5_workdir/w/s/qtbase/src/corelib/itemmodels/qitemselectionmodel.h non plain true false  void void split(const QItemSelectionRange &range, const QItemSelectionRange &other, QItemSelection *result) [0xc82047ec20 0xc82047ed00 0xc82047edc0] }
-########################################			ENUMS			########################################
