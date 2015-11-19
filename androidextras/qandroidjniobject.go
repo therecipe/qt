@@ -50,7 +50,17 @@ func NewQAndroidJniObject2(className string) *QAndroidJniObject {
 	return nil
 }
 
+func NewQAndroidJniObject3(className string, signature string, v ...interface{}) *QAndroidJniObject {
+
+	return nil
+}
+
 func NewQAndroidJniObject4(clazz unsafe.Pointer) *QAndroidJniObject {
+
+	return nil
+}
+
+func NewQAndroidJniObject5(clazz unsafe.Pointer, signature string, v ...interface{}) *QAndroidJniObject {
 
 	return nil
 }
@@ -73,7 +83,25 @@ func (ptr *QAndroidJniObject) CallMethodVoid(methodName string) {
 	return
 }
 
+func (ptr *QAndroidJniObject) CallMethodInt2(methodName string, signature string, v ...interface{}) int {
+
+	return 0
+}
+func (ptr *QAndroidJniObject) CallMethodBoolean2(methodName string, signature string, v ...interface{}) bool {
+
+	return false
+}
+func (ptr *QAndroidJniObject) CallMethodVoid2(methodName string, signature string, v ...interface{}) {
+
+	return
+}
+
 func (ptr *QAndroidJniObject) CallObjectMethod(methodName string) *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QAndroidJniObject) CallObjectMethod2(methodName string, signature string, v ...interface{}) *QAndroidJniObject {
 
 	return nil
 }
@@ -91,6 +119,19 @@ func QAndroidJniObject_CallStaticMethodVoid(className string, methodName string)
 	return
 }
 
+func QAndroidJniObject_CallStaticMethodInt2(className string, methodName string, signature string, v ...interface{}) int {
+
+	return 0
+}
+func QAndroidJniObject_CallStaticMethodBoolean2(className string, methodName string, signature string, v ...interface{}) bool {
+
+	return false
+}
+func QAndroidJniObject_CallStaticMethodVoid2(className string, methodName string, signature string, v ...interface{}) {
+
+	return
+}
+
 func QAndroidJniObject_CallStaticMethodInt3(clazz unsafe.Pointer, methodName string) int {
 
 	return 0
@@ -104,12 +145,35 @@ func QAndroidJniObject_CallStaticMethodVoid3(clazz unsafe.Pointer, methodName st
 	return
 }
 
+func QAndroidJniObject_CallStaticMethodInt4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) int {
+
+	return 0
+}
+func QAndroidJniObject_CallStaticMethodBoolean4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) bool {
+
+	return false
+}
+func QAndroidJniObject_CallStaticMethodVoid4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) {
+
+	return
+}
+
 func QAndroidJniObject_CallStaticObjectMethod(className string, methodName string) *QAndroidJniObject {
 
 	return nil
 }
 
+func QAndroidJniObject_CallStaticObjectMethod2(className string, methodName string, signature string, v ...interface{}) *QAndroidJniObject {
+
+	return nil
+}
+
 func QAndroidJniObject_CallStaticObjectMethod3(clazz unsafe.Pointer, methodName string) *QAndroidJniObject {
+
+	return nil
+}
+
+func QAndroidJniObject_CallStaticObjectMethod4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) *QAndroidJniObject {
 
 	return nil
 }

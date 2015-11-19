@@ -40,6 +40,7 @@ func (m *Module) prepare() {
 			c.removeFunctions()
 			c.removeEnums()
 			c.registerAbstact()
+			//TODO: register *Class in *Function
 		}
 	}
 }

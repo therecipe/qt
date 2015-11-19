@@ -65,7 +65,7 @@ func goType(f *parser.Function, value string) string {
 
 	case "...":
 		{
-			if parser.ClassMap[f.Class()].Module == "androidextras" {
+			if parser.ClassMap[f.Class()].Module == "QtAndroidExtras" {
 				return "...interface{}"
 			}
 		}

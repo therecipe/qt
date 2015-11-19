@@ -86,7 +86,7 @@
 
 # Quick Start
 
-1. Create a folder: [GoPath]/src/qtExample
+1. Create a folder: [GOPATH]/src/qtExample
 
 2. Create a file named main.go in this folder
 ```go
@@ -116,8 +116,8 @@ func main() {
 }
 ```
 
-3.Open the command line in [GoPath]/src, and run:
+3. Open the command line in [GOPATH]/src and run:
 `qtdeploy build desktop qtExample`
 
-4.Wait a minute,and then you will find the executable file here.
-`[GoPath]/src/qtExample/deploy/{windows|darwin|linux}/qtExample(.exe)`
+4. Wait a minute, then you will find the executable file here:
+`[GOPATH]/src/qtExample/deploy/{windows|darwin|linux}/qtExample.exe`

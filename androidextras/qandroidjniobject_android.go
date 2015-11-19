@@ -47,8 +47,16 @@ func NewQAndroidJniObject2(className string) *QAndroidJniObject {
 	return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject2(C.CString(className)))
 }
 
+func NewQAndroidJniObject3(className string, signature string, v ...interface{}) *QAndroidJniObject {
+	return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject3(C.CString(className), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...)))
+}
+
 func NewQAndroidJniObject4(clazz unsafe.Pointer) *QAndroidJniObject {
 	return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject4(clazz))
+}
+
+func NewQAndroidJniObject5(clazz unsafe.Pointer, signature string, v ...interface{}) *QAndroidJniObject {
+	return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_NewQAndroidJniObject5(clazz, C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...)))
 }
 
 func NewQAndroidJniObject6(object unsafe.Pointer) *QAndroidJniObject {
@@ -73,9 +81,34 @@ func (ptr *QAndroidJniObject) CallMethodVoid(methodName string) {
 	}
 }
 
+func (ptr *QAndroidJniObject) CallMethodInt2(methodName string, signature string, v ...interface{}) int {
+	if ptr.Pointer() != nil {
+		return int(C.QAndroidJniObject_CallMethodInt2(ptr.Pointer(), C.CString(methodName), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...)))
+	}
+	return 0
+}
+func (ptr *QAndroidJniObject) CallMethodBoolean2(methodName string, signature string, v ...interface{}) bool {
+	if ptr.Pointer() != nil {
+		return int(C.QAndroidJniObject_CallMethodBoolean2(ptr.Pointer(), C.CString(methodName), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...))) != 0
+	}
+	return false
+}
+func (ptr *QAndroidJniObject) CallMethodVoid2(methodName string, signature string, v ...interface{}) {
+	if ptr.Pointer() != nil {
+		C.QAndroidJniObject_CallMethodVoid2(ptr.Pointer(), C.CString(methodName), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...))
+	}
+}
+
 func (ptr *QAndroidJniObject) CallObjectMethod(methodName string) *QAndroidJniObject {
 	if ptr.Pointer() != nil {
 		return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallObjectMethod(ptr.Pointer(), C.CString(methodName)))
+	}
+	return nil
+}
+
+func (ptr *QAndroidJniObject) CallObjectMethod2(methodName string, signature string, v ...interface{}) *QAndroidJniObject {
+	if ptr.Pointer() != nil {
+		return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_CallObjectMethod2(ptr.Pointer(), C.CString(methodName), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...)))
 	}
 	return nil
 }
@@ -90,6 +123,16 @@ func QAndroidJniObject_CallStaticMethodVoid(className string, methodName string)
 	C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid(C.CString(className), C.CString(methodName))
 }
 
+func QAndroidJniObject_CallStaticMethodInt2(className string, methodName string, signature string, v ...interface{}) int {
+	return int(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt2(C.CString(className), C.CString(methodName), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...)))
+}
+func QAndroidJniObject_CallStaticMethodBoolean2(className string, methodName string, signature string, v ...interface{}) bool {
+	return int(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean2(C.CString(className), C.CString(methodName), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...))) != 0
+}
+func QAndroidJniObject_CallStaticMethodVoid2(className string, methodName string, signature string, v ...interface{}) {
+	C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid2(C.CString(className), C.CString(methodName), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...))
+}
+
 func QAndroidJniObject_CallStaticMethodInt3(clazz unsafe.Pointer, methodName string) int {
 	return int(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt3(clazz, C.CString(methodName)))
 }
@@ -100,12 +143,30 @@ func QAndroidJniObject_CallStaticMethodVoid3(clazz unsafe.Pointer, methodName st
 	C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid3(clazz, C.CString(methodName))
 }
 
+func QAndroidJniObject_CallStaticMethodInt4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) int {
+	return int(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt4(clazz, C.CString(methodName), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...)))
+}
+func QAndroidJniObject_CallStaticMethodBoolean4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) bool {
+	return int(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean4(clazz, C.CString(methodName), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...))) != 0
+}
+func QAndroidJniObject_CallStaticMethodVoid4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) {
+	C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid4(clazz, C.CString(methodName), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...))
+}
+
 func QAndroidJniObject_CallStaticObjectMethod(className string, methodName string) *QAndroidJniObject {
 	return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod(C.CString(className), C.CString(methodName)))
 }
 
+func QAndroidJniObject_CallStaticObjectMethod2(className string, methodName string, signature string, v ...interface{}) *QAndroidJniObject {
+	return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod2(C.CString(className), C.CString(methodName), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...)))
+}
+
 func QAndroidJniObject_CallStaticObjectMethod3(clazz unsafe.Pointer, methodName string) *QAndroidJniObject {
 	return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod3(clazz, C.CString(methodName)))
+}
+
+func QAndroidJniObject_CallStaticObjectMethod4(clazz unsafe.Pointer, methodName string, signature string, v ...interface{}) *QAndroidJniObject {
+	return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod4(clazz, C.CString(methodName), C.CString(signature), assertion(0, v...), assertion(1, v...), assertion(2, v...), assertion(3, v...), assertion(4, v...), assertion(5, v...), assertion(6, v...), assertion(7, v...), assertion(8, v...), assertion(9, v...)))
 }
 
 func QAndroidJniObject_FromString(stri string) *QAndroidJniObject {
