@@ -1,8 +1,9 @@
 package core
 
-//#include "qtextencoder.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,14 +41,32 @@ func (ptr *QTextEncoder) QTextEncoder_PTR() *QTextEncoder {
 }
 
 func NewQTextEncoder(codec QTextCodec_ITF) *QTextEncoder {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextEncoder::QTextEncoder")
+		}
+	}()
+
 	return NewQTextEncoderFromPointer(C.QTextEncoder_NewQTextEncoder(PointerFromQTextCodec(codec)))
 }
 
 func NewQTextEncoder2(codec QTextCodec_ITF, flags QTextCodec__ConversionFlag) *QTextEncoder {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextEncoder::QTextEncoder")
+		}
+	}()
+
 	return NewQTextEncoderFromPointer(C.QTextEncoder_NewQTextEncoder2(PointerFromQTextCodec(codec), C.int(flags)))
 }
 
 func (ptr *QTextEncoder) FromUnicode2(uc QChar_ITF, len int) *QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextEncoder::fromUnicode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QTextEncoder_FromUnicode2(ptr.Pointer(), PointerFromQChar(uc), C.int(len)))
 	}
@@ -55,6 +74,12 @@ func (ptr *QTextEncoder) FromUnicode2(uc QChar_ITF, len int) *QByteArray {
 }
 
 func (ptr *QTextEncoder) FromUnicode(str string) *QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextEncoder::fromUnicode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QTextEncoder_FromUnicode(ptr.Pointer(), C.CString(str)))
 	}
@@ -62,6 +87,12 @@ func (ptr *QTextEncoder) FromUnicode(str string) *QByteArray {
 }
 
 func (ptr *QTextEncoder) DestroyQTextEncoder() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextEncoder::~QTextEncoder")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextEncoder_DestroyQTextEncoder(ptr.Pointer())
 	}

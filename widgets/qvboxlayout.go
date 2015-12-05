@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qvboxlayout.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQVBoxLayout(ptr QVBoxLayout_ITF) unsafe.Pointer {
 func NewQVBoxLayoutFromPointer(ptr unsafe.Pointer) *QVBoxLayout {
 	var n = new(QVBoxLayout)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QVBoxLayout_") {
 		n.SetObjectName("QVBoxLayout_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,14 +38,32 @@ func (ptr *QVBoxLayout) QVBoxLayout_PTR() *QVBoxLayout {
 }
 
 func NewQVBoxLayout() *QVBoxLayout {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QVBoxLayout::QVBoxLayout")
+		}
+	}()
+
 	return NewQVBoxLayoutFromPointer(C.QVBoxLayout_NewQVBoxLayout())
 }
 
 func NewQVBoxLayout2(parent QWidget_ITF) *QVBoxLayout {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QVBoxLayout::QVBoxLayout")
+		}
+	}()
+
 	return NewQVBoxLayoutFromPointer(C.QVBoxLayout_NewQVBoxLayout2(PointerFromQWidget(parent)))
 }
 
 func (ptr *QVBoxLayout) DestroyQVBoxLayout() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QVBoxLayout::~QVBoxLayout")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QVBoxLayout_DestroyQVBoxLayout(ptr.Pointer())
 		ptr.SetPointer(nil)

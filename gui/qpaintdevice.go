@@ -1,8 +1,9 @@
 package gui
 
-//#include "qpaintdevice.h"
+//#include "gui.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -57,12 +58,24 @@ const (
 )
 
 func (ptr *QPaintDevice) DestroyQPaintDevice() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::~QPaintDevice")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPaintDevice_DestroyQPaintDevice(ptr.Pointer())
 	}
 }
 
 func (ptr *QPaintDevice) ColorCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::colorCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPaintDevice_ColorCount(ptr.Pointer()))
 	}
@@ -70,6 +83,12 @@ func (ptr *QPaintDevice) ColorCount() int {
 }
 
 func (ptr *QPaintDevice) Depth() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::depth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPaintDevice_Depth(ptr.Pointer()))
 	}
@@ -77,6 +96,12 @@ func (ptr *QPaintDevice) Depth() int {
 }
 
 func (ptr *QPaintDevice) DevicePixelRatio() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::devicePixelRatio")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPaintDevice_DevicePixelRatio(ptr.Pointer()))
 	}
@@ -84,6 +109,12 @@ func (ptr *QPaintDevice) DevicePixelRatio() int {
 }
 
 func (ptr *QPaintDevice) Height() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::height")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPaintDevice_Height(ptr.Pointer()))
 	}
@@ -91,6 +122,12 @@ func (ptr *QPaintDevice) Height() int {
 }
 
 func (ptr *QPaintDevice) HeightMM() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::heightMM")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPaintDevice_HeightMM(ptr.Pointer()))
 	}
@@ -98,6 +135,12 @@ func (ptr *QPaintDevice) HeightMM() int {
 }
 
 func (ptr *QPaintDevice) LogicalDpiX() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::logicalDpiX")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPaintDevice_LogicalDpiX(ptr.Pointer()))
 	}
@@ -105,6 +148,12 @@ func (ptr *QPaintDevice) LogicalDpiX() int {
 }
 
 func (ptr *QPaintDevice) LogicalDpiY() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::logicalDpiY")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPaintDevice_LogicalDpiY(ptr.Pointer()))
 	}
@@ -112,6 +161,12 @@ func (ptr *QPaintDevice) LogicalDpiY() int {
 }
 
 func (ptr *QPaintDevice) PaintEngine() *QPaintEngine {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::paintEngine")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQPaintEngineFromPointer(C.QPaintDevice_PaintEngine(ptr.Pointer()))
 	}
@@ -119,6 +174,12 @@ func (ptr *QPaintDevice) PaintEngine() *QPaintEngine {
 }
 
 func (ptr *QPaintDevice) PaintingActive() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::paintingActive")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPaintDevice_PaintingActive(ptr.Pointer()) != 0
 	}
@@ -126,6 +187,12 @@ func (ptr *QPaintDevice) PaintingActive() bool {
 }
 
 func (ptr *QPaintDevice) PhysicalDpiX() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::physicalDpiX")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPaintDevice_PhysicalDpiX(ptr.Pointer()))
 	}
@@ -133,6 +200,12 @@ func (ptr *QPaintDevice) PhysicalDpiX() int {
 }
 
 func (ptr *QPaintDevice) PhysicalDpiY() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::physicalDpiY")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPaintDevice_PhysicalDpiY(ptr.Pointer()))
 	}
@@ -140,6 +213,12 @@ func (ptr *QPaintDevice) PhysicalDpiY() int {
 }
 
 func (ptr *QPaintDevice) Width() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::width")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPaintDevice_Width(ptr.Pointer()))
 	}
@@ -147,6 +226,12 @@ func (ptr *QPaintDevice) Width() int {
 }
 
 func (ptr *QPaintDevice) WidthMM() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPaintDevice::widthMM")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPaintDevice_WidthMM(ptr.Pointer()))
 	}

@@ -1,10 +1,11 @@
 package websockets
 
-//#include "qmaskgenerator.h"
+//#include "websockets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQMaskGenerator(ptr QMaskGenerator_ITF) unsafe.Pointer {
 func NewQMaskGeneratorFromPointer(ptr unsafe.Pointer) *QMaskGenerator {
 	var n = new(QMaskGenerator)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QMaskGenerator_") {
 		n.SetObjectName("QMaskGenerator_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QMaskGenerator) QMaskGenerator_PTR() *QMaskGenerator {
 }
 
 func (ptr *QMaskGenerator) Seed() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMaskGenerator::seed")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QMaskGenerator_Seed(ptr.Pointer()) != 0
 	}
@@ -45,6 +52,12 @@ func (ptr *QMaskGenerator) Seed() bool {
 }
 
 func (ptr *QMaskGenerator) DestroyQMaskGenerator() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMaskGenerator::~QMaskGenerator")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DestroyQMaskGenerator(ptr.Pointer())
 		ptr.SetPointer(nil)

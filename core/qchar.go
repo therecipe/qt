@@ -1,8 +1,9 @@
 package core
 
-//#include "qchar.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -317,26 +318,62 @@ const (
 )
 
 func NewQChar() *QChar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::QChar")
+		}
+	}()
+
 	return NewQCharFromPointer(C.QChar_NewQChar())
 }
 
 func NewQChar8(ch QLatin1Char_ITF) *QChar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::QChar")
+		}
+	}()
+
 	return NewQCharFromPointer(C.QChar_NewQChar8(PointerFromQLatin1Char(ch)))
 }
 
 func NewQChar7(ch QChar__SpecialCharacter) *QChar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::QChar")
+		}
+	}()
+
 	return NewQCharFromPointer(C.QChar_NewQChar7(C.int(ch)))
 }
 
 func NewQChar9(ch string) *QChar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::QChar")
+		}
+	}()
+
 	return NewQCharFromPointer(C.QChar_NewQChar9(C.CString(ch)))
 }
 
 func NewQChar6(code int) *QChar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::QChar")
+		}
+	}()
+
 	return NewQCharFromPointer(C.QChar_NewQChar6(C.int(code)))
 }
 
 func (ptr *QChar) Category() QChar__Category {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::category")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QChar__Category(C.QChar_Category(ptr.Pointer()))
 	}
@@ -344,10 +381,22 @@ func (ptr *QChar) Category() QChar__Category {
 }
 
 func QChar_CurrentUnicodeVersion() QChar__UnicodeVersion {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::currentUnicodeVersion")
+		}
+	}()
+
 	return QChar__UnicodeVersion(C.QChar_QChar_CurrentUnicodeVersion())
 }
 
 func (ptr *QChar) Decomposition() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::decomposition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QChar_Decomposition(ptr.Pointer()))
 	}
@@ -355,6 +404,12 @@ func (ptr *QChar) Decomposition() string {
 }
 
 func (ptr *QChar) DecompositionTag() QChar__Decomposition {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::decompositionTag")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QChar__Decomposition(C.QChar_DecompositionTag(ptr.Pointer()))
 	}
@@ -362,6 +417,12 @@ func (ptr *QChar) DecompositionTag() QChar__Decomposition {
 }
 
 func (ptr *QChar) DigitValue() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::digitValue")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QChar_DigitValue(ptr.Pointer()))
 	}
@@ -369,6 +430,12 @@ func (ptr *QChar) DigitValue() int {
 }
 
 func (ptr *QChar) Direction() QChar__Direction {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::direction")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QChar__Direction(C.QChar_Direction(ptr.Pointer()))
 	}
@@ -376,6 +443,12 @@ func (ptr *QChar) Direction() QChar__Direction {
 }
 
 func (ptr *QChar) HasMirrored() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::hasMirrored")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_HasMirrored(ptr.Pointer()) != 0
 	}
@@ -383,6 +456,12 @@ func (ptr *QChar) HasMirrored() bool {
 }
 
 func (ptr *QChar) IsDigit() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isDigit")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsDigit(ptr.Pointer()) != 0
 	}
@@ -390,6 +469,12 @@ func (ptr *QChar) IsDigit() bool {
 }
 
 func (ptr *QChar) IsHighSurrogate() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isHighSurrogate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsHighSurrogate(ptr.Pointer()) != 0
 	}
@@ -397,6 +482,12 @@ func (ptr *QChar) IsHighSurrogate() bool {
 }
 
 func (ptr *QChar) IsLetter() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isLetter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsLetter(ptr.Pointer()) != 0
 	}
@@ -404,6 +495,12 @@ func (ptr *QChar) IsLetter() bool {
 }
 
 func (ptr *QChar) IsLetterOrNumber() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isLetterOrNumber")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsLetterOrNumber(ptr.Pointer()) != 0
 	}
@@ -411,6 +508,12 @@ func (ptr *QChar) IsLetterOrNumber() bool {
 }
 
 func (ptr *QChar) IsLower() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isLower")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsLower(ptr.Pointer()) != 0
 	}
@@ -418,6 +521,12 @@ func (ptr *QChar) IsLower() bool {
 }
 
 func (ptr *QChar) IsLowSurrogate() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isLowSurrogate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsLowSurrogate(ptr.Pointer()) != 0
 	}
@@ -425,6 +534,12 @@ func (ptr *QChar) IsLowSurrogate() bool {
 }
 
 func (ptr *QChar) IsMark() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isMark")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsMark(ptr.Pointer()) != 0
 	}
@@ -432,6 +547,12 @@ func (ptr *QChar) IsMark() bool {
 }
 
 func (ptr *QChar) IsNonCharacter() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isNonCharacter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsNonCharacter(ptr.Pointer()) != 0
 	}
@@ -439,6 +560,12 @@ func (ptr *QChar) IsNonCharacter() bool {
 }
 
 func (ptr *QChar) IsNull() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isNull")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsNull(ptr.Pointer()) != 0
 	}
@@ -446,6 +573,12 @@ func (ptr *QChar) IsNull() bool {
 }
 
 func (ptr *QChar) IsNumber() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isNumber")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsNumber(ptr.Pointer()) != 0
 	}
@@ -453,6 +586,12 @@ func (ptr *QChar) IsNumber() bool {
 }
 
 func (ptr *QChar) IsPrint() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isPrint")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsPrint(ptr.Pointer()) != 0
 	}
@@ -460,6 +599,12 @@ func (ptr *QChar) IsPrint() bool {
 }
 
 func (ptr *QChar) IsPunct() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isPunct")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsPunct(ptr.Pointer()) != 0
 	}
@@ -467,6 +612,12 @@ func (ptr *QChar) IsPunct() bool {
 }
 
 func (ptr *QChar) IsSpace() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isSpace")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsSpace(ptr.Pointer()) != 0
 	}
@@ -474,6 +625,12 @@ func (ptr *QChar) IsSpace() bool {
 }
 
 func (ptr *QChar) IsSurrogate() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isSurrogate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsSurrogate(ptr.Pointer()) != 0
 	}
@@ -481,6 +638,12 @@ func (ptr *QChar) IsSurrogate() bool {
 }
 
 func (ptr *QChar) IsSymbol() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isSymbol")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsSymbol(ptr.Pointer()) != 0
 	}
@@ -488,6 +651,12 @@ func (ptr *QChar) IsSymbol() bool {
 }
 
 func (ptr *QChar) IsTitleCase() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isTitleCase")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsTitleCase(ptr.Pointer()) != 0
 	}
@@ -495,6 +664,12 @@ func (ptr *QChar) IsTitleCase() bool {
 }
 
 func (ptr *QChar) IsUpper() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::isUpper")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QChar_IsUpper(ptr.Pointer()) != 0
 	}
@@ -502,6 +677,12 @@ func (ptr *QChar) IsUpper() bool {
 }
 
 func (ptr *QChar) JoiningType() QChar__JoiningType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::joiningType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QChar__JoiningType(C.QChar_JoiningType(ptr.Pointer()))
 	}
@@ -509,6 +690,12 @@ func (ptr *QChar) JoiningType() QChar__JoiningType {
 }
 
 func (ptr *QChar) Script() QChar__Script {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::script")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QChar__Script(C.QChar_Script(ptr.Pointer()))
 	}
@@ -516,6 +703,12 @@ func (ptr *QChar) Script() QChar__Script {
 }
 
 func (ptr *QChar) UnicodeVersion() QChar__UnicodeVersion {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QChar::unicodeVersion")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QChar__UnicodeVersion(C.QChar_UnicodeVersion(ptr.Pointer()))
 	}

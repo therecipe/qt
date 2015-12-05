@@ -1,8 +1,9 @@
 package xmlpatterns
 
-//#include "qxmlnamepool.h"
+//#include "xmlpatterns.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,14 +41,32 @@ func (ptr *QXmlNamePool) QXmlNamePool_PTR() *QXmlNamePool {
 }
 
 func NewQXmlNamePool() *QXmlNamePool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlNamePool::QXmlNamePool")
+		}
+	}()
+
 	return NewQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool())
 }
 
 func NewQXmlNamePool2(other QXmlNamePool_ITF) *QXmlNamePool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlNamePool::QXmlNamePool")
+		}
+	}()
+
 	return NewQXmlNamePoolFromPointer(C.QXmlNamePool_NewQXmlNamePool2(PointerFromQXmlNamePool(other)))
 }
 
 func (ptr *QXmlNamePool) DestroyQXmlNamePool() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlNamePool::~QXmlNamePool")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QXmlNamePool_DestroyQXmlNamePool(ptr.Pointer())
 	}

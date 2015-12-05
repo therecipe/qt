@@ -1,9 +1,10 @@
 package nfc
 
-//#include "qndefmessage.h"
+//#include "nfc.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,18 +35,42 @@ func (ptr *QNdefMessage) QNdefMessage_PTR() *QNdefMessage {
 }
 
 func NewQNdefMessage() *QNdefMessage {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefMessage::QNdefMessage")
+		}
+	}()
+
 	return NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage())
 }
 
 func NewQNdefMessage3(message QNdefMessage_ITF) *QNdefMessage {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefMessage::QNdefMessage")
+		}
+	}()
+
 	return NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage3(PointerFromQNdefMessage(message)))
 }
 
 func NewQNdefMessage2(record QNdefRecord_ITF) *QNdefMessage {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefMessage::QNdefMessage")
+		}
+	}()
+
 	return NewQNdefMessageFromPointer(C.QNdefMessage_NewQNdefMessage2(PointerFromQNdefRecord(record)))
 }
 
 func (ptr *QNdefMessage) ToByteArray() *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefMessage::toByteArray")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QNdefMessage_ToByteArray(ptr.Pointer()))
 	}

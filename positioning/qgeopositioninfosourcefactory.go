@@ -1,9 +1,10 @@
 package positioning
 
-//#include "qgeopositioninfosourcefactory.h"
+//#include "positioning.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,6 +42,12 @@ func (ptr *QGeoPositionInfoSourceFactory) QGeoPositionInfoSourceFactory_PTR() *Q
 }
 
 func (ptr *QGeoPositionInfoSourceFactory) AreaMonitor(parent core.QObject_ITF) *QGeoAreaMonitorSource {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSourceFactory::areaMonitor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQGeoAreaMonitorSourceFromPointer(C.QGeoPositionInfoSourceFactory_AreaMonitor(ptr.Pointer(), core.PointerFromQObject(parent)))
 	}
@@ -48,6 +55,12 @@ func (ptr *QGeoPositionInfoSourceFactory) AreaMonitor(parent core.QObject_ITF) *
 }
 
 func (ptr *QGeoPositionInfoSourceFactory) PositionInfoSource(parent core.QObject_ITF) *QGeoPositionInfoSource {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSourceFactory::positionInfoSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQGeoPositionInfoSourceFromPointer(C.QGeoPositionInfoSourceFactory_PositionInfoSource(ptr.Pointer(), core.PointerFromQObject(parent)))
 	}
@@ -55,6 +68,12 @@ func (ptr *QGeoPositionInfoSourceFactory) PositionInfoSource(parent core.QObject
 }
 
 func (ptr *QGeoPositionInfoSourceFactory) SatelliteInfoSource(parent core.QObject_ITF) *QGeoSatelliteInfoSource {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSourceFactory::satelliteInfoSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQGeoSatelliteInfoSourceFromPointer(C.QGeoPositionInfoSourceFactory_SatelliteInfoSource(ptr.Pointer(), core.PointerFromQObject(parent)))
 	}
@@ -62,6 +81,12 @@ func (ptr *QGeoPositionInfoSourceFactory) SatelliteInfoSource(parent core.QObjec
 }
 
 func (ptr *QGeoPositionInfoSourceFactory) DestroyQGeoPositionInfoSourceFactory() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSourceFactory::~QGeoPositionInfoSourceFactory")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(ptr.Pointer())
 	}

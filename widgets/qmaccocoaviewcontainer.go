@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qmaccocoaviewcontainer.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQMacCocoaViewContainer(ptr QMacCocoaViewContainer_ITF) unsafe.Po
 func NewQMacCocoaViewContainerFromPointer(ptr unsafe.Pointer) *QMacCocoaViewContainer {
 	var n = new(QMacCocoaViewContainer)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QMacCocoaViewContainer_") {
 		n.SetObjectName("QMacCocoaViewContainer_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QMacCocoaViewContainer) QMacCocoaViewContainer_PTR() *QMacCocoaViewCo
 }
 
 func (ptr *QMacCocoaViewContainer) DestroyQMacCocoaViewContainer() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMacCocoaViewContainer::~QMacCocoaViewContainer")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(ptr.Pointer())
 		ptr.SetPointer(nil)

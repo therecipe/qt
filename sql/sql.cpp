@@ -1,174 +1,279 @@
-#include "qsqlresult.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlResult>
+#include "sql.h"
 #include "_cgo_export.h"
 
-class MyQSqlResult: public QSqlResult {
-public:
-};
-
-void* QSqlResult_Handle(void* ptr){
-	return new QVariant(static_cast<QSqlResult*>(ptr)->handle());
-}
-
-void QSqlResult_DestroyQSqlResult(void* ptr){
-	static_cast<QSqlResult*>(ptr)->~QSqlResult();
-}
-
-#include "qsqltablemodel.h"
-#include <QSqlRecord>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
+#include <QMetaObject>
 #include <QModelIndex>
 #include <QObject>
-#include <QMetaObject>
+#include <QSqlDatabase>
+#include <QSqlDriver>
+#include <QSqlDriverCreator>
+#include <QSqlDriverCreatorBase>
+#include <QSqlDriverPlugin>
+#include <QSqlError>
+#include <QSqlField>
+#include <QSqlIndex>
+#include <QSqlQuery>
+#include <QSqlQueryModel>
+#include <QSqlRecord>
+#include <QSqlRelation>
+#include <QSqlRelationalTableModel>
+#include <QSqlResult>
 #include <QSqlTableModel>
-#include "_cgo_export.h"
-
-class MyQSqlTableModel: public QSqlTableModel {
-public:
-void Signal_BeforeDelete(int row){callbackQSqlTableModelBeforeDelete(this->objectName().toUtf8().data(), row);};
-};
-
-void QSqlTableModel_ConnectBeforeDelete(void* ptr){
-	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int)>(&QSqlTableModel::beforeDelete), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int)>(&MyQSqlTableModel::Signal_BeforeDelete));;
-}
-
-void QSqlTableModel_DisconnectBeforeDelete(void* ptr){
-	QObject::disconnect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int)>(&QSqlTableModel::beforeDelete), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int)>(&MyQSqlTableModel::Signal_BeforeDelete));;
-}
-
-void QSqlTableModel_Clear(void* ptr){
-	static_cast<QSqlTableModel*>(ptr)->clear();
-}
-
-void* QSqlTableModel_Data(void* ptr, void* index, int role){
-	return new QVariant(static_cast<QSqlTableModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
-}
-
-int QSqlTableModel_EditStrategy(void* ptr){
-	return static_cast<QSqlTableModel*>(ptr)->editStrategy();
-}
-
-int QSqlTableModel_FieldIndex(void* ptr, char* fieldName){
-	return static_cast<QSqlTableModel*>(ptr)->fieldIndex(QString(fieldName));
-}
-
-char* QSqlTableModel_Filter(void* ptr){
-	return static_cast<QSqlTableModel*>(ptr)->filter().toUtf8().data();
-}
-
-int QSqlTableModel_Flags(void* ptr, void* index){
-	return static_cast<QSqlTableModel*>(ptr)->flags(*static_cast<QModelIndex*>(index));
-}
-
-void* QSqlTableModel_HeaderData(void* ptr, int section, int orientation, int role){
-	return new QVariant(static_cast<QSqlTableModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
-}
-
-int QSqlTableModel_InsertRecord(void* ptr, int row, void* record){
-	return static_cast<QSqlTableModel*>(ptr)->insertRecord(row, *static_cast<QSqlRecord*>(record));
-}
-
-int QSqlTableModel_InsertRows(void* ptr, int row, int count, void* parent){
-	return static_cast<QSqlTableModel*>(ptr)->insertRows(row, count, *static_cast<QModelIndex*>(parent));
-}
-
-int QSqlTableModel_IsDirty2(void* ptr){
-	return static_cast<QSqlTableModel*>(ptr)->isDirty();
-}
-
-int QSqlTableModel_IsDirty(void* ptr, void* index){
-	return static_cast<QSqlTableModel*>(ptr)->isDirty(*static_cast<QModelIndex*>(index));
-}
-
-int QSqlTableModel_RemoveColumns(void* ptr, int column, int count, void* parent){
-	return static_cast<QSqlTableModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
-}
-
-int QSqlTableModel_RemoveRows(void* ptr, int row, int count, void* parent){
-	return static_cast<QSqlTableModel*>(ptr)->removeRows(row, count, *static_cast<QModelIndex*>(parent));
-}
-
-void QSqlTableModel_Revert(void* ptr){
-	QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "revert");
-}
-
-void QSqlTableModel_RevertAll(void* ptr){
-	QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "revertAll");
-}
-
-void QSqlTableModel_RevertRow(void* ptr, int row){
-	static_cast<QSqlTableModel*>(ptr)->revertRow(row);
-}
-
-int QSqlTableModel_RowCount(void* ptr, void* parent){
-	return static_cast<QSqlTableModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
-}
-
-int QSqlTableModel_Select(void* ptr){
-	return QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "select");
-}
-
-int QSqlTableModel_SelectRow(void* ptr, int row){
-	return QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "selectRow", Q_ARG(int, row));
-}
-
-int QSqlTableModel_SetData(void* ptr, void* index, void* value, int role){
-	return static_cast<QSqlTableModel*>(ptr)->setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
-}
-
-void QSqlTableModel_SetEditStrategy(void* ptr, int strategy){
-	static_cast<QSqlTableModel*>(ptr)->setEditStrategy(static_cast<QSqlTableModel::EditStrategy>(strategy));
-}
-
-void QSqlTableModel_SetFilter(void* ptr, char* filter){
-	static_cast<QSqlTableModel*>(ptr)->setFilter(QString(filter));
-}
-
-int QSqlTableModel_SetRecord(void* ptr, int row, void* values){
-	return static_cast<QSqlTableModel*>(ptr)->setRecord(row, *static_cast<QSqlRecord*>(values));
-}
-
-void QSqlTableModel_SetSort(void* ptr, int column, int order){
-	static_cast<QSqlTableModel*>(ptr)->setSort(column, static_cast<Qt::SortOrder>(order));
-}
-
-void QSqlTableModel_SetTable(void* ptr, char* tableName){
-	static_cast<QSqlTableModel*>(ptr)->setTable(QString(tableName));
-}
-
-void QSqlTableModel_Sort(void* ptr, int column, int order){
-	static_cast<QSqlTableModel*>(ptr)->sort(column, static_cast<Qt::SortOrder>(order));
-}
-
-int QSqlTableModel_Submit(void* ptr){
-	return QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "submit");
-}
-
-int QSqlTableModel_SubmitAll(void* ptr){
-	return QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "submitAll");
-}
-
-char* QSqlTableModel_TableName(void* ptr){
-	return static_cast<QSqlTableModel*>(ptr)->tableName().toUtf8().data();
-}
-
-void QSqlTableModel_DestroyQSqlTableModel(void* ptr){
-	static_cast<QSqlTableModel*>(ptr)->~QSqlTableModel();
-}
-
-#include "qsqlerror.h"
 #include <QString>
 #include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlError>
-#include "_cgo_export.h"
+
+class MyQSqlDatabase: public QSqlDatabase {
+public:
+};
+
+void* QSqlDatabase_NewQSqlDatabase(){
+	return new QSqlDatabase();
+}
+
+void* QSqlDatabase_NewQSqlDatabase2(void* other){
+	return new QSqlDatabase(*static_cast<QSqlDatabase*>(other));
+}
+
+void QSqlDatabase_Close(void* ptr){
+	static_cast<QSqlDatabase*>(ptr)->close();
+}
+
+int QSqlDatabase_Commit(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->commit();
+}
+
+char* QSqlDatabase_ConnectOptions(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->connectOptions().toUtf8().data();
+}
+
+char* QSqlDatabase_ConnectionName(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->connectionName().toUtf8().data();
+}
+
+char* QSqlDatabase_QSqlDatabase_ConnectionNames(){
+	return QSqlDatabase::connectionNames().join(",,,").toUtf8().data();
+}
+
+int QSqlDatabase_QSqlDatabase_Contains(char* connectionName){
+	return QSqlDatabase::contains(QString(connectionName));
+}
+
+char* QSqlDatabase_DatabaseName(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->databaseName().toUtf8().data();
+}
+
+void* QSqlDatabase_Driver(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->driver();
+}
+
+char* QSqlDatabase_DriverName(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->driverName().toUtf8().data();
+}
+
+char* QSqlDatabase_QSqlDatabase_Drivers(){
+	return QSqlDatabase::drivers().join(",,,").toUtf8().data();
+}
+
+char* QSqlDatabase_HostName(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->hostName().toUtf8().data();
+}
+
+int QSqlDatabase_QSqlDatabase_IsDriverAvailable(char* name){
+	return QSqlDatabase::isDriverAvailable(QString(name));
+}
+
+int QSqlDatabase_IsOpen(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->isOpen();
+}
+
+int QSqlDatabase_IsOpenError(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->isOpenError();
+}
+
+int QSqlDatabase_IsValid(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->isValid();
+}
+
+int QSqlDatabase_Open(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->open();
+}
+
+int QSqlDatabase_Open2(void* ptr, char* user, char* password){
+	return static_cast<QSqlDatabase*>(ptr)->open(QString(user), QString(password));
+}
+
+char* QSqlDatabase_Password(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->password().toUtf8().data();
+}
+
+int QSqlDatabase_Port(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->port();
+}
+
+void QSqlDatabase_QSqlDatabase_RegisterSqlDriver(char* name, void* creator){
+	QSqlDatabase::registerSqlDriver(QString(name), static_cast<QSqlDriverCreatorBase*>(creator));
+}
+
+void QSqlDatabase_QSqlDatabase_RemoveDatabase(char* connectionName){
+	QSqlDatabase::removeDatabase(QString(connectionName));
+}
+
+int QSqlDatabase_Rollback(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->rollback();
+}
+
+void QSqlDatabase_SetConnectOptions(void* ptr, char* options){
+	static_cast<QSqlDatabase*>(ptr)->setConnectOptions(QString(options));
+}
+
+void QSqlDatabase_SetDatabaseName(void* ptr, char* name){
+	static_cast<QSqlDatabase*>(ptr)->setDatabaseName(QString(name));
+}
+
+void QSqlDatabase_SetHostName(void* ptr, char* host){
+	static_cast<QSqlDatabase*>(ptr)->setHostName(QString(host));
+}
+
+void QSqlDatabase_SetPassword(void* ptr, char* password){
+	static_cast<QSqlDatabase*>(ptr)->setPassword(QString(password));
+}
+
+void QSqlDatabase_SetPort(void* ptr, int port){
+	static_cast<QSqlDatabase*>(ptr)->setPort(port);
+}
+
+void QSqlDatabase_SetUserName(void* ptr, char* name){
+	static_cast<QSqlDatabase*>(ptr)->setUserName(QString(name));
+}
+
+int QSqlDatabase_Transaction(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->transaction();
+}
+
+char* QSqlDatabase_UserName(void* ptr){
+	return static_cast<QSqlDatabase*>(ptr)->userName().toUtf8().data();
+}
+
+void QSqlDatabase_DestroyQSqlDatabase(void* ptr){
+	static_cast<QSqlDatabase*>(ptr)->~QSqlDatabase();
+}
+
+class MyQSqlDriver: public QSqlDriver {
+public:
+void Signal_Notification(const QString & name){callbackQSqlDriverNotification(this->objectName().toUtf8().data(), name.toUtf8().data());};
+};
+
+int QSqlDriver_BeginTransaction(void* ptr){
+	return static_cast<QSqlDriver*>(ptr)->beginTransaction();
+}
+
+void QSqlDriver_Close(void* ptr){
+	static_cast<QSqlDriver*>(ptr)->close();
+}
+
+int QSqlDriver_CommitTransaction(void* ptr){
+	return static_cast<QSqlDriver*>(ptr)->commitTransaction();
+}
+
+void* QSqlDriver_CreateResult(void* ptr){
+	return static_cast<QSqlDriver*>(ptr)->createResult();
+}
+
+int QSqlDriver_DbmsType(void* ptr){
+	return static_cast<QSqlDriver*>(ptr)->dbmsType();
+}
+
+char* QSqlDriver_EscapeIdentifier(void* ptr, char* identifier, int ty){
+	return static_cast<QSqlDriver*>(ptr)->escapeIdentifier(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().data();
+}
+
+char* QSqlDriver_FormatValue(void* ptr, void* field, int trimStrings){
+	return static_cast<QSqlDriver*>(ptr)->formatValue(*static_cast<QSqlField*>(field), trimStrings != 0).toUtf8().data();
+}
+
+void* QSqlDriver_Handle(void* ptr){
+	return new QVariant(static_cast<QSqlDriver*>(ptr)->handle());
+}
+
+int QSqlDriver_HasFeature(void* ptr, int feature){
+	return static_cast<QSqlDriver*>(ptr)->hasFeature(static_cast<QSqlDriver::DriverFeature>(feature));
+}
+
+int QSqlDriver_IsIdentifierEscaped(void* ptr, char* identifier, int ty){
+	return static_cast<QSqlDriver*>(ptr)->isIdentifierEscaped(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty));
+}
+
+int QSqlDriver_IsOpen(void* ptr){
+	return static_cast<QSqlDriver*>(ptr)->isOpen();
+}
+
+int QSqlDriver_IsOpenError(void* ptr){
+	return static_cast<QSqlDriver*>(ptr)->isOpenError();
+}
+
+void QSqlDriver_ConnectNotification(void* ptr){
+	QObject::connect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &)>(&MyQSqlDriver::Signal_Notification));;
+}
+
+void QSqlDriver_DisconnectNotification(void* ptr){
+	QObject::disconnect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &)>(&MyQSqlDriver::Signal_Notification));;
+}
+
+int QSqlDriver_Open(void* ptr, char* db, char* user, char* password, char* host, int port, char* options){
+	return static_cast<QSqlDriver*>(ptr)->open(QString(db), QString(user), QString(password), QString(host), port, QString(options));
+}
+
+int QSqlDriver_RollbackTransaction(void* ptr){
+	return static_cast<QSqlDriver*>(ptr)->rollbackTransaction();
+}
+
+char* QSqlDriver_SqlStatement(void* ptr, int ty, char* tableName, void* rec, int preparedStatement){
+	return static_cast<QSqlDriver*>(ptr)->sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString(tableName), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8().data();
+}
+
+char* QSqlDriver_StripDelimiters(void* ptr, char* identifier, int ty){
+	return static_cast<QSqlDriver*>(ptr)->stripDelimiters(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().data();
+}
+
+int QSqlDriver_SubscribeToNotification(void* ptr, char* name){
+	return static_cast<QSqlDriver*>(ptr)->subscribeToNotification(QString(name));
+}
+
+char* QSqlDriver_SubscribedToNotifications(void* ptr){
+	return static_cast<QSqlDriver*>(ptr)->subscribedToNotifications().join(",,,").toUtf8().data();
+}
+
+int QSqlDriver_UnsubscribeFromNotification(void* ptr, char* name){
+	return static_cast<QSqlDriver*>(ptr)->unsubscribeFromNotification(QString(name));
+}
+
+void QSqlDriver_DestroyQSqlDriver(void* ptr){
+	static_cast<QSqlDriver*>(ptr)->~QSqlDriver();
+}
+
+class MyQSqlDriverCreatorBase: public QSqlDriverCreatorBase {
+public:
+};
+
+void* QSqlDriverCreatorBase_CreateObject(void* ptr){
+	return static_cast<QSqlDriverCreatorBase*>(ptr)->createObject();
+}
+
+void QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(void* ptr){
+	static_cast<QSqlDriverCreatorBase*>(ptr)->~QSqlDriverCreatorBase();
+}
+
+class MyQSqlDriverPlugin: public QSqlDriverPlugin {
+public:
+};
+
+void* QSqlDriverPlugin_Create(void* ptr, char* key){
+	return static_cast<QSqlDriverPlugin*>(ptr)->create(QString(key));
+}
+
+void QSqlDriverPlugin_DestroyQSqlDriverPlugin(void* ptr){
+	static_cast<QSqlDriverPlugin*>(ptr)->~QSqlDriverPlugin();
+}
 
 class MyQSqlError: public QSqlError {
 public:
@@ -209,89 +314,6 @@ int QSqlError_Type(void* ptr){
 void QSqlError_DestroyQSqlError(void* ptr){
 	static_cast<QSqlError*>(ptr)->~QSqlError();
 }
-
-#include "qsqlquerymodel.h"
-#include <QSqlQuery>
-#include <QSqlDatabase>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlQueryModel>
-#include "_cgo_export.h"
-
-class MyQSqlQueryModel: public QSqlQueryModel {
-public:
-};
-
-int QSqlQueryModel_RowCount(void* ptr, void* parent){
-	return static_cast<QSqlQueryModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
-}
-
-void* QSqlQueryModel_Data(void* ptr, void* item, int role){
-	return new QVariant(static_cast<QSqlQueryModel*>(ptr)->data(*static_cast<QModelIndex*>(item), role));
-}
-
-int QSqlQueryModel_CanFetchMore(void* ptr, void* parent){
-	return static_cast<QSqlQueryModel*>(ptr)->canFetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QSqlQueryModel_Clear(void* ptr){
-	static_cast<QSqlQueryModel*>(ptr)->clear();
-}
-
-int QSqlQueryModel_ColumnCount(void* ptr, void* index){
-	return static_cast<QSqlQueryModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(index));
-}
-
-void QSqlQueryModel_FetchMore(void* ptr, void* parent){
-	static_cast<QSqlQueryModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void* QSqlQueryModel_HeaderData(void* ptr, int section, int orientation, int role){
-	return new QVariant(static_cast<QSqlQueryModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
-}
-
-int QSqlQueryModel_InsertColumns(void* ptr, int column, int count, void* parent){
-	return static_cast<QSqlQueryModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
-}
-
-int QSqlQueryModel_RemoveColumns(void* ptr, int column, int count, void* parent){
-	return static_cast<QSqlQueryModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
-}
-
-int QSqlQueryModel_SetHeaderData(void* ptr, int section, int orientation, void* value, int role){
-	return static_cast<QSqlQueryModel*>(ptr)->setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
-}
-
-void QSqlQueryModel_SetQuery(void* ptr, void* query){
-	static_cast<QSqlQueryModel*>(ptr)->setQuery(*static_cast<QSqlQuery*>(query));
-}
-
-void QSqlQueryModel_SetQuery2(void* ptr, char* query, void* db){
-	static_cast<QSqlQueryModel*>(ptr)->setQuery(QString(query), *static_cast<QSqlDatabase*>(db));
-}
-
-void QSqlQueryModel_DestroyQSqlQueryModel(void* ptr){
-	static_cast<QSqlQueryModel*>(ptr)->~QSqlQueryModel();
-}
-
-#include "qsqldrivercreator.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlDriver>
-#include <QSqlDriverCreator>
-#include "_cgo_export.h"
-
-#include "qsqlfield.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlField>
-#include "_cgo_export.h"
 
 class MyQSqlField: public QSqlField {
 public:
@@ -393,198 +415,6 @@ void QSqlField_DestroyQSqlField(void* ptr){
 	static_cast<QSqlField*>(ptr)->~QSqlField();
 }
 
-#include "qsqldatabase.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlDriver>
-#include <QSqlDriverCreatorBase>
-#include <QSqlDriverCreator>
-#include <QSqlDatabase>
-#include "_cgo_export.h"
-
-class MyQSqlDatabase: public QSqlDatabase {
-public:
-};
-
-void* QSqlDatabase_NewQSqlDatabase(){
-	return new QSqlDatabase();
-}
-
-void* QSqlDatabase_NewQSqlDatabase2(void* other){
-	return new QSqlDatabase(*static_cast<QSqlDatabase*>(other));
-}
-
-void QSqlDatabase_Close(void* ptr){
-	static_cast<QSqlDatabase*>(ptr)->close();
-}
-
-int QSqlDatabase_Commit(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->commit();
-}
-
-char* QSqlDatabase_ConnectOptions(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->connectOptions().toUtf8().data();
-}
-
-char* QSqlDatabase_ConnectionName(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->connectionName().toUtf8().data();
-}
-
-char* QSqlDatabase_QSqlDatabase_ConnectionNames(){
-	return QSqlDatabase::connectionNames().join("|").toUtf8().data();
-}
-
-int QSqlDatabase_QSqlDatabase_Contains(char* connectionName){
-	return QSqlDatabase::contains(QString(connectionName));
-}
-
-char* QSqlDatabase_DatabaseName(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->databaseName().toUtf8().data();
-}
-
-void* QSqlDatabase_Driver(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->driver();
-}
-
-char* QSqlDatabase_DriverName(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->driverName().toUtf8().data();
-}
-
-char* QSqlDatabase_QSqlDatabase_Drivers(){
-	return QSqlDatabase::drivers().join("|").toUtf8().data();
-}
-
-char* QSqlDatabase_HostName(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->hostName().toUtf8().data();
-}
-
-int QSqlDatabase_QSqlDatabase_IsDriverAvailable(char* name){
-	return QSqlDatabase::isDriverAvailable(QString(name));
-}
-
-int QSqlDatabase_IsOpen(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->isOpen();
-}
-
-int QSqlDatabase_IsOpenError(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->isOpenError();
-}
-
-int QSqlDatabase_IsValid(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->isValid();
-}
-
-int QSqlDatabase_Open(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->open();
-}
-
-int QSqlDatabase_Open2(void* ptr, char* user, char* password){
-	return static_cast<QSqlDatabase*>(ptr)->open(QString(user), QString(password));
-}
-
-char* QSqlDatabase_Password(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->password().toUtf8().data();
-}
-
-int QSqlDatabase_Port(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->port();
-}
-
-void QSqlDatabase_QSqlDatabase_RegisterSqlDriver(char* name, void* creator){
-	QSqlDatabase::registerSqlDriver(QString(name), static_cast<QSqlDriverCreatorBase*>(creator));
-}
-
-void QSqlDatabase_QSqlDatabase_RemoveDatabase(char* connectionName){
-	QSqlDatabase::removeDatabase(QString(connectionName));
-}
-
-int QSqlDatabase_Rollback(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->rollback();
-}
-
-void QSqlDatabase_SetConnectOptions(void* ptr, char* options){
-	static_cast<QSqlDatabase*>(ptr)->setConnectOptions(QString(options));
-}
-
-void QSqlDatabase_SetDatabaseName(void* ptr, char* name){
-	static_cast<QSqlDatabase*>(ptr)->setDatabaseName(QString(name));
-}
-
-void QSqlDatabase_SetHostName(void* ptr, char* host){
-	static_cast<QSqlDatabase*>(ptr)->setHostName(QString(host));
-}
-
-void QSqlDatabase_SetPassword(void* ptr, char* password){
-	static_cast<QSqlDatabase*>(ptr)->setPassword(QString(password));
-}
-
-void QSqlDatabase_SetPort(void* ptr, int port){
-	static_cast<QSqlDatabase*>(ptr)->setPort(port);
-}
-
-void QSqlDatabase_SetUserName(void* ptr, char* name){
-	static_cast<QSqlDatabase*>(ptr)->setUserName(QString(name));
-}
-
-int QSqlDatabase_Transaction(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->transaction();
-}
-
-char* QSqlDatabase_UserName(void* ptr){
-	return static_cast<QSqlDatabase*>(ptr)->userName().toUtf8().data();
-}
-
-void QSqlDatabase_DestroyQSqlDatabase(void* ptr){
-	static_cast<QSqlDatabase*>(ptr)->~QSqlDatabase();
-}
-
-#include "qsqlrelation.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlRelation>
-#include "_cgo_export.h"
-
-class MyQSqlRelation: public QSqlRelation {
-public:
-};
-
-void* QSqlRelation_NewQSqlRelation(){
-	return new QSqlRelation();
-}
-
-void* QSqlRelation_NewQSqlRelation2(char* tableName, char* indexColumn, char* displayColumn){
-	return new QSqlRelation(QString(tableName), QString(indexColumn), QString(displayColumn));
-}
-
-char* QSqlRelation_DisplayColumn(void* ptr){
-	return static_cast<QSqlRelation*>(ptr)->displayColumn().toUtf8().data();
-}
-
-char* QSqlRelation_IndexColumn(void* ptr){
-	return static_cast<QSqlRelation*>(ptr)->indexColumn().toUtf8().data();
-}
-
-int QSqlRelation_IsValid(void* ptr){
-	return static_cast<QSqlRelation*>(ptr)->isValid();
-}
-
-char* QSqlRelation_TableName(void* ptr){
-	return static_cast<QSqlRelation*>(ptr)->tableName().toUtf8().data();
-}
-
-#include "qsqlindex.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlField>
-#include <QString>
-#include <QSqlIndex>
-#include "_cgo_export.h"
-
 class MyQSqlIndex: public QSqlIndex {
 public:
 };
@@ -632,143 +462,6 @@ void QSqlIndex_SetName(void* ptr, char* name){
 void QSqlIndex_DestroyQSqlIndex(void* ptr){
 	static_cast<QSqlIndex*>(ptr)->~QSqlIndex();
 }
-
-#include "qsqldriverplugin.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlDriver>
-#include <QString>
-#include <QSqlDriverPlugin>
-#include "_cgo_export.h"
-
-class MyQSqlDriverPlugin: public QSqlDriverPlugin {
-public:
-};
-
-void* QSqlDriverPlugin_Create(void* ptr, char* key){
-	return static_cast<QSqlDriverPlugin*>(ptr)->create(QString(key));
-}
-
-void QSqlDriverPlugin_DestroyQSqlDriverPlugin(void* ptr){
-	static_cast<QSqlDriverPlugin*>(ptr)->~QSqlDriverPlugin();
-}
-
-#include "qsqlrecord.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlField>
-#include <QSqlRecord>
-#include "_cgo_export.h"
-
-class MyQSqlRecord: public QSqlRecord {
-public:
-};
-
-void* QSqlRecord_NewQSqlRecord(){
-	return new QSqlRecord();
-}
-
-void* QSqlRecord_NewQSqlRecord2(void* other){
-	return new QSqlRecord(*static_cast<QSqlRecord*>(other));
-}
-
-void QSqlRecord_Append(void* ptr, void* field){
-	static_cast<QSqlRecord*>(ptr)->append(*static_cast<QSqlField*>(field));
-}
-
-void QSqlRecord_Clear(void* ptr){
-	static_cast<QSqlRecord*>(ptr)->clear();
-}
-
-void QSqlRecord_ClearValues(void* ptr){
-	static_cast<QSqlRecord*>(ptr)->clearValues();
-}
-
-int QSqlRecord_Contains(void* ptr, char* name){
-	return static_cast<QSqlRecord*>(ptr)->contains(QString(name));
-}
-
-int QSqlRecord_Count(void* ptr){
-	return static_cast<QSqlRecord*>(ptr)->count();
-}
-
-char* QSqlRecord_FieldName(void* ptr, int index){
-	return static_cast<QSqlRecord*>(ptr)->fieldName(index).toUtf8().data();
-}
-
-int QSqlRecord_IndexOf(void* ptr, char* name){
-	return static_cast<QSqlRecord*>(ptr)->indexOf(QString(name));
-}
-
-int QSqlRecord_IsEmpty(void* ptr){
-	return static_cast<QSqlRecord*>(ptr)->isEmpty();
-}
-
-int QSqlRecord_IsGenerated(void* ptr, char* name){
-	return static_cast<QSqlRecord*>(ptr)->isGenerated(QString(name));
-}
-
-int QSqlRecord_IsGenerated2(void* ptr, int index){
-	return static_cast<QSqlRecord*>(ptr)->isGenerated(index);
-}
-
-int QSqlRecord_IsNull(void* ptr, char* name){
-	return static_cast<QSqlRecord*>(ptr)->isNull(QString(name));
-}
-
-int QSqlRecord_IsNull2(void* ptr, int index){
-	return static_cast<QSqlRecord*>(ptr)->isNull(index);
-}
-
-void QSqlRecord_SetGenerated(void* ptr, char* name, int generated){
-	static_cast<QSqlRecord*>(ptr)->setGenerated(QString(name), generated != 0);
-}
-
-void QSqlRecord_SetGenerated2(void* ptr, int index, int generated){
-	static_cast<QSqlRecord*>(ptr)->setGenerated(index, generated != 0);
-}
-
-void QSqlRecord_SetNull2(void* ptr, char* name){
-	static_cast<QSqlRecord*>(ptr)->setNull(QString(name));
-}
-
-void QSqlRecord_SetNull(void* ptr, int index){
-	static_cast<QSqlRecord*>(ptr)->setNull(index);
-}
-
-void QSqlRecord_SetValue2(void* ptr, char* name, void* val){
-	static_cast<QSqlRecord*>(ptr)->setValue(QString(name), *static_cast<QVariant*>(val));
-}
-
-void QSqlRecord_SetValue(void* ptr, int index, void* val){
-	static_cast<QSqlRecord*>(ptr)->setValue(index, *static_cast<QVariant*>(val));
-}
-
-void* QSqlRecord_Value2(void* ptr, char* name){
-	return new QVariant(static_cast<QSqlRecord*>(ptr)->value(QString(name)));
-}
-
-void* QSqlRecord_Value(void* ptr, int index){
-	return new QVariant(static_cast<QSqlRecord*>(ptr)->value(index));
-}
-
-void QSqlRecord_DestroyQSqlRecord(void* ptr){
-	static_cast<QSqlRecord*>(ptr)->~QSqlRecord();
-}
-
-#include "qsqlquery.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlDriver>
-#include <QSqlResult>
-#include <QSqlDatabase>
-#include <QString>
-#include <QVariant>
-#include <QSqlQuery>
-#include "_cgo_export.h"
 
 class MyQSqlQuery: public QSqlQuery {
 public:
@@ -918,126 +611,185 @@ void QSqlQuery_DestroyQSqlQuery(void* ptr){
 	static_cast<QSqlQuery*>(ptr)->~QSqlQuery();
 }
 
-#include "qsqldriver.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QSqlField>
-#include <QSqlRecord>
-#include <QSqlDriver>
-#include "_cgo_export.h"
-
-class MyQSqlDriver: public QSqlDriver {
+class MyQSqlQueryModel: public QSqlQueryModel {
 public:
-void Signal_Notification(const QString & name){callbackQSqlDriverNotification(this->objectName().toUtf8().data(), name.toUtf8().data());};
 };
 
-int QSqlDriver_BeginTransaction(void* ptr){
-	return static_cast<QSqlDriver*>(ptr)->beginTransaction();
+int QSqlQueryModel_RowCount(void* ptr, void* parent){
+	return static_cast<QSqlQueryModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
 }
 
-void QSqlDriver_Close(void* ptr){
-	static_cast<QSqlDriver*>(ptr)->close();
+void* QSqlQueryModel_Data(void* ptr, void* item, int role){
+	return new QVariant(static_cast<QSqlQueryModel*>(ptr)->data(*static_cast<QModelIndex*>(item), role));
 }
 
-int QSqlDriver_CommitTransaction(void* ptr){
-	return static_cast<QSqlDriver*>(ptr)->commitTransaction();
+int QSqlQueryModel_CanFetchMore(void* ptr, void* parent){
+	return static_cast<QSqlQueryModel*>(ptr)->canFetchMore(*static_cast<QModelIndex*>(parent));
 }
 
-void* QSqlDriver_CreateResult(void* ptr){
-	return static_cast<QSqlDriver*>(ptr)->createResult();
+void QSqlQueryModel_Clear(void* ptr){
+	static_cast<QSqlQueryModel*>(ptr)->clear();
 }
 
-int QSqlDriver_DbmsType(void* ptr){
-	return static_cast<QSqlDriver*>(ptr)->dbmsType();
+int QSqlQueryModel_ColumnCount(void* ptr, void* index){
+	return static_cast<QSqlQueryModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(index));
 }
 
-char* QSqlDriver_EscapeIdentifier(void* ptr, char* identifier, int ty){
-	return static_cast<QSqlDriver*>(ptr)->escapeIdentifier(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().data();
+void QSqlQueryModel_FetchMore(void* ptr, void* parent){
+	static_cast<QSqlQueryModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
 }
 
-char* QSqlDriver_FormatValue(void* ptr, void* field, int trimStrings){
-	return static_cast<QSqlDriver*>(ptr)->formatValue(*static_cast<QSqlField*>(field), trimStrings != 0).toUtf8().data();
+void* QSqlQueryModel_HeaderData(void* ptr, int section, int orientation, int role){
+	return new QVariant(static_cast<QSqlQueryModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
 }
 
-void* QSqlDriver_Handle(void* ptr){
-	return new QVariant(static_cast<QSqlDriver*>(ptr)->handle());
+int QSqlQueryModel_InsertColumns(void* ptr, int column, int count, void* parent){
+	return static_cast<QSqlQueryModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
-int QSqlDriver_HasFeature(void* ptr, int feature){
-	return static_cast<QSqlDriver*>(ptr)->hasFeature(static_cast<QSqlDriver::DriverFeature>(feature));
+int QSqlQueryModel_RemoveColumns(void* ptr, int column, int count, void* parent){
+	return static_cast<QSqlQueryModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
-int QSqlDriver_IsIdentifierEscaped(void* ptr, char* identifier, int ty){
-	return static_cast<QSqlDriver*>(ptr)->isIdentifierEscaped(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty));
+int QSqlQueryModel_SetHeaderData(void* ptr, int section, int orientation, void* value, int role){
+	return static_cast<QSqlQueryModel*>(ptr)->setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 }
 
-int QSqlDriver_IsOpen(void* ptr){
-	return static_cast<QSqlDriver*>(ptr)->isOpen();
+void QSqlQueryModel_SetQuery(void* ptr, void* query){
+	static_cast<QSqlQueryModel*>(ptr)->setQuery(*static_cast<QSqlQuery*>(query));
 }
 
-int QSqlDriver_IsOpenError(void* ptr){
-	return static_cast<QSqlDriver*>(ptr)->isOpenError();
+void QSqlQueryModel_SetQuery2(void* ptr, char* query, void* db){
+	static_cast<QSqlQueryModel*>(ptr)->setQuery(QString(query), *static_cast<QSqlDatabase*>(db));
 }
 
-void QSqlDriver_ConnectNotification(void* ptr){
-	QObject::connect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &)>(&MyQSqlDriver::Signal_Notification));;
+void QSqlQueryModel_DestroyQSqlQueryModel(void* ptr){
+	static_cast<QSqlQueryModel*>(ptr)->~QSqlQueryModel();
 }
 
-void QSqlDriver_DisconnectNotification(void* ptr){
-	QObject::disconnect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &)>(&MyQSqlDriver::Signal_Notification));;
+class MyQSqlRecord: public QSqlRecord {
+public:
+};
+
+void* QSqlRecord_NewQSqlRecord(){
+	return new QSqlRecord();
 }
 
-int QSqlDriver_Open(void* ptr, char* db, char* user, char* password, char* host, int port, char* options){
-	return static_cast<QSqlDriver*>(ptr)->open(QString(db), QString(user), QString(password), QString(host), port, QString(options));
+void* QSqlRecord_NewQSqlRecord2(void* other){
+	return new QSqlRecord(*static_cast<QSqlRecord*>(other));
 }
 
-int QSqlDriver_RollbackTransaction(void* ptr){
-	return static_cast<QSqlDriver*>(ptr)->rollbackTransaction();
+void QSqlRecord_Append(void* ptr, void* field){
+	static_cast<QSqlRecord*>(ptr)->append(*static_cast<QSqlField*>(field));
 }
 
-char* QSqlDriver_SqlStatement(void* ptr, int ty, char* tableName, void* rec, int preparedStatement){
-	return static_cast<QSqlDriver*>(ptr)->sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString(tableName), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8().data();
+void QSqlRecord_Clear(void* ptr){
+	static_cast<QSqlRecord*>(ptr)->clear();
 }
 
-char* QSqlDriver_StripDelimiters(void* ptr, char* identifier, int ty){
-	return static_cast<QSqlDriver*>(ptr)->stripDelimiters(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().data();
+void QSqlRecord_ClearValues(void* ptr){
+	static_cast<QSqlRecord*>(ptr)->clearValues();
 }
 
-int QSqlDriver_SubscribeToNotification(void* ptr, char* name){
-	return static_cast<QSqlDriver*>(ptr)->subscribeToNotification(QString(name));
+int QSqlRecord_Contains(void* ptr, char* name){
+	return static_cast<QSqlRecord*>(ptr)->contains(QString(name));
 }
 
-char* QSqlDriver_SubscribedToNotifications(void* ptr){
-	return static_cast<QSqlDriver*>(ptr)->subscribedToNotifications().join("|").toUtf8().data();
+int QSqlRecord_Count(void* ptr){
+	return static_cast<QSqlRecord*>(ptr)->count();
 }
 
-int QSqlDriver_UnsubscribeFromNotification(void* ptr, char* name){
-	return static_cast<QSqlDriver*>(ptr)->unsubscribeFromNotification(QString(name));
+char* QSqlRecord_FieldName(void* ptr, int index){
+	return static_cast<QSqlRecord*>(ptr)->fieldName(index).toUtf8().data();
 }
 
-void QSqlDriver_DestroyQSqlDriver(void* ptr){
-	static_cast<QSqlDriver*>(ptr)->~QSqlDriver();
+int QSqlRecord_IndexOf(void* ptr, char* name){
+	return static_cast<QSqlRecord*>(ptr)->indexOf(QString(name));
 }
 
-#include "qsqlrelationaldelegate.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
+int QSqlRecord_IsEmpty(void* ptr){
+	return static_cast<QSqlRecord*>(ptr)->isEmpty();
+}
 
-#include "qsqlrelationaltablemodel.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlRelation>
-#include <QMetaObject>
-#include <QString>
-#include <QSqlRelationalTableModel>
-#include "_cgo_export.h"
+int QSqlRecord_IsGenerated(void* ptr, char* name){
+	return static_cast<QSqlRecord*>(ptr)->isGenerated(QString(name));
+}
+
+int QSqlRecord_IsGenerated2(void* ptr, int index){
+	return static_cast<QSqlRecord*>(ptr)->isGenerated(index);
+}
+
+int QSqlRecord_IsNull(void* ptr, char* name){
+	return static_cast<QSqlRecord*>(ptr)->isNull(QString(name));
+}
+
+int QSqlRecord_IsNull2(void* ptr, int index){
+	return static_cast<QSqlRecord*>(ptr)->isNull(index);
+}
+
+void QSqlRecord_SetGenerated(void* ptr, char* name, int generated){
+	static_cast<QSqlRecord*>(ptr)->setGenerated(QString(name), generated != 0);
+}
+
+void QSqlRecord_SetGenerated2(void* ptr, int index, int generated){
+	static_cast<QSqlRecord*>(ptr)->setGenerated(index, generated != 0);
+}
+
+void QSqlRecord_SetNull2(void* ptr, char* name){
+	static_cast<QSqlRecord*>(ptr)->setNull(QString(name));
+}
+
+void QSqlRecord_SetNull(void* ptr, int index){
+	static_cast<QSqlRecord*>(ptr)->setNull(index);
+}
+
+void QSqlRecord_SetValue2(void* ptr, char* name, void* val){
+	static_cast<QSqlRecord*>(ptr)->setValue(QString(name), *static_cast<QVariant*>(val));
+}
+
+void QSqlRecord_SetValue(void* ptr, int index, void* val){
+	static_cast<QSqlRecord*>(ptr)->setValue(index, *static_cast<QVariant*>(val));
+}
+
+void* QSqlRecord_Value2(void* ptr, char* name){
+	return new QVariant(static_cast<QSqlRecord*>(ptr)->value(QString(name)));
+}
+
+void* QSqlRecord_Value(void* ptr, int index){
+	return new QVariant(static_cast<QSqlRecord*>(ptr)->value(index));
+}
+
+void QSqlRecord_DestroyQSqlRecord(void* ptr){
+	static_cast<QSqlRecord*>(ptr)->~QSqlRecord();
+}
+
+class MyQSqlRelation: public QSqlRelation {
+public:
+};
+
+void* QSqlRelation_NewQSqlRelation(){
+	return new QSqlRelation();
+}
+
+void* QSqlRelation_NewQSqlRelation2(char* tableName, char* indexColumn, char* displayColumn){
+	return new QSqlRelation(QString(tableName), QString(indexColumn), QString(displayColumn));
+}
+
+char* QSqlRelation_DisplayColumn(void* ptr){
+	return static_cast<QSqlRelation*>(ptr)->displayColumn().toUtf8().data();
+}
+
+char* QSqlRelation_IndexColumn(void* ptr){
+	return static_cast<QSqlRelation*>(ptr)->indexColumn().toUtf8().data();
+}
+
+int QSqlRelation_IsValid(void* ptr){
+	return static_cast<QSqlRelation*>(ptr)->isValid();
+}
+
+char* QSqlRelation_TableName(void* ptr){
+	return static_cast<QSqlRelation*>(ptr)->tableName().toUtf8().data();
+}
 
 class MyQSqlRelationalTableModel: public QSqlRelationalTableModel {
 public:
@@ -1087,25 +839,148 @@ void QSqlRelationalTableModel_DestroyQSqlRelationalTableModel(void* ptr){
 	static_cast<QSqlRelationalTableModel*>(ptr)->~QSqlRelationalTableModel();
 }
 
-#include "qsqldrivercreatorbase.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSqlDriver>
-#include <QSqlDriverCreator>
-#include <QString>
-#include <QSqlDriverCreatorBase>
-#include "_cgo_export.h"
-
-class MyQSqlDriverCreatorBase: public QSqlDriverCreatorBase {
+class MyQSqlResult: public QSqlResult {
 public:
 };
 
-void* QSqlDriverCreatorBase_CreateObject(void* ptr){
-	return static_cast<QSqlDriverCreatorBase*>(ptr)->createObject();
+void* QSqlResult_Handle(void* ptr){
+	return new QVariant(static_cast<QSqlResult*>(ptr)->handle());
 }
 
-void QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(void* ptr){
-	static_cast<QSqlDriverCreatorBase*>(ptr)->~QSqlDriverCreatorBase();
+void QSqlResult_DestroyQSqlResult(void* ptr){
+	static_cast<QSqlResult*>(ptr)->~QSqlResult();
+}
+
+class MyQSqlTableModel: public QSqlTableModel {
+public:
+void Signal_BeforeDelete(int row){callbackQSqlTableModelBeforeDelete(this->objectName().toUtf8().data(), row);};
+};
+
+void QSqlTableModel_ConnectBeforeDelete(void* ptr){
+	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int)>(&QSqlTableModel::beforeDelete), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int)>(&MyQSqlTableModel::Signal_BeforeDelete));;
+}
+
+void QSqlTableModel_DisconnectBeforeDelete(void* ptr){
+	QObject::disconnect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int)>(&QSqlTableModel::beforeDelete), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int)>(&MyQSqlTableModel::Signal_BeforeDelete));;
+}
+
+void QSqlTableModel_Clear(void* ptr){
+	static_cast<QSqlTableModel*>(ptr)->clear();
+}
+
+void* QSqlTableModel_Data(void* ptr, void* index, int role){
+	return new QVariant(static_cast<QSqlTableModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
+}
+
+int QSqlTableModel_EditStrategy(void* ptr){
+	return static_cast<QSqlTableModel*>(ptr)->editStrategy();
+}
+
+int QSqlTableModel_FieldIndex(void* ptr, char* fieldName){
+	return static_cast<QSqlTableModel*>(ptr)->fieldIndex(QString(fieldName));
+}
+
+char* QSqlTableModel_Filter(void* ptr){
+	return static_cast<QSqlTableModel*>(ptr)->filter().toUtf8().data();
+}
+
+int QSqlTableModel_Flags(void* ptr, void* index){
+	return static_cast<QSqlTableModel*>(ptr)->flags(*static_cast<QModelIndex*>(index));
+}
+
+void* QSqlTableModel_HeaderData(void* ptr, int section, int orientation, int role){
+	return new QVariant(static_cast<QSqlTableModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
+}
+
+int QSqlTableModel_InsertRecord(void* ptr, int row, void* record){
+	return static_cast<QSqlTableModel*>(ptr)->insertRecord(row, *static_cast<QSqlRecord*>(record));
+}
+
+int QSqlTableModel_InsertRows(void* ptr, int row, int count, void* parent){
+	return static_cast<QSqlTableModel*>(ptr)->insertRows(row, count, *static_cast<QModelIndex*>(parent));
+}
+
+int QSqlTableModel_IsDirty2(void* ptr){
+	return static_cast<QSqlTableModel*>(ptr)->isDirty();
+}
+
+int QSqlTableModel_IsDirty(void* ptr, void* index){
+	return static_cast<QSqlTableModel*>(ptr)->isDirty(*static_cast<QModelIndex*>(index));
+}
+
+int QSqlTableModel_RemoveColumns(void* ptr, int column, int count, void* parent){
+	return static_cast<QSqlTableModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
+int QSqlTableModel_RemoveRows(void* ptr, int row, int count, void* parent){
+	return static_cast<QSqlTableModel*>(ptr)->removeRows(row, count, *static_cast<QModelIndex*>(parent));
+}
+
+void QSqlTableModel_Revert(void* ptr){
+	QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "revert");
+}
+
+void QSqlTableModel_RevertAll(void* ptr){
+	QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "revertAll");
+}
+
+void QSqlTableModel_RevertRow(void* ptr, int row){
+	static_cast<QSqlTableModel*>(ptr)->revertRow(row);
+}
+
+int QSqlTableModel_RowCount(void* ptr, void* parent){
+	return static_cast<QSqlTableModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
+}
+
+int QSqlTableModel_Select(void* ptr){
+	return QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "select");
+}
+
+int QSqlTableModel_SelectRow(void* ptr, int row){
+	return QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "selectRow", Q_ARG(int, row));
+}
+
+int QSqlTableModel_SetData(void* ptr, void* index, void* value, int role){
+	return static_cast<QSqlTableModel*>(ptr)->setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
+}
+
+void QSqlTableModel_SetEditStrategy(void* ptr, int strategy){
+	static_cast<QSqlTableModel*>(ptr)->setEditStrategy(static_cast<QSqlTableModel::EditStrategy>(strategy));
+}
+
+void QSqlTableModel_SetFilter(void* ptr, char* filter){
+	static_cast<QSqlTableModel*>(ptr)->setFilter(QString(filter));
+}
+
+int QSqlTableModel_SetRecord(void* ptr, int row, void* values){
+	return static_cast<QSqlTableModel*>(ptr)->setRecord(row, *static_cast<QSqlRecord*>(values));
+}
+
+void QSqlTableModel_SetSort(void* ptr, int column, int order){
+	static_cast<QSqlTableModel*>(ptr)->setSort(column, static_cast<Qt::SortOrder>(order));
+}
+
+void QSqlTableModel_SetTable(void* ptr, char* tableName){
+	static_cast<QSqlTableModel*>(ptr)->setTable(QString(tableName));
+}
+
+void QSqlTableModel_Sort(void* ptr, int column, int order){
+	static_cast<QSqlTableModel*>(ptr)->sort(column, static_cast<Qt::SortOrder>(order));
+}
+
+int QSqlTableModel_Submit(void* ptr){
+	return QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "submit");
+}
+
+int QSqlTableModel_SubmitAll(void* ptr){
+	return QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "submitAll");
+}
+
+char* QSqlTableModel_TableName(void* ptr){
+	return static_cast<QSqlTableModel*>(ptr)->tableName().toUtf8().data();
+}
+
+void QSqlTableModel_DestroyQSqlTableModel(void* ptr){
+	static_cast<QSqlTableModel*>(ptr)->~QSqlTableModel();
 }
 

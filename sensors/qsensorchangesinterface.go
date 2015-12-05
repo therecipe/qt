@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qsensorchangesinterface.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QSensorChangesInterface) QSensorChangesInterface_PTR() *QSensorChange
 }
 
 func (ptr *QSensorChangesInterface) SensorsChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSensorChangesInterface::sensorsChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSensorChangesInterface_SensorsChanged(ptr.Pointer())
 	}

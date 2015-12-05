@@ -1,11 +1,12 @@
 package quick
 
-//#include "qsgengine.h"
+//#include "quick.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
+	"log"
 	"unsafe"
 )
 
@@ -28,7 +29,7 @@ func PointerFromQSGEngine(ptr QSGEngine_ITF) unsafe.Pointer {
 func NewQSGEngineFromPointer(ptr unsafe.Pointer) *QSGEngine {
 	var n = new(QSGEngine)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QSGEngine_") {
 		n.SetObjectName("QSGEngine_" + qt.RandomIdentifier())
 	}
 	return n
@@ -48,10 +49,22 @@ const (
 )
 
 func NewQSGEngine(parent core.QObject_ITF) *QSGEngine {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGEngine::QSGEngine")
+		}
+	}()
+
 	return NewQSGEngineFromPointer(C.QSGEngine_NewQSGEngine(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSGEngine) CreateRenderer() *QSGAbstractRenderer {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGEngine::createRenderer")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQSGAbstractRendererFromPointer(C.QSGEngine_CreateRenderer(ptr.Pointer()))
 	}
@@ -59,6 +72,12 @@ func (ptr *QSGEngine) CreateRenderer() *QSGAbstractRenderer {
 }
 
 func (ptr *QSGEngine) CreateTextureFromImage(image gui.QImage_ITF, options QSGEngine__CreateTextureOption) *QSGTexture {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGEngine::createTextureFromImage")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQSGTextureFromPointer(C.QSGEngine_CreateTextureFromImage(ptr.Pointer(), gui.PointerFromQImage(image), C.int(options)))
 	}
@@ -66,18 +85,36 @@ func (ptr *QSGEngine) CreateTextureFromImage(image gui.QImage_ITF, options QSGEn
 }
 
 func (ptr *QSGEngine) Initialize(context gui.QOpenGLContext_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGEngine::initialize")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSGEngine_Initialize(ptr.Pointer(), gui.PointerFromQOpenGLContext(context))
 	}
 }
 
 func (ptr *QSGEngine) Invalidate() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGEngine::invalidate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSGEngine_Invalidate(ptr.Pointer())
 	}
 }
 
 func (ptr *QSGEngine) DestroyQSGEngine() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGEngine::~QSGEngine")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSGEngine_DestroyQSGEngine(ptr.Pointer())
 		ptr.SetPointer(nil)

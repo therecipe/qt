@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qgraphicsscenehelpevent.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QGraphicsSceneHelpEvent) QGraphicsSceneHelpEvent_PTR() *QGraphicsScen
 }
 
 func (ptr *QGraphicsSceneHelpEvent) DestroyQGraphicsSceneHelpEvent() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneHelpEvent::~QGraphicsSceneHelpEvent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneHelpEvent_DestroyQGraphicsSceneHelpEvent(ptr.Pointer())
 	}

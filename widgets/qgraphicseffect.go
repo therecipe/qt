@@ -1,6 +1,6 @@
 package widgets
 
-//#include "qgraphicseffect.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQGraphicsEffect(ptr QGraphicsEffect_ITF) unsafe.Pointer {
 func NewQGraphicsEffectFromPointer(ptr unsafe.Pointer) *QGraphicsEffect {
 	var n = new(QGraphicsEffect)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QGraphicsEffect_") {
 		n.SetObjectName("QGraphicsEffect_" + qt.RandomIdentifier())
 	}
 	return n

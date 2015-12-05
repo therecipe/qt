@@ -1,9 +1,10 @@
 package gui
 
-//#include "qaccessibletextselectionevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,14 +35,32 @@ func (ptr *QAccessibleTextSelectionEvent) QAccessibleTextSelectionEvent_PTR() *Q
 }
 
 func NewQAccessibleTextSelectionEvent2(iface QAccessibleInterface_ITF, start int, end int) *QAccessibleTextSelectionEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTextSelectionEvent::QAccessibleTextSelectionEvent")
+		}
+	}()
+
 	return NewQAccessibleTextSelectionEventFromPointer(C.QAccessibleTextSelectionEvent_NewQAccessibleTextSelectionEvent2(PointerFromQAccessibleInterface(iface), C.int(start), C.int(end)))
 }
 
 func NewQAccessibleTextSelectionEvent(object core.QObject_ITF, start int, end int) *QAccessibleTextSelectionEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTextSelectionEvent::QAccessibleTextSelectionEvent")
+		}
+	}()
+
 	return NewQAccessibleTextSelectionEventFromPointer(C.QAccessibleTextSelectionEvent_NewQAccessibleTextSelectionEvent(core.PointerFromQObject(object), C.int(start), C.int(end)))
 }
 
 func (ptr *QAccessibleTextSelectionEvent) SelectionEnd() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTextSelectionEvent::selectionEnd")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTextSelectionEvent_SelectionEnd(ptr.Pointer()))
 	}
@@ -49,6 +68,12 @@ func (ptr *QAccessibleTextSelectionEvent) SelectionEnd() int {
 }
 
 func (ptr *QAccessibleTextSelectionEvent) SelectionStart() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTextSelectionEvent::selectionStart")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTextSelectionEvent_SelectionStart(ptr.Pointer()))
 	}
@@ -56,6 +81,12 @@ func (ptr *QAccessibleTextSelectionEvent) SelectionStart() int {
 }
 
 func (ptr *QAccessibleTextSelectionEvent) SetSelection(start int, end int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTextSelectionEvent::setSelection")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAccessibleTextSelectionEvent_SetSelection(ptr.Pointer(), C.int(start), C.int(end))
 	}

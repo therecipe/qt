@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptionviewitem.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -80,9 +81,21 @@ const (
 )
 
 func NewQStyleOptionViewItem() *QStyleOptionViewItem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionViewItem::QStyleOptionViewItem")
+		}
+	}()
+
 	return NewQStyleOptionViewItemFromPointer(C.QStyleOptionViewItem_NewQStyleOptionViewItem())
 }
 
 func NewQStyleOptionViewItem2(other QStyleOptionViewItem_ITF) *QStyleOptionViewItem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionViewItem::QStyleOptionViewItem")
+		}
+	}()
+
 	return NewQStyleOptionViewItemFromPointer(C.QStyleOptionViewItem_NewQStyleOptionViewItem2(PointerFromQStyleOptionViewItem(other)))
 }

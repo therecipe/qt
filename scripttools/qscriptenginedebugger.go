@@ -1,12 +1,13 @@
 package scripttools
 
-//#include "qscriptenginedebugger.h"
+//#include "scripttools.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/script"
 	"github.com/therecipe/qt/widgets"
+	"log"
 	"unsafe"
 )
 
@@ -29,7 +30,7 @@ func PointerFromQScriptEngineDebugger(ptr QScriptEngineDebugger_ITF) unsafe.Poin
 func NewQScriptEngineDebuggerFromPointer(ptr unsafe.Pointer) *QScriptEngineDebugger {
 	var n = new(QScriptEngineDebugger)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QScriptEngineDebugger_") {
 		n.SetObjectName("QScriptEngineDebugger_" + qt.RandomIdentifier())
 	}
 	return n
@@ -84,10 +85,22 @@ const (
 )
 
 func NewQScriptEngineDebugger(parent core.QObject_ITF) *QScriptEngineDebugger {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::QScriptEngineDebugger")
+		}
+	}()
+
 	return NewQScriptEngineDebuggerFromPointer(C.QScriptEngineDebugger_NewQScriptEngineDebugger(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QScriptEngineDebugger) Action(action QScriptEngineDebugger__DebuggerAction) *widgets.QAction {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::action")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return widgets.NewQActionFromPointer(C.QScriptEngineDebugger_Action(ptr.Pointer(), C.int(action)))
 	}
@@ -95,12 +108,24 @@ func (ptr *QScriptEngineDebugger) Action(action QScriptEngineDebugger__DebuggerA
 }
 
 func (ptr *QScriptEngineDebugger) AttachTo(engine script.QScriptEngine_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::attachTo")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_AttachTo(ptr.Pointer(), script.PointerFromQScriptEngine(engine))
 	}
 }
 
 func (ptr *QScriptEngineDebugger) AutoShowStandardWindow() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::autoShowStandardWindow")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QScriptEngineDebugger_AutoShowStandardWindow(ptr.Pointer()) != 0
 	}
@@ -108,6 +133,12 @@ func (ptr *QScriptEngineDebugger) AutoShowStandardWindow() bool {
 }
 
 func (ptr *QScriptEngineDebugger) CreateStandardMenu(parent widgets.QWidget_ITF) *widgets.QMenu {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::createStandardMenu")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return widgets.NewQMenuFromPointer(C.QScriptEngineDebugger_CreateStandardMenu(ptr.Pointer(), widgets.PointerFromQWidget(parent)))
 	}
@@ -115,6 +146,12 @@ func (ptr *QScriptEngineDebugger) CreateStandardMenu(parent widgets.QWidget_ITF)
 }
 
 func (ptr *QScriptEngineDebugger) CreateStandardToolBar(parent widgets.QWidget_ITF) *widgets.QToolBar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::createStandardToolBar")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return widgets.NewQToolBarFromPointer(C.QScriptEngineDebugger_CreateStandardToolBar(ptr.Pointer(), widgets.PointerFromQWidget(parent)))
 	}
@@ -122,12 +159,24 @@ func (ptr *QScriptEngineDebugger) CreateStandardToolBar(parent widgets.QWidget_I
 }
 
 func (ptr *QScriptEngineDebugger) Detach() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::detach")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_Detach(ptr.Pointer())
 	}
 }
 
 func (ptr *QScriptEngineDebugger) ConnectEvaluationResumed(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::evaluationResumed")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_ConnectEvaluationResumed(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "evaluationResumed", f)
@@ -135,6 +184,12 @@ func (ptr *QScriptEngineDebugger) ConnectEvaluationResumed(f func()) {
 }
 
 func (ptr *QScriptEngineDebugger) DisconnectEvaluationResumed() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::evaluationResumed")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_DisconnectEvaluationResumed(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "evaluationResumed")
@@ -143,10 +198,22 @@ func (ptr *QScriptEngineDebugger) DisconnectEvaluationResumed() {
 
 //export callbackQScriptEngineDebuggerEvaluationResumed
 func callbackQScriptEngineDebuggerEvaluationResumed(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::evaluationResumed")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "evaluationResumed").(func())()
 }
 
 func (ptr *QScriptEngineDebugger) ConnectEvaluationSuspended(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::evaluationSuspended")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_ConnectEvaluationSuspended(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "evaluationSuspended", f)
@@ -154,6 +221,12 @@ func (ptr *QScriptEngineDebugger) ConnectEvaluationSuspended(f func()) {
 }
 
 func (ptr *QScriptEngineDebugger) DisconnectEvaluationSuspended() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::evaluationSuspended")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_DisconnectEvaluationSuspended(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "evaluationSuspended")
@@ -162,16 +235,34 @@ func (ptr *QScriptEngineDebugger) DisconnectEvaluationSuspended() {
 
 //export callbackQScriptEngineDebuggerEvaluationSuspended
 func callbackQScriptEngineDebuggerEvaluationSuspended(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::evaluationSuspended")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "evaluationSuspended").(func())()
 }
 
 func (ptr *QScriptEngineDebugger) SetAutoShowStandardWindow(autoShow bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::setAutoShowStandardWindow")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_SetAutoShowStandardWindow(ptr.Pointer(), C.int(qt.GoBoolToInt(autoShow)))
 	}
 }
 
 func (ptr *QScriptEngineDebugger) StandardWindow() *widgets.QMainWindow {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::standardWindow")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return widgets.NewQMainWindowFromPointer(C.QScriptEngineDebugger_StandardWindow(ptr.Pointer()))
 	}
@@ -179,6 +270,12 @@ func (ptr *QScriptEngineDebugger) StandardWindow() *widgets.QMainWindow {
 }
 
 func (ptr *QScriptEngineDebugger) Widget(widget QScriptEngineDebugger__DebuggerWidget) *widgets.QWidget {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::widget")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return widgets.NewQWidgetFromPointer(C.QScriptEngineDebugger_Widget(ptr.Pointer(), C.int(widget)))
 	}
@@ -186,6 +283,12 @@ func (ptr *QScriptEngineDebugger) Widget(widget QScriptEngineDebugger__DebuggerW
 }
 
 func (ptr *QScriptEngineDebugger) DestroyQScriptEngineDebugger() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineDebugger::~QScriptEngineDebugger")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_DestroyQScriptEngineDebugger(ptr.Pointer())
 		ptr.SetPointer(nil)

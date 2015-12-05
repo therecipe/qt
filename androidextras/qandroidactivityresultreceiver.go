@@ -42,5 +42,4 @@ func (ptr *QAndroidActivityResultReceiver) QAndroidActivityResultReceiver_PTR() 
 
 func (ptr *QAndroidActivityResultReceiver) HandleActivityResult(receiverRequestCode int, resultCode int, data QAndroidJniObject_ITF) {
 
-	return
 }

@@ -1,9 +1,10 @@
 package gui
 
-//#include "qmouseevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,18 +35,42 @@ func (ptr *QMouseEvent) QMouseEvent_PTR() *QMouseEvent {
 }
 
 func NewQMouseEvent(ty core.QEvent__Type, localPos core.QPointF_ITF, button core.Qt__MouseButton, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QMouseEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMouseEvent::QMouseEvent")
+		}
+	}()
+
 	return NewQMouseEventFromPointer(C.QMouseEvent_NewQMouseEvent(C.int(ty), core.PointerFromQPointF(localPos), C.int(button), C.int(buttons), C.int(modifiers)))
 }
 
 func NewQMouseEvent2(ty core.QEvent__Type, localPos core.QPointF_ITF, screenPos core.QPointF_ITF, button core.Qt__MouseButton, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QMouseEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMouseEvent::QMouseEvent")
+		}
+	}()
+
 	return NewQMouseEventFromPointer(C.QMouseEvent_NewQMouseEvent2(C.int(ty), core.PointerFromQPointF(localPos), core.PointerFromQPointF(screenPos), C.int(button), C.int(buttons), C.int(modifiers)))
 }
 
 func NewQMouseEvent3(ty core.QEvent__Type, localPos core.QPointF_ITF, windowPos core.QPointF_ITF, screenPos core.QPointF_ITF, button core.Qt__MouseButton, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QMouseEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMouseEvent::QMouseEvent")
+		}
+	}()
+
 	return NewQMouseEventFromPointer(C.QMouseEvent_NewQMouseEvent3(C.int(ty), core.PointerFromQPointF(localPos), core.PointerFromQPointF(windowPos), core.PointerFromQPointF(screenPos), C.int(button), C.int(buttons), C.int(modifiers)))
 }
 
 func (ptr *QMouseEvent) Button() core.Qt__MouseButton {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMouseEvent::button")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseButton(C.QMouseEvent_Button(ptr.Pointer()))
 	}
@@ -53,6 +78,12 @@ func (ptr *QMouseEvent) Button() core.Qt__MouseButton {
 }
 
 func (ptr *QMouseEvent) Buttons() core.Qt__MouseButton {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMouseEvent::buttons")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseButton(C.QMouseEvent_Buttons(ptr.Pointer()))
 	}
@@ -60,6 +91,12 @@ func (ptr *QMouseEvent) Buttons() core.Qt__MouseButton {
 }
 
 func (ptr *QMouseEvent) Flags() core.Qt__MouseEventFlag {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMouseEvent::flags")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseEventFlag(C.QMouseEvent_Flags(ptr.Pointer()))
 	}
@@ -67,6 +104,12 @@ func (ptr *QMouseEvent) Flags() core.Qt__MouseEventFlag {
 }
 
 func (ptr *QMouseEvent) GlobalX() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMouseEvent::globalX")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QMouseEvent_GlobalX(ptr.Pointer()))
 	}
@@ -74,6 +117,12 @@ func (ptr *QMouseEvent) GlobalX() int {
 }
 
 func (ptr *QMouseEvent) GlobalY() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMouseEvent::globalY")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QMouseEvent_GlobalY(ptr.Pointer()))
 	}
@@ -81,6 +130,12 @@ func (ptr *QMouseEvent) GlobalY() int {
 }
 
 func (ptr *QMouseEvent) Source() core.Qt__MouseEventSource {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMouseEvent::source")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseEventSource(C.QMouseEvent_Source(ptr.Pointer()))
 	}
@@ -88,6 +143,12 @@ func (ptr *QMouseEvent) Source() core.Qt__MouseEventSource {
 }
 
 func (ptr *QMouseEvent) X() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMouseEvent::x")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QMouseEvent_X(ptr.Pointer()))
 	}
@@ -95,6 +156,12 @@ func (ptr *QMouseEvent) X() int {
 }
 
 func (ptr *QMouseEvent) Y() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMouseEvent::y")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QMouseEvent_Y(ptr.Pointer()))
 	}

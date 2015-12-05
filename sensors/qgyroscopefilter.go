@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qgyroscopefilter.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QGyroscopeFilter) QGyroscopeFilter_PTR() *QGyroscopeFilter {
 }
 
 func (ptr *QGyroscopeFilter) Filter(reading QGyroscopeReading_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGyroscopeFilter::filter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGyroscopeFilter_Filter(ptr.Pointer(), PointerFromQGyroscopeReading(reading)) != 0
 	}

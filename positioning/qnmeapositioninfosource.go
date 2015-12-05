@@ -1,10 +1,11 @@
 package positioning
 
-//#include "qnmeapositioninfosource.h"
+//#include "positioning.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQNmeaPositionInfoSource(ptr QNmeaPositionInfoSource_ITF) unsafe.
 func NewQNmeaPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QNmeaPositionInfoSource {
 	var n = new(QNmeaPositionInfoSource)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QNmeaPositionInfoSource_") {
 		n.SetObjectName("QNmeaPositionInfoSource_" + qt.RandomIdentifier())
 	}
 	return n
@@ -46,10 +47,22 @@ const (
 )
 
 func NewQNmeaPositionInfoSource(updateMode QNmeaPositionInfoSource__UpdateMode, parent core.QObject_ITF) *QNmeaPositionInfoSource {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNmeaPositionInfoSource::QNmeaPositionInfoSource")
+		}
+	}()
+
 	return NewQNmeaPositionInfoSourceFromPointer(C.QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(C.int(updateMode), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNmeaPositionInfoSource) Device() *core.QIODevice {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNmeaPositionInfoSource::device")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QNmeaPositionInfoSource_Device(ptr.Pointer()))
 	}
@@ -57,6 +70,12 @@ func (ptr *QNmeaPositionInfoSource) Device() *core.QIODevice {
 }
 
 func (ptr *QNmeaPositionInfoSource) Error() QGeoPositionInfoSource__Error {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNmeaPositionInfoSource::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QGeoPositionInfoSource__Error(C.QNmeaPositionInfoSource_Error(ptr.Pointer()))
 	}
@@ -64,6 +83,12 @@ func (ptr *QNmeaPositionInfoSource) Error() QGeoPositionInfoSource__Error {
 }
 
 func (ptr *QNmeaPositionInfoSource) MinimumUpdateInterval() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNmeaPositionInfoSource::minimumUpdateInterval")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QNmeaPositionInfoSource_MinimumUpdateInterval(ptr.Pointer()))
 	}
@@ -71,36 +96,72 @@ func (ptr *QNmeaPositionInfoSource) MinimumUpdateInterval() int {
 }
 
 func (ptr *QNmeaPositionInfoSource) RequestUpdate(msec int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNmeaPositionInfoSource::requestUpdate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_RequestUpdate(ptr.Pointer(), C.int(msec))
 	}
 }
 
 func (ptr *QNmeaPositionInfoSource) SetDevice(device core.QIODevice_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNmeaPositionInfoSource::setDevice")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_SetDevice(ptr.Pointer(), core.PointerFromQIODevice(device))
 	}
 }
 
 func (ptr *QNmeaPositionInfoSource) SetUpdateInterval(msec int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNmeaPositionInfoSource::setUpdateInterval")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_SetUpdateInterval(ptr.Pointer(), C.int(msec))
 	}
 }
 
 func (ptr *QNmeaPositionInfoSource) StartUpdates() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNmeaPositionInfoSource::startUpdates")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_StartUpdates(ptr.Pointer())
 	}
 }
 
 func (ptr *QNmeaPositionInfoSource) StopUpdates() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNmeaPositionInfoSource::stopUpdates")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_StopUpdates(ptr.Pointer())
 	}
 }
 
 func (ptr *QNmeaPositionInfoSource) SupportedPositioningMethods() QGeoPositionInfoSource__PositioningMethod {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNmeaPositionInfoSource::supportedPositioningMethods")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QGeoPositionInfoSource__PositioningMethod(C.QNmeaPositionInfoSource_SupportedPositioningMethods(ptr.Pointer()))
 	}
@@ -108,6 +169,12 @@ func (ptr *QNmeaPositionInfoSource) SupportedPositioningMethods() QGeoPositionIn
 }
 
 func (ptr *QNmeaPositionInfoSource) UpdateMode() QNmeaPositionInfoSource__UpdateMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNmeaPositionInfoSource::updateMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QNmeaPositionInfoSource__UpdateMode(C.QNmeaPositionInfoSource_UpdateMode(ptr.Pointer()))
 	}
@@ -115,6 +182,12 @@ func (ptr *QNmeaPositionInfoSource) UpdateMode() QNmeaPositionInfoSource__Update
 }
 
 func (ptr *QNmeaPositionInfoSource) DestroyQNmeaPositionInfoSource() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNmeaPositionInfoSource::~QNmeaPositionInfoSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(ptr.Pointer())
 		ptr.SetPointer(nil)

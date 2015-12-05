@@ -1,6 +1,6 @@
 package gui
 
-//#include "qopenglfunctions_4_3_core.h"
+//#include "gui.h"
 import "C"
 import (
 	"unsafe"

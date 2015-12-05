@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qtablewidgetselectionrange.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,18 +41,42 @@ func (ptr *QTableWidgetSelectionRange) QTableWidgetSelectionRange_PTR() *QTableW
 }
 
 func NewQTableWidgetSelectionRange() *QTableWidgetSelectionRange {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTableWidgetSelectionRange::QTableWidgetSelectionRange")
+		}
+	}()
+
 	return NewQTableWidgetSelectionRangeFromPointer(C.QTableWidgetSelectionRange_NewQTableWidgetSelectionRange())
 }
 
 func NewQTableWidgetSelectionRange3(other QTableWidgetSelectionRange_ITF) *QTableWidgetSelectionRange {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTableWidgetSelectionRange::QTableWidgetSelectionRange")
+		}
+	}()
+
 	return NewQTableWidgetSelectionRangeFromPointer(C.QTableWidgetSelectionRange_NewQTableWidgetSelectionRange3(PointerFromQTableWidgetSelectionRange(other)))
 }
 
 func NewQTableWidgetSelectionRange2(top int, left int, bottom int, right int) *QTableWidgetSelectionRange {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTableWidgetSelectionRange::QTableWidgetSelectionRange")
+		}
+	}()
+
 	return NewQTableWidgetSelectionRangeFromPointer(C.QTableWidgetSelectionRange_NewQTableWidgetSelectionRange2(C.int(top), C.int(left), C.int(bottom), C.int(right)))
 }
 
 func (ptr *QTableWidgetSelectionRange) BottomRow() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTableWidgetSelectionRange::bottomRow")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidgetSelectionRange_BottomRow(ptr.Pointer()))
 	}
@@ -59,6 +84,12 @@ func (ptr *QTableWidgetSelectionRange) BottomRow() int {
 }
 
 func (ptr *QTableWidgetSelectionRange) ColumnCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTableWidgetSelectionRange::columnCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidgetSelectionRange_ColumnCount(ptr.Pointer()))
 	}
@@ -66,6 +97,12 @@ func (ptr *QTableWidgetSelectionRange) ColumnCount() int {
 }
 
 func (ptr *QTableWidgetSelectionRange) LeftColumn() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTableWidgetSelectionRange::leftColumn")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidgetSelectionRange_LeftColumn(ptr.Pointer()))
 	}
@@ -73,6 +110,12 @@ func (ptr *QTableWidgetSelectionRange) LeftColumn() int {
 }
 
 func (ptr *QTableWidgetSelectionRange) RightColumn() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTableWidgetSelectionRange::rightColumn")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidgetSelectionRange_RightColumn(ptr.Pointer()))
 	}
@@ -80,6 +123,12 @@ func (ptr *QTableWidgetSelectionRange) RightColumn() int {
 }
 
 func (ptr *QTableWidgetSelectionRange) RowCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTableWidgetSelectionRange::rowCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidgetSelectionRange_RowCount(ptr.Pointer()))
 	}
@@ -87,6 +136,12 @@ func (ptr *QTableWidgetSelectionRange) RowCount() int {
 }
 
 func (ptr *QTableWidgetSelectionRange) TopRow() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTableWidgetSelectionRange::topRow")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTableWidgetSelectionRange_TopRow(ptr.Pointer()))
 	}
@@ -94,6 +149,12 @@ func (ptr *QTableWidgetSelectionRange) TopRow() int {
 }
 
 func (ptr *QTableWidgetSelectionRange) DestroyQTableWidgetSelectionRange() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTableWidgetSelectionRange::~QTableWidgetSelectionRange")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTableWidgetSelectionRange_DestroyQTableWidgetSelectionRange(ptr.Pointer())
 	}

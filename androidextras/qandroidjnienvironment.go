@@ -52,5 +52,4 @@ func QAndroidJniEnvironment_JavaVM() unsafe.Pointer {
 
 func (ptr *QAndroidJniEnvironment) DestroyQAndroidJniEnvironment() {
 
-	return
 }

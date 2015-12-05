@@ -1,9 +1,10 @@
 package quick
 
-//#include "qsgdynamictexture.h"
+//#include "quick.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQSGDynamicTexture(ptr QSGDynamicTexture_ITF) unsafe.Pointer {
 func NewQSGDynamicTextureFromPointer(ptr unsafe.Pointer) *QSGDynamicTexture {
 	var n = new(QSGDynamicTexture)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QSGDynamicTexture_") {
 		n.SetObjectName("QSGDynamicTexture_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QSGDynamicTexture) QSGDynamicTexture_PTR() *QSGDynamicTexture {
 }
 
 func (ptr *QSGDynamicTexture) UpdateTexture() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGDynamicTexture::updateTexture")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QSGDynamicTexture_UpdateTexture(ptr.Pointer()) != 0
 	}

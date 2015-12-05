@@ -1,10 +1,11 @@
 package network
 
-//#include "qtcpsocket.h"
+//#include "network.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQTcpSocket(ptr QTcpSocket_ITF) unsafe.Pointer {
 func NewQTcpSocketFromPointer(ptr unsafe.Pointer) *QTcpSocket {
 	var n = new(QTcpSocket)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QTcpSocket_") {
 		n.SetObjectName("QTcpSocket_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,10 +39,22 @@ func (ptr *QTcpSocket) QTcpSocket_PTR() *QTcpSocket {
 }
 
 func NewQTcpSocket(parent core.QObject_ITF) *QTcpSocket {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTcpSocket::QTcpSocket")
+		}
+	}()
+
 	return NewQTcpSocketFromPointer(C.QTcpSocket_NewQTcpSocket(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QTcpSocket) DestroyQTcpSocket() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTcpSocket::~QTcpSocket")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTcpSocket_DestroyQTcpSocket(ptr.Pointer())
 		ptr.SetPointer(nil)

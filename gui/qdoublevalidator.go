@@ -1,10 +1,11 @@
 package gui
 
-//#include "qdoublevalidator.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQDoubleValidator(ptr QDoubleValidator_ITF) unsafe.Pointer {
 func NewQDoubleValidatorFromPointer(ptr unsafe.Pointer) *QDoubleValidator {
 	var n = new(QDoubleValidator)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QDoubleValidator_") {
 		n.SetObjectName("QDoubleValidator_" + qt.RandomIdentifier())
 	}
 	return n
@@ -46,6 +47,12 @@ const (
 )
 
 func (ptr *QDoubleValidator) Notation() QDoubleValidator__Notation {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleValidator::notation")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QDoubleValidator__Notation(C.QDoubleValidator_Notation(ptr.Pointer()))
 	}
@@ -53,22 +60,46 @@ func (ptr *QDoubleValidator) Notation() QDoubleValidator__Notation {
 }
 
 func (ptr *QDoubleValidator) SetDecimals(v int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleValidator::setDecimals")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDoubleValidator_SetDecimals(ptr.Pointer(), C.int(v))
 	}
 }
 
 func (ptr *QDoubleValidator) SetNotation(v QDoubleValidator__Notation) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleValidator::setNotation")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDoubleValidator_SetNotation(ptr.Pointer(), C.int(v))
 	}
 }
 
 func NewQDoubleValidator(parent core.QObject_ITF) *QDoubleValidator {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleValidator::QDoubleValidator")
+		}
+	}()
+
 	return NewQDoubleValidatorFromPointer(C.QDoubleValidator_NewQDoubleValidator(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDoubleValidator) Decimals() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleValidator::decimals")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QDoubleValidator_Decimals(ptr.Pointer()))
 	}
@@ -76,6 +107,12 @@ func (ptr *QDoubleValidator) Decimals() int {
 }
 
 func (ptr *QDoubleValidator) DestroyQDoubleValidator() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleValidator::~QDoubleValidator")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDoubleValidator_DestroyQDoubleValidator(ptr.Pointer())
 		ptr.SetPointer(nil)

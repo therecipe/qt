@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qgraphicsscenemoveevent.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,10 +34,22 @@ func (ptr *QGraphicsSceneMoveEvent) QGraphicsSceneMoveEvent_PTR() *QGraphicsScen
 }
 
 func NewQGraphicsSceneMoveEvent() *QGraphicsSceneMoveEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneMoveEvent::QGraphicsSceneMoveEvent")
+		}
+	}()
+
 	return NewQGraphicsSceneMoveEventFromPointer(C.QGraphicsSceneMoveEvent_NewQGraphicsSceneMoveEvent())
 }
 
 func (ptr *QGraphicsSceneMoveEvent) DestroyQGraphicsSceneMoveEvent() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneMoveEvent::~QGraphicsSceneMoveEvent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneMoveEvent_DestroyQGraphicsSceneMoveEvent(ptr.Pointer())
 	}

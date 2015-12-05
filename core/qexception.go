@@ -1,8 +1,9 @@
 package core
 
-//#include "qexception.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QException) QException_PTR() *QException {
 }
 
 func (ptr *QException) Clone() *QException {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QException::clone")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQExceptionFromPointer(C.QException_Clone(ptr.Pointer()))
 	}
@@ -47,6 +54,12 @@ func (ptr *QException) Clone() *QException {
 }
 
 func (ptr *QException) Raise() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QException::raise")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QException_Raise(ptr.Pointer())
 	}

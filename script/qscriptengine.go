@@ -1,10 +1,11 @@
 package script
 
-//#include "qscriptengine.h"
+//#include "script.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -28,7 +29,7 @@ func PointerFromQScriptEngine(ptr QScriptEngine_ITF) unsafe.Pointer {
 func NewQScriptEngineFromPointer(ptr unsafe.Pointer) *QScriptEngine {
 	var n = new(QScriptEngine)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QScriptEngine_") {
 		n.SetObjectName("QScriptEngine_" + qt.RandomIdentifier())
 	}
 	return n
@@ -63,20 +64,44 @@ const (
 )
 
 func NewQScriptEngine() *QScriptEngine {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::QScriptEngine")
+		}
+	}()
+
 	return NewQScriptEngineFromPointer(C.QScriptEngine_NewQScriptEngine())
 }
 
 func NewQScriptEngine2(parent core.QObject_ITF) *QScriptEngine {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::QScriptEngine")
+		}
+	}()
+
 	return NewQScriptEngineFromPointer(C.QScriptEngine_NewQScriptEngine2(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QScriptEngine) AbortEvaluation(result QScriptValue_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::abortEvaluation")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_AbortEvaluation(ptr.Pointer(), PointerFromQScriptValue(result))
 	}
 }
 
 func (ptr *QScriptEngine) Agent() *QScriptEngineAgent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::agent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptEngineAgentFromPointer(C.QScriptEngine_Agent(ptr.Pointer()))
 	}
@@ -84,25 +109,49 @@ func (ptr *QScriptEngine) Agent() *QScriptEngineAgent {
 }
 
 func (ptr *QScriptEngine) AvailableExtensions() []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::availableExtensions")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QScriptEngine_AvailableExtensions(ptr.Pointer())), "|")
+		return strings.Split(C.GoString(C.QScriptEngine_AvailableExtensions(ptr.Pointer())), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QScriptEngine) ClearExceptions() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::clearExceptions")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_ClearExceptions(ptr.Pointer())
 	}
 }
 
 func (ptr *QScriptEngine) CollectGarbage() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::collectGarbage")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_CollectGarbage(ptr.Pointer())
 	}
 }
 
 func (ptr *QScriptEngine) CurrentContext() *QScriptContext {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::currentContext")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptContextFromPointer(C.QScriptEngine_CurrentContext(ptr.Pointer()))
 	}
@@ -110,6 +159,12 @@ func (ptr *QScriptEngine) CurrentContext() *QScriptContext {
 }
 
 func (ptr *QScriptEngine) DefaultPrototype(metaTypeId int) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::defaultPrototype")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_DefaultPrototype(ptr.Pointer(), C.int(metaTypeId)))
 	}
@@ -117,6 +172,12 @@ func (ptr *QScriptEngine) DefaultPrototype(metaTypeId int) *QScriptValue {
 }
 
 func (ptr *QScriptEngine) Evaluate2(program QScriptProgram_ITF) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::evaluate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_Evaluate2(ptr.Pointer(), PointerFromQScriptProgram(program)))
 	}
@@ -124,6 +185,12 @@ func (ptr *QScriptEngine) Evaluate2(program QScriptProgram_ITF) *QScriptValue {
 }
 
 func (ptr *QScriptEngine) Evaluate(program string, fileName string, lineNumber int) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::evaluate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_Evaluate(ptr.Pointer(), C.CString(program), C.CString(fileName), C.int(lineNumber)))
 	}
@@ -131,6 +198,12 @@ func (ptr *QScriptEngine) Evaluate(program string, fileName string, lineNumber i
 }
 
 func (ptr *QScriptEngine) GlobalObject() *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::globalObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_GlobalObject(ptr.Pointer()))
 	}
@@ -138,6 +211,12 @@ func (ptr *QScriptEngine) GlobalObject() *QScriptValue {
 }
 
 func (ptr *QScriptEngine) HasUncaughtException() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::hasUncaughtException")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QScriptEngine_HasUncaughtException(ptr.Pointer()) != 0
 	}
@@ -145,6 +224,12 @@ func (ptr *QScriptEngine) HasUncaughtException() bool {
 }
 
 func (ptr *QScriptEngine) ImportExtension(extension string) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::importExtension")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_ImportExtension(ptr.Pointer(), C.CString(extension)))
 	}
@@ -152,19 +237,37 @@ func (ptr *QScriptEngine) ImportExtension(extension string) *QScriptValue {
 }
 
 func (ptr *QScriptEngine) ImportedExtensions() []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::importedExtensions")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QScriptEngine_ImportedExtensions(ptr.Pointer())), "|")
+		return strings.Split(C.GoString(C.QScriptEngine_ImportedExtensions(ptr.Pointer())), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QScriptEngine) InstallTranslatorFunctions(object QScriptValue_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::installTranslatorFunctions")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_InstallTranslatorFunctions(ptr.Pointer(), PointerFromQScriptValue(object))
 	}
 }
 
 func (ptr *QScriptEngine) IsEvaluating() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::isEvaluating")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QScriptEngine_IsEvaluating(ptr.Pointer()) != 0
 	}
@@ -172,6 +275,12 @@ func (ptr *QScriptEngine) IsEvaluating() bool {
 }
 
 func (ptr *QScriptEngine) NewDate2(value core.QDateTime_ITF) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::newDate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_NewDate2(ptr.Pointer(), core.PointerFromQDateTime(value)))
 	}
@@ -179,6 +288,12 @@ func (ptr *QScriptEngine) NewDate2(value core.QDateTime_ITF) *QScriptValue {
 }
 
 func (ptr *QScriptEngine) NewObject() *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::newObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_NewObject(ptr.Pointer()))
 	}
@@ -186,6 +301,12 @@ func (ptr *QScriptEngine) NewObject() *QScriptValue {
 }
 
 func (ptr *QScriptEngine) NewObject2(scriptClass QScriptClass_ITF, data QScriptValue_ITF) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::newObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_NewObject2(ptr.Pointer(), PointerFromQScriptClass(scriptClass), PointerFromQScriptValue(data)))
 	}
@@ -193,6 +314,12 @@ func (ptr *QScriptEngine) NewObject2(scriptClass QScriptClass_ITF, data QScriptV
 }
 
 func (ptr *QScriptEngine) NewQMetaObject(metaObject core.QMetaObject_ITF, ctor QScriptValue_ITF) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::newQMetaObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_NewQMetaObject(ptr.Pointer(), core.PointerFromQMetaObject(metaObject), PointerFromQScriptValue(ctor)))
 	}
@@ -200,6 +327,12 @@ func (ptr *QScriptEngine) NewQMetaObject(metaObject core.QMetaObject_ITF, ctor Q
 }
 
 func (ptr *QScriptEngine) NewQObject(object core.QObject_ITF, ownership QScriptEngine__ValueOwnership, options QScriptEngine__QObjectWrapOption) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::newQObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_NewQObject(ptr.Pointer(), core.PointerFromQObject(object), C.int(ownership), C.int(options)))
 	}
@@ -207,6 +340,12 @@ func (ptr *QScriptEngine) NewQObject(object core.QObject_ITF, ownership QScriptE
 }
 
 func (ptr *QScriptEngine) NewQObject2(scriptObject QScriptValue_ITF, qtObject core.QObject_ITF, ownership QScriptEngine__ValueOwnership, options QScriptEngine__QObjectWrapOption) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::newQObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_NewQObject2(ptr.Pointer(), PointerFromQScriptValue(scriptObject), core.PointerFromQObject(qtObject), C.int(ownership), C.int(options)))
 	}
@@ -214,6 +353,12 @@ func (ptr *QScriptEngine) NewQObject2(scriptObject QScriptValue_ITF, qtObject co
 }
 
 func (ptr *QScriptEngine) NewRegExp(regexp core.QRegExp_ITF) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::newRegExp")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_NewRegExp(ptr.Pointer(), core.PointerFromQRegExp(regexp)))
 	}
@@ -221,6 +366,12 @@ func (ptr *QScriptEngine) NewRegExp(regexp core.QRegExp_ITF) *QScriptValue {
 }
 
 func (ptr *QScriptEngine) NewRegExp2(pattern string, flags string) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::newRegExp")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_NewRegExp2(ptr.Pointer(), C.CString(pattern), C.CString(flags)))
 	}
@@ -228,6 +379,12 @@ func (ptr *QScriptEngine) NewRegExp2(pattern string, flags string) *QScriptValue
 }
 
 func (ptr *QScriptEngine) NewVariant2(object QScriptValue_ITF, value core.QVariant_ITF) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::newVariant")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_NewVariant2(ptr.Pointer(), PointerFromQScriptValue(object), core.PointerFromQVariant(value)))
 	}
@@ -235,6 +392,12 @@ func (ptr *QScriptEngine) NewVariant2(object QScriptValue_ITF, value core.QVaria
 }
 
 func (ptr *QScriptEngine) NewVariant(value core.QVariant_ITF) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::newVariant")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_NewVariant(ptr.Pointer(), core.PointerFromQVariant(value)))
 	}
@@ -242,6 +405,12 @@ func (ptr *QScriptEngine) NewVariant(value core.QVariant_ITF) *QScriptValue {
 }
 
 func (ptr *QScriptEngine) NullValue() *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::nullValue")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_NullValue(ptr.Pointer()))
 	}
@@ -249,12 +418,24 @@ func (ptr *QScriptEngine) NullValue() *QScriptValue {
 }
 
 func (ptr *QScriptEngine) PopContext() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::popContext")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_PopContext(ptr.Pointer())
 	}
 }
 
 func (ptr *QScriptEngine) ProcessEventsInterval() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::processEventsInterval")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QScriptEngine_ProcessEventsInterval(ptr.Pointer()))
 	}
@@ -262,6 +443,12 @@ func (ptr *QScriptEngine) ProcessEventsInterval() int {
 }
 
 func (ptr *QScriptEngine) PushContext() *QScriptContext {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::pushContext")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptContextFromPointer(C.QScriptEngine_PushContext(ptr.Pointer()))
 	}
@@ -269,36 +456,72 @@ func (ptr *QScriptEngine) PushContext() *QScriptContext {
 }
 
 func (ptr *QScriptEngine) ReportAdditionalMemoryCost(size int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::reportAdditionalMemoryCost")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_ReportAdditionalMemoryCost(ptr.Pointer(), C.int(size))
 	}
 }
 
 func (ptr *QScriptEngine) SetAgent(agent QScriptEngineAgent_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::setAgent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_SetAgent(ptr.Pointer(), PointerFromQScriptEngineAgent(agent))
 	}
 }
 
 func (ptr *QScriptEngine) SetDefaultPrototype(metaTypeId int, prototype QScriptValue_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::setDefaultPrototype")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_SetDefaultPrototype(ptr.Pointer(), C.int(metaTypeId), PointerFromQScriptValue(prototype))
 	}
 }
 
 func (ptr *QScriptEngine) SetGlobalObject(object QScriptValue_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::setGlobalObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_SetGlobalObject(ptr.Pointer(), PointerFromQScriptValue(object))
 	}
 }
 
 func (ptr *QScriptEngine) SetProcessEventsInterval(interval int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::setProcessEventsInterval")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_SetProcessEventsInterval(ptr.Pointer(), C.int(interval))
 	}
 }
 
 func (ptr *QScriptEngine) ConnectSignalHandlerException(f func(exception *QScriptValue)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::signalHandlerException")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_ConnectSignalHandlerException(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "signalHandlerException", f)
@@ -306,6 +529,12 @@ func (ptr *QScriptEngine) ConnectSignalHandlerException(f func(exception *QScrip
 }
 
 func (ptr *QScriptEngine) DisconnectSignalHandlerException() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::signalHandlerException")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_DisconnectSignalHandlerException(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "signalHandlerException")
@@ -314,10 +543,22 @@ func (ptr *QScriptEngine) DisconnectSignalHandlerException() {
 
 //export callbackQScriptEngineSignalHandlerException
 func callbackQScriptEngineSignalHandlerException(ptrName *C.char, exception unsafe.Pointer) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::signalHandlerException")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "signalHandlerException").(func(*QScriptValue))(NewQScriptValueFromPointer(exception))
 }
 
 func (ptr *QScriptEngine) ToObject(value QScriptValue_ITF) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::toObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_ToObject(ptr.Pointer(), PointerFromQScriptValue(value)))
 	}
@@ -325,6 +566,12 @@ func (ptr *QScriptEngine) ToObject(value QScriptValue_ITF) *QScriptValue {
 }
 
 func (ptr *QScriptEngine) UncaughtException() *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::uncaughtException")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_UncaughtException(ptr.Pointer()))
 	}
@@ -332,13 +579,25 @@ func (ptr *QScriptEngine) UncaughtException() *QScriptValue {
 }
 
 func (ptr *QScriptEngine) UncaughtExceptionBacktrace() []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::uncaughtExceptionBacktrace")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QScriptEngine_UncaughtExceptionBacktrace(ptr.Pointer())), "|")
+		return strings.Split(C.GoString(C.QScriptEngine_UncaughtExceptionBacktrace(ptr.Pointer())), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QScriptEngine) UncaughtExceptionLineNumber() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::uncaughtExceptionLineNumber")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QScriptEngine_UncaughtExceptionLineNumber(ptr.Pointer()))
 	}
@@ -346,6 +605,12 @@ func (ptr *QScriptEngine) UncaughtExceptionLineNumber() int {
 }
 
 func (ptr *QScriptEngine) UndefinedValue() *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::undefinedValue")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_UndefinedValue(ptr.Pointer()))
 	}
@@ -353,6 +618,12 @@ func (ptr *QScriptEngine) UndefinedValue() *QScriptValue {
 }
 
 func (ptr *QScriptEngine) DestroyQScriptEngine() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngine::~QScriptEngine")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_DestroyQScriptEngine(ptr.Pointer())
 		ptr.SetPointer(nil)

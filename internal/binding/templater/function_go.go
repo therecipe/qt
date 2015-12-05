@@ -22,17 +22,13 @@ func goFunction(f *parser.Function) string {
 		return tmp
 	}
 
-	if isTemplate(f) {
+	if isGeneric(f) {
 		var tmp string
-		for _, m := range []string{"Int", "Boolean", "Void"} {
-			if m == "Void" && (f.Fullname == "QAndroidJniObject::getField" || f.Fullname == "QAndroidJniObject::getStaticField") {
-			} else {
-				f.TemplateMode = m
-				tmp += fmt.Sprintf("%v{\n%v\n}\n", goFunctionHeader(f), goFunctionBody(f))
-			}
-			f.TemplateMode = ""
+		for _, m := range jniGenericModes(f) {
+			f.TemplateMode = m
+			tmp += fmt.Sprintf("%v{\n%v\n}\n", goFunctionHeader(f), goFunctionBody(f))
 		}
-
+		f.TemplateMode = ""
 		return tmp
 	}
 
@@ -53,8 +49,17 @@ func goInterface(f *parser.Function) string {
 func goFunctionBody(f *parser.Function) (o string) {
 
 	if parser.ClassMap[f.Class()].Stub {
-		return fmt.Sprintf("\nreturn %v", converter.GoBodyOutputFailed(f))
+		if converter.GoHeaderOutput(f) != "" {
+			return fmt.Sprintf("\nreturn %v", converter.GoBodyOutputFailed(f))
+		}
+		return ""
 	}
+
+	o += "defer func() {\n"
+	o += "if recover() != nil {\n"
+	o += fmt.Sprintf("log.Println(\"recovered in %v\")\n", f.Fullname)
+	o += "}\n"
+	o += "}()\n\n"
 
 	if !f.Static && f.Meta != "constructor" && f.SignalMode != "callback" {
 		o += fmt.Sprintf("if ptr.Pointer() != nil {\n")

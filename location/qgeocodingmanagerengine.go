@@ -1,6 +1,6 @@
 package location
 
-//#include "qgeocodingmanagerengine.h"
+//#include "location.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQGeoCodingManagerEngine(ptr QGeoCodingManagerEngine_ITF) unsafe.
 func NewQGeoCodingManagerEngineFromPointer(ptr unsafe.Pointer) *QGeoCodingManagerEngine {
 	var n = new(QGeoCodingManagerEngine)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QGeoCodingManagerEngine_") {
 		n.SetObjectName("QGeoCodingManagerEngine_" + qt.RandomIdentifier())
 	}
 	return n

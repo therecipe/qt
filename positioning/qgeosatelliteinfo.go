@@ -1,8 +1,9 @@
 package positioning
 
-//#include "qgeosatelliteinfo.h"
+//#include "positioning.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -57,14 +58,32 @@ const (
 )
 
 func NewQGeoSatelliteInfo() *QGeoSatelliteInfo {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::QGeoSatelliteInfo")
+		}
+	}()
+
 	return NewQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfo_NewQGeoSatelliteInfo())
 }
 
 func NewQGeoSatelliteInfo2(other QGeoSatelliteInfo_ITF) *QGeoSatelliteInfo {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::QGeoSatelliteInfo")
+		}
+	}()
+
 	return NewQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfo_NewQGeoSatelliteInfo2(PointerFromQGeoSatelliteInfo(other)))
 }
 
 func (ptr *QGeoSatelliteInfo) Attribute(attribute QGeoSatelliteInfo__Attribute) float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::attribute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QGeoSatelliteInfo_Attribute(ptr.Pointer(), C.int(attribute)))
 	}
@@ -72,6 +91,12 @@ func (ptr *QGeoSatelliteInfo) Attribute(attribute QGeoSatelliteInfo__Attribute) 
 }
 
 func (ptr *QGeoSatelliteInfo) HasAttribute(attribute QGeoSatelliteInfo__Attribute) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::hasAttribute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGeoSatelliteInfo_HasAttribute(ptr.Pointer(), C.int(attribute)) != 0
 	}
@@ -79,12 +104,24 @@ func (ptr *QGeoSatelliteInfo) HasAttribute(attribute QGeoSatelliteInfo__Attribut
 }
 
 func (ptr *QGeoSatelliteInfo) RemoveAttribute(attribute QGeoSatelliteInfo__Attribute) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::removeAttribute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfo_RemoveAttribute(ptr.Pointer(), C.int(attribute))
 	}
 }
 
 func (ptr *QGeoSatelliteInfo) SatelliteIdentifier() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::satelliteIdentifier")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QGeoSatelliteInfo_SatelliteIdentifier(ptr.Pointer()))
 	}
@@ -92,6 +129,12 @@ func (ptr *QGeoSatelliteInfo) SatelliteIdentifier() int {
 }
 
 func (ptr *QGeoSatelliteInfo) SatelliteSystem() QGeoSatelliteInfo__SatelliteSystem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::satelliteSystem")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QGeoSatelliteInfo__SatelliteSystem(C.QGeoSatelliteInfo_SatelliteSystem(ptr.Pointer()))
 	}
@@ -99,30 +142,60 @@ func (ptr *QGeoSatelliteInfo) SatelliteSystem() QGeoSatelliteInfo__SatelliteSyst
 }
 
 func (ptr *QGeoSatelliteInfo) SetAttribute(attribute QGeoSatelliteInfo__Attribute, value float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::setAttribute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfo_SetAttribute(ptr.Pointer(), C.int(attribute), C.double(value))
 	}
 }
 
 func (ptr *QGeoSatelliteInfo) SetSatelliteIdentifier(satId int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::setSatelliteIdentifier")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfo_SetSatelliteIdentifier(ptr.Pointer(), C.int(satId))
 	}
 }
 
 func (ptr *QGeoSatelliteInfo) SetSatelliteSystem(system QGeoSatelliteInfo__SatelliteSystem) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::setSatelliteSystem")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfo_SetSatelliteSystem(ptr.Pointer(), C.int(system))
 	}
 }
 
 func (ptr *QGeoSatelliteInfo) SetSignalStrength(signalStrength int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::setSignalStrength")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfo_SetSignalStrength(ptr.Pointer(), C.int(signalStrength))
 	}
 }
 
 func (ptr *QGeoSatelliteInfo) SignalStrength() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::signalStrength")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QGeoSatelliteInfo_SignalStrength(ptr.Pointer()))
 	}
@@ -130,6 +203,12 @@ func (ptr *QGeoSatelliteInfo) SignalStrength() int {
 }
 
 func (ptr *QGeoSatelliteInfo) DestroyQGeoSatelliteInfo() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoSatelliteInfo::~QGeoSatelliteInfo")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfo_DestroyQGeoSatelliteInfo(ptr.Pointer())
 	}

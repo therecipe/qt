@@ -1,6 +1,6 @@
 package gui
 
-//#include "qgenericplugin.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQGenericPlugin(ptr QGenericPlugin_ITF) unsafe.Pointer {
 func NewQGenericPluginFromPointer(ptr unsafe.Pointer) *QGenericPlugin {
 	var n = new(QGenericPlugin)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QGenericPlugin_") {
 		n.SetObjectName("QGenericPlugin_" + qt.RandomIdentifier())
 	}
 	return n

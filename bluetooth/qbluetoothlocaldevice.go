@@ -1,10 +1,11 @@
 package bluetooth
 
-//#include "qbluetoothlocaldevice.h"
+//#include "bluetooth.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQBluetoothLocalDevice(ptr QBluetoothLocalDevice_ITF) unsafe.Poin
 func NewQBluetoothLocalDeviceFromPointer(ptr unsafe.Pointer) *QBluetoothLocalDevice {
 	var n = new(QBluetoothLocalDevice)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QBluetoothLocalDevice_") {
 		n.SetObjectName("QBluetoothLocalDevice_" + qt.RandomIdentifier())
 	}
 	return n
@@ -66,6 +67,12 @@ const (
 )
 
 func (ptr *QBluetoothLocalDevice) ConnectError(f func(error QBluetoothLocalDevice__Error)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_ConnectError(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "error", f)
@@ -73,6 +80,12 @@ func (ptr *QBluetoothLocalDevice) ConnectError(f func(error QBluetoothLocalDevic
 }
 
 func (ptr *QBluetoothLocalDevice) DisconnectError() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_DisconnectError(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "error")
@@ -81,10 +94,22 @@ func (ptr *QBluetoothLocalDevice) DisconnectError() {
 
 //export callbackQBluetoothLocalDeviceError
 func callbackQBluetoothLocalDeviceError(ptrName *C.char, error C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::error")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "error").(func(QBluetoothLocalDevice__Error))(QBluetoothLocalDevice__Error(error))
 }
 
 func (ptr *QBluetoothLocalDevice) ConnectHostModeStateChanged(f func(state QBluetoothLocalDevice__HostMode)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::hostModeStateChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_ConnectHostModeStateChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "hostModeStateChanged", f)
@@ -92,6 +117,12 @@ func (ptr *QBluetoothLocalDevice) ConnectHostModeStateChanged(f func(state QBlue
 }
 
 func (ptr *QBluetoothLocalDevice) DisconnectHostModeStateChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::hostModeStateChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_DisconnectHostModeStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "hostModeStateChanged")
@@ -100,10 +131,22 @@ func (ptr *QBluetoothLocalDevice) DisconnectHostModeStateChanged() {
 
 //export callbackQBluetoothLocalDeviceHostModeStateChanged
 func callbackQBluetoothLocalDeviceHostModeStateChanged(ptrName *C.char, state C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::hostModeStateChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "hostModeStateChanged").(func(QBluetoothLocalDevice__HostMode))(QBluetoothLocalDevice__HostMode(state))
 }
 
 func (ptr *QBluetoothLocalDevice) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QBluetoothLocalDevice_IsValid(ptr.Pointer()) != 0
 	}
@@ -111,6 +154,12 @@ func (ptr *QBluetoothLocalDevice) IsValid() bool {
 }
 
 func (ptr *QBluetoothLocalDevice) DestroyQBluetoothLocalDevice() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::~QBluetoothLocalDevice")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_DestroyQBluetoothLocalDevice(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -118,14 +167,32 @@ func (ptr *QBluetoothLocalDevice) DestroyQBluetoothLocalDevice() {
 }
 
 func NewQBluetoothLocalDevice(parent core.QObject_ITF) *QBluetoothLocalDevice {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::QBluetoothLocalDevice")
+		}
+	}()
+
 	return NewQBluetoothLocalDeviceFromPointer(C.QBluetoothLocalDevice_NewQBluetoothLocalDevice(core.PointerFromQObject(parent)))
 }
 
 func NewQBluetoothLocalDevice2(address QBluetoothAddress_ITF, parent core.QObject_ITF) *QBluetoothLocalDevice {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::QBluetoothLocalDevice")
+		}
+	}()
+
 	return NewQBluetoothLocalDeviceFromPointer(C.QBluetoothLocalDevice_NewQBluetoothLocalDevice2(PointerFromQBluetoothAddress(address), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QBluetoothLocalDevice) HostMode() QBluetoothLocalDevice__HostMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::hostMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QBluetoothLocalDevice__HostMode(C.QBluetoothLocalDevice_HostMode(ptr.Pointer()))
 	}
@@ -133,6 +200,12 @@ func (ptr *QBluetoothLocalDevice) HostMode() QBluetoothLocalDevice__HostMode {
 }
 
 func (ptr *QBluetoothLocalDevice) Name() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::name")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QBluetoothLocalDevice_Name(ptr.Pointer()))
 	}
@@ -140,12 +213,24 @@ func (ptr *QBluetoothLocalDevice) Name() string {
 }
 
 func (ptr *QBluetoothLocalDevice) PairingConfirmation(accept bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::pairingConfirmation")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_PairingConfirmation(ptr.Pointer(), C.int(qt.GoBoolToInt(accept)))
 	}
 }
 
 func (ptr *QBluetoothLocalDevice) PairingStatus(address QBluetoothAddress_ITF) QBluetoothLocalDevice__Pairing {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::pairingStatus")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QBluetoothLocalDevice__Pairing(C.QBluetoothLocalDevice_PairingStatus(ptr.Pointer(), PointerFromQBluetoothAddress(address)))
 	}
@@ -153,18 +238,36 @@ func (ptr *QBluetoothLocalDevice) PairingStatus(address QBluetoothAddress_ITF) Q
 }
 
 func (ptr *QBluetoothLocalDevice) PowerOn() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::powerOn")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_PowerOn(ptr.Pointer())
 	}
 }
 
 func (ptr *QBluetoothLocalDevice) RequestPairing(address QBluetoothAddress_ITF, pairing QBluetoothLocalDevice__Pairing) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::requestPairing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_RequestPairing(ptr.Pointer(), PointerFromQBluetoothAddress(address), C.int(pairing))
 	}
 }
 
 func (ptr *QBluetoothLocalDevice) SetHostMode(mode QBluetoothLocalDevice__HostMode) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothLocalDevice::setHostMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_SetHostMode(ptr.Pointer(), C.int(mode))
 	}

@@ -1,8 +1,9 @@
 package xml
 
-//#include "qdomprocessinginstruction.h"
+//#include "xml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,14 +34,32 @@ func (ptr *QDomProcessingInstruction) QDomProcessingInstruction_PTR() *QDomProce
 }
 
 func NewQDomProcessingInstruction() *QDomProcessingInstruction {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomProcessingInstruction::QDomProcessingInstruction")
+		}
+	}()
+
 	return NewQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction())
 }
 
 func NewQDomProcessingInstruction2(x QDomProcessingInstruction_ITF) *QDomProcessingInstruction {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomProcessingInstruction::QDomProcessingInstruction")
+		}
+	}()
+
 	return NewQDomProcessingInstructionFromPointer(C.QDomProcessingInstruction_NewQDomProcessingInstruction2(PointerFromQDomProcessingInstruction(x)))
 }
 
 func (ptr *QDomProcessingInstruction) Data() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomProcessingInstruction::data")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomProcessingInstruction_Data(ptr.Pointer()))
 	}
@@ -48,6 +67,12 @@ func (ptr *QDomProcessingInstruction) Data() string {
 }
 
 func (ptr *QDomProcessingInstruction) NodeType() QDomNode__NodeType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomProcessingInstruction::nodeType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomProcessingInstruction_NodeType(ptr.Pointer()))
 	}
@@ -55,12 +80,24 @@ func (ptr *QDomProcessingInstruction) NodeType() QDomNode__NodeType {
 }
 
 func (ptr *QDomProcessingInstruction) SetData(d string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomProcessingInstruction::setData")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDomProcessingInstruction_SetData(ptr.Pointer(), C.CString(d))
 	}
 }
 
 func (ptr *QDomProcessingInstruction) Target() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomProcessingInstruction::target")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomProcessingInstruction_Target(ptr.Pointer()))
 	}

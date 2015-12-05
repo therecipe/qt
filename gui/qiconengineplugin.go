@@ -1,6 +1,6 @@
 package gui
 
-//#include "qiconengineplugin.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQIconEnginePlugin(ptr QIconEnginePlugin_ITF) unsafe.Pointer {
 func NewQIconEnginePluginFromPointer(ptr unsafe.Pointer) *QIconEnginePlugin {
 	var n = new(QIconEnginePlugin)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QIconEnginePlugin_") {
 		n.SetObjectName("QIconEnginePlugin_" + qt.RandomIdentifier())
 	}
 	return n

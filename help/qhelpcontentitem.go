@@ -1,8 +1,9 @@
 package help
 
-//#include "qhelpcontentitem.h"
+//#include "help.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QHelpContentItem) QHelpContentItem_PTR() *QHelpContentItem {
 }
 
 func (ptr *QHelpContentItem) Child(row int) *QHelpContentItem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpContentItem::child")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQHelpContentItemFromPointer(C.QHelpContentItem_Child(ptr.Pointer(), C.int(row)))
 	}
@@ -47,6 +54,12 @@ func (ptr *QHelpContentItem) Child(row int) *QHelpContentItem {
 }
 
 func (ptr *QHelpContentItem) ChildCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpContentItem::childCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QHelpContentItem_ChildCount(ptr.Pointer()))
 	}
@@ -54,6 +67,12 @@ func (ptr *QHelpContentItem) ChildCount() int {
 }
 
 func (ptr *QHelpContentItem) ChildPosition(child QHelpContentItem_ITF) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpContentItem::childPosition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QHelpContentItem_ChildPosition(ptr.Pointer(), PointerFromQHelpContentItem(child)))
 	}
@@ -61,6 +80,12 @@ func (ptr *QHelpContentItem) ChildPosition(child QHelpContentItem_ITF) int {
 }
 
 func (ptr *QHelpContentItem) Parent() *QHelpContentItem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpContentItem::parent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQHelpContentItemFromPointer(C.QHelpContentItem_Parent(ptr.Pointer()))
 	}
@@ -68,6 +93,12 @@ func (ptr *QHelpContentItem) Parent() *QHelpContentItem {
 }
 
 func (ptr *QHelpContentItem) Row() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpContentItem::row")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QHelpContentItem_Row(ptr.Pointer()))
 	}
@@ -75,6 +106,12 @@ func (ptr *QHelpContentItem) Row() int {
 }
 
 func (ptr *QHelpContentItem) Title() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpContentItem::title")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QHelpContentItem_Title(ptr.Pointer()))
 	}
@@ -82,6 +119,12 @@ func (ptr *QHelpContentItem) Title() string {
 }
 
 func (ptr *QHelpContentItem) DestroyQHelpContentItem() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpContentItem::~QHelpContentItem")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QHelpContentItem_DestroyQHelpContentItem(ptr.Pointer())
 	}

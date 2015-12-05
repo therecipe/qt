@@ -1,8 +1,9 @@
 package xml
 
-//#include "qdomnamednodemap.h"
+//#include "xml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,14 +41,32 @@ func (ptr *QDomNamedNodeMap) QDomNamedNodeMap_PTR() *QDomNamedNodeMap {
 }
 
 func NewQDomNamedNodeMap() *QDomNamedNodeMap {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNamedNodeMap::QDomNamedNodeMap")
+		}
+	}()
+
 	return NewQDomNamedNodeMapFromPointer(C.QDomNamedNodeMap_NewQDomNamedNodeMap())
 }
 
 func NewQDomNamedNodeMap2(n QDomNamedNodeMap_ITF) *QDomNamedNodeMap {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNamedNodeMap::QDomNamedNodeMap")
+		}
+	}()
+
 	return NewQDomNamedNodeMapFromPointer(C.QDomNamedNodeMap_NewQDomNamedNodeMap2(PointerFromQDomNamedNodeMap(n)))
 }
 
 func (ptr *QDomNamedNodeMap) Contains(name string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNamedNodeMap::contains")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDomNamedNodeMap_Contains(ptr.Pointer(), C.CString(name)) != 0
 	}
@@ -55,6 +74,12 @@ func (ptr *QDomNamedNodeMap) Contains(name string) bool {
 }
 
 func (ptr *QDomNamedNodeMap) Count() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNamedNodeMap::count")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QDomNamedNodeMap_Count(ptr.Pointer()))
 	}
@@ -62,6 +87,12 @@ func (ptr *QDomNamedNodeMap) Count() int {
 }
 
 func (ptr *QDomNamedNodeMap) IsEmpty() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNamedNodeMap::isEmpty")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDomNamedNodeMap_IsEmpty(ptr.Pointer()) != 0
 	}
@@ -69,6 +100,12 @@ func (ptr *QDomNamedNodeMap) IsEmpty() bool {
 }
 
 func (ptr *QDomNamedNodeMap) Length() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNamedNodeMap::length")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QDomNamedNodeMap_Length(ptr.Pointer()))
 	}
@@ -76,6 +113,12 @@ func (ptr *QDomNamedNodeMap) Length() int {
 }
 
 func (ptr *QDomNamedNodeMap) Size() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNamedNodeMap::size")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QDomNamedNodeMap_Size(ptr.Pointer()))
 	}
@@ -83,6 +126,12 @@ func (ptr *QDomNamedNodeMap) Size() int {
 }
 
 func (ptr *QDomNamedNodeMap) DestroyQDomNamedNodeMap() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNamedNodeMap::~QDomNamedNodeMap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDomNamedNodeMap_DestroyQDomNamedNodeMap(ptr.Pointer())
 	}

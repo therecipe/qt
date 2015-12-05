@@ -1,10 +1,11 @@
 package xmlpatterns
 
-//#include "qabstracturiresolver.h"
+//#include "xmlpatterns.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQAbstractUriResolver(ptr QAbstractUriResolver_ITF) unsafe.Pointe
 func NewQAbstractUriResolverFromPointer(ptr unsafe.Pointer) *QAbstractUriResolver {
 	var n = new(QAbstractUriResolver)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QAbstractUriResolver_") {
 		n.SetObjectName("QAbstractUriResolver_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QAbstractUriResolver) QAbstractUriResolver_PTR() *QAbstractUriResolve
 }
 
 func (ptr *QAbstractUriResolver) DestroyQAbstractUriResolver() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractUriResolver::~QAbstractUriResolver")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractUriResolver_DestroyQAbstractUriResolver(ptr.Pointer())
 		ptr.SetPointer(nil)

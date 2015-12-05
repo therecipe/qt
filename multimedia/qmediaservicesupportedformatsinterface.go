@@ -1,8 +1,9 @@
 package multimedia
 
-//#include "qmediaservicesupportedformatsinterface.h"
+//#include "multimedia.h"
 import "C"
 import (
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -41,13 +42,25 @@ func (ptr *QMediaServiceSupportedFormatsInterface) QMediaServiceSupportedFormats
 }
 
 func (ptr *QMediaServiceSupportedFormatsInterface) SupportedMimeTypes() []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaServiceSupportedFormatsInterface::supportedMimeTypes")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(ptr.Pointer())), "|")
+		return strings.Split(C.GoString(C.QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(ptr.Pointer())), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QMediaServiceSupportedFormatsInterface) DestroyQMediaServiceSupportedFormatsInterface() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(ptr.Pointer())
 	}

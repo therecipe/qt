@@ -1,6 +1,6 @@
 package location
 
-//#include "qplacesearchsuggestionreply.h"
+//#include "location.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -26,7 +26,7 @@ func PointerFromQPlaceSearchSuggestionReply(ptr QPlaceSearchSuggestionReply_ITF)
 func NewQPlaceSearchSuggestionReplyFromPointer(ptr unsafe.Pointer) *QPlaceSearchSuggestionReply {
 	var n = new(QPlaceSearchSuggestionReply)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QPlaceSearchSuggestionReply_") {
 		n.SetObjectName("QPlaceSearchSuggestionReply_" + qt.RandomIdentifier())
 	}
 	return n

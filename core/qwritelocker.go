@@ -1,8 +1,9 @@
 package core
 
-//#include "qwritelocker.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,10 +41,22 @@ func (ptr *QWriteLocker) QWriteLocker_PTR() *QWriteLocker {
 }
 
 func NewQWriteLocker(lock QReadWriteLock_ITF) *QWriteLocker {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWriteLocker::QWriteLocker")
+		}
+	}()
+
 	return NewQWriteLockerFromPointer(C.QWriteLocker_NewQWriteLocker(PointerFromQReadWriteLock(lock)))
 }
 
 func (ptr *QWriteLocker) ReadWriteLock() *QReadWriteLock {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWriteLocker::readWriteLock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQReadWriteLockFromPointer(C.QWriteLocker_ReadWriteLock(ptr.Pointer()))
 	}
@@ -51,18 +64,36 @@ func (ptr *QWriteLocker) ReadWriteLock() *QReadWriteLock {
 }
 
 func (ptr *QWriteLocker) Relock() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWriteLocker::relock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QWriteLocker_Relock(ptr.Pointer())
 	}
 }
 
 func (ptr *QWriteLocker) Unlock() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWriteLocker::unlock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QWriteLocker_Unlock(ptr.Pointer())
 	}
 }
 
 func (ptr *QWriteLocker) DestroyQWriteLocker() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWriteLocker::~QWriteLocker")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QWriteLocker_DestroyQWriteLocker(ptr.Pointer())
 	}

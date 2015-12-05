@@ -1,6 +1,6 @@
 package gui
 
-//#include "qopenglvertexarrayobject.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQOpenGLVertexArrayObject(ptr QOpenGLVertexArrayObject_ITF) unsaf
 func NewQOpenGLVertexArrayObjectFromPointer(ptr unsafe.Pointer) *QOpenGLVertexArrayObject {
 	var n = new(QOpenGLVertexArrayObject)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QOpenGLVertexArrayObject_") {
 		n.SetObjectName("QOpenGLVertexArrayObject_" + qt.RandomIdentifier())
 	}
 	return n

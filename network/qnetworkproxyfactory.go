@@ -1,9 +1,10 @@
 package network
 
-//#include "qnetworkproxyfactory.h"
+//#include "network.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -41,14 +42,32 @@ func (ptr *QNetworkProxyFactory) QNetworkProxyFactory_PTR() *QNetworkProxyFactor
 }
 
 func QNetworkProxyFactory_SetApplicationProxyFactory(factory QNetworkProxyFactory_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkProxyFactory::setApplicationProxyFactory")
+		}
+	}()
+
 	C.QNetworkProxyFactory_QNetworkProxyFactory_SetApplicationProxyFactory(PointerFromQNetworkProxyFactory(factory))
 }
 
 func QNetworkProxyFactory_SetUseSystemConfiguration(enable bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkProxyFactory::setUseSystemConfiguration")
+		}
+	}()
+
 	C.QNetworkProxyFactory_QNetworkProxyFactory_SetUseSystemConfiguration(C.int(qt.GoBoolToInt(enable)))
 }
 
 func (ptr *QNetworkProxyFactory) DestroyQNetworkProxyFactory() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkProxyFactory::~QNetworkProxyFactory")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkProxyFactory_DestroyQNetworkProxyFactory(ptr.Pointer())
 	}

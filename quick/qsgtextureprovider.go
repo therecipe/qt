@@ -1,10 +1,11 @@
 package quick
 
-//#include "qsgtextureprovider.h"
+//#include "quick.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQSGTextureProvider(ptr QSGTextureProvider_ITF) unsafe.Pointer {
 func NewQSGTextureProviderFromPointer(ptr unsafe.Pointer) *QSGTextureProvider {
 	var n = new(QSGTextureProvider)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QSGTextureProvider_") {
 		n.SetObjectName("QSGTextureProvider_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QSGTextureProvider) QSGTextureProvider_PTR() *QSGTextureProvider {
 }
 
 func (ptr *QSGTextureProvider) Texture() *QSGTexture {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGTextureProvider::texture")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQSGTextureFromPointer(C.QSGTextureProvider_Texture(ptr.Pointer()))
 	}
@@ -45,6 +52,12 @@ func (ptr *QSGTextureProvider) Texture() *QSGTexture {
 }
 
 func (ptr *QSGTextureProvider) ConnectTextureChanged(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGTextureProvider::textureChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSGTextureProvider_ConnectTextureChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "textureChanged", f)
@@ -52,6 +65,12 @@ func (ptr *QSGTextureProvider) ConnectTextureChanged(f func()) {
 }
 
 func (ptr *QSGTextureProvider) DisconnectTextureChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGTextureProvider::textureChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSGTextureProvider_DisconnectTextureChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "textureChanged")
@@ -60,5 +79,11 @@ func (ptr *QSGTextureProvider) DisconnectTextureChanged() {
 
 //export callbackQSGTextureProviderTextureChanged
 func callbackQSGTextureProviderTextureChanged(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGTextureProvider::textureChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "textureChanged").(func())()
 }

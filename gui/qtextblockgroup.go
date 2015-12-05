@@ -1,6 +1,6 @@
 package gui
 
-//#include "qtextblockgroup.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -26,7 +26,7 @@ func PointerFromQTextBlockGroup(ptr QTextBlockGroup_ITF) unsafe.Pointer {
 func NewQTextBlockGroupFromPointer(ptr unsafe.Pointer) *QTextBlockGroup {
 	var n = new(QTextBlockGroup)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QTextBlockGroup_") {
 		n.SetObjectName("QTextBlockGroup_" + qt.RandomIdentifier())
 	}
 	return n

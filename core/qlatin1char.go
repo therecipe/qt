@@ -1,8 +1,9 @@
 package core
 
-//#include "qlatin1char.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,5 +41,11 @@ func (ptr *QLatin1Char) QLatin1Char_PTR() *QLatin1Char {
 }
 
 func NewQLatin1Char(c string) *QLatin1Char {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLatin1Char::QLatin1Char")
+		}
+	}()
+
 	return NewQLatin1CharFromPointer(C.QLatin1Char_NewQLatin1Char(C.CString(c)))
 }

@@ -1,9 +1,10 @@
 package dbus
 
-//#include "qdbusobjectpath.h"
+//#include "dbus.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,22 +42,52 @@ func (ptr *QDBusObjectPath) QDBusObjectPath_PTR() *QDBusObjectPath {
 }
 
 func NewQDBusObjectPath() *QDBusObjectPath {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusObjectPath::QDBusObjectPath")
+		}
+	}()
+
 	return NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath())
 }
 
 func NewQDBusObjectPath3(path core.QLatin1String_ITF) *QDBusObjectPath {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusObjectPath::QDBusObjectPath")
+		}
+	}()
+
 	return NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath3(core.PointerFromQLatin1String(path)))
 }
 
 func NewQDBusObjectPath4(path string) *QDBusObjectPath {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusObjectPath::QDBusObjectPath")
+		}
+	}()
+
 	return NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath4(C.CString(path)))
 }
 
 func NewQDBusObjectPath2(path string) *QDBusObjectPath {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusObjectPath::QDBusObjectPath")
+		}
+	}()
+
 	return NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath2(C.CString(path)))
 }
 
 func (ptr *QDBusObjectPath) Path() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusObjectPath::path")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusObjectPath_Path(ptr.Pointer()))
 	}
@@ -64,6 +95,12 @@ func (ptr *QDBusObjectPath) Path() string {
 }
 
 func (ptr *QDBusObjectPath) SetPath(path string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusObjectPath::setPath")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusObjectPath_SetPath(ptr.Pointer(), C.CString(path))
 	}

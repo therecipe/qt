@@ -1,10 +1,11 @@
 package network
 
-//#include "qnetworkreply.h"
+//#include "network.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQNetworkReply(ptr QNetworkReply_ITF) unsafe.Pointer {
 func NewQNetworkReplyFromPointer(ptr unsafe.Pointer) *QNetworkReply {
 	var n = new(QNetworkReply)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QNetworkReply_") {
 		n.SetObjectName("QNetworkReply_" + qt.RandomIdentifier())
 	}
 	return n
@@ -76,12 +77,24 @@ const (
 )
 
 func (ptr *QNetworkReply) Abort() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::abort")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_Abort(ptr.Pointer())
 	}
 }
 
 func (ptr *QNetworkReply) Attribute(code QNetworkRequest__Attribute) *core.QVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::attribute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QNetworkReply_Attribute(ptr.Pointer(), C.int(code)))
 	}
@@ -89,12 +102,24 @@ func (ptr *QNetworkReply) Attribute(code QNetworkRequest__Attribute) *core.QVari
 }
 
 func (ptr *QNetworkReply) Close() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::close")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QNetworkReply) ConnectEncrypted(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::encrypted")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectEncrypted(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "encrypted", f)
@@ -102,6 +127,12 @@ func (ptr *QNetworkReply) ConnectEncrypted(f func()) {
 }
 
 func (ptr *QNetworkReply) DisconnectEncrypted() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::encrypted")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectEncrypted(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "encrypted")
@@ -110,10 +141,22 @@ func (ptr *QNetworkReply) DisconnectEncrypted() {
 
 //export callbackQNetworkReplyEncrypted
 func callbackQNetworkReplyEncrypted(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::encrypted")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "encrypted").(func())()
 }
 
 func (ptr *QNetworkReply) Error() QNetworkReply__NetworkError {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QNetworkReply__NetworkError(C.QNetworkReply_Error(ptr.Pointer()))
 	}
@@ -121,6 +164,12 @@ func (ptr *QNetworkReply) Error() QNetworkReply__NetworkError {
 }
 
 func (ptr *QNetworkReply) ConnectFinished(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::finished")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectFinished(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "finished", f)
@@ -128,6 +177,12 @@ func (ptr *QNetworkReply) ConnectFinished(f func()) {
 }
 
 func (ptr *QNetworkReply) DisconnectFinished() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::finished")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectFinished(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "finished")
@@ -136,10 +191,22 @@ func (ptr *QNetworkReply) DisconnectFinished() {
 
 //export callbackQNetworkReplyFinished
 func callbackQNetworkReplyFinished(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::finished")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "finished").(func())()
 }
 
 func (ptr *QNetworkReply) HasRawHeader(headerName core.QByteArray_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::hasRawHeader")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNetworkReply_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)) != 0
 	}
@@ -147,6 +214,12 @@ func (ptr *QNetworkReply) HasRawHeader(headerName core.QByteArray_ITF) bool {
 }
 
 func (ptr *QNetworkReply) Header(header QNetworkRequest__KnownHeaders) *core.QVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::header")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QNetworkReply_Header(ptr.Pointer(), C.int(header)))
 	}
@@ -154,12 +227,24 @@ func (ptr *QNetworkReply) Header(header QNetworkRequest__KnownHeaders) *core.QVa
 }
 
 func (ptr *QNetworkReply) IgnoreSslErrors() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::ignoreSslErrors")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_IgnoreSslErrors(ptr.Pointer())
 	}
 }
 
 func (ptr *QNetworkReply) IsFinished() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::isFinished")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNetworkReply_IsFinished(ptr.Pointer()) != 0
 	}
@@ -167,6 +252,12 @@ func (ptr *QNetworkReply) IsFinished() bool {
 }
 
 func (ptr *QNetworkReply) IsRunning() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::isRunning")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNetworkReply_IsRunning(ptr.Pointer()) != 0
 	}
@@ -174,6 +265,12 @@ func (ptr *QNetworkReply) IsRunning() bool {
 }
 
 func (ptr *QNetworkReply) Manager() *QNetworkAccessManager {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::manager")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQNetworkAccessManagerFromPointer(C.QNetworkReply_Manager(ptr.Pointer()))
 	}
@@ -181,6 +278,12 @@ func (ptr *QNetworkReply) Manager() *QNetworkAccessManager {
 }
 
 func (ptr *QNetworkReply) ConnectMetaDataChanged(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::metaDataChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectMetaDataChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "metaDataChanged", f)
@@ -188,6 +291,12 @@ func (ptr *QNetworkReply) ConnectMetaDataChanged(f func()) {
 }
 
 func (ptr *QNetworkReply) DisconnectMetaDataChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::metaDataChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectMetaDataChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "metaDataChanged")
@@ -196,10 +305,22 @@ func (ptr *QNetworkReply) DisconnectMetaDataChanged() {
 
 //export callbackQNetworkReplyMetaDataChanged
 func callbackQNetworkReplyMetaDataChanged(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::metaDataChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "metaDataChanged").(func())()
 }
 
 func (ptr *QNetworkReply) Operation() QNetworkAccessManager__Operation {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::operation")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QNetworkAccessManager__Operation(C.QNetworkReply_Operation(ptr.Pointer()))
 	}
@@ -207,6 +328,12 @@ func (ptr *QNetworkReply) Operation() QNetworkAccessManager__Operation {
 }
 
 func (ptr *QNetworkReply) ConnectPreSharedKeyAuthenticationRequired(f func(authenticator *QSslPreSharedKeyAuthenticator)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::preSharedKeyAuthenticationRequired")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "preSharedKeyAuthenticationRequired", f)
@@ -214,6 +341,12 @@ func (ptr *QNetworkReply) ConnectPreSharedKeyAuthenticationRequired(f func(authe
 }
 
 func (ptr *QNetworkReply) DisconnectPreSharedKeyAuthenticationRequired() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::preSharedKeyAuthenticationRequired")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "preSharedKeyAuthenticationRequired")
@@ -222,10 +355,22 @@ func (ptr *QNetworkReply) DisconnectPreSharedKeyAuthenticationRequired() {
 
 //export callbackQNetworkReplyPreSharedKeyAuthenticationRequired
 func callbackQNetworkReplyPreSharedKeyAuthenticationRequired(ptrName *C.char, authenticator unsafe.Pointer) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::preSharedKeyAuthenticationRequired")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "preSharedKeyAuthenticationRequired").(func(*QSslPreSharedKeyAuthenticator))(NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
 }
 
 func (ptr *QNetworkReply) RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::rawHeader")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QNetworkReply_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
 	}
@@ -233,12 +378,24 @@ func (ptr *QNetworkReply) RawHeader(headerName core.QByteArray_ITF) *core.QByteA
 }
 
 func (ptr *QNetworkReply) SetSslConfiguration(config QSslConfiguration_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::setSslConfiguration")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_SetSslConfiguration(ptr.Pointer(), PointerFromQSslConfiguration(config))
 	}
 }
 
 func (ptr *QNetworkReply) DestroyQNetworkReply() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkReply::~QNetworkReply")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DestroyQNetworkReply(ptr.Pointer())
 		ptr.SetPointer(nil)

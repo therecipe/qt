@@ -1,9 +1,10 @@
 package gui
 
-//#include "qhelpevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,10 +35,22 @@ func (ptr *QHelpEvent) QHelpEvent_PTR() *QHelpEvent {
 }
 
 func NewQHelpEvent(ty core.QEvent__Type, pos core.QPoint_ITF, globalPos core.QPoint_ITF) *QHelpEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpEvent::QHelpEvent")
+		}
+	}()
+
 	return NewQHelpEventFromPointer(C.QHelpEvent_NewQHelpEvent(C.int(ty), core.PointerFromQPoint(pos), core.PointerFromQPoint(globalPos)))
 }
 
 func (ptr *QHelpEvent) GlobalX() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpEvent::globalX")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QHelpEvent_GlobalX(ptr.Pointer()))
 	}
@@ -45,6 +58,12 @@ func (ptr *QHelpEvent) GlobalX() int {
 }
 
 func (ptr *QHelpEvent) GlobalY() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpEvent::globalY")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QHelpEvent_GlobalY(ptr.Pointer()))
 	}
@@ -52,6 +71,12 @@ func (ptr *QHelpEvent) GlobalY() int {
 }
 
 func (ptr *QHelpEvent) X() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpEvent::x")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QHelpEvent_X(ptr.Pointer()))
 	}
@@ -59,6 +84,12 @@ func (ptr *QHelpEvent) X() int {
 }
 
 func (ptr *QHelpEvent) Y() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpEvent::y")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QHelpEvent_Y(ptr.Pointer()))
 	}

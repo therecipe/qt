@@ -1,9 +1,10 @@
 package nfc
 
-//#include "qndefnfcurirecord.h"
+//#include "nfc.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,14 +35,32 @@ func (ptr *QNdefNfcUriRecord) QNdefNfcUriRecord_PTR() *QNdefNfcUriRecord {
 }
 
 func NewQNdefNfcUriRecord() *QNdefNfcUriRecord {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefNfcUriRecord::QNdefNfcUriRecord")
+		}
+	}()
+
 	return NewQNdefNfcUriRecordFromPointer(C.QNdefNfcUriRecord_NewQNdefNfcUriRecord())
 }
 
 func NewQNdefNfcUriRecord2(other QNdefRecord_ITF) *QNdefNfcUriRecord {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefNfcUriRecord::QNdefNfcUriRecord")
+		}
+	}()
+
 	return NewQNdefNfcUriRecordFromPointer(C.QNdefNfcUriRecord_NewQNdefNfcUriRecord2(PointerFromQNdefRecord(other)))
 }
 
 func (ptr *QNdefNfcUriRecord) SetUri(uri core.QUrl_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefNfcUriRecord::setUri")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNdefNfcUriRecord_SetUri(ptr.Pointer(), core.PointerFromQUrl(uri))
 	}

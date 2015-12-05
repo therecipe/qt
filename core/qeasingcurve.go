@@ -1,8 +1,9 @@
 package core
 
-//#include "qeasingcurve.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -95,30 +96,66 @@ const (
 )
 
 func NewQEasingCurve3(other QEasingCurve_ITF) *QEasingCurve {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::QEasingCurve")
+		}
+	}()
+
 	return NewQEasingCurveFromPointer(C.QEasingCurve_NewQEasingCurve3(PointerFromQEasingCurve(other)))
 }
 
 func NewQEasingCurve(ty QEasingCurve__Type) *QEasingCurve {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::QEasingCurve")
+		}
+	}()
+
 	return NewQEasingCurveFromPointer(C.QEasingCurve_NewQEasingCurve(C.int(ty)))
 }
 
 func NewQEasingCurve2(other QEasingCurve_ITF) *QEasingCurve {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::QEasingCurve")
+		}
+	}()
+
 	return NewQEasingCurveFromPointer(C.QEasingCurve_NewQEasingCurve2(PointerFromQEasingCurve(other)))
 }
 
 func (ptr *QEasingCurve) AddCubicBezierSegment(c1 QPointF_ITF, c2 QPointF_ITF, endPoint QPointF_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::addCubicBezierSegment")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEasingCurve_AddCubicBezierSegment(ptr.Pointer(), PointerFromQPointF(c1), PointerFromQPointF(c2), PointerFromQPointF(endPoint))
 	}
 }
 
 func (ptr *QEasingCurve) AddTCBSegment(nextPoint QPointF_ITF, t float64, c float64, b float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::addTCBSegment")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEasingCurve_AddTCBSegment(ptr.Pointer(), PointerFromQPointF(nextPoint), C.double(t), C.double(c), C.double(b))
 	}
 }
 
 func (ptr *QEasingCurve) Amplitude() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::amplitude")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QEasingCurve_Amplitude(ptr.Pointer()))
 	}
@@ -126,6 +163,12 @@ func (ptr *QEasingCurve) Amplitude() float64 {
 }
 
 func (ptr *QEasingCurve) Overshoot() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::overshoot")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QEasingCurve_Overshoot(ptr.Pointer()))
 	}
@@ -133,6 +176,12 @@ func (ptr *QEasingCurve) Overshoot() float64 {
 }
 
 func (ptr *QEasingCurve) Period() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::period")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QEasingCurve_Period(ptr.Pointer()))
 	}
@@ -140,36 +189,72 @@ func (ptr *QEasingCurve) Period() float64 {
 }
 
 func (ptr *QEasingCurve) SetAmplitude(amplitude float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::setAmplitude")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEasingCurve_SetAmplitude(ptr.Pointer(), C.double(amplitude))
 	}
 }
 
 func (ptr *QEasingCurve) SetOvershoot(overshoot float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::setOvershoot")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEasingCurve_SetOvershoot(ptr.Pointer(), C.double(overshoot))
 	}
 }
 
 func (ptr *QEasingCurve) SetPeriod(period float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::setPeriod")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEasingCurve_SetPeriod(ptr.Pointer(), C.double(period))
 	}
 }
 
 func (ptr *QEasingCurve) SetType(ty QEasingCurve__Type) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::setType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEasingCurve_SetType(ptr.Pointer(), C.int(ty))
 	}
 }
 
 func (ptr *QEasingCurve) Swap(other QEasingCurve_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEasingCurve_Swap(ptr.Pointer(), PointerFromQEasingCurve(other))
 	}
 }
 
 func (ptr *QEasingCurve) Type() QEasingCurve__Type {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QEasingCurve__Type(C.QEasingCurve_Type(ptr.Pointer()))
 	}
@@ -177,6 +262,12 @@ func (ptr *QEasingCurve) Type() QEasingCurve__Type {
 }
 
 func (ptr *QEasingCurve) ValueForProgress(progress float64) float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::valueForProgress")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QEasingCurve_ValueForProgress(ptr.Pointer(), C.double(progress)))
 	}
@@ -184,6 +275,12 @@ func (ptr *QEasingCurve) ValueForProgress(progress float64) float64 {
 }
 
 func (ptr *QEasingCurve) DestroyQEasingCurve() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEasingCurve::~QEasingCurve")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEasingCurve_DestroyQEasingCurve(ptr.Pointer())
 	}

@@ -1,9 +1,10 @@
 package gui
 
-//#include "qcontextmenuevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -43,18 +44,42 @@ const (
 )
 
 func NewQContextMenuEvent3(reason QContextMenuEvent__Reason, pos core.QPoint_ITF) *QContextMenuEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QContextMenuEvent::QContextMenuEvent")
+		}
+	}()
+
 	return NewQContextMenuEventFromPointer(C.QContextMenuEvent_NewQContextMenuEvent3(C.int(reason), core.PointerFromQPoint(pos)))
 }
 
 func NewQContextMenuEvent2(reason QContextMenuEvent__Reason, pos core.QPoint_ITF, globalPos core.QPoint_ITF) *QContextMenuEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QContextMenuEvent::QContextMenuEvent")
+		}
+	}()
+
 	return NewQContextMenuEventFromPointer(C.QContextMenuEvent_NewQContextMenuEvent2(C.int(reason), core.PointerFromQPoint(pos), core.PointerFromQPoint(globalPos)))
 }
 
 func NewQContextMenuEvent(reason QContextMenuEvent__Reason, pos core.QPoint_ITF, globalPos core.QPoint_ITF, modifiers core.Qt__KeyboardModifier) *QContextMenuEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QContextMenuEvent::QContextMenuEvent")
+		}
+	}()
+
 	return NewQContextMenuEventFromPointer(C.QContextMenuEvent_NewQContextMenuEvent(C.int(reason), core.PointerFromQPoint(pos), core.PointerFromQPoint(globalPos), C.int(modifiers)))
 }
 
 func (ptr *QContextMenuEvent) GlobalX() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QContextMenuEvent::globalX")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QContextMenuEvent_GlobalX(ptr.Pointer()))
 	}
@@ -62,6 +87,12 @@ func (ptr *QContextMenuEvent) GlobalX() int {
 }
 
 func (ptr *QContextMenuEvent) GlobalY() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QContextMenuEvent::globalY")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QContextMenuEvent_GlobalY(ptr.Pointer()))
 	}
@@ -69,6 +100,12 @@ func (ptr *QContextMenuEvent) GlobalY() int {
 }
 
 func (ptr *QContextMenuEvent) Reason() QContextMenuEvent__Reason {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QContextMenuEvent::reason")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QContextMenuEvent__Reason(C.QContextMenuEvent_Reason(ptr.Pointer()))
 	}
@@ -76,6 +113,12 @@ func (ptr *QContextMenuEvent) Reason() QContextMenuEvent__Reason {
 }
 
 func (ptr *QContextMenuEvent) X() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QContextMenuEvent::x")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QContextMenuEvent_X(ptr.Pointer()))
 	}
@@ -83,6 +126,12 @@ func (ptr *QContextMenuEvent) X() int {
 }
 
 func (ptr *QContextMenuEvent) Y() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QContextMenuEvent::y")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QContextMenuEvent_Y(ptr.Pointer()))
 	}

@@ -1,8 +1,9 @@
 package core
 
-//#include "qjsonparseerror.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -61,6 +62,12 @@ const (
 )
 
 func (ptr *QJsonParseError) ErrorString() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonParseError::errorString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QJsonParseError_ErrorString(ptr.Pointer()))
 	}

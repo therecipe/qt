@@ -1,8 +1,9 @@
 package core
 
-//#include "qbasictimer.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,16 +41,34 @@ func (ptr *QBasicTimer) QBasicTimer_PTR() *QBasicTimer {
 }
 
 func (ptr *QBasicTimer) Start(msec int, object QObject_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBasicTimer::start")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBasicTimer_Start(ptr.Pointer(), C.int(msec), PointerFromQObject(object))
 	}
 }
 
 func NewQBasicTimer() *QBasicTimer {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBasicTimer::QBasicTimer")
+		}
+	}()
+
 	return NewQBasicTimerFromPointer(C.QBasicTimer_NewQBasicTimer())
 }
 
 func (ptr *QBasicTimer) IsActive() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBasicTimer::isActive")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QBasicTimer_IsActive(ptr.Pointer()) != 0
 	}
@@ -57,18 +76,36 @@ func (ptr *QBasicTimer) IsActive() bool {
 }
 
 func (ptr *QBasicTimer) Start2(msec int, timerType Qt__TimerType, obj QObject_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBasicTimer::start")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBasicTimer_Start2(ptr.Pointer(), C.int(msec), C.int(timerType), PointerFromQObject(obj))
 	}
 }
 
 func (ptr *QBasicTimer) Stop() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBasicTimer::stop")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBasicTimer_Stop(ptr.Pointer())
 	}
 }
 
 func (ptr *QBasicTimer) TimerId() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBasicTimer::timerId")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QBasicTimer_TimerId(ptr.Pointer()))
 	}
@@ -76,6 +113,12 @@ func (ptr *QBasicTimer) TimerId() int {
 }
 
 func (ptr *QBasicTimer) DestroyQBasicTimer() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBasicTimer::~QBasicTimer")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBasicTimer_DestroyQBasicTimer(ptr.Pointer())
 	}

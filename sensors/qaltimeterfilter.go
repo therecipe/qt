@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qaltimeterfilter.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QAltimeterFilter) QAltimeterFilter_PTR() *QAltimeterFilter {
 }
 
 func (ptr *QAltimeterFilter) Filter(reading QAltimeterReading_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAltimeterFilter::filter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QAltimeterFilter_Filter(ptr.Pointer(), PointerFromQAltimeterReading(reading)) != 0
 	}

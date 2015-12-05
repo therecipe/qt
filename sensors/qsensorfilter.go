@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qsensorfilter.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QSensorFilter) QSensorFilter_PTR() *QSensorFilter {
 }
 
 func (ptr *QSensorFilter) Filter(reading QSensorReading_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSensorFilter::filter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QSensorFilter_Filter(ptr.Pointer(), PointerFromQSensorReading(reading)) != 0
 	}

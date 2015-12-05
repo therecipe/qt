@@ -1,8 +1,9 @@
 package core
 
-//#include "qeventlooplocker.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,18 +41,42 @@ func (ptr *QEventLoopLocker) QEventLoopLocker_PTR() *QEventLoopLocker {
 }
 
 func NewQEventLoopLocker() *QEventLoopLocker {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEventLoopLocker::QEventLoopLocker")
+		}
+	}()
+
 	return NewQEventLoopLockerFromPointer(C.QEventLoopLocker_NewQEventLoopLocker())
 }
 
 func NewQEventLoopLocker2(loop QEventLoop_ITF) *QEventLoopLocker {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEventLoopLocker::QEventLoopLocker")
+		}
+	}()
+
 	return NewQEventLoopLockerFromPointer(C.QEventLoopLocker_NewQEventLoopLocker2(PointerFromQEventLoop(loop)))
 }
 
 func NewQEventLoopLocker3(thread QThread_ITF) *QEventLoopLocker {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEventLoopLocker::QEventLoopLocker")
+		}
+	}()
+
 	return NewQEventLoopLockerFromPointer(C.QEventLoopLocker_NewQEventLoopLocker3(PointerFromQThread(thread)))
 }
 
 func (ptr *QEventLoopLocker) DestroyQEventLoopLocker() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEventLoopLocker::~QEventLoopLocker")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEventLoopLocker_DestroyQEventLoopLocker(ptr.Pointer())
 	}

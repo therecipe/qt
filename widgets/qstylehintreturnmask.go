@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstylehintreturnmask.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -47,10 +48,22 @@ var (
 )
 
 func NewQStyleHintReturnMask() *QStyleHintReturnMask {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleHintReturnMask::QStyleHintReturnMask")
+		}
+	}()
+
 	return NewQStyleHintReturnMaskFromPointer(C.QStyleHintReturnMask_NewQStyleHintReturnMask())
 }
 
 func (ptr *QStyleHintReturnMask) DestroyQStyleHintReturnMask() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleHintReturnMask::~QStyleHintReturnMask")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyleHintReturnMask_DestroyQStyleHintReturnMask(ptr.Pointer())
 	}

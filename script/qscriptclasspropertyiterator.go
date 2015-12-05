@@ -1,6 +1,6 @@
 package script
 
-//#include "qscriptclasspropertyiterator.h"
+//#include "script.h"
 import "C"
 import (
 	"unsafe"

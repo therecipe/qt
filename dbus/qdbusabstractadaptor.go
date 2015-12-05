@@ -1,10 +1,11 @@
 package dbus
 
-//#include "qdbusabstractadaptor.h"
+//#include "dbus.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQDBusAbstractAdaptor(ptr QDBusAbstractAdaptor_ITF) unsafe.Pointe
 func NewQDBusAbstractAdaptorFromPointer(ptr unsafe.Pointer) *QDBusAbstractAdaptor {
 	var n = new(QDBusAbstractAdaptor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QDBusAbstractAdaptor_") {
 		n.SetObjectName("QDBusAbstractAdaptor_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QDBusAbstractAdaptor) QDBusAbstractAdaptor_PTR() *QDBusAbstractAdapto
 }
 
 func (ptr *QDBusAbstractAdaptor) DestroyQDBusAbstractAdaptor() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusAbstractAdaptor::~QDBusAbstractAdaptor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(ptr.Pointer())
 		ptr.SetPointer(nil)

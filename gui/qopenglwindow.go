@@ -1,6 +1,6 @@
 package gui
 
-//#include "qopenglwindow.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -26,7 +26,7 @@ func PointerFromQOpenGLWindow(ptr QOpenGLWindow_ITF) unsafe.Pointer {
 func NewQOpenGLWindowFromPointer(ptr unsafe.Pointer) *QOpenGLWindow {
 	var n = new(QOpenGLWindow)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QOpenGLWindow_") {
 		n.SetObjectName("QOpenGLWindow_" + qt.RandomIdentifier())
 	}
 	return n

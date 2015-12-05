@@ -1,6 +1,6 @@
 package multimedia
 
-//#include "qvideofilterrunnable.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"unsafe"

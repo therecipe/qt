@@ -1,10 +1,11 @@
 package widgets
 
-//#include "qscrollbar.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQScrollBar(ptr QScrollBar_ITF) unsafe.Pointer {
 func NewQScrollBarFromPointer(ptr unsafe.Pointer) *QScrollBar {
 	var n = new(QScrollBar)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QScrollBar_") {
 		n.SetObjectName("QScrollBar_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,14 +39,32 @@ func (ptr *QScrollBar) QScrollBar_PTR() *QScrollBar {
 }
 
 func NewQScrollBar(parent QWidget_ITF) *QScrollBar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScrollBar::QScrollBar")
+		}
+	}()
+
 	return NewQScrollBarFromPointer(C.QScrollBar_NewQScrollBar(PointerFromQWidget(parent)))
 }
 
 func NewQScrollBar2(orientation core.Qt__Orientation, parent QWidget_ITF) *QScrollBar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScrollBar::QScrollBar")
+		}
+	}()
+
 	return NewQScrollBarFromPointer(C.QScrollBar_NewQScrollBar2(C.int(orientation), PointerFromQWidget(parent)))
 }
 
 func (ptr *QScrollBar) Event(event core.QEvent_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScrollBar::event")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QScrollBar_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
 	}
@@ -53,6 +72,12 @@ func (ptr *QScrollBar) Event(event core.QEvent_ITF) bool {
 }
 
 func (ptr *QScrollBar) DestroyQScrollBar() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScrollBar::~QScrollBar")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScrollBar_DestroyQScrollBar(ptr.Pointer())
 		ptr.SetPointer(nil)

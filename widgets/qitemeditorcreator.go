@@ -1,6 +1,6 @@
 package widgets
 
-//#include "qitemeditorcreator.h"
+//#include "widgets.h"
 import "C"
 import (
 	"unsafe"

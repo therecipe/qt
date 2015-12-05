@@ -1,8 +1,9 @@
 package core
 
-//#include "qcommandlineoption.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -41,33 +42,75 @@ func (ptr *QCommandLineOption) QCommandLineOption_PTR() *QCommandLineOption {
 }
 
 func NewQCommandLineOption5(other QCommandLineOption_ITF) *QCommandLineOption {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::QCommandLineOption")
+		}
+	}()
+
 	return NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption5(PointerFromQCommandLineOption(other)))
 }
 
 func NewQCommandLineOption(name string) *QCommandLineOption {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::QCommandLineOption")
+		}
+	}()
+
 	return NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption(C.CString(name)))
 }
 
 func NewQCommandLineOption3(name string, description string, valueName string, defaultValue string) *QCommandLineOption {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::QCommandLineOption")
+		}
+	}()
+
 	return NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption3(C.CString(name), C.CString(description), C.CString(valueName), C.CString(defaultValue)))
 }
 
 func NewQCommandLineOption2(names []string) *QCommandLineOption {
-	return NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption2(C.CString(strings.Join(names, "|"))))
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::QCommandLineOption")
+		}
+	}()
+
+	return NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption2(C.CString(strings.Join(names, ",,,"))))
 }
 
 func NewQCommandLineOption4(names []string, description string, valueName string, defaultValue string) *QCommandLineOption {
-	return NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption4(C.CString(strings.Join(names, "|")), C.CString(description), C.CString(valueName), C.CString(defaultValue)))
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::QCommandLineOption")
+		}
+	}()
+
+	return NewQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption4(C.CString(strings.Join(names, ",,,")), C.CString(description), C.CString(valueName), C.CString(defaultValue)))
 }
 
 func (ptr *QCommandLineOption) DefaultValues() []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::defaultValues")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QCommandLineOption_DefaultValues(ptr.Pointer())), "|")
+		return strings.Split(C.GoString(C.QCommandLineOption_DefaultValues(ptr.Pointer())), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QCommandLineOption) Description() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::description")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QCommandLineOption_Description(ptr.Pointer()))
 	}
@@ -75,43 +118,85 @@ func (ptr *QCommandLineOption) Description() string {
 }
 
 func (ptr *QCommandLineOption) Names() []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::names")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QCommandLineOption_Names(ptr.Pointer())), "|")
+		return strings.Split(C.GoString(C.QCommandLineOption_Names(ptr.Pointer())), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QCommandLineOption) SetDefaultValue(defaultValue string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::setDefaultValue")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCommandLineOption_SetDefaultValue(ptr.Pointer(), C.CString(defaultValue))
 	}
 }
 
 func (ptr *QCommandLineOption) SetDefaultValues(defaultValues []string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::setDefaultValues")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		C.QCommandLineOption_SetDefaultValues(ptr.Pointer(), C.CString(strings.Join(defaultValues, "|")))
+		C.QCommandLineOption_SetDefaultValues(ptr.Pointer(), C.CString(strings.Join(defaultValues, ",,,")))
 	}
 }
 
 func (ptr *QCommandLineOption) SetDescription(description string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::setDescription")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCommandLineOption_SetDescription(ptr.Pointer(), C.CString(description))
 	}
 }
 
 func (ptr *QCommandLineOption) SetValueName(valueName string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::setValueName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCommandLineOption_SetValueName(ptr.Pointer(), C.CString(valueName))
 	}
 }
 
 func (ptr *QCommandLineOption) Swap(other QCommandLineOption_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCommandLineOption_Swap(ptr.Pointer(), PointerFromQCommandLineOption(other))
 	}
 }
 
 func (ptr *QCommandLineOption) ValueName() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::valueName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QCommandLineOption_ValueName(ptr.Pointer()))
 	}
@@ -119,6 +204,12 @@ func (ptr *QCommandLineOption) ValueName() string {
 }
 
 func (ptr *QCommandLineOption) DestroyQCommandLineOption() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCommandLineOption::~QCommandLineOption")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCommandLineOption_DestroyQCommandLineOption(ptr.Pointer())
 	}

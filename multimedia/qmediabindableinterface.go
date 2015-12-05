@@ -1,8 +1,9 @@
 package multimedia
 
-//#include "qmediabindableinterface.h"
+//#include "multimedia.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QMediaBindableInterface) QMediaBindableInterface_PTR() *QMediaBindabl
 }
 
 func (ptr *QMediaBindableInterface) MediaObject() *QMediaObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaBindableInterface::mediaObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQMediaObjectFromPointer(C.QMediaBindableInterface_MediaObject(ptr.Pointer()))
 	}
@@ -47,6 +54,12 @@ func (ptr *QMediaBindableInterface) MediaObject() *QMediaObject {
 }
 
 func (ptr *QMediaBindableInterface) DestroyQMediaBindableInterface() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaBindableInterface::~QMediaBindableInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMediaBindableInterface_DestroyQMediaBindableInterface(ptr.Pointer())
 	}

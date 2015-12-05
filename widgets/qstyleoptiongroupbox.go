@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptiongroupbox.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -47,9 +48,21 @@ var (
 )
 
 func NewQStyleOptionGroupBox() *QStyleOptionGroupBox {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionGroupBox::QStyleOptionGroupBox")
+		}
+	}()
+
 	return NewQStyleOptionGroupBoxFromPointer(C.QStyleOptionGroupBox_NewQStyleOptionGroupBox())
 }
 
 func NewQStyleOptionGroupBox2(other QStyleOptionGroupBox_ITF) *QStyleOptionGroupBox {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionGroupBox::QStyleOptionGroupBox")
+		}
+	}()
+
 	return NewQStyleOptionGroupBoxFromPointer(C.QStyleOptionGroupBox_NewQStyleOptionGroupBox2(PointerFromQStyleOptionGroupBox(other)))
 }

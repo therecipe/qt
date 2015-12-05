@@ -1,10 +1,11 @@
 package nfc
 
-//#include "qnearfieldsharetarget.h"
+//#include "nfc.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQNearFieldShareTarget(ptr QNearFieldShareTarget_ITF) unsafe.Poin
 func NewQNearFieldShareTargetFromPointer(ptr unsafe.Pointer) *QNearFieldShareTarget {
 	var n = new(QNearFieldShareTarget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QNearFieldShareTarget_") {
 		n.SetObjectName("QNearFieldShareTarget_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,12 +39,24 @@ func (ptr *QNearFieldShareTarget) QNearFieldShareTarget_PTR() *QNearFieldShareTa
 }
 
 func (ptr *QNearFieldShareTarget) Cancel() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldShareTarget::cancel")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_Cancel(ptr.Pointer())
 	}
 }
 
 func (ptr *QNearFieldShareTarget) ConnectError(f func(error QNearFieldShareManager__ShareError)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldShareTarget::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_ConnectError(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "error", f)
@@ -51,6 +64,12 @@ func (ptr *QNearFieldShareTarget) ConnectError(f func(error QNearFieldShareManag
 }
 
 func (ptr *QNearFieldShareTarget) DisconnectError() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldShareTarget::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_DisconnectError(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "error")
@@ -59,10 +78,22 @@ func (ptr *QNearFieldShareTarget) DisconnectError() {
 
 //export callbackQNearFieldShareTargetError
 func callbackQNearFieldShareTargetError(ptrName *C.char, error C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldShareTarget::error")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "error").(func(QNearFieldShareManager__ShareError))(QNearFieldShareManager__ShareError(error))
 }
 
 func (ptr *QNearFieldShareTarget) IsShareInProgress() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldShareTarget::isShareInProgress")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNearFieldShareTarget_IsShareInProgress(ptr.Pointer()) != 0
 	}
@@ -70,6 +101,12 @@ func (ptr *QNearFieldShareTarget) IsShareInProgress() bool {
 }
 
 func (ptr *QNearFieldShareTarget) Share(message QNdefMessage_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldShareTarget::share")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNearFieldShareTarget_Share(ptr.Pointer(), PointerFromQNdefMessage(message)) != 0
 	}
@@ -77,6 +114,12 @@ func (ptr *QNearFieldShareTarget) Share(message QNdefMessage_ITF) bool {
 }
 
 func (ptr *QNearFieldShareTarget) ShareError() QNearFieldShareManager__ShareError {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldShareTarget::shareError")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QNearFieldShareManager__ShareError(C.QNearFieldShareTarget_ShareError(ptr.Pointer()))
 	}
@@ -84,6 +127,12 @@ func (ptr *QNearFieldShareTarget) ShareError() QNearFieldShareManager__ShareErro
 }
 
 func (ptr *QNearFieldShareTarget) ConnectShareFinished(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldShareTarget::shareFinished")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_ConnectShareFinished(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "shareFinished", f)
@@ -91,6 +140,12 @@ func (ptr *QNearFieldShareTarget) ConnectShareFinished(f func()) {
 }
 
 func (ptr *QNearFieldShareTarget) DisconnectShareFinished() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldShareTarget::shareFinished")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_DisconnectShareFinished(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "shareFinished")
@@ -99,10 +154,22 @@ func (ptr *QNearFieldShareTarget) DisconnectShareFinished() {
 
 //export callbackQNearFieldShareTargetShareFinished
 func callbackQNearFieldShareTargetShareFinished(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldShareTarget::shareFinished")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "shareFinished").(func())()
 }
 
 func (ptr *QNearFieldShareTarget) ShareModes() QNearFieldShareManager__ShareMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldShareTarget::shareModes")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QNearFieldShareManager__ShareMode(C.QNearFieldShareTarget_ShareModes(ptr.Pointer()))
 	}
@@ -110,6 +177,12 @@ func (ptr *QNearFieldShareTarget) ShareModes() QNearFieldShareManager__ShareMode
 }
 
 func (ptr *QNearFieldShareTarget) DestroyQNearFieldShareTarget() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldShareTarget::~QNearFieldShareTarget")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldShareTarget_DestroyQNearFieldShareTarget(ptr.Pointer())
 		ptr.SetPointer(nil)

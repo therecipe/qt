@@ -1,9 +1,10 @@
 package gui
 
-//#include "qshowevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,5 +35,11 @@ func (ptr *QShowEvent) QShowEvent_PTR() *QShowEvent {
 }
 
 func NewQShowEvent() *QShowEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QShowEvent::QShowEvent")
+		}
+	}()
+
 	return NewQShowEventFromPointer(C.QShowEvent_NewQShowEvent())
 }

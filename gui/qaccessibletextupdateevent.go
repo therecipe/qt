@@ -1,9 +1,10 @@
 package gui
 
-//#include "qaccessibletextupdateevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,14 +35,32 @@ func (ptr *QAccessibleTextUpdateEvent) QAccessibleTextUpdateEvent_PTR() *QAccess
 }
 
 func NewQAccessibleTextUpdateEvent2(iface QAccessibleInterface_ITF, position int, oldText string, text string) *QAccessibleTextUpdateEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTextUpdateEvent::QAccessibleTextUpdateEvent")
+		}
+	}()
+
 	return NewQAccessibleTextUpdateEventFromPointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent2(PointerFromQAccessibleInterface(iface), C.int(position), C.CString(oldText), C.CString(text)))
 }
 
 func NewQAccessibleTextUpdateEvent(object core.QObject_ITF, position int, oldText string, text string) *QAccessibleTextUpdateEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTextUpdateEvent::QAccessibleTextUpdateEvent")
+		}
+	}()
+
 	return NewQAccessibleTextUpdateEventFromPointer(C.QAccessibleTextUpdateEvent_NewQAccessibleTextUpdateEvent(core.PointerFromQObject(object), C.int(position), C.CString(oldText), C.CString(text)))
 }
 
 func (ptr *QAccessibleTextUpdateEvent) ChangePosition() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTextUpdateEvent::changePosition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTextUpdateEvent_ChangePosition(ptr.Pointer()))
 	}
@@ -49,6 +68,12 @@ func (ptr *QAccessibleTextUpdateEvent) ChangePosition() int {
 }
 
 func (ptr *QAccessibleTextUpdateEvent) TextInserted() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTextUpdateEvent::textInserted")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAccessibleTextUpdateEvent_TextInserted(ptr.Pointer()))
 	}
@@ -56,6 +81,12 @@ func (ptr *QAccessibleTextUpdateEvent) TextInserted() string {
 }
 
 func (ptr *QAccessibleTextUpdateEvent) TextRemoved() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTextUpdateEvent::textRemoved")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAccessibleTextUpdateEvent_TextRemoved(ptr.Pointer()))
 	}

@@ -1,10 +1,11 @@
 package multimedia
 
-//#include "qabstractvideofilter.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQAbstractVideoFilter(ptr QAbstractVideoFilter_ITF) unsafe.Pointe
 func NewQAbstractVideoFilterFromPointer(ptr unsafe.Pointer) *QAbstractVideoFilter {
 	var n = new(QAbstractVideoFilter)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QAbstractVideoFilter_") {
 		n.SetObjectName("QAbstractVideoFilter_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QAbstractVideoFilter) QAbstractVideoFilter_PTR() *QAbstractVideoFilte
 }
 
 func (ptr *QAbstractVideoFilter) IsActive() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractVideoFilter::isActive")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QAbstractVideoFilter_IsActive(ptr.Pointer()) != 0
 	}
@@ -45,12 +52,24 @@ func (ptr *QAbstractVideoFilter) IsActive() bool {
 }
 
 func (ptr *QAbstractVideoFilter) SetActive(v bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractVideoFilter::setActive")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoFilter_SetActive(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
 	}
 }
 
 func (ptr *QAbstractVideoFilter) ConnectActiveChanged(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractVideoFilter::activeChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoFilter_ConnectActiveChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "activeChanged", f)
@@ -58,6 +77,12 @@ func (ptr *QAbstractVideoFilter) ConnectActiveChanged(f func()) {
 }
 
 func (ptr *QAbstractVideoFilter) DisconnectActiveChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractVideoFilter::activeChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoFilter_DisconnectActiveChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "activeChanged")
@@ -66,10 +91,22 @@ func (ptr *QAbstractVideoFilter) DisconnectActiveChanged() {
 
 //export callbackQAbstractVideoFilterActiveChanged
 func callbackQAbstractVideoFilterActiveChanged(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractVideoFilter::activeChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "activeChanged").(func())()
 }
 
 func (ptr *QAbstractVideoFilter) CreateFilterRunnable() *QVideoFilterRunnable {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractVideoFilter::createFilterRunnable")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQVideoFilterRunnableFromPointer(C.QAbstractVideoFilter_CreateFilterRunnable(ptr.Pointer()))
 	}

@@ -1,9 +1,10 @@
 package multimedia
 
-//#include "qmediaservicecamerainfointerface.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,6 +42,12 @@ func (ptr *QMediaServiceCameraInfoInterface) QMediaServiceCameraInfoInterface_PT
 }
 
 func (ptr *QMediaServiceCameraInfoInterface) CameraOrientation(device core.QByteArray_ITF) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaServiceCameraInfoInterface::cameraOrientation")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QMediaServiceCameraInfoInterface_CameraOrientation(ptr.Pointer(), core.PointerFromQByteArray(device)))
 	}
@@ -48,6 +55,12 @@ func (ptr *QMediaServiceCameraInfoInterface) CameraOrientation(device core.QByte
 }
 
 func (ptr *QMediaServiceCameraInfoInterface) CameraPosition(device core.QByteArray_ITF) QCamera__Position {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaServiceCameraInfoInterface::cameraPosition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QCamera__Position(C.QMediaServiceCameraInfoInterface_CameraPosition(ptr.Pointer(), core.PointerFromQByteArray(device)))
 	}
@@ -55,6 +68,12 @@ func (ptr *QMediaServiceCameraInfoInterface) CameraPosition(device core.QByteArr
 }
 
 func (ptr *QMediaServiceCameraInfoInterface) DestroyQMediaServiceCameraInfoInterface() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaServiceCameraInfoInterface::~QMediaServiceCameraInfoInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(ptr.Pointer())
 	}

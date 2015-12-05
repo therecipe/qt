@@ -1,9 +1,10 @@
 package sensors
 
-//#include "qholsterreading.h"
+//#include "sensors.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQHolsterReading(ptr QHolsterReading_ITF) unsafe.Pointer {
 func NewQHolsterReadingFromPointer(ptr unsafe.Pointer) *QHolsterReading {
 	var n = new(QHolsterReading)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QHolsterReading_") {
 		n.SetObjectName("QHolsterReading_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QHolsterReading) QHolsterReading_PTR() *QHolsterReading {
 }
 
 func (ptr *QHolsterReading) Holstered() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHolsterReading::holstered")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QHolsterReading_Holstered(ptr.Pointer()) != 0
 	}
@@ -44,6 +51,12 @@ func (ptr *QHolsterReading) Holstered() bool {
 }
 
 func (ptr *QHolsterReading) SetHolstered(holstered bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHolsterReading::setHolstered")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QHolsterReading_SetHolstered(ptr.Pointer(), C.int(qt.GoBoolToInt(holstered)))
 	}

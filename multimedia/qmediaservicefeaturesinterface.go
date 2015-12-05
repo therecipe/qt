@@ -1,8 +1,9 @@
 package multimedia
 
-//#include "qmediaservicefeaturesinterface.h"
+//#include "multimedia.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QMediaServiceFeaturesInterface) QMediaServiceFeaturesInterface_PTR() 
 }
 
 func (ptr *QMediaServiceFeaturesInterface) DestroyQMediaServiceFeaturesInterface() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(ptr.Pointer())
 	}

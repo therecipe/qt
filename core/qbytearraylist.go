@@ -1,8 +1,9 @@
 package core
 
-//#include "qbytearraylist.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QByteArrayList) QByteArrayList_PTR() *QByteArrayList {
 }
 
 func (ptr *QByteArrayList) Join() *QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QByteArrayList::join")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArrayList_Join(ptr.Pointer()))
 	}
@@ -40,6 +47,12 @@ func (ptr *QByteArrayList) Join() *QByteArray {
 }
 
 func (ptr *QByteArrayList) Join3(separator string) *QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QByteArrayList::join")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArrayList_Join3(ptr.Pointer(), C.CString(separator)))
 	}
@@ -47,6 +60,12 @@ func (ptr *QByteArrayList) Join3(separator string) *QByteArray {
 }
 
 func (ptr *QByteArrayList) Join2(separator QByteArray_ITF) *QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QByteArrayList::join")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArrayList_Join2(ptr.Pointer(), PointerFromQByteArray(separator)))
 	}

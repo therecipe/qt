@@ -1,9 +1,10 @@
 package nfc
 
-//#include "qndefrecord.h"
+//#include "nfc.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -53,14 +54,32 @@ const (
 )
 
 func NewQNdefRecord() *QNdefRecord {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefRecord::QNdefRecord")
+		}
+	}()
+
 	return NewQNdefRecordFromPointer(C.QNdefRecord_NewQNdefRecord())
 }
 
 func NewQNdefRecord2(other QNdefRecord_ITF) *QNdefRecord {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefRecord::QNdefRecord")
+		}
+	}()
+
 	return NewQNdefRecordFromPointer(C.QNdefRecord_NewQNdefRecord2(PointerFromQNdefRecord(other)))
 }
 
 func (ptr *QNdefRecord) Id() *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefRecord::id")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QNdefRecord_Id(ptr.Pointer()))
 	}
@@ -68,6 +87,12 @@ func (ptr *QNdefRecord) Id() *core.QByteArray {
 }
 
 func (ptr *QNdefRecord) IsEmpty() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefRecord::isEmpty")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNdefRecord_IsEmpty(ptr.Pointer()) != 0
 	}
@@ -75,6 +100,12 @@ func (ptr *QNdefRecord) IsEmpty() bool {
 }
 
 func (ptr *QNdefRecord) Payload() *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefRecord::payload")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QNdefRecord_Payload(ptr.Pointer()))
 	}
@@ -82,30 +113,60 @@ func (ptr *QNdefRecord) Payload() *core.QByteArray {
 }
 
 func (ptr *QNdefRecord) SetId(id core.QByteArray_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefRecord::setId")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNdefRecord_SetId(ptr.Pointer(), core.PointerFromQByteArray(id))
 	}
 }
 
 func (ptr *QNdefRecord) SetPayload(payload core.QByteArray_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefRecord::setPayload")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNdefRecord_SetPayload(ptr.Pointer(), core.PointerFromQByteArray(payload))
 	}
 }
 
 func (ptr *QNdefRecord) SetType(ty core.QByteArray_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefRecord::setType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNdefRecord_SetType(ptr.Pointer(), core.PointerFromQByteArray(ty))
 	}
 }
 
 func (ptr *QNdefRecord) SetTypeNameFormat(typeNameFormat QNdefRecord__TypeNameFormat) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefRecord::setTypeNameFormat")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNdefRecord_SetTypeNameFormat(ptr.Pointer(), C.int(typeNameFormat))
 	}
 }
 
 func (ptr *QNdefRecord) Type() *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefRecord::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QNdefRecord_Type(ptr.Pointer()))
 	}
@@ -113,6 +174,12 @@ func (ptr *QNdefRecord) Type() *core.QByteArray {
 }
 
 func (ptr *QNdefRecord) TypeNameFormat() QNdefRecord__TypeNameFormat {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefRecord::typeNameFormat")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QNdefRecord__TypeNameFormat(C.QNdefRecord_TypeNameFormat(ptr.Pointer()))
 	}
@@ -120,6 +187,12 @@ func (ptr *QNdefRecord) TypeNameFormat() QNdefRecord__TypeNameFormat {
 }
 
 func (ptr *QNdefRecord) DestroyQNdefRecord() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNdefRecord::~QNdefRecord")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNdefRecord_DestroyQNdefRecord(ptr.Pointer())
 	}

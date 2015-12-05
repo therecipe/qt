@@ -1,8 +1,9 @@
 package androidextras
 
-//#include "qandroidjnienvironment_android.h"
+//#include "androidextras_android.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,14 +41,32 @@ func (ptr *QAndroidJniEnvironment) QAndroidJniEnvironment_PTR() *QAndroidJniEnvi
 }
 
 func NewQAndroidJniEnvironment() *QAndroidJniEnvironment {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAndroidJniEnvironment::QAndroidJniEnvironment")
+		}
+	}()
+
 	return NewQAndroidJniEnvironmentFromPointer(C.QAndroidJniEnvironment_NewQAndroidJniEnvironment())
 }
 
 func QAndroidJniEnvironment_JavaVM() unsafe.Pointer {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAndroidJniEnvironment::javaVM")
+		}
+	}()
+
 	return unsafe.Pointer(C.QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM())
 }
 
 func (ptr *QAndroidJniEnvironment) DestroyQAndroidJniEnvironment() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAndroidJniEnvironment::~QAndroidJniEnvironment")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAndroidJniEnvironment_DestroyQAndroidJniEnvironment(ptr.Pointer())
 	}

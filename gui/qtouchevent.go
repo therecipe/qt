@@ -1,9 +1,10 @@
 package gui
 
-//#include "qtouchevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,6 +35,12 @@ func (ptr *QTouchEvent) QTouchEvent_PTR() *QTouchEvent {
 }
 
 func (ptr *QTouchEvent) Device() *QTouchDevice {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTouchEvent::device")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQTouchDeviceFromPointer(C.QTouchEvent_Device(ptr.Pointer()))
 	}
@@ -41,6 +48,12 @@ func (ptr *QTouchEvent) Device() *QTouchDevice {
 }
 
 func (ptr *QTouchEvent) Target() *core.QObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTouchEvent::target")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QTouchEvent_Target(ptr.Pointer()))
 	}
@@ -48,6 +61,12 @@ func (ptr *QTouchEvent) Target() *core.QObject {
 }
 
 func (ptr *QTouchEvent) TouchPointStates() core.Qt__TouchPointState {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTouchEvent::touchPointStates")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__TouchPointState(C.QTouchEvent_TouchPointStates(ptr.Pointer()))
 	}
@@ -55,6 +74,12 @@ func (ptr *QTouchEvent) TouchPointStates() core.Qt__TouchPointState {
 }
 
 func (ptr *QTouchEvent) Window() *QWindow {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTouchEvent::window")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQWindowFromPointer(C.QTouchEvent_Window(ptr.Pointer()))
 	}
@@ -62,6 +87,12 @@ func (ptr *QTouchEvent) Window() *QWindow {
 }
 
 func (ptr *QTouchEvent) DestroyQTouchEvent() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTouchEvent::~QTouchEvent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTouchEvent_DestroyQTouchEvent(ptr.Pointer())
 	}

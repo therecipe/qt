@@ -1,8 +1,9 @@
 package script
 
-//#include "qscriptcontext.h"
+//#include "script.h"
 import "C"
 import (
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -61,6 +62,12 @@ const (
 )
 
 func (ptr *QScriptContext) ActivationObject() *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::activationObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptContext_ActivationObject(ptr.Pointer()))
 	}
@@ -68,6 +75,12 @@ func (ptr *QScriptContext) ActivationObject() *QScriptValue {
 }
 
 func (ptr *QScriptContext) Argument(index int) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::argument")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptContext_Argument(ptr.Pointer(), C.int(index)))
 	}
@@ -75,6 +88,12 @@ func (ptr *QScriptContext) Argument(index int) *QScriptValue {
 }
 
 func (ptr *QScriptContext) ArgumentCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::argumentCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QScriptContext_ArgumentCount(ptr.Pointer()))
 	}
@@ -82,6 +101,12 @@ func (ptr *QScriptContext) ArgumentCount() int {
 }
 
 func (ptr *QScriptContext) ArgumentsObject() *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::argumentsObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptContext_ArgumentsObject(ptr.Pointer()))
 	}
@@ -89,13 +114,25 @@ func (ptr *QScriptContext) ArgumentsObject() *QScriptValue {
 }
 
 func (ptr *QScriptContext) Backtrace() []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::backtrace")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QScriptContext_Backtrace(ptr.Pointer())), "|")
+		return strings.Split(C.GoString(C.QScriptContext_Backtrace(ptr.Pointer())), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QScriptContext) Callee() *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::callee")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptContext_Callee(ptr.Pointer()))
 	}
@@ -103,6 +140,12 @@ func (ptr *QScriptContext) Callee() *QScriptValue {
 }
 
 func (ptr *QScriptContext) Engine() *QScriptEngine {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::engine")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptEngineFromPointer(C.QScriptContext_Engine(ptr.Pointer()))
 	}
@@ -110,6 +153,12 @@ func (ptr *QScriptContext) Engine() *QScriptEngine {
 }
 
 func (ptr *QScriptContext) IsCalledAsConstructor() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::isCalledAsConstructor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QScriptContext_IsCalledAsConstructor(ptr.Pointer()) != 0
 	}
@@ -117,6 +166,12 @@ func (ptr *QScriptContext) IsCalledAsConstructor() bool {
 }
 
 func (ptr *QScriptContext) ParentContext() *QScriptContext {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::parentContext")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptContextFromPointer(C.QScriptContext_ParentContext(ptr.Pointer()))
 	}
@@ -124,18 +179,36 @@ func (ptr *QScriptContext) ParentContext() *QScriptContext {
 }
 
 func (ptr *QScriptContext) SetActivationObject(activation QScriptValue_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::setActivationObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptContext_SetActivationObject(ptr.Pointer(), PointerFromQScriptValue(activation))
 	}
 }
 
 func (ptr *QScriptContext) SetThisObject(thisObject QScriptValue_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::setThisObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptContext_SetThisObject(ptr.Pointer(), PointerFromQScriptValue(thisObject))
 	}
 }
 
 func (ptr *QScriptContext) ThisObject() *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::thisObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptContext_ThisObject(ptr.Pointer()))
 	}
@@ -143,6 +216,12 @@ func (ptr *QScriptContext) ThisObject() *QScriptValue {
 }
 
 func (ptr *QScriptContext) ThrowError(error QScriptContext__Error, text string) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::throwError")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptContext_ThrowError(ptr.Pointer(), C.int(error), C.CString(text)))
 	}
@@ -150,6 +229,12 @@ func (ptr *QScriptContext) ThrowError(error QScriptContext__Error, text string) 
 }
 
 func (ptr *QScriptContext) ThrowError2(text string) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::throwError")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptContext_ThrowError2(ptr.Pointer(), C.CString(text)))
 	}
@@ -157,6 +242,12 @@ func (ptr *QScriptContext) ThrowError2(text string) *QScriptValue {
 }
 
 func (ptr *QScriptContext) ThrowValue(value QScriptValue_ITF) *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::throwValue")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptContext_ThrowValue(ptr.Pointer(), PointerFromQScriptValue(value)))
 	}
@@ -164,6 +255,12 @@ func (ptr *QScriptContext) ThrowValue(value QScriptValue_ITF) *QScriptValue {
 }
 
 func (ptr *QScriptContext) ToString() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::toString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScriptContext_ToString(ptr.Pointer()))
 	}
@@ -171,6 +268,12 @@ func (ptr *QScriptContext) ToString() string {
 }
 
 func (ptr *QScriptContext) DestroyQScriptContext() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptContext::~QScriptContext")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptContext_DestroyQScriptContext(ptr.Pointer())
 	}

@@ -1,8 +1,9 @@
 package qml
 
-//#include "qqmlimageproviderbase.h"
+//#include "qml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -57,6 +58,12 @@ const (
 )
 
 func (ptr *QQmlImageProviderBase) Flags() QQmlImageProviderBase__Flag {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlImageProviderBase::flags")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QQmlImageProviderBase__Flag(C.QQmlImageProviderBase_Flags(ptr.Pointer()))
 	}
@@ -64,6 +71,12 @@ func (ptr *QQmlImageProviderBase) Flags() QQmlImageProviderBase__Flag {
 }
 
 func (ptr *QQmlImageProviderBase) ImageType() QQmlImageProviderBase__ImageType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlImageProviderBase::imageType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QQmlImageProviderBase__ImageType(C.QQmlImageProviderBase_ImageType(ptr.Pointer()))
 	}

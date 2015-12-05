@@ -1,9 +1,10 @@
 package multimedia
 
-//#include "qcameraviewfindersettingscontrol2.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQCameraViewfinderSettingsControl2(ptr QCameraViewfinderSettingsC
 func NewQCameraViewfinderSettingsControl2FromPointer(ptr unsafe.Pointer) *QCameraViewfinderSettingsControl2 {
 	var n = new(QCameraViewfinderSettingsControl2)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QCameraViewfinderSettingsControl2_") {
 		n.SetObjectName("QCameraViewfinderSettingsControl2_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,12 +38,24 @@ func (ptr *QCameraViewfinderSettingsControl2) QCameraViewfinderSettingsControl2_
 }
 
 func (ptr *QCameraViewfinderSettingsControl2) SetViewfinderSettings(settings QCameraViewfinderSettings_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraViewfinderSettingsControl2::setViewfinderSettings")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl2_SetViewfinderSettings(ptr.Pointer(), PointerFromQCameraViewfinderSettings(settings))
 	}
 }
 
 func (ptr *QCameraViewfinderSettingsControl2) DestroyQCameraViewfinderSettingsControl2() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraViewfinderSettingsControl2::~QCameraViewfinderSettingsControl2")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2(ptr.Pointer())
 		ptr.SetPointer(nil)

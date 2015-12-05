@@ -1,8 +1,9 @@
 package core
 
-//#include "qdir.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -85,18 +86,42 @@ const (
 )
 
 func NewQDir(dir QDir_ITF) *QDir {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::QDir")
+		}
+	}()
+
 	return NewQDirFromPointer(C.QDir_NewQDir(PointerFromQDir(dir)))
 }
 
 func NewQDir2(path string) *QDir {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::QDir")
+		}
+	}()
+
 	return NewQDirFromPointer(C.QDir_NewQDir2(C.CString(path)))
 }
 
 func NewQDir3(path string, nameFilter string, sort QDir__SortFlag, filters QDir__Filter) *QDir {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::QDir")
+		}
+	}()
+
 	return NewQDirFromPointer(C.QDir_NewQDir3(C.CString(path), C.CString(nameFilter), C.int(sort), C.int(filters)))
 }
 
 func (ptr *QDir) AbsoluteFilePath(fileName string) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::absoluteFilePath")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDir_AbsoluteFilePath(ptr.Pointer(), C.CString(fileName)))
 	}
@@ -104,6 +129,12 @@ func (ptr *QDir) AbsoluteFilePath(fileName string) string {
 }
 
 func (ptr *QDir) AbsolutePath() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::absolutePath")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDir_AbsolutePath(ptr.Pointer()))
 	}
@@ -111,10 +142,22 @@ func (ptr *QDir) AbsolutePath() string {
 }
 
 func QDir_AddSearchPath(prefix string, path string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::addSearchPath")
+		}
+	}()
+
 	C.QDir_QDir_AddSearchPath(C.CString(prefix), C.CString(path))
 }
 
 func (ptr *QDir) CanonicalPath() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::canonicalPath")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDir_CanonicalPath(ptr.Pointer()))
 	}
@@ -122,6 +165,12 @@ func (ptr *QDir) CanonicalPath() string {
 }
 
 func (ptr *QDir) Cd(dirName string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::cd")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_Cd(ptr.Pointer(), C.CString(dirName)) != 0
 	}
@@ -129,6 +178,12 @@ func (ptr *QDir) Cd(dirName string) bool {
 }
 
 func (ptr *QDir) CdUp() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::cdUp")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_CdUp(ptr.Pointer()) != 0
 	}
@@ -136,18 +191,42 @@ func (ptr *QDir) CdUp() bool {
 }
 
 func QDir_CleanPath(path string) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::cleanPath")
+		}
+	}()
+
 	return C.GoString(C.QDir_QDir_CleanPath(C.CString(path)))
 }
 
 func QDir_Current() *QDir {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::current")
+		}
+	}()
+
 	return NewQDirFromPointer(C.QDir_QDir_Current())
 }
 
 func QDir_CurrentPath() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::currentPath")
+		}
+	}()
+
 	return C.GoString(C.QDir_QDir_CurrentPath())
 }
 
 func (ptr *QDir) DirName() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::dirName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDir_DirName(ptr.Pointer()))
 	}
@@ -155,20 +234,38 @@ func (ptr *QDir) DirName() string {
 }
 
 func (ptr *QDir) EntryList2(filters QDir__Filter, sort QDir__SortFlag) []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::entryList")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QDir_EntryList2(ptr.Pointer(), C.int(filters), C.int(sort))), "|")
+		return strings.Split(C.GoString(C.QDir_EntryList2(ptr.Pointer(), C.int(filters), C.int(sort))), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QDir) EntryList(nameFilters []string, filters QDir__Filter, sort QDir__SortFlag) []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::entryList")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QDir_EntryList(ptr.Pointer(), C.CString(strings.Join(nameFilters, "|")), C.int(filters), C.int(sort))), "|")
+		return strings.Split(C.GoString(C.QDir_EntryList(ptr.Pointer(), C.CString(strings.Join(nameFilters, ",,,")), C.int(filters), C.int(sort))), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QDir) Exists2() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::exists")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_Exists2(ptr.Pointer()) != 0
 	}
@@ -176,6 +273,12 @@ func (ptr *QDir) Exists2() bool {
 }
 
 func (ptr *QDir) Exists(name string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::exists")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_Exists(ptr.Pointer(), C.CString(name)) != 0
 	}
@@ -183,6 +286,12 @@ func (ptr *QDir) Exists(name string) bool {
 }
 
 func (ptr *QDir) FilePath(fileName string) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::filePath")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDir_FilePath(ptr.Pointer(), C.CString(fileName)))
 	}
@@ -190,6 +299,12 @@ func (ptr *QDir) FilePath(fileName string) string {
 }
 
 func (ptr *QDir) Filter() QDir__Filter {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::filter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QDir__Filter(C.QDir_Filter(ptr.Pointer()))
 	}
@@ -197,18 +312,42 @@ func (ptr *QDir) Filter() QDir__Filter {
 }
 
 func QDir_FromNativeSeparators(pathName string) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::fromNativeSeparators")
+		}
+	}()
+
 	return C.GoString(C.QDir_QDir_FromNativeSeparators(C.CString(pathName)))
 }
 
 func QDir_Home() *QDir {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::home")
+		}
+	}()
+
 	return NewQDirFromPointer(C.QDir_QDir_Home())
 }
 
 func QDir_HomePath() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::homePath")
+		}
+	}()
+
 	return C.GoString(C.QDir_QDir_HomePath())
 }
 
 func (ptr *QDir) IsAbsolute() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::isAbsolute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_IsAbsolute(ptr.Pointer()) != 0
 	}
@@ -216,10 +355,22 @@ func (ptr *QDir) IsAbsolute() bool {
 }
 
 func QDir_IsAbsolutePath(path string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::isAbsolutePath")
+		}
+	}()
+
 	return C.QDir_QDir_IsAbsolutePath(C.CString(path)) != 0
 }
 
 func (ptr *QDir) IsReadable() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::isReadable")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_IsReadable(ptr.Pointer()) != 0
 	}
@@ -227,6 +378,12 @@ func (ptr *QDir) IsReadable() bool {
 }
 
 func (ptr *QDir) IsRelative() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::isRelative")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_IsRelative(ptr.Pointer()) != 0
 	}
@@ -234,10 +391,22 @@ func (ptr *QDir) IsRelative() bool {
 }
 
 func QDir_IsRelativePath(path string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::isRelativePath")
+		}
+	}()
+
 	return C.QDir_QDir_IsRelativePath(C.CString(path)) != 0
 }
 
 func (ptr *QDir) IsRoot() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::isRoot")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_IsRoot(ptr.Pointer()) != 0
 	}
@@ -245,6 +414,12 @@ func (ptr *QDir) IsRoot() bool {
 }
 
 func (ptr *QDir) MakeAbsolute() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::makeAbsolute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_MakeAbsolute(ptr.Pointer()) != 0
 	}
@@ -252,14 +427,32 @@ func (ptr *QDir) MakeAbsolute() bool {
 }
 
 func QDir_Match(filter string, fileName string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::match")
+		}
+	}()
+
 	return C.QDir_QDir_Match(C.CString(filter), C.CString(fileName)) != 0
 }
 
 func QDir_Match2(filters []string, fileName string) bool {
-	return C.QDir_QDir_Match2(C.CString(strings.Join(filters, "|")), C.CString(fileName)) != 0
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::match")
+		}
+	}()
+
+	return C.QDir_QDir_Match2(C.CString(strings.Join(filters, ",,,")), C.CString(fileName)) != 0
 }
 
 func (ptr *QDir) Mkdir(dirName string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::mkdir")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_Mkdir(ptr.Pointer(), C.CString(dirName)) != 0
 	}
@@ -267,6 +460,12 @@ func (ptr *QDir) Mkdir(dirName string) bool {
 }
 
 func (ptr *QDir) Mkpath(dirPath string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::mkpath")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_Mkpath(ptr.Pointer(), C.CString(dirPath)) != 0
 	}
@@ -274,13 +473,25 @@ func (ptr *QDir) Mkpath(dirPath string) bool {
 }
 
 func (ptr *QDir) NameFilters() []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::nameFilters")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QDir_NameFilters(ptr.Pointer())), "|")
+		return strings.Split(C.GoString(C.QDir_NameFilters(ptr.Pointer())), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QDir) Path() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::path")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDir_Path(ptr.Pointer()))
 	}
@@ -288,12 +499,24 @@ func (ptr *QDir) Path() string {
 }
 
 func (ptr *QDir) Refresh() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::refresh")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDir_Refresh(ptr.Pointer())
 	}
 }
 
 func (ptr *QDir) RelativeFilePath(fileName string) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::relativeFilePath")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDir_RelativeFilePath(ptr.Pointer(), C.CString(fileName)))
 	}
@@ -301,6 +524,12 @@ func (ptr *QDir) RelativeFilePath(fileName string) string {
 }
 
 func (ptr *QDir) RemoveRecursively() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::removeRecursively")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_RemoveRecursively(ptr.Pointer()) != 0
 	}
@@ -308,6 +537,12 @@ func (ptr *QDir) RemoveRecursively() bool {
 }
 
 func (ptr *QDir) Rename(oldName string, newName string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::rename")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_Rename(ptr.Pointer(), C.CString(oldName), C.CString(newName)) != 0
 	}
@@ -315,6 +550,12 @@ func (ptr *QDir) Rename(oldName string, newName string) bool {
 }
 
 func (ptr *QDir) Rmdir(dirName string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::rmdir")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_Rmdir(ptr.Pointer(), C.CString(dirName)) != 0
 	}
@@ -322,6 +563,12 @@ func (ptr *QDir) Rmdir(dirName string) bool {
 }
 
 func (ptr *QDir) Rmpath(dirPath string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::rmpath")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDir_Rmpath(ptr.Pointer(), C.CString(dirPath)) != 0
 	}
@@ -329,50 +576,110 @@ func (ptr *QDir) Rmpath(dirPath string) bool {
 }
 
 func QDir_Root() *QDir {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::root")
+		}
+	}()
+
 	return NewQDirFromPointer(C.QDir_QDir_Root())
 }
 
 func QDir_RootPath() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::rootPath")
+		}
+	}()
+
 	return C.GoString(C.QDir_QDir_RootPath())
 }
 
 func QDir_SearchPaths(prefix string) []string {
-	return strings.Split(C.GoString(C.QDir_QDir_SearchPaths(C.CString(prefix))), "|")
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::searchPaths")
+		}
+	}()
+
+	return strings.Split(C.GoString(C.QDir_QDir_SearchPaths(C.CString(prefix))), ",,,")
 }
 
 func QDir_SetCurrent(path string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::setCurrent")
+		}
+	}()
+
 	return C.QDir_QDir_SetCurrent(C.CString(path)) != 0
 }
 
 func (ptr *QDir) SetFilter(filters QDir__Filter) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::setFilter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDir_SetFilter(ptr.Pointer(), C.int(filters))
 	}
 }
 
 func (ptr *QDir) SetNameFilters(nameFilters []string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::setNameFilters")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		C.QDir_SetNameFilters(ptr.Pointer(), C.CString(strings.Join(nameFilters, "|")))
+		C.QDir_SetNameFilters(ptr.Pointer(), C.CString(strings.Join(nameFilters, ",,,")))
 	}
 }
 
 func (ptr *QDir) SetPath(path string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::setPath")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDir_SetPath(ptr.Pointer(), C.CString(path))
 	}
 }
 
 func QDir_SetSearchPaths(prefix string, searchPaths []string) {
-	C.QDir_QDir_SetSearchPaths(C.CString(prefix), C.CString(strings.Join(searchPaths, "|")))
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::setSearchPaths")
+		}
+	}()
+
+	C.QDir_QDir_SetSearchPaths(C.CString(prefix), C.CString(strings.Join(searchPaths, ",,,")))
 }
 
 func (ptr *QDir) SetSorting(sort QDir__SortFlag) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::setSorting")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDir_SetSorting(ptr.Pointer(), C.int(sort))
 	}
 }
 
 func (ptr *QDir) Sorting() QDir__SortFlag {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::sorting")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QDir__SortFlag(C.QDir_Sorting(ptr.Pointer()))
 	}
@@ -380,24 +687,54 @@ func (ptr *QDir) Sorting() QDir__SortFlag {
 }
 
 func (ptr *QDir) Swap(other QDir_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDir_Swap(ptr.Pointer(), PointerFromQDir(other))
 	}
 }
 
 func QDir_Temp() *QDir {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::temp")
+		}
+	}()
+
 	return NewQDirFromPointer(C.QDir_QDir_Temp())
 }
 
 func QDir_TempPath() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::tempPath")
+		}
+	}()
+
 	return C.GoString(C.QDir_QDir_TempPath())
 }
 
 func QDir_ToNativeSeparators(pathName string) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::toNativeSeparators")
+		}
+	}()
+
 	return C.GoString(C.QDir_QDir_ToNativeSeparators(C.CString(pathName)))
 }
 
 func (ptr *QDir) DestroyQDir() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDir::~QDir")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDir_DestroyQDir(ptr.Pointer())
 	}

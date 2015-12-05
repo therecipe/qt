@@ -1,9 +1,10 @@
 package quick
 
-//#include "qsgmaterial.h"
+//#include "quick.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -52,6 +53,12 @@ const (
 )
 
 func (ptr *QSGMaterial) Compare(other QSGMaterial_ITF) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGMaterial::compare")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QSGMaterial_Compare(ptr.Pointer(), PointerFromQSGMaterial(other)))
 	}
@@ -59,6 +66,12 @@ func (ptr *QSGMaterial) Compare(other QSGMaterial_ITF) int {
 }
 
 func (ptr *QSGMaterial) CreateShader() *QSGMaterialShader {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGMaterial::createShader")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialShaderFromPointer(C.QSGMaterial_CreateShader(ptr.Pointer()))
 	}
@@ -66,6 +79,12 @@ func (ptr *QSGMaterial) CreateShader() *QSGMaterialShader {
 }
 
 func (ptr *QSGMaterial) Flags() QSGMaterial__Flag {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGMaterial::flags")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QSGMaterial__Flag(C.QSGMaterial_Flags(ptr.Pointer()))
 	}
@@ -73,12 +92,24 @@ func (ptr *QSGMaterial) Flags() QSGMaterial__Flag {
 }
 
 func (ptr *QSGMaterial) SetFlag(flags QSGMaterial__Flag, on bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGMaterial::setFlag")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSGMaterial_SetFlag(ptr.Pointer(), C.int(flags), C.int(qt.GoBoolToInt(on)))
 	}
 }
 
 func (ptr *QSGMaterial) Type() *QSGMaterialType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGMaterial::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialTypeFromPointer(C.QSGMaterial_Type(ptr.Pointer()))
 	}

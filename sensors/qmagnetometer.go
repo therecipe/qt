@@ -1,10 +1,11 @@
 package sensors
 
-//#include "qmagnetometer.h"
+//#include "sensors.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQMagnetometer(ptr QMagnetometer_ITF) unsafe.Pointer {
 func NewQMagnetometerFromPointer(ptr unsafe.Pointer) *QMagnetometer {
 	var n = new(QMagnetometer)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QMagnetometer_") {
 		n.SetObjectName("QMagnetometer_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QMagnetometer) QMagnetometer_PTR() *QMagnetometer {
 }
 
 func (ptr *QMagnetometer) Reading() *QMagnetometerReading {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMagnetometer::reading")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQMagnetometerReadingFromPointer(C.QMagnetometer_Reading(ptr.Pointer()))
 	}
@@ -45,6 +52,12 @@ func (ptr *QMagnetometer) Reading() *QMagnetometerReading {
 }
 
 func (ptr *QMagnetometer) ReturnGeoValues() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMagnetometer::returnGeoValues")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QMagnetometer_ReturnGeoValues(ptr.Pointer()) != 0
 	}
@@ -52,16 +65,34 @@ func (ptr *QMagnetometer) ReturnGeoValues() bool {
 }
 
 func (ptr *QMagnetometer) SetReturnGeoValues(returnGeoValues bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMagnetometer::setReturnGeoValues")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMagnetometer_SetReturnGeoValues(ptr.Pointer(), C.int(qt.GoBoolToInt(returnGeoValues)))
 	}
 }
 
 func NewQMagnetometer(parent core.QObject_ITF) *QMagnetometer {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMagnetometer::QMagnetometer")
+		}
+	}()
+
 	return NewQMagnetometerFromPointer(C.QMagnetometer_NewQMagnetometer(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QMagnetometer) ConnectReturnGeoValuesChanged(f func(returnGeoValues bool)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMagnetometer::returnGeoValuesChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMagnetometer_ConnectReturnGeoValuesChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "returnGeoValuesChanged", f)
@@ -69,6 +100,12 @@ func (ptr *QMagnetometer) ConnectReturnGeoValuesChanged(f func(returnGeoValues b
 }
 
 func (ptr *QMagnetometer) DisconnectReturnGeoValuesChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMagnetometer::returnGeoValuesChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMagnetometer_DisconnectReturnGeoValuesChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "returnGeoValuesChanged")
@@ -77,10 +114,22 @@ func (ptr *QMagnetometer) DisconnectReturnGeoValuesChanged() {
 
 //export callbackQMagnetometerReturnGeoValuesChanged
 func callbackQMagnetometerReturnGeoValuesChanged(ptrName *C.char, returnGeoValues C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMagnetometer::returnGeoValuesChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "returnGeoValuesChanged").(func(bool))(int(returnGeoValues) != 0)
 }
 
 func (ptr *QMagnetometer) DestroyQMagnetometer() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMagnetometer::~QMagnetometer")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMagnetometer_DestroyQMagnetometer(ptr.Pointer())
 		ptr.SetPointer(nil)

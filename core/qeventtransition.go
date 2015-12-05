@@ -1,9 +1,10 @@
 package core
 
-//#include "qeventtransition.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQEventTransition(ptr QEventTransition_ITF) unsafe.Pointer {
 func NewQEventTransitionFromPointer(ptr unsafe.Pointer) *QEventTransition {
 	var n = new(QEventTransition)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QEventTransition_") {
 		n.SetObjectName("QEventTransition_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,14 +38,32 @@ func (ptr *QEventTransition) QEventTransition_PTR() *QEventTransition {
 }
 
 func NewQEventTransition2(object QObject_ITF, ty QEvent__Type, sourceState QState_ITF) *QEventTransition {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEventTransition::QEventTransition")
+		}
+	}()
+
 	return NewQEventTransitionFromPointer(C.QEventTransition_NewQEventTransition2(PointerFromQObject(object), C.int(ty), PointerFromQState(sourceState)))
 }
 
 func NewQEventTransition(sourceState QState_ITF) *QEventTransition {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEventTransition::QEventTransition")
+		}
+	}()
+
 	return NewQEventTransitionFromPointer(C.QEventTransition_NewQEventTransition(PointerFromQState(sourceState)))
 }
 
 func (ptr *QEventTransition) EventSource() *QObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEventTransition::eventSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQObjectFromPointer(C.QEventTransition_EventSource(ptr.Pointer()))
 	}
@@ -52,6 +71,12 @@ func (ptr *QEventTransition) EventSource() *QObject {
 }
 
 func (ptr *QEventTransition) EventType() QEvent__Type {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEventTransition::eventType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QEvent__Type(C.QEventTransition_EventType(ptr.Pointer()))
 	}
@@ -59,18 +84,36 @@ func (ptr *QEventTransition) EventType() QEvent__Type {
 }
 
 func (ptr *QEventTransition) SetEventSource(object QObject_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEventTransition::setEventSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEventTransition_SetEventSource(ptr.Pointer(), PointerFromQObject(object))
 	}
 }
 
 func (ptr *QEventTransition) SetEventType(ty QEvent__Type) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEventTransition::setEventType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEventTransition_SetEventType(ptr.Pointer(), C.int(ty))
 	}
 }
 
 func (ptr *QEventTransition) DestroyQEventTransition() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEventTransition::~QEventTransition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEventTransition_DestroyQEventTransition(ptr.Pointer())
 		ptr.SetPointer(nil)

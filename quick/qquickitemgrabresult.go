@@ -1,10 +1,11 @@
 package quick
 
-//#include "qquickitemgrabresult.h"
+//#include "quick.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQQuickItemGrabResult(ptr QQuickItemGrabResult_ITF) unsafe.Pointe
 func NewQQuickItemGrabResultFromPointer(ptr unsafe.Pointer) *QQuickItemGrabResult {
 	var n = new(QQuickItemGrabResult)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QQuickItemGrabResult_") {
 		n.SetObjectName("QQuickItemGrabResult_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QQuickItemGrabResult) QQuickItemGrabResult_PTR() *QQuickItemGrabResul
 }
 
 func (ptr *QQuickItemGrabResult) ConnectReady(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickItemGrabResult::ready")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQuickItemGrabResult_ConnectReady(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "ready", f)
@@ -45,6 +52,12 @@ func (ptr *QQuickItemGrabResult) ConnectReady(f func()) {
 }
 
 func (ptr *QQuickItemGrabResult) DisconnectReady() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickItemGrabResult::ready")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQuickItemGrabResult_DisconnectReady(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "ready")
@@ -53,10 +66,22 @@ func (ptr *QQuickItemGrabResult) DisconnectReady() {
 
 //export callbackQQuickItemGrabResultReady
 func callbackQQuickItemGrabResultReady(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickItemGrabResult::ready")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "ready").(func())()
 }
 
 func (ptr *QQuickItemGrabResult) SaveToFile(fileName string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickItemGrabResult::saveToFile")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QQuickItemGrabResult_SaveToFile(ptr.Pointer(), C.CString(fileName)) != 0
 	}

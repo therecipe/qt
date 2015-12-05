@@ -1,10 +1,11 @@
 package sensors
 
-//#include "qambienttemperaturesensor.h"
+//#include "sensors.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQAmbientTemperatureSensor(ptr QAmbientTemperatureSensor_ITF) uns
 func NewQAmbientTemperatureSensorFromPointer(ptr unsafe.Pointer) *QAmbientTemperatureSensor {
 	var n = new(QAmbientTemperatureSensor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QAmbientTemperatureSensor_") {
 		n.SetObjectName("QAmbientTemperatureSensor_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QAmbientTemperatureSensor) QAmbientTemperatureSensor_PTR() *QAmbientT
 }
 
 func (ptr *QAmbientTemperatureSensor) Reading() *QAmbientTemperatureReading {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAmbientTemperatureSensor::reading")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAmbientTemperatureReadingFromPointer(C.QAmbientTemperatureSensor_Reading(ptr.Pointer()))
 	}
@@ -45,10 +52,22 @@ func (ptr *QAmbientTemperatureSensor) Reading() *QAmbientTemperatureReading {
 }
 
 func NewQAmbientTemperatureSensor(parent core.QObject_ITF) *QAmbientTemperatureSensor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAmbientTemperatureSensor::QAmbientTemperatureSensor")
+		}
+	}()
+
 	return NewQAmbientTemperatureSensorFromPointer(C.QAmbientTemperatureSensor_NewQAmbientTemperatureSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAmbientTemperatureSensor) DestroyQAmbientTemperatureSensor() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAmbientTemperatureSensor::~QAmbientTemperatureSensor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(ptr.Pointer())
 		ptr.SetPointer(nil)

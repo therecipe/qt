@@ -1,9 +1,10 @@
 package multimedia
 
-//#include "qcameraflashcontrol.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQCameraFlashControl(ptr QCameraFlashControl_ITF) unsafe.Pointer 
 func NewQCameraFlashControlFromPointer(ptr unsafe.Pointer) *QCameraFlashControl {
 	var n = new(QCameraFlashControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QCameraFlashControl_") {
 		n.SetObjectName("QCameraFlashControl_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QCameraFlashControl) QCameraFlashControl_PTR() *QCameraFlashControl {
 }
 
 func (ptr *QCameraFlashControl) FlashMode() QCameraExposure__FlashMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraFlashControl::flashMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QCameraExposure__FlashMode(C.QCameraFlashControl_FlashMode(ptr.Pointer()))
 	}
@@ -44,6 +51,12 @@ func (ptr *QCameraFlashControl) FlashMode() QCameraExposure__FlashMode {
 }
 
 func (ptr *QCameraFlashControl) ConnectFlashReady(f func(ready bool)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraFlashControl::flashReady")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraFlashControl_ConnectFlashReady(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "flashReady", f)
@@ -51,6 +64,12 @@ func (ptr *QCameraFlashControl) ConnectFlashReady(f func(ready bool)) {
 }
 
 func (ptr *QCameraFlashControl) DisconnectFlashReady() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraFlashControl::flashReady")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraFlashControl_DisconnectFlashReady(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "flashReady")
@@ -59,10 +78,22 @@ func (ptr *QCameraFlashControl) DisconnectFlashReady() {
 
 //export callbackQCameraFlashControlFlashReady
 func callbackQCameraFlashControlFlashReady(ptrName *C.char, ready C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraFlashControl::flashReady")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "flashReady").(func(bool))(int(ready) != 0)
 }
 
 func (ptr *QCameraFlashControl) IsFlashModeSupported(mode QCameraExposure__FlashMode) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraFlashControl::isFlashModeSupported")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QCameraFlashControl_IsFlashModeSupported(ptr.Pointer(), C.int(mode)) != 0
 	}
@@ -70,6 +101,12 @@ func (ptr *QCameraFlashControl) IsFlashModeSupported(mode QCameraExposure__Flash
 }
 
 func (ptr *QCameraFlashControl) IsFlashReady() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraFlashControl::isFlashReady")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QCameraFlashControl_IsFlashReady(ptr.Pointer()) != 0
 	}
@@ -77,12 +114,24 @@ func (ptr *QCameraFlashControl) IsFlashReady() bool {
 }
 
 func (ptr *QCameraFlashControl) SetFlashMode(mode QCameraExposure__FlashMode) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraFlashControl::setFlashMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraFlashControl_SetFlashMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QCameraFlashControl) DestroyQCameraFlashControl() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraFlashControl::~QCameraFlashControl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraFlashControl_DestroyQCameraFlashControl(ptr.Pointer())
 		ptr.SetPointer(nil)

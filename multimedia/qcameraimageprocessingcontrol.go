@@ -1,10 +1,11 @@
 package multimedia
 
-//#include "qcameraimageprocessingcontrol.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQCameraImageProcessingControl(ptr QCameraImageProcessingControl_
 func NewQCameraImageProcessingControlFromPointer(ptr unsafe.Pointer) *QCameraImageProcessingControl {
 	var n = new(QCameraImageProcessingControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QCameraImageProcessingControl_") {
 		n.SetObjectName("QCameraImageProcessingControl_" + qt.RandomIdentifier())
 	}
 	return n
@@ -58,6 +59,12 @@ const (
 )
 
 func (ptr *QCameraImageProcessingControl) IsParameterSupported(parameter QCameraImageProcessingControl__ProcessingParameter) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraImageProcessingControl::isParameterSupported")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QCameraImageProcessingControl_IsParameterSupported(ptr.Pointer(), C.int(parameter)) != 0
 	}
@@ -65,6 +72,12 @@ func (ptr *QCameraImageProcessingControl) IsParameterSupported(parameter QCamera
 }
 
 func (ptr *QCameraImageProcessingControl) IsParameterValueSupported(parameter QCameraImageProcessingControl__ProcessingParameter, value core.QVariant_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraImageProcessingControl::isParameterValueSupported")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QCameraImageProcessingControl_IsParameterValueSupported(ptr.Pointer(), C.int(parameter), core.PointerFromQVariant(value)) != 0
 	}
@@ -72,6 +85,12 @@ func (ptr *QCameraImageProcessingControl) IsParameterValueSupported(parameter QC
 }
 
 func (ptr *QCameraImageProcessingControl) Parameter(parameter QCameraImageProcessingControl__ProcessingParameter) *core.QVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraImageProcessingControl::parameter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QCameraImageProcessingControl_Parameter(ptr.Pointer(), C.int(parameter)))
 	}
@@ -79,12 +98,24 @@ func (ptr *QCameraImageProcessingControl) Parameter(parameter QCameraImageProces
 }
 
 func (ptr *QCameraImageProcessingControl) SetParameter(parameter QCameraImageProcessingControl__ProcessingParameter, value core.QVariant_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraImageProcessingControl::setParameter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraImageProcessingControl_SetParameter(ptr.Pointer(), C.int(parameter), core.PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QCameraImageProcessingControl) DestroyQCameraImageProcessingControl() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraImageProcessingControl::~QCameraImageProcessingControl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraImageProcessingControl_DestroyQCameraImageProcessingControl(ptr.Pointer())
 		ptr.SetPointer(nil)

@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qdoublespinbox.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQDoubleSpinBox(ptr QDoubleSpinBox_ITF) unsafe.Pointer {
 func NewQDoubleSpinBoxFromPointer(ptr unsafe.Pointer) *QDoubleSpinBox {
 	var n = new(QDoubleSpinBox)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QDoubleSpinBox_") {
 		n.SetObjectName("QDoubleSpinBox_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QDoubleSpinBox) QDoubleSpinBox_PTR() *QDoubleSpinBox {
 }
 
 func (ptr *QDoubleSpinBox) CleanText() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleSpinBox::cleanText")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDoubleSpinBox_CleanText(ptr.Pointer()))
 	}
@@ -44,6 +51,12 @@ func (ptr *QDoubleSpinBox) CleanText() string {
 }
 
 func (ptr *QDoubleSpinBox) Decimals() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleSpinBox::decimals")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QDoubleSpinBox_Decimals(ptr.Pointer()))
 	}
@@ -51,6 +64,12 @@ func (ptr *QDoubleSpinBox) Decimals() int {
 }
 
 func (ptr *QDoubleSpinBox) Prefix() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleSpinBox::prefix")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDoubleSpinBox_Prefix(ptr.Pointer()))
 	}
@@ -58,24 +77,48 @@ func (ptr *QDoubleSpinBox) Prefix() string {
 }
 
 func (ptr *QDoubleSpinBox) SetDecimals(prec int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleSpinBox::setDecimals")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDoubleSpinBox_SetDecimals(ptr.Pointer(), C.int(prec))
 	}
 }
 
 func (ptr *QDoubleSpinBox) SetPrefix(prefix string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleSpinBox::setPrefix")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDoubleSpinBox_SetPrefix(ptr.Pointer(), C.CString(prefix))
 	}
 }
 
 func (ptr *QDoubleSpinBox) SetSuffix(suffix string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleSpinBox::setSuffix")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDoubleSpinBox_SetSuffix(ptr.Pointer(), C.CString(suffix))
 	}
 }
 
 func (ptr *QDoubleSpinBox) Suffix() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleSpinBox::suffix")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDoubleSpinBox_Suffix(ptr.Pointer()))
 	}
@@ -83,10 +126,22 @@ func (ptr *QDoubleSpinBox) Suffix() string {
 }
 
 func NewQDoubleSpinBox(parent QWidget_ITF) *QDoubleSpinBox {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleSpinBox::QDoubleSpinBox")
+		}
+	}()
+
 	return NewQDoubleSpinBoxFromPointer(C.QDoubleSpinBox_NewQDoubleSpinBox(PointerFromQWidget(parent)))
 }
 
 func (ptr *QDoubleSpinBox) DestroyQDoubleSpinBox() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDoubleSpinBox::~QDoubleSpinBox")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDoubleSpinBox_DestroyQDoubleSpinBox(ptr.Pointer())
 		ptr.SetPointer(nil)

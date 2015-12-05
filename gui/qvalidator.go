@@ -1,10 +1,11 @@
 package gui
 
-//#include "qvalidator.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQValidator(ptr QValidator_ITF) unsafe.Pointer {
 func NewQValidatorFromPointer(ptr unsafe.Pointer) *QValidator {
 	var n = new(QValidator)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QValidator_") {
 		n.SetObjectName("QValidator_" + qt.RandomIdentifier())
 	}
 	return n
@@ -47,6 +48,12 @@ const (
 )
 
 func (ptr *QValidator) ConnectChanged(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QValidator::changed")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QValidator_ConnectChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "changed", f)
@@ -54,6 +61,12 @@ func (ptr *QValidator) ConnectChanged(f func()) {
 }
 
 func (ptr *QValidator) DisconnectChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QValidator::changed")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QValidator_DisconnectChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "changed")
@@ -62,16 +75,34 @@ func (ptr *QValidator) DisconnectChanged() {
 
 //export callbackQValidatorChanged
 func callbackQValidatorChanged(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QValidator::changed")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "changed").(func())()
 }
 
 func (ptr *QValidator) SetLocale(locale core.QLocale_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QValidator::setLocale")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QValidator_SetLocale(ptr.Pointer(), core.PointerFromQLocale(locale))
 	}
 }
 
 func (ptr *QValidator) DestroyQValidator() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QValidator::~QValidator")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QValidator_DestroyQValidator(ptr.Pointer())
 		ptr.SetPointer(nil)

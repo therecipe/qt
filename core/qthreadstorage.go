@@ -1,6 +1,6 @@
 package core
 
-//#include "qthreadstorage.h"
+//#include "core.h"
 import "C"
 import (
 	"unsafe"

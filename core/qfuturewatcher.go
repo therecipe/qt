@@ -1,6 +1,6 @@
 package core
 
-//#include "qfuturewatcher.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -26,7 +26,7 @@ func PointerFromQFutureWatcher(ptr QFutureWatcher_ITF) unsafe.Pointer {
 func NewQFutureWatcherFromPointer(ptr unsafe.Pointer) *QFutureWatcher {
 	var n = new(QFutureWatcher)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QFutureWatcher_") {
 		n.SetObjectName("QFutureWatcher_" + qt.RandomIdentifier())
 	}
 	return n

@@ -1,56 +1,24 @@
-#include "qsvgwidget.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QMetaObject>
+#include "svg.h"
+#include "_cgo_export.h"
+
 #include <QByteArray>
-#include <QWidget>
-#include <QSvgWidget>
-#include "_cgo_export.h"
-
-class MyQSvgWidget: public QSvgWidget {
-public:
-};
-
-void* QSvgWidget_NewQSvgWidget(void* parent){
-	return new QSvgWidget(static_cast<QWidget*>(parent));
-}
-
-void* QSvgWidget_NewQSvgWidget2(char* file, void* parent){
-	return new QSvgWidget(QString(file), static_cast<QWidget*>(parent));
-}
-
-void QSvgWidget_Load2(void* ptr, void* contents){
-	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QByteArray, *static_cast<QByteArray*>(contents)));
-}
-
-void QSvgWidget_Load(void* ptr, char* file){
-	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QString, QString(file)));
-}
-
-void* QSvgWidget_Renderer(void* ptr){
-	return static_cast<QSvgWidget*>(ptr)->renderer();
-}
-
-void QSvgWidget_DestroyQSvgWidget(void* ptr){
-	static_cast<QSvgWidget*>(ptr)->~QSvgWidget();
-}
-
-#include "qgraphicssvgitem.h"
-#include <QUrl>
-#include <QPainter>
-#include <QSize>
-#include <QStyleOptionGraphicsItem>
-#include <QStyleOption>
-#include <QString>
-#include <QVariant>
-#include <QWidget>
-#include <QSvgRenderer>
-#include <QModelIndex>
-#include <QStyle>
 #include <QGraphicsSvgItem>
-#include "_cgo_export.h"
+#include <QIODevice>
+#include <QMetaObject>
+#include <QObject>
+#include <QPainter>
+#include <QRect>
+#include <QRectF>
+#include <QSize>
+#include <QString>
+#include <QStyle>
+#include <QStyleOption>
+#include <QStyleOptionGraphicsItem>
+#include <QSvgGenerator>
+#include <QSvgRenderer>
+#include <QSvgWidget>
+#include <QWidget>
+#include <QXmlStreamReader>
 
 class MyQGraphicsSvgItem: public QGraphicsSvgItem {
 public:
@@ -83,18 +51,6 @@ void QGraphicsSvgItem_SetSharedRenderer(void* ptr, void* renderer){
 int QGraphicsSvgItem_Type(void* ptr){
 	return static_cast<QGraphicsSvgItem*>(ptr)->type();
 }
-
-#include "qsvggenerator.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QRect>
-#include <QRectF>
-#include <QIODevice>
-#include <QSize>
-#include <QString>
-#include <QVariant>
-#include <QSvgGenerator>
-#include "_cgo_export.h"
 
 class MyQSvgGenerator: public QSvgGenerator {
 public:
@@ -159,21 +115,6 @@ void* QSvgGenerator_NewQSvgGenerator(){
 void QSvgGenerator_DestroyQSvgGenerator(void* ptr){
 	static_cast<QSvgGenerator*>(ptr)->~QSvgGenerator();
 }
-
-#include "qsvgrenderer.h"
-#include <QModelIndex>
-#include <QRect>
-#include <QRectF>
-#include <QPainter>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QObject>
-#include <QXmlStreamReader>
-#include <QMetaObject>
-#include <QByteArray>
-#include <QSvgRenderer>
-#include "_cgo_export.h"
 
 class MyQSvgRenderer: public QSvgRenderer {
 public:
@@ -258,5 +199,33 @@ void QSvgRenderer_DisconnectRepaintNeeded(void* ptr){
 
 void QSvgRenderer_DestroyQSvgRenderer(void* ptr){
 	static_cast<QSvgRenderer*>(ptr)->~QSvgRenderer();
+}
+
+class MyQSvgWidget: public QSvgWidget {
+public:
+};
+
+void* QSvgWidget_NewQSvgWidget(void* parent){
+	return new QSvgWidget(static_cast<QWidget*>(parent));
+}
+
+void* QSvgWidget_NewQSvgWidget2(char* file, void* parent){
+	return new QSvgWidget(QString(file), static_cast<QWidget*>(parent));
+}
+
+void QSvgWidget_Load2(void* ptr, void* contents){
+	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QByteArray, *static_cast<QByteArray*>(contents)));
+}
+
+void QSvgWidget_Load(void* ptr, char* file){
+	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QString, QString(file)));
+}
+
+void* QSvgWidget_Renderer(void* ptr){
+	return static_cast<QSvgWidget*>(ptr)->renderer();
+}
+
+void QSvgWidget_DestroyQSvgWidget(void* ptr){
+	static_cast<QSvgWidget*>(ptr)->~QSvgWidget();
 }
 

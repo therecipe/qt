@@ -1,9 +1,10 @@
 package gui
 
-//#include "qinputevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,6 +35,12 @@ func (ptr *QInputEvent) QInputEvent_PTR() *QInputEvent {
 }
 
 func (ptr *QInputEvent) Modifiers() core.Qt__KeyboardModifier {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QInputEvent::modifiers")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__KeyboardModifier(C.QInputEvent_Modifiers(ptr.Pointer()))
 	}

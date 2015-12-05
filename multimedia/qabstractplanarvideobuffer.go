@@ -1,8 +1,9 @@
 package multimedia
 
-//#include "qabstractplanarvideobuffer.h"
+//#include "multimedia.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QAbstractPlanarVideoBuffer) QAbstractPlanarVideoBuffer_PTR() *QAbstra
 }
 
 func (ptr *QAbstractPlanarVideoBuffer) DestroyQAbstractPlanarVideoBuffer() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(ptr.Pointer())
 	}

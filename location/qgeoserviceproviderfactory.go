@@ -1,8 +1,9 @@
 package location
 
-//#include "qgeoserviceproviderfactory.h"
+//#include "location.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QGeoServiceProviderFactory) QGeoServiceProviderFactory_PTR() *QGeoSer
 }
 
 func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactory() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoServiceProviderFactory::~QGeoServiceProviderFactory")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(ptr.Pointer())
 	}

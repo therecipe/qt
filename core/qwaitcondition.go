@@ -1,8 +1,9 @@
 package core
 
-//#include "qwaitcondition.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,22 +41,46 @@ func (ptr *QWaitCondition) QWaitCondition_PTR() *QWaitCondition {
 }
 
 func NewQWaitCondition() *QWaitCondition {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWaitCondition::QWaitCondition")
+		}
+	}()
+
 	return NewQWaitConditionFromPointer(C.QWaitCondition_NewQWaitCondition())
 }
 
 func (ptr *QWaitCondition) WakeAll() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWaitCondition::wakeAll")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QWaitCondition_WakeAll(ptr.Pointer())
 	}
 }
 
 func (ptr *QWaitCondition) WakeOne() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWaitCondition::wakeOne")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QWaitCondition_WakeOne(ptr.Pointer())
 	}
 }
 
 func (ptr *QWaitCondition) DestroyQWaitCondition() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWaitCondition::~QWaitCondition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QWaitCondition_DestroyQWaitCondition(ptr.Pointer())
 	}

@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptionslider.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -47,9 +48,21 @@ var (
 )
 
 func NewQStyleOptionSlider() *QStyleOptionSlider {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionSlider::QStyleOptionSlider")
+		}
+	}()
+
 	return NewQStyleOptionSliderFromPointer(C.QStyleOptionSlider_NewQStyleOptionSlider())
 }
 
 func NewQStyleOptionSlider2(other QStyleOptionSlider_ITF) *QStyleOptionSlider {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionSlider::QStyleOptionSlider")
+		}
+	}()
+
 	return NewQStyleOptionSliderFromPointer(C.QStyleOptionSlider_NewQStyleOptionSlider2(PointerFromQStyleOptionSlider(other)))
 }

@@ -1,11 +1,10 @@
-#include "qandroidactivityresultreceiver_android.h"
-#include <QUrl>
-#include <QModelIndex>
+#include "androidextras_android.h"
+#include "_cgo_export.h"
+
+#include <QAndroidActivityResultReceiver>
+#include <QAndroidJniEnvironment>
 #include <QAndroidJniObject>
 #include <QString>
-#include <QVariant>
-#include <QAndroidActivityResultReceiver>
-#include "_cgo_export.h"
 
 class MyQAndroidActivityResultReceiver: public QAndroidActivityResultReceiver {
 public:
@@ -15,13 +14,21 @@ void QAndroidActivityResultReceiver_HandleActivityResult(void* ptr, int receiver
 	static_cast<QAndroidActivityResultReceiver*>(ptr)->handleActivityResult(receiverRequestCode, resultCode, *static_cast<QAndroidJniObject*>(data));
 }
 
-#include "qandroidjniobject_android.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QString>
-#include <QVariant>
-#include <QAndroidJniObject>
-#include "_cgo_export.h"
+class MyQAndroidJniEnvironment: public QAndroidJniEnvironment {
+public:
+};
+
+void* QAndroidJniEnvironment_NewQAndroidJniEnvironment(){
+	return new QAndroidJniEnvironment();
+}
+
+void* QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM(){
+	return QAndroidJniEnvironment::javaVM();
+}
+
+void QAndroidJniEnvironment_DestroyQAndroidJniEnvironment(void* ptr){
+	static_cast<QAndroidJniEnvironment*>(ptr)->~QAndroidJniEnvironment();
+}
 
 class MyQAndroidJniObject: public QAndroidJniObject {
 public:
@@ -209,31 +216,39 @@ void* QAndroidJniObject_Object(void* ptr){
 	return static_cast<QAndroidJniObject*>(ptr)->object();
 }
 
+void QAndroidJniObject_SetField(void* ptr, char* fieldName, void* value){
+	static_cast<QAndroidJniObject*>(ptr)->setField(const_cast<const char*>(fieldName), static_cast<jobject>(value));
+}
+
+void QAndroidJniObject_SetField2(void* ptr, char* fieldName, char* signature, void* value){
+	static_cast<QAndroidJniObject*>(ptr)->setField(const_cast<const char*>(fieldName), const_cast<const char*>(signature), static_cast<jobject>(value));
+}
+
+void QAndroidJniObject_QAndroidJniObject_SetStaticFieldInt2(char* className, char* fieldName, int value){
+	QAndroidJniObject::setStaticField<jint>(const_cast<const char*>(className), const_cast<const char*>(fieldName), value);
+}
+void QAndroidJniObject_QAndroidJniObject_SetStaticFieldBoolean2(char* className, char* fieldName, int value){
+	QAndroidJniObject::setStaticField<jboolean>(const_cast<const char*>(className), const_cast<const char*>(fieldName), value);
+}
+
+
+void QAndroidJniObject_QAndroidJniObject_SetStaticField(char* className, char* fieldName, char* signature, void* value){
+	QAndroidJniObject::setStaticField(const_cast<const char*>(className), const_cast<const char*>(fieldName), const_cast<const char*>(signature), static_cast<jobject>(value));
+}
+
+void QAndroidJniObject_QAndroidJniObject_SetStaticFieldInt4(void* clazz, char* fieldName, int value){
+	QAndroidJniObject::setStaticField<jint>(static_cast<jclass>(clazz), const_cast<const char*>(fieldName), value);
+}
+void QAndroidJniObject_QAndroidJniObject_SetStaticFieldBoolean4(void* clazz, char* fieldName, int value){
+	QAndroidJniObject::setStaticField<jboolean>(static_cast<jclass>(clazz), const_cast<const char*>(fieldName), value);
+}
+
+
+void QAndroidJniObject_QAndroidJniObject_SetStaticField3(void* clazz, char* fieldName, char* signature, void* value){
+	QAndroidJniObject::setStaticField(static_cast<jclass>(clazz), const_cast<const char*>(fieldName), const_cast<const char*>(signature), static_cast<jobject>(value));
+}
+
 void QAndroidJniObject_DestroyQAndroidJniObject(void* ptr){
 	static_cast<QAndroidJniObject*>(ptr)->~QAndroidJniObject();
-}
-
-#include "qandroidjnienvironment_android.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QAndroidJniEnvironment>
-#include "_cgo_export.h"
-
-class MyQAndroidJniEnvironment: public QAndroidJniEnvironment {
-public:
-};
-
-void* QAndroidJniEnvironment_NewQAndroidJniEnvironment(){
-	return new QAndroidJniEnvironment();
-}
-
-void* QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM(){
-	return QAndroidJniEnvironment::javaVM();
-}
-
-void QAndroidJniEnvironment_DestroyQAndroidJniEnvironment(void* ptr){
-	static_cast<QAndroidJniEnvironment*>(ptr)->~QAndroidJniEnvironment();
 }
 

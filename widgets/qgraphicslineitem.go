@@ -1,10 +1,11 @@
 package widgets
 
-//#include "qgraphicslineitem.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
+	"log"
 	"unsafe"
 )
 
@@ -35,18 +36,42 @@ func (ptr *QGraphicsLineItem) QGraphicsLineItem_PTR() *QGraphicsLineItem {
 }
 
 func NewQGraphicsLineItem(parent QGraphicsItem_ITF) *QGraphicsLineItem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsLineItem::QGraphicsLineItem")
+		}
+	}()
+
 	return NewQGraphicsLineItemFromPointer(C.QGraphicsLineItem_NewQGraphicsLineItem(PointerFromQGraphicsItem(parent)))
 }
 
 func NewQGraphicsLineItem2(line core.QLineF_ITF, parent QGraphicsItem_ITF) *QGraphicsLineItem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsLineItem::QGraphicsLineItem")
+		}
+	}()
+
 	return NewQGraphicsLineItemFromPointer(C.QGraphicsLineItem_NewQGraphicsLineItem2(core.PointerFromQLineF(line), PointerFromQGraphicsItem(parent)))
 }
 
 func NewQGraphicsLineItem3(x1 float64, y1 float64, x2 float64, y2 float64, parent QGraphicsItem_ITF) *QGraphicsLineItem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsLineItem::QGraphicsLineItem")
+		}
+	}()
+
 	return NewQGraphicsLineItemFromPointer(C.QGraphicsLineItem_NewQGraphicsLineItem3(C.double(x1), C.double(y1), C.double(x2), C.double(y2), PointerFromQGraphicsItem(parent)))
 }
 
 func (ptr *QGraphicsLineItem) Contains(point core.QPointF_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsLineItem::contains")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGraphicsLineItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
 	}
@@ -54,6 +79,12 @@ func (ptr *QGraphicsLineItem) Contains(point core.QPointF_ITF) bool {
 }
 
 func (ptr *QGraphicsLineItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsLineItem::isObscuredBy")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGraphicsLineItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
 	}
@@ -61,30 +92,60 @@ func (ptr *QGraphicsLineItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
 }
 
 func (ptr *QGraphicsLineItem) Paint(painter gui.QPainter_ITF, option QStyleOptionGraphicsItem_ITF, widget QWidget_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsLineItem::paint")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGraphicsLineItem_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionGraphicsItem(option), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QGraphicsLineItem) SetLine(line core.QLineF_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsLineItem::setLine")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGraphicsLineItem_SetLine(ptr.Pointer(), core.PointerFromQLineF(line))
 	}
 }
 
 func (ptr *QGraphicsLineItem) SetLine2(x1 float64, y1 float64, x2 float64, y2 float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsLineItem::setLine")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGraphicsLineItem_SetLine2(ptr.Pointer(), C.double(x1), C.double(y1), C.double(x2), C.double(y2))
 	}
 }
 
 func (ptr *QGraphicsLineItem) SetPen(pen gui.QPen_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsLineItem::setPen")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGraphicsLineItem_SetPen(ptr.Pointer(), gui.PointerFromQPen(pen))
 	}
 }
 
 func (ptr *QGraphicsLineItem) Type() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsLineItem::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QGraphicsLineItem_Type(ptr.Pointer()))
 	}
@@ -92,6 +153,12 @@ func (ptr *QGraphicsLineItem) Type() int {
 }
 
 func (ptr *QGraphicsLineItem) DestroyQGraphicsLineItem() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsLineItem::~QGraphicsLineItem")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGraphicsLineItem_DestroyQGraphicsLineItem(ptr.Pointer())
 	}

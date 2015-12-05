@@ -1,8 +1,9 @@
 package xml
 
-//#include "qdomentityreference.h"
+//#include "xml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,14 +34,32 @@ func (ptr *QDomEntityReference) QDomEntityReference_PTR() *QDomEntityReference {
 }
 
 func NewQDomEntityReference() *QDomEntityReference {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomEntityReference::QDomEntityReference")
+		}
+	}()
+
 	return NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference())
 }
 
 func NewQDomEntityReference2(x QDomEntityReference_ITF) *QDomEntityReference {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomEntityReference::QDomEntityReference")
+		}
+	}()
+
 	return NewQDomEntityReferenceFromPointer(C.QDomEntityReference_NewQDomEntityReference2(PointerFromQDomEntityReference(x)))
 }
 
 func (ptr *QDomEntityReference) NodeType() QDomNode__NodeType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomEntityReference::nodeType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomEntityReference_NodeType(ptr.Pointer()))
 	}

@@ -1,10 +1,11 @@
 package positioning
 
-//#include "qgeoareamonitorsource.h"
+//#include "positioning.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -28,7 +29,7 @@ func PointerFromQGeoAreaMonitorSource(ptr QGeoAreaMonitorSource_ITF) unsafe.Poin
 func NewQGeoAreaMonitorSourceFromPointer(ptr unsafe.Pointer) *QGeoAreaMonitorSource {
 	var n = new(QGeoAreaMonitorSource)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QGeoAreaMonitorSource_") {
 		n.SetObjectName("QGeoAreaMonitorSource_" + qt.RandomIdentifier())
 	}
 	return n
@@ -57,18 +58,42 @@ const (
 )
 
 func QGeoAreaMonitorSource_AvailableSources() []string {
-	return strings.Split(C.GoString(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources()), "|")
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoAreaMonitorSource::availableSources")
+		}
+	}()
+
+	return strings.Split(C.GoString(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_AvailableSources()), ",,,")
 }
 
 func QGeoAreaMonitorSource_CreateDefaultSource(parent core.QObject_ITF) *QGeoAreaMonitorSource {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoAreaMonitorSource::createDefaultSource")
+		}
+	}()
+
 	return NewQGeoAreaMonitorSourceFromPointer(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateDefaultSource(core.PointerFromQObject(parent)))
 }
 
 func QGeoAreaMonitorSource_CreateSource(sourceName string, parent core.QObject_ITF) *QGeoAreaMonitorSource {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoAreaMonitorSource::createSource")
+		}
+	}()
+
 	return NewQGeoAreaMonitorSourceFromPointer(C.QGeoAreaMonitorSource_QGeoAreaMonitorSource_CreateSource(C.CString(sourceName), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QGeoAreaMonitorSource) Error() QGeoAreaMonitorSource__Error {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoAreaMonitorSource::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QGeoAreaMonitorSource__Error(C.QGeoAreaMonitorSource_Error(ptr.Pointer()))
 	}
@@ -76,6 +101,12 @@ func (ptr *QGeoAreaMonitorSource) Error() QGeoAreaMonitorSource__Error {
 }
 
 func (ptr *QGeoAreaMonitorSource) PositionInfoSource() *QGeoPositionInfoSource {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoAreaMonitorSource::positionInfoSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQGeoPositionInfoSourceFromPointer(C.QGeoAreaMonitorSource_PositionInfoSource(ptr.Pointer()))
 	}
@@ -83,6 +114,12 @@ func (ptr *QGeoAreaMonitorSource) PositionInfoSource() *QGeoPositionInfoSource {
 }
 
 func (ptr *QGeoAreaMonitorSource) RequestUpdate(monitor QGeoAreaMonitorInfo_ITF, signal string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoAreaMonitorSource::requestUpdate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGeoAreaMonitorSource_RequestUpdate(ptr.Pointer(), PointerFromQGeoAreaMonitorInfo(monitor), C.CString(signal)) != 0
 	}
@@ -90,12 +127,24 @@ func (ptr *QGeoAreaMonitorSource) RequestUpdate(monitor QGeoAreaMonitorInfo_ITF,
 }
 
 func (ptr *QGeoAreaMonitorSource) SetPositionInfoSource(newSource QGeoPositionInfoSource_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoAreaMonitorSource::setPositionInfoSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorSource_SetPositionInfoSource(ptr.Pointer(), PointerFromQGeoPositionInfoSource(newSource))
 	}
 }
 
 func (ptr *QGeoAreaMonitorSource) SourceName() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoAreaMonitorSource::sourceName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGeoAreaMonitorSource_SourceName(ptr.Pointer()))
 	}
@@ -103,6 +152,12 @@ func (ptr *QGeoAreaMonitorSource) SourceName() string {
 }
 
 func (ptr *QGeoAreaMonitorSource) StartMonitoring(monitor QGeoAreaMonitorInfo_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoAreaMonitorSource::startMonitoring")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGeoAreaMonitorSource_StartMonitoring(ptr.Pointer(), PointerFromQGeoAreaMonitorInfo(monitor)) != 0
 	}
@@ -110,6 +165,12 @@ func (ptr *QGeoAreaMonitorSource) StartMonitoring(monitor QGeoAreaMonitorInfo_IT
 }
 
 func (ptr *QGeoAreaMonitorSource) StopMonitoring(monitor QGeoAreaMonitorInfo_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoAreaMonitorSource::stopMonitoring")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGeoAreaMonitorSource_StopMonitoring(ptr.Pointer(), PointerFromQGeoAreaMonitorInfo(monitor)) != 0
 	}
@@ -117,6 +178,12 @@ func (ptr *QGeoAreaMonitorSource) StopMonitoring(monitor QGeoAreaMonitorInfo_ITF
 }
 
 func (ptr *QGeoAreaMonitorSource) SupportedAreaMonitorFeatures() QGeoAreaMonitorSource__AreaMonitorFeature {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoAreaMonitorSource::supportedAreaMonitorFeatures")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QGeoAreaMonitorSource__AreaMonitorFeature(C.QGeoAreaMonitorSource_SupportedAreaMonitorFeatures(ptr.Pointer()))
 	}
@@ -124,6 +191,12 @@ func (ptr *QGeoAreaMonitorSource) SupportedAreaMonitorFeatures() QGeoAreaMonitor
 }
 
 func (ptr *QGeoAreaMonitorSource) DestroyQGeoAreaMonitorSource() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoAreaMonitorSource::~QGeoAreaMonitorSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(ptr.Pointer())
 		ptr.SetPointer(nil)

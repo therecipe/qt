@@ -1,6 +1,6 @@
 package sql
 
-//#include "qsqldrivercreator.h"
+//#include "sql.h"
 import "C"
 import (
 	"unsafe"

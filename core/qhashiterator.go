@@ -1,6 +1,6 @@
 package core
 
-//#include "qhashiterator.h"
+//#include "core.h"
 import "C"
 import (
 	"unsafe"

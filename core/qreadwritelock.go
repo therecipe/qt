@@ -1,8 +1,9 @@
 package core
 
-//#include "qreadwritelock.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -48,22 +49,46 @@ const (
 )
 
 func NewQReadWriteLock(recursionMode QReadWriteLock__RecursionMode) *QReadWriteLock {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QReadWriteLock::QReadWriteLock")
+		}
+	}()
+
 	return NewQReadWriteLockFromPointer(C.QReadWriteLock_NewQReadWriteLock(C.int(recursionMode)))
 }
 
 func (ptr *QReadWriteLock) LockForRead() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QReadWriteLock::lockForRead")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QReadWriteLock_LockForRead(ptr.Pointer())
 	}
 }
 
 func (ptr *QReadWriteLock) LockForWrite() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QReadWriteLock::lockForWrite")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QReadWriteLock_LockForWrite(ptr.Pointer())
 	}
 }
 
 func (ptr *QReadWriteLock) TryLockForRead() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QReadWriteLock::tryLockForRead")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QReadWriteLock_TryLockForRead(ptr.Pointer()) != 0
 	}
@@ -71,6 +96,12 @@ func (ptr *QReadWriteLock) TryLockForRead() bool {
 }
 
 func (ptr *QReadWriteLock) TryLockForRead2(timeout int) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QReadWriteLock::tryLockForRead")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QReadWriteLock_TryLockForRead2(ptr.Pointer(), C.int(timeout)) != 0
 	}
@@ -78,6 +109,12 @@ func (ptr *QReadWriteLock) TryLockForRead2(timeout int) bool {
 }
 
 func (ptr *QReadWriteLock) TryLockForWrite() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QReadWriteLock::tryLockForWrite")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QReadWriteLock_TryLockForWrite(ptr.Pointer()) != 0
 	}
@@ -85,6 +122,12 @@ func (ptr *QReadWriteLock) TryLockForWrite() bool {
 }
 
 func (ptr *QReadWriteLock) TryLockForWrite2(timeout int) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QReadWriteLock::tryLockForWrite")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QReadWriteLock_TryLockForWrite2(ptr.Pointer(), C.int(timeout)) != 0
 	}
@@ -92,12 +135,24 @@ func (ptr *QReadWriteLock) TryLockForWrite2(timeout int) bool {
 }
 
 func (ptr *QReadWriteLock) Unlock() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QReadWriteLock::unlock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QReadWriteLock_Unlock(ptr.Pointer())
 	}
 }
 
 func (ptr *QReadWriteLock) DestroyQReadWriteLock() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QReadWriteLock::~QReadWriteLock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QReadWriteLock_DestroyQReadWriteLock(ptr.Pointer())
 	}

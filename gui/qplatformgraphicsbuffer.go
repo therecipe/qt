@@ -1,6 +1,6 @@
 package gui
 
-//#include "qplatformgraphicsbuffer.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQPlatformGraphicsBuffer(ptr QPlatformGraphicsBuffer_ITF) unsafe.
 func NewQPlatformGraphicsBufferFromPointer(ptr unsafe.Pointer) *QPlatformGraphicsBuffer {
 	var n = new(QPlatformGraphicsBuffer)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QPlatformGraphicsBuffer_") {
 		n.SetObjectName("QPlatformGraphicsBuffer_" + qt.RandomIdentifier())
 	}
 	return n

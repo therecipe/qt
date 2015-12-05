@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptionfocusrect.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -47,9 +48,21 @@ var (
 )
 
 func NewQStyleOptionFocusRect() *QStyleOptionFocusRect {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionFocusRect::QStyleOptionFocusRect")
+		}
+	}()
+
 	return NewQStyleOptionFocusRectFromPointer(C.QStyleOptionFocusRect_NewQStyleOptionFocusRect())
 }
 
 func NewQStyleOptionFocusRect2(other QStyleOptionFocusRect_ITF) *QStyleOptionFocusRect {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionFocusRect::QStyleOptionFocusRect")
+		}
+	}()
+
 	return NewQStyleOptionFocusRectFromPointer(C.QStyleOptionFocusRect_NewQStyleOptionFocusRect2(PointerFromQStyleOptionFocusRect(other)))
 }

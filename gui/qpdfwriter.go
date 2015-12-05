@@ -1,10 +1,11 @@
 package gui
 
-//#include "qpdfwriter.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -38,7 +39,7 @@ func PointerFromQPdfWriter(ptr QPdfWriter_ITF) unsafe.Pointer {
 func NewQPdfWriterFromPointer(ptr unsafe.Pointer) *QPdfWriter {
 	var n = new(QPdfWriter)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QPdfWriter_") {
 		n.SetObjectName("QPdfWriter_" + qt.RandomIdentifier())
 	}
 	return n
@@ -49,14 +50,32 @@ func (ptr *QPdfWriter) QPdfWriter_PTR() *QPdfWriter {
 }
 
 func NewQPdfWriter2(device core.QIODevice_ITF) *QPdfWriter {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::QPdfWriter")
+		}
+	}()
+
 	return NewQPdfWriterFromPointer(C.QPdfWriter_NewQPdfWriter2(core.PointerFromQIODevice(device)))
 }
 
 func NewQPdfWriter(filename string) *QPdfWriter {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::QPdfWriter")
+		}
+	}()
+
 	return NewQPdfWriterFromPointer(C.QPdfWriter_NewQPdfWriter(C.CString(filename)))
 }
 
 func (ptr *QPdfWriter) Creator() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::creator")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QPdfWriter_Creator(ptr.Pointer()))
 	}
@@ -64,6 +83,12 @@ func (ptr *QPdfWriter) Creator() string {
 }
 
 func (ptr *QPdfWriter) NewPage() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::newPage")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPdfWriter_NewPage(ptr.Pointer()) != 0
 	}
@@ -71,6 +96,12 @@ func (ptr *QPdfWriter) NewPage() bool {
 }
 
 func (ptr *QPdfWriter) Resolution() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::resolution")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPdfWriter_Resolution(ptr.Pointer()))
 	}
@@ -78,12 +109,24 @@ func (ptr *QPdfWriter) Resolution() int {
 }
 
 func (ptr *QPdfWriter) SetCreator(creator string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::setCreator")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPdfWriter_SetCreator(ptr.Pointer(), C.CString(creator))
 	}
 }
 
 func (ptr *QPdfWriter) SetPageLayout(newPageLayout QPageLayout_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::setPageLayout")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPdfWriter_SetPageLayout(ptr.Pointer(), PointerFromQPageLayout(newPageLayout)) != 0
 	}
@@ -91,6 +134,12 @@ func (ptr *QPdfWriter) SetPageLayout(newPageLayout QPageLayout_ITF) bool {
 }
 
 func (ptr *QPdfWriter) SetPageMargins(margins core.QMarginsF_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::setPageMargins")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPdfWriter_SetPageMargins(ptr.Pointer(), core.PointerFromQMarginsF(margins)) != 0
 	}
@@ -98,6 +147,12 @@ func (ptr *QPdfWriter) SetPageMargins(margins core.QMarginsF_ITF) bool {
 }
 
 func (ptr *QPdfWriter) SetPageMargins2(margins core.QMarginsF_ITF, units QPageLayout__Unit) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::setPageMargins")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPdfWriter_SetPageMargins2(ptr.Pointer(), core.PointerFromQMarginsF(margins), C.int(units)) != 0
 	}
@@ -105,6 +160,12 @@ func (ptr *QPdfWriter) SetPageMargins2(margins core.QMarginsF_ITF, units QPageLa
 }
 
 func (ptr *QPdfWriter) SetPageOrientation(orientation QPageLayout__Orientation) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::setPageOrientation")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPdfWriter_SetPageOrientation(ptr.Pointer(), C.int(orientation)) != 0
 	}
@@ -112,6 +173,12 @@ func (ptr *QPdfWriter) SetPageOrientation(orientation QPageLayout__Orientation) 
 }
 
 func (ptr *QPdfWriter) SetPageSize(pageSize QPageSize_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::setPageSize")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPdfWriter_SetPageSize(ptr.Pointer(), PointerFromQPageSize(pageSize)) != 0
 	}
@@ -119,18 +186,36 @@ func (ptr *QPdfWriter) SetPageSize(pageSize QPageSize_ITF) bool {
 }
 
 func (ptr *QPdfWriter) SetResolution(resolution int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::setResolution")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPdfWriter_SetResolution(ptr.Pointer(), C.int(resolution))
 	}
 }
 
 func (ptr *QPdfWriter) SetTitle(title string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::setTitle")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPdfWriter_SetTitle(ptr.Pointer(), C.CString(title))
 	}
 }
 
 func (ptr *QPdfWriter) Title() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::title")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QPdfWriter_Title(ptr.Pointer()))
 	}
@@ -138,6 +223,12 @@ func (ptr *QPdfWriter) Title() string {
 }
 
 func (ptr *QPdfWriter) DestroyQPdfWriter() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPdfWriter::~QPdfWriter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPdfWriter_DestroyQPdfWriter(ptr.Pointer())
 		ptr.SetPointer(nil)

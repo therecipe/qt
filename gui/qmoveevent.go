@@ -1,9 +1,10 @@
 package gui
 
-//#include "qmoveevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,5 +35,11 @@ func (ptr *QMoveEvent) QMoveEvent_PTR() *QMoveEvent {
 }
 
 func NewQMoveEvent(pos core.QPoint_ITF, oldPos core.QPoint_ITF) *QMoveEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMoveEvent::QMoveEvent")
+		}
+	}()
+
 	return NewQMoveEventFromPointer(C.QMoveEvent_NewQMoveEvent(core.PointerFromQPoint(pos), core.PointerFromQPoint(oldPos)))
 }

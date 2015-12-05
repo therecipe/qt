@@ -1,10 +1,30 @@
-#include "qabstractmessagehandler.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QAbstractMessageHandler>
+#include "xmlpatterns.h"
 #include "_cgo_export.h"
+
+#include <QAbstractMessageHandler>
+#include <QAbstractUriResolver>
+#include <QAbstractXmlNodeModel>
+#include <QAbstractXmlReceiver>
+#include <QByteArray>
+#include <QIODevice>
+#include <QNetworkAccessManager>
+#include <QSimpleXmlNodeModel>
+#include <QSourceLocation>
+#include <QString>
+#include <QStringRef>
+#include <QTextCodec>
+#include <QUrl>
+#include <QVariant>
+#include <QXmlFormatter>
+#include <QXmlItem>
+#include <QXmlName>
+#include <QXmlNamePool>
+#include <QXmlNodeModelIndex>
+#include <QXmlQuery>
+#include <QXmlResultItems>
+#include <QXmlSchema>
+#include <QXmlSchemaValidator>
+#include <QXmlSerializer>
 
 class MyQAbstractMessageHandler: public QAbstractMessageHandler {
 public:
@@ -14,81 +34,37 @@ void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr){
 	static_cast<QAbstractMessageHandler*>(ptr)->~QAbstractMessageHandler();
 }
 
-#include "qsimplexmlnodemodel.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QXmlNodeModelIndex>
-#include <QString>
-#include <QVariant>
-#include <QSimpleXmlNodeModel>
-#include "_cgo_export.h"
-
-class MyQSimpleXmlNodeModel: public QSimpleXmlNodeModel {
+class MyQAbstractUriResolver: public QAbstractUriResolver {
 public:
 };
 
-char* QSimpleXmlNodeModel_StringValue(void* ptr, void* node){
-	return static_cast<QSimpleXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(node)).toUtf8().data();
+void QAbstractUriResolver_DestroyQAbstractUriResolver(void* ptr){
+	static_cast<QAbstractUriResolver*>(ptr)->~QAbstractUriResolver();
 }
 
-void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(void* ptr){
-	static_cast<QSimpleXmlNodeModel*>(ptr)->~QSimpleXmlNodeModel();
-}
-
-#include "qxmlname.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QXmlNamePool>
-#include <QString>
-#include <QXmlName>
-#include "_cgo_export.h"
-
-class MyQXmlName: public QXmlName {
+class MyQAbstractXmlNodeModel: public QAbstractXmlNodeModel {
 public:
 };
 
-void* QXmlName_NewQXmlName(){
-	return new QXmlName();
+int QAbstractXmlNodeModel_CompareOrder(void* ptr, void* ni1, void* ni2){
+	return static_cast<QAbstractXmlNodeModel*>(ptr)->compareOrder(*static_cast<QXmlNodeModelIndex*>(ni1), *static_cast<QXmlNodeModelIndex*>(ni2));
 }
 
-void* QXmlName_NewQXmlName2(void* namePool, char* localName, char* namespaceURI, char* prefix){
-	return new QXmlName(*static_cast<QXmlNamePool*>(namePool), QString(localName), QString(namespaceURI), QString(prefix));
+int QAbstractXmlNodeModel_Kind(void* ptr, void* ni){
+	return static_cast<QAbstractXmlNodeModel*>(ptr)->kind(*static_cast<QXmlNodeModelIndex*>(ni));
 }
 
-int QXmlName_QXmlName_IsNCName(char* candidate){
-	return QXmlName::isNCName(QString(candidate));
+char* QAbstractXmlNodeModel_StringValue(void* ptr, void* n){
+	return static_cast<QAbstractXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(n)).toUtf8().data();
 }
 
-int QXmlName_IsNull(void* ptr){
-	return static_cast<QXmlName*>(ptr)->isNull();
+void* QAbstractXmlNodeModel_TypedValue(void* ptr, void* node){
+	return new QVariant(static_cast<QAbstractXmlNodeModel*>(ptr)->typedValue(*static_cast<QXmlNodeModelIndex*>(node)));
 }
 
-char* QXmlName_LocalName(void* ptr, void* namePool){
-	return static_cast<QXmlName*>(ptr)->localName(*static_cast<QXmlNamePool*>(namePool)).toUtf8().data();
+void QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(void* ptr){
+	static_cast<QAbstractXmlNodeModel*>(ptr)->~QAbstractXmlNodeModel();
 }
-
-char* QXmlName_NamespaceUri(void* ptr, void* namePool){
-	return static_cast<QXmlName*>(ptr)->namespaceUri(*static_cast<QXmlNamePool*>(namePool)).toUtf8().data();
-}
-
-char* QXmlName_Prefix(void* ptr, void* namePool){
-	return static_cast<QXmlName*>(ptr)->prefix(*static_cast<QXmlNamePool*>(namePool)).toUtf8().data();
-}
-
-char* QXmlName_ToClarkName(void* ptr, void* namePool){
-	return static_cast<QXmlName*>(ptr)->toClarkName(*static_cast<QXmlNamePool*>(namePool)).toUtf8().data();
-}
-
-#include "qabstractxmlreceiver.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QStringRef>
-#include <QXmlName>
-#include <QAbstractXmlReceiver>
-#include "_cgo_export.h"
 
 class MyQAbstractXmlReceiver: public QAbstractXmlReceiver {
 public:
@@ -142,123 +118,17 @@ void QAbstractXmlReceiver_DestroyQAbstractXmlReceiver(void* ptr){
 	static_cast<QAbstractXmlReceiver*>(ptr)->~QAbstractXmlReceiver();
 }
 
-#include "qxmlnodemodelindex.h"
-#include <QModelIndex>
-#include <QAbstractXmlNodeModel>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QXmlNodeModelIndex>
-#include "_cgo_export.h"
-
-class MyQXmlNodeModelIndex: public QXmlNodeModelIndex {
+class MyQSimpleXmlNodeModel: public QSimpleXmlNodeModel {
 public:
 };
 
-void* QXmlNodeModelIndex_NewQXmlNodeModelIndex(){
-	return new QXmlNodeModelIndex();
+char* QSimpleXmlNodeModel_StringValue(void* ptr, void* node){
+	return static_cast<QSimpleXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(node)).toUtf8().data();
 }
 
-void* QXmlNodeModelIndex_NewQXmlNodeModelIndex2(void* other){
-	return new QXmlNodeModelIndex(*static_cast<QXmlNodeModelIndex*>(other));
+void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(void* ptr){
+	static_cast<QSimpleXmlNodeModel*>(ptr)->~QSimpleXmlNodeModel();
 }
-
-void* QXmlNodeModelIndex_InternalPointer(void* ptr){
-	return static_cast<QXmlNodeModelIndex*>(ptr)->internalPointer();
-}
-
-int QXmlNodeModelIndex_IsNull(void* ptr){
-	return static_cast<QXmlNodeModelIndex*>(ptr)->isNull();
-}
-
-void* QXmlNodeModelIndex_Model(void* ptr){
-	return const_cast<QAbstractXmlNodeModel*>(static_cast<QXmlNodeModelIndex*>(ptr)->model());
-}
-
-#include "qxmlserializer.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QXmlName>
-#include <QStringRef>
-#include <QString>
-#include <QVariant>
-#include <QIODevice>
-#include <QXmlQuery>
-#include <QTextCodec>
-#include <QXmlSerializer>
-#include "_cgo_export.h"
-
-class MyQXmlSerializer: public QXmlSerializer {
-public:
-};
-
-void* QXmlSerializer_NewQXmlSerializer(void* query, void* outputDevice){
-	return new QXmlSerializer(*static_cast<QXmlQuery*>(query), static_cast<QIODevice*>(outputDevice));
-}
-
-void QXmlSerializer_Attribute(void* ptr, void* name, void* value){
-	static_cast<QXmlSerializer*>(ptr)->attribute(*static_cast<QXmlName*>(name), *static_cast<QStringRef*>(value));
-}
-
-void QXmlSerializer_Characters(void* ptr, void* value){
-	static_cast<QXmlSerializer*>(ptr)->characters(*static_cast<QStringRef*>(value));
-}
-
-void QXmlSerializer_Comment(void* ptr, char* value){
-	static_cast<QXmlSerializer*>(ptr)->comment(QString(value));
-}
-
-void QXmlSerializer_EndDocument(void* ptr){
-	static_cast<QXmlSerializer*>(ptr)->endDocument();
-}
-
-void QXmlSerializer_EndElement(void* ptr){
-	static_cast<QXmlSerializer*>(ptr)->endElement();
-}
-
-void* QXmlSerializer_Codec(void* ptr){
-	return const_cast<QTextCodec*>(static_cast<QXmlSerializer*>(ptr)->codec());
-}
-
-void QXmlSerializer_EndOfSequence(void* ptr){
-	static_cast<QXmlSerializer*>(ptr)->endOfSequence();
-}
-
-void QXmlSerializer_NamespaceBinding(void* ptr, void* nb){
-	static_cast<QXmlSerializer*>(ptr)->namespaceBinding(*static_cast<QXmlName*>(nb));
-}
-
-void* QXmlSerializer_OutputDevice(void* ptr){
-	return static_cast<QXmlSerializer*>(ptr)->outputDevice();
-}
-
-void QXmlSerializer_ProcessingInstruction(void* ptr, void* name, char* value){
-	static_cast<QXmlSerializer*>(ptr)->processingInstruction(*static_cast<QXmlName*>(name), QString(value));
-}
-
-void QXmlSerializer_SetCodec(void* ptr, void* outputCodec){
-	static_cast<QXmlSerializer*>(ptr)->setCodec(static_cast<QTextCodec*>(outputCodec));
-}
-
-void QXmlSerializer_StartDocument(void* ptr){
-	static_cast<QXmlSerializer*>(ptr)->startDocument();
-}
-
-void QXmlSerializer_StartElement(void* ptr, void* name){
-	static_cast<QXmlSerializer*>(ptr)->startElement(*static_cast<QXmlName*>(name));
-}
-
-void QXmlSerializer_StartOfSequence(void* ptr){
-	static_cast<QXmlSerializer*>(ptr)->startOfSequence();
-}
-
-#include "qsourcelocation.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QSourceLocation>
-#include "_cgo_export.h"
 
 class MyQSourceLocation: public QSourceLocation {
 public:
@@ -287,88 +157,6 @@ void QSourceLocation_SetUri(void* ptr, void* newUri){
 void QSourceLocation_DestroyQSourceLocation(void* ptr){
 	static_cast<QSourceLocation*>(ptr)->~QSourceLocation();
 }
-
-#include "qxmlschemavalidator.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QNetworkAccessManager>
-#include <QAbstractUriResolver>
-#include <QString>
-#include <QByteArray>
-#include <QIODevice>
-#include <QXmlSchema>
-#include <QAbstractMessageHandler>
-#include <QXmlSchemaValidator>
-#include "_cgo_export.h"
-
-class MyQXmlSchemaValidator: public QXmlSchemaValidator {
-public:
-};
-
-void* QXmlSchemaValidator_NewQXmlSchemaValidator(){
-	return new QXmlSchemaValidator();
-}
-
-void* QXmlSchemaValidator_NewQXmlSchemaValidator2(void* schema){
-	return new QXmlSchemaValidator(*static_cast<QXmlSchema*>(schema));
-}
-
-void* QXmlSchemaValidator_MessageHandler(void* ptr){
-	return static_cast<QXmlSchemaValidator*>(ptr)->messageHandler();
-}
-
-void* QXmlSchemaValidator_NetworkAccessManager(void* ptr){
-	return static_cast<QXmlSchemaValidator*>(ptr)->networkAccessManager();
-}
-
-void QXmlSchemaValidator_SetMessageHandler(void* ptr, void* handler){
-	static_cast<QXmlSchemaValidator*>(ptr)->setMessageHandler(static_cast<QAbstractMessageHandler*>(handler));
-}
-
-void QXmlSchemaValidator_SetNetworkAccessManager(void* ptr, void* manager){
-	static_cast<QXmlSchemaValidator*>(ptr)->setNetworkAccessManager(static_cast<QNetworkAccessManager*>(manager));
-}
-
-void QXmlSchemaValidator_SetSchema(void* ptr, void* schema){
-	static_cast<QXmlSchemaValidator*>(ptr)->setSchema(*static_cast<QXmlSchema*>(schema));
-}
-
-void QXmlSchemaValidator_SetUriResolver(void* ptr, void* resolver){
-	static_cast<QXmlSchemaValidator*>(ptr)->setUriResolver(static_cast<QAbstractUriResolver*>(resolver));
-}
-
-void* QXmlSchemaValidator_UriResolver(void* ptr){
-	return const_cast<QAbstractUriResolver*>(static_cast<QXmlSchemaValidator*>(ptr)->uriResolver());
-}
-
-int QXmlSchemaValidator_Validate2(void* ptr, void* source, void* documentUri){
-	return static_cast<QXmlSchemaValidator*>(ptr)->validate(static_cast<QIODevice*>(source), *static_cast<QUrl*>(documentUri));
-}
-
-int QXmlSchemaValidator_Validate3(void* ptr, void* data, void* documentUri){
-	return static_cast<QXmlSchemaValidator*>(ptr)->validate(*static_cast<QByteArray*>(data), *static_cast<QUrl*>(documentUri));
-}
-
-int QXmlSchemaValidator_Validate(void* ptr, void* source){
-	return static_cast<QXmlSchemaValidator*>(ptr)->validate(*static_cast<QUrl*>(source));
-}
-
-void QXmlSchemaValidator_DestroyQXmlSchemaValidator(void* ptr){
-	static_cast<QXmlSchemaValidator*>(ptr)->~QXmlSchemaValidator();
-}
-
-#include "qxmlformatter.h"
-#include <QStringRef>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QXmlName>
-#include <QIODevice>
-#include <QXmlQuery>
-#include <QXmlFormatter>
-#include "_cgo_export.h"
 
 class MyQXmlFormatter: public QXmlFormatter {
 public:
@@ -426,142 +214,6 @@ void QXmlFormatter_StartOfSequence(void* ptr){
 	static_cast<QXmlFormatter*>(ptr)->startOfSequence();
 }
 
-#include "qxmlschema.h"
-#include <QNetworkAccessManager>
-#include <QAbstractUriResolver>
-#include <QUrl>
-#include <QModelIndex>
-#include <QAbstractMessageHandler>
-#include <QByteArray>
-#include <QIODevice>
-#include <QString>
-#include <QVariant>
-#include <QXmlSchema>
-#include "_cgo_export.h"
-
-class MyQXmlSchema: public QXmlSchema {
-public:
-};
-
-void* QXmlSchema_NewQXmlSchema(){
-	return new QXmlSchema();
-}
-
-void* QXmlSchema_NewQXmlSchema2(void* other){
-	return new QXmlSchema(*static_cast<QXmlSchema*>(other));
-}
-
-int QXmlSchema_IsValid(void* ptr){
-	return static_cast<QXmlSchema*>(ptr)->isValid();
-}
-
-int QXmlSchema_Load2(void* ptr, void* source, void* documentUri){
-	return static_cast<QXmlSchema*>(ptr)->load(static_cast<QIODevice*>(source), *static_cast<QUrl*>(documentUri));
-}
-
-int QXmlSchema_Load3(void* ptr, void* data, void* documentUri){
-	return static_cast<QXmlSchema*>(ptr)->load(*static_cast<QByteArray*>(data), *static_cast<QUrl*>(documentUri));
-}
-
-int QXmlSchema_Load(void* ptr, void* source){
-	return static_cast<QXmlSchema*>(ptr)->load(*static_cast<QUrl*>(source));
-}
-
-void* QXmlSchema_MessageHandler(void* ptr){
-	return static_cast<QXmlSchema*>(ptr)->messageHandler();
-}
-
-void* QXmlSchema_NetworkAccessManager(void* ptr){
-	return static_cast<QXmlSchema*>(ptr)->networkAccessManager();
-}
-
-void QXmlSchema_SetMessageHandler(void* ptr, void* handler){
-	static_cast<QXmlSchema*>(ptr)->setMessageHandler(static_cast<QAbstractMessageHandler*>(handler));
-}
-
-void QXmlSchema_SetNetworkAccessManager(void* ptr, void* manager){
-	static_cast<QXmlSchema*>(ptr)->setNetworkAccessManager(static_cast<QNetworkAccessManager*>(manager));
-}
-
-void QXmlSchema_SetUriResolver(void* ptr, void* resolver){
-	static_cast<QXmlSchema*>(ptr)->setUriResolver(static_cast<QAbstractUriResolver*>(resolver));
-}
-
-void* QXmlSchema_UriResolver(void* ptr){
-	return const_cast<QAbstractUriResolver*>(static_cast<QXmlSchema*>(ptr)->uriResolver());
-}
-
-void QXmlSchema_DestroyQXmlSchema(void* ptr){
-	static_cast<QXmlSchema*>(ptr)->~QXmlSchema();
-}
-
-#include "qxmlnamepool.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QXmlName>
-#include <QString>
-#include <QXmlNamePool>
-#include "_cgo_export.h"
-
-class MyQXmlNamePool: public QXmlNamePool {
-public:
-};
-
-void* QXmlNamePool_NewQXmlNamePool(){
-	return new QXmlNamePool();
-}
-
-void* QXmlNamePool_NewQXmlNamePool2(void* other){
-	return new QXmlNamePool(*static_cast<QXmlNamePool*>(other));
-}
-
-void QXmlNamePool_DestroyQXmlNamePool(void* ptr){
-	static_cast<QXmlNamePool*>(ptr)->~QXmlNamePool();
-}
-
-#include "qabstractxmlnodemodel.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QXmlNodeModelIndex>
-#include <QAbstractXmlNodeModel>
-#include "_cgo_export.h"
-
-class MyQAbstractXmlNodeModel: public QAbstractXmlNodeModel {
-public:
-};
-
-int QAbstractXmlNodeModel_CompareOrder(void* ptr, void* ni1, void* ni2){
-	return static_cast<QAbstractXmlNodeModel*>(ptr)->compareOrder(*static_cast<QXmlNodeModelIndex*>(ni1), *static_cast<QXmlNodeModelIndex*>(ni2));
-}
-
-int QAbstractXmlNodeModel_Kind(void* ptr, void* ni){
-	return static_cast<QAbstractXmlNodeModel*>(ptr)->kind(*static_cast<QXmlNodeModelIndex*>(ni));
-}
-
-char* QAbstractXmlNodeModel_StringValue(void* ptr, void* n){
-	return static_cast<QAbstractXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(n)).toUtf8().data();
-}
-
-void* QAbstractXmlNodeModel_TypedValue(void* ptr, void* node){
-	return new QVariant(static_cast<QAbstractXmlNodeModel*>(ptr)->typedValue(*static_cast<QXmlNodeModelIndex*>(node)));
-}
-
-void QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(void* ptr){
-	static_cast<QAbstractXmlNodeModel*>(ptr)->~QAbstractXmlNodeModel();
-}
-
-#include "qxmlitem.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QXmlNodeModelIndex>
-#include <QXmlItem>
-#include "_cgo_export.h"
-
 class MyQXmlItem: public QXmlItem {
 public:
 };
@@ -594,20 +246,81 @@ void QXmlItem_DestroyQXmlItem(void* ptr){
 	static_cast<QXmlItem*>(ptr)->~QXmlItem();
 }
 
-#include "qxmlquery.h"
-#include <QModelIndex>
-#include <QNetworkAccessManager>
-#include <QIODevice>
-#include <QXmlItem>
-#include <QAbstractUriResolver>
-#include <QXmlNamePool>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QAbstractMessageHandler>
-#include <QXmlName>
-#include <QXmlQuery>
-#include "_cgo_export.h"
+class MyQXmlName: public QXmlName {
+public:
+};
+
+void* QXmlName_NewQXmlName(){
+	return new QXmlName();
+}
+
+void* QXmlName_NewQXmlName2(void* namePool, char* localName, char* namespaceURI, char* prefix){
+	return new QXmlName(*static_cast<QXmlNamePool*>(namePool), QString(localName), QString(namespaceURI), QString(prefix));
+}
+
+int QXmlName_QXmlName_IsNCName(char* candidate){
+	return QXmlName::isNCName(QString(candidate));
+}
+
+int QXmlName_IsNull(void* ptr){
+	return static_cast<QXmlName*>(ptr)->isNull();
+}
+
+char* QXmlName_LocalName(void* ptr, void* namePool){
+	return static_cast<QXmlName*>(ptr)->localName(*static_cast<QXmlNamePool*>(namePool)).toUtf8().data();
+}
+
+char* QXmlName_NamespaceUri(void* ptr, void* namePool){
+	return static_cast<QXmlName*>(ptr)->namespaceUri(*static_cast<QXmlNamePool*>(namePool)).toUtf8().data();
+}
+
+char* QXmlName_Prefix(void* ptr, void* namePool){
+	return static_cast<QXmlName*>(ptr)->prefix(*static_cast<QXmlNamePool*>(namePool)).toUtf8().data();
+}
+
+char* QXmlName_ToClarkName(void* ptr, void* namePool){
+	return static_cast<QXmlName*>(ptr)->toClarkName(*static_cast<QXmlNamePool*>(namePool)).toUtf8().data();
+}
+
+class MyQXmlNamePool: public QXmlNamePool {
+public:
+};
+
+void* QXmlNamePool_NewQXmlNamePool(){
+	return new QXmlNamePool();
+}
+
+void* QXmlNamePool_NewQXmlNamePool2(void* other){
+	return new QXmlNamePool(*static_cast<QXmlNamePool*>(other));
+}
+
+void QXmlNamePool_DestroyQXmlNamePool(void* ptr){
+	static_cast<QXmlNamePool*>(ptr)->~QXmlNamePool();
+}
+
+class MyQXmlNodeModelIndex: public QXmlNodeModelIndex {
+public:
+};
+
+void* QXmlNodeModelIndex_NewQXmlNodeModelIndex(){
+	return new QXmlNodeModelIndex();
+}
+
+void* QXmlNodeModelIndex_NewQXmlNodeModelIndex2(void* other){
+	return new QXmlNodeModelIndex(*static_cast<QXmlNodeModelIndex*>(other));
+}
+
+void* QXmlNodeModelIndex_InternalPointer(void* ptr){
+	return static_cast<QXmlNodeModelIndex*>(ptr)->internalPointer();
+}
+
+int QXmlNodeModelIndex_IsNull(void* ptr){
+	return static_cast<QXmlNodeModelIndex*>(ptr)->isNull();
+}
+
+void* QXmlNodeModelIndex_Model(void* ptr){
+	return const_cast<QAbstractXmlNodeModel*>(static_cast<QXmlNodeModelIndex*>(ptr)->model());
+}
 
 class MyQXmlQuery: public QXmlQuery {
 public:
@@ -725,30 +438,6 @@ void QXmlQuery_DestroyQXmlQuery(void* ptr){
 	static_cast<QXmlQuery*>(ptr)->~QXmlQuery();
 }
 
-#include "qabstracturiresolver.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QAbstractUriResolver>
-#include "_cgo_export.h"
-
-class MyQAbstractUriResolver: public QAbstractUriResolver {
-public:
-};
-
-void QAbstractUriResolver_DestroyQAbstractUriResolver(void* ptr){
-	static_cast<QAbstractUriResolver*>(ptr)->~QAbstractUriResolver();
-}
-
-#include "qxmlresultitems.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QXmlResultItems>
-#include "_cgo_export.h"
-
 class MyQXmlResultItems: public QXmlResultItems {
 public:
 };
@@ -763,5 +452,181 @@ int QXmlResultItems_HasError(void* ptr){
 
 void QXmlResultItems_DestroyQXmlResultItems(void* ptr){
 	static_cast<QXmlResultItems*>(ptr)->~QXmlResultItems();
+}
+
+class MyQXmlSchema: public QXmlSchema {
+public:
+};
+
+void* QXmlSchema_NewQXmlSchema(){
+	return new QXmlSchema();
+}
+
+void* QXmlSchema_NewQXmlSchema2(void* other){
+	return new QXmlSchema(*static_cast<QXmlSchema*>(other));
+}
+
+int QXmlSchema_IsValid(void* ptr){
+	return static_cast<QXmlSchema*>(ptr)->isValid();
+}
+
+int QXmlSchema_Load2(void* ptr, void* source, void* documentUri){
+	return static_cast<QXmlSchema*>(ptr)->load(static_cast<QIODevice*>(source), *static_cast<QUrl*>(documentUri));
+}
+
+int QXmlSchema_Load3(void* ptr, void* data, void* documentUri){
+	return static_cast<QXmlSchema*>(ptr)->load(*static_cast<QByteArray*>(data), *static_cast<QUrl*>(documentUri));
+}
+
+int QXmlSchema_Load(void* ptr, void* source){
+	return static_cast<QXmlSchema*>(ptr)->load(*static_cast<QUrl*>(source));
+}
+
+void* QXmlSchema_MessageHandler(void* ptr){
+	return static_cast<QXmlSchema*>(ptr)->messageHandler();
+}
+
+void* QXmlSchema_NetworkAccessManager(void* ptr){
+	return static_cast<QXmlSchema*>(ptr)->networkAccessManager();
+}
+
+void QXmlSchema_SetMessageHandler(void* ptr, void* handler){
+	static_cast<QXmlSchema*>(ptr)->setMessageHandler(static_cast<QAbstractMessageHandler*>(handler));
+}
+
+void QXmlSchema_SetNetworkAccessManager(void* ptr, void* manager){
+	static_cast<QXmlSchema*>(ptr)->setNetworkAccessManager(static_cast<QNetworkAccessManager*>(manager));
+}
+
+void QXmlSchema_SetUriResolver(void* ptr, void* resolver){
+	static_cast<QXmlSchema*>(ptr)->setUriResolver(static_cast<QAbstractUriResolver*>(resolver));
+}
+
+void* QXmlSchema_UriResolver(void* ptr){
+	return const_cast<QAbstractUriResolver*>(static_cast<QXmlSchema*>(ptr)->uriResolver());
+}
+
+void QXmlSchema_DestroyQXmlSchema(void* ptr){
+	static_cast<QXmlSchema*>(ptr)->~QXmlSchema();
+}
+
+class MyQXmlSchemaValidator: public QXmlSchemaValidator {
+public:
+};
+
+void* QXmlSchemaValidator_NewQXmlSchemaValidator(){
+	return new QXmlSchemaValidator();
+}
+
+void* QXmlSchemaValidator_NewQXmlSchemaValidator2(void* schema){
+	return new QXmlSchemaValidator(*static_cast<QXmlSchema*>(schema));
+}
+
+void* QXmlSchemaValidator_MessageHandler(void* ptr){
+	return static_cast<QXmlSchemaValidator*>(ptr)->messageHandler();
+}
+
+void* QXmlSchemaValidator_NetworkAccessManager(void* ptr){
+	return static_cast<QXmlSchemaValidator*>(ptr)->networkAccessManager();
+}
+
+void QXmlSchemaValidator_SetMessageHandler(void* ptr, void* handler){
+	static_cast<QXmlSchemaValidator*>(ptr)->setMessageHandler(static_cast<QAbstractMessageHandler*>(handler));
+}
+
+void QXmlSchemaValidator_SetNetworkAccessManager(void* ptr, void* manager){
+	static_cast<QXmlSchemaValidator*>(ptr)->setNetworkAccessManager(static_cast<QNetworkAccessManager*>(manager));
+}
+
+void QXmlSchemaValidator_SetSchema(void* ptr, void* schema){
+	static_cast<QXmlSchemaValidator*>(ptr)->setSchema(*static_cast<QXmlSchema*>(schema));
+}
+
+void QXmlSchemaValidator_SetUriResolver(void* ptr, void* resolver){
+	static_cast<QXmlSchemaValidator*>(ptr)->setUriResolver(static_cast<QAbstractUriResolver*>(resolver));
+}
+
+void* QXmlSchemaValidator_UriResolver(void* ptr){
+	return const_cast<QAbstractUriResolver*>(static_cast<QXmlSchemaValidator*>(ptr)->uriResolver());
+}
+
+int QXmlSchemaValidator_Validate2(void* ptr, void* source, void* documentUri){
+	return static_cast<QXmlSchemaValidator*>(ptr)->validate(static_cast<QIODevice*>(source), *static_cast<QUrl*>(documentUri));
+}
+
+int QXmlSchemaValidator_Validate3(void* ptr, void* data, void* documentUri){
+	return static_cast<QXmlSchemaValidator*>(ptr)->validate(*static_cast<QByteArray*>(data), *static_cast<QUrl*>(documentUri));
+}
+
+int QXmlSchemaValidator_Validate(void* ptr, void* source){
+	return static_cast<QXmlSchemaValidator*>(ptr)->validate(*static_cast<QUrl*>(source));
+}
+
+void QXmlSchemaValidator_DestroyQXmlSchemaValidator(void* ptr){
+	static_cast<QXmlSchemaValidator*>(ptr)->~QXmlSchemaValidator();
+}
+
+class MyQXmlSerializer: public QXmlSerializer {
+public:
+};
+
+void* QXmlSerializer_NewQXmlSerializer(void* query, void* outputDevice){
+	return new QXmlSerializer(*static_cast<QXmlQuery*>(query), static_cast<QIODevice*>(outputDevice));
+}
+
+void QXmlSerializer_Attribute(void* ptr, void* name, void* value){
+	static_cast<QXmlSerializer*>(ptr)->attribute(*static_cast<QXmlName*>(name), *static_cast<QStringRef*>(value));
+}
+
+void QXmlSerializer_Characters(void* ptr, void* value){
+	static_cast<QXmlSerializer*>(ptr)->characters(*static_cast<QStringRef*>(value));
+}
+
+void QXmlSerializer_Comment(void* ptr, char* value){
+	static_cast<QXmlSerializer*>(ptr)->comment(QString(value));
+}
+
+void QXmlSerializer_EndDocument(void* ptr){
+	static_cast<QXmlSerializer*>(ptr)->endDocument();
+}
+
+void QXmlSerializer_EndElement(void* ptr){
+	static_cast<QXmlSerializer*>(ptr)->endElement();
+}
+
+void* QXmlSerializer_Codec(void* ptr){
+	return const_cast<QTextCodec*>(static_cast<QXmlSerializer*>(ptr)->codec());
+}
+
+void QXmlSerializer_EndOfSequence(void* ptr){
+	static_cast<QXmlSerializer*>(ptr)->endOfSequence();
+}
+
+void QXmlSerializer_NamespaceBinding(void* ptr, void* nb){
+	static_cast<QXmlSerializer*>(ptr)->namespaceBinding(*static_cast<QXmlName*>(nb));
+}
+
+void* QXmlSerializer_OutputDevice(void* ptr){
+	return static_cast<QXmlSerializer*>(ptr)->outputDevice();
+}
+
+void QXmlSerializer_ProcessingInstruction(void* ptr, void* name, char* value){
+	static_cast<QXmlSerializer*>(ptr)->processingInstruction(*static_cast<QXmlName*>(name), QString(value));
+}
+
+void QXmlSerializer_SetCodec(void* ptr, void* outputCodec){
+	static_cast<QXmlSerializer*>(ptr)->setCodec(static_cast<QTextCodec*>(outputCodec));
+}
+
+void QXmlSerializer_StartDocument(void* ptr){
+	static_cast<QXmlSerializer*>(ptr)->startDocument();
+}
+
+void QXmlSerializer_StartElement(void* ptr, void* name){
+	static_cast<QXmlSerializer*>(ptr)->startElement(*static_cast<QXmlName*>(name));
+}
+
+void QXmlSerializer_StartOfSequence(void* ptr){
+	static_cast<QXmlSerializer*>(ptr)->startOfSequence();
 }
 

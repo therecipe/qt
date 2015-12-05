@@ -1,8 +1,9 @@
 package xml
 
-//#include "qdomcharacterdata.h"
+//#include "xml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,20 +34,44 @@ func (ptr *QDomCharacterData) QDomCharacterData_PTR() *QDomCharacterData {
 }
 
 func NewQDomCharacterData() *QDomCharacterData {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomCharacterData::QDomCharacterData")
+		}
+	}()
+
 	return NewQDomCharacterDataFromPointer(C.QDomCharacterData_NewQDomCharacterData())
 }
 
 func NewQDomCharacterData2(x QDomCharacterData_ITF) *QDomCharacterData {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomCharacterData::QDomCharacterData")
+		}
+	}()
+
 	return NewQDomCharacterDataFromPointer(C.QDomCharacterData_NewQDomCharacterData2(PointerFromQDomCharacterData(x)))
 }
 
 func (ptr *QDomCharacterData) AppendData(arg string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomCharacterData::appendData")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDomCharacterData_AppendData(ptr.Pointer(), C.CString(arg))
 	}
 }
 
 func (ptr *QDomCharacterData) Data() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomCharacterData::data")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomCharacterData_Data(ptr.Pointer()))
 	}
@@ -54,6 +79,12 @@ func (ptr *QDomCharacterData) Data() string {
 }
 
 func (ptr *QDomCharacterData) Length() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomCharacterData::length")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QDomCharacterData_Length(ptr.Pointer()))
 	}
@@ -61,6 +92,12 @@ func (ptr *QDomCharacterData) Length() int {
 }
 
 func (ptr *QDomCharacterData) NodeType() QDomNode__NodeType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomCharacterData::nodeType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomCharacterData_NodeType(ptr.Pointer()))
 	}
@@ -68,6 +105,12 @@ func (ptr *QDomCharacterData) NodeType() QDomNode__NodeType {
 }
 
 func (ptr *QDomCharacterData) SetData(v string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomCharacterData::setData")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDomCharacterData_SetData(ptr.Pointer(), C.CString(v))
 	}

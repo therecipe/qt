@@ -1,6 +1,6 @@
 package gui
 
-//#include "qrasterpaintengine.h"
+//#include "gui.h"
 import "C"
 import (
 	"unsafe"

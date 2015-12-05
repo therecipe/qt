@@ -1,8 +1,9 @@
 package xml
 
-//#include "qxmldtdhandler.h"
+//#include "xml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QXmlDTDHandler) QXmlDTDHandler_PTR() *QXmlDTDHandler {
 }
 
 func (ptr *QXmlDTDHandler) ErrorString() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlDTDHandler::errorString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlDTDHandler_ErrorString(ptr.Pointer()))
 	}
@@ -47,6 +54,12 @@ func (ptr *QXmlDTDHandler) ErrorString() string {
 }
 
 func (ptr *QXmlDTDHandler) NotationDecl(name string, publicId string, systemId string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlDTDHandler::notationDecl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QXmlDTDHandler_NotationDecl(ptr.Pointer(), C.CString(name), C.CString(publicId), C.CString(systemId)) != 0
 	}
@@ -54,6 +67,12 @@ func (ptr *QXmlDTDHandler) NotationDecl(name string, publicId string, systemId s
 }
 
 func (ptr *QXmlDTDHandler) UnparsedEntityDecl(name string, publicId string, systemId string, notationName string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlDTDHandler::unparsedEntityDecl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QXmlDTDHandler_UnparsedEntityDecl(ptr.Pointer(), C.CString(name), C.CString(publicId), C.CString(systemId), C.CString(notationName)) != 0
 	}
@@ -61,6 +80,12 @@ func (ptr *QXmlDTDHandler) UnparsedEntityDecl(name string, publicId string, syst
 }
 
 func (ptr *QXmlDTDHandler) DestroyQXmlDTDHandler() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlDTDHandler::~QXmlDTDHandler")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QXmlDTDHandler_DestroyQXmlDTDHandler(ptr.Pointer())
 	}

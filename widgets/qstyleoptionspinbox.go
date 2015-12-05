@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptionspinbox.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -47,9 +48,21 @@ var (
 )
 
 func NewQStyleOptionSpinBox() *QStyleOptionSpinBox {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionSpinBox::QStyleOptionSpinBox")
+		}
+	}()
+
 	return NewQStyleOptionSpinBoxFromPointer(C.QStyleOptionSpinBox_NewQStyleOptionSpinBox())
 }
 
 func NewQStyleOptionSpinBox2(other QStyleOptionSpinBox_ITF) *QStyleOptionSpinBox {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionSpinBox::QStyleOptionSpinBox")
+		}
+	}()
+
 	return NewQStyleOptionSpinBoxFromPointer(C.QStyleOptionSpinBox_NewQStyleOptionSpinBox2(PointerFromQStyleOptionSpinBox(other)))
 }

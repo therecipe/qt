@@ -1,9 +1,10 @@
 package core
 
-//#include "qsavefile.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQSaveFile(ptr QSaveFile_ITF) unsafe.Pointer {
 func NewQSaveFileFromPointer(ptr unsafe.Pointer) *QSaveFile {
 	var n = new(QSaveFile)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QSaveFile_") {
 		n.SetObjectName("QSaveFile_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,24 +38,54 @@ func (ptr *QSaveFile) QSaveFile_PTR() *QSaveFile {
 }
 
 func NewQSaveFile2(parent QObject_ITF) *QSaveFile {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSaveFile::QSaveFile")
+		}
+	}()
+
 	return NewQSaveFileFromPointer(C.QSaveFile_NewQSaveFile2(PointerFromQObject(parent)))
 }
 
 func NewQSaveFile(name string) *QSaveFile {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSaveFile::QSaveFile")
+		}
+	}()
+
 	return NewQSaveFileFromPointer(C.QSaveFile_NewQSaveFile(C.CString(name)))
 }
 
 func NewQSaveFile3(name string, parent QObject_ITF) *QSaveFile {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSaveFile::QSaveFile")
+		}
+	}()
+
 	return NewQSaveFileFromPointer(C.QSaveFile_NewQSaveFile3(C.CString(name), PointerFromQObject(parent)))
 }
 
 func (ptr *QSaveFile) CancelWriting() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSaveFile::cancelWriting")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSaveFile_CancelWriting(ptr.Pointer())
 	}
 }
 
 func (ptr *QSaveFile) Commit() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSaveFile::commit")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QSaveFile_Commit(ptr.Pointer()) != 0
 	}
@@ -62,6 +93,12 @@ func (ptr *QSaveFile) Commit() bool {
 }
 
 func (ptr *QSaveFile) DirectWriteFallback() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSaveFile::directWriteFallback")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QSaveFile_DirectWriteFallback(ptr.Pointer()) != 0
 	}
@@ -69,6 +106,12 @@ func (ptr *QSaveFile) DirectWriteFallback() bool {
 }
 
 func (ptr *QSaveFile) FileName() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSaveFile::fileName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSaveFile_FileName(ptr.Pointer()))
 	}
@@ -76,6 +119,12 @@ func (ptr *QSaveFile) FileName() string {
 }
 
 func (ptr *QSaveFile) Open(mode QIODevice__OpenModeFlag) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSaveFile::open")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QSaveFile_Open(ptr.Pointer(), C.int(mode)) != 0
 	}
@@ -83,18 +132,36 @@ func (ptr *QSaveFile) Open(mode QIODevice__OpenModeFlag) bool {
 }
 
 func (ptr *QSaveFile) SetDirectWriteFallback(enabled bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSaveFile::setDirectWriteFallback")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSaveFile_SetDirectWriteFallback(ptr.Pointer(), C.int(qt.GoBoolToInt(enabled)))
 	}
 }
 
 func (ptr *QSaveFile) SetFileName(name string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSaveFile::setFileName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSaveFile_SetFileName(ptr.Pointer(), C.CString(name))
 	}
 }
 
 func (ptr *QSaveFile) DestroyQSaveFile() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSaveFile::~QSaveFile")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSaveFile_DestroyQSaveFile(ptr.Pointer())
 		ptr.SetPointer(nil)

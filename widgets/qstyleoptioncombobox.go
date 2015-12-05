@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptioncombobox.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -47,9 +48,21 @@ var (
 )
 
 func NewQStyleOptionComboBox() *QStyleOptionComboBox {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionComboBox::QStyleOptionComboBox")
+		}
+	}()
+
 	return NewQStyleOptionComboBoxFromPointer(C.QStyleOptionComboBox_NewQStyleOptionComboBox())
 }
 
 func NewQStyleOptionComboBox2(other QStyleOptionComboBox_ITF) *QStyleOptionComboBox {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionComboBox::QStyleOptionComboBox")
+		}
+	}()
+
 	return NewQStyleOptionComboBoxFromPointer(C.QStyleOptionComboBox_NewQStyleOptionComboBox2(PointerFromQStyleOptionComboBox(other)))
 }

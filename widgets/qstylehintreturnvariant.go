@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstylehintreturnvariant.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -47,10 +48,22 @@ var (
 )
 
 func NewQStyleHintReturnVariant() *QStyleHintReturnVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleHintReturnVariant::QStyleHintReturnVariant")
+		}
+	}()
+
 	return NewQStyleHintReturnVariantFromPointer(C.QStyleHintReturnVariant_NewQStyleHintReturnVariant())
 }
 
 func (ptr *QStyleHintReturnVariant) DestroyQStyleHintReturnVariant() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleHintReturnVariant::~QStyleHintReturnVariant")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyleHintReturnVariant_DestroyQStyleHintReturnVariant(ptr.Pointer())
 	}

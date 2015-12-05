@@ -1,10 +1,11 @@
 package widgets
 
-//#include "qtapgesture.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQTapGesture(ptr QTapGesture_ITF) unsafe.Pointer {
 func NewQTapGestureFromPointer(ptr unsafe.Pointer) *QTapGesture {
 	var n = new(QTapGesture)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QTapGesture_") {
 		n.SetObjectName("QTapGesture_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,12 +39,24 @@ func (ptr *QTapGesture) QTapGesture_PTR() *QTapGesture {
 }
 
 func (ptr *QTapGesture) SetPosition(pos core.QPointF_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTapGesture::setPosition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTapGesture_SetPosition(ptr.Pointer(), core.PointerFromQPointF(pos))
 	}
 }
 
 func (ptr *QTapGesture) DestroyQTapGesture() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTapGesture::~QTapGesture")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTapGesture_DestroyQTapGesture(ptr.Pointer())
 		ptr.SetPointer(nil)

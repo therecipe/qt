@@ -1,9 +1,10 @@
 package gui
 
-//#include "qpicture.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,6 +35,12 @@ func (ptr *QPicture) QPicture_PTR() *QPicture {
 }
 
 func (ptr *QPicture) IsNull() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPicture::isNull")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPicture_IsNull(ptr.Pointer()) != 0
 	}
@@ -41,6 +48,12 @@ func (ptr *QPicture) IsNull() bool {
 }
 
 func (ptr *QPicture) Load2(dev core.QIODevice_ITF, format string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPicture::load")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPicture_Load2(ptr.Pointer(), core.PointerFromQIODevice(dev), C.CString(format)) != 0
 	}
@@ -48,6 +61,12 @@ func (ptr *QPicture) Load2(dev core.QIODevice_ITF, format string) bool {
 }
 
 func (ptr *QPicture) Load(fileName string, format string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPicture::load")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPicture_Load(ptr.Pointer(), C.CString(fileName), C.CString(format)) != 0
 	}
@@ -55,6 +74,12 @@ func (ptr *QPicture) Load(fileName string, format string) bool {
 }
 
 func (ptr *QPicture) Play(painter QPainter_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPicture::play")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPicture_Play(ptr.Pointer(), PointerFromQPainter(painter)) != 0
 	}
@@ -62,6 +87,12 @@ func (ptr *QPicture) Play(painter QPainter_ITF) bool {
 }
 
 func (ptr *QPicture) Save2(dev core.QIODevice_ITF, format string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPicture::save")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPicture_Save2(ptr.Pointer(), core.PointerFromQIODevice(dev), C.CString(format)) != 0
 	}
@@ -69,6 +100,12 @@ func (ptr *QPicture) Save2(dev core.QIODevice_ITF, format string) bool {
 }
 
 func (ptr *QPicture) Save(fileName string, format string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPicture::save")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPicture_Save(ptr.Pointer(), C.CString(fileName), C.CString(format)) != 0
 	}
@@ -76,18 +113,36 @@ func (ptr *QPicture) Save(fileName string, format string) bool {
 }
 
 func (ptr *QPicture) SetBoundingRect(r core.QRect_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPicture::setBoundingRect")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPicture_SetBoundingRect(ptr.Pointer(), core.PointerFromQRect(r))
 	}
 }
 
 func (ptr *QPicture) Swap(other QPicture_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPicture::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPicture_Swap(ptr.Pointer(), PointerFromQPicture(other))
 	}
 }
 
 func (ptr *QPicture) DestroyQPicture() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPicture::~QPicture")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPicture_DestroyQPicture(ptr.Pointer())
 	}

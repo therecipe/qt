@@ -1,6 +1,6 @@
 package gui
 
-//#include "qaccessibleplugin.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQAccessiblePlugin(ptr QAccessiblePlugin_ITF) unsafe.Pointer {
 func NewQAccessiblePluginFromPointer(ptr unsafe.Pointer) *QAccessiblePlugin {
 	var n = new(QAccessiblePlugin)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QAccessiblePlugin_") {
 		n.SetObjectName("QAccessiblePlugin_" + qt.RandomIdentifier())
 	}
 	return n

@@ -1,8 +1,9 @@
 package dbus
 
-//#include "qdbuspendingcall.h"
+//#include "dbus.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,16 +41,34 @@ func (ptr *QDBusPendingCall) QDBusPendingCall_PTR() *QDBusPendingCall {
 }
 
 func NewQDBusPendingCall(other QDBusPendingCall_ITF) *QDBusPendingCall {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusPendingCall::QDBusPendingCall")
+		}
+	}()
+
 	return NewQDBusPendingCallFromPointer(C.QDBusPendingCall_NewQDBusPendingCall(PointerFromQDBusPendingCall(other)))
 }
 
 func (ptr *QDBusPendingCall) Swap(other QDBusPendingCall_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusPendingCall::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCall_Swap(ptr.Pointer(), PointerFromQDBusPendingCall(other))
 	}
 }
 
 func (ptr *QDBusPendingCall) DestroyQDBusPendingCall() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusPendingCall::~QDBusPendingCall")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCall_DestroyQDBusPendingCall(ptr.Pointer())
 	}

@@ -2,6 +2,7 @@ package androidextras
 
 import (
 	"C"
+	"strings"
 	"unsafe"
 
 	"github.com/therecipe/qt"
@@ -13,6 +14,10 @@ func assertion(key int, input ...interface{}) unsafe.Pointer {
 		case string:
 			{
 				return QAndroidJniObject_FromString(input[key].(string)).Object()
+			}
+		case []string:
+			{
+				return QAndroidJniObject_FromString(strings.Join(input[key].([]string), ",,,")).CallObjectMethod2("split", "(Ljava/lang/String;)[Ljava/lang/String;", ",,,").Object()
 			}
 		case int:
 			{

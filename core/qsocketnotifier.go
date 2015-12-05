@@ -1,9 +1,10 @@
 package core
 
-//#include "qsocketnotifier.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQSocketNotifier(ptr QSocketNotifier_ITF) unsafe.Pointer {
 func NewQSocketNotifierFromPointer(ptr unsafe.Pointer) *QSocketNotifier {
 	var n = new(QSocketNotifier)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QSocketNotifier_") {
 		n.SetObjectName("QSocketNotifier_" + qt.RandomIdentifier())
 	}
 	return n
@@ -46,6 +47,12 @@ const (
 )
 
 func (ptr *QSocketNotifier) ConnectActivated(f func(socket int)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSocketNotifier::activated")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSocketNotifier_ConnectActivated(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "activated", f)
@@ -53,6 +60,12 @@ func (ptr *QSocketNotifier) ConnectActivated(f func(socket int)) {
 }
 
 func (ptr *QSocketNotifier) DisconnectActivated() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSocketNotifier::activated")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSocketNotifier_DisconnectActivated(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "activated")
@@ -61,10 +74,22 @@ func (ptr *QSocketNotifier) DisconnectActivated() {
 
 //export callbackQSocketNotifierActivated
 func callbackQSocketNotifierActivated(ptrName *C.char, socket C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSocketNotifier::activated")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "activated").(func(int))(int(socket))
 }
 
 func (ptr *QSocketNotifier) IsEnabled() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSocketNotifier::isEnabled")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QSocketNotifier_IsEnabled(ptr.Pointer()) != 0
 	}
@@ -72,12 +97,24 @@ func (ptr *QSocketNotifier) IsEnabled() bool {
 }
 
 func (ptr *QSocketNotifier) SetEnabled(enable bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSocketNotifier::setEnabled")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSocketNotifier_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
 func (ptr *QSocketNotifier) Type() QSocketNotifier__Type {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSocketNotifier::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QSocketNotifier__Type(C.QSocketNotifier_Type(ptr.Pointer()))
 	}
@@ -85,6 +122,12 @@ func (ptr *QSocketNotifier) Type() QSocketNotifier__Type {
 }
 
 func (ptr *QSocketNotifier) DestroyQSocketNotifier() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSocketNotifier::~QSocketNotifier")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSocketNotifier_DestroyQSocketNotifier(ptr.Pointer())
 		ptr.SetPointer(nil)

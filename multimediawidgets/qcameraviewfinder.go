@@ -1,11 +1,12 @@
 package multimediawidgets
 
-//#include "qcameraviewfinder.h"
+//#include "multimediawidgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/multimedia"
 	"github.com/therecipe/qt/widgets"
+	"log"
 	"unsafe"
 )
 
@@ -28,7 +29,7 @@ func PointerFromQCameraViewfinder(ptr QCameraViewfinder_ITF) unsafe.Pointer {
 func NewQCameraViewfinderFromPointer(ptr unsafe.Pointer) *QCameraViewfinder {
 	var n = new(QCameraViewfinder)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QCameraViewfinder_") {
 		n.SetObjectName("QCameraViewfinder_" + qt.RandomIdentifier())
 	}
 	return n
@@ -39,10 +40,22 @@ func (ptr *QCameraViewfinder) QCameraViewfinder_PTR() *QCameraViewfinder {
 }
 
 func NewQCameraViewfinder(parent widgets.QWidget_ITF) *QCameraViewfinder {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraViewfinder::QCameraViewfinder")
+		}
+	}()
+
 	return NewQCameraViewfinderFromPointer(C.QCameraViewfinder_NewQCameraViewfinder(widgets.PointerFromQWidget(parent)))
 }
 
 func (ptr *QCameraViewfinder) MediaObject() *multimedia.QMediaObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraViewfinder::mediaObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return multimedia.NewQMediaObjectFromPointer(C.QCameraViewfinder_MediaObject(ptr.Pointer()))
 	}
@@ -50,6 +63,12 @@ func (ptr *QCameraViewfinder) MediaObject() *multimedia.QMediaObject {
 }
 
 func (ptr *QCameraViewfinder) DestroyQCameraViewfinder() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraViewfinder::~QCameraViewfinder")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinder_DestroyQCameraViewfinder(ptr.Pointer())
 		ptr.SetPointer(nil)

@@ -1,6 +1,6 @@
 package widgets
 
-//#include "qgraphicslayout.h"
+//#include "widgets.h"
 import "C"
 import (
 	"unsafe"

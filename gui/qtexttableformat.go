@@ -1,9 +1,10 @@
 package gui
 
-//#include "qtexttableformat.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,10 +35,22 @@ func (ptr *QTextTableFormat) QTextTableFormat_PTR() *QTextTableFormat {
 }
 
 func NewQTextTableFormat() *QTextTableFormat {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextTableFormat::QTextTableFormat")
+		}
+	}()
+
 	return NewQTextTableFormatFromPointer(C.QTextTableFormat_NewQTextTableFormat())
 }
 
 func (ptr *QTextTableFormat) Alignment() core.Qt__AlignmentFlag {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextTableFormat::alignment")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__AlignmentFlag(C.QTextTableFormat_Alignment(ptr.Pointer()))
 	}
@@ -45,6 +58,12 @@ func (ptr *QTextTableFormat) Alignment() core.Qt__AlignmentFlag {
 }
 
 func (ptr *QTextTableFormat) CellPadding() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextTableFormat::cellPadding")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextTableFormat_CellPadding(ptr.Pointer()))
 	}
@@ -52,6 +71,12 @@ func (ptr *QTextTableFormat) CellPadding() float64 {
 }
 
 func (ptr *QTextTableFormat) CellSpacing() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextTableFormat::cellSpacing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextTableFormat_CellSpacing(ptr.Pointer()))
 	}
@@ -59,12 +84,24 @@ func (ptr *QTextTableFormat) CellSpacing() float64 {
 }
 
 func (ptr *QTextTableFormat) ClearColumnWidthConstraints() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextTableFormat::clearColumnWidthConstraints")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextTableFormat_ClearColumnWidthConstraints(ptr.Pointer())
 	}
 }
 
 func (ptr *QTextTableFormat) Columns() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextTableFormat::columns")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextTableFormat_Columns(ptr.Pointer()))
 	}
@@ -72,6 +109,12 @@ func (ptr *QTextTableFormat) Columns() int {
 }
 
 func (ptr *QTextTableFormat) HeaderRowCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextTableFormat::headerRowCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextTableFormat_HeaderRowCount(ptr.Pointer()))
 	}
@@ -79,6 +122,12 @@ func (ptr *QTextTableFormat) HeaderRowCount() int {
 }
 
 func (ptr *QTextTableFormat) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextTableFormat::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTextTableFormat_IsValid(ptr.Pointer()) != 0
 	}
@@ -86,24 +135,48 @@ func (ptr *QTextTableFormat) IsValid() bool {
 }
 
 func (ptr *QTextTableFormat) SetAlignment(alignment core.Qt__AlignmentFlag) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextTableFormat::setAlignment")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextTableFormat_SetAlignment(ptr.Pointer(), C.int(alignment))
 	}
 }
 
 func (ptr *QTextTableFormat) SetCellPadding(padding float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextTableFormat::setCellPadding")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextTableFormat_SetCellPadding(ptr.Pointer(), C.double(padding))
 	}
 }
 
 func (ptr *QTextTableFormat) SetCellSpacing(spacing float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextTableFormat::setCellSpacing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextTableFormat_SetCellSpacing(ptr.Pointer(), C.double(spacing))
 	}
 }
 
 func (ptr *QTextTableFormat) SetHeaderRowCount(count int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextTableFormat::setHeaderRowCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextTableFormat_SetHeaderRowCount(ptr.Pointer(), C.int(count))
 	}

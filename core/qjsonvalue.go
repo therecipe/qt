@@ -1,9 +1,10 @@
 package core
 
-//#include "qjsonvalue.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -54,42 +55,102 @@ const (
 )
 
 func NewQJsonValue5(s QLatin1String_ITF) *QJsonValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::QJsonValue")
+		}
+	}()
+
 	return NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue5(PointerFromQLatin1String(s)))
 }
 
 func NewQJsonValue(ty QJsonValue__Type) *QJsonValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::QJsonValue")
+		}
+	}()
+
 	return NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue(C.int(ty)))
 }
 
 func NewQJsonValue2(b bool) *QJsonValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::QJsonValue")
+		}
+	}()
+
 	return NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue2(C.int(qt.GoBoolToInt(b))))
 }
 
 func NewQJsonValue7(a QJsonArray_ITF) *QJsonValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::QJsonValue")
+		}
+	}()
+
 	return NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue7(PointerFromQJsonArray(a)))
 }
 
 func NewQJsonValue8(o QJsonObject_ITF) *QJsonValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::QJsonValue")
+		}
+	}()
+
 	return NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue8(PointerFromQJsonObject(o)))
 }
 
 func NewQJsonValue9(other QJsonValue_ITF) *QJsonValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::QJsonValue")
+		}
+	}()
+
 	return NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue9(PointerFromQJsonValue(other)))
 }
 
 func NewQJsonValue4(s string) *QJsonValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::QJsonValue")
+		}
+	}()
+
 	return NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue4(C.CString(s)))
 }
 
 func NewQJsonValue6(s string) *QJsonValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::QJsonValue")
+		}
+	}()
+
 	return NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue6(C.CString(s)))
 }
 
 func NewQJsonValue12(n int) *QJsonValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::QJsonValue")
+		}
+	}()
+
 	return NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue12(C.int(n)))
 }
 
 func (ptr *QJsonValue) IsArray() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::isArray")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QJsonValue_IsArray(ptr.Pointer()) != 0
 	}
@@ -97,6 +158,12 @@ func (ptr *QJsonValue) IsArray() bool {
 }
 
 func (ptr *QJsonValue) IsBool() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::isBool")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QJsonValue_IsBool(ptr.Pointer()) != 0
 	}
@@ -104,6 +171,12 @@ func (ptr *QJsonValue) IsBool() bool {
 }
 
 func (ptr *QJsonValue) IsDouble() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::isDouble")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QJsonValue_IsDouble(ptr.Pointer()) != 0
 	}
@@ -111,6 +184,12 @@ func (ptr *QJsonValue) IsDouble() bool {
 }
 
 func (ptr *QJsonValue) IsNull() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::isNull")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QJsonValue_IsNull(ptr.Pointer()) != 0
 	}
@@ -118,6 +197,12 @@ func (ptr *QJsonValue) IsNull() bool {
 }
 
 func (ptr *QJsonValue) IsObject() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::isObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QJsonValue_IsObject(ptr.Pointer()) != 0
 	}
@@ -125,6 +210,12 @@ func (ptr *QJsonValue) IsObject() bool {
 }
 
 func (ptr *QJsonValue) IsString() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::isString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QJsonValue_IsString(ptr.Pointer()) != 0
 	}
@@ -132,6 +223,12 @@ func (ptr *QJsonValue) IsString() bool {
 }
 
 func (ptr *QJsonValue) IsUndefined() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::isUndefined")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QJsonValue_IsUndefined(ptr.Pointer()) != 0
 	}
@@ -139,6 +236,12 @@ func (ptr *QJsonValue) IsUndefined() bool {
 }
 
 func (ptr *QJsonValue) ToArray2() *QJsonArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::toArray")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQJsonArrayFromPointer(C.QJsonValue_ToArray2(ptr.Pointer()))
 	}
@@ -146,6 +249,12 @@ func (ptr *QJsonValue) ToArray2() *QJsonArray {
 }
 
 func (ptr *QJsonValue) ToArray(defaultValue QJsonArray_ITF) *QJsonArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::toArray")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQJsonArrayFromPointer(C.QJsonValue_ToArray(ptr.Pointer(), PointerFromQJsonArray(defaultValue)))
 	}
@@ -153,6 +262,12 @@ func (ptr *QJsonValue) ToArray(defaultValue QJsonArray_ITF) *QJsonArray {
 }
 
 func (ptr *QJsonValue) ToBool(defaultValue bool) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::toBool")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QJsonValue_ToBool(ptr.Pointer(), C.int(qt.GoBoolToInt(defaultValue))) != 0
 	}
@@ -160,6 +275,12 @@ func (ptr *QJsonValue) ToBool(defaultValue bool) bool {
 }
 
 func (ptr *QJsonValue) ToInt(defaultValue int) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::toInt")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QJsonValue_ToInt(ptr.Pointer(), C.int(defaultValue)))
 	}
@@ -167,6 +288,12 @@ func (ptr *QJsonValue) ToInt(defaultValue int) int {
 }
 
 func (ptr *QJsonValue) ToObject2() *QJsonObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::toObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQJsonObjectFromPointer(C.QJsonValue_ToObject2(ptr.Pointer()))
 	}
@@ -174,6 +301,12 @@ func (ptr *QJsonValue) ToObject2() *QJsonObject {
 }
 
 func (ptr *QJsonValue) ToObject(defaultValue QJsonObject_ITF) *QJsonObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::toObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQJsonObjectFromPointer(C.QJsonValue_ToObject(ptr.Pointer(), PointerFromQJsonObject(defaultValue)))
 	}
@@ -181,6 +314,12 @@ func (ptr *QJsonValue) ToObject(defaultValue QJsonObject_ITF) *QJsonObject {
 }
 
 func (ptr *QJsonValue) ToString(defaultValue string) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::toString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QJsonValue_ToString(ptr.Pointer(), C.CString(defaultValue)))
 	}
@@ -188,6 +327,12 @@ func (ptr *QJsonValue) ToString(defaultValue string) string {
 }
 
 func (ptr *QJsonValue) ToVariant() *QVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::toVariant")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QJsonValue_ToVariant(ptr.Pointer()))
 	}
@@ -195,6 +340,12 @@ func (ptr *QJsonValue) ToVariant() *QVariant {
 }
 
 func (ptr *QJsonValue) Type() QJsonValue__Type {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QJsonValue__Type(C.QJsonValue_Type(ptr.Pointer()))
 	}
@@ -202,6 +353,12 @@ func (ptr *QJsonValue) Type() QJsonValue__Type {
 }
 
 func (ptr *QJsonValue) DestroyQJsonValue() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QJsonValue::~QJsonValue")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QJsonValue_DestroyQJsonValue(ptr.Pointer())
 	}

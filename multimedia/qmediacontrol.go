@@ -1,10 +1,11 @@
 package multimedia
 
-//#include "qmediacontrol.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQMediaControl(ptr QMediaControl_ITF) unsafe.Pointer {
 func NewQMediaControlFromPointer(ptr unsafe.Pointer) *QMediaControl {
 	var n = new(QMediaControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QMediaControl_") {
 		n.SetObjectName("QMediaControl_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QMediaControl) QMediaControl_PTR() *QMediaControl {
 }
 
 func (ptr *QMediaControl) DestroyQMediaControl() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaControl::~QMediaControl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMediaControl_DestroyQMediaControl(ptr.Pointer())
 		ptr.SetPointer(nil)

@@ -1,8 +1,9 @@
 package xml
 
-//#include "qxmllocator.h"
+//#include "xml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QXmlLocator) QXmlLocator_PTR() *QXmlLocator {
 }
 
 func (ptr *QXmlLocator) ColumnNumber() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlLocator::columnNumber")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QXmlLocator_ColumnNumber(ptr.Pointer()))
 	}
@@ -47,6 +54,12 @@ func (ptr *QXmlLocator) ColumnNumber() int {
 }
 
 func (ptr *QXmlLocator) LineNumber() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlLocator::lineNumber")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QXmlLocator_LineNumber(ptr.Pointer()))
 	}
@@ -54,6 +67,12 @@ func (ptr *QXmlLocator) LineNumber() int {
 }
 
 func (ptr *QXmlLocator) DestroyQXmlLocator() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlLocator::~QXmlLocator")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QXmlLocator_DestroyQXmlLocator(ptr.Pointer())
 	}

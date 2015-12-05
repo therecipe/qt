@@ -1,8 +1,9 @@
 package core
 
-//#include "qabstractnativeeventfilter.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QAbstractNativeEventFilter) QAbstractNativeEventFilter_PTR() *QAbstra
 }
 
 func (ptr *QAbstractNativeEventFilter) DestroyQAbstractNativeEventFilter() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractNativeEventFilter::~QAbstractNativeEventFilter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(ptr.Pointer())
 	}

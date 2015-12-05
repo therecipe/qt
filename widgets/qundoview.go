@@ -1,10 +1,11 @@
 package widgets
 
-//#include "qundoview.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/gui"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQUndoView(ptr QUndoView_ITF) unsafe.Pointer {
 func NewQUndoViewFromPointer(ptr unsafe.Pointer) *QUndoView {
 	var n = new(QUndoView)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QUndoView_") {
 		n.SetObjectName("QUndoView_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QUndoView) QUndoView_PTR() *QUndoView {
 }
 
 func (ptr *QUndoView) EmptyLabel() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUndoView::emptyLabel")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QUndoView_EmptyLabel(ptr.Pointer()))
 	}
@@ -45,30 +52,66 @@ func (ptr *QUndoView) EmptyLabel() string {
 }
 
 func (ptr *QUndoView) SetCleanIcon(icon gui.QIcon_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUndoView::setCleanIcon")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QUndoView_SetCleanIcon(ptr.Pointer(), gui.PointerFromQIcon(icon))
 	}
 }
 
 func (ptr *QUndoView) SetEmptyLabel(label string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUndoView::setEmptyLabel")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QUndoView_SetEmptyLabel(ptr.Pointer(), C.CString(label))
 	}
 }
 
 func NewQUndoView3(group QUndoGroup_ITF, parent QWidget_ITF) *QUndoView {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUndoView::QUndoView")
+		}
+	}()
+
 	return NewQUndoViewFromPointer(C.QUndoView_NewQUndoView3(PointerFromQUndoGroup(group), PointerFromQWidget(parent)))
 }
 
 func NewQUndoView2(stack QUndoStack_ITF, parent QWidget_ITF) *QUndoView {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUndoView::QUndoView")
+		}
+	}()
+
 	return NewQUndoViewFromPointer(C.QUndoView_NewQUndoView2(PointerFromQUndoStack(stack), PointerFromQWidget(parent)))
 }
 
 func NewQUndoView(parent QWidget_ITF) *QUndoView {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUndoView::QUndoView")
+		}
+	}()
+
 	return NewQUndoViewFromPointer(C.QUndoView_NewQUndoView(PointerFromQWidget(parent)))
 }
 
 func (ptr *QUndoView) Group() *QUndoGroup {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUndoView::group")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQUndoGroupFromPointer(C.QUndoView_Group(ptr.Pointer()))
 	}
@@ -76,18 +119,36 @@ func (ptr *QUndoView) Group() *QUndoGroup {
 }
 
 func (ptr *QUndoView) SetGroup(group QUndoGroup_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUndoView::setGroup")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QUndoView_SetGroup(ptr.Pointer(), PointerFromQUndoGroup(group))
 	}
 }
 
 func (ptr *QUndoView) SetStack(stack QUndoStack_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUndoView::setStack")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QUndoView_SetStack(ptr.Pointer(), PointerFromQUndoStack(stack))
 	}
 }
 
 func (ptr *QUndoView) Stack() *QUndoStack {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUndoView::stack")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQUndoStackFromPointer(C.QUndoView_Stack(ptr.Pointer()))
 	}
@@ -95,6 +156,12 @@ func (ptr *QUndoView) Stack() *QUndoStack {
 }
 
 func (ptr *QUndoView) DestroyQUndoView() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUndoView::~QUndoView")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QUndoView_DestroyQUndoView(ptr.Pointer())
 		ptr.SetPointer(nil)

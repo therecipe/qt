@@ -1,9 +1,10 @@
 package dbus
 
-//#include "qdbusconnection.h"
+//#include "dbus.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -89,14 +90,32 @@ const (
 )
 
 func NewQDBusConnection2(other QDBusConnection_ITF) *QDBusConnection {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::QDBusConnection")
+		}
+	}()
+
 	return NewQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection2(PointerFromQDBusConnection(other)))
 }
 
 func NewQDBusConnection(name string) *QDBusConnection {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::QDBusConnection")
+		}
+	}()
+
 	return NewQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection(C.CString(name)))
 }
 
 func (ptr *QDBusConnection) BaseService() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::baseService")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusConnection_BaseService(ptr.Pointer()))
 	}
@@ -104,6 +123,12 @@ func (ptr *QDBusConnection) BaseService() string {
 }
 
 func (ptr *QDBusConnection) CallWithCallback(message QDBusMessage_ITF, receiver core.QObject_ITF, returnMethod string, errorMethod string, timeout int) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::callWithCallback")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusConnection_CallWithCallback(ptr.Pointer(), PointerFromQDBusMessage(message), core.PointerFromQObject(receiver), C.CString(returnMethod), C.CString(errorMethod), C.int(timeout)) != 0
 	}
@@ -111,6 +136,12 @@ func (ptr *QDBusConnection) CallWithCallback(message QDBusMessage_ITF, receiver 
 }
 
 func (ptr *QDBusConnection) Connect(service string, path string, interfa string, name string, receiver core.QObject_ITF, slot string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::connect")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusConnection_Connect(ptr.Pointer(), C.CString(service), C.CString(path), C.CString(interfa), C.CString(name), core.PointerFromQObject(receiver), C.CString(slot)) != 0
 	}
@@ -118,6 +149,12 @@ func (ptr *QDBusConnection) Connect(service string, path string, interfa string,
 }
 
 func (ptr *QDBusConnection) Connect2(service string, path string, interfa string, name string, signature string, receiver core.QObject_ITF, slot string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::connect")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusConnection_Connect2(ptr.Pointer(), C.CString(service), C.CString(path), C.CString(interfa), C.CString(name), C.CString(signature), core.PointerFromQObject(receiver), C.CString(slot)) != 0
 	}
@@ -125,13 +162,25 @@ func (ptr *QDBusConnection) Connect2(service string, path string, interfa string
 }
 
 func (ptr *QDBusConnection) Connect3(service string, path string, interfa string, name string, argumentMatch []string, signature string, receiver core.QObject_ITF, slot string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::connect")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return C.QDBusConnection_Connect3(ptr.Pointer(), C.CString(service), C.CString(path), C.CString(interfa), C.CString(name), C.CString(strings.Join(argumentMatch, "|")), C.CString(signature), core.PointerFromQObject(receiver), C.CString(slot)) != 0
+		return C.QDBusConnection_Connect3(ptr.Pointer(), C.CString(service), C.CString(path), C.CString(interfa), C.CString(name), C.CString(strings.Join(argumentMatch, ",,,")), C.CString(signature), core.PointerFromQObject(receiver), C.CString(slot)) != 0
 	}
 	return false
 }
 
 func (ptr *QDBusConnection) ConnectionCapabilities() QDBusConnection__ConnectionCapability {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::connectionCapabilities")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QDBusConnection__ConnectionCapability(C.QDBusConnection_ConnectionCapabilities(ptr.Pointer()))
 	}
@@ -139,14 +188,32 @@ func (ptr *QDBusConnection) ConnectionCapabilities() QDBusConnection__Connection
 }
 
 func QDBusConnection_DisconnectFromBus(name string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::disconnectFromBus")
+		}
+	}()
+
 	C.QDBusConnection_QDBusConnection_DisconnectFromBus(C.CString(name))
 }
 
 func QDBusConnection_DisconnectFromPeer(name string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::disconnectFromPeer")
+		}
+	}()
+
 	C.QDBusConnection_QDBusConnection_DisconnectFromPeer(C.CString(name))
 }
 
 func (ptr *QDBusConnection) Interface() *QDBusConnectionInterface {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::interface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQDBusConnectionInterfaceFromPointer(C.QDBusConnection_Interface(ptr.Pointer()))
 	}
@@ -154,6 +221,12 @@ func (ptr *QDBusConnection) Interface() *QDBusConnectionInterface {
 }
 
 func (ptr *QDBusConnection) IsConnected() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::isConnected")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusConnection_IsConnected(ptr.Pointer()) != 0
 	}
@@ -161,10 +234,22 @@ func (ptr *QDBusConnection) IsConnected() bool {
 }
 
 func QDBusConnection_LocalMachineId() *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::localMachineId")
+		}
+	}()
+
 	return core.NewQByteArrayFromPointer(C.QDBusConnection_QDBusConnection_LocalMachineId())
 }
 
 func (ptr *QDBusConnection) Name() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::name")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusConnection_Name(ptr.Pointer()))
 	}
@@ -172,6 +257,12 @@ func (ptr *QDBusConnection) Name() string {
 }
 
 func (ptr *QDBusConnection) ObjectRegisteredAt(path string) *core.QObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::objectRegisteredAt")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QDBusConnection_ObjectRegisteredAt(ptr.Pointer(), C.CString(path)))
 	}
@@ -179,6 +270,12 @@ func (ptr *QDBusConnection) ObjectRegisteredAt(path string) *core.QObject {
 }
 
 func (ptr *QDBusConnection) RegisterObject(path string, object core.QObject_ITF, options QDBusConnection__RegisterOption) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::registerObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusConnection_RegisterObject(ptr.Pointer(), C.CString(path), core.PointerFromQObject(object), C.int(options)) != 0
 	}
@@ -186,6 +283,12 @@ func (ptr *QDBusConnection) RegisterObject(path string, object core.QObject_ITF,
 }
 
 func (ptr *QDBusConnection) RegisterObject2(path string, interfa string, object core.QObject_ITF, options QDBusConnection__RegisterOption) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::registerObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusConnection_RegisterObject2(ptr.Pointer(), C.CString(path), C.CString(interfa), core.PointerFromQObject(object), C.int(options)) != 0
 	}
@@ -193,6 +296,12 @@ func (ptr *QDBusConnection) RegisterObject2(path string, interfa string, object 
 }
 
 func (ptr *QDBusConnection) RegisterService(serviceName string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::registerService")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusConnection_RegisterService(ptr.Pointer(), C.CString(serviceName)) != 0
 	}
@@ -200,6 +309,12 @@ func (ptr *QDBusConnection) RegisterService(serviceName string) bool {
 }
 
 func (ptr *QDBusConnection) Send(message QDBusMessage_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::send")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusConnection_Send(ptr.Pointer(), PointerFromQDBusMessage(message)) != 0
 	}
@@ -207,12 +322,24 @@ func (ptr *QDBusConnection) Send(message QDBusMessage_ITF) bool {
 }
 
 func (ptr *QDBusConnection) UnregisterObject(path string, mode QDBusConnection__UnregisterMode) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::unregisterObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusConnection_UnregisterObject(ptr.Pointer(), C.CString(path), C.int(mode))
 	}
 }
 
 func (ptr *QDBusConnection) UnregisterService(serviceName string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::unregisterService")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusConnection_UnregisterService(ptr.Pointer(), C.CString(serviceName)) != 0
 	}
@@ -220,6 +347,12 @@ func (ptr *QDBusConnection) UnregisterService(serviceName string) bool {
 }
 
 func (ptr *QDBusConnection) DestroyQDBusConnection() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusConnection::~QDBusConnection")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusConnection_DestroyQDBusConnection(ptr.Pointer())
 	}

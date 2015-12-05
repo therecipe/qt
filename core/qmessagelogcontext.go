@@ -1,6 +1,6 @@
 package core
 
-//#include "qmessagelogcontext.h"
+//#include "core.h"
 import "C"
 import (
 	"unsafe"

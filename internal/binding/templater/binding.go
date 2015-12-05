@@ -20,10 +20,7 @@ func terminalSeperator(module string) string {
 }
 
 func GenModule(name string) {
-	var (
-		moduleT = name
-		cppTmp  string
-	)
+	var moduleT = name
 
 	name = strings.ToLower(name)
 
@@ -31,37 +28,47 @@ func GenModule(name string) {
 
 	if ShouldBuild(moduleT) {
 
+		var suffix string
+		if strings.TrimPrefix(name, "Qt") == "androidextras" {
+			suffix = "_android"
+		}
+
 		utils.RemoveAll(utils.GetQtPkgPath(name))
 		utils.RemoveAll(utils.GetQtPkgPath("internal", "binding", "dump", moduleT))
+
+		//Dry Run
+		for _, c := range parser.ClassMap {
+			if moduleT == strings.TrimPrefix(c.Module, "Qt") {
+				for _, f := range map[string]func(*parser.Class) string{"go": GoTemplate} {
+					f(c)
+				}
+			}
+		}
+		CppTemplateAIO("Qt" + moduleT)
+		HTemplateAIO("Qt" + moduleT)
+
+		utils.MakeFolder(utils.GetQtPkgPath(name))
+		utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v%v.cpp", strings.ToLower(moduleT), suffix)), CppTemplateAIO("Qt"+moduleT))
+		utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v%v.h", strings.ToLower(moduleT), suffix)), HTemplateAIO("Qt"+moduleT))
 
 		var fcount = 0
 		for _, c := range parser.ClassMap {
 
 			if moduleT == strings.TrimPrefix(c.Module, "Qt") {
 
-				//Dry run to catch all unsupported
-				for _, f := range map[string]func(*parser.Class) string{"cpp": CppTemplate, "h": HTemplate, "go": GoTemplate} {
-					f(c)
-				}
-
-				for e, f := range map[string]func(*parser.Class) string{"cpp": CppTemplate, "h": HTemplate, "go": GoTemplate} {
-					utils.MakeFolder(utils.GetQtPkgPath(name))
+				for e, f := range map[string]func(*parser.Class) string{"go": GoTemplate} {
 					CopyCgo(moduleT)
 
-					if e == "cpp" {
-						cppTmp += f(c)
+					if moduleT == "AndroidExtras" {
+						utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v_android.%v", strings.ToLower(c.Name), e)), f(c))
+
+						c.Stub = true
+						utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))
+						c.Stub = false
 					} else {
-						if moduleT == "AndroidExtras" {
-							utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v_android.%v", strings.ToLower(c.Name), e)), f(c))
-							if e == "go" {
-								c.Stub = true
-								utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))
-								c.Stub = false
-							}
-						} else {
-							utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))
-						}
+						utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.%v", strings.ToLower(c.Name), e)), f(c))
 					}
+
 				}
 
 				//c.Dump()
@@ -71,12 +78,6 @@ func GenModule(name string) {
 
 		}
 
-		if moduleT == "AndroidExtras" {
-			utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v_android.cpp", strings.ToLower(moduleT))), cppTmp)
-		} else {
-			utils.Save(utils.GetQtPkgPath(name, fmt.Sprintf("%v.cpp", strings.ToLower(moduleT))), cppTmp)
-		}
-
 		fmt.Printf("%v%v\tfunctions:%v", name, terminalSeperator(name), fcount)
 
 		if name == "androidextras" {
@@ -84,6 +85,7 @@ func GenModule(name string) {
 
 			import (
 				"C"
+				"strings"
 				"unsafe"
 
 				"github.com/therecipe/qt"
@@ -95,6 +97,10 @@ func GenModule(name string) {
 					case string:
 						{
 							return QAndroidJniObject_FromString(input[key].(string)).Object()
+						}
+					case []string:
+						{
+							return QAndroidJniObject_FromString(strings.Join(input[key].([]string), ",,,")).CallObjectMethod2("split", "(Ljava/lang/String;)[Ljava/lang/String;", ",,,").Object()
 						}
 					case int:
 						{

@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qproximityfilter.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QProximityFilter) QProximityFilter_PTR() *QProximityFilter {
 }
 
 func (ptr *QProximityFilter) Filter(reading QProximityReading_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QProximityFilter::filter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QProximityFilter_Filter(ptr.Pointer(), PointerFromQProximityReading(reading)) != 0
 	}

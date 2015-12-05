@@ -1,6 +1,6 @@
 package gui
 
-//#include "qopengldebuglogger.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQOpenGLDebugLogger(ptr QOpenGLDebugLogger_ITF) unsafe.Pointer {
 func NewQOpenGLDebugLoggerFromPointer(ptr unsafe.Pointer) *QOpenGLDebugLogger {
 	var n = new(QOpenGLDebugLogger)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QOpenGLDebugLogger_") {
 		n.SetObjectName("QOpenGLDebugLogger_" + qt.RandomIdentifier())
 	}
 	return n

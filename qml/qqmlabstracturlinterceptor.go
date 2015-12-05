@@ -1,8 +1,9 @@
 package qml
 
-//#include "qqmlabstracturlinterceptor.h"
+//#include "qml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -50,6 +51,12 @@ const (
 )
 
 func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptor() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(ptr.Pointer())
 	}

@@ -14,14 +14,11 @@ func cppFunctionSignal(f *parser.Function) string {
 
 func cppFunction(f *parser.Function) string {
 
-	if isTemplate(f) {
+	if isGeneric(f) {
 		var tmp string
-		for _, m := range []string{"Int", "Boolean", "Void"} {
-			if m == "Void" && (f.Fullname == "QAndroidJniObject::getField" || f.Fullname == "QAndroidJniObject::getStaticField") {
-			} else {
-				f.TemplateMode = m
-				tmp += fmt.Sprintf("%v{\n\t%v\n}\n", cppFunctionHeader(f), cppFunctionBody(f))
-			}
+		for _, m := range jniGenericModes(f) {
+			f.TemplateMode = m
+			tmp += fmt.Sprintf("%v{\n\t%v\n}\n", cppFunctionHeader(f), cppFunctionBody(f))
 		}
 		f.TemplateMode = ""
 		return tmp
@@ -39,7 +36,7 @@ func cppFunctionBody(f *parser.Function) (o string) {
 	/*
 		for _, p := range f.Parameters {
 			if strings.Contains(p.Value, "**") && p.Name == "argv" {
-				o += "QList<QByteArray> aList = QByteArray(argv).split('|');\n"
+				o += "QList<QByteArray> aList = QByteArray(argv).split(',,,');\n"
 				o += "\tQVarLengthArray<const char*> argvs(argc);\n"
 				o += "\tstatic int argcs = argc;\n"
 				o += "\tfor (int i = 0; i < argc; i++)\n"
@@ -50,7 +47,7 @@ func cppFunctionBody(f *parser.Function) (o string) {
 
 	for _, p := range f.Parameters {
 		if strings.Contains(p.Value, "**") && p.Name == "argv" {
-			o += "QList<QByteArray> aList = QByteArray(argv).split('|');\n"
+			o += "QList<QByteArray> aList = QByteArray(argv).split(',,,');\n"
 			o += "\tchar *argvs[argc];\n"
 			o += "\tstatic int argcs = argc;\n"
 			o += "\tfor (int i = 0; i < argc; i++)\n"
@@ -75,19 +72,19 @@ func cppFunctionBody(f *parser.Function) (o string) {
 
 	case "plain", "destructor":
 		if f.Static {
-			o += converter.CppBodyOutput(f, fmt.Sprintf("%v::%v%v(%v)", f.Class(), f.Name, converter.DeduceTemplate(f), converter.CppBodyInput(f)))
+			o += converter.CppBodyOutput(f, fmt.Sprintf("%v::%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
 		} else {
 			if f.Output == "T" && f.Class() == "QObject" {
 				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v<QObject*>(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
 			} else if f.Output == "T" && f.Class() == "QMediaService" {
 				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v<QMediaControl*>(%v)", f.Class(), f.Name, converter.CppBodyInput(f)))
 			} else {
-				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v%v(%v)", f.Class(), f.Name, converter.DeduceTemplate(f), converter.CppBodyInput(f)))
+				o += converter.CppBodyOutput(f, fmt.Sprintf("static_cast<%v*>(ptr)->%v%v(%v)", f.Class(), f.Name, converter.DeduceGeneric(f), converter.CppBodyInput(f)))
 			}
 		}
 
 	case "signal":
-		if converter.PrivateSignal(f) {
+		if converter.IsPrivateSignal(f) {
 			o += fmt.Sprintf("QObject::%v(%v, &%v::%v, static_cast<My%v*>(ptr), static_cast<%v (My%v::*)(%v)>(&My%v::Signal_%v));", strings.ToLower(f.SignalMode), fmt.Sprintf("static_cast<%v*>(%v)", f.Class(), "ptr"), f.Class(), f.Name, f.Class(), f.Output, f.Class(), converter.CppBodyInput(f), f.Class(), strings.Title(f.Name))
 		} else {
 			o += fmt.Sprintf("QObject::%v(%v, static_cast<void (%v::*)(%v)>(&%v::%v), static_cast<My%v*>(ptr), static_cast<%v (My%v::*)(%v)>(&My%v::Signal_%v));", strings.ToLower(f.SignalMode), fmt.Sprintf("static_cast<%v*>(%v)", f.Class(), "ptr"), f.Class(), converter.CppBodyInput(f), f.Class(), f.Name, f.Class(), f.Output, f.Class(), converter.CppBodyInput(f), f.Class(), strings.Title(f.Name))

@@ -1,6 +1,6 @@
 package location
 
-//#include "qplacemanagerengine.h"
+//#include "location.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQPlaceManagerEngine(ptr QPlaceManagerEngine_ITF) unsafe.Pointer 
 func NewQPlaceManagerEngineFromPointer(ptr unsafe.Pointer) *QPlaceManagerEngine {
 	var n = new(QPlaceManagerEngine)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QPlaceManagerEngine_") {
 		n.SetObjectName("QPlaceManagerEngine_" + qt.RandomIdentifier())
 	}
 	return n

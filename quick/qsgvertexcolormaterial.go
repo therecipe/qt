@@ -1,6 +1,6 @@
 package quick
 
-//#include "qsgvertexcolormaterial.h"
+//#include "quick.h"
 import "C"
 import (
 	"unsafe"

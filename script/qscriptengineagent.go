@@ -1,9 +1,10 @@
 package script
 
-//#include "qscriptengineagent.h"
+//#include "script.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -48,22 +49,46 @@ const (
 )
 
 func NewQScriptEngineAgent(engine QScriptEngine_ITF) *QScriptEngineAgent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineAgent::QScriptEngineAgent")
+		}
+	}()
+
 	return NewQScriptEngineAgentFromPointer(C.QScriptEngineAgent_NewQScriptEngineAgent(PointerFromQScriptEngine(engine)))
 }
 
 func (ptr *QScriptEngineAgent) ContextPop() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineAgent::contextPop")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngineAgent_ContextPop(ptr.Pointer())
 	}
 }
 
 func (ptr *QScriptEngineAgent) ContextPush() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineAgent::contextPush")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngineAgent_ContextPush(ptr.Pointer())
 	}
 }
 
 func (ptr *QScriptEngineAgent) Engine() *QScriptEngine {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineAgent::engine")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptEngineFromPointer(C.QScriptEngineAgent_Engine(ptr.Pointer()))
 	}
@@ -71,6 +96,12 @@ func (ptr *QScriptEngineAgent) Engine() *QScriptEngine {
 }
 
 func (ptr *QScriptEngineAgent) Extension(extension QScriptEngineAgent__Extension, argument core.QVariant_ITF) *core.QVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineAgent::extension")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QScriptEngineAgent_Extension(ptr.Pointer(), C.int(extension), core.PointerFromQVariant(argument)))
 	}
@@ -78,6 +109,12 @@ func (ptr *QScriptEngineAgent) Extension(extension QScriptEngineAgent__Extension
 }
 
 func (ptr *QScriptEngineAgent) SupportsExtension(extension QScriptEngineAgent__Extension) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineAgent::supportsExtension")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QScriptEngineAgent_SupportsExtension(ptr.Pointer(), C.int(extension)) != 0
 	}
@@ -85,6 +122,12 @@ func (ptr *QScriptEngineAgent) SupportsExtension(extension QScriptEngineAgent__E
 }
 
 func (ptr *QScriptEngineAgent) DestroyQScriptEngineAgent() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptEngineAgent::~QScriptEngineAgent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptEngineAgent_DestroyQScriptEngineAgent(ptr.Pointer())
 	}

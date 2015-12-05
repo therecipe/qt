@@ -1,8 +1,9 @@
 package core
 
-//#include "qdynamicpropertychangeevent.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,10 +34,22 @@ func (ptr *QDynamicPropertyChangeEvent) QDynamicPropertyChangeEvent_PTR() *QDyna
 }
 
 func NewQDynamicPropertyChangeEvent(name QByteArray_ITF) *QDynamicPropertyChangeEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDynamicPropertyChangeEvent::QDynamicPropertyChangeEvent")
+		}
+	}()
+
 	return NewQDynamicPropertyChangeEventFromPointer(C.QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(PointerFromQByteArray(name)))
 }
 
 func (ptr *QDynamicPropertyChangeEvent) PropertyName() *QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDynamicPropertyChangeEvent::propertyName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QDynamicPropertyChangeEvent_PropertyName(ptr.Pointer()))
 	}

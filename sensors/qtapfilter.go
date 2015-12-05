@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qtapfilter.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QTapFilter) QTapFilter_PTR() *QTapFilter {
 }
 
 func (ptr *QTapFilter) Filter(reading QTapReading_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTapFilter::filter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTapFilter_Filter(ptr.Pointer(), PointerFromQTapReading(reading)) != 0
 	}

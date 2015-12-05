@@ -1,8 +1,9 @@
 package help
 
-//#include "qhelpsearchquery.h"
+//#include "help.h"
 import "C"
 import (
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -53,9 +54,21 @@ const (
 )
 
 func NewQHelpSearchQuery() *QHelpSearchQuery {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpSearchQuery::QHelpSearchQuery")
+		}
+	}()
+
 	return NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery())
 }
 
 func NewQHelpSearchQuery2(field QHelpSearchQuery__FieldName, wordList []string) *QHelpSearchQuery {
-	return NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery2(C.int(field), C.CString(strings.Join(wordList, "|"))))
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpSearchQuery::QHelpSearchQuery")
+		}
+	}()
+
+	return NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery2(C.int(field), C.CString(strings.Join(wordList, ",,,"))))
 }

@@ -1,6 +1,6 @@
 package sql
 
-//#include "qsqlrelationaldelegate.h"
+//#include "sql.h"
 import "C"
 import (
 	"unsafe"

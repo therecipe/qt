@@ -1,10 +1,11 @@
 package sensors
 
-//#include "qirproximitysensor.h"
+//#include "sensors.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQIRProximitySensor(ptr QIRProximitySensor_ITF) unsafe.Pointer {
 func NewQIRProximitySensorFromPointer(ptr unsafe.Pointer) *QIRProximitySensor {
 	var n = new(QIRProximitySensor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QIRProximitySensor_") {
 		n.SetObjectName("QIRProximitySensor_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QIRProximitySensor) QIRProximitySensor_PTR() *QIRProximitySensor {
 }
 
 func (ptr *QIRProximitySensor) Reading() *QIRProximityReading {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIRProximitySensor::reading")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQIRProximityReadingFromPointer(C.QIRProximitySensor_Reading(ptr.Pointer()))
 	}
@@ -45,10 +52,22 @@ func (ptr *QIRProximitySensor) Reading() *QIRProximityReading {
 }
 
 func NewQIRProximitySensor(parent core.QObject_ITF) *QIRProximitySensor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIRProximitySensor::QIRProximitySensor")
+		}
+	}()
+
 	return NewQIRProximitySensorFromPointer(C.QIRProximitySensor_NewQIRProximitySensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QIRProximitySensor) DestroyQIRProximitySensor() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIRProximitySensor::~QIRProximitySensor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QIRProximitySensor_DestroyQIRProximitySensor(ptr.Pointer())
 		ptr.SetPointer(nil)

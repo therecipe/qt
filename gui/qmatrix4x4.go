@@ -1,9 +1,10 @@
 package gui
 
-//#include "qmatrix4x4.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,14 +42,32 @@ func (ptr *QMatrix4x4) QMatrix4x4_PTR() *QMatrix4x4 {
 }
 
 func NewQMatrix4x4() *QMatrix4x4 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::QMatrix4x4")
+		}
+	}()
+
 	return NewQMatrix4x4FromPointer(C.QMatrix4x4_NewQMatrix4x4())
 }
 
 func NewQMatrix4x47(transform QTransform_ITF) *QMatrix4x4 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::QMatrix4x4")
+		}
+	}()
+
 	return NewQMatrix4x4FromPointer(C.QMatrix4x4_NewQMatrix4x47(PointerFromQTransform(transform)))
 }
 
 func (ptr *QMatrix4x4) IsAffine() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::isAffine")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QMatrix4x4_IsAffine(ptr.Pointer()) != 0
 	}
@@ -56,6 +75,12 @@ func (ptr *QMatrix4x4) IsAffine() bool {
 }
 
 func (ptr *QMatrix4x4) IsIdentity() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::isIdentity")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QMatrix4x4_IsIdentity(ptr.Pointer()) != 0
 	}
@@ -63,66 +88,132 @@ func (ptr *QMatrix4x4) IsIdentity() bool {
 }
 
 func (ptr *QMatrix4x4) LookAt(eye QVector3D_ITF, center QVector3D_ITF, up QVector3D_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::lookAt")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_LookAt(ptr.Pointer(), PointerFromQVector3D(eye), PointerFromQVector3D(center), PointerFromQVector3D(up))
 	}
 }
 
 func (ptr *QMatrix4x4) Optimize() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::optimize")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_Optimize(ptr.Pointer())
 	}
 }
 
 func (ptr *QMatrix4x4) Ortho2(rect core.QRect_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::ortho")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_Ortho2(ptr.Pointer(), core.PointerFromQRect(rect))
 	}
 }
 
 func (ptr *QMatrix4x4) Ortho3(rect core.QRectF_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::ortho")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_Ortho3(ptr.Pointer(), core.PointerFromQRectF(rect))
 	}
 }
 
 func (ptr *QMatrix4x4) Rotate2(quaternion QQuaternion_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::rotate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_Rotate2(ptr.Pointer(), PointerFromQQuaternion(quaternion))
 	}
 }
 
 func (ptr *QMatrix4x4) Scale(vector QVector3D_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::scale")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_Scale(ptr.Pointer(), PointerFromQVector3D(vector))
 	}
 }
 
 func (ptr *QMatrix4x4) SetColumn(index int, value QVector4D_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::setColumn")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_SetColumn(ptr.Pointer(), C.int(index), PointerFromQVector4D(value))
 	}
 }
 
 func (ptr *QMatrix4x4) SetRow(index int, value QVector4D_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::setRow")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_SetRow(ptr.Pointer(), C.int(index), PointerFromQVector4D(value))
 	}
 }
 
 func (ptr *QMatrix4x4) SetToIdentity() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::setToIdentity")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_SetToIdentity(ptr.Pointer())
 	}
 }
 
 func (ptr *QMatrix4x4) Translate(vector QVector3D_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::translate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_Translate(ptr.Pointer(), PointerFromQVector3D(vector))
 	}
 }
 
 func (ptr *QMatrix4x4) Viewport2(rect core.QRectF_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMatrix4x4::viewport")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_Viewport2(ptr.Pointer(), core.PointerFromQRectF(rect))
 	}

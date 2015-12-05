@@ -1,8 +1,9 @@
 package core
 
-//#include "qxmlstreamnotationdeclaration.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,14 +41,32 @@ func (ptr *QXmlStreamNotationDeclaration) QXmlStreamNotationDeclaration_PTR() *Q
 }
 
 func NewQXmlStreamNotationDeclaration() *QXmlStreamNotationDeclaration {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamNotationDeclaration::QXmlStreamNotationDeclaration")
+		}
+	}()
+
 	return NewQXmlStreamNotationDeclarationFromPointer(C.QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration())
 }
 
 func NewQXmlStreamNotationDeclaration2(other QXmlStreamNotationDeclaration_ITF) *QXmlStreamNotationDeclaration {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamNotationDeclaration::QXmlStreamNotationDeclaration")
+		}
+	}()
+
 	return NewQXmlStreamNotationDeclarationFromPointer(C.QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration2(PointerFromQXmlStreamNotationDeclaration(other)))
 }
 
 func (ptr *QXmlStreamNotationDeclaration) Name() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamNotationDeclaration::name")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamNotationDeclaration_Name(ptr.Pointer()))
 	}
@@ -55,6 +74,12 @@ func (ptr *QXmlStreamNotationDeclaration) Name() *QStringRef {
 }
 
 func (ptr *QXmlStreamNotationDeclaration) PublicId() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamNotationDeclaration::publicId")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamNotationDeclaration_PublicId(ptr.Pointer()))
 	}
@@ -62,6 +87,12 @@ func (ptr *QXmlStreamNotationDeclaration) PublicId() *QStringRef {
 }
 
 func (ptr *QXmlStreamNotationDeclaration) SystemId() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamNotationDeclaration::systemId")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamNotationDeclaration_SystemId(ptr.Pointer()))
 	}
@@ -69,6 +100,12 @@ func (ptr *QXmlStreamNotationDeclaration) SystemId() *QStringRef {
 }
 
 func (ptr *QXmlStreamNotationDeclaration) DestroyQXmlStreamNotationDeclaration() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamNotationDeclaration::~QXmlStreamNotationDeclaration")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QXmlStreamNotationDeclaration_DestroyQXmlStreamNotationDeclaration(ptr.Pointer())
 	}

@@ -1,12 +1,13 @@
 package quick
 
-//#include "qquickview.h"
+//#include "quick.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/qml"
+	"log"
 	"unsafe"
 )
 
@@ -29,7 +30,7 @@ func PointerFromQQuickView(ptr QQuickView_ITF) unsafe.Pointer {
 func NewQQuickViewFromPointer(ptr unsafe.Pointer) *QQuickView {
 	var n = new(QQuickView)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QQuickView_") {
 		n.SetObjectName("QQuickView_" + qt.RandomIdentifier())
 	}
 	return n
@@ -58,6 +59,12 @@ const (
 )
 
 func (ptr *QQuickView) ResizeMode() QQuickView__ResizeMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::resizeMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QQuickView__ResizeMode(C.QQuickView_ResizeMode(ptr.Pointer()))
 	}
@@ -65,12 +72,24 @@ func (ptr *QQuickView) ResizeMode() QQuickView__ResizeMode {
 }
 
 func (ptr *QQuickView) SetResizeMode(v QQuickView__ResizeMode) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::setResizeMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQuickView_SetResizeMode(ptr.Pointer(), C.int(v))
 	}
 }
 
 func (ptr *QQuickView) Status() QQuickView__Status {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::status")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QQuickView__Status(C.QQuickView_Status(ptr.Pointer()))
 	}
@@ -78,18 +97,42 @@ func (ptr *QQuickView) Status() QQuickView__Status {
 }
 
 func NewQQuickView2(engine qml.QQmlEngine_ITF, parent gui.QWindow_ITF) *QQuickView {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::QQuickView")
+		}
+	}()
+
 	return NewQQuickViewFromPointer(C.QQuickView_NewQQuickView2(qml.PointerFromQQmlEngine(engine), gui.PointerFromQWindow(parent)))
 }
 
 func NewQQuickView(parent gui.QWindow_ITF) *QQuickView {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::QQuickView")
+		}
+	}()
+
 	return NewQQuickViewFromPointer(C.QQuickView_NewQQuickView(gui.PointerFromQWindow(parent)))
 }
 
 func NewQQuickView3(source core.QUrl_ITF, parent gui.QWindow_ITF) *QQuickView {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::QQuickView")
+		}
+	}()
+
 	return NewQQuickViewFromPointer(C.QQuickView_NewQQuickView3(core.PointerFromQUrl(source), gui.PointerFromQWindow(parent)))
 }
 
 func (ptr *QQuickView) Engine() *qml.QQmlEngine {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::engine")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return qml.NewQQmlEngineFromPointer(C.QQuickView_Engine(ptr.Pointer()))
 	}
@@ -97,6 +140,12 @@ func (ptr *QQuickView) Engine() *qml.QQmlEngine {
 }
 
 func (ptr *QQuickView) RootContext() *qml.QQmlContext {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::rootContext")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return qml.NewQQmlContextFromPointer(C.QQuickView_RootContext(ptr.Pointer()))
 	}
@@ -104,6 +153,12 @@ func (ptr *QQuickView) RootContext() *qml.QQmlContext {
 }
 
 func (ptr *QQuickView) RootObject() *QQuickItem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::rootObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQQuickItemFromPointer(C.QQuickView_RootObject(ptr.Pointer()))
 	}
@@ -111,12 +166,24 @@ func (ptr *QQuickView) RootObject() *QQuickItem {
 }
 
 func (ptr *QQuickView) SetSource(url core.QUrl_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::setSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQuickView_SetSource(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QQuickView) ConnectStatusChanged(f func(status QQuickView__Status)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::statusChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQuickView_ConnectStatusChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "statusChanged", f)
@@ -124,6 +191,12 @@ func (ptr *QQuickView) ConnectStatusChanged(f func(status QQuickView__Status)) {
 }
 
 func (ptr *QQuickView) DisconnectStatusChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::statusChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQuickView_DisconnectStatusChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "statusChanged")
@@ -132,10 +205,22 @@ func (ptr *QQuickView) DisconnectStatusChanged() {
 
 //export callbackQQuickViewStatusChanged
 func callbackQQuickViewStatusChanged(ptrName *C.char, status C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::statusChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "statusChanged").(func(QQuickView__Status))(QQuickView__Status(status))
 }
 
 func (ptr *QQuickView) DestroyQQuickView() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickView::~QQuickView")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQuickView_DestroyQQuickView(ptr.Pointer())
 		ptr.SetPointer(nil)

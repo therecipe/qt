@@ -1,8 +1,9 @@
 package core
 
-//#include "qlatin1string.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,18 +41,42 @@ func (ptr *QLatin1String) QLatin1String_PTR() *QLatin1String {
 }
 
 func NewQLatin1String3(str QByteArray_ITF) *QLatin1String {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLatin1String::QLatin1String")
+		}
+	}()
+
 	return NewQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String3(PointerFromQByteArray(str)))
 }
 
 func NewQLatin1String(str string) *QLatin1String {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLatin1String::QLatin1String")
+		}
+	}()
+
 	return NewQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String(C.CString(str)))
 }
 
 func NewQLatin1String2(str string, size int) *QLatin1String {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLatin1String::QLatin1String")
+		}
+	}()
+
 	return NewQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String2(C.CString(str), C.int(size)))
 }
 
 func (ptr *QLatin1String) Size() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLatin1String::size")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QLatin1String_Size(ptr.Pointer()))
 	}

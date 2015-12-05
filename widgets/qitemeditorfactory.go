@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qitemeditorfactory.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,10 +42,22 @@ func (ptr *QItemEditorFactory) QItemEditorFactory_PTR() *QItemEditorFactory {
 }
 
 func NewQItemEditorFactory() *QItemEditorFactory {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemEditorFactory::QItemEditorFactory")
+		}
+	}()
+
 	return NewQItemEditorFactoryFromPointer(C.QItemEditorFactory_NewQItemEditorFactory())
 }
 
 func (ptr *QItemEditorFactory) CreateEditor(userType int, parent QWidget_ITF) *QWidget {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemEditorFactory::createEditor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QItemEditorFactory_CreateEditor(ptr.Pointer(), C.int(userType), PointerFromQWidget(parent)))
 	}
@@ -52,20 +65,44 @@ func (ptr *QItemEditorFactory) CreateEditor(userType int, parent QWidget_ITF) *Q
 }
 
 func QItemEditorFactory_DefaultFactory() *QItemEditorFactory {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemEditorFactory::defaultFactory")
+		}
+	}()
+
 	return NewQItemEditorFactoryFromPointer(C.QItemEditorFactory_QItemEditorFactory_DefaultFactory())
 }
 
 func (ptr *QItemEditorFactory) RegisterEditor(userType int, creator QItemEditorCreatorBase_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemEditorFactory::registerEditor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QItemEditorFactory_RegisterEditor(ptr.Pointer(), C.int(userType), PointerFromQItemEditorCreatorBase(creator))
 	}
 }
 
 func QItemEditorFactory_SetDefaultFactory(factory QItemEditorFactory_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemEditorFactory::setDefaultFactory")
+		}
+	}()
+
 	C.QItemEditorFactory_QItemEditorFactory_SetDefaultFactory(PointerFromQItemEditorFactory(factory))
 }
 
 func (ptr *QItemEditorFactory) ValuePropertyName(userType int) *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemEditorFactory::valuePropertyName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QItemEditorFactory_ValuePropertyName(ptr.Pointer(), C.int(userType)))
 	}
@@ -73,6 +110,12 @@ func (ptr *QItemEditorFactory) ValuePropertyName(userType int) *core.QByteArray 
 }
 
 func (ptr *QItemEditorFactory) DestroyQItemEditorFactory() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemEditorFactory::~QItemEditorFactory")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QItemEditorFactory_DestroyQItemEditorFactory(ptr.Pointer())
 	}

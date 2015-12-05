@@ -1,9 +1,10 @@
 package macextras
 
-//#include "qmacpasteboardmime.h"
+//#include "macextras.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,6 +42,12 @@ func (ptr *QMacPasteboardMime) QMacPasteboardMime_PTR() *QMacPasteboardMime {
 }
 
 func (ptr *QMacPasteboardMime) ConvertorName() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMacPasteboardMime::convertorName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMacPasteboardMime_ConvertorName(ptr.Pointer()))
 	}
@@ -48,6 +55,12 @@ func (ptr *QMacPasteboardMime) ConvertorName() string {
 }
 
 func (ptr *QMacPasteboardMime) Count(mimeData core.QMimeData_ITF) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMacPasteboardMime::count")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QMacPasteboardMime_Count(ptr.Pointer(), core.PointerFromQMimeData(mimeData)))
 	}
@@ -55,6 +68,12 @@ func (ptr *QMacPasteboardMime) Count(mimeData core.QMimeData_ITF) int {
 }
 
 func (ptr *QMacPasteboardMime) FlavorFor(mime string) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMacPasteboardMime::flavorFor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMacPasteboardMime_FlavorFor(ptr.Pointer(), C.CString(mime)))
 	}
@@ -62,6 +81,12 @@ func (ptr *QMacPasteboardMime) FlavorFor(mime string) string {
 }
 
 func (ptr *QMacPasteboardMime) MimeFor(flav string) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMacPasteboardMime::mimeFor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMacPasteboardMime_MimeFor(ptr.Pointer(), C.CString(flav)))
 	}
@@ -69,6 +94,12 @@ func (ptr *QMacPasteboardMime) MimeFor(flav string) string {
 }
 
 func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMime() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMacPasteboardMime::~QMacPasteboardMime")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMacPasteboardMime_DestroyQMacPasteboardMime(ptr.Pointer())
 	}

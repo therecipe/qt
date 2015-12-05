@@ -1,9 +1,10 @@
 package multimedia
 
-//#include "qmedianetworkaccesscontrol.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQMediaNetworkAccessControl(ptr QMediaNetworkAccessControl_ITF) u
 func NewQMediaNetworkAccessControlFromPointer(ptr unsafe.Pointer) *QMediaNetworkAccessControl {
 	var n = new(QMediaNetworkAccessControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QMediaNetworkAccessControl_") {
 		n.SetObjectName("QMediaNetworkAccessControl_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QMediaNetworkAccessControl) QMediaNetworkAccessControl_PTR() *QMediaN
 }
 
 func (ptr *QMediaNetworkAccessControl) DestroyQMediaNetworkAccessControl() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaNetworkAccessControl::~QMediaNetworkAccessControl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(ptr.Pointer())
 		ptr.SetPointer(nil)

@@ -1,6 +1,6 @@
 package positioning
 
-//#include "qgeolocation.h"
+//#include "positioning.h"
 import "C"
 import (
 	"unsafe"

@@ -1,9 +1,10 @@
 package quick
 
-//#include "qsgmaterialshader.h"
+//#include "quick.h"
 import "C"
 import (
 	"github.com/therecipe/qt/gui"
+	"log"
 	"unsafe"
 )
 
@@ -41,18 +42,36 @@ func (ptr *QSGMaterialShader) QSGMaterialShader_PTR() *QSGMaterialShader {
 }
 
 func (ptr *QSGMaterialShader) Activate() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGMaterialShader::activate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSGMaterialShader_Activate(ptr.Pointer())
 	}
 }
 
 func (ptr *QSGMaterialShader) Deactivate() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGMaterialShader::deactivate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSGMaterialShader_Deactivate(ptr.Pointer())
 	}
 }
 
 func (ptr *QSGMaterialShader) Program() *gui.QOpenGLShaderProgram {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGMaterialShader::program")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return gui.NewQOpenGLShaderProgramFromPointer(C.QSGMaterialShader_Program(ptr.Pointer()))
 	}

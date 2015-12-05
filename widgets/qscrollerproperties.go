@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qscrollerproperties.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -87,14 +88,32 @@ const (
 )
 
 func NewQScrollerProperties() *QScrollerProperties {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScrollerProperties::QScrollerProperties")
+		}
+	}()
+
 	return NewQScrollerPropertiesFromPointer(C.QScrollerProperties_NewQScrollerProperties())
 }
 
 func NewQScrollerProperties2(sp QScrollerProperties_ITF) *QScrollerProperties {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScrollerProperties::QScrollerProperties")
+		}
+	}()
+
 	return NewQScrollerPropertiesFromPointer(C.QScrollerProperties_NewQScrollerProperties2(PointerFromQScrollerProperties(sp)))
 }
 
 func (ptr *QScrollerProperties) ScrollMetric(metric QScrollerProperties__ScrollMetric) *core.QVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScrollerProperties::scrollMetric")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QScrollerProperties_ScrollMetric(ptr.Pointer(), C.int(metric)))
 	}
@@ -102,20 +121,44 @@ func (ptr *QScrollerProperties) ScrollMetric(metric QScrollerProperties__ScrollM
 }
 
 func QScrollerProperties_SetDefaultScrollerProperties(sp QScrollerProperties_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScrollerProperties::setDefaultScrollerProperties")
+		}
+	}()
+
 	C.QScrollerProperties_QScrollerProperties_SetDefaultScrollerProperties(PointerFromQScrollerProperties(sp))
 }
 
 func (ptr *QScrollerProperties) SetScrollMetric(metric QScrollerProperties__ScrollMetric, value core.QVariant_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScrollerProperties::setScrollMetric")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScrollerProperties_SetScrollMetric(ptr.Pointer(), C.int(metric), core.PointerFromQVariant(value))
 	}
 }
 
 func QScrollerProperties_UnsetDefaultScrollerProperties() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScrollerProperties::unsetDefaultScrollerProperties")
+		}
+	}()
+
 	C.QScrollerProperties_QScrollerProperties_UnsetDefaultScrollerProperties()
 }
 
 func (ptr *QScrollerProperties) DestroyQScrollerProperties() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScrollerProperties::~QScrollerProperties")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScrollerProperties_DestroyQScrollerProperties(ptr.Pointer())
 	}

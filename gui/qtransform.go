@@ -1,8 +1,9 @@
 package gui
 
-//#include "qtransform.h"
+//#include "gui.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -52,14 +53,32 @@ const (
 )
 
 func NewQTransform3(m11 float64, m12 float64, m13 float64, m21 float64, m22 float64, m23 float64, m31 float64, m32 float64, m33 float64) *QTransform {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::QTransform")
+		}
+	}()
+
 	return NewQTransformFromPointer(C.QTransform_NewQTransform3(C.double(m11), C.double(m12), C.double(m13), C.double(m21), C.double(m22), C.double(m23), C.double(m31), C.double(m32), C.double(m33)))
 }
 
 func NewQTransform4(m11 float64, m12 float64, m21 float64, m22 float64, dx float64, dy float64) *QTransform {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::QTransform")
+		}
+	}()
+
 	return NewQTransformFromPointer(C.QTransform_NewQTransform4(C.double(m11), C.double(m12), C.double(m21), C.double(m22), C.double(dx), C.double(dy)))
 }
 
 func (ptr *QTransform) Map8(region QRegion_ITF) *QRegion {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::map")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQRegionFromPointer(C.QTransform_Map8(ptr.Pointer(), PointerFromQRegion(region)))
 	}
@@ -67,14 +86,32 @@ func (ptr *QTransform) Map8(region QRegion_ITF) *QRegion {
 }
 
 func QTransform_QuadToSquare(quad QPolygonF_ITF, trans QTransform_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::quadToSquare")
+		}
+	}()
+
 	return C.QTransform_QTransform_QuadToSquare(PointerFromQPolygonF(quad), PointerFromQTransform(trans)) != 0
 }
 
 func NewQTransform() *QTransform {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::QTransform")
+		}
+	}()
+
 	return NewQTransformFromPointer(C.QTransform_NewQTransform())
 }
 
 func (ptr *QTransform) Determinant() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::determinant")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTransform_Determinant(ptr.Pointer()))
 	}
@@ -82,6 +119,12 @@ func (ptr *QTransform) Determinant() float64 {
 }
 
 func (ptr *QTransform) Dx() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::dx")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTransform_Dx(ptr.Pointer()))
 	}
@@ -89,6 +132,12 @@ func (ptr *QTransform) Dx() float64 {
 }
 
 func (ptr *QTransform) Dy() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::dy")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTransform_Dy(ptr.Pointer()))
 	}
@@ -96,6 +145,12 @@ func (ptr *QTransform) Dy() float64 {
 }
 
 func (ptr *QTransform) IsAffine() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::isAffine")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTransform_IsAffine(ptr.Pointer()) != 0
 	}
@@ -103,6 +158,12 @@ func (ptr *QTransform) IsAffine() bool {
 }
 
 func (ptr *QTransform) IsIdentity() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::isIdentity")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTransform_IsIdentity(ptr.Pointer()) != 0
 	}
@@ -110,6 +171,12 @@ func (ptr *QTransform) IsIdentity() bool {
 }
 
 func (ptr *QTransform) IsInvertible() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::isInvertible")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTransform_IsInvertible(ptr.Pointer()) != 0
 	}
@@ -117,6 +184,12 @@ func (ptr *QTransform) IsInvertible() bool {
 }
 
 func (ptr *QTransform) IsRotating() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::isRotating")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTransform_IsRotating(ptr.Pointer()) != 0
 	}
@@ -124,6 +197,12 @@ func (ptr *QTransform) IsRotating() bool {
 }
 
 func (ptr *QTransform) IsScaling() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::isScaling")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTransform_IsScaling(ptr.Pointer()) != 0
 	}
@@ -131,6 +210,12 @@ func (ptr *QTransform) IsScaling() bool {
 }
 
 func (ptr *QTransform) IsTranslating() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::isTranslating")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTransform_IsTranslating(ptr.Pointer()) != 0
 	}
@@ -138,6 +223,12 @@ func (ptr *QTransform) IsTranslating() bool {
 }
 
 func (ptr *QTransform) M11() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::m11")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTransform_M11(ptr.Pointer()))
 	}
@@ -145,6 +236,12 @@ func (ptr *QTransform) M11() float64 {
 }
 
 func (ptr *QTransform) M12() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::m12")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTransform_M12(ptr.Pointer()))
 	}
@@ -152,6 +249,12 @@ func (ptr *QTransform) M12() float64 {
 }
 
 func (ptr *QTransform) M13() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::m13")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTransform_M13(ptr.Pointer()))
 	}
@@ -159,6 +262,12 @@ func (ptr *QTransform) M13() float64 {
 }
 
 func (ptr *QTransform) M21() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::m21")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTransform_M21(ptr.Pointer()))
 	}
@@ -166,6 +275,12 @@ func (ptr *QTransform) M21() float64 {
 }
 
 func (ptr *QTransform) M22() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::m22")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTransform_M22(ptr.Pointer()))
 	}
@@ -173,6 +288,12 @@ func (ptr *QTransform) M22() float64 {
 }
 
 func (ptr *QTransform) M23() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::m23")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTransform_M23(ptr.Pointer()))
 	}
@@ -180,6 +301,12 @@ func (ptr *QTransform) M23() float64 {
 }
 
 func (ptr *QTransform) M31() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::m31")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTransform_M31(ptr.Pointer()))
 	}
@@ -187,6 +314,12 @@ func (ptr *QTransform) M31() float64 {
 }
 
 func (ptr *QTransform) M32() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::m32")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTransform_M32(ptr.Pointer()))
 	}
@@ -194,6 +327,12 @@ func (ptr *QTransform) M32() float64 {
 }
 
 func (ptr *QTransform) M33() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::m33")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTransform_M33(ptr.Pointer()))
 	}
@@ -201,32 +340,68 @@ func (ptr *QTransform) M33() float64 {
 }
 
 func (ptr *QTransform) Map10(x int, y int, tx int, ty int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::map")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTransform_Map10(ptr.Pointer(), C.int(x), C.int(y), C.int(tx), C.int(ty))
 	}
 }
 
 func QTransform_QuadToQuad(one QPolygonF_ITF, two QPolygonF_ITF, trans QTransform_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::quadToQuad")
+		}
+	}()
+
 	return C.QTransform_QTransform_QuadToQuad(PointerFromQPolygonF(one), PointerFromQPolygonF(two), PointerFromQTransform(trans)) != 0
 }
 
 func (ptr *QTransform) Reset() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::reset")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTransform_Reset(ptr.Pointer())
 	}
 }
 
 func (ptr *QTransform) SetMatrix(m11 float64, m12 float64, m13 float64, m21 float64, m22 float64, m23 float64, m31 float64, m32 float64, m33 float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::setMatrix")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTransform_SetMatrix(ptr.Pointer(), C.double(m11), C.double(m12), C.double(m13), C.double(m21), C.double(m22), C.double(m23), C.double(m31), C.double(m32), C.double(m33))
 	}
 }
 
 func QTransform_SquareToQuad(quad QPolygonF_ITF, trans QTransform_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::squareToQuad")
+		}
+	}()
+
 	return C.QTransform_QTransform_SquareToQuad(PointerFromQPolygonF(quad), PointerFromQTransform(trans)) != 0
 }
 
 func (ptr *QTransform) Type() QTransform__TransformationType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTransform::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QTransform__TransformationType(C.QTransform_Type(ptr.Pointer()))
 	}

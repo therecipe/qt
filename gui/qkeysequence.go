@@ -1,8 +1,9 @@
 package gui
 
-//#include "qkeysequence.h"
+//#include "gui.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -133,26 +134,62 @@ const (
 )
 
 func NewQKeySequence() *QKeySequence {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QKeySequence::QKeySequence")
+		}
+	}()
+
 	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence())
 }
 
 func NewQKeySequence5(key QKeySequence__StandardKey) *QKeySequence {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QKeySequence::QKeySequence")
+		}
+	}()
+
 	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence5(C.int(key)))
 }
 
 func NewQKeySequence4(keysequence QKeySequence_ITF) *QKeySequence {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QKeySequence::QKeySequence")
+		}
+	}()
+
 	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence4(PointerFromQKeySequence(keysequence)))
 }
 
 func NewQKeySequence2(key string, format QKeySequence__SequenceFormat) *QKeySequence {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QKeySequence::QKeySequence")
+		}
+	}()
+
 	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence2(C.CString(key), C.int(format)))
 }
 
 func NewQKeySequence3(k1 int, k2 int, k3 int, k4 int) *QKeySequence {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QKeySequence::QKeySequence")
+		}
+	}()
+
 	return NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence3(C.int(k1), C.int(k2), C.int(k3), C.int(k4)))
 }
 
 func (ptr *QKeySequence) Count() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QKeySequence::count")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QKeySequence_Count(ptr.Pointer()))
 	}
@@ -160,6 +197,12 @@ func (ptr *QKeySequence) Count() int {
 }
 
 func (ptr *QKeySequence) IsEmpty() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QKeySequence::isEmpty")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QKeySequence_IsEmpty(ptr.Pointer()) != 0
 	}
@@ -167,6 +210,12 @@ func (ptr *QKeySequence) IsEmpty() bool {
 }
 
 func (ptr *QKeySequence) Matches(seq QKeySequence_ITF) QKeySequence__SequenceMatch {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QKeySequence::matches")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QKeySequence__SequenceMatch(C.QKeySequence_Matches(ptr.Pointer(), PointerFromQKeySequence(seq)))
 	}
@@ -174,12 +223,24 @@ func (ptr *QKeySequence) Matches(seq QKeySequence_ITF) QKeySequence__SequenceMat
 }
 
 func (ptr *QKeySequence) Swap(other QKeySequence_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QKeySequence::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QKeySequence_Swap(ptr.Pointer(), PointerFromQKeySequence(other))
 	}
 }
 
 func (ptr *QKeySequence) ToString(format QKeySequence__SequenceFormat) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QKeySequence::toString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QKeySequence_ToString(ptr.Pointer(), C.int(format)))
 	}
@@ -187,6 +248,12 @@ func (ptr *QKeySequence) ToString(format QKeySequence__SequenceFormat) string {
 }
 
 func (ptr *QKeySequence) DestroyQKeySequence() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QKeySequence::~QKeySequence")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QKeySequence_DestroyQKeySequence(ptr.Pointer())
 	}

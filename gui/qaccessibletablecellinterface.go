@@ -1,8 +1,9 @@
 package gui
 
-//#include "qaccessibletablecellinterface.h"
+//#include "gui.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QAccessibleTableCellInterface) QAccessibleTableCellInterface_PTR() *Q
 }
 
 func (ptr *QAccessibleTableCellInterface) ColumnExtent() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTableCellInterface::columnExtent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableCellInterface_ColumnExtent(ptr.Pointer()))
 	}
@@ -47,6 +54,12 @@ func (ptr *QAccessibleTableCellInterface) ColumnExtent() int {
 }
 
 func (ptr *QAccessibleTableCellInterface) ColumnIndex() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTableCellInterface::columnIndex")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableCellInterface_ColumnIndex(ptr.Pointer()))
 	}
@@ -54,6 +67,12 @@ func (ptr *QAccessibleTableCellInterface) ColumnIndex() int {
 }
 
 func (ptr *QAccessibleTableCellInterface) IsSelected() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTableCellInterface::isSelected")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QAccessibleTableCellInterface_IsSelected(ptr.Pointer()) != 0
 	}
@@ -61,6 +80,12 @@ func (ptr *QAccessibleTableCellInterface) IsSelected() bool {
 }
 
 func (ptr *QAccessibleTableCellInterface) RowExtent() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTableCellInterface::rowExtent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableCellInterface_RowExtent(ptr.Pointer()))
 	}
@@ -68,6 +93,12 @@ func (ptr *QAccessibleTableCellInterface) RowExtent() int {
 }
 
 func (ptr *QAccessibleTableCellInterface) RowIndex() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTableCellInterface::rowIndex")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleTableCellInterface_RowIndex(ptr.Pointer()))
 	}
@@ -75,6 +106,12 @@ func (ptr *QAccessibleTableCellInterface) RowIndex() int {
 }
 
 func (ptr *QAccessibleTableCellInterface) Table() *QAccessibleInterface {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTableCellInterface::table")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAccessibleInterfaceFromPointer(C.QAccessibleTableCellInterface_Table(ptr.Pointer()))
 	}
@@ -82,6 +119,12 @@ func (ptr *QAccessibleTableCellInterface) Table() *QAccessibleInterface {
 }
 
 func (ptr *QAccessibleTableCellInterface) DestroyQAccessibleTableCellInterface() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleTableCellInterface::~QAccessibleTableCellInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface(ptr.Pointer())
 	}

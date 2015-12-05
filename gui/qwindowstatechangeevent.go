@@ -1,9 +1,10 @@
 package gui
 
-//#include "qwindowstatechangeevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,6 +35,12 @@ func (ptr *QWindowStateChangeEvent) QWindowStateChangeEvent_PTR() *QWindowStateC
 }
 
 func (ptr *QWindowStateChangeEvent) OldState() core.Qt__WindowState {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWindowStateChangeEvent::oldState")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__WindowState(C.QWindowStateChangeEvent_OldState(ptr.Pointer()))
 	}

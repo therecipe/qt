@@ -1,9 +1,10 @@
 package core
 
-//#include "qpauseanimation.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQPauseAnimation(ptr QPauseAnimation_ITF) unsafe.Pointer {
 func NewQPauseAnimationFromPointer(ptr unsafe.Pointer) *QPauseAnimation {
 	var n = new(QPauseAnimation)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QPauseAnimation_") {
 		n.SetObjectName("QPauseAnimation_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QPauseAnimation) QPauseAnimation_PTR() *QPauseAnimation {
 }
 
 func (ptr *QPauseAnimation) Duration() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPauseAnimation::duration")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPauseAnimation_Duration(ptr.Pointer()))
 	}
@@ -44,20 +51,44 @@ func (ptr *QPauseAnimation) Duration() int {
 }
 
 func (ptr *QPauseAnimation) SetDuration(msecs int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPauseAnimation::setDuration")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPauseAnimation_SetDuration(ptr.Pointer(), C.int(msecs))
 	}
 }
 
 func NewQPauseAnimation(parent QObject_ITF) *QPauseAnimation {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPauseAnimation::QPauseAnimation")
+		}
+	}()
+
 	return NewQPauseAnimationFromPointer(C.QPauseAnimation_NewQPauseAnimation(PointerFromQObject(parent)))
 }
 
 func NewQPauseAnimation2(msecs int, parent QObject_ITF) *QPauseAnimation {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPauseAnimation::QPauseAnimation")
+		}
+	}()
+
 	return NewQPauseAnimationFromPointer(C.QPauseAnimation_NewQPauseAnimation2(C.int(msecs), PointerFromQObject(parent)))
 }
 
 func (ptr *QPauseAnimation) DestroyQPauseAnimation() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPauseAnimation::~QPauseAnimation")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPauseAnimation_DestroyQPauseAnimation(ptr.Pointer())
 		ptr.SetPointer(nil)

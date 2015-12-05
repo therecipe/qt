@@ -1,9 +1,10 @@
 package core
 
-//#include "qevent.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -219,22 +220,46 @@ const (
 )
 
 func NewQEvent(ty QEvent__Type) *QEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEvent::QEvent")
+		}
+	}()
+
 	return NewQEventFromPointer(C.QEvent_NewQEvent(C.int(ty)))
 }
 
 func (ptr *QEvent) Accept() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEvent::accept")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEvent_Accept(ptr.Pointer())
 	}
 }
 
 func (ptr *QEvent) Ignore() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEvent::ignore")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEvent_Ignore(ptr.Pointer())
 	}
 }
 
 func (ptr *QEvent) IsAccepted() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEvent::isAccepted")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QEvent_IsAccepted(ptr.Pointer()) != 0
 	}
@@ -242,16 +267,34 @@ func (ptr *QEvent) IsAccepted() bool {
 }
 
 func QEvent_RegisterEventType(hint int) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEvent::registerEventType")
+		}
+	}()
+
 	return int(C.QEvent_QEvent_RegisterEventType(C.int(hint)))
 }
 
 func (ptr *QEvent) SetAccepted(accepted bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEvent::setAccepted")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEvent_SetAccepted(ptr.Pointer(), C.int(qt.GoBoolToInt(accepted)))
 	}
 }
 
 func (ptr *QEvent) Spontaneous() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEvent::spontaneous")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QEvent_Spontaneous(ptr.Pointer()) != 0
 	}
@@ -259,6 +302,12 @@ func (ptr *QEvent) Spontaneous() bool {
 }
 
 func (ptr *QEvent) Type() QEvent__Type {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEvent::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QEvent__Type(C.QEvent_Type(ptr.Pointer()))
 	}
@@ -266,6 +315,12 @@ func (ptr *QEvent) Type() QEvent__Type {
 }
 
 func (ptr *QEvent) DestroyQEvent() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEvent::~QEvent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QEvent_DestroyQEvent(ptr.Pointer())
 	}

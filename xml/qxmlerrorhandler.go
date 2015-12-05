@@ -1,8 +1,9 @@
 package xml
 
-//#include "qxmlerrorhandler.h"
+//#include "xml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QXmlErrorHandler) QXmlErrorHandler_PTR() *QXmlErrorHandler {
 }
 
 func (ptr *QXmlErrorHandler) Error(exception QXmlParseException_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlErrorHandler::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QXmlErrorHandler_Error(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
 	}
@@ -47,6 +54,12 @@ func (ptr *QXmlErrorHandler) Error(exception QXmlParseException_ITF) bool {
 }
 
 func (ptr *QXmlErrorHandler) ErrorString() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlErrorHandler::errorString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlErrorHandler_ErrorString(ptr.Pointer()))
 	}
@@ -54,6 +67,12 @@ func (ptr *QXmlErrorHandler) ErrorString() string {
 }
 
 func (ptr *QXmlErrorHandler) FatalError(exception QXmlParseException_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlErrorHandler::fatalError")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QXmlErrorHandler_FatalError(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
 	}
@@ -61,6 +80,12 @@ func (ptr *QXmlErrorHandler) FatalError(exception QXmlParseException_ITF) bool {
 }
 
 func (ptr *QXmlErrorHandler) Warning(exception QXmlParseException_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlErrorHandler::warning")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QXmlErrorHandler_Warning(ptr.Pointer(), PointerFromQXmlParseException(exception)) != 0
 	}
@@ -68,6 +93,12 @@ func (ptr *QXmlErrorHandler) Warning(exception QXmlParseException_ITF) bool {
 }
 
 func (ptr *QXmlErrorHandler) DestroyQXmlErrorHandler() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlErrorHandler::~QXmlErrorHandler")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QXmlErrorHandler_DestroyQXmlErrorHandler(ptr.Pointer())
 	}

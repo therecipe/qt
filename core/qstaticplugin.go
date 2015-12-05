@@ -1,8 +1,9 @@
 package core
 
-//#include "qstaticplugin.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QStaticPlugin) QStaticPlugin_PTR() *QStaticPlugin {
 }
 
 func (ptr *QStaticPlugin) Instance() *QObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStaticPlugin::instance")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQObjectFromPointer(C.QStaticPlugin_Instance(ptr.Pointer()))
 	}
@@ -47,6 +54,12 @@ func (ptr *QStaticPlugin) Instance() *QObject {
 }
 
 func (ptr *QStaticPlugin) MetaData() *QJsonObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStaticPlugin::metaData")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQJsonObjectFromPointer(C.QStaticPlugin_MetaData(ptr.Pointer()))
 	}

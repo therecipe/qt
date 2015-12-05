@@ -1,8 +1,9 @@
 package quick
 
-//#include "qsggeometrynode.h"
+//#include "quick.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,10 +34,22 @@ func (ptr *QSGGeometryNode) QSGGeometryNode_PTR() *QSGGeometryNode {
 }
 
 func NewQSGGeometryNode() *QSGGeometryNode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGGeometryNode::QSGGeometryNode")
+		}
+	}()
+
 	return NewQSGGeometryNodeFromPointer(C.QSGGeometryNode_NewQSGGeometryNode())
 }
 
 func (ptr *QSGGeometryNode) Material() *QSGMaterial {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGGeometryNode::material")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialFromPointer(C.QSGGeometryNode_Material(ptr.Pointer()))
 	}
@@ -44,6 +57,12 @@ func (ptr *QSGGeometryNode) Material() *QSGMaterial {
 }
 
 func (ptr *QSGGeometryNode) OpaqueMaterial() *QSGMaterial {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGGeometryNode::opaqueMaterial")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialFromPointer(C.QSGGeometryNode_OpaqueMaterial(ptr.Pointer()))
 	}
@@ -51,18 +70,36 @@ func (ptr *QSGGeometryNode) OpaqueMaterial() *QSGMaterial {
 }
 
 func (ptr *QSGGeometryNode) SetMaterial(material QSGMaterial_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGGeometryNode::setMaterial")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSGGeometryNode_SetMaterial(ptr.Pointer(), PointerFromQSGMaterial(material))
 	}
 }
 
 func (ptr *QSGGeometryNode) SetOpaqueMaterial(material QSGMaterial_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGGeometryNode::setOpaqueMaterial")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSGGeometryNode_SetOpaqueMaterial(ptr.Pointer(), PointerFromQSGMaterial(material))
 	}
 }
 
 func (ptr *QSGGeometryNode) DestroyQSGGeometryNode() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGGeometryNode::~QSGGeometryNode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSGGeometryNode_DestroyQSGGeometryNode(ptr.Pointer())
 	}

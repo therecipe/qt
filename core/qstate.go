@@ -1,9 +1,10 @@
 package core
 
-//#include "qstate.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQState(ptr QState_ITF) unsafe.Pointer {
 func NewQStateFromPointer(ptr unsafe.Pointer) *QState {
 	var n = new(QState)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QState_") {
 		n.SetObjectName("QState_" + qt.RandomIdentifier())
 	}
 	return n
@@ -53,14 +54,32 @@ const (
 )
 
 func NewQState2(childMode QState__ChildMode, parent QState_ITF) *QState {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::QState")
+		}
+	}()
+
 	return NewQStateFromPointer(C.QState_NewQState2(C.int(childMode), PointerFromQState(parent)))
 }
 
 func NewQState(parent QState_ITF) *QState {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::QState")
+		}
+	}()
+
 	return NewQStateFromPointer(C.QState_NewQState(PointerFromQState(parent)))
 }
 
 func (ptr *QState) AddTransition3(target QAbstractState_ITF) *QAbstractTransition {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::addTransition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAbstractTransitionFromPointer(C.QState_AddTransition3(ptr.Pointer(), PointerFromQAbstractState(target)))
 	}
@@ -68,6 +87,12 @@ func (ptr *QState) AddTransition3(target QAbstractState_ITF) *QAbstractTransitio
 }
 
 func (ptr *QState) AddTransition2(sender QObject_ITF, signal string, target QAbstractState_ITF) *QSignalTransition {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::addTransition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQSignalTransitionFromPointer(C.QState_AddTransition2(ptr.Pointer(), PointerFromQObject(sender), C.CString(signal), PointerFromQAbstractState(target)))
 	}
@@ -75,18 +100,36 @@ func (ptr *QState) AddTransition2(sender QObject_ITF, signal string, target QAbs
 }
 
 func (ptr *QState) AddTransition(transition QAbstractTransition_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::addTransition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_AddTransition(ptr.Pointer(), PointerFromQAbstractTransition(transition))
 	}
 }
 
 func (ptr *QState) AssignProperty(object QObject_ITF, name string, value QVariant_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::assignProperty")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_AssignProperty(ptr.Pointer(), PointerFromQObject(object), C.CString(name), PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QState) ChildMode() QState__ChildMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::childMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QState__ChildMode(C.QState_ChildMode(ptr.Pointer()))
 	}
@@ -94,6 +137,12 @@ func (ptr *QState) ChildMode() QState__ChildMode {
 }
 
 func (ptr *QState) ConnectChildModeChanged(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::childModeChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_ConnectChildModeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "childModeChanged", f)
@@ -101,6 +150,12 @@ func (ptr *QState) ConnectChildModeChanged(f func()) {
 }
 
 func (ptr *QState) DisconnectChildModeChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::childModeChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_DisconnectChildModeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "childModeChanged")
@@ -109,10 +164,22 @@ func (ptr *QState) DisconnectChildModeChanged() {
 
 //export callbackQStateChildModeChanged
 func callbackQStateChildModeChanged(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::childModeChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "childModeChanged").(func())()
 }
 
 func (ptr *QState) ErrorState() *QAbstractState {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::errorState")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAbstractStateFromPointer(C.QState_ErrorState(ptr.Pointer()))
 	}
@@ -120,6 +187,12 @@ func (ptr *QState) ErrorState() *QAbstractState {
 }
 
 func (ptr *QState) ConnectErrorStateChanged(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::errorStateChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_ConnectErrorStateChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "errorStateChanged", f)
@@ -127,6 +200,12 @@ func (ptr *QState) ConnectErrorStateChanged(f func()) {
 }
 
 func (ptr *QState) DisconnectErrorStateChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::errorStateChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_DisconnectErrorStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "errorStateChanged")
@@ -135,10 +214,22 @@ func (ptr *QState) DisconnectErrorStateChanged() {
 
 //export callbackQStateErrorStateChanged
 func callbackQStateErrorStateChanged(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::errorStateChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "errorStateChanged").(func())()
 }
 
 func (ptr *QState) ConnectFinished(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::finished")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_ConnectFinished(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "finished", f)
@@ -146,6 +237,12 @@ func (ptr *QState) ConnectFinished(f func()) {
 }
 
 func (ptr *QState) DisconnectFinished() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::finished")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_DisconnectFinished(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "finished")
@@ -154,10 +251,22 @@ func (ptr *QState) DisconnectFinished() {
 
 //export callbackQStateFinished
 func callbackQStateFinished(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::finished")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "finished").(func())()
 }
 
 func (ptr *QState) InitialState() *QAbstractState {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::initialState")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAbstractStateFromPointer(C.QState_InitialState(ptr.Pointer()))
 	}
@@ -165,6 +274,12 @@ func (ptr *QState) InitialState() *QAbstractState {
 }
 
 func (ptr *QState) ConnectInitialStateChanged(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::initialStateChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_ConnectInitialStateChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "initialStateChanged", f)
@@ -172,6 +287,12 @@ func (ptr *QState) ConnectInitialStateChanged(f func()) {
 }
 
 func (ptr *QState) DisconnectInitialStateChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::initialStateChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_DisconnectInitialStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "initialStateChanged")
@@ -180,10 +301,22 @@ func (ptr *QState) DisconnectInitialStateChanged() {
 
 //export callbackQStateInitialStateChanged
 func callbackQStateInitialStateChanged(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::initialStateChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "initialStateChanged").(func())()
 }
 
 func (ptr *QState) ConnectPropertiesAssigned(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::propertiesAssigned")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_ConnectPropertiesAssigned(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "propertiesAssigned", f)
@@ -191,6 +324,12 @@ func (ptr *QState) ConnectPropertiesAssigned(f func()) {
 }
 
 func (ptr *QState) DisconnectPropertiesAssigned() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::propertiesAssigned")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_DisconnectPropertiesAssigned(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "propertiesAssigned")
@@ -199,34 +338,70 @@ func (ptr *QState) DisconnectPropertiesAssigned() {
 
 //export callbackQStatePropertiesAssigned
 func callbackQStatePropertiesAssigned(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::propertiesAssigned")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "propertiesAssigned").(func())()
 }
 
 func (ptr *QState) RemoveTransition(transition QAbstractTransition_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::removeTransition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_RemoveTransition(ptr.Pointer(), PointerFromQAbstractTransition(transition))
 	}
 }
 
 func (ptr *QState) SetChildMode(mode QState__ChildMode) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::setChildMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_SetChildMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QState) SetErrorState(state QAbstractState_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::setErrorState")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_SetErrorState(ptr.Pointer(), PointerFromQAbstractState(state))
 	}
 }
 
 func (ptr *QState) SetInitialState(state QAbstractState_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::setInitialState")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_SetInitialState(ptr.Pointer(), PointerFromQAbstractState(state))
 	}
 }
 
 func (ptr *QState) DestroyQState() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QState::~QState")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QState_DestroyQState(ptr.Pointer())
 		ptr.SetPointer(nil)

@@ -1,8 +1,9 @@
 package androidextras
 
-//#include "qandroidactivityresultreceiver_android.h"
+//#include "androidextras_android.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QAndroidActivityResultReceiver) QAndroidActivityResultReceiver_PTR() 
 }
 
 func (ptr *QAndroidActivityResultReceiver) HandleActivityResult(receiverRequestCode int, resultCode int, data QAndroidJniObject_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAndroidActivityResultReceiver::handleActivityResult")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAndroidActivityResultReceiver_HandleActivityResult(ptr.Pointer(), C.int(receiverRequestCode), C.int(resultCode), PointerFromQAndroidJniObject(data))
 	}

@@ -1,11 +1,12 @@
 package widgets
 
-//#include "qitemdelegate.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
+	"log"
 	"unsafe"
 )
 
@@ -28,7 +29,7 @@ func PointerFromQItemDelegate(ptr QItemDelegate_ITF) unsafe.Pointer {
 func NewQItemDelegateFromPointer(ptr unsafe.Pointer) *QItemDelegate {
 	var n = new(QItemDelegate)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QItemDelegate_") {
 		n.SetObjectName("QItemDelegate_" + qt.RandomIdentifier())
 	}
 	return n
@@ -39,6 +40,12 @@ func (ptr *QItemDelegate) QItemDelegate_PTR() *QItemDelegate {
 }
 
 func (ptr *QItemDelegate) HasClipping() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemDelegate::hasClipping")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QItemDelegate_HasClipping(ptr.Pointer()) != 0
 	}
@@ -46,16 +53,34 @@ func (ptr *QItemDelegate) HasClipping() bool {
 }
 
 func (ptr *QItemDelegate) SetClipping(clip bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemDelegate::setClipping")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QItemDelegate_SetClipping(ptr.Pointer(), C.int(qt.GoBoolToInt(clip)))
 	}
 }
 
 func NewQItemDelegate(parent core.QObject_ITF) *QItemDelegate {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemDelegate::QItemDelegate")
+		}
+	}()
+
 	return NewQItemDelegateFromPointer(C.QItemDelegate_NewQItemDelegate(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QItemDelegate) CreateEditor(parent QWidget_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *QWidget {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemDelegate::createEditor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QItemDelegate_CreateEditor(ptr.Pointer(), PointerFromQWidget(parent), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
 	}
@@ -63,6 +88,12 @@ func (ptr *QItemDelegate) CreateEditor(parent QWidget_ITF, option QStyleOptionVi
 }
 
 func (ptr *QItemDelegate) ItemEditorFactory() *QItemEditorFactory {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemDelegate::itemEditorFactory")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQItemEditorFactoryFromPointer(C.QItemDelegate_ItemEditorFactory(ptr.Pointer()))
 	}
@@ -70,36 +101,72 @@ func (ptr *QItemDelegate) ItemEditorFactory() *QItemEditorFactory {
 }
 
 func (ptr *QItemDelegate) Paint(painter gui.QPainter_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemDelegate::paint")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QItemDelegate_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QItemDelegate) SetEditorData(editor QWidget_ITF, index core.QModelIndex_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemDelegate::setEditorData")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QItemDelegate_SetEditorData(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QItemDelegate) SetItemEditorFactory(factory QItemEditorFactory_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemDelegate::setItemEditorFactory")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QItemDelegate_SetItemEditorFactory(ptr.Pointer(), PointerFromQItemEditorFactory(factory))
 	}
 }
 
 func (ptr *QItemDelegate) SetModelData(editor QWidget_ITF, model core.QAbstractItemModel_ITF, index core.QModelIndex_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemDelegate::setModelData")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QItemDelegate_SetModelData(ptr.Pointer(), PointerFromQWidget(editor), core.PointerFromQAbstractItemModel(model), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QItemDelegate) UpdateEditorGeometry(editor QWidget_ITF, option QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemDelegate::updateEditorGeometry")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QItemDelegate_UpdateEditorGeometry(ptr.Pointer(), PointerFromQWidget(editor), PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QItemDelegate) DestroyQItemDelegate() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemDelegate::~QItemDelegate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QItemDelegate_DestroyQItemDelegate(ptr.Pointer())
 		ptr.SetPointer(nil)

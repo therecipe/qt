@@ -1,9 +1,10 @@
 package gui
 
-//#include "qstatustipevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,10 +35,22 @@ func (ptr *QStatusTipEvent) QStatusTipEvent_PTR() *QStatusTipEvent {
 }
 
 func NewQStatusTipEvent(tip string) *QStatusTipEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStatusTipEvent::QStatusTipEvent")
+		}
+	}()
+
 	return NewQStatusTipEventFromPointer(C.QStatusTipEvent_NewQStatusTipEvent(C.CString(tip)))
 }
 
 func (ptr *QStatusTipEvent) Tip() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStatusTipEvent::tip")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QStatusTipEvent_Tip(ptr.Pointer()))
 	}

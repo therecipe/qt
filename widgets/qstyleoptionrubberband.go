@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptionrubberband.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -47,9 +48,21 @@ var (
 )
 
 func NewQStyleOptionRubberBand() *QStyleOptionRubberBand {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionRubberBand::QStyleOptionRubberBand")
+		}
+	}()
+
 	return NewQStyleOptionRubberBandFromPointer(C.QStyleOptionRubberBand_NewQStyleOptionRubberBand())
 }
 
 func NewQStyleOptionRubberBand2(other QStyleOptionRubberBand_ITF) *QStyleOptionRubberBand {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionRubberBand::QStyleOptionRubberBand")
+		}
+	}()
+
 	return NewQStyleOptionRubberBandFromPointer(C.QStyleOptionRubberBand_NewQStyleOptionRubberBand2(PointerFromQStyleOptionRubberBand(other)))
 }

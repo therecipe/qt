@@ -1,6 +1,6 @@
 package gui
 
-//#include "qplatformsystemtrayicon.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQPlatformSystemTrayIcon(ptr QPlatformSystemTrayIcon_ITF) unsafe.
 func NewQPlatformSystemTrayIconFromPointer(ptr unsafe.Pointer) *QPlatformSystemTrayIcon {
 	var n = new(QPlatformSystemTrayIcon)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QPlatformSystemTrayIcon_") {
 		n.SetObjectName("QPlatformSystemTrayIcon_" + qt.RandomIdentifier())
 	}
 	return n

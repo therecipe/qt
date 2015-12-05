@@ -1,8 +1,9 @@
 package core
 
-//#include "qsignalblocker.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,18 +41,36 @@ func (ptr *QSignalBlocker) QSignalBlocker_PTR() *QSignalBlocker {
 }
 
 func (ptr *QSignalBlocker) Reblock() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSignalBlocker::reblock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSignalBlocker_Reblock(ptr.Pointer())
 	}
 }
 
 func (ptr *QSignalBlocker) Unblock() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSignalBlocker::unblock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSignalBlocker_Unblock(ptr.Pointer())
 	}
 }
 
 func (ptr *QSignalBlocker) DestroyQSignalBlocker() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSignalBlocker::~QSignalBlocker")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSignalBlocker_DestroyQSignalBlocker(ptr.Pointer())
 	}

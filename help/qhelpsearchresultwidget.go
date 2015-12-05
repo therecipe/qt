@@ -1,10 +1,11 @@
 package help
 
-//#include "qhelpsearchresultwidget.h"
+//#include "help.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/widgets"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQHelpSearchResultWidget(ptr QHelpSearchResultWidget_ITF) unsafe.
 func NewQHelpSearchResultWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchResultWidget {
 	var n = new(QHelpSearchResultWidget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QHelpSearchResultWidget_") {
 		n.SetObjectName("QHelpSearchResultWidget_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QHelpSearchResultWidget) QHelpSearchResultWidget_PTR() *QHelpSearchRe
 }
 
 func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidget() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpSearchResultWidget::~QHelpSearchResultWidget")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DestroyQHelpSearchResultWidget(ptr.Pointer())
 		ptr.SetPointer(nil)

@@ -1,8 +1,9 @@
 package gui
 
-//#include "qtextlength.h"
+//#include "gui.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -49,14 +50,32 @@ const (
 )
 
 func NewQTextLength() *QTextLength {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLength::QTextLength")
+		}
+	}()
+
 	return NewQTextLengthFromPointer(C.QTextLength_NewQTextLength())
 }
 
 func NewQTextLength2(ty QTextLength__Type, value float64) *QTextLength {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLength::QTextLength")
+		}
+	}()
+
 	return NewQTextLengthFromPointer(C.QTextLength_NewQTextLength2(C.int(ty), C.double(value)))
 }
 
 func (ptr *QTextLength) RawValue() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLength::rawValue")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLength_RawValue(ptr.Pointer()))
 	}
@@ -64,6 +83,12 @@ func (ptr *QTextLength) RawValue() float64 {
 }
 
 func (ptr *QTextLength) Type() QTextLength__Type {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLength::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QTextLength__Type(C.QTextLength_Type(ptr.Pointer()))
 	}
@@ -71,6 +96,12 @@ func (ptr *QTextLength) Type() QTextLength__Type {
 }
 
 func (ptr *QTextLength) Value(maximumLength float64) float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLength::value")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLength_Value(ptr.Pointer(), C.double(maximumLength)))
 	}

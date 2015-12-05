@@ -1,9 +1,10 @@
 package gui
 
-//#include "qfontmetricsf.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,22 +42,52 @@ func (ptr *QFontMetricsF) QFontMetricsF_PTR() *QFontMetricsF {
 }
 
 func NewQFontMetricsF(font QFont_ITF) *QFontMetricsF {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::QFontMetricsF")
+		}
+	}()
+
 	return NewQFontMetricsFFromPointer(C.QFontMetricsF_NewQFontMetricsF(PointerFromQFont(font)))
 }
 
 func NewQFontMetricsF2(font QFont_ITF, paintdevice QPaintDevice_ITF) *QFontMetricsF {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::QFontMetricsF")
+		}
+	}()
+
 	return NewQFontMetricsFFromPointer(C.QFontMetricsF_NewQFontMetricsF2(PointerFromQFont(font), PointerFromQPaintDevice(paintdevice)))
 }
 
 func NewQFontMetricsF3(fontMetrics QFontMetrics_ITF) *QFontMetricsF {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::QFontMetricsF")
+		}
+	}()
+
 	return NewQFontMetricsFFromPointer(C.QFontMetricsF_NewQFontMetricsF3(PointerFromQFontMetrics(fontMetrics)))
 }
 
 func NewQFontMetricsF4(fm QFontMetricsF_ITF) *QFontMetricsF {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::QFontMetricsF")
+		}
+	}()
+
 	return NewQFontMetricsFFromPointer(C.QFontMetricsF_NewQFontMetricsF4(PointerFromQFontMetricsF(fm)))
 }
 
 func (ptr *QFontMetricsF) Ascent() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::ascent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_Ascent(ptr.Pointer()))
 	}
@@ -64,6 +95,12 @@ func (ptr *QFontMetricsF) Ascent() float64 {
 }
 
 func (ptr *QFontMetricsF) AverageCharWidth() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::averageCharWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_AverageCharWidth(ptr.Pointer()))
 	}
@@ -71,6 +108,12 @@ func (ptr *QFontMetricsF) AverageCharWidth() float64 {
 }
 
 func (ptr *QFontMetricsF) Descent() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::descent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_Descent(ptr.Pointer()))
 	}
@@ -78,6 +121,12 @@ func (ptr *QFontMetricsF) Descent() float64 {
 }
 
 func (ptr *QFontMetricsF) ElidedText(text string, mode core.Qt__TextElideMode, width float64, flags int) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::elidedText")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFontMetricsF_ElidedText(ptr.Pointer(), C.CString(text), C.int(mode), C.double(width), C.int(flags)))
 	}
@@ -85,6 +134,12 @@ func (ptr *QFontMetricsF) ElidedText(text string, mode core.Qt__TextElideMode, w
 }
 
 func (ptr *QFontMetricsF) Height() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::height")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_Height(ptr.Pointer()))
 	}
@@ -92,6 +147,12 @@ func (ptr *QFontMetricsF) Height() float64 {
 }
 
 func (ptr *QFontMetricsF) InFont(ch core.QChar_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::inFont")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QFontMetricsF_InFont(ptr.Pointer(), core.PointerFromQChar(ch)) != 0
 	}
@@ -99,6 +160,12 @@ func (ptr *QFontMetricsF) InFont(ch core.QChar_ITF) bool {
 }
 
 func (ptr *QFontMetricsF) Leading() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::leading")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_Leading(ptr.Pointer()))
 	}
@@ -106,6 +173,12 @@ func (ptr *QFontMetricsF) Leading() float64 {
 }
 
 func (ptr *QFontMetricsF) LeftBearing(ch core.QChar_ITF) float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::leftBearing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_LeftBearing(ptr.Pointer(), core.PointerFromQChar(ch)))
 	}
@@ -113,6 +186,12 @@ func (ptr *QFontMetricsF) LeftBearing(ch core.QChar_ITF) float64 {
 }
 
 func (ptr *QFontMetricsF) LineSpacing() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::lineSpacing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_LineSpacing(ptr.Pointer()))
 	}
@@ -120,6 +199,12 @@ func (ptr *QFontMetricsF) LineSpacing() float64 {
 }
 
 func (ptr *QFontMetricsF) LineWidth() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::lineWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_LineWidth(ptr.Pointer()))
 	}
@@ -127,6 +212,12 @@ func (ptr *QFontMetricsF) LineWidth() float64 {
 }
 
 func (ptr *QFontMetricsF) MaxWidth() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::maxWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_MaxWidth(ptr.Pointer()))
 	}
@@ -134,6 +225,12 @@ func (ptr *QFontMetricsF) MaxWidth() float64 {
 }
 
 func (ptr *QFontMetricsF) MinLeftBearing() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::minLeftBearing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_MinLeftBearing(ptr.Pointer()))
 	}
@@ -141,6 +238,12 @@ func (ptr *QFontMetricsF) MinLeftBearing() float64 {
 }
 
 func (ptr *QFontMetricsF) MinRightBearing() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::minRightBearing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_MinRightBearing(ptr.Pointer()))
 	}
@@ -148,6 +251,12 @@ func (ptr *QFontMetricsF) MinRightBearing() float64 {
 }
 
 func (ptr *QFontMetricsF) OverlinePos() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::overlinePos")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_OverlinePos(ptr.Pointer()))
 	}
@@ -155,6 +264,12 @@ func (ptr *QFontMetricsF) OverlinePos() float64 {
 }
 
 func (ptr *QFontMetricsF) RightBearing(ch core.QChar_ITF) float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::rightBearing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_RightBearing(ptr.Pointer(), core.PointerFromQChar(ch)))
 	}
@@ -162,6 +277,12 @@ func (ptr *QFontMetricsF) RightBearing(ch core.QChar_ITF) float64 {
 }
 
 func (ptr *QFontMetricsF) StrikeOutPos() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::strikeOutPos")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_StrikeOutPos(ptr.Pointer()))
 	}
@@ -169,12 +290,24 @@ func (ptr *QFontMetricsF) StrikeOutPos() float64 {
 }
 
 func (ptr *QFontMetricsF) Swap(other QFontMetricsF_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFontMetricsF_Swap(ptr.Pointer(), PointerFromQFontMetricsF(other))
 	}
 }
 
 func (ptr *QFontMetricsF) UnderlinePos() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::underlinePos")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_UnderlinePos(ptr.Pointer()))
 	}
@@ -182,6 +315,12 @@ func (ptr *QFontMetricsF) UnderlinePos() float64 {
 }
 
 func (ptr *QFontMetricsF) Width2(ch core.QChar_ITF) float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::width")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_Width2(ptr.Pointer(), core.PointerFromQChar(ch)))
 	}
@@ -189,6 +328,12 @@ func (ptr *QFontMetricsF) Width2(ch core.QChar_ITF) float64 {
 }
 
 func (ptr *QFontMetricsF) Width(text string) float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::width")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_Width(ptr.Pointer(), C.CString(text)))
 	}
@@ -196,6 +341,12 @@ func (ptr *QFontMetricsF) Width(text string) float64 {
 }
 
 func (ptr *QFontMetricsF) XHeight() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::xHeight")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QFontMetricsF_XHeight(ptr.Pointer()))
 	}
@@ -203,6 +354,12 @@ func (ptr *QFontMetricsF) XHeight() float64 {
 }
 
 func (ptr *QFontMetricsF) DestroyQFontMetricsF() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontMetricsF::~QFontMetricsF")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFontMetricsF_DestroyQFontMetricsF(ptr.Pointer())
 	}

@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptionheader.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -76,9 +77,21 @@ var (
 )
 
 func NewQStyleOptionHeader() *QStyleOptionHeader {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionHeader::QStyleOptionHeader")
+		}
+	}()
+
 	return NewQStyleOptionHeaderFromPointer(C.QStyleOptionHeader_NewQStyleOptionHeader())
 }
 
 func NewQStyleOptionHeader2(other QStyleOptionHeader_ITF) *QStyleOptionHeader {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionHeader::QStyleOptionHeader")
+		}
+	}()
+
 	return NewQStyleOptionHeaderFromPointer(C.QStyleOptionHeader_NewQStyleOptionHeader2(PointerFromQStyleOptionHeader(other)))
 }

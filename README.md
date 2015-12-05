@@ -1,14 +1,38 @@
-# Qt binding for Go (Windows / Mac OS X / Linux / Android)
+# Screenshots
+
+## Windows
+![](internal/screens/windows.png)
+
+## Mac OS X
+![](internal/screens/mac.png)
+
+## Linux
+![](internal/screens/linux.png)
+
+## Android
+
+### Portrait
+![](internal/screens/android_portrait.png)
+
+### Landscape
+![](internal/screens/android_landscape.png)
+
+[source](https://github.com/therecipe/qt/tree/master/internal/examples/widgets/widgets.go)
+
+---
+
+# Getting Started
 
 ## Desktop (Windows / Mac OS X / Linux)
 
-1. Install Go >= 1.5.1
-	* https://storage.googleapis.com/golang/go1.5.1.windows-386.msi
-	* https://storage.googleapis.com/golang/go1.5.1.darwin-amd64.pkg
-	* https://storage.googleapis.com/golang/go1.5.1.linux-386.tar.gz
-	* https://storage.googleapis.com/golang/go1.5.1.linux-amd64.tar.gz
+1. Install Go >= 1.5.2 and setup a proper [GOPATH](https://golang.org/doc/code.html#GOPATH)
+	* https://storage.googleapis.com/golang/go1.5.2.windows-386.msi
+	* https://storage.googleapis.com/golang/go1.5.2.windows-amd64.msi
+	* https://storage.googleapis.com/golang/go1.5.2.darwin-amd64.pkg
+	* https://storage.googleapis.com/golang/go1.5.2.linux-386.tar.gz
+	* https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz
 
-2. Install Qt 5.5.1 `C:\Qt\Qt5.5.1\` or `/usr/local/Qt5.5.1/`
+2. Install Qt 5.5.1 in `C:\Qt\Qt5.5.1\` or `/usr/local/Qt5.5.1/`
 	* https://download.qt.io/official_releases/qt/5.5/5.5.1/qt-opensource-windows-x86-android-5.5.1.exe
 	* https://download.qt.io/official_releases/qt/5.5/5.5.1/qt-opensource-mac-x64-android-5.5.1.dmg
 	* https://download.qt.io/official_releases/qt/5.5/5.5.1/qt-opensource-linux-x86-android-5.5.1.run
@@ -16,15 +40,15 @@
 
 3. Setup the environment
 	* Windows
-		* Add the directory that contains "gcc.exe" to your PATH
+		* Add the directory that contains **gcc.exe** to your **PATH**
 
 			`C:\Qt\Qt5.5.1\Tools\mingw492_32\bin`
 
 	* Mac OS X
-		* Install Xcode >= 7.0.1
+		* Install Xcode >= 7.1.1
 
 	* Linux
-		* Install "g++"
+		* Install g++
 
 			`sudo apt-get install g++`
 
@@ -32,63 +56,66 @@
 
 			`sudo apt-get install mesa-common-dev`
 
-4. Download the qt binding
+4. Download the binding
 
  	`go get github.com/therecipe/qt`
 
-
 5. Generate, install and test
 
-  	`github.com/therecipe/qt/setup.bat` (run as admin)
+  	`github.com/therecipe/qt/setup.bat` **(run as admin)**
 
   	or
 
   	`github.com/therecipe/qt/setup.sh`
 
+---
+
 ## Mobile (Android)
 
-1. Make sure the binding is working by setting up the Desktop version
+1. Make sure the binding is working by setting up the desktop version
 
-2. Install the Android SDK `C:\android\android-sdk\` or `/opt/android-sdk/`
-	* http://dl.google.com/android/installer_r24.4.1-windows.exe
-	* http://dl.google.com/android/android-sdk_r24.4.1-macosx.zip
-	* http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
+2. Install the Android SDK in `C:\android\android-sdk\` or `/opt/android-sdk/`
+	* https://dl.google.com/android/installer_r24.4.1-windows.exe
+	* https://dl.google.com/android/android-sdk_r24.4.1-macosx.zip
+	* https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
 
-3. Install the SDK dependencies `C:\android\android-sdk\tools\android.bat` or `/opt/android-sdk/tools/android`
+3. Install the SDK dependencies with `C:\android\android-sdk\tools\android.bat` or `/opt/android-sdk/tools/android`
 	* Tools
 		* Android SDK Build-tools (23.0.2)
-	* Android 6.0 (API 23)
+	* Android 5.1.1 (API 22)
 		* SDK Platform
 	* Extras (Windows only)
 		* Google USB Driver
 
-4. Install the Android NDK `C:\android\android-ndk\` or `/opt/android-ndk/`
-	* http://dl.google.com/android/ndk/android-ndk-r10e-windows-x86.exe
-	* http://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin
-	* http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86.bin
-	* http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
+4. Install the Android NDK in `C:\android\android-ndk\` or `/opt/android-ndk/`
+	* https://dl.google.com/android/ndk/android-ndk-r10e-windows-x86.exe
+	* https://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin
+	* https://dl.google.com/android/ndk/android-ndk-r10e-linux-x86.bin
+	* https://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
 
-5. Install Apache-Ant `C:\android\apache-ant\` or `/opt/apache-ant/`
-	* http://mirror.synyx.de/apache/ant/binaries/apache-ant-1.9.6-bin.zip
-	* http://mirror.synyx.de/apache/ant/binaries/apache-ant-1.9.6-bin.tar.bz2
-	* http://mirror.synyx.de/apache/ant/binaries/apache-ant-1.9.6-bin.tar.gz
+5. Install Apache-Ant in `C:\android\apache-ant\` or `/opt/apache-ant/`
+	* https://mirror.synyx.de/apache/ant/binaries/apache-ant-1.9.6-bin.zip
+	* https://mirror.synyx.de/apache/ant/binaries/apache-ant-1.9.6-bin.tar.bz2
+	* https://mirror.synyx.de/apache/ant/binaries/apache-ant-1.9.6-bin.tar.gz
 
-6. Install Java SE Development Kit (linux: `/opt/jdk/`)
-	* http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+6. Install Java SE Development Kit (linux only: install in `/opt/jdk/`)
+	* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
 7. Install and test
 
-  	`github.com/therecipe/qt/setup.bat android` (run as admin)
+  	`github.com/therecipe/qt/setup.bat android` **(run as admin)**
 
     or
 
   	`github.com/therecipe/qt/setup.sh android`
 
+---
+
 # Quick Start
 
-1. Create a folder: [GOPATH]/src/qtExample
+1. Create a folder `[GOPATH]/src/qtExample`
 
-2. Create a file named main.go in this folder
+2. Create a file `[GOPATH]/src/qtExample/main.go`
 ```go
 package main
 
@@ -116,8 +143,12 @@ func main() {
 }
 ```
 
-3. Open the command line in [GOPATH]/src and run:
+3. Open the command line in `[GOPATH]/src` and run
 `qtdeploy build desktop qtExample`
 
-4. Wait a minute, then you will find the executable file here:
-`[GOPATH]/src/qtExample/deploy/{windows|darwin|linux}/qtExample.exe`
+4. Wait a minute, then you will find the executable file here
+`[GOPATH]/src/qtExample/deploy/[GOOS]/qtExample`
+
+5. Take a look at the [other examples](https://github.com/therecipe/qt/tree/master/internal/examples)
+
+6. Make yourself familiar with the [qt documentation](https://doc.qt.io/qt-5/classes.html)

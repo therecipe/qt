@@ -1,6 +1,6 @@
 package location
 
-//#include "qplaceresult.h"
+//#include "location.h"
 import "C"
 import (
 	"unsafe"

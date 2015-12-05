@@ -1,8 +1,9 @@
 package sql
 
-//#include "qsqldrivercreatorbase.h"
+//#include "sql.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QSqlDriverCreatorBase) QSqlDriverCreatorBase_PTR() *QSqlDriverCreator
 }
 
 func (ptr *QSqlDriverCreatorBase) CreateObject() *QSqlDriver {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlDriverCreatorBase::createObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQSqlDriverFromPointer(C.QSqlDriverCreatorBase_CreateObject(ptr.Pointer()))
 	}
@@ -47,6 +54,12 @@ func (ptr *QSqlDriverCreatorBase) CreateObject() *QSqlDriver {
 }
 
 func (ptr *QSqlDriverCreatorBase) DestroyQSqlDriverCreatorBase() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlDriverCreatorBase::~QSqlDriverCreatorBase")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(ptr.Pointer())
 	}

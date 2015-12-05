@@ -1,13 +1,10 @@
-#include "qscriptenginedebugger.h"
-#include <QObject>
-#include <QWidget>
-#include <QScriptEngine>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QScriptEngineDebugger>
+#include "scripttools.h"
 #include "_cgo_export.h"
+
+#include <QObject>
+#include <QScriptEngine>
+#include <QScriptEngineDebugger>
+#include <QWidget>
 
 class MyQScriptEngineDebugger: public QScriptEngineDebugger {
 public:

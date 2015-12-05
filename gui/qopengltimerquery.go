@@ -1,6 +1,6 @@
 package gui
 
-//#include "qopengltimerquery.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQOpenGLTimerQuery(ptr QOpenGLTimerQuery_ITF) unsafe.Pointer {
 func NewQOpenGLTimerQueryFromPointer(ptr unsafe.Pointer) *QOpenGLTimerQuery {
 	var n = new(QOpenGLTimerQuery)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QOpenGLTimerQuery_") {
 		n.SetObjectName("QOpenGLTimerQuery_" + qt.RandomIdentifier())
 	}
 	return n

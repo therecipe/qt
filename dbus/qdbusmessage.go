@@ -1,9 +1,10 @@
 package dbus
 
-//#include "qdbusmessage.h"
+//#include "dbus.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -52,14 +53,32 @@ const (
 )
 
 func NewQDBusMessage() *QDBusMessage {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::QDBusMessage")
+		}
+	}()
+
 	return NewQDBusMessageFromPointer(C.QDBusMessage_NewQDBusMessage())
 }
 
 func NewQDBusMessage2(other QDBusMessage_ITF) *QDBusMessage {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::QDBusMessage")
+		}
+	}()
+
 	return NewQDBusMessageFromPointer(C.QDBusMessage_NewQDBusMessage2(PointerFromQDBusMessage(other)))
 }
 
 func (ptr *QDBusMessage) AutoStartService() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::autoStartService")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusMessage_AutoStartService(ptr.Pointer()) != 0
 	}
@@ -67,6 +86,12 @@ func (ptr *QDBusMessage) AutoStartService() bool {
 }
 
 func (ptr *QDBusMessage) ErrorMessage() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::errorMessage")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusMessage_ErrorMessage(ptr.Pointer()))
 	}
@@ -74,6 +99,12 @@ func (ptr *QDBusMessage) ErrorMessage() string {
 }
 
 func (ptr *QDBusMessage) ErrorName() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::errorName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusMessage_ErrorName(ptr.Pointer()))
 	}
@@ -81,6 +112,12 @@ func (ptr *QDBusMessage) ErrorName() string {
 }
 
 func (ptr *QDBusMessage) Interface() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::interface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusMessage_Interface(ptr.Pointer()))
 	}
@@ -88,6 +125,12 @@ func (ptr *QDBusMessage) Interface() string {
 }
 
 func (ptr *QDBusMessage) IsDelayedReply() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::isDelayedReply")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusMessage_IsDelayedReply(ptr.Pointer()) != 0
 	}
@@ -95,6 +138,12 @@ func (ptr *QDBusMessage) IsDelayedReply() bool {
 }
 
 func (ptr *QDBusMessage) IsReplyRequired() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::isReplyRequired")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusMessage_IsReplyRequired(ptr.Pointer()) != 0
 	}
@@ -102,6 +151,12 @@ func (ptr *QDBusMessage) IsReplyRequired() bool {
 }
 
 func (ptr *QDBusMessage) Member() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::member")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusMessage_Member(ptr.Pointer()))
 	}
@@ -109,6 +164,12 @@ func (ptr *QDBusMessage) Member() string {
 }
 
 func (ptr *QDBusMessage) Path() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::path")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusMessage_Path(ptr.Pointer()))
 	}
@@ -116,6 +177,12 @@ func (ptr *QDBusMessage) Path() string {
 }
 
 func (ptr *QDBusMessage) Service() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::service")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusMessage_Service(ptr.Pointer()))
 	}
@@ -123,18 +190,36 @@ func (ptr *QDBusMessage) Service() string {
 }
 
 func (ptr *QDBusMessage) SetAutoStartService(enable bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::setAutoStartService")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusMessage_SetAutoStartService(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
 func (ptr *QDBusMessage) SetDelayedReply(enable bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::setDelayedReply")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusMessage_SetDelayedReply(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
 func (ptr *QDBusMessage) Signature() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::signature")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusMessage_Signature(ptr.Pointer()))
 	}
@@ -142,6 +227,12 @@ func (ptr *QDBusMessage) Signature() string {
 }
 
 func (ptr *QDBusMessage) Type() QDBusMessage__MessageType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QDBusMessage__MessageType(C.QDBusMessage_Type(ptr.Pointer()))
 	}
@@ -149,6 +240,12 @@ func (ptr *QDBusMessage) Type() QDBusMessage__MessageType {
 }
 
 func (ptr *QDBusMessage) DestroyQDBusMessage() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusMessage::~QDBusMessage")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusMessage_DestroyQDBusMessage(ptr.Pointer())
 	}

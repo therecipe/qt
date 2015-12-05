@@ -1,6 +1,6 @@
 package core
 
-//#include "qlist.h"
+//#include "core.h"
 import "C"
 import (
 	"unsafe"

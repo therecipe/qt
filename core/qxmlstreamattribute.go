@@ -1,8 +1,9 @@
 package core
 
-//#include "qxmlstreamattribute.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,22 +41,52 @@ func (ptr *QXmlStreamAttribute) QXmlStreamAttribute_PTR() *QXmlStreamAttribute {
 }
 
 func NewQXmlStreamAttribute() *QXmlStreamAttribute {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamAttribute::QXmlStreamAttribute")
+		}
+	}()
+
 	return NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute())
 }
 
 func NewQXmlStreamAttribute3(namespaceUri string, name string, value string) *QXmlStreamAttribute {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamAttribute::QXmlStreamAttribute")
+		}
+	}()
+
 	return NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute3(C.CString(namespaceUri), C.CString(name), C.CString(value)))
 }
 
 func NewQXmlStreamAttribute2(qualifiedName string, value string) *QXmlStreamAttribute {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamAttribute::QXmlStreamAttribute")
+		}
+	}()
+
 	return NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute2(C.CString(qualifiedName), C.CString(value)))
 }
 
 func NewQXmlStreamAttribute4(other QXmlStreamAttribute_ITF) *QXmlStreamAttribute {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamAttribute::QXmlStreamAttribute")
+		}
+	}()
+
 	return NewQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute4(PointerFromQXmlStreamAttribute(other)))
 }
 
 func (ptr *QXmlStreamAttribute) IsDefault() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamAttribute::isDefault")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamAttribute_IsDefault(ptr.Pointer()) != 0
 	}
@@ -63,6 +94,12 @@ func (ptr *QXmlStreamAttribute) IsDefault() bool {
 }
 
 func (ptr *QXmlStreamAttribute) Name() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamAttribute::name")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamAttribute_Name(ptr.Pointer()))
 	}
@@ -70,6 +107,12 @@ func (ptr *QXmlStreamAttribute) Name() *QStringRef {
 }
 
 func (ptr *QXmlStreamAttribute) NamespaceUri() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamAttribute::namespaceUri")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamAttribute_NamespaceUri(ptr.Pointer()))
 	}
@@ -77,6 +120,12 @@ func (ptr *QXmlStreamAttribute) NamespaceUri() *QStringRef {
 }
 
 func (ptr *QXmlStreamAttribute) Prefix() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamAttribute::prefix")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamAttribute_Prefix(ptr.Pointer()))
 	}
@@ -84,6 +133,12 @@ func (ptr *QXmlStreamAttribute) Prefix() *QStringRef {
 }
 
 func (ptr *QXmlStreamAttribute) QualifiedName() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamAttribute::qualifiedName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamAttribute_QualifiedName(ptr.Pointer()))
 	}
@@ -91,6 +146,12 @@ func (ptr *QXmlStreamAttribute) QualifiedName() *QStringRef {
 }
 
 func (ptr *QXmlStreamAttribute) Value() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamAttribute::value")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamAttribute_Value(ptr.Pointer()))
 	}
@@ -98,6 +159,12 @@ func (ptr *QXmlStreamAttribute) Value() *QStringRef {
 }
 
 func (ptr *QXmlStreamAttribute) DestroyQXmlStreamAttribute() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamAttribute::~QXmlStreamAttribute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QXmlStreamAttribute_DestroyQXmlStreamAttribute(ptr.Pointer())
 	}

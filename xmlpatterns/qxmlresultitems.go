@@ -1,8 +1,9 @@
 package xmlpatterns
 
-//#include "qxmlresultitems.h"
+//#include "xmlpatterns.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,10 +41,22 @@ func (ptr *QXmlResultItems) QXmlResultItems_PTR() *QXmlResultItems {
 }
 
 func NewQXmlResultItems() *QXmlResultItems {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlResultItems::QXmlResultItems")
+		}
+	}()
+
 	return NewQXmlResultItemsFromPointer(C.QXmlResultItems_NewQXmlResultItems())
 }
 
 func (ptr *QXmlResultItems) HasError() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlResultItems::hasError")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QXmlResultItems_HasError(ptr.Pointer()) != 0
 	}
@@ -51,6 +64,12 @@ func (ptr *QXmlResultItems) HasError() bool {
 }
 
 func (ptr *QXmlResultItems) DestroyQXmlResultItems() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlResultItems::~QXmlResultItems")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QXmlResultItems_DestroyQXmlResultItems(ptr.Pointer())
 	}

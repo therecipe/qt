@@ -1,6 +1,6 @@
 package qml
 
-//#include "qjsvalueiterator.h"
+//#include "qml.h"
 import "C"
 import (
 	"unsafe"

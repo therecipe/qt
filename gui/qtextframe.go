@@ -1,9 +1,10 @@
 package gui
 
-//#include "qtextframe.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQTextFrame(ptr QTextFrame_ITF) unsafe.Pointer {
 func NewQTextFrameFromPointer(ptr unsafe.Pointer) *QTextFrame {
 	var n = new(QTextFrame)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QTextFrame_") {
 		n.SetObjectName("QTextFrame_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,10 +38,22 @@ func (ptr *QTextFrame) QTextFrame_PTR() *QTextFrame {
 }
 
 func NewQTextFrame(document QTextDocument_ITF) *QTextFrame {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextFrame::QTextFrame")
+		}
+	}()
+
 	return NewQTextFrameFromPointer(C.QTextFrame_NewQTextFrame(PointerFromQTextDocument(document)))
 }
 
 func (ptr *QTextFrame) FirstPosition() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextFrame::firstPosition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextFrame_FirstPosition(ptr.Pointer()))
 	}
@@ -48,6 +61,12 @@ func (ptr *QTextFrame) FirstPosition() int {
 }
 
 func (ptr *QTextFrame) LastPosition() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextFrame::lastPosition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextFrame_LastPosition(ptr.Pointer()))
 	}
@@ -55,6 +74,12 @@ func (ptr *QTextFrame) LastPosition() int {
 }
 
 func (ptr *QTextFrame) ParentFrame() *QTextFrame {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextFrame::parentFrame")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQTextFrameFromPointer(C.QTextFrame_ParentFrame(ptr.Pointer()))
 	}
@@ -62,12 +87,24 @@ func (ptr *QTextFrame) ParentFrame() *QTextFrame {
 }
 
 func (ptr *QTextFrame) SetFrameFormat(format QTextFrameFormat_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextFrame::setFrameFormat")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextFrame_SetFrameFormat(ptr.Pointer(), PointerFromQTextFrameFormat(format))
 	}
 }
 
 func (ptr *QTextFrame) DestroyQTextFrame() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextFrame::~QTextFrame")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextFrame_DestroyQTextFrame(ptr.Pointer())
 		ptr.SetPointer(nil)

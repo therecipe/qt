@@ -1,8 +1,9 @@
 package multimedia
 
-//#include "qmediatimeinterval.h"
+//#include "multimedia.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,14 +41,32 @@ func (ptr *QMediaTimeInterval) QMediaTimeInterval_PTR() *QMediaTimeInterval {
 }
 
 func NewQMediaTimeInterval() *QMediaTimeInterval {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaTimeInterval::QMediaTimeInterval")
+		}
+	}()
+
 	return NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval())
 }
 
 func NewQMediaTimeInterval3(other QMediaTimeInterval_ITF) *QMediaTimeInterval {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaTimeInterval::QMediaTimeInterval")
+		}
+	}()
+
 	return NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_NewQMediaTimeInterval3(PointerFromQMediaTimeInterval(other)))
 }
 
 func (ptr *QMediaTimeInterval) IsNormal() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaTimeInterval::isNormal")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QMediaTimeInterval_IsNormal(ptr.Pointer()) != 0
 	}

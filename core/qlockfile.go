@@ -1,8 +1,9 @@
 package core
 
-//#include "qlockfile.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -50,10 +51,22 @@ const (
 )
 
 func NewQLockFile(fileName string) *QLockFile {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLockFile::QLockFile")
+		}
+	}()
+
 	return NewQLockFileFromPointer(C.QLockFile_NewQLockFile(C.CString(fileName)))
 }
 
 func (ptr *QLockFile) Error() QLockFile__LockError {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLockFile::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QLockFile__LockError(C.QLockFile_Error(ptr.Pointer()))
 	}
@@ -61,6 +74,12 @@ func (ptr *QLockFile) Error() QLockFile__LockError {
 }
 
 func (ptr *QLockFile) IsLocked() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLockFile::isLocked")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QLockFile_IsLocked(ptr.Pointer()) != 0
 	}
@@ -68,6 +87,12 @@ func (ptr *QLockFile) IsLocked() bool {
 }
 
 func (ptr *QLockFile) Lock() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLockFile::lock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QLockFile_Lock(ptr.Pointer()) != 0
 	}
@@ -75,6 +100,12 @@ func (ptr *QLockFile) Lock() bool {
 }
 
 func (ptr *QLockFile) RemoveStaleLockFile() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLockFile::removeStaleLockFile")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QLockFile_RemoveStaleLockFile(ptr.Pointer()) != 0
 	}
@@ -82,12 +113,24 @@ func (ptr *QLockFile) RemoveStaleLockFile() bool {
 }
 
 func (ptr *QLockFile) SetStaleLockTime(staleLockTime int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLockFile::setStaleLockTime")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QLockFile_SetStaleLockTime(ptr.Pointer(), C.int(staleLockTime))
 	}
 }
 
 func (ptr *QLockFile) StaleLockTime() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLockFile::staleLockTime")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QLockFile_StaleLockTime(ptr.Pointer()))
 	}
@@ -95,6 +138,12 @@ func (ptr *QLockFile) StaleLockTime() int {
 }
 
 func (ptr *QLockFile) TryLock(timeout int) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLockFile::tryLock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QLockFile_TryLock(ptr.Pointer(), C.int(timeout)) != 0
 	}
@@ -102,12 +151,24 @@ func (ptr *QLockFile) TryLock(timeout int) bool {
 }
 
 func (ptr *QLockFile) DestroyQLockFile() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLockFile::~QLockFile")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QLockFile_DestroyQLockFile(ptr.Pointer())
 	}
 }
 
 func (ptr *QLockFile) Unlock() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QLockFile::unlock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QLockFile_Unlock(ptr.Pointer())
 	}

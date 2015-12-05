@@ -1,9 +1,10 @@
 package gui
 
-//#include "qenterevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,10 +35,22 @@ func (ptr *QEnterEvent) QEnterEvent_PTR() *QEnterEvent {
 }
 
 func NewQEnterEvent(localPos core.QPointF_ITF, windowPos core.QPointF_ITF, screenPos core.QPointF_ITF) *QEnterEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEnterEvent::QEnterEvent")
+		}
+	}()
+
 	return NewQEnterEventFromPointer(C.QEnterEvent_NewQEnterEvent(core.PointerFromQPointF(localPos), core.PointerFromQPointF(windowPos), core.PointerFromQPointF(screenPos)))
 }
 
 func (ptr *QEnterEvent) GlobalX() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEnterEvent::globalX")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QEnterEvent_GlobalX(ptr.Pointer()))
 	}
@@ -45,6 +58,12 @@ func (ptr *QEnterEvent) GlobalX() int {
 }
 
 func (ptr *QEnterEvent) GlobalY() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEnterEvent::globalY")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QEnterEvent_GlobalY(ptr.Pointer()))
 	}
@@ -52,6 +71,12 @@ func (ptr *QEnterEvent) GlobalY() int {
 }
 
 func (ptr *QEnterEvent) X() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEnterEvent::x")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QEnterEvent_X(ptr.Pointer()))
 	}
@@ -59,6 +84,12 @@ func (ptr *QEnterEvent) X() int {
 }
 
 func (ptr *QEnterEvent) Y() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QEnterEvent::y")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QEnterEvent_Y(ptr.Pointer()))
 	}

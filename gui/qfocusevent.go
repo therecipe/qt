@@ -1,9 +1,10 @@
 package gui
 
-//#include "qfocusevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,10 +35,22 @@ func (ptr *QFocusEvent) QFocusEvent_PTR() *QFocusEvent {
 }
 
 func NewQFocusEvent(ty core.QEvent__Type, reason core.Qt__FocusReason) *QFocusEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFocusEvent::QFocusEvent")
+		}
+	}()
+
 	return NewQFocusEventFromPointer(C.QFocusEvent_NewQFocusEvent(C.int(ty), C.int(reason)))
 }
 
 func (ptr *QFocusEvent) GotFocus() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFocusEvent::gotFocus")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QFocusEvent_GotFocus(ptr.Pointer()) != 0
 	}
@@ -45,6 +58,12 @@ func (ptr *QFocusEvent) GotFocus() bool {
 }
 
 func (ptr *QFocusEvent) LostFocus() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFocusEvent::lostFocus")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QFocusEvent_LostFocus(ptr.Pointer()) != 0
 	}
@@ -52,6 +71,12 @@ func (ptr *QFocusEvent) LostFocus() bool {
 }
 
 func (ptr *QFocusEvent) Reason() core.Qt__FocusReason {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFocusEvent::reason")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__FocusReason(C.QFocusEvent_Reason(ptr.Pointer()))
 	}

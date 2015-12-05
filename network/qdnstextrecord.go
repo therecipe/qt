@@ -1,8 +1,9 @@
 package network
 
-//#include "qdnstextrecord.h"
+//#include "network.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,14 +41,32 @@ func (ptr *QDnsTextRecord) QDnsTextRecord_PTR() *QDnsTextRecord {
 }
 
 func NewQDnsTextRecord() *QDnsTextRecord {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDnsTextRecord::QDnsTextRecord")
+		}
+	}()
+
 	return NewQDnsTextRecordFromPointer(C.QDnsTextRecord_NewQDnsTextRecord())
 }
 
 func NewQDnsTextRecord2(other QDnsTextRecord_ITF) *QDnsTextRecord {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDnsTextRecord::QDnsTextRecord")
+		}
+	}()
+
 	return NewQDnsTextRecordFromPointer(C.QDnsTextRecord_NewQDnsTextRecord2(PointerFromQDnsTextRecord(other)))
 }
 
 func (ptr *QDnsTextRecord) Name() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDnsTextRecord::name")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDnsTextRecord_Name(ptr.Pointer()))
 	}
@@ -55,12 +74,24 @@ func (ptr *QDnsTextRecord) Name() string {
 }
 
 func (ptr *QDnsTextRecord) Swap(other QDnsTextRecord_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDnsTextRecord::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDnsTextRecord_Swap(ptr.Pointer(), PointerFromQDnsTextRecord(other))
 	}
 }
 
 func (ptr *QDnsTextRecord) DestroyQDnsTextRecord() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDnsTextRecord::~QDnsTextRecord")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDnsTextRecord_DestroyQDnsTextRecord(ptr.Pointer())
 	}

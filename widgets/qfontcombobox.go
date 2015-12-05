@@ -1,10 +1,11 @@
 package widgets
 
-//#include "qfontcombobox.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/gui"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQFontComboBox(ptr QFontComboBox_ITF) unsafe.Pointer {
 func NewQFontComboBoxFromPointer(ptr unsafe.Pointer) *QFontComboBox {
 	var n = new(QFontComboBox)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QFontComboBox_") {
 		n.SetObjectName("QFontComboBox_" + qt.RandomIdentifier())
 	}
 	return n
@@ -49,6 +50,12 @@ const (
 )
 
 func (ptr *QFontComboBox) FontFilters() QFontComboBox__FontFilter {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontComboBox::fontFilters")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QFontComboBox__FontFilter(C.QFontComboBox_FontFilters(ptr.Pointer()))
 	}
@@ -56,24 +63,48 @@ func (ptr *QFontComboBox) FontFilters() QFontComboBox__FontFilter {
 }
 
 func (ptr *QFontComboBox) SetCurrentFont(font gui.QFont_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontComboBox::setCurrentFont")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFontComboBox_SetCurrentFont(ptr.Pointer(), gui.PointerFromQFont(font))
 	}
 }
 
 func (ptr *QFontComboBox) SetFontFilters(filters QFontComboBox__FontFilter) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontComboBox::setFontFilters")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFontComboBox_SetFontFilters(ptr.Pointer(), C.int(filters))
 	}
 }
 
 func (ptr *QFontComboBox) SetWritingSystem(script gui.QFontDatabase__WritingSystem) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontComboBox::setWritingSystem")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFontComboBox_SetWritingSystem(ptr.Pointer(), C.int(script))
 	}
 }
 
 func (ptr *QFontComboBox) WritingSystem() gui.QFontDatabase__WritingSystem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontComboBox::writingSystem")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return gui.QFontDatabase__WritingSystem(C.QFontComboBox_WritingSystem(ptr.Pointer()))
 	}
@@ -81,10 +112,22 @@ func (ptr *QFontComboBox) WritingSystem() gui.QFontDatabase__WritingSystem {
 }
 
 func NewQFontComboBox(parent QWidget_ITF) *QFontComboBox {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontComboBox::QFontComboBox")
+		}
+	}()
+
 	return NewQFontComboBoxFromPointer(C.QFontComboBox_NewQFontComboBox(PointerFromQWidget(parent)))
 }
 
 func (ptr *QFontComboBox) DestroyQFontComboBox() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontComboBox::~QFontComboBox")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFontComboBox_DestroyQFontComboBox(ptr.Pointer())
 		ptr.SetPointer(nil)

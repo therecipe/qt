@@ -1,9 +1,10 @@
 package sensors
 
-//#include "qdistancereading.h"
+//#include "sensors.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQDistanceReading(ptr QDistanceReading_ITF) unsafe.Pointer {
 func NewQDistanceReadingFromPointer(ptr unsafe.Pointer) *QDistanceReading {
 	var n = new(QDistanceReading)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QDistanceReading_") {
 		n.SetObjectName("QDistanceReading_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QDistanceReading) QDistanceReading_PTR() *QDistanceReading {
 }
 
 func (ptr *QDistanceReading) Distance() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDistanceReading::distance")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QDistanceReading_Distance(ptr.Pointer()))
 	}
@@ -44,6 +51,12 @@ func (ptr *QDistanceReading) Distance() float64 {
 }
 
 func (ptr *QDistanceReading) SetDistance(distance float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDistanceReading::setDistance")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDistanceReading_SetDistance(ptr.Pointer(), C.double(distance))
 	}

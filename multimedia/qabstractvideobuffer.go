@@ -1,9 +1,10 @@
 package multimedia
 
-//#include "qabstractvideobuffer.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -64,6 +65,12 @@ const (
 )
 
 func (ptr *QAbstractVideoBuffer) Handle() *core.QVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractVideoBuffer::handle")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QAbstractVideoBuffer_Handle(ptr.Pointer()))
 	}
@@ -71,6 +78,12 @@ func (ptr *QAbstractVideoBuffer) Handle() *core.QVariant {
 }
 
 func (ptr *QAbstractVideoBuffer) HandleType() QAbstractVideoBuffer__HandleType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractVideoBuffer::handleType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QAbstractVideoBuffer__HandleType(C.QAbstractVideoBuffer_HandleType(ptr.Pointer()))
 	}
@@ -78,6 +91,12 @@ func (ptr *QAbstractVideoBuffer) HandleType() QAbstractVideoBuffer__HandleType {
 }
 
 func (ptr *QAbstractVideoBuffer) MapMode() QAbstractVideoBuffer__MapMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractVideoBuffer::mapMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QAbstractVideoBuffer__MapMode(C.QAbstractVideoBuffer_MapMode(ptr.Pointer()))
 	}
@@ -85,18 +104,36 @@ func (ptr *QAbstractVideoBuffer) MapMode() QAbstractVideoBuffer__MapMode {
 }
 
 func (ptr *QAbstractVideoBuffer) Release() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractVideoBuffer::release")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoBuffer_Release(ptr.Pointer())
 	}
 }
 
 func (ptr *QAbstractVideoBuffer) Unmap() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractVideoBuffer::unmap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoBuffer_Unmap(ptr.Pointer())
 	}
 }
 
 func (ptr *QAbstractVideoBuffer) DestroyQAbstractVideoBuffer() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractVideoBuffer::~QAbstractVideoBuffer")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoBuffer_DestroyQAbstractVideoBuffer(ptr.Pointer())
 	}

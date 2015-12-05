@@ -1,6 +1,6 @@
 package gui
 
-//#include "qopenglcontextgroup.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQOpenGLContextGroup(ptr QOpenGLContextGroup_ITF) unsafe.Pointer 
 func NewQOpenGLContextGroupFromPointer(ptr unsafe.Pointer) *QOpenGLContextGroup {
 	var n = new(QOpenGLContextGroup)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QOpenGLContextGroup_") {
 		n.SetObjectName("QOpenGLContextGroup_" + qt.RandomIdentifier())
 	}
 	return n

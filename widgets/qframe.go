@@ -1,10 +1,11 @@
 package widgets
 
-//#include "qframe.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQFrame(ptr QFrame_ITF) unsafe.Pointer {
 func NewQFrameFromPointer(ptr unsafe.Pointer) *QFrame {
 	var n = new(QFrame)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QFrame_") {
 		n.SetObjectName("QFrame_" + qt.RandomIdentifier())
 	}
 	return n
@@ -68,6 +69,12 @@ var (
 )
 
 func (ptr *QFrame) FrameShadow() QFrame__Shadow {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::frameShadow")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QFrame__Shadow(C.QFrame_FrameShadow(ptr.Pointer()))
 	}
@@ -75,6 +82,12 @@ func (ptr *QFrame) FrameShadow() QFrame__Shadow {
 }
 
 func (ptr *QFrame) FrameShape() QFrame__Shape {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::frameShape")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QFrame__Shape(C.QFrame_FrameShape(ptr.Pointer()))
 	}
@@ -82,6 +95,12 @@ func (ptr *QFrame) FrameShape() QFrame__Shape {
 }
 
 func (ptr *QFrame) FrameWidth() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::frameWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QFrame_FrameWidth(ptr.Pointer()))
 	}
@@ -89,6 +108,12 @@ func (ptr *QFrame) FrameWidth() int {
 }
 
 func (ptr *QFrame) LineWidth() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::lineWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QFrame_LineWidth(ptr.Pointer()))
 	}
@@ -96,6 +121,12 @@ func (ptr *QFrame) LineWidth() int {
 }
 
 func (ptr *QFrame) MidLineWidth() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::midLineWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QFrame_MidLineWidth(ptr.Pointer()))
 	}
@@ -103,40 +134,82 @@ func (ptr *QFrame) MidLineWidth() int {
 }
 
 func (ptr *QFrame) SetFrameRect(v core.QRect_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::setFrameRect")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFrame_SetFrameRect(ptr.Pointer(), core.PointerFromQRect(v))
 	}
 }
 
 func (ptr *QFrame) SetFrameShadow(v QFrame__Shadow) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::setFrameShadow")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFrame_SetFrameShadow(ptr.Pointer(), C.int(v))
 	}
 }
 
 func (ptr *QFrame) SetFrameShape(v QFrame__Shape) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::setFrameShape")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFrame_SetFrameShape(ptr.Pointer(), C.int(v))
 	}
 }
 
 func (ptr *QFrame) SetLineWidth(v int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::setLineWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFrame_SetLineWidth(ptr.Pointer(), C.int(v))
 	}
 }
 
 func (ptr *QFrame) SetMidLineWidth(v int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::setMidLineWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFrame_SetMidLineWidth(ptr.Pointer(), C.int(v))
 	}
 }
 
 func NewQFrame(parent QWidget_ITF, f core.Qt__WindowType) *QFrame {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::QFrame")
+		}
+	}()
+
 	return NewQFrameFromPointer(C.QFrame_NewQFrame(PointerFromQWidget(parent), C.int(f)))
 }
 
 func (ptr *QFrame) FrameStyle() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::frameStyle")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QFrame_FrameStyle(ptr.Pointer()))
 	}
@@ -144,12 +217,24 @@ func (ptr *QFrame) FrameStyle() int {
 }
 
 func (ptr *QFrame) SetFrameStyle(style int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::setFrameStyle")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFrame_SetFrameStyle(ptr.Pointer(), C.int(style))
 	}
 }
 
 func (ptr *QFrame) DestroyQFrame() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFrame::~QFrame")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QFrame_DestroyQFrame(ptr.Pointer())
 		ptr.SetPointer(nil)

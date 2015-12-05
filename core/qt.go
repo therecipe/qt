@@ -1,6 +1,6 @@
 package core
 
-//#include "qt.h"
+//#include "core.h"
 import "C"
 import ()
 

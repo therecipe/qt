@@ -1,9 +1,10 @@
 package network
 
-//#include "qnetworkrequest.h"
+//#include "network.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -112,14 +113,32 @@ const (
 )
 
 func NewQNetworkRequest2(other QNetworkRequest_ITF) *QNetworkRequest {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::QNetworkRequest")
+		}
+	}()
+
 	return NewQNetworkRequestFromPointer(C.QNetworkRequest_NewQNetworkRequest2(PointerFromQNetworkRequest(other)))
 }
 
 func NewQNetworkRequest(url core.QUrl_ITF) *QNetworkRequest {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::QNetworkRequest")
+		}
+	}()
+
 	return NewQNetworkRequestFromPointer(C.QNetworkRequest_NewQNetworkRequest(core.PointerFromQUrl(url)))
 }
 
 func (ptr *QNetworkRequest) Attribute(code QNetworkRequest__Attribute, defaultValue core.QVariant_ITF) *core.QVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::attribute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QNetworkRequest_Attribute(ptr.Pointer(), C.int(code), core.PointerFromQVariant(defaultValue)))
 	}
@@ -127,6 +146,12 @@ func (ptr *QNetworkRequest) Attribute(code QNetworkRequest__Attribute, defaultVa
 }
 
 func (ptr *QNetworkRequest) HasRawHeader(headerName core.QByteArray_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::hasRawHeader")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNetworkRequest_HasRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)) != 0
 	}
@@ -134,6 +159,12 @@ func (ptr *QNetworkRequest) HasRawHeader(headerName core.QByteArray_ITF) bool {
 }
 
 func (ptr *QNetworkRequest) Header(header QNetworkRequest__KnownHeaders) *core.QVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::header")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QNetworkRequest_Header(ptr.Pointer(), C.int(header)))
 	}
@@ -141,6 +172,12 @@ func (ptr *QNetworkRequest) Header(header QNetworkRequest__KnownHeaders) *core.Q
 }
 
 func (ptr *QNetworkRequest) OriginatingObject() *core.QObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::originatingObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QNetworkRequest_OriginatingObject(ptr.Pointer()))
 	}
@@ -148,6 +185,12 @@ func (ptr *QNetworkRequest) OriginatingObject() *core.QObject {
 }
 
 func (ptr *QNetworkRequest) Priority() QNetworkRequest__Priority {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::priority")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QNetworkRequest__Priority(C.QNetworkRequest_Priority(ptr.Pointer()))
 	}
@@ -155,6 +198,12 @@ func (ptr *QNetworkRequest) Priority() QNetworkRequest__Priority {
 }
 
 func (ptr *QNetworkRequest) RawHeader(headerName core.QByteArray_ITF) *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::rawHeader")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QNetworkRequest_RawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName)))
 	}
@@ -162,54 +211,108 @@ func (ptr *QNetworkRequest) RawHeader(headerName core.QByteArray_ITF) *core.QByt
 }
 
 func (ptr *QNetworkRequest) SetAttribute(code QNetworkRequest__Attribute, value core.QVariant_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::setAttribute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkRequest_SetAttribute(ptr.Pointer(), C.int(code), core.PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QNetworkRequest) SetHeader(header QNetworkRequest__KnownHeaders, value core.QVariant_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::setHeader")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkRequest_SetHeader(ptr.Pointer(), C.int(header), core.PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QNetworkRequest) SetOriginatingObject(object core.QObject_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::setOriginatingObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkRequest_SetOriginatingObject(ptr.Pointer(), core.PointerFromQObject(object))
 	}
 }
 
 func (ptr *QNetworkRequest) SetPriority(priority QNetworkRequest__Priority) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::setPriority")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkRequest_SetPriority(ptr.Pointer(), C.int(priority))
 	}
 }
 
 func (ptr *QNetworkRequest) SetRawHeader(headerName core.QByteArray_ITF, headerValue core.QByteArray_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::setRawHeader")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkRequest_SetRawHeader(ptr.Pointer(), core.PointerFromQByteArray(headerName), core.PointerFromQByteArray(headerValue))
 	}
 }
 
 func (ptr *QNetworkRequest) SetSslConfiguration(config QSslConfiguration_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::setSslConfiguration")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkRequest_SetSslConfiguration(ptr.Pointer(), PointerFromQSslConfiguration(config))
 	}
 }
 
 func (ptr *QNetworkRequest) SetUrl(url core.QUrl_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::setUrl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkRequest_SetUrl(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QNetworkRequest) Swap(other QNetworkRequest_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkRequest_Swap(ptr.Pointer(), PointerFromQNetworkRequest(other))
 	}
 }
 
 func (ptr *QNetworkRequest) DestroyQNetworkRequest() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkRequest::~QNetworkRequest")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkRequest_DestroyQNetworkRequest(ptr.Pointer())
 	}

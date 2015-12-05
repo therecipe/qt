@@ -1,6 +1,6 @@
 package core
 
-//#include "qanimationgroup.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -26,7 +26,7 @@ func PointerFromQAnimationGroup(ptr QAnimationGroup_ITF) unsafe.Pointer {
 func NewQAnimationGroupFromPointer(ptr unsafe.Pointer) *QAnimationGroup {
 	var n = new(QAnimationGroup)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QAnimationGroup_") {
 		n.SetObjectName("QAnimationGroup_" + qt.RandomIdentifier())
 	}
 	return n

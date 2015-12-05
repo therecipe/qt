@@ -1,8 +1,9 @@
 package bluetooth
 
-//#include "qbluetoothhostinfo.h"
+//#include "bluetooth.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,14 +41,32 @@ func (ptr *QBluetoothHostInfo) QBluetoothHostInfo_PTR() *QBluetoothHostInfo {
 }
 
 func NewQBluetoothHostInfo() *QBluetoothHostInfo {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothHostInfo::QBluetoothHostInfo")
+		}
+	}()
+
 	return NewQBluetoothHostInfoFromPointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo())
 }
 
 func NewQBluetoothHostInfo2(other QBluetoothHostInfo_ITF) *QBluetoothHostInfo {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothHostInfo::QBluetoothHostInfo")
+		}
+	}()
+
 	return NewQBluetoothHostInfoFromPointer(C.QBluetoothHostInfo_NewQBluetoothHostInfo2(PointerFromQBluetoothHostInfo(other)))
 }
 
 func (ptr *QBluetoothHostInfo) Name() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothHostInfo::name")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QBluetoothHostInfo_Name(ptr.Pointer()))
 	}
@@ -55,18 +74,36 @@ func (ptr *QBluetoothHostInfo) Name() string {
 }
 
 func (ptr *QBluetoothHostInfo) SetAddress(address QBluetoothAddress_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothHostInfo::setAddress")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothHostInfo_SetAddress(ptr.Pointer(), PointerFromQBluetoothAddress(address))
 	}
 }
 
 func (ptr *QBluetoothHostInfo) SetName(name string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothHostInfo::setName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothHostInfo_SetName(ptr.Pointer(), C.CString(name))
 	}
 }
 
 func (ptr *QBluetoothHostInfo) DestroyQBluetoothHostInfo() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothHostInfo::~QBluetoothHostInfo")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothHostInfo_DestroyQBluetoothHostInfo(ptr.Pointer())
 	}

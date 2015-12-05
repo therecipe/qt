@@ -1,9 +1,10 @@
 package multimedia
 
-//#include "qmediaservicesupporteddevicesinterface.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,6 +42,12 @@ func (ptr *QMediaServiceSupportedDevicesInterface) QMediaServiceSupportedDevices
 }
 
 func (ptr *QMediaServiceSupportedDevicesInterface) DeviceDescription(service core.QByteArray_ITF, device core.QByteArray_ITF) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaServiceSupportedDevicesInterface::deviceDescription")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMediaServiceSupportedDevicesInterface_DeviceDescription(ptr.Pointer(), core.PointerFromQByteArray(service), core.PointerFromQByteArray(device)))
 	}
@@ -48,6 +55,12 @@ func (ptr *QMediaServiceSupportedDevicesInterface) DeviceDescription(service cor
 }
 
 func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupportedDevicesInterface() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(ptr.Pointer())
 	}

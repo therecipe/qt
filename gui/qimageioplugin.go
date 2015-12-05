@@ -1,6 +1,6 @@
 package gui
 
-//#include "qimageioplugin.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQImageIOPlugin(ptr QImageIOPlugin_ITF) unsafe.Pointer {
 func NewQImageIOPluginFromPointer(ptr unsafe.Pointer) *QImageIOPlugin {
 	var n = new(QImageIOPlugin)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QImageIOPlugin_") {
 		n.SetObjectName("QImageIOPlugin_" + qt.RandomIdentifier())
 	}
 	return n

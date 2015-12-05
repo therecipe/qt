@@ -78,7 +78,7 @@ func GoHeaderInput(f *parser.Function) (o string) {
 	if f.SignalMode == "callback" {
 		o += "ptrName *C.char"
 		for _, p := range f.Parameters {
-			if v := cgoType(f, p.Value); !(v == "") {
+			if v := cgoType(f, p.Value); v != "" {
 				o += fmt.Sprintf(", %v %v", cleanName(p.Name), v)
 			}
 		}

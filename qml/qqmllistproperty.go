@@ -1,6 +1,6 @@
 package qml
 
-//#include "qqmllistproperty.h"
+//#include "qml.h"
 import "C"
 import (
 	"unsafe"

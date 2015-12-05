@@ -1,8 +1,9 @@
 package core
 
-//#include "qxmlstreamentitydeclaration.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,14 +41,32 @@ func (ptr *QXmlStreamEntityDeclaration) QXmlStreamEntityDeclaration_PTR() *QXmlS
 }
 
 func NewQXmlStreamEntityDeclaration() *QXmlStreamEntityDeclaration {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamEntityDeclaration::QXmlStreamEntityDeclaration")
+		}
+	}()
+
 	return NewQXmlStreamEntityDeclarationFromPointer(C.QXmlStreamEntityDeclaration_NewQXmlStreamEntityDeclaration())
 }
 
 func NewQXmlStreamEntityDeclaration2(other QXmlStreamEntityDeclaration_ITF) *QXmlStreamEntityDeclaration {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamEntityDeclaration::QXmlStreamEntityDeclaration")
+		}
+	}()
+
 	return NewQXmlStreamEntityDeclarationFromPointer(C.QXmlStreamEntityDeclaration_NewQXmlStreamEntityDeclaration2(PointerFromQXmlStreamEntityDeclaration(other)))
 }
 
 func (ptr *QXmlStreamEntityDeclaration) Name() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamEntityDeclaration::name")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_Name(ptr.Pointer()))
 	}
@@ -55,6 +74,12 @@ func (ptr *QXmlStreamEntityDeclaration) Name() *QStringRef {
 }
 
 func (ptr *QXmlStreamEntityDeclaration) NotationName() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamEntityDeclaration::notationName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_NotationName(ptr.Pointer()))
 	}
@@ -62,6 +87,12 @@ func (ptr *QXmlStreamEntityDeclaration) NotationName() *QStringRef {
 }
 
 func (ptr *QXmlStreamEntityDeclaration) PublicId() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamEntityDeclaration::publicId")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_PublicId(ptr.Pointer()))
 	}
@@ -69,6 +100,12 @@ func (ptr *QXmlStreamEntityDeclaration) PublicId() *QStringRef {
 }
 
 func (ptr *QXmlStreamEntityDeclaration) SystemId() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamEntityDeclaration::systemId")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_SystemId(ptr.Pointer()))
 	}
@@ -76,6 +113,12 @@ func (ptr *QXmlStreamEntityDeclaration) SystemId() *QStringRef {
 }
 
 func (ptr *QXmlStreamEntityDeclaration) Value() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamEntityDeclaration::value")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_Value(ptr.Pointer()))
 	}
@@ -83,6 +126,12 @@ func (ptr *QXmlStreamEntityDeclaration) Value() *QStringRef {
 }
 
 func (ptr *QXmlStreamEntityDeclaration) DestroyQXmlStreamEntityDeclaration() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamEntityDeclaration::~QXmlStreamEntityDeclaration")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QXmlStreamEntityDeclaration_DestroyQXmlStreamEntityDeclaration(ptr.Pointer())
 	}

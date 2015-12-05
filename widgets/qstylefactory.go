@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstylefactory.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -41,9 +42,21 @@ func (ptr *QStyleFactory) QStyleFactory_PTR() *QStyleFactory {
 }
 
 func QStyleFactory_Create(key string) *QStyle {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleFactory::create")
+		}
+	}()
+
 	return NewQStyleFromPointer(C.QStyleFactory_QStyleFactory_Create(C.CString(key)))
 }
 
 func QStyleFactory_Keys() []string {
-	return strings.Split(C.GoString(C.QStyleFactory_QStyleFactory_Keys()), "|")
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleFactory::keys")
+		}
+	}()
+
+	return strings.Split(C.GoString(C.QStyleFactory_QStyleFactory_Keys()), ",,,")
 }

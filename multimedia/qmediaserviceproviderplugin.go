@@ -1,10 +1,11 @@
 package multimedia
 
-//#include "qmediaserviceproviderplugin.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQMediaServiceProviderPlugin(ptr QMediaServiceProviderPlugin_ITF)
 func NewQMediaServiceProviderPluginFromPointer(ptr unsafe.Pointer) *QMediaServiceProviderPlugin {
 	var n = new(QMediaServiceProviderPlugin)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QMediaServiceProviderPlugin_") {
 		n.SetObjectName("QMediaServiceProviderPlugin_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QMediaServiceProviderPlugin) QMediaServiceProviderPlugin_PTR() *QMedi
 }
 
 func (ptr *QMediaServiceProviderPlugin) Create(key string) *QMediaService {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaServiceProviderPlugin::create")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQMediaServiceFromPointer(C.QMediaServiceProviderPlugin_Create(ptr.Pointer(), C.CString(key)))
 	}
@@ -45,6 +52,12 @@ func (ptr *QMediaServiceProviderPlugin) Create(key string) *QMediaService {
 }
 
 func (ptr *QMediaServiceProviderPlugin) Release(service QMediaService_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaServiceProviderPlugin::release")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMediaServiceProviderPlugin_Release(ptr.Pointer(), PointerFromQMediaService(service))
 	}

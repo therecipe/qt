@@ -1,9 +1,10 @@
 package multimedia
 
-//#include "qcameracapturebufferformatcontrol.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQCameraCaptureBufferFormatControl(ptr QCameraCaptureBufferFormat
 func NewQCameraCaptureBufferFormatControlFromPointer(ptr unsafe.Pointer) *QCameraCaptureBufferFormatControl {
 	var n = new(QCameraCaptureBufferFormatControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QCameraCaptureBufferFormatControl_") {
 		n.SetObjectName("QCameraCaptureBufferFormatControl_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QCameraCaptureBufferFormatControl) QCameraCaptureBufferFormatControl_
 }
 
 func (ptr *QCameraCaptureBufferFormatControl) BufferFormat() QVideoFrame__PixelFormat {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraCaptureBufferFormatControl::bufferFormat")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QVideoFrame__PixelFormat(C.QCameraCaptureBufferFormatControl_BufferFormat(ptr.Pointer()))
 	}
@@ -44,6 +51,12 @@ func (ptr *QCameraCaptureBufferFormatControl) BufferFormat() QVideoFrame__PixelF
 }
 
 func (ptr *QCameraCaptureBufferFormatControl) ConnectBufferFormatChanged(f func(format QVideoFrame__PixelFormat)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraCaptureBufferFormatControl::bufferFormatChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureBufferFormatControl_ConnectBufferFormatChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "bufferFormatChanged", f)
@@ -51,6 +64,12 @@ func (ptr *QCameraCaptureBufferFormatControl) ConnectBufferFormatChanged(f func(
 }
 
 func (ptr *QCameraCaptureBufferFormatControl) DisconnectBufferFormatChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraCaptureBufferFormatControl::bufferFormatChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureBufferFormatControl_DisconnectBufferFormatChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "bufferFormatChanged")
@@ -59,16 +78,34 @@ func (ptr *QCameraCaptureBufferFormatControl) DisconnectBufferFormatChanged() {
 
 //export callbackQCameraCaptureBufferFormatControlBufferFormatChanged
 func callbackQCameraCaptureBufferFormatControlBufferFormatChanged(ptrName *C.char, format C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraCaptureBufferFormatControl::bufferFormatChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "bufferFormatChanged").(func(QVideoFrame__PixelFormat))(QVideoFrame__PixelFormat(format))
 }
 
 func (ptr *QCameraCaptureBufferFormatControl) SetBufferFormat(format QVideoFrame__PixelFormat) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraCaptureBufferFormatControl::setBufferFormat")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureBufferFormatControl_SetBufferFormat(ptr.Pointer(), C.int(format))
 	}
 }
 
 func (ptr *QCameraCaptureBufferFormatControl) DestroyQCameraCaptureBufferFormatControl() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraCaptureBufferFormatControl::~QCameraCaptureBufferFormatControl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraCaptureBufferFormatControl_DestroyQCameraCaptureBufferFormatControl(ptr.Pointer())
 		ptr.SetPointer(nil)

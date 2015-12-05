@@ -1,8 +1,9 @@
 package dbus
 
-//#include "qdbusunixfiledescriptor.h"
+//#include "dbus.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,18 +41,42 @@ func (ptr *QDBusUnixFileDescriptor) QDBusUnixFileDescriptor_PTR() *QDBusUnixFile
 }
 
 func NewQDBusUnixFileDescriptor() *QDBusUnixFileDescriptor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusUnixFileDescriptor::QDBusUnixFileDescriptor")
+		}
+	}()
+
 	return NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor())
 }
 
 func NewQDBusUnixFileDescriptor3(other QDBusUnixFileDescriptor_ITF) *QDBusUnixFileDescriptor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusUnixFileDescriptor::QDBusUnixFileDescriptor")
+		}
+	}()
+
 	return NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor3(PointerFromQDBusUnixFileDescriptor(other)))
 }
 
 func NewQDBusUnixFileDescriptor2(fileDescriptor int) *QDBusUnixFileDescriptor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusUnixFileDescriptor::QDBusUnixFileDescriptor")
+		}
+	}()
+
 	return NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor2(C.int(fileDescriptor)))
 }
 
 func (ptr *QDBusUnixFileDescriptor) FileDescriptor() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusUnixFileDescriptor::fileDescriptor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QDBusUnixFileDescriptor_FileDescriptor(ptr.Pointer()))
 	}
@@ -59,10 +84,22 @@ func (ptr *QDBusUnixFileDescriptor) FileDescriptor() int {
 }
 
 func QDBusUnixFileDescriptor_IsSupported() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusUnixFileDescriptor::isSupported")
+		}
+	}()
+
 	return C.QDBusUnixFileDescriptor_QDBusUnixFileDescriptor_IsSupported() != 0
 }
 
 func (ptr *QDBusUnixFileDescriptor) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusUnixFileDescriptor::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusUnixFileDescriptor_IsValid(ptr.Pointer()) != 0
 	}
@@ -70,18 +107,36 @@ func (ptr *QDBusUnixFileDescriptor) IsValid() bool {
 }
 
 func (ptr *QDBusUnixFileDescriptor) SetFileDescriptor(fileDescriptor int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusUnixFileDescriptor::setFileDescriptor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusUnixFileDescriptor_SetFileDescriptor(ptr.Pointer(), C.int(fileDescriptor))
 	}
 }
 
 func (ptr *QDBusUnixFileDescriptor) Swap(other QDBusUnixFileDescriptor_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusUnixFileDescriptor::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusUnixFileDescriptor_Swap(ptr.Pointer(), PointerFromQDBusUnixFileDescriptor(other))
 	}
 }
 
 func (ptr *QDBusUnixFileDescriptor) DestroyQDBusUnixFileDescriptor() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusUnixFileDescriptor::~QDBusUnixFileDescriptor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusUnixFileDescriptor_DestroyQDBusUnixFileDescriptor(ptr.Pointer())
 	}

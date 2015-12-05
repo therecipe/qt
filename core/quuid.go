@@ -1,8 +1,9 @@
 package core
 
-//#include "quuid.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -64,6 +65,12 @@ const (
 )
 
 func (ptr *QUuid) Variant() QUuid__Variant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUuid::variant")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QUuid__Variant(C.QUuid_Variant(ptr.Pointer()))
 	}
@@ -71,6 +78,12 @@ func (ptr *QUuid) Variant() QUuid__Variant {
 }
 
 func (ptr *QUuid) Version() QUuid__Version {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUuid::version")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QUuid__Version(C.QUuid_Version(ptr.Pointer()))
 	}
@@ -78,18 +91,42 @@ func (ptr *QUuid) Version() QUuid__Version {
 }
 
 func NewQUuid() *QUuid {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUuid::QUuid")
+		}
+	}()
+
 	return NewQUuidFromPointer(C.QUuid_NewQUuid())
 }
 
 func NewQUuid5(text QByteArray_ITF) *QUuid {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUuid::QUuid")
+		}
+	}()
+
 	return NewQUuidFromPointer(C.QUuid_NewQUuid5(PointerFromQByteArray(text)))
 }
 
 func NewQUuid3(text string) *QUuid {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUuid::QUuid")
+		}
+	}()
+
 	return NewQUuidFromPointer(C.QUuid_NewQUuid3(C.CString(text)))
 }
 
 func (ptr *QUuid) IsNull() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUuid::isNull")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QUuid_IsNull(ptr.Pointer()) != 0
 	}
@@ -97,6 +134,12 @@ func (ptr *QUuid) IsNull() bool {
 }
 
 func (ptr *QUuid) ToByteArray() *QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUuid::toByteArray")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QUuid_ToByteArray(ptr.Pointer()))
 	}
@@ -104,6 +147,12 @@ func (ptr *QUuid) ToByteArray() *QByteArray {
 }
 
 func (ptr *QUuid) ToRfc4122() *QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUuid::toRfc4122")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QUuid_ToRfc4122(ptr.Pointer()))
 	}
@@ -111,6 +160,12 @@ func (ptr *QUuid) ToRfc4122() *QByteArray {
 }
 
 func (ptr *QUuid) ToString() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QUuid::toString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QUuid_ToString(ptr.Pointer()))
 	}

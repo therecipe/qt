@@ -1,9 +1,10 @@
 package gui
 
-//#include "qhideevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,5 +35,11 @@ func (ptr *QHideEvent) QHideEvent_PTR() *QHideEvent {
 }
 
 func NewQHideEvent() *QHideEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHideEvent::QHideEvent")
+		}
+	}()
+
 	return NewQHideEventFromPointer(C.QHideEvent_NewQHideEvent())
 }

@@ -1,8 +1,9 @@
 package gui
 
-//#include "qsurface.h"
+//#include "gui.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -57,6 +58,12 @@ const (
 )
 
 func (ptr *QSurface) SupportsOpenGL() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSurface::supportsOpenGL")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QSurface_SupportsOpenGL(ptr.Pointer()) != 0
 	}
@@ -64,6 +71,12 @@ func (ptr *QSurface) SupportsOpenGL() bool {
 }
 
 func (ptr *QSurface) SurfaceClass() QSurface__SurfaceClass {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSurface::surfaceClass")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QSurface__SurfaceClass(C.QSurface_SurfaceClass(ptr.Pointer()))
 	}
@@ -71,6 +84,12 @@ func (ptr *QSurface) SurfaceClass() QSurface__SurfaceClass {
 }
 
 func (ptr *QSurface) SurfaceType() QSurface__SurfaceType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSurface::surfaceType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QSurface__SurfaceType(C.QSurface_SurfaceType(ptr.Pointer()))
 	}
@@ -78,6 +97,12 @@ func (ptr *QSurface) SurfaceType() QSurface__SurfaceType {
 }
 
 func (ptr *QSurface) DestroyQSurface() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSurface::~QSurface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSurface_DestroyQSurface(ptr.Pointer())
 	}

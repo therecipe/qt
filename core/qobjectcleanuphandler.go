@@ -1,9 +1,10 @@
 package core
 
-//#include "qobjectcleanuphandler.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQObjectCleanupHandler(ptr QObjectCleanupHandler_ITF) unsafe.Poin
 func NewQObjectCleanupHandlerFromPointer(ptr unsafe.Pointer) *QObjectCleanupHandler {
 	var n = new(QObjectCleanupHandler)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QObjectCleanupHandler_") {
 		n.SetObjectName("QObjectCleanupHandler_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,10 +38,22 @@ func (ptr *QObjectCleanupHandler) QObjectCleanupHandler_PTR() *QObjectCleanupHan
 }
 
 func NewQObjectCleanupHandler() *QObjectCleanupHandler {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QObjectCleanupHandler::QObjectCleanupHandler")
+		}
+	}()
+
 	return NewQObjectCleanupHandlerFromPointer(C.QObjectCleanupHandler_NewQObjectCleanupHandler())
 }
 
 func (ptr *QObjectCleanupHandler) Add(object QObject_ITF) *QObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QObjectCleanupHandler::add")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQObjectFromPointer(C.QObjectCleanupHandler_Add(ptr.Pointer(), PointerFromQObject(object)))
 	}
@@ -48,12 +61,24 @@ func (ptr *QObjectCleanupHandler) Add(object QObject_ITF) *QObject {
 }
 
 func (ptr *QObjectCleanupHandler) Clear() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QObjectCleanupHandler::clear")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QObjectCleanupHandler_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QObjectCleanupHandler) IsEmpty() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QObjectCleanupHandler::isEmpty")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QObjectCleanupHandler_IsEmpty(ptr.Pointer()) != 0
 	}
@@ -61,6 +86,12 @@ func (ptr *QObjectCleanupHandler) IsEmpty() bool {
 }
 
 func (ptr *QObjectCleanupHandler) DestroyQObjectCleanupHandler() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QObjectCleanupHandler::~QObjectCleanupHandler")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QObjectCleanupHandler_DestroyQObjectCleanupHandler(ptr.Pointer())
 		ptr.SetPointer(nil)

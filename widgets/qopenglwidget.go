@@ -1,6 +1,6 @@
 package widgets
 
-//#include "qopenglwidget.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -26,7 +26,7 @@ func PointerFromQOpenGLWidget(ptr QOpenGLWidget_ITF) unsafe.Pointer {
 func NewQOpenGLWidgetFromPointer(ptr unsafe.Pointer) *QOpenGLWidget {
 	var n = new(QOpenGLWidget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QOpenGLWidget_") {
 		n.SetObjectName("QOpenGLWidget_" + qt.RandomIdentifier())
 	}
 	return n

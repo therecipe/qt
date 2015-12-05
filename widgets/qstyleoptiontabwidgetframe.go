@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptiontabwidgetframe.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -47,9 +48,21 @@ var (
 )
 
 func NewQStyleOptionTabWidgetFrame() *QStyleOptionTabWidgetFrame {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionTabWidgetFrame::QStyleOptionTabWidgetFrame")
+		}
+	}()
+
 	return NewQStyleOptionTabWidgetFrameFromPointer(C.QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame())
 }
 
 func NewQStyleOptionTabWidgetFrame2(other QStyleOptionTabWidgetFrame_ITF) *QStyleOptionTabWidgetFrame {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionTabWidgetFrame::QStyleOptionTabWidgetFrame")
+		}
+	}()
+
 	return NewQStyleOptionTabWidgetFrameFromPointer(C.QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame2(PointerFromQStyleOptionTabWidgetFrame(other)))
 }

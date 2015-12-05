@@ -1,8 +1,9 @@
 package xml
 
-//#include "qdomnodelist.h"
+//#include "xml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,14 +41,32 @@ func (ptr *QDomNodeList) QDomNodeList_PTR() *QDomNodeList {
 }
 
 func NewQDomNodeList() *QDomNodeList {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNodeList::QDomNodeList")
+		}
+	}()
+
 	return NewQDomNodeListFromPointer(C.QDomNodeList_NewQDomNodeList())
 }
 
 func NewQDomNodeList2(n QDomNodeList_ITF) *QDomNodeList {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNodeList::QDomNodeList")
+		}
+	}()
+
 	return NewQDomNodeListFromPointer(C.QDomNodeList_NewQDomNodeList2(PointerFromQDomNodeList(n)))
 }
 
 func (ptr *QDomNodeList) Count() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNodeList::count")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QDomNodeList_Count(ptr.Pointer()))
 	}
@@ -55,6 +74,12 @@ func (ptr *QDomNodeList) Count() int {
 }
 
 func (ptr *QDomNodeList) IsEmpty() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNodeList::isEmpty")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDomNodeList_IsEmpty(ptr.Pointer()) != 0
 	}
@@ -62,6 +87,12 @@ func (ptr *QDomNodeList) IsEmpty() bool {
 }
 
 func (ptr *QDomNodeList) Length() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNodeList::length")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QDomNodeList_Length(ptr.Pointer()))
 	}
@@ -69,6 +100,12 @@ func (ptr *QDomNodeList) Length() int {
 }
 
 func (ptr *QDomNodeList) Size() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNodeList::size")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QDomNodeList_Size(ptr.Pointer()))
 	}
@@ -76,6 +113,12 @@ func (ptr *QDomNodeList) Size() int {
 }
 
 func (ptr *QDomNodeList) DestroyQDomNodeList() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomNodeList::~QDomNodeList")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDomNodeList_DestroyQDomNodeList(ptr.Pointer())
 	}

@@ -1,9 +1,10 @@
 package websockets
 
-//#include "qwebsocketcorsauthenticator.h"
+//#include "websockets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -41,18 +42,42 @@ func (ptr *QWebSocketCorsAuthenticator) QWebSocketCorsAuthenticator_PTR() *QWebS
 }
 
 func NewQWebSocketCorsAuthenticator3(other QWebSocketCorsAuthenticator_ITF) *QWebSocketCorsAuthenticator {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator")
+		}
+	}()
+
 	return NewQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator3(PointerFromQWebSocketCorsAuthenticator(other)))
 }
 
 func NewQWebSocketCorsAuthenticator(origin string) *QWebSocketCorsAuthenticator {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator")
+		}
+	}()
+
 	return NewQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator(C.CString(origin)))
 }
 
 func NewQWebSocketCorsAuthenticator2(other QWebSocketCorsAuthenticator_ITF) *QWebSocketCorsAuthenticator {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator")
+		}
+	}()
+
 	return NewQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator2(PointerFromQWebSocketCorsAuthenticator(other)))
 }
 
 func (ptr *QWebSocketCorsAuthenticator) Allowed() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWebSocketCorsAuthenticator::allowed")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QWebSocketCorsAuthenticator_Allowed(ptr.Pointer()) != 0
 	}
@@ -60,6 +85,12 @@ func (ptr *QWebSocketCorsAuthenticator) Allowed() bool {
 }
 
 func (ptr *QWebSocketCorsAuthenticator) Origin() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWebSocketCorsAuthenticator::origin")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebSocketCorsAuthenticator_Origin(ptr.Pointer()))
 	}
@@ -67,18 +98,36 @@ func (ptr *QWebSocketCorsAuthenticator) Origin() string {
 }
 
 func (ptr *QWebSocketCorsAuthenticator) SetAllowed(allowed bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWebSocketCorsAuthenticator::setAllowed")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QWebSocketCorsAuthenticator_SetAllowed(ptr.Pointer(), C.int(qt.GoBoolToInt(allowed)))
 	}
 }
 
 func (ptr *QWebSocketCorsAuthenticator) Swap(other QWebSocketCorsAuthenticator_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWebSocketCorsAuthenticator::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QWebSocketCorsAuthenticator_Swap(ptr.Pointer(), PointerFromQWebSocketCorsAuthenticator(other))
 	}
 }
 
 func (ptr *QWebSocketCorsAuthenticator) DestroyQWebSocketCorsAuthenticator() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWebSocketCorsAuthenticator::~QWebSocketCorsAuthenticator")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QWebSocketCorsAuthenticator_DestroyQWebSocketCorsAuthenticator(ptr.Pointer())
 	}

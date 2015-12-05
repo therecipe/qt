@@ -1,6 +1,6 @@
 package core
 
-//#include "qwineventnotifier.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -26,7 +26,7 @@ func PointerFromQWinEventNotifier(ptr QWinEventNotifier_ITF) unsafe.Pointer {
 func NewQWinEventNotifierFromPointer(ptr unsafe.Pointer) *QWinEventNotifier {
 	var n = new(QWinEventNotifier)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QWinEventNotifier_") {
 		n.SetObjectName("QWinEventNotifier_" + qt.RandomIdentifier())
 	}
 	return n

@@ -1,9 +1,10 @@
 package gui
 
-//#include "qdragenterevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,5 +35,11 @@ func (ptr *QDragEnterEvent) QDragEnterEvent_PTR() *QDragEnterEvent {
 }
 
 func NewQDragEnterEvent(point core.QPoint_ITF, actions core.Qt__DropAction, data core.QMimeData_ITF, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QDragEnterEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDragEnterEvent::QDragEnterEvent")
+		}
+	}()
+
 	return NewQDragEnterEventFromPointer(C.QDragEnterEvent_NewQDragEnterEvent(core.PointerFromQPoint(point), C.int(actions), core.PointerFromQMimeData(data), C.int(buttons), C.int(modifiers)))
 }

@@ -1,9 +1,10 @@
 package gui
 
-//#include "qcloseevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,5 +35,11 @@ func (ptr *QCloseEvent) QCloseEvent_PTR() *QCloseEvent {
 }
 
 func NewQCloseEvent() *QCloseEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCloseEvent::QCloseEvent")
+		}
+	}()
+
 	return NewQCloseEventFromPointer(C.QCloseEvent_NewQCloseEvent())
 }

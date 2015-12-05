@@ -1,6 +1,6 @@
 package quick
 
-//#include "qsgsimplematerialshader.h"
+//#include "quick.h"
 import "C"
 import (
 	"unsafe"

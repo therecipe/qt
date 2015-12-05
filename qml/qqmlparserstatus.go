@@ -1,8 +1,9 @@
 package qml
 
-//#include "qqmlparserstatus.h"
+//#include "qml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,12 +41,24 @@ func (ptr *QQmlParserStatus) QQmlParserStatus_PTR() *QQmlParserStatus {
 }
 
 func (ptr *QQmlParserStatus) ClassBegin() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlParserStatus::classBegin")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQmlParserStatus_ClassBegin(ptr.Pointer())
 	}
 }
 
 func (ptr *QQmlParserStatus) ComponentComplete() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlParserStatus::componentComplete")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQmlParserStatus_ComponentComplete(ptr.Pointer())
 	}

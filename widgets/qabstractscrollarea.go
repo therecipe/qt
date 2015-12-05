@@ -1,10 +1,11 @@
 package widgets
 
-//#include "qabstractscrollarea.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQAbstractScrollArea(ptr QAbstractScrollArea_ITF) unsafe.Pointer 
 func NewQAbstractScrollAreaFromPointer(ptr unsafe.Pointer) *QAbstractScrollArea {
 	var n = new(QAbstractScrollArea)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QAbstractScrollArea_") {
 		n.SetObjectName("QAbstractScrollArea_" + qt.RandomIdentifier())
 	}
 	return n
@@ -47,6 +48,12 @@ const (
 )
 
 func (ptr *QAbstractScrollArea) HorizontalScrollBarPolicy() core.Qt__ScrollBarPolicy {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::horizontalScrollBarPolicy")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__ScrollBarPolicy(C.QAbstractScrollArea_HorizontalScrollBarPolicy(ptr.Pointer()))
 	}
@@ -54,24 +61,48 @@ func (ptr *QAbstractScrollArea) HorizontalScrollBarPolicy() core.Qt__ScrollBarPo
 }
 
 func (ptr *QAbstractScrollArea) SetHorizontalScrollBarPolicy(v core.Qt__ScrollBarPolicy) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::setHorizontalScrollBarPolicy")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_SetHorizontalScrollBarPolicy(ptr.Pointer(), C.int(v))
 	}
 }
 
 func (ptr *QAbstractScrollArea) SetSizeAdjustPolicy(policy QAbstractScrollArea__SizeAdjustPolicy) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::setSizeAdjustPolicy")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_SetSizeAdjustPolicy(ptr.Pointer(), C.int(policy))
 	}
 }
 
 func (ptr *QAbstractScrollArea) SetVerticalScrollBarPolicy(v core.Qt__ScrollBarPolicy) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::setVerticalScrollBarPolicy")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_SetVerticalScrollBarPolicy(ptr.Pointer(), C.int(v))
 	}
 }
 
 func (ptr *QAbstractScrollArea) SizeAdjustPolicy() QAbstractScrollArea__SizeAdjustPolicy {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::sizeAdjustPolicy")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QAbstractScrollArea__SizeAdjustPolicy(C.QAbstractScrollArea_SizeAdjustPolicy(ptr.Pointer()))
 	}
@@ -79,6 +110,12 @@ func (ptr *QAbstractScrollArea) SizeAdjustPolicy() QAbstractScrollArea__SizeAdju
 }
 
 func (ptr *QAbstractScrollArea) VerticalScrollBarPolicy() core.Qt__ScrollBarPolicy {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::verticalScrollBarPolicy")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__ScrollBarPolicy(C.QAbstractScrollArea_VerticalScrollBarPolicy(ptr.Pointer()))
 	}
@@ -86,16 +123,34 @@ func (ptr *QAbstractScrollArea) VerticalScrollBarPolicy() core.Qt__ScrollBarPoli
 }
 
 func NewQAbstractScrollArea(parent QWidget_ITF) *QAbstractScrollArea {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::QAbstractScrollArea")
+		}
+	}()
+
 	return NewQAbstractScrollAreaFromPointer(C.QAbstractScrollArea_NewQAbstractScrollArea(PointerFromQWidget(parent)))
 }
 
 func (ptr *QAbstractScrollArea) AddScrollBarWidget(widget QWidget_ITF, alignment core.Qt__AlignmentFlag) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::addScrollBarWidget")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_AddScrollBarWidget(ptr.Pointer(), PointerFromQWidget(widget), C.int(alignment))
 	}
 }
 
 func (ptr *QAbstractScrollArea) CornerWidget() *QWidget {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::cornerWidget")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QAbstractScrollArea_CornerWidget(ptr.Pointer()))
 	}
@@ -103,6 +158,12 @@ func (ptr *QAbstractScrollArea) CornerWidget() *QWidget {
 }
 
 func (ptr *QAbstractScrollArea) HorizontalScrollBar() *QScrollBar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::horizontalScrollBar")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScrollBarFromPointer(C.QAbstractScrollArea_HorizontalScrollBar(ptr.Pointer()))
 	}
@@ -110,36 +171,72 @@ func (ptr *QAbstractScrollArea) HorizontalScrollBar() *QScrollBar {
 }
 
 func (ptr *QAbstractScrollArea) SetCornerWidget(widget QWidget_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::setCornerWidget")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_SetCornerWidget(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QAbstractScrollArea) SetHorizontalScrollBar(scrollBar QScrollBar_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::setHorizontalScrollBar")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_SetHorizontalScrollBar(ptr.Pointer(), PointerFromQScrollBar(scrollBar))
 	}
 }
 
 func (ptr *QAbstractScrollArea) SetVerticalScrollBar(scrollBar QScrollBar_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::setVerticalScrollBar")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_SetVerticalScrollBar(ptr.Pointer(), PointerFromQScrollBar(scrollBar))
 	}
 }
 
 func (ptr *QAbstractScrollArea) SetViewport(widget QWidget_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::setViewport")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_SetViewport(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QAbstractScrollArea) SetupViewport(viewport QWidget_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::setupViewport")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_SetupViewport(ptr.Pointer(), PointerFromQWidget(viewport))
 	}
 }
 
 func (ptr *QAbstractScrollArea) VerticalScrollBar() *QScrollBar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::verticalScrollBar")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScrollBarFromPointer(C.QAbstractScrollArea_VerticalScrollBar(ptr.Pointer()))
 	}
@@ -147,6 +244,12 @@ func (ptr *QAbstractScrollArea) VerticalScrollBar() *QScrollBar {
 }
 
 func (ptr *QAbstractScrollArea) Viewport() *QWidget {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::viewport")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QAbstractScrollArea_Viewport(ptr.Pointer()))
 	}
@@ -154,6 +257,12 @@ func (ptr *QAbstractScrollArea) Viewport() *QWidget {
 }
 
 func (ptr *QAbstractScrollArea) DestroyQAbstractScrollArea() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractScrollArea::~QAbstractScrollArea")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractScrollArea_DestroyQAbstractScrollArea(ptr.Pointer())
 		ptr.SetPointer(nil)

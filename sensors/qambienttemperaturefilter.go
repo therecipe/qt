@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qambienttemperaturefilter.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QAmbientTemperatureFilter) QAmbientTemperatureFilter_PTR() *QAmbientT
 }
 
 func (ptr *QAmbientTemperatureFilter) Filter(reading QAmbientTemperatureReading_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAmbientTemperatureFilter::filter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QAmbientTemperatureFilter_Filter(ptr.Pointer(), PointerFromQAmbientTemperatureReading(reading)) != 0
 	}

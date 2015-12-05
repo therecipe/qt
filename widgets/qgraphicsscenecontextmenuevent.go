@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qgraphicsscenecontextmenuevent.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -43,6 +44,12 @@ const (
 )
 
 func (ptr *QGraphicsSceneContextMenuEvent) Modifiers() core.Qt__KeyboardModifier {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneContextMenuEvent::modifiers")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__KeyboardModifier(C.QGraphicsSceneContextMenuEvent_Modifiers(ptr.Pointer()))
 	}
@@ -50,6 +57,12 @@ func (ptr *QGraphicsSceneContextMenuEvent) Modifiers() core.Qt__KeyboardModifier
 }
 
 func (ptr *QGraphicsSceneContextMenuEvent) Reason() QGraphicsSceneContextMenuEvent__Reason {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneContextMenuEvent::reason")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QGraphicsSceneContextMenuEvent__Reason(C.QGraphicsSceneContextMenuEvent_Reason(ptr.Pointer()))
 	}
@@ -57,6 +70,12 @@ func (ptr *QGraphicsSceneContextMenuEvent) Reason() QGraphicsSceneContextMenuEve
 }
 
 func (ptr *QGraphicsSceneContextMenuEvent) DestroyQGraphicsSceneContextMenuEvent() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneContextMenuEvent::~QGraphicsSceneContextMenuEvent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneContextMenuEvent_DestroyQGraphicsSceneContextMenuEvent(ptr.Pointer())
 	}

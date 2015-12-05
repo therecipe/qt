@@ -1,8 +1,9 @@
 package core
 
-//#include "qpersistentmodelindex.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,10 +41,22 @@ func (ptr *QPersistentModelIndex) QPersistentModelIndex_PTR() *QPersistentModelI
 }
 
 func NewQPersistentModelIndex3(other QPersistentModelIndex_ITF) *QPersistentModelIndex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::QPersistentModelIndex")
+		}
+	}()
+
 	return NewQPersistentModelIndexFromPointer(C.QPersistentModelIndex_NewQPersistentModelIndex3(PointerFromQPersistentModelIndex(other)))
 }
 
 func (ptr *QPersistentModelIndex) Column() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::column")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPersistentModelIndex_Column(ptr.Pointer()))
 	}
@@ -51,6 +64,12 @@ func (ptr *QPersistentModelIndex) Column() int {
 }
 
 func (ptr *QPersistentModelIndex) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPersistentModelIndex_IsValid(ptr.Pointer()) != 0
 	}
@@ -58,6 +77,12 @@ func (ptr *QPersistentModelIndex) IsValid() bool {
 }
 
 func (ptr *QPersistentModelIndex) Row() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::row")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPersistentModelIndex_Row(ptr.Pointer()))
 	}
@@ -65,14 +90,32 @@ func (ptr *QPersistentModelIndex) Row() int {
 }
 
 func NewQPersistentModelIndex4(other QPersistentModelIndex_ITF) *QPersistentModelIndex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::QPersistentModelIndex")
+		}
+	}()
+
 	return NewQPersistentModelIndexFromPointer(C.QPersistentModelIndex_NewQPersistentModelIndex4(PointerFromQPersistentModelIndex(other)))
 }
 
 func NewQPersistentModelIndex(index QModelIndex_ITF) *QPersistentModelIndex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::QPersistentModelIndex")
+		}
+	}()
+
 	return NewQPersistentModelIndexFromPointer(C.QPersistentModelIndex_NewQPersistentModelIndex(PointerFromQModelIndex(index)))
 }
 
 func (ptr *QPersistentModelIndex) Child(row int, column int) *QModelIndex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::child")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QPersistentModelIndex_Child(ptr.Pointer(), C.int(row), C.int(column)))
 	}
@@ -80,6 +123,12 @@ func (ptr *QPersistentModelIndex) Child(row int, column int) *QModelIndex {
 }
 
 func (ptr *QPersistentModelIndex) Data(role int) *QVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::data")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QPersistentModelIndex_Data(ptr.Pointer(), C.int(role)))
 	}
@@ -87,6 +136,12 @@ func (ptr *QPersistentModelIndex) Data(role int) *QVariant {
 }
 
 func (ptr *QPersistentModelIndex) Flags() Qt__ItemFlag {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::flags")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return Qt__ItemFlag(C.QPersistentModelIndex_Flags(ptr.Pointer()))
 	}
@@ -94,6 +149,12 @@ func (ptr *QPersistentModelIndex) Flags() Qt__ItemFlag {
 }
 
 func (ptr *QPersistentModelIndex) Model() *QAbstractItemModel {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::model")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAbstractItemModelFromPointer(C.QPersistentModelIndex_Model(ptr.Pointer()))
 	}
@@ -101,6 +162,12 @@ func (ptr *QPersistentModelIndex) Model() *QAbstractItemModel {
 }
 
 func (ptr *QPersistentModelIndex) Parent() *QModelIndex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::parent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QPersistentModelIndex_Parent(ptr.Pointer()))
 	}
@@ -108,6 +175,12 @@ func (ptr *QPersistentModelIndex) Parent() *QModelIndex {
 }
 
 func (ptr *QPersistentModelIndex) Sibling(row int, column int) *QModelIndex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::sibling")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QPersistentModelIndex_Sibling(ptr.Pointer(), C.int(row), C.int(column)))
 	}
@@ -115,6 +188,12 @@ func (ptr *QPersistentModelIndex) Sibling(row int, column int) *QModelIndex {
 }
 
 func (ptr *QPersistentModelIndex) Swap(other QPersistentModelIndex_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPersistentModelIndex::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPersistentModelIndex_Swap(ptr.Pointer(), PointerFromQPersistentModelIndex(other))
 	}

@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qgraphicssceneresizeevent.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,10 +34,22 @@ func (ptr *QGraphicsSceneResizeEvent) QGraphicsSceneResizeEvent_PTR() *QGraphics
 }
 
 func NewQGraphicsSceneResizeEvent() *QGraphicsSceneResizeEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneResizeEvent::QGraphicsSceneResizeEvent")
+		}
+	}()
+
 	return NewQGraphicsSceneResizeEventFromPointer(C.QGraphicsSceneResizeEvent_NewQGraphicsSceneResizeEvent())
 }
 
 func (ptr *QGraphicsSceneResizeEvent) DestroyQGraphicsSceneResizeEvent() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneResizeEvent::~QGraphicsSceneResizeEvent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneResizeEvent_DestroyQGraphicsSceneResizeEvent(ptr.Pointer())
 	}

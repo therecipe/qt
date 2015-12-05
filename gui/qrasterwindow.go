@@ -1,9 +1,10 @@
 package gui
 
-//#include "qrasterwindow.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQRasterWindow(ptr QRasterWindow_ITF) unsafe.Pointer {
 func NewQRasterWindowFromPointer(ptr unsafe.Pointer) *QRasterWindow {
 	var n = new(QRasterWindow)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QRasterWindow_") {
 		n.SetObjectName("QRasterWindow_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,5 +38,11 @@ func (ptr *QRasterWindow) QRasterWindow_PTR() *QRasterWindow {
 }
 
 func NewQRasterWindow(parent QWindow_ITF) *QRasterWindow {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRasterWindow::QRasterWindow")
+		}
+	}()
+
 	return NewQRasterWindowFromPointer(C.QRasterWindow_NewQRasterWindow(PointerFromQWindow(parent)))
 }

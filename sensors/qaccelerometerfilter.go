@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qaccelerometerfilter.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QAccelerometerFilter) QAccelerometerFilter_PTR() *QAccelerometerFilte
 }
 
 func (ptr *QAccelerometerFilter) Filter(reading QAccelerometerReading_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccelerometerFilter::filter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QAccelerometerFilter_Filter(ptr.Pointer(), PointerFromQAccelerometerReading(reading)) != 0
 	}

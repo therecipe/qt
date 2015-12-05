@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptionmenuitem.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -70,9 +71,21 @@ var (
 )
 
 func NewQStyleOptionMenuItem() *QStyleOptionMenuItem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionMenuItem::QStyleOptionMenuItem")
+		}
+	}()
+
 	return NewQStyleOptionMenuItemFromPointer(C.QStyleOptionMenuItem_NewQStyleOptionMenuItem())
 }
 
 func NewQStyleOptionMenuItem2(other QStyleOptionMenuItem_ITF) *QStyleOptionMenuItem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionMenuItem::QStyleOptionMenuItem")
+		}
+	}()
+
 	return NewQStyleOptionMenuItemFromPointer(C.QStyleOptionMenuItem_NewQStyleOptionMenuItem2(PointerFromQStyleOptionMenuItem(other)))
 }

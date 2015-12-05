@@ -1,10 +1,11 @@
 package widgets
 
-//#include "qlistview.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQListView(ptr QListView_ITF) unsafe.Pointer {
 func NewQListViewFromPointer(ptr unsafe.Pointer) *QListView {
 	var n = new(QListView)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QListView_") {
 		n.SetObjectName("QListView_" + qt.RandomIdentifier())
 	}
 	return n
@@ -79,6 +80,12 @@ const (
 )
 
 func (ptr *QListView) BatchSize() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::batchSize")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QListView_BatchSize(ptr.Pointer()))
 	}
@@ -86,6 +93,12 @@ func (ptr *QListView) BatchSize() int {
 }
 
 func (ptr *QListView) Flow() QListView__Flow {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::flow")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QListView__Flow(C.QListView_Flow(ptr.Pointer()))
 	}
@@ -93,6 +106,12 @@ func (ptr *QListView) Flow() QListView__Flow {
 }
 
 func (ptr *QListView) IsSelectionRectVisible() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::isSelectionRectVisible")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QListView_IsSelectionRectVisible(ptr.Pointer()) != 0
 	}
@@ -100,6 +119,12 @@ func (ptr *QListView) IsSelectionRectVisible() bool {
 }
 
 func (ptr *QListView) IsWrapping() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::isWrapping")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QListView_IsWrapping(ptr.Pointer()) != 0
 	}
@@ -107,6 +132,12 @@ func (ptr *QListView) IsWrapping() bool {
 }
 
 func (ptr *QListView) LayoutMode() QListView__LayoutMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::layoutMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QListView__LayoutMode(C.QListView_LayoutMode(ptr.Pointer()))
 	}
@@ -114,6 +145,12 @@ func (ptr *QListView) LayoutMode() QListView__LayoutMode {
 }
 
 func (ptr *QListView) ModelColumn() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::modelColumn")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QListView_ModelColumn(ptr.Pointer()))
 	}
@@ -121,6 +158,12 @@ func (ptr *QListView) ModelColumn() int {
 }
 
 func (ptr *QListView) Movement() QListView__Movement {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::movement")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QListView__Movement(C.QListView_Movement(ptr.Pointer()))
 	}
@@ -128,6 +171,12 @@ func (ptr *QListView) Movement() QListView__Movement {
 }
 
 func (ptr *QListView) ResizeMode() QListView__ResizeMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::resizeMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QListView__ResizeMode(C.QListView_ResizeMode(ptr.Pointer()))
 	}
@@ -135,84 +184,168 @@ func (ptr *QListView) ResizeMode() QListView__ResizeMode {
 }
 
 func (ptr *QListView) SetBatchSize(batchSize int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setBatchSize")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetBatchSize(ptr.Pointer(), C.int(batchSize))
 	}
 }
 
 func (ptr *QListView) SetFlow(flow QListView__Flow) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setFlow")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetFlow(ptr.Pointer(), C.int(flow))
 	}
 }
 
 func (ptr *QListView) SetGridSize(size core.QSize_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setGridSize")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetGridSize(ptr.Pointer(), core.PointerFromQSize(size))
 	}
 }
 
 func (ptr *QListView) SetLayoutMode(mode QListView__LayoutMode) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setLayoutMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetLayoutMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QListView) SetModelColumn(column int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setModelColumn")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetModelColumn(ptr.Pointer(), C.int(column))
 	}
 }
 
 func (ptr *QListView) SetMovement(movement QListView__Movement) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setMovement")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetMovement(ptr.Pointer(), C.int(movement))
 	}
 }
 
 func (ptr *QListView) SetResizeMode(mode QListView__ResizeMode) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setResizeMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetResizeMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QListView) SetSelectionRectVisible(show bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setSelectionRectVisible")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetSelectionRectVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(show)))
 	}
 }
 
 func (ptr *QListView) SetSpacing(space int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setSpacing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetSpacing(ptr.Pointer(), C.int(space))
 	}
 }
 
 func (ptr *QListView) SetUniformItemSizes(enable bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setUniformItemSizes")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetUniformItemSizes(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
 func (ptr *QListView) SetViewMode(mode QListView__ViewMode) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setViewMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetViewMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QListView) SetWordWrap(on bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setWordWrap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetWordWrap(ptr.Pointer(), C.int(qt.GoBoolToInt(on)))
 	}
 }
 
 func (ptr *QListView) SetWrapping(enable bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setWrapping")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetWrapping(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
 	}
 }
 
 func (ptr *QListView) Spacing() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::spacing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QListView_Spacing(ptr.Pointer()))
 	}
@@ -220,6 +353,12 @@ func (ptr *QListView) Spacing() int {
 }
 
 func (ptr *QListView) UniformItemSizes() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::uniformItemSizes")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QListView_UniformItemSizes(ptr.Pointer()) != 0
 	}
@@ -227,6 +366,12 @@ func (ptr *QListView) UniformItemSizes() bool {
 }
 
 func (ptr *QListView) ViewMode() QListView__ViewMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::viewMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QListView__ViewMode(C.QListView_ViewMode(ptr.Pointer()))
 	}
@@ -234,6 +379,12 @@ func (ptr *QListView) ViewMode() QListView__ViewMode {
 }
 
 func (ptr *QListView) WordWrap() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::wordWrap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QListView_WordWrap(ptr.Pointer()) != 0
 	}
@@ -241,16 +392,34 @@ func (ptr *QListView) WordWrap() bool {
 }
 
 func NewQListView(parent QWidget_ITF) *QListView {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::QListView")
+		}
+	}()
+
 	return NewQListViewFromPointer(C.QListView_NewQListView(PointerFromQWidget(parent)))
 }
 
 func (ptr *QListView) ClearPropertyFlags() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::clearPropertyFlags")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_ClearPropertyFlags(ptr.Pointer())
 	}
 }
 
 func (ptr *QListView) IndexAt(p core.QPoint_ITF) *core.QModelIndex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::indexAt")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQModelIndexFromPointer(C.QListView_IndexAt(ptr.Pointer(), core.PointerFromQPoint(p)))
 	}
@@ -258,6 +427,12 @@ func (ptr *QListView) IndexAt(p core.QPoint_ITF) *core.QModelIndex {
 }
 
 func (ptr *QListView) IsRowHidden(row int) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::isRowHidden")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QListView_IsRowHidden(ptr.Pointer(), C.int(row)) != 0
 	}
@@ -265,18 +440,36 @@ func (ptr *QListView) IsRowHidden(row int) bool {
 }
 
 func (ptr *QListView) ScrollTo(index core.QModelIndex_ITF, hint QAbstractItemView__ScrollHint) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::scrollTo")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_ScrollTo(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(hint))
 	}
 }
 
 func (ptr *QListView) SetRowHidden(row int, hide bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::setRowHidden")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_SetRowHidden(ptr.Pointer(), C.int(row), C.int(qt.GoBoolToInt(hide)))
 	}
 }
 
 func (ptr *QListView) DestroyQListView() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QListView::~QListView")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QListView_DestroyQListView(ptr.Pointer())
 		ptr.SetPointer(nil)

@@ -1,11 +1,12 @@
 package widgets
 
-//#include "qstyle.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
+	"log"
 	"unsafe"
 )
 
@@ -28,7 +29,7 @@ func PointerFromQStyle(ptr QStyle_ITF) unsafe.Pointer {
 func NewQStyleFromPointer(ptr unsafe.Pointer) *QStyle {
 	var n = new(QStyle)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QStyle_") {
 		n.SetObjectName("QStyle_" + qt.RandomIdentifier())
 	}
 	return n
@@ -652,30 +653,60 @@ var (
 )
 
 func (ptr *QStyle) DrawItemPixmap(painter gui.QPainter_ITF, rectangle core.QRect_ITF, alignment int, pixmap gui.QPixmap_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::drawItemPixmap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyle_DrawItemPixmap(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(alignment), gui.PointerFromQPixmap(pixmap))
 	}
 }
 
 func (ptr *QStyle) DrawItemText(painter gui.QPainter_ITF, rectangle core.QRect_ITF, alignment int, palette gui.QPalette_ITF, enabled bool, text string, textRole gui.QPalette__ColorRole) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::drawItemText")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyle_DrawItemText(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rectangle), C.int(alignment), gui.PointerFromQPalette(palette), C.int(qt.GoBoolToInt(enabled)), C.CString(text), C.int(textRole))
 	}
 }
 
 func (ptr *QStyle) Polish2(application QApplication_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::polish")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyle_Polish2(ptr.Pointer(), PointerFromQApplication(application))
 	}
 }
 
 func (ptr *QStyle) Polish3(palette gui.QPalette_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::polish")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyle_Polish3(ptr.Pointer(), gui.PointerFromQPalette(palette))
 	}
 }
 
 func (ptr *QStyle) Proxy() *QStyle {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::proxy")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStyleFromPointer(C.QStyle_Proxy(ptr.Pointer()))
 	}
@@ -683,16 +714,34 @@ func (ptr *QStyle) Proxy() *QStyle {
 }
 
 func QStyle_SliderValueFromPosition(min int, max int, position int, span int, upsideDown bool) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::sliderValueFromPosition")
+		}
+	}()
+
 	return int(C.QStyle_QStyle_SliderValueFromPosition(C.int(min), C.int(max), C.int(position), C.int(span), C.int(qt.GoBoolToInt(upsideDown))))
 }
 
 func (ptr *QStyle) Unpolish2(application QApplication_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::unpolish")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyle_Unpolish2(ptr.Pointer(), PointerFromQApplication(application))
 	}
 }
 
 func (ptr *QStyle) CombinedLayoutSpacing(controls1 QSizePolicy__ControlType, controls2 QSizePolicy__ControlType, orientation core.Qt__Orientation, option QStyleOption_ITF, widget QWidget_ITF) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::combinedLayoutSpacing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QStyle_CombinedLayoutSpacing(ptr.Pointer(), C.int(controls1), C.int(controls2), C.int(orientation), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
 	}
@@ -700,24 +749,48 @@ func (ptr *QStyle) CombinedLayoutSpacing(controls1 QSizePolicy__ControlType, con
 }
 
 func (ptr *QStyle) DrawComplexControl(control QStyle__ComplexControl, option QStyleOptionComplex_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::drawComplexControl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyle_DrawComplexControl(ptr.Pointer(), C.int(control), PointerFromQStyleOptionComplex(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QStyle) DrawControl(element QStyle__ControlElement, option QStyleOption_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::drawControl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyle_DrawControl(ptr.Pointer(), C.int(element), PointerFromQStyleOption(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QStyle) DrawPrimitive(element QStyle__PrimitiveElement, option QStyleOption_ITF, painter gui.QPainter_ITF, widget QWidget_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::drawPrimitive")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyle_DrawPrimitive(ptr.Pointer(), C.int(element), PointerFromQStyleOption(option), gui.PointerFromQPainter(painter), PointerFromQWidget(widget))
 	}
 }
 
 func (ptr *QStyle) HitTestComplexControl(control QStyle__ComplexControl, option QStyleOptionComplex_ITF, position core.QPoint_ITF, widget QWidget_ITF) QStyle__SubControl {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::hitTestComplexControl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QStyle__SubControl(C.QStyle_HitTestComplexControl(ptr.Pointer(), C.int(control), PointerFromQStyleOptionComplex(option), core.PointerFromQPoint(position), PointerFromQWidget(widget)))
 	}
@@ -725,6 +798,12 @@ func (ptr *QStyle) HitTestComplexControl(control QStyle__ComplexControl, option 
 }
 
 func (ptr *QStyle) LayoutSpacing(control1 QSizePolicy__ControlType, control2 QSizePolicy__ControlType, orientation core.Qt__Orientation, option QStyleOption_ITF, widget QWidget_ITF) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::layoutSpacing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QStyle_LayoutSpacing(ptr.Pointer(), C.int(control1), C.int(control2), C.int(orientation), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
 	}
@@ -732,6 +811,12 @@ func (ptr *QStyle) LayoutSpacing(control1 QSizePolicy__ControlType, control2 QSi
 }
 
 func (ptr *QStyle) PixelMetric(metric QStyle__PixelMetric, option QStyleOption_ITF, widget QWidget_ITF) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::pixelMetric")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QStyle_PixelMetric(ptr.Pointer(), C.int(metric), PointerFromQStyleOption(option), PointerFromQWidget(widget)))
 	}
@@ -739,16 +824,34 @@ func (ptr *QStyle) PixelMetric(metric QStyle__PixelMetric, option QStyleOption_I
 }
 
 func (ptr *QStyle) Polish(widget QWidget_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::polish")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyle_Polish(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
 func QStyle_SliderPositionFromValue(min int, max int, logicalValue int, span int, upsideDown bool) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::sliderPositionFromValue")
+		}
+	}()
+
 	return int(C.QStyle_QStyle_SliderPositionFromValue(C.int(min), C.int(max), C.int(logicalValue), C.int(span), C.int(qt.GoBoolToInt(upsideDown))))
 }
 
 func (ptr *QStyle) StyleHint(hint QStyle__StyleHint, option QStyleOption_ITF, widget QWidget_ITF, returnData QStyleHintReturn_ITF) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::styleHint")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QStyle_StyleHint(ptr.Pointer(), C.int(hint), PointerFromQStyleOption(option), PointerFromQWidget(widget), PointerFromQStyleHintReturn(returnData)))
 	}
@@ -756,16 +859,34 @@ func (ptr *QStyle) StyleHint(hint QStyle__StyleHint, option QStyleOption_ITF, wi
 }
 
 func (ptr *QStyle) Unpolish(widget QWidget_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::unpolish")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyle_Unpolish(ptr.Pointer(), PointerFromQWidget(widget))
 	}
 }
 
 func QStyle_VisualAlignment(direction core.Qt__LayoutDirection, alignment core.Qt__AlignmentFlag) core.Qt__AlignmentFlag {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::visualAlignment")
+		}
+	}()
+
 	return core.Qt__AlignmentFlag(C.QStyle_QStyle_VisualAlignment(C.int(direction), C.int(alignment)))
 }
 
 func (ptr *QStyle) DestroyQStyle() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyle::~QStyle")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QStyle_DestroyQStyle(ptr.Pointer())
 		ptr.SetPointer(nil)

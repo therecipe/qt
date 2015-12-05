@@ -1,8 +1,9 @@
 package bluetooth
 
-//#include "qbluetoothserviceinfo.h"
+//#include "bluetooth.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -73,6 +74,12 @@ const (
 )
 
 func (ptr *QBluetoothServiceInfo) ServiceDescription() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::serviceDescription")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QBluetoothServiceInfo_ServiceDescription(ptr.Pointer()))
 	}
@@ -80,6 +87,12 @@ func (ptr *QBluetoothServiceInfo) ServiceDescription() string {
 }
 
 func (ptr *QBluetoothServiceInfo) ServiceName() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::serviceName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QBluetoothServiceInfo_ServiceName(ptr.Pointer()))
 	}
@@ -87,6 +100,12 @@ func (ptr *QBluetoothServiceInfo) ServiceName() string {
 }
 
 func (ptr *QBluetoothServiceInfo) ServiceProvider() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::serviceProvider")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QBluetoothServiceInfo_ServiceProvider(ptr.Pointer()))
 	}
@@ -94,38 +113,80 @@ func (ptr *QBluetoothServiceInfo) ServiceProvider() string {
 }
 
 func (ptr *QBluetoothServiceInfo) SetServiceDescription(description string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::setServiceDescription")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceInfo_SetServiceDescription(ptr.Pointer(), C.CString(description))
 	}
 }
 
 func (ptr *QBluetoothServiceInfo) SetServiceName(name string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::setServiceName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceInfo_SetServiceName(ptr.Pointer(), C.CString(name))
 	}
 }
 
 func (ptr *QBluetoothServiceInfo) SetServiceProvider(provider string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::setServiceProvider")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceInfo_SetServiceProvider(ptr.Pointer(), C.CString(provider))
 	}
 }
 
 func (ptr *QBluetoothServiceInfo) SetServiceUuid(uuid QBluetoothUuid_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::setServiceUuid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceInfo_SetServiceUuid(ptr.Pointer(), PointerFromQBluetoothUuid(uuid))
 	}
 }
 
 func NewQBluetoothServiceInfo() *QBluetoothServiceInfo {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::QBluetoothServiceInfo")
+		}
+	}()
+
 	return NewQBluetoothServiceInfoFromPointer(C.QBluetoothServiceInfo_NewQBluetoothServiceInfo())
 }
 
 func NewQBluetoothServiceInfo2(other QBluetoothServiceInfo_ITF) *QBluetoothServiceInfo {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::QBluetoothServiceInfo")
+		}
+	}()
+
 	return NewQBluetoothServiceInfoFromPointer(C.QBluetoothServiceInfo_NewQBluetoothServiceInfo2(PointerFromQBluetoothServiceInfo(other)))
 }
 
 func (ptr *QBluetoothServiceInfo) IsComplete() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::isComplete")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QBluetoothServiceInfo_IsComplete(ptr.Pointer()) != 0
 	}
@@ -133,6 +194,12 @@ func (ptr *QBluetoothServiceInfo) IsComplete() bool {
 }
 
 func (ptr *QBluetoothServiceInfo) IsRegistered() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::isRegistered")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QBluetoothServiceInfo_IsRegistered(ptr.Pointer()) != 0
 	}
@@ -140,6 +207,12 @@ func (ptr *QBluetoothServiceInfo) IsRegistered() bool {
 }
 
 func (ptr *QBluetoothServiceInfo) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QBluetoothServiceInfo_IsValid(ptr.Pointer()) != 0
 	}
@@ -147,6 +220,12 @@ func (ptr *QBluetoothServiceInfo) IsValid() bool {
 }
 
 func (ptr *QBluetoothServiceInfo) ProtocolServiceMultiplexer() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::protocolServiceMultiplexer")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QBluetoothServiceInfo_ProtocolServiceMultiplexer(ptr.Pointer()))
 	}
@@ -154,6 +233,12 @@ func (ptr *QBluetoothServiceInfo) ProtocolServiceMultiplexer() int {
 }
 
 func (ptr *QBluetoothServiceInfo) RegisterService(localAdapter QBluetoothAddress_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::registerService")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QBluetoothServiceInfo_RegisterService(ptr.Pointer(), PointerFromQBluetoothAddress(localAdapter)) != 0
 	}
@@ -161,6 +246,12 @@ func (ptr *QBluetoothServiceInfo) RegisterService(localAdapter QBluetoothAddress
 }
 
 func (ptr *QBluetoothServiceInfo) ServerChannel() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::serverChannel")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QBluetoothServiceInfo_ServerChannel(ptr.Pointer()))
 	}
@@ -168,12 +259,24 @@ func (ptr *QBluetoothServiceInfo) ServerChannel() int {
 }
 
 func (ptr *QBluetoothServiceInfo) SetDevice(device QBluetoothDeviceInfo_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::setDevice")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceInfo_SetDevice(ptr.Pointer(), PointerFromQBluetoothDeviceInfo(device))
 	}
 }
 
 func (ptr *QBluetoothServiceInfo) SocketProtocol() QBluetoothServiceInfo__Protocol {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::socketProtocol")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QBluetoothServiceInfo__Protocol(C.QBluetoothServiceInfo_SocketProtocol(ptr.Pointer()))
 	}
@@ -181,6 +284,12 @@ func (ptr *QBluetoothServiceInfo) SocketProtocol() QBluetoothServiceInfo__Protoc
 }
 
 func (ptr *QBluetoothServiceInfo) UnregisterService() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::unregisterService")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QBluetoothServiceInfo_UnregisterService(ptr.Pointer()) != 0
 	}
@@ -188,6 +297,12 @@ func (ptr *QBluetoothServiceInfo) UnregisterService() bool {
 }
 
 func (ptr *QBluetoothServiceInfo) DestroyQBluetoothServiceInfo() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBluetoothServiceInfo::~QBluetoothServiceInfo")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceInfo_DestroyQBluetoothServiceInfo(ptr.Pointer())
 	}

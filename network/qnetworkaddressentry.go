@@ -1,8 +1,9 @@
 package network
 
-//#include "qnetworkaddressentry.h"
+//#include "network.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,14 +41,32 @@ func (ptr *QNetworkAddressEntry) QNetworkAddressEntry_PTR() *QNetworkAddressEntr
 }
 
 func NewQNetworkAddressEntry() *QNetworkAddressEntry {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkAddressEntry::QNetworkAddressEntry")
+		}
+	}()
+
 	return NewQNetworkAddressEntryFromPointer(C.QNetworkAddressEntry_NewQNetworkAddressEntry())
 }
 
 func NewQNetworkAddressEntry2(other QNetworkAddressEntry_ITF) *QNetworkAddressEntry {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkAddressEntry::QNetworkAddressEntry")
+		}
+	}()
+
 	return NewQNetworkAddressEntryFromPointer(C.QNetworkAddressEntry_NewQNetworkAddressEntry2(PointerFromQNetworkAddressEntry(other)))
 }
 
 func (ptr *QNetworkAddressEntry) PrefixLength() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkAddressEntry::prefixLength")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QNetworkAddressEntry_PrefixLength(ptr.Pointer()))
 	}
@@ -55,36 +74,72 @@ func (ptr *QNetworkAddressEntry) PrefixLength() int {
 }
 
 func (ptr *QNetworkAddressEntry) SetBroadcast(newBroadcast QHostAddress_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkAddressEntry::setBroadcast")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_SetBroadcast(ptr.Pointer(), PointerFromQHostAddress(newBroadcast))
 	}
 }
 
 func (ptr *QNetworkAddressEntry) SetIp(newIp QHostAddress_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkAddressEntry::setIp")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_SetIp(ptr.Pointer(), PointerFromQHostAddress(newIp))
 	}
 }
 
 func (ptr *QNetworkAddressEntry) SetNetmask(newNetmask QHostAddress_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkAddressEntry::setNetmask")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_SetNetmask(ptr.Pointer(), PointerFromQHostAddress(newNetmask))
 	}
 }
 
 func (ptr *QNetworkAddressEntry) SetPrefixLength(length int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkAddressEntry::setPrefixLength")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_SetPrefixLength(ptr.Pointer(), C.int(length))
 	}
 }
 
 func (ptr *QNetworkAddressEntry) Swap(other QNetworkAddressEntry_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkAddressEntry::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_Swap(ptr.Pointer(), PointerFromQNetworkAddressEntry(other))
 	}
 }
 
 func (ptr *QNetworkAddressEntry) DestroyQNetworkAddressEntry() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkAddressEntry::~QNetworkAddressEntry")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkAddressEntry_DestroyQNetworkAddressEntry(ptr.Pointer())
 	}

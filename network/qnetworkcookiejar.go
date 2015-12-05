@@ -1,10 +1,11 @@
 package network
 
-//#include "qnetworkcookiejar.h"
+//#include "network.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQNetworkCookieJar(ptr QNetworkCookieJar_ITF) unsafe.Pointer {
 func NewQNetworkCookieJarFromPointer(ptr unsafe.Pointer) *QNetworkCookieJar {
 	var n = new(QNetworkCookieJar)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QNetworkCookieJar_") {
 		n.SetObjectName("QNetworkCookieJar_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,10 +39,22 @@ func (ptr *QNetworkCookieJar) QNetworkCookieJar_PTR() *QNetworkCookieJar {
 }
 
 func NewQNetworkCookieJar(parent core.QObject_ITF) *QNetworkCookieJar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkCookieJar::QNetworkCookieJar")
+		}
+	}()
+
 	return NewQNetworkCookieJarFromPointer(C.QNetworkCookieJar_NewQNetworkCookieJar(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNetworkCookieJar) DeleteCookie(cookie QNetworkCookie_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkCookieJar::deleteCookie")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNetworkCookieJar_DeleteCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie)) != 0
 	}
@@ -49,6 +62,12 @@ func (ptr *QNetworkCookieJar) DeleteCookie(cookie QNetworkCookie_ITF) bool {
 }
 
 func (ptr *QNetworkCookieJar) InsertCookie(cookie QNetworkCookie_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkCookieJar::insertCookie")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNetworkCookieJar_InsertCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie)) != 0
 	}
@@ -56,6 +75,12 @@ func (ptr *QNetworkCookieJar) InsertCookie(cookie QNetworkCookie_ITF) bool {
 }
 
 func (ptr *QNetworkCookieJar) UpdateCookie(cookie QNetworkCookie_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkCookieJar::updateCookie")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNetworkCookieJar_UpdateCookie(ptr.Pointer(), PointerFromQNetworkCookie(cookie)) != 0
 	}
@@ -63,6 +88,12 @@ func (ptr *QNetworkCookieJar) UpdateCookie(cookie QNetworkCookie_ITF) bool {
 }
 
 func (ptr *QNetworkCookieJar) DestroyQNetworkCookieJar() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNetworkCookieJar::~QNetworkCookieJar")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNetworkCookieJar_DestroyQNetworkCookieJar(ptr.Pointer())
 		ptr.SetPointer(nil)

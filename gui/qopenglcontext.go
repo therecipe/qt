@@ -1,6 +1,6 @@
 package gui
 
-//#include "qopenglcontext.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQOpenGLContext(ptr QOpenGLContext_ITF) unsafe.Pointer {
 func NewQOpenGLContextFromPointer(ptr unsafe.Pointer) *QOpenGLContext {
 	var n = new(QOpenGLContext)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QOpenGLContext_") {
 		n.SetObjectName("QOpenGLContext_" + qt.RandomIdentifier())
 	}
 	return n

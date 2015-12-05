@@ -1,9 +1,10 @@
 package gui
 
-//#include "qfontdatabase.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -94,30 +95,72 @@ var (
 )
 
 func QFontDatabase_RemoveAllApplicationFonts() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::removeAllApplicationFonts")
+		}
+	}()
+
 	return C.QFontDatabase_QFontDatabase_RemoveAllApplicationFonts() != 0
 }
 
 func QFontDatabase_RemoveApplicationFont(id int) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::removeApplicationFont")
+		}
+	}()
+
 	return C.QFontDatabase_QFontDatabase_RemoveApplicationFont(C.int(id)) != 0
 }
 
 func NewQFontDatabase() *QFontDatabase {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::QFontDatabase")
+		}
+	}()
+
 	return NewQFontDatabaseFromPointer(C.QFontDatabase_NewQFontDatabase())
 }
 
 func QFontDatabase_AddApplicationFont(fileName string) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::addApplicationFont")
+		}
+	}()
+
 	return int(C.QFontDatabase_QFontDatabase_AddApplicationFont(C.CString(fileName)))
 }
 
 func QFontDatabase_AddApplicationFontFromData(fontData core.QByteArray_ITF) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::addApplicationFontFromData")
+		}
+	}()
+
 	return int(C.QFontDatabase_QFontDatabase_AddApplicationFontFromData(core.PointerFromQByteArray(fontData)))
 }
 
 func QFontDatabase_ApplicationFontFamilies(id int) []string {
-	return strings.Split(C.GoString(C.QFontDatabase_QFontDatabase_ApplicationFontFamilies(C.int(id))), "|")
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::applicationFontFamilies")
+		}
+	}()
+
+	return strings.Split(C.GoString(C.QFontDatabase_QFontDatabase_ApplicationFontFamilies(C.int(id))), ",,,")
 }
 
 func (ptr *QFontDatabase) Bold(family string, style string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::bold")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QFontDatabase_Bold(ptr.Pointer(), C.CString(family), C.CString(style)) != 0
 	}
@@ -125,13 +168,25 @@ func (ptr *QFontDatabase) Bold(family string, style string) bool {
 }
 
 func (ptr *QFontDatabase) Families(writingSystem QFontDatabase__WritingSystem) []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::families")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QFontDatabase_Families(ptr.Pointer(), C.int(writingSystem))), "|")
+		return strings.Split(C.GoString(C.QFontDatabase_Families(ptr.Pointer(), C.int(writingSystem))), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFontDatabase) IsBitmapScalable(family string, style string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::isBitmapScalable")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QFontDatabase_IsBitmapScalable(ptr.Pointer(), C.CString(family), C.CString(style)) != 0
 	}
@@ -139,6 +194,12 @@ func (ptr *QFontDatabase) IsBitmapScalable(family string, style string) bool {
 }
 
 func (ptr *QFontDatabase) IsFixedPitch(family string, style string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::isFixedPitch")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QFontDatabase_IsFixedPitch(ptr.Pointer(), C.CString(family), C.CString(style)) != 0
 	}
@@ -146,6 +207,12 @@ func (ptr *QFontDatabase) IsFixedPitch(family string, style string) bool {
 }
 
 func (ptr *QFontDatabase) IsPrivateFamily(family string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::isPrivateFamily")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QFontDatabase_IsPrivateFamily(ptr.Pointer(), C.CString(family)) != 0
 	}
@@ -153,6 +220,12 @@ func (ptr *QFontDatabase) IsPrivateFamily(family string) bool {
 }
 
 func (ptr *QFontDatabase) IsScalable(family string, style string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::isScalable")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QFontDatabase_IsScalable(ptr.Pointer(), C.CString(family), C.CString(style)) != 0
 	}
@@ -160,6 +233,12 @@ func (ptr *QFontDatabase) IsScalable(family string, style string) bool {
 }
 
 func (ptr *QFontDatabase) IsSmoothlyScalable(family string, style string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::isSmoothlyScalable")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QFontDatabase_IsSmoothlyScalable(ptr.Pointer(), C.CString(family), C.CString(style)) != 0
 	}
@@ -167,6 +246,12 @@ func (ptr *QFontDatabase) IsSmoothlyScalable(family string, style string) bool {
 }
 
 func (ptr *QFontDatabase) Italic(family string, style string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::italic")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QFontDatabase_Italic(ptr.Pointer(), C.CString(family), C.CString(style)) != 0
 	}
@@ -174,6 +259,12 @@ func (ptr *QFontDatabase) Italic(family string, style string) bool {
 }
 
 func (ptr *QFontDatabase) StyleString(font QFont_ITF) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::styleString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFontDatabase_StyleString(ptr.Pointer(), PointerFromQFont(font)))
 	}
@@ -181,6 +272,12 @@ func (ptr *QFontDatabase) StyleString(font QFont_ITF) string {
 }
 
 func (ptr *QFontDatabase) StyleString2(fontInfo QFontInfo_ITF) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::styleString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QFontDatabase_StyleString2(ptr.Pointer(), PointerFromQFontInfo(fontInfo)))
 	}
@@ -188,13 +285,25 @@ func (ptr *QFontDatabase) StyleString2(fontInfo QFontInfo_ITF) string {
 }
 
 func (ptr *QFontDatabase) Styles(family string) []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::styles")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QFontDatabase_Styles(ptr.Pointer(), C.CString(family))), "|")
+		return strings.Split(C.GoString(C.QFontDatabase_Styles(ptr.Pointer(), C.CString(family))), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QFontDatabase) Weight(family string, style string) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::weight")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QFontDatabase_Weight(ptr.Pointer(), C.CString(family), C.CString(style)))
 	}
@@ -202,9 +311,21 @@ func (ptr *QFontDatabase) Weight(family string, style string) int {
 }
 
 func QFontDatabase_WritingSystemName(writingSystem QFontDatabase__WritingSystem) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::writingSystemName")
+		}
+	}()
+
 	return C.GoString(C.QFontDatabase_QFontDatabase_WritingSystemName(C.int(writingSystem)))
 }
 
 func QFontDatabase_WritingSystemSample(writingSystem QFontDatabase__WritingSystem) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFontDatabase::writingSystemSample")
+		}
+	}()
+
 	return C.GoString(C.QFontDatabase_QFontDatabase_WritingSystemSample(C.int(writingSystem)))
 }

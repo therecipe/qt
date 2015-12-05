@@ -1,10 +1,11 @@
 package widgets
 
-//#include "qplaintextdocumentlayout.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/gui"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQPlainTextDocumentLayout(ptr QPlainTextDocumentLayout_ITF) unsaf
 func NewQPlainTextDocumentLayoutFromPointer(ptr unsafe.Pointer) *QPlainTextDocumentLayout {
 	var n = new(QPlainTextDocumentLayout)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QPlainTextDocumentLayout_") {
 		n.SetObjectName("QPlainTextDocumentLayout_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QPlainTextDocumentLayout) QPlainTextDocumentLayout_PTR() *QPlainTextD
 }
 
 func (ptr *QPlainTextDocumentLayout) CursorWidth() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPlainTextDocumentLayout::cursorWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPlainTextDocumentLayout_CursorWidth(ptr.Pointer()))
 	}
@@ -45,22 +52,46 @@ func (ptr *QPlainTextDocumentLayout) CursorWidth() int {
 }
 
 func (ptr *QPlainTextDocumentLayout) SetCursorWidth(width int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPlainTextDocumentLayout::setCursorWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPlainTextDocumentLayout_SetCursorWidth(ptr.Pointer(), C.int(width))
 	}
 }
 
 func NewQPlainTextDocumentLayout(document gui.QTextDocument_ITF) *QPlainTextDocumentLayout {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPlainTextDocumentLayout::QPlainTextDocumentLayout")
+		}
+	}()
+
 	return NewQPlainTextDocumentLayoutFromPointer(C.QPlainTextDocumentLayout_NewQPlainTextDocumentLayout(gui.PointerFromQTextDocument(document)))
 }
 
 func (ptr *QPlainTextDocumentLayout) EnsureBlockLayout(block gui.QTextBlock_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPlainTextDocumentLayout::ensureBlockLayout")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPlainTextDocumentLayout_EnsureBlockLayout(ptr.Pointer(), gui.PointerFromQTextBlock(block))
 	}
 }
 
 func (ptr *QPlainTextDocumentLayout) PageCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPlainTextDocumentLayout::pageCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QPlainTextDocumentLayout_PageCount(ptr.Pointer()))
 	}
@@ -68,12 +99,24 @@ func (ptr *QPlainTextDocumentLayout) PageCount() int {
 }
 
 func (ptr *QPlainTextDocumentLayout) RequestUpdate() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPlainTextDocumentLayout::requestUpdate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPlainTextDocumentLayout_RequestUpdate(ptr.Pointer())
 	}
 }
 
 func (ptr *QPlainTextDocumentLayout) DestroyQPlainTextDocumentLayout() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPlainTextDocumentLayout::~QPlainTextDocumentLayout")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPlainTextDocumentLayout_DestroyQPlainTextDocumentLayout(ptr.Pointer())
 		ptr.SetPointer(nil)

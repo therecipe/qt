@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qrotationfilter.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QRotationFilter) QRotationFilter_PTR() *QRotationFilter {
 }
 
 func (ptr *QRotationFilter) Filter(reading QRotationReading_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRotationFilter::filter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QRotationFilter_Filter(ptr.Pointer(), PointerFromQRotationReading(reading)) != 0
 	}

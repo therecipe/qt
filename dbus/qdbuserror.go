@@ -1,8 +1,9 @@
 package dbus
 
-//#include "qdbuserror.h"
+//#include "dbus.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -74,10 +75,22 @@ const (
 )
 
 func QDBusError_ErrorString(error QDBusError__ErrorType) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusError::errorString")
+		}
+	}()
+
 	return C.GoString(C.QDBusError_QDBusError_ErrorString(C.int(error)))
 }
 
 func (ptr *QDBusError) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusError::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QDBusError_IsValid(ptr.Pointer()) != 0
 	}
@@ -85,6 +98,12 @@ func (ptr *QDBusError) IsValid() bool {
 }
 
 func (ptr *QDBusError) Message() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusError::message")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusError_Message(ptr.Pointer()))
 	}
@@ -92,6 +111,12 @@ func (ptr *QDBusError) Message() string {
 }
 
 func (ptr *QDBusError) Name() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusError::name")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusError_Name(ptr.Pointer()))
 	}
@@ -99,6 +124,12 @@ func (ptr *QDBusError) Name() string {
 }
 
 func (ptr *QDBusError) Type() QDBusError__ErrorType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusError::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QDBusError__ErrorType(C.QDBusError_Type(ptr.Pointer()))
 	}

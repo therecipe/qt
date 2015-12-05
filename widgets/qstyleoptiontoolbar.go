@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptiontoolbar.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -65,9 +66,21 @@ const (
 )
 
 func NewQStyleOptionToolBar() *QStyleOptionToolBar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionToolBar::QStyleOptionToolBar")
+		}
+	}()
+
 	return NewQStyleOptionToolBarFromPointer(C.QStyleOptionToolBar_NewQStyleOptionToolBar())
 }
 
 func NewQStyleOptionToolBar2(other QStyleOptionToolBar_ITF) *QStyleOptionToolBar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionToolBar::QStyleOptionToolBar")
+		}
+	}()
+
 	return NewQStyleOptionToolBarFromPointer(C.QStyleOptionToolBar_NewQStyleOptionToolBar2(PointerFromQStyleOptionToolBar(other)))
 }

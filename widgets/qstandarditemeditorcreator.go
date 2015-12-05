@@ -1,6 +1,6 @@
 package widgets
 
-//#include "qstandarditemeditorcreator.h"
+//#include "widgets.h"
 import "C"
 import (
 	"unsafe"

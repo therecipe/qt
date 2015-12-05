@@ -1,8 +1,9 @@
 package core
 
-//#include "qbytearraymatcher.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,22 +41,52 @@ func (ptr *QByteArrayMatcher) QByteArrayMatcher_PTR() *QByteArrayMatcher {
 }
 
 func NewQByteArrayMatcher() *QByteArrayMatcher {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QByteArrayMatcher::QByteArrayMatcher")
+		}
+	}()
+
 	return NewQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher())
 }
 
 func NewQByteArrayMatcher2(pattern QByteArray_ITF) *QByteArrayMatcher {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QByteArrayMatcher::QByteArrayMatcher")
+		}
+	}()
+
 	return NewQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher2(PointerFromQByteArray(pattern)))
 }
 
 func NewQByteArrayMatcher4(other QByteArrayMatcher_ITF) *QByteArrayMatcher {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QByteArrayMatcher::QByteArrayMatcher")
+		}
+	}()
+
 	return NewQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher4(PointerFromQByteArrayMatcher(other)))
 }
 
 func NewQByteArrayMatcher3(pattern string, length int) *QByteArrayMatcher {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QByteArrayMatcher::QByteArrayMatcher")
+		}
+	}()
+
 	return NewQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher3(C.CString(pattern), C.int(length)))
 }
 
 func (ptr *QByteArrayMatcher) IndexIn(ba QByteArray_ITF, from int) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QByteArrayMatcher::indexIn")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QByteArrayMatcher_IndexIn(ptr.Pointer(), PointerFromQByteArray(ba), C.int(from)))
 	}
@@ -63,6 +94,12 @@ func (ptr *QByteArrayMatcher) IndexIn(ba QByteArray_ITF, from int) int {
 }
 
 func (ptr *QByteArrayMatcher) IndexIn2(str string, len int, from int) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QByteArrayMatcher::indexIn")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QByteArrayMatcher_IndexIn2(ptr.Pointer(), C.CString(str), C.int(len), C.int(from)))
 	}
@@ -70,6 +107,12 @@ func (ptr *QByteArrayMatcher) IndexIn2(str string, len int, from int) int {
 }
 
 func (ptr *QByteArrayMatcher) Pattern() *QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QByteArrayMatcher::pattern")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QByteArrayMatcher_Pattern(ptr.Pointer()))
 	}
@@ -77,12 +120,24 @@ func (ptr *QByteArrayMatcher) Pattern() *QByteArray {
 }
 
 func (ptr *QByteArrayMatcher) SetPattern(pattern QByteArray_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QByteArrayMatcher::setPattern")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QByteArrayMatcher_SetPattern(ptr.Pointer(), PointerFromQByteArray(pattern))
 	}
 }
 
 func (ptr *QByteArrayMatcher) DestroyQByteArrayMatcher() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QByteArrayMatcher::~QByteArrayMatcher")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QByteArrayMatcher_DestroyQByteArrayMatcher(ptr.Pointer())
 	}

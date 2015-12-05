@@ -1,9 +1,10 @@
 package gui
 
-//#include "qvector3d.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,26 +42,62 @@ func (ptr *QVector3D) QVector3D_PTR() *QVector3D {
 }
 
 func NewQVector3D() *QVector3D {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QVector3D::QVector3D")
+		}
+	}()
+
 	return NewQVector3DFromPointer(C.QVector3D_NewQVector3D())
 }
 
 func NewQVector3D4(point core.QPoint_ITF) *QVector3D {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QVector3D::QVector3D")
+		}
+	}()
+
 	return NewQVector3DFromPointer(C.QVector3D_NewQVector3D4(core.PointerFromQPoint(point)))
 }
 
 func NewQVector3D5(point core.QPointF_ITF) *QVector3D {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QVector3D::QVector3D")
+		}
+	}()
+
 	return NewQVector3DFromPointer(C.QVector3D_NewQVector3D5(core.PointerFromQPointF(point)))
 }
 
 func NewQVector3D6(vector QVector2D_ITF) *QVector3D {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QVector3D::QVector3D")
+		}
+	}()
+
 	return NewQVector3DFromPointer(C.QVector3D_NewQVector3D6(PointerFromQVector2D(vector)))
 }
 
 func NewQVector3D8(vector QVector4D_ITF) *QVector3D {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QVector3D::QVector3D")
+		}
+	}()
+
 	return NewQVector3DFromPointer(C.QVector3D_NewQVector3D8(PointerFromQVector4D(vector)))
 }
 
 func (ptr *QVector3D) IsNull() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QVector3D::isNull")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QVector3D_IsNull(ptr.Pointer()) != 0
 	}
@@ -68,6 +105,12 @@ func (ptr *QVector3D) IsNull() bool {
 }
 
 func (ptr *QVector3D) Normalize() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QVector3D::normalize")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QVector3D_Normalize(ptr.Pointer())
 	}

@@ -1,10 +1,11 @@
 package gui
 
-//#include "qimagewriter.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -51,18 +52,42 @@ const (
 )
 
 func NewQImageWriter() *QImageWriter {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::QImageWriter")
+		}
+	}()
+
 	return NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter())
 }
 
 func NewQImageWriter2(device core.QIODevice_ITF, format core.QByteArray_ITF) *QImageWriter {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::QImageWriter")
+		}
+	}()
+
 	return NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 }
 
 func NewQImageWriter3(fileName string, format core.QByteArray_ITF) *QImageWriter {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::QImageWriter")
+		}
+	}()
+
 	return NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter3(C.CString(fileName), core.PointerFromQByteArray(format)))
 }
 
 func (ptr *QImageWriter) CanWrite() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::canWrite")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QImageWriter_CanWrite(ptr.Pointer()) != 0
 	}
@@ -70,6 +95,12 @@ func (ptr *QImageWriter) CanWrite() bool {
 }
 
 func (ptr *QImageWriter) Compression() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::compression")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QImageWriter_Compression(ptr.Pointer()))
 	}
@@ -77,6 +108,12 @@ func (ptr *QImageWriter) Compression() int {
 }
 
 func (ptr *QImageWriter) Device() *core.QIODevice {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::device")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQIODeviceFromPointer(C.QImageWriter_Device(ptr.Pointer()))
 	}
@@ -84,6 +121,12 @@ func (ptr *QImageWriter) Device() *core.QIODevice {
 }
 
 func (ptr *QImageWriter) Error() QImageWriter__ImageWriterError {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QImageWriter__ImageWriterError(C.QImageWriter_Error(ptr.Pointer()))
 	}
@@ -91,6 +134,12 @@ func (ptr *QImageWriter) Error() QImageWriter__ImageWriterError {
 }
 
 func (ptr *QImageWriter) ErrorString() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::errorString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QImageWriter_ErrorString(ptr.Pointer()))
 	}
@@ -98,6 +147,12 @@ func (ptr *QImageWriter) ErrorString() string {
 }
 
 func (ptr *QImageWriter) FileName() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::fileName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QImageWriter_FileName(ptr.Pointer()))
 	}
@@ -105,6 +160,12 @@ func (ptr *QImageWriter) FileName() string {
 }
 
 func (ptr *QImageWriter) Format() *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::format")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QImageWriter_Format(ptr.Pointer()))
 	}
@@ -112,6 +173,12 @@ func (ptr *QImageWriter) Format() *core.QByteArray {
 }
 
 func (ptr *QImageWriter) OptimizedWrite() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::optimizedWrite")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QImageWriter_OptimizedWrite(ptr.Pointer()) != 0
 	}
@@ -119,6 +186,12 @@ func (ptr *QImageWriter) OptimizedWrite() bool {
 }
 
 func (ptr *QImageWriter) ProgressiveScanWrite() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::progressiveScanWrite")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QImageWriter_ProgressiveScanWrite(ptr.Pointer()) != 0
 	}
@@ -126,6 +199,12 @@ func (ptr *QImageWriter) ProgressiveScanWrite() bool {
 }
 
 func (ptr *QImageWriter) Quality() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::quality")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QImageWriter_Quality(ptr.Pointer()))
 	}
@@ -133,66 +212,132 @@ func (ptr *QImageWriter) Quality() int {
 }
 
 func (ptr *QImageWriter) SetCompression(compression int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::setCompression")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QImageWriter_SetCompression(ptr.Pointer(), C.int(compression))
 	}
 }
 
 func (ptr *QImageWriter) SetDevice(device core.QIODevice_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::setDevice")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QImageWriter_SetDevice(ptr.Pointer(), core.PointerFromQIODevice(device))
 	}
 }
 
 func (ptr *QImageWriter) SetFileName(fileName string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::setFileName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QImageWriter_SetFileName(ptr.Pointer(), C.CString(fileName))
 	}
 }
 
 func (ptr *QImageWriter) SetFormat(format core.QByteArray_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::setFormat")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QImageWriter_SetFormat(ptr.Pointer(), core.PointerFromQByteArray(format))
 	}
 }
 
 func (ptr *QImageWriter) SetOptimizedWrite(optimize bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::setOptimizedWrite")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QImageWriter_SetOptimizedWrite(ptr.Pointer(), C.int(qt.GoBoolToInt(optimize)))
 	}
 }
 
 func (ptr *QImageWriter) SetProgressiveScanWrite(progressive bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::setProgressiveScanWrite")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QImageWriter_SetProgressiveScanWrite(ptr.Pointer(), C.int(qt.GoBoolToInt(progressive)))
 	}
 }
 
 func (ptr *QImageWriter) SetQuality(quality int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::setQuality")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QImageWriter_SetQuality(ptr.Pointer(), C.int(quality))
 	}
 }
 
 func (ptr *QImageWriter) SetSubType(ty core.QByteArray_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::setSubType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QImageWriter_SetSubType(ptr.Pointer(), core.PointerFromQByteArray(ty))
 	}
 }
 
 func (ptr *QImageWriter) SetText(key string, text string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::setText")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QImageWriter_SetText(ptr.Pointer(), C.CString(key), C.CString(text))
 	}
 }
 
 func (ptr *QImageWriter) SetTransformation(transform QImageIOHandler__Transformation) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::setTransformation")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QImageWriter_SetTransformation(ptr.Pointer(), C.int(transform))
 	}
 }
 
 func (ptr *QImageWriter) SubType() *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::subType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QImageWriter_SubType(ptr.Pointer()))
 	}
@@ -200,6 +345,12 @@ func (ptr *QImageWriter) SubType() *core.QByteArray {
 }
 
 func (ptr *QImageWriter) SupportsOption(option QImageIOHandler__ImageOption) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::supportsOption")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QImageWriter_SupportsOption(ptr.Pointer(), C.int(option)) != 0
 	}
@@ -207,6 +358,12 @@ func (ptr *QImageWriter) SupportsOption(option QImageIOHandler__ImageOption) boo
 }
 
 func (ptr *QImageWriter) Transformation() QImageIOHandler__Transformation {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::transformation")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QImageIOHandler__Transformation(C.QImageWriter_Transformation(ptr.Pointer()))
 	}
@@ -214,6 +371,12 @@ func (ptr *QImageWriter) Transformation() QImageIOHandler__Transformation {
 }
 
 func (ptr *QImageWriter) Write(image QImage_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::write")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QImageWriter_Write(ptr.Pointer(), PointerFromQImage(image)) != 0
 	}
@@ -221,6 +384,12 @@ func (ptr *QImageWriter) Write(image QImage_ITF) bool {
 }
 
 func (ptr *QImageWriter) DestroyQImageWriter() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QImageWriter::~QImageWriter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QImageWriter_DestroyQImageWriter(ptr.Pointer())
 	}

@@ -1,9 +1,10 @@
 package core
 
-//#include "qabstractanimation.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQAbstractAnimation(ptr QAbstractAnimation_ITF) unsafe.Pointer {
 func NewQAbstractAnimationFromPointer(ptr unsafe.Pointer) *QAbstractAnimation {
 	var n = new(QAbstractAnimation)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QAbstractAnimation_") {
 		n.SetObjectName("QAbstractAnimation_" + qt.RandomIdentifier())
 	}
 	return n
@@ -62,6 +63,12 @@ const (
 )
 
 func (ptr *QAbstractAnimation) CurrentLoop() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::currentLoop")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAbstractAnimation_CurrentLoop(ptr.Pointer()))
 	}
@@ -69,6 +76,12 @@ func (ptr *QAbstractAnimation) CurrentLoop() int {
 }
 
 func (ptr *QAbstractAnimation) CurrentTime() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::currentTime")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAbstractAnimation_CurrentTime(ptr.Pointer()))
 	}
@@ -76,6 +89,12 @@ func (ptr *QAbstractAnimation) CurrentTime() int {
 }
 
 func (ptr *QAbstractAnimation) Direction() QAbstractAnimation__Direction {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::direction")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QAbstractAnimation__Direction(C.QAbstractAnimation_Direction(ptr.Pointer()))
 	}
@@ -83,6 +102,12 @@ func (ptr *QAbstractAnimation) Direction() QAbstractAnimation__Direction {
 }
 
 func (ptr *QAbstractAnimation) LoopCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::loopCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAbstractAnimation_LoopCount(ptr.Pointer()))
 	}
@@ -90,24 +115,48 @@ func (ptr *QAbstractAnimation) LoopCount() int {
 }
 
 func (ptr *QAbstractAnimation) SetCurrentTime(msecs int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::setCurrentTime")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_SetCurrentTime(ptr.Pointer(), C.int(msecs))
 	}
 }
 
 func (ptr *QAbstractAnimation) SetDirection(direction QAbstractAnimation__Direction) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::setDirection")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_SetDirection(ptr.Pointer(), C.int(direction))
 	}
 }
 
 func (ptr *QAbstractAnimation) SetLoopCount(loopCount int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::setLoopCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_SetLoopCount(ptr.Pointer(), C.int(loopCount))
 	}
 }
 
 func (ptr *QAbstractAnimation) ConnectCurrentLoopChanged(f func(currentLoop int)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::currentLoopChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_ConnectCurrentLoopChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "currentLoopChanged", f)
@@ -115,6 +164,12 @@ func (ptr *QAbstractAnimation) ConnectCurrentLoopChanged(f func(currentLoop int)
 }
 
 func (ptr *QAbstractAnimation) DisconnectCurrentLoopChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::currentLoopChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_DisconnectCurrentLoopChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "currentLoopChanged")
@@ -123,10 +178,22 @@ func (ptr *QAbstractAnimation) DisconnectCurrentLoopChanged() {
 
 //export callbackQAbstractAnimationCurrentLoopChanged
 func callbackQAbstractAnimationCurrentLoopChanged(ptrName *C.char, currentLoop C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::currentLoopChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "currentLoopChanged").(func(int))(int(currentLoop))
 }
 
 func (ptr *QAbstractAnimation) CurrentLoopTime() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::currentLoopTime")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAbstractAnimation_CurrentLoopTime(ptr.Pointer()))
 	}
@@ -134,6 +201,12 @@ func (ptr *QAbstractAnimation) CurrentLoopTime() int {
 }
 
 func (ptr *QAbstractAnimation) ConnectDirectionChanged(f func(newDirection QAbstractAnimation__Direction)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::directionChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_ConnectDirectionChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "directionChanged", f)
@@ -141,6 +214,12 @@ func (ptr *QAbstractAnimation) ConnectDirectionChanged(f func(newDirection QAbst
 }
 
 func (ptr *QAbstractAnimation) DisconnectDirectionChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::directionChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_DisconnectDirectionChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "directionChanged")
@@ -149,10 +228,22 @@ func (ptr *QAbstractAnimation) DisconnectDirectionChanged() {
 
 //export callbackQAbstractAnimationDirectionChanged
 func callbackQAbstractAnimationDirectionChanged(ptrName *C.char, newDirection C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::directionChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "directionChanged").(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(newDirection))
 }
 
 func (ptr *QAbstractAnimation) Duration() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::duration")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAbstractAnimation_Duration(ptr.Pointer()))
 	}
@@ -160,6 +251,12 @@ func (ptr *QAbstractAnimation) Duration() int {
 }
 
 func (ptr *QAbstractAnimation) ConnectFinished(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::finished")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_ConnectFinished(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "finished", f)
@@ -167,6 +264,12 @@ func (ptr *QAbstractAnimation) ConnectFinished(f func()) {
 }
 
 func (ptr *QAbstractAnimation) DisconnectFinished() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::finished")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_DisconnectFinished(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "finished")
@@ -175,10 +278,22 @@ func (ptr *QAbstractAnimation) DisconnectFinished() {
 
 //export callbackQAbstractAnimationFinished
 func callbackQAbstractAnimationFinished(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::finished")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "finished").(func())()
 }
 
 func (ptr *QAbstractAnimation) Group() *QAnimationGroup {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::group")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAnimationGroupFromPointer(C.QAbstractAnimation_Group(ptr.Pointer()))
 	}
@@ -186,30 +301,60 @@ func (ptr *QAbstractAnimation) Group() *QAnimationGroup {
 }
 
 func (ptr *QAbstractAnimation) Pause() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::pause")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_Pause(ptr.Pointer())
 	}
 }
 
 func (ptr *QAbstractAnimation) Resume() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::resume")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_Resume(ptr.Pointer())
 	}
 }
 
 func (ptr *QAbstractAnimation) SetPaused(paused bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::setPaused")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_SetPaused(ptr.Pointer(), C.int(qt.GoBoolToInt(paused)))
 	}
 }
 
 func (ptr *QAbstractAnimation) Start(policy QAbstractAnimation__DeletionPolicy) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::start")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_Start(ptr.Pointer(), C.int(policy))
 	}
 }
 
 func (ptr *QAbstractAnimation) ConnectStateChanged(f func(newState QAbstractAnimation__State, oldState QAbstractAnimation__State)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::stateChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_ConnectStateChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "stateChanged", f)
@@ -217,6 +362,12 @@ func (ptr *QAbstractAnimation) ConnectStateChanged(f func(newState QAbstractAnim
 }
 
 func (ptr *QAbstractAnimation) DisconnectStateChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::stateChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_DisconnectStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "stateChanged")
@@ -225,16 +376,34 @@ func (ptr *QAbstractAnimation) DisconnectStateChanged() {
 
 //export callbackQAbstractAnimationStateChanged
 func callbackQAbstractAnimationStateChanged(ptrName *C.char, newState C.int, oldState C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::stateChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "stateChanged").(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 }
 
 func (ptr *QAbstractAnimation) Stop() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::stop")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_Stop(ptr.Pointer())
 	}
 }
 
 func (ptr *QAbstractAnimation) TotalDuration() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::totalDuration")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAbstractAnimation_TotalDuration(ptr.Pointer()))
 	}
@@ -242,6 +411,12 @@ func (ptr *QAbstractAnimation) TotalDuration() int {
 }
 
 func (ptr *QAbstractAnimation) DestroyQAbstractAnimation() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractAnimation::~QAbstractAnimation")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_DestroyQAbstractAnimation(ptr.Pointer())
 		ptr.SetPointer(nil)

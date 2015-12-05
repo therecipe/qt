@@ -1,10 +1,11 @@
 package help
 
-//#include "qhelpsearchquerywidget.h"
+//#include "help.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/widgets"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQHelpSearchQueryWidget(ptr QHelpSearchQueryWidget_ITF) unsafe.Po
 func NewQHelpSearchQueryWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchQueryWidget {
 	var n = new(QHelpSearchQueryWidget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QHelpSearchQueryWidget_") {
 		n.SetObjectName("QHelpSearchQueryWidget_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QHelpSearchQueryWidget) QHelpSearchQueryWidget_PTR() *QHelpSearchQuer
 }
 
 func (ptr *QHelpSearchQueryWidget) IsCompactMode() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpSearchQueryWidget::isCompactMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchQueryWidget_IsCompactMode(ptr.Pointer()) != 0
 	}
@@ -45,22 +52,46 @@ func (ptr *QHelpSearchQueryWidget) IsCompactMode() bool {
 }
 
 func NewQHelpSearchQueryWidget(parent widgets.QWidget_ITF) *QHelpSearchQueryWidget {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpSearchQueryWidget::QHelpSearchQueryWidget")
+		}
+	}()
+
 	return NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(widgets.PointerFromQWidget(parent)))
 }
 
 func (ptr *QHelpSearchQueryWidget) CollapseExtendedSearch() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpSearchQueryWidget::collapseExtendedSearch")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_CollapseExtendedSearch(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ExpandExtendedSearch() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpSearchQueryWidget::expandExtendedSearch")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ExpandExtendedSearch(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSearch(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpSearchQueryWidget::search")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ConnectSearch(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "search", f)
@@ -68,6 +99,12 @@ func (ptr *QHelpSearchQueryWidget) ConnectSearch(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectSearch() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpSearchQueryWidget::search")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DisconnectSearch(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "search")
@@ -76,10 +113,22 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSearch() {
 
 //export callbackQHelpSearchQueryWidgetSearch
 func callbackQHelpSearchQueryWidgetSearch(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpSearchQueryWidget::search")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "search").(func())()
 }
 
 func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidget() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHelpSearchQueryWidget::~QHelpSearchQueryWidget")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(ptr.Pointer())
 		ptr.SetPointer(nil)

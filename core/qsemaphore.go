@@ -1,8 +1,9 @@
 package core
 
-//#include "qsemaphore.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,16 +41,34 @@ func (ptr *QSemaphore) QSemaphore_PTR() *QSemaphore {
 }
 
 func NewQSemaphore(n int) *QSemaphore {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSemaphore::QSemaphore")
+		}
+	}()
+
 	return NewQSemaphoreFromPointer(C.QSemaphore_NewQSemaphore(C.int(n)))
 }
 
 func (ptr *QSemaphore) Acquire(n int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSemaphore::acquire")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSemaphore_Acquire(ptr.Pointer(), C.int(n))
 	}
 }
 
 func (ptr *QSemaphore) Available() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSemaphore::available")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QSemaphore_Available(ptr.Pointer()))
 	}
@@ -57,12 +76,24 @@ func (ptr *QSemaphore) Available() int {
 }
 
 func (ptr *QSemaphore) Release(n int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSemaphore::release")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSemaphore_Release(ptr.Pointer(), C.int(n))
 	}
 }
 
 func (ptr *QSemaphore) TryAcquire(n int) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSemaphore::tryAcquire")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QSemaphore_TryAcquire(ptr.Pointer(), C.int(n)) != 0
 	}
@@ -70,6 +101,12 @@ func (ptr *QSemaphore) TryAcquire(n int) bool {
 }
 
 func (ptr *QSemaphore) TryAcquire2(n int, timeout int) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSemaphore::tryAcquire")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QSemaphore_TryAcquire2(ptr.Pointer(), C.int(n), C.int(timeout)) != 0
 	}
@@ -77,6 +114,12 @@ func (ptr *QSemaphore) TryAcquire2(n int, timeout int) bool {
 }
 
 func (ptr *QSemaphore) DestroyQSemaphore() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSemaphore::~QSemaphore")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSemaphore_DestroyQSemaphore(ptr.Pointer())
 	}

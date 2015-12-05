@@ -1,9 +1,10 @@
 package dbus
 
-//#include "qdbussignature.h"
+//#include "dbus.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,28 +42,64 @@ func (ptr *QDBusSignature) QDBusSignature_PTR() *QDBusSignature {
 }
 
 func NewQDBusSignature() *QDBusSignature {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusSignature::QDBusSignature")
+		}
+	}()
+
 	return NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature())
 }
 
 func NewQDBusSignature3(signature core.QLatin1String_ITF) *QDBusSignature {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusSignature::QDBusSignature")
+		}
+	}()
+
 	return NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature3(core.PointerFromQLatin1String(signature)))
 }
 
 func NewQDBusSignature4(signature string) *QDBusSignature {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusSignature::QDBusSignature")
+		}
+	}()
+
 	return NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature4(C.CString(signature)))
 }
 
 func NewQDBusSignature2(signature string) *QDBusSignature {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusSignature::QDBusSignature")
+		}
+	}()
+
 	return NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature2(C.CString(signature)))
 }
 
 func (ptr *QDBusSignature) SetSignature(signature string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusSignature::setSignature")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QDBusSignature_SetSignature(ptr.Pointer(), C.CString(signature))
 	}
 }
 
 func (ptr *QDBusSignature) Signature() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDBusSignature::signature")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDBusSignature_Signature(ptr.Pointer()))
 	}

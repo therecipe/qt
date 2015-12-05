@@ -1,9 +1,10 @@
 package gui
 
-//#include "qcursor.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,38 +42,92 @@ func (ptr *QCursor) QCursor_PTR() *QCursor {
 }
 
 func QCursor_SetPos2(screen QScreen_ITF, x int, y int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::setPos")
+		}
+	}()
+
 	C.QCursor_QCursor_SetPos2(PointerFromQScreen(screen), C.int(x), C.int(y))
 }
 
 func QCursor_SetPos(x int, y int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::setPos")
+		}
+	}()
+
 	C.QCursor_QCursor_SetPos(C.int(x), C.int(y))
 }
 
 func NewQCursor() *QCursor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::QCursor")
+		}
+	}()
+
 	return NewQCursorFromPointer(C.QCursor_NewQCursor())
 }
 
 func NewQCursor6(other QCursor_ITF) *QCursor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::QCursor")
+		}
+	}()
+
 	return NewQCursorFromPointer(C.QCursor_NewQCursor6(PointerFromQCursor(other)))
 }
 
 func NewQCursor2(shape core.Qt__CursorShape) *QCursor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::QCursor")
+		}
+	}()
+
 	return NewQCursorFromPointer(C.QCursor_NewQCursor2(C.int(shape)))
 }
 
 func NewQCursor3(bitmap QBitmap_ITF, mask QBitmap_ITF, hotX int, hotY int) *QCursor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::QCursor")
+		}
+	}()
+
 	return NewQCursorFromPointer(C.QCursor_NewQCursor3(PointerFromQBitmap(bitmap), PointerFromQBitmap(mask), C.int(hotX), C.int(hotY)))
 }
 
 func NewQCursor5(c QCursor_ITF) *QCursor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::QCursor")
+		}
+	}()
+
 	return NewQCursorFromPointer(C.QCursor_NewQCursor5(PointerFromQCursor(c)))
 }
 
 func NewQCursor4(pixmap QPixmap_ITF, hotX int, hotY int) *QCursor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::QCursor")
+		}
+	}()
+
 	return NewQCursorFromPointer(C.QCursor_NewQCursor4(PointerFromQPixmap(pixmap), C.int(hotX), C.int(hotY)))
 }
 
 func (ptr *QCursor) Bitmap() *QBitmap {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::bitmap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQBitmapFromPointer(C.QCursor_Bitmap(ptr.Pointer()))
 	}
@@ -80,6 +135,12 @@ func (ptr *QCursor) Bitmap() *QBitmap {
 }
 
 func (ptr *QCursor) Mask() *QBitmap {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::mask")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQBitmapFromPointer(C.QCursor_Mask(ptr.Pointer()))
 	}
@@ -87,20 +148,44 @@ func (ptr *QCursor) Mask() *QBitmap {
 }
 
 func QCursor_SetPos4(screen QScreen_ITF, p core.QPoint_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::setPos")
+		}
+	}()
+
 	C.QCursor_QCursor_SetPos4(PointerFromQScreen(screen), core.PointerFromQPoint(p))
 }
 
 func QCursor_SetPos3(p core.QPoint_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::setPos")
+		}
+	}()
+
 	C.QCursor_QCursor_SetPos3(core.PointerFromQPoint(p))
 }
 
 func (ptr *QCursor) SetShape(shape core.Qt__CursorShape) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::setShape")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCursor_SetShape(ptr.Pointer(), C.int(shape))
 	}
 }
 
 func (ptr *QCursor) Shape() core.Qt__CursorShape {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::shape")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__CursorShape(C.QCursor_Shape(ptr.Pointer()))
 	}
@@ -108,6 +193,12 @@ func (ptr *QCursor) Shape() core.Qt__CursorShape {
 }
 
 func (ptr *QCursor) DestroyQCursor() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCursor::~QCursor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCursor_DestroyQCursor(ptr.Pointer())
 	}

@@ -55,6 +55,10 @@ func goType(f *parser.Function, value string) string {
 				return ""
 			}
 
+			if module(f) == "androidextras" && f.Name != "object" {
+				return fmt.Sprintf("interface{}")
+			}
+
 			return "unsafe.Pointer"
 		}
 

@@ -1,8 +1,9 @@
 package core
 
-//#include "qflag.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,5 +41,11 @@ func (ptr *QFlag) QFlag_PTR() *QFlag {
 }
 
 func NewQFlag(value int) *QFlag {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QFlag::QFlag")
+		}
+	}()
+
 	return NewQFlagFromPointer(C.QFlag_NewQFlag(C.int(value)))
 }

@@ -1,8 +1,9 @@
 package sql
 
-//#include "qsqlrelation.h"
+//#include "sql.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,14 +41,32 @@ func (ptr *QSqlRelation) QSqlRelation_PTR() *QSqlRelation {
 }
 
 func NewQSqlRelation() *QSqlRelation {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlRelation::QSqlRelation")
+		}
+	}()
+
 	return NewQSqlRelationFromPointer(C.QSqlRelation_NewQSqlRelation())
 }
 
 func NewQSqlRelation2(tableName string, indexColumn string, displayColumn string) *QSqlRelation {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlRelation::QSqlRelation")
+		}
+	}()
+
 	return NewQSqlRelationFromPointer(C.QSqlRelation_NewQSqlRelation2(C.CString(tableName), C.CString(indexColumn), C.CString(displayColumn)))
 }
 
 func (ptr *QSqlRelation) DisplayColumn() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlRelation::displayColumn")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSqlRelation_DisplayColumn(ptr.Pointer()))
 	}
@@ -55,6 +74,12 @@ func (ptr *QSqlRelation) DisplayColumn() string {
 }
 
 func (ptr *QSqlRelation) IndexColumn() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlRelation::indexColumn")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSqlRelation_IndexColumn(ptr.Pointer()))
 	}
@@ -62,6 +87,12 @@ func (ptr *QSqlRelation) IndexColumn() string {
 }
 
 func (ptr *QSqlRelation) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlRelation::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QSqlRelation_IsValid(ptr.Pointer()) != 0
 	}
@@ -69,6 +100,12 @@ func (ptr *QSqlRelation) IsValid() bool {
 }
 
 func (ptr *QSqlRelation) TableName() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlRelation::tableName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSqlRelation_TableName(ptr.Pointer()))
 	}

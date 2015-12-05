@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qsensorgestureplugininterface.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -41,6 +42,12 @@ func (ptr *QSensorGesturePluginInterface) QSensorGesturePluginInterface_PTR() *Q
 }
 
 func (ptr *QSensorGesturePluginInterface) Name() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSensorGesturePluginInterface::name")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSensorGesturePluginInterface_Name(ptr.Pointer()))
 	}
@@ -48,13 +55,25 @@ func (ptr *QSensorGesturePluginInterface) Name() string {
 }
 
 func (ptr *QSensorGesturePluginInterface) SupportedIds() []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSensorGesturePluginInterface::supportedIds")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSensorGesturePluginInterface_SupportedIds(ptr.Pointer())), "|")
+		return strings.Split(C.GoString(C.QSensorGesturePluginInterface_SupportedIds(ptr.Pointer())), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterface() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSensorGesturePluginInterface::~QSensorGesturePluginInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(ptr.Pointer())
 	}

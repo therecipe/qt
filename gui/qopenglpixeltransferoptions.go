@@ -1,6 +1,6 @@
 package gui
 
-//#include "qopenglpixeltransferoptions.h"
+//#include "gui.h"
 import "C"
 import (
 	"unsafe"

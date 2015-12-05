@@ -1,8 +1,9 @@
 package multimedia
 
-//#include "qcamerafocuszone.h"
+//#include "multimedia.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -50,10 +51,22 @@ const (
 )
 
 func NewQCameraFocusZone(other QCameraFocusZone_ITF) *QCameraFocusZone {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraFocusZone::QCameraFocusZone")
+		}
+	}()
+
 	return NewQCameraFocusZoneFromPointer(C.QCameraFocusZone_NewQCameraFocusZone(PointerFromQCameraFocusZone(other)))
 }
 
 func (ptr *QCameraFocusZone) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraFocusZone::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QCameraFocusZone_IsValid(ptr.Pointer()) != 0
 	}
@@ -61,6 +74,12 @@ func (ptr *QCameraFocusZone) IsValid() bool {
 }
 
 func (ptr *QCameraFocusZone) Status() QCameraFocusZone__FocusZoneStatus {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraFocusZone::status")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QCameraFocusZone__FocusZoneStatus(C.QCameraFocusZone_Status(ptr.Pointer()))
 	}
@@ -68,6 +87,12 @@ func (ptr *QCameraFocusZone) Status() QCameraFocusZone__FocusZoneStatus {
 }
 
 func (ptr *QCameraFocusZone) DestroyQCameraFocusZone() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCameraFocusZone::~QCameraFocusZone")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCameraFocusZone_DestroyQCameraFocusZone(ptr.Pointer())
 	}

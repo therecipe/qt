@@ -1,8 +1,9 @@
 package positioning
 
-//#include "qgeoshape.h"
+//#include "positioning.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -49,14 +50,32 @@ const (
 )
 
 func NewQGeoShape() *QGeoShape {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoShape::QGeoShape")
+		}
+	}()
+
 	return NewQGeoShapeFromPointer(C.QGeoShape_NewQGeoShape())
 }
 
 func NewQGeoShape2(other QGeoShape_ITF) *QGeoShape {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoShape::QGeoShape")
+		}
+	}()
+
 	return NewQGeoShapeFromPointer(C.QGeoShape_NewQGeoShape2(PointerFromQGeoShape(other)))
 }
 
 func (ptr *QGeoShape) Contains(coordinate QGeoCoordinate_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoShape::contains")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGeoShape_Contains(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate)) != 0
 	}
@@ -64,12 +83,24 @@ func (ptr *QGeoShape) Contains(coordinate QGeoCoordinate_ITF) bool {
 }
 
 func (ptr *QGeoShape) ExtendShape(coordinate QGeoCoordinate_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoShape::extendShape")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoShape_ExtendShape(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))
 	}
 }
 
 func (ptr *QGeoShape) IsEmpty() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoShape::isEmpty")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGeoShape_IsEmpty(ptr.Pointer()) != 0
 	}
@@ -77,6 +108,12 @@ func (ptr *QGeoShape) IsEmpty() bool {
 }
 
 func (ptr *QGeoShape) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoShape::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGeoShape_IsValid(ptr.Pointer()) != 0
 	}
@@ -84,6 +121,12 @@ func (ptr *QGeoShape) IsValid() bool {
 }
 
 func (ptr *QGeoShape) ToString() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoShape::toString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGeoShape_ToString(ptr.Pointer()))
 	}
@@ -91,6 +134,12 @@ func (ptr *QGeoShape) ToString() string {
 }
 
 func (ptr *QGeoShape) Type() QGeoShape__ShapeType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoShape::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QGeoShape__ShapeType(C.QGeoShape_Type(ptr.Pointer()))
 	}
@@ -98,6 +147,12 @@ func (ptr *QGeoShape) Type() QGeoShape__ShapeType {
 }
 
 func (ptr *QGeoShape) DestroyQGeoShape() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoShape::~QGeoShape")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoShape_DestroyQGeoShape(ptr.Pointer())
 	}

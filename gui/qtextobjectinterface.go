@@ -1,9 +1,10 @@
 package gui
 
-//#include "qtextobjectinterface.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,12 +42,24 @@ func (ptr *QTextObjectInterface) QTextObjectInterface_PTR() *QTextObjectInterfac
 }
 
 func (ptr *QTextObjectInterface) DrawObject(painter QPainter_ITF, rect core.QRectF_ITF, doc QTextDocument_ITF, posInDocument int, format QTextFormat_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextObjectInterface::drawObject")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextObjectInterface_DrawObject(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQRectF(rect), PointerFromQTextDocument(doc), C.int(posInDocument), PointerFromQTextFormat(format))
 	}
 }
 
 func (ptr *QTextObjectInterface) DestroyQTextObjectInterface() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextObjectInterface::~QTextObjectInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextObjectInterface_DestroyQTextObjectInterface(ptr.Pointer())
 	}

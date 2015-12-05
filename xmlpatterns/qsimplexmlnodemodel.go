@@ -1,8 +1,9 @@
 package xmlpatterns
 
-//#include "qsimplexmlnodemodel.h"
+//#include "xmlpatterns.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QSimpleXmlNodeModel) QSimpleXmlNodeModel_PTR() *QSimpleXmlNodeModel {
 }
 
 func (ptr *QSimpleXmlNodeModel) StringValue(node QXmlNodeModelIndex_ITF) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSimpleXmlNodeModel::stringValue")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSimpleXmlNodeModel_StringValue(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
 	}
@@ -40,6 +47,12 @@ func (ptr *QSimpleXmlNodeModel) StringValue(node QXmlNodeModelIndex_ITF) string 
 }
 
 func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModel() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSimpleXmlNodeModel::~QSimpleXmlNodeModel")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(ptr.Pointer())
 	}

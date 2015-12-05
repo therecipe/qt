@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qgraphicsscenehoverevent.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,6 +35,12 @@ func (ptr *QGraphicsSceneHoverEvent) QGraphicsSceneHoverEvent_PTR() *QGraphicsSc
 }
 
 func (ptr *QGraphicsSceneHoverEvent) Modifiers() core.Qt__KeyboardModifier {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneHoverEvent::modifiers")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__KeyboardModifier(C.QGraphicsSceneHoverEvent_Modifiers(ptr.Pointer()))
 	}
@@ -41,6 +48,12 @@ func (ptr *QGraphicsSceneHoverEvent) Modifiers() core.Qt__KeyboardModifier {
 }
 
 func (ptr *QGraphicsSceneHoverEvent) DestroyQGraphicsSceneHoverEvent() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneHoverEvent::~QGraphicsSceneHoverEvent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneHoverEvent_DestroyQGraphicsSceneHoverEvent(ptr.Pointer())
 	}

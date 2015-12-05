@@ -1,9 +1,10 @@
 package core
 
-//#include "qregexp.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -63,18 +64,42 @@ const (
 )
 
 func NewQRegExp() *QRegExp {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::QRegExp")
+		}
+	}()
+
 	return NewQRegExpFromPointer(C.QRegExp_NewQRegExp())
 }
 
 func NewQRegExp3(rx QRegExp_ITF) *QRegExp {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::QRegExp")
+		}
+	}()
+
 	return NewQRegExpFromPointer(C.QRegExp_NewQRegExp3(PointerFromQRegExp(rx)))
 }
 
 func NewQRegExp2(pattern string, cs Qt__CaseSensitivity, syntax QRegExp__PatternSyntax) *QRegExp {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::QRegExp")
+		}
+	}()
+
 	return NewQRegExpFromPointer(C.QRegExp_NewQRegExp2(C.CString(pattern), C.int(cs), C.int(syntax)))
 }
 
 func (ptr *QRegExp) Cap(nth int) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::cap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRegExp_Cap(ptr.Pointer(), C.int(nth)))
 	}
@@ -82,6 +107,12 @@ func (ptr *QRegExp) Cap(nth int) string {
 }
 
 func (ptr *QRegExp) ErrorString() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::errorString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRegExp_ErrorString(ptr.Pointer()))
 	}
@@ -89,6 +120,12 @@ func (ptr *QRegExp) ErrorString() string {
 }
 
 func (ptr *QRegExp) CaptureCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::captureCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QRegExp_CaptureCount(ptr.Pointer()))
 	}
@@ -96,13 +133,25 @@ func (ptr *QRegExp) CaptureCount() int {
 }
 
 func (ptr *QRegExp) CapturedTexts() []string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::capturedTexts")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QRegExp_CapturedTexts(ptr.Pointer())), "|")
+		return strings.Split(C.GoString(C.QRegExp_CapturedTexts(ptr.Pointer())), ",,,")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QRegExp) CaseSensitivity() Qt__CaseSensitivity {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::caseSensitivity")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return Qt__CaseSensitivity(C.QRegExp_CaseSensitivity(ptr.Pointer()))
 	}
@@ -110,10 +159,22 @@ func (ptr *QRegExp) CaseSensitivity() Qt__CaseSensitivity {
 }
 
 func QRegExp_Escape(str string) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::escape")
+		}
+	}()
+
 	return C.GoString(C.QRegExp_QRegExp_Escape(C.CString(str)))
 }
 
 func (ptr *QRegExp) ExactMatch(str string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::exactMatch")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QRegExp_ExactMatch(ptr.Pointer(), C.CString(str)) != 0
 	}
@@ -121,6 +182,12 @@ func (ptr *QRegExp) ExactMatch(str string) bool {
 }
 
 func (ptr *QRegExp) IndexIn(str string, offset int, caretMode QRegExp__CaretMode) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::indexIn")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QRegExp_IndexIn(ptr.Pointer(), C.CString(str), C.int(offset), C.int(caretMode)))
 	}
@@ -128,6 +195,12 @@ func (ptr *QRegExp) IndexIn(str string, offset int, caretMode QRegExp__CaretMode
 }
 
 func (ptr *QRegExp) IsEmpty() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::isEmpty")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QRegExp_IsEmpty(ptr.Pointer()) != 0
 	}
@@ -135,6 +208,12 @@ func (ptr *QRegExp) IsEmpty() bool {
 }
 
 func (ptr *QRegExp) IsMinimal() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::isMinimal")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QRegExp_IsMinimal(ptr.Pointer()) != 0
 	}
@@ -142,6 +221,12 @@ func (ptr *QRegExp) IsMinimal() bool {
 }
 
 func (ptr *QRegExp) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QRegExp_IsValid(ptr.Pointer()) != 0
 	}
@@ -149,6 +234,12 @@ func (ptr *QRegExp) IsValid() bool {
 }
 
 func (ptr *QRegExp) LastIndexIn(str string, offset int, caretMode QRegExp__CaretMode) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::lastIndexIn")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QRegExp_LastIndexIn(ptr.Pointer(), C.CString(str), C.int(offset), C.int(caretMode)))
 	}
@@ -156,6 +247,12 @@ func (ptr *QRegExp) LastIndexIn(str string, offset int, caretMode QRegExp__Caret
 }
 
 func (ptr *QRegExp) MatchedLength() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::matchedLength")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QRegExp_MatchedLength(ptr.Pointer()))
 	}
@@ -163,6 +260,12 @@ func (ptr *QRegExp) MatchedLength() int {
 }
 
 func (ptr *QRegExp) Pattern() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::pattern")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QRegExp_Pattern(ptr.Pointer()))
 	}
@@ -170,6 +273,12 @@ func (ptr *QRegExp) Pattern() string {
 }
 
 func (ptr *QRegExp) PatternSyntax() QRegExp__PatternSyntax {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::patternSyntax")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QRegExp__PatternSyntax(C.QRegExp_PatternSyntax(ptr.Pointer()))
 	}
@@ -177,6 +286,12 @@ func (ptr *QRegExp) PatternSyntax() QRegExp__PatternSyntax {
 }
 
 func (ptr *QRegExp) Pos(nth int) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::pos")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QRegExp_Pos(ptr.Pointer(), C.int(nth)))
 	}
@@ -184,36 +299,72 @@ func (ptr *QRegExp) Pos(nth int) int {
 }
 
 func (ptr *QRegExp) SetCaseSensitivity(cs Qt__CaseSensitivity) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::setCaseSensitivity")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QRegExp_SetCaseSensitivity(ptr.Pointer(), C.int(cs))
 	}
 }
 
 func (ptr *QRegExp) SetMinimal(minimal bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::setMinimal")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QRegExp_SetMinimal(ptr.Pointer(), C.int(qt.GoBoolToInt(minimal)))
 	}
 }
 
 func (ptr *QRegExp) SetPattern(pattern string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::setPattern")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QRegExp_SetPattern(ptr.Pointer(), C.CString(pattern))
 	}
 }
 
 func (ptr *QRegExp) SetPatternSyntax(syntax QRegExp__PatternSyntax) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::setPatternSyntax")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QRegExp_SetPatternSyntax(ptr.Pointer(), C.int(syntax))
 	}
 }
 
 func (ptr *QRegExp) Swap(other QRegExp_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QRegExp_Swap(ptr.Pointer(), PointerFromQRegExp(other))
 	}
 }
 
 func (ptr *QRegExp) DestroyQRegExp() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRegExp::~QRegExp")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QRegExp_DestroyQRegExp(ptr.Pointer())
 	}

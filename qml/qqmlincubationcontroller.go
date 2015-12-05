@@ -1,8 +1,9 @@
 package qml
 
-//#include "qqmlincubationcontroller.h"
+//#include "qml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,10 +41,22 @@ func (ptr *QQmlIncubationController) QQmlIncubationController_PTR() *QQmlIncubat
 }
 
 func NewQQmlIncubationController() *QQmlIncubationController {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubationController::QQmlIncubationController")
+		}
+	}()
+
 	return NewQQmlIncubationControllerFromPointer(C.QQmlIncubationController_NewQQmlIncubationController())
 }
 
 func (ptr *QQmlIncubationController) Engine() *QQmlEngine {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubationController::engine")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQQmlEngineFromPointer(C.QQmlIncubationController_Engine(ptr.Pointer()))
 	}
@@ -51,12 +64,24 @@ func (ptr *QQmlIncubationController) Engine() *QQmlEngine {
 }
 
 func (ptr *QQmlIncubationController) IncubateFor(msecs int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubationController::incubateFor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQmlIncubationController_IncubateFor(ptr.Pointer(), C.int(msecs))
 	}
 }
 
 func (ptr *QQmlIncubationController) IncubatingObjectCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubationController::incubatingObjectCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QQmlIncubationController_IncubatingObjectCount(ptr.Pointer()))
 	}

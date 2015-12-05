@@ -1,8 +1,9 @@
 package core
 
-//#include "qgenericargument.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QGenericArgument) QGenericArgument_PTR() *QGenericArgument {
 }
 
 func (ptr *QGenericArgument) Data() unsafe.Pointer {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGenericArgument::data")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QGenericArgument_Data(ptr.Pointer()))
 	}

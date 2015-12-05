@@ -1,13 +1,74 @@
-#include "qmactoolbaritem.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
+#include "macextras.h"
+#include "_cgo_export.h"
+
 #include <QIcon>
+#include <QMacPasteboardMime>
 #include <QMacToolBar>
 #include <QMacToolBarItem>
-#include "_cgo_export.h"
+#include <QMimeData>
+#include <QObject>
+#include <QString>
+#include <QWindow>
+
+class MyQMacPasteboardMime: public QMacPasteboardMime {
+public:
+};
+
+char* QMacPasteboardMime_ConvertorName(void* ptr){
+	return static_cast<QMacPasteboardMime*>(ptr)->convertorName().toUtf8().data();
+}
+
+int QMacPasteboardMime_Count(void* ptr, void* mimeData){
+	return static_cast<QMacPasteboardMime*>(ptr)->count(static_cast<QMimeData*>(mimeData));
+}
+
+char* QMacPasteboardMime_FlavorFor(void* ptr, char* mime){
+	return static_cast<QMacPasteboardMime*>(ptr)->flavorFor(QString(mime)).toUtf8().data();
+}
+
+char* QMacPasteboardMime_MimeFor(void* ptr, char* flav){
+	return static_cast<QMacPasteboardMime*>(ptr)->mimeFor(QString(flav)).toUtf8().data();
+}
+
+void QMacPasteboardMime_DestroyQMacPasteboardMime(void* ptr){
+	static_cast<QMacPasteboardMime*>(ptr)->~QMacPasteboardMime();
+}
+
+class MyQMacToolBar: public QMacToolBar {
+public:
+};
+
+void* QMacToolBar_NewQMacToolBar(void* parent){
+	return new QMacToolBar(static_cast<QObject*>(parent));
+}
+
+void* QMacToolBar_NewQMacToolBar2(char* identifier, void* parent){
+	return new QMacToolBar(QString(identifier), static_cast<QObject*>(parent));
+}
+
+void* QMacToolBar_AddAllowedItem(void* ptr, void* icon, char* text){
+	return static_cast<QMacToolBar*>(ptr)->addAllowedItem(*static_cast<QIcon*>(icon), QString(text));
+}
+
+void* QMacToolBar_AddItem(void* ptr, void* icon, char* text){
+	return static_cast<QMacToolBar*>(ptr)->addItem(*static_cast<QIcon*>(icon), QString(text));
+}
+
+void QMacToolBar_AddSeparator(void* ptr){
+	static_cast<QMacToolBar*>(ptr)->addSeparator();
+}
+
+void QMacToolBar_AttachToWindow(void* ptr, void* window){
+	static_cast<QMacToolBar*>(ptr)->attachToWindow(static_cast<QWindow*>(window));
+}
+
+void QMacToolBar_DetachFromWindow(void* ptr){
+	static_cast<QMacToolBar*>(ptr)->detachFromWindow();
+}
+
+void QMacToolBar_DestroyQMacToolBar(void* ptr){
+	static_cast<QMacToolBar*>(ptr)->~QMacToolBar();
+}
 
 class MyQMacToolBarItem: public QMacToolBarItem {
 public:
@@ -56,85 +117,5 @@ int QMacToolBarItem_StandardItem(void* ptr){
 
 char* QMacToolBarItem_Text(void* ptr){
 	return static_cast<QMacToolBarItem*>(ptr)->text().toUtf8().data();
-}
-
-#include "qmactoolbar.h"
-#include <QWindow>
-#include <QObject>
-#include <QIcon>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QMacToolBar>
-#include "_cgo_export.h"
-
-class MyQMacToolBar: public QMacToolBar {
-public:
-};
-
-void* QMacToolBar_NewQMacToolBar(void* parent){
-	return new QMacToolBar(static_cast<QObject*>(parent));
-}
-
-void* QMacToolBar_NewQMacToolBar2(char* identifier, void* parent){
-	return new QMacToolBar(QString(identifier), static_cast<QObject*>(parent));
-}
-
-void* QMacToolBar_AddAllowedItem(void* ptr, void* icon, char* text){
-	return static_cast<QMacToolBar*>(ptr)->addAllowedItem(*static_cast<QIcon*>(icon), QString(text));
-}
-
-void* QMacToolBar_AddItem(void* ptr, void* icon, char* text){
-	return static_cast<QMacToolBar*>(ptr)->addItem(*static_cast<QIcon*>(icon), QString(text));
-}
-
-void QMacToolBar_AddSeparator(void* ptr){
-	static_cast<QMacToolBar*>(ptr)->addSeparator();
-}
-
-void QMacToolBar_AttachToWindow(void* ptr, void* window){
-	static_cast<QMacToolBar*>(ptr)->attachToWindow(static_cast<QWindow*>(window));
-}
-
-void QMacToolBar_DetachFromWindow(void* ptr){
-	static_cast<QMacToolBar*>(ptr)->detachFromWindow();
-}
-
-void QMacToolBar_DestroyQMacToolBar(void* ptr){
-	static_cast<QMacToolBar*>(ptr)->~QMacToolBar();
-}
-
-#include "qmacpasteboardmime.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QMimeData>
-#include <QString>
-#include <QMacPasteboardMime>
-#include "_cgo_export.h"
-
-class MyQMacPasteboardMime: public QMacPasteboardMime {
-public:
-};
-
-char* QMacPasteboardMime_ConvertorName(void* ptr){
-	return static_cast<QMacPasteboardMime*>(ptr)->convertorName().toUtf8().data();
-}
-
-int QMacPasteboardMime_Count(void* ptr, void* mimeData){
-	return static_cast<QMacPasteboardMime*>(ptr)->count(static_cast<QMimeData*>(mimeData));
-}
-
-char* QMacPasteboardMime_FlavorFor(void* ptr, char* mime){
-	return static_cast<QMacPasteboardMime*>(ptr)->flavorFor(QString(mime)).toUtf8().data();
-}
-
-char* QMacPasteboardMime_MimeFor(void* ptr, char* flav){
-	return static_cast<QMacPasteboardMime*>(ptr)->mimeFor(QString(flav)).toUtf8().data();
-}
-
-void QMacPasteboardMime_DestroyQMacPasteboardMime(void* ptr){
-	static_cast<QMacPasteboardMime*>(ptr)->~QMacPasteboardMime();
 }
 

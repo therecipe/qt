@@ -1,9 +1,10 @@
 package sensors
 
-//#include "qproximityreading.h"
+//#include "sensors.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQProximityReading(ptr QProximityReading_ITF) unsafe.Pointer {
 func NewQProximityReadingFromPointer(ptr unsafe.Pointer) *QProximityReading {
 	var n = new(QProximityReading)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QProximityReading_") {
 		n.SetObjectName("QProximityReading_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QProximityReading) QProximityReading_PTR() *QProximityReading {
 }
 
 func (ptr *QProximityReading) Close() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QProximityReading::close")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QProximityReading_Close(ptr.Pointer()) != 0
 	}
@@ -44,6 +51,12 @@ func (ptr *QProximityReading) Close() bool {
 }
 
 func (ptr *QProximityReading) SetClose(close bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QProximityReading::setClose")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QProximityReading_SetClose(ptr.Pointer(), C.int(qt.GoBoolToInt(close)))
 	}

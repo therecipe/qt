@@ -1,10 +1,11 @@
 package sensors
 
-//#include "qgyroscope.h"
+//#include "sensors.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQGyroscope(ptr QGyroscope_ITF) unsafe.Pointer {
 func NewQGyroscopeFromPointer(ptr unsafe.Pointer) *QGyroscope {
 	var n = new(QGyroscope)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QGyroscope_") {
 		n.SetObjectName("QGyroscope_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QGyroscope) QGyroscope_PTR() *QGyroscope {
 }
 
 func (ptr *QGyroscope) Reading() *QGyroscopeReading {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGyroscope::reading")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQGyroscopeReadingFromPointer(C.QGyroscope_Reading(ptr.Pointer()))
 	}
@@ -45,10 +52,22 @@ func (ptr *QGyroscope) Reading() *QGyroscopeReading {
 }
 
 func NewQGyroscope(parent core.QObject_ITF) *QGyroscope {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGyroscope::QGyroscope")
+		}
+	}()
+
 	return NewQGyroscopeFromPointer(C.QGyroscope_NewQGyroscope(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QGyroscope) DestroyQGyroscope() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGyroscope::~QGyroscope")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGyroscope_DestroyQGyroscope(ptr.Pointer())
 		ptr.SetPointer(nil)

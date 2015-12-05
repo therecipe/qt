@@ -1,8 +1,9 @@
 package core
 
-//#include "qxmlstreamnamespacedeclaration.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,18 +41,42 @@ func (ptr *QXmlStreamNamespaceDeclaration) QXmlStreamNamespaceDeclaration_PTR() 
 }
 
 func NewQXmlStreamNamespaceDeclaration() *QXmlStreamNamespaceDeclaration {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamNamespaceDeclaration::QXmlStreamNamespaceDeclaration")
+		}
+	}()
+
 	return NewQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration())
 }
 
 func NewQXmlStreamNamespaceDeclaration3(prefix string, namespaceUri string) *QXmlStreamNamespaceDeclaration {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamNamespaceDeclaration::QXmlStreamNamespaceDeclaration")
+		}
+	}()
+
 	return NewQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration3(C.CString(prefix), C.CString(namespaceUri)))
 }
 
 func NewQXmlStreamNamespaceDeclaration2(other QXmlStreamNamespaceDeclaration_ITF) *QXmlStreamNamespaceDeclaration {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamNamespaceDeclaration::QXmlStreamNamespaceDeclaration")
+		}
+	}()
+
 	return NewQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration2(PointerFromQXmlStreamNamespaceDeclaration(other)))
 }
 
 func (ptr *QXmlStreamNamespaceDeclaration) NamespaceUri() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamNamespaceDeclaration::namespaceUri")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamNamespaceDeclaration_NamespaceUri(ptr.Pointer()))
 	}
@@ -59,6 +84,12 @@ func (ptr *QXmlStreamNamespaceDeclaration) NamespaceUri() *QStringRef {
 }
 
 func (ptr *QXmlStreamNamespaceDeclaration) Prefix() *QStringRef {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamNamespaceDeclaration::prefix")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQStringRefFromPointer(C.QXmlStreamNamespaceDeclaration_Prefix(ptr.Pointer()))
 	}
@@ -66,6 +97,12 @@ func (ptr *QXmlStreamNamespaceDeclaration) Prefix() *QStringRef {
 }
 
 func (ptr *QXmlStreamNamespaceDeclaration) DestroyQXmlStreamNamespaceDeclaration() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamNamespaceDeclaration::~QXmlStreamNamespaceDeclaration")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QXmlStreamNamespaceDeclaration_DestroyQXmlStreamNamespaceDeclaration(ptr.Pointer())
 	}

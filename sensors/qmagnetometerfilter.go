@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qmagnetometerfilter.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QMagnetometerFilter) QMagnetometerFilter_PTR() *QMagnetometerFilter {
 }
 
 func (ptr *QMagnetometerFilter) Filter(reading QMagnetometerReading_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMagnetometerFilter::filter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QMagnetometerFilter_Filter(ptr.Pointer(), PointerFromQMagnetometerReading(reading)) != 0
 	}

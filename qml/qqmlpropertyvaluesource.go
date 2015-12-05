@@ -1,8 +1,9 @@
 package qml
 
-//#include "qqmlpropertyvaluesource.h"
+//#include "qml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,12 +41,24 @@ func (ptr *QQmlPropertyValueSource) QQmlPropertyValueSource_PTR() *QQmlPropertyV
 }
 
 func (ptr *QQmlPropertyValueSource) SetTarget(property QQmlProperty_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlPropertyValueSource::setTarget")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyValueSource_SetTarget(ptr.Pointer(), PointerFromQQmlProperty(property))
 	}
 }
 
 func (ptr *QQmlPropertyValueSource) DestroyQQmlPropertyValueSource() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlPropertyValueSource::~QQmlPropertyValueSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyValueSource_DestroyQQmlPropertyValueSource(ptr.Pointer())
 	}

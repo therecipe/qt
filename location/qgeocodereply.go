@@ -1,6 +1,6 @@
 package location
 
-//#include "qgeocodereply.h"
+//#include "location.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQGeoCodeReply(ptr QGeoCodeReply_ITF) unsafe.Pointer {
 func NewQGeoCodeReplyFromPointer(ptr unsafe.Pointer) *QGeoCodeReply {
 	var n = new(QGeoCodeReply)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QGeoCodeReply_") {
 		n.SetObjectName("QGeoCodeReply_" + qt.RandomIdentifier())
 	}
 	return n

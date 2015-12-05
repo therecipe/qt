@@ -1,6 +1,6 @@
 package gui
 
-//#include "qopengltimemonitor.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQOpenGLTimeMonitor(ptr QOpenGLTimeMonitor_ITF) unsafe.Pointer {
 func NewQOpenGLTimeMonitorFromPointer(ptr unsafe.Pointer) *QOpenGLTimeMonitor {
 	var n = new(QOpenGLTimeMonitor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QOpenGLTimeMonitor_") {
 		n.SetObjectName("QOpenGLTimeMonitor_" + qt.RandomIdentifier())
 	}
 	return n

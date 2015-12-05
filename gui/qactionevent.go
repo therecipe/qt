@@ -1,6 +1,6 @@
 package gui
 
-//#include "qactionevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"

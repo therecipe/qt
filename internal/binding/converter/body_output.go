@@ -34,7 +34,7 @@ func CppBodyOutput(f *parser.Function, name string) string {
 	return cppOutput(name, value, f)
 }
 
-func DeduceTemplate(f *parser.Function) string {
+func DeduceGeneric(f *parser.Function) string {
 
 	switch f.TemplateMode {
 	case "Int":
@@ -51,7 +51,7 @@ func DeduceTemplate(f *parser.Function) string {
 		}
 	}
 
-	if f.Fullname == "QAndroidJniObject::getStaticObjectField" || f.Fullname == "QAndroidJniObject::getObjectField" || f.Fullname == "QAndroidJniObject::callObjectMethod" || f.Fullname == "QAndroidJniObject::callStaticObjectMethod" {
+	if f.Fullname == "QAndroidJniObject::getStaticObjectField" || f.Fullname == "QAndroidJniObject::getObjectField" || f.Fullname == "QAndroidJniObject::callStaticObjectMethod" || f.Fullname == "QAndroidJniObject::callObjectMethod" {
 
 		if (f.Fullname == "QAndroidJniObject::callObjectMethod" || f.Fullname == "QAndroidJniObject::callStaticObjectMethod") && containsT(f) {
 			return ""

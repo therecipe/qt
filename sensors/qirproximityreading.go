@@ -1,9 +1,10 @@
 package sensors
 
-//#include "qirproximityreading.h"
+//#include "sensors.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQIRProximityReading(ptr QIRProximityReading_ITF) unsafe.Pointer 
 func NewQIRProximityReadingFromPointer(ptr unsafe.Pointer) *QIRProximityReading {
 	var n = new(QIRProximityReading)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QIRProximityReading_") {
 		n.SetObjectName("QIRProximityReading_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QIRProximityReading) QIRProximityReading_PTR() *QIRProximityReading {
 }
 
 func (ptr *QIRProximityReading) Reflectance() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIRProximityReading::reflectance")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QIRProximityReading_Reflectance(ptr.Pointer()))
 	}
@@ -44,6 +51,12 @@ func (ptr *QIRProximityReading) Reflectance() float64 {
 }
 
 func (ptr *QIRProximityReading) SetReflectance(reflectance float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIRProximityReading::setReflectance")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QIRProximityReading_SetReflectance(ptr.Pointer(), C.double(reflectance))
 	}

@@ -1,8 +1,9 @@
 package sql
 
-//#include "qsqlerror.h"
+//#include "sql.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -51,14 +52,32 @@ const (
 )
 
 func NewQSqlError3(other QSqlError_ITF) *QSqlError {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlError::QSqlError")
+		}
+	}()
+
 	return NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError3(PointerFromQSqlError(other)))
 }
 
 func NewQSqlError(driverText string, databaseText string, ty QSqlError__ErrorType, code string) *QSqlError {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlError::QSqlError")
+		}
+	}()
+
 	return NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError(C.CString(driverText), C.CString(databaseText), C.int(ty), C.CString(code)))
 }
 
 func (ptr *QSqlError) DatabaseText() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlError::databaseText")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSqlError_DatabaseText(ptr.Pointer()))
 	}
@@ -66,6 +85,12 @@ func (ptr *QSqlError) DatabaseText() string {
 }
 
 func (ptr *QSqlError) DriverText() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlError::driverText")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSqlError_DriverText(ptr.Pointer()))
 	}
@@ -73,6 +98,12 @@ func (ptr *QSqlError) DriverText() string {
 }
 
 func (ptr *QSqlError) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlError::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QSqlError_IsValid(ptr.Pointer()) != 0
 	}
@@ -80,6 +111,12 @@ func (ptr *QSqlError) IsValid() bool {
 }
 
 func (ptr *QSqlError) NativeErrorCode() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlError::nativeErrorCode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSqlError_NativeErrorCode(ptr.Pointer()))
 	}
@@ -87,6 +124,12 @@ func (ptr *QSqlError) NativeErrorCode() string {
 }
 
 func (ptr *QSqlError) Text() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlError::text")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSqlError_Text(ptr.Pointer()))
 	}
@@ -94,6 +137,12 @@ func (ptr *QSqlError) Text() string {
 }
 
 func (ptr *QSqlError) Type() QSqlError__ErrorType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlError::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QSqlError__ErrorType(C.QSqlError_Type(ptr.Pointer()))
 	}
@@ -101,6 +150,12 @@ func (ptr *QSqlError) Type() QSqlError__ErrorType {
 }
 
 func (ptr *QSqlError) DestroyQSqlError() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSqlError::~QSqlError")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSqlError_DestroyQSqlError(ptr.Pointer())
 	}

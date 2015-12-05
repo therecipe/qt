@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qabstractgraphicsshapeitem.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt/gui"
+	"log"
 	"unsafe"
 )
 
@@ -34,6 +35,12 @@ func (ptr *QAbstractGraphicsShapeItem) QAbstractGraphicsShapeItem_PTR() *QAbstra
 }
 
 func (ptr *QAbstractGraphicsShapeItem) Brush() *gui.QBrush {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractGraphicsShapeItem::brush")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return gui.NewQBrushFromPointer(C.QAbstractGraphicsShapeItem_Brush(ptr.Pointer()))
 	}
@@ -41,6 +48,12 @@ func (ptr *QAbstractGraphicsShapeItem) Brush() *gui.QBrush {
 }
 
 func (ptr *QAbstractGraphicsShapeItem) IsObscuredBy(item QGraphicsItem_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractGraphicsShapeItem::isObscuredBy")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QAbstractGraphicsShapeItem_IsObscuredBy(ptr.Pointer(), PointerFromQGraphicsItem(item)) != 0
 	}
@@ -48,18 +61,36 @@ func (ptr *QAbstractGraphicsShapeItem) IsObscuredBy(item QGraphicsItem_ITF) bool
 }
 
 func (ptr *QAbstractGraphicsShapeItem) SetBrush(brush gui.QBrush_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractGraphicsShapeItem::setBrush")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractGraphicsShapeItem_SetBrush(ptr.Pointer(), gui.PointerFromQBrush(brush))
 	}
 }
 
 func (ptr *QAbstractGraphicsShapeItem) SetPen(pen gui.QPen_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractGraphicsShapeItem::setPen")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractGraphicsShapeItem_SetPen(ptr.Pointer(), gui.PointerFromQPen(pen))
 	}
 }
 
 func (ptr *QAbstractGraphicsShapeItem) DestroyQAbstractGraphicsShapeItem() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAbstractGraphicsShapeItem::~QAbstractGraphicsShapeItem")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAbstractGraphicsShapeItem_DestroyQAbstractGraphicsShapeItem(ptr.Pointer())
 	}

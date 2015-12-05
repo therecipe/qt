@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qsizegrip.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQSizeGrip(ptr QSizeGrip_ITF) unsafe.Pointer {
 func NewQSizeGripFromPointer(ptr unsafe.Pointer) *QSizeGrip {
 	var n = new(QSizeGrip)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QSizeGrip_") {
 		n.SetObjectName("QSizeGrip_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,16 +38,34 @@ func (ptr *QSizeGrip) QSizeGrip_PTR() *QSizeGrip {
 }
 
 func NewQSizeGrip(parent QWidget_ITF) *QSizeGrip {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSizeGrip::QSizeGrip")
+		}
+	}()
+
 	return NewQSizeGripFromPointer(C.QSizeGrip_NewQSizeGrip(PointerFromQWidget(parent)))
 }
 
 func (ptr *QSizeGrip) SetVisible(visible bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSizeGrip::setVisible")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSizeGrip_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
 	}
 }
 
 func (ptr *QSizeGrip) DestroyQSizeGrip() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSizeGrip::~QSizeGrip")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSizeGrip_DestroyQSizeGrip(ptr.Pointer())
 		ptr.SetPointer(nil)

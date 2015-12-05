@@ -1,9 +1,10 @@
 package core
 
-//#include "qparallelanimationgroup.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQParallelAnimationGroup(ptr QParallelAnimationGroup_ITF) unsafe.
 func NewQParallelAnimationGroupFromPointer(ptr unsafe.Pointer) *QParallelAnimationGroup {
 	var n = new(QParallelAnimationGroup)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QParallelAnimationGroup_") {
 		n.SetObjectName("QParallelAnimationGroup_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QParallelAnimationGroup) QParallelAnimationGroup_PTR() *QParallelAnim
 }
 
 func (ptr *QParallelAnimationGroup) Duration() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QParallelAnimationGroup::duration")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QParallelAnimationGroup_Duration(ptr.Pointer()))
 	}
@@ -44,6 +51,12 @@ func (ptr *QParallelAnimationGroup) Duration() int {
 }
 
 func (ptr *QParallelAnimationGroup) DestroyQParallelAnimationGroup() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QParallelAnimationGroup::~QParallelAnimationGroup")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QParallelAnimationGroup_DestroyQParallelAnimationGroup(ptr.Pointer())
 		ptr.SetPointer(nil)

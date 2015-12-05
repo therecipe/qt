@@ -1,10 +1,11 @@
 package qml
 
-//#include "qqmlnetworkaccessmanagerfactory.h"
+//#include "qml.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
+	"log"
 	"unsafe"
 )
 
@@ -42,6 +43,12 @@ func (ptr *QQmlNetworkAccessManagerFactory) QQmlNetworkAccessManagerFactory_PTR(
 }
 
 func (ptr *QQmlNetworkAccessManagerFactory) Create(parent core.QObject_ITF) *network.QNetworkAccessManager {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlNetworkAccessManagerFactory::create")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return network.NewQNetworkAccessManagerFromPointer(C.QQmlNetworkAccessManagerFactory_Create(ptr.Pointer(), core.PointerFromQObject(parent)))
 	}
@@ -49,6 +56,12 @@ func (ptr *QQmlNetworkAccessManagerFactory) Create(parent core.QObject_ITF) *net
 }
 
 func (ptr *QQmlNetworkAccessManagerFactory) DestroyQQmlNetworkAccessManagerFactory() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(ptr.Pointer())
 	}

@@ -1,10 +1,11 @@
 package quick
 
-//#include "qquicktexturefactory.h"
+//#include "quick.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQQuickTextureFactory(ptr QQuickTextureFactory_ITF) unsafe.Pointe
 func NewQQuickTextureFactoryFromPointer(ptr unsafe.Pointer) *QQuickTextureFactory {
 	var n = new(QQuickTextureFactory)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QQuickTextureFactory_") {
 		n.SetObjectName("QQuickTextureFactory_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QQuickTextureFactory) QQuickTextureFactory_PTR() *QQuickTextureFactor
 }
 
 func (ptr *QQuickTextureFactory) CreateTexture(window QQuickWindow_ITF) *QSGTexture {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickTextureFactory::createTexture")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQSGTextureFromPointer(C.QQuickTextureFactory_CreateTexture(ptr.Pointer(), PointerFromQQuickWindow(window)))
 	}
@@ -45,6 +52,12 @@ func (ptr *QQuickTextureFactory) CreateTexture(window QQuickWindow_ITF) *QSGText
 }
 
 func (ptr *QQuickTextureFactory) TextureByteCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickTextureFactory::textureByteCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QQuickTextureFactory_TextureByteCount(ptr.Pointer()))
 	}
@@ -52,6 +65,12 @@ func (ptr *QQuickTextureFactory) TextureByteCount() int {
 }
 
 func (ptr *QQuickTextureFactory) DestroyQQuickTextureFactory() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQuickTextureFactory::~QQuickTextureFactory")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQuickTextureFactory_DestroyQQuickTextureFactory(ptr.Pointer())
 		ptr.SetPointer(nil)

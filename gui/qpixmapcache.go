@@ -1,8 +1,9 @@
 package gui
 
-//#include "qpixmapcache.h"
+//#include "gui.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,13 +41,31 @@ func (ptr *QPixmapCache) QPixmapCache_PTR() *QPixmapCache {
 }
 
 func QPixmapCache_CacheLimit() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPixmapCache::cacheLimit")
+		}
+	}()
+
 	return int(C.QPixmapCache_QPixmapCache_CacheLimit())
 }
 
 func QPixmapCache_Clear() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPixmapCache::clear")
+		}
+	}()
+
 	C.QPixmapCache_QPixmapCache_Clear()
 }
 
 func QPixmapCache_SetCacheLimit(n int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPixmapCache::setCacheLimit")
+		}
+	}()
+
 	C.QPixmapCache_QPixmapCache_SetCacheLimit(C.int(n))
 }

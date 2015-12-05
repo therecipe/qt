@@ -1,8 +1,9 @@
 package xml
 
-//#include "qxmlentityresolver.h"
+//#include "xml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QXmlEntityResolver) QXmlEntityResolver_PTR() *QXmlEntityResolver {
 }
 
 func (ptr *QXmlEntityResolver) ErrorString() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlEntityResolver::errorString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlEntityResolver_ErrorString(ptr.Pointer()))
 	}
@@ -47,6 +54,12 @@ func (ptr *QXmlEntityResolver) ErrorString() string {
 }
 
 func (ptr *QXmlEntityResolver) DestroyQXmlEntityResolver() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlEntityResolver::~QXmlEntityResolver")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QXmlEntityResolver_DestroyQXmlEntityResolver(ptr.Pointer())
 	}

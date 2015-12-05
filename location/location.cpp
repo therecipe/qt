@@ -1,16 +1,285 @@
-#include "qgeoroutingmanager.h"
+#include "location.h"
+#include "_cgo_export.h"
+
+#include <QGeoCoordinate>
+#include <QGeoManeuver>
+#include <QGeoRectangle>
+#include <QGeoRoute>
+#include <QGeoRouteReply>
+#include <QGeoRouteRequest>
+#include <QGeoRouteSegment>
+#include <QGeoRoutingManager>
+#include <QGeoRoutingManagerEngine>
+#include <QGeoServiceProvider>
+#include <QGeoServiceProviderFactory>
+#include <QLocale>
 #include <QObject>
 #include <QString>
-#include <QModelIndex>
-#include <QGeoRoute>
-#include <QGeoCoordinate>
-#include <QGeoRouteRequest>
-#include <QLocale>
-#include <QGeoRouteReply>
-#include <QVariant>
-#include <QUrl>
-#include <QGeoRoutingManager>
-#include "_cgo_export.h"
+
+class MyQGeoManeuver: public QGeoManeuver {
+public:
+};
+
+void* QGeoManeuver_NewQGeoManeuver(){
+	return new QGeoManeuver();
+}
+
+void* QGeoManeuver_NewQGeoManeuver2(void* other){
+	return new QGeoManeuver(*static_cast<QGeoManeuver*>(other));
+}
+
+int QGeoManeuver_Direction(void* ptr){
+	return static_cast<QGeoManeuver*>(ptr)->direction();
+}
+
+double QGeoManeuver_DistanceToNextInstruction(void* ptr){
+	return static_cast<double>(static_cast<QGeoManeuver*>(ptr)->distanceToNextInstruction());
+}
+
+char* QGeoManeuver_InstructionText(void* ptr){
+	return static_cast<QGeoManeuver*>(ptr)->instructionText().toUtf8().data();
+}
+
+int QGeoManeuver_IsValid(void* ptr){
+	return static_cast<QGeoManeuver*>(ptr)->isValid();
+}
+
+void QGeoManeuver_SetDirection(void* ptr, int direction){
+	static_cast<QGeoManeuver*>(ptr)->setDirection(static_cast<QGeoManeuver::InstructionDirection>(direction));
+}
+
+void QGeoManeuver_SetDistanceToNextInstruction(void* ptr, double distance){
+	static_cast<QGeoManeuver*>(ptr)->setDistanceToNextInstruction(static_cast<qreal>(distance));
+}
+
+void QGeoManeuver_SetInstructionText(void* ptr, char* instructionText){
+	static_cast<QGeoManeuver*>(ptr)->setInstructionText(QString(instructionText));
+}
+
+void QGeoManeuver_SetPosition(void* ptr, void* position){
+	static_cast<QGeoManeuver*>(ptr)->setPosition(*static_cast<QGeoCoordinate*>(position));
+}
+
+void QGeoManeuver_SetTimeToNextInstruction(void* ptr, int secs){
+	static_cast<QGeoManeuver*>(ptr)->setTimeToNextInstruction(secs);
+}
+
+void QGeoManeuver_SetWaypoint(void* ptr, void* coordinate){
+	static_cast<QGeoManeuver*>(ptr)->setWaypoint(*static_cast<QGeoCoordinate*>(coordinate));
+}
+
+int QGeoManeuver_TimeToNextInstruction(void* ptr){
+	return static_cast<QGeoManeuver*>(ptr)->timeToNextInstruction();
+}
+
+void QGeoManeuver_DestroyQGeoManeuver(void* ptr){
+	static_cast<QGeoManeuver*>(ptr)->~QGeoManeuver();
+}
+
+class MyQGeoRoute: public QGeoRoute {
+public:
+};
+
+void* QGeoRoute_NewQGeoRoute(){
+	return new QGeoRoute();
+}
+
+void* QGeoRoute_NewQGeoRoute2(void* other){
+	return new QGeoRoute(*static_cast<QGeoRoute*>(other));
+}
+
+double QGeoRoute_Distance(void* ptr){
+	return static_cast<double>(static_cast<QGeoRoute*>(ptr)->distance());
+}
+
+char* QGeoRoute_RouteId(void* ptr){
+	return static_cast<QGeoRoute*>(ptr)->routeId().toUtf8().data();
+}
+
+void QGeoRoute_SetBounds(void* ptr, void* bounds){
+	static_cast<QGeoRoute*>(ptr)->setBounds(*static_cast<QGeoRectangle*>(bounds));
+}
+
+void QGeoRoute_SetDistance(void* ptr, double distance){
+	static_cast<QGeoRoute*>(ptr)->setDistance(static_cast<qreal>(distance));
+}
+
+void QGeoRoute_SetFirstRouteSegment(void* ptr, void* routeSegment){
+	static_cast<QGeoRoute*>(ptr)->setFirstRouteSegment(*static_cast<QGeoRouteSegment*>(routeSegment));
+}
+
+void QGeoRoute_SetRequest(void* ptr, void* request){
+	static_cast<QGeoRoute*>(ptr)->setRequest(*static_cast<QGeoRouteRequest*>(request));
+}
+
+void QGeoRoute_SetRouteId(void* ptr, char* id){
+	static_cast<QGeoRoute*>(ptr)->setRouteId(QString(id));
+}
+
+void QGeoRoute_SetTravelMode(void* ptr, int mode){
+	static_cast<QGeoRoute*>(ptr)->setTravelMode(static_cast<QGeoRouteRequest::TravelMode>(mode));
+}
+
+void QGeoRoute_SetTravelTime(void* ptr, int secs){
+	static_cast<QGeoRoute*>(ptr)->setTravelTime(secs);
+}
+
+int QGeoRoute_TravelMode(void* ptr){
+	return static_cast<QGeoRoute*>(ptr)->travelMode();
+}
+
+int QGeoRoute_TravelTime(void* ptr){
+	return static_cast<QGeoRoute*>(ptr)->travelTime();
+}
+
+void QGeoRoute_DestroyQGeoRoute(void* ptr){
+	static_cast<QGeoRoute*>(ptr)->~QGeoRoute();
+}
+
+class MyQGeoRouteReply: public QGeoRouteReply {
+public:
+void Signal_Finished(){callbackQGeoRouteReplyFinished(this->objectName().toUtf8().data());};
+};
+
+void* QGeoRouteReply_NewQGeoRouteReply(int error, char* errorString, void* parent){
+	return new QGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QObject*>(parent));
+}
+
+void QGeoRouteReply_Abort(void* ptr){
+	static_cast<QGeoRouteReply*>(ptr)->abort();
+}
+
+int QGeoRouteReply_Error(void* ptr){
+	return static_cast<QGeoRouteReply*>(ptr)->error();
+}
+
+char* QGeoRouteReply_ErrorString(void* ptr){
+	return static_cast<QGeoRouteReply*>(ptr)->errorString().toUtf8().data();
+}
+
+void QGeoRouteReply_ConnectFinished(void* ptr){
+	QObject::connect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)()>(&QGeoRouteReply::finished), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)()>(&MyQGeoRouteReply::Signal_Finished));;
+}
+
+void QGeoRouteReply_DisconnectFinished(void* ptr){
+	QObject::disconnect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)()>(&QGeoRouteReply::finished), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)()>(&MyQGeoRouteReply::Signal_Finished));;
+}
+
+int QGeoRouteReply_IsFinished(void* ptr){
+	return static_cast<QGeoRouteReply*>(ptr)->isFinished();
+}
+
+void QGeoRouteReply_DestroyQGeoRouteReply(void* ptr){
+	static_cast<QGeoRouteReply*>(ptr)->~QGeoRouteReply();
+}
+
+class MyQGeoRouteRequest: public QGeoRouteRequest {
+public:
+};
+
+void* QGeoRouteRequest_NewQGeoRouteRequest2(void* origin, void* destination){
+	return new QGeoRouteRequest(*static_cast<QGeoCoordinate*>(origin), *static_cast<QGeoCoordinate*>(destination));
+}
+
+void* QGeoRouteRequest_NewQGeoRouteRequest3(void* other){
+	return new QGeoRouteRequest(*static_cast<QGeoRouteRequest*>(other));
+}
+
+int QGeoRouteRequest_FeatureWeight(void* ptr, int featureType){
+	return static_cast<QGeoRouteRequest*>(ptr)->featureWeight(static_cast<QGeoRouteRequest::FeatureType>(featureType));
+}
+
+int QGeoRouteRequest_ManeuverDetail(void* ptr){
+	return static_cast<QGeoRouteRequest*>(ptr)->maneuverDetail();
+}
+
+int QGeoRouteRequest_NumberAlternativeRoutes(void* ptr){
+	return static_cast<QGeoRouteRequest*>(ptr)->numberAlternativeRoutes();
+}
+
+int QGeoRouteRequest_RouteOptimization(void* ptr){
+	return static_cast<QGeoRouteRequest*>(ptr)->routeOptimization();
+}
+
+int QGeoRouteRequest_SegmentDetail(void* ptr){
+	return static_cast<QGeoRouteRequest*>(ptr)->segmentDetail();
+}
+
+void QGeoRouteRequest_SetFeatureWeight(void* ptr, int featureType, int featureWeight){
+	static_cast<QGeoRouteRequest*>(ptr)->setFeatureWeight(static_cast<QGeoRouteRequest::FeatureType>(featureType), static_cast<QGeoRouteRequest::FeatureWeight>(featureWeight));
+}
+
+void QGeoRouteRequest_SetManeuverDetail(void* ptr, int maneuverDetail){
+	static_cast<QGeoRouteRequest*>(ptr)->setManeuverDetail(static_cast<QGeoRouteRequest::ManeuverDetail>(maneuverDetail));
+}
+
+void QGeoRouteRequest_SetNumberAlternativeRoutes(void* ptr, int alternatives){
+	static_cast<QGeoRouteRequest*>(ptr)->setNumberAlternativeRoutes(alternatives);
+}
+
+void QGeoRouteRequest_SetRouteOptimization(void* ptr, int optimization){
+	static_cast<QGeoRouteRequest*>(ptr)->setRouteOptimization(static_cast<QGeoRouteRequest::RouteOptimization>(optimization));
+}
+
+void QGeoRouteRequest_SetSegmentDetail(void* ptr, int segmentDetail){
+	static_cast<QGeoRouteRequest*>(ptr)->setSegmentDetail(static_cast<QGeoRouteRequest::SegmentDetail>(segmentDetail));
+}
+
+void QGeoRouteRequest_SetTravelModes(void* ptr, int travelModes){
+	static_cast<QGeoRouteRequest*>(ptr)->setTravelModes(static_cast<QGeoRouteRequest::TravelMode>(travelModes));
+}
+
+int QGeoRouteRequest_TravelModes(void* ptr){
+	return static_cast<QGeoRouteRequest*>(ptr)->travelModes();
+}
+
+void QGeoRouteRequest_DestroyQGeoRouteRequest(void* ptr){
+	static_cast<QGeoRouteRequest*>(ptr)->~QGeoRouteRequest();
+}
+
+class MyQGeoRouteSegment: public QGeoRouteSegment {
+public:
+};
+
+void* QGeoRouteSegment_NewQGeoRouteSegment(){
+	return new QGeoRouteSegment();
+}
+
+void* QGeoRouteSegment_NewQGeoRouteSegment2(void* other){
+	return new QGeoRouteSegment(*static_cast<QGeoRouteSegment*>(other));
+}
+
+double QGeoRouteSegment_Distance(void* ptr){
+	return static_cast<double>(static_cast<QGeoRouteSegment*>(ptr)->distance());
+}
+
+int QGeoRouteSegment_IsValid(void* ptr){
+	return static_cast<QGeoRouteSegment*>(ptr)->isValid();
+}
+
+void QGeoRouteSegment_SetDistance(void* ptr, double distance){
+	static_cast<QGeoRouteSegment*>(ptr)->setDistance(static_cast<qreal>(distance));
+}
+
+void QGeoRouteSegment_SetManeuver(void* ptr, void* maneuver){
+	static_cast<QGeoRouteSegment*>(ptr)->setManeuver(*static_cast<QGeoManeuver*>(maneuver));
+}
+
+void QGeoRouteSegment_SetNextRouteSegment(void* ptr, void* routeSegment){
+	static_cast<QGeoRouteSegment*>(ptr)->setNextRouteSegment(*static_cast<QGeoRouteSegment*>(routeSegment));
+}
+
+void QGeoRouteSegment_SetTravelTime(void* ptr, int secs){
+	static_cast<QGeoRouteSegment*>(ptr)->setTravelTime(secs);
+}
+
+int QGeoRouteSegment_TravelTime(void* ptr){
+	return static_cast<QGeoRouteSegment*>(ptr)->travelTime();
+}
+
+void QGeoRouteSegment_DestroyQGeoRouteSegment(void* ptr){
+	static_cast<QGeoRouteSegment*>(ptr)->~QGeoRouteSegment();
+}
 
 class MyQGeoRoutingManager: public QGeoRoutingManager {
 public:
@@ -90,219 +359,6 @@ void QGeoRoutingManager_DestroyQGeoRoutingManager(void* ptr){
 	static_cast<QGeoRoutingManager*>(ptr)->~QGeoRoutingManager();
 }
 
-#include "qplacecategory.h"
-#include <QModelIndex>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include "_cgo_export.h"
-
-#include "qplacecontentreply.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qplaceidreply.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qgeorouterequest.h"
-#include <QGeoRoute>
-#include <QGeoCoordinate>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QGeoRouteRequest>
-#include "_cgo_export.h"
-
-class MyQGeoRouteRequest: public QGeoRouteRequest {
-public:
-};
-
-void* QGeoRouteRequest_NewQGeoRouteRequest2(void* origin, void* destination){
-	return new QGeoRouteRequest(*static_cast<QGeoCoordinate*>(origin), *static_cast<QGeoCoordinate*>(destination));
-}
-
-void* QGeoRouteRequest_NewQGeoRouteRequest3(void* other){
-	return new QGeoRouteRequest(*static_cast<QGeoRouteRequest*>(other));
-}
-
-int QGeoRouteRequest_FeatureWeight(void* ptr, int featureType){
-	return static_cast<QGeoRouteRequest*>(ptr)->featureWeight(static_cast<QGeoRouteRequest::FeatureType>(featureType));
-}
-
-int QGeoRouteRequest_ManeuverDetail(void* ptr){
-	return static_cast<QGeoRouteRequest*>(ptr)->maneuverDetail();
-}
-
-int QGeoRouteRequest_NumberAlternativeRoutes(void* ptr){
-	return static_cast<QGeoRouteRequest*>(ptr)->numberAlternativeRoutes();
-}
-
-int QGeoRouteRequest_RouteOptimization(void* ptr){
-	return static_cast<QGeoRouteRequest*>(ptr)->routeOptimization();
-}
-
-int QGeoRouteRequest_SegmentDetail(void* ptr){
-	return static_cast<QGeoRouteRequest*>(ptr)->segmentDetail();
-}
-
-void QGeoRouteRequest_SetFeatureWeight(void* ptr, int featureType, int featureWeight){
-	static_cast<QGeoRouteRequest*>(ptr)->setFeatureWeight(static_cast<QGeoRouteRequest::FeatureType>(featureType), static_cast<QGeoRouteRequest::FeatureWeight>(featureWeight));
-}
-
-void QGeoRouteRequest_SetManeuverDetail(void* ptr, int maneuverDetail){
-	static_cast<QGeoRouteRequest*>(ptr)->setManeuverDetail(static_cast<QGeoRouteRequest::ManeuverDetail>(maneuverDetail));
-}
-
-void QGeoRouteRequest_SetNumberAlternativeRoutes(void* ptr, int alternatives){
-	static_cast<QGeoRouteRequest*>(ptr)->setNumberAlternativeRoutes(alternatives);
-}
-
-void QGeoRouteRequest_SetRouteOptimization(void* ptr, int optimization){
-	static_cast<QGeoRouteRequest*>(ptr)->setRouteOptimization(static_cast<QGeoRouteRequest::RouteOptimization>(optimization));
-}
-
-void QGeoRouteRequest_SetSegmentDetail(void* ptr, int segmentDetail){
-	static_cast<QGeoRouteRequest*>(ptr)->setSegmentDetail(static_cast<QGeoRouteRequest::SegmentDetail>(segmentDetail));
-}
-
-void QGeoRouteRequest_SetTravelModes(void* ptr, int travelModes){
-	static_cast<QGeoRouteRequest*>(ptr)->setTravelModes(static_cast<QGeoRouteRequest::TravelMode>(travelModes));
-}
-
-int QGeoRouteRequest_TravelModes(void* ptr){
-	return static_cast<QGeoRouteRequest*>(ptr)->travelModes();
-}
-
-void QGeoRouteRequest_DestroyQGeoRouteRequest(void* ptr){
-	static_cast<QGeoRouteRequest*>(ptr)->~QGeoRouteRequest();
-}
-
-#include "qplacedetailsreply.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qplacereply.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qplacematchrequest.h"
-#include <QModelIndex>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include "_cgo_export.h"
-
-#include "qgeocodingmanagerengine.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qplacereview.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QString>
-#include <QVariant>
-#include "_cgo_export.h"
-
-#include "qplacemanager.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qgeoroutereply.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QGeoRoute>
-#include <QString>
-#include <QVariant>
-#include <QGeoRouteReply>
-#include "_cgo_export.h"
-
-class MyQGeoRouteReply: public QGeoRouteReply {
-public:
-void Signal_Finished(){callbackQGeoRouteReplyFinished(this->objectName().toUtf8().data());};
-};
-
-void* QGeoRouteReply_NewQGeoRouteReply(int error, char* errorString, void* parent){
-	return new QGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QObject*>(parent));
-}
-
-void QGeoRouteReply_Abort(void* ptr){
-	static_cast<QGeoRouteReply*>(ptr)->abort();
-}
-
-int QGeoRouteReply_Error(void* ptr){
-	return static_cast<QGeoRouteReply*>(ptr)->error();
-}
-
-char* QGeoRouteReply_ErrorString(void* ptr){
-	return static_cast<QGeoRouteReply*>(ptr)->errorString().toUtf8().data();
-}
-
-void QGeoRouteReply_ConnectFinished(void* ptr){
-	QObject::connect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)()>(&QGeoRouteReply::finished), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)()>(&MyQGeoRouteReply::Signal_Finished));;
-}
-
-void QGeoRouteReply_DisconnectFinished(void* ptr){
-	QObject::disconnect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)()>(&QGeoRouteReply::finished), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)()>(&MyQGeoRouteReply::Signal_Finished));;
-}
-
-int QGeoRouteReply_IsFinished(void* ptr){
-	return static_cast<QGeoRouteReply*>(ptr)->isFinished();
-}
-
-void QGeoRouteReply_DestroyQGeoRouteReply(void* ptr){
-	static_cast<QGeoRouteReply*>(ptr)->~QGeoRouteReply();
-}
-
-#include "qplacesearchsuggestionreply.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qplaceimage.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qgeoroutingmanagerengine.h"
-#include <QString>
-#include <QUrl>
-#include <QModelIndex>
-#include <QGeoCoordinate>
-#include <QObject>
-#include <QVariant>
-#include <QGeoRoute>
-#include <QGeoRoutingManager>
-#include <QGeoRouteRequest>
-#include <QLocale>
-#include <QGeoRouteReply>
-#include <QGeoRoutingManagerEngine>
-#include "_cgo_export.h"
-
 class MyQGeoRoutingManagerEngine: public QGeoRoutingManagerEngine {
 public:
 void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString){callbackQGeoRoutingManagerEngineError(this->objectName().toUtf8().data(), reply, error, errorString.toUtf8().data());};
@@ -380,253 +436,6 @@ void* QGeoRoutingManagerEngine_UpdateRoute(void* ptr, void* route, void* positio
 void QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(void* ptr){
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->~QGeoRoutingManagerEngine();
 }
-
-#include "qgeocodingmanager.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QString>
-#include "_cgo_export.h"
-
-#include "qplaceicon.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qplacesearchreply.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qplacecontactdetail.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QString>
-#include "_cgo_export.h"
-
-#include "qgeocodereply.h"
-#include <QUrl>
-#include <QModelIndex>
-#include <QString>
-#include <QVariant>
-#include "_cgo_export.h"
-
-#include "qplaceproposedsearchresult.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qgeomaneuver.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QGeoCoordinate>
-#include <QGeoManeuver>
-#include "_cgo_export.h"
-
-class MyQGeoManeuver: public QGeoManeuver {
-public:
-};
-
-void* QGeoManeuver_NewQGeoManeuver(){
-	return new QGeoManeuver();
-}
-
-void* QGeoManeuver_NewQGeoManeuver2(void* other){
-	return new QGeoManeuver(*static_cast<QGeoManeuver*>(other));
-}
-
-int QGeoManeuver_Direction(void* ptr){
-	return static_cast<QGeoManeuver*>(ptr)->direction();
-}
-
-double QGeoManeuver_DistanceToNextInstruction(void* ptr){
-	return static_cast<double>(static_cast<QGeoManeuver*>(ptr)->distanceToNextInstruction());
-}
-
-char* QGeoManeuver_InstructionText(void* ptr){
-	return static_cast<QGeoManeuver*>(ptr)->instructionText().toUtf8().data();
-}
-
-int QGeoManeuver_IsValid(void* ptr){
-	return static_cast<QGeoManeuver*>(ptr)->isValid();
-}
-
-void QGeoManeuver_SetDirection(void* ptr, int direction){
-	static_cast<QGeoManeuver*>(ptr)->setDirection(static_cast<QGeoManeuver::InstructionDirection>(direction));
-}
-
-void QGeoManeuver_SetDistanceToNextInstruction(void* ptr, double distance){
-	static_cast<QGeoManeuver*>(ptr)->setDistanceToNextInstruction(static_cast<qreal>(distance));
-}
-
-void QGeoManeuver_SetInstructionText(void* ptr, char* instructionText){
-	static_cast<QGeoManeuver*>(ptr)->setInstructionText(QString(instructionText));
-}
-
-void QGeoManeuver_SetPosition(void* ptr, void* position){
-	static_cast<QGeoManeuver*>(ptr)->setPosition(*static_cast<QGeoCoordinate*>(position));
-}
-
-void QGeoManeuver_SetTimeToNextInstruction(void* ptr, int secs){
-	static_cast<QGeoManeuver*>(ptr)->setTimeToNextInstruction(secs);
-}
-
-void QGeoManeuver_SetWaypoint(void* ptr, void* coordinate){
-	static_cast<QGeoManeuver*>(ptr)->setWaypoint(*static_cast<QGeoCoordinate*>(coordinate));
-}
-
-int QGeoManeuver_TimeToNextInstruction(void* ptr){
-	return static_cast<QGeoManeuver*>(ptr)->timeToNextInstruction();
-}
-
-void QGeoManeuver_DestroyQGeoManeuver(void* ptr){
-	static_cast<QGeoManeuver*>(ptr)->~QGeoManeuver();
-}
-
-#include "qplacecontentrequest.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qgeoserviceproviderfactory.h"
-#include <QModelIndex>
-#include <QGeoServiceProvider>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QGeoServiceProviderFactory>
-#include "_cgo_export.h"
-
-class MyQGeoServiceProviderFactory: public QGeoServiceProviderFactory {
-public:
-};
-
-void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(void* ptr){
-	static_cast<QGeoServiceProviderFactory*>(ptr)->~QGeoServiceProviderFactory();
-}
-
-#include "qplaceresult.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qplace.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qgeoroutesegment.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QGeoManeuver>
-#include <QGeoRoute>
-#include <QGeoRouteSegment>
-#include "_cgo_export.h"
-
-class MyQGeoRouteSegment: public QGeoRouteSegment {
-public:
-};
-
-void* QGeoRouteSegment_NewQGeoRouteSegment(){
-	return new QGeoRouteSegment();
-}
-
-void* QGeoRouteSegment_NewQGeoRouteSegment2(void* other){
-	return new QGeoRouteSegment(*static_cast<QGeoRouteSegment*>(other));
-}
-
-double QGeoRouteSegment_Distance(void* ptr){
-	return static_cast<double>(static_cast<QGeoRouteSegment*>(ptr)->distance());
-}
-
-int QGeoRouteSegment_IsValid(void* ptr){
-	return static_cast<QGeoRouteSegment*>(ptr)->isValid();
-}
-
-void QGeoRouteSegment_SetDistance(void* ptr, double distance){
-	static_cast<QGeoRouteSegment*>(ptr)->setDistance(static_cast<qreal>(distance));
-}
-
-void QGeoRouteSegment_SetManeuver(void* ptr, void* maneuver){
-	static_cast<QGeoRouteSegment*>(ptr)->setManeuver(*static_cast<QGeoManeuver*>(maneuver));
-}
-
-void QGeoRouteSegment_SetNextRouteSegment(void* ptr, void* routeSegment){
-	static_cast<QGeoRouteSegment*>(ptr)->setNextRouteSegment(*static_cast<QGeoRouteSegment*>(routeSegment));
-}
-
-void QGeoRouteSegment_SetTravelTime(void* ptr, int secs){
-	static_cast<QGeoRouteSegment*>(ptr)->setTravelTime(secs);
-}
-
-int QGeoRouteSegment_TravelTime(void* ptr){
-	return static_cast<QGeoRouteSegment*>(ptr)->travelTime();
-}
-
-void QGeoRouteSegment_DestroyQGeoRouteSegment(void* ptr){
-	static_cast<QGeoRouteSegment*>(ptr)->~QGeoRouteSegment();
-}
-
-#include "qplacesupplier.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QString>
-#include "_cgo_export.h"
-
-#include "qplacecontent.h"
-#include <QModelIndex>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include "_cgo_export.h"
-
-#include "qplaceattribute.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qplacesearchresult.h"
-#include <QModelIndex>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include "_cgo_export.h"
-
-#include "qplaceuser.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qgeoserviceprovider.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QLocale>
-#include <QGeoServiceProvider>
-#include "_cgo_export.h"
 
 class MyQGeoServiceProvider: public QGeoServiceProvider {
 public:
@@ -745,7 +554,7 @@ int QGeoServiceProvider_AnyRoutingFeatures_Type(){
 }
 
 char* QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders(){
-	return QGeoServiceProvider::availableServiceProviders().join("|").toUtf8().data();
+	return QGeoServiceProvider::availableServiceProviders().join(",,,").toUtf8().data();
 }
 
 int QGeoServiceProvider_Error(void* ptr){
@@ -796,109 +605,11 @@ void QGeoServiceProvider_DestroyQGeoServiceProvider(void* ptr){
 	static_cast<QGeoServiceProvider*>(ptr)->~QGeoServiceProvider();
 }
 
-#include "qplacesearchrequest.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qplaceeditorial.h"
-#include <QModelIndex>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include "_cgo_export.h"
-
-#include "qplaceratings.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
-
-#include "qplacematchreply.h"
-#include <QModelIndex>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include "_cgo_export.h"
-
-#include "qgeoroute.h"
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QGeoRouteSegment>
-#include <QGeoRouteRequest>
-#include <QGeoRectangle>
-#include <QString>
-#include <QGeoRoute>
-#include "_cgo_export.h"
-
-class MyQGeoRoute: public QGeoRoute {
+class MyQGeoServiceProviderFactory: public QGeoServiceProviderFactory {
 public:
 };
 
-void* QGeoRoute_NewQGeoRoute(){
-	return new QGeoRoute();
+void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(void* ptr){
+	static_cast<QGeoServiceProviderFactory*>(ptr)->~QGeoServiceProviderFactory();
 }
-
-void* QGeoRoute_NewQGeoRoute2(void* other){
-	return new QGeoRoute(*static_cast<QGeoRoute*>(other));
-}
-
-double QGeoRoute_Distance(void* ptr){
-	return static_cast<double>(static_cast<QGeoRoute*>(ptr)->distance());
-}
-
-char* QGeoRoute_RouteId(void* ptr){
-	return static_cast<QGeoRoute*>(ptr)->routeId().toUtf8().data();
-}
-
-void QGeoRoute_SetBounds(void* ptr, void* bounds){
-	static_cast<QGeoRoute*>(ptr)->setBounds(*static_cast<QGeoRectangle*>(bounds));
-}
-
-void QGeoRoute_SetDistance(void* ptr, double distance){
-	static_cast<QGeoRoute*>(ptr)->setDistance(static_cast<qreal>(distance));
-}
-
-void QGeoRoute_SetFirstRouteSegment(void* ptr, void* routeSegment){
-	static_cast<QGeoRoute*>(ptr)->setFirstRouteSegment(*static_cast<QGeoRouteSegment*>(routeSegment));
-}
-
-void QGeoRoute_SetRequest(void* ptr, void* request){
-	static_cast<QGeoRoute*>(ptr)->setRequest(*static_cast<QGeoRouteRequest*>(request));
-}
-
-void QGeoRoute_SetRouteId(void* ptr, char* id){
-	static_cast<QGeoRoute*>(ptr)->setRouteId(QString(id));
-}
-
-void QGeoRoute_SetTravelMode(void* ptr, int mode){
-	static_cast<QGeoRoute*>(ptr)->setTravelMode(static_cast<QGeoRouteRequest::TravelMode>(mode));
-}
-
-void QGeoRoute_SetTravelTime(void* ptr, int secs){
-	static_cast<QGeoRoute*>(ptr)->setTravelTime(secs);
-}
-
-int QGeoRoute_TravelMode(void* ptr){
-	return static_cast<QGeoRoute*>(ptr)->travelMode();
-}
-
-int QGeoRoute_TravelTime(void* ptr){
-	return static_cast<QGeoRoute*>(ptr)->travelTime();
-}
-
-void QGeoRoute_DestroyQGeoRoute(void* ptr){
-	static_cast<QGeoRoute*>(ptr)->~QGeoRoute();
-}
-
-#include "qplacemanagerengine.h"
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include "_cgo_export.h"
 

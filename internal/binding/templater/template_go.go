@@ -66,7 +66,7 @@ func GoTemplate(c *parser.Class) (o string) {
 		o += "n.SetPointer(ptr)\n"
 
 		if isObjectSubClass(c.Name) {
-			o += "if n.ObjectName() == \"\" {\n"
+			o += fmt.Sprintf("for len(n.ObjectName()) < len(\"%v_\") {\n", c.Name)
 			o += fmt.Sprintf("n.SetObjectName(\"%v_\" + qt.RandomIdentifier())\n", c.Name)
 			o += "}\n"
 		}
@@ -106,16 +106,16 @@ func preambleGo(className, input string) string {
 
 	if strings.Contains(parser.ClassMap[className].Module, "droid") {
 		if !parser.ClassMap[className].Stub {
-			tmp += fmt.Sprintf("//#include \"%v_android.h\"\n", strings.ToLower(className))
+			tmp += fmt.Sprintf("//#include \"%v_android.h\"\n", shortModule(parser.ClassMap[className].Module))
 		}
 	} else {
-		tmp += fmt.Sprintf("//#include \"%v.h\"\n", strings.ToLower(className))
+		tmp += fmt.Sprintf("//#include \"%v.h\"\n", shortModule(parser.ClassMap[className].Module))
 	}
 
 	tmp += "import \"C\"\n"
 	tmp += "import (\n"
 
-	for _, i := range append(Libs, "qt", "strings", "unsafe") {
+	for _, i := range append(Libs, "qt", "strings", "unsafe", "log") {
 		i = strings.ToLower(i)
 
 		if strings.Contains(input, fmt.Sprintf("%v.", i)) && i != shortModule(parser.ClassMap[className].Module) {
@@ -123,7 +123,7 @@ func preambleGo(className, input string) string {
 			case "qt":
 				tmp += fmt.Sprintf("\"github.com/therecipe/%v\"\n", i)
 
-			case "strings", "unsafe":
+			case "strings", "unsafe", "log":
 				tmp += fmt.Sprintf("\"%v\"\n", i)
 
 			default:

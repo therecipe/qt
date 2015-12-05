@@ -1,9 +1,10 @@
 package qml
 
-//#include "qqmlincubator.h"
+//#include "qml.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -60,22 +61,46 @@ const (
 )
 
 func NewQQmlIncubator(mode QQmlIncubator__IncubationMode) *QQmlIncubator {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubator::QQmlIncubator")
+		}
+	}()
+
 	return NewQQmlIncubatorFromPointer(C.QQmlIncubator_NewQQmlIncubator(C.int(mode)))
 }
 
 func (ptr *QQmlIncubator) Clear() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubator::clear")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQmlIncubator_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QQmlIncubator) ForceCompletion() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubator::forceCompletion")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QQmlIncubator_ForceCompletion(ptr.Pointer())
 	}
 }
 
 func (ptr *QQmlIncubator) IncubationMode() QQmlIncubator__IncubationMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubator::incubationMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QQmlIncubator__IncubationMode(C.QQmlIncubator_IncubationMode(ptr.Pointer()))
 	}
@@ -83,6 +108,12 @@ func (ptr *QQmlIncubator) IncubationMode() QQmlIncubator__IncubationMode {
 }
 
 func (ptr *QQmlIncubator) IsError() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubator::isError")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QQmlIncubator_IsError(ptr.Pointer()) != 0
 	}
@@ -90,6 +121,12 @@ func (ptr *QQmlIncubator) IsError() bool {
 }
 
 func (ptr *QQmlIncubator) IsLoading() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubator::isLoading")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QQmlIncubator_IsLoading(ptr.Pointer()) != 0
 	}
@@ -97,6 +134,12 @@ func (ptr *QQmlIncubator) IsLoading() bool {
 }
 
 func (ptr *QQmlIncubator) IsNull() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubator::isNull")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QQmlIncubator_IsNull(ptr.Pointer()) != 0
 	}
@@ -104,6 +147,12 @@ func (ptr *QQmlIncubator) IsNull() bool {
 }
 
 func (ptr *QQmlIncubator) IsReady() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubator::isReady")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QQmlIncubator_IsReady(ptr.Pointer()) != 0
 	}
@@ -111,6 +160,12 @@ func (ptr *QQmlIncubator) IsReady() bool {
 }
 
 func (ptr *QQmlIncubator) Object() *core.QObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubator::object")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QQmlIncubator_Object(ptr.Pointer()))
 	}
@@ -118,6 +173,12 @@ func (ptr *QQmlIncubator) Object() *core.QObject {
 }
 
 func (ptr *QQmlIncubator) Status() QQmlIncubator__Status {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QQmlIncubator::status")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QQmlIncubator__Status(C.QQmlIncubator_Status(ptr.Pointer()))
 	}

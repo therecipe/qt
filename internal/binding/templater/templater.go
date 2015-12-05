@@ -288,10 +288,34 @@ var LibDeps = map[string][]string{
 	*/
 }
 
-func isTemplate(f *parser.Function) bool {
+func isGeneric(f *parser.Function) bool {
+
 	switch f.Fullname {
-	case "QAndroidJniObject::getStaticField", "QAndroidJniObject::getField", "QAndroidJniObject::callMethod", "QAndroidJniObject::callStaticMethod":
+	case "QAndroidJniObject::getStaticField", "QAndroidJniObject::getField", "QAndroidJniObject::callStaticMethod", "QAndroidJniObject::callMethod":
 		return true
+
+	case "QAndroidJniObject::setStaticField":
+		{
+			if f.OverloadNumber == "2" || f.OverloadNumber == "4" {
+				return true
+			}
+		}
 	}
+
 	return false
+}
+
+func jniGenericModes(f *parser.Function) []string {
+
+	switch f.Name {
+	case "callMethod", "callStaticMethod":
+		return []string{"Int", "Boolean", "Void"} //TODO: add std string function
+
+	case "getField", "getStaticField", "setStaticField":
+		return []string{"Int", "Boolean"} //TODO: add std string function
+
+	default:
+		return make([]string, 0)
+	}
+
 }

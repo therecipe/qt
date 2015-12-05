@@ -1,8 +1,9 @@
 package xml
 
-//#include "qxmldeclhandler.h"
+//#include "xml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QXmlDeclHandler) QXmlDeclHandler_PTR() *QXmlDeclHandler {
 }
 
 func (ptr *QXmlDeclHandler) AttributeDecl(eName string, aName string, ty string, valueDefault string, value string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlDeclHandler::attributeDecl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QXmlDeclHandler_AttributeDecl(ptr.Pointer(), C.CString(eName), C.CString(aName), C.CString(ty), C.CString(valueDefault), C.CString(value)) != 0
 	}
@@ -47,6 +54,12 @@ func (ptr *QXmlDeclHandler) AttributeDecl(eName string, aName string, ty string,
 }
 
 func (ptr *QXmlDeclHandler) ErrorString() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlDeclHandler::errorString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlDeclHandler_ErrorString(ptr.Pointer()))
 	}
@@ -54,6 +67,12 @@ func (ptr *QXmlDeclHandler) ErrorString() string {
 }
 
 func (ptr *QXmlDeclHandler) ExternalEntityDecl(name string, publicId string, systemId string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlDeclHandler::externalEntityDecl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QXmlDeclHandler_ExternalEntityDecl(ptr.Pointer(), C.CString(name), C.CString(publicId), C.CString(systemId)) != 0
 	}
@@ -61,6 +80,12 @@ func (ptr *QXmlDeclHandler) ExternalEntityDecl(name string, publicId string, sys
 }
 
 func (ptr *QXmlDeclHandler) InternalEntityDecl(name string, value string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlDeclHandler::internalEntityDecl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QXmlDeclHandler_InternalEntityDecl(ptr.Pointer(), C.CString(name), C.CString(value)) != 0
 	}
@@ -68,6 +93,12 @@ func (ptr *QXmlDeclHandler) InternalEntityDecl(name string, value string) bool {
 }
 
 func (ptr *QXmlDeclHandler) DestroyQXmlDeclHandler() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlDeclHandler::~QXmlDeclHandler")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QXmlDeclHandler_DestroyQXmlDeclHandler(ptr.Pointer())
 	}

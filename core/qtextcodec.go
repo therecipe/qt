@@ -1,8 +1,9 @@
 package core
 
-//#include "qtextcodec.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -50,6 +51,12 @@ const (
 )
 
 func (ptr *QTextCodec) CanEncode(ch QChar_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::canEncode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTextCodec_CanEncode(ptr.Pointer(), PointerFromQChar(ch)) != 0
 	}
@@ -57,6 +64,12 @@ func (ptr *QTextCodec) CanEncode(ch QChar_ITF) bool {
 }
 
 func (ptr *QTextCodec) CanEncode2(s string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::canEncode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTextCodec_CanEncode2(ptr.Pointer(), C.CString(s)) != 0
 	}
@@ -64,38 +77,92 @@ func (ptr *QTextCodec) CanEncode2(s string) bool {
 }
 
 func QTextCodec_CodecForHtml2(ba QByteArray_ITF) *QTextCodec {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::codecForHtml")
+		}
+	}()
+
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml2(PointerFromQByteArray(ba)))
 }
 
 func QTextCodec_CodecForHtml(ba QByteArray_ITF, defaultCodec QTextCodec_ITF) *QTextCodec {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::codecForHtml")
+		}
+	}()
+
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml(PointerFromQByteArray(ba), PointerFromQTextCodec(defaultCodec)))
 }
 
 func QTextCodec_CodecForLocale() *QTextCodec {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::codecForLocale")
+		}
+	}()
+
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForLocale())
 }
 
 func QTextCodec_CodecForMib(mib int) *QTextCodec {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::codecForMib")
+		}
+	}()
+
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForMib(C.int(mib)))
 }
 
 func QTextCodec_CodecForName(name QByteArray_ITF) *QTextCodec {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::codecForName")
+		}
+	}()
+
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName(PointerFromQByteArray(name)))
 }
 
 func QTextCodec_CodecForName2(name string) *QTextCodec {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::codecForName")
+		}
+	}()
+
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName2(C.CString(name)))
 }
 
 func QTextCodec_CodecForUtfText2(ba QByteArray_ITF) *QTextCodec {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::codecForUtfText")
+		}
+	}()
+
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText2(PointerFromQByteArray(ba)))
 }
 
 func QTextCodec_CodecForUtfText(ba QByteArray_ITF, defaultCodec QTextCodec_ITF) *QTextCodec {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::codecForUtfText")
+		}
+	}()
+
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText(PointerFromQByteArray(ba), PointerFromQTextCodec(defaultCodec)))
 }
 
 func (ptr *QTextCodec) FromUnicode(str string) *QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::fromUnicode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QTextCodec_FromUnicode(ptr.Pointer(), C.CString(str)))
 	}
@@ -103,6 +170,12 @@ func (ptr *QTextCodec) FromUnicode(str string) *QByteArray {
 }
 
 func (ptr *QTextCodec) MakeDecoder(flags QTextCodec__ConversionFlag) *QTextDecoder {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::makeDecoder")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQTextDecoderFromPointer(C.QTextCodec_MakeDecoder(ptr.Pointer(), C.int(flags)))
 	}
@@ -110,6 +183,12 @@ func (ptr *QTextCodec) MakeDecoder(flags QTextCodec__ConversionFlag) *QTextDecod
 }
 
 func (ptr *QTextCodec) MakeEncoder(flags QTextCodec__ConversionFlag) *QTextEncoder {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::makeEncoder")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQTextEncoderFromPointer(C.QTextCodec_MakeEncoder(ptr.Pointer(), C.int(flags)))
 	}
@@ -117,6 +196,12 @@ func (ptr *QTextCodec) MakeEncoder(flags QTextCodec__ConversionFlag) *QTextEncod
 }
 
 func (ptr *QTextCodec) MibEnum() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::mibEnum")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextCodec_MibEnum(ptr.Pointer()))
 	}
@@ -124,6 +209,12 @@ func (ptr *QTextCodec) MibEnum() int {
 }
 
 func (ptr *QTextCodec) Name() *QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::name")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QTextCodec_Name(ptr.Pointer()))
 	}
@@ -131,5 +222,11 @@ func (ptr *QTextCodec) Name() *QByteArray {
 }
 
 func QTextCodec_SetCodecForLocale(c QTextCodec_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextCodec::setCodecForLocale")
+		}
+	}()
+
 	C.QTextCodec_QTextCodec_SetCodecForLocale(PointerFromQTextCodec(c))
 }

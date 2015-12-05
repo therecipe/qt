@@ -1,8 +1,9 @@
 package gui
 
-//#include "qbitmap.h"
+//#include "gui.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,18 +34,36 @@ func (ptr *QBitmap) QBitmap_PTR() *QBitmap {
 }
 
 func (ptr *QBitmap) Clear() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBitmap::clear")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBitmap_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QBitmap) Swap(other QBitmap_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBitmap::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBitmap_Swap(ptr.Pointer(), PointerFromQBitmap(other))
 	}
 }
 
 func (ptr *QBitmap) DestroyQBitmap() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QBitmap::~QBitmap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QBitmap_DestroyQBitmap(ptr.Pointer())
 	}

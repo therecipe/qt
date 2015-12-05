@@ -1,10 +1,11 @@
 package network
 
-//#include "qhttpmultipart.h"
+//#include "network.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQHttpMultiPart(ptr QHttpMultiPart_ITF) unsafe.Pointer {
 func NewQHttpMultiPartFromPointer(ptr unsafe.Pointer) *QHttpMultiPart {
 	var n = new(QHttpMultiPart)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QHttpMultiPart_") {
 		n.SetObjectName("QHttpMultiPart_" + qt.RandomIdentifier())
 	}
 	return n
@@ -48,20 +49,44 @@ const (
 )
 
 func NewQHttpMultiPart2(contentType QHttpMultiPart__ContentType, parent core.QObject_ITF) *QHttpMultiPart {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHttpMultiPart::QHttpMultiPart")
+		}
+	}()
+
 	return NewQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart2(C.int(contentType), core.PointerFromQObject(parent)))
 }
 
 func NewQHttpMultiPart(parent core.QObject_ITF) *QHttpMultiPart {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHttpMultiPart::QHttpMultiPart")
+		}
+	}()
+
 	return NewQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHttpMultiPart) Append(httpPart QHttpPart_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHttpMultiPart::append")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QHttpMultiPart_Append(ptr.Pointer(), PointerFromQHttpPart(httpPart))
 	}
 }
 
 func (ptr *QHttpMultiPart) Boundary() *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHttpMultiPart::boundary")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QHttpMultiPart_Boundary(ptr.Pointer()))
 	}
@@ -69,18 +94,36 @@ func (ptr *QHttpMultiPart) Boundary() *core.QByteArray {
 }
 
 func (ptr *QHttpMultiPart) SetBoundary(boundary core.QByteArray_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHttpMultiPart::setBoundary")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QHttpMultiPart_SetBoundary(ptr.Pointer(), core.PointerFromQByteArray(boundary))
 	}
 }
 
 func (ptr *QHttpMultiPart) SetContentType(contentType QHttpMultiPart__ContentType) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHttpMultiPart::setContentType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QHttpMultiPart_SetContentType(ptr.Pointer(), C.int(contentType))
 	}
 }
 
 func (ptr *QHttpMultiPart) DestroyQHttpMultiPart() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QHttpMultiPart::~QHttpMultiPart")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QHttpMultiPart_DestroyQHttpMultiPart(ptr.Pointer())
 		ptr.SetPointer(nil)

@@ -1,8 +1,9 @@
 package core
 
-//#include "qxmlstreamentityresolver.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QXmlStreamEntityResolver) QXmlStreamEntityResolver_PTR() *QXmlStreamE
 }
 
 func (ptr *QXmlStreamEntityResolver) ResolveUndeclaredEntity(name string) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamEntityResolver::resolveUndeclaredEntity")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlStreamEntityResolver_ResolveUndeclaredEntity(ptr.Pointer(), C.CString(name)))
 	}
@@ -47,6 +54,12 @@ func (ptr *QXmlStreamEntityResolver) ResolveUndeclaredEntity(name string) string
 }
 
 func (ptr *QXmlStreamEntityResolver) DestroyQXmlStreamEntityResolver() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlStreamEntityResolver::~QXmlStreamEntityResolver")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(ptr.Pointer())
 	}

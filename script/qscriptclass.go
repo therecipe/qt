@@ -1,9 +1,10 @@
 package script
 
-//#include "qscriptclass.h"
+//#include "script.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -57,10 +58,22 @@ const (
 )
 
 func NewQScriptClass(engine QScriptEngine_ITF) *QScriptClass {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptClass::QScriptClass")
+		}
+	}()
+
 	return NewQScriptClassFromPointer(C.QScriptClass_NewQScriptClass(PointerFromQScriptEngine(engine)))
 }
 
 func (ptr *QScriptClass) Engine() *QScriptEngine {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptClass::engine")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptEngineFromPointer(C.QScriptClass_Engine(ptr.Pointer()))
 	}
@@ -68,6 +81,12 @@ func (ptr *QScriptClass) Engine() *QScriptEngine {
 }
 
 func (ptr *QScriptClass) Extension(extension QScriptClass__Extension, argument core.QVariant_ITF) *core.QVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptClass::extension")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QScriptClass_Extension(ptr.Pointer(), C.int(extension), core.PointerFromQVariant(argument)))
 	}
@@ -75,6 +94,12 @@ func (ptr *QScriptClass) Extension(extension QScriptClass__Extension, argument c
 }
 
 func (ptr *QScriptClass) Name() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptClass::name")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScriptClass_Name(ptr.Pointer()))
 	}
@@ -82,6 +107,12 @@ func (ptr *QScriptClass) Name() string {
 }
 
 func (ptr *QScriptClass) NewIterator(object QScriptValue_ITF) *QScriptClassPropertyIterator {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptClass::newIterator")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptClassPropertyIteratorFromPointer(C.QScriptClass_NewIterator(ptr.Pointer(), PointerFromQScriptValue(object)))
 	}
@@ -89,6 +120,12 @@ func (ptr *QScriptClass) NewIterator(object QScriptValue_ITF) *QScriptClassPrope
 }
 
 func (ptr *QScriptClass) Prototype() *QScriptValue {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptClass::prototype")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptClass_Prototype(ptr.Pointer()))
 	}
@@ -96,6 +133,12 @@ func (ptr *QScriptClass) Prototype() *QScriptValue {
 }
 
 func (ptr *QScriptClass) SupportsExtension(extension QScriptClass__Extension) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptClass::supportsExtension")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QScriptClass_SupportsExtension(ptr.Pointer(), C.int(extension)) != 0
 	}
@@ -103,6 +146,12 @@ func (ptr *QScriptClass) SupportsExtension(extension QScriptClass__Extension) bo
 }
 
 func (ptr *QScriptClass) DestroyQScriptClass() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QScriptClass::~QScriptClass")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QScriptClass_DestroyQScriptClass(ptr.Pointer())
 	}

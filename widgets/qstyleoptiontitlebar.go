@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptiontitlebar.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -47,9 +48,21 @@ var (
 )
 
 func NewQStyleOptionTitleBar() *QStyleOptionTitleBar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionTitleBar::QStyleOptionTitleBar")
+		}
+	}()
+
 	return NewQStyleOptionTitleBarFromPointer(C.QStyleOptionTitleBar_NewQStyleOptionTitleBar())
 }
 
 func NewQStyleOptionTitleBar2(other QStyleOptionTitleBar_ITF) *QStyleOptionTitleBar {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionTitleBar::QStyleOptionTitleBar")
+		}
+	}()
+
 	return NewQStyleOptionTitleBarFromPointer(C.QStyleOptionTitleBar_NewQStyleOptionTitleBar2(PointerFromQStyleOptionTitleBar(other)))
 }

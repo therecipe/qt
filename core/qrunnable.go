@@ -1,9 +1,10 @@
 package core
 
-//#include "qrunnable.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -41,6 +42,12 @@ func (ptr *QRunnable) QRunnable_PTR() *QRunnable {
 }
 
 func (ptr *QRunnable) AutoDelete() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRunnable::autoDelete")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QRunnable_AutoDelete(ptr.Pointer()) != 0
 	}
@@ -48,18 +55,36 @@ func (ptr *QRunnable) AutoDelete() bool {
 }
 
 func (ptr *QRunnable) Run() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRunnable::run")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QRunnable_Run(ptr.Pointer())
 	}
 }
 
 func (ptr *QRunnable) SetAutoDelete(autoDelete bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRunnable::setAutoDelete")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QRunnable_SetAutoDelete(ptr.Pointer(), C.int(qt.GoBoolToInt(autoDelete)))
 	}
 }
 
 func (ptr *QRunnable) DestroyQRunnable() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRunnable::~QRunnable")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QRunnable_DestroyQRunnable(ptr.Pointer())
 	}

@@ -1,10 +1,11 @@
 package widgets
 
-//#include "qpushbutton.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/gui"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQPushButton(ptr QPushButton_ITF) unsafe.Pointer {
 func NewQPushButtonFromPointer(ptr unsafe.Pointer) *QPushButton {
 	var n = new(QPushButton)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QPushButton_") {
 		n.SetObjectName("QPushButton_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QPushButton) QPushButton_PTR() *QPushButton {
 }
 
 func (ptr *QPushButton) AutoDefault() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::autoDefault")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPushButton_AutoDefault(ptr.Pointer()) != 0
 	}
@@ -45,6 +52,12 @@ func (ptr *QPushButton) AutoDefault() bool {
 }
 
 func (ptr *QPushButton) IsDefault() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::isDefault")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPushButton_IsDefault(ptr.Pointer()) != 0
 	}
@@ -52,6 +65,12 @@ func (ptr *QPushButton) IsDefault() bool {
 }
 
 func (ptr *QPushButton) IsFlat() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::isFlat")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPushButton_IsFlat(ptr.Pointer()) != 0
 	}
@@ -59,36 +78,78 @@ func (ptr *QPushButton) IsFlat() bool {
 }
 
 func (ptr *QPushButton) SetAutoDefault(v bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::setAutoDefault")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPushButton_SetAutoDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
 	}
 }
 
 func (ptr *QPushButton) SetDefault(v bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::setDefault")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPushButton_SetDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
 	}
 }
 
 func (ptr *QPushButton) SetFlat(v bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::setFlat")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPushButton_SetFlat(ptr.Pointer(), C.int(qt.GoBoolToInt(v)))
 	}
 }
 
 func NewQPushButton(parent QWidget_ITF) *QPushButton {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::QPushButton")
+		}
+	}()
+
 	return NewQPushButtonFromPointer(C.QPushButton_NewQPushButton(PointerFromQWidget(parent)))
 }
 
 func NewQPushButton3(icon gui.QIcon_ITF, text string, parent QWidget_ITF) *QPushButton {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::QPushButton")
+		}
+	}()
+
 	return NewQPushButtonFromPointer(C.QPushButton_NewQPushButton3(gui.PointerFromQIcon(icon), C.CString(text), PointerFromQWidget(parent)))
 }
 
 func NewQPushButton2(text string, parent QWidget_ITF) *QPushButton {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::QPushButton")
+		}
+	}()
+
 	return NewQPushButtonFromPointer(C.QPushButton_NewQPushButton2(C.CString(text), PointerFromQWidget(parent)))
 }
 
 func (ptr *QPushButton) Menu() *QMenu {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::menu")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQMenuFromPointer(C.QPushButton_Menu(ptr.Pointer()))
 	}
@@ -96,18 +157,36 @@ func (ptr *QPushButton) Menu() *QMenu {
 }
 
 func (ptr *QPushButton) SetMenu(menu QMenu_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::setMenu")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPushButton_SetMenu(ptr.Pointer(), PointerFromQMenu(menu))
 	}
 }
 
 func (ptr *QPushButton) ShowMenu() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::showMenu")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPushButton_ShowMenu(ptr.Pointer())
 	}
 }
 
 func (ptr *QPushButton) DestroyQPushButton() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPushButton::~QPushButton")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QPushButton_DestroyQPushButton(ptr.Pointer())
 		ptr.SetPointer(nil)

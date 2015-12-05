@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptionbutton.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -59,9 +60,21 @@ var (
 )
 
 func NewQStyleOptionButton() *QStyleOptionButton {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionButton::QStyleOptionButton")
+		}
+	}()
+
 	return NewQStyleOptionButtonFromPointer(C.QStyleOptionButton_NewQStyleOptionButton())
 }
 
 func NewQStyleOptionButton2(other QStyleOptionButton_ITF) *QStyleOptionButton {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionButton::QStyleOptionButton")
+		}
+	}()
+
 	return NewQStyleOptionButtonFromPointer(C.QStyleOptionButton_NewQStyleOptionButton2(PointerFromQStyleOptionButton(other)))
 }

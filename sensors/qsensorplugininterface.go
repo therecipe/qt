@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qsensorplugininterface.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QSensorPluginInterface) QSensorPluginInterface_PTR() *QSensorPluginIn
 }
 
 func (ptr *QSensorPluginInterface) RegisterSensors() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSensorPluginInterface::registerSensors")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSensorPluginInterface_RegisterSensors(ptr.Pointer())
 	}

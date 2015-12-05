@@ -1,10 +1,11 @@
 package widgets
 
-//#include "qtimeedit.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQTimeEdit(ptr QTimeEdit_ITF) unsafe.Pointer {
 func NewQTimeEditFromPointer(ptr unsafe.Pointer) *QTimeEdit {
 	var n = new(QTimeEdit)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QTimeEdit_") {
 		n.SetObjectName("QTimeEdit_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,14 +39,32 @@ func (ptr *QTimeEdit) QTimeEdit_PTR() *QTimeEdit {
 }
 
 func NewQTimeEdit(parent QWidget_ITF) *QTimeEdit {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTimeEdit::QTimeEdit")
+		}
+	}()
+
 	return NewQTimeEditFromPointer(C.QTimeEdit_NewQTimeEdit(PointerFromQWidget(parent)))
 }
 
 func NewQTimeEdit2(time core.QTime_ITF, parent QWidget_ITF) *QTimeEdit {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTimeEdit::QTimeEdit")
+		}
+	}()
+
 	return NewQTimeEditFromPointer(C.QTimeEdit_NewQTimeEdit2(core.PointerFromQTime(time), PointerFromQWidget(parent)))
 }
 
 func (ptr *QTimeEdit) DestroyQTimeEdit() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTimeEdit::~QTimeEdit")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTimeEdit_DestroyQTimeEdit(ptr.Pointer())
 		ptr.SetPointer(nil)

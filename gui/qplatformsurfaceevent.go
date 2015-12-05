@@ -1,9 +1,10 @@
 package gui
 
-//#include "qplatformsurfaceevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -42,10 +43,22 @@ const (
 )
 
 func NewQPlatformSurfaceEvent(surfaceEventType QPlatformSurfaceEvent__SurfaceEventType) *QPlatformSurfaceEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPlatformSurfaceEvent::QPlatformSurfaceEvent")
+		}
+	}()
+
 	return NewQPlatformSurfaceEventFromPointer(C.QPlatformSurfaceEvent_NewQPlatformSurfaceEvent(C.int(surfaceEventType)))
 }
 
 func (ptr *QPlatformSurfaceEvent) SurfaceEventType() QPlatformSurfaceEvent__SurfaceEventType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPlatformSurfaceEvent::surfaceEventType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QPlatformSurfaceEvent__SurfaceEventType(C.QPlatformSurfaceEvent_SurfaceEventType(ptr.Pointer()))
 	}

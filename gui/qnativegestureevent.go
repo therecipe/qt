@@ -1,9 +1,10 @@
 package gui
 
-//#include "qnativegestureevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,6 +35,12 @@ func (ptr *QNativeGestureEvent) QNativeGestureEvent_PTR() *QNativeGestureEvent {
 }
 
 func (ptr *QNativeGestureEvent) GestureType() core.Qt__NativeGestureType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNativeGestureEvent::gestureType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__NativeGestureType(C.QNativeGestureEvent_GestureType(ptr.Pointer()))
 	}
@@ -41,6 +48,12 @@ func (ptr *QNativeGestureEvent) GestureType() core.Qt__NativeGestureType {
 }
 
 func (ptr *QNativeGestureEvent) Value() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNativeGestureEvent::value")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QNativeGestureEvent_Value(ptr.Pointer()))
 	}

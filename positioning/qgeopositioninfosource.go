@@ -1,10 +1,11 @@
 package positioning
 
-//#include "qgeopositioninfosource.h"
+//#include "positioning.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"strings"
 	"unsafe"
 )
@@ -28,7 +29,7 @@ func PointerFromQGeoPositionInfoSource(ptr QGeoPositionInfoSource_ITF) unsafe.Po
 func NewQGeoPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QGeoPositionInfoSource {
 	var n = new(QGeoPositionInfoSource)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QGeoPositionInfoSource_") {
 		n.SetObjectName("QGeoPositionInfoSource_" + qt.RandomIdentifier())
 	}
 	return n
@@ -59,12 +60,24 @@ const (
 )
 
 func (ptr *QGeoPositionInfoSource) SetUpdateInterval(msec int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::setUpdateInterval")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_SetUpdateInterval(ptr.Pointer(), C.int(msec))
 	}
 }
 
 func (ptr *QGeoPositionInfoSource) SourceName() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::sourceName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QGeoPositionInfoSource_SourceName(ptr.Pointer()))
 	}
@@ -72,6 +85,12 @@ func (ptr *QGeoPositionInfoSource) SourceName() string {
 }
 
 func (ptr *QGeoPositionInfoSource) UpdateInterval() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::updateInterval")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QGeoPositionInfoSource_UpdateInterval(ptr.Pointer()))
 	}
@@ -79,18 +98,42 @@ func (ptr *QGeoPositionInfoSource) UpdateInterval() int {
 }
 
 func QGeoPositionInfoSource_AvailableSources() []string {
-	return strings.Split(C.GoString(C.QGeoPositionInfoSource_QGeoPositionInfoSource_AvailableSources()), "|")
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::availableSources")
+		}
+	}()
+
+	return strings.Split(C.GoString(C.QGeoPositionInfoSource_QGeoPositionInfoSource_AvailableSources()), ",,,")
 }
 
 func QGeoPositionInfoSource_CreateDefaultSource(parent core.QObject_ITF) *QGeoPositionInfoSource {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::createDefaultSource")
+		}
+	}()
+
 	return NewQGeoPositionInfoSourceFromPointer(C.QGeoPositionInfoSource_QGeoPositionInfoSource_CreateDefaultSource(core.PointerFromQObject(parent)))
 }
 
 func QGeoPositionInfoSource_CreateSource(sourceName string, parent core.QObject_ITF) *QGeoPositionInfoSource {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::createSource")
+		}
+	}()
+
 	return NewQGeoPositionInfoSourceFromPointer(C.QGeoPositionInfoSource_QGeoPositionInfoSource_CreateSource(C.CString(sourceName), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QGeoPositionInfoSource) Error() QGeoPositionInfoSource__Error {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QGeoPositionInfoSource__Error(C.QGeoPositionInfoSource_Error(ptr.Pointer()))
 	}
@@ -98,6 +141,12 @@ func (ptr *QGeoPositionInfoSource) Error() QGeoPositionInfoSource__Error {
 }
 
 func (ptr *QGeoPositionInfoSource) MinimumUpdateInterval() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::minimumUpdateInterval")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QGeoPositionInfoSource_MinimumUpdateInterval(ptr.Pointer()))
 	}
@@ -105,6 +154,12 @@ func (ptr *QGeoPositionInfoSource) MinimumUpdateInterval() int {
 }
 
 func (ptr *QGeoPositionInfoSource) PreferredPositioningMethods() QGeoPositionInfoSource__PositioningMethod {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::preferredPositioningMethods")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QGeoPositionInfoSource__PositioningMethod(C.QGeoPositionInfoSource_PreferredPositioningMethods(ptr.Pointer()))
 	}
@@ -112,30 +167,60 @@ func (ptr *QGeoPositionInfoSource) PreferredPositioningMethods() QGeoPositionInf
 }
 
 func (ptr *QGeoPositionInfoSource) RequestUpdate(timeout int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::requestUpdate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_RequestUpdate(ptr.Pointer(), C.int(timeout))
 	}
 }
 
 func (ptr *QGeoPositionInfoSource) SetPreferredPositioningMethods(methods QGeoPositionInfoSource__PositioningMethod) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::setPreferredPositioningMethods")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_SetPreferredPositioningMethods(ptr.Pointer(), C.int(methods))
 	}
 }
 
 func (ptr *QGeoPositionInfoSource) StartUpdates() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::startUpdates")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_StartUpdates(ptr.Pointer())
 	}
 }
 
 func (ptr *QGeoPositionInfoSource) StopUpdates() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::stopUpdates")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_StopUpdates(ptr.Pointer())
 	}
 }
 
 func (ptr *QGeoPositionInfoSource) SupportedPositioningMethods() QGeoPositionInfoSource__PositioningMethod {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::supportedPositioningMethods")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QGeoPositionInfoSource__PositioningMethod(C.QGeoPositionInfoSource_SupportedPositioningMethods(ptr.Pointer()))
 	}
@@ -143,6 +228,12 @@ func (ptr *QGeoPositionInfoSource) SupportedPositioningMethods() QGeoPositionInf
 }
 
 func (ptr *QGeoPositionInfoSource) ConnectUpdateTimeout(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::updateTimeout")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_ConnectUpdateTimeout(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "updateTimeout", f)
@@ -150,6 +241,12 @@ func (ptr *QGeoPositionInfoSource) ConnectUpdateTimeout(f func()) {
 }
 
 func (ptr *QGeoPositionInfoSource) DisconnectUpdateTimeout() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::updateTimeout")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_DisconnectUpdateTimeout(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "updateTimeout")
@@ -158,10 +255,22 @@ func (ptr *QGeoPositionInfoSource) DisconnectUpdateTimeout() {
 
 //export callbackQGeoPositionInfoSourceUpdateTimeout
 func callbackQGeoPositionInfoSourceUpdateTimeout(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::updateTimeout")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "updateTimeout").(func())()
 }
 
 func (ptr *QGeoPositionInfoSource) DestroyQGeoPositionInfoSource() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfoSource::~QGeoPositionInfoSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_DestroyQGeoPositionInfoSource(ptr.Pointer())
 		ptr.SetPointer(nil)

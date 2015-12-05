@@ -1,10 +1,11 @@
 package gui
 
-//#include "qtextline.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -58,6 +59,12 @@ const (
 )
 
 func (ptr *QTextLine) XToCursor(x float64, cpos QTextLine__CursorPosition) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::xToCursor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextLine_XToCursor(ptr.Pointer(), C.double(x), C.int(cpos)))
 	}
@@ -65,10 +72,22 @@ func (ptr *QTextLine) XToCursor(x float64, cpos QTextLine__CursorPosition) int {
 }
 
 func NewQTextLine() *QTextLine {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::QTextLine")
+		}
+	}()
+
 	return NewQTextLineFromPointer(C.QTextLine_NewQTextLine())
 }
 
 func (ptr *QTextLine) Ascent() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::ascent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLine_Ascent(ptr.Pointer()))
 	}
@@ -76,6 +95,12 @@ func (ptr *QTextLine) Ascent() float64 {
 }
 
 func (ptr *QTextLine) CursorToX(cursorPos int, edge QTextLine__Edge) float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::cursorToX")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLine_CursorToX(ptr.Pointer(), C.int(cursorPos), C.int(edge)))
 	}
@@ -83,6 +108,12 @@ func (ptr *QTextLine) CursorToX(cursorPos int, edge QTextLine__Edge) float64 {
 }
 
 func (ptr *QTextLine) CursorToX2(cursorPos int, edge QTextLine__Edge) float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::cursorToX")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLine_CursorToX2(ptr.Pointer(), C.int(cursorPos), C.int(edge)))
 	}
@@ -90,6 +121,12 @@ func (ptr *QTextLine) CursorToX2(cursorPos int, edge QTextLine__Edge) float64 {
 }
 
 func (ptr *QTextLine) Descent() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::descent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLine_Descent(ptr.Pointer()))
 	}
@@ -97,6 +134,12 @@ func (ptr *QTextLine) Descent() float64 {
 }
 
 func (ptr *QTextLine) Height() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::height")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLine_Height(ptr.Pointer()))
 	}
@@ -104,6 +147,12 @@ func (ptr *QTextLine) Height() float64 {
 }
 
 func (ptr *QTextLine) HorizontalAdvance() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::horizontalAdvance")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLine_HorizontalAdvance(ptr.Pointer()))
 	}
@@ -111,6 +160,12 @@ func (ptr *QTextLine) HorizontalAdvance() float64 {
 }
 
 func (ptr *QTextLine) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTextLine_IsValid(ptr.Pointer()) != 0
 	}
@@ -118,6 +173,12 @@ func (ptr *QTextLine) IsValid() bool {
 }
 
 func (ptr *QTextLine) Leading() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::leading")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLine_Leading(ptr.Pointer()))
 	}
@@ -125,6 +186,12 @@ func (ptr *QTextLine) Leading() float64 {
 }
 
 func (ptr *QTextLine) LeadingIncluded() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::leadingIncluded")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTextLine_LeadingIncluded(ptr.Pointer()) != 0
 	}
@@ -132,6 +199,12 @@ func (ptr *QTextLine) LeadingIncluded() bool {
 }
 
 func (ptr *QTextLine) LineNumber() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::lineNumber")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextLine_LineNumber(ptr.Pointer()))
 	}
@@ -139,6 +212,12 @@ func (ptr *QTextLine) LineNumber() int {
 }
 
 func (ptr *QTextLine) NaturalTextWidth() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::naturalTextWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLine_NaturalTextWidth(ptr.Pointer()))
 	}
@@ -146,36 +225,72 @@ func (ptr *QTextLine) NaturalTextWidth() float64 {
 }
 
 func (ptr *QTextLine) SetLeadingIncluded(included bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::setLeadingIncluded")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextLine_SetLeadingIncluded(ptr.Pointer(), C.int(qt.GoBoolToInt(included)))
 	}
 }
 
 func (ptr *QTextLine) SetLineWidth(width float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::setLineWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextLine_SetLineWidth(ptr.Pointer(), C.double(width))
 	}
 }
 
 func (ptr *QTextLine) SetNumColumns(numColumns int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::setNumColumns")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextLine_SetNumColumns(ptr.Pointer(), C.int(numColumns))
 	}
 }
 
 func (ptr *QTextLine) SetNumColumns2(numColumns int, alignmentWidth float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::setNumColumns")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextLine_SetNumColumns2(ptr.Pointer(), C.int(numColumns), C.double(alignmentWidth))
 	}
 }
 
 func (ptr *QTextLine) SetPosition(pos core.QPointF_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::setPosition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextLine_SetPosition(ptr.Pointer(), core.PointerFromQPointF(pos))
 	}
 }
 
 func (ptr *QTextLine) TextLength() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::textLength")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextLine_TextLength(ptr.Pointer()))
 	}
@@ -183,6 +298,12 @@ func (ptr *QTextLine) TextLength() int {
 }
 
 func (ptr *QTextLine) TextStart() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::textStart")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextLine_TextStart(ptr.Pointer()))
 	}
@@ -190,6 +311,12 @@ func (ptr *QTextLine) TextStart() int {
 }
 
 func (ptr *QTextLine) Width() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::width")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLine_Width(ptr.Pointer()))
 	}
@@ -197,6 +324,12 @@ func (ptr *QTextLine) Width() float64 {
 }
 
 func (ptr *QTextLine) X() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::x")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLine_X(ptr.Pointer()))
 	}
@@ -204,6 +337,12 @@ func (ptr *QTextLine) X() float64 {
 }
 
 func (ptr *QTextLine) Y() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextLine::y")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLine_Y(ptr.Pointer()))
 	}

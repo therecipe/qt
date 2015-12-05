@@ -1,9 +1,10 @@
 package sensors
 
-//#include "qaccelerometerreading.h"
+//#include "sensors.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQAccelerometerReading(ptr QAccelerometerReading_ITF) unsafe.Poin
 func NewQAccelerometerReadingFromPointer(ptr unsafe.Pointer) *QAccelerometerReading {
 	var n = new(QAccelerometerReading)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QAccelerometerReading_") {
 		n.SetObjectName("QAccelerometerReading_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QAccelerometerReading) QAccelerometerReading_PTR() *QAccelerometerRea
 }
 
 func (ptr *QAccelerometerReading) X() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccelerometerReading::x")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QAccelerometerReading_X(ptr.Pointer()))
 	}
@@ -44,6 +51,12 @@ func (ptr *QAccelerometerReading) X() float64 {
 }
 
 func (ptr *QAccelerometerReading) Y() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccelerometerReading::y")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QAccelerometerReading_Y(ptr.Pointer()))
 	}
@@ -51,6 +64,12 @@ func (ptr *QAccelerometerReading) Y() float64 {
 }
 
 func (ptr *QAccelerometerReading) Z() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccelerometerReading::z")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QAccelerometerReading_Z(ptr.Pointer()))
 	}
@@ -58,18 +77,36 @@ func (ptr *QAccelerometerReading) Z() float64 {
 }
 
 func (ptr *QAccelerometerReading) SetX(x float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccelerometerReading::setX")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAccelerometerReading_SetX(ptr.Pointer(), C.double(x))
 	}
 }
 
 func (ptr *QAccelerometerReading) SetY(y float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccelerometerReading::setY")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAccelerometerReading_SetY(ptr.Pointer(), C.double(y))
 	}
 }
 
 func (ptr *QAccelerometerReading) SetZ(z float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccelerometerReading::setZ")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAccelerometerReading_SetZ(ptr.Pointer(), C.double(z))
 	}

@@ -1,8 +1,9 @@
 package gui
 
-//#include "qtextblockuserdata.h"
+//#include "gui.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,6 +41,12 @@ func (ptr *QTextBlockUserData) QTextBlockUserData_PTR() *QTextBlockUserData {
 }
 
 func (ptr *QTextBlockUserData) DestroyQTextBlockUserData() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBlockUserData::~QTextBlockUserData")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextBlockUserData_DestroyQTextBlockUserData(ptr.Pointer())
 	}

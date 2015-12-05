@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qwidgetitem.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,10 +35,22 @@ func (ptr *QWidgetItem) QWidgetItem_PTR() *QWidgetItem {
 }
 
 func NewQWidgetItem(widget QWidget_ITF) *QWidgetItem {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWidgetItem::QWidgetItem")
+		}
+	}()
+
 	return NewQWidgetItemFromPointer(C.QWidgetItem_NewQWidgetItem(PointerFromQWidget(widget)))
 }
 
 func (ptr *QWidgetItem) ControlTypes() QSizePolicy__ControlType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWidgetItem::controlTypes")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QSizePolicy__ControlType(C.QWidgetItem_ControlTypes(ptr.Pointer()))
 	}
@@ -45,6 +58,12 @@ func (ptr *QWidgetItem) ControlTypes() QSizePolicy__ControlType {
 }
 
 func (ptr *QWidgetItem) ExpandingDirections() core.Qt__Orientation {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWidgetItem::expandingDirections")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QWidgetItem_ExpandingDirections(ptr.Pointer()))
 	}
@@ -52,6 +71,12 @@ func (ptr *QWidgetItem) ExpandingDirections() core.Qt__Orientation {
 }
 
 func (ptr *QWidgetItem) HasHeightForWidth() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWidgetItem::hasHeightForWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QWidgetItem_HasHeightForWidth(ptr.Pointer()) != 0
 	}
@@ -59,6 +84,12 @@ func (ptr *QWidgetItem) HasHeightForWidth() bool {
 }
 
 func (ptr *QWidgetItem) HeightForWidth(w int) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWidgetItem::heightForWidth")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QWidgetItem_HeightForWidth(ptr.Pointer(), C.int(w)))
 	}
@@ -66,6 +97,12 @@ func (ptr *QWidgetItem) HeightForWidth(w int) int {
 }
 
 func (ptr *QWidgetItem) IsEmpty() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWidgetItem::isEmpty")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QWidgetItem_IsEmpty(ptr.Pointer()) != 0
 	}
@@ -73,12 +110,24 @@ func (ptr *QWidgetItem) IsEmpty() bool {
 }
 
 func (ptr *QWidgetItem) SetGeometry(rect core.QRect_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWidgetItem::setGeometry")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QWidgetItem_SetGeometry(ptr.Pointer(), core.PointerFromQRect(rect))
 	}
 }
 
 func (ptr *QWidgetItem) Widget() *QWidget {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWidgetItem::widget")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QWidgetItem_Widget(ptr.Pointer()))
 	}
@@ -86,6 +135,12 @@ func (ptr *QWidgetItem) Widget() *QWidget {
 }
 
 func (ptr *QWidgetItem) DestroyQWidgetItem() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QWidgetItem::~QWidgetItem")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QWidgetItem_DestroyQWidgetItem(ptr.Pointer())
 	}

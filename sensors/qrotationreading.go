@@ -1,9 +1,10 @@
 package sensors
 
-//#include "qrotationreading.h"
+//#include "sensors.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQRotationReading(ptr QRotationReading_ITF) unsafe.Pointer {
 func NewQRotationReadingFromPointer(ptr unsafe.Pointer) *QRotationReading {
 	var n = new(QRotationReading)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QRotationReading_") {
 		n.SetObjectName("QRotationReading_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QRotationReading) QRotationReading_PTR() *QRotationReading {
 }
 
 func (ptr *QRotationReading) X() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRotationReading::x")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QRotationReading_X(ptr.Pointer()))
 	}
@@ -44,6 +51,12 @@ func (ptr *QRotationReading) X() float64 {
 }
 
 func (ptr *QRotationReading) Y() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRotationReading::y")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QRotationReading_Y(ptr.Pointer()))
 	}
@@ -51,6 +64,12 @@ func (ptr *QRotationReading) Y() float64 {
 }
 
 func (ptr *QRotationReading) Z() float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRotationReading::z")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QRotationReading_Z(ptr.Pointer()))
 	}
@@ -58,6 +77,12 @@ func (ptr *QRotationReading) Z() float64 {
 }
 
 func (ptr *QRotationReading) SetFromEuler(x float64, y float64, z float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QRotationReading::setFromEuler")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QRotationReading_SetFromEuler(ptr.Pointer(), C.double(x), C.double(y), C.double(z))
 	}

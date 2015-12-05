@@ -1,8 +1,9 @@
 package xml
 
-//#include "qdomdocumenttype.h"
+//#include "xml.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,14 +34,32 @@ func (ptr *QDomDocumentType) QDomDocumentType_PTR() *QDomDocumentType {
 }
 
 func NewQDomDocumentType() *QDomDocumentType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomDocumentType::QDomDocumentType")
+		}
+	}()
+
 	return NewQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType())
 }
 
 func NewQDomDocumentType2(n QDomDocumentType_ITF) *QDomDocumentType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomDocumentType::QDomDocumentType")
+		}
+	}()
+
 	return NewQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType2(PointerFromQDomDocumentType(n)))
 }
 
 func (ptr *QDomDocumentType) InternalSubset() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomDocumentType::internalSubset")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomDocumentType_InternalSubset(ptr.Pointer()))
 	}
@@ -48,6 +67,12 @@ func (ptr *QDomDocumentType) InternalSubset() string {
 }
 
 func (ptr *QDomDocumentType) Name() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomDocumentType::name")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomDocumentType_Name(ptr.Pointer()))
 	}
@@ -55,6 +80,12 @@ func (ptr *QDomDocumentType) Name() string {
 }
 
 func (ptr *QDomDocumentType) NodeType() QDomNode__NodeType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomDocumentType::nodeType")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QDomNode__NodeType(C.QDomDocumentType_NodeType(ptr.Pointer()))
 	}
@@ -62,6 +93,12 @@ func (ptr *QDomDocumentType) NodeType() QDomNode__NodeType {
 }
 
 func (ptr *QDomDocumentType) PublicId() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomDocumentType::publicId")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomDocumentType_PublicId(ptr.Pointer()))
 	}
@@ -69,6 +106,12 @@ func (ptr *QDomDocumentType) PublicId() string {
 }
 
 func (ptr *QDomDocumentType) SystemId() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QDomDocumentType::systemId")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QDomDocumentType_SystemId(ptr.Pointer()))
 	}

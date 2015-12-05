@@ -1,9 +1,10 @@
 package core
 
-//#include "qidentityproxymodel.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQIdentityProxyModel(ptr QIdentityProxyModel_ITF) unsafe.Pointer 
 func NewQIdentityProxyModelFromPointer(ptr unsafe.Pointer) *QIdentityProxyModel {
 	var n = new(QIdentityProxyModel)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QIdentityProxyModel_") {
 		n.SetObjectName("QIdentityProxyModel_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,10 +38,22 @@ func (ptr *QIdentityProxyModel) QIdentityProxyModel_PTR() *QIdentityProxyModel {
 }
 
 func NewQIdentityProxyModel(parent QObject_ITF) *QIdentityProxyModel {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::QIdentityProxyModel")
+		}
+	}()
+
 	return NewQIdentityProxyModelFromPointer(C.QIdentityProxyModel_NewQIdentityProxyModel(PointerFromQObject(parent)))
 }
 
 func (ptr *QIdentityProxyModel) ColumnCount(parent QModelIndex_ITF) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::columnCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QIdentityProxyModel_ColumnCount(ptr.Pointer(), PointerFromQModelIndex(parent)))
 	}
@@ -48,6 +61,12 @@ func (ptr *QIdentityProxyModel) ColumnCount(parent QModelIndex_ITF) int {
 }
 
 func (ptr *QIdentityProxyModel) DropMimeData(data QMimeData_ITF, action Qt__DropAction, row int, column int, parent QModelIndex_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::dropMimeData")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QIdentityProxyModel_DropMimeData(ptr.Pointer(), PointerFromQMimeData(data), C.int(action), C.int(row), C.int(column), PointerFromQModelIndex(parent)) != 0
 	}
@@ -55,6 +74,12 @@ func (ptr *QIdentityProxyModel) DropMimeData(data QMimeData_ITF, action Qt__Drop
 }
 
 func (ptr *QIdentityProxyModel) HeaderData(section int, orientation Qt__Orientation, role int) *QVariant {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::headerData")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQVariantFromPointer(C.QIdentityProxyModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
 	}
@@ -62,6 +87,12 @@ func (ptr *QIdentityProxyModel) HeaderData(section int, orientation Qt__Orientat
 }
 
 func (ptr *QIdentityProxyModel) Index(row int, column int, parent QModelIndex_ITF) *QModelIndex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::index")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QIdentityProxyModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
 	}
@@ -69,6 +100,12 @@ func (ptr *QIdentityProxyModel) Index(row int, column int, parent QModelIndex_IT
 }
 
 func (ptr *QIdentityProxyModel) InsertColumns(column int, count int, parent QModelIndex_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::insertColumns")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QIdentityProxyModel_InsertColumns(ptr.Pointer(), C.int(column), C.int(count), PointerFromQModelIndex(parent)) != 0
 	}
@@ -76,6 +113,12 @@ func (ptr *QIdentityProxyModel) InsertColumns(column int, count int, parent QMod
 }
 
 func (ptr *QIdentityProxyModel) InsertRows(row int, count int, parent QModelIndex_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::insertRows")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QIdentityProxyModel_InsertRows(ptr.Pointer(), C.int(row), C.int(count), PointerFromQModelIndex(parent)) != 0
 	}
@@ -83,6 +126,12 @@ func (ptr *QIdentityProxyModel) InsertRows(row int, count int, parent QModelInde
 }
 
 func (ptr *QIdentityProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QModelIndex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::mapFromSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QIdentityProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
 	}
@@ -90,6 +139,12 @@ func (ptr *QIdentityProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QMod
 }
 
 func (ptr *QIdentityProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelIndex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::mapToSource")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QIdentityProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
 	}
@@ -97,6 +152,12 @@ func (ptr *QIdentityProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelI
 }
 
 func (ptr *QIdentityProxyModel) Parent(child QModelIndex_ITF) *QModelIndex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::parent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QIdentityProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(child)))
 	}
@@ -104,6 +165,12 @@ func (ptr *QIdentityProxyModel) Parent(child QModelIndex_ITF) *QModelIndex {
 }
 
 func (ptr *QIdentityProxyModel) RemoveColumns(column int, count int, parent QModelIndex_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::removeColumns")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QIdentityProxyModel_RemoveColumns(ptr.Pointer(), C.int(column), C.int(count), PointerFromQModelIndex(parent)) != 0
 	}
@@ -111,6 +178,12 @@ func (ptr *QIdentityProxyModel) RemoveColumns(column int, count int, parent QMod
 }
 
 func (ptr *QIdentityProxyModel) RemoveRows(row int, count int, parent QModelIndex_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::removeRows")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QIdentityProxyModel_RemoveRows(ptr.Pointer(), C.int(row), C.int(count), PointerFromQModelIndex(parent)) != 0
 	}
@@ -118,6 +191,12 @@ func (ptr *QIdentityProxyModel) RemoveRows(row int, count int, parent QModelInde
 }
 
 func (ptr *QIdentityProxyModel) RowCount(parent QModelIndex_ITF) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::rowCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QIdentityProxyModel_RowCount(ptr.Pointer(), PointerFromQModelIndex(parent)))
 	}
@@ -125,12 +204,24 @@ func (ptr *QIdentityProxyModel) RowCount(parent QModelIndex_ITF) int {
 }
 
 func (ptr *QIdentityProxyModel) SetSourceModel(newSourceModel QAbstractItemModel_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::setSourceModel")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QIdentityProxyModel_SetSourceModel(ptr.Pointer(), PointerFromQAbstractItemModel(newSourceModel))
 	}
 }
 
 func (ptr *QIdentityProxyModel) Sibling(row int, column int, idx QModelIndex_ITF) *QModelIndex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::sibling")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQModelIndexFromPointer(C.QIdentityProxyModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
 	}
@@ -138,6 +229,12 @@ func (ptr *QIdentityProxyModel) Sibling(row int, column int, idx QModelIndex_ITF
 }
 
 func (ptr *QIdentityProxyModel) DestroyQIdentityProxyModel() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QIdentityProxyModel::~QIdentityProxyModel")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QIdentityProxyModel_DestroyQIdentityProxyModel(ptr.Pointer())
 		ptr.SetPointer(nil)

@@ -1,10 +1,11 @@
 package nfc
 
-//#include "qnearfieldmanager.h"
+//#include "nfc.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQNearFieldManager(ptr QNearFieldManager_ITF) unsafe.Pointer {
 func NewQNearFieldManagerFromPointer(ptr unsafe.Pointer) *QNearFieldManager {
 	var n = new(QNearFieldManager)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QNearFieldManager_") {
 		n.SetObjectName("QNearFieldManager_" + qt.RandomIdentifier())
 	}
 	return n
@@ -48,6 +49,12 @@ const (
 )
 
 func (ptr *QNearFieldManager) RegisterNdefMessageHandler(object core.QObject_ITF, method string) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::registerNdefMessageHandler")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QNearFieldManager_RegisterNdefMessageHandler(ptr.Pointer(), core.PointerFromQObject(object), C.CString(method)))
 	}
@@ -55,6 +62,12 @@ func (ptr *QNearFieldManager) RegisterNdefMessageHandler(object core.QObject_ITF
 }
 
 func (ptr *QNearFieldManager) StartTargetDetection() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::startTargetDetection")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNearFieldManager_StartTargetDetection(ptr.Pointer()) != 0
 	}
@@ -62,10 +75,22 @@ func (ptr *QNearFieldManager) StartTargetDetection() bool {
 }
 
 func NewQNearFieldManager(parent core.QObject_ITF) *QNearFieldManager {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::QNearFieldManager")
+		}
+	}()
+
 	return NewQNearFieldManagerFromPointer(C.QNearFieldManager_NewQNearFieldManager(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QNearFieldManager) IsAvailable() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::isAvailable")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNearFieldManager_IsAvailable(ptr.Pointer()) != 0
 	}
@@ -73,6 +98,12 @@ func (ptr *QNearFieldManager) IsAvailable() bool {
 }
 
 func (ptr *QNearFieldManager) RegisterNdefMessageHandler2(typeNameFormat QNdefRecord__TypeNameFormat, ty core.QByteArray_ITF, object core.QObject_ITF, method string) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::registerNdefMessageHandler")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QNearFieldManager_RegisterNdefMessageHandler2(ptr.Pointer(), C.int(typeNameFormat), core.PointerFromQByteArray(ty), core.PointerFromQObject(object), C.CString(method)))
 	}
@@ -80,6 +111,12 @@ func (ptr *QNearFieldManager) RegisterNdefMessageHandler2(typeNameFormat QNdefRe
 }
 
 func (ptr *QNearFieldManager) RegisterNdefMessageHandler3(filter QNdefFilter_ITF, object core.QObject_ITF, method string) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::registerNdefMessageHandler")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QNearFieldManager_RegisterNdefMessageHandler3(ptr.Pointer(), PointerFromQNdefFilter(filter), core.PointerFromQObject(object), C.CString(method)))
 	}
@@ -87,18 +124,36 @@ func (ptr *QNearFieldManager) RegisterNdefMessageHandler3(filter QNdefFilter_ITF
 }
 
 func (ptr *QNearFieldManager) SetTargetAccessModes(accessModes QNearFieldManager__TargetAccessMode) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::setTargetAccessModes")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_SetTargetAccessModes(ptr.Pointer(), C.int(accessModes))
 	}
 }
 
 func (ptr *QNearFieldManager) StopTargetDetection() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::stopTargetDetection")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_StopTargetDetection(ptr.Pointer())
 	}
 }
 
 func (ptr *QNearFieldManager) TargetAccessModes() QNearFieldManager__TargetAccessMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::targetAccessModes")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QNearFieldManager__TargetAccessMode(C.QNearFieldManager_TargetAccessModes(ptr.Pointer()))
 	}
@@ -106,6 +161,12 @@ func (ptr *QNearFieldManager) TargetAccessModes() QNearFieldManager__TargetAcces
 }
 
 func (ptr *QNearFieldManager) ConnectTargetDetected(f func(target *QNearFieldTarget)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::targetDetected")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_ConnectTargetDetected(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "targetDetected", f)
@@ -113,6 +174,12 @@ func (ptr *QNearFieldManager) ConnectTargetDetected(f func(target *QNearFieldTar
 }
 
 func (ptr *QNearFieldManager) DisconnectTargetDetected() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::targetDetected")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_DisconnectTargetDetected(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "targetDetected")
@@ -121,10 +188,22 @@ func (ptr *QNearFieldManager) DisconnectTargetDetected() {
 
 //export callbackQNearFieldManagerTargetDetected
 func callbackQNearFieldManagerTargetDetected(ptrName *C.char, target unsafe.Pointer) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::targetDetected")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "targetDetected").(func(*QNearFieldTarget))(NewQNearFieldTargetFromPointer(target))
 }
 
 func (ptr *QNearFieldManager) ConnectTargetLost(f func(target *QNearFieldTarget)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::targetLost")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_ConnectTargetLost(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "targetLost", f)
@@ -132,6 +211,12 @@ func (ptr *QNearFieldManager) ConnectTargetLost(f func(target *QNearFieldTarget)
 }
 
 func (ptr *QNearFieldManager) DisconnectTargetLost() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::targetLost")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_DisconnectTargetLost(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "targetLost")
@@ -140,10 +225,22 @@ func (ptr *QNearFieldManager) DisconnectTargetLost() {
 
 //export callbackQNearFieldManagerTargetLost
 func callbackQNearFieldManagerTargetLost(ptrName *C.char, target unsafe.Pointer) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::targetLost")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "targetLost").(func(*QNearFieldTarget))(NewQNearFieldTargetFromPointer(target))
 }
 
 func (ptr *QNearFieldManager) UnregisterNdefMessageHandler(handlerId int) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::unregisterNdefMessageHandler")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNearFieldManager_UnregisterNdefMessageHandler(ptr.Pointer(), C.int(handlerId)) != 0
 	}
@@ -151,6 +248,12 @@ func (ptr *QNearFieldManager) UnregisterNdefMessageHandler(handlerId int) bool {
 }
 
 func (ptr *QNearFieldManager) DestroyQNearFieldManager() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldManager::~QNearFieldManager")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldManager_DestroyQNearFieldManager(ptr.Pointer())
 		ptr.SetPointer(nil)

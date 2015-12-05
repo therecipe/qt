@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qgraphicsscenewheelevent.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,6 +35,12 @@ func (ptr *QGraphicsSceneWheelEvent) QGraphicsSceneWheelEvent_PTR() *QGraphicsSc
 }
 
 func (ptr *QGraphicsSceneWheelEvent) Buttons() core.Qt__MouseButton {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneWheelEvent::buttons")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__MouseButton(C.QGraphicsSceneWheelEvent_Buttons(ptr.Pointer()))
 	}
@@ -41,6 +48,12 @@ func (ptr *QGraphicsSceneWheelEvent) Buttons() core.Qt__MouseButton {
 }
 
 func (ptr *QGraphicsSceneWheelEvent) Delta() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneWheelEvent::delta")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QGraphicsSceneWheelEvent_Delta(ptr.Pointer()))
 	}
@@ -48,6 +61,12 @@ func (ptr *QGraphicsSceneWheelEvent) Delta() int {
 }
 
 func (ptr *QGraphicsSceneWheelEvent) Modifiers() core.Qt__KeyboardModifier {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneWheelEvent::modifiers")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__KeyboardModifier(C.QGraphicsSceneWheelEvent_Modifiers(ptr.Pointer()))
 	}
@@ -55,6 +74,12 @@ func (ptr *QGraphicsSceneWheelEvent) Modifiers() core.Qt__KeyboardModifier {
 }
 
 func (ptr *QGraphicsSceneWheelEvent) Orientation() core.Qt__Orientation {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneWheelEvent::orientation")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.Qt__Orientation(C.QGraphicsSceneWheelEvent_Orientation(ptr.Pointer()))
 	}
@@ -62,6 +87,12 @@ func (ptr *QGraphicsSceneWheelEvent) Orientation() core.Qt__Orientation {
 }
 
 func (ptr *QGraphicsSceneWheelEvent) DestroyQGraphicsSceneWheelEvent() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGraphicsSceneWheelEvent::~QGraphicsSceneWheelEvent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGraphicsSceneWheelEvent_DestroyQGraphicsSceneWheelEvent(ptr.Pointer())
 	}

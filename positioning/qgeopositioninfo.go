@@ -1,9 +1,10 @@
 package positioning
 
-//#include "qgeopositioninfo.h"
+//#include "positioning.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -53,18 +54,42 @@ const (
 )
 
 func NewQGeoPositionInfo() *QGeoPositionInfo {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfo::QGeoPositionInfo")
+		}
+	}()
+
 	return NewQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo())
 }
 
 func NewQGeoPositionInfo2(coordinate QGeoCoordinate_ITF, timestamp core.QDateTime_ITF) *QGeoPositionInfo {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfo::QGeoPositionInfo")
+		}
+	}()
+
 	return NewQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo2(PointerFromQGeoCoordinate(coordinate), core.PointerFromQDateTime(timestamp)))
 }
 
 func NewQGeoPositionInfo3(other QGeoPositionInfo_ITF) *QGeoPositionInfo {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfo::QGeoPositionInfo")
+		}
+	}()
+
 	return NewQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo3(PointerFromQGeoPositionInfo(other)))
 }
 
 func (ptr *QGeoPositionInfo) Attribute(attribute QGeoPositionInfo__Attribute) float64 {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfo::attribute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return float64(C.QGeoPositionInfo_Attribute(ptr.Pointer(), C.int(attribute)))
 	}
@@ -72,6 +97,12 @@ func (ptr *QGeoPositionInfo) Attribute(attribute QGeoPositionInfo__Attribute) fl
 }
 
 func (ptr *QGeoPositionInfo) HasAttribute(attribute QGeoPositionInfo__Attribute) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfo::hasAttribute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGeoPositionInfo_HasAttribute(ptr.Pointer(), C.int(attribute)) != 0
 	}
@@ -79,6 +110,12 @@ func (ptr *QGeoPositionInfo) HasAttribute(attribute QGeoPositionInfo__Attribute)
 }
 
 func (ptr *QGeoPositionInfo) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfo::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGeoPositionInfo_IsValid(ptr.Pointer()) != 0
 	}
@@ -86,30 +123,60 @@ func (ptr *QGeoPositionInfo) IsValid() bool {
 }
 
 func (ptr *QGeoPositionInfo) RemoveAttribute(attribute QGeoPositionInfo__Attribute) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfo::removeAttribute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfo_RemoveAttribute(ptr.Pointer(), C.int(attribute))
 	}
 }
 
 func (ptr *QGeoPositionInfo) SetAttribute(attribute QGeoPositionInfo__Attribute, value float64) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfo::setAttribute")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfo_SetAttribute(ptr.Pointer(), C.int(attribute), C.double(value))
 	}
 }
 
 func (ptr *QGeoPositionInfo) SetCoordinate(coordinate QGeoCoordinate_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfo::setCoordinate")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfo_SetCoordinate(ptr.Pointer(), PointerFromQGeoCoordinate(coordinate))
 	}
 }
 
 func (ptr *QGeoPositionInfo) SetTimestamp(timestamp core.QDateTime_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfo::setTimestamp")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfo_SetTimestamp(ptr.Pointer(), core.PointerFromQDateTime(timestamp))
 	}
 }
 
 func (ptr *QGeoPositionInfo) Timestamp() *core.QDateTime {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfo::timestamp")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQDateTimeFromPointer(C.QGeoPositionInfo_Timestamp(ptr.Pointer()))
 	}
@@ -117,6 +184,12 @@ func (ptr *QGeoPositionInfo) Timestamp() *core.QDateTime {
 }
 
 func (ptr *QGeoPositionInfo) DestroyQGeoPositionInfo() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGeoPositionInfo::~QGeoPositionInfo")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfo_DestroyQGeoPositionInfo(ptr.Pointer())
 	}

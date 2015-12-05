@@ -1,8 +1,9 @@
 package widgets
 
-//#include "qstyleoptiondockwidget.h"
+//#include "widgets.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -47,9 +48,21 @@ var (
 )
 
 func NewQStyleOptionDockWidget() *QStyleOptionDockWidget {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionDockWidget::QStyleOptionDockWidget")
+		}
+	}()
+
 	return NewQStyleOptionDockWidgetFromPointer(C.QStyleOptionDockWidget_NewQStyleOptionDockWidget())
 }
 
 func NewQStyleOptionDockWidget2(other QStyleOptionDockWidget_ITF) *QStyleOptionDockWidget {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QStyleOptionDockWidget::QStyleOptionDockWidget")
+		}
+	}()
+
 	return NewQStyleOptionDockWidgetFromPointer(C.QStyleOptionDockWidget_NewQStyleOptionDockWidget2(PointerFromQStyleOptionDockWidget(other)))
 }

@@ -1,10 +1,11 @@
 package nfc
 
-//#include "qnearfieldtarget.h"
+//#include "nfc.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQNearFieldTarget(ptr QNearFieldTarget_ITF) unsafe.Pointer {
 func NewQNearFieldTargetFromPointer(ptr unsafe.Pointer) *QNearFieldTarget {
 	var n = new(QNearFieldTarget)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QNearFieldTarget_") {
 		n.SetObjectName("QNearFieldTarget_" + qt.RandomIdentifier())
 	}
 	return n
@@ -75,6 +76,12 @@ const (
 )
 
 func (ptr *QNearFieldTarget) AccessMethods() QNearFieldTarget__AccessMethod {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldTarget::accessMethods")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QNearFieldTarget__AccessMethod(C.QNearFieldTarget_AccessMethods(ptr.Pointer()))
 	}
@@ -82,6 +89,12 @@ func (ptr *QNearFieldTarget) AccessMethods() QNearFieldTarget__AccessMethod {
 }
 
 func (ptr *QNearFieldTarget) ConnectDisconnected(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldTarget::disconnected")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_ConnectDisconnected(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "disconnected", f)
@@ -89,6 +102,12 @@ func (ptr *QNearFieldTarget) ConnectDisconnected(f func()) {
 }
 
 func (ptr *QNearFieldTarget) DisconnectDisconnected() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldTarget::disconnected")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DisconnectDisconnected(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "disconnected")
@@ -97,10 +116,22 @@ func (ptr *QNearFieldTarget) DisconnectDisconnected() {
 
 //export callbackQNearFieldTargetDisconnected
 func callbackQNearFieldTargetDisconnected(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldTarget::disconnected")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "disconnected").(func())()
 }
 
 func (ptr *QNearFieldTarget) HasNdefMessage() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldTarget::hasNdefMessage")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNearFieldTarget_HasNdefMessage(ptr.Pointer()) != 0
 	}
@@ -108,6 +139,12 @@ func (ptr *QNearFieldTarget) HasNdefMessage() bool {
 }
 
 func (ptr *QNearFieldTarget) IsProcessingCommand() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldTarget::isProcessingCommand")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QNearFieldTarget_IsProcessingCommand(ptr.Pointer()) != 0
 	}
@@ -115,6 +152,12 @@ func (ptr *QNearFieldTarget) IsProcessingCommand() bool {
 }
 
 func (ptr *QNearFieldTarget) ConnectNdefMessagesWritten(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldTarget::ndefMessagesWritten")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_ConnectNdefMessagesWritten(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "ndefMessagesWritten", f)
@@ -122,6 +165,12 @@ func (ptr *QNearFieldTarget) ConnectNdefMessagesWritten(f func()) {
 }
 
 func (ptr *QNearFieldTarget) DisconnectNdefMessagesWritten() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldTarget::ndefMessagesWritten")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DisconnectNdefMessagesWritten(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "ndefMessagesWritten")
@@ -130,10 +179,22 @@ func (ptr *QNearFieldTarget) DisconnectNdefMessagesWritten() {
 
 //export callbackQNearFieldTargetNdefMessagesWritten
 func callbackQNearFieldTargetNdefMessagesWritten(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldTarget::ndefMessagesWritten")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "ndefMessagesWritten").(func())()
 }
 
 func (ptr *QNearFieldTarget) Type() QNearFieldTarget__Type {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldTarget::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QNearFieldTarget__Type(C.QNearFieldTarget_Type(ptr.Pointer()))
 	}
@@ -141,6 +202,12 @@ func (ptr *QNearFieldTarget) Type() QNearFieldTarget__Type {
 }
 
 func (ptr *QNearFieldTarget) Uid() *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldTarget::uid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QNearFieldTarget_Uid(ptr.Pointer()))
 	}
@@ -148,6 +215,12 @@ func (ptr *QNearFieldTarget) Uid() *core.QByteArray {
 }
 
 func (ptr *QNearFieldTarget) DestroyQNearFieldTarget() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QNearFieldTarget::~QNearFieldTarget")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DestroyQNearFieldTarget(ptr.Pointer())
 		ptr.SetPointer(nil)

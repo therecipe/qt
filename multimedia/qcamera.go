@@ -1,10 +1,11 @@
 package multimedia
 
-//#include "qcamera.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQCamera(ptr QCamera_ITF) unsafe.Pointer {
 func NewQCameraFromPointer(ptr unsafe.Pointer) *QCamera {
 	var n = new(QCamera)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QCamera_") {
 		n.SetObjectName("QCamera_" + qt.RandomIdentifier())
 	}
 	return n
@@ -121,6 +122,12 @@ const (
 )
 
 func (ptr *QCamera) CaptureMode() QCamera__CaptureMode {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::captureMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QCamera__CaptureMode(C.QCamera_CaptureMode(ptr.Pointer()))
 	}
@@ -128,18 +135,36 @@ func (ptr *QCamera) CaptureMode() QCamera__CaptureMode {
 }
 
 func (ptr *QCamera) SearchAndLock2(locks QCamera__LockType) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::searchAndLock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_SearchAndLock2(ptr.Pointer(), C.int(locks))
 	}
 }
 
 func (ptr *QCamera) SetCaptureMode(mode QCamera__CaptureMode) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::setCaptureMode")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_SetCaptureMode(ptr.Pointer(), C.int(mode))
 	}
 }
 
 func (ptr *QCamera) Status() QCamera__Status {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::status")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QCamera__Status(C.QCamera_Status(ptr.Pointer()))
 	}
@@ -147,22 +172,52 @@ func (ptr *QCamera) Status() QCamera__Status {
 }
 
 func NewQCamera4(position QCamera__Position, parent core.QObject_ITF) *QCamera {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::QCamera")
+		}
+	}()
+
 	return NewQCameraFromPointer(C.QCamera_NewQCamera4(C.int(position), core.PointerFromQObject(parent)))
 }
 
 func NewQCamera(parent core.QObject_ITF) *QCamera {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::QCamera")
+		}
+	}()
+
 	return NewQCameraFromPointer(C.QCamera_NewQCamera(core.PointerFromQObject(parent)))
 }
 
 func NewQCamera2(deviceName core.QByteArray_ITF, parent core.QObject_ITF) *QCamera {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::QCamera")
+		}
+	}()
+
 	return NewQCameraFromPointer(C.QCamera_NewQCamera2(core.PointerFromQByteArray(deviceName), core.PointerFromQObject(parent)))
 }
 
 func NewQCamera3(cameraInfo QCameraInfo_ITF, parent core.QObject_ITF) *QCamera {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::QCamera")
+		}
+	}()
+
 	return NewQCameraFromPointer(C.QCamera_NewQCamera3(PointerFromQCameraInfo(cameraInfo), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QCamera) ConnectCaptureModeChanged(f func(mode QCamera__CaptureMode)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::captureModeChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_ConnectCaptureModeChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "captureModeChanged", f)
@@ -170,6 +225,12 @@ func (ptr *QCamera) ConnectCaptureModeChanged(f func(mode QCamera__CaptureMode))
 }
 
 func (ptr *QCamera) DisconnectCaptureModeChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::captureModeChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_DisconnectCaptureModeChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "captureModeChanged")
@@ -178,10 +239,22 @@ func (ptr *QCamera) DisconnectCaptureModeChanged() {
 
 //export callbackQCameraCaptureModeChanged
 func callbackQCameraCaptureModeChanged(ptrName *C.char, mode C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::captureModeChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "captureModeChanged").(func(QCamera__CaptureMode))(QCamera__CaptureMode(mode))
 }
 
 func (ptr *QCamera) Error() QCamera__Error {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QCamera__Error(C.QCamera_Error(ptr.Pointer()))
 	}
@@ -189,6 +262,12 @@ func (ptr *QCamera) Error() QCamera__Error {
 }
 
 func (ptr *QCamera) ErrorString() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::errorString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QCamera_ErrorString(ptr.Pointer()))
 	}
@@ -196,6 +275,12 @@ func (ptr *QCamera) ErrorString() string {
 }
 
 func (ptr *QCamera) Exposure() *QCameraExposure {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::exposure")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQCameraExposureFromPointer(C.QCamera_Exposure(ptr.Pointer()))
 	}
@@ -203,6 +288,12 @@ func (ptr *QCamera) Exposure() *QCameraExposure {
 }
 
 func (ptr *QCamera) Focus() *QCameraFocus {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::focus")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQCameraFocusFromPointer(C.QCamera_Focus(ptr.Pointer()))
 	}
@@ -210,6 +301,12 @@ func (ptr *QCamera) Focus() *QCameraFocus {
 }
 
 func (ptr *QCamera) ImageProcessing() *QCameraImageProcessing {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::imageProcessing")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQCameraImageProcessingFromPointer(C.QCamera_ImageProcessing(ptr.Pointer()))
 	}
@@ -217,6 +314,12 @@ func (ptr *QCamera) ImageProcessing() *QCameraImageProcessing {
 }
 
 func (ptr *QCamera) IsCaptureModeSupported(mode QCamera__CaptureMode) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::isCaptureModeSupported")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QCamera_IsCaptureModeSupported(ptr.Pointer(), C.int(mode)) != 0
 	}
@@ -224,12 +327,24 @@ func (ptr *QCamera) IsCaptureModeSupported(mode QCamera__CaptureMode) bool {
 }
 
 func (ptr *QCamera) Load() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::load")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_Load(ptr.Pointer())
 	}
 }
 
 func (ptr *QCamera) ConnectLockFailed(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::lockFailed")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_ConnectLockFailed(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "lockFailed", f)
@@ -237,6 +352,12 @@ func (ptr *QCamera) ConnectLockFailed(f func()) {
 }
 
 func (ptr *QCamera) DisconnectLockFailed() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::lockFailed")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_DisconnectLockFailed(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "lockFailed")
@@ -245,10 +366,22 @@ func (ptr *QCamera) DisconnectLockFailed() {
 
 //export callbackQCameraLockFailed
 func callbackQCameraLockFailed(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::lockFailed")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "lockFailed").(func())()
 }
 
 func (ptr *QCamera) LockStatus() QCamera__LockStatus {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::lockStatus")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QCamera__LockStatus(C.QCamera_LockStatus(ptr.Pointer()))
 	}
@@ -256,6 +389,12 @@ func (ptr *QCamera) LockStatus() QCamera__LockStatus {
 }
 
 func (ptr *QCamera) LockStatus2(lockType QCamera__LockType) QCamera__LockStatus {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::lockStatus")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QCamera__LockStatus(C.QCamera_LockStatus2(ptr.Pointer(), C.int(lockType)))
 	}
@@ -263,6 +402,12 @@ func (ptr *QCamera) LockStatus2(lockType QCamera__LockType) QCamera__LockStatus 
 }
 
 func (ptr *QCamera) ConnectLockStatusChanged(f func(status QCamera__LockStatus, reason QCamera__LockChangeReason)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::lockStatusChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_ConnectLockStatusChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "lockStatusChanged", f)
@@ -270,6 +415,12 @@ func (ptr *QCamera) ConnectLockStatusChanged(f func(status QCamera__LockStatus, 
 }
 
 func (ptr *QCamera) DisconnectLockStatusChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::lockStatusChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_DisconnectLockStatusChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "lockStatusChanged")
@@ -278,10 +429,22 @@ func (ptr *QCamera) DisconnectLockStatusChanged() {
 
 //export callbackQCameraLockStatusChanged
 func callbackQCameraLockStatusChanged(ptrName *C.char, status C.int, reason C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::lockStatusChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "lockStatusChanged").(func(QCamera__LockStatus, QCamera__LockChangeReason))(QCamera__LockStatus(status), QCamera__LockChangeReason(reason))
 }
 
 func (ptr *QCamera) ConnectLocked(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::locked")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_ConnectLocked(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "locked", f)
@@ -289,6 +452,12 @@ func (ptr *QCamera) ConnectLocked(f func()) {
 }
 
 func (ptr *QCamera) DisconnectLocked() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::locked")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_DisconnectLocked(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "locked")
@@ -297,10 +466,22 @@ func (ptr *QCamera) DisconnectLocked() {
 
 //export callbackQCameraLocked
 func callbackQCameraLocked(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::locked")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "locked").(func())()
 }
 
 func (ptr *QCamera) RequestedLocks() QCamera__LockType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::requestedLocks")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QCamera__LockType(C.QCamera_RequestedLocks(ptr.Pointer()))
 	}
@@ -308,30 +489,60 @@ func (ptr *QCamera) RequestedLocks() QCamera__LockType {
 }
 
 func (ptr *QCamera) SearchAndLock() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::searchAndLock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_SearchAndLock(ptr.Pointer())
 	}
 }
 
 func (ptr *QCamera) SetViewfinder3(surface QAbstractVideoSurface_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::setViewfinder")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_SetViewfinder3(ptr.Pointer(), PointerFromQAbstractVideoSurface(surface))
 	}
 }
 
 func (ptr *QCamera) SetViewfinderSettings(settings QCameraViewfinderSettings_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::setViewfinderSettings")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_SetViewfinderSettings(ptr.Pointer(), PointerFromQCameraViewfinderSettings(settings))
 	}
 }
 
 func (ptr *QCamera) Start() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::start")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_Start(ptr.Pointer())
 	}
 }
 
 func (ptr *QCamera) ConnectStateChanged(f func(state QCamera__State)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::stateChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_ConnectStateChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "stateChanged", f)
@@ -339,6 +550,12 @@ func (ptr *QCamera) ConnectStateChanged(f func(state QCamera__State)) {
 }
 
 func (ptr *QCamera) DisconnectStateChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::stateChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_DisconnectStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "stateChanged")
@@ -347,10 +564,22 @@ func (ptr *QCamera) DisconnectStateChanged() {
 
 //export callbackQCameraStateChanged
 func callbackQCameraStateChanged(ptrName *C.char, state C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::stateChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "stateChanged").(func(QCamera__State))(QCamera__State(state))
 }
 
 func (ptr *QCamera) ConnectStatusChanged(f func(status QCamera__Status)) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::statusChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_ConnectStatusChanged(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "statusChanged", f)
@@ -358,6 +587,12 @@ func (ptr *QCamera) ConnectStatusChanged(f func(status QCamera__Status)) {
 }
 
 func (ptr *QCamera) DisconnectStatusChanged() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::statusChanged")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_DisconnectStatusChanged(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "statusChanged")
@@ -366,16 +601,34 @@ func (ptr *QCamera) DisconnectStatusChanged() {
 
 //export callbackQCameraStatusChanged
 func callbackQCameraStatusChanged(ptrName *C.char, status C.int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::statusChanged")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "statusChanged").(func(QCamera__Status))(QCamera__Status(status))
 }
 
 func (ptr *QCamera) Stop() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::stop")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_Stop(ptr.Pointer())
 	}
 }
 
 func (ptr *QCamera) SupportedLocks() QCamera__LockType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::supportedLocks")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QCamera__LockType(C.QCamera_SupportedLocks(ptr.Pointer()))
 	}
@@ -383,24 +636,48 @@ func (ptr *QCamera) SupportedLocks() QCamera__LockType {
 }
 
 func (ptr *QCamera) Unload() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::unload")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_Unload(ptr.Pointer())
 	}
 }
 
 func (ptr *QCamera) Unlock() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::unlock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_Unlock(ptr.Pointer())
 	}
 }
 
 func (ptr *QCamera) Unlock2(locks QCamera__LockType) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::unlock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_Unlock2(ptr.Pointer(), C.int(locks))
 	}
 }
 
 func (ptr *QCamera) DestroyQCamera() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCamera::~QCamera")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QCamera_DestroyQCamera(ptr.Pointer())
 		ptr.SetPointer(nil)

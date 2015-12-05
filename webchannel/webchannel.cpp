@@ -1,13 +1,12 @@
-#include "qwebchannel.h"
-#include <QModelIndex>
-#include <QWebChannelAbstractTransport>
-#include <QObject>
-#include <QMetaObject>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QWebChannel>
+#include "webchannel.h"
 #include "_cgo_export.h"
+
+#include <QJsonObject>
+#include <QMetaObject>
+#include <QObject>
+#include <QString>
+#include <QWebChannel>
+#include <QWebChannelAbstractTransport>
 
 class MyQWebChannel: public QWebChannel {
 public:
@@ -53,18 +52,6 @@ void QWebChannel_RegisterObject(void* ptr, char* id, void* object){
 void QWebChannel_DestroyQWebChannel(void* ptr){
 	static_cast<QWebChannel*>(ptr)->~QWebChannel();
 }
-
-#include "qwebchannelabstracttransport.h"
-#include <QJsonObject>
-#include <QString>
-#include <QVariant>
-#include <QUrl>
-#include <QModelIndex>
-#include <QObject>
-#include <QMetaObject>
-#include <QWebChannel>
-#include <QWebChannelAbstractTransport>
-#include "_cgo_export.h"
 
 class MyQWebChannelAbstractTransport: public QWebChannelAbstractTransport {
 public:

@@ -1,8 +1,9 @@
 package core
 
-//#include "qtextboundaryfinder.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -62,18 +63,42 @@ const (
 )
 
 func NewQTextBoundaryFinder() *QTextBoundaryFinder {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::QTextBoundaryFinder")
+		}
+	}()
+
 	return NewQTextBoundaryFinderFromPointer(C.QTextBoundaryFinder_NewQTextBoundaryFinder())
 }
 
 func NewQTextBoundaryFinder3(ty QTextBoundaryFinder__BoundaryType, stri string) *QTextBoundaryFinder {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::QTextBoundaryFinder")
+		}
+	}()
+
 	return NewQTextBoundaryFinderFromPointer(C.QTextBoundaryFinder_NewQTextBoundaryFinder3(C.int(ty), C.CString(stri)))
 }
 
 func NewQTextBoundaryFinder2(other QTextBoundaryFinder_ITF) *QTextBoundaryFinder {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::QTextBoundaryFinder")
+		}
+	}()
+
 	return NewQTextBoundaryFinderFromPointer(C.QTextBoundaryFinder_NewQTextBoundaryFinder2(PointerFromQTextBoundaryFinder(other)))
 }
 
 func (ptr *QTextBoundaryFinder) BoundaryReasons() QTextBoundaryFinder__BoundaryReason {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::boundaryReasons")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QTextBoundaryFinder__BoundaryReason(C.QTextBoundaryFinder_BoundaryReasons(ptr.Pointer()))
 	}
@@ -81,6 +106,12 @@ func (ptr *QTextBoundaryFinder) BoundaryReasons() QTextBoundaryFinder__BoundaryR
 }
 
 func (ptr *QTextBoundaryFinder) IsAtBoundary() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::isAtBoundary")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTextBoundaryFinder_IsAtBoundary(ptr.Pointer()) != 0
 	}
@@ -88,6 +119,12 @@ func (ptr *QTextBoundaryFinder) IsAtBoundary() bool {
 }
 
 func (ptr *QTextBoundaryFinder) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QTextBoundaryFinder_IsValid(ptr.Pointer()) != 0
 	}
@@ -95,6 +132,12 @@ func (ptr *QTextBoundaryFinder) IsValid() bool {
 }
 
 func (ptr *QTextBoundaryFinder) Position() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::position")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextBoundaryFinder_Position(ptr.Pointer()))
 	}
@@ -102,12 +145,24 @@ func (ptr *QTextBoundaryFinder) Position() int {
 }
 
 func (ptr *QTextBoundaryFinder) SetPosition(position int) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::setPosition")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextBoundaryFinder_SetPosition(ptr.Pointer(), C.int(position))
 	}
 }
 
 func (ptr *QTextBoundaryFinder) String() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::string")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QTextBoundaryFinder_String(ptr.Pointer()))
 	}
@@ -115,12 +170,24 @@ func (ptr *QTextBoundaryFinder) String() string {
 }
 
 func (ptr *QTextBoundaryFinder) ToEnd() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::toEnd")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextBoundaryFinder_ToEnd(ptr.Pointer())
 	}
 }
 
 func (ptr *QTextBoundaryFinder) ToNextBoundary() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::toNextBoundary")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextBoundaryFinder_ToNextBoundary(ptr.Pointer()))
 	}
@@ -128,6 +195,12 @@ func (ptr *QTextBoundaryFinder) ToNextBoundary() int {
 }
 
 func (ptr *QTextBoundaryFinder) ToPreviousBoundary() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::toPreviousBoundary")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextBoundaryFinder_ToPreviousBoundary(ptr.Pointer()))
 	}
@@ -135,12 +208,24 @@ func (ptr *QTextBoundaryFinder) ToPreviousBoundary() int {
 }
 
 func (ptr *QTextBoundaryFinder) ToStart() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::toStart")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextBoundaryFinder_ToStart(ptr.Pointer())
 	}
 }
 
 func (ptr *QTextBoundaryFinder) Type() QTextBoundaryFinder__BoundaryType {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::type")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QTextBoundaryFinder__BoundaryType(C.QTextBoundaryFinder_Type(ptr.Pointer()))
 	}
@@ -148,6 +233,12 @@ func (ptr *QTextBoundaryFinder) Type() QTextBoundaryFinder__BoundaryType {
 }
 
 func (ptr *QTextBoundaryFinder) DestroyQTextBoundaryFinder() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextBoundaryFinder::~QTextBoundaryFinder")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QTextBoundaryFinder_DestroyQTextBoundaryFinder(ptr.Pointer())
 	}

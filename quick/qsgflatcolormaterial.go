@@ -1,9 +1,10 @@
 package quick
 
-//#include "qsgflatcolormaterial.h"
+//#include "quick.h"
 import "C"
 import (
 	"github.com/therecipe/qt/gui"
+	"log"
 	"unsafe"
 )
 
@@ -34,6 +35,12 @@ func (ptr *QSGFlatColorMaterial) QSGFlatColorMaterial_PTR() *QSGFlatColorMateria
 }
 
 func (ptr *QSGFlatColorMaterial) Color() *gui.QColor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGFlatColorMaterial::color")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return gui.NewQColorFromPointer(C.QSGFlatColorMaterial_Color(ptr.Pointer()))
 	}
@@ -41,6 +48,12 @@ func (ptr *QSGFlatColorMaterial) Color() *gui.QColor {
 }
 
 func (ptr *QSGFlatColorMaterial) SetColor(color gui.QColor_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSGFlatColorMaterial::setColor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSGFlatColorMaterial_SetColor(ptr.Pointer(), gui.PointerFromQColor(color))
 	}

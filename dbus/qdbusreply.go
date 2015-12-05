@@ -1,6 +1,6 @@
 package dbus
 
-//#include "qdbusreply.h"
+//#include "dbus.h"
 import "C"
 import (
 	"unsafe"

@@ -1,6 +1,6 @@
 package gui
 
-//#include "qgenericmatrix.h"
+//#include "gui.h"
 import "C"
 import (
 	"unsafe"

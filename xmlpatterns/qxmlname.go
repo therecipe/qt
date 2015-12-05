@@ -1,8 +1,9 @@
 package xmlpatterns
 
-//#include "qxmlname.h"
+//#include "xmlpatterns.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -40,18 +41,42 @@ func (ptr *QXmlName) QXmlName_PTR() *QXmlName {
 }
 
 func NewQXmlName() *QXmlName {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlName::QXmlName")
+		}
+	}()
+
 	return NewQXmlNameFromPointer(C.QXmlName_NewQXmlName())
 }
 
 func NewQXmlName2(namePool QXmlNamePool_ITF, localName string, namespaceURI string, prefix string) *QXmlName {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlName::QXmlName")
+		}
+	}()
+
 	return NewQXmlNameFromPointer(C.QXmlName_NewQXmlName2(PointerFromQXmlNamePool(namePool), C.CString(localName), C.CString(namespaceURI), C.CString(prefix)))
 }
 
 func QXmlName_IsNCName(candidate string) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlName::isNCName")
+		}
+	}()
+
 	return C.QXmlName_QXmlName_IsNCName(C.CString(candidate)) != 0
 }
 
 func (ptr *QXmlName) IsNull() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlName::isNull")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QXmlName_IsNull(ptr.Pointer()) != 0
 	}
@@ -59,6 +84,12 @@ func (ptr *QXmlName) IsNull() bool {
 }
 
 func (ptr *QXmlName) LocalName(namePool QXmlNamePool_ITF) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlName::localName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlName_LocalName(ptr.Pointer(), PointerFromQXmlNamePool(namePool)))
 	}
@@ -66,6 +97,12 @@ func (ptr *QXmlName) LocalName(namePool QXmlNamePool_ITF) string {
 }
 
 func (ptr *QXmlName) NamespaceUri(namePool QXmlNamePool_ITF) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlName::namespaceUri")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlName_NamespaceUri(ptr.Pointer(), PointerFromQXmlNamePool(namePool)))
 	}
@@ -73,6 +110,12 @@ func (ptr *QXmlName) NamespaceUri(namePool QXmlNamePool_ITF) string {
 }
 
 func (ptr *QXmlName) Prefix(namePool QXmlNamePool_ITF) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlName::prefix")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlName_Prefix(ptr.Pointer(), PointerFromQXmlNamePool(namePool)))
 	}
@@ -80,6 +123,12 @@ func (ptr *QXmlName) Prefix(namePool QXmlNamePool_ITF) string {
 }
 
 func (ptr *QXmlName) ToClarkName(namePool QXmlNamePool_ITF) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QXmlName::toClarkName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QXmlName_ToClarkName(ptr.Pointer(), PointerFromQXmlNamePool(namePool)))
 	}

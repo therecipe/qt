@@ -1,9 +1,10 @@
 package gui
 
-//#include "qaccessibleobject.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,6 +35,12 @@ func (ptr *QAccessibleObject) QAccessibleObject_PTR() *QAccessibleObject {
 }
 
 func (ptr *QAccessibleObject) ChildAt(x int, y int) *QAccessibleInterface {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleObject::childAt")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAccessibleInterfaceFromPointer(C.QAccessibleObject_ChildAt(ptr.Pointer(), C.int(x), C.int(y)))
 	}
@@ -41,6 +48,12 @@ func (ptr *QAccessibleObject) ChildAt(x int, y int) *QAccessibleInterface {
 }
 
 func (ptr *QAccessibleObject) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleObject::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QAccessibleObject_IsValid(ptr.Pointer()) != 0
 	}
@@ -48,6 +61,12 @@ func (ptr *QAccessibleObject) IsValid() bool {
 }
 
 func (ptr *QAccessibleObject) Object() *core.QObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleObject::object")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QAccessibleObject_Object(ptr.Pointer()))
 	}
@@ -55,6 +74,12 @@ func (ptr *QAccessibleObject) Object() *core.QObject {
 }
 
 func (ptr *QAccessibleObject) SetText(t QAccessible__Text, text string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleObject::setText")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAccessibleObject_SetText(ptr.Pointer(), C.int(t), C.CString(text))
 	}

@@ -1,9 +1,10 @@
 package gui
 
-//#include "qresizeevent.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -34,5 +35,11 @@ func (ptr *QResizeEvent) QResizeEvent_PTR() *QResizeEvent {
 }
 
 func NewQResizeEvent(size core.QSize_ITF, oldSize core.QSize_ITF) *QResizeEvent {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QResizeEvent::QResizeEvent")
+		}
+	}()
+
 	return NewQResizeEventFromPointer(C.QResizeEvent_NewQResizeEvent(core.PointerFromQSize(size), core.PointerFromQSize(oldSize)))
 }

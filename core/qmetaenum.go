@@ -1,9 +1,10 @@
 package core
 
-//#include "qmetaenum.h"
+//#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -41,6 +42,12 @@ func (ptr *QMetaEnum) QMetaEnum_PTR() *QMetaEnum {
 }
 
 func (ptr *QMetaEnum) IsFlag() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMetaEnum::isFlag")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QMetaEnum_IsFlag(ptr.Pointer()) != 0
 	}
@@ -48,6 +55,12 @@ func (ptr *QMetaEnum) IsFlag() bool {
 }
 
 func (ptr *QMetaEnum) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMetaEnum::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QMetaEnum_IsValid(ptr.Pointer()) != 0
 	}
@@ -55,6 +68,12 @@ func (ptr *QMetaEnum) IsValid() bool {
 }
 
 func (ptr *QMetaEnum) KeyCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMetaEnum::keyCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QMetaEnum_KeyCount(ptr.Pointer()))
 	}
@@ -62,6 +81,12 @@ func (ptr *QMetaEnum) KeyCount() int {
 }
 
 func (ptr *QMetaEnum) KeyToValue(key string, ok bool) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMetaEnum::keyToValue")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QMetaEnum_KeyToValue(ptr.Pointer(), C.CString(key), C.int(qt.GoBoolToInt(ok))))
 	}
@@ -69,6 +94,12 @@ func (ptr *QMetaEnum) KeyToValue(key string, ok bool) int {
 }
 
 func (ptr *QMetaEnum) KeysToValue(keys string, ok bool) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMetaEnum::keysToValue")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QMetaEnum_KeysToValue(ptr.Pointer(), C.CString(keys), C.int(qt.GoBoolToInt(ok))))
 	}
@@ -76,6 +107,12 @@ func (ptr *QMetaEnum) KeysToValue(keys string, ok bool) int {
 }
 
 func (ptr *QMetaEnum) Value(index int) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMetaEnum::value")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QMetaEnum_Value(ptr.Pointer(), C.int(index)))
 	}
@@ -83,6 +120,12 @@ func (ptr *QMetaEnum) Value(index int) int {
 }
 
 func (ptr *QMetaEnum) ValueToKeys(value int) *QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMetaEnum::valueToKeys")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQByteArrayFromPointer(C.QMetaEnum_ValueToKeys(ptr.Pointer(), C.int(value)))
 	}

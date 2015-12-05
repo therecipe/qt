@@ -1,9 +1,10 @@
 package multimedia
 
-//#include "qmediaaudioprobecontrol.h"
+//#include "multimedia.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"log"
 	"unsafe"
 )
 
@@ -26,7 +27,7 @@ func PointerFromQMediaAudioProbeControl(ptr QMediaAudioProbeControl_ITF) unsafe.
 func NewQMediaAudioProbeControlFromPointer(ptr unsafe.Pointer) *QMediaAudioProbeControl {
 	var n = new(QMediaAudioProbeControl)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QMediaAudioProbeControl_") {
 		n.SetObjectName("QMediaAudioProbeControl_" + qt.RandomIdentifier())
 	}
 	return n
@@ -37,6 +38,12 @@ func (ptr *QMediaAudioProbeControl) QMediaAudioProbeControl_PTR() *QMediaAudioPr
 }
 
 func (ptr *QMediaAudioProbeControl) ConnectFlush(f func()) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaAudioProbeControl::flush")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMediaAudioProbeControl_ConnectFlush(ptr.Pointer())
 		qt.ConnectSignal(ptr.ObjectName(), "flush", f)
@@ -44,6 +51,12 @@ func (ptr *QMediaAudioProbeControl) ConnectFlush(f func()) {
 }
 
 func (ptr *QMediaAudioProbeControl) DisconnectFlush() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaAudioProbeControl::flush")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMediaAudioProbeControl_DisconnectFlush(ptr.Pointer())
 		qt.DisconnectSignal(ptr.ObjectName(), "flush")
@@ -52,10 +65,22 @@ func (ptr *QMediaAudioProbeControl) DisconnectFlush() {
 
 //export callbackQMediaAudioProbeControlFlush
 func callbackQMediaAudioProbeControlFlush(ptrName *C.char) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaAudioProbeControl::flush")
+		}
+	}()
+
 	qt.GetSignal(C.GoString(ptrName), "flush").(func())()
 }
 
 func (ptr *QMediaAudioProbeControl) DestroyQMediaAudioProbeControl() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMediaAudioProbeControl::~QMediaAudioProbeControl")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMediaAudioProbeControl_DestroyQMediaAudioProbeControl(ptr.Pointer())
 		ptr.SetPointer(nil)

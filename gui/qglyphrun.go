@@ -1,10 +1,11 @@
 package gui
 
-//#include "qglyphrun.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -53,20 +54,44 @@ const (
 )
 
 func NewQGlyphRun() *QGlyphRun {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::QGlyphRun")
+		}
+	}()
+
 	return NewQGlyphRunFromPointer(C.QGlyphRun_NewQGlyphRun())
 }
 
 func NewQGlyphRun2(other QGlyphRun_ITF) *QGlyphRun {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::QGlyphRun")
+		}
+	}()
+
 	return NewQGlyphRunFromPointer(C.QGlyphRun_NewQGlyphRun2(PointerFromQGlyphRun(other)))
 }
 
 func (ptr *QGlyphRun) Clear() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::clear")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGlyphRun_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QGlyphRun) Flags() QGlyphRun__GlyphRunFlag {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::flags")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QGlyphRun__GlyphRunFlag(C.QGlyphRun_Flags(ptr.Pointer()))
 	}
@@ -74,6 +99,12 @@ func (ptr *QGlyphRun) Flags() QGlyphRun__GlyphRunFlag {
 }
 
 func (ptr *QGlyphRun) IsEmpty() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::isEmpty")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGlyphRun_IsEmpty(ptr.Pointer()) != 0
 	}
@@ -81,6 +112,12 @@ func (ptr *QGlyphRun) IsEmpty() bool {
 }
 
 func (ptr *QGlyphRun) IsRightToLeft() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::isRightToLeft")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGlyphRun_IsRightToLeft(ptr.Pointer()) != 0
 	}
@@ -88,6 +125,12 @@ func (ptr *QGlyphRun) IsRightToLeft() bool {
 }
 
 func (ptr *QGlyphRun) Overline() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::overline")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGlyphRun_Overline(ptr.Pointer()) != 0
 	}
@@ -95,54 +138,108 @@ func (ptr *QGlyphRun) Overline() bool {
 }
 
 func (ptr *QGlyphRun) SetBoundingRect(boundingRect core.QRectF_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::setBoundingRect")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGlyphRun_SetBoundingRect(ptr.Pointer(), core.PointerFromQRectF(boundingRect))
 	}
 }
 
 func (ptr *QGlyphRun) SetFlag(flag QGlyphRun__GlyphRunFlag, enabled bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::setFlag")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGlyphRun_SetFlag(ptr.Pointer(), C.int(flag), C.int(qt.GoBoolToInt(enabled)))
 	}
 }
 
 func (ptr *QGlyphRun) SetFlags(flags QGlyphRun__GlyphRunFlag) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::setFlags")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGlyphRun_SetFlags(ptr.Pointer(), C.int(flags))
 	}
 }
 
 func (ptr *QGlyphRun) SetOverline(overline bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::setOverline")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGlyphRun_SetOverline(ptr.Pointer(), C.int(qt.GoBoolToInt(overline)))
 	}
 }
 
 func (ptr *QGlyphRun) SetRawFont(rawFont QRawFont_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::setRawFont")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGlyphRun_SetRawFont(ptr.Pointer(), PointerFromQRawFont(rawFont))
 	}
 }
 
 func (ptr *QGlyphRun) SetRightToLeft(rightToLeft bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::setRightToLeft")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGlyphRun_SetRightToLeft(ptr.Pointer(), C.int(qt.GoBoolToInt(rightToLeft)))
 	}
 }
 
 func (ptr *QGlyphRun) SetStrikeOut(strikeOut bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::setStrikeOut")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGlyphRun_SetStrikeOut(ptr.Pointer(), C.int(qt.GoBoolToInt(strikeOut)))
 	}
 }
 
 func (ptr *QGlyphRun) SetUnderline(underline bool) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::setUnderline")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGlyphRun_SetUnderline(ptr.Pointer(), C.int(qt.GoBoolToInt(underline)))
 	}
 }
 
 func (ptr *QGlyphRun) StrikeOut() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::strikeOut")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGlyphRun_StrikeOut(ptr.Pointer()) != 0
 	}
@@ -150,12 +247,24 @@ func (ptr *QGlyphRun) StrikeOut() bool {
 }
 
 func (ptr *QGlyphRun) Swap(other QGlyphRun_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGlyphRun_Swap(ptr.Pointer(), PointerFromQGlyphRun(other))
 	}
 }
 
 func (ptr *QGlyphRun) Underline() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::underline")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QGlyphRun_Underline(ptr.Pointer()) != 0
 	}
@@ -163,6 +272,12 @@ func (ptr *QGlyphRun) Underline() bool {
 }
 
 func (ptr *QGlyphRun) DestroyQGlyphRun() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QGlyphRun::~QGlyphRun")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QGlyphRun_DestroyQGlyphRun(ptr.Pointer())
 	}

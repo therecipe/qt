@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qitemeditorcreatorbase.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,12 +42,24 @@ func (ptr *QItemEditorCreatorBase) QItemEditorCreatorBase_PTR() *QItemEditorCrea
 }
 
 func (ptr *QItemEditorCreatorBase) DestroyQItemEditorCreatorBase() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemEditorCreatorBase::~QItemEditorCreatorBase")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QItemEditorCreatorBase_DestroyQItemEditorCreatorBase(ptr.Pointer())
 	}
 }
 
 func (ptr *QItemEditorCreatorBase) CreateWidget(parent QWidget_ITF) *QWidget {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemEditorCreatorBase::createWidget")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQWidgetFromPointer(C.QItemEditorCreatorBase_CreateWidget(ptr.Pointer(), PointerFromQWidget(parent)))
 	}
@@ -54,6 +67,12 @@ func (ptr *QItemEditorCreatorBase) CreateWidget(parent QWidget_ITF) *QWidget {
 }
 
 func (ptr *QItemEditorCreatorBase) ValuePropertyName() *core.QByteArray {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QItemEditorCreatorBase::valuePropertyName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQByteArrayFromPointer(C.QItemEditorCreatorBase_ValuePropertyName(ptr.Pointer()))
 	}

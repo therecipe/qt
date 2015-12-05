@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qcompassfilter.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QCompassFilter) QCompassFilter_PTR() *QCompassFilter {
 }
 
 func (ptr *QCompassFilter) Filter(reading QCompassReading_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QCompassFilter::filter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QCompassFilter_Filter(ptr.Pointer(), PointerFromQCompassReading(reading)) != 0
 	}

@@ -1,8 +1,9 @@
 package core
 
-//#include "qmimedatabase.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -49,16 +50,34 @@ const (
 )
 
 func NewQMimeDatabase() *QMimeDatabase {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMimeDatabase::QMimeDatabase")
+		}
+	}()
+
 	return NewQMimeDatabaseFromPointer(C.QMimeDatabase_NewQMimeDatabase())
 }
 
 func (ptr *QMimeDatabase) DestroyQMimeDatabase() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMimeDatabase::~QMimeDatabase")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMimeDatabase_DestroyQMimeDatabase(ptr.Pointer())
 	}
 }
 
 func (ptr *QMimeDatabase) SuffixForFileName(fileName string) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMimeDatabase::suffixForFileName")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QMimeDatabase_SuffixForFileName(ptr.Pointer(), C.CString(fileName)))
 	}

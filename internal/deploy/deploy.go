@@ -256,7 +256,7 @@ func build() {
 	case "android":
 		{
 			ldFlags = "-ldflags=\"-s\" \"-w\""
-			outputFile = filepath.Join(depPath, fmt.Sprintf("lib%v.so", appName))
+			outputFile = filepath.Join(depPath, "libgo.so")
 
 			switch runtime.GOOS {
 			case "darwin", "linux":
@@ -364,7 +364,7 @@ func predeploy() {
 
 			var libPath = filepath.Join(depPath, "build", "libs", "armeabi-v7a")
 			utils.MakeFolder(libPath)
-			runCmd(exec.Command(copyCmd, filepath.Join(depPath, fmt.Sprintf("lib%v.so", appName)), libPath), "predeploy.cplib")
+			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), libPath), "predeploy.cplib")
 
 			var (
 				qtPrefix      string
@@ -447,15 +447,14 @@ func predeploy() {
 				Targetarchitecture:            "armeabi-v7a",
 				AndroidPackageSourceDirectory: filepath.Join(appPath, "android"),
 				Qmlrootpath:                   filepath.Join(appPath, "qml"),
-				Applicationbinary:             filepath.Join(depPath, fmt.Sprintf("lib%v.so", appName)),
+				Applicationbinary:             filepath.Join(depPath, "libgo.so"),
 			})
 			if err != nil {
 				fmt.Println("predeploy.json", string(out), err)
 				os.Exit(1)
 			}
 
-			utils.Save(filepath.Join(depPath, fmt.Sprintf("android-lib%v.so-deployment-settings.json", appName)), string(out))
-
+			utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), string(out))
 		}
 
 	case "desktop":
@@ -522,10 +521,10 @@ func deploy() {
 
 			var deploy = exec.Command(filepath.Join(qtPrefix, "Qt5.5.1", "5.5", "android_armv7", "bin", "androiddeployqt"+ending))
 			deploy.Args = append(deploy.Args,
-				"--input", filepath.Join(depPath, fmt.Sprintf("android-lib%v.so-deployment-settings.json", appName)),
+				"--input", filepath.Join(depPath, "android-libgo.so-deployment-settings.json"),
 				"--output", filepath.Join(depPath, "build"),
 				"--deployment", "bundled",
-				"--android-platform", "android-23",
+				"--android-platform", "android-22",
 				"--jdk", jdkLib,
 				"--ant", filepath.Join(androidPrefix, "apache-ant", "bin", "ant"),
 			)

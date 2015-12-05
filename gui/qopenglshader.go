@@ -1,6 +1,6 @@
 package gui
 
-//#include "qopenglshader.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
@@ -27,7 +27,7 @@ func PointerFromQOpenGLShader(ptr QOpenGLShader_ITF) unsafe.Pointer {
 func NewQOpenGLShaderFromPointer(ptr unsafe.Pointer) *QOpenGLShader {
 	var n = new(QOpenGLShader)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QOpenGLShader_") {
 		n.SetObjectName("QOpenGLShader_" + qt.RandomIdentifier())
 	}
 	return n

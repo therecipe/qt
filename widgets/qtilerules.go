@@ -1,9 +1,10 @@
 package widgets
 
-//#include "qtilerules.h"
+//#include "widgets.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,9 +42,21 @@ func (ptr *QTileRules) QTileRules_PTR() *QTileRules {
 }
 
 func NewQTileRules(horizontalRule core.Qt__TileRule, verticalRule core.Qt__TileRule) *QTileRules {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTileRules::QTileRules")
+		}
+	}()
+
 	return NewQTileRulesFromPointer(C.QTileRules_NewQTileRules(C.int(horizontalRule), C.int(verticalRule)))
 }
 
 func NewQTileRules2(rule core.Qt__TileRule) *QTileRules {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTileRules::QTileRules")
+		}
+	}()
+
 	return NewQTileRulesFromPointer(C.QTileRules_NewQTileRules2(C.int(rule)))
 }

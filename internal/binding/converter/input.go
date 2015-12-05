@@ -16,13 +16,13 @@ func goInput(name string, value string, f *parser.Function) string {
 	switch value {
 	case "QStringList":
 		{
-			return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
+			return fmt.Sprintf("C.CString(strings.Join(%v, \",,,\"))", name)
 		}
 
 	case "uchar", "char", "QString":
 		{
 			if strings.Contains(vOld, "**") {
-				return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
+				return fmt.Sprintf("C.CString(strings.Join(%v, \",,,\"))", name)
 			}
 			return fmt.Sprintf("C.CString(%v)", name)
 		}
@@ -55,6 +55,20 @@ func goInput(name string, value string, f *parser.Function) string {
 			}
 			return strings.TrimSuffix(tmp, ", ")
 		}
+	case "T":
+		{
+			switch f.TemplateMode {
+			case "Int":
+				return fmt.Sprintf("C.int(%v)", name)
+
+			case "Boolean":
+				return fmt.Sprintf("C.int(qt.GoBoolToInt(%v))", name)
+			}
+
+			if module(f) == "androidextras" {
+				return fmt.Sprintf("assertion(0, %v)", name)
+			}
+		}
 	}
 
 	switch {
@@ -85,7 +99,7 @@ func cppInput(name string, value string, f *parser.Function) string {
 	switch value {
 	case "QStringList":
 		{
-			return fmt.Sprintf("%v.split(\"|\", QString::SkipEmptyParts)", cppInput(name, "QString", f))
+			return fmt.Sprintf("%v.split(\",,,\", QString::SkipEmptyParts)", cppInput(name, "QString", f))
 		}
 
 	case "QString":
@@ -173,6 +187,17 @@ func cppInput(name string, value string, f *parser.Function) string {
 				}
 			}
 			return strings.TrimSuffix(tmp, ", ")
+		}
+	case "T":
+		{
+			switch f.TemplateMode {
+			case "Int", "Boolean":
+				return name
+			}
+
+			if module(f) == "androidextras" {
+				return fmt.Sprintf("static_cast<jobject>(%v)", name)
+			}
 		}
 	}
 

@@ -1,8 +1,9 @@
 package network
 
-//#include "qsslerror.h"
+//#include "network.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -72,22 +73,52 @@ const (
 )
 
 func NewQSslError() *QSslError {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSslError::QSslError")
+		}
+	}()
+
 	return NewQSslErrorFromPointer(C.QSslError_NewQSslError())
 }
 
 func NewQSslError2(error QSslError__SslError) *QSslError {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSslError::QSslError")
+		}
+	}()
+
 	return NewQSslErrorFromPointer(C.QSslError_NewQSslError2(C.int(error)))
 }
 
 func NewQSslError3(error QSslError__SslError, certificate QSslCertificate_ITF) *QSslError {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSslError::QSslError")
+		}
+	}()
+
 	return NewQSslErrorFromPointer(C.QSslError_NewQSslError3(C.int(error), PointerFromQSslCertificate(certificate)))
 }
 
 func NewQSslError4(other QSslError_ITF) *QSslError {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSslError::QSslError")
+		}
+	}()
+
 	return NewQSslErrorFromPointer(C.QSslError_NewQSslError4(PointerFromQSslError(other)))
 }
 
 func (ptr *QSslError) Error() QSslError__SslError {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSslError::error")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QSslError__SslError(C.QSslError_Error(ptr.Pointer()))
 	}
@@ -95,6 +126,12 @@ func (ptr *QSslError) Error() QSslError__SslError {
 }
 
 func (ptr *QSslError) ErrorString() string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSslError::errorString")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QSslError_ErrorString(ptr.Pointer()))
 	}
@@ -102,12 +139,24 @@ func (ptr *QSslError) ErrorString() string {
 }
 
 func (ptr *QSslError) Swap(other QSslError_ITF) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSslError::swap")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSslError_Swap(ptr.Pointer(), PointerFromQSslError(other))
 	}
 }
 
 func (ptr *QSslError) DestroyQSslError() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QSslError::~QSslError")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QSslError_DestroyQSslError(ptr.Pointer())
 	}

@@ -1,9 +1,10 @@
 package gui
 
-//#include "qaccessibleinterface.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -41,6 +42,12 @@ func (ptr *QAccessibleInterface) QAccessibleInterface_PTR() *QAccessibleInterfac
 }
 
 func (ptr *QAccessibleInterface) ActionInterface() *QAccessibleActionInterface {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::actionInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAccessibleActionInterfaceFromPointer(C.QAccessibleInterface_ActionInterface(ptr.Pointer()))
 	}
@@ -48,6 +55,12 @@ func (ptr *QAccessibleInterface) ActionInterface() *QAccessibleActionInterface {
 }
 
 func (ptr *QAccessibleInterface) BackgroundColor() *QColor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::backgroundColor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQColorFromPointer(C.QAccessibleInterface_BackgroundColor(ptr.Pointer()))
 	}
@@ -55,6 +68,12 @@ func (ptr *QAccessibleInterface) BackgroundColor() *QColor {
 }
 
 func (ptr *QAccessibleInterface) Child(index int) *QAccessibleInterface {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::child")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAccessibleInterfaceFromPointer(C.QAccessibleInterface_Child(ptr.Pointer(), C.int(index)))
 	}
@@ -62,6 +81,12 @@ func (ptr *QAccessibleInterface) Child(index int) *QAccessibleInterface {
 }
 
 func (ptr *QAccessibleInterface) ChildAt(x int, y int) *QAccessibleInterface {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::childAt")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAccessibleInterfaceFromPointer(C.QAccessibleInterface_ChildAt(ptr.Pointer(), C.int(x), C.int(y)))
 	}
@@ -69,6 +94,12 @@ func (ptr *QAccessibleInterface) ChildAt(x int, y int) *QAccessibleInterface {
 }
 
 func (ptr *QAccessibleInterface) ChildCount() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::childCount")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleInterface_ChildCount(ptr.Pointer()))
 	}
@@ -76,6 +107,12 @@ func (ptr *QAccessibleInterface) ChildCount() int {
 }
 
 func (ptr *QAccessibleInterface) FocusChild() *QAccessibleInterface {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::focusChild")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAccessibleInterfaceFromPointer(C.QAccessibleInterface_FocusChild(ptr.Pointer()))
 	}
@@ -83,6 +120,12 @@ func (ptr *QAccessibleInterface) FocusChild() *QAccessibleInterface {
 }
 
 func (ptr *QAccessibleInterface) ForegroundColor() *QColor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::foregroundColor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQColorFromPointer(C.QAccessibleInterface_ForegroundColor(ptr.Pointer()))
 	}
@@ -90,6 +133,12 @@ func (ptr *QAccessibleInterface) ForegroundColor() *QColor {
 }
 
 func (ptr *QAccessibleInterface) IndexOfChild(child QAccessibleInterface_ITF) int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::indexOfChild")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QAccessibleInterface_IndexOfChild(ptr.Pointer(), PointerFromQAccessibleInterface(child)))
 	}
@@ -97,6 +146,12 @@ func (ptr *QAccessibleInterface) IndexOfChild(child QAccessibleInterface_ITF) in
 }
 
 func (ptr *QAccessibleInterface) Interface_cast(ty QAccessible__InterfaceType) unsafe.Pointer {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::interface_cast")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QAccessibleInterface_Interface_cast(ptr.Pointer(), C.int(ty)))
 	}
@@ -104,6 +159,12 @@ func (ptr *QAccessibleInterface) Interface_cast(ty QAccessible__InterfaceType) u
 }
 
 func (ptr *QAccessibleInterface) IsValid() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::isValid")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QAccessibleInterface_IsValid(ptr.Pointer()) != 0
 	}
@@ -111,6 +172,12 @@ func (ptr *QAccessibleInterface) IsValid() bool {
 }
 
 func (ptr *QAccessibleInterface) Object() *core.QObject {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::object")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return core.NewQObjectFromPointer(C.QAccessibleInterface_Object(ptr.Pointer()))
 	}
@@ -118,6 +185,12 @@ func (ptr *QAccessibleInterface) Object() *core.QObject {
 }
 
 func (ptr *QAccessibleInterface) Parent() *QAccessibleInterface {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::parent")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAccessibleInterfaceFromPointer(C.QAccessibleInterface_Parent(ptr.Pointer()))
 	}
@@ -125,6 +198,12 @@ func (ptr *QAccessibleInterface) Parent() *QAccessibleInterface {
 }
 
 func (ptr *QAccessibleInterface) Role() QAccessible__Role {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::role")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return QAccessible__Role(C.QAccessibleInterface_Role(ptr.Pointer()))
 	}
@@ -132,12 +211,24 @@ func (ptr *QAccessibleInterface) Role() QAccessible__Role {
 }
 
 func (ptr *QAccessibleInterface) SetText(t QAccessible__Text, text string) {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::setText")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAccessibleInterface_SetText(ptr.Pointer(), C.int(t), C.CString(text))
 	}
 }
 
 func (ptr *QAccessibleInterface) TableCellInterface() *QAccessibleTableCellInterface {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::tableCellInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAccessibleTableCellInterfaceFromPointer(C.QAccessibleInterface_TableCellInterface(ptr.Pointer()))
 	}
@@ -145,6 +236,12 @@ func (ptr *QAccessibleInterface) TableCellInterface() *QAccessibleTableCellInter
 }
 
 func (ptr *QAccessibleInterface) TableInterface() *QAccessibleTableInterface {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::tableInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAccessibleTableInterfaceFromPointer(C.QAccessibleInterface_TableInterface(ptr.Pointer()))
 	}
@@ -152,6 +249,12 @@ func (ptr *QAccessibleInterface) TableInterface() *QAccessibleTableInterface {
 }
 
 func (ptr *QAccessibleInterface) Text(t QAccessible__Text) string {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::text")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QAccessibleInterface_Text(ptr.Pointer(), C.int(t)))
 	}
@@ -159,6 +262,12 @@ func (ptr *QAccessibleInterface) Text(t QAccessible__Text) string {
 }
 
 func (ptr *QAccessibleInterface) TextInterface() *QAccessibleTextInterface {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::textInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAccessibleTextInterfaceFromPointer(C.QAccessibleInterface_TextInterface(ptr.Pointer()))
 	}
@@ -166,6 +275,12 @@ func (ptr *QAccessibleInterface) TextInterface() *QAccessibleTextInterface {
 }
 
 func (ptr *QAccessibleInterface) ValueInterface() *QAccessibleValueInterface {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::valueInterface")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAccessibleValueInterfaceFromPointer(C.QAccessibleInterface_ValueInterface(ptr.Pointer()))
 	}
@@ -173,6 +288,12 @@ func (ptr *QAccessibleInterface) ValueInterface() *QAccessibleValueInterface {
 }
 
 func (ptr *QAccessibleInterface) Window() *QWindow {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAccessibleInterface::window")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQWindowFromPointer(C.QAccessibleInterface_Window(ptr.Pointer()))
 	}

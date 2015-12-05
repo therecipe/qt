@@ -1,8 +1,9 @@
 package sensors
 
-//#include "qpressurefilter.h"
+//#include "sensors.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -33,6 +34,12 @@ func (ptr *QPressureFilter) QPressureFilter_PTR() *QPressureFilter {
 }
 
 func (ptr *QPressureFilter) Filter(reading QPressureReading_ITF) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QPressureFilter::filter")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QPressureFilter_Filter(ptr.Pointer(), PointerFromQPressureReading(reading)) != 0
 	}

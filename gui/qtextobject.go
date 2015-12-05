@@ -1,10 +1,11 @@
 package gui
 
-//#include "qtextobject.h"
+//#include "gui.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQTextObject(ptr QTextObject_ITF) unsafe.Pointer {
 func NewQTextObjectFromPointer(ptr unsafe.Pointer) *QTextObject {
 	var n = new(QTextObject)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QTextObject_") {
 		n.SetObjectName("QTextObject_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QTextObject) QTextObject_PTR() *QTextObject {
 }
 
 func (ptr *QTextObject) Document() *QTextDocument {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextObject::document")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQTextDocumentFromPointer(C.QTextObject_Document(ptr.Pointer()))
 	}
@@ -45,6 +52,12 @@ func (ptr *QTextObject) Document() *QTextDocument {
 }
 
 func (ptr *QTextObject) FormatIndex() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextObject::formatIndex")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextObject_FormatIndex(ptr.Pointer()))
 	}
@@ -52,6 +65,12 @@ func (ptr *QTextObject) FormatIndex() int {
 }
 
 func (ptr *QTextObject) ObjectIndex() int {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QTextObject::objectIndex")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return int(C.QTextObject_ObjectIndex(ptr.Pointer()))
 	}

@@ -1,8 +1,9 @@
 package core
 
-//#include "qmutex.h"
+//#include "core.h"
 import "C"
 import (
+	"log"
 	"unsafe"
 )
 
@@ -48,12 +49,24 @@ const (
 )
 
 func (ptr *QMutex) Lock() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMutex::lock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMutex_Lock(ptr.Pointer())
 	}
 }
 
 func (ptr *QMutex) TryLock(timeout int) bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMutex::tryLock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QMutex_TryLock(ptr.Pointer(), C.int(timeout)) != 0
 	}
@@ -61,16 +74,34 @@ func (ptr *QMutex) TryLock(timeout int) bool {
 }
 
 func (ptr *QMutex) Unlock() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMutex::unlock")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QMutex_Unlock(ptr.Pointer())
 	}
 }
 
 func NewQMutex(mode QMutex__RecursionMode) *QMutex {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMutex::QMutex")
+		}
+	}()
+
 	return NewQMutexFromPointer(C.QMutex_NewQMutex(C.int(mode)))
 }
 
 func (ptr *QMutex) IsRecursive() bool {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QMutex::isRecursive")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return C.QMutex_IsRecursive(ptr.Pointer()) != 0
 	}

@@ -62,7 +62,7 @@ func CppBodyInput(f *parser.Function) (o string) {
 	return strings.TrimSuffix(o, ", ")
 }
 
-func PrivateSignal(f *parser.Function) bool {
+func IsPrivateSignal(f *parser.Function) bool {
 
 	var fData string
 
@@ -89,7 +89,7 @@ func PrivateSignal(f *parser.Function) bool {
 	if fData != "" {
 		return strings.Contains(strings.Split(strings.Split(fData, f.Name+"(")[1], ")")[0], "QPrivateSignal")
 	} else {
-		fmt.Println("converter.PrivateSignal", f.Class())
+		fmt.Println("converter.IsPrivateSignal", f.Class())
 	}
 
 	return false

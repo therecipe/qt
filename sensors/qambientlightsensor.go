@@ -1,10 +1,11 @@
 package sensors
 
-//#include "qambientlightsensor.h"
+//#include "sensors.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"log"
 	"unsafe"
 )
 
@@ -27,7 +28,7 @@ func PointerFromQAmbientLightSensor(ptr QAmbientLightSensor_ITF) unsafe.Pointer 
 func NewQAmbientLightSensorFromPointer(ptr unsafe.Pointer) *QAmbientLightSensor {
 	var n = new(QAmbientLightSensor)
 	n.SetPointer(ptr)
-	if n.ObjectName() == "" {
+	for len(n.ObjectName()) < len("QAmbientLightSensor_") {
 		n.SetObjectName("QAmbientLightSensor_" + qt.RandomIdentifier())
 	}
 	return n
@@ -38,6 +39,12 @@ func (ptr *QAmbientLightSensor) QAmbientLightSensor_PTR() *QAmbientLightSensor {
 }
 
 func (ptr *QAmbientLightSensor) Reading() *QAmbientLightReading {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAmbientLightSensor::reading")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		return NewQAmbientLightReadingFromPointer(C.QAmbientLightSensor_Reading(ptr.Pointer()))
 	}
@@ -45,10 +52,22 @@ func (ptr *QAmbientLightSensor) Reading() *QAmbientLightReading {
 }
 
 func NewQAmbientLightSensor(parent core.QObject_ITF) *QAmbientLightSensor {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAmbientLightSensor::QAmbientLightSensor")
+		}
+	}()
+
 	return NewQAmbientLightSensorFromPointer(C.QAmbientLightSensor_NewQAmbientLightSensor(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensor() {
+	defer func() {
+		if recover() != nil {
+			log.Println("recovered in QAmbientLightSensor::~QAmbientLightSensor")
+		}
+	}()
+
 	if ptr.Pointer() != nil {
 		C.QAmbientLightSensor_DestroyQAmbientLightSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
